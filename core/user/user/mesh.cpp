@@ -263,7 +263,7 @@ namespace user
                   || i == sizea.get_upper_bound())
             {
                ::rectangle_i32 rectangle;
-               rectangle.top = ::i32(y - pointScroll.y);
+               rectangle.top = ::i32(y - pointScroll.y());
                if(i == 0)
                {
                   w = sizea[0].cx - x      ;
@@ -279,9 +279,9 @@ namespace user
                   y += sizea[i - 1].cy;
                   iNewStart = i - 1;
                }
-               rectangle.left = ::i32(- pointScroll.x);
+               rectangle.left = ::i32(- pointScroll.x());
                rectangle.right = rectangleClient.right;
-               rectangle.bottom = ::i32(y - pointScroll.y);
+               rectangle.bottom = ::i32(y - pointScroll.y());
 
                pgraphics->_DrawText(m_strTopText.substr(iStart,i - iStart),rectangle,e_align_left);
                iStart = iNewStart;
@@ -693,7 +693,7 @@ namespace user
       //if(m_eview == impact_grid)
       //{
 
-      //   pdrawitem->m_iOrder = maximum(get_context_offset().x, 0);
+      //   pdrawitem->m_iOrder = maximum(get_context_offset().x(), 0);
 
       //}
       //else
@@ -1512,7 +1512,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         return (::index) minimum(maximum(0,get_context_offset().y),m_nGridItemCount);
+         return (::index) minimum(maximum(0,get_context_offset().y()),m_nGridItemCount);
 
       }
       else
@@ -1522,7 +1522,7 @@ namespace user
 
          index iItem;
 
-         if(_001DisplayHitTest(::point_i32((::i32)(pointScroll.x < 0 ? -pointScroll.x : 0), (::i32)(m_dItemHeight + (pointScroll.y < -0 ? -pointScroll.y : 0))),iItem))
+         if(_001DisplayHitTest(::point_i32((::i32)(pointScroll.x() < 0 ? -pointScroll.x() : 0), (::i32)(m_dItemHeight + (pointScroll.y() < -0 ? -pointScroll.y() : 0))),iItem))
          {
 
             return (::index) iItem;
@@ -1534,7 +1534,7 @@ namespace user
             if(m_eview == impact_report || m_eview == impact_grid)
             {
 
-               if(pointScroll.y < 0)
+               if(pointScroll.y() < 0)
                {
 
                   return 0;
@@ -1776,12 +1776,12 @@ namespace user
          return true;
       }
       index iColumnCount = m_nColumnCount;
-      i32 iLeft =(i32)pointScroll.x;
+      i32 iLeft =(i32)pointScroll.x();
       if(m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
       //i32 iRight;
       // draw_mesh_item item(this);
-      if(point.x < iLeft)
+      if(point.x() < iLeft)
          return false;
       //for(::index iColumn = 0; iColumn < iColumnCount; iColumn++)
       //{
@@ -1789,7 +1789,7 @@ namespace user
       //   if(!item.m_bOk)
       //      continue;
       //   iRight = iLeft + item.m_iColumnWidth;
-      //   if(iLeft <= point.x && point.x < iRight)
+      //   if(iLeft <= point.x() && point.x() < iRight)
       //   {
       //      iItemParam = iItem;
       //      iSubItemParam = _001MapColumnToSubItem(item.m_iColumn);
@@ -1809,10 +1809,10 @@ namespace user
 
          client_rectangle(rectangleClient);
 
-         if(point.x < 0
-               || point.x > rectangleClient.right
-               || point.y < 0
-               || point.y > rectangleClient.bottom)
+         if(point.x() < 0
+               || point.x() > rectangleClient.right
+               || point.y() < 0
+               || point.y() > rectangleClient.bottom)
          {
 
             return false;
@@ -1825,7 +1825,7 @@ namespace user
 
       if(m_eview == impact_report || m_eview == impact_grid)
       {
-         index iy = point.y + pointScroll.y;
+         index iy = point.y() + pointScroll.y();
 
          index iItem = -1;
 
@@ -1879,7 +1879,7 @@ namespace user
          //}
          index iRoundHeight = (index)((rectangleClient.height() / m_dItemHeight) * m_dItemHeight);
 
-         index iy = (index)((point.y + pointScroll.y) + (((point.x + pointScroll.x) / m_iItemWidth)) * iRoundHeight);
+         index iy = (index)((point.y() + pointScroll.y()) + (((point.x() + pointScroll.x()) / m_iItemWidth)) * iRoundHeight);
 
          index iItem = -1;
 
@@ -1925,14 +1925,14 @@ namespace user
          index iIconSize = 32;
          index iItemSize = iIconSize * 2;
 
-         index ix = (index)(point.x + pointScroll.x);
-         ix = (index)maximum(pointScroll.x,ix);
+         index ix = (index)(point.x() + pointScroll.x());
+         ix = (index)maximum(pointScroll.x(),ix);
          ix = (index)minimum(rectangleClient.right,ix);
          ix = (index)maximum(rectangleClient.left,ix);
          ix /= iItemSize;
 
-         index iy = point.y + pointScroll.y;
-         iy = maximum(pointScroll.y,iy);
+         index iy = point.y() + pointScroll.y();
+         iy = maximum(pointScroll.y(),iy);
          iy = maximum(rectangleClient.top,iy);
          iy /= iItemSize;
 
@@ -2058,7 +2058,7 @@ namespace user
                      pdrawitem->m_rectangleItem.top += m_rectangleTopText.height();
                   }
                   pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
-                  pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
+                  pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
                }
 
                if(pdrawitem->m_iDisplayItem > pdrawitem->m_iRectangleDisplayItem)
@@ -2131,7 +2131,7 @@ namespace user
                pdrawitem->m_rectangleItem.top += m_rectangleTopText.height();
             }
             pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
-            pdrawitem->m_rectangleItem.offset(0, (::i32)(m_iTopMargin -pointScroll.y * m_dItemHeight));
+            pdrawitem->m_rectangleItem.offset(0, (::i32)(m_iTopMargin -pointScroll.y() * m_dItemHeight));
             pdrawitem->m_iRectangleDisplayItem = pdrawitem->m_iDisplayItem;
          }
       }
@@ -2160,7 +2160,7 @@ namespace user
                      pdrawitem->m_rectangleItem.top += m_rectangleTopText.height();
                   }
                   pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
-                  pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
+                  pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
                }
 
                if(pdrawitem->m_iDisplayItem > pdrawitem->m_iRectangleDisplayItem)
@@ -2231,7 +2231,7 @@ namespace user
                pdrawitem->m_rectangleItem.top += m_rectangleTopText.height();
             }
             pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
-            pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
+            pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
             pdrawitem->m_iRectangleDisplayItem = pdrawitem->m_iDisplayItem;
          }
       }
@@ -2270,7 +2270,7 @@ namespace user
          //}
          pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
          pdrawitem->m_rectangleItem.right = (::i32)(pdrawitem->m_rectangleItem.left + m_iItemWidth);
-         pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
+         pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
       }
       else if(m_eview == impact_icon)
       {
@@ -2304,7 +2304,7 @@ namespace user
          //   pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + iItemSize);
          //   pdrawitem->m_rectangleItem.right = (::i32)(pdrawitem->m_rectangleItem.left + iItemSize);
          //}
-         pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
+         pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
       }
 
       pdrawitem->m_bOk = true;
@@ -4441,7 +4441,7 @@ namespace user
 
       auto pointScroll = get_context_offset();
 
-      if(iItem < pointScroll.y || (m_dItemHeight > 0 && iItem >= pointScroll.y / m_dItemHeight + m_nDisplayCount))
+      if(iItem < pointScroll.y() || (m_dItemHeight > 0 && iItem >= pointScroll.y() / m_dItemHeight + m_nDisplayCount))
       {
 
          int iy = (int) (iItem * m_dItemHeight);
@@ -4499,7 +4499,7 @@ namespace user
 
       auto pointScroll = get_context_offset();
 
-      auto iyScroll = pointScroll.y / maximum(1,m_dItemHeight);
+      auto iyScroll = pointScroll.y() / maximum(1,m_dItemHeight);
       if(iItem < iyScroll)
       {
          iyScroll = iItem - (double) m_nDisplayCount + 1;
@@ -4508,7 +4508,7 @@ namespace user
       {
          iyScroll = (double) iItem;
       }
-      if(pointScroll.y / maximum(1,m_dItemHeight) != iyScroll)
+      if(pointScroll.y() / maximum(1,m_dItemHeight) != iyScroll)
       {
          item_range item;
 
@@ -5568,7 +5568,7 @@ namespace user
 
             auto sizeTotal = get_total_size();
 
-            if((sizeTotal.cy - pointScroll.y - sizePage.cy) <= 1)
+            if((sizeTotal.cy - pointScroll.y() - sizePage.cy) <= 1)
             {
 
                m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy / m_dItemHeight));
@@ -5608,7 +5608,7 @@ namespace user
 
             auto sizeTotal = get_total_size();
 
-            if((sizeTotal.cx - pointScroll.x - sizePage.cx) <= 1)
+            if((sizeTotal.cx - pointScroll.x() - sizePage.cx) <= 1)
             {
 
 ///               m_nColumnCount = minimum(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
@@ -6334,10 +6334,10 @@ namespace user
 
    //      m_scrolldata.m_sizePage.cy = rectangleImpactClient.size().cy / m_dItemHeight;
 
-   //      if(m_scrolldata.m_pointScroll.y > (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy))
+   //      if(m_scrolldata.m_pointScroll.y() > (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy))
    //      {
 
-   //         m_scrolldata.m_pointScroll.y = (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy);
+   //         m_scrolldata.m_pointScroll.y() = (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy);
 
    //      }
 
@@ -6392,7 +6392,7 @@ namespace user
    }
 
 
-   //bool mesh::client_rectangle(RECTANGLE_I32 * prectangle)
+   //bool mesh::client_rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   if(m_eview == impact_grid && m_dItemHeight > 0)

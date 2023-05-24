@@ -27,7 +27,7 @@ namespace nanoui
     *
     * \brief Basic implementation of a tab pwidget with (optionally) draggable and
     * closeable tabs and popup menus. No rendering of the content is done---for an
-    * example implementation, refer to \ref TabWidget.
+    * example implementation, refer to \::pointer TabWidget.
     */
    class CLASS_DECL_NANOUI TabWidgetBase :
       public Widget
@@ -186,7 +186,7 @@ namespace nanoui
     *       memory_new Label(tab, "Some Label");
     *
     *    A slightly more involved example of creating a TabWidget can also be found
-    *    in :ref:`nanoui_example_1` (search for ``tab_widget`` in the file).
+    *    in :::pointer:`nanoui_example_1` (search for ``tab_widget`` in the file).
     *
     * \endrst
     */

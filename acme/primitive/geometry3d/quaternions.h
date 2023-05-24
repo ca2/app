@@ -14,10 +14,14 @@ struct Q4
 };
 
 
-class CLASS_DECL_ACME q4 :
-   public Q4
+template < primitive_number NUMBER >
+class q4 :
+   public vector_type < NUMBER, 4 >
 {
 public:
+
+
+   using UNIT_TYPE = NUMBER;
 
 
    q4()
@@ -34,14 +38,14 @@ public:
 
    }
 
-
-   q4(double w1,double x1,double y1,double z1)
+   template < primitive_number W, primitive_number X, primitive_number Y, primitive_number Z >
+   q4(W w, X x, Y y, Z z)
    {
 
-      w = w1;
-      x = x1;
-      y = y1;
-      z = z1;
+      this->w() = (UNIT_TYPE) w;
+      this->x() = (UNIT_TYPE) x;
+      this->y() = (UNIT_TYPE) y;
+      this->z() = (UNIT_TYPE) z;
 
    }
 
@@ -49,7 +53,7 @@ public:
    double sqsize()
    {
       
-      return w * w + x * x + y * y + z * z;
+      return this->w() * this->w() + this->x() * this->x() + this->y() * this->y() + this->z() * this->z();
 
    }
 
@@ -71,10 +75,10 @@ public:
 
       q4 q;
 
-      q.w = w * q2.w - x * q2.x - y * q2.y - z * q2.z;
-      q.x = w * q2.x + x * q2.w + y * q2.z - z * q2.y;
-      q.y = w * q2.y - x * q2.z + y * q2.w + z * q2.x;
-      q.z = w * q2.z + x * q2.y - y * q2.x + z * q2.w;
+      q.w() = this->w() * q2.w() - this->x() * q2.x() - this->y * q2.y() - this->z() * q2.z();
+      q.x() = this->w() * q2.x() + this->x() * q2.w() + this->y * q2.z() - this->z() * q2.y();
+      q.y() = this->w() * q2.y() - this->x() * q2.z() + this->y * q2.w() + this->z() * q2.x();
+      q.z() = this->w() * q2.z() + this->x() * q2.y() - this->y * q2.x() + this->z() * q2.w();
 
       return q;
 
@@ -93,10 +97,10 @@ public:
    q4 & operator = (const q4 & q2)
    {
 
-      w = q2.w;
-      x = q2.x;
-      y = q2.y;
-      z = q2.z;
+      this->w() = q2.w();
+      this->x() = q2.x();
+      this->y() = q2.y();
+      this->z() = q2.z();
 
       return *this;
 

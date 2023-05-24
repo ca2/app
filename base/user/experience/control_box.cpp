@@ -127,7 +127,7 @@ namespace experience
    void control_box::drag(const ::point_i32 & point)
    {
 
-      //int x = point.x - m_pointDrag.x;
+      //int x = point.x() - m_pointDrag.x();
 
       //if (x < 0)
       //{
@@ -162,7 +162,7 @@ namespace experience
 
       //get_parent()->client_to_screen(pointScreen);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x() - rectangleWindow.width();
 
       //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
@@ -292,7 +292,7 @@ namespace experience
                      rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
 
 
-                     if (pointCursor.x >= rectangleWindow.left && pointCursor.y <= rectangleWindow.right && pointCursor.y == 0)
+                     if (pointCursor.x() >= rectangleWindow.left && pointCursor.y() <= rectangleWindow.right && pointCursor.y() == 0)
                      {
 
                         order(e_zorder_top);
@@ -335,7 +335,7 @@ namespace experience
 
                }
 
-               if (pointCursor.x >= rectangleWindow.left && pointCursor.x <= rectangleWindow.right && pointCursor.y == 0)
+               if (pointCursor.x() >= rectangleWindow.left && pointCursor.x() <= rectangleWindow.right && pointCursor.y() == 0)
                {
 
                   m_bShowAttempt = true;
@@ -1107,7 +1107,7 @@ if(rectangle.left > 400)
 
       rectangle+=m_pframewindow->screen_to_client();
 
-      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectangleWindow.width() / 2);
+      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x() > (rectangleWindow.width() / 2);
 
 //      if (rectangle != *m_pframewindow->m_pframe->get_control_box_rect())
 //      {

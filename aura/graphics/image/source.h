@@ -8,15 +8,15 @@
 
 
 template < typename IMAGE_SOURCE_POINTER >
-concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const concrete < ::size_i32 > & concreteSize, const ::size_f64 & sizeDst, enum_image_selection eimageselection)
+concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const ::size_i32 & size, const ::size_f64 & sizeDst, enum_image_selection eimageselection)
 {
 
 
-   { p->get_image(concreteSize) } -> ::std::same_as < image * >;
+   { p->get_image(size) } -> ::std::same_as < image * >;
 
 
-   { p->size(sizeDst, eimageselection) } -> ::std::same_as < concrete < ::size_i32 > >;
-   { p->size() } -> ::std::same_as < concrete < ::size_i32 > >;
+   { p->size(sizeDst, eimageselection) } -> ::std::same_as < ::size_i32 >;
+   { p->size() } -> ::std::same_as < ::size_i32 >;
 
 
 };
@@ -28,11 +28,11 @@ class image_source_interface :
 public:
 
 
-   virtual ::image_pointer image_source_image(const concrete < ::size_i32 > & size) = 0;
+   virtual ::image_pointer image_source_image(const ::size_i32 & size) = 0;
 
 
-   virtual concrete < ::size_i32 > image_source_size(const ::size_f64 & sizeTarget, enum_image_selection eimageselection) const = 0;
-   virtual concrete < ::size_i32 > image_source_size() const = 0;
+   virtual ::size_i32 image_source_size(const ::size_f64 & sizeTarget, enum_image_selection eimageselection) const = 0;
+   virtual ::size_i32 image_source_size() const = 0;
 
 
 };

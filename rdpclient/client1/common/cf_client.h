@@ -96,15 +96,15 @@ struct wf_context :
 	HCURSOR hDefaultCursor;
 
 	HWND hwnd;
-	POINT_I32 diff;
+	::point_i32 diff;
 	HGDI_DC hdc;
 
 	HCLRCONV clrconv;
 	HCURSOR cursor;
 	HBRUSH brush;
 	HBRUSH org_brush;
-	RECTANGLE_I32 update_rect;
-	RECTANGLE_I32 scale_update_rect;
+	::rectangle_i32 update_rect;
+	::rectangle_i32 scale_update_rect;
 
 	wfBitmap* tile;
 	::u32 mainThreadId;

@@ -23,7 +23,7 @@ namespace nanoui
       : Button(parent, caption, button_icon) 
    {
 
-      m_efontawesomeChevron = m_theme->m_efontawesomePopupChevronRight;
+      m_efontawesomeChevron = m_ptheme->m_efontawesomePopupChevronRight;
 
       set_flags(Flags::ToggleButton | Flags::PopupButton);
 
@@ -60,22 +60,22 @@ namespace nanoui
 
          auto icon = get_utf8_character(m_efontawesomeChevron);
          ::color::color text_color =
-            m_colorText.alpha == 0 ? m_theme->m_colorText : m_colorText;
+            m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;
 
-         pcontext->font_size((m_font_size < 0 ? m_theme->m_iButtonFontSize : m_font_size) * icon_scale());
+         pcontext->font_size((m_font_size < 0 ? m_ptheme->m_iButtonFontSize : m_font_size) * icon_scale());
          pcontext->font_face("icons");
-         pcontext->fill_color(m_bEnabled ? text_color : ::color::color(m_theme->m_colorDisableText));
+         pcontext->fill_color(m_bEnabled ? text_color : ::color::color(m_ptheme->m_colorDisableText));
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
          float iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
-         vector2_f32 icon_pos(0, m_pos.y() + m_size.y() * 0.5f - 1);
+         vector2_f32 icon_pos(0, m_pos.y()() + m_size.y()() * 0.5f - 1);
 
          if (m_ppopup->side() == Popup::Right)
-            icon_pos[0] = m_pos.x() + m_size.x() - iw - 8.f;
+            icon_pos[0] = m_pos.x()() + m_size.x()() - iw - 8.f;
          else
-            icon_pos[0] = m_pos.x() + 8.f;
+            icon_pos[0] = m_pos.x()() + 8.f;
 
-         pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
+         pcontext->text(icon_pos.x()(), icon_pos.y()(), icon.data());
       }
    }
 
@@ -87,24 +87,24 @@ namespace nanoui
       int anchor_size = m_ppopup->anchor_size();
 
       if (parent_window) {
-         int pos_y = absolute_position().y() - parent_window->position().y() + m_size.y() / 2;
+         int pos_y = absolute_position().y()() - parent_window->position().y()() + m_size.y()() / 2;
          if (m_ppopup->side() == Popup::Right)
             m_ppopup->set_anchor_pos(vector2_i32(parent_window->width() + anchor_size, pos_y));
          else
             m_ppopup->set_anchor_pos(vector2_i32(-anchor_size, pos_y));
       }
       else {
-         m_ppopup->set_position(absolute_position() + vector2_i32(width() + anchor_size + 1, m_size.y() / 2 - anchor_size));
+         m_ppopup->set_position(absolute_position() + vector2_i32(width() + anchor_size + 1, m_size.y()() / 2 - anchor_size));
       }
    }
 
    void PopupButton::set_side(Popup::Side side) {
       if (m_ppopup->side() == Popup::Right &&
-         m_efontawesomeChevron == m_theme->m_efontawesomePopupChevronRight)
-         set_chevron_icon(m_theme->m_efontawesomePopupChevronLeft);
+         m_efontawesomeChevron == m_ptheme->m_efontawesomePopupChevronRight)
+         set_chevron_icon(m_ptheme->m_efontawesomePopupChevronLeft);
       else if (m_ppopup->side() == Popup::Left &&
-         m_efontawesomeChevron == m_theme->m_efontawesomePopupChevronLeft)
-         set_chevron_icon(m_theme->m_efontawesomePopupChevronRight);
+         m_efontawesomeChevron == m_ptheme->m_efontawesomePopupChevronLeft)
+         set_chevron_icon(m_ptheme->m_efontawesomePopupChevronRight);
       m_ppopup->set_side(side);
    }
 

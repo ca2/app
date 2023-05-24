@@ -279,7 +279,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement)
+      bool edit::get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement)
 
       {
 
@@ -317,7 +317,7 @@ namespace user
 
       }
 
-      bool edit::get_item_rect(RECTANGLE_I32 * prectangle, index i)
+      bool edit::get_item_rect(::rectangle_i32 * prectangle, index i)
 
       {
 

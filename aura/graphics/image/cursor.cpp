@@ -98,15 +98,15 @@ namespace draw2d
    }
 
 
-   ::image_pointer cursor::image_source_image(const concrete < ::size_i32 > & concreteSize)
+   ::image_pointer cursor::image_source_image(const ::size_i32 & size)
    {
       
-      return m_pimage->get_image(concreteSize); 
+      return m_pimage->get_image(size); 
    
    }
 
 
-   concrete < ::size_i32 > cursor::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   ::size_i32 cursor::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
    { 
       
       return m_pimage->image_source_size(sizeDst, eimageselection); 
@@ -114,7 +114,7 @@ namespace draw2d
    }
 
 
-   concrete < ::size_i32 > cursor::image_source_size() const
+   ::size_i32 cursor::image_source_size() const
    {
       
       return m_pimage->size(); 

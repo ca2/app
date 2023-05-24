@@ -37,7 +37,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
    bool clear)
    : Widget(parent), m_bDrawBorder(true) {
    m_size = vector2_i32(250, 250);
-   m_border_color = m_theme->m_colorBorderLight;
+   m_border_color = m_ptheme->m_colorBorderLight;
 
 #if defined(NANOUI_USE_GLES)
    samples = 1;
@@ -159,12 +159,12 @@ void Canvas::draw(::nano2d::context * pcontext) {
 
       screen()->m_puserinteraction->__construct(m_pimage);
 
-      m_pimage->create({ m_size.x(), m_size.y() });
+      m_pimage->create({ m_size.x()(), m_size.y()() });
 
 
    }
 
-   pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), m_pimage);
+   pcontext->_draw_image((float)m_pos.x()(), (float)m_pos.y()(), (float)m_size.x()(), (float)m_size.y()(), m_pimage);
 //   Screen * pscreen = screen();
 //   if (pscreen == nullptr)
 //      throw std::runtime_error("Canvas::draw(): could not find parent pscreen!");
@@ -182,7 +182,7 @@ void Canvas::draw(::nano2d::context * pcontext) {
 //
 //#if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
 //   if (m_render_to_texture)
-//      offset = vector2_i32(offset.x(), pscreen->size().y() - offset.y() - m_size.y());
+//      offset = vector2_i32(offset.x()(), pscreen->size().y()() - offset.y()() - m_size.y()());
 //#endif
 //
 //   if (m_bDrawBorder)
@@ -211,9 +211,9 @@ void Canvas::draw(::nano2d::context * pcontext) {
 //      pcontext->begin_path();
 //      pcontext->stroke_width(1.f);
 //      pcontext->stroke_color(m_border_color);
-//      ::nano2d::RoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + .5f,
-//         m_size.x() - 1.f, m_size.y() - 1.f,
-//         m_theme->m_iWindowCorderRadius);
+//      ::nano2d::RoundedRect(ctx, m_pos.x()() + .5f, m_pos.y()() + .5f,
+//         m_size.x()() - 1.f, m_size.y()() - 1.f,
+//         m_ptheme->m_iWindowCorderRadius);
 //      pcontext->stroke();
 //   }
 //

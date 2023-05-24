@@ -61,8 +61,8 @@ drawpoly (int numpoints, int *polypoints)
   //// Convert to viewport coordinates.
   //for (i = 0; i < numpoints; i++)
   //  {
-  //    Points[i].x = TcViewLeft + *polypoints++;
-  //    Points[i].y = TcViewTop + *polypoints++;
+  //    Points[i].x() = TcViewLeft + *polypoints++;
+  //    Points[i].y() = TcViewTop + *polypoints++;
   //  }
   //// Now do the actual drawing.
   //XLockDisplay (TcDisplay);
@@ -96,8 +96,8 @@ fillpoly (int numpoints, int *polypoints)
   //// Convert to viewport coordinates.
   //for (i = 0; i < numpoints; i++)
   //  {
-  //    Points[i].x = TcViewLeft + *polypoints++;
-  //    Points[i].y = TcViewTop + *polypoints++;
+  //    Points[i].x() = TcViewLeft + *polypoints++;
+  //    Points[i].y() = TcViewTop + *polypoints++;
   //  }
   //// Now do the actual drawing.
   //XLockDisplay (TcDisplay);

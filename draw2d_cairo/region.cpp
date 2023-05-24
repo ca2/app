@@ -386,9 +386,9 @@ namespace draw2d_cairo
 
       auto size = pitem->m_rectangle.size();
 
-      double centerx    = center.x;
+      double centerx    = center.x();
 
-      double centery    = center.y;
+      double centery    = center.y();
 
       double radiusx    = fabs(size.cx) / 2.0;
 
@@ -428,12 +428,12 @@ namespace draw2d_cairo
 
       }
 
-      cairo_move_to(pgraphics, pitem->m_polygon[0].x, pitem->m_polygon[0].y);
+      cairo_move_to(pgraphics, pitem->m_polygon[0].x(), pitem->m_polygon[0].y());
 
       for(i32 i = 1; i < pitem->m_polygon.size(); i++)
       {
 
-         cairo_line_to(pgraphics, pitem->m_polygon[i].x, pitem->m_polygon[i].y);
+         cairo_line_to(pgraphics, pitem->m_polygon[i].x(), pitem->m_polygon[i].y());
 
       }
 
@@ -468,14 +468,14 @@ namespace draw2d_cairo
 
             auto & polygon = *ppolygon;
 
-            cairo_move_to(pgraphics, polygon[n].x, polygon[n].y);
+            cairo_move_to(pgraphics, polygon[n].x(), polygon[n].y());
 
             n++;
 
             for(i32 j = 1; j < polygon.size(); j++)
             {
 
-               cairo_line_to(pgraphics, polygon[n].x, polygon[n].y);
+               cairo_line_to(pgraphics, polygon[n].x(), polygon[n].y());
 
                n++;
 
@@ -591,8 +591,8 @@ namespace draw2d_cairo
 
             ::pointer<rectangle_item> prectangleitem = m_pitem;
 
-            cairorectangleint.x = prectangleitem->m_rectangle.left;
-            cairorectangleint.y = prectangleitem->m_rectangle.top;
+            cairorectangleint.x() = prectangleitem->m_rectangle.left;
+            cairorectangleint.y() = prectangleitem->m_rectangle.top;
             cairorectangleint.width = prectangleitem->m_rectangle.width();
             cairorectangleint.height = prectangleitem->m_rectangle.height();
 
@@ -824,12 +824,12 @@ namespace draw2d_cairo
 
    //   }
 
-   //   cairo_move_to(pgraphics, m_lppoints[0].x, m_lppoints[0].y);
+   //   cairo_move_to(pgraphics, m_lppoints[0].x(), m_lppoints[0].y());
 
    //   for(i32 i = 1; i < m_nCount; i++)
    //   {
 
-   //      cairo_line_to(pgraphics, m_lppoints[i].x, m_lppoints[i].y);
+   //      cairo_line_to(pgraphics, m_lppoints[i].x(), m_lppoints[i].y());
 
    //   }
 

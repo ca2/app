@@ -88,9 +88,9 @@ namespace experience_anthill
          ::point_i32 pointHitTest = point;
 
          //                  if(rectangleEvent.left < 0)
-         //                     pointHitTest.x -= rectangleEvent.left;
+         //                     pointHitTest.x() -= rectangleEvent.left;
          //                  if(rectangleEvent.top < 0)
-         //                     pointHitTest.y -= rectangleEvent.top;
+         //                     pointHitTest.y() -= rectangleEvent.top;
 
          if (egrip & e_grip_top_left)
          {
@@ -171,8 +171,8 @@ namespace experience_anthill
          if (egrip & e_grip_top)
          {
             rectangle.top = rectangleEvent.top;
-            rectangle.left = pointCenter.x - 8;
-            rectangle.right = pointCenter.x + 8;
+            rectangle.left = pointCenter.x() - 8;
+            rectangle.right = pointCenter.x() + 8;
             rectangle.bottom = rectangleEvent.top + 5;
             if (rectangle.contains(pointHitTest))
             {
@@ -183,8 +183,8 @@ namespace experience_anthill
          if (egrip & e_grip_bottom)
          {
             rectangle.top = rectangleEvent.bottom - 5;
-            rectangle.left = pointCenter.x - 8;
-            rectangle.right = pointCenter.x + 8;
+            rectangle.left = pointCenter.x() - 8;
+            rectangle.right = pointCenter.x() + 8;
             rectangle.bottom = rectangleEvent.bottom;
             if (rectangle.contains(pointHitTest))
             {
@@ -194,10 +194,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_left)
          {
-            rectangle.top = pointCenter.y - 8;
+            rectangle.top = pointCenter.y() - 8;
             rectangle.left = rectangleEvent.left;
             rectangle.right = rectangleEvent.left + 5;
-            rectangle.bottom = pointCenter.y + 8;
+            rectangle.bottom = pointCenter.y() + 8;
             if (rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_left;
@@ -206,10 +206,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_right)
          {
-            rectangle.top = pointCenter.y - 8;
+            rectangle.top = pointCenter.y() - 8;
             rectangle.left = rectangleEvent.right - 5;
             rectangle.right = rectangleEvent.right;
-            rectangle.bottom = pointCenter.y + 8;
+            rectangle.bottom = pointCenter.y() + 8;
             if (rectangle.contains(pointHitTest))
             {
                etest = ::experience::e_frame_sizing_right;
@@ -435,7 +435,7 @@ namespace experience_anthill
 
    void frame_005::GetBorderRect(
       const ::rectangle_i32 & rectangleClient,
-      RECTANGLE_I32 * lprect,
+      ::rectangle_i32 * lprect,
       enum_border eside)
    {
       ::rectangle_i32 rectangleBig(rectangleClient);

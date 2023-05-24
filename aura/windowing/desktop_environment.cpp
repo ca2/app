@@ -25,14 +25,14 @@ namespace windowing
    }
 
 
-   void desktop_environment::get_monitor_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle)
+   void desktop_environment::get_monitor_rectangle(::index iMonitor, ::rectangle_i32 * prectangle)
    {
 
 
    }
 
 
-   void desktop_environment::get_workspace_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle)
+   void desktop_environment::get_workspace_rectangle(::index iMonitor, ::rectangle_i32 * prectangle)
    {
 
 

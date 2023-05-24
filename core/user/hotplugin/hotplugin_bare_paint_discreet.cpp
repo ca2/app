@@ -201,46 +201,46 @@ namespace hotplugin
          for (i32 x = 0; x < (cx + cy); x += 46)
          {
 
-            pa[0].x = rectangleParam.left + x;
+            pa[0].x() = rectangleParam.left + x;
 
-            pa[0].y = rectangleParam.top;
-
-
-            pa[1].x = rectangleParam.left + x + iBarHeight;
-
-            pa[1].y = rectangleParam.top;
+            pa[0].y() = rectangleParam.top;
 
 
-            pa[2].x = rectangleParam.left + x - mcy + iBarHeight;
+            pa[1].x() = rectangleParam.left + x + iBarHeight;
 
-            pa[2].y = rectangleParam.top + mcy;
+            pa[1].y() = rectangleParam.top;
 
 
-            pa[3].x = rectangleParam.left + x - mcy;
+            pa[2].x() = rectangleParam.left + x - mcy + iBarHeight;
 
-            pa[3].y = rectangleParam.top + mcy;
+            pa[2].y() = rectangleParam.top + mcy;
+
+
+            pa[3].x() = rectangleParam.left + x - mcy;
+
+            pa[3].y() = rectangleParam.top + mcy;
 
 
             pgraphics->fill_polygon(pa, 4);
 
-            pa[0].x = rectangleParam.left + x - mcy - iBarHeight;
+            pa[0].x() = rectangleParam.left + x - mcy - iBarHeight;
 
-            pa[0].y = rectangleParam.top + mcy;
-
-
-            pa[1].x = rectangleParam.left + x - mcy;
-
-            pa[1].y = rectangleParam.top + mcy;
+            pa[0].y() = rectangleParam.top + mcy;
 
 
-            pa[2].x = rectangleParam.left + x - cy;
+            pa[1].x() = rectangleParam.left + x - mcy;
 
-            pa[2].y = rectangleParam.top + cy;
+            pa[1].y() = rectangleParam.top + mcy;
 
 
-            pa[3].x = rectangleParam.left + x - cy - iBarHeight;
+            pa[2].x() = rectangleParam.left + x - cy;
 
-            pa[3].y = rectangleParam.top + cy;
+            pa[2].y() = rectangleParam.top + cy;
+
+
+            pa[3].x() = rectangleParam.left + x - cy - iBarHeight;
+
+            pa[3].y() = rectangleParam.top + cy;
 
 
             pgraphics->fill_polygon(pa, 4);

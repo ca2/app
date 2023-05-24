@@ -308,9 +308,9 @@ namespace app_shader
 
                auto pointCursor = m_puserinteraction->get_cursor_position();
 
-               float x = (float) pointCursor.x;
+               float x = (float) pointCursor.x();
 
-               float y = (float) pointCursor.y;
+               float y = (float) pointCursor.y();
 
                m_pcontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
                m_pcontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);

@@ -265,7 +265,7 @@ typedef enum
 
 #define NP_ABI_GCC3_MASK  0x10000000
 /*
- *   gcc 3.x generated vtables on UNIX and OSX are incompatible with
+ *   gcc 3.x() generated vtables on UNIX and OSX are incompatible with
  *   previous compilers.
  */
 #if (defined(XP_UNIX) && defined(__GNUC__) && (__GNUC__ >= 3))

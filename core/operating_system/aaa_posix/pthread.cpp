@@ -430,8 +430,8 @@ int g_iDebug_post_thread_msg_time;
 //   msg.message = Msg;
 //   msg.wParam = wParam;
 //   msg.lParam = lParam;
-//   msg.pt.x = 0x80000000;
-//   msg.pt.y = 0x80000000;
+//   msg.pt.x() = 0x80000000;
+//   msg.pt.y() = 0x80000000;
 //   msg.hwnd = nullptr;
 //
 //   if (msg.message == e_message_quit)

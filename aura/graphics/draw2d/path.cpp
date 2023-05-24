@@ -29,17 +29,17 @@ point_f64 arc_point(double dAngle, size_f64 sizeRadius)
    //if (dAngle > g_dPi / 2.0 && dAngle < g_dPi * 3.0 / 2.0)
    //{
 
-   //   p.x = ab * cosAngle / q;
+   //   p.x() = ab * cosAngle / q;
 
-   //   p.y = ab * sinAngle / q;
+   //   p.y() = ab * sinAngle / q;
 
    //}
    //else
    //{
 
-      p.x = ab * cosAngle / q;
+      p.x() = ab * cosAngle / q;
 
-      p.y = ab * sinAngle / q;
+      p.y() = ab * sinAngle / q;
 
 //   }
 
@@ -233,17 +233,17 @@ namespace draw2d
 
       polygon_i32.set_size(4);
 
-      polygon_i32[0].x = rectangle.left;
-      polygon_i32[0].y = rectangle.top;
+      polygon_i32[0].x() = rectangle.left;
+      polygon_i32[0].y() = rectangle.top;
 
-      polygon_i32[1].x = rectangle.right;
-      polygon_i32[1].y = rectangle.top;
+      polygon_i32[1].x() = rectangle.right;
+      polygon_i32[1].y() = rectangle.top;
 
-      polygon_i32[2].x = rectangle.right;
-      polygon_i32[2].y = rectangle.bottom;
+      polygon_i32[2].x() = rectangle.right;
+      polygon_i32[2].y() = rectangle.bottom;
 
-      polygon_i32[3].x = rectangle.left;
-      polygon_i32[3].y = rectangle.bottom;
+      polygon_i32[3].x() = rectangle.left;
+      polygon_i32[3].y() = rectangle.bottom;
 
       polygon_i32.rotate(angleRotationCenter, point);
 
@@ -274,15 +274,15 @@ namespace draw2d
       ::arc& arc = parc->m_shape;
 
       ::angle t = 90_degrees - angle;
-      double x = point.x;
-      double y = point.y;
-      arc.m_pointCenter.y = point.y + h/2.0;
-      double b = point.y - arc.m_pointCenter.y / sin(t);
+      double x = point.x();
+      double y = point.y();
+      arc.m_pointCenter.y() = point.y() + h/2.0;
+      double b = point.y() - arc.m_pointCenter.y() / sin(t);
       double a = sqrt((b*b*x*x) / (y*y - b *b));
 
       arc.m_sizeRadius.cx = a;
       arc.m_sizeRadius.cy = b;
-      arc.m_pointCenter.x = point.x - a * cos(t);
+      arc.m_pointCenter.x() = point.x() - a * cos(t);
       arc.m_angleBeg = t;
       arc.m_angleExt = -90_degrees;
       arc.m_angleEnd2 = t - 90_degrees;
@@ -329,9 +329,9 @@ namespace draw2d
       ::arc& arc = parc->m_shape;
 
       ::angle t = angle + 90_degrees;
-      arc.m_pointBegin.x = point.x + w / 2.0;
-      double a = (point.x - arc.m_pointBegin.x) / cos(t);
-      double x = point.x - arc.m_pointBegin.x;
+      arc.m_pointBegin.x() = point.x() + w / 2.0;
+      double a = (point.x() - arc.m_pointBegin.x()) / cos(t);
+      double x = point.x() - arc.m_pointBegin.x();
       double b = 0;
       //double y = b * b  *w / (4.0* tan(dAngle));
       double y = 0;
@@ -339,7 +339,7 @@ namespace draw2d
 
       arc.m_sizeRadius.cx = a;
       arc.m_sizeRadius.cy = b;
-      arc.m_pointCenter.y = point.y - b * sin(t);
+      arc.m_pointCenter.y() = point.y() - b * sin(t);
       arc.m_angleBeg = t;
       arc.m_angleEnd2 = fmod(180_degrees - arc.m_angleBeg, 360_degrees);
       arc.m_angleExt = arc.m_angleEnd2 - arc.m_angleBeg;
@@ -384,8 +384,8 @@ namespace draw2d
 
       ::arc& arc = parc->m_shape;
 
-      arc.m_pointCenter.x   = (rectangle.right + rectangle.left) / 2.0;
-      arc.m_pointCenter.y   = (rectangle.bottom + rectangle.top) / 2.0;
+      arc.m_pointCenter.x()   = (rectangle.right + rectangle.left) / 2.0;
+      arc.m_pointCenter.y()   = (rectangle.bottom + rectangle.top) / 2.0;
       arc.m_sizeRadius.cx   = fabs(rectangle.right - rectangle.left) / 2.0;
       arc.m_sizeRadius.cy   = fabs(rectangle.bottom - rectangle.top) / 2.0;
       arc.m_angleBeg        = angleBeg;

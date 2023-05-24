@@ -2471,8 +2471,8 @@ static int stbi__parse_entropy_coded_data(stbi__jpeg * z)
          // in trivial scanline order
          // number of blocks to do just depends on how many actual "pixels" this
          // component has, independent of interleaved MCU blocking and such
-         int w = (z->img_comp[n].x + 7) >> 3;
-         int h = (z->img_comp[n].y + 7) >> 3;
+         int w = (z->img_comp[n].x() + 7) >> 3;
+         int h = (z->img_comp[n].y() + 7) >> 3;
          for (j = 0; j < h; ++j) {
             for (i = 0; i < w; ++i) {
                int ha = z->img_comp[n].ha;
@@ -2530,8 +2530,8 @@ static int stbi__parse_entropy_coded_data(stbi__jpeg * z)
          // in trivial scanline order
          // number of blocks to do just depends on how many actual "pixels" this
          // component has, independent of interleaved MCU blocking and such
-         int w = (z->img_comp[n].x + 7) >> 3;
-         int h = (z->img_comp[n].y + 7) >> 3;
+         int w = (z->img_comp[n].x() + 7) >> 3;
+         int h = (z->img_comp[n].y() + 7) >> 3;
          for (j = 0; j < h; ++j) {
             for (i = 0; i < w; ++i) {
                short * data = z->img_comp[n].coeff + 64 * (i + j * z->img_comp[n].coeff_w);
@@ -2600,8 +2600,8 @@ static void stbi__jpeg_finish(stbi__jpeg * z)
       // dequantize and idct the data
       int i, j, n;
       for (n = 0; n < z->s->img_n; ++n) {
-         int w = (z->img_comp[n].x + 7) >> 3;
-         int h = (z->img_comp[n].y + 7) >> 3;
+         int w = (z->img_comp[n].x() + 7) >> 3;
+         int h = (z->img_comp[n].y() + 7) >> 3;
          for (j = 0; j < h; ++j) {
             for (i = 0; i < w; ++i) {
                short * data = z->img_comp[n].coeff + 64 * (i + j * z->img_comp[n].coeff_w);
@@ -2766,8 +2766,8 @@ static int stbi__process_frame_header(stbi__jpeg * z, int scan)
 
    for (i = 0; i < s->img_n; ++i) {
       // number of effective pixels (e.g. for non-interleaved MCU)
-      z->img_comp[i].x = (s->img_x * z->img_comp[i].h + h_max - 1) / h_max;
-      z->img_comp[i].y = (s->img_y * z->img_comp[i].v + v_max - 1) / v_max;
+      z->img_comp[i].x() = (s->img_x * z->img_comp[i].h + h_max - 1) / h_max;
+      z->img_comp[i].y() = (s->img_y * z->img_comp[i].v + v_max - 1) / v_max;
       // to simplify generation, we'll allocate enough memory to decode
       // the bogus oversized data from using interleaved MCUs and their
       // big blocks (e.g. a 16x16 iMCU on an image of width 33); we won't
@@ -3398,7 +3398,7 @@ static stbi_uc * load_jpeg_image(stbi__jpeg * z, int * out_x, int * out_y, int *
             if (++r->ystep >= r->vs) {
                r->ystep = 0;
                r->line0 = r->line1;
-               if (++r->ypos < z->img_comp[k].y)
+               if (++r->ypos < z->img_comp[k].y())
                   r->line1 += z->img_comp[k].w2;
             }
          }

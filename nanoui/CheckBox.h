@@ -27,7 +27,7 @@ namespace nanoui
  * \brief Two-state check box pwidget.
  *
  * \remark
- *     This class overrides \ref nanoui::Widget::mIconExtraScale to be ``1.2f``,
+ *     This class overrides \::pointer nanoui::Widget::mIconExtraScale to be ``1.2f``,
  *     which affects all subclasses of this Widget.  Subclasses must explicitly
  *     set a different value if needed (e.g., in their constructor).
  */
@@ -35,18 +35,18 @@ namespace nanoui
    public:
 
       /// The caption text of this CheckBox.
-      ::string m_caption;
+      ::string m_strCaption;
       /**
        * Internal tracking variable to distinguish between mouse click and release.
-       * \ref nanoui::CheckBox::m_callback is only called upon release.  See
-       * \ref nanoui::CheckBox::mouse_button_event for specific conditions.
+       * \::pointer nanoui::CheckBox::m_callback is only called upon release.  See
+       * \::pointer nanoui::CheckBox::mouse_button_event for specific conditions.
        */
       //bool m_bMouseDown;
 
       /// Whether or not this CheckBox is currently checked or unchecked.
       bool m_bChecked;
 
-      /// The function to execute when \ref nanoui::CheckBox::m_bChecked is changed.
+      /// The function to execute when \::pointer nanoui::CheckBox::m_bChecked is changed.
       ::function<void(bool)> m_callback;
 
       vector2_i32 m_sizePreferred;
@@ -63,17 +63,17 @@ namespace nanoui
        * \param callback
        *     If provided, the callback to execute when the CheckBox is checked or
        *     unchecked.  Default parameter function does nothing.  See
-       *     \ref nanoui::CheckBox::mPushed for the difference between "pushed"
+       *     \::pointer nanoui::CheckBox::mPushed for the difference between "pushed"
        *     and "checked".
        */
       CheckBox(Widget * parent, const ::scoped_string & caption = "Untitled",
          const ::function<void(bool)> & callback = ::function<void(bool)>());
 
       /// The caption of this CheckBox.
-      ::string caption() const { return m_caption; }
+      ::string caption() const { return m_strCaption; }
 
       /// Sets the caption of this CheckBox.
-      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
+      void set_caption(const ::scoped_string & caption) { m_strCaption = caption; }
 
       /// Whether or not this CheckBox is currently checked.
       bool checked() const { return m_bChecked; }
@@ -82,7 +82,7 @@ namespace nanoui
       //void set_checked(bool bChecked) { m_bChecked = bChecked; }
       virtual void set_checked(bool bChecked, const ::action_context & actioncontext);
 
-      ///// Whether or not this CheckBox is currently pushed.  See \ref nanoui::CheckBox::m_pushed.
+      ///// Whether or not this CheckBox is currently pushed.  See \::pointer nanoui::CheckBox::m_pushed.
       //bool is_mouse_down() const;
       //void set_mouse_down(bool bMouseDown);
 

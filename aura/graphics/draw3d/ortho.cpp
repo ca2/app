@@ -17,35 +17,35 @@ namespace draw3d
 {
 
 
-   int_array ortho::draw_ortho_plain_wire_frame(::box * pbox,int iHint,int bA,bool bFirst)
+   int_array ortho::draw_ortho_plain_wire_frame(::box_f64 * pbox,int iHint,int bA,bool bFirst)
    {
 
       double dA = bA / 255.0;
 
-      array < locationd > locationa = pbox->vertices();
+      array < ::location_f64 > locationa = pbox->vertices();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto ppen = __create < ::draw2d::pen > ();
 
-      double zmin = locationa[0].z;
-      double zmax = locationa[0].z;
+      double zmin = locationa[0].z();
+      double zmax = locationa[0].z();
 
       index i;
 
       for(i = 1; i < locationa.get_count(); i++)
       {
 
-          if (locationa[i].z < zmin)
+          if (locationa[i].z() < zmin)
           {
 
-              zmin = locationa[i].z;
+              zmin = locationa[i].z();
 
           }
-          else if (locationa[i].z > zmax)
+          else if (locationa[i].z() > zmax)
           {
 
-              zmax = locationa[i].z;
+              zmax = locationa[i].z();
 
           }
 
@@ -54,7 +54,7 @@ namespace draw3d
       for(i = 0; i < locationa.get_count(); i++)
       {
 
-          locationa[i].z -= zmin;
+          locationa[i].z() -= zmin;
 
       }
 
@@ -135,7 +135,7 @@ namespace draw3d
          for(index j = 0; j < point1.get_count(); j++)
          {
 
-            if((locationa[point1[j]].z + locationa[point2[j]].z) >(locationa[point1[iMax]].z + locationa[point2[iMax]].z))
+            if((locationa[point1[j]].z() + locationa[point2[j]].z()) >(locationa[point1[iMax]].z() + locationa[point2[iMax]].z()))
             {
                
                iMax = j;
@@ -151,7 +151,7 @@ namespace draw3d
 
             ia.add_unique(point2[iMax]);
 
-            double r = (locationa[point1[iMax]].z + locationa[point2[iMax]].z) * d;
+            double r = (locationa[point1[iMax]].z() + locationa[point2[iMax]].z()) * d;
 
             ::color::color ca;
 
@@ -199,36 +199,36 @@ namespace draw3d
       //ppen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(ppen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p03.x,(float)p03.y);
+      //m_pdc->draw_line((float)p02.x(),(float)p02.y(),(float)p03.x(),(float)p03.y());
       //SET_PCOLOR((p03.z + p04.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p03.x,(float)p03.y,(float)p04.x,(float)p04.y);
+      //m_pdc->draw_line((float)p03.x(),(float)p03.y(),(float)p04.x(),(float)p04.y());
       //SET_PCOLOR((p04.z + p01.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p04.x,(float)p04.y,(float)p01.x,(float)p01.y);
+      //m_pdc->draw_line((float)p04.x(),(float)p04.y(),(float)p01.x(),(float)p01.y());
 
-      //m_pdc->move_to(p05.x,p05.y);
+      //m_pdc->move_to(p05.x(),p05.y());
       //SET_PCOLOR((p05.z + p06.z) / (2.0 * z));
-      //m_pdc->line_to(p06.x,p06.y);
+      //m_pdc->line_to(p06.x(),p06.y());
       //SET_PCOLOR((p06.z + p07.z) / (2.0 * z));
-      //m_pdc->line_to(p07.x,p07.y);
+      //m_pdc->line_to(p07.x(),p07.y());
       //SET_PCOLOR((p07.z + p08.z) / (2.0 * z));
-      //m_pdc->line_to(p08.x,p08.y);
+      //m_pdc->line_to(p08.x(),p08.y());
       //SET_PCOLOR((p08.z + p05.z) / (2.0 * z));
-      //m_pdc->line_to(p05.x,p05.y);
+      //m_pdc->line_to(p05.x(),p05.y());
 
       //SET_PCOLOR((p01.z + p05.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p01.x,(float)p01.y,(float)p05.x,(float)p05.y);
+      //m_pdc->draw_line((float)p01.x(),(float)p01.y(),(float)p05.x(),(float)p05.y());
       //SET_PCOLOR((p02.z + p06.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p06.x,(float)p06.y);
+      //m_pdc->draw_line((float)p02.x(),(float)p02.y(),(float)p06.x(),(float)p06.y());
       //SET_PCOLOR((p03.z + p07.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p03.x,(float)p03.y,(float)p07.x,(float)p07.y);
+      //m_pdc->draw_line((float)p03.x(),(float)p03.y(),(float)p07.x(),(float)p07.y());
       //SET_PCOLOR((p04.z + p08.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p04.x,(float)p04.y,(float)p08.x,(float)p08.y);
+      //m_pdc->draw_line((float)p04.x(),(float)p04.y(),(float)p08.x(),(float)p08.y());
 
       return ia;
    }
 
 
-   int_array ortho::draw_ortho_plain_fill(::box * pbox,int iHint,int bA,bool bFirst,::image * pimage)
+   int_array ortho::draw_ortho_plain_fill(::box_f64 * pbox,int iHint,int bA,bool bFirst,::image * pimage)
    {
 
       ::draw2d::bitmap bm;
@@ -239,7 +239,7 @@ namespace draw3d
 
       double dA = bA / 255.0;
 
-      array < locationd > locationa = pbox->vertices();
+      array < ::location_f64 > locationa = pbox->vertices();
       array < int_array > f = pbox->faces();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -256,10 +256,10 @@ namespace draw3d
       {
          for(j = 0; j < f[i].get_count(); j++)
          {
-            if(locationa[f[i][j]].z < zmin)
-               zmin = locationa[f[i][j]].z;
-            else if(locationa[f[i][j]].z > zmax)
-               zmax = locationa[f[i][j]].z;
+            if(locationa[f[i][j]].z() < zmin)
+               zmin = locationa[f[i][j]].z();
+            else if(locationa[f[i][j]].z() > zmax)
+               zmax = locationa[f[i][j]].z();
          }
       }
 
@@ -268,7 +268,7 @@ namespace draw3d
          //for(j = 0; j < f[i].get_count(); j++)
          {
 
-            locationa[i].z -= zmin;
+            locationa[i].z() -= zmin;
 
          }
 
@@ -302,7 +302,7 @@ namespace draw3d
          for(j = 0; j < f.get_count(); j++)
          {
 
-            if((locationa[f[j][0]].z + locationa[f[j][1]].z + locationa[f[j][2]].z) >(locationa[f[iMax][0]].z + locationa[f[iMax][1]].z + locationa[f[iMax][2]].z))
+            if((locationa[f[j][0]].z() + locationa[f[j][1]].z() + locationa[f[j][2]].z()) >(locationa[f[iMax][0]].z() + locationa[f[iMax][1]].z() + locationa[f[iMax][2]].z()))
             {
                iMax = j;
             }
@@ -316,7 +316,7 @@ namespace draw3d
 
             ia.add_unique(iFace);
 
-            double r = (locationa[f[iMax][0]].z + locationa[f[iMax][1]].z + locationa[f[iMax][2]].z) * d;
+            double r = (locationa[f[iMax][0]].z() + locationa[f[iMax][1]].z() + locationa[f[iMax][2]].z()) * d;
 
             ::color::color ca;
 
@@ -353,9 +353,9 @@ namespace draw3d
 //
 //            pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.red,ca.green,ca.blue);
 //
-//            point2da[0]=::point_i32((::i32)locationa[f[iMax][0]].x,(::i32)locationa[f[iMax][0]].y);
-//            point2da[1]= ::point_i32((::i32)locationa[f[iMax][1]].x,(::i32)locationa[f[iMax][1]].y);
-//            point2da[2]= ::point_i32((::i32)locationa[f[iMax][2]].x,(::i32)locationa[f[iMax][2]].y);
+//            point2da[0]=::point_i32((::i32)locationa[f[iMax][0]].x(),(::i32)locationa[f[iMax][0]].y());
+//            point2da[1]= ::point_i32((::i32)locationa[f[iMax][1]].x(),(::i32)locationa[f[iMax][1]].y());
+//            point2da[2]= ::point_i32((::i32)locationa[f[iMax][2]].x(),(::i32)locationa[f[iMax][2]].y());
 //
 //            throw ::exception(todo, "plgblt");
 //            //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);
@@ -373,30 +373,30 @@ namespace draw3d
       //ppen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(ppen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p03.x,(float)p03.y);
+      //m_pdc->draw_line((float)p02.x(),(float)p02.y(),(float)p03.x(),(float)p03.y());
       //SET_PCOLOR((p03.z + p04.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p03.x,(float)p03.y,(float)p04.x,(float)p04.y);
+      //m_pdc->draw_line((float)p03.x(),(float)p03.y(),(float)p04.x(),(float)p04.y());
       //SET_PCOLOR((p04.z + p01.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p04.x,(float)p04.y,(float)p01.x,(float)p01.y);
+      //m_pdc->draw_line((float)p04.x(),(float)p04.y(),(float)p01.x(),(float)p01.y());
 
-      //m_pdc->move_to(p05.x,p05.y);
+      //m_pdc->move_to(p05.x(),p05.y());
       //SET_PCOLOR((p05.z + p06.z) / (2.0 * z));
-      //m_pdc->line_to(p06.x,p06.y);
+      //m_pdc->line_to(p06.x(),p06.y());
       //SET_PCOLOR((p06.z + p07.z) / (2.0 * z));
-      //m_pdc->line_to(p07.x,p07.y);
+      //m_pdc->line_to(p07.x(),p07.y());
       //SET_PCOLOR((p07.z + p08.z) / (2.0 * z));
-      //m_pdc->line_to(p08.x,p08.y);
+      //m_pdc->line_to(p08.x(),p08.y());
       //SET_PCOLOR((p08.z + p05.z) / (2.0 * z));
-      //m_pdc->line_to(p05.x,p05.y);
+      //m_pdc->line_to(p05.x(),p05.y());
 
       //SET_PCOLOR((p01.z + p05.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p01.x,(float)p01.y,(float)p05.x,(float)p05.y);
+      //m_pdc->draw_line((float)p01.x(),(float)p01.y(),(float)p05.x(),(float)p05.y());
       //SET_PCOLOR((p02.z + p06.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p06.x,(float)p06.y);
+      //m_pdc->draw_line((float)p02.x(),(float)p02.y(),(float)p06.x(),(float)p06.y());
       //SET_PCOLOR((p03.z + p07.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p03.x,(float)p03.y,(float)p07.x,(float)p07.y);
+      //m_pdc->draw_line((float)p03.x(),(float)p03.y(),(float)p07.x(),(float)p07.y());
       //SET_PCOLOR((p04.z + p08.z) / (2.0 * z));
-      //m_pdc->draw_line((float)p04.x,(float)p04.y,(float)p08.x,(float)p08.y);
+      //m_pdc->draw_line((float)p04.x(),(float)p04.y(),(float)p08.x(),(float)p08.y());
 
       return ia;
    }

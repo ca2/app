@@ -45,7 +45,7 @@ namespace nanoui
       float m_hue;
 
       /**
-       * The 'V' (value) component of the HSV color::color model.  See implementation \ref
+       * The 'V' (value) component of the HSV color::color model.  See implementation \::pointer
        * nanoui::ColorWheel::color::color for its usage.  Valid values are in the range
        * ``[0, 1]``.
        */
@@ -53,7 +53,7 @@ namespace nanoui
 
       /**
        * The 'S' (satration) component of the HSV color::color model.  See implementation
-       * \ref nanoui::ColorWheel::color::color for its usage.  Valid values are in the
+       * \::pointer nanoui::ColorWheel::color::color for its usage.  Valid values are in the
        * range ``[0, 1]``.
        */
       float m_black;

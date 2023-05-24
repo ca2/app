@@ -675,7 +675,7 @@ namespace aura
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//      virtual bool window_rectangle(RECTANGLE_I32* prectangle);
+//      virtual bool window_rectangle(::rectangle_i32* prectangle);
 //
 //
 //#endif
@@ -697,7 +697,7 @@ namespace aura
 
 //      virtual void add_impact_library(::acme::library* plibrary);
 
-      //virtual void get_cursor_position(POINT_I32 * ppoint);
+      //virtual void get_cursor_position(::point_i32 * ppoint);
 
 
 
@@ -763,11 +763,11 @@ namespace aura
 
       //virtual ::u32 get_monitor_color_temperature(index iMonitor);
       //virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle) override;
+      //virtual bool get_monitor_rectangle(index iMonitor, ::rectangle_i32* prectangle) override;
 
       //virtual ::count get_monitor_count() override;
 
-      //bool get_workspace_rectangle(index iWorkspace, RECTANGLE_I32* prectangle) override;
+      //bool get_workspace_rectangle(index iWorkspace, ::rectangle_i32* prectangle) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

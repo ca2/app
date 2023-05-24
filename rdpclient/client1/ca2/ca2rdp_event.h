@@ -32,14 +32,14 @@ struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
    int down;
    ::u32 scancode;
    const ::atom & atom;
-   POINT_I32 pt;
+   ::point_i32 pt;
    void send();
 };
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey, int down, ::u32 scancode, const ::atom & atom,POINT_I32 pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey, int down, ::u32 scancode, const ::atom & atom,::point_i32 pt);
 CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void * input);
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,::u32 scancode,const ::atom & atom,POINT_I32 pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,::u32 scancode,const ::atom & atom,::point_i32 pt);
 
-//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::atom & atom,POINT_I32 pt);
+//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::atom & atom,::point_i32 pt);
 //CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode);
 
 #endif /* __DF_EVENT_H */

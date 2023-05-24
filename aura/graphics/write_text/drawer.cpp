@@ -68,7 +68,7 @@ namespace write_text
       }
 
       //bool bOk = 
-      TextOutRaw(ptextout->m_point.x, ptextout->m_point.y, ptextout->m_strText);
+      TextOutRaw(ptextout->m_point.x(), ptextout->m_point.y(), ptextout->m_strText);
 
       //if (!bOk)
       //{
@@ -432,9 +432,9 @@ namespace write_text
 
             ptextout->m_size = get_text_extent(strLine);
 
-            ptextout->m_point.x = 0;
+            ptextout->m_point.x() = 0;
 
-            ptextout->m_point.y = y;
+            ptextout->m_point.y() = y;
 
             ptextout->m_pfont = pfont;
 
@@ -471,7 +471,7 @@ namespace write_text
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.x = (w - ptextout->m_size.cx) * dRate;
+            ptextout->m_point.x() = (w - ptextout->m_size.cx) * dRate;
 
          }
 
@@ -492,7 +492,7 @@ namespace write_text
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.y += Δy;
+            ptextout->m_point.y() += Δy;
 
          }
 

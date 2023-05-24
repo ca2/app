@@ -344,7 +344,7 @@ namespace user
    }
 
 
-   //void frame::client_rectangle(RECTANGLE_I32* lprect)
+   //void frame::client_rectangle(::rectangle_i32* lprect)
    //{
    //   
    //   ::user::interaction::client_rectangle(lprect);

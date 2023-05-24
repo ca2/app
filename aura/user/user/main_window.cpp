@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   void main_window::input_client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout)
+   void main_window::input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    {
       
       client_rectangle(rectangle);
@@ -166,7 +166,7 @@ namespace user
    }
 
 
-   ::index main_window::get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore)
+   ::index main_window::get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore)
    {
 
       //return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);

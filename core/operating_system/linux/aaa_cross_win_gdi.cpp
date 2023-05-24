@@ -11,10 +11,10 @@ device_context::device_context()
    m_gc           = None;
    m_pixmap       = None;
    m_window       = None;
-   m_point.x         = 0;
-   m_point.y         = 0;
-   m_pointOffset.x   = 0;
-   m_pointOffset.y   = 0;
+   m_point.x()         = 0;
+   m_point.y()         = 0;
+   m_pointOffset.x()   = 0;
+   m_pointOffset.y()   = 0;
    m_iScreen      = 0;
    m_iDepth       = 0;
    m_fontset      = None;

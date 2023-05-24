@@ -7,10 +7,10 @@
 CLASS_DECL_APEX int g_iMouse = -1;
 
 
-//CLASS_DECL_APEX int_bool GetCursorPos(POINT_I32 * lppoint);
+//CLASS_DECL_APEX int_bool GetCursorPos(::point_i32 * lppoint);
 
 //
-//CLASS_DECL_APEX int_bool ui_get_cursor_pos(POINT_I32 * ppt)
+//CLASS_DECL_APEX int_bool ui_get_cursor_pos(::point_i32 * ppt)
 //{
 //
 //   if (ppt == nullptr)
@@ -52,7 +52,7 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //int g_iMouseY = 0;
 //
 
-//CLASS_DECL_APEX int_bool GetCursorPos(POINT_I32 * lppoint)
+//CLASS_DECL_APEX int_bool GetCursorPos(::point_i32 * lppoint)
 //{
 //
 //   lppoint->x = g_iMouseX;

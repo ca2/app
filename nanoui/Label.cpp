@@ -18,19 +18,19 @@ namespace nanoui
 
 
 Label::Label(Widget * parent, const ::scoped_string & caption, const ::scoped_string & font, int font_size)
-   : Widget(parent), m_caption(caption), m_font(font) {
-   if (m_theme) {
-      m_font_size = m_theme->m_iStandardFontSize;
-      m_color = m_theme->m_colorText;
+   : Widget(parent), m_strCaption(caption), m_font(font) {
+   if (m_ptheme) {
+      m_font_size = m_ptheme->m_iStandardFontSize;
+      m_color = m_ptheme->m_colorText;
    }
    if (font_size >= 0) m_font_size = font_size;
 }
 
 void Label::set_theme(Theme * theme) {
    Widget::set_theme(theme);
-   if (m_theme) {
-      m_font_size = m_theme->m_iStandardFontSize;
-      m_color = m_theme->m_colorText;
+   if (m_ptheme) {
+      m_font_size = m_ptheme->m_iStandardFontSize;
+      m_color = m_ptheme->m_colorText;
    }
 }
 
@@ -38,7 +38,7 @@ vector2_i32 Label::preferred_size(::nano2d::context * pcontext, bool bRecalcText
 {
    if (bRecalcTextSize)
    {
-      if (m_caption == "")
+      if (m_strCaption == "")
       {
          m_sizePreferred = vector2_i32(0);
 
@@ -48,14 +48,14 @@ vector2_i32 Label::preferred_size(::nano2d::context * pcontext, bool bRecalcText
          pcontext->font_face(m_font.c_str());
          pcontext->font_size(font_size());
          float bounds[4];
-         if (m_fixed_size.x() > 0) {
+         if (m_fixed_size.x()() > 0) {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-            pcontext->text_box_bounds((float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.x(), m_caption, bounds);
-            m_sizePreferred = vector2_i32(m_fixed_size.x(), (int)(bounds[3] - bounds[1]));
+            pcontext->text_box_bounds((float)m_pos.x()(), (float)m_pos.y()(), (float)m_fixed_size.x()(), m_strCaption, bounds);
+            m_sizePreferred = vector2_i32(m_fixed_size.x()(), (int)(bounds[3] - bounds[1]));
          }
          else {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-            int iSize = (int) pcontext->text_bounds(0.f, 0.f, m_caption, bounds);
+            int iSize = (int) pcontext->text_bounds(0.f, 0.f, m_strCaption, bounds);
             m_sizePreferred = vector2_i32(
                 iSize +2 ,
                (int)(int)(bounds[3] - bounds[1])
@@ -71,13 +71,13 @@ void Label::draw(::nano2d::context * pcontext) {
    pcontext->font_face(m_font.c_str());
    pcontext->font_size(font_size());
    pcontext->fill_color(m_color);
-   if (m_fixed_size.x() > 0) {
+   if (m_fixed_size.x()() > 0) {
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-      pcontext->text_box((float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.x(), m_caption);
+      pcontext->text_box((float)m_pos.x()(), (float)m_pos.y()(), (float)m_fixed_size.x()(), m_strCaption);
    }
    else {
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-      pcontext->text((float)m_pos.x(), (float)m_pos.y() + m_size.y() * 0.5f, m_caption);
+      pcontext->text((float)m_pos.x()(), (float)m_pos.y()() + m_size.y()() * 0.5f, m_strCaption);
    }
 }
 
@@ -103,7 +103,7 @@ void Label::draw(::nano2d::context * pcontext) {
 //
 //   //m_pstill->post_redraw();
 //
-//   //m_pstill->set_window_text(m_caption.c_str());
+//   //m_pstill->set_window_text(m_strCaption.c_str());
 //
 //   //Widget::_nanoui_to_user(m_pstill);
 //

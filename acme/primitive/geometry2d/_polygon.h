@@ -13,11 +13,11 @@ class polygon_base :
 public:
 
    using POLYGON_BASE_TYPE = point_array_base < POINT_TYPE >;
-   using POINT_BASE_TYPE = typename POINT_TYPE::POINT_BASE_TYPE;
+   using POINT_BASE_TYPE = typename POINT_TYPE;
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
    using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
-   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
+   //using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
    bool                 m_bDirty;
@@ -93,7 +93,7 @@ inline bool polygon_base < POINT_TYPE >::bounding_rectangle_contains(const POINT
 inline double atan(const point_f64 & point, double x, double y)
 {
 
-   return ::atan2(point.y - y, point.x - x);
+   return ::atan2(point.y() - y, point.x() - x);
 
 }
 
@@ -109,8 +109,8 @@ void polygon_base < POINT_TYPE >::sort()
    UNIT_TYPE y = 0;
    for (auto & point : *this)
    {
-      x += point.x;
-      y += point.y;
+      x += point.x();
+      y += point.y();
    }
    x /= this->get_count();
    y /= this->get_count();
@@ -168,10 +168,10 @@ inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const poi
 
    double dSpan = 0.01;
 
-   if (pt1.x < pt2.x)
+   if (pt1.x() < pt2.x())
    {
 
-      if (!(pt1.x - dSpan <= pt3.x && pt3.x <= pt2.x + dSpan))
+      if (!(pt1.x() - dSpan <= pt3.x() && pt3.x() <= pt2.x() + dSpan))
       {
 
          return false;
@@ -182,7 +182,7 @@ inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const poi
    else
    {
 
-      if (!(pt2.x - dSpan <= pt3.x && pt3.x <= pt1.x + dSpan))
+      if (!(pt2.x() - dSpan <= pt3.x() && pt3.x() <= pt1.x() + dSpan))
       {
 
          return false;
@@ -191,10 +191,10 @@ inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const poi
 
    }
 
-   if (pt1.y < pt2.y)
+   if (pt1.y() < pt2.y())
    {
 
-      if (!(pt1.y - dSpan <= pt3.y && pt3.y <= pt2.y + dSpan))
+      if (!(pt1.y() - dSpan <= pt3.y() && pt3.y() <= pt2.y() + dSpan))
       {
 
          return false;
@@ -205,7 +205,7 @@ inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const poi
    else
    {
 
-      if (!(pt2.y - dSpan <= pt3.y && pt3.y <= pt1.y + dSpan))
+      if (!(pt2.y() - dSpan <= pt3.y() && pt3.y() <= pt1.y() + dSpan))
       {
 
          return false;
@@ -221,10 +221,10 @@ inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const poi
 inline bool inBoundedBox1(const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3)
 {
 
-   if (pt1.x < pt2.x)
+   if (pt1.x() < pt2.x())
    {
 
-      if (!(pt1.x <= pt3.x && pt3.x <= pt2.x))
+      if (!(pt1.x() <= pt3.x() && pt3.x() <= pt2.x()))
       {
 
          return false;
@@ -235,7 +235,7 @@ inline bool inBoundedBox1(const point_f64 & pt1, const point_f64 & pt2, const po
    else
    {
 
-      if (!(pt2.x <= pt3.x && pt3.x <= pt1.x))
+      if (!(pt2.x() <= pt3.x() && pt3.x() <= pt1.x()))
       {
 
          return false;
@@ -244,10 +244,10 @@ inline bool inBoundedBox1(const point_f64 & pt1, const point_f64 & pt2, const po
 
    }
 
-   if (pt1.y < pt2.y)
+   if (pt1.y() < pt2.y())
    {
 
-      if (!(pt1.y <= pt3.y && pt3.y <= pt2.y))
+      if (!(pt1.y() <= pt3.y() && pt3.y() <= pt2.y()))
       {
 
          return false;
@@ -258,7 +258,7 @@ inline bool inBoundedBox1(const point_f64 & pt1, const point_f64 & pt2, const po
    else
    {
 
-      if (!(pt2.y <= pt3.y && pt3.y <= pt1.y))
+      if (!(pt2.y() <= pt3.y() && pt3.y() <= pt1.y()))
       {
 
          return false;
@@ -277,23 +277,23 @@ inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const po
 {
 
    //Line segment 1 (point1, point2)
-   double A1 = pt2.x - pt1.x;
-   double B1 = pt1.y - pt2.y;
-   double C1 = A1 * pt1.y + B1 * pt1.x;
+   double A1 = pt2.x() - pt1.x();
+   double B1 = pt1.y() - pt2.y();
+   double C1 = A1 * pt1.y() + B1 * pt1.x();
 
    //Line segment 2 (p3,  p4)
-   double A2 = pt4.x - pt3.x;
-   double B2 = pt3.y - pt4.y;
-   double C2 = A2 * pt3.y + B2 * pt3.x;
+   double A2 = pt4.x() - pt3.x();
+   double B2 = pt3.y() - pt4.y();
+   double C2 = A2 * pt3.y() + B2 * pt3.x();
 
    double determinant = A1 * B2 - A2 * B1;
 
    if (determinant != 0.0)
    {
 
-      point.y = (B2 * C1 - B1 * C2) / determinant;
+      point.y() = (B2 * C1 - B1 * C2) / determinant;
 
-      point.x = (A1 * C2 - A2 * C1) / determinant;
+      point.x() = (A1 * C2 - A2 * C1) / determinant;
 
       return inBoundedBox(pt1, pt2, point) && inBoundedBox(pt3, pt4, point);
 
@@ -374,18 +374,18 @@ const typename polygon_base < POINT_TYPE >::RECTANGLE_TYPE & polygon_base < POIN
 
       ((polygon_base *)this)->m_bDirtyBoundingRect = false;
 
-      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x;
-      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y;
-      ((polygon_base *)this)->m_rectangleBounding.right = this->element_at(0).x;
-      ((polygon_base *)this)->m_rectangleBounding.bottom = this->element_at(0).y;
+      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x();
+      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y();
+      ((polygon_base *)this)->m_rectangleBounding.right = this->element_at(0).x();
+      ((polygon_base *)this)->m_rectangleBounding.bottom = this->element_at(0).y();
 
       for (index i = 1; i < this->get_count(); i++)
       {
 
-         ((polygon_base *)this)->m_rectangleBounding.left = minimum(m_rectangleBounding.left, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectangleBounding.right = maximum(m_rectangleBounding.right, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectangleBounding.top = minimum(m_rectangleBounding.top, this->element_at(i).y);
-         ((polygon_base *)this)->m_rectangleBounding.bottom = maximum(m_rectangleBounding.bottom, this->element_at(i).y);
+         ((polygon_base *)this)->m_rectangleBounding.left = minimum(m_rectangleBounding.left, this->element_at(i).x());
+         ((polygon_base *)this)->m_rectangleBounding.right = maximum(m_rectangleBounding.right, this->element_at(i).x());
+         ((polygon_base *)this)->m_rectangleBounding.top = minimum(m_rectangleBounding.top, this->element_at(i).y());
+         ((polygon_base *)this)->m_rectangleBounding.bottom = maximum(m_rectangleBounding.bottom, this->element_at(i).y());
 
       }
 

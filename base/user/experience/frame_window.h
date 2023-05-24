@@ -115,7 +115,7 @@ namespace experience
 
 
 
-      void OnNcCalcSize(RECTANGLE_I32 * prectangle);
+      void OnNcCalcSize(::rectangle_i32 * prectangle);
 
       class dock_manager * dock_manager();
       class move_manager * move_manager();
@@ -167,9 +167,9 @@ namespace experience
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(::u32 uFlags);
 
-      void GetRegionClientRect(RECTANGLE_I32 * prectangle);
+      void GetRegionClientRect(::rectangle_i32 * prectangle);
 
-      void get_draw_client_rect(RECTANGLE_I32 * prectangle);
+      void get_draw_client_rect(::rectangle_i32 * prectangle);
 
 
       void relay_event(::message::message * pmessage);

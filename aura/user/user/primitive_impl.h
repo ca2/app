@@ -103,7 +103,7 @@ namespace user
       
       virtual void prodevian_update_screen();
 
-      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
 
       virtual void window_move(i32 x, i32 y);
 
@@ -292,10 +292,10 @@ namespace user
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(POINT_I32 & point);
-      virtual void viewport_client_to_screen(POINT_I32 & point);
-      virtual void viewport_client_to_screen(RECTANGLE_I32 & rectangle);
-      virtual void viewport_screen_to_client(RECTANGLE_I32 & rectangle);
+      virtual void viewport_screen_to_client(::point_i32 & point);
+      virtual void viewport_client_to_screen(::point_i32 & point);
+      virtual void viewport_client_to_screen(::rectangle_i32 & rectangle);
+      virtual void viewport_screen_to_client(::rectangle_i32 & rectangle);
 
 
       //virtual u32 GetStyle() const;
@@ -380,7 +380,7 @@ namespace user
 
 
 
-      virtual void get_rect_normal(RECTANGLE_I32 * prectangle);
+      virtual void get_rect_normal(::rectangle_i32 * prectangle);
 
 
       virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);

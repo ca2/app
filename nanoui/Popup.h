@@ -26,7 +26,7 @@ namespace nanoui
  *
  * \brief Popup window for combo boxes, popup buttons, nested dialogs etc.
  *
- * Usually the Popup instance is constructed by another pwidget (e.g. \ref PopupButton)
+ * Usually the Popup instance is constructed by another pwidget (e.g. \::pointer PopupButton)
  * and does not need to be created by hand.
  */
    class CLASS_DECL_NANOUI Popup : public Window {

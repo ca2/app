@@ -168,7 +168,7 @@ namespace universal_windows
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      virtual void CalcWindowRect(RECTANGLE_I32 * lpClientRect, ::u32 nAdjustType = adjustBorder);
+      virtual void CalcWindowRect(::rectangle_i32 * lpClientRect, ::u32 nAdjustType = adjustBorder);
 
 
       // get immediate child with given ID
@@ -189,7 +189,7 @@ namespace universal_windows
       bool SendNotifyMessage(const ::atom & atom, WPARAM wParam, LPARAM lParam);
       bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
-      bool DragDetect(POINT_I32 pt) const;
+      bool DragDetect(::point_i32 pt) const;
 
 
 
@@ -206,7 +206,7 @@ namespace universal_windows
       //virtual bool layout().is_iconic();
       //virtual bool layout().is_zoomed();
       //void MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint = true);
-      //void MoveWindow(const RECTANGLE_I32 * lpRect, bool bRepaint = true);
+      //void MoveWindow(const ::rectangle_i32 * lpRect, bool bRepaint = true);
       //int SetWindowRgn(HRGN hRgn, bool bRedraw);
       //int GetWindowRgn(HRGN hRgn);
 
@@ -215,25 +215,25 @@ namespace universal_windows
       virtual ::u32 ArrangeIconicWindows();
       virtual bool BringWindowToTop();
       //using ::user::interaction_impl::window_rectangle;
-      //virtual bool window_rectangle(RECTANGLE_I64 * lpRect);
+      //virtual bool window_rectangle(::rectangle_i64 * lpRect);
       //using ::user::interaction_impl::client_rectangle;
-      //virtual bool client_rectangle(RECTANGLE_I64 * lpRect);
+      //virtual bool client_rectangle(::rectangle_i64 * lpRect);
 
-      //virtual bool client_to_screen(RECTANGLE_I32 * lprect);
-      //virtual bool client_to_screen(POINT_I32 * lppoint);
-      //virtual bool client_to_screen(RECTANGLE_I64 * lprect);
-      //virtual bool client_to_screen(POINT_I64 * lppoint);
-      //virtual bool screen_to_client(RECTANGLE_I32 * lprect);
-      //virtual bool screen_to_client(POINT_I32 * lppoint);
-      //virtual bool screen_to_client(RECTANGLE_I64 * lprect);
-      //virtual bool screen_to_client(POINT_I64 * lppoint);
+      //virtual bool client_to_screen(::rectangle_i32 * lprect);
+      //virtual bool client_to_screen(::point_i32 * lppoint);
+      //virtual bool client_to_screen(::rectangle_i64 * lprect);
+      //virtual bool client_to_screen(::point_i64 * lppoint);
+      //virtual bool screen_to_client(::rectangle_i32 * lprect);
+      //virtual bool screen_to_client(::point_i32 * lppoint);
+      //virtual bool screen_to_client(::rectangle_i64 * lprect);
+      //virtual bool screen_to_client(::point_i64 * lppoint);
 
       //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
       //    virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount);
-      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, RECTANGLE_I32 * lpRect);
+      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, ::point_i32 * lpPoint, ::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, ::rectangle_i32 * lpRect);
 
       // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
@@ -244,12 +244,12 @@ namespace universal_windows
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = true);
-      //virtual bool GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase = false);
+      //virtual bool GetUpdateRect(::rectangle_i32 * lpRect, bool bErase = false);
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       //virtual void Invalidate(bool bErase = true);
-      //virtual void InvalidateRect(const RECTANGLE_I32 * lpRect, bool bErase = true);
+      //virtual void InvalidateRect(const ::rectangle_i32 * lpRect, bool bErase = true);
       //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      //virtual void ValidateRect(const RECTANGLE_I32 * lpRect);
+      //virtual void ValidateRect(const ::rectangle_i32 * lpRect);
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool ShowWindow(int nCmdShow);
       virtual void _001WindowMaximize();
@@ -265,8 +265,8 @@ namespace universal_windows
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual bool DrawAnimatedRects(int idAni, const RECTANGLE_I32 *lprcFrom, const RECTANGLE_I32 *lprcTo);
-      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 * lprc, ::u32 uFlags);
+      virtual bool DrawAnimatedRects(int idAni, const ::rectangle_i32 *lprcFrom, const ::rectangle_i32 *lprcTo);
+      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 * lprc, ::u32 uFlags);
 
 #if(WINVER >= 0x0500)
 
@@ -341,8 +341,8 @@ namespace universal_windows
       virtual int GetScrollPos(int nBar) const;
       virtual void GetScrollRange(int nBar, LPINT lpMinPos, LPINT lpMaxPos) const;
       //virtual void ScrollWindow(int xAmount, int yAmount,
-      //                          const RECTANGLE_I32 * lpRect = nullptr,
-      //                          const RECTANGLE_I32 * lpClipRect = nullptr);
+      //                          const ::rectangle_i32 * lpRect = nullptr,
+      //                          const ::rectangle_i32 * lpClipRect = nullptr);
       virtual int SetScrollPos(int nBar, int nPos, bool bRedraw = true);
       virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos,
                                   bool bRedraw = true);
@@ -352,8 +352,8 @@ namespace universal_windows
       // return sibling scrollbar control (or nullptr if none)
 
       //virtual int ScrollWindowEx(int Δx, int Δy,
-      //                           const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip,
-      //                           ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags);
+      //                           const ::rectangle_i32 * lpRectScroll, const ::rectangle_i32 * lpRectClip,
+      //                           ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags);
       //      virtual bool SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo,
       //       bool bRedraw = true);
       //      virtual bool GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask = SIF_ALL);
@@ -366,8 +366,8 @@ namespace universal_windows
       //#endif   // WINVER >= 0x0500
 
       // Window Access Functions
-      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32);
-      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags);
+      virtual ::user::interaction *  ChildWindowFromPoint(::point_i32 point_i32);
+      virtual ::user::interaction *  ChildWindowFromPoint(::point_i32 point, ::u32 nFlags);
       static ::pointer<::user::interaction_impl>FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
       static ::pointer<::user::interaction_impl>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 
@@ -381,7 +381,7 @@ namespace universal_windows
       virtual ::user::interaction *  get_parent() const override;
       using ::user::interaction_impl::set_parent;
 //      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
-      static ::pointer<::user::interaction_impl>WindowFromPoint(POINT_I32 point_i32);
+      static ::pointer<::user::interaction_impl>WindowFromPoint(::point_i32 point_i32);
 
       // Alert Functions
 
@@ -406,7 +406,7 @@ namespace universal_windows
 
       // Caret Functions
       static point_i32 GetCaretPos();
-      static void SetCaretPos(POINT_I32 point_i32);
+      static void SetCaretPos(::point_i32 point_i32);
       virtual void HideCaret();
       virtual void ShowCaret();
 
@@ -577,8 +577,8 @@ namespace universal_windows
       // Win4 messages
       //      void OnStyleChanged(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
       //    void OnStyleChanging(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
-      void OnSizing(::u32 nSide, RECTANGLE_I32 * lpRect);
-      void OnMoving(::u32 nSide, RECTANGLE_I32 * lpRect);
+      void OnSizing(::u32 nSide, ::rectangle_i32 * lpRect);
+      void OnMoving(::u32 nSide, ::rectangle_i32 * lpRect);
       void OnCaptureChanged(::user::interaction_impl * pWnd);
       bool OnDeviceChange(::u32 nEventType, dword_ptr dwData);
 
@@ -685,7 +685,7 @@ namespace universal_windows
 
       void set_impact_port_org(::image * pimage);
 
-      void offset_impact_port_org(RECTANGLE_I32 * lprectScreen);
+      void offset_impact_port_org(::rectangle_i32 * lprectScreen);
 
       virtual void queue_message_handler(::user::message * pusermessage) override;
 

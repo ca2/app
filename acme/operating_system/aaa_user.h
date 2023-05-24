@@ -104,7 +104,7 @@
 struct SIZEPARENTPARAMS
 {
 
-   RECTANGLE_I32  rectangle;     // parent client rectangle (trim as appropriate)
+   ::rectangle_i32  rectangle;     // parent client rectangle (trim as appropriate)
    SIZE_I32       sizeTotal;     // total size on each side as on_layout proceeds
    bool           bStretch;      // should stretch to fill all space
 

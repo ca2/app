@@ -59,7 +59,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect)
+      void calendar::GetRectDay(::earth::time& time, ::rectangle_i32 * lprect)
       {
 
          int32_t iWeekDay = time.day_of_week();
@@ -69,7 +69,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect)
+      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, ::rectangle_i32 * lprect)
       {
 
          __UNREFERENCED_PARAMETER(iWeekDay);
@@ -79,7 +79,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement)
+      void calendar::GetRect(::rectangle_i32 * lprect, enum enum_element eelement)
       {
 
          __UNREFERENCED_PARAMETER(lprect);

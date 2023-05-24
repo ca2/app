@@ -1,62 +1,72 @@
 ﻿#pragma once
 
 
-//#include "_concept.h"
-//#include "acme/primitive/mathematics/numeric.h"
+#include "vector.h"
 
 
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-class size_type :
-   public BASE_TYPE
+template < primitive_number NUMBER >
+class size_type// :
+   //public vector_type < NUMBER, 2 >
 {
 public:
 
 
-   using SIZE_BASE_TYPE = BASE_TYPE;
-   using UNIT_TYPE = decltype(SIZE_BASE_TYPE::cx);
-   using POINT_TYPE = point_type < POINT_BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE >;
-   using RECTANGLE_TYPE = rectangle_type < RECTANGLE_BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >;
+   NUMBER   cx;
+   NUMBER   cy;
 
 
-   size_type() noexcept { this->cx = 0; this->cy = 0; }
+   //using SIZE_BASE_TYPE = BASE_TYPE;
+   using UNIT_TYPE = NUMBER;
+   using POINT_TYPE = point_type < NUMBER >;
+   using RECTANGLE_TYPE = rectangle_type < NUMBER >;
+
+
+   size_type() noexcept { this->cx = UNIT_TYPE{}; this->cy = UNIT_TYPE{}; }
    size_type(enum_no_initialize) noexcept {}
-   size_type(::std::nullptr_t) noexcept { this->cx = 0; this->cy = 0; }
-   size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx = cx; this->cy = cy; }
-   size_type(::i32 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
-   size_type(::u32 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
-   size_type(::i64 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
-   size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
-   size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
-   size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
-   size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
+   size_type(::std::nullptr_t) noexcept { this->cx = UNIT_TYPE{}; this->cy = UNIT_TYPE{}; }
+   template < primitive_number CX, primitive_number CY >
+   size_type(CX cx, CY cy) noexcept { this->cx = (UNIT_TYPE)cx; this->cy = (UNIT_TYPE)cy; }
+   template < primitive_number NUMBER >
+   size_type(NUMBER n) noexcept { this->cx = (UNIT_TYPE) n; this->cy = (UNIT_TYPE) n; }
+   //size_type(::u32 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
+   //size_type(::i64 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
+   //size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
+   //size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
+   //size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
+   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x()(), lparam.y()()) {}
    template < primitive_point POINT >
-   size_type(const POINT & point) noexcept { this->cx = (UNIT_TYPE)point.x; this->cy = (UNIT_TYPE)point.y; }
+   size_type(const POINT & point) noexcept { this->cx = (UNIT_TYPE)point.x(); this->cy = (UNIT_TYPE)point.y(); }
    template < primitive_rectangle RECTANGLE >
    size_type(const RECTANGLE & rectangle) noexcept { this->cx = (UNIT_TYPE)::width(rectangle); this->cy = (UNIT_TYPE)::height(rectangle); }
-   size_type(const SIZE_I32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZE_I64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZE_F32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZE_F64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZE_I32* psize) noexcept : size_type(*psize) {}
-   size_type(const SIZE_I64* psize) noexcept : size_type(*psize) {}
-   size_type(const SIZE_F32* psize) noexcept : size_type(*psize) {}
-   size_type(const SIZE_F64* psize) noexcept : size_type(*psize) {}
+   template < primitive_size SIZE >
+   size_type(const SIZE & size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const SIZE_I64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const SIZE_F32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const SIZE_F64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const SIZE_I32* psize) noexcept : size_type(*psize) {}
+   //size_type(const SIZE_I64* psize) noexcept : size_type(*psize) {}
+   //size_type(const SIZE_F32* psize) noexcept : size_type(*psize) {}
+   //size_type(const SIZE_F64* psize) noexcept : size_type(*psize) {}
 #ifdef __APPLE__
 //   size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
 //   size_type(const CGSize *psize) noexcept : size_type(*psize) {}
 #endif
 
 
-   operator SIZE_I32* () noexcept { return this; }
-   operator const SIZE_I32* () const noexcept { return this; }
+   //operator SIZE_I32* () noexcept { return this; }
+   //operator const SIZE_I32* () const noexcept { return this; }
    operator bool () const noexcept { return is_set(); }
 
+   //constexpr NUMBER cx() const { return this->cx; }
+   //constexpr NUMBER cy() const { return this->cy; }
+   //constexpr NUMBER & cx() { return this->cx; }
+   //constexpr NUMBER & cy() { return this->cy; }
 
    size_type& Null() { this->cx = (UNIT_TYPE)0; this->cy = (UNIT_TYPE)0; return *this; }
 
    POINT_TYPE operator+(const POINT_TYPE& point1) const noexcept { POINT_TYPE point(point1); ::offset(point, this->cx, this->cy); return point; }
    template < primitive_point POINT >
-   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset(point, -point1.x, -point1.y); return point;   }
+   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset(point, -point1.x(), -point1.y()); return point;   }
 
    RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, this->cx, this->cy); return rectangle; }
    RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, -this->cx, -this->cy); return rectangle; }
@@ -122,10 +132,10 @@ public:
    inline size_type & operator-=(const SIZE & size) noexcept { this->cx -= size.cx; this->cy -= size.cy; return *this; }
 
    template < primitive_point POINT >
-   inline size_type & operator+=(const POINT & point) noexcept { this->cx += point.x; this->cy += point.y; return *this; }
+   inline size_type & operator+=(const POINT & point) noexcept { this->cx += point.x(); this->cy += point.y(); return *this; }
 
    template < primitive_point POINT >
-   inline size_type & operator-=(const POINT & point) noexcept { this->cx -= point.x; this->cy -= point.y; return *this; }
+   inline size_type & operator-=(const POINT & point) noexcept { this->cx -= point.x(); this->cy -= point.y(); return *this; }
 
    template < primitive_number NUMBER >
    inline size_type & operator+=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx + n); this->cy = UNIT_TYPE(this->cy + n); return *this; }
@@ -220,9 +230,10 @@ public:
 };
 
 
-inline auto abs(const ::size_i32& size) noexcept { return ::size_i32(abs(size.cx), abs(size.cy)); }
-inline auto abs(const ::size_i64& size) noexcept { return ::size_i64(abs(size.cx), abs(size.cy)); }
-inline auto abs(const ::size_f32& size) noexcept { return ::size_f32(abs(size.cx), abs(size.cy)); }
-inline auto abs(const ::size_f64& size) noexcept { return ::size_f64(abs(size.cx), abs(size.cy)); }
+template < primitive_size SIZE >
+inline auto abs(const SIZE & size) noexcept { return SIZE(abs(size.cx), abs(size.cy)); }
+//inline auto abs(const ::size_i64& size) noexcept { return ::size_i64(abs(size.cx), abs(size.cy)); }
+//inline auto abs(const ::size_f32& size) noexcept { return ::size_f32(abs(size.cx), abs(size.cy)); }
+//inline auto abs(const ::size_f64& size) noexcept { return ::size_f64(abs(size.cx), abs(size.cy)); }
 
 

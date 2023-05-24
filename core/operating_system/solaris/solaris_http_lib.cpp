@@ -11,10 +11,10 @@
  *
  * $Log: http_lib.c,v $
  * Revision 3.5  1998/09/23 06:19:15  dl
- * portability and http 1.x (1.1 and later) compatibility
+ * portability and http 1.x() (1.1 and later) compatibility
  *
  * Revision 3.4  1998/09/23 05:44:27  dl
- * added support for HTTP/1.x answers
+ * added support for HTTP/1.x() answers
  *
  * Revision 3.3  1996/04/25 19:07:22  dl
  * using intermediate variable for htons (port) so it does not yell

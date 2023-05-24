@@ -82,7 +82,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 	int i;
 	rdpGdi* gdi;
 	int ninvalid;
-	RECTANGLE_I32 updateRect;
+	::rectangle_i32 updateRect;
 	HGDI_RGN cinvalid;
 	REGION16 invalidRegion;
 	RECTANGLE_16 invalidRect;
@@ -101,10 +101,10 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 
 	for (i = 0; i < ninvalid; i++)
 	{
-		invalidRect.left = cinvalid[i].x;
-		invalidRect.top = cinvalid[i].y;
-		invalidRect.right = cinvalid[i].x + cinvalid[i].w;
-		invalidRect.bottom = cinvalid[i].y + cinvalid[i].h;
+		invalidRect.left = cinvalid[i].x();
+		invalidRect.top = cinvalid[i].y();
+		invalidRect.right = cinvalid[i].x() + cinvalid[i].w;
+		invalidRect.bottom = cinvalid[i].y() + cinvalid[i].h;
 
 		region16_union_rect(&invalidRegion, &invalidRegion, &invalidRect);
 	}
@@ -175,7 +175,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 //BOOL wf_hw_desktop_resize(wfContext* wfc)
 //{
 //	BOOL same;
-//	RECTANGLE_I32 rectangle_i32;
+//	::rectangle_i32 rectangle_i32;
 //	rdpSettings* settings;
 //
 //	settings = wfc->instance->settings;
@@ -198,7 +198,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 //	if (wfc->fullscreen != true)
 //	{
 //		if (wfc->hwnd)
-//			set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE);
+//			set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x(), wfc->height + wfc->diff.y(), SWP_NOMOVE);
 //	}
 //	else
 //	{

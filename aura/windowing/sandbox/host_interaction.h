@@ -43,7 +43,7 @@ namespace sandbox_windowing
       void post_redraw(bool bAscendants = true) override;
 
       
-      //void client_rectangle(RECTANGLE_I32* lprect) override;
+      //void client_rectangle(::rectangle_i32* lprect) override;
 
 
       void on_layout(::draw2d::graphics_pointer& pgraphics) override;

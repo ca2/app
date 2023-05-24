@@ -575,7 +575,7 @@ namespace hotplugin
 
       ::memory_copy(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const POINT_I32 *) &rectangleOut, m_sizeBitmap, m_pimage->g());
+      pgraphics->draw((const ::point_i32 *) &rectangleOut, m_sizeBitmap, m_pimage->g());
 
 
    }
@@ -587,7 +587,7 @@ namespace hotplugin
    }
 
 
-   //bool host::window_rectangle(RECTANGLE_I64 * prectangle)
+   //bool host::window_rectangle(::rectangle_i64 * prectangle)
    //{
 
    //   ::copy(prectangle, m_rectangleWindow);
@@ -597,7 +597,7 @@ namespace hotplugin
    //}
 
 
-   //bool host::client_rectangle(RECTANGLE_I64 * prectangle)
+   //bool host::client_rectangle(::rectangle_i64 * prectangle)
    //{
 
    //   ::copy(prectangle,m_rectangleClient);

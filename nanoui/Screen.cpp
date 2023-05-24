@@ -144,7 +144,7 @@ namespace nanoui
       bool fullscreen, bool depth_buffer, bool stencil_buffer,
       bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
       : Widget(nullptr)  /*,  m_glfw_window(nullptr), ctx(nullptr),
-      m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f) /*, m_caption(caption),
+      m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f) /*, m_strCaption(caption),
       m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
       m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false)
    {
@@ -219,7 +219,7 @@ namespace nanoui
    //            caption.c_str(), monitor, nullptr);
    //      }
    //      else {
-   //         m_glfw_window = glfwCreateWindow(size.x(), size.y(),
+   //         m_glfw_window = glfwCreateWindow(size.x()(), size.y()(),
    //            caption.c_str(), nullptr, nullptr);
    //      }
    //
@@ -409,7 +409,7 @@ namespace nanoui
    //         Screen * s = it->second;
    //
    //         s->m_pixel_ratio = get_pixel_ratio(pwidgetChild);
-   //         s->resize_callback_event(s->m_size.x(), s->m_size.y());
+   //         s->resize_callback_event(s->m_size.x()(), s->m_size.y()());
    //      }
    //   );
    //
@@ -462,8 +462,8 @@ namespace nanoui
    //   m_size = vector2_i32((int)pwidgetChild, (int)h);
    //#elif defined(_WIN32) || defined(__linux__)
    //   if (m_pixel_ratio != 1 && !m_fullscreen)
-   //      glfwSetWindowSize(window, m_size.x() * m_pixel_ratio,
-   //         m_size.y() * m_pixel_ratio);
+   //      glfwSetWindowSize(window, m_size.x()() * m_pixel_ratio,
+   //         m_size.y()() * m_pixel_ratio);
    //#endif
    //
    //#if defined(NANOUI_GLAD)
@@ -550,9 +550,9 @@ namespace nanoui
    //}
    //
    //void Screen::set_caption(const ::scoped_string & caption) {
-   //   if (caption != m_caption) {
+   //   if (caption != m_strCaption) {
    //      glfwSetWindowTitle(m_glfw_window, caption.c_str());
-   //      m_caption = caption;
+   //      m_strCaption = caption;
    //   }
    //}
    //
@@ -560,10 +560,10 @@ namespace nanoui
    //   Widget::set_size(size);
    //
    //#if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
-   //   glfwSetWindowSize(m_glfw_window, size.x() * m_pixel_ratio,
-   //      size.y() * m_pixel_ratio);
+   //   glfwSetWindowSize(m_glfw_window, size.x()() * m_pixel_ratio,
+   //      size.y()() * m_pixel_ratio);
    //#else
-   //   glfwSetWindowSize(m_glfw_window, size.x(), size.y());
+   //   glfwSetWindowSize(m_glfw_window, size.x()(), size.y()());
    //#endif
    //}
    //
@@ -599,7 +599,7 @@ namespace nanoui
 
 
       pcontext->begin_path();
-      pcontext->rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y());
+      pcontext->rectangle((float)m_pos.x()(), (float)m_pos.y()(), (float)m_size.x()(), (float)m_size.y()());
       pcontext->fill_color(m_background);
       pcontext->fill();
 
@@ -753,23 +753,23 @@ namespace nanoui
             vector2_i32 pos = pwidget->absolute_position() +
                vector2_i32(pwidget->width() / 2, pwidget->height() + 10);
 
-            pcontext->text_bounds((float)pos.x(), (float)pos.y(),
+            pcontext->text_bounds((float)pos.x()(), (float)pos.y()(),
                pwidget->tooltip(), bounds);
 
             int h = (int)((bounds[2] - bounds[0]) / 2.f);
             if (h > tooltip_width / 2) {
                pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_top);
-               pcontext->text_box_bounds((float)pos.x(), (float)pos.y(), (float)tooltip_width,
+               pcontext->text_box_bounds((float)pos.x()(), (float)pos.y()(), (float)tooltip_width,
                   pwidget->tooltip(), bounds);
 
                h = (int)((bounds[2] - bounds[0]) / 2.f);
             }
             int shift = 0;
 
-            if (pos.x() - h - 8 < 0) {
+            if (pos.x()() - h - 8 < 0) {
                /* Keep tooltips on pscreen */
-               shift = pos.x() - h - 8;
-               pos.x() -= shift;
+               shift = pos.x()() - h - 8;
+               pos.x()() -= shift;
                bounds[0] -= shift;
                bounds[2] -= shift;
             }
@@ -790,7 +790,7 @@ namespace nanoui
 
             pcontext->fill_color(::color::color(255, 255));
             pcontext->font_blur(0.0f);
-            pcontext->text_box((float)(pos.x() - h), (float)pos.y(), (float)tooltip_width, pwidget->tooltip());
+            pcontext->text_box((float)(pos.x()() - h), (float)pos.y()(), (float)tooltip_width, pwidget->tooltip());
          }
       }
 
@@ -833,13 +833,23 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_character_event(unsigned int codepoint) {
-      if (m_focus_path.size() > 0) {
+   bool Screen::keyboard_character_event(unsigned int codepoint) 
+   {
+
+      if (m_focus_path.size() > 0) 
+      {
+
          for (auto it = m_focus_path.get_upper_bound(-2); it >= 0; --it)
          {
+
             auto p = m_focus_path[it];
+
             if (p->focused() && p->keyboard_character_event(codepoint))
+            {
+
                return true;
+
+            }
 
          }
       }
@@ -872,14 +882,14 @@ namespace nanoui
    bool Screen::on_mouse_move(const ::point_i32& point, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
-      //if (point.x > m_size.x() - 10 && point.y > m_size.y() - 10)
+      //if (point.x() > m_size.x()() - 10 && point.y() > m_size.y()() - 10)
       //{
 
       //   return false;
 
       //}
 
-      vector2_i32 pointCursor((int)point.x, (int)point.y);
+      vector2_i32 pointCursor((int)point.x(), (int)point.y());
 
       auto shift = pointCursor - m_mouse_pos;
 
@@ -998,13 +1008,25 @@ namespace nanoui
       //#endif
 
          //try {
-      if (m_focus_path.size() > 1) {
-         const Window* window =
-            dynamic_cast<Window*>(m_focus_path[m_focus_path.size() - 2]);
-         if (window && window->modal()) {
-            if (!window->contains(m_mouse_pos))
+      if (m_focus_path.size() > 1) 
+      {
+
+         auto pwidget = m_focus_path[m_focus_path.size() - 2];
+
+         ::pointer < Window > pwindow = pwidget;
+
+         if (pwindow && pwindow->modal())
+         {
+
+            if (!pwindow->contains(m_mouse_pos))
+            {
+
                return false;
+
+            }
+
          }
+
       }
 
       ////if (action == GLFW_PRESS)
@@ -1016,9 +1038,10 @@ namespace nanoui
       //else
       //   m_mouse_state &= ~(1 << button);
 
-      auto drop_widget = find_widget(m_mouse_pos);
+      m_pwidgetDrop = find_widget(m_mouse_pos);
       //if (m_bDragActive && action == GLFW_RELEASE &&
-      if (m_bDragActive && !down && m_pwidgetDrag && drop_widget != m_pwidgetDrag
+      if (m_bDragActive && !down && m_pwidgetDrag 
+         && m_pwidgetDrop != m_pwidgetDrag
          && m_pwidgetLeftButtonDown == nullptr)
       {
 
@@ -1247,14 +1270,25 @@ namespace nanoui
             if (m_children[iIndex] == window)
                base_index = iIndex;
          changed = false;
-         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex) {
-            Popup* pw = dynamic_cast<Popup*>(m_children[iIndex]);
-            if (pw && pw->parent_window() == window && iIndex < base_index) {
+         
+         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex) 
+         {
+
+            ::pointer < Popup > pw = m_children[iIndex];
+
+            if (pw && pw->parent_window() == window && iIndex < base_index)
+            {
+
                move_window_to_front(pw);
+
                changed = true;
+
                break;
+
             }
+
          }
+
       } while (changed);
 
       set_need_redraw();
@@ -1301,8 +1335,8 @@ namespace nanoui
       if (m_puserinteraction)
       {
 
-         if (m_puserinteraction->width() != size.x()
-            || m_puserinteraction->height() != size.y())
+         if (m_puserinteraction->width() != size.x()()
+            || m_puserinteraction->height() != size.y()())
          {
 
             //m_puserinteraction->move_to(::size_i32(m_pos[0], m_pos[1]));
@@ -1327,9 +1361,9 @@ namespace nanoui
 
       ::appearance::appearance::set_user_interaction(puserinteraction);
 
-      m_size.x() = puserinteraction->width();
+      m_size.x()() = puserinteraction->width();
 
-      m_size.y() = puserinteraction->height();
+      m_size.y()() = puserinteraction->height();
 
       puserinteraction->set_need_layout();
 
@@ -1377,8 +1411,8 @@ namespace nanoui
       {
 
          auto r = m_puserinteraction->client_rectangle();
-         m_size.x() = r.width();
-         m_size.y() = r.height();
+         m_size.x()() = r.width();
+         m_size.y()() = r.height();
       }*/
 
    }
@@ -1393,7 +1427,7 @@ namespace nanoui
 
       context.set_font_sink(m_pfontsink);
 
-      pgraphics->offset_origin(-m_pos.x(), -m_pos.y());
+      pgraphics->offset_origin(-m_pos.x()(), -m_pos.y()());
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -1405,7 +1439,7 @@ namespace nanoui
    void Screen::on_mouse_enter(const ::point_i32& point, const ::user::e_key& ekeyModifiers)
    {
 
-      vector2_i32 p(point.x, point.y);
+      vector2_i32 p(point.x(), point.y());
 
       mouse_enter_event(p, 1, ekeyModifiers);
 
@@ -1452,14 +1486,14 @@ namespace nanoui
    bool Screen::on_button_down(::user::e_key ekeyButton, const ::point_i32& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick)
    {
 
-      //if (point.x > m_size.x() - 10 && point.y > m_size.y() - 10)
+      //if (point.x() > m_size.x()() - 10 && point.y() > m_size.y()() - 10)
       //{
 
       //   return false;
 
       //}
 
-      vector2_i32 p(point.x, point.y);
+      vector2_i32 p(point.x(), point.y());
 
       p += m_pos;
 
@@ -1475,14 +1509,14 @@ namespace nanoui
    bool Screen::on_button_up(::user::e_key ekeyButton, const ::point_i32& point, const ::user::e_key& ekeyModifiers)
    {
 
-      //if (point.x > m_size.x() - 10 && point.y > m_size.y() - 10)
+      //if (point.x() > m_size.x()() - 10 && point.y() > m_size.y()() - 10)
       //{
 
       //   return false;
 
       //}
 
-      vector2_i32 p(point.x, point.y);
+      vector2_i32 p(point.x(), point.y());
 
       p += m_pos;
 
@@ -1494,6 +1528,10 @@ namespace nanoui
 
       m_pwidgetMouseDown = nullptr;
 
+      m_pwidgetDrag = nullptr;
+
+      m_pwidgetDrop = nullptr;
+
       return bRet;
 
    }
@@ -1502,11 +1540,11 @@ namespace nanoui
    //bool Screen::on_mouse_move(const ::point_i32 & point)
    //{
    //
-   //   vector2_i32 p(point.x, point.y);
+   //   vector2_i32 p(point.x(), point.y());
    //
    //   p += m_pos;
    //
-   //   vector2_i32 rel(m_pointMouseLast.x, m_pointMouseLast.y);
+   //   vector2_i32 rel(m_pointMouseLast.x(), m_pointMouseLast.y());
    //
    //   rel += m_pos;
    //
@@ -1518,7 +1556,7 @@ namespace nanoui
    //bool Screen::on_mouse_drag(const ::point_i32& point, const ::user::e_key& ekeyModifiers)
    //{
 
-   //   vector2_i32 pointCursor(point.x, point.y);
+   //   vector2_i32 pointCursor(point.x(), point.y());
 
    //   bool bHandled = false;
 
@@ -1551,7 +1589,7 @@ namespace nanoui
 
    //   //p += m_pos;
 
-   //   //vector2_i32 rel(m_pointMouseLast.x, m_pointMouseLast.y);
+   //   //vector2_i32 rel(m_pointMouseLast.x(), m_pointMouseLast.y());
 
    //   //rel += m_pos;
 
@@ -1579,7 +1617,7 @@ namespace nanoui
    bool Screen::on_scroll_event(const ::point_i32& point, double x, double y)
    {
 
-      return scroll_event({ point.x, point.y }, { (float)x, (float)y });
+      return scroll_event({ point.x(), point.y() }, { (float)x, (float)y });
 
    }
 

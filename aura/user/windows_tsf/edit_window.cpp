@@ -672,7 +672,7 @@ namespace tsf
    //    //adjust the size_i32 and location of the status bar
    //    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
    //
-   //    RECTANGLE_I32    rc;
+   //    ::rectangle_i32    rc;
    //
    //    //GetWindowRect(m_hwndStatus, &rc);
    //    

@@ -16,8 +16,8 @@
 //#include <string.h> // memset
 
 
-template < typename COORDINATE, size_t t_iSize >
-struct vector_base
+template < primitive_number COORDINATE, size_t t_iSize >
+struct vector_type
 {
 
    using BASE_COORDINATE = COORDINATE;
@@ -30,110 +30,110 @@ struct vector_base
    static constexpr size_t SIZE = t_iSize;
 
 
-   vector_base():
-      vector_base(COORDINATE{})
+   vector_type():
+      vector_type(COORDINATE{})
    { 
    
    }
 
-   vector_base(enum_no_initialize) { }
+   vector_type(enum_no_initialize) { }
 
-   vector_base(const vector_base&) = default;
+   vector_type(const vector_type&) = default;
 
    template <primitive_number T,
       std::enable_if_t<T::SIZE == SIZE &&
       std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
-   vector_base(const T & a) {
+   vector_type(const T & a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] = (COORDINATE)a[i];
    }
 
    template <typename T>
-   vector_base(const vector_base<T, SIZE>& a) {
+   vector_type(const vector_type<T, SIZE>& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] = (COORDINATE)a.m_coordinatea[i];
    }
 
-   vector_base(COORDINATE s) {
+   vector_type(COORDINATE s) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] = s;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 2, int> = 0>
-   vector_base(COORDINATE v0, COORDINATE v1) {
+   vector_type(COORDINATE v0, COORDINATE v1) {
       m_coordinatea[0] = v0; m_coordinatea[1] = v1;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 3, int> = 0>
-   vector_base(COORDINATE v0, COORDINATE v1, COORDINATE v2) {
+   vector_type(COORDINATE v0, COORDINATE v1, COORDINATE v2) {
       m_coordinatea[0] = v0; m_coordinatea[1] = v1; m_coordinatea[2] = v2;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   vector_base(COORDINATE v0, COORDINATE v1, COORDINATE v2, COORDINATE v3) {
+   vector_type(COORDINATE v0, COORDINATE v1, COORDINATE v2, COORDINATE v3) {
       m_coordinatea[0] = v0; m_coordinatea[1] = v1; m_coordinatea[2] = v2; m_coordinatea[3] = v3;
    }
 
-   vector_base operator-() const {
-      vector_base result;
+   vector_type operator-() const {
+      vector_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = -m_coordinatea[i];
       return result;
    }
 
-   friend vector_base operator+(const vector_base& a, const vector_base& b) {
-      vector_base result;
+   friend vector_type operator+(const vector_type& a, const vector_type& b) {
+      vector_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] + b.m_coordinatea[i];
       return result;
    }
 
-   vector_base& operator+=(const vector_base& a) {
+   vector_type& operator+=(const vector_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] += a.m_coordinatea[i];
       return *this;
    }
 
-   friend vector_base operator-(const vector_base& a, const vector_base& b) {
-      vector_base result;
+   friend vector_type operator-(const vector_type& a, const vector_type& b) {
+      vector_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] - b.m_coordinatea[i];
       return result;
    }
 
-   vector_base& operator-=(const vector_base& a) {
+   vector_type& operator-=(const vector_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] -= a.m_coordinatea[i];
       return *this;
    }
 
-   friend vector_base operator*(const vector_base& a, const vector_base& b) {
-      vector_base result;
+   friend vector_type operator*(const vector_type& a, const vector_type& b) {
+      vector_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] * b.m_coordinatea[i];
       return result;
    }
 
-   vector_base& operator*=(const vector_base& a) {
+   vector_type& operator*=(const vector_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] *= a.m_coordinatea[i];
       return *this;
    }
 
-   friend vector_base operator/(const vector_base& a, const vector_base& b) {
-      vector_base result;
+   friend vector_type operator/(const vector_type& a, const vector_type& b) {
+      vector_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] / b.m_coordinatea[i];
       return result;
    }
 
-   vector_base& operator/=(const vector_base& a) {
+   vector_type& operator/=(const vector_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] /= a.m_coordinatea[i];
       return *this;
    }
 
-   bool operator==(const vector_base& a) const {
+   bool operator==(const vector_type& a) const {
       for (size_t i = 0; i < SIZE; ++i) {
          if (m_coordinatea[i] != a.m_coordinatea[i])
             return false;
@@ -196,10 +196,10 @@ struct vector_base
 
 
    template < typename PREDICATE >
-   vector_base prefer_self_coordinate_if(const vector_base &vectorOther, PREDICATE predicate) const
+   vector_type prefer_self_coordinate_if(const vector_type &vectorOther, PREDICATE predicate) const
    {
 
-      vector_base vector;
+      vector_type vector;
 
       for (size_t i = 0; i < SIZE; ++i)
       {
@@ -224,7 +224,7 @@ struct vector_base
    }
 
 
-   vector_base prefer_self_coordinate_if_set(const vector_base& vectorOther) const
+   vector_type prefer_self_coordinate_if_set(const vector_type& vectorOther) const
    {
 
       return prefer_self_coordinate_if(vectorOther, [](auto coordinate) {return coordinate != 0; });
@@ -232,7 +232,7 @@ struct vector_base
    }
 
 
-   vector_base prefer_self_coordinate_if_positive(const vector_base& vectorOther) const
+   vector_type prefer_self_coordinate_if_positive(const vector_type& vectorOther) const
    {
 
       return prefer_self_coordinate_if(vectorOther, [](auto coordinate) {return coordinate > COORDINATE{}; });
@@ -241,7 +241,7 @@ struct vector_base
 
 
    template < typename PREDICATE, typename SOURCE_PREDICATE >
-   vector_base pred_prefer_self_coordinate_if(PREDICATE predicate, SOURCE_PREDICATE sourcepredicate) const
+   vector_type pred_prefer_self_coordinate_if(PREDICATE predicate, SOURCE_PREDICATE sourcepredicate) const
    {
 
       if (is_every(predicate))
@@ -259,7 +259,7 @@ struct vector_base
 
 
    template < typename SOURCE_PREDICATE >
-   vector_base pred_prefer_self_coordinate_if_set(SOURCE_PREDICATE sourcepredicate) const
+   vector_type pred_prefer_self_coordinate_if_set(SOURCE_PREDICATE sourcepredicate) const
    {
 
       return pred_prefer_self_coordinate_if([](auto coordinate) {return coordinate != COORDINATE{}; }, sourcepredicate);
@@ -268,7 +268,7 @@ struct vector_base
 
 
    template < typename SOURCE_PREDICATE >
-   vector_base pred_prefer_self_coordinate_if_positive(SOURCE_PREDICATE sourcepredicate) const
+   vector_type pred_prefer_self_coordinate_if_positive(SOURCE_PREDICATE sourcepredicate) const
    {
 
       return pred_prefer_self_coordinate_if([](auto coordinate) {return coordinate > COORDINATE{}; }, sourcepredicate);
@@ -277,7 +277,7 @@ struct vector_base
 
 
 
-   constexpr bool operator!=(const vector_base& a) const { return !operator==(a); }
+   constexpr bool operator!=(const vector_type& a) const { return !operator==(a); }
 
    constexpr const COORDINATE& operator[](size_t i) const { return m_coordinatea[i]; }
 
@@ -303,10 +303,10 @@ struct vector_base
    template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
    COORDINATE& w() { return m_coordinatea[3]; }
 
-   vector_base maximum(const vector_base & vector) const
+   vector_type maximum(const vector_type & vector) const
    {
 
-      vector_base result;
+      vector_type result;
 
       for (size_t i = 0; i < SIZE; ++i)
       {
@@ -319,10 +319,10 @@ struct vector_base
 
    }
 
-   vector_base minimum(const vector_base& vector) const
+   vector_type minimum(const vector_type& vector) const
    {
 
-      vector_base result;
+      vector_type result;
 
       for (size_t i = 0; i < SIZE; ++i)
       {
@@ -337,7 +337,7 @@ struct vector_base
 
 
 
-   COORDINATE dot(const vector_base & vector) const
+   COORDINATE dot(const vector_type & vector) const
    {
 
       COORDINATE result = m_coordinatea[0] * vector.m_coordinatea[0];
@@ -369,7 +369,7 @@ struct vector_base
 
    }
 
-   vector_base normalize() const
+   vector_type normalize() const
    {
 
       return *this / norm(*this);
@@ -382,37 +382,37 @@ struct vector_base
 
 
 template <typename COORDINATE>
-vector_base<COORDINATE, 3> cross(const vector_base<COORDINATE, 3>& a, const vector_base<COORDINATE, 3>& b) {
-   return vector_base<COORDINATE, 3>(
-      a.y() * b.z() - a.z() * b.y(),
-      a.z() * b.x() - a.x() * b.z(),
-      a.x() * b.y() - a.y() * b.x()
+vector_type<COORDINATE, 3> cross(const vector_type<COORDINATE, 3>& a, const vector_type<COORDINATE, 3>& b) {
+   return vector_type<COORDINATE, 3>(
+      a.y()() * b.z() - a.z() * b.y()(),
+      a.z() * b.x()() - a.x()() * b.z(),
+      a.x()() * b.y()() - a.y()() * b.x()()
    );
 }
 
 
 
 //template <typename COORDINATE, size_t SIZE>
-//vector_base<COORDINATE, SIZE> min(const vector_base<COORDINATE, SIZE>& a1, const vector_base<COORDINATE, SIZE>& a2) {
-//   vector_base<COORDINATE, SIZE> result;
+//vector_type<COORDINATE, SIZE> min(const vector_type<COORDINATE, SIZE>& a1, const vector_type<COORDINATE, SIZE>& a2) {
+//   vector_type<COORDINATE, SIZE> result;
 //   for (size_t i = 0; i < SIZE; ++i)
 //      result.m_coordinatea[i] = std::min(a1.m_coordinatea[i], a2.m_coordinatea[i]);
 //   return result;
 //}
 
 // Import some common Enoki types
-using vector2_i32 = vector_base<::i32, 2>;
-using vector3_i32 = vector_base<::i32, 3>;
-using vector4_i32 = vector_base<::i32, 4>;
-using vector2_i64 = vector_base<::i64, 2>;
-using vector3_i64 = vector_base<::i64, 3>;
-using vector4_i64 = vector_base<::i64, 4>;
-using vector2_f32 = vector_base<::f32, 2>;
-using vector3_f32 = vector_base<::f32, 3>;
-using vector4_f32 = vector_base<::f32, 4>;
-using vector2_f64 = vector_base<::f64, 2>;
-using vector3_f64 = vector_base<::f64, 3>;
-using vector4_f64 = vector_base<::f64, 4>;
+using vector2_i32 = vector_type<::i32, 2>;
+using vector3_i32 = vector_type<::i32, 3>;
+using vector4_i32 = vector_type<::i32, 4>;
+using vector2_i64 = vector_type<::i64, 2>;
+using vector3_i64 = vector_type<::i64, 3>;
+using vector4_i64 = vector_type<::i64, 4>;
+using vector2_f32 = vector_type<::f32, 2>;
+using vector3_f32 = vector_type<::f32, 3>;
+using vector4_f32 = vector_type<::f32, 4>;
+using vector2_f64 = vector_type<::f64, 2>;
+using vector3_f64 = vector_type<::f64, 3>;
+using vector4_f64 = vector_type<::f64, 4>;
 
 ///**
 // * \class Color common.h nanoui/common.h
@@ -425,7 +425,7 @@ using vector4_f64 = vector_base<::f64, 4>;
 // *
 // * \rst
 // * +---------+-------------+----------------+-------------+
-// * | Channel | vector_base Index | Vector4f field | Color field |
+// * | Channel | vector_type Index | Vector4f field | Color field |
 // * +=========+=============+================+=============+
 // * | Red     | ``0``       | x()            | r()         |
 // * +---------+-------------+----------------+-------------+
@@ -628,7 +628,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return c;
    }
 
-   static Matrix scale(const vector_base<COORDINATE, SIZE - 1>& m_coordinatea) {
+   static Matrix scale(const vector_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (size_t i = 0; i < SIZE; ++i)
@@ -636,7 +636,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return result;
    }
 
-   static Matrix scale(const vector_base<COORDINATE, SIZE>& m_coordinatea) {
+   static Matrix scale(const vector_type<COORDINATE, SIZE>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (size_t i = 0; i < SIZE; ++i)
@@ -644,7 +644,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return result;
    }
 
-   static Matrix translate(const vector_base<COORDINATE, SIZE - 1>& m_coordinatea) {
+   static Matrix translate(const vector_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (size_t i = 0; i < SIZE; ++i) {
@@ -657,7 +657,7 @@ template <typename Value_, size_t Size_> struct Matrix {
 
 
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   static Matrix rotate(const vector_base<COORDINATE, 3>& axis, COORDINATE angle)
+   static Matrix rotate(const vector_type<COORDINATE, 3>& axis, COORDINATE angle)
    {
 
       COORDINATE s = ::sin(angle);
@@ -666,23 +666,23 @@ template <typename Value_, size_t Size_> struct Matrix {
 
       Matrix result(0);
       result.m[3][3] = 1;
-      result.m[0][0] = c + axis.x() * axis.x() * t;
-      result.m[1][1] = c + axis.y() * axis.y() * t;
+      result.m[0][0] = c + axis.x()() * axis.x()() * t;
+      result.m[1][1] = c + axis.y()() * axis.y()() * t;
       result.m[2][2] = c + axis.z() * axis.z() * t;
 
-      COORDINATE tmp1 = axis.x() * axis.y() * t;
+      COORDINATE tmp1 = axis.x()() * axis.y()() * t;
       COORDINATE tmp2 = axis.z() * s;
 
       result.m[0][1] = tmp1 + tmp2;
       result.m[1][0] = tmp1 - tmp2;
 
-      tmp1 = axis.x() * axis.z() * t;
-      tmp2 = axis.y() * s;
+      tmp1 = axis.x()() * axis.z() * t;
+      tmp2 = axis.y()() * s;
       result.m[0][2] = tmp1 - tmp2;
       result.m[2][0] = tmp1 + tmp2;
 
-      tmp1 = axis.y() * axis.z() * t;
-      tmp2 = axis.x() * s;
+      tmp1 = axis.y()() * axis.z() * t;
+      tmp2 = axis.x()() * s;
       result.m[1][2] = tmp1 + tmp2;
       result.m[2][1] = tmp1 - tmp2;
 
@@ -698,7 +698,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       COORDINATE recip = 1 / (near_ - far_);
       COORDINATE c = 1 / ::tan(.5f * fov);
 
-      Matrix trafo = Matrix::scale(vector_base<COORDINATE, SIZE>(c / aspect, c, (near_ + far_) * recip, 0.f));
+      Matrix trafo = Matrix::scale(vector_type<COORDINATE, SIZE>(c / aspect, c, (near_ + far_) * recip, 0.f));
 
       trafo.m[3][2] = 2.f * near_ * far_ * recip;
       trafo.m[2][3] = -1.f;
@@ -730,9 +730,9 @@ template <typename Value_, size_t Size_> struct Matrix {
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   static Matrix look_at(const vector_base<COORDINATE, 3>& origin,
-      const vector_base<COORDINATE, 3>& target,
-      const vector_base<COORDINATE, 3>& up)
+   static Matrix look_at(const vector_type<COORDINATE, 3>& origin,
+      const vector_type<COORDINATE, 3>& target,
+      const vector_type<COORDINATE, 3>& up)
    {
 
       auto dir = normalize(target - origin);
@@ -741,14 +741,14 @@ template <typename Value_, size_t Size_> struct Matrix {
       dir = -dir;
 
       Matrix result(0);
-      result.m[0][0] = left.x();
-      result.m[0][1] = left.y();
+      result.m[0][0] = left.x()();
+      result.m[0][1] = left.y()();
       result.m[0][2] = left.z();
-      result.m[1][0] = new_up.x();
-      result.m[1][1] = new_up.y();
+      result.m[1][0] = new_up.x()();
+      result.m[1][1] = new_up.y()();
       result.m[1][2] = new_up.z();
-      result.m[2][0] = dir.x();
-      result.m[2][1] = dir.y();
+      result.m[2][0] = dir.x()();
+      result.m[2][1] = dir.y()();
       result.m[2][2] = dir.z();
       result.m[3][0] = -dot(left, origin);
       result.m[3][1] = -dot(new_up, origin);

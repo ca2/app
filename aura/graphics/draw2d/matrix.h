@@ -52,19 +52,19 @@ namespace draw2d
 
       matrix & operator = (const matrix &) = default;
 
-      static matrix translation(point_f64 point) { return translation(point.x, point.y); }
+      static matrix translation(point_f64 point) { return translation(point.x(), point.y()); }
       static matrix translation(double x, double y);
       static matrix rotation(double dAngleRadians);
       static matrix scaling(double dRateX, double dRateY);
-      static matrix scaling(point_f64 point) { return scaling(point.x, point.y); }
+      static matrix scaling(point_f64 point) { return scaling(point.x(), point.y()); }
       static matrix scaling(size_f64 size) { return scaling(size.cx, size.cy); }
 
 
-      matrix & translate(point_f64 point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
+      matrix & translate(point_f64 point, e_mode emode = mode_append) { return translate(point.x(), point.y(), emode); }
       matrix & translate(double x, double y, e_mode emode = mode_append);
       matrix & rotate(double dAngleRadians, e_mode emode = mode_append);
       matrix & scale(double dRateX, double dRateY, e_mode emode = mode_append);
-      matrix & scale(const ::point_i32 & point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
+      matrix & scale(const ::point_i32 & point, e_mode emode = mode_append) { return scale(point.x(), point.y(), emode); }
 
 
       matrix & prepend(const matrix & m);

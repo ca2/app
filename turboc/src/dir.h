@@ -49,7 +49,7 @@ struct ffblk
   int ff_ftime;
   int ff_fdate;
   long ff_fsize;
-  char ff_name[FILENAME_MAX + 1];	// Size 13 in Turbo C 2.x.
+  char ff_name[FILENAME_MAX + 1];	// Size 13 in Turbo C 2.x().
   // Stuff not in Turbo, used for the emulation.
   //glob_t *GlobPtr;
   gint OnFile;

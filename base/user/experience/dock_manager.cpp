@@ -83,7 +83,7 @@ namespace experience
 
       rectangleEvent.move_to(point);
 
-      ::rectangle_i32 rectangleCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
+      ::rectangle_i32 rectangleCursor(pointCursor.x() - 1, pointCursor.y() - 1, pointCursor.x() + 1, pointCursor.y() + 1);
 
       ::rectangle_i32 screen;
 
@@ -114,13 +114,13 @@ namespace experience
 
       auto pointScreenCenter = rectangleWork.center();
 
-      rectangleCenter.left = pointScreenCenter.x - cxCenterArea / 2;
+      rectangleCenter.left = pointScreenCenter.x() - cxCenterArea / 2;
 
-      rectangleCenter.top = pointScreenCenter.y - cyCenterArea / 2;
+      rectangleCenter.top = pointScreenCenter.y() - cyCenterArea / 2;
 
-      rectangleCenter.right = pointScreenCenter.x + cxCenterArea / 2;
+      rectangleCenter.right = pointScreenCenter.x() + cxCenterArea / 2;
 
-      rectangleCenter.bottom = pointScreenCenter.y + cyCenterArea / 2;
+      rectangleCenter.bottom = pointScreenCenter.y() + cyCenterArea / 2;
 
       if (m_pframewindow->const_layout().design().display() & e_display_bottom)
       {
@@ -190,16 +190,16 @@ namespace experience
 
       ::rectangle_i32 rectangleScreenOld = m_pframewindow->screen_rect();
 
-      if (rectangleCenter.contains_x(pointCursor.x))
+      if (rectangleCenter.contains_x(pointCursor.x()))
       {
 
-         if (rectangleCenter.contains_y(pointCursor.y))
+         if (rectangleCenter.contains_y(pointCursor.y()))
          {
 
             edisplayDock = ::e_display_restored;
 
          }
-         else if (pointCursor.y < rectangleCenter.top)
+         else if (pointCursor.y() < rectangleCenter.top)
          {
 
             edisplayDock = ::e_display_full_top;
@@ -207,7 +207,7 @@ namespace experience
             rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top, rectangleWork.width(), rectangleWork.height() / 2);
 
          }
-         else if (pointCursor.y > rectangleCenter.bottom)
+         else if (pointCursor.y() > rectangleCenter.bottom)
          {
 
             edisplayDock = ::e_display_full_bottom;
@@ -217,10 +217,10 @@ namespace experience
          }
 
       }
-      else if (rectangleCenter.contains_y(pointCursor.y))
+      else if (rectangleCenter.contains_y(pointCursor.y()))
       {
 
-         if (pointCursor.x < rectangleCenter.left)
+         if (pointCursor.x() < rectangleCenter.left)
          {
 
             edisplayDock = ::e_display_full_left;
@@ -228,7 +228,7 @@ namespace experience
             rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top, rectangleWork.width() / 2, rectangleWork.height());
 
          }
-         else if (pointCursor.x > rectangleCenter.right)
+         else if (pointCursor.x() > rectangleCenter.right)
          {
 
             edisplayDock = ::e_display_full_right;
@@ -238,10 +238,10 @@ namespace experience
          }
 
       }
-      else if (pointCursor.x < rectangleCenter.left)
+      else if (pointCursor.x() < rectangleCenter.left)
       {
 
-         if (pointCursor.y < rectangleCenter.top)
+         if (pointCursor.y() < rectangleCenter.top)
          {
 
             edisplayDock = ::e_display_top_left;
@@ -249,7 +249,7 @@ namespace experience
             rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top, rectangleWork.width() / 2, rectangleWork.height() / 2);
 
          }
-         else if (pointCursor.y > rectangleCenter.bottom)
+         else if (pointCursor.y() > rectangleCenter.bottom)
          {
 
             edisplayDock = ::e_display_bottom_left;
@@ -259,10 +259,10 @@ namespace experience
          }
 
       }
-      else if (pointCursor.x > rectangleCenter.right)
+      else if (pointCursor.x() > rectangleCenter.right)
       {
 
-         if (pointCursor.y < rectangleCenter.top)
+         if (pointCursor.y() < rectangleCenter.top)
          {
 
             edisplayDock = ::e_display_top_right;
@@ -270,7 +270,7 @@ namespace experience
             rectangleDock = rectangle_i32_dimension(rectangleWork.left + rectangleWork.width() / 2, rectangleWork.top, rectangleWork.width() / 2, rectangleWork.height() / 2);
 
          }
-         else if (pointCursor.y > rectangleCenter.bottom)
+         else if (pointCursor.y() > rectangleCenter.bottom)
          {
 
             edisplayDock = ::e_display_bottom_right;

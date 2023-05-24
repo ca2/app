@@ -41,14 +41,14 @@ CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp);
 //   LOGFONTW & logFont = *pLogFont;
 //
 //
-//   POINT_I32 point_i32;
+//   ::point_i32 point_i32;
 //   // 72 points/inch, 10 decipoints/point_i32
-//   point.y = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
-//   point.x = 0;
+//   point.y() = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
+//   point.x() = 0;
 //   ::DPtoLP(hdc, &point, 1);
-//   POINT_I32 pointOrg = { 0, 0 };
+//   ::point_i32 pointOrg = { 0, 0 };
 //   ::DPtoLP(hdc, &pointOrg, 1);
-//   logFont.lfHeight = -abs(point.y - pointOrg.y);
+//   logFont.lfHeight = -abs(point.y() - pointOrg.y());
 //
 //   logFont.lfQuality = CLEARTYPE_NATURAL_QUALITY;
 //

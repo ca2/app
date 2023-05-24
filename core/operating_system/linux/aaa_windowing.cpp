@@ -486,13 +486,13 @@ int_bool x11_get_window_rect(Display * d, Window window, RECT32 * prect)
 
    XTranslateCoordinates( d, window, windowRoot, 0, 0, &x, &y, &child );
 
-   prect->left      = x + attrs.x;
+   prect->left      = x + attrs.x();
 
-   prect->top       = y + attrs.y;
+   prect->top       = y + attrs.y();
 
-   prect->right     = x + attrs.x    + attrs.width;
+   prect->right     = x + attrs.x()    + attrs.width;
 
-   prect->bottom    = y + attrs.y    + attrs.height;
+   prect->bottom    = y + attrs.y()    + attrs.height;
 
 
 
@@ -3179,9 +3179,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
    case MotionNotify:
    {
 
-      g_pointX11Cursor.x = e.xmotion.x_root;
+      g_pointX11Cursor.x() = e.xmotion.x_root;
 
-      g_pointX11Cursor.y = e.xmotion.y_root;
+      g_pointX11Cursor.y() = e.xmotion.y_root;
 
       if(msg.hwnd != nullptr && msg.hwnd->m_pimpl != nullptr)
       {
@@ -3205,9 +3205,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
                pinteraction->m_durationMouseMove.Now();
 
-               pinteraction->m_pointMouseMove.x = e.xmotion.x_root;
+               pinteraction->m_pointMouseMove.x() = e.xmotion.x_root;
 
-               pinteraction->m_pointMouseMove.y = e.xmotion.y_root;
+               pinteraction->m_pointMouseMove.y() = e.xmotion.y_root;
 
                if(false)
                {
@@ -3215,8 +3215,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                   if(pinteraction->m_durationMouseMovePeriod > 0)
                   {
 
-                     ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
-                        (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
+                     ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x() - pinteraction->m_pointMouseMove.x()),
+                        (pinteraction->m_pointMouseMoveSkip.y() - pinteraction->m_pointMouseMove.y()));
 
                      if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
                         && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
@@ -3472,7 +3472,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
                //_x11_defer_check_configuration(msg.hwnd);
 
-               ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
+               ::point_i32 point(e.xconfigure.x(), e.xconfigure.y());
 
                ::size size(e.xconfigure.width, e.xconfigure.height);
 
@@ -3637,8 +3637,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
       int YRoot = e.xbutton.y_root;
 
-//      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x;
-//      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y;
+//      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x();
+//      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y();
 //      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx;
 //      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy;
 //

@@ -31,7 +31,7 @@ namespace user
 
       virtual void send_xscroll_message(enum_scroll_command ecommand);
 
-      //virtual void GetScrollRect(RECTANGLE_I32 * prectangle);
+      //virtual void GetScrollRect(::rectangle_i32 * prectangle);
 
       virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;

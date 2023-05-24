@@ -73,7 +73,7 @@
 //   ::user::interaction_impl *    m_pimpl;
 //   htask_t                       m_htask;
 //   color32_t *                    m_pcolorref;
-//   //RECTANGLE_I32                          m_rectangle;
+//   //::rectangle_i32                          m_rectangle;
 //   bool                          m_bDestroying;
 //   bool                          m_bIconic;
 //   message_queue *                          m_pmq;
@@ -141,8 +141,8 @@
 //   bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 //   iptr get_window_long_ptr(i32 nIndex);
 //   iptr set_window_long_ptr(i32 nIndex, iptr l);
-//   bool client_to_screen(POINT_I32 * lppoint);
-//   bool screen_to_client(POINT_I32 * lppoint);
+//   bool client_to_screen(::point_i32 * lppoint);
+//   bool screen_to_client(::point_i32 * lppoint);
 //
 //
 //

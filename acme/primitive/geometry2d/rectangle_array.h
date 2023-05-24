@@ -9,7 +9,7 @@ public:
 
 
    using BASE_ARRAY_TYPE = array < RECTANGLE_TYPE >;
-   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
+   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE;
    using UNIT_TYPE = typename RECTANGLE_TYPE::UNIT_TYPE;
    using POINT_TYPE = typename RECTANGLE_TYPE::POINT_TYPE;
    using SIZE_TYPE = typename RECTANGLE_TYPE::SIZE_TYPE;
@@ -62,7 +62,7 @@ public:
 template < typename RECTANGLE_TYPE >
 inline void rectangle_array_base < RECTANGLE_TYPE >::offset(POINT_TYPE point)
 {
-   offset(point.x, point.y);
+   offset(point.x(), point.y());
 }
 
 

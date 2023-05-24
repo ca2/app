@@ -35,9 +35,9 @@ namespace datetime
          void initialize(::particle * pparticle) override;
 
 
-         virtual void GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect);
-         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);
-         virtual void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);
+         virtual void GetRectDay(::earth::time& time, ::rectangle_i32 * lprect);
+         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, ::rectangle_i32 * lprect);
+         virtual void GetRect(::rectangle_i32 * lprect, enum enum_element eelement);
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 

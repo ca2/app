@@ -84,7 +84,7 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
-      virtual bool get_element_rect(RECTANGLE_I32 & prectangle, enum_element eelement) override;
+      virtual bool get_element_rect(::rectangle_i32 & prectangle, enum_element eelement) override;
 
       virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
@@ -170,7 +170,7 @@ namespace user
 
       i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
-      void GetDroppedControlRect(RECTANGLE_I32 * prectangle);
+      void GetDroppedControlRect(::rectangle_i32 * prectangle);
 
       bool GetDroppedState();
 

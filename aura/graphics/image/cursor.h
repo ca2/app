@@ -51,11 +51,11 @@ namespace draw2d
       ::draw2d::graphics * g(const ::size_f64 & sizeHint);
 
       
-      ::image_pointer image_source_image(const concrete < ::size_i32 > & concreteSize) override;
+      ::image_pointer image_source_image(const ::size_i32 & size) override;
 
-      concrete < ::size_i32 > image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
+      ::size_i32 image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
 
-      concrete < ::size_i32 > image_source_size() const override;
+      ::size_i32 image_source_size() const override;
 
 
    };

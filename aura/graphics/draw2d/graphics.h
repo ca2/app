@@ -199,11 +199,11 @@ namespace draw2d
 
       bool _is_ok() const override;
 
-      ::image_pointer image_source_image(const concrete < ::size_i32 > & sizeDst) override;
+      ::image_pointer image_source_image(const ::size_i32 & sizeDst) override;
 
-      concrete < ::size_i32 > image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
+      ::size_i32 image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
 
-      concrete < ::size_i32 > image_source_size() const override;
+      ::size_i32 image_source_size() const override;
 
 
       //#ifdef UNIVERSAL_WINDOWS
@@ -518,7 +518,7 @@ namespace draw2d
       inline void set_current_point(const ::point_f64 & point) 
       { 
       
-         return set_current_point(point.x, point.y);
+         return set_current_point(point.x(), point.y());
       
       }
 
@@ -526,7 +526,7 @@ namespace draw2d
       virtual void line_to(const ::point_f64 & point) 
       { 
          
-         return line_to(point.x, point.y); 
+         return line_to(point.x(), point.y()); 
 
       }
 
@@ -534,7 +534,7 @@ namespace draw2d
       inline void draw_line(const ::point_f64 & point1, const ::point_f64 & point2) 
       { 
 
-         return draw_line(point1.x, point1.y, point2.x, point2.y);
+         return draw_line(point1.x(), point1.y(), point2.x(), point2.y());
 
       }
 
@@ -542,7 +542,7 @@ namespace draw2d
       inline void draw_line(const ::point_f64 & point1, const ::point_f64 & point2, ::draw2d::pen * ppen)
       {
 
-         return draw_line(point1.x, point1.y, point2.x, point2.y, ppen);
+         return draw_line(point1.x(), point1.y(), point2.x(), point2.y(), ppen);
 
       }
 
@@ -844,7 +844,7 @@ namespace draw2d
       inline void text_out(const ::point_f64 & point, const ::scoped_string & scopedstr)
       {
 
-         return text_out(point.x, point.y, scopedstr);
+         return text_out(point.x(), point.y(), scopedstr);
 
       }
 

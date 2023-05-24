@@ -47,7 +47,7 @@
  return ::::windows_definition::InvariantStrICmp(szTemp, lpszClassName) == 0;
  }
 
- oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, POINT_I32 point_i32)
+ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, ::point_i32 point_i32)
  {
  ASSERT(hWnd != nullptr);
 

@@ -39,9 +39,9 @@ namespace user
       virtual void on_check_save(::user::interaction* puserinteraction);
       virtual void on_check_load(::user::interaction* puserinteraction);
 
-      void control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & prectangle) override;
+      void control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & prectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
+      void control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle) override;
 
       bool control_001DisplayHitTest(const ::point_i32 & point);
 

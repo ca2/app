@@ -69,9 +69,9 @@ namespace experience_tranquillum
                ::point_i32 pointHitTest = point;
 
 //               if(rectangleEvent.left < 0)
-//                  pointHitTest.x -= rectangleEvent.left;
+//                  pointHitTest.x() -= rectangleEvent.left;
 //               if(rectangleEvent.top < 0)
-//                  pointHitTest.y -= rectangleEvent.top;
+//                  pointHitTest.y() -= rectangleEvent.top;
 
                if(egrip & e_grip_top_left)
                {
@@ -365,7 +365,7 @@ SizingNone:
          void frame_008::GetBorderRect(
          const ::rectangle_i32 & rectangleClient,
 
-         RECTANGLE_I32 * prectangle,
+         ::rectangle_i32 * prectangle,
 
          enum_border eside)
          {

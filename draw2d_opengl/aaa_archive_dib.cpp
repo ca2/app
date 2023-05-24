@@ -194,9 +194,9 @@ namespace draw2d_opengl
 
       /*  return SetDIBitsToDevice(
            (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(),
-           point.x, point.y,
+           point.x(), point.y(),
            size.cx, size.cy,
-           ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
+           ptSrc.x(), ptSrc.y(), ptSrc.y(), cy - ptSrc.y(),
            m_pcolorref, &m_info, 0)
               != false; */
 

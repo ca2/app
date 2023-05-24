@@ -33,9 +33,9 @@ namespace nanoui
          e_alignment_middle, 10, 15));
       int icon = 0;
       switch (type) {
-      case Type::Information: icon = m_theme->m_efontawesomeMessageInformation; break;
-      case Type::Question: icon = m_theme->m_efontawesomeMessageQuestion; break;
-      case Type::Warning: icon = m_theme->m_efontawesomeMessageWarning; break;
+      case Type::Information: icon = m_ptheme->m_efontawesomeMessageInformation; break;
+      case Type::Question: icon = m_ptheme->m_efontawesomeMessageQuestion; break;
+      case Type::Warning: icon = m_ptheme->m_efontawesomeMessageWarning; break;
       }
       Label* icon_label = memory_new Label(panel1, ::string(get_utf8_character(icon)), "icons");
       icon_label->set_font_size(50);
@@ -54,19 +54,33 @@ namespace nanoui
       panel2->set_layout(memory_new BoxLayout(e_orientation_horizontal,
          e_alignment_middle, 0, 15));
 
-      if (alt_button) {
-         Button* button = memory_new Button(panel2, alt_button_text, m_theme->m_efontawesomeMessageAltButton);
-         button->set_callback([&] { 
+      if (alt_button) 
+      {
 
-            ::pointer < ::nanoui::Screen> pscreenHold = screen();
-            if (m_callback) m_callback(1); dispose(); 
-            }
-         );
+         Button* button = memory_new Button(panel2, alt_button_text, m_ptheme->m_efontawesomeMessageAltButton);
+
+         button->set_callback([&]
+            {
+
+               auto callback = m_callback;
+
+               dispose();
+
+               if (callback)
+               {
+
+                  callback(1);
+
+               }
+
+            });
+
       }
-      Button* button = memory_new Button(panel2, button_text, m_theme->m_efontawesomeMessagePrimaryButton);
+      Button* button = memory_new Button(panel2, button_text, m_ptheme->m_efontawesomeMessagePrimaryButton);
       button->set_callback([this] { 
-         ::pointer <  ::nanoui::Screen> pscreenHold = screen();
-         if (m_callback) m_callback(0); dispose(); 
+         auto callback = m_callback;
+         dispose();
+         if (callback) callback(0);
          });
       center();
       request_focus();

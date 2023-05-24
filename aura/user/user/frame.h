@@ -64,7 +64,7 @@ namespace user
       ::draw2d::icon* get_draw_icon() override;
 
       
-      //void client_rectangle(RECTANGLE_I32 * prectangle) override;
+      //void client_rectangle(::rectangle_i32 * prectangle) override;
 
       
       virtual bool is_translucid_user_style(enum_style estyle);

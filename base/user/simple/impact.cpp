@@ -58,7 +58,7 @@ void simple_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->text_out(text.m_point.x, text.m_point.y, text.m_strText);
+      pgraphics->text_out(text.m_point.x(), text.m_point.y(), text.m_strText);
 
    }
 

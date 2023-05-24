@@ -162,7 +162,7 @@ enum class Cursor {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 /* Forward declarations */
-template <typename T> class ref;
+template <typename T> class ::pointer;
 class AdvancedGridLayout;
 class BoxLayout;
 class Button;
@@ -209,7 +209,7 @@ class Window;
  * OpenGL / GLFW on your own *do not call this method*.
  *
  * \rst
- * Refer to :ref:`nanoui_example_3` for how you might go about managing OpenGL
+ * Refer to :::pointer:`nanoui_example_3` for how you might go about managing OpenGL
  * and GLFW on your own, while still using NanoGUI's classes.
  * \endrst
  */
@@ -298,7 +298,7 @@ CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path 
  * extended dynamic range (EDR), i.e. the ability to reproduce intensities
  * exceeding the standard dynamic range from 0.0-1.0.
  *
- * To leverage either of these features, you will need to create a \ref Screen
+ * To leverage either of these features, you will need to create a \::pointer Screen
  * with <tt>float_buffer=True</tt>. Only the macOS Metal backend of NanoGUI
  * implements this function right now. All other platforms return <tt>(false,
  * false)</tt>.
@@ -344,7 +344,7 @@ extern CLASS_DECL_NANOUI void chdir_to_bundle_parent();
  *
  * \rst
  * NanoGUI uses this to convert the icon character codes
- * defined in :ref:`file_nanoui_entypo.h`.
+ * defined in :::pointer:`file_nanoui_entypo.h`.
  * \endrst
  *
  * \param pwidgetChild

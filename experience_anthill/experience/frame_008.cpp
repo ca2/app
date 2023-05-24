@@ -90,9 +90,9 @@ namespace experience_anthill
          ::point_i32 pointHitTest = point;
 
          //                  if(rectangleEvent.left < 0)
-         //                     pointHitTest.x -= rectangleEvent.left;
+         //                     pointHitTest.x() -= rectangleEvent.left;
          //                  if(rectangleEvent.top < 0)
-         //                     pointHitTest.y -= rectangleEvent.top;
+         //                     pointHitTest.y() -= rectangleEvent.top;
 
          if (egrip & e_grip_top_left)
          {
@@ -620,7 +620,7 @@ namespace experience_anthill
 
    void frame_008::GetBorderRect(
       const ::rectangle_i32 & rectangleClient,
-      RECTANGLE_I32 * lprect,
+      ::rectangle_i32 * lprect,
       enum_border eside)
    {
       ::rectangle_i32 rectangleBig(rectangleClient);

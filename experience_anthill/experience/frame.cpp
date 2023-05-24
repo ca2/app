@@ -19,7 +19,7 @@ namespace experience_anthill
    frame::frame()
    {
 
-      m_pointWindowIcon.x = 14;
+      m_pointWindowIcon.x() = 14;
 
       m_colorActiveCaptionTextBk = ::color::transparent;
 
@@ -237,7 +237,7 @@ namespace experience_anthill
    //}
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
+   bool frame::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
    {
       
       switch (eelement)
@@ -247,8 +247,8 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->get_draw_icon() == nullptr)
             return false;
 
-         rectangle.left = m_pointWindowIcon.x;
-         rectangle.top = m_pointWindowIcon.y;
+         rectangle.left = m_pointWindowIcon.x();
+         rectangle.top = m_pointWindowIcon.y();
          //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx;
          //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy;
          rectangle.right = rectangle.left + 24;
@@ -261,8 +261,8 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         //rectangle.left = m_pointMoveGripMinimal.x + 2;
-         //rectangle.top = m_pointMoveGripMinimal.y + 2;
+         //rectangle.left = m_pointMoveGripMinimal.x() + 2;
+         //rectangle.top = m_pointMoveGripMinimal.y() + 2;
          rectangle.right = rectangle.left + get_caption_height() - 4;
          rectangle.bottom = rectangle.top + get_caption_height() - 4;
 

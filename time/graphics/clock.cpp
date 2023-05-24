@@ -71,14 +71,14 @@ namespace datetime
             pointExt.offset(pointCenter);
             if (i % 5 == 0)
             {
-               pointInt.x = (::i32)(cos(angle) * dRIntH);
-               pointInt.y = (::i32)(-sin(angle) * dRIntH);
+               pointInt.x() = (::i32)(cos(angle) * dRIntH);
+               pointInt.y() = (::i32)(-sin(angle) * dRIntH);
                pgraphics->set(ppenHour);
             }
             else
             {
-               pointInt.x = (::i32)(cos(angle) * dRIntM);
-               pointInt.y = (::i32)(-sin(angle) * dRIntM);
+               pointInt.x() = (::i32)(cos(angle) * dRIntM);
+               pointInt.y() = (::i32)(-sin(angle) * dRIntM);
                pgraphics->set(ppenMinute);
             }
             pointInt.offset(pointCenter);
@@ -125,13 +125,13 @@ namespace datetime
 
 
 
-      void graphics::GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement)
+      void graphics::GetRect(::rectangle_i32 * lprect, enum enum_element eelement)
       {
          if (eelement == e_element_clock)
          {
-            lprect->left = m_point.x;
+            lprect->left = m_point.x();
             lprect->right = lprect->left + m_size.cx;
-            lprect->top = m_point.y;
+            lprect->top = m_point.y();
             lprect->bottom = lprect->top + m_size.cy;
          }
       }

@@ -1409,7 +1409,7 @@ namespace aura
 
 
 
-//   void session::get_cursor_position(POINT_I32 * ppoint)
+//   void session::get_cursor_position(::point_i32 * ppoint)
 //   {
 //
 //#if defined(WINDOWS_DESKTOP)
@@ -1417,7 +1417,7 @@ namespace aura
 //      if (m_bSystemSynchronizedCursor)
 //      {
 //
-//         POINT_I32 point_i32;
+//         ::point_i32 point_i32;
 //
 //         ::get_cursor_position(&point);
 //
@@ -1497,7 +1497,7 @@ namespace aura
 
 
 
-   //index session::get_main_workspace(RECTANGLE_I32 * prectangle)
+   //index session::get_main_workspace(::rectangle_i32 * prectangle)
    //{
 
    //   if (m_bSystemSynchronizedScreen)
@@ -1877,7 +1877,7 @@ namespace aura
    }
 
 
-   void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
+   void session::defer_initialize_host_window(const ::rectangle_i32 * lpcrect)
    {
 
       auto puser = m_puser;

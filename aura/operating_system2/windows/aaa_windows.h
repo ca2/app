@@ -60,7 +60,7 @@ bool GetLogFont(LOGFONTW * pfontw, const ::write_text::font * pfont);
 //struct SIZEPARENTPARAMS
 //{
 //
-//   RECTANGLE_I32  rectangle;       // parent client rectangle_i32 (trim as appropriate)
+//   ::rectangle_i32  rectangle;       // parent client rectangle_i32 (trim as appropriate)
 //   SIZE_I32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
 //   bool  bStretch;   // should stretch to fill all space
 //

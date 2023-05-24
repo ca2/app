@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-inline bool shape_contains(const ::write_text::text_out & textout, const POINT_I32 & point)
+inline bool shape_contains(const ::write_text::text_out & textout, const ::point_i32 & point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
@@ -20,7 +20,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const POINT_I
 }
 
 
-inline bool shape_contains(const ::write_text::text_out & textout, const POINT_F64& point)
+inline bool shape_contains(const ::write_text::text_out & textout, const ::point_f64& point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
@@ -39,7 +39,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const POINT_F
 }
 
 
-inline bool shape_contains(const ::write_text::draw_text & textout, const POINT_I32& point)
+inline bool shape_contains(const ::write_text::draw_text & textout, const ::point_i32& point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
@@ -58,7 +58,7 @@ inline bool shape_contains(const ::write_text::draw_text & textout, const POINT_
 }
 
 
-inline bool shape_contains(const ::write_text::draw_text & textout, const POINT_F64& point)
+inline bool shape_contains(const ::write_text::draw_text & textout, const ::point_f64& point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL

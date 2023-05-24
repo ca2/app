@@ -53,8 +53,8 @@ setviewport (int left, int top, int right, int bottom, int clip)
   //// context.
   //if (clip)
   //  {
-  //    Rectangle.x = left;
-  //    Rectangle.y = top;
+  //    Rectangle.x() = left;
+  //    Rectangle.y() = top;
   //    Rectangle.width = TcViewMaxx + 1;
   //    Rectangle.height = TcViewMaxy + 1;
   //    XSetClipRectangles (TcDisplay, TcGc, 0, 0, &Rectangle, 1, Unsorted);

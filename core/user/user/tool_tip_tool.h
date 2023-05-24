@@ -24,7 +24,7 @@ namespace user
       void BaseToolTipRelayEvent(::message::message * pmessage);
 
       // Overridables
-      virtual void BaseToolTipGetRect(RECTANGLE_I32 * prectangle);
+      virtual void BaseToolTipGetRect(::rectangle_i32 * prectangle);
 
       virtual bool BaseToolTipGetText(string & str);
       virtual i32 BaseToolTipGetIndex();

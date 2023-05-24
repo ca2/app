@@ -19,7 +19,7 @@ public:
 
    using array < SIZE_TYPE >::add;
    void add(UNIT_TYPE cx, UNIT_TYPE cy) { add(SIZE_TYPE(cx, cy)); }
-   //void add(const POINT_TYPE & point) { add(SIZE_TYPE(point.x, point.y)); }
+   //void add(const POINT_TYPE & point) { add(SIZE_TYPE(point.x(), point.y())); }
 
 
    void offset(const SIZE_TYPE & point) { for (auto & size : *this) size.offset(point); }

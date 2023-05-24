@@ -656,13 +656,13 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         m_pointScroll.y = (::i32) (iItem * _001GetItemHeight());
+         m_pointScroll.y() = (::i32) (iItem * _001GetItemHeight());
 
       }
       else
       {
 
-         m_pointScroll.y = 0;
+         m_pointScroll.y() = 0;
 
       }
 

@@ -157,8 +157,8 @@ void wf_event_focus_in(wfContext* wfc)
 {
 	::u3216 syncFlags;
 	rdpInput* input;
-	POINT_I32 pt;
-	RECTANGLE_I32 rc;
+	::point_i32 pt;
+	::rectangle_i32 rc;
 
 	input = wfc->instance->input;
 
@@ -183,8 +183,8 @@ void wf_event_focus_in(wfContext* wfc)
 	screen_to_client(wfc->hwnd, &pt);
 	client_rectangle(wfc->hwnd, &rc);
 
-	if (point.x >= rc.left && point.x < rc.right && point.y >= rc.top && point.y < rc.bottom)
-		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x, (::u3216)point.y);
+	if (point.x() >= rc.left && point.x() < rc.right && point.y() >= rc.top && point.y() < rc.bottom)
+		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x(), (::u3216)point.y());
 }
 
 static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
@@ -214,11 +214,11 @@ static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, 
 void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 {
 	// Holding the CTRL key down while resizing the window will force the desktop aspect ratio.
-	RECTANGLE_I32 * rectangle_i32;
+	::rectangle_i32 * rectangle_i32;
 
 	if (wfc->instance->settings->SmartSizing && (GetAsyncKeyState(VK_CONTROL) & 0x8000))
 	{
-		rectangle = (RECTANGLE_I32 *) wParam;
+		rectangle = (::rectangle_i32 *) wParam;
 
 		switch(lParam)
 		{
@@ -256,7 +256,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	PAINTSTRUCT ps;
 //	rdpInput* input;
 //	BOOL processed;
-//	RECTANGLE_I32 windowRect;
+//	::rectangle_i32 windowRect;
 //	MINMAXINFO* minmax;
 //	SCROLLINFO si;
 //
@@ -299,8 +299,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					if (!wfc->fullscreen)
 //					{
 //						// add window decoration
-//						minmax->ptMaxTrackSize.x = wfc->width + wfc->diff.x;
-//						minmax->ptMaxTrackSize.y = wfc->height + wfc->diff.y;
+//						minmax->ptMaxTrackSize.x() = wfc->width + wfc->diff.x();
+//						minmax->ptMaxTrackSize.y() = wfc->height + wfc->diff.y();
 //					}
 //				}
 //				break;
@@ -442,8 +442,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
 //					// rectangle_i32 of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECTANGLE_I32 *) nullptr,
-//						(const RECTANGLE_I32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const ::rectangle_i32 *) nullptr,
+//						(const ::rectangle_i32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 
@@ -515,8 +515,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
 //					// rectangle_i32 of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECTANGLE_I32 *) nullptr,
-//						(const RECTANGLE_I32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const ::rectangle_i32 *) nullptr,
+//						(const ::rectangle_i32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 
@@ -674,8 +674,8 @@ void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u321
 		input->MouseEvent(input, flags, x * dw / ww + wfc->xCurrentScroll, y * dh / wh + wfc->yCurrentScroll);
 
 	eventArgs.flags = flags;
-	eventArgs.x = x;
-	eventArgs.y = y;
+	eventArgs.x() = x;
+	eventArgs.y() = y;
 	context = (rdpContext*) wfc;
 	PubSub_OnMouseEvent(context->pubSub, context, &eventArgs);
 }

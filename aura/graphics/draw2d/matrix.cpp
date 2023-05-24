@@ -101,8 +101,8 @@ namespace draw2d
 
       ::point_i32 p;
 
-      p.x = (::i32) (point.x * a1 + point.y * b1 + c1);
-      p.y = (::i32) (point.x * a2 + point.y * b2 + c2);
+      p.x() = (::i32) (point.x() * a1 + point.y() * b1 + c1);
+      p.y() = (::i32) (point.x() * a2 + point.y() * b2 + c2);
 
       point = p;
 
@@ -113,8 +113,8 @@ namespace draw2d
 
       point_f64 p;
 
-      p.x = point.x * a1 + point.y * b1 + c1;
-      p.y = point.x * a2 + point.y * b2 + c2;
+      p.x() = point.x() * a1 + point.y() * b1 + c1;
+      p.y() = point.x() * a2 + point.y() * b2 + c2;
 
       point = p;
 

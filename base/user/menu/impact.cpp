@@ -266,7 +266,7 @@ namespace user
    }
 
 
-   bool menu_impact::get_item_rect(index i, RECTANGLE_I32 * prectangle)
+   bool menu_impact::get_item_rect(index i, ::rectangle_i32 * prectangle)
    {
 
       int iHeight = (int) ( m_pfontTitle->m_dFontSize * 1.25 + 20);

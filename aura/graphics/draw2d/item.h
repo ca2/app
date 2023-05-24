@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/primitive/particle.h"
-//#include "acme/primitive/primitive/pointer.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace draw2d
@@ -21,7 +21,7 @@ namespace draw2d
       int                           itemState;
       oswindow                      oswindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::RECTANGLE_I32               rcItem;
+      ::rectangle_i32               rcItem;
       uptr                          itemData;
       
 

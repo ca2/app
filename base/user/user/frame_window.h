@@ -125,7 +125,7 @@ namespace user
 
 
       virtual void SetBorderRect(const ::rectangle_i32 & rectangle);
-      virtual void GetBorderRect(RECTANGLE_I32 * prectangle);
+      virtual void GetBorderRect(::rectangle_i32 * prectangle);
 
       virtual bool _001IsFrameWnd();
 
@@ -237,7 +237,7 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, RECTANGLE_I32 * pRectBorder);
+      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, ::rectangle_i32 * pRectBorder);
 
       virtual bool on_create_client(::user::system * pusersystem);
 

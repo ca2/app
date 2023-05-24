@@ -595,9 +595,9 @@ auto pwindowing = windowing();
 
             ::point_i32 point;
 
-            point.x = pointNow.x - m_pointLButtonDownPos.x;
+            point.x() = pointNow.x() - m_pointLButtonDownPos.x();
 
-            point.y = pointNow.y - m_pointLButtonDownPos.y;
+            point.y() = pointNow.y() - m_pointLButtonDownPos.y();
 
             set_position(point);
 

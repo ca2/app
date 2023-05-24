@@ -7,7 +7,7 @@
 #include "bounding_rect.h"
 
 
-inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const lines & lines)
+inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const lines & lines)
 {
 
    ::get_bounding_rectangle(rectangleBounding, lines.data(), lines.size());
@@ -17,7 +17,7 @@ inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const line
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const lines & lines)
+inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const lines & lines)
 {
 
    ::get_bounding_rectangle(rectangleBounding, lines.data(), lines.size());
@@ -27,7 +27,7 @@ inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const line
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const polygon_i32 & polygon)
+inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const polygon_i32 & polygon)
 {
 
    ::get_bounding_rectangle(rectangleBounding, polygon.data(), polygon.size());
@@ -37,7 +37,7 @@ inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const poly
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const polygon_i32 & polygon)
+inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const polygon_i32 & polygon)
 {
 
    ::get_bounding_rectangle(rectangleBounding, polygon.data(), polygon.size());
@@ -47,7 +47,7 @@ inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const poly
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const polygon_f64 & polygon)
+inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const polygon_f64 & polygon)
 {
 
    ::get_bounding_rectangle(rectangleBounding, polygon.data(), polygon.size());
@@ -57,7 +57,7 @@ inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const poly
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const polygon_f64 & polygon)
+inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const polygon_f64 & polygon)
 {
 
    ::get_bounding_rectangle(rectangleBounding, polygon.data(), polygon.size());

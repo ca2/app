@@ -34,8 +34,8 @@ namespace nanoui
 
       /**
        * The callback to execute when a memory_new ::color::color is selected on the ColorWheel
-       * **and** the user clicks the \ref nanoui::ColorPicker::m_pick_button or
-       * \ref nanoui::ColorPicker::m_reset_button.
+       * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
+       * \::pointer nanoui::ColorPicker::m_reset_button.
        */
       ::function<void(const ::color::color&)> m_final_callback;
 
@@ -46,11 +46,11 @@ namespace nanoui
        * The Button used to signal that the current value on the ColorWheel is the
        * desired ::color::color to be chosen.  The default value for the caption of this
        * Button is ``"Pick"``.  You can change it using
-       * \ref nanoui::ColorPicker::set_pick_button_caption if you need.
+       * \::pointer nanoui::ColorPicker::set_pick_button_caption if you need.
        *
-       * The ::color::color of this Button will not affect \ref nanoui::ColorPicker::::color::color
+       * The ::color::color of this Button will not affect \::pointer nanoui::ColorPicker::::color::color
        * until the user has actively selected by clicking this pick button.
-       * Similarly, the \ref nanoui::ColorPicker::m_callback function is only
+       * Similarly, the \::pointer nanoui::ColorPicker::m_callback function is only
        * called when a user selects a memory_new ::color::color using by clicking this Button.
        */
       Button* m_pick_button;
@@ -58,9 +58,9 @@ namespace nanoui
       /**
        * Remains the ::color::color of the active ::color::color selection, until the user picks a
        * memory_new ::color::color on the ColorWheel **and** selects the
-       * \ref nanoui::ColorPicker::m_pick_button.  The default value for the
+       * \::pointer nanoui::ColorPicker::m_pick_button.  The default value for the
        * caption of this Button is ``"Reset"``.  You can change it using
-       * \ref nanoui::ColorPicker::set_reset_button_caption if you need.
+       * \::pointer nanoui::ColorPicker::set_reset_button_caption if you need.
        */
       Button* m_reset_button;
 
@@ -84,8 +84,8 @@ namespace nanoui
       /**
        * Sets the callback is executed as the ColorWheel itself is changed.  Set
        * this callback if you need to receive updates for the ColorWheel changing
-       * before the user clicks \ref nanoui::ColorPicker::mPickButton or
-       * \ref nanoui::ColorPicker::mPickButton.
+       * before the user clicks \::pointer nanoui::ColorPicker::mPickButton or
+       * \::pointer nanoui::ColorPicker::mPickButton.
        */
       void set_callback(const std::function<void(const ::color::color&)>& callback) {
          m_callback = callback;
@@ -94,15 +94,15 @@ namespace nanoui
 
       /**
        * The callback to execute when a memory_new ::color::color is selected on the ColorWheel
-       * **and** the user clicks the \ref nanoui::ColorPicker::m_pick_button or
-       * \ref nanoui::ColorPicker::m_reset_button.
+       * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
+       * \::pointer nanoui::ColorPicker::m_reset_button.
        */
       std::function<void(const ::color::color&)> final_callback() const { return m_final_callback; }
 
       /**
        * The callback to execute when a memory_new ::color::color is selected on the ColorWheel
-       * **and** the user clicks the \ref nanoui::ColorPicker::m_pick_button or
-       * \ref nanoui::ColorPicker::m_reset_button.
+       * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
+       * \::pointer nanoui::ColorPicker::m_reset_button.
        */
       void set_final_callback(const std::function<void(const ::color::color&)>& callback) { m_final_callback = callback; }
 
@@ -111,16 +111,16 @@ namespace nanoui
       /// Set the current ::color::color
       void set_color(const ::color::color& color);
 
-      /// The current caption of the \ref nanoui::ColorPicker::m_pick_button.
+      /// The current caption of the \::pointer nanoui::ColorPicker::m_pick_button.
       ::string pick_button_caption() { return m_pick_button->caption(); }
 
-      /// Sets the current caption of the \ref nanoui::ColorPicker::m_pick_button.
+      /// Sets the current caption of the \::pointer nanoui::ColorPicker::m_pick_button.
       void set_pick_button_caption(const ::scoped_string& caption) { m_pick_button->set_caption(caption); }
 
-      /// The current caption of the \ref nanoui::ColorPicker::m_reset_button.
+      /// The current caption of the \::pointer nanoui::ColorPicker::m_reset_button.
       ::string reset_button_caption() { return m_reset_button->caption(); }
 
-      /// Sets the current caption of the \ref nanoui::ColorPicker::m_reset_button.
+      /// Sets the current caption of the \::pointer nanoui::ColorPicker::m_reset_button.
       void set_reset_button_caption(const ::scoped_string& caption) { m_reset_button->set_caption(caption); }
    };
 

@@ -245,7 +245,7 @@ namespace user
    }
 
 
-   //void impact::CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType)
+   //void impact::CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType)
 
    //{
    //   /* trans   ENSURE_ARG(pClientRect != nullptr);

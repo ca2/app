@@ -206,11 +206,11 @@ namespace user
 
       ::point_i32 pointCenter = rectangleDropDown.center();
 
-      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
+      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
 
    }
 
@@ -480,7 +480,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
+   bool combo_box::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
 
    {
 
@@ -1315,7 +1315,7 @@ namespace user
    }
 
 
-   void combo_box::GetDroppedControlRect(RECTANGLE_I32 * prectangle)
+   void combo_box::GetDroppedControlRect(::rectangle_i32 * prectangle)
    {
 
       //ASSERT(is_window());

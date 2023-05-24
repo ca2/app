@@ -74,7 +74,7 @@ public:
    void on_after_set_parent() override;
 
    
-   void client_rectangle(RECTANGLE_I32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   void client_rectangle(::rectangle_i32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    virtual bool is_application_main_window();
@@ -82,7 +82,7 @@ public:
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(const ::rectangle_i32 & rectangle) override;
-   void GetBorderRect(RECTANGLE_I32 * prectangle) override;
+   void GetBorderRect(::rectangle_i32 * prectangle) override;
 
    ::color::color get_border_main_body_color() override;
 

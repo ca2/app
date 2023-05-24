@@ -59,11 +59,11 @@ namespace user
       bool SetPane(index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, atom idPane = atom());
       bool RemovePaneAt(index iIndex);
       void SetPaneFixedSize(index iIndex, const ::size_i32 & pSize);
-      void CalcSplitBarRect(index iIndex, RECTANGLE_I32 & rectangle);
+      void CalcSplitBarRect(index iIndex, ::rectangle_i32 & rectangle);
 
-      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 & rectangle);
+      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, ::rectangle_i32 & rectangle);
 
-      void CalcPaneRect(index iIndex, RECTANGLE_I32 & rectangle);
+      void CalcPaneRect(index iIndex, ::rectangle_i32 & rectangle);
 
 
       virtual ::user::interaction * get_pane_window(index iPane);

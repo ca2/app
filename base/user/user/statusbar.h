@@ -71,7 +71,7 @@ namespace user
       // standard control bar things
       i32 CommandToIndex(atom atom);
       atom GetItemId(i32 nIndex);
-      void GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle);
+      void GetItemRect(i32 nIndex, ::rectangle_i32 * prectangle);
 
 
       // specific to status_bar

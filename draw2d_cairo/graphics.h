@@ -422,7 +422,7 @@ namespace draw2d_cairo
 
 //      // Scrolling Functions
 //      bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
-//                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
+//                    ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate) override;
 
 //      // font Functions
 //      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;
@@ -501,7 +501,7 @@ namespace draw2d_cairo
 //      void DrawDragRect(const ::rectangle_f64 & rectangle_f64, const ::size_f64 & size_f64,
 //                        const ::rectangle_f64 & rectangleLast, const ::size_f64 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      //void fill_rectangle(const RECTANGLE_I64 * rectangle_f64, color32_t clr) override;
+      //void fill_rectangle(const ::rectangle_i64 * rectangle_f64, color32_t clr) override;
       //void fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       void fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       //void fill_rectangle(double x, double y, double cx, double cy, color32_t clr) override;

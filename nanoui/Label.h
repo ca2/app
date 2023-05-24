@@ -25,7 +25,7 @@ namespace nanoui
  *
  * \brief Text label pwidget.
  *
- * The font and color can be customized. When \ref Widget::set_fixed_width()
+ * The font and color can be customized. When \::pointer Widget::set_fixed_width()
  * is used, the text is wrapped when it surpasses the specified width.
  */
    class CLASS_DECL_NANOUI Label :
@@ -35,7 +35,7 @@ namespace nanoui
    public:
 
 
-         ::string m_caption;
+         ::string m_strCaption;
          ::string m_font;
          ::color::color m_color;
          vector2_i32 m_sizePreferred;
@@ -44,9 +44,9 @@ namespace nanoui
          const ::scoped_string & font = "sans", int font_size = -1);
 
       /// Get the label's text caption
-      ::string caption() const { return m_caption; }
+      ::string caption() const { return m_strCaption; }
       /// Set the label's text caption
-      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
+      void set_caption(const ::scoped_string & caption) { m_strCaption = caption; }
 
       /// Set the currently active font (2 are available by default: 'sans' and 'sans-bold')
       void set_font(const ::scoped_string & font) { m_font = font; }
@@ -58,7 +58,7 @@ namespace nanoui
       /// Set the label color
       void set_color(const ::color::color & color) { m_color = color; }
 
-      /// Set the \ref Theme used to draw this pwidget
+      /// Set the \::pointer Theme used to draw this pwidget
       virtual void set_theme(Theme * theme) override;
 
       /// Compute the size needed to fully display the label

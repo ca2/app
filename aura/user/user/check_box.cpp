@@ -16,7 +16,7 @@
 #include "aura/message/user.h"
 
 
-void scroll_x(RECTANGLE_I32 & rectangleTarget, double dRateX, const ::rectangle_i32 & rectangle)
+void scroll_x(::rectangle_i32 & rectangleTarget, double dRateX, const ::rectangle_i32 & rectangle)
 {
 
    ::i32 w = ::width(rectangle);

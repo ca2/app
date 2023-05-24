@@ -179,7 +179,7 @@ public:
 
    void Show(bool bShow = true);
    virtual xfplayer_impact_line & operator = (const xfplayer_impact_line & src);
-   void GetPlacement(RECTANGLE_I32 * prectangle);
+   void GetPlacement(::rectangle_i32 * prectangle);
 
    void SetPlaement(const ::rectangle_i32 & rectangle);
    void SetAlign(i32 iAlign);

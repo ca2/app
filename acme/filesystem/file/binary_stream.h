@@ -342,7 +342,7 @@ public:
    binary_stream & operator <<(double d) {
       raw_write(d); return *this;
    }
-   // void write(const POINT_I32 & point) { raw_write(point); }
+   // void write(const ::point_i32 & point) { raw_write(point); }
    // void write(const SIZE_I32 & size) { raw_write(size); }
    // void write(const ::rectangle_i32 &crect) { raw_write(crect); }
    //binary_stream & operator <<(const ::scoped_string & scopedstr);
@@ -416,9 +416,9 @@ public:
    binary_stream & operator >>(double & d) {
       raw_read(d); return *this;
    }
-   // void read(POINT_I32 & point) { raw_read(point); }
+   // void read(::point_i32 & point) { raw_read(point); }
    //// void read(SIZE_I32 & size) { raw_read(size); }
-   //// void read(RECTANGLE_I32 & rectangle) { raw_read(rectangle); }
+   //// void read(::rectangle_i32 & rectangle) { raw_read(rectangle); }
    //binary_stream & operator >>(atom & atom);
    //binary_stream & operator >>(::payload & payload);
    // void read_var_type(enum_type & etype);

@@ -17,7 +17,7 @@ namespace experience_nanoui
    frame::frame()
    {
 
-      m_pointWindowIcon.x = 5;
+      m_pointWindowIcon.x() = 5;
 
       m_sizeIcon.cx = 32;
 
@@ -293,7 +293,7 @@ namespace experience_nanoui
    //   return (frame::enum_element) (*((i32*)&eelement))++;
    //}
 
-   bool frame::get_element_rect(RECTANGLE_I32 & rect, enum_element eelement)
+   bool frame::get_element_rect(::rectangle_i32 & rect, enum_element eelement)
    {
       switch(eelement)
       {
@@ -309,8 +309,8 @@ namespace experience_nanoui
 
          }
 
-         rect.left = m_pointWindowIcon.x;
-         rect.top = m_pointWindowIcon.y;
+         rect.left = m_pointWindowIcon.x();
+         rect.top = m_pointWindowIcon.y();
          rect.right = rect.left + m_sizeIcon.cx;
          rect.bottom = rect.top + m_sizeIcon.cy;
 
@@ -330,8 +330,8 @@ namespace experience_nanoui
 
          }
 
-         //lprect->left = m_pointMoveGripMinimal.x + 2;
-         //lprect->top = m_pointMoveGripMinimal.y + 2;
+         //lprect->left = m_pointMoveGripMinimal.x() + 2;
+         //lprect->top = m_pointMoveGripMinimal.y() + 2;
          rect.right = rect.left + m_iCaptionHeight - 4;
          rect.bottom = rect.top + m_iCaptionHeight - 4;
 

@@ -32,7 +32,7 @@ namespace nanoui
     * \brief Fancy text box with builtin regular expression-based validation.
     *
     * \remark
-    *     This class overrides \ref nanoui::Widget::mIconExtraScale to be ``0.8f``,
+    *     This class overrides \::pointer nanoui::Widget::mIconExtraScale to be ``0.8f``,
     *     which affects all subclasses of this Widget.  Subclasses must explicitly
     *     set a different value if needed (e.g., in their constructor).
     */
@@ -111,7 +111,7 @@ namespace nanoui
       /// Specify a placeholder text to be displayed while the text box is empty.
       void set_placeholder(const ::scoped_string& placeholder) { m_strPlaceHolder = placeholder; }
 
-      /// Set the \ref Theme used to draw this pwidget
+      /// Set the \::pointer Theme used to draw this pwidget
       virtual void set_theme(Theme* theme) override;
 
       /// The callback to execute when the value of this TextBox has changed.

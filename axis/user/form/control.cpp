@@ -1635,7 +1635,7 @@ namespace user
    //}
 
 
-   void form_control::control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
+   void form_control::control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
       pinteraction->window_rectangle(rectangle);
@@ -1643,7 +1643,7 @@ namespace user
    }
    
 
-   void form_control::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
+   void form_control::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
       pinteraction->client_rectangle(rectangle);

@@ -82,7 +82,7 @@ NAMESPACE_BEGIN(detail)
  *      template <>
  *      class FormWidget<Color, std::true_type> : public ColorPicker
  *
- * Please refer to the bottom of :ref:`program_listing_file_nanoui_formhelper.h`
+ * Please refer to the bottom of :::pointer:`program_listing_file_nanoui_formhelper.h`
  * for the implementation details.
  * \endrst
  */
@@ -134,11 +134,11 @@ NAMESPACE_END(detail)
          const ::scoped_string & title = "Untitled") {
          ASSERT(m_screen);
          m_window = memory_new Window(m_screen, title);
-         m_layout = memory_new AdvancedGridLayout({ 10, 0, 10, 0 }, {});
-         m_layout->set_margin(10);
-         m_layout->set_col_stretch(2, 1);
+         m_playout = memory_new AdvancedGridLayout({ 10, 0, 10, 0 }, {});
+         m_playout->set_margin(10);
+         m_playout->set_col_stretch(2, 1);
          m_window->set_position(pos);
-         m_window->set_layout(m_layout);
+         m_window->set_layout(m_playout);
          m_window->set_visible(true);
          return m_window;
       }
@@ -146,11 +146,11 @@ NAMESPACE_END(detail)
       /// Add a memory_new group that may contain several sub-widgets
       Label * add_group(const ::scoped_string & caption) {
          Label * label = memory_new Label(m_window, caption, m_group_font_name, m_group_font_size);
-         if (m_layout->row_count() > 0)
-            m_layout->append_row(m_pre_group_spacing); /* Spacing */
-         m_layout->append_row(0);
-         m_layout->set_anchor(label, AdvancedGridLayout::Anchor(0, m_layout->row_count() - 1, 4, 1));
-         m_layout->append_row(m_post_group_spacing);
+         if (m_playout->row_count() > 0)
+            m_playout->append_row(m_pre_group_spacing); /* Spacing */
+         m_playout->append_row(0);
+         m_playout->set_anchor(label, AdvancedGridLayout::Anchor(0, m_playout->row_count() - 1, 4, 1));
+         m_playout->append_row(m_post_group_spacing);
          return label;
       }
 
@@ -170,14 +170,14 @@ NAMESPACE_END(detail)
          pwidget->set_editable(editable);
          pwidget->set_font_size((float)m_widget_font_size);
          vector2_i32 sizeFixed = pwidget->fixed_size();
-         pwidget->set_fixed_size(vector2_i32(sizeFixed.x() != 0 ? sizeFixed.x() : m_fixed_size.x(),
-            sizeFixed.y() != 0 ? sizeFixed.y() : m_fixed_size.y()));
+         pwidget->set_fixed_size(vector2_i32(sizeFixed.x()() != 0 ? sizeFixed.x()() : m_fixed_size.x()(),
+            sizeFixed.y()() != 0 ? sizeFixed.y()() : m_fixed_size.y()()));
          m_refresh_callbacks.add(refresh);
-         if (m_layout->row_count() > 0)
-            m_layout->append_row(m_variable_spacing);
-         m_layout->append_row(0);
-         m_layout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1));
-         m_layout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_layout->row_count() - 1));
+         if (m_playout->row_count() > 0)
+            m_playout->append_row(m_variable_spacing);
+         m_playout->append_row(0);
+         m_playout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
+         m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_playout->row_count() - 1));
          return pwidget;
       }
 
@@ -196,23 +196,23 @@ NAMESPACE_END(detail)
          Button * button = memory_new Button(m_window, label);
          button->set_callback(cb);
          button->set_fixed_height(25);
-         if (m_layout->row_count() > 0)
-            m_layout->append_row(m_variable_spacing);
-         m_layout->append_row(0);
-         m_layout->set_anchor(button, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1, 3, 1));
+         if (m_playout->row_count() > 0)
+            m_playout->append_row(m_variable_spacing);
+         m_playout->append_row(0);
+         m_playout->set_anchor(button, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
          return button;
       }
 
       /// Add an arbitrary (optionally labeled) pwidget to the layout
       void add_widget(const ::scoped_string & label, Widget * pwidget) {
-         m_layout->append_row(0);
+         m_playout->append_row(0);
          if (label == "") {
-            m_layout->set_anchor(pwidget, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1, 3, 1));
+            m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
          }
          else {
             Label * label_w = memory_new Label(m_window, label, m_label_font_name, m_label_font_size);
-            m_layout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1));
-            m_layout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_layout->row_count() - 1));
+            m_playout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
+            m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_playout->row_count() - 1));
          }
       }
 
@@ -222,14 +222,14 @@ NAMESPACE_END(detail)
             callback();
       }
 
-      /// Access the currently active \ref Window instance
+      /// Access the currently active \::pointer Window instance
       Window * window() { return m_window; }
 
-      /// Set the active \ref Window instance.
+      /// Set the active \::pointer Window instance.
       void set_window(Window * window) {
          m_window = window;
-         m_layout = dynamic_cast<AdvancedGridLayout *>(window->layout());
-         if (m_layout == nullptr)
+         m_playout = dynamic_cast<AdvancedGridLayout *>(window->layout());
+         if (m_playout == nullptr)
             throw std::runtime_error(
                "Internal error: window has an incompatible layout!");
       }
@@ -271,12 +271,12 @@ NAMESPACE_END(detail)
       void set_widget_font_size(int value) { m_widget_font_size = value; }
 
    protected:
-      /// A reference to the \ref nanoui::Screen this FormHelper is assisting.
-      ref<Screen> m_screen;
-      /// A reference to the \ref nanoui::Window this FormHelper is controlling.
-      ref<Window> m_window;
-      /// A reference to the \ref nanoui::AdvancedGridLayout this FormHelper is using.
-      ref<AdvancedGridLayout> m_layout;
+      /// A reference to the \::pointer nanoui::Screen this FormHelper is assisting.
+      ::pointer<Screen> m_screen;
+      /// A reference to the \::pointer nanoui::Window this FormHelper is controlling.
+      ::pointer<Window> m_window;
+      /// A reference to the \::pointer nanoui::AdvancedGridLayout this FormHelper is using.
+      ::pointer<AdvancedGridLayout> m_playout;
       /// The callbacks associated with all widgets this FormHelper is managing.
       ::array<std::function<void()>> m_refresh_callbacks;
       /// The group header font name.
@@ -310,13 +310,13 @@ NAMESPACE_BEGIN(detail)
       /// Creates a memory_new FormWidget with underlying type CheckBox.
       FormWidget(Widget * p) : CheckBox(p, "") { set_fixed_width(20); }
 
-      /// Pass-through function for \ref nanoui::CheckBox::set_checked.
+      /// Pass-through function for \::pointer nanoui::CheckBox::set_checked.
       void set_value(bool v) { set_checked(v); }
 
-      /// Pass-through function for \ref nanoui::Widget::set-enabled.
+      /// Pass-through function for \::pointer nanoui::Widget::set-enabled.
       void set_editable(bool e) { set_enabled(e); }
 
-      /// Returns the value of \ref nanoui::CheckBox::checked.
+      /// Returns the value of \::pointer nanoui::CheckBox::checked.
       bool value() const { return checked(); }
 };
 
@@ -331,18 +331,18 @@ public:
    /// Creates a memory_new FormWidget with underlying type ComboBox.
    FormWidget(Widget * p) : ComboBox(p) { }
 
-   /// Pass-through function for \ref nanoui::ComboBox::selected_index.
+   /// Pass-through function for \::pointer nanoui::ComboBox::selected_index.
    T value() const { return (T)selected_index(); }
 
-   /// Pass-through function for \ref nanoui::ComboBox::set_selected_index.
+   /// Pass-through function for \::pointer nanoui::ComboBox::set_selected_index.
    void set_value(T value) { set_selected_index((int)value); m_iSelectedIndex = (int)value; }
 
-   /// Pass-through function for \ref nanoui::ComboBox::set_callback.
+   /// Pass-through function for \::pointer nanoui::ComboBox::set_callback.
    void set_callback(const std::function<void(const T &)> & cb) {
       ComboBox::set_callback([cb](int v) { cb((T)v); });
    }
 
-   /// Pass-through function for \ref nanoui::Widget::set_enabled.
+   /// Pass-through function for \::pointer nanoui::Widget::set_enabled.
    void set_editable(bool e) { set_enabled(e); }
 };
 
@@ -378,7 +378,7 @@ public:
    /// Creates a memory_new FormWidget with underlying type TextBox.
    FormWidget(Widget * p) : TextBox(p) { set_alignment(TextBox::e_alignment_left); }
 
-   /// Pass-through function for \ref nanoui::TextBox::set_callback.
+   /// Pass-through function for \::pointer nanoui::TextBox::set_callback.
    void set_callback(const std::function<void(const ::scoped_string &)> & cb) {
       TextBox::set_callback([cb](const ::scoped_string & str) { cb(str); return true; });
    }
@@ -392,13 +392,13 @@ public:
    /// Creates a memory_new FormWidget with underlying type ColorPicker.
    FormWidget(Widget * p) : ColorPicker(p) { }
 
-   /// Pass-through function for \ref nanoui::ColorPicker::set_color.
+   /// Pass-through function for \::pointer nanoui::ColorPicker::set_color.
    void set_value(const ::color::color & pwidgetChild) { set_color(pwidgetChild); }
 
-   /// Pass-through function for \ref nanoui::Widget::set_enabled.
+   /// Pass-through function for \::pointer nanoui::Widget::set_enabled.
    void set_editable(bool e) { set_enabled(e); }
 
-   /// Returns the value of \ref nanoui::ColorPicker::color.
+   /// Returns the value of \::pointer nanoui::ColorPicker::color.
    ::color::color value() const { return color(); }
 
 };

@@ -133,8 +133,8 @@ namespace experience_anthill
          if (egrip & e_grip_top)
          {
             rectangle.top = rectangleEvent.top;
-            rectangle.left = pointCenter.x - 8;
-            rectangle.right = pointCenter.x + 8;
+            rectangle.left = pointCenter.x() - 8;
+            rectangle.right = pointCenter.x() + 8;
             rectangle.bottom = rectangleEvent.top + 5;
             if (rectangle.contains(point))
             {
@@ -145,8 +145,8 @@ namespace experience_anthill
          if (egrip & e_grip_bottom)
          {
             rectangle.top = rectangleEvent.bottom - 5;
-            rectangle.left = pointCenter.x - 8;
-            rectangle.right = pointCenter.x + 8;
+            rectangle.left = pointCenter.x() - 8;
+            rectangle.right = pointCenter.x() + 8;
             rectangle.bottom = rectangleEvent.bottom;
             if (rectangle.contains(point))
             {
@@ -156,10 +156,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_left)
          {
-            rectangle.top = pointCenter.y - 8;
+            rectangle.top = pointCenter.y() - 8;
             rectangle.left = rectangleEvent.left;
             rectangle.right = rectangleEvent.left + 5;
-            rectangle.bottom = pointCenter.y + 8;
+            rectangle.bottom = pointCenter.y() + 8;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_left;
@@ -168,10 +168,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_right)
          {
-            rectangle.top = pointCenter.y - 8;
+            rectangle.top = pointCenter.y() - 8;
             rectangle.left = rectangleEvent.right - 5;
             rectangle.right = rectangleEvent.right;
-            rectangle.bottom = pointCenter.y + 8;
+            rectangle.bottom = pointCenter.y() + 8;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_right;
@@ -375,7 +375,7 @@ namespace experience_anthill
 
    }
 
-   void frame_001::GetBorderRect(const ::rectangle_i32 & rectangleClient, RECTANGLE_I32 * lprect, enum_border eside)
+   void frame_001::GetBorderRect(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
    {
 
       ::rectangle_i32 rectangleBig(rectangleClient);
@@ -465,10 +465,10 @@ namespace experience_anthill
          rectangleA.right--;
 
          pointA = rectangleA.top_left();
-         pointA.y += 14;
+         pointA.y() += 14;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x += 15;
+         pointC.x() += 15;
 
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
@@ -481,10 +481,10 @@ namespace experience_anthill
          rectangleA = rectangleClient;
 
          pointA = rectangleA.top_left();
-         pointA.y += 15;
+         pointA.y() += 15;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x += 16;
+         pointC.x() += 16;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -499,10 +499,10 @@ namespace experience_anthill
          rectangleA.right -= 2;
 
          pointA = rectangleA.top_left();
-         pointA.y += 13;
+         pointA.y() += 13;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x += 14;
+         pointC.x() += 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -523,10 +523,10 @@ namespace experience_anthill
 
 
          pointA = rectangleA.top_left();
-         pointA.y += 12;
+         pointA.y() += 12;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x += 13;
+         pointC.x() += 13;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -541,10 +541,10 @@ namespace experience_anthill
          rectangleA.right -= 4;
 
          pointA = rectangleA.top_left();
-         pointA.y += 11;
+         pointA.y() += 11;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x += 12;
+         pointC.x() += 12;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -553,20 +553,20 @@ namespace experience_anthill
 
          // Details
 
-         pointA.x = rectangleClientB.left + 14;
-         pointA.y = rectangleClientB.top + 1;
-         pointB.x = rectangleClientB.left + 14;
-         pointB.y = rectangleClientB.top + 3;
+         pointA.x() = rectangleClientB.left + 14;
+         pointA.y() = rectangleClientB.top + 1;
+         pointB.x() = rectangleClientB.left + 14;
+         pointB.y() = rectangleClientB.top + 3;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
 
          // Details
 
-         pointA.x = rectangleClientB.left + 1;
-         pointA.y = rectangleClientB.top + 14;
-         pointB.x = rectangleClientB.left + 3;
-         pointB.y = rectangleClientB.top + 14;
+         pointA.x() = rectangleClientB.left + 1;
+         pointA.y() = rectangleClientB.top + 14;
+         pointB.x() = rectangleClientB.left + 3;
+         pointB.y() = rectangleClientB.top + 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -574,19 +574,19 @@ namespace experience_anthill
 
          // Details
 
-         pointA.x = rectangleClientB.left + 15;
-         pointA.y = rectangleClientB.top + 1;
-         pointB.x = rectangleClientB.left + 15;
-         pointB.y = rectangleClientB.top + 5;
+         pointA.x() = rectangleClientB.left + 15;
+         pointA.y() = rectangleClientB.top + 1;
+         pointB.x() = rectangleClientB.left + 15;
+         pointB.y() = rectangleClientB.top + 5;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
          // Details
 
-         pointA.x = rectangleClientB.left + 1;
-         pointA.y = rectangleClientB.top + 15;
-         pointB.x = rectangleClientB.left + 5;
-         pointB.y = rectangleClientB.top + 15;
+         pointA.x() = rectangleClientB.left + 1;
+         pointA.y() = rectangleClientB.top + 15;
+         pointB.x() = rectangleClientB.left + 5;
+         pointB.y() = rectangleClientB.top + 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
       }
@@ -603,7 +603,7 @@ namespace experience_anthill
          rectangleA.right--;
 
          pointA = rectangleA.top_right();
-         pointA.x -= 15;
+         pointA.x() -= 15;
          pointB = rectangleA.top_right();
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
@@ -615,7 +615,7 @@ namespace experience_anthill
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y += 13;
+         pointC.y() += 13;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
@@ -626,7 +626,7 @@ namespace experience_anthill
          rectangleA = rectangleClient;
 
          pointA = rectangleA.top_right();
-         pointA.x -= 16;
+         pointA.x() -= 16;
          pointB = rectangleA.top_right();
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
@@ -641,7 +641,7 @@ namespace experience_anthill
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y += 12;
+         pointC.y() += 12;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
@@ -655,10 +655,10 @@ namespace experience_anthill
          rectangleA.right -= 2;
 
          pointA = rectangleA.top_right();
-         pointA.x -= 13;
+         pointA.x() -= 13;
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y += 14;
+         pointC.y() += 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -674,7 +674,7 @@ namespace experience_anthill
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y += 15;
+         pointC.y() += 15;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
@@ -684,7 +684,7 @@ namespace experience_anthill
          rectangleA.right -= 2;
 
          pointA = rectangleA.top_right();
-         pointA.x -= 12;
+         pointA.x() -= 12;
          pointB = rectangleA.top_right();
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
@@ -695,7 +695,7 @@ namespace experience_anthill
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y += 16;
+         pointC.y() += 16;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
@@ -705,17 +705,17 @@ namespace experience_anthill
          rectangleA.right -= 4;
 
          pointA = rectangleA.top_right();
-         pointA.x -= 11;
+         pointA.x() -= 11;
          pointB = rectangleA.top_right();
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x = rectangleClientB.right - 14;
-         pointA.y = rectangleClientB.top + 1;
-         pointB.x = rectangleClientB.right - 14;
-         pointB.y = rectangleClientB.top + 4;
+         pointA.x() = rectangleClientB.right - 14;
+         pointA.y() = rectangleClientB.top + 1;
+         pointB.x() = rectangleClientB.right - 14;
+         pointB.y() = rectangleClientB.top + 4;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -723,10 +723,10 @@ namespace experience_anthill
 
          // Details
 
-         pointA.x = rectangleClientB.right - 15;
-         pointA.y = rectangleClientB.top;
-         pointB.x = rectangleClientB.right - 15;
-         pointB.y = rectangleClientB.top + 5;
+         pointA.x() = rectangleClientB.right - 15;
+         pointA.y() = rectangleClientB.top;
+         pointB.x() = rectangleClientB.right - 15;
+         pointB.y() = rectangleClientB.top + 5;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -734,10 +734,10 @@ namespace experience_anthill
 
          // Details
 
-         pointA.x = rectangleClientB.right - 3;
-         pointA.y = rectangleClientB.top + 14;
-         pointB.x = rectangleClientB.right - 1;
-         pointB.y = rectangleClientB.top + 14;
+         pointA.x() = rectangleClientB.right - 3;
+         pointA.y() = rectangleClientB.top + 14;
+         pointB.x() = rectangleClientB.right - 1;
+         pointB.y() = rectangleClientB.top + 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -745,10 +745,10 @@ namespace experience_anthill
 
          // Details
 
-         pointA.x = rectangleClientB.right - 4;
-         pointA.y = rectangleClientB.top + 15;
-         pointB.x = rectangleClientB.right;
-         pointB.y = rectangleClientB.top + 15;
+         pointA.x() = rectangleClientB.right - 4;
+         pointA.y() = rectangleClientB.top + 15;
+         pointB.x() = rectangleClientB.right;
+         pointB.y() = rectangleClientB.top + 15;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
       }
@@ -765,7 +765,7 @@ namespace experience_anthill
 
          // left 1
          pointA = rectangleA.bottom_left();
-         pointA.y -= 16;
+         pointA.y() -= 16;
          pointB = rectangleA.bottom_left();
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
@@ -778,7 +778,7 @@ namespace experience_anthill
          // bottom 2
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x += 12;
+         pointC.x() += 12;
          pgraphics->set_current_point(pointC);
          pgraphics->line_to(pointB);
 
@@ -789,7 +789,7 @@ namespace experience_anthill
          rectangleA = rectangleClient;
 
          pointA = rectangleA.bottom_left();
-         pointA.y -= 15;
+         pointA.y() -= 15;
          pointB = rectangleA.bottom_left();
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
@@ -803,7 +803,7 @@ namespace experience_anthill
 
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x += 12;
+         pointC.x() += 12;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
@@ -817,10 +817,10 @@ namespace experience_anthill
          rectangleA.right -= 2;
 
          pointA = rectangleA.bottom_left();
-         pointA.y -= 13;
+         pointA.y() -= 13;
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x += 14;
+         pointC.x() += 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -834,7 +834,7 @@ namespace experience_anthill
 
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x += 14;
+         pointC.x() += 14;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
@@ -844,7 +844,7 @@ namespace experience_anthill
          rectangleA.bottom -= 2;
 
          pointA = rectangleA.bottom_left();
-         pointA.y -= 12;
+         pointA.y() -= 12;
          pointB = rectangleA.bottom_left();
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
@@ -854,9 +854,9 @@ namespace experience_anthill
          rectangleA = rectangleClient;
 
          pointB = rectangleA.bottom_left();
-         pointB.x++;
+         pointB.x()++;
          pointC = rectangleA.bottom_left();
-         pointC.x += 16;
+         pointC.x() += 16;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointC);
 
@@ -864,7 +864,7 @@ namespace experience_anthill
          rectangleA.bottom -= 3;
 
          pointA = rectangleA.bottom_left();
-         pointA.y -= 11;
+         pointA.y() -= 11;
          pointB = rectangleA.bottom_left();
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
@@ -873,10 +873,10 @@ namespace experience_anthill
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x = rectangleClientB.left + 1;
-         pointA.y = rectangleClientB.bottom - 15;
-         pointB.x = rectangleClientB.left + 4;
-         pointB.y = rectangleClientB.bottom - 15;
+         pointA.x() = rectangleClientB.left + 1;
+         pointA.y() = rectangleClientB.bottom - 15;
+         pointB.x() = rectangleClientB.left + 4;
+         pointB.y() = rectangleClientB.bottom - 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -884,10 +884,10 @@ namespace experience_anthill
 
          pgraphics->set(m_ppenFace1);
 
-         pointA.x = rectangleClientB.left;
-         pointA.y = rectangleClientB.bottom - 15;
-         pointB.x = rectangleClientB.left + 5;
-         pointB.y = rectangleClientB.bottom - 15;
+         pointA.x() = rectangleClientB.left;
+         pointA.y() = rectangleClientB.bottom - 15;
+         pointB.x() = rectangleClientB.left + 5;
+         pointB.y() = rectangleClientB.bottom - 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
 
@@ -895,10 +895,10 @@ namespace experience_anthill
 
          // Details - right most
 
-         pointA.x = rectangleClientB.left + 14;
-         pointA.y = rectangleClientB.bottom - 4;
-         pointB.x = rectangleClientB.left + 14;
-         pointB.y = rectangleClientB.bottom - 1;
+         pointA.x() = rectangleClientB.left + 14;
+         pointA.y() = rectangleClientB.bottom - 4;
+         pointB.x() = rectangleClientB.left + 14;
+         pointB.y() = rectangleClientB.bottom - 1;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
@@ -906,10 +906,10 @@ namespace experience_anthill
 
          // Details - right most
 
-         pointA.x = rectangleClientB.left + 15;
-         pointA.y = rectangleClientB.bottom - 4;
-         pointB.x = rectangleClientB.left + 15;
-         pointB.y = rectangleClientB.bottom;
+         pointA.x() = rectangleClientB.left + 15;
+         pointA.y() = rectangleClientB.bottom - 4;
+         pointB.x() = rectangleClientB.left + 15;
+         pointB.y() = rectangleClientB.bottom;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
       }
@@ -931,10 +931,10 @@ namespace experience_anthill
          rectangleA.right -= 2;
 
          pointA = rectangleA.bottom_right();
-         pointA.y -= 12;
+         pointA.y() -= 12;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x -= 13;
+         pointC.x() -= 13;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -951,10 +951,10 @@ namespace experience_anthill
          rectangleA.right -= 4;
 
          pointA = rectangleA.bottom_right();
-         pointA.y -= 11;
+         pointA.y() -= 11;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x -= 12;
+         pointC.x() -= 12;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -969,10 +969,10 @@ namespace experience_anthill
          rectangleA.right -= 2;
 
          pointA = rectangleA.bottom_right();
-         pointA.y -= 13;
+         pointA.y() -= 13;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x -= 14;
+         pointC.x() -= 14;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -986,10 +986,10 @@ namespace experience_anthill
          rectangleA.right--;
 
          pointA = rectangleA.bottom_right();
-         pointA.y -= 14;
+         pointA.y() -= 14;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x -= 15;
+         pointC.x() -= 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
@@ -999,27 +999,27 @@ namespace experience_anthill
          rectangleA = rectangleClient;
 
          pointA = rectangleA.bottom_right();
-         pointA.y -= 15;
+         pointA.y() -= 15;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x -= 15;
+         pointC.x() -= 15;
          pgraphics->set_current_point(pointA);
          pgraphics->line_to(pointB);
          pgraphics->line_to(pointC);
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x = rectangleClientB.right - 3;
-         pointA.y = rectangleClientB.bottom - 14;
-         pointB.x = rectangleClientB.right - 1;
-         pointB.y = rectangleClientB.bottom - 14;
+         pointA.x() = rectangleClientB.right - 3;
+         pointA.y() = rectangleClientB.bottom - 14;
+         pointB.x() = rectangleClientB.right - 1;
+         pointB.y() = rectangleClientB.bottom - 14;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
-         pointA.x = rectangleClientB.right - 14;
-         pointA.y = rectangleClientB.bottom - 3;
-         pointB.x = rectangleClientB.right - 14;
-         pointB.y = rectangleClientB.bottom - 1;
+         pointA.x() = rectangleClientB.right - 14;
+         pointA.y() = rectangleClientB.bottom - 3;
+         pointB.x() = rectangleClientB.right - 14;
+         pointB.y() = rectangleClientB.bottom - 1;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
@@ -1027,17 +1027,17 @@ namespace experience_anthill
 
          // Details
 
-         pointA.x = rectangleClientB.right - 5;
-         pointA.y = rectangleClientB.bottom - 15;
-         pointB.x = rectangleClientB.right;
-         pointB.y = rectangleClientB.bottom - 15;
+         pointA.x() = rectangleClientB.right - 5;
+         pointA.y() = rectangleClientB.bottom - 15;
+         pointB.x() = rectangleClientB.right;
+         pointB.y() = rectangleClientB.bottom - 15;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
 
-         pointA.x = rectangleClientB.right - 15;
-         pointA.y = rectangleClientB.bottom - 5;
-         pointB.x = rectangleClientB.right - 15;
-         pointB.y = rectangleClientB.bottom;
+         pointA.x() = rectangleClientB.right - 15;
+         pointA.y() = rectangleClientB.bottom - 5;
+         pointB.x() = rectangleClientB.right - 15;
+         pointB.y() = rectangleClientB.bottom;
          pgraphics->set_current_point(pointB);
          pgraphics->line_to(pointA);
       }
@@ -1055,8 +1055,8 @@ namespace experience_anthill
          ::rectangle_i32 rectangleB;
 
          rectangleB.top = rectangleC.top;
-         rectangleB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.left = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.right = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
          rectangleB.bottom = rectangleC.top + GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
@@ -1075,8 +1075,8 @@ namespace experience_anthill
             iMod = 0;
 
          rectangleB.bottom = rectangleC.bottom;
-         rectangleB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.left = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.right = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
          rectangleB.top = rectangleC.bottom - GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
@@ -1095,10 +1095,10 @@ namespace experience_anthill
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.top = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
          rectangleB.left = rectangleC.left;
          rectangleB.right = rectangleC.left + GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.bottom = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -1116,10 +1116,10 @@ namespace experience_anthill
 
          ::rectangle_i32 rectangleB;
 
-         rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.top = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
          rectangleB.right = rectangleC.right;
          rectangleB.left = rectangleC.right - GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.bottom = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
          DrawRectGrip(pgraphics, rectangleB);
       }

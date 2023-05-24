@@ -338,7 +338,7 @@ namespace write_text
 //      //         if(pglyph != nullptr)
 
 //      //         {
-//      //            pointOffset.x = ::i32(pgraphics->get_text_extent(str.left(i)).cx);
+//      //            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx);
 //      //            pglyph->DrawGlyph(
 
 //      //               pgraphics,
@@ -396,7 +396,7 @@ namespace write_text
 
 //      //         {
 //      //            pointOffset = rectangleOffset.top_left();
-//      //            pointOffset.x += (long) ((piCharsPositions[iOffset + i] - lpiCharsPositions[iOffset]) * dRateX);
+//      //            pointOffset.x() += (long) ((piCharsPositions[iOffset + i] - lpiCharsPositions[iOffset]) * dRateX);
 
 //      //            pglyph->DrawGlyph(
 

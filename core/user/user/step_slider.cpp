@@ -172,7 +172,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
+   void step_slider::GetStepHoverRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
    {
 
       if((iMax - iMin) == 0)
@@ -193,7 +193,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
+   void step_slider::GetStepRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
    {
 
       if((iMax - iMin) == 0)
@@ -233,7 +233,7 @@ namespace user
 
       iMax = m_scalar.maximum().get_i64();
 
-      return __new(::item((index) (iMin + (((point.x - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()))));
+      return __new(::item((index) (iMin + (((point.x() - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()))));
 
    }
 

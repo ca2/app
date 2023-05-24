@@ -123,10 +123,10 @@ namespace user
       virtual i32 GetDividerWidth();
 
 
-      bool GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelement, index iItem);
+      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, index iItem);
 
 
-      bool GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown,
+      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown,
 
                        enum_element eelement,
                        index iItem);

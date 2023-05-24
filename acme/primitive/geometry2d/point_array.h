@@ -22,7 +22,7 @@ class point_array_base :
 public:
 
 
-   using POINT_BASE_TYPE = typename POINT_TYPE::POINT_BASE_TYPE;
+   using POINT_BASE_TYPE = typename POINT_TYPE;
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
    using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
@@ -40,7 +40,7 @@ public:
    operator POINT_BASE_TYPE * () { return this->get_data(); }
 
    void offset(UNIT_TYPE x, UNIT_TYPE y);
-   void offset(POINT_TYPE point) { offset(point.x, point.y); }
+   void offset(POINT_TYPE point) { offset(point.x(), point.y()); }
 
    void rotate(double dAngle);
 
@@ -60,7 +60,7 @@ public:
       for (auto & point : *this)
       {
 
-         if (tolerance_is_equal(tolerance, point.x, pointAdd.x) && tolerance_is_equal(tolerance, point.y, pointAdd.y))
+         if (tolerance_is_equal(tolerance, point.x(), pointAdd.x()) && tolerance_is_equal(tolerance, point.y(), pointAdd.y()))
          {
 
             /// 'p' is "tolerance"-equal to an existing point_i32 'p' in '*this' array,
@@ -97,8 +97,8 @@ public:
       for (int i = 0; i < n; i++)
       {
 
-         area += (this->element_at(j).x + this->element_at(i).x)
-               * (this->element_at(j).y - this->element_at(i).y);
+         area += (this->element_at(j).x() + this->element_at(i).x())
+               * (this->element_at(j).y() - this->element_at(i).y());
 
          j = i;  // j is previous vertex to i
 
@@ -118,8 +118,8 @@ void point_array_base < POINT_TYPE >::offset(UNIT_TYPE x, UNIT_TYPE y)
 {
    for (i32 i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).x += x;
-      this->element_at(i).y += y;
+      this->element_at(i).x() += x;
+      this->element_at(i).y() += y;
    }
 }
 
@@ -135,10 +135,10 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle)
 
    for (i32 i = 0; i < this->get_count(); i++)
    {
-      x = this->element_at(i).x;
-      y = this->element_at(i).y;
-      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
-      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
+      x = this->element_at(i).x();
+      y = this->element_at(i).y();
+      this->element_at(i).x() = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y() = (::i32)(x * dSin + y * dCos);
    }
 
 }
@@ -169,10 +169,10 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle, POINT_TYPE pointCent
    for (i32 i = 0; i < this->get_count(); i++)
    {
       this->element_at(i) -= pointCenter;
-      x = this->element_at(i).x;
-      y = this->element_at(i).y;
-      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
-      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
+      x = this->element_at(i).x();
+      y = this->element_at(i).y();
+      this->element_at(i).x() = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y() = (::i32)(x * dSin + y * dCos);
       this->element_at(i) += pointCenter;
    }
 
@@ -205,8 +205,8 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //   int i, j, c = 0;
 //   for (i = 0, j = nvert - 1; i < nvert; j = i++)
 //   {
-//      if (((ppointa[i].y > point.y) != (ppointa[j].y > point.y)) &&
-//         (point.x < (ppointa[j].x - ppointa[i].x) * (point.y - ppointa[i].y) / (ppointa[j].y - ppointa[i].y) + ppointa[i].x))
+//      if (((ppointa[i].y() > point.y()) != (ppointa[j].y() > point.y())) &&
+//         (point.x() < (ppointa[j].x() - ppointa[i].x()) * (point.y() - ppointa[i].y()) / (ppointa[j].y() - ppointa[i].y()) + ppointa[i].x()))
 //         c = !c;
 //   }
 //   return c;
@@ -225,13 +225,13 @@ template < typename POINT_TYPE >
 ::count point_array_base < POINT_TYPE >::add_unique_range(const POINT_TYPE & pointBeg, const POINT_TYPE & pointEnd, const SIZE_TYPE & size)
 {
 
-   typename POINT_TYPE::TYPE x1 = pointBeg.x;
+   typename POINT_TYPE::TYPE x1 = pointBeg.x();
 
-   typename POINT_TYPE::TYPE x2 = pointEnd.x;
+   typename POINT_TYPE::TYPE x2 = pointEnd.x();
 
-   typename POINT_TYPE::TYPE y1 = pointBeg.y;
+   typename POINT_TYPE::TYPE y1 = pointBeg.y();
 
-   typename POINT_TYPE::TYPE y2 = pointEnd.y;
+   typename POINT_TYPE::TYPE y2 = pointEnd.y();
 
    __sort(x1, x2);
 

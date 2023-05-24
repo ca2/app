@@ -726,7 +726,7 @@ namespace filemanager
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != nullptr);
             ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
-            pPopup->track_popup_menu(point.x, point.y,
+            pPopup->track_popup_menu(point.x(), point.y(),
             (::user::interaction_impl *) pframe);
             }
             }
@@ -739,7 +739,7 @@ namespace filemanager
             ASSERT(pPopup != nullptr);
             ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
             pPopup->track_popup_menu(
-            point.x, point.y,
+            point.x(), point.y(),
             (::user::interaction_impl *) pframe);
             }
             }*/

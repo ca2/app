@@ -35,7 +35,7 @@
 //
 //}
 
-int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
+int get_main_screen_rectangle(::rectangle_i32 * lprect);
 
 
 namespace draw2d
@@ -3398,7 +3398,7 @@ namespace aura
 //
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, RECTANGLE_F64 * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::rectangle_f64 * prectangle)
 //
 //   {
 //
@@ -3417,12 +3417,12 @@ namespace aura
 //   }
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::rectangle_i32 * prectangle)
 //   {
 //
 //      ::rectangle_f64 rectangle;
 //
-//      if (!window_rectangle(pwindow, (RECTANGLE_F64*)rectangle_i32))
+//      if (!window_rectangle(pwindow, (::rectangle_f64*)rectangle_i32))
 //      {
 //
 //         return false;
@@ -3477,7 +3477,7 @@ namespace aura
    //}
 
 
-//   index system::get_main_monitor(RECTANGLE_I32 * prectangle)
+//   index system::get_main_monitor(::rectangle_i32 * prectangle)
 //   {
 //
 //      index iMainMonitor = 0;
@@ -3543,7 +3543,7 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
+//   bool system::get_monitor_rectangle(index iMonitor, ::rectangle_i32 * prectangle)
 //   {
 //
 //#if MOBILE_PLATFORM
@@ -3615,7 +3615,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+//   bool system::get_desk_monitor_rect(index iMonitor, ::rectangle_i32 * prectangle)
 //
 //   {
 //
@@ -3625,7 +3625,7 @@ namespace aura
 //   }
 //
 //
-//   index system::get_main_workspace(RECTANGLE_I32 * prectangle)
+//   index system::get_main_workspace(::rectangle_i32 * prectangle)
 //
 //   {
 //
@@ -3682,7 +3682,7 @@ namespace aura
 //   }
 //
 
-//   bool system::get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle)
+//   bool system::get_workspace_rectangle(index iWorkspace, ::rectangle_i32 * prectangle)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3759,7 +3759,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 * prectangle)
+//   bool system::get_desk_workspace_rect(index iWorkspace, ::rectangle_i32 * prectangle)
 //
 //   {
 //
@@ -6196,7 +6196,7 @@ namespace aura
 //#ifdef UNIVERSAL_WINDOWS
 //
 //
-//   bool system::window_rectangle(RECTANGLE_I32* prectangle)
+//   bool system::window_rectangle(::rectangle_i32* prectangle)
 //   {
 //
 //      if (::is_null(get_session()))

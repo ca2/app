@@ -6,30 +6,30 @@
 //
 
 //template < primitive_point POINT >
-//inline constexpr auto __horz(const POINT & point) { return point.x; }
+//inline constexpr auto __horz(const POINT & point) { return point.x(); }
 //template < primitive_point POINT >
-//inline constexpr auto __vert(const POINT & point) { return point.y; }
+//inline constexpr auto __vert(const POINT & point) { return point.y(); }
 //template < primitive_size SIZE >
 //inline constexpr auto __horz(const SIZE & size) { return size.cx; }
 //template < primitive_size SIZE >
 //inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 //
-//inline point_i32& top_left(const RECTANGLE_I32* prectangle) { return *(point_i32*)prectangle; }
-//inline point_i32& bottom_right(const RECTANGLE_I32* prectangle) { return *(point_i32*)& prectangle->right; }
-//inline point_i32& top_left(const RECTANGLE_I32& rectangle) { return top_left(&rectangle); }
-//inline point_i32& bottom_right(const RECTANGLE_I32& rectangle) { return bottom_right(&rectangle); }
+//inline point_i32& top_left(const ::rectangle_i32* prectangle) { return *(point_i32*)prectangle; }
+//inline point_i32& bottom_right(const ::rectangle_i32* prectangle) { return *(point_i32*)& prectangle->right; }
+//inline point_i32& top_left(const ::rectangle_i32& rectangle) { return top_left(&rectangle); }
+//inline point_i32& bottom_right(const ::rectangle_i32& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline point_i64& top_left(const RECTANGLE_I64* prectangle) { return *(point_i64*)prectangle; }
-//inline point_i64& bottom_right(const RECTANGLE_I64* prectangle) { return *(point_i64*)& prectangle->right; }
-//inline point_i64& top_left(const RECTANGLE_I64& rectangle) { return top_left(&rectangle); }
-//inline point_i64& bottom_right(const RECTANGLE_I64& rectangle) { return bottom_right(&rectangle); }
+//inline point_i64& top_left(const ::rectangle_i64* prectangle) { return *(point_i64*)prectangle; }
+//inline point_i64& bottom_right(const ::rectangle_i64* prectangle) { return *(point_i64*)& prectangle->right; }
+//inline point_i64& top_left(const ::rectangle_i64& rectangle) { return top_left(&rectangle); }
+//inline point_i64& bottom_right(const ::rectangle_i64& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline point_f64& top_left(const RECTANGLE_F64* prectangle) { return *(point_f64*)prectangle; }
-//inline point_f64& bottom_right(const RECTANGLE_F64* prectangle) { return *(point_f64*)& prectangle->right; }
-//inline point_f64& top_left(const RECTANGLE_F64& rectangle) { return top_left(&rectangle); }
-//inline point_f64& bottom_right(const RECTANGLE_F64& rectangle) { return bottom_right(&rectangle); }
+//inline point_f64& top_left(const ::rectangle_f64* prectangle) { return *(point_f64*)prectangle; }
+//inline point_f64& bottom_right(const ::rectangle_f64* prectangle) { return *(point_f64*)& prectangle->right; }
+//inline point_f64& top_left(const ::rectangle_f64& rectangle) { return top_left(&rectangle); }
+//inline point_f64& bottom_right(const ::rectangle_f64& rectangle) { return bottom_right(&rectangle); }
 
 
 //template < typename X, typename Y >
@@ -239,7 +239,7 @@
 //inline ::string as_string(const POINT & point)
 //{
 //
-//   str = as_string(point.x) + ", " + as_string(point.y);
+//   str = as_string(point.x()) + ", " + as_string(point.y());
 //
 //}
 //

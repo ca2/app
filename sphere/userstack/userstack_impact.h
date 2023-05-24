@@ -68,7 +68,7 @@ namespace userstack
 
       ::user::document * get_document();
 
-      void GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea);
+      void GetAreaThumbRect(::rectangle_i32 * lprect, i32 iArea);
 
       ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 

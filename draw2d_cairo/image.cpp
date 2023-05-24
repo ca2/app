@@ -269,13 +269,13 @@ namespace draw2d_cairo
 //   bool image::to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & ptSrc)
 //   {
 //
-//      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != false;
+//      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x(), ptSrc.y()) != false;
 //
 //      /*  return SetDIBitsToDevice(
 //           (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
-//           point.x, point.y,
+//           point.x(), point.y(),
 //           size.cx, size.cy,
-//           ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
+//           ptSrc.x(), ptSrc.y(), ptSrc.y(), cy - ptSrc.y(),
 //           m_pcolorrefMap, &m_info, 0)
 //              != false; */
 //
@@ -315,7 +315,7 @@ namespace draw2d_cairo
 //   bool image::from(const ::point_i32 & pointDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size)
 //   {
 //
-//      return m_spgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y);
+//      return m_spgraphics->BitBlt(pointDest.x(), pointDest.y(), sz.cx, sz.cy, pgraphics, point.x(), point.y());
 //
 //   }
 
@@ -968,22 +968,22 @@ namespace draw2d_cairo
 
       pointDst += m_point;
 
-      if (pointDst.x < 0)
+      if (pointDst.x() < 0)
       {
-         pointDst.x -= pointSrc.x;
-         pointSrc.x = 0;
+         pointDst.x() -= pointSrc.x();
+         pointSrc.x() = 0;
       }
 
-      if (pointSrc.y < 0)
+      if (pointSrc.y() < 0)
       {
-         pointDst.y -= pointSrc.y;
-         pointSrc.y = 0;
+         pointDst.y() -= pointSrc.y();
+         pointSrc.y() = 0;
       }
 
-      if (pointDst.x < 0)
+      if (pointDst.x() < 0)
       {
-         size.cx += pointDst.x;
-         pointDst.x = 0;
+         size.cx += pointDst.x();
+         pointDst.x() = 0;
       }
 
       if (size.cx < 0)
@@ -993,10 +993,10 @@ namespace draw2d_cairo
 
       }
 
-      if (pointDst.y < 0)
+      if (pointDst.y() < 0)
       {
-         size.cy += pointDst.y;
-         pointDst.y = 0;
+         size.cy += pointDst.y();
+         pointDst.y() = 0;
       }
 
       if (size.cy < 0)
@@ -1006,9 +1006,9 @@ namespace draw2d_cairo
 
       }
 
-      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x(), pimplDst->width() - pointDst.x()));
 
-      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y(), pimplDst->height() - pointDst.y()));
 
       if (xEnd < 0)
       {
@@ -1033,15 +1033,15 @@ namespace draw2d_cairo
       byte * psrc2;
 
 #ifdef APPLEOS
-      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
+      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
+      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
 
 #else
 
-      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
+      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
 
 #endif
 
@@ -1292,22 +1292,22 @@ namespace draw2d_cairo
 //
 //      pointDst += m_point;
 //
-//      if (pointSrc.x < 0)
+//      if (pointSrc.x() < 0)
 //      {
-//         pointDst.x -= pointSrc.x;
-//         pointSrc.x = 0;
+//         pointDst.x() -= pointSrc.x();
+//         pointSrc.x() = 0;
 //      }
 //
-//      if (pointSrc.y < 0)
+//      if (pointSrc.y() < 0)
 //      {
-//         pointDst.y -= pointSrc.y;
-//         pointSrc.y = 0;
+//         pointDst.y() -= pointSrc.y();
+//         pointSrc.y() = 0;
 //      }
 //
-//      if (pointDst.x < 0)
+//      if (pointDst.x() < 0)
 //      {
-//         size.cx += pointDst.x;
-//         pointDst.x = 0;
+//         size.cx += pointDst.x();
+//         pointDst.x() = 0;
 //      }
 //
 //      if (size.cx < 0)
@@ -1318,10 +1318,10 @@ namespace draw2d_cairo
 //      }
 //      //return true;
 //
-//      if (pointDst.y < 0)
+//      if (pointDst.y() < 0)
 //      {
-//         size.cy += pointDst.y;
-//         pointDst.y = 0;
+//         size.cy += pointDst.y();
+//         pointDst.y() = 0;
 //      }
 //
 //      if (size.cy < 0)
@@ -1331,9 +1331,9 @@ namespace draw2d_cairo
 //         return;
 //      }
 //
-//      int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+//      int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x(), pimageDst->width() - pointDst.x()));
 //
-//      int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+//      int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y(), pimageDst->height() - pointDst.y()));
 //
 //      if (xEnd < 0)
 //      {
@@ -1353,9 +1353,9 @@ namespace draw2d_cairo
 //
 //      i32 scanSrc = pimageSrc->m_iScan;
 //
-//      byte * pdst = ((byte *) pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
+//      byte * pdst = ((byte *) pimageDst->colorref()) + (scanDst * pointDst.y()) + (pointDst.x() * sizeof(color32_t));
 //
-//      byte * psrc = ((byte *) pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
+//      byte * psrc = ((byte *) pimageSrc->colorref()) + (scanSrc * pointSrc.y()) + (pointSrc.x() * sizeof(color32_t));
 //
 //      byte * pdst2;
 //
@@ -1483,22 +1483,22 @@ namespace draw2d_cairo
 //
 //      pointDst += m_point;
 //
-//      if (pointDst.x < 0)
+//      if (pointDst.x() < 0)
 //      {
-//         pointDst.x -= pointSrc.x;
-//         pointSrc.x = 0;
+//         pointDst.x() -= pointSrc.x();
+//         pointSrc.x() = 0;
 //      }
 //
-//      if (pointSrc.y < 0)
+//      if (pointSrc.y() < 0)
 //      {
-//         pointDst.y -= pointSrc.y;
-//         pointSrc.y = 0;
+//         pointDst.y() -= pointSrc.y();
+//         pointSrc.y() = 0;
 //      }
 //
-//      if (pointDst.x < 0)
+//      if (pointDst.x() < 0)
 //      {
-//         size.cx += pointDst.x;
-//         pointDst.x = 0;
+//         size.cx += pointDst.x();
+//         pointDst.x() = 0;
 //      }
 //
 //      if (size.cx < 0)
@@ -1508,10 +1508,10 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      if (pointDst.y < 0)
+//      if (pointDst.y() < 0)
 //      {
-//         size.cy += pointDst.y;
-//         pointDst.y = 0;
+//         size.cy += pointDst.y();
+//         pointDst.y() = 0;
 //      }
 //
 //      if (size.cy < 0)
@@ -1521,9 +1521,9 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+//      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x(), pimplDst->width() - pointDst.x()));
 //
-//      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+//      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y(), pimplDst->height() - pointDst.y()));
 //
 //      if (xEnd < 0)
 //      {
@@ -1548,15 +1548,15 @@ namespace draw2d_cairo
 //      byte * psrc2;
 //
 //#ifdef APPLEOS
-//      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
+//      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
 //
-//      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
+//      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
 //
 //#else
 //
-//      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+//      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
 //
-//      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
+//      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
 //
 //#endif
 //

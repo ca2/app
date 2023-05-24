@@ -1075,9 +1075,9 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.lParam = MAKELPARAM((long)x, (long)y);
 
-   msg.pt.x = (long)x;
+   msg.pt.x() = (long)x;
 
-   msg.pt.y = (long)y;
+   msg.pt.y() = (long)y;
 
    //psystem->get_session()->m_puserinteractionHost->message_handler(&msg);
    psystem->get_session()->m_puserinteractionHost->post_message(msg.message, msg.wParam, msg.lParam);
@@ -1578,7 +1578,7 @@ CLASS_DECL_CORE void message_box_synchronous(oswindow oswindow, const ::string &
 int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
-   return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;
+   return abs(ptHitTest.x()) < iMargin && abs(ptHitTest.y()) < iMargin;
 
 }
 
@@ -1603,7 +1603,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 
 
 
-int get_main_screen_rectangle(RECTANGLE_I32 * lprect)
+int get_main_screen_rectangle(::rectangle_i32 * lprect)
 {
 
    *lprect = psystem->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;

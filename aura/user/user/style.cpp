@@ -290,7 +290,7 @@ namespace user
 
          auto offset = rectangleClient.center();
 
-         mTrans.append(::draw2d::matrix::translation(offset.x, offset.y));
+         mTrans.append(::draw2d::matrix::translation(offset.x(), offset.y()));
 
          pgraphics->append(mTrans);
 

@@ -302,7 +302,7 @@
 //
 //
 //public:
-//   static void CalcBorders(RECTANGLE_I32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
+//   static void CalcBorders(::rectangle_i32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
 //
 //
 //protected:

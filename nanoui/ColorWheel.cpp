@@ -54,8 +54,8 @@ namespace nanoui
 
       }
 
-      float x = (float)m_pos.x(), y = (float)m_pos.y(),
-         w = (float)m_size.x(), h = (float)m_size.y();
+      float x = (float)m_pos.x()(), y = (float)m_pos.y()(),
+         w = (float)m_size.x()(), h = (float)m_size.y()();
 
       float hue = m_hue;
       ::nano2d::paint paint;
@@ -217,17 +217,17 @@ namespace nanoui
    ColorWheel::Region ColorWheel::adjust_position(const vector2_i32& p)
    {
 
-      float x = (float) p.x();
+      float x = (float) p.x()();
       
-      float y = (float) p.y();
+      float y = (float) p.y()();
       
-      x -= (float) m_pos.x();
+      x -= (float) m_pos.x()();
       
-      y -= (float) m_pos.y();
+      y -= (float) m_pos.y()();
 
-      float pwidget = (float)m_size.x();
+      float pwidget = (float)m_size.x()();
       
-      float h = (float)m_size.y();
+      float h = (float)m_size.y()();
 
       float cx = pwidget / 2.f;
 
@@ -279,8 +279,8 @@ namespace nanoui
          sin_a * x + cos_a * y);
 
       float r = r0 - 6;
-      float l0 = (float)(r - xy.x() + std::sqrt(3.f) * xy.y()) / (3.f * r);
-      float l1 = (float)(r - xy.x() - std::sqrt(3.f) * xy.y()) / (3.f * r);
+      float l0 = (float)(r - xy.x()() + std::sqrt(3.f) * xy.y()()) / (3.f * r);
+      float l1 = (float)(r - xy.x()() - std::sqrt(3.f) * xy.y()()) / (3.f * r);
       float l2 = 1 - l0 - l1;
       bool triangle_test = l0 >= 0 && l0 <= 1.f && l1 >= 0.f && l1 <= 1.f &&
          l2 >= 0.f && l2 <= 1.f;

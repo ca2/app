@@ -4,6 +4,7 @@
 
 //#include "acme/primitive/mathematics/c_number.h"
 #include "acme/primitive/primitive/atom.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 struct MESSAGE
@@ -13,7 +14,7 @@ struct MESSAGE
    ::atom                  m_atom;
    wparam                  wParam;
    lparam                  lParam;
-   POINT_I32               pt;
+   ::point_i32               pt;
    ::u64                   time;
 
 

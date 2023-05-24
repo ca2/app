@@ -9,7 +9,7 @@
 /**
  * \file nanoui/button.h
  *
- * \brief Defines the [Normal/Toggle/Radio/Popup] \ref nanoui::Button pwidget.
+ * \brief Defines the [Normal/Toggle/Radio/Popup] \::pointer nanoui::Button pwidget.
  */
 
 #pragma once
@@ -53,7 +53,7 @@ namespace nanoui
    
    //protected:
       /// The caption of this Button.
-      ::string m_caption;
+      ::string m_strCaption;
 
       float m_tw;
       float m_iw;
@@ -65,7 +65,7 @@ namespace nanoui
        * \rst
        * The icon to display with this Button.  If not ``0``, may either be a
        * picture icon, or one of the icons enumerated in
-       * :ref:`file_nanoui_entypo.h`.  The kind of icon (image or Entypo)
+       * :::pointer:`file_nanoui_entypo.h`.  The kind of icon (image or Entypo)
        * is determined by the functions :func:`nanoui::::nano2d::IsImageIcon` and its
        * reciprocal counterpart :func:`nanoui::::nano2d::IsFontIcon`.
        * \endrst
@@ -78,7 +78,7 @@ namespace nanoui
       /// Whether or not this Button is checked.
       bool m_bChecked;
 
-      /// The current flags of this button (see \ref nanoui::Button::Flags for options).
+      /// The current flags of this button (see \::pointer nanoui::Button::Flags for options).
       int m_flags;
 
       /// The background color::color of this Button.
@@ -102,21 +102,21 @@ namespace nanoui
        * \brief Creates a button attached to the specified parent.
        *
        * \param parent
-       *     The \ref nanoui::Widget this Button will be attached to.
+       *     The \::pointer nanoui::Widget this Button will be attached to.
        *
        * \param caption
        *     The name of the button (default ``"Untitled"``).
        *
        * \param icon
-       *     The icon to display with this Button.  See \ref nanoui::Button::mIcon.
+       *     The icon to display with this Button.  See \::pointer nanoui::Button::mIcon.
        */
       Button(Widget * parent, const ::scoped_string & caption = "Untitled", int icon = 0);
 
       /// Returns the caption of this Button.
-      ::string caption() const { return m_caption; }
+      ::string caption() const { return m_strCaption; }
 
       /// Sets the caption of this Button.
-      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
+      void set_caption(const ::scoped_string & caption) { m_strCaption = caption; }
 
       /// Returns the background color::color of this Button.
       const color::color & colorBackground() const { return m_colorBackground; }
@@ -129,14 +129,14 @@ namespace nanoui
       void set_text_color(const color::color & text_color) { m_colorText = text_color; }
    
    
-      /// Returns the icon of this Button.  See \ref nanoui::Button::m_icon.
+      /// Returns the icon of this Button.  See \::pointer nanoui::Button::m_icon.
       int icon() const { return m_icon; }
-      /// Sets the icon of this Button.  See \ref nanoui::Button::m_icon.
+      /// Sets the icon of this Button.  See \::pointer nanoui::Button::m_icon.
       void set_icon(int icon) { m_icon = icon; }
 
-      /// The current flags of this Button (see \ref nanoui::Button::Flags for options).
+      /// The current flags of this Button (see \::pointer nanoui::Button::Flags for options).
       int flags() const { return m_flags; }
-      /// Sets the flags of this Button (see \ref nanoui::Button::Flags for options).
+      /// Sets the flags of this Button (see \::pointer nanoui::Button::Flags for options).
       void set_flags(int button_flags) { m_flags = button_flags; }
 
       /// The position of the icon for this Button.

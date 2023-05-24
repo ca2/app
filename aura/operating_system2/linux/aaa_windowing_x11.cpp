@@ -152,7 +152,7 @@ Window g_windowX11Client = 0;
 
 
 
-int_bool _x11_get_cursor_pos(Display * d, POINT_I32 * ppointCursor);
+int_bool _x11_get_cursor_pos(Display * d, ::point_i32 * ppointCursor);
 
 
 
@@ -168,7 +168,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet);
 CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow);
 
 
-int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);
+int_bool x11_get_cursor_pos(::point_i32 * ppointCursor);
 
 #if !defined(RASPBERRYPIOS)
 
@@ -464,7 +464,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 }
 
 
-int_bool x11_get_window_rect(Display * d, Window window, RECTANGLE_I32 * prectangle)
+int_bool x11_get_window_rect(Display * d, Window window, ::rectangle_i32 * prectangle)
 
 {
 
@@ -491,13 +491,13 @@ int_bool x11_get_window_rect(Display * d, Window window, RECTANGLE_I32 * prectan
 
    XTranslateCoordinates( d, window, windowRoot, 0, 0, &x, &y, &child );
 
-   prectangle->left      = x + attrs.x;
+   prectangle->left      = x + attrs.x();
 
-   prectangle->top       = y + attrs.y;
+   prectangle->top       = y + attrs.y();
 
-   prectangle->right     = x + attrs.x    + attrs.width;
+   prectangle->right     = x + attrs.x()    + attrs.width;
 
-   prectangle->bottom    = y + attrs.y    + attrs.height;
+   prectangle->bottom    = y + attrs.y()    + attrs.height;
 
 
 
@@ -909,7 +909,7 @@ bool x11_window_list(Display *disp, array < Window > & windowa)
 
 }
 
-bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, int iMargin)
+bool point_is_window_origin(::point_i32 pointHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    bool bIsOrigin = false;
@@ -3511,9 +3511,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    case MotionNotify:
    {
 
-      g_pointX11Cursor.x = e.xmotion.x_root;
+      g_pointX11Cursor.x() = e.xmotion.x_root;
 
-      g_pointX11Cursor.y = e.xmotion.y_root;
+      g_pointX11Cursor.y() = e.xmotion.y_root;
 
       if(msg.hwnd != nullptr && msg.hwnd->m_pimpl != nullptr)
       {
@@ -3537,9 +3537,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                pinteraction->m_durationMouseMove.Now();
 
-               pinteraction->m_pointMouseMove.x = e.xmotion.x_root;
+               pinteraction->m_pointMouseMove.x() = e.xmotion.x_root;
 
-               pinteraction->m_pointMouseMove.y = e.xmotion.y_root;
+               pinteraction->m_pointMouseMove.y() = e.xmotion.y_root;
 
                if(false)
                {
@@ -3547,8 +3547,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if(pinteraction->m_durationMouseMovePeriod > 0)
                   {
 
-                     ::size_i32 sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
-                        (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
+                     ::size_i32 sizeDistance((pinteraction->m_pointMouseMoveSkip.x() - pinteraction->m_pointMouseMove.x()),
+                        (pinteraction->m_pointMouseMoveSkip.y() - pinteraction->m_pointMouseMove.y()));
 
                      if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
                         && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
@@ -3845,7 +3845,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   //_x11_defer_check_configuration(msg.hwnd);
 
-                  ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
+                  ::point_i32 point(e.xconfigure.x(), e.xconfigure.y());
 
                   ::size_i32 size(e.xconfigure.width, e.xconfigure.height);
 
@@ -4083,8 +4083,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
       int YRoot = e.xbutton.y_root;
 
-//      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x;
-//      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y;
+//      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x();
+//      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y();
 //      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx;
 //      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy;
 //
@@ -4609,7 +4609,7 @@ int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32
 
 
 
-int_bool window_rectangle(oswindow hwnd, RECTANGLE_I32 * prectangle)
+int_bool window_rectangle(oswindow hwnd, ::rectangle_i32 * prectangle)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -4630,7 +4630,7 @@ int_bool window_rectangle(oswindow hwnd, RECTANGLE_I32 * prectangle)
 }
 
 
-int_bool client_rectangle(oswindow window, RECTANGLE_I32 * prectangle)
+int_bool client_rectangle(oswindow window, ::rectangle_i32 * prectangle)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -4672,7 +4672,7 @@ int_bool client_rectangle(oswindow window, RECTANGLE_I32 * prectangle)
 }
 
 
-int_bool ca2_GetClientRect(oswindow window, RECTANGLE_I32 * prectangle)
+int_bool ca2_GetClientRect(oswindow window, ::rectangle_i32 * prectangle)
 {
 
    synchronous_lock synchronouslock(window->m_pimpl->m_puserinteraction->synchronization());
@@ -4688,7 +4688,7 @@ int_bool ca2_GetClientRect(oswindow window, RECTANGLE_I32 * prectangle)
 
 
 
-int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor)
+int_bool x11_get_cursor_pos(::point_i32 * ppointCursor)
 {
 
    Window root_return;
@@ -4733,7 +4733,7 @@ int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor)
 }
 
 
-int_bool GetCursorPos(POINT_I32 * ppointCursor)
+int_bool GetCursorPos(::point_i32 * ppointCursor)
 {
 
    x11_sync([&]()
@@ -5404,7 +5404,7 @@ CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const po
 
 
 
-int_bool _x11_get_cursor_pos(Display * d, POINT_I32 * ppointCursor);
+int_bool _x11_get_cursor_pos(Display * d, ::point_i32 * ppointCursor);
 
 
 
@@ -5420,7 +5420,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet);
 CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow);
 
 
-int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);
+int_bool x11_get_cursor_pos(::point_i32 * ppointCursor);
 
 
 

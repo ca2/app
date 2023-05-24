@@ -690,9 +690,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, xcb_generic_event_t * peve
 
       e.xbutton.window = pbutton->event;
 
-      e.xbutton.x = pbutton->event_x;
+      e.xbutton.x() = pbutton->event_x;
 
-      e.xbutton.y = pbutton->event_y;
+      e.xbutton.y() = pbutton->event_y;
 
       e.xbutton.x_root = pbutton->root_x;
 

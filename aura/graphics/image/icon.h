@@ -27,7 +27,7 @@ namespace draw2d
 
       ::pointer<::windowing::icon>             m_pwindowingicon;
       ::pointer<size_image>                    m_pimagemap;
-      array < concrete < ::size_i32 > >         m_sizea;
+      array < ::size_i32 >                      m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
       bool                                      m_bAutoDelete;
       string                                    m_strAppTrayIcon;
@@ -67,15 +67,15 @@ namespace draw2d
 //      image_pointer get_image(const concrete < ::size_i32 > & size);
 
 
-      image_pointer image_source_image(const concrete < ::size_i32 > & size) override;
+      image_pointer image_source_image(const ::size_i32& size) override;
 
 
       // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
 
-      concrete < ::size_i32 > image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
+      ::size_i32 image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
 
       
-      concrete < ::size_i32 > image_source_size() const override;
+      ::size_i32 image_source_size() const override;
 
          
    };

@@ -549,7 +549,7 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
 
    };
 
-   pbutton->initialize_popup_button("Dump to File...", pmouse->m_point.x, pmouse->m_point.y);
+   pbutton->initialize_popup_button("Dump to File...", pmouse->m_point.x(), pmouse->m_point.y());
 
    pbutton->do_asynchronously();
 

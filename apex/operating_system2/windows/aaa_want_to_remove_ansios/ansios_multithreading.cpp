@@ -390,8 +390,8 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,::u32 Msg,WP
    msg.message = Msg;
    msg.wParam  = wParam;
    msg.lParam  = lParam;
-   msg.pt.x    = 0x80000000;
-   msg.pt.y    = 0x80000000;
+   msg.pt.x()    = 0x80000000;
+   msg.pt.y()    = 0x80000000;
    msg.hwnd    = nullptr;
 
    pmq->ma.add(msg);

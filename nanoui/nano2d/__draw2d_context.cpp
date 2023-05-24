@@ -795,7 +795,7 @@ namespace nano2d
 
          positions[iChar].str = psz;
 
-         positions[iChar].x = (float) (x+ offsetx+daLeft[psz - pszStart]);
+         positions[iChar].x() = (float) (x+ offsetx+daLeft[psz - pszStart]);
 
          positions[iChar].minx = (float) (x + offsetx + daLeft[psz - pszStart]);
 

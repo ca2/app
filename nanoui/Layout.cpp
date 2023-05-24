@@ -234,12 +234,12 @@ namespace nanoui
 
          }
 
-         const Label* label = dynamic_cast<const Label*>(pwidgetChild);
+         ::pointer <Label> plabel = pwidgetChild;
 
          if (!bFirst)
          {
 
-            height += (label == nullptr) ? m_iSpacing : m_group_spacing;
+            height += !plabel ? m_iSpacing : m_group_spacing;
 
          }
 
@@ -256,16 +256,16 @@ namespace nanoui
             });
 
 
-         bool indent_cur = indent && label == nullptr;
+         bool indent_cur = indent && !plabel;
 
-         height += sizeTarget.y();
+         height += sizeTarget.y()();
 
-         width = ::maximum(width, sizeTarget.x() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
+         width = ::maximum(width, sizeTarget.x()() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
 
-         if (label)
+         if (plabel)
          {
 
-            indent = label->caption().has_char();
+            indent = plabel->caption().has_char();
 
          }
 
@@ -308,18 +308,18 @@ namespace nanoui
 
          }
 
-         const Label* label = dynamic_cast<const Label*>(pwidgetChild);
+         ::pointer < Label > plabel = pwidgetChild;
 
          if (!bFirst)
          {
 
-            height += (label == nullptr) ? m_iSpacing : m_group_spacing;
+            height += (!plabel) ? m_iSpacing : m_group_spacing;
 
          }
 
          bFirst = false;
 
-         bool indent_cur = indent && label == nullptr;
+         bool indent_cur = indent && !plabel;
 
          auto sizeFixed = pwidgetChild->fixed_size();
 
@@ -328,7 +328,7 @@ namespace nanoui
             {
 
                return vector2_i32(available_width - (indent_cur ? m_group_indent : 0),
-               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).y());
+               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).y()());
 
             });
 
@@ -338,11 +338,17 @@ namespace nanoui
 
          pwidgetChild->perform_layout(pcontext);
 
-         height += sizeTarget.y();
+         height += sizeTarget.y()();
 
-         if (label)
-            indent = label->caption().has_char();
+         if (plabel)
+         {
+
+            indent = plabel->caption().has_char();
+
+         }
+
       }
+
    }
 
 

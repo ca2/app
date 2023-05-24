@@ -83,7 +83,7 @@ namespace quartz2d
       CGContextSetTextDrawingMode (m_pdc, kCGTextInvisible);
       CGContextShowText (m_pdc, str, str.length());
       CGPoint pointSize = CGContextGetTextPosition(m_pdc);
-      pointSize.y = pnanofont->m_iFontSize;
+      pointSize.y() = pnanofont->m_iFontSize;
 
       CGContextSetTextDrawingMode (m_pdc, kCGTextFill);
       CGAffineTransform trans = CGAffineTransformMakeScale(1, -1);
@@ -100,30 +100,30 @@ namespace quartz2d
       if(ealign & e_align_horizontal_center)
       {
 
-         x += ((double) rectangleText.width() - pointSize.x) / 2.0;
+         x += ((double) rectangleText.width() - pointSize.x()) / 2.0;
 
       }
       else if(ealign & e_align_right)
       {
 
-         x += (double) rectangleText.width() - pointSize.x;
+         x += (double) rectangleText.width() - pointSize.x();
 
       }
 
       if(ealign & e_align_vertical_center)
       {
 
-         y += ((double) rectangleText.height() - pointSize.y) / 2.0;
+         y += ((double) rectangleText.height() - pointSize.y()) / 2.0;
 
       }
       else if(ealign & e_align_bottom)
       {
 
-         y += (double) rectangleText.height() - pointSize.y;
+         y += (double) rectangleText.height() - pointSize.y();
 
       }
       
-      y += pointSize.y;
+      y += pointSize.y();
 
       CGContextShowTextAtPoint (m_pdc, x, y, str, str.length());
 
@@ -142,7 +142,7 @@ namespace quartz2d
 
       ::size_i32 size;
       
-      size.cx = pointSize.x;
+      size.cx = pointSize.x();
       size.cy = pnanofont->m_iFontSize;
       
       return size;
@@ -157,8 +157,8 @@ namespace quartz2d
 
       CGRect rect;
       
-      rect.origin.x = rectangle.left;
-      rect.origin.y = rectangle.top;
+      rect.origin.x() = rectangle.left;
+      rect.origin.y() = rectangle.top;
       rect.size.width = rectangle.width();
       rect.size.height = rectangle.height();
 

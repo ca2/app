@@ -85,9 +85,9 @@ namespace nanoui
 
    protected:
       // opengl
-      //nanoui::ref<Shader> m_image_shader;
+      //nanoui::::pointer<Shader> m_image_shader;
       // opengl
-      //nanoui::ref<Texture> m_image;
+      //nanoui::::pointer<Texture> m_image;
       //::image_pointer m_pimage;
       float m_scale = 0;
       vector2_f32 m_offset = 0;

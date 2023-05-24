@@ -79,7 +79,7 @@ namespace user
 
 
 
-   //bool drawable::_get_client_rect(RECTANGLE_I64 * prectangle)
+   //bool drawable::_get_client_rect(::rectangle_i64 * prectangle)
    //{
 
    //   copy(prectangle, get_window_rect64());
@@ -91,7 +91,7 @@ namespace user
    //}
 
 
-   //bool drawable::_get_window_rect(RECTANGLE_I64 * prectangle)
+   //bool drawable::_get_window_rect(::rectangle_i64 * prectangle)
    //{
 
    //   copy(prectangle, get_client_rect64());

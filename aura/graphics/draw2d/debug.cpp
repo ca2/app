@@ -11,7 +11,7 @@
 //
 //dump_context & operator<<(dump_context & dumpcontext,const ::point_i32 & point)
 //{
-//   dumpcontext << "(" << point.x << ", " << point.y << ")";
+//   dumpcontext << "(" << point.x() << ", " << point.y() << ")";
 //   return dumpcontext;
 //}
 //

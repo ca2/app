@@ -34,9 +34,9 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
    HIGetMousePosition(space, nullptr, &point);
 
 
-   ppointCursor->x = point.x;
+   ppointCursor->x = point.x();
 
-   ppointCursor->y = point.y;
+   ppointCursor->y = point.y();
 
 
 

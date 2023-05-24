@@ -721,7 +721,7 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 & rectText)
+   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 & rectText)
    {
 
       ::rectangle_i32 rectangleText(rectText);
@@ -1275,7 +1275,7 @@ namespace user
    }
 
 
-   void button::BaseToolTipGetRect(RECTANGLE_I32 & rectangle)
+   void button::BaseToolTipGetRect(::rectangle_i32 & rectangle)
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32

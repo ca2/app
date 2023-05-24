@@ -126,7 +126,7 @@
 ////      oblt(rectangle);
 ////
 ////   }
-////   void payload_stream::write(RECTANGLE_I32 * pcrect)
+////   void payload_stream::write(::rectangle_i32 * pcrect)
 //
 ////   {
 ////
@@ -192,7 +192,7 @@
 ////#endif
 ////   void payload_stream::read(float & f);
 ////   void payload_stream::read(double & d);
-////   void payload_stream::read(RECTANGLE_I32 * prectangle);
+////   void payload_stream::read(::rectangle_i32 * prectangle);
 //
 ////   void payload_stream::read(const size_i32 & & size);
 ////   void payload_stream::read(atom & atom);

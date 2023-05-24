@@ -1743,7 +1743,7 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
                points += 2;
             }
          }
-         vertices[off + i].x = (stbtt_int16)x;
+         vertices[off + i].x() = (stbtt_int16)x;
       }
 
       // now load y coordinates
@@ -1760,7 +1760,7 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
                points += 2;
             }
          }
-         vertices[off + i].y = (stbtt_int16)y;
+         vertices[off + i].y() = (stbtt_int16)y;
       }
 
       // now convert them to our format
@@ -1768,8 +1768,8 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
       sx = sy = cx = cy = scx = scy = 0;
       for (i = 0; i < n; ++i) {
          flags = vertices[off + i].type;
-         x = (stbtt_int16)vertices[off + i].x;
-         y = (stbtt_int16)vertices[off + i].y;
+         x = (stbtt_int16)vertices[off + i].x();
+         y = (stbtt_int16)vertices[off + i].y();
 
          if (next_move == i) {
             if (i != 0)
@@ -1784,13 +1784,13 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
                scy = y;
                if (!(vertices[off + i + 1].type & 1)) {
                   // next point is also a curve point, so interpolate an on-point curve
-                  sx = (x + (stbtt_int32)vertices[off + i + 1].x) >> 1;
-                  sy = (y + (stbtt_int32)vertices[off + i + 1].y) >> 1;
+                  sx = (x + (stbtt_int32)vertices[off + i + 1].x()) >> 1;
+                  sy = (y + (stbtt_int32)vertices[off + i + 1].y()) >> 1;
                }
                else {
                   // otherwise just use the next point as our start point
-                  sx = (stbtt_int32)vertices[off + i + 1].x;
-                  sy = (stbtt_int32)vertices[off + i + 1].y;
+                  sx = (stbtt_int32)vertices[off + i + 1].x();
+                  sy = (stbtt_int32)vertices[off + i + 1].y();
                   ++i; // we're using point i+1 as the starting point, so skip it
                }
             }
@@ -3508,18 +3508,18 @@ static void stbtt__rasterize(stbtt__bitmap * result, stbtt__point * pts, int * w
       for (k = 0; k < wcount[i]; j = k++) {
          int a = k, b = j;
          // skip the edge if horizontal
-         if (p[j].y == p[k].y)
+         if (p[j].y() == p[k].y())
             continue;
          // add edge from j to k to the list
          e[n].invert = 0;
-         if (invert ? p[j].y > p[k].y : p[j].y < p[k].y) {
+         if (invert ? p[j].y() > p[k].y() : p[j].y() < p[k].y()) {
             e[n].invert = 1;
             a = j, b = k;
          }
-         e[n].x0 = p[a].x * scale_x + shift_x;
-         e[n].y0 = (p[a].y * y_scale_inv + shift_y) * vsubsample;
-         e[n].x1 = p[b].x * scale_x + shift_x;
-         e[n].y1 = (p[b].y * y_scale_inv + shift_y) * vsubsample;
+         e[n].x0 = p[a].x() * scale_x + shift_x;
+         e[n].y0 = (p[a].y() * y_scale_inv + shift_y) * vsubsample;
+         e[n].x1 = p[b].x() * scale_x + shift_x;
+         e[n].y1 = (p[b].y() * y_scale_inv + shift_y) * vsubsample;
          ++n;
       }
    }
@@ -3537,8 +3537,8 @@ static void stbtt__rasterize(stbtt__bitmap * result, stbtt__point * pts, int * w
 static void stbtt__add_point(stbtt__point * points, int n, float x, float y)
 {
    if (!points) return; // during first pass, it's unallocated
-   points[n].x = x;
-   points[n].y = y;
+   points[n].x() = x;
+   points[n].y() = y;
 }
 
 // tessellate until threshold p is happy... @TODO warped to compensate for non-linear stretching
@@ -3648,27 +3648,27 @@ static stbtt__point * stbtt_FlattenCurves(stbtt_vertex * vertices, int num_verts
             ++n;
             start = num_points;
 
-            x = vertices[i].x, y = vertices[i].y;
+            x = vertices[i].x(), y = vertices[i].y();
             stbtt__add_point(points, num_points++, x, y);
             break;
          case STBTT_vline:
-            x = vertices[i].x, y = vertices[i].y;
+            x = vertices[i].x(), y = vertices[i].y();
             stbtt__add_point(points, num_points++, x, y);
             break;
          case STBTT_vcurve:
             stbtt__tesselate_curve(points, &num_points, x, y,
                vertices[i].cx, vertices[i].cy,
-               vertices[i].x, vertices[i].y,
+               vertices[i].x(), vertices[i].y(),
                objspace_flatness_squared, 0);
-            x = vertices[i].x, y = vertices[i].y;
+            x = vertices[i].x(), y = vertices[i].y();
             break;
          case STBTT_vcubic:
             stbtt__tesselate_cubic(points, &num_points, x, y,
                vertices[i].cx, vertices[i].cy,
                vertices[i].cx1, vertices[i].cy1,
-               vertices[i].x, vertices[i].y,
+               vertices[i].x(), vertices[i].y(),
                objspace_flatness_squared, 0);
-            x = vertices[i].x, y = vertices[i].y;
+            x = vertices[i].x(), y = vertices[i].y();
             break;
          }
       }
@@ -3927,8 +3927,8 @@ static void stbrp_pack_rects(stbrp_context * con, stbrp_rect * rects, int num_re
       }
       if (con->y + rects[i].h > con->height)
          break;
-      rects[i].x = con->x;
-      rects[i].y = con->y;
+      rects[i].x() = con->x;
+      rects[i].y() = con->y;
       rects[i].was_packed = 1;
       con->x += rects[i].w;
       if (con->y + rects[i].h > con->bottom_y)
@@ -4484,8 +4484,8 @@ static int stbtt__compute_crossings_x(float x, float y, int nverts, stbtt_vertex
    // test a ray from (-infinity,y) to (x,y)
    for (i = 0; i < nverts; ++i) {
       if (verts[i].type == STBTT_vline) {
-         int x0 = (int)verts[i - 1].x, y0 = (int)verts[i - 1].y;
-         int x1 = (int)verts[i].x, y1 = (int)verts[i].y;
+         int x0 = (int)verts[i - 1].x(), y0 = (int)verts[i - 1].y();
+         int x1 = (int)verts[i].x(), y1 = (int)verts[i].y();
          if (y > STBTT_min(y0, y1) && y < STBTT_max(y0, y1) && x > STBTT_min(x0, x1)) {
             float x_inter = (y - y0) / (y1 - y0) * (x1 - x0) + x0;
             if (x_inter < x)
@@ -4493,9 +4493,9 @@ static int stbtt__compute_crossings_x(float x, float y, int nverts, stbtt_vertex
          }
       }
       if (verts[i].type == STBTT_vcurve) {
-         int x0 = (int)verts[i - 1].x, y0 = (int)verts[i - 1].y;
+         int x0 = (int)verts[i - 1].x(), y0 = (int)verts[i - 1].y();
          int x1 = (int)verts[i].cx, y1 = (int)verts[i].cy;
-         int x2 = (int)verts[i].x, y2 = (int)verts[i].y;
+         int x2 = (int)verts[i].x(), y2 = (int)verts[i].y();
          int ax = STBTT_min(x0, STBTT_min(x1, x2)), ay = STBTT_min(y0, STBTT_min(y1, y2));
          int by = STBTT_max(y0, STBTT_max(y1, y2));
          if (y > ay && y < by && x > ax) {
@@ -4508,10 +4508,10 @@ static int stbtt__compute_crossings_x(float x, float y, int nverts, stbtt_vertex
             q2[0] = (float)x2;
             q2[1] = (float)y2;
             if (equal(q0, q1) || equal(q1, q2)) {
-               x0 = (int)verts[i - 1].x;
-               y0 = (int)verts[i - 1].y;
-               x1 = (int)verts[i].x;
-               y1 = (int)verts[i].y;
+               x0 = (int)verts[i - 1].x();
+               y0 = (int)verts[i - 1].y();
+               x1 = (int)verts[i].x();
+               y1 = (int)verts[i].y();
                if (y > STBTT_min(y0, y1) && y < STBTT_max(y0, y1) && x > STBTT_min(x0, x1)) {
                   float x_inter = (y - y0) / (y1 - y0) * (x1 - x0) + x0;
                   if (x_inter < x)
@@ -4615,15 +4615,15 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
 
       for (i = 0, j = num_verts - 1; i < num_verts; j = i++) {
          if (verts[i].type == STBTT_vline) {
-            float x0 = verts[i].x * scale_x, y0 = verts[i].y * scale_y;
-            float x1 = verts[j].x * scale_x, y1 = verts[j].y * scale_y;
+            float x0 = verts[i].x() * scale_x, y0 = verts[i].y() * scale_y;
+            float x1 = verts[j].x() * scale_x, y1 = verts[j].y() * scale_y;
             float dist = (float)STBTT_sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0));
             precompute[i] = (dist == 0) ? 0.0f : 1.0f / dist;
          }
          else if (verts[i].type == STBTT_vcurve) {
-            float x2 = verts[j].x * scale_x, y2 = verts[j].y * scale_y;
+            float x2 = verts[j].x() * scale_x, y2 = verts[j].y() * scale_y;
             float x1 = verts[i].cx * scale_x, y1 = verts[i].cy * scale_y;
-            float x0 = verts[i].x * scale_x, y0 = verts[i].y * scale_y;
+            float x0 = verts[i].x() * scale_x, y0 = verts[i].y() * scale_y;
             float bx = x0 - 2 * x1 + x2, by = y0 - 2 * y1 + y2;
             float len2 = bx * bx + by * by;
             if (len2 != 0.0f)
@@ -4647,7 +4647,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
             int winding = stbtt__compute_crossings_x(x_gspace, y_gspace, num_verts, verts); // @OPTIMIZE: this could just be a rasterization, but needs to be line vs. non-tesselated curves so a memory_new path
 
             for (i = 0; i < num_verts; ++i) {
-               float x0 = verts[i].x * scale_x, y0 = verts[i].y * scale_y;
+               float x0 = verts[i].x() * scale_x, y0 = verts[i].y() * scale_y;
 
                // check against every point here rather than inside line/curve primitives -- @TODO: wrong if multiple 'moves' in a row produce a garbage point, and given culling, probably more efficient to do within line/curve
                float dist2 = (x0 - sx) * (x0 - sx) + (y0 - sy) * (y0 - sy);
@@ -4655,7 +4655,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
                   min_dist = (float)STBTT_sqrt(dist2);
 
                if (verts[i].type == STBTT_vline) {
-                  float x1 = verts[i - 1].x * scale_x, y1 = verts[i - 1].y * scale_y;
+                  float x1 = verts[i - 1].x() * scale_x, y1 = verts[i - 1].y() * scale_y;
 
                   // coarse culling against bbox
                   //if (sx > STBTT_min(x0,x1)-min_dist && sx < STBTT_max(x0,x1)+min_dist &&
@@ -4676,7 +4676,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
                   }
                }
                else if (verts[i].type == STBTT_vcurve) {
-                  float x2 = verts[i - 1].x * scale_x, y2 = verts[i - 1].y * scale_y;
+                  float x2 = verts[i - 1].x() * scale_x, y2 = verts[i - 1].y() * scale_y;
                   float x1 = verts[i].cx * scale_x, y1 = verts[i].cy * scale_y;
                   float box_x0 = STBTT_min(STBTT_min(x0, x1), x2);
                   float box_y0 = STBTT_min(STBTT_min(y0, y1), y2);

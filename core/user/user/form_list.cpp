@@ -1590,7 +1590,7 @@ namespace user
    //   }
 
 
-   void form_list::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
+   void form_list::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
       if (pinteraction == nullptr)
@@ -1646,7 +1646,7 @@ namespace user
    }
 
 
-   void form_list::control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
+   void form_list::control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
       control_get_client_rect(pinteraction, rectangle);

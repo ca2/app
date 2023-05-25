@@ -36,7 +36,7 @@ namespace geometry
       return x * sin(phi) + y * cos(phi);
    }
 
-   void geometry::rotate(i32 xParam, i32 yParam, POINT_I32 * ppoint, i32 iCount, double phi)
+   void geometry::rotate(i32 xParam, i32 yParam, ::point_i32 * ppoint, i32 iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -48,7 +48,7 @@ namespace geometry
    void geometry::rotate(
       i32 xParam,
       i32 yParam,
-      POINT_I32 * ppoint,
+      ::point_i32 * ppoint,
 
       i32 iCount,
       double phicos,
@@ -56,18 +56,18 @@ namespace geometry
    {
       for (i32 i = 0; i < iCount; i++)
       {
-         double x = ppoint[i].x - xParam;
+         double x = ppoint[i].x() - xParam;
 
-         double y = ppoint[i].y - yParam;
+         double y = ppoint[i].y() - yParam;
 
-         ppoint[i].x = (::i32)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x() = (::i32)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y = (::i32)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y() = (::i32)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
 
-   void geometry::rotate(i32 xParam, i32 yParam, POINT_F64 * ppoint, i32 iCount, double phi)
+   void geometry::rotate(i32 xParam, i32 yParam, ::point_f64 * ppoint, i32 iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -79,7 +79,7 @@ namespace geometry
    void geometry::rotate(
       i32 xParam,
       i32 yParam,
-      POINT_F64 * ppoint,
+      ::point_f64 * ppoint,
 
       i32 iCount,
       double phicos,
@@ -87,19 +87,19 @@ namespace geometry
    {
       for (i32 i = 0; i < iCount; i++)
       {
-         double x = ppoint[i].x - xParam;
+         double x = ppoint[i].x() - xParam;
 
-         double y = ppoint[i].y - yParam;
+         double y = ppoint[i].y() - yParam;
 
-         ppoint[i].x = (::i32)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x() = (::i32)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y = (::i32)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y() = (::i32)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
 
 
-   //void geometry::RandomPoint(POINT_I32 * ppoint, const ::rectangle_i32 & rectangle)
+   //void geometry::RandomPoint(::point_i32 * ppoint, const ::rectangle_i32 & rectangle)
    //{
 
    //   ppoint->x = (::i32)Sy(rectangle.left,rectangle.right);
@@ -128,7 +128,7 @@ namespace geometry
    //// Vanessa Testoni
    ////
    ////////////////////////////////////////////////////////////////////////
-   //void geometry::deflate(RECTANGLE_I32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   //void geometry::deflate(::rectangle_i32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 
    //{
    //   ::rectangle_i32 rectangle(prectangle);
@@ -145,18 +145,18 @@ namespace geometry
    //}
 
 
-   void rotation::rotate(POINT_I32 * ppoint, i32 iCount)
+   void rotation::rotate(::point_i32 * ppoint, i32 iCount)
 
    {
       for (i32 i = 0; i < iCount; i++)
       {
-         long x = ppoint[i].x - m_iXCenter;
+         long x = ppoint[i].x() - m_iXCenter;
 
-         long y = ppoint[i].y - m_iYCenter;
+         long y = ppoint[i].y() - m_iYCenter;
 
-         ppoint[i].x = ((::i32)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
+         ppoint[i].x() = ((::i32)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
 
-         ppoint[i].y = ((::i32)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
+         ppoint[i].y() = ((::i32)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
 
       }
    }

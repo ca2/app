@@ -189,7 +189,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, strsize & index, ::wri
 }
 
 
-void xfplayer_impact_line::GetPlacement(RECTANGLE_I32 * prectangle)
+void xfplayer_impact_line::GetPlacement(::rectangle_i32 * prectangle)
 
 {
 
@@ -221,8 +221,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    //   pgraphics->SetBkMode(TRANSPARENT);
 
    point_i32 iMargin;
-   iMargin.x = 3;
-   iMargin.y = 3;
+   iMargin.x() = 3;
+   iMargin.y() = 3;
 
    if (!IsVisible())
    {
@@ -461,8 +461,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    point_i32 iMargin;
    {
-      iMargin.x = (::i32)(sppen->m_dWidth / 2.0);
-      iMargin.y = (::i32)(sppen->m_dWidth / 2.0);
+      iMargin.x() = (::i32)(sppen->m_dWidth / 2.0);
+      iMargin.y() = (::i32)(sppen->m_dWidth / 2.0);
    }
 
    if (!IsVisible())
@@ -1437,9 +1437,9 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::point_i32 point;
 
-      point.x = (::i32) (iLeft - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      point.x() = (::i32) (iLeft - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      point.y = (::i32) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      point.y() = (::i32) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
       {
 
@@ -1765,7 +1765,7 @@ bool xfplayer_impact_line::CalcChar(const ::point_i32 & point, strsize &iChar)
    if (!bInside)
       return false;
 
-   int x = point.x - rectanglePlacement.left;
+   int x = point.x() - rectanglePlacement.left;
 
    for (i32 i = 0; i < m_iaPosition.get_size() - 1; i++)
    {
@@ -1829,9 +1829,9 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 
       if(!bInside)
       {
-         if(point.y < rectanglePlacement.top
-            || (point.y <= rectanglePlacement.bottom &&
-            point.x < rectanglePlacement.left))
+         if(point.y() < rectanglePlacement.top
+            || (point.y() <= rectanglePlacement.bottom &&
+            point.x() < rectanglePlacement.left))
          {
             selection.SetSelBefore(*this);
             GetWndRender()->Redraw(rectanglePlacement);
@@ -1856,7 +1856,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
          }
          else
          {
-            if(point.x < m_tokenaMain.element_at(0).get_position())
+            if(point.x() < m_tokenaMain.element_at(0).get_position())
             {
                selection.SetSelBefore(*this);
             }

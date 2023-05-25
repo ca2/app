@@ -1,33 +1,31 @@
 ﻿#pragma once
 
 
-//#include "_concept.h"
+#include "vector.h"
 
 
-template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
+template < primitive_number NUMBER >
 class point_type :
-   public BASE_TYPE
+   public vector_type < NUMBER, 2 >
 {
 public:
 
 
-   using POINT_BASE_TYPE = BASE_TYPE;
-   using UNIT_TYPE = decltype(POINT_BASE_TYPE::x);
-   using SIZE_TYPE = size_type < SIZE_BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >;
-   using RECTANGLE_TYPE = rectangle_type < RECTANGLE_BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >;
-   //using POINT_ARRAY_TYPE = point_array_base < point_type >;
+   using UNIT_TYPE = NUMBER;
+   using SIZE_TYPE = size_type < NUMBER >;
+   using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
 
-   point_type() noexcept { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE)0; }
+   point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
    point_type(enum_no_initialize) noexcept {  }
-   point_type(::std::nullptr_t) noexcept { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE)0; }
-   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x = x; this->y = y; }
+   point_type(::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
+   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
    point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
    //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
    //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
    //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx, size.cy) {}
    template < primitive_point POINT >
-   point_type(const POINT & point) noexcept { ::copy(*this, point); }
+   point_type(const POINT& point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
 
    template < primitive_size SIZE >
    point_type(const SIZE & size) noexcept { ::copy(*this, size); }
@@ -39,33 +37,35 @@ public:
    //rectangle_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
 #endif
 #ifdef __APPLE__
-//   point_type(const CGPoint & point) noexcept : point_type(point.x, point.y){}
-//   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x, ppoint->y){}
+//   point_type(const CGPoint & point) noexcept : point_type(point.x(), point.y()){}
+//   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x(), ppoint->y()){}
 #endif
+   template < raw_primitive_point RAW_PRIMITIVE_POINT >
+   inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE)point.x; this->y() = (UNIT_TYPE)point.y; return *this; }
 
+   template < primitive_point PRIMITIVE_POINT >
+   inline point_type & operator = (const PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE)point.y(); return *this; }
 
-   inline point_type & operator = (const point_type & point) { this->x = point.x; this->y = point.y; return *this; }
-
-   operator POINT_BASE_TYPE*() noexcept { return this; }
-   operator const POINT_BASE_TYPE*() const noexcept { return this; }
+   //operator POINT_BASE_TYPE*() noexcept { return this; }
+   //operator const POINT_BASE_TYPE*() const noexcept { return this; }
    operator ::lparam() const { return lparam(); }
 
-   ::u32 u32() const noexcept { return __u32(this->x, this->y); }
-   ::u64 u64() const noexcept { return __u64(this->x, this->y); }
-   ::lparam lparam() const noexcept { return { this->x, this->y }; }
+   ::u32 u32() const noexcept { return __u32(this->x(), this->y()); }
+   ::u64 u64() const noexcept { return __u64(this->x(), this->y()); }
+   ::lparam lparam() const noexcept { return { this->x(), this->y() }; }
 
-   point_type& Null() { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE) 0;  return *this; }
-
-
-   point_type & offset(UNIT_TYPE xOffset, UNIT_TYPE yOffset) noexcept { this->x += xOffset; this->y += yOffset; return *this; }
-   point_type & offset(const point_type& point) noexcept { this->x += point.x; this->y += point.y; return *this; }
-   point_type & offset(const SIZE_TYPE& size) noexcept { this->x += size.cx; this->y += size.cy; return *this; }
-   point_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x = x; this->y = y; return *this; }
+   point_type& Null() { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE) 0;  return *this; }
 
 
+   point_type & offset(UNIT_TYPE xOffset, UNIT_TYPE yOffset) noexcept { this->x() += xOffset; this->y() += yOffset; return *this; }
+   point_type & offset(const point_type& point) noexcept { this->x() += point.x(); this->y() += point.y(); return *this; }
+   point_type & offset(const SIZE_TYPE& size) noexcept { this->x() += size.cx; this->y() += size.cy; return *this; }
+   point_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; return *this; }
 
-   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->x, this->y); }
-   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->x, this->y); }
+
+
+   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->x(), this->y()); }
+   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->x(), this->y()); }
    inline UNIT_TYPE get_orthogonal(enum_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
    inline UNIT_TYPE get_normal_dimension(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
    inline UNIT_TYPE get_normal(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
@@ -83,74 +83,74 @@ public:
    template < primitive_point POINT >
    point_type mid(const POINT& point) const
    {
-      return { (UNIT_TYPE)((this->x + point.x) / (UNIT_TYPE)2), (UNIT_TYPE)((this->y + point.y) / (UNIT_TYPE)2) };
+      return { (UNIT_TYPE)((this->x() + point.x()) / (UNIT_TYPE)2), (UNIT_TYPE)((this->y() + point.y()) / (UNIT_TYPE)2) };
    }
 
 
    template < primitive_point POINT >
-   inline bool operator==(const POINT & point) const noexcept { return (this->x == (UNIT_TYPE) point.x && this->y == (UNIT_TYPE) point.y); }
+   inline bool operator==(const POINT & point) const noexcept { return (this->x() == (UNIT_TYPE) point.x() && this->y() == (UNIT_TYPE) point.y()); }
 
    template < primitive_point POINT >
-   inline bool operator!=(const POINT & point) const noexcept { return (this->x != (UNIT_TYPE) point.x || this->y != (UNIT_TYPE) point.y); }
+   inline bool operator!=(const POINT & point) const noexcept { return (this->x() != (UNIT_TYPE) point.x() || this->y() != (UNIT_TYPE) point.y()); }
 
 
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_null(this); }
 
    template < primitive_size SIZE >
-   inline point_type& operator+=(const SIZE& size) noexcept { this->x = (UNIT_TYPE) (this->x + size.cx); this->y = (UNIT_TYPE)(this->y + size.cy); return *this; }
+   inline point_type& operator+=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE) (this->x() + size.cx); this->y() = (UNIT_TYPE)(this->y() + size.cy); return *this; }
 
    template < primitive_size SIZE >
-   inline point_type& operator-=(const SIZE& size) noexcept { this->x = (UNIT_TYPE)(this->x - size.cx); this->y = (UNIT_TYPE)(this->y - size.cy); return *this; }
+   inline point_type& operator-=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE)(this->x() - size.cx); this->y() = (UNIT_TYPE)(this->y() - size.cy); return *this; }
 
 //   template < primitive_point POINT >
-//   inline point_type& operator+=(const POINT& point) noexcept { this->x = (UNIT_TYPE)(this->x + point.x); this->y = (UNIT_TYPE)(this->y + point.y); return *this; }
+//   inline point_type& operator+=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() + point.x()); this->y() = (UNIT_TYPE)(this->y() + point.y()); return *this; }
 //
 //   template < primitive_point POINT >
-//   inline point_type& operator-=(const POINT& point) noexcept { this->x = (UNIT_TYPE)(this->x - point.x); this->y = (UNIT_TYPE)(this->y - point.y); return *this; }
+//   inline point_type& operator-=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() - point.x()); this->y() = (UNIT_TYPE)(this->y() - point.y()); return *this; }
 
    template < primitive_size SIZE >
-   inline point_type operator+(const SIZE & size) const noexcept { return point_type(this->x + size.cx, this->y + size.cy); }
+   inline point_type operator+(const SIZE & size) const noexcept { return point_type(this->x() + size.cx, this->y() + size.cy); }
 
    template < primitive_point POINT >
-   inline point_type operator+(const POINT & point) const noexcept { return point_type(this->x + point.x, this->y + point.y); }
+   inline point_type operator+(const POINT & point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
 
    template < primitive_point POINT >
-   inline SIZE_TYPE operator-(const POINT & point) const noexcept { return SIZE_TYPE(this->x - point.x, this->y - point.y); }
+   inline SIZE_TYPE operator-(const POINT & point) const noexcept { return SIZE_TYPE(this->x() - point.x(), this->y() - point.y()); }
 
    template < primitive_size SIZE >
-   inline point_type operator-(const SIZE & size) const noexcept { return point_type(this->x - size.cx, this->y - size.cy); }
+   inline point_type operator-(const SIZE & size) const noexcept { return point_type(this->x() - size.cx, this->y() - size.cy); }
 
-   inline point_type operator-() const noexcept { return point_type(-this->x, -this->y); }
-   inline point_type operator+() const noexcept { return point_type(this->x, this->y); }
-   //inline point_type operator+(const point_type& point) const noexcept { return point_type(this->x + point.x, this->y + point.y); }
-   //inline SIZE_TYPE operator-(const point_type& point) const noexcept { return SIZE_TYPE(this->x - point.x, this->y - point.y); }
+   inline point_type operator-() const noexcept { return point_type(-this->x(), -this->y()); }
+   inline point_type operator+() const noexcept { return point_type(this->x(), this->y()); }
+   //inline point_type operator+(const point_type& point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
+   //inline SIZE_TYPE operator-(const point_type& point) const noexcept { return SIZE_TYPE(this->x() - point.x(), this->y() - point.y()); }
 
    inline RECTANGLE_TYPE operator+(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) + *this; }
    inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
 
 
-   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x = (UNIT_TYPE)(this->x + shift.Δx); this->y = (UNIT_TYPE)(this->y + shift.Δy); return *this; }
-   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x = (UNIT_TYPE)(this->x - shift.Δx); this->y = (UNIT_TYPE)(this->y - shift.Δy); return *this; }
+   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.Δx); this->y() = (UNIT_TYPE)(this->y() + shift.Δy); return *this; }
+   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.Δx); this->y() = (UNIT_TYPE)(this->y() - shift.Δy); return *this; }
 
-   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x + shift.Δx), (UNIT_TYPE)(this->y + shift.Δy) }; }
-   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x - shift.Δx), (UNIT_TYPE)(this->y - shift.Δy) }; }
+   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.Δx), (UNIT_TYPE)(this->y() + shift.Δy) }; }
+   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.Δx), (UNIT_TYPE)(this->y() - shift.Δy) }; }
 
 
 
    void x_constraint(const RECTANGLE_TYPE& rectangle) noexcept
    {
 
-      if (this->x < rectangle.left)
+      if (this->x() < rectangle.left)
       {
 
-         this->x = rectangle.left;
+         this->x() = rectangle.left;
 
       }
-      else if (this->x > rectangle.right)
+      else if (this->x() > rectangle.right)
       {
 
-         this->x = rectangle.right;
+         this->x() = rectangle.right;
 
       }
 
@@ -159,16 +159,16 @@ public:
    void y_constraint(const RECTANGLE_TYPE& rectangle) noexcept
    {
 
-      if (this->y < rectangle.top)
+      if (this->y() < rectangle.top)
       {
 
-         this->y = rectangle.top;
+         this->y() = rectangle.top;
 
       }
-      else if (this->y > rectangle.bottom)
+      else if (this->y() > rectangle.bottom)
       {
 
-         this->y = rectangle.bottom;
+         this->y() = rectangle.bottom;
 
       }
 
@@ -188,13 +188,13 @@ public:
    inline bool operator < (const point_type& point) const noexcept
    {
 
-      auto d = this->y - point.y;
+      auto d = this->y() - point.y();
 
       if (d < 0) return true;
 
       if (d > 0) return false;
 
-      return this->x < point.x;
+      return this->x() < point.x();
 
    }
 
@@ -202,12 +202,15 @@ public:
    bool is_null() const
    {
 
-      return this->x == 0 && this->y == 0;
+      return this->x() == 0 && this->y() == 0;
 
    }
 
 
 };
+
+
+
 
 
 inline auto __point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
@@ -231,3 +234,20 @@ inline auto __point_f64(const ::u64 u) noexcept { return ::point_f64((double)__u
 
 
 
+
+
+
+inline bool is_same(const ::point_f64& p1, const ::point_f64& p2, double dTolerance)
+{
+
+   return is_same(p1.x(), p2.x(), dTolerance) && is_same(p1.y(), p2.y(), dTolerance);
+
+}
+
+
+inline bool is_different(const ::point_f64& p1, const ::point_f64& p2, double dTolerance)
+{
+
+   return !is_same(p1, p2, dTolerance);
+
+}

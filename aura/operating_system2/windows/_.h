@@ -42,7 +42,7 @@
 //#include "api.h"
 
 
-//CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * ppoint);
+//CLASS_DECL_AURA int_bool get_cursor_position(::point_i32 * ppoint);
 
 
 

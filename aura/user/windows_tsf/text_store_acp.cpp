@@ -340,7 +340,7 @@ namespace tsf
        _GetCurrentSelection();
     
        //find out which end of the selection the caret (insertion point_i32) is
-       POINT_I32   pt;
+       ::point_i32   pt;
        i32 lPos = 0;
        GetCaretPos(&pt);
        //lPos = ::SendMessage(m_hwndEdit, EM_POSFROMCHAR, m_acpStart, 0);
@@ -350,7 +350,7 @@ namespace tsf
        plain_edit_sel_to_line_x(pgraphics, m_acpStart, lPos);
 
        //if the caret position is the same as the start character, then the selection end is the start of the selection
-       m_ActiveSelEnd = ((pt.x == LOWORD(lPos) && pt.y == HIWORD(lPos)) ? TS_AE_START : TS_AE_END);
+       m_ActiveSelEnd = ((pt.x() == LOWORD(lPos) && pt.y() == HIWORD(lPos)) ? TS_AE_START : TS_AE_END);
 
        pSelection[0].acpStart = m_acpStart;
        pSelection[0].acpEnd = m_acpEnd;
@@ -1019,7 +1019,7 @@ namespace tsf
    **************************************************************************/
 
    STDMETHODIMP edit_window::GetACPFromPoint(  TsImpactCookie vcImpact, 
-                                               const POINT_I32 *pt,
+                                               const ::point_i32 *pt,
                                                ::u32 dwFlags,
                                                ::i32 *pacp)
    {
@@ -1040,7 +1040,7 @@ namespace tsf
    STDMETHODIMP edit_window::GetTextExt(   TsImpactCookie vcImpact, 
                                            ::i32 acpStart,
                                            ::i32 acpEnd,
-                                           RECTANGLE_I32 *prc,
+                                           ::rectangle_i32 *prc,
                                            BOOL *pfClipped)
    {
        OutputDebugString(TEXT("edit_window::GetTextExt \n"));
@@ -1051,7 +1051,7 @@ namespace tsf
        }
 
        *pfClipped = false;
-       ZeroMemory(prc, sizeof(RECTANGLE_I32));
+       ZeroMemory(prc, sizeof(::rectangle_i32));
 
        if(EDIT_VIEW_COOKIE != vcImpact)
        {
@@ -1073,7 +1073,7 @@ namespace tsf
 
        ::i32        lTextLength;
        ::i32        lTemp;
-       //RECTANGLE_I32        rc;
+       //::rectangle_i32        rc;
        //::u32       dwStart;
        //::u32       dwEnd;
        //HDC         hdc;
@@ -1149,7 +1149,7 @@ namespace tsf
        //if(rc.bottom > rc.top)
        //{
        //    ::u32   dwMargins;
-       //    RECTANGLE_I32    rcEdit;
+       //    ::rectangle_i32    rcEdit;
 
        //    GetClientRect(m_hwndEdit, &rcEdit);
        //    
@@ -1179,7 +1179,7 @@ namespace tsf
        //}
 
        ////convert the rectangle_i32 to screen coordinates
-       //MapWindowPoints(m_hwndEdit, NULL, (POINT_I32 *)prc, 2);
+       //MapWindowPoints(m_hwndEdit, NULL, (::point_i32 *)prc, 2);
 
        //GlobalFree(pwszText);
 
@@ -1192,7 +1192,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetScreenExt(TsImpactCookie vcImpact, RECTANGLE_I32 *prc)
+   STDMETHODIMP edit_window::GetScreenExt(TsImpactCookie vcImpact, ::rectangle_i32 *prc)
    {
        OutputDebugString(TEXT("edit_window::GetScreenExt \n"));
 
@@ -1201,7 +1201,7 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       ZeroMemory(prc, sizeof(RECTANGLE_I32));
+       ZeroMemory(prc, sizeof(::rectangle_i32));
 
        if(EDIT_VIEW_COOKIE != vcImpact)
        {
@@ -1211,7 +1211,7 @@ namespace tsf
        //no lock is necessary for this method.
 
        //GetClientRect(m_hwndEdit, prc);
-       //MapWindowPoints(m_hwndEdit, NULL, (POINT_I32 *)prc, 2);
+       //MapWindowPoints(m_hwndEdit, NULL, (::point_i32 *)prc, 2);
 
        window_rectangle(prc);
 

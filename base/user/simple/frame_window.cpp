@@ -1313,13 +1313,13 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message* pmessage)
    //if (layout().is_full_screen())
    //{
 
-   //   pMMI->ptMaxSize.y = m_FullScreenWindowRect.height();
+   //   pMMI->ptMaxSize.y() = m_FullScreenWindowRect.height();
 
-   //   pMMI->ptMaxTrackSize.y = pMMI->ptMaxSize.y;
+   //   pMMI->ptMaxTrackSize.y() = pMMI->ptMaxSize.y();
 
-   //   pMMI->ptMaxSize.x = m_FullScreenWindowRect.width();
+   //   pMMI->ptMaxSize.x() = m_FullScreenWindowRect.width();
 
-   //   pMMI->ptMaxTrackSize.x = pMMI->ptMaxSize.x;
+   //   pMMI->ptMaxTrackSize.x() = pMMI->ptMaxSize.x();
 
    //}
 
@@ -1613,7 +1613,7 @@ void simple_frame_window::ActivateFrame(::e_display edisplay)
 }
 
 
-void simple_frame_window::GetBorderRect(RECTANGLE_I32* prectangle)
+void simple_frame_window::GetBorderRect(::rectangle_i32* prectangle)
 {
 
    *prectangle = m_rectangleBorder;
@@ -2807,7 +2807,7 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-void simple_frame_window::client_rectangle(RECTANGLE_I32& rectangle, ::user::enum_layout elayout)
+void simple_frame_window::client_rectangle(::rectangle_i32& rectangle, ::user::enum_layout elayout)
 {
 
    ::experience::frame_window::client_rectangle(rectangle, elayout);
@@ -3412,7 +3412,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (puserinteractionpointeraChild)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
       //if (0)
@@ -3507,7 +3507,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
 

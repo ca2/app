@@ -74,7 +74,7 @@
 //   //{
 //   //public:
 //
-//   //   RECTANGLE_I32   m_rectangle;
+//   //   ::rectangle_i32   m_rectangle;
 //
 //   //};
 //

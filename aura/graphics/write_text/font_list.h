@@ -99,9 +99,9 @@ namespace write_text
       virtual ::item_pointer hit_test_wide(const ::point_i32& point);
       virtual ::item_pointer hit_test_single_column(const ::point_i32& point);
       
-      virtual bool get_box_rect(RECTANGLE_I32 * lprect, ::index i);
-      virtual bool get_box_rect_wide(RECTANGLE_I32 * lprect, ::index i);
-      virtual bool get_box_rect_single_column(RECTANGLE_I32 * lprect, ::index i);
+      virtual bool get_box_rect(::rectangle_i32 * lprect, ::index i);
+      virtual bool get_box_rect_wide(::rectangle_i32 * lprect, ::index i);
+      virtual bool get_box_rect_single_column(::rectangle_i32 * lprect, ::index i);
 
 
       virtual void set_client_rectangle(const ::rectangle_i32 &rectangle);

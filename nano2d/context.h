@@ -106,13 +106,13 @@ namespace nano2d
 
 		// Pushes and saves the current render state into a state stack.
 		// A matching Restore)() must be used to restore the state.
-		virtual void save();
+		virtual void save1();
 
 		// Pops and restores current render state.
-		virtual void restore();
+		virtual void restore1();
 
 		// Resets current render state to default values. Does not affect the render state stack.
-		virtual void reset();
+		virtual void reset1();
 
 		//
 		// Render styles
@@ -487,7 +487,7 @@ namespace nano2d
          m_pcontext(pcontext) 
       {
          
-         m_pcontext->save(); 
+         m_pcontext->save1(); 
       
       }
 
@@ -495,12 +495,14 @@ namespace nano2d
       ~guard()
       {
          
-         m_pcontext->restore(); 
+         m_pcontext->restore1(); 
       
       }
 
 
    };
+
+
 
 
 } // namespace nano2d

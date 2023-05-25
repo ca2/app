@@ -975,10 +975,10 @@ void oswindow_data::full_screen(const ::rectangle & rectangle)
 
    ::rectangle rWindow;
 
-   rWindow.left      = attr.x;
-   rWindow.top       = attr.y;
-   rWindow.right     = attr.x    + attr.width;
-   rWindow.bottom    = attr.y    + attr.height;
+   rWindow.left      = attr.x();
+   rWindow.top       = attr.y();
+   rWindow.right     = attr.x()    + attr.width;
+   rWindow.bottom    = attr.y()    + attr.height;
 
    if(rBest != rWindow)
    {

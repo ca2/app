@@ -801,7 +801,7 @@
 //}
 //
 //
-////void stream::read(POINT_I32 & point)
+////void stream::read(::point_i32 & point)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -817,7 +817,7 @@
 ////}
 ////
 ////
-////void stream::read(RECTANGLE_I32 & rectangle)
+////void stream::read(::rectangle_i32 & rectangle)
 ////{
 ////
 ////   throw ::exception(error_io);

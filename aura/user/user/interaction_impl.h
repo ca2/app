@@ -386,7 +386,7 @@ namespace user
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
       inline ::windowing::window * window() const { return m_pwindow; }
       inline ::windowing::windowing * windowing() const { return m_pwindowing; }
@@ -452,9 +452,9 @@ namespace user
 //#endif
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,POINT_I32 * pPoint,::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,::point_i32 * pPoint,::u32 nCount);
 
-      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,RECTANGLE_I32 * prectangle);
+      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,::rectangle_i32 * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
@@ -462,7 +462,7 @@ namespace user
 
       void UpdateWindow() override;
       void SetRedraw(bool bRedraw = true) override;
-      //virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
+      //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
       //i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
       virtual void Invalidate(bool bErase = true) override;
@@ -532,7 +532,7 @@ namespace user
 //#if(_WIN32_WINNT >= 0x0500)
 //
 //      virtual bool SetLayeredWindowAttributes(::color::color crKey,byte bAlpha,u32 dwFlags);
-//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 *pptDst,SIZE_I32 *psize,::draw2d::graphics * pDCSrc,POINT_I32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,u32 dwFlags);
+//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,SIZE_I32 *psize,::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,u32 dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
@@ -582,15 +582,15 @@ namespace user
       //virtual i32 GetScrollPos(i32 nBar) const;
       //virtual void GetScrollRange(i32 nBar, int * pMinPos, int * lpMaxPos) const;
       //virtual void ScrollWindow(i32 xAmount,i32 yAmount,
-      //   const RECTANGLE_I32 * rectangle = nullptr,
-      //   const RECTANGLE_I32 * pClipRect = nullptr);
+      //   const ::rectangle_i32 * rectangle = nullptr,
+      //   const ::rectangle_i32 * pClipRect = nullptr);
 
       //virtual i32 SetScrollPos(i32 nBar,i32 nPos,bool bRedraw = true);
       //virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos, bool bRedraw = true);
       //virtual void ShowScrollBar(::u32 nBar,bool bShow = true);
       //virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = true);
 
-      //virtual i32 ScrollWindowEx(i32 Δx,i32 Δy, const RECTANGLE_I32 * prectScroll, const RECTANGLE_I32 * lprectClip, ::draw2d::region* prgnUpdate, RECTANGLE_I32 * prectUpdate, ::u32 flags);
+      //virtual i32 ScrollWindowEx(i32 Δx,i32 Δy, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
 
 
 //#ifdef WINDOWS_DESKTOP

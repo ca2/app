@@ -78,7 +78,7 @@ namespace user
 
       //void set_rect(const ::rectangle_i32& rectangle);
 
-      //void get_rect(RECTANGLE_I32* prectangle);
+      //void get_rect(::rectangle_i32* prectangle);
 
       void add_visible(bool bAdd = true);
 

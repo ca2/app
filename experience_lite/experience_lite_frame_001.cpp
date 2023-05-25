@@ -132,8 +132,8 @@
                   if(egrip & e_grip_top)
                   {
                      rectangle.top = rectangleEvent.top;
-                     rectangle.left = ptCenter.x - 8;
-                     rectangle.right = ptCenter.x + 8;
+                     rectangle.left = ptCenter.x() - 8;
+                     rectangle.right = ptCenter.x() + 8;
                      rectangle.bottom = rectangleEvent.top + 5;
                      if(rectangle.contains(pointCursor))
                      {
@@ -144,8 +144,8 @@
                   if(egrip & e_grip_bottom)
                   {
                      rectangle.top = rectangleEvent.bottom - 5;
-                     rectangle.left = ptCenter.x - 8;
-                     rectangle.right = ptCenter.x + 8;
+                     rectangle.left = ptCenter.x() - 8;
+                     rectangle.right = ptCenter.x() + 8;
                      rectangle.bottom = rectangleEvent.bottom;
                      if(rectangle.contains(pointCursor))
                      {
@@ -155,10 +155,10 @@
                   }
                   if(egrip & e_grip_left)
                   {
-                     rectangle.top = ptCenter.y - 8;
+                     rectangle.top = ptCenter.y() - 8;
                      rectangle.left = rectangleEvent.left;
                      rectangle.right = rectangleEvent.left + 5;
-                     rectangle.bottom = ptCenter.y + 8;
+                     rectangle.bottom = ptCenter.y() + 8;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_left;
@@ -167,10 +167,10 @@
                   }
                   if(egrip & e_grip_right)
                   {
-                     rectangle.top = ptCenter.y - 8;
+                     rectangle.top = ptCenter.y() - 8;
                      rectangle.left = rectangleEvent.right - 5;
                      rectangle.right = rectangleEvent.right;
-                     rectangle.bottom = ptCenter.y + 8;
+                     rectangle.bottom = ptCenter.y() + 8;
                      if(rectangle.contains(pointCursor))
                      {
                         etest = ::experience::e_frame_sizing_right;
@@ -376,7 +376,7 @@ SizingNone:;
 
             }
 
-            void frame_001::GetBorderRect(const ::rectangle_i32 &lpcrectClient, RECTANGLE_I32 * lprect, enum_border eside)
+            void frame_001::GetBorderRect(const ::rectangle_i32 &lpcrectClient, ::rectangle_i32 * lprect, enum_border eside)
             {
 
                ::rectangle_i32 rectangleBig(lpcrectClient);
@@ -466,10 +466,10 @@ SizingNone:;
                   rectangleA.right--;
 
                   ptA = rectangleA.top_left();
-                  ptA.y += 14;
+                  ptA.y() += 14;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
-                  ptC.x += 15;
+                  ptC.x() += 15;
 
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
@@ -482,10 +482,10 @@ SizingNone:;
                   rectangleA = rectangleClient;
 
                   ptA = rectangleA.top_left();
-                  ptA.y += 15;
+                  ptA.y() += 15;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
-                  ptC.x += 16;
+                  ptC.x() += 16;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -500,10 +500,10 @@ SizingNone:;
                   rectangleA.right -= 2;
 
                   ptA = rectangleA.top_left();
-                  ptA.y += 13;
+                  ptA.y() += 13;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
-                  ptC.x += 14;
+                  ptC.x() += 14;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -524,10 +524,10 @@ SizingNone:;
 
 
                   ptA = rectangleA.top_left();
-                  ptA.y += 12;
+                  ptA.y() += 12;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
-                  ptC.x += 13;
+                  ptC.x() += 13;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -542,10 +542,10 @@ SizingNone:;
                   rectangleA.right -= 4;
 
                   ptA = rectangleA.top_left();
-                  ptA.y += 11;
+                  ptA.y() += 11;
                   ptB = rectangleA.top_left();
                   ptC = rectangleA.top_left();
-                  ptC.x += 12;
+                  ptC.x() += 12;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -554,20 +554,20 @@ SizingNone:;
 
                   // Details
 
-                  ptA.x = rectangleClientB.left + 14;
-                  ptA.y = rectangleClientB.top + 1;
-                  ptB.x = rectangleClientB.left + 14;
-                  ptB.y = rectangleClientB.top + 3;
+                  ptA.x() = rectangleClientB.left + 14;
+                  ptA.y() = rectangleClientB.top + 1;
+                  ptB.x() = rectangleClientB.left + 14;
+                  ptB.y() = rectangleClientB.top + 3;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
 
                   // Details
 
-                  ptA.x = rectangleClientB.left + 1;
-                  ptA.y = rectangleClientB.top + 14;
-                  ptB.x = rectangleClientB.left + 3;
-                  ptB.y = rectangleClientB.top + 14;
+                  ptA.x() = rectangleClientB.left + 1;
+                  ptA.y() = rectangleClientB.top + 14;
+                  ptB.x() = rectangleClientB.left + 3;
+                  ptB.y() = rectangleClientB.top + 14;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
@@ -575,19 +575,19 @@ SizingNone:;
 
                   // Details
 
-                  ptA.x = rectangleClientB.left + 15;
-                  ptA.y = rectangleClientB.top + 1;
-                  ptB.x = rectangleClientB.left + 15;
-                  ptB.y = rectangleClientB.top + 5;
+                  ptA.x() = rectangleClientB.left + 15;
+                  ptA.y() = rectangleClientB.top + 1;
+                  ptB.x() = rectangleClientB.left + 15;
+                  ptB.y() = rectangleClientB.top + 5;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
                   // Details
 
-                  ptA.x = rectangleClientB.left + 1;
-                  ptA.y = rectangleClientB.top + 15;
-                  ptB.x = rectangleClientB.left + 5;
-                  ptB.y = rectangleClientB.top + 15;
+                  ptA.x() = rectangleClientB.left + 1;
+                  ptA.y() = rectangleClientB.top + 15;
+                  ptB.x() = rectangleClientB.left + 5;
+                  ptB.y() = rectangleClientB.top + 15;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                }
@@ -604,7 +604,7 @@ SizingNone:;
                   rectangleA.right--;
 
                   ptA = rectangleA.top_right();
-                  ptA.x -= 15;
+                  ptA.x() -= 15;
                   ptB = rectangleA.top_right();
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
@@ -616,7 +616,7 @@ SizingNone:;
 
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
-                  ptC.y += 13;
+                  ptC.y() += 13;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptC);
 
@@ -627,7 +627,7 @@ SizingNone:;
                   rectangleA = rectangleClient;
 
                   ptA = rectangleA.top_right();
-                  ptA.x -= 16;
+                  ptA.x() -= 16;
                   ptB = rectangleA.top_right();
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
@@ -642,7 +642,7 @@ SizingNone:;
 
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
-                  ptC.y += 12;
+                  ptC.y() += 12;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptC);
 
@@ -656,10 +656,10 @@ SizingNone:;
                   rectangleA.right -= 2;
 
                   ptA = rectangleA.top_right();
-                  ptA.x -= 13;
+                  ptA.x() -= 13;
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
-                  ptC.y += 14;
+                  ptC.y() += 14;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -675,7 +675,7 @@ SizingNone:;
 
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
-                  ptC.y += 15;
+                  ptC.y() += 15;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptC);
 
@@ -685,7 +685,7 @@ SizingNone:;
                   rectangleA.right -= 2;
 
                   ptA = rectangleA.top_right();
-                  ptA.x -= 12;
+                  ptA.x() -= 12;
                   ptB = rectangleA.top_right();
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
@@ -696,7 +696,7 @@ SizingNone:;
 
                   ptB = rectangleA.top_right();
                   ptC = rectangleA.top_right();
-                  ptC.y += 16;
+                  ptC.y() += 16;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptC);
 
@@ -706,17 +706,17 @@ SizingNone:;
                   rectangleA.right -= 4;
 
                   ptA = rectangleA.top_right();
-                  ptA.x -= 11;
+                  ptA.x() -= 11;
                   ptB = rectangleA.top_right();
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
                   pgraphics->SelectObject(m_ppenHilight1);
 
-                  ptA.x = rectangleClientB.right - 14;
-                  ptA.y = rectangleClientB.top + 1;
-                  ptB.x = rectangleClientB.right - 14;
-                  ptB.y = rectangleClientB.top + 4;
+                  ptA.x() = rectangleClientB.right - 14;
+                  ptA.y() = rectangleClientB.top + 1;
+                  ptB.x() = rectangleClientB.right - 14;
+                  ptB.y() = rectangleClientB.top + 4;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
@@ -724,10 +724,10 @@ SizingNone:;
 
                   // Details
 
-                  ptA.x = rectangleClientB.right - 15;
-                  ptA.y = rectangleClientB.top;
-                  ptB.x = rectangleClientB.right - 15;
-                  ptB.y = rectangleClientB.top + 5;
+                  ptA.x() = rectangleClientB.right - 15;
+                  ptA.y() = rectangleClientB.top;
+                  ptB.x() = rectangleClientB.right - 15;
+                  ptB.y() = rectangleClientB.top + 5;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
@@ -735,10 +735,10 @@ SizingNone:;
 
                   // Details
 
-                  ptA.x = rectangleClientB.right - 3;
-                  ptA.y = rectangleClientB.top + 14;
-                  ptB.x = rectangleClientB.right - 1;
-                  ptB.y = rectangleClientB.top + 14;
+                  ptA.x() = rectangleClientB.right - 3;
+                  ptA.y() = rectangleClientB.top + 14;
+                  ptB.x() = rectangleClientB.right - 1;
+                  ptB.y() = rectangleClientB.top + 14;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
@@ -746,10 +746,10 @@ SizingNone:;
 
                   // Details
 
-                  ptA.x = rectangleClientB.right - 4;
-                  ptA.y = rectangleClientB.top + 15;
-                  ptB.x = rectangleClientB.right;
-                  ptB.y = rectangleClientB.top + 15;
+                  ptA.x() = rectangleClientB.right - 4;
+                  ptA.y() = rectangleClientB.top + 15;
+                  ptB.x() = rectangleClientB.right;
+                  ptB.y() = rectangleClientB.top + 15;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
                }
@@ -766,7 +766,7 @@ SizingNone:;
 
                   // left 1
                   ptA = rectangleA.bottom_left();
-                  ptA.y -= 16;
+                  ptA.y() -= 16;
                   ptB = rectangleA.bottom_left();
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
@@ -779,7 +779,7 @@ SizingNone:;
                   // bottom 2
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
-                  ptC.x += 12;
+                  ptC.x() += 12;
                   pgraphics->set_current_point(ptC);
                   pgraphics->line_to(ptB);
 
@@ -790,7 +790,7 @@ SizingNone:;
                   rectangleA = rectangleClient;
 
                   ptA = rectangleA.bottom_left();
-                  ptA.y -= 15;
+                  ptA.y() -= 15;
                   ptB = rectangleA.bottom_left();
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
@@ -804,7 +804,7 @@ SizingNone:;
 
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
-                  ptC.x += 12;
+                  ptC.x() += 12;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptC);
 
@@ -818,10 +818,10 @@ SizingNone:;
                   rectangleA.right -= 2;
 
                   ptA = rectangleA.bottom_left();
-                  ptA.y -= 13;
+                  ptA.y() -= 13;
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
-                  ptC.x += 14;
+                  ptC.x() += 14;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -835,7 +835,7 @@ SizingNone:;
 
                   ptB = rectangleA.bottom_left();
                   ptC = rectangleA.bottom_left();
-                  ptC.x += 14;
+                  ptC.x() += 14;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptC);
 
@@ -845,7 +845,7 @@ SizingNone:;
                   rectangleA.bottom -= 2;
 
                   ptA = rectangleA.bottom_left();
-                  ptA.y -= 12;
+                  ptA.y() -= 12;
                   ptB = rectangleA.bottom_left();
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
@@ -855,9 +855,9 @@ SizingNone:;
                   rectangleA = rectangleClient;
 
                   ptB = rectangleA.bottom_left();
-                  ptB.x++;
+                  ptB.x()++;
                   ptC = rectangleA.bottom_left();
-                  ptC.x += 16;
+                  ptC.x() += 16;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptC);
 
@@ -865,7 +865,7 @@ SizingNone:;
                   rectangleA.bottom -= 3;
 
                   ptA = rectangleA.bottom_left();
-                  ptA.y -= 11;
+                  ptA.y() -= 11;
                   ptB = rectangleA.bottom_left();
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
@@ -874,10 +874,10 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_ppenHilight1);
 
-                  ptA.x = rectangleClientB.left + 1;
-                  ptA.y = rectangleClientB.bottom - 15;
-                  ptB.x = rectangleClientB.left + 4;
-                  ptB.y = rectangleClientB.bottom - 15;
+                  ptA.x() = rectangleClientB.left + 1;
+                  ptA.y() = rectangleClientB.bottom - 15;
+                  ptB.x() = rectangleClientB.left + 4;
+                  ptB.y() = rectangleClientB.bottom - 15;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
@@ -885,10 +885,10 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_ppenFace1);
 
-                  ptA.x = rectangleClientB.left;
-                  ptA.y = rectangleClientB.bottom - 15;
-                  ptB.x = rectangleClientB.left + 5;
-                  ptB.y = rectangleClientB.bottom - 15;
+                  ptA.x() = rectangleClientB.left;
+                  ptA.y() = rectangleClientB.bottom - 15;
+                  ptB.x() = rectangleClientB.left + 5;
+                  ptB.y() = rectangleClientB.bottom - 15;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
 
@@ -896,10 +896,10 @@ SizingNone:;
 
                   // Details - right most
 
-                  ptA.x = rectangleClientB.left + 14;
-                  ptA.y = rectangleClientB.bottom - 4;
-                  ptB.x = rectangleClientB.left + 14;
-                  ptB.y = rectangleClientB.bottom - 1;
+                  ptA.x() = rectangleClientB.left + 14;
+                  ptA.y() = rectangleClientB.bottom - 4;
+                  ptB.x() = rectangleClientB.left + 14;
+                  ptB.y() = rectangleClientB.bottom - 1;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
 
@@ -907,10 +907,10 @@ SizingNone:;
 
                   // Details - right most
 
-                  ptA.x = rectangleClientB.left + 15;
-                  ptA.y = rectangleClientB.bottom - 4;
-                  ptB.x = rectangleClientB.left + 15;
-                  ptB.y = rectangleClientB.bottom;
+                  ptA.x() = rectangleClientB.left + 15;
+                  ptA.y() = rectangleClientB.bottom - 4;
+                  ptB.x() = rectangleClientB.left + 15;
+                  ptB.y() = rectangleClientB.bottom;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
                }
@@ -932,10 +932,10 @@ SizingNone:;
                   rectangleA.right -= 2;
 
                   ptA = rectangleA.bottom_right();
-                  ptA.y -= 12;
+                  ptA.y() -= 12;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
-                  ptC.x -= 13;
+                  ptC.x() -= 13;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -952,10 +952,10 @@ SizingNone:;
                   rectangleA.right -= 4;
 
                   ptA = rectangleA.bottom_right();
-                  ptA.y -= 11;
+                  ptA.y() -= 11;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
-                  ptC.x -= 12;
+                  ptC.x() -= 12;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -970,10 +970,10 @@ SizingNone:;
                   rectangleA.right -= 2;
 
                   ptA = rectangleA.bottom_right();
-                  ptA.y -= 13;
+                  ptA.y() -= 13;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
-                  ptC.x -= 14;
+                  ptC.x() -= 14;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -987,10 +987,10 @@ SizingNone:;
                   rectangleA.right--;
 
                   ptA = rectangleA.bottom_right();
-                  ptA.y -= 14;
+                  ptA.y() -= 14;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
-                  ptC.x -= 15;
+                  ptC.x() -= 15;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
@@ -1000,27 +1000,27 @@ SizingNone:;
                   rectangleA = rectangleClient;
 
                   ptA = rectangleA.bottom_right();
-                  ptA.y -= 15;
+                  ptA.y() -= 15;
                   ptB = rectangleA.bottom_right();
                   ptC = rectangleA.bottom_right();
-                  ptC.x -= 15;
+                  ptC.x() -= 15;
                   pgraphics->set_current_point(ptA);
                   pgraphics->line_to(ptB);
                   pgraphics->line_to(ptC);
 
                   pgraphics->SelectObject(m_ppenHilight1);
 
-                  ptA.x = rectangleClientB.right - 3;
-                  ptA.y = rectangleClientB.bottom - 14;
-                  ptB.x = rectangleClientB.right - 1;
-                  ptB.y = rectangleClientB.bottom - 14;
+                  ptA.x() = rectangleClientB.right - 3;
+                  ptA.y() = rectangleClientB.bottom - 14;
+                  ptB.x() = rectangleClientB.right - 1;
+                  ptB.y() = rectangleClientB.bottom - 14;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
 
-                  ptA.x = rectangleClientB.right - 14;
-                  ptA.y = rectangleClientB.bottom - 3;
-                  ptB.x = rectangleClientB.right - 14;
-                  ptB.y = rectangleClientB.bottom - 1;
+                  ptA.x() = rectangleClientB.right - 14;
+                  ptA.y() = rectangleClientB.bottom - 3;
+                  ptB.x() = rectangleClientB.right - 14;
+                  ptB.y() = rectangleClientB.bottom - 1;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
 
@@ -1028,17 +1028,17 @@ SizingNone:;
 
                   // Details
 
-                  ptA.x = rectangleClientB.right - 5;
-                  ptA.y = rectangleClientB.bottom - 15;
-                  ptB.x = rectangleClientB.right;
-                  ptB.y = rectangleClientB.bottom - 15;
+                  ptA.x() = rectangleClientB.right - 5;
+                  ptA.y() = rectangleClientB.bottom - 15;
+                  ptB.x() = rectangleClientB.right;
+                  ptB.y() = rectangleClientB.bottom - 15;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
 
-                  ptA.x = rectangleClientB.right - 15;
-                  ptA.y = rectangleClientB.bottom - 5;
-                  ptB.x = rectangleClientB.right - 15;
-                  ptB.y = rectangleClientB.bottom;
+                  ptA.x() = rectangleClientB.right - 15;
+                  ptA.y() = rectangleClientB.bottom - 5;
+                  ptB.x() = rectangleClientB.right - 15;
+                  ptB.y() = rectangleClientB.bottom;
                   pgraphics->set_current_point(ptB);
                   pgraphics->line_to(ptA);
                }
@@ -1056,8 +1056,8 @@ SizingNone:;
                   ::rectangle_i32 rectangleB;
 
                   rectangleB.top = rectangleC.top;
-                  rectangleB.left = ptCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
-                  rectangleB.right = ptCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
+                  rectangleB.left = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
+                  rectangleB.right = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
                   rectangleB.bottom = rectangleC.top + GRIP_CENTER_SMALL_CY;
 
                   DrawRectGrip(pgraphics, rectangleB);
@@ -1076,8 +1076,8 @@ SizingNone:;
                      iMod = 0;
 
                   rectangleB.bottom = rectangleC.bottom;
-                  rectangleB.left = ptCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
-                  rectangleB.right = ptCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
+                  rectangleB.left = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
+                  rectangleB.right = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
                   rectangleB.top = rectangleC.bottom - GRIP_CENTER_SMALL_CY;
 
                   DrawRectGrip(pgraphics, rectangleB);
@@ -1096,10 +1096,10 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.top = ptCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
+                  rectangleB.top = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
                   rectangleB.left = rectangleC.left;
                   rectangleB.right = rectangleC.left + GRIP_CENTER_SMALL_CX;
-                  rectangleB.bottom = ptCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
+                  rectangleB.bottom = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
                   DrawRectGrip(pgraphics, rectangleB);
                }
@@ -1117,10 +1117,10 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.top = ptCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
+                  rectangleB.top = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
                   rectangleB.right = rectangleC.right;
                   rectangleB.left = rectangleC.right - GRIP_CENTER_SMALL_CX;
-                  rectangleB.bottom = ptCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
+                  rectangleB.bottom = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
                   DrawRectGrip(pgraphics, rectangleB);
                }

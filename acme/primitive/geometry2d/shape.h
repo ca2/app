@@ -49,17 +49,17 @@ public:
    const SHAPE & shape() const { return *(SHAPE *)raw_type(); }
 
 
-   virtual bool expand_bounding_rect(RECTANGLE_F64 & rectangle) const;
+   virtual bool expand_bounding_rect(::rectangle_f64 & rectangle) const;
 
-   virtual bool expand_bounding_rect(RECTANGLE_I32 & rectangle) const;
+   virtual bool expand_bounding_rect(::rectangle_i32 & rectangle) const;
 
-   virtual bool get_bounding_rectangle(RECTANGLE_F64 & rectangle) const;
+   virtual bool get_bounding_rectangle(::rectangle_f64 & rectangle) const;
 
-   virtual bool get_bounding_rectangle(RECTANGLE_I32 & prectangle) const;
+   virtual bool get_bounding_rectangle(::rectangle_i32 & prectangle) const;
 
-   virtual bool contains(const ::POINT_I32 & point) const;
+   virtual bool contains(const ::point_i32 & point) const;
 
-   virtual bool contains(const ::POINT_F64 & point) const;
+   virtual bool contains(const ::point_f64 & point) const;
 
 
 };
@@ -184,22 +184,22 @@ public:
    virtual void * raw_type() const override { return (void*) &m_shape; }
 
 
-   bool expand_bounding_rect(RECTANGLE_F64 & prectangle) const override;
+   bool expand_bounding_rect(::rectangle_f64 & prectangle) const override;
 
 
-   bool expand_bounding_rect(RECTANGLE_I32 & prectangle) const override;
+   bool expand_bounding_rect(::rectangle_i32 & prectangle) const override;
 
 
-   bool get_bounding_rectangle(RECTANGLE_F64 & prectangle) const override;
+   bool get_bounding_rectangle(::rectangle_f64 & prectangle) const override;
 
 
-   bool get_bounding_rectangle(RECTANGLE_I32 & prectangle) const override;
+   bool get_bounding_rectangle(::rectangle_i32 & prectangle) const override;
 
 
-   bool contains(const ::POINT_I32 & point) const override;
+   bool contains(const ::point_i32 & point) const override;
 
 
-   bool contains(const ::POINT_F64 & point) const override;
+   bool contains(const ::point_f64 & point) const override;
 
 
    ::particle * clone() const override
@@ -255,7 +255,7 @@ inline pointer< ___shape < HOLDEE > > __create_shape(const enum_shape& eshape);
 
 
 template < typename HOLDEE >
-bool ___shape <HOLDEE>::expand_bounding_rect(RECTANGLE_F64 & rectangle) const
+bool ___shape <HOLDEE>::expand_bounding_rect(::rectangle_f64 & rectangle) const
 {
 
    rectangle_f64 r;
@@ -275,7 +275,7 @@ bool ___shape <HOLDEE>::expand_bounding_rect(RECTANGLE_F64 & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::expand_bounding_rect(RECTANGLE_I32 & rectangle) const
+bool ___shape<HOLDEE>::expand_bounding_rect(::rectangle_i32 & rectangle) const
 {
 
    rectangle_f64 r;
@@ -295,7 +295,7 @@ bool ___shape<HOLDEE>::expand_bounding_rect(RECTANGLE_I32 & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_F64 & rectangle) const
+bool ___shape<HOLDEE>::get_bounding_rectangle(::rectangle_f64 & rectangle) const
 {
 
    ::null(rectangle);
@@ -306,7 +306,7 @@ bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_F64 & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_I32 & rectangle) const
+bool ___shape<HOLDEE>::get_bounding_rectangle(::rectangle_i32 & rectangle) const
 {
 
    ::null(rectangle);
@@ -317,7 +317,7 @@ bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_I32 & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::contains(const ::POINT_I32 & point) const
+bool ___shape<HOLDEE>::contains(const ::point_i32 & point) const
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
@@ -338,7 +338,7 @@ bool ___shape<HOLDEE>::contains(const ::POINT_I32 & point) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::contains(const ::POINT_F64 & point) const
+bool ___shape<HOLDEE>::contains(const ::point_f64 & point) const
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL

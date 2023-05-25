@@ -144,7 +144,7 @@ namespace nanoui
       bool fullscreen, bool depth_buffer, bool stencil_buffer,
       bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
       : Widget(nullptr)  /*,  m_glfw_window(nullptr), ctx(nullptr),
-      m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f) /*, m_caption(caption),
+      m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f) /*, m_strCaption(caption),
       m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
       m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false)
    {
@@ -550,9 +550,9 @@ namespace nanoui
    //}
    //
    //void Screen::set_caption(const ::scoped_string & caption) {
-   //   if (caption != m_caption) {
+   //   if (caption != m_strCaption) {
    //      glfwSetWindowTitle(m_glfw_window, caption.c_str());
-   //      m_caption = caption;
+   //      m_strCaption = caption;
    //   }
    //}
    //
@@ -833,13 +833,23 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_character_event(unsigned int codepoint) {
-      if (m_focus_path.size() > 0) {
+   bool Screen::keyboard_character_event(unsigned int codepoint) 
+   {
+
+      if (m_focus_path.size() > 0) 
+      {
+
          for (auto it = m_focus_path.get_upper_bound(-2); it >= 0; --it)
          {
+
             auto p = m_focus_path[it];
+
             if (p->focused() && p->keyboard_character_event(codepoint))
+            {
+
                return true;
+
+            }
 
          }
       }
@@ -872,25 +882,40 @@ namespace nanoui
    bool Screen::on_mouse_move(const ::point_i32& point, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
-      //if (point.x > m_size.x() - 10 && point.y > m_size.y() - 10)
+      //if (point.x() > m_size.x() - 10 && point.y() > m_size.y() - 10)
       //{
 
       //   return false;
 
       //}
 
-      vector2_i32 pointCursor((int)point.x, (int)point.y);
+      vector2_i32 pointCursor((int)point.x(), (int)point.y());
 
       auto shift = pointCursor - m_mouse_pos;
 
       m_mouse_pos = pointCursor;
 
-      if (m_pwidgetMouseCapture)
+      auto pwidgetMouseCapture = m_pwidgetMouseCapture;
+
+      if (pwidgetMouseCapture)
       {
 
-         auto pointClient = pointCursor - m_pwidgetMouseCapture->parent()->absolute_position();
+         auto posWidget = pwidgetMouseCapture->absolute_position();
 
-         auto bHandled = m_pwidgetMouseCapture->mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
+         auto pointWidgetClient = pointCursor - posWidget;
+
+         auto pparent = pwidgetMouseCapture->m_pwidgetParent;
+
+         if (::is_set(pparent))
+         {
+
+            auto offsetScroll = pparent->get_accumulated_scroll_offset();
+
+            pointWidgetClient -= offsetScroll;
+
+         }
+
+         auto bHandled = m_pwidgetMouseCapture->mouse_motion_event(pointWidgetClient, shift, bDown, ekeyModifiers);
 
          return bHandled;
 
@@ -979,10 +1004,37 @@ namespace nanoui
       if (pwidgetMouseCapture)
       {
 
-         auto pointClient = pointCursor - pwidgetMouseCapture->parent()->absolute_position();
+         auto posWidget = pwidgetMouseCapture->absolute_position();
 
-         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointClient, emouse, down, bDoubleClick, ekeyModifiers);
+         auto pointWidgetClient = pointCursor - posWidget;
 
+         auto pparent = pwidgetMouseCapture->m_pwidgetParent;
+
+         if (::is_set(pparent))
+         {
+
+            auto offsetScroll = pparent->get_accumulated_scroll_offset();
+
+            pointWidgetClient -= offsetScroll;
+
+         }
+
+         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointWidgetClient, emouse, down, bDoubleClick, ekeyModifiers);
+
+         if (!down)
+         {
+
+            m_pwidgetLeftButtonDown = nullptr;
+
+            if (m_pwidgetDragDropArena)
+            {
+
+               m_pwidgetDragDropArena->release_mouse_capture();
+
+               m_pwidgetDragDropArena = nullptr;
+
+            }
+         }
          return bHandled;
 
       }
@@ -998,13 +1050,29 @@ namespace nanoui
       //#endif
 
          //try {
-      if (m_focus_path.size() > 1) {
-         const Window* window =
-            dynamic_cast<Window*>(m_focus_path[m_focus_path.size() - 2]);
-         if (window && window->modal()) {
-            if (!window->contains(m_mouse_pos))
+      if (m_focus_path.size() > 1) 
+      {
+
+         auto pwidget = m_focus_path[m_focus_path.size() - 2];
+
+         ::pointer < Window > pwindow = pwidget;
+
+         if (pwindow && pwindow->modal())
+         {
+
+            auto posWindow = pwindow->m_pos;
+
+            auto pointWindowClient = pointCursor - posWindow;
+
+            if (!pwindow->contains(pointWindowClient))
+            {
+
                return false;
+
+            }
+
          }
+
       }
 
       ////if (action == GLFW_PRESS)
@@ -1016,9 +1084,10 @@ namespace nanoui
       //else
       //   m_mouse_state &= ~(1 << button);
 
-      auto drop_widget = find_widget(m_mouse_pos);
+      m_pwidgetDrop = find_widget(m_mouse_pos);
       //if (m_bDragActive && action == GLFW_RELEASE &&
-      if (m_bDragActive && !down && m_pwidgetDrag && drop_widget != m_pwidgetDrag
+      if (m_bDragActive && !down && m_pwidgetDrag 
+         && m_pwidgetDrop != m_pwidgetDrag
          && m_pwidgetLeftButtonDown == nullptr)
       {
 
@@ -1062,6 +1131,15 @@ namespace nanoui
       if (!down)
       {
          m_pwidgetLeftButtonDown = nullptr;
+
+         if (m_pwidgetDragDropArena)
+         {
+
+            m_pwidgetDragDropArena->release_mouse_capture();
+
+            m_pwidgetDragDropArena = nullptr;
+
+         }
       }
       return bHandled;
    }
@@ -1247,14 +1325,25 @@ namespace nanoui
             if (m_children[iIndex] == window)
                base_index = iIndex;
          changed = false;
-         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex) {
-            Popup* pw = dynamic_cast<Popup*>(m_children[iIndex]);
-            if (pw && pw->parent_window() == window && iIndex < base_index) {
+         
+         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex) 
+         {
+
+            ::pointer < Popup > pw = m_children[iIndex];
+
+            if (pw && pw->parent_window() == window && iIndex < base_index)
+            {
+
                move_window_to_front(pw);
+
                changed = true;
+
                break;
+
             }
+
          }
+
       } while (changed);
 
       set_need_redraw();
@@ -1405,7 +1494,7 @@ namespace nanoui
    void Screen::on_mouse_enter(const ::point_i32& point, const ::user::e_key& ekeyModifiers)
    {
 
-      vector2_i32 p(point.x, point.y);
+      vector2_i32 p(point.x(), point.y());
 
       mouse_enter_event(p, 1, ekeyModifiers);
 
@@ -1452,14 +1541,14 @@ namespace nanoui
    bool Screen::on_button_down(::user::e_key ekeyButton, const ::point_i32& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick)
    {
 
-      //if (point.x > m_size.x() - 10 && point.y > m_size.y() - 10)
+      //if (point.x() > m_size.x() - 10 && point.y() > m_size.y() - 10)
       //{
 
       //   return false;
 
       //}
 
-      vector2_i32 p(point.x, point.y);
+      vector2_i32 p(point.x(), point.y());
 
       p += m_pos;
 
@@ -1475,14 +1564,14 @@ namespace nanoui
    bool Screen::on_button_up(::user::e_key ekeyButton, const ::point_i32& point, const ::user::e_key& ekeyModifiers)
    {
 
-      //if (point.x > m_size.x() - 10 && point.y > m_size.y() - 10)
+      //if (point.x() > m_size.x() - 10 && point.y() > m_size.y() - 10)
       //{
 
       //   return false;
 
       //}
 
-      vector2_i32 p(point.x, point.y);
+      vector2_i32 p(point.x(), point.y());
 
       p += m_pos;
 
@@ -1494,6 +1583,10 @@ namespace nanoui
 
       m_pwidgetMouseDown = nullptr;
 
+      m_pwidgetDrag = nullptr;
+
+      m_pwidgetDrop = nullptr;
+
       return bRet;
 
    }
@@ -1502,11 +1595,11 @@ namespace nanoui
    //bool Screen::on_mouse_move(const ::point_i32 & point)
    //{
    //
-   //   vector2_i32 p(point.x, point.y);
+   //   vector2_i32 p(point.x(), point.y());
    //
    //   p += m_pos;
    //
-   //   vector2_i32 rel(m_pointMouseLast.x, m_pointMouseLast.y);
+   //   vector2_i32 rel(m_pointMouseLast.x(), m_pointMouseLast.y());
    //
    //   rel += m_pos;
    //
@@ -1518,7 +1611,7 @@ namespace nanoui
    //bool Screen::on_mouse_drag(const ::point_i32& point, const ::user::e_key& ekeyModifiers)
    //{
 
-   //   vector2_i32 pointCursor(point.x, point.y);
+   //   vector2_i32 pointCursor(point.x(), point.y());
 
    //   bool bHandled = false;
 
@@ -1551,7 +1644,7 @@ namespace nanoui
 
    //   //p += m_pos;
 
-   //   //vector2_i32 rel(m_pointMouseLast.x, m_pointMouseLast.y);
+   //   //vector2_i32 rel(m_pointMouseLast.x(), m_pointMouseLast.y());
 
    //   //rel += m_pos;
 
@@ -1579,7 +1672,7 @@ namespace nanoui
    bool Screen::on_scroll_event(const ::point_i32& point, double x, double y)
    {
 
-      return scroll_event({ point.x, point.y }, { (float)x, (float)y });
+      return scroll_event({ point.x(), point.y() }, { (float)x, (float)y });
 
    }
 

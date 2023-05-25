@@ -33,9 +33,9 @@ namespace nanoui
     *
     * \brief Base class of all widgets.
     *
-    * \ref Widget is the base class of all widgets in \pwidgetChild nanoui. It can
+    * \::pointer Widget is the base class of all widgets in \pwidgetChild nanoui. It can
     * also be used as an panel to arrange an arbitrary number of pwidgetChild
-    * widgets using a layout generator (see \ref Layout).
+    * widgets using a layout generator (see \::pointer Layout).
     */
    class CLASS_DECL_NANOUI Widget :
       public Object
@@ -43,17 +43,18 @@ namespace nanoui
    public:
 
 
-      ::string             m_strAnnotation;
-      bool                 m_bNeedLayout;
-      Widget *             m_parent;
-      ref<Theme>           m_theme;
-      ref<Layout>          m_layout;
+      ::string                m_strAnnotation;
+      bool                    m_bNeedLayout;
+      ::pointer < Widget>     m_pwidgetParent;
+      ::pointer<Theme>        m_ptheme;
+      ::pointer<Layout>       m_playout;
       vector2_i32             m_pos;
       vector2_i32             m_size;
       vector2_i32             m_fixed_size;
       vector2_i32             m_offsetToApplyOnDraw;
       vector2_i32             m_offsetSizeToApplyOnDraw;
-      ::comparable_array<Widget*>     m_children;
+      ::pointer<Widget>       m_pwidgetDragDropArena;
+      ::pointer_array<Widget> m_children;
       //::index               m_iHoverCandidateChildStart;
       //::index               m_iHoverCandidateChildEnd;
       ::function <void() >    m_functionOnMoved;
@@ -81,12 +82,12 @@ namespace nanoui
       /**
        * \brief The amount of extra icon scaling used in addition the the theme's
        *        default icon font scale.  Default value is ``1.0``, which implies
-       *        that \ref nanoui::Widget::icon_scale simply returns the value
-       *        of \ref nanoui::Theme::m_fIconScale.
+       *        that \::pointer nanoui::Widget::icon_scale simply returns the value
+       *        of \::pointer nanoui::Theme::m_fIconScale.
        *
        * Most widgets do not need extra scaling, but some (e.g., CheckBox, TextBox)
        * need to adjust the Theme's default icon scaling
-       * (\ref nanoui::Theme::m_fIconScale) to properly display icons within their
+       * (\::pointer nanoui::Theme::m_fIconScale) to properly display icons within their
        * bounds (upscale, or downscale).
        *
        * \rst
@@ -126,24 +127,24 @@ namespace nanoui
       Widget(Widget* parent);
 
       /// Return the parent pwidget
-      Widget* parent() { return m_parent; }
+      Widget* parent() { return m_pwidgetParent; }
       /// Return the parent pwidget
-      const Widget* parent() const { return m_parent; }
+      const Widget* parent() const { return m_pwidgetParent; }
       /// Set the parent pwidget
-      void set_parent(Widget* parent) { m_parent = parent; }
+      void set_parent(Widget* parent) { m_pwidgetParent = parent; }
 
-      /// Return the used \ref Layout generator
-      Layout* layout() { return m_layout; }
-      /// Return the used \ref Layout generator
-      const Layout* layout() const { return m_layout.get(); }
-      /// Set the used \ref Layout generator
-      void set_layout(Layout* layout) { m_layout = layout; }
+      /// Return the used \::pointer Layout generator
+      Layout* layout() { return m_playout; }
+      /// Return the used \::pointer Layout generator
+      const Layout* layout() const { return m_playout.get(); }
+      /// Set the used \::pointer Layout generator
+      void set_layout(Layout* layout); 
 
-      /// Return the \ref Theme used to draw this pwidget
-      Theme* theme() { return m_theme; }
-      /// Return the \ref Theme used to draw this pwidget
-      const Theme* theme() const { return m_theme.get(); }
-      /// Set the \ref Theme used to draw this pwidget
+      /// Return the \::pointer Theme used to draw this pwidget
+      Theme* theme() { return m_ptheme; }
+      /// Return the \::pointer Theme used to draw this pwidget
+      const Theme* theme() const { return m_ptheme.get(); }
+      /// Set the \::pointer Theme used to draw this pwidget
       virtual void set_theme(Theme* theme);
 
       /// Return the position relative to the parent pwidget
@@ -153,11 +154,15 @@ namespace nanoui
 
       /// Return the absolute position on pscreen
       vector2_i32 absolute_position() const {
-         return m_parent ?
+         return m_pwidgetParent ?
             (parent()->absolute_position() + m_pos) : m_pos;
       }
 
       virtual vector2_i32 screen_position() const;
+
+
+      virtual vector2_i32 get_scroll_offset() const;
+      virtual vector2_i32 get_accumulated_scroll_offset() const;
 
       /// Return the size of the pwidget
       const vector2_i32& size() const { return m_size; }
@@ -175,7 +180,7 @@ namespace nanoui
       void set_height(int height) { m_size.y() = height; }
 
 
-      /// Whether or not this CheckBox is currently pushed.  See \ref nanoui::CheckBox::m_pushed.
+      /// Whether or not this CheckBox is currently pushed.  See \::pointer nanoui::CheckBox::m_pushed.
       virtual bool is_mouse_down() const;
       virtual void set_mouse_down(bool bMouseDown);
 
@@ -197,25 +202,25 @@ namespace nanoui
        * If nonzero, components of the fixed size attribute override any values
        * computed by a layout generator associated with this pwidget. Note that
        * just setting the fixed size alone is not enough to actually change its
-       * size; this is done with a call to \ref set_size or a call to \ref perform_layout()
+       * size; this is done with a call to \::pointer set_size or a call to \::pointer perform_layout()
        * in the parent pwidget.
        */
       virtual void set_fixed_size(const vector2_i32& fixed_size) { m_fixed_size = fixed_size; }
 
-      /// Return the fixed size (see \ref set_fixed_size())
+      /// Return the fixed size (see \::pointer set_fixed_size())
       const vector2_i32& fixed_size() const { return m_fixed_size; }
 
-      // Return the fixed width (see \ref set_fixed_size())
+      // Return the fixed width (see \::pointer set_fixed_size())
       int fixed_width() const { return m_fixed_size.x(); }
-      // Return the fixed height (see \ref set_fixed_size())
+      // Return the fixed height (see \::pointer set_fixed_size())
       int fixed_height() const { return m_fixed_size.y(); }
-      /// Set the fixed width (see \ref set_fixed_size())
+      /// Set the fixed width (see \::pointer set_fixed_size())
       void set_fixed_width(int width) { m_fixed_size.x() = width; }
-      /// Set the fixed height (see \ref set_fixed_size())
+      /// Set the fixed height (see \::pointer set_fixed_size())
       void set_fixed_height(int height) { m_fixed_size.y() = height; }
 
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
-      bool visible() const;
+      virtual bool visible() const;
       /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
       void set_visible(bool bVisible);
       void toggle_visible();
@@ -235,14 +240,14 @@ namespace nanoui
       int child_count() const { return (int)m_children.size(); }
 
       /// Return the list of pwidgetChild widgets of the current pwidget
-      const ::array<Widget*>& children() const { return m_children; }
+      const ::pointer_array<Widget>& children() const { return m_children; }
 
       /**
        * \brief Add a pwidgetChild pwidget to the current pwidget at
        * the specified iIndex.
        *
        * This function almost never needs to be called by hand,
-       * since the constructor of \ref Widget automatically
+       * since the constructor of \::pointer Widget automatically
        * adds the current pwidget to its parent
        */
       virtual void add_child(::index iIndex, Widget* pwidget);
@@ -254,7 +259,11 @@ namespace nanoui
       void erase_child_at(::index iIndex);
 
       /// Remove a pwidgetChild pwidget by value
-      void erase_child(const Widget* pwidget);
+      void erase_child(Widget* pwidget);
+
+      virtual void destroy_window();
+
+      virtual void on_destroy_window();
 
       /// Retrieves the pwidgetChild at the specific position
       const Widget* child_at(::index iIndex) const { return m_children[(size_t)iIndex]; }
@@ -306,13 +315,13 @@ namespace nanoui
 
       /**
        * The amount of extra scaling applied to *icon* fonts.
-       * See \ref nanoui::Widget::m_icon_extra_scale.
+       * See \::pointer nanoui::Widget::m_icon_extra_scale.
        */
       float icon_extra_scale() const { return m_icon_extra_scale; }
 
       /**
        * Sets the amount of extra scaling applied to *icon* fonts.
-       * See \ref nanoui::Widget::m_icon_extra_scale.
+       * See \::pointer nanoui::Widget::m_icon_extra_scale.
        */
       void set_icon_extra_scale(float scale) { m_icon_extra_scale = scale; }
 
@@ -322,11 +331,7 @@ namespace nanoui
       void set_cursor(Cursor cursor) { m_cursor = cursor; }
 
       /// Check if the pwidget contains a certain position
-      bool contains(const vector2_i32& p) const {
-         vector2_i32 d = p - m_pos;
-         return d.x() >= 0 && d.y() >= 0 &&
-            d.x() < m_size.x() && d.y() < m_size.y();
-      }
+      bool contains(const vector2_i32& p) const;
 
       /// Determine the pwidget located at the given position value (recursive)
       Widget* find_widget(const vector2_i32& p);
@@ -389,14 +394,14 @@ namespace nanoui
       /**
        * Convenience definition for subclasses to get the full icon scale for this
        * class of Widget.  It simple returns the value
-       * ``m_theme->m_fIconScale * this->m_icon_extra_scale``.
+       * ``m_ptheme->m_fIconScale * this->m_icon_extra_scale``.
        *
        * \remark
-       *     See also: \ref nanoui::Theme::m_fIconScale and
-       *     \ref nanoui::Widget::m_icon_extra_scale.  This tiered scaling
+       *     See also: \::pointer nanoui::Theme::m_fIconScale and
+       *     \::pointer nanoui::Widget::m_icon_extra_scale.  This tiered scaling
        *     strategy may not be appropriate with fonts other than ``entypo.ttf``.
        */
-      float icon_scale() const { return m_theme->m_fIconScale * m_icon_extra_scale; }
+      float icon_scale() const { return m_ptheme->m_fIconScale * m_icon_extra_scale; }
 
 
    };

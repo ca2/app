@@ -689,7 +689,7 @@ namespace data
    }
 
 
-   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::primitive * ptree, const ::POINT_I32 & point)
+   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::primitive * ptree, const ::point_i32 & point)
    {
 
 

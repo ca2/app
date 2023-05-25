@@ -43,8 +43,8 @@ namespace hotplugin
       m_bReload         = false;
       m_bInstalling     = false;
 
-      m_pointCursorPhase.x = 0;
-      m_pointCursorPhase.y = 0;
+      m_pointCursorPhase.x() = 0;
+      m_pointCursorPhase.y() = 0;
 
       m_etheme = ::user::e_theme_lite;
 
@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
    //// ca.dll-absence-(ca.dll-delay-load)-safe
-   //void plugin::window_rectangle(RECTANGLE_I32 * prectangle)
+   //void plugin::window_rectangle(::rectangle_i32 * prectangle)
 
    //{
 
@@ -944,7 +944,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 
    }
 
-   //bool plugin::client_to_screen(POINT_I32 * ppt)
+   //bool plugin::client_to_screen(::point_i32 * ppt)
    //{
 
    //   ::user::interaction::client_to_screen(ppt);
@@ -953,7 +953,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 
    //}
 
-   //bool plugin::screen_to_client(POINT_I32 * ppt)
+   //bool plugin::screen_to_client(::point_i32 * ppt)
    //{
 
    //   ::user::interaction::screen_to_client(ppt);
@@ -963,7 +963,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::window_rectangle(RECTANGLE_I64 * prectangle)
+   //bool plugin::window_rectangle(::rectangle_i64 * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -985,7 +985,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::client_rectangle(RECTANGLE_I64 * prectangle)
+   //bool plugin::client_rectangle(::rectangle_i64 * prectangle)
    //{
 
    //   if(m_phost == nullptr)

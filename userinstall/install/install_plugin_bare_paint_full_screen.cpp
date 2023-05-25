@@ -21,14 +21,14 @@ namespace hotplugin
 
       }
 
-      RECTANGLE_I32 rectangleWindow;
+      ::rectangle_i32 rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
       i32 cx = rectangleWindow.right - rectangleWindow.left;
       i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
-      RECTANGLE_I32 rectangle_i32;
+      ::rectangle_i32 rectangle_i32;
 
       rectangle.left = 0;
       rectangle.top = 0;

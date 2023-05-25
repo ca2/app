@@ -97,9 +97,9 @@ public:
       bool LoadBitmap(::u32 nIDResource);
    */
 
-//  virtual bool index_item_rectangle(index iItem,RECTANGLE_I32 * prectangle)
+//  virtual bool index_item_rectangle(index iItem,::rectangle_i32 * prectangle)
 
-   bool index_element_rectangle(index iItem,RECTANGLE_I32 * prectangle, ::enum_element eelement,
+   bool index_element_rectangle(index iItem,::rectangle_i32 * prectangle, ::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 

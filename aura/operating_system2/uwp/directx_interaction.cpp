@@ -82,7 +82,7 @@ namespace universal_windows
 
       return ::user::interaction::_001DrawChildren(pgraphics);
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 

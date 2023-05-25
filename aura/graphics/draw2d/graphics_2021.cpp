@@ -591,7 +591,7 @@ namespace draw2d
    point_f64 graphics::set_origin(const ::point_f64 & point)
    {
 
-      return set_origin(point.x, point.y);
+      return set_origin(point.x(), point.y());
 
    }
 
@@ -715,9 +715,9 @@ namespace draw2d
    void graphics::set_current_point(double x, double y)
    {
 
-      m_point.x = x;
+      m_point.x() = x;
 
-      m_point.y = y;
+      m_point.y() = y;
 
       //return true;
 
@@ -727,7 +727,7 @@ namespace draw2d
    void graphics::line_to(double x, double y)
    {
 
-      return draw_line(m_point.x, m_point.y, x, y);
+      return draw_line(m_point.x(), m_point.y(), x, y);
 
    }
 
@@ -821,7 +821,7 @@ namespace draw2d
    void graphics::arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
-      arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
+      arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), pointStart.x(), pointStart.y(), pointEnd.x(), pointEnd.y());
 
    }
 
@@ -1009,7 +1009,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::fill_polygon(const ::point_f64 * ppoints, count nCount)
    {
       
       throw ::interface_only();
@@ -1019,7 +1019,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::draw_polygon(const ::point_f64 * ppoints, count nCount)
    {
       
       throw ::interface_only();
@@ -1029,7 +1029,7 @@ namespace draw2d
    }
 
 
-   void graphics::polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::polygon(const ::point_f64 * ppoints, count nCount)
    {
 
       fill_polygon(ppoints, nCount);
@@ -1041,7 +1041,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       fill_poly_polygon(ppoints, pPolyCounts, nCount);
@@ -1053,7 +1053,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       //bool bOk = true;
@@ -1080,7 +1080,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       //bool bOk = true;
@@ -1161,15 +1161,15 @@ namespace draw2d
 
             point_i32 pointDst;
 
-            pointDst.y = (::i32) maximum(0., rectangleIntersect.top - y);
+            pointDst.y() = (::i32) maximum(0., rectangleIntersect.top - y);
 
-            pointDst.x = (::i32) maximum(0., rectangleIntersect.left - x);
+            pointDst.x() = (::i32) maximum(0., rectangleIntersect.left - x);
 
             point_i32 pointSrc;
 
-            pointSrc.y = (::i32) maximum(0, y - rectangleAlphaBlend.top);
+            pointSrc.y() = (::i32) maximum(0, y - rectangleAlphaBlend.top);
 
-            pointSrc.x = (::i32) maximum(0, x - rectangleAlphaBlend.left);
+            pointSrc.x() = (::i32) maximum(0, x - rectangleAlphaBlend.left);
 
             pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
@@ -1302,7 +1302,7 @@ namespace draw2d
    //   //   if (rectangle.top < 0)
    //   //   {
 
-   //   //      point.y -= rectangle.top;
+   //   //      point.y() -= rectangle.top;
 
    //   //      rectangle.bottom += rectangle.top;
 
@@ -1322,11 +1322,11 @@ namespace draw2d
 
    //   //      //   const ::point_f64 & pointOff = get_origin();
 
-   //   //      //   x += pointOff.x;
+   //   //      //   x += pointOff.x();
 
-   //   //      //   y += pointOff.y;
+   //   //      //   y += pointOff.y();
 
-   //   //      //   return m_ppimage->blend(::point_i32(x, y), pgraphicsSrc->m_pimage, ::point_i32(xSrc, ySrc), m_pimageAlphaBlend, point_i32(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectangleBlt.size());
+   //   //      //   return m_ppimage->blend(::point_i32(x, y), pgraphicsSrc->m_pimage, ::point_i32(xSrc, ySrc), m_pimageAlphaBlend, point_i32(m_pointAlphaBlend.x() - x, m_pointAlphaBlend.y() - y), rectangleBlt.size());
 
    //   //      //}
    //   //      //else
@@ -1346,8 +1346,8 @@ namespace draw2d
 
    //   //         pimage1->blend(::point_i32(), m_pimageAlphaBlend,
    //   //            {
-   //   //               (int)maximum(0, rectangle.left - m_pointAlphaBlend.x),
-   //   //               (int)maximum(0, rectangle.top - m_pointAlphaBlend.y)
+   //   //               (int)maximum(0, rectangle.left - m_pointAlphaBlend.x()),
+   //   //               (int)maximum(0, rectangle.top - m_pointAlphaBlend.y())
    //   //            }, rectangle.size());
 
    //   //         draw_image(rectangle, pimage1->get_graphics());
@@ -1589,7 +1589,7 @@ namespace draw2d
 
          {
 
-            image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectangleText.size()));
+            image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x()), (int)maximum(0, y - m_pointAlphaBlend.y())), rectangleText.size()));
 
             rectangle_f64 rectangle(pimage1->rectangle());
 

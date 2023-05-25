@@ -145,7 +145,7 @@ namespace experience
       if (pframewindow->find_i32("ysnap") > 1)
       {
 
-         pointMove.y -= pointMove.y % pframewindow->find_i32("ysnap");
+         pointMove.y() -= pointMove.y() % pframewindow->find_i32("ysnap");
 
       }
 

@@ -21,15 +21,14 @@ namespace nano2d
    public:
 
       
-      ::draw2d::graphics_pointer       m_pgraphics;
-      ::pointer<::nano2d::font_sink>  m_pfontsink;
-      int                              m_iPaint = -1;
+      ::draw2d::graphics_pointer          m_pgraphics;
+      ::pointer<::nano2d::font_sink>      m_pfontsink;
+      int                                 m_iPaint = -1;
 
 
 
       class state :
-         virtual public ::matter,
-         public ::draw2d::savedc
+         virtual public ::matter
       {
       public:
 
@@ -38,6 +37,8 @@ namespace nano2d
          ::draw2d::brush_pointer       m_pbrush;
 
          ::draw2d::path_pointer        m_ppath;
+
+         ::i32                         m_iSavedContext;
 
          string                        m_strFontFace;
          float                         m_fFontSize;
@@ -50,8 +51,7 @@ namespace nano2d
 
          bool                          m_bHasCurrentPoint;
 
-         state(::draw2d::graphics * pgraphics) :
-            savedc(pgraphics)
+         state(::draw2d::graphics * pgraphics)
          {
 
             m_fFontSize = 0.f;
@@ -73,8 +73,8 @@ namespace nano2d
       };
 
 
-      pointer_array < state >           m_statea;
-      ::pointer<state>                m_pstate;
+      pointer_array < state >          m_statea;
+      ::pointer<state>                 m_pstate;
       ::i32                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 
@@ -94,12 +94,12 @@ namespace nano2d
       virtual ::write_text::font_pointer _get_current_font();
 
 
-      virtual void _create_new_state();
+      virtual ::pointer < state > create_new_state();
       virtual paint_image & _create_new_paint_image();
 
 
-      void save() override;
-      void restore() override;
+      void save1() override;
+      void restore1() override;
 
 
       void begin_path() override;

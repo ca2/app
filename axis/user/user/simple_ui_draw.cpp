@@ -197,24 +197,24 @@ namespace simple_ui
       point_f64 pc[4];
 
 
-      pa[0].x = rectangle.left;
-      pa[0].y = rectangleDraw.top;
-      pa[1].x = rectangleDraw.right - rectangleDraw.width() / 10;
-      pa[1].y = rectangleDraw.top + rectangleDraw.height() / 10;
-      pa[2].x = rectangleDraw.right - rectangleDraw.width() / 8;
-      pa[2].y = rectangleDraw.bottom - rectangleDraw.height() / 10;
-      pa[3].x = rectangleDraw.left;
-      pa[3].y = rectangleDraw.bottom;
+      pa[0].x() = rectangle.left;
+      pa[0].y() = rectangleDraw.top;
+      pa[1].x() = rectangleDraw.right - rectangleDraw.width() / 10;
+      pa[1].y() = rectangleDraw.top + rectangleDraw.height() / 10;
+      pa[2].x() = rectangleDraw.right - rectangleDraw.width() / 8;
+      pa[2].y() = rectangleDraw.bottom - rectangleDraw.height() / 10;
+      pa[3].x() = rectangleDraw.left;
+      pa[3].y() = rectangleDraw.bottom;
 
 
-      pb[0].x = rectangleDraw.left + rectangleDraw.width() / 6;
-      pb[0].y = rectangleDraw.top + rectangleDraw.height() / 6;
-      pb[1].x = rectangleDraw.right - rectangleDraw.width() / 6;
-      pb[1].y = rectangleDraw.top + rectangleDraw.height() / 6;
-      pb[2].x = rectangleDraw.right - rectangleDraw.width() / 5;
-      pb[2].y = rectangleDraw.bottom - rectangleDraw.height() / 4;
-      pb[3].x = rectangleDraw.left + rectangleDraw.width() / 5;
-      pb[3].y = rectangleDraw.bottom - rectangleDraw.height() / 4;
+      pb[0].x() = rectangleDraw.left + rectangleDraw.width() / 6;
+      pb[0].y() = rectangleDraw.top + rectangleDraw.height() / 6;
+      pb[1].x() = rectangleDraw.right - rectangleDraw.width() / 6;
+      pb[1].y() = rectangleDraw.top + rectangleDraw.height() / 6;
+      pb[2].x() = rectangleDraw.right - rectangleDraw.width() / 5;
+      pb[2].y() = rectangleDraw.bottom - rectangleDraw.height() / 4;
+      pb[3].x() = rectangleDraw.left + rectangleDraw.width() / 5;
+      pb[3].y() = rectangleDraw.bottom - rectangleDraw.height() / 4;
 
       {
 
@@ -251,10 +251,10 @@ namespace simple_ui
 
       // top
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[2].x = pb[1].x;
-      pc[2].y = pb[1].y;
-      pc[3].x = pb[0].x;
-      pc[3].y = pb[0].y;
+      pc[2].x() = pb[1].x();
+      pc[2].y() = pb[1].y();
+      pc[3].x() = pb[0].x();
+      pc[3].y() = pb[0].y();
 
       {
 
@@ -278,10 +278,10 @@ namespace simple_ui
       }
       // left
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[1].x = pb[0].x;
-      pc[1].y = pb[0].y;
-      pc[2].x = pb[3].x;
-      pc[2].y = pb[3].y;
+      pc[1].x() = pb[0].x();
+      pc[1].y() = pb[0].y();
+      pc[2].x() = pb[3].x();
+      pc[2].y() = pb[3].y();
       {
 
          ::draw2d::brush_pointer b(e_create, this);
@@ -304,10 +304,10 @@ namespace simple_ui
       }
       // bottom
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[0].x = pb[3].x;
-      pc[0].y = pb[3].y;
-      pc[1].x = pb[2].x;
-      pc[1].y = pb[2].y;
+      pc[0].x() = pb[3].x();
+      pc[0].y() = pb[3].y();
+      pc[1].x() = pb[2].x();
+      pc[1].y() = pb[2].y();
       {
 
          ::draw2d::brush_pointer b(e_create, this);
@@ -330,10 +330,10 @@ namespace simple_ui
       }
       // right
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[0].x = pb[1].x;
-      pc[0].y = pb[1].y;
-      pc[3].x = pb[2].x;
-      pc[3].y = pb[2].y;
+      pc[0].x() = pb[1].x();
+      pc[0].y() = pb[1].y();
+      pc[3].x() = pb[2].x();
+      pc[3].y() = pb[2].y();
       {
 
          ::draw2d::brush_pointer b(e_create, this);

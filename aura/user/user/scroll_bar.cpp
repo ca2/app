@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   bool scroll_bar::GetTrackRect(RECTANGLE_I32* prectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool scroll_bar::GetTrackRect(::rectangle_i32* prectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       return false;

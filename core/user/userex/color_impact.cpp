@@ -517,21 +517,21 @@ namespace userex
    void color_impact::on_mouse(const ::point_i32 & point)
    {
 
-      if (point.y >= m_rectangleColors.bottom)
+      if (point.y() >= m_rectangleColors.bottom)
       {
 
          return;
 
       }
 
-      if (point.x < m_rectangleColors.left)
+      if (point.x() < m_rectangleColors.left)
       {
 
          return;
 
       }
 
-      if (point.y < m_rectangleColors.top)
+      if (point.y() < m_rectangleColors.top)
       {
 
          return;
@@ -544,12 +544,12 @@ namespace userex
 
       int iColorsRight = iColorsLeft + iColorsWidth;
 
-      if (point.x < iColorsRight)
+      if (point.x() < iColorsRight)
       {
 
-         int x = point.x - iColorsLeft;
+         int x = point.x() - iColorsLeft;
 
-         int y = point.y - m_rectangleColors.top;
+         int y = point.y() - m_rectangleColors.top;
 
          m_pointMouseColorBeam = point;
 
@@ -589,12 +589,12 @@ namespace userex
          post_redraw();
 
       }
-      else if (point.x < m_rectangleColors.center().x + m_rectangleColors.width() / 8)
+      else if (point.x() < m_rectangleColors.center().x() + m_rectangleColors.width() / 8)
       {
 
-         auto pointLuminance = point - ::size_i32(m_rectangleColors.center().x, m_rectangleColors.top);
+         auto pointLuminance = point - ::size_i32(m_rectangleColors.center().x(), m_rectangleColors.top);
 
-         m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
+         m_hls.m_dL = 1.0 - ((double)pointLuminance.y() / (double) m_pimage->height());
          
          if(has_handler())
          {
@@ -635,7 +635,7 @@ namespace userex
 
       size_f64 sizeBeam(dSize,dSize);
 
-      rectangle_f64 rectangleOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
+      rectangle_f64 rectangleOuter(point.x() - sizeBeam.cx / 2.0, point.y() - sizeBeam.cy / 2.0, point.x() + sizeBeam.cx / 2.0, point.y() + sizeBeam.cy / 2.0);
 
       rectangle_f64 rectangleInner(rectangleOuter);
 
@@ -653,9 +653,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(rectangleOuter.left, point.y - dHalfTriBase));
-         pointa.add(point_f64(rectangleInner.left, point.y));
-         pointa.add(point_f64(rectangleOuter.left, point.y + dHalfTriBase));
+         pointa.add(point_f64(rectangleOuter.left, point.y() - dHalfTriBase));
+         pointa.add(point_f64(rectangleInner.left, point.y()));
+         pointa.add(point_f64(rectangleOuter.left, point.y() + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -665,9 +665,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(point.x - dHalfTriBase, rectangleOuter.top));
-         pointa.add(point_f64(point.x, rectangleInner.top));
-         pointa.add(point_f64(point.x + dHalfTriBase, rectangleOuter.top));
+         pointa.add(point_f64(point.x() - dHalfTriBase, rectangleOuter.top));
+         pointa.add(point_f64(point.x(), rectangleInner.top));
+         pointa.add(point_f64(point.x() + dHalfTriBase, rectangleOuter.top));
 
          pgraphics->fill_polygon(pointa);
 
@@ -677,9 +677,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(rectangleOuter.right, point.y - dHalfTriBase));
-         pointa.add(point_f64(rectangleInner.right, point.y));
-         pointa.add(point_f64(rectangleOuter.right, point.y + dHalfTriBase));
+         pointa.add(point_f64(rectangleOuter.right, point.y() - dHalfTriBase));
+         pointa.add(point_f64(rectangleInner.right, point.y()));
+         pointa.add(point_f64(rectangleOuter.right, point.y() + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -689,9 +689,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(point.x - dHalfTriBase, rectangleOuter.bottom));
-         pointa.add(point_f64(point.x, rectangleInner.bottom));
-         pointa.add(point_f64(point.x + dHalfTriBase, rectangleOuter.bottom));
+         pointa.add(point_f64(point.x() - dHalfTriBase, rectangleOuter.bottom));
+         pointa.add(point_f64(point.x(), rectangleInner.bottom));
+         pointa.add(point_f64(point.x() + dHalfTriBase, rectangleOuter.bottom));
 
          pgraphics->fill_polygon(pointa);
 
@@ -797,9 +797,9 @@ namespace userex
       else
       {
 
-         point.x = (::i32)(rTarget.left + rTarget.width() * m_hls.m_dH);
+         point.x() = (::i32)(rTarget.left + rTarget.width() * m_hls.m_dH);
 
-         point.y = (::i32)(rTarget.top + rTarget.height() * (1.0 - m_hls.m_dS));
+         point.y() = (::i32)(rTarget.top + rTarget.height() * (1.0 - m_hls.m_dS));
 
       }
 
@@ -937,8 +937,8 @@ namespace userex
       if(!m_bCompact)
       {
 
-         rectangleColors.left = rectangleClient.center().x;
-         rectangleColors.bottom = rectangleClient.center().y;
+         rectangleColors.left = rectangleClient.center().x();
+         rectangleColors.bottom = rectangleClient.center().y();
 
          rectangleColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
 

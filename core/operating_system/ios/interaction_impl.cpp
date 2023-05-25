@@ -172,7 +172,7 @@ string strNow)
 
 }
 
-int_bool SetWindowRect(oswindow hwnd, RECTANGLE_I32 * lprect);
+int_bool SetWindowRect(oswindow hwnd, ::rectangle_i32 * lprect);
 
 // int_bool PeekMessage(
 // MESSAGE * lpMsg,
@@ -549,8 +549,8 @@ namespace ios
 //
 //      CGRect rectangle_i32;
 //
-//      rectangle.origin.x = pinitialize->m_rectangle.left;
-//      rectangle.origin.y = pinitialize->m_rectangle.top;
+//      rectangle.origin.x() = pinitialize->m_rectangle.left;
+//      rectangle.origin.y() = pinitialize->m_rectangle.top;
 //      rectangle.size.width = width(pinitialize->m_rectangle);
 //      rectangle.size.height = height(pinitialize->m_rectangle);
 //
@@ -1234,16 +1234,16 @@ namespace ios
                ::rectangle_i32 rcMonitor;
                psystem->get_monitor_rectangle(0, &rcMonitor);
                if(rectangleWindow.left >= rcMonitor.left)
-                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+                  pmouse->m_point.x() += (::i32) rectangleWindow.left;
                if(rectangleWindow.top >= rcMonitor.top)
-                  pmouse->m_point.y += (::i32) rectangleWindow.top;
+                  pmouse->m_point.y() += (::i32) rectangleWindow.top;
             }
             else
             {
                if(rectangleWindow.left >= 0)
-                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+                  pmouse->m_point.x() += (::i32) rectangleWindow.left;
                if(rectangleWindow.top >= 0)
-                  pmouse->m_point.y += (::i32) rectangleWindow.top;
+                  pmouse->m_point.y() += (::i32) rectangleWindow.top;
             }
          }
 
@@ -1625,7 +1625,7 @@ namespace ios
    }
 
 //   void interaction_impl::ScrollWindow(i32 xAmount, i32 yAmount,
-//                                       const ::rectangle_i32 & rectangle, const RECTANGLE_I32 * lpClipRect)
+//                                       const ::rectangle_i32 & rectangle, const ::rectangle_i32 * lpClipRect)
 //   {
 //      /*      ASSERT(::is_window(get_handle()));
 //
@@ -1660,7 +1660,7 @@ namespace ios
 
 
 
-   void interaction_impl::CalcWindowRect(RECTANGLE_I32 * lpClientRect, ::u32 nAdjustType)
+   void interaction_impl::CalcWindowRect(::rectangle_i32 * lpClientRect, ::u32 nAdjustType)
    {
       /*::u32 dwExStyle = GetExStyle();
        if (nAdjustType == 0)
@@ -2641,7 +2641,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::client_to_screen(RECTANGLE_I32 * lprect)
+//   bool interaction_impl::client_to_screen(::rectangle_i32 * lprect)
 //   {
 //
 //      ::rectangle_i64 rectangleWindow;
@@ -2663,7 +2663,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::client_to_screen(POINT_I32 * lppoint)
+//   bool interaction_impl::client_to_screen(::point_i32 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectangleWindow;
@@ -2683,7 +2683,7 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::client_to_screen(RECTANGLE_I64 * lprect)
+//   bool interaction_impl::client_to_screen(::rectangle_i64 * lprect)
 //   {
 //
 //      ::rectangle_i32 rectangleWindow;
@@ -2705,7 +2705,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::client_to_screen(POINT_I64 * lppoint)
+//   bool interaction_impl::client_to_screen(::point_i64 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectangleWindow;
@@ -2724,7 +2724,7 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::screen_to_client(RECTANGLE_I32 * lprect)
+//   bool interaction_impl::screen_to_client(::rectangle_i32 * lprect)
 //   {
 //
 //      ::rectangle_i64 rectangleWindow;
@@ -2746,7 +2746,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::screen_to_client(POINT_I32 * lppoint)
+//   bool interaction_impl::screen_to_client(::point_i32 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectangleWindow;
@@ -2767,7 +2767,7 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::screen_to_client(RECTANGLE_I64 * lprect)
+//   bool interaction_impl::screen_to_client(::rectangle_i64 * lprect)
 //   {
 //
 //      ::rectangle_i64 rectangleWindow;
@@ -2789,7 +2789,7 @@ namespace ios
 //
 //   }
 //
-//   bool interaction_impl::screen_to_client(POINT_I64 * lppoint)
+//   bool interaction_impl::screen_to_client(::point_i64 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectangleWindow;
@@ -2809,7 +2809,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::window_rectangle(RECTANGLE_I64 * lprect)
+//   bool interaction_impl::window_rectangle(::rectangle_i64 * lprect)
 //   {
 //      //      if(!::is_window(get_handle()))
 //      //       throw ::exception(::exception("no more a user::interaction"));
@@ -2855,7 +2855,7 @@ namespace ios
 //
 //   }
 
-//   bool interaction_impl::client_rectangle(RECTANGLE_I64 * lprect)
+//   bool interaction_impl::client_rectangle(::rectangle_i64 * lprect)
 //   {
 //
 //      if(!::is_window(get_handle()))
@@ -3077,7 +3077,7 @@ namespace ios
 //      }
 //   }
 //
-//   bool interaction_impl::DragDetect(POINT_I32 point_i32) const
+//   bool interaction_impl::DragDetect(::point_i32 point_i32) const
 //   {
 //
 //      throw ::not_implemented();
@@ -3215,18 +3215,18 @@ namespace ios
 //   }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, ::point_i32 * lpPoint, ::u32 nCount)
    {
       throw ::not_implemented();
       //      ASSERT(::is_window(get_handle()));
       //      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), lpPoint, nCount);
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, ::rectangle_i32 * lpRect)
    {
       throw ::not_implemented();
       //      ASSERT(::is_window(get_handle()));
-      //      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (POINT_I32 *)lpRect, 2);
+      //      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (::point_i32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3303,7 +3303,7 @@ namespace ios
       //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    }
 
-   bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase)
+   bool interaction_impl::GetUpdateRect(::rectangle_i32 * lpRect, bool bErase)
    {
       throw ::not_implemented();
       //ASSERT(::is_window(get_handle()));
@@ -3544,7 +3544,7 @@ namespace ios
     }
     */
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECTANGLE_I32 *lprcFrom, const RECTANGLE_I32 *lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const ::rectangle_i32 *lprcFrom, const ::rectangle_i32 *lprcTo)
 //   {
 //
 //      throw ::not_implemented();
@@ -3553,7 +3553,7 @@ namespace ios
 //
 //   }
 
-//   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 * lprc, ::u32 uFlags)
+//   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 * lprc, ::u32 uFlags)
 //   {
 //
 //      throw ::not_implemented();
@@ -3888,7 +3888,7 @@ namespace ios
 
    }
 
-//   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
 //   {
 //
 //      throw ::not_implemented();
@@ -3906,7 +3906,7 @@ namespace ios
 
    }
 
-//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point_i32)
+//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(::point_i32 point_i32)
 //   {
 //
 //
@@ -3916,7 +3916,7 @@ namespace ios
 //
 //   }
 
-//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags)
+//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(::point_i32 point, ::u32 nFlags)
 //   {
 //
 //      throw ::not_implemented();
@@ -3971,7 +3971,7 @@ namespace ios
 
    }
 
-   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT_I32 point_i32)
+   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(::point_i32 point_i32)
    {
 
 
@@ -4047,15 +4047,15 @@ namespace ios
 
       throw ::not_implemented();
       //      ::point_i32 point;
-      //      ::GetCaretPos((POINT_I32 *)&point); return point;
+      //      ::GetCaretPos((::point_i32 *)&point); return point;
 
    }
 
-   void PASCAL interaction_impl::SetCaretPos(POINT_I32 point_i32)
+   void PASCAL interaction_impl::SetCaretPos(::point_i32 point_i32)
    {
 
       throw ::not_implemented();
-      //      ::SetCaretPos(point.x, point.y);
+      //      ::SetCaretPos(point.x(), point.y());
 
    }
 
@@ -4689,13 +4689,13 @@ namespace ios
    //   { Default(); }
    //   void interaction_impl::OnStyleChanging(i32, LPSTYLESTRUCT)
    //   { Default(); }
-   void interaction_impl::OnSizing(::u32, RECTANGLE_I32 *)
+   void interaction_impl::OnSizing(::u32, ::rectangle_i32 *)
    {
       //Default();
       
       
    }
-   void interaction_impl::OnMoving(::u32, RECTANGLE_I32 *)
+   void interaction_impl::OnMoving(::u32, ::rectangle_i32 *)
      {
       //Default();
       
@@ -4927,7 +4927,7 @@ namespace ios
          
          m_iSoftwareKeyboardScroll = r1.bottom - iSoftwareKeyboardTop;
            
-         puserinteraction->m_pointScroll.y = m_iSoftwareKeyboardScroll;
+         puserinteraction->m_pointScroll.y() = m_iSoftwareKeyboardScroll;
          
       }
 
@@ -4966,7 +4966,7 @@ namespace ios
       if(m_iSoftwareKeyboardScroll > 0)
       {
          
-         puserinteraction->m_pointScroll.y -= m_iSoftwareKeyboardScroll;
+         puserinteraction->m_pointScroll.y() -= m_iSoftwareKeyboardScroll;
          
          m_iSoftwareKeyboardScroll = 0;
          
@@ -5025,7 +5025,7 @@ namespace ios
 //   }
 
 
-   void interaction_impl::offset_context_org(RECTANGLE_I32 * lprectScreen)
+   void interaction_impl::offset_context_org(::rectangle_i32 * lprectScreen)
    {
 
    }
@@ -5119,14 +5119,14 @@ namespace ios
    int interaction_impl::round_window_get_x()
    {
 
-      return m_puserinteraction->m_stateWindow3.m_point.x;
+      return m_puserinteraction->m_stateWindow3.m_point.x();
 
    }
 
    int interaction_impl::round_window_get_y()
    {
 
-      return m_puserinteraction->m_stateWindow3.m_point.y;
+      return m_puserinteraction->m_stateWindow3.m_point.y();
 
    }
 
@@ -5404,8 +5404,8 @@ namespace ios
            
         }
         
-        prectangle->origin.x = rectangle.left;
-        prectangle->origin.y = rectangle.top;
+        prectangle->origin.x() = rectangle.left;
+        prectangle->origin.y() = rectangle.top;
         prectangle->size.width = rectangle.width();
         prectangle->size.height = rectangle.height();
         
@@ -5545,8 +5545,8 @@ namespace ios
          auto pmouse = __new(::message::mouse());
 
          pmouse->m_atom = e_message_left_button_down;
-         pmouse->m_point.x = (::i32) x;
-         pmouse->m_point.y = (::i32) y;
+         pmouse->m_point.x() = (::i32) x;
+         pmouse->m_point.y() = (::i32) y;
          pmouse->m_bTranslated = true;
          //pmouse->m_bTranslateMouseMessageCursor = true;
 
@@ -5567,8 +5567,8 @@ namespace ios
       auto pmouse = __new(::message::mouse());
 
       pmouse->m_atom = e_message_left_button_up;
-      pmouse->m_point.x = (::i32) x;
-      pmouse->m_point.y = (::i32) y;
+      pmouse->m_point.x() = (::i32) x;
+      pmouse->m_point.y() = (::i32) y;
       pmouse->m_bTranslated = true;
       //      pmouse->m_bTranslateMouseMessageCursor = true;
 
@@ -5587,8 +5587,8 @@ namespace ios
       auto pmouse = __new(::message::mouse());
 
       pmouse->m_atom = e_message_mouse_move;
-      pmouse->m_point.x = (::i32) x;
-      pmouse->m_point.y = (::i32) y;
+      pmouse->m_point.x() = (::i32) x;
+      pmouse->m_point.y() = (::i32) y;
       pmouse->m_bTranslated = true;
       //      pmouse->m_bTranslateMouseMessageCursor = true;
 
@@ -5607,8 +5607,8 @@ namespace ios
       auto pmouse = __new(::message::mouse());
 
       pmouse->m_atom = e_message_mouse_move;
-      pmouse->m_point.x = (::i32) x;
-      pmouse->m_point.y = (::i32) y;
+      pmouse->m_point.x() = (::i32) x;
+      pmouse->m_point.y() = (::i32) y;
       pmouse->m_bTranslated = true;
       //      pmouse->m_bTranslateMouseMessageCursor = true;
 
@@ -5679,7 +5679,7 @@ namespace ios
    void interaction_impl::round_window_moved(CGPoint point_i32)
    {
 
-      ::point_i32 pointMove(point.x, point.y);
+      ::point_i32 pointMove(point.x(), point.y());
 
       {
 

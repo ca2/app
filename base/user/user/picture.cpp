@@ -10,7 +10,7 @@
 #include "acme/primitive/collection/_array_binary_stream.h"
 
 
-property & operator << (property & property, const RECTANGLE_F64 & rectangle)
+property & operator << (property & property, const ::rectangle_f64 & rectangle)
 {
 
    property["left"] = rectangle.left;
@@ -22,7 +22,7 @@ property & operator << (property & property, const RECTANGLE_F64 & rectangle)
 
 }
 
-property & operator >> (property & property, RECTANGLE_F64 & rectangle)
+property & operator >> (property & property, ::rectangle_f64 & rectangle)
 {
 
    rectangle.left = property["left"];
@@ -82,8 +82,8 @@ namespace user
       set_flag(e_flag_default_io_exchange);
 
       m_dZoom = 1.0;
-      m_pointDrag2.x = 0.0;
-      m_pointDrag2.y = 0.0;
+      m_pointDrag2.x() = 0.0;
+      m_pointDrag2.y() = 0.0;
 
 
       m_bOutline = false;
@@ -417,9 +417,9 @@ namespace user
 
       auto size = get_size();
 
-      m_ppictureimpl->m_pointDrag2.x = point.x * size.cx/m_ppictureimpl->m_rectangle.width();
+      m_ppictureimpl->m_pointDrag2.x() = point.x() * size.cx/m_ppictureimpl->m_rectangle.width();
 
-      m_ppictureimpl->m_pointDrag2.y = point.y * size.cy / m_ppictureimpl->m_rectangle.height();
+      m_ppictureimpl->m_pointDrag2.y() = point.y() * size.cy / m_ppictureimpl->m_rectangle.height();
 
    }
 
@@ -430,9 +430,9 @@ namespace user
 
       auto size = get_size();
 
-      point.x = m_ppictureimpl->m_pointDrag2.x *m_ppictureimpl->m_rectangle.width() / size.cx;
+      point.x() = m_ppictureimpl->m_pointDrag2.x() *m_ppictureimpl->m_rectangle.width() / size.cx;
 
-      point.y = m_ppictureimpl->m_pointDrag2.y *m_ppictureimpl->m_rectangle.height() / size.cy;
+      point.y() = m_ppictureimpl->m_pointDrag2.y() *m_ppictureimpl->m_rectangle.height() / size.cy;
 
       return point;
 
@@ -618,36 +618,36 @@ namespace user
       if (m_ppictureimpl->m_polygonDrawing.get_size() > 0)
       {
 
-         rectangle.left = rectangle.right = m_ppictureimpl->m_polygonDrawing[0].x;
+         rectangle.left = rectangle.right = m_ppictureimpl->m_polygonDrawing[0].x();
 
-         rectangle.top = rectangle.bottom = m_ppictureimpl->m_polygonDrawing[0].y;
+         rectangle.top = rectangle.bottom = m_ppictureimpl->m_polygonDrawing[0].y();
 
          for (index i = 1; i < m_ppictureimpl->m_polygonDrawing.get_size(); i++)
          {
 
-            if (m_ppictureimpl->m_polygonDrawing[i].x < rectangle.left)
+            if (m_ppictureimpl->m_polygonDrawing[i].x() < rectangle.left)
             {
 
-               rectangle.left = m_ppictureimpl->m_polygonDrawing[i].x;
+               rectangle.left = m_ppictureimpl->m_polygonDrawing[i].x();
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].x > rectangle.right)
+            else if (m_ppictureimpl->m_polygonDrawing[i].x() > rectangle.right)
             {
 
-               rectangle.right = m_ppictureimpl->m_polygonDrawing[i].x;
+               rectangle.right = m_ppictureimpl->m_polygonDrawing[i].x();
 
             }
 
-            if (m_ppictureimpl->m_polygonDrawing[i].y < rectangle.top)
+            if (m_ppictureimpl->m_polygonDrawing[i].y() < rectangle.top)
             {
 
-               rectangle.top = m_ppictureimpl->m_polygonDrawing[i].y;
+               rectangle.top = m_ppictureimpl->m_polygonDrawing[i].y();
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].y > rectangle.bottom)
+            else if (m_ppictureimpl->m_polygonDrawing[i].y() > rectangle.bottom)
             {
 
-               rectangle.bottom = m_ppictureimpl->m_polygonDrawing[i].y;
+               rectangle.bottom = m_ppictureimpl->m_polygonDrawing[i].y();
 
             }
 
@@ -920,8 +920,8 @@ namespace user
 
       auto pointDrag = get_drag_point();
 
-      size = ::size_f64(pointDrag.x * m_ppictureimpl->m_rectangleDrawing.width(),
-         pointDrag.y * m_ppictureimpl->m_rectangleDrawing.height()) - size;
+      size = ::size_f64(pointDrag.x() * m_ppictureimpl->m_rectangleDrawing.width(),
+         pointDrag.y() * m_ppictureimpl->m_rectangleDrawing.height()) - size;
 
       rectangle_f64 rectangle(::point_f64(size), ::size_f64(m_ppictureimpl->m_rectangleDrawing.size()));
 
@@ -940,7 +940,7 @@ namespace user
 
       }
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       ::draw2d::matrix mRot;
 
@@ -974,8 +974,8 @@ namespace user
       auto pointDrag = get_drag_point();
 
       pgraphics->prepend(::draw2d::matrix::translation(
-         pointDrag.x,
-         pointDrag.y));
+         pointDrag.x(),
+         pointDrag.y()));
 
       ::draw2d::matrix mTrans;
 

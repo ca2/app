@@ -143,7 +143,7 @@ namespace draw2d
    }
 
 
-   image_pointer icon::image_source_image(const concrete < ::size_i32 > & size)
+   image_pointer icon::image_source_image(const ::size_i32 & size)
    {
 
       bool bExists;
@@ -237,7 +237,7 @@ namespace draw2d
 
    // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
 
-   concrete < ::size_i32 > icon::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   ::size_i32 icon::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
    {
 
       if (m_sizea.is_empty())
@@ -322,7 +322,7 @@ namespace draw2d
    }
 
 
-   concrete < ::size_i32 > icon::image_source_size() const
+   ::size_i32 icon::image_source_size() const
    { 
       
       return image_source_size(::size_f64(), e_image_selection_default);

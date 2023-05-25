@@ -23,7 +23,7 @@ Popup::Popup(Widget * parent, Window * parent_window)
    m_anchor_offset(30), m_anchor_size(15), m_side(Side::Right) { }
 
 void Popup::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
-   if (m_layout || m_children.size() != 1) {
+   if (m_playout || m_children.size() != 1) {
       Widget::perform_layout(pcontext, bRecalcTextSize);
    }
    else {
@@ -51,41 +51,45 @@ void Popup::draw(::nano2d::context * pcontext)
    if (!m_bVisible)
       return;
 
-   int ds = m_theme->m_iWindowDropShadowSize;
-   int cr = m_theme->m_iWindowCorderRadius;
+   int ds = m_ptheme->m_iWindowDropShadowSize;
+   int cr = m_ptheme->m_iWindowCorderRadius;
 
-   pcontext->save();
-   pcontext->reset_scissor();
+   {
+      ::nano2d::guard guard(pcontext);
+      //pcontext->save();
+      pcontext->reset_scissor();
 
-   /* Draw a drop shadow */
-   ::nano2d::paint shadow_paint = pcontext->box_gradient((float) m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), cr * 2.f, ds * 2.f,
-      m_theme->m_colorDropShadow, m_theme->m_colorTransparent);
+      /* Draw a drop shadow */
+      ::nano2d::paint shadow_paint = pcontext->box_gradient((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), cr * 2.f, ds * 2.f,
+         m_ptheme->m_colorDropShadow, m_ptheme->m_colorTransparent);
 
-   pcontext->begin_path();
-   pcontext->rectangle((float)m_pos.x() - ds, (float)m_pos.y() - ds, (float)m_size.x() + 2.f * ds, (float)m_size.y() + 2.f *ds);
-   pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
-   pcontext->path_winding(::nano2d::e_solidity_hole);
-   pcontext->fill_paint(shadow_paint);
-   pcontext->fill();
+      pcontext->begin_path();
+      pcontext->rectangle((float)m_pos.x() - ds, (float)m_pos.y() - ds, (float)m_size.x() + 2.f * ds, (float)m_size.y() + 2.f * ds);
+      pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
+      pcontext->path_winding(::nano2d::e_solidity_hole);
+      pcontext->fill_paint(shadow_paint);
+      pcontext->fill();
 
-   /* Draw window */
-   pcontext->begin_path();
-   pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
+      /* Draw window */
+      pcontext->begin_path();
+      pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
 
-   vector2_i32 base = m_pos + vector2_i32(0, m_anchor_offset);
-   int sign = -1;
-   if (m_side == Side::Left) {
-      base.x() += m_size.x();
-      sign = 1;
+      vector2_i32 base = m_pos + vector2_i32(0, m_anchor_offset);
+      int sign = -1;
+      if (m_side == Side::Left) {
+         base.x() += m_size.x();
+         sign = 1;
+      }
+
+      pcontext->move_to((float)base.x() + m_anchor_size * sign, (float)base.y());
+      pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() - m_anchor_size);
+      pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() + m_anchor_size);
+
+      pcontext->fill_color(m_ptheme->m_colorWindowPopup);
+      pcontext->fill();
+      //pcontext->restore();
+
    }
-
-   pcontext->move_to((float)base.x() + m_anchor_size * sign, (float)base.y());
-   pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() - m_anchor_size);
-   pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() + m_anchor_size);
-
-   pcontext->fill_color(m_theme->m_colorWindowPopup);
-   pcontext->fill();
-   pcontext->restore();
 
    Widget::draw(pcontext);
 

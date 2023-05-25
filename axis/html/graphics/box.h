@@ -44,7 +44,7 @@
 //      inline void set_cxy(::size_f32 sz);
 //      inline void set_cxy(::size_f32 sz);
 //      inline void set_pos_dim(float x, float y, float cx, float cy);
-//      inline RECTANGLE_I32 * get(RECTANGLE_I32 * prectangle) const;
+//      inline ::rectangle_i32 * get(::rectangle_i32 * prectangle) const;
 //
 //      inline float get_cx() const;
 //      inline float get_cy() const;
@@ -76,7 +76,7 @@
 //   inline bool ::rectangle_f32::contains(const ::point_f32 & point) const
 //   {
 //
-//      return contains((float) ::point_f32.x, (float) ::point_f32.y);
+//      return contains((float) ::point_f32.x(), (float) ::point_f32.y());
 //
 //   }
 //
@@ -144,10 +144,10 @@
 //
 //   inline void ::rectangle_f32::set_xy(const ::point_f32 & point)
 //   {
-//      set_xy((float) ::point_f32.x, (float) ::point_f32.y);
+//      set_xy((float) ::point_f32.x(), (float) ::point_f32.y());
 //   }
 //
-//   inline RECTANGLE_I32 * ::rectangle_f32::get(RECTANGLE_I32 * prectangle) const
+//   inline ::rectangle_i32 * ::rectangle_f32::get(::rectangle_i32 * prectangle) const
 //
 //   {
 //      prectangle->left      = (i32) left;

@@ -36,7 +36,7 @@ namespace nanoui
  * \rst
  * **Usage**
  *     Override :func:`nanoui::GLCanvas::draw_contents` in subclasses to provide
- *     custom drawing code.  See :ref:`nanoui_example_4`.
+ *     custom drawing code.  See :::pointer:`nanoui_example_4`.
  *
  * \endrst
  */
@@ -106,9 +106,9 @@ namespace nanoui
       ::color::color     m_colorClear;
       ::image_pointer m_pimage;
       // opengl
-//      ref<RenderPass> m_render_pass;
+//      ::pointer<RenderPass> m_render_pass;
 //#if defined(NANOUI_USE_METAL)
-//      ref<RenderPass> m_render_pass_resolved;
+//      ::pointer<RenderPass> m_render_pass_resolved;
 //#endif
       bool m_bDrawBorder;
       ::color::color m_border_color;

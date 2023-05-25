@@ -147,7 +147,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelement, index iItem)
+   bool list_header::GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, index iItem)
    {
 
       if (iItem < 0)
@@ -238,7 +238,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element eelement, index iItem)
+   bool list_header::GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element eelement, index iItem)
    {
 
       if (iItem < 0)
@@ -581,7 +581,7 @@ namespace user
             {
                ::rectangle_i32 rectangle;
                GetItemRect(rectangle, e_element_item, m_iItemLButtonDown);
-               rectangle.right = pointCursor.x;
+               rectangle.right = pointCursor.x();
                i32 iNewWidth = rectangle.width();
                plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
                plist->set_need_redraw();
@@ -648,7 +648,7 @@ namespace user
          {
             ::rectangle_i32 rectangle;
             GetItemRect(rectangle, e_element_item, m_iItemLButtonDown);
-            rectangle.right = pointCursor.x;
+            rectangle.right = pointCursor.x();
             i32 iNewWidth = rectangle.width();
             plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
             plist->set_need_redraw();

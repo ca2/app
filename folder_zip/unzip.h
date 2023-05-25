@@ -6,7 +6,7 @@
    This unzip package allow extract file from .ZIP file, compatible with PKZip 2.04g
      WinZip, InfoZip tools and compatible.
    Encryption and multi volume ZipFile (span) are not supported.
-   Old compressions used by old PKZip 1.x are not supported
+   Old compressions used by old PKZip 1.x() are not supported
 
 
    I WAIT FEEDBACK at mail info@winpimage->com

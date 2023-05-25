@@ -51,7 +51,7 @@ ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, fals
    //   positions);
    //m_render_pass->set_cull_mode(RenderPass::CullMode::Disabled);
 
-   m_image_border_color = m_theme->m_colorBorderDark;
+   m_image_border_color = m_ptheme->m_colorBorderDark;
    m_draw_image_border = true;
    m_image_background_color = ::color::color(0.f, 0.f, 0.f, 0.f);
 }

@@ -47,7 +47,7 @@ namespace nanoui
       m_ekeyMouseDownModifier(::user::e_key_none),
       m_fTextOffset(0)
    {
-      if (m_theme) m_font_size = m_theme->m_iTextBoxFontSize;
+      if (m_ptheme) m_font_size = m_ptheme->m_iTextBoxFontSize;
       m_icon_extra_scale = .8f;
       m_bChanged = false;
       //m_bMouseDown = false;
@@ -61,8 +61,8 @@ namespace nanoui
 
    void TextBox::set_theme(Theme* theme) {
       Widget::set_theme(theme);
-      if (m_theme)
-         m_font_size = m_theme->m_iTextBoxFontSize;
+      if (m_ptheme)
+         m_font_size = m_ptheme->m_iTextBoxFontSize;
    }
 
 
@@ -193,14 +193,14 @@ namespace nanoui
          spin_arrows_width = 14.f;
 
          pcontext->font_face("icons");
-         pcontext->font_size(((m_font_size < 0) ? m_theme->m_iButtonFontSize : m_font_size) * icon_scale());
+         pcontext->font_size(((m_font_size < 0) ? m_ptheme->m_iButtonFontSize : m_font_size) * icon_scale());
 
          bool spinning = m_pointMouseDown.x() != -1;
 
          /* up button */ {
             bool hover = m_bMouseHover && spin_area(m_mouse_pos) == SpinArea::Top;
-            pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_theme->m_colorText : m_theme->m_colorDisableText);
-            auto icon = get_utf8_character(m_theme->m_efontawesomeTextBoxUp);
+            pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_ptheme->m_colorText : m_ptheme->m_colorDisableText);
+            auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxUp);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
             vector2_f32 icon_pos(m_pos.x() + 4.f,
                m_pos.y() + m_size.y() / 2.f - x_spacing / 2.f);
@@ -209,8 +209,8 @@ namespace nanoui
 
          /* down button */ {
             bool hover = m_bMouseHover && spin_area(m_mouse_pos) == SpinArea::Bottom;
-            pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_theme->m_colorText : m_theme->m_colorDisableText);
-            auto icon = get_utf8_character(m_theme->m_efontawesomeTextBoxDown);
+            pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_ptheme->m_colorText : m_ptheme->m_colorDisableText);
+            auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxDown);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
             vector2_f32 icon_pos(m_pos.x() + 4.f,
                m_pos.y() + m_size.y() / 2.f + x_spacing / 2.f + 1.5f);
@@ -238,8 +238,8 @@ namespace nanoui
 
       pcontext->font_size(font_size());
       pcontext->fill_color(m_bEnabled && (!m_bCommitted || m_strValue.has_char()) ?
-         m_theme->m_colorText :
-         m_theme->m_colorDisableText);
+         m_ptheme->m_colorText :
+         m_ptheme->m_colorDisableText);
 
       // clip visible text area
       float clip_x = m_pos.x() + x_spacing + spin_arrows_width - 1.0f;
@@ -247,83 +247,88 @@ namespace nanoui
       float clip_width = m_size.x() - unit_width - spin_arrows_width - 2 * x_spacing + 2.0f;
       float clip_height = m_size.y() - 3.0f;
 
-      pcontext->save();
-      pcontext->intersect_scissor(clip_x, clip_y, clip_width, clip_height);
 
-      vector2_f32 old_draw_pos(draw_pos);
+      {
+         ::nano2d::guard guard(pcontext);
+         //pcontext->save();
+         pcontext->intersect_scissor(clip_x, clip_y, clip_width, clip_height);
 
-      draw_pos.x() += m_fTextOffset;
+         vector2_f32 old_draw_pos(draw_pos);
 
-      if (m_bCommitted) {
-         pcontext->text(draw_pos.x(), draw_pos.y(), m_strValue.is_empty() ? m_strPlaceHolder : m_strValue);
-      }
-      else {
-         const int max_glyphs = 1024;
-         ::nano2d::glyphPosition glyphs[max_glyphs];
-         float text_bound[4];
-         pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, text_bound);
-         float lineh = text_bound[3] - text_bound[1];
+         draw_pos.x() += m_fTextOffset;
 
-         // find cursor positions
-         int nglyphs =
-            pcontext->text_glyph_positions(draw_pos.x(), draw_pos.y(),
+         if (m_bCommitted) {
+            pcontext->text(draw_pos.x(), draw_pos.y(), m_strValue.is_empty() ? m_strPlaceHolder : m_strValue);
+         }
+         else {
+            const int max_glyphs = 1024;
+            ::nano2d::glyphPosition glyphs[max_glyphs];
+            float text_bound[4];
+            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, text_bound);
+            float lineh = text_bound[3] - text_bound[1];
+
+            // find cursor positions
+            int nglyphs =
+               pcontext->text_glyph_positions(draw_pos.x(), draw_pos.y(),
+                  m_strValueEdit, glyphs, max_glyphs);
+            update_cursor(pcontext, text_bound[2], glyphs, nglyphs);
+
+            // compute text offset
+            auto prev_cpos = m_iSelectionStart > 0 ? m_iSelectionStart - 1 : 0;
+            auto next_cpos = m_iSelectionStart < nglyphs ? m_iSelectionStart + 1 : nglyphs;
+            float prev_cx = cursor_index_to_position(prev_cpos, text_bound[2], glyphs, nglyphs);
+            float next_cx = cursor_index_to_position(next_cpos, text_bound[2], glyphs, nglyphs);
+
+            if (next_cx > clip_x + clip_width)
+               m_fTextOffset -= next_cx - (clip_x + clip_width) + 1;
+            if (prev_cx < clip_x)
+               m_fTextOffset += clip_x - prev_cx + 1;
+
+            draw_pos.x() = old_draw_pos.x() + m_fTextOffset;
+
+            // draw text with offset
+            pcontext->text(draw_pos.x(), draw_pos.y(), m_strValueEdit);
+            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, text_bound);
+
+            // recompute cursor positions
+            nglyphs = pcontext->text_glyph_positions(draw_pos.x(), draw_pos.y(),
                m_strValueEdit, glyphs, max_glyphs);
-         update_cursor(pcontext, text_bound[2], glyphs, nglyphs);
 
-         // compute text offset
-         auto prev_cpos = m_iSelectionStart > 0 ? m_iSelectionStart - 1 : 0;
-         auto next_cpos = m_iSelectionStart < nglyphs ? m_iSelectionStart + 1 : nglyphs;
-         float prev_cx = cursor_index_to_position(prev_cpos, text_bound[2], glyphs, nglyphs);
-         float next_cx = cursor_index_to_position(next_cpos, text_bound[2], glyphs, nglyphs);
+            if (m_iSelectionStart > -1) {
+               if (m_iSelectionEnd > -1) {
+                  float caretx = cursor_index_to_position(m_iSelectionStart, text_bound[2],
+                     glyphs, nglyphs);
+                  float selx = cursor_index_to_position(m_iSelectionEnd, text_bound[2],
+                     glyphs, nglyphs);
 
-         if (next_cx > clip_x + clip_width)
-            m_fTextOffset -= next_cx - (clip_x + clip_width) + 1;
-         if (prev_cx < clip_x)
-            m_fTextOffset += clip_x - prev_cx + 1;
+                  if (caretx > selx)
+                     std::swap(caretx, selx);
 
-         draw_pos.x() = old_draw_pos.x() + m_fTextOffset;
+                  // draw selection
+                  pcontext->begin_path();
+                  pcontext->fill_color(::color::RGBA_color(255, 255, 255, 80));
+                  pcontext->rectangle(caretx, draw_pos.y() - lineh * 0.5f, selx - caretx,
+                     lineh);
+                  pcontext->fill();
+               }
 
-         // draw text with offset
-         pcontext->text(draw_pos.x(), draw_pos.y(), m_strValueEdit);
-         pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, text_bound);
+               float caretx = cursor_index_to_position(m_iSelectionEnd, text_bound[2], glyphs, nglyphs);
 
-         // recompute cursor positions
-         nglyphs = pcontext->text_glyph_positions(draw_pos.x(), draw_pos.y(),
-            m_strValueEdit, glyphs, max_glyphs);
-
-         if (m_iSelectionStart > -1) {
-            if (m_iSelectionEnd > -1) {
-               float caretx = cursor_index_to_position(m_iSelectionStart, text_bound[2],
-                  glyphs, nglyphs);
-               float selx = cursor_index_to_position(m_iSelectionEnd, text_bound[2],
-                  glyphs, nglyphs);
-
-               if (caretx > selx)
-                  std::swap(caretx, selx);
-
-               // draw selection
+               // draw cursor
                pcontext->begin_path();
-               pcontext->fill_color(::color::RGBA_color(255, 255, 255, 80));
-               pcontext->rectangle(caretx, draw_pos.y() - lineh * 0.5f, selx - caretx,
-                  lineh);
-               pcontext->fill();
+               pcontext->move_to(caretx, draw_pos.y() - lineh * 0.5f);
+               pcontext->line_to(caretx, draw_pos.y() + lineh * 0.5f);
+               pcontext->stroke_color(::color::RGBA_color(255, 192, 0, 255));
+               pcontext->stroke_width(1.0f);
+               pcontext->stroke();
+
             }
-
-            float caretx = cursor_index_to_position(m_iSelectionEnd, text_bound[2], glyphs, nglyphs);
-
-            // draw cursor
-            pcontext->begin_path();
-            pcontext->move_to(caretx, draw_pos.y() - lineh * 0.5f);
-            pcontext->line_to(caretx, draw_pos.y() + lineh * 0.5f);
-            pcontext->stroke_color(::color::RGBA_color(255, 192, 0, 255));
-            pcontext->stroke_width(1.0f);
-            pcontext->stroke();
 
          }
 
-      }
+         //pcontext->restore();
 
-      pcontext->restore();
+      }
 
    }
 

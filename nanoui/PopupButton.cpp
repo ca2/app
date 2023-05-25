@@ -23,7 +23,7 @@ namespace nanoui
       : Button(parent, caption, button_icon) 
    {
 
-      m_efontawesomeChevron = m_theme->m_efontawesomePopupChevronRight;
+      m_efontawesomeChevron = m_ptheme->m_efontawesomePopupChevronRight;
 
       set_flags(Flags::ToggleButton | Flags::PopupButton);
 
@@ -60,11 +60,11 @@ namespace nanoui
 
          auto icon = get_utf8_character(m_efontawesomeChevron);
          ::color::color text_color =
-            m_colorText.alpha == 0 ? m_theme->m_colorText : m_colorText;
+            m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;
 
-         pcontext->font_size((m_font_size < 0 ? m_theme->m_iButtonFontSize : m_font_size) * icon_scale());
+         pcontext->font_size((m_font_size < 0 ? m_ptheme->m_iButtonFontSize : m_font_size) * icon_scale());
          pcontext->font_face("icons");
-         pcontext->fill_color(m_bEnabled ? text_color : ::color::color(m_theme->m_colorDisableText));
+         pcontext->fill_color(m_bEnabled ? text_color : ::color::color(m_ptheme->m_colorDisableText));
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
          float iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
@@ -100,11 +100,11 @@ namespace nanoui
 
    void PopupButton::set_side(Popup::Side side) {
       if (m_ppopup->side() == Popup::Right &&
-         m_efontawesomeChevron == m_theme->m_efontawesomePopupChevronRight)
-         set_chevron_icon(m_theme->m_efontawesomePopupChevronLeft);
+         m_efontawesomeChevron == m_ptheme->m_efontawesomePopupChevronRight)
+         set_chevron_icon(m_ptheme->m_efontawesomePopupChevronLeft);
       else if (m_ppopup->side() == Popup::Left &&
-         m_efontawesomeChevron == m_theme->m_efontawesomePopupChevronLeft)
-         set_chevron_icon(m_theme->m_efontawesomePopupChevronRight);
+         m_efontawesomeChevron == m_ptheme->m_efontawesomePopupChevronLeft)
+         set_chevron_icon(m_ptheme->m_efontawesomePopupChevronRight);
       m_ppopup->set_side(side);
    }
 

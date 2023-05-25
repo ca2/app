@@ -131,7 +131,7 @@ namespace user
 
 
 
-      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
 
 

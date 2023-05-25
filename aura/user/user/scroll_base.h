@@ -32,10 +32,10 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual bool GetActiveClientRect(RECTANGLE_I32 & rectangle);
+      virtual bool GetActiveClientRect(::rectangle_i32 & rectangle);
 
 
-      bool GetFocusRect(RECTANGLE_I32 & rectangle) override;
+      bool GetFocusRect(::rectangle_i32 & rectangle) override;
 
 
       virtual ::size_f64 get_total_size() override;

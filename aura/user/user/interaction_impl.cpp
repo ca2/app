@@ -388,8 +388,8 @@ namespace user
    //   return false;
    //}
 
-   //void interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 * pptDst,SIZE_I32 * psize,
-   //      ::draw2d::graphics * pDCSrc,POINT_I32 * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,u32 dwFlags)
+   //void interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 * pptDst,SIZE_I32 * psize,
+   //      ::draw2d::graphics * pDCSrc,::point_i32 * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,u32 dwFlags)
    //{
    //   __UNREFERENCED_PARAMETER(pDCDst);
    //   __UNREFERENCED_PARAMETER(pptDst);
@@ -878,8 +878,8 @@ namespace user
       }
 
       //m_puserinteraction->place(rectangle_i32_dimension(
-      //                      pusersystem->m_createstruct.x,
-      //                      pusersystem->m_createstruct.y,
+      //                      pusersystem->m_createstruct.x(),
+      //                      pusersystem->m_createstruct.y(),
       //                      pusersystem->m_createstruct.cx,
       //                      pusersystem->m_createstruct.cy));
 
@@ -1069,7 +1069,7 @@ namespace user
 
       //   send_message(e_message_create, 0, (lparam)&pusersystem);
 
-      //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x, pusersystem->m_createstruct.cy, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+      //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.cy, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
       //   send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy));
 
@@ -1098,7 +1098,7 @@ namespace user
 
       }
 
-      return m_pgraphics->get_screen_image()->pixel(x - origin.x, y - origin.y);
+      return m_pgraphics->get_screen_image()->pixel(x - origin.x(), y - origin.y());
 
    }
 
@@ -1136,8 +1136,8 @@ namespace user
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x = rectangle.left;
-//      //pusersystem->m_createstruct.y = rectangle.top;
+//      //pusersystem->m_createstruct.x() = rectangle.left;
+//      //pusersystem->m_createstruct.y() = rectangle.top;
 //      //pusersystem->m_createstruct.cx = rectangle.width();
 //      //pusersystem->m_createstruct.cy = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
@@ -1210,8 +1210,8 @@ namespace user
 
          ::point_i32 pointInvalid; // For long future hope still : Invalid
 
-         minimum(pointInvalid.x);
-         minimum(pointInvalid.y);
+         minimum(pointInvalid.x());
+         minimum(pointInvalid.y());
 
          _on_mouse_move_step(pointInvalid);
 
@@ -2297,15 +2297,15 @@ namespace user
       //      //   if (rectWindow.left >= rcMonitor.left)
       //      //   {
 
-      //      //      pmouse->m_point.x += (::i32)rcMonitor.left;
+      //      //      pmouse->m_point.x() += (::i32)rcMonitor.left;
 
       //      //   }
 
       //      //   if (rectWindow.top >= rcMonitor.top)
       //      //   {
 
-      //      //      //pmouse->m_point.y += (::i32)rectWindow.top;
-      //      //      pmouse->m_point.y += (::i32)rcMonitor.top;
+      //      //      //pmouse->m_point.y() += (::i32)rectWindow.top;
+      //      //      pmouse->m_point.y() += (::i32)rcMonitor.top;
 
       //      //   }
 
@@ -2316,14 +2316,14 @@ namespace user
       //         if (rectWindow.left >= 0)
       //         {
 
-      //            pmouse->m_point.x += (::i32)rectWindow.left;
+      //            pmouse->m_point.x() += (::i32)rectWindow.left;
 
       //         }
 
       //         if (rectWindow.top >= 0)
       //         {
 
-      //            pmouse->m_point.y += (::i32)rectWindow.top;
+      //            pmouse->m_point.y() += (::i32)rectWindow.top;
 
       //         }
 
@@ -2681,7 +2681,7 @@ namespace user
 
          pmouse->m_pcursor = pcursor;
 
-         //FORMATTED_INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
+         //FORMATTED_INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
 
          //string strType;
 
@@ -2947,7 +2947,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, const RECTANGLE_I32 * pcrect, const RECTANGLE_I32 * pcrectClip)
+   //void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, const ::rectangle_i32 * pcrect, const ::rectangle_i32 * pcrectClip)
    //{
 
    //   __UNREFERENCED_PARAMETER(xAmount);
@@ -2960,7 +2960,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType)
+   //void interaction_impl::CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType)
    //{
 
    //   __UNREFERENCED_PARAMETER(pClientRect);
@@ -3777,7 +3777,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl* puserinteractionTo, POINT_I32* pPoint, ::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl* puserinteractionTo, ::point_i32* pPoint, ::u32 nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -3789,7 +3789,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl* puserinteractionTo, RECTANGLE_I32* prectangle)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl* puserinteractionTo, ::rectangle_i32* prectangle)
    {
       __UNREFERENCED_PARAMETER(puserinteractionTo);
       __UNREFERENCED_PARAMETER(prectangle);
@@ -3808,7 +3808,7 @@ namespace user
       throw ::interface_only();
    }
 
-   //void interaction_impl::GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase)
+   //void interaction_impl::GetUpdateRect(::rectangle_i32 * prectangle,bool bErase)
 
    //{
    //   __UNREFERENCED_PARAMETER(prectangle);
@@ -4310,9 +4310,9 @@ namespace user
 
 
    //i32 interaction_impl::ScrollWindowEx(i32 Δx,i32 Δy,
-   //                                     const RECTANGLE_I32 * prectScroll,
-   //                                       const RECTANGLE_I32 * prectClip,
-   //                                     ::draw2d::region* prgnUpdate,RECTANGLE_I32 * pRectUpdate,::u32 flags)
+   //                                     const ::rectangle_i32 * prectScroll,
+   //                                       const ::rectangle_i32 * prectClip,
+   //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,::u32 flags)
    //{
 
    //   __UNREFERENCED_PARAMETER(Δx);
@@ -6785,7 +6785,7 @@ namespace user
 
          ::point_i32 pointBottomRight = pointOutput + sizeOutput;
 
-         //output_debug_string("SetWindowPos bottom_right " + as_string(pointBottomRight.x) + ", " + as_string(pointBottomRight.y) + "\n");
+         //output_debug_string("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
 
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
@@ -6804,8 +6804,8 @@ namespace user
 
             bHasSetWindowPosition = m_pwindow->on_set_window_position(
                zorderNew,
-               pointOutput.x,
-               pointOutput.y,
+               pointOutput.x(),
+               pointOutput.y(),
                sizeOutput.cx,
                sizeOutput.cy,
                eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
@@ -6815,7 +6815,7 @@ namespace user
          }
 
          //::SetWindowPos(get_handle(), oswindowInsertAfter,
-         //   pointOutput.x, pointOutput.y,
+         //   pointOutput.x(), pointOutput.y(),
          //   sizeOutput.cx, sizeOutput.cy,
          //   uFlags);
 
@@ -7534,7 +7534,7 @@ namespace user
 
       ::rectangle_i32 rectangle(rect);
 
-      rectangle += m_puserinteraction->screen_to_client();
+      m_puserinteraction->screen_to_client()(rectangle);
 
       return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent, rectangle);
 
@@ -7546,7 +7546,7 @@ namespace user
 
       ::rectangle_i32 rectangle(rect);
 
-      rectangle += m_puserinteraction->screen_to_client();
+      m_puserinteraction->screen_to_client()(rectangle);
 
       return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
 

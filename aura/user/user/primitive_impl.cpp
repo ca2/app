@@ -200,7 +200,7 @@ namespace user
    }
 
 
-   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
+   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -454,7 +454,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(POINT_I32 & point)
+   void primitive_impl::viewport_client_to_screen(::point_i32 & point)
    {
 
       if (m_puserinteraction)
@@ -467,7 +467,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_screen_to_client(POINT_I32 & point)
+   void primitive_impl::viewport_screen_to_client(::point_i32 & point)
    {
 
       if (m_puserinteraction)
@@ -480,20 +480,20 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(RECTANGLE_I32 & rectangle)
+   void primitive_impl::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
-      viewport_client_to_screen((POINT_I32 &)rectangle.left);
-      viewport_client_to_screen((POINT_I32 &)rectangle.right);
+      viewport_client_to_screen((::point_i32 &)rectangle.left);
+      viewport_client_to_screen((::point_i32 &)rectangle.right);
 
    }
 
 
-   void primitive_impl::viewport_screen_to_client(RECTANGLE_I32 & rectangle)
+   void primitive_impl::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
-      viewport_screen_to_client((POINT_I32 &)rectangle.left);
-      viewport_screen_to_client((POINT_I32 &)rectangle.right);
+      viewport_screen_to_client((::point_i32 &)rectangle.left);
+      viewport_screen_to_client((::point_i32 &)rectangle.right);
 
    }
 
@@ -762,9 +762,9 @@ namespace user
       case ::message::e_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x = GET_X_LPARAM(lparam);
+         pmessage->m_point.x() = GET_X_LPARAM(lparam);
 
-         pmessage->m_point.y = GET_Y_LPARAM(lparam);
+         pmessage->m_point.y() = GET_Y_LPARAM(lparam);
       }
       break;
       case ::message::e_prototype_move:
@@ -1937,7 +1937,7 @@ namespace user
    //}
 
 
-   void primitive_impl::get_rect_normal(RECTANGLE_I32 * prectangle)
+   void primitive_impl::get_rect_normal(::rectangle_i32 * prectangle)
    {
 
       *prectangle = m_puserinteraction->screen_rect();
@@ -2717,7 +2717,7 @@ namespace user
    }
 
 
-   void primitive_impl::InvalidateRect(class rectangle_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &,bool)
+   void primitive_impl::InvalidateRect(class ::rectangle_i32 const &,bool)
    {
 
 
@@ -2731,7 +2731,7 @@ namespace user
    }
 
 
-   void primitive_impl::ValidateRect(class rectangle_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &)
+   void primitive_impl::ValidateRect(class ::rectangle_i32 const &)
    {
 
 
@@ -2848,7 +2848,7 @@ namespace user
    void primitive_impl::_raw_client_to_screen(::point_i32 & point)
    {
 
-      point += m_puserinteraction->client_to_screen(e_layout_design);
+      m_puserinteraction->client_to_screen(e_layout_design)(point);
 
    }
 

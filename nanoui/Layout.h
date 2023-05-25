@@ -9,7 +9,7 @@
 /**
  * \file nanoui/layout.h
  *
- * \brief A collection of useful layout managers.  The \ref nanoui::GridLayout
+ * \brief A collection of useful layout managers.  The \::pointer nanoui::GridLayout
  *        was contributed by Christian Schueller.
  */
 #pragma once
@@ -31,8 +31,14 @@ namespace nanoui
     *
     * \brief Basic interface of a layout engine.
     */
-   class CLASS_DECL_NANOUI Layout : public Object {
+   class CLASS_DECL_NANOUI Layout :
+      public Object 
+   {
    public:
+
+      /// Default destructor (exists for inheritance).
+      virtual ~Layout() { }
+
       /**
        * Performs applies all layout computations for the given pwidget.
        *
@@ -58,9 +64,6 @@ namespace nanoui
        *     for icons, etc.
        */
       virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
-   protected:
-      /// Default destructor (exists for inheritance).
-      virtual ~Layout() { }
    };
 
    /**
@@ -72,8 +75,22 @@ namespace nanoui
     * margins around the entire container and a custom spacing between adjacent
     * widgets.
     */
-   class CLASS_DECL_NANOUI BoxLayout : public Layout {
+   class CLASS_DECL_NANOUI BoxLayout : public Layout
+   {
    public:
+
+      /// The enum_orientation of this BoxLayout.
+      enum_orientation m_eorientation;
+
+      /// The enum_alignment of this BoxLayout.
+      enum_alignment m_ealignment;
+
+      /// The margin padding of this BoxLayout.
+      int m_iMargin;
+
+      /// The spacing between widgets of this BoxLayout.
+      int m_iSpacing;
+
       /**
        * \brief Construct a box layout which packs widgets in the given \pwidgetChild enum_orientation
        *
@@ -118,24 +135,12 @@ namespace nanoui
 
       /* Implementation of the layout interface */
 
-      /// See \ref Layout::preferred_size.
+      /// See \::pointer Layout::preferred_size.
       virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
-      /// See \ref Layout::perform_layout.
+      /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
-   protected:
-      /// The enum_orientation of this BoxLayout.
-      enum_orientation m_eorientation;
-
-      /// The enum_alignment of this BoxLayout.
-      enum_alignment m_ealignment;
-
-      /// The margin padding of this BoxLayout.
-      int m_iMargin;
-
-      /// The spacing between widgets of this BoxLayout.
-      int m_iSpacing;
    };
 
    /**
@@ -145,7 +150,7 @@ namespace nanoui
     *
     * This pwidget resembles a box layout in that it arranges a set of widgets
     * vertically. All widgets are indented on the horizontal iAxisIndex except for
-    * \ref Label widgets, which are not indented.
+    * \::pointer Label widgets, which are not indented.
     *
     * This creates a pleasing layout where a number of widgets are grouped
     * under some high-level heading.
@@ -198,10 +203,10 @@ namespace nanoui
 
       /* Implementation of the layout interface */
 
-      /// See \ref Layout::preferred_size.
+      /// See \::pointer Layout::preferred_size.
       virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
-      /// See \ref Layout::perform_layout.
+      /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
    protected:
@@ -322,10 +327,10 @@ namespace nanoui
       void set_row_alignment(const ::array<enum_alignment>& value) { m_ealignment[1] = value; }
 
       /* Implementation of the layout interface */
-      /// See \ref Layout::preferred_size.
+      /// See \::pointer Layout::preferred_size.
       virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
-      /// See \ref Layout::perform_layout.
+      /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
 
@@ -478,10 +483,10 @@ namespace nanoui
 
       /* Implementation of the layout interface */
 
-      /// See \ref Layout::preferred_size.
+      /// See \::pointer Layout::preferred_size.
       virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
-      /// See \ref Layout::perform_layout.
+      /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       // Compute the maximum row and column sizes

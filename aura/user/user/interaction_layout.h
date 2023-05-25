@@ -84,8 +84,8 @@ namespace user
       //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual bool _get_client_rect(RECTANGLE_I32 * prectangle) = 0;
-      //virtual bool _get_window_rect(RECTANGLE_I32 * prectangle) = 0;
+      //virtual bool _get_client_rect(::rectangle_i32 * prectangle) = 0;
+      //virtual bool _get_window_rect(::rectangle_i32 * prectangle) = 0;
 
       //virtual ::point_i32 _client_parent_top_left() = 0;
       //virtual ::point_i32 _client_screen_top_left() = 0;
@@ -141,7 +141,7 @@ namespace user
 
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool window_rectangle(RECTANGLE_I32 * prectangle);
+      //virtual bool window_rectangle(::rectangle_i32 * prectangle);
 
 
 
@@ -154,11 +154,11 @@ namespace user
       //inline ::size_i32 client_size() { return m_sizeClient; }
       //inline ::size_i32 window_size() { return m_sizeScreen; }
 
-      //inline void screen_to_client(RECTANGLE_I32* prectangle) { ::rect_sub(prectangle, client_screen_top_left()); }
-      //inline void client_to_screen(RECTANGLE_I32* prectangle) { ::rect_add(prectangle, client_screen_top_left()); }
+      //inline void screen_to_client(::rectangle_i32* prectangle) { ::rect_sub(prectangle, client_screen_top_left()); }
+      //inline void client_to_screen(::rectangle_i32* prectangle) { ::rect_add(prectangle, client_screen_top_left()); }
 
-      //inline void client_rectangle(RECTANGLE_I32* prectangle) { ::set_rect_point_size(prectangle, m_pointClient, client_size()); }
-      //inline void window_rectangle(RECTANGLE_I32* prectangle) { ::set_rect_point_size(prectangle, m_pointScreenWindow, window_size()); }
+      //inline void client_rectangle(::rectangle_i32* prectangle) { ::set_rect_point_size(prectangle, m_pointClient, client_size()); }
+      //inline void window_rectangle(::rectangle_i32* prectangle) { ::set_rect_point_size(prectangle, m_pointScreenWindow, window_size()); }
 
       //inline auto client_rectangle() { ::rectangle_i32 rectangle; client_rectangle(rectangle); return rectangle; }
       //inline auto window_rectangle() { ::rectangle_i32 rectangle; window_rectangle(rectangle); return rectangle; }
@@ -263,8 +263,8 @@ namespace user
       inline ::i32 area(enum_layout elayout = e_layout_design) const { return size_i32(elayout).area(); }
 
 
-      inline void client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).client_rect(rectangle); }
-      inline void parent_client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_client_rectangle(rectangle); }
+      inline void client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).client_rect(rectangle); }
+      inline void parent_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_client_rectangle(rectangle); }
 
 
       inline ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design) const { ::rectangle_i32 rectangle; client_rectangle(rectangle, elayout); return rectangle; }

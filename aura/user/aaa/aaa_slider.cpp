@@ -147,7 +147,7 @@ namespace user
       if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (point.x - rectangle.left) / (double) rectangle.width();
+         dScalar = (double) (point.x() - rectangle.left) / (double) rectangle.width();
 
       }
 

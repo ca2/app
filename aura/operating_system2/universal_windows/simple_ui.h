@@ -17,10 +17,10 @@ namespace os
       int                        m_w;
       int                        m_h;
       SIZE_I32                       m_size;
-      POINT_I32                      m_point;
+      ::point_i32                      m_point;
       bool                       m_bLButtonDown;
-      POINT_I32                      m_pointLButtonDown;
-      POINT_I32                      m_pointLButtonDownPos;
+      ::point_i32                      m_pointLButtonDown;
+      ::point_i32                      m_pointLButtonDownPos;
 
       bool                       m_bShiftKey;
 
@@ -41,18 +41,18 @@ namespace os
 
 
 
-      virtual void get_cursor_position(POINT_I32 * ppt);
+      virtual void get_cursor_position(::point_i32 * ppt);
 
       //void draw(ID2D1DeviceContext * pctx);
 
 
 
-      //virtual string interactive_auth(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      //virtual string interactive_auth(::rectangle_i32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
 
-      virtual bool create_window(const RECTANGLE_I32 * lpcrect);
+      virtual bool create_window(const ::rectangle_i32 * lpcrect);
 
-      virtual bool prepare_window(const RECTANGLE_I32 * lpcrect);
+      virtual bool prepare_window(const ::rectangle_i32 * lpcrect);
 
 
       virtual bool show_window(bool bShow = true);
@@ -63,8 +63,8 @@ namespace os
       virtual bool run_loop();
 
 
-      virtual void window_rectangle(RECTANGLE_I32 * prectangle);
-      virtual void client_rectangle(RECTANGLE_I32 * prectangle);
+      virtual void window_rectangle(::rectangle_i32 * prectangle);
+      virtual void client_rectangle(::rectangle_i32 * prectangle);
 
 
       /*
@@ -81,16 +81,16 @@ namespace os
       virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);
       virtual bool move_window(int x, int y);
 
-      void viewport_client_to_screen(POINT_I32 * ppt);
-      void viewport_screen_to_client(POINT_I32 * ppt);
+      void viewport_client_to_screen(::point_i32 * ppt);
+      void viewport_screen_to_client(::point_i32 * ppt);
 
-      void client_to_screen(POINT_I32 * ppt);
-      void screen_to_client(POINT_I32 * ppt);
+      void client_to_screen(::point_i32 * ppt);
+      void screen_to_client(::point_i32 * ppt);
 
-      void client_to_screen(RECTANGLE_I32 * prectangle);
-      void screen_to_client(RECTANGLE_I32 * prectangle);
+      void client_to_screen(::rectangle_i32 * prectangle);
+      void screen_to_client(::rectangle_i32 * prectangle);
 
-      void window_rectangle(RECTANGLE_I32 * prectangle);
+      void window_rectangle(::rectangle_i32 * prectangle);
 
       virtual void set_capture();
       virtual void release_capture();

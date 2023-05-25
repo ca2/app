@@ -137,7 +137,7 @@ namespace user
       //if (!m_pscrolldataHorizontal->m_bScroll)
       //{
 
-      //   m_pointScroll.x = 0;
+      //   m_pointScroll.x() = 0;
 
       //}
 
@@ -145,7 +145,7 @@ namespace user
       //if (!m_pscrolldataVertical->m_bScroll)
       //{
 
-      //   m_pointScroll.y = 0;
+      //   m_pointScroll.y() = 0;
 
       //}
 
@@ -177,7 +177,7 @@ namespace user
 
 
 
-   bool scroll_base::GetActiveClientRect(RECTANGLE_I32 & rectangle)
+   bool scroll_base::GetActiveClientRect(::rectangle_i32 & rectangle)
    {
 
       ::user::interaction::client_rectangle(rectangle);
@@ -186,16 +186,16 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x));
+      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x()));
 
-      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y));
+      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y()));
 
       return true;
 
    }
 
 
-   //bool scroll_base::client_rectangle(RECTANGLE_I32 * prectangle)
+   //bool scroll_base::client_rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   ::user::interaction::client_rectangle(prectangle);
@@ -209,7 +209,7 @@ namespace user
    //}
 
 
-   bool scroll_base::GetFocusRect(RECTANGLE_I32 & rectangle)
+   bool scroll_base::GetFocusRect(::rectangle_i32 & rectangle)
    {
 
       rectangle.left = 0;

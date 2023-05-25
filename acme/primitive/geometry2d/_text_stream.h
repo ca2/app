@@ -9,7 +9,7 @@ template < typename FILE, primitive_point POINT >
 inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const POINT & point)
 {
 
-   return textstream << "(" << point.x  << ", " << point.y << ")";
+   return textstream << "(" << point.x()  << ", " << point.y() << ")";
 
 }
 

@@ -563,6 +563,7 @@
 		9AC2CEF22653455600CC8096 /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CEC92653455600CC8096 /* windowing.cpp */; };
 		9AC2CEF32653455600CC8096 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CECA2653455600CC8096 /* _.h */; };
 		9AC2CEF42653455600CC8096 /* menu_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CECB2653455600CC8096 /* menu_command.cpp */; };
+		9ACAED542A1C8F0500018081 /* drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACAED532A1C8F0500018081 /* drawing.cpp */; };
 		9ACFE56328497F8800911485 /* _sandbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACFE55C28497F8700911485 /* _sandbox.h */; };
 		9ACFE56528497F8800911485 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACFE55E28497F8700911485 /* window.h */; };
 		9ACFE56728497F8800911485 /* host_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACFE56028497F8700911485 /* host_interaction.h */; };
@@ -1039,6 +1040,7 @@
 		9AC2CEC92653455600CC8096 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9AC2CECA2653455600CC8096 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC2CECB2653455600CC8096 /* menu_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
+		9ACAED532A1C8F0500018081 /* drawing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = drawing.cpp; sourceTree = "<group>"; };
 		9ACFE55C28497F8700911485 /* _sandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _sandbox.h; sourceTree = "<group>"; };
 		9ACFE55D28497F8700911485 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		9ACFE55E28497F8700911485 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
@@ -1617,6 +1619,7 @@
 				9A9230EE27EACF2100B5A78D /* cursor.h */,
 				9A9230F627EACF2100B5A78D /* drawer.cpp */,
 				9A92310527EACF2100B5A78D /* drawer.h */,
+				9ACAED532A1C8F0500018081 /* drawing.cpp */,
 				9A9230E427EACF2100B5A78D /* drawing.h */,
 				9A9230ED27EACF2100B5A78D /* dynamic.cpp */,
 				9A9230EB27EACF2100B5A78D /* dynamic.h */,
@@ -2424,6 +2427,7 @@
 				9A92313327EACF2100B5A78D /* icon.cpp in Sources */,
 				9A3764DC2409BF0C002D15D3 /* region.cpp in Sources */,
 				9AC2CEF12653455600CC8096 /* cursor_manager.cpp in Sources */,
+				9ACAED542A1C8F0500018081 /* drawing.cpp in Sources */,
 				9A8B636324CBCD3C00A93185 /* shader.cpp in Sources */,
 				9AC2CED42653455600CC8096 /* menu_item.cpp in Sources */,
 				9A8B636424CBCD3C00A93185 /* buffer.cpp in Sources */,

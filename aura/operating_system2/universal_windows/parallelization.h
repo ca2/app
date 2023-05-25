@@ -10,7 +10,7 @@
 //   ::u32        message;
 //   WPARAM      wParam;
 //   LPARAM      lParam;
-//   POINT_I32       pt;
+//   ::point_i32       pt;
 //} MESSAGE, * MESSAGE *;
 //#endif
 

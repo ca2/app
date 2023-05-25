@@ -104,28 +104,28 @@ namespace html
 
          float Δy;
 
-         if (point.x < m_box.left)
+         if (point.x() < m_box.left)
          {
 
-            Δx = m_box.left - point.x;
+            Δx = m_box.left - point.x();
 
          }
-         else if (point.x > m_box.right)
+         else if (point.x() > m_box.right)
          {
-            Δx = point.x - m_box.right;
+            Δx = point.x() - m_box.right;
          }
          else
          {
             Δx = 0;
          }
 
-         if (point.y < m_box.top)
+         if (point.y() < m_box.top)
          {
-            Δy = m_box.top - point.y;
+            Δy = m_box.top - point.y();
          }
-         else if (point.y > m_box.bottom)
+         else if (point.y() > m_box.bottom)
          {
-            Δy = point.y - m_box.bottom;
+            Δy = point.y() - m_box.bottom;
          }
          else
          {
@@ -848,7 +848,7 @@ namespace html
                auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.left, m_border.colorLeft);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
+               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {
@@ -872,7 +872,7 @@ namespace html
                auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.top, m_border.colorTop);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
+               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {
@@ -896,7 +896,7 @@ namespace html
                auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.right, m_border.colorRight);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
+               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {
@@ -920,7 +920,7 @@ namespace html
                auto ppen = pdata->__create < ::draw2d::pen >();
                ppen->create_solid(m_border.bottom, m_border.colorBottom);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
+               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {
@@ -1110,14 +1110,14 @@ namespace html
 
          //m_box.constrain_to(m_bound);
 
-         /*         if(m_point.x < m_pointBound.x)
-         m_point.x = m_pointBound.x;
-         else if(m_point.x > (m_pointBound.x + m_sizeBound.cx))
-         m_point.x = m_pointBound.x + m_sizeBound.cx;
-         if(m_point.y < m_pointBound.y)
-         m_point.y = m_pointBound.y;
-         else if(m_point.y > (m_pointBound.y + m_sizeBound.cy))
-         m_point.y = m_pointBound.y + m_sizeBound.cy;*/
+         /*         if(m_point.x() < m_pointBound.x())
+         m_point.x() = m_pointBound.x();
+         else if(m_point.x() > (m_pointBound.x() + m_sizeBound.cx))
+         m_point.x() = m_pointBound.x() + m_sizeBound.cx;
+         if(m_point.y() < m_pointBound.y())
+         m_point.y() = m_pointBound.y();
+         else if(m_point.y() > (m_pointBound.y() + m_sizeBound.cy))
+         m_point.y() = m_pointBound.y() + m_sizeBound.cy;*/
          on_change_layout(pdata);
       }
 
@@ -1327,8 +1327,8 @@ namespace html
 
          auto point = m_box.top_left();
 
-         point.x = point.x + m_padding.left + m_border.left + m_margin.left;
-         point.y = point.y + m_padding.top + m_border.top + m_margin.top;
+         point.x() = point.x() + m_padding.left + m_border.left + m_margin.left;
+         point.y() = point.y() + m_padding.top + m_border.top + m_margin.top;
 
          return point;
 

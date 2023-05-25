@@ -538,8 +538,8 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
-      pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
+      pmouse->m_point.x()       = (::i32) pointerPoint->RawPosition.X;
+      pmouse->m_point.y()       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_atom            = e_message_mouse_move;
       pmouse->m_puserinteraction  = acmesession()->m_puserinteractionHost;
 
@@ -574,9 +574,9 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
+      pmouse->m_point.x() = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y() = (::i32) pointerPoint->RawPosition.Y;
 
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
@@ -638,9 +638,9 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
+      pmouse->m_point.x() = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y() = (::i32) pointerPoint->RawPosition.Y;
 
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {

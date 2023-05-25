@@ -117,7 +117,8 @@ struct pixmap
 
    inline ::point_i32 top_left() const noexcept { return m_point; }
    inline ::point_i32 origin() const noexcept { return top_left(); }
-   inline concrete < ::size_i32 > size() const noexcept { return m_size; }
+   //inline concrete < ::size_i32 > size() const noexcept { return m_size; }
+   inline ::size_i32 size() const noexcept { return m_size;  }
    inline int width() const noexcept { return m_size.cx; }
    inline int height() const noexcept { return m_size.cy; }
    inline int area() const noexcept { return m_size.area(); }
@@ -132,7 +133,7 @@ struct pixmap
    }
 
 
-   inline ::color::color get_pixel(const ::point_i32 & point) const { return get_pixel(point.x, point.y); }
+   inline ::color::color get_pixel(const ::point_i32 & point) const { return get_pixel(point.x(), point.y()); }
 
    inline pixmap & operator =(const pixmap & pixmap);
    inline pixmap & operator =(const ::rectangle_i32 & rectangle) { map(rectangle);  return *this; }
@@ -156,7 +157,7 @@ struct pixmap
       if (::is_set(m_pcolorrefRaw))
       {
 
-         ((pixmap *)this)->m_pcolorref1 = m_pcolorrefRaw + (m_point.x + m_iScan * m_point.y);
+         ((pixmap *)this)->m_pcolorref1 = m_pcolorrefRaw + (m_point.x() + m_iScan * m_point.y());
 
       }
 

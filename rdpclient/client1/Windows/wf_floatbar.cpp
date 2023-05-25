@@ -70,7 +70,7 @@ struct _Button {
 struct _FloatBar {
 	HWND parent;
 	HWND hwnd;
-	RECTANGLE_I32 rectangle_i32;
+	::rectangle_i32 rectangle_i32;
 	::i32 width;
 	::i32 height;
 	wfContext* wfc;

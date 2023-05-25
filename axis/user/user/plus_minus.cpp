@@ -204,7 +204,7 @@ namespace user
 
       client_rectangle(rectangleClient);
 
-      int iM = rectangleClient.center().x;
+      int iM = rectangleClient.center().x();
 
       ::rectangle_i32 rectangleL(rectangleClient);
 

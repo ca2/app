@@ -808,6 +808,7 @@
     <ClInclude Include="include\_configuration.h" />
     <ClInclude Include="include\_new.h" />
     <ClInclude Include="include\_initial_concepts.h" />
+    <ClInclude Include="include\_other_initial_concepts.h" />
     <ClInclude Include="include\_string.h" />
     <ClInclude Include="include\_structures.h" />
     <ClInclude Include="include\_template_inline_functions.h" />
@@ -1301,6 +1302,7 @@
     <ClInclude Include="primitive\collection\_text_stream.h" />
     <ClInclude Include="primitive\collection\__payload_array.h" />
     <ClInclude Include="primitive\collection\__property_set.h" />
+    <ClInclude Include="primitive\geometry2d\vector.h" />
     <ClInclude Include="primitive\geometry2d\_ellipse.h" />
     <ClInclude Include="primitive\geometry2d\_function.h" />
     <ClInclude Include="primitive\geometry2d\_function_impl.h" />

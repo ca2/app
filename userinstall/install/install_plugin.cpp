@@ -985,9 +985,9 @@ run_install:
 #endif
 
 
-      RECTANGLE_I32 rectangle_i32;
+      ::rectangle_i32 rectangle_i32;
 
-      RECTANGLE_I32 rectangleWindow;
+      ::rectangle_i32 rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
@@ -1048,7 +1048,7 @@ run_install:
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
-         /*         RECTANGLE_I32 rectangle_i32;
+         /*         ::rectangle_i32 rectangle_i32;
          rectangle.left      = 0;
          rectangle.top       = 0;
          rectangle.bottom    = cx;
@@ -1575,13 +1575,13 @@ restart:
 
    }
 
-   void plugin::viewport_screen_to_client(POINT_I32 * ppt)
+   void plugin::viewport_screen_to_client(::point_i32 * ppt)
    {
       //::user::interaction::viewport_screen_to_client(ppt);
    }
 
 
-   void plugin::viewport_client_to_screen(POINT_I32 * ppt)
+   void plugin::viewport_client_to_screen(::point_i32 * ppt)
    {
       //::user::interaction::viewport_client_to_screen(ppt);
 
@@ -1641,7 +1641,7 @@ restart:
 
             m_rectangleSent = rectangle;
 
-            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(RECTANGLE_I32)))
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(::rectangle_i32)))
             {
 
                m_phost->m_pbasecomposer->m_bRectSent = false;

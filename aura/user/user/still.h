@@ -105,7 +105,7 @@ namespace user
 
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(RECTANGLE_I32 & rectangle);
+      virtual void BaseToolTipGetRect(::rectangle_i32 & rectangle);
 
       virtual i32 BaseToolTipGetIndex();
 

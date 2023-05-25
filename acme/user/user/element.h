@@ -139,7 +139,7 @@ namespace user
 //#endif
 //      virtual strsize _009GetWindowTextLength();
 
-      virtual bool GetFocusRect(RECTANGLE_I32 & rectangle);
+      virtual bool GetFocusRect(::rectangle_i32 & rectangle);
 
 
       virtual void defer_update_display();
@@ -298,7 +298,7 @@ namespace user
       virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
 
       //virtual void create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
-      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
@@ -321,7 +321,7 @@ namespace user
 
 //      virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = true);
-      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
+      virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
 
 
       virtual void interaction_post(const ::procedure & procedure);
@@ -453,7 +453,7 @@ namespace user
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags);
@@ -521,10 +521,10 @@ namespace user
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(POINT_I32 & point);
-      virtual void viewport_client_to_screen(POINT_I32 & point);
-      virtual void viewport_client_to_screen(RECTANGLE_I32 & point);
-      virtual void viewport_screen_to_client(RECTANGLE_I32 & point);
+      virtual void viewport_screen_to_client(::point_i32 & point);
+      virtual void viewport_client_to_screen(::point_i32 & point);
+      virtual void viewport_client_to_screen(::rectangle_i32 & point);
+      virtual void viewport_screen_to_client(::rectangle_i32 & point);
 
 
       virtual string get_window_default_matter();

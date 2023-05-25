@@ -30,7 +30,7 @@ namespace datetime
          virtual ~clock();
 
 
-         virtual void GetRect(RECTANGLE_I32 * lprect, enum_element eelement);
+         virtual void GetRect(::rectangle_i32 * lprect, enum_element eelement);
 
 
          virtual void set_time(const ::earth::time& time);

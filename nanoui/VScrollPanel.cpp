@@ -75,12 +75,12 @@ namespace nanoui
 
       m_fTotalHeight = (float)size.y();
 
-      if (m_fTotalHeight > m_size.y())
-      {
+      //if (m_fTotalHeight > pwidgetPanel->m_size.y())
+      //{
 
-         m_fScroll = 0.f;
+      //   m_fScroll = ::minimum_maximum(m_fScroll, 0.f, ;
 
-      }
+      //}
 
       pwidgetPanel->perform_layout(pcontext, bRecalcTextSize);
 
@@ -105,7 +105,10 @@ namespace nanoui
    bool VScrollPanel::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
-      if (!m_children.empty() && m_fTotalHeight > m_size.y() && bDown)
+      if (!m_children.empty()
+         && m_fTotalHeight > m_size.y()
+         && bDown
+         && m_bDrag)
       {
 
          float fScroll = y_coordinate_vertical_scroll(p.y());
@@ -144,10 +147,12 @@ namespace nanoui
 
       }
 
-      if (down && emouse == ::user::e_mouse_left_button && !m_children.empty() &&
-         m_fTotalHeight > m_size.y() &&
-         p.x() > m_pos.x() + m_size.x() - 13 &&
-         p.x() < m_pos.x() + m_size.x() - 4)
+      if (down
+         && emouse == ::user::e_mouse_left_button
+         && !m_children.empty() 
+         && m_fTotalHeight > m_size.y() 
+         && p.x() > m_pos.x() + m_size.x() - 13 
+         && p.x() < m_pos.x() + m_size.x() - 4)
       {
 
          m_bDrag = true;
@@ -172,6 +177,8 @@ namespace nanoui
       }
       else if (m_bDrag && !down)
       {
+
+         m_bDrag = false;
 
          screen()->m_puserinteraction->windowing()->release_mouse_capture();
 
@@ -199,9 +206,9 @@ namespace nanoui
 
             vector2_i32 old_pos = pwidgetChild->position();
 
-            auto yOffset = get_y_offset();
+            vector2_i32 offsetScroll = get_scroll_offset();
 
-            pwidgetChild->set_position(vector2_i32(0, (int)yOffset));
+            pwidgetChild->set_position(offsetScroll);
 
             vector2_i32 new_pos = pwidgetChild->position();
 
@@ -238,17 +245,25 @@ namespace nanoui
    }
 
 
-   float VScrollPanel::get_y_offset() const
+   vector2_i32 VScrollPanel::get_scroll_offset() const
    {
+
+      int yOffset;
 
       if (m_fTotalHeight <= m_size.y())
       {
 
-         return 0;
+         yOffset = 0;
+
+      }
+      else
+      {
+
+         yOffset = (int) (- m_fScroll * (m_fTotalHeight - m_size.y()));
 
       }
 
-      return -m_fScroll * (m_fTotalHeight - m_size.y());
+      return { 0, yOffset };
 
    }
 
@@ -283,24 +298,30 @@ namespace nanoui
 
       }
 
-      pcontext->save();
-
-      float y = (float)m_pos.y();
-
-      float yOffset = get_y_offset();
-
-      pcontext->translate((float)0.f, (float)yOffset);
-
-      pcontext->intersect_scissor(0.f, -yOffset, (float)m_size.x(), (float)m_size.y());
-
-      if (pwidgetPanel->visible())
       {
+         ::nano2d::guard guard(pcontext);
+         //pcontext->save();
 
-         pwidgetPanel->draw(pcontext);
+         float y = (float)m_pos.y();
+
+         auto offsetScroll = get_scroll_offset();
+
+         pcontext->translate((float)offsetScroll.x(), (float)offsetScroll.y());
+
+         pcontext->intersect_scissor((float)-offsetScroll.x(), (float)-offsetScroll.y(), (float)m_size.x(), (float)m_size.y());
+
+         //pcontext->intersect_scissor(0.f, 0.f, (float)m_size.x(), (float)m_size.y());
+
+         if (pwidgetPanel->visible())
+         {
+
+            pwidgetPanel->draw(pcontext);
+
+         }
+
+         //  pcontext->restore();
 
       }
-
-      pcontext->restore();
 
       if (m_fTotalHeight <= m_size.y())
       {
@@ -332,6 +353,7 @@ namespace nanoui
       pcontext->fill_paint(paint);
 
       pcontext->fill();
+
 
    }
 

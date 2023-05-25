@@ -261,9 +261,9 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 //{
 //   CGColorRef color = cg_create_color(clr);
 //   CGRect rectangle;
-//   rectangle.origin.x = prect->left;
+//   rectangle.origin.x() = prect->left;
 
-//   rectangle.origin.y = prect->top;
+//   rectangle.origin.y() = prect->top;
 
 //   rectangle.size.width = prect->right - prect->left;
 

@@ -68,10 +68,10 @@
  inline void __exchange(::binary_stream < FILE > & s, ::matter & matter);
 
 
- inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_I32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_I64 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_F32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_F64 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::rectangle_i32 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::rectangle_i64 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::rectangle_f32 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::rectangle_f64 & rectangle);
 
 
  inline void __exchange(::binary_stream < FILE > & s, SIZE_I32 & rectangle);
@@ -80,10 +80,10 @@
  inline void __exchange(::binary_stream < FILE > & s, SIZE_F64 & rectangle);
 
 
- inline void __exchange(::binary_stream < FILE > & s, POINT_I32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, POINT_I64 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, POINT_F32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, POINT_F64 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::point_i32 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::point_i64 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::point_f32 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::point_f64 & rectangle);
 
 
 template < typename OBJECT >
@@ -533,7 +533,7 @@ public:
 //#endif
 //   virtual void write(float f) { raw_write(f); }
 //   virtual void write(double d) { raw_write(d); }
-//   //virtual void write(const POINT_I32 & point) { raw_write(point); }
+//   //virtual void write(const ::point_i32 & point) { raw_write(point); }
 //   //virtual void write(const SIZE_I32 & size) { raw_write(size); }
 //   //virtual void write(const ::rectangle_i32 &crect) { raw_write(crect); }
 //   virtual void write(const ::scoped_string & scopedstr);
@@ -581,9 +581,9 @@ public:
 //#endif
 //   virtual void read(float & f);
 //   virtual void read(double & d);
-//   //virtual void read(POINT_I32 & point);
+//   //virtual void read(::point_i32 & point);
 //   //virtual void read(SIZE_I32 & size);
-//   //virtual void read(RECTANGLE_I32 & rectangle);
+//   //virtual void read(::rectangle_i32 & rectangle);
 //   virtual void read(atom & atom);
 //   virtual void read(::payload & payload);
 //   virtual void read_var_type(enum_type & etype);
@@ -619,12 +619,12 @@ public:
 //#endif
 //   virtual void exchange(const ::atom & atom, float & f) { stream_exchange(atom, f); }
 //   virtual void exchange(const ::atom & atom, double & d) { stream_exchange(atom, d); }
-//   virtual void exchange(const ::atom & atom, POINT_I32 & point) { stream_exchange(atom, point); }
+//   virtual void exchange(const ::atom & atom, ::point_i32 & point) { stream_exchange(atom, point); }
 //   virtual void exchange(const ::atom & atom, SIZE_I32 & size) { stream_exchange(atom, size); }
-//   virtual void exchange(const ::atom & atom, RECTANGLE_I32 & crect) { stream_exchange(atom, crect); }
-//   virtual void exchange(const ::atom & atom, POINT_F64& point) { stream_exchange(atom, point); }
+//   virtual void exchange(const ::atom & atom, ::rectangle_i32 & crect) { stream_exchange(atom, crect); }
+//   virtual void exchange(const ::atom & atom, ::point_f64& point) { stream_exchange(atom, point); }
 //   virtual void exchange(const ::atom & atom, SIZE_F64& size) { stream_exchange(atom, size); }
-//   virtual void exchange(const ::atom & atom, RECTANGLE_F64& crect) { stream_exchange(atom, crect); }
+//   virtual void exchange(const ::atom & atom, ::rectangle_f64& crect) { stream_exchange(atom, crect); }
 //   virtual void exchange(const ::atom & atom, const ::scoped_string & scopedstr);
 //#ifdef WINDOWS
 //   virtual void exchange(const ::atom & atom, const unichar * wch);
@@ -789,11 +789,11 @@ public:
 //
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, double & d) { s.read(d); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, POINT_I32 & point) { s.read(point); return s; }
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::point_i32 & point) { s.read(point); return s; }
 //
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, SIZE_I32 & size) { s.read(size); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, RECTANGLE_I32 & rectangle) { s.read(rectangle); return s; }
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::rectangle_i32 & rectangle) { s.read(rectangle); return s; }
 //
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::atom & atom) { s.read(atom); return s; }
 //
@@ -884,7 +884,7 @@ public:
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, double d) { s.write(d); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const POINT_I32 & point) { s.write(point); return s; }
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::point_i32 & point) { s.write(point); return s; }
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::rectangle_i32 &rectangle) { s.write(rectangle); return s; }
 //
@@ -973,8 +973,8 @@ public:
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
 //
-//   s << point.x;
-//   s << point.y;
+//   s << point.x();
+//   s << point.y();
 //
 //   return s;
 //
@@ -985,8 +985,8 @@ public:
 //template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
-//   s >> point.x;
-//   s >> point.y;
+//   s >> point.x();
+//   s >> point.y();
 //   return s;
 //}
 //

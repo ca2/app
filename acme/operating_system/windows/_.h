@@ -58,8 +58,8 @@ inline void copy(MESSAGE & message, const MSG & msg)
    message.m_atom = (enum_message)msg.message;
    message.wParam = msg.wParam;
    message.lParam = msg.lParam;
-   message.pt.x = msg.pt.x;
-   message.pt.y = msg.pt.y;
+   message.pt.x() = msg.pt.x;
+   message.pt.y() = msg.pt.y;
    message.time = msg.time;
 
 
@@ -73,8 +73,8 @@ inline void copy(MSG & msg, const MESSAGE & message)
    msg.message = (UINT)message.m_atom.as_i64();
    msg.wParam = message.wParam;
    msg.lParam = message.lParam;
-   msg.pt.x = message.pt.x;
-   msg.pt.y = message.pt.y;
+   msg.pt.x = message.pt.x();
+   msg.pt.y = message.pt.y();
    msg.time = (DWORD)message.time;
 
 

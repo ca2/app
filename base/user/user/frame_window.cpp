@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   void frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
+   void frame_window::GetBorderRect(::rectangle_i32 * prectangle)
    {
 
       __UNREFERENCED_PARAMETER(prectangle);
@@ -2300,7 +2300,7 @@ namespace user
 
 
    // frame_window implementation of OLE border space negotiation
-   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, RECTANGLE_I32 * pRectBorder)
+   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, ::rectangle_i32 * pRectBorder)
    {
 
       ::rectangle_i32 border, request;

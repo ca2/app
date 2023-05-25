@@ -57,9 +57,9 @@ public:
    //   ::nano2d::context * m_nano2d_context = nullptr;
    //   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
    //   Cursor m_cursor;
-   ::pointer < Widget >       m_pwidgetMouseCapture;
-      ::comparable_array<Widget *> m_focus_path;
-      Widget * m_pwidgetLeftButtonDown{nullptr};
+      ::pointer < Widget >                m_pwidgetMouseCapture;
+      ::pointer_array<Widget>             m_focus_path;
+      ::pointer < Widget >                m_pwidgetLeftButtonDown;
       ::pointer<::nano2d::font_sink>      m_pfontsink;
    //   vector2_i32 m_fbsize;
       float m_pixel_ratio;
@@ -71,12 +71,13 @@ public:
       
       bool                          m_bDragActive;
       ::pointer < Widget >          m_pwidgetDrag;
+      ::pointer < Widget >          m_pwidgetDrop;
 
 
       class ::time m_last_interaction;
    //   bool m_process_events = true;
       ::color::color m_background;
-   //   ::string m_caption;
+   //   ::string m_strCaption;
    //   bool m_shutdown_glfw_on_destruct;
       bool m_fullscreen;
    //   bool m_depth_buffer;
@@ -87,7 +88,7 @@ public:
    //#if defined(NANOUI_USE_METAL)
    //   void * m_metal_texture = nullptr;
    //   void * m_metal_drawable = nullptr;
-   //   ref<Texture> m_depth_stencil_texture;
+   //   ::pointer<Texture> m_depth_stencil_texture;
    //#endif
 
    
@@ -120,7 +121,7 @@ public:
     *     The requested OpenGL Major version number.  The default is 3, if
     *     changed the value must correspond to a forward compatible core
     *     profile (for portability reasons).  For example, set this to 4 and
-    *     \ref gl_minor to 1 for a forward compatible core OpenGL 4.1 profile.
+    *     \::pointer gl_minor to 1 for a forward compatible core OpenGL 4.1 profile.
     *     Requesting an invalid profile will result in no context (and
     *     therefore no GUI) being created. This attribute is ignored when
     *     targeting OpenGL ES 2 or Metal.
@@ -129,7 +130,7 @@ public:
     *     The requested OpenGL Minor version number.  The default is 2, if
     *     changed the value must correspond to a forward compatible core
     *     profile (for portability reasons).  For example, set this to 1 and
-    *     \ref gl_major to 4 for a forward compatible core OpenGL 4.1 profile.
+    *     \::pointer gl_major to 4 for a forward compatible core OpenGL 4.1 profile.
     *     Requesting an invalid profile will result in no context (and
     *     therefore no GUI) being created. This attribute is ignored when
     *     targeting OpenGL ES 2 or Metal.
@@ -156,7 +157,7 @@ public:
    void set_need_layout() override;
 //
 //   /// Get the window title bar caption
-//   const ::scoped_string & caption() const { return m_caption; }
+//   const ::scoped_string & caption() const { return m_strCaption; }
 //
 //   /// Set the window title bar caption
 //   void set_caption(const ::scoped_string & caption);
@@ -184,9 +185,9 @@ public:
 //   /**
 //    * \brief Redraw the pscreen if the redraw flag is set
 //    *
-//    * This function does everything -- it calls \ref draw_setup(), \ref
-//    * draw_contents() (which also clears the pscreen by default), \ref draw(),
-//    * and finally \ref draw_teardown().
+//    * This function does everything -- it calls \::pointer draw_setup(), \::pointer
+//    * draw_contents() (which also clears the pscreen by default), \::pointer draw(),
+//    * and finally \::pointer draw_teardown().
 //    *
 //    * \sa redraw
 //    */
@@ -196,7 +197,7 @@ public:
     * \brief Clear the pscreen with the background color (glClearColor, glClear, etc.)
     *
     * You typically won't need to call this function yourself, as it is called by
-    * the default implementation of \ref draw_contents() (which is called by \ref draw_all())
+    * the default implementation of \::pointer draw_contents() (which is called by \::pointer draw_all())
     */
    virtual void clear(::nano2d::context * pcontext);
 
@@ -207,7 +208,7 @@ public:
     * resolution, setting the viewport used for drawing, etc..
     *
     * You typically won't need to call this function yourself, as it is called
-    * by \ref draw_all(), which is executed by the run loop.
+    * by \::pointer draw_all(), which is executed by the run loop.
     */
    virtual void draw_setup(::nano2d::context * pcontext);
 
@@ -221,7 +222,7 @@ public:
     * the framebuffer, etc.
     *
     * You typically won't need to call this function yourself, as it is called
-    * by \ref draw_all(), which is executed by the run loop.
+    * by \::pointer draw_all(), which is executed by the run loop.
     */
    virtual void draw_teardown(::nano2d::context * pcontext);
 
@@ -314,7 +315,7 @@ public:
 //    * Performs no initialization at all. Use this if the application is
 //    * responsible for setting up GLFW, OpenGL, etc.
 //    *
-//    * In this case, override \ref Screen and call \ref initalize() with a
+//    * In this case, override \::pointer Screen and call \::pointer initalize() with a
 //    * pointer to an existing \pwidgetChild GLFWwindow instance
 //    *
 //    * You will also be responsible in this case to deliver GLFW callbacks
@@ -322,7 +323,7 @@ public:
 //    */
    //Screen();
 //
-//   /// Initialize the \ref Screen
+//   /// Initialize the \::pointer Screen
 //   void initialize(GLFWwindow * window, bool shutdown_glfw);
 //
 //   /* Event handlers */

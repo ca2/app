@@ -125,11 +125,11 @@ namespace simple_ui
 
       /*if(m_iLineHeight == 0)
       {
-         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x,m_scrolldata.m_pointScroll.y);
+         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x(),m_scrolldata.m_pointScroll.y());
       }
       else
       {
-         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x,-(m_scrolldata.m_pointScroll.y % m_iLineHeight));
+         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x(),-(m_scrolldata.m_pointScroll.y() % m_iLineHeight));
       }*/
 
 
@@ -166,8 +166,8 @@ namespace simple_ui
       ppenCaret->create_solid(1.0,argb(255,0,0,0));
 
 
-      /*   rectangleClient.top = m_point.y;
-      rectangleClient.left = m_point.x;
+      /*   rectangleClient.top = m_point.y();
+      rectangleClient.left = m_point.x();
       rectangleClient.bottom = rectangleClient.top + m_size.cy;
       rectangleClient.right = rectangleClient.left + m_size.cx;*/
       //      pgraphics->fill_rectangle(rectangleClient, crBk);

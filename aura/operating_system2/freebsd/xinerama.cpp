@@ -8,7 +8,7 @@
 
 
 CLASS_DECL_AURA int xinerama_get_monitor_count();
-CLASS_DECL_AURA int xinerama_get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
+CLASS_DECL_AURA int xinerama_get_monitor_rect(index i, ::rectangle_i32 * prectangle);
 
 CLASS_DECL_AURA int xinerama_get_screen_size(int& width, int& height);
 
@@ -50,7 +50,7 @@ int xinerama_get_monitor_count()
 }
 
 
-int xinerama_get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+int xinerama_get_monitor_rect(index iMonitor, ::rectangle_i32 * prectangle)
 {
 
    xdisplay  d;
@@ -208,7 +208,7 @@ int xinerama_get_screen_size(int& width, int& height)
 
 // it doesn't work for final purpose,
 // but it calls function that "sorts" rectangles with stability
-int get_best_ordered_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet)
+int get_best_ordered_monitor(::user::interaction * pinteraction, ::rectangle_i32 * prectRet)
 {
 
    auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_app());
@@ -226,7 +226,7 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECTANGLE_I32 *
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangleParam, RECTANGLE_I32 * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangleParam, ::rectangle_i32 * prectRet)
 {
 
    ::null_rect(prectRet);
@@ -269,7 +269,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, ::rectangle_i32 * prectRet)
 {
 
    return best_xinerama_monitor(pinteraction, nullptr, prectRet);
@@ -277,7 +277,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * pr
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangleParam, RECTANGLE_I32 * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangleParam, ::rectangle_i32 * prectRet)
 {
 
    ::rectangle_i32 rNull = nullptr;
@@ -298,7 +298,7 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_i32 &
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, ::rectangle_i32 * prectRet)
 {
 
    return get_best_monitor(pinteraction, nullptr, prectRet);

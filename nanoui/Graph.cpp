@@ -22,7 +22,7 @@ namespace nanoui
 
 
 Graph::Graph(Widget * parent, const ::scoped_string & caption)
-   : Widget(parent), m_caption(caption) {
+   : Widget(parent), m_strCaption(caption) {
    m_colorBackground = ::color::color(20, 128);
    m_fill_color = ::color::color(255, 192, 0, 128);
    m_stroke_color = ::color::color(100, 255);
@@ -63,11 +63,11 @@ void Graph::draw(::nano2d::context * pcontext) {
 
    pcontext->font_face("sans");
 
-   if (m_caption.has_char()) {
+   if (m_strCaption.has_char()) {
       pcontext->font_size(14.0f);
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
       pcontext->fill_color(m_colorText);
-      pcontext->text(m_pos.x() + 3.f, m_pos.y() + 1.f, m_caption.c_str());
+      pcontext->text(m_pos.x() + 3.f, m_pos.y() + 1.f, m_strCaption.c_str());
    }
 
    if (m_header.has_char()) {

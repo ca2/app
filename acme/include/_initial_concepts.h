@@ -53,11 +53,6 @@ concept primitive_unsigned_not_8bit = primitive_unsigned < T > && sizeof(T) != 1
 template < typename T >
 concept primitive_floating = std::is_floating_point < T >::value;
 
-template < typename NUMBER >
-concept primitive_number =
-   std::is_integral_v < NUMBER > ||
-   std::is_enum_v < NUMBER > ||
-   std::is_floating_point_v < NUMBER >;
 
 
 template < typename AGGREGATE >

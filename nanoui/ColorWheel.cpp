@@ -60,95 +60,105 @@ namespace nanoui
       float hue = m_hue;
       ::nano2d::paint paint;
 
-      pcontext->save();
+      {
 
-      float cx = x + w * 0.5f;
-      float cy = y + h * 0.5f;
-      float r1 = (w < h ? w : h) * 0.5f - 5.0f;
-      float r0 = r1 * .75f;
+         ::nano2d::guard guard(pcontext);
 
-      float aeps = 0.5f / r1;   // half a pixel arc length in radians (2pi cancels out).
+         //      pcontext->save();
 
-      for (int i = 0; i < 6; i++) {
-         float a0 = (float)i / 6.0f * ::nano2d::f_pi * 2.0f - aeps;
-         float a1 = (float)(i + 1.0f) / 6.0f * ::nano2d::f_pi * 2.0f + aeps;
+         float cx = x + w * 0.5f;
+         float cy = y + h * 0.5f;
+         float r1 = (w < h ? w : h) * 0.5f - 5.0f;
+         float r0 = r1 * .75f;
+
+         float aeps = 0.5f / r1;   // half a pixel arc length in radians (2pi cancels out).
+
+         for (int i = 0; i < 6; i++) {
+            float a0 = (float)i / 6.0f * ::nano2d::f_pi * 2.0f - aeps;
+            float a1 = (float)(i + 1.0f) / 6.0f * ::nano2d::f_pi * 2.0f + aeps;
+            pcontext->begin_path();
+            pcontext->arc(cx, cy, r0, a0, a1, ::nano2d::e_winding_cw);
+            pcontext->arc(cx, cy, r1, a1, a0, ::nano2d::e_winding_ccw);
+            pcontext->close_path();
+            float ax = (float)cx + cosf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+            float ay = (float)cy + sinf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+            float bx = (float)cx + cosf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+            float by = (float)cy + sinf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+            paint = pcontext->linear_gradient(ax, ay, bx, by,
+               ::color::HSLA_color(a0 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255),
+               ::color::HSLA_color(a1 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255));
+            pcontext->fill_paint(paint);
+            pcontext->fill();
+         }
+
          pcontext->begin_path();
-         pcontext->arc(cx, cy, r0, a0, a1, ::nano2d::e_winding_cw);
-         pcontext->arc(cx, cy, r1, a1, a0, ::nano2d::e_winding_ccw);
-         pcontext->close_path();
-         float ax = (float)cx + cosf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
-         float ay = (float)cy + sinf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
-         float bx = (float)cx + cosf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
-         float by = (float)cy + sinf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
-         paint = pcontext->linear_gradient(ax, ay, bx, by,
-            ::color::HSLA_color(a0 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255),
-            ::color::HSLA_color(a1 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255));
-         pcontext->fill_paint(paint);
-         pcontext->fill();
+         pcontext->circle(cx, cy, r0 - 0.5f);
+         pcontext->circle(cx, cy, r1 + 0.5f);
+         pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
+         pcontext->stroke_width(1.0f);
+         pcontext->stroke();
+
+         {
+            // Selector
+            ::nano2d::guard guard(pcontext);
+            //pcontext->save();
+            pcontext->translate(cx, cy);
+            pcontext->rotate(hue * ::nano2d::f_pi * 2);
+
+            // Marker on
+            float u = ::maximum(r1 / 50, 1.5f);
+            u = ::minimum(u, 4.f);
+            pcontext->stroke_width(u);
+            pcontext->begin_path();
+            pcontext->rectangle(r0 - 1, -2 * u, r1 - r0 + 2, 4 * u);
+            pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
+            pcontext->stroke();
+
+            paint = pcontext->box_gradient(r0 - 3, -5, r1 - r0 + 6, 10, 2, 4, ::color::RGBA_color(0, 0, 0, 128), ::color::RGBA_color(0, 0, 0, 0));
+            pcontext->begin_path();
+            pcontext->rectangle(r0 - 2 - 10, -4 - 10, r1 - r0 + 4 + 20, 8 + 20);
+            pcontext->rectangle(r0 - 2, -4, r1 - r0 + 4, 8);
+            pcontext->path_winding(::nano2d::e_solidity_hole);
+            pcontext->fill_paint(paint);
+            pcontext->fill();
+
+            //// Center triangle
+            float r = r0 - 6;
+            float ax = -0.5f * r;
+            float ay = 0.5f * std::sqrt(3.f) * r;
+            float bx = -0.5f * r;
+            float by = -0.5f * std::sqrt(3.f) * r;
+            pcontext->begin_path();
+            pcontext->move_to(r, 0);
+            pcontext->line_to(ax, ay);
+            pcontext->line_to(bx, by);
+            pcontext->close_path();
+            paint = pcontext->linear_gradient(r, 0, ax, ay, ::color::HSLA_color(hue, 1.0f, 0.5f, 255), ::color::RGBA_color(255, 255, 255, 255));
+            pcontext->fill_paint(paint);
+            pcontext->fill();
+            paint = pcontext->linear_gradient((r + ax) * 0.5f, (0 + ay) * 0.5f, bx, by, ::color::RGBA_color(0, 0, 0, 0), ::color::RGBA_color(0, 0, 0, 255));
+            pcontext->fill_paint(paint);
+            pcontext->fill();
+            pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
+            pcontext->stroke();
+
+            // Select circle on triangle
+            float sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
+            float sy = ay * m_white + by * m_black;
+
+            pcontext->stroke_width(u);
+            pcontext->begin_path();
+            pcontext->circle(sx, sy, 2 * u);
+            pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
+            pcontext->stroke();
+
+            //pcontext->restore();
+
+         }
+
+         //pcontext->restore();
+
       }
-
-      pcontext->begin_path();
-      pcontext->circle(cx, cy, r0 - 0.5f);
-      pcontext->circle(cx, cy, r1 + 0.5f);
-      pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
-      pcontext->stroke_width(1.0f);
-      pcontext->stroke();
-
-      // Selector
-      pcontext->save();
-      pcontext->translate(cx, cy);
-      pcontext->rotate(hue * ::nano2d::f_pi * 2);
-
-      // Marker on
-      float u = ::maximum(r1 / 50, 1.5f);
-      u = ::minimum(u, 4.f);
-      pcontext->stroke_width(u);
-      pcontext->begin_path();
-      pcontext->rectangle(r0 - 1, -2 * u, r1 - r0 + 2, 4 * u);
-      pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
-      pcontext->stroke();
-
-      paint = pcontext->box_gradient(r0 - 3, -5, r1 - r0 + 6, 10, 2, 4, ::color::RGBA_color(0, 0, 0, 128), ::color::RGBA_color(0, 0, 0, 0));
-      pcontext->begin_path();
-      pcontext->rectangle(r0 - 2 - 10, -4 - 10, r1 - r0 + 4 + 20, 8 + 20);
-      pcontext->rectangle(r0 - 2, -4, r1 - r0 + 4, 8);
-      pcontext->path_winding(::nano2d::e_solidity_hole);
-      pcontext->fill_paint(paint);
-      pcontext->fill();
-
-      //// Center triangle
-      float r = r0 - 6;
-      float ax = -0.5f * r;
-      float ay = 0.5f * std::sqrt(3.f) * r;
-      float bx = -0.5f * r;
-      float by = -0.5f * std::sqrt(3.f) * r;
-      pcontext->begin_path();
-      pcontext->move_to(r, 0);
-      pcontext->line_to(ax, ay);
-      pcontext->line_to(bx, by);
-      pcontext->close_path();
-      paint = pcontext->linear_gradient(r, 0, ax, ay, ::color::HSLA_color(hue, 1.0f, 0.5f, 255), ::color::RGBA_color(255, 255, 255, 255));
-      pcontext->fill_paint(paint);
-      pcontext->fill();
-      paint = pcontext->linear_gradient((r + ax) * 0.5f, (0 + ay) * 0.5f, bx, by, ::color::RGBA_color(0, 0, 0, 0), ::color::RGBA_color(0, 0, 0, 255));
-      pcontext->fill_paint(paint);
-      pcontext->fill();
-      pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
-      pcontext->stroke();
-
-      // Select circle on triangle
-      float sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
-      float sy = ay * m_white + by * m_black;
-
-      pcontext->stroke_width(u);
-      pcontext->begin_path();
-      pcontext->circle(sx, sy, 2 * u);
-      pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
-      pcontext->stroke();
-
-      pcontext->restore();
-
-      pcontext->restore();
 
    }
 
@@ -221,10 +231,6 @@ namespace nanoui
       
       float y = (float) p.y();
       
-      x -= (float) m_pos.x();
-      
-      y -= (float) m_pos.y();
-
       float pwidget = (float)m_size.x();
       
       float h = (float)m_size.y();

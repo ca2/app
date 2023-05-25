@@ -22,8 +22,11 @@ namespace nanoui
 
    Window::Window(Widget* parent, const ::scoped_string& title)
       : Widget(parent), m_title(title), m_button_panel(nullptr), m_modal(false),
-      m_drag(false) {
+      m_drag(false) 
+   {
+
       m_bPendingCentering = false;
+
    }
 
 
@@ -160,81 +163,85 @@ namespace nanoui
 
       }
 
-      //int ds = m_theme->m_iWindowDropShadowSize;
-      int cr = m_theme->m_iWindowCorderRadius;
-      int hh = m_theme->m_iWindowHeaderHeight;
+      //int ds = m_ptheme->m_iWindowDropShadowSize;
+      int cr = m_ptheme->m_iWindowCorderRadius;
+      int hh = m_ptheme->m_iWindowHeaderHeight;
 
       /* Draw window */
-      pcontext->save();
-      pcontext->begin_path();
-      pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
-
-      pcontext->fill_color(m_bMouseHover ? m_theme->m_colorWindowFillFocused
-         : m_theme->m_colorWindowFillUnfocused);
-      pcontext->fill();
-
-
-      ///* Draw a drop shadow */
-      //::nano2d::paint shadow_paint = pcontext->box_gradient(
-      //   ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr * 2, ds * 2,
-      //   m_theme->m_colorDropShadow, m_theme->m_colorTransparent);
-
-      //pcontext->Save();
-      //pcontext->reset_scissor();
-      //pcontext->begin_path();
-      //pcontext->rectangle(m_pos.x() - ds, m_pos.y() - ds, m_size.x() + 2 * ds, m_size.y() + 2 * ds);
-      //pcontext->rounded_rectangle(m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr);
-      //pcontext->path_winding(::nano2d::e_solidity_hole);
-      //pcontext->fill_paint(shadow_paint);
-      //pcontext->fill();
-      //pcontext->Restore();
-
-      if (m_title.has_char()) {
-         /* Draw header */
-         ::nano2d::paint header_paint = pcontext->linear_gradient(
-            (float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
-            (float)m_pos.y() + (float)hh,
-            m_theme->m_colorWindowHeaderGradientTop,
-            m_theme->m_colorWindowHeaderGradientBottom);
-
+      {
+         ::nano2d::guard guard(pcontext);
+         //pcontext->save();
          pcontext->begin_path();
-         pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
+         pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
 
-         pcontext->fill_paint(header_paint);
+         pcontext->fill_color(m_bMouseHover ? m_ptheme->m_colorWindowFillFocused
+            : m_ptheme->m_colorWindowFillUnfocused);
          pcontext->fill();
 
-         pcontext->begin_path();
-         pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
-         pcontext->stroke_color(m_theme->m_colorWindowHeaderSeparationTop);
+
+         ///* Draw a drop shadow */
+         //::nano2d::paint shadow_paint = pcontext->box_gradient(
+         //   ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr * 2, ds * 2,
+         //   m_ptheme->m_colorDropShadow, m_ptheme->m_colorTransparent);
 
          //pcontext->Save();
-         //pcontext->intersect_scissor(m_pos.x(), m_pos.y(), m_size.x(), 0.5f);
-         //pcontext->stroke();
+         //pcontext->reset_scissor();
+         //pcontext->begin_path();
+         //pcontext->rectangle(m_pos.x() - ds, m_pos.y() - ds, m_size.x() + 2 * ds, m_size.y() + 2 * ds);
+         //pcontext->rounded_rectangle(m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr);
+         //pcontext->path_winding(::nano2d::e_solidity_hole);
+         //pcontext->fill_paint(shadow_paint);
+         //pcontext->fill();
          //pcontext->Restore();
 
-         pcontext->begin_path();
-         pcontext->move_to(m_pos.x() + 0.5f, m_pos.y() + hh - 1.5f);
-         pcontext->line_to(m_pos.x() + m_size.x() - 0.5f, m_pos.y() + hh - 1.5f);
-         pcontext->stroke_color(m_theme->m_colorWindowHeaderSeparationBottom);
-         pcontext->stroke();
+         if (m_title.has_char()) {
+            /* Draw header */
+            ::nano2d::paint header_paint = pcontext->linear_gradient(
+               (float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
+               (float)m_pos.y() + (float)hh,
+               m_ptheme->m_colorWindowHeaderGradientTop,
+               m_ptheme->m_colorWindowHeaderGradientBottom);
 
-         pcontext->font_size(18.0f);
-         pcontext->font_face("sans-bold");
-         pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
+            pcontext->begin_path();
+            pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
 
-         //pcontext->font_blur(2);
-         //pcontext->fill_color(m_theme->m_colorDropShadow);
-         //pcontext->text(m_pos.x() + m_size.x() / 2,
-            // m_pos.y() + hh / 2, m_title.c_str(), nullptr);
+            pcontext->fill_paint(header_paint);
+            pcontext->fill();
 
-         //pcontext->font_blur(0);
-         pcontext->fill_color(focused() ? m_theme->m_colorWindowTitleFocused
-            : m_theme->m_colorWindowTitleUnfocused);
-         pcontext->text(m_pos.x() + m_size.x() / 2.f, m_pos.y() + hh / 2.f - 1.f,
-            m_title);
+            pcontext->begin_path();
+            pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
+            pcontext->stroke_color(m_ptheme->m_colorWindowHeaderSeparationTop);
+
+            //pcontext->Save();
+            //pcontext->intersect_scissor(m_pos.x(), m_pos.y(), m_size.x(), 0.5f);
+            //pcontext->stroke();
+            //pcontext->Restore();
+
+            pcontext->begin_path();
+            pcontext->move_to(m_pos.x() + 0.5f, m_pos.y() + hh - 1.5f);
+            pcontext->line_to(m_pos.x() + m_size.x() - 0.5f, m_pos.y() + hh - 1.5f);
+            pcontext->stroke_color(m_ptheme->m_colorWindowHeaderSeparationBottom);
+            pcontext->stroke();
+
+            pcontext->font_size(18.0f);
+            pcontext->font_face("sans-bold");
+            pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
+
+            //pcontext->font_blur(2);
+            //pcontext->fill_color(m_ptheme->m_colorDropShadow);
+            //pcontext->text(m_pos.x() + m_size.x() / 2,
+               // m_pos.y() + hh / 2, m_title.c_str(), nullptr);
+
+            //pcontext->font_blur(0);
+            pcontext->fill_color(focused() ? m_ptheme->m_colorWindowTitleFocused
+               : m_ptheme->m_colorWindowTitleUnfocused);
+            pcontext->text(m_pos.x() + m_size.x() / 2.f, m_pos.y() + hh / 2.f - 1.f,
+               m_title);
+         }
+
+       //  pcontext->restore();
+
       }
-
-      pcontext->restore();
 
       Widget::draw(pcontext);
 
@@ -271,7 +278,7 @@ namespace nanoui
 #define __MOUSE_RIGHT_BUTTON 1
 
 
-   bool Window::mouse_motion_event(const vector2_i32&, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_motion_event(const vector2_i32&p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       if (m_drag && (ekeyModifiers & ::user::e_key_left_button) != 0 && bDown)
@@ -315,7 +322,7 @@ namespace nanoui
 
       }
 
-      return false;
+      return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
 
    }
 
@@ -336,7 +343,7 @@ namespace nanoui
          if (down)
          {
 
-            auto bDrag = down && (p.y() - m_pos.y()) < m_theme->m_iWindowHeaderHeight;
+            auto bDrag = down && (p.y() - m_pos.y()) < m_ptheme->m_iWindowHeaderHeight;
 
             m_drag = bDrag;
 
@@ -391,7 +398,7 @@ namespace nanoui
 
 
    void Window::refresh_relative_placement() {
-      /* Overridden in \ref Popup */
+      /* Overridden in \::pointer Popup */
    }
 
    //void Window::_nanoui_to_user(::user::interaction * puserinteraction)

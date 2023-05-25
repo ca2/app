@@ -158,19 +158,19 @@ namespace user
             if (pscroll->m_ecommand == e_scroll_command_line_up)
             {
 
-               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y - m_pscrolldataVertical->m_iLine));
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - m_pscrolldataVertical->m_iLine));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_up)
             {
 
-               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y - m_pscrolldataVertical->m_iPage));
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - m_pscrolldataVertical->m_iPage));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_down)
             {
 
-               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y + m_pscrolldataVertical->m_iPage));
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + m_pscrolldataVertical->m_iPage));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_line_down)
@@ -178,7 +178,7 @@ namespace user
 
                auto iLine = m_pscrolldataVertical->m_iLine;
 
-               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y + iLine));
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + iLine));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
@@ -220,7 +220,7 @@ namespace user
       if (m_pscrollbarVertical.is_set())
       {
 
-         m_pscrollbarVertical->m_scrollinfo.nPos = m_pointScroll.y;
+         m_pscrollbarVertical->m_scrollinfo.nPos = m_pointScroll.y();
 
       }
 
@@ -361,10 +361,10 @@ namespace user
    bool vertical_scroll_base::validate_context_offset(point_i32 & point)
    {
 
-      if (point.y < 0)
+      if (point.y() < 0)
       {
 
-         point.y = 0;
+         point.y() = 0;
 
       }
       else
@@ -374,10 +374,10 @@ namespace user
 
          auto sizePage = get_page_size();
 
-         if (point.y > maximum(0, sizeTotal.cy - sizePage.cy))
+         if (point.y() > maximum(0, sizeTotal.cy - sizePage.cy))
          {
 
-            point.y = (::i32)maximum(0, sizeTotal.cy - sizePage.cy);
+            point.y() = (::i32)maximum(0, sizeTotal.cy - sizePage.cy);
 
          }
 
@@ -492,7 +492,7 @@ namespace user
       else
       {
 
-         pscroll->m_nPos = (i32)get_context_offset().y;
+         pscroll->m_nPos = (i32)get_context_offset().y();
 
       }
 

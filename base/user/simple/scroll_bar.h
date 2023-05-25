@@ -41,9 +41,9 @@ public:
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-   bool GetPageARect(RECTANGLE_I32 * pRectClient, RECTANGLE_I32 * lpRectTrack,  RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
+   bool GetPageARect(::rectangle_i32 * pRectClient, ::rectangle_i32 * lpRectTrack,  ::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
-   bool GetPageBRect(RECTANGLE_I32 * pRectClient, RECTANGLE_I32 * lpRectTrack,  RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
+   bool GetPageBRect(::rectangle_i32 * pRectClient, ::rectangle_i32 * lpRectTrack,  ::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
    void UpdateBitmaps();
    //void OnDisplayChange(i32 iBitsPerPixel, ::size_i32 sizeScreen);
@@ -57,9 +57,9 @@ public:
 
    i32 SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
    i32 GetTrackSize(::size_i32 & size, ::draw2d::graphics_pointer & pgraphics);
-   bool GetTrackClientRect(RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
+   bool GetTrackClientRect(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
-   bool GetTrackRect(RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics) override;
+   bool GetTrackRect(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

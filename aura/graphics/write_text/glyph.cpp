@@ -82,7 +82,7 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points placed into the pPts const point_i32 & array.
 //   ****************************************************************************/
-//   ::u32 MakeBezierFromLine( POINT_I32 *pPts, const point_i32 & startpt, const point_i32 & endpt )
+//   ::u32 MakeBezierFromLine( ::point_i32 *pPts, const point_i32 & startpt, const point_i32 & endpt )
 //   {
 //      ::u32 cTotal = 0;
 //
@@ -91,13 +91,13 @@ namespace write_text
 //      cTotal++;
 //
 //      // 1rst control, point == endpoint makes Bezier a line
-//      pPts[cTotal].x = endpt.x;
-//      pPts[cTotal].y = endpt.y;
+//      pPts[cTotal].x() = endpt.x();
+//      pPts[cTotal].y() = endpt.y();
 //      cTotal++;
 //
 //      // 2nd control, point == startpoint makes Bezier a line
-//      pPts[cTotal].x = startpt.x;
-//      pPts[cTotal].y = startpt.y;
+//      pPts[cTotal].x() = startpt.x();
+//      pPts[cTotal].y() = startpt.y();
 //      cTotal++;
 //
 //      // ending point_i32 of Bezier
@@ -116,7 +116,7 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points placed into the pPts const point_i32 & array.
 //   ****************************************************************************/
-//   ::u32 MakeBezierFromQBSpline( POINT_I32 *pPts, POINTFX *pSpline )
+//   ::u32 MakeBezierFromQBSpline( ::point_i32 *pPts, POINTFX *pSpline )
 //   {
 //      ::point_i32 point0;         // Quadratic on curve start point_i32
 //      ::point_i32 point1;         // Quadratic control point_i32
@@ -124,12 +124,12 @@ namespace write_text
 //      ::u32 cTotal = 0;
 //
 //      // Convert the Quadratic points to integer
-//      point0.x = IntFromFixed( pSpline[0].x );
-//      point0.y = IntFromFixed( pSpline[0].y );
-//      point1.x = IntFromFixed( pSpline[1].x );
-//      point1.y = IntFromFixed( pSpline[1].y );
-//      point2.x = IntFromFixed( pSpline[2].x );
-//      point2.y = IntFromFixed( pSpline[2].y );
+//      point0.x() = IntFromFixed( pSpline[0].x() );
+//      point0.y() = IntFromFixed( pSpline[0].y() );
+//      point1.x() = IntFromFixed( pSpline[1].x() );
+//      point1.y() = IntFromFixed( pSpline[1].y() );
+//      point2.x() = IntFromFixed( pSpline[2].x() );
+//      point2.y() = IntFromFixed( pSpline[2].y() );
 //
 //      // conversion of a quadratic to a cubic
 //
@@ -138,13 +138,13 @@ namespace write_text
 //      cTotal++;
 //
 //      // Cubic point1 in terms of Quadratic point0 and point1
-//      pPts[cTotal].x = point0.x + 2*(point1.x - point0.x)/3;
-//      pPts[cTotal].y = point0.y + 2*(point1.y - point0.y)/3;
+//      pPts[cTotal].x() = point0.x() + 2*(point1.x() - point0.x())/3;
+//      pPts[cTotal].y() = point0.y() + 2*(point1.y() - point0.y())/3;
 //      cTotal++;
 //
 //      // Cubic point2 in terms of Qudartic point1 and point2
-//      pPts[cTotal].x = point1.x + 1*(point2.x - point1.x)/3;
-//      pPts[cTotal].y = point1.y + 1*(point2.y - point1.y)/3;
+//      pPts[cTotal].x() = point1.x() + 1*(point2.x() - point1.x())/3;
+//      pPts[cTotal].y() = point1.y() + 1*(point2.y() - point1.y())/3;
 //      cTotal++;
 //
 //      // Cubic P3 is the on curve end point_i32
@@ -166,7 +166,7 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendPolyLineToBezier( POINT_I32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //::u32 AppendPolyLineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   ::u32 AppendPolyLineToBezier(
 //   point_i32_array      &pointsset,
@@ -181,8 +181,8 @@ namespace write_text
 //      ::point_i32   startpt;
 //      ::point_i32   bezier[4];
 //
-//      endpt.x = IntFromFixed(start.x);
-//      endpt.y = IntFromFixed(start.y);
+//      endpt.x() = IntFromFixed(start.x());
+//      endpt.y() = IntFromFixed(start.y());
 //
 //      //points.set_size(points.get_size() + pCurve->cpfx * 3);
 //
@@ -191,9 +191,9 @@ namespace write_text
 //      {
 //         // define the line segment
 //         startpt = endpt;
-//         endpt.x = IntFromFixed(pCurve->apfx[i].x);
+//         endpt.x() = IntFromFixed(pCurve->apfx[i].x());
 //
-//         endpt.y = IntFromFixed(pCurve->apfx[i].y);
+//         endpt.y() = IntFromFixed(pCurve->apfx[i].y());
 //
 //
 //         // convert a line to a bezier representation
@@ -226,7 +226,7 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendQuadBSplineToBezier( POINT_I32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //::u32 AppendQuadBSplineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   ::u32 AppendQuadBSplineToBezier(
 //   point_i32_array & pointset,
@@ -265,16 +265,16 @@ namespace write_text
 //            // C is midpoint between B and next B point_i32
 //            // because that is the on curve point_i32 of
 //            // a Quadratic B-Spline.
-//            spline[2].x = fxDiv2(
-//                          pCurve->apfx[i-1].x,
+//            spline[2].x() = fxDiv2(
+//                          pCurve->apfx[i-1].x(),
 //
-//                          pCurve->apfx[i].x
+//                          pCurve->apfx[i].x()
 //
 //                          );
-//            spline[2].y = fxDiv2(
-//                          pCurve->apfx[i-1].y,
+//            spline[2].y() = fxDiv2(
+//                          pCurve->apfx[i-1].y(),
 //
-//                          pCurve->apfx[i].y
+//                          pCurve->apfx[i].y()
 //
 //                          );
 //         }
@@ -307,7 +307,7 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of points aded to the point_i32 const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 CloseContour( POINT_I32 * point, ::u32 cTotal )
+//   //::u32 CloseContour( ::point_i32 * point, ::u32 cTotal )
 //   ::u32 CloseContour(
 //   point_i32_array & pointset,
 //   ::u32 cTotal )
@@ -365,7 +365,7 @@ namespace write_text
 //
 //      LPTTPOLYCURVE       pCurve;    // the current curve of a contour
 //
-//      //  POINT_I32 *             point_i32;         // the bezier buffer
+//      //  ::point_i32 *             point_i32;         // the bezier buffer
 //      POINTFX             pointStart;    // The starting point_i32 of a curve
 //      u32               dwMaxPts = size_i32/sizeof(POINTFX); // maximum possible pts.
 //      u32               dwBuffSize;
@@ -396,23 +396,23 @@ namespace write_text
 //            //pPoints = memory_new CPoints();
 //            //         pPoints->m_lpPoints = point;
 //
-//            //point = (POINT_I32 *)malloc( dwBuffSize );
-//            //         point = (POINT_I32 *) memory_new byte(dwBuffSize);
+//            //point = (::point_i32 *)malloc( dwBuffSize );
+//            //         point = (::point_i32 *) memory_new byte(dwBuffSize);
 //            // Convert the starting point. It is an on curve point.
 //            // All other points are continuous from the "last"
 //            // point_i32 of the contour. Thus the start point_i32 the next
 //            // bezier is always point_i32[cTotal-1] - the last point_i32 of the
 //            // previous bezier. See poly_bezier.
 //            pointset.add(
-//            IntFromFixed(pHeader->pfxStart.x),
+//            IntFromFixed(pHeader->pfxStart.x()),
 //
-//            IntFromFixed(pHeader->pfxStart.y));
+//            IntFromFixed(pHeader->pfxStart.y()));
 //
 //            cTotal = 1;
 //            //cTotal = 1;
-//            //point_i32[0].x = IntFromFixed(pHeader->pfxStart.x);
+//            //point_i32[0].x() = IntFromFixed(pHeader->pfxStart.x());
 //
-//            //point_i32[0].y = IntFromFixed(pHeader->pfxStart.y);
+//            //point_i32[0].y() = IntFromFixed(pHeader->pfxStart.y());
 //
 //
 //            // get to first curve of contour -
@@ -478,9 +478,9 @@ namespace write_text
 //            // Depending on the specific font and glyph being used, these
 //            // may not always be needed.
 //
-//            //            if ( point_i32[cTotal-1].x != point_i32[0].x || point_i32[cTotal-1].y != point_i32[0].y )
-//            if (pointset.last().x != pointset.first().x ||
-//                  pointset.last().y != pointset.first().y)
+//            //            if ( point_i32[cTotal-1].x() != point_i32[0].x() || point_i32[cTotal-1].y() != point_i32[0].y() )
+//            if (pointset.last().x() != pointset.first().x() ||
+//                  pointset.last().y() != pointset.first().y())
 //            {
 //               //cTotal += CloseContour(point, cTotal );
 //               cTotal = CloseContour(pointset, cTotal );
@@ -490,8 +490,8 @@ namespace write_text
 //            // TT native coordiantes are zero originate at lower-left.
 //            // Windows MM_TEXT are zero originate at upper-left.
 //            for (i = 0; i < pointset.get_size(); i++)
-//               pointset[i].y = iFontHiHeight - pointset[i].y;
-//            //point_i32[i].y = 0 - point_i32[i].y;
+//               pointset[i].y() = iFontHiHeight - pointset[i].y();
+//            //point_i32[i].y() = 0 - point_i32[i].y();
 //
 //            // draw the contour
 //
@@ -536,15 +536,15 @@ namespace write_text
    }
 
 
-   void glyph::GetGlyphRect(i32 x, i32 y, RECTANGLE_I32 * prectangle)
+   void glyph::GetGlyphRect(i32 x, i32 y, ::rectangle_i32 * prectangle)
 
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      prectangle->left      = x - m_gm.gmptGlyphOrigin.x;
+//      prectangle->left      = x - m_gm.gmptGlyphOrigin.x();
 //
-//      prectangle->top       = y - m_gm.gmptGlyphOrigin.y;
+//      prectangle->top       = y - m_gm.gmptGlyphOrigin.y();
 //
 //      prectangle->right     = x + m_gm.gmBlackBoxX;
 //
@@ -561,7 +561,7 @@ namespace write_text
    }
 
 
-   void glyph::DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, POINT_I32 * ppointOffset)
+   void glyph::DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, ::point_i32 * ppointOffset)
 
    {
 

@@ -755,13 +755,13 @@ namespace html
 
          auto pointContent = m_pimpl->get_content_top_left();
 
-         phtmldata->m_pcoredata->m_layoutstate3.m_y = pointContent.y;
+         phtmldata->m_pcoredata->m_layoutstate3.m_y = pointContent.y();
 
          phtmldata->m_pcoredata->m_layoutstate3.m_cya.add(0.f);
 
-         phtmldata->m_pcoredata->m_layoutstate3.m_xParent.add(pointContent.x);
+         phtmldata->m_pcoredata->m_layoutstate3.m_xParent.add(pointContent.x());
 
-         phtmldata->m_pcoredata->m_layoutstate3.m_x = pointContent.x;
+         phtmldata->m_pcoredata->m_layoutstate3.m_x = pointContent.x();
 
          m_pimpl->m_iLayoutChildLineStartIndex = 0;
 

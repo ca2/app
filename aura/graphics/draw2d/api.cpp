@@ -33,7 +33,7 @@ namespace draw2d
       size_i32 viewportExt = pgraphics->get_extents();
       point_i32 viewportOrg = pgraphics->get_origin();
 
-      pgraphics->offset_origin(ppointOffset->x, ppointOffset->y);
+      pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
 
       pgraphics->scale_extents((i32)dRateX, 1, 1, 1);
@@ -63,10 +63,7 @@ namespace draw2d
       size_i32 viewportExt = pgraphics->get_extents();
       point_i32 viewportOrg = pgraphics->get_origin();
 
-      pgraphics->offset_origin(
-      ppointOffset->x,
-
-      ppointOffset->y);
+      pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
 
       pgraphics->scale_extents((i32)dRateX, 1, 1, 1);
@@ -95,13 +92,10 @@ namespace draw2d
       ::rectangle_i32 clipRect;
 
       size_i32 viewportExt = pgraphics->get_extents();
+
       point_i32 viewportOrg = pgraphics->get_origin();
 
-      pgraphics->offset_origin(
-      ppointOffset->x,
-
-      ppointOffset->y);
-
+      pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
       pgraphics->scale_extents((i32)(dRateX * 1000.0), 1, 1, 1);
 
@@ -160,8 +154,8 @@ namespace draw2d
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
       //      VERIFY(::SetContextOrgEx(
       //         pgraphics->m_hDC,
-      //         viewportOrg.x,
-      //         viewportOrg.y,
+      //         viewportOrg.x(),
+      //         viewportOrg.y(),
       //         nullptr));
    }
 
@@ -222,8 +216,8 @@ namespace draw2d
 //      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
 //      VERIFY(::SetContextOrgEx(
 //         pgraphics->m_hDC,
-//         viewportOrg.x,
-//         viewportOrg.y,
+//         viewportOrg.x(),
+//         viewportOrg.y(),
 //         nullptr));
    }
 

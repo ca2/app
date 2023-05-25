@@ -83,7 +83,7 @@ namespace experience_anthill
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool get_element_rect(RECTANGLE_I32 & rect, enum_element eelement) override;
+      virtual bool get_element_rect(::rectangle_i32 & rect, enum_element eelement) override;
 
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 

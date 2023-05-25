@@ -21,7 +21,7 @@ namespace user
       virtual ~margin_base();
 
 
-      virtual void get_margin_rect(RECTANGLE_I32 * prectMargin) override;
+      virtual void get_margin_rect(::rectangle_i32 * prectMargin) override;
 
 
 
@@ -51,7 +51,7 @@ namespace user
 
       }
 
-//      void screen_to_client(RECTANGLE_I32 * prectangle)
+//      void screen_to_client(::rectangle_i32 * prectangle)
 
       //    {
 
@@ -74,9 +74,9 @@ namespace user
 
          auto pointOffset = BASE::get_context_offset();
 
-         pointOffset.x += m_rectangleMargin.left;
+         pointOffset.x() += m_rectangleMargin.left;
 
-         pointOffset.y += m_rectangleMargin.top;
+         pointOffset.y() += m_rectangleMargin.top;
 
          return pointOffset;
 

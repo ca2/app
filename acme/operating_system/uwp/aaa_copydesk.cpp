@@ -155,7 +155,7 @@ namespace universal_windows
       HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(DROPFILES) + (iLen + 1) * sizeof(WCHAR));
       LPDROPFILES pDropFiles = (LPDROPFILES) ::GlobalLock(hglbCopy);
       pDropFiles->pFiles = sizeof(DROPFILES);
-      pDropFiles->point.x = pDropFiles->point.y = 0;
+      pDropFiles->point.x() = pDropFiles->point.y() = 0;
       pDropFiles->fNC = true;
       pDropFiles->fWide = true; // ANSI charset
 

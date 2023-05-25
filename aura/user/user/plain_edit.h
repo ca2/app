@@ -461,9 +461,9 @@ namespace user
       strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn) override;
       strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x) override;
       index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, RECTANGLE_I32 * lprect, strsize iSel);
-      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, RECTANGLE_I32 * lprect, strsize iSel);
-      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, RECTANGLE_I32 * lprect, ::index iLine);
+      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, strsize iSel);
+      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, strsize iSel);
+      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, ::index iLine);
 
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 

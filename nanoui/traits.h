@@ -32,7 +32,7 @@ enum class VariableType {
    Bool
 };
 
-/// Convert from a C++ type to an element of \ref VariableType
+/// Convert from a C++ type to an element of \::pointer VariableType
 template <typename T> constexpr VariableType get_type() {
    if constexpr (std::is_same_v<T, bool>)
       return VariableType::Bool;

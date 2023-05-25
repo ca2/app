@@ -521,20 +521,20 @@ namespace html
 
          /*if(m_iColBeg == 0)
          {
-            ::point_f32.x += get_table()->m_iCellSpacing;
+            ::point_f32.x() += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::point_f32.x += get_table()->m_iCellSpacing / 2.f;
+            ::point_f32.x() += get_table()->m_iCellSpacing / 2.f;
          }
 
          if(m_iRowBeg == 0)
          {
-            ::point_f32.y += get_table()->m_iCellSpacing;
+            ::point_f32.y() += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::point_f32.y += get_table()->m_iCellSpacing / 2.f;
+            ::point_f32.y() += get_table()->m_iCellSpacing / 2.f;
          }*/
 
          return point;

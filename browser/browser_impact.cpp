@@ -8,7 +8,7 @@
 #include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"
 #include "acme/constant/timer.h"
-int cef_main(HINSTANCE hInstance, HWND hwnd, RECTANGLE_I32 rectangle_i32);
+int cef_main(HINSTANCE hInstance, HWND hwnd, ::rectangle_i32 rectangle_i32);
 
 namespace browser
 {
@@ -325,8 +325,8 @@ namespace browser
 
       screen_to_client()(point);
 
-      event.x = point.x;
-      event.y = point.y;
+      event.x() = point.x();
+      event.y() = point.y();
 
       if (pmouse->m_atom == e_message_left_button_down)
       {
@@ -411,7 +411,7 @@ namespace browser
 
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-               //auto rectangle = RECTANGLE_I32{ 0 };
+               //auto rectangle = ::rectangle_i32{ 0 };
                //client_rectangle(&rectangle);
 
                //auto hwnd2 = get_handle();
@@ -836,7 +836,7 @@ namespace browser
    //      if (m_pbrowser != nullptr)
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-   //         auto rectangle = RECTANGLE_I32{ 0 };
+   //         auto rectangle = ::rectangle_i32{ 0 };
    //         client_rectangle(&rectangle);
 
    //         ::set_window_position(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);

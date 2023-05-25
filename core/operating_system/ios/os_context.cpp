@@ -891,7 +891,7 @@ CLASS_DECL_CORE bool _istlead(i32 ch)
 
 
 
-int_bool GetCursorPos(POINT_I32 * lppointCursor)
+int_bool GetCursorPos(::point_i32 * lppointCursor)
 {
 
    /*   HIPoint point_i32;
@@ -901,8 +901,8 @@ int_bool GetCursorPos(POINT_I32 * lppointCursor)
    HIGetMousePosition(space, nullptr, &point);
 
 
-   lppointCursor->x = point.x;
-   lppointCursor->y = point.y;
+   lppointCursor->x = point.x();
+   lppointCursor->y = point.y();
    */
 
    return true;

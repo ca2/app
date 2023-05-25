@@ -99,7 +99,7 @@ namespace ios
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-//      virtual void CalcWindowRect(RECTANGLE_I32 * lpClientRect, ::u32 nAdjustType = adjustBorder) override;
+//      virtual void CalcWindowRect(::rectangle_i32 * lpClientRect, ::u32 nAdjustType = adjustBorder) override;
 
       
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
@@ -125,7 +125,7 @@ namespace ios
 //      bool SendNotifyMessage(const ::atom & atom, WPARAM wParam, LPARAM lParam);
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
-      //bool DragDetect(POINT_I32 point_i32) const override;
+      //bool DragDetect(::point_i32 point_i32) const override;
 
 
 
@@ -154,24 +154,24 @@ namespace ios
       //virtual void BringToTop(::display edisplay) override;
       //virtual bool BringWindowToTop() override;
       //using ::user::interaction_impl::window_rectangle;
-      //virtual bool window_rectangle(RECTANGLE_I64 * lpRect) override;
+      //virtual bool window_rectangle(::rectangle_i64 * lpRect) override;
       //using ::user::interaction_impl::client_rectangle;
-      //virtual bool client_rectangle(RECTANGLE_I64 * lpRect) override;
+      //virtual bool client_rectangle(::rectangle_i64 * lpRect) override;
 
-      //virtual bool client_to_screen(RECTANGLE_I32 * lprect) override;
-      //virtual bool client_to_screen(POINT_I32 * lppoint) override;
-      //virtual bool client_to_screen(RECTANGLE_I64 * lprect) override;
-      //virtual bool client_to_screen(POINT_I64 * lppoint) override;
-      //virtual bool screen_to_client(RECTANGLE_I32 * lprect) override;
-      //virtual bool screen_to_client(POINT_I32 * lppoint) override;
-      //virtual bool screen_to_client(RECTANGLE_I64 * lprect) override;
-      //virtual bool screen_to_client(POINT_I64 * lppoint) override;
+      //virtual bool client_to_screen(::rectangle_i32 * lprect) override;
+      //virtual bool client_to_screen(::point_i32 * lppoint) override;
+      //virtual bool client_to_screen(::rectangle_i64 * lprect) override;
+      //virtual bool client_to_screen(::point_i64 * lppoint) override;
+      //virtual bool screen_to_client(::rectangle_i32 * lprect) override;
+      //virtual bool screen_to_client(::point_i32 * lppoint) override;
+      //virtual bool screen_to_client(::rectangle_i64 * lprect) override;
+      //virtual bool screen_to_client(::point_i64 * lppoint) override;
 
 //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
 //      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);
 
-      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount);
-      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * lpRect);
+      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, ::point_i32 * lpPoint, ::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, ::rectangle_i32 * lpRect);
 
       virtual ::draw2d::graphics * GetDC();
       virtual ::draw2d::graphics * GetWindowDC();
@@ -181,7 +181,7 @@ namespace ios
 
       virtual void UpdateWindow() override;
       virtual void SetRedraw(bool bRedraw = true) override;
-      virtual bool GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase = false) override;
+      virtual bool GetUpdateRect(::rectangle_i32 * lpRect, bool bErase = false) override;
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false) override;
       virtual void Invalidate(bool bErase = true) override;
       virtual void InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase = true) override;
@@ -210,7 +210,7 @@ namespace ios
 
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
-      void offset_context_org(RECTANGLE_I32 * lprectScreen);
+      void offset_context_org(::rectangle_i32 * lprectScreen);
 
 
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags) override;
@@ -219,8 +219,8 @@ namespace ios
 //      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      //virtual bool DrawAnimatedRects(i32 idAni, const RECTANGLE_I32 *lprcFrom, const RECTANGLE_I32 *lprcTo) override;
-      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 * lprc, ::u32 uFlags) override;
+      //virtual bool DrawAnimatedRects(i32 idAni, const ::rectangle_i32 *lprcFrom, const ::rectangle_i32 *lprcTo) override;
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 * lprc, ::u32 uFlags) override;
 
 #if(WINVER >= 0x0500)
 
@@ -286,7 +286,7 @@ namespace ios
 //      virtual void GetScrollRange(i32 nBar, LPINT lpMinPos, LPINT lpMaxPos) const override;
 //      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
 //                                const ::rectangle_i32 & rectangle = nullptr,
-//                                const RECTANGLE_I32 * lpClipRect = nullptr) override;
+//                                const ::rectangle_i32 * lpClipRect = nullptr) override;
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true) override;
 //      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
 //                                  bool bRedraw = true) override;
@@ -297,7 +297,7 @@ namespace ios
 
 //      virtual i32 ScrollWindowEx(i32 Δx, i32 Δy,
 //                                 const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip,
-//                                 ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags) override;
+//                                 ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags) override;
       //xxx      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO lpScrollInfo,
       //xxx         bool bRedraw = true);
       //xxx      virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask = SIF_ALL);
@@ -310,8 +310,8 @@ namespace ios
 //#endif   // WINVER >= 0x0500
 
       // oswindow Access Functions
-//      virtual ::user::interaction *  child_window_from_point(POINT_I32 point_i32) override;
-  //    virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags) override;
+//      virtual ::user::interaction *  child_window_from_point(::point_i32 point_i32) override;
+  //    virtual ::user::interaction *  ChildWindowFromPoint(::point_i32 point, ::u32 nFlags) override;
 //      static ::user::interaction * PASCAL FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
 //      static ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 
@@ -325,7 +325,7 @@ namespace ios
       virtual ::user::interaction * get_parent() const override;
 //      using ::user::interaction_impl::SetParent;
 //      ::user::interaction * SetParent(::user::interaction * pWndNewParent) override;
-//      static ::user::interaction * PASCAL oswindowFromPoint(POINT_I32 point_i32);
+//      static ::user::interaction * PASCAL oswindowFromPoint(::point_i32 point_i32);
 
       // Alert Functions
 
@@ -350,7 +350,7 @@ namespace ios
 //
 //      // Caret Functions
 //      static point_i32 PASCAL GetCaretPos();
-//      static void PASCAL SetCaretPos(POINT_I32 point_i32);
+//      static void PASCAL SetCaretPos(::point_i32 point_i32);
       virtual void HideCaret() override;
       virtual void ShowCaret() override;
 
@@ -515,8 +515,8 @@ namespace ios
       // Win4 messages
       //xxx      void OnStyleChanged(i32 nStyleType, LPSTYLESTRUCT lpStyleStruct);
       //xxx      void OnStyleChanging(i32 nStyleType, LPSTYLESTRUCT lpStyleStruct);
-      void OnSizing(::u32 nSide, RECTANGLE_I32 * lpRect);
-      void OnMoving(::u32 nSide, RECTANGLE_I32 * lpRect);
+      void OnSizing(::u32 nSide, ::rectangle_i32 * lpRect);
+      void OnMoving(::u32 nSide, ::rectangle_i32 * lpRect);
       void OnCaptureChanged(::user::interaction * pWnd);
       bool OnDeviceChange(::u32 nEventType, uptr dwData);
 

@@ -558,9 +558,9 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   //   m_point.x = x_i16(m_lparam);
+   //   m_point.x() = x_i16(m_lparam);
    //   
-   //   m_point.y = y_i16(m_lparam);
+   //   m_point.y() = y_i16(m_lparam);
 
    //}
 

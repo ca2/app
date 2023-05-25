@@ -49,7 +49,7 @@ namespace nanoui
    /// Dispose the window
    void dispose();
 
-   /// Center the window in the current \ref Screen
+   /// Center the window in the current \::pointer Screen
    void center() { m_bPendingCentering = true; }
 
    void _center(::nano2d::context * pcontext);
@@ -73,7 +73,7 @@ namespace nanoui
    /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any
    virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
    //protected:
-   /// Internal helper function to maintain nested window position values; overridden in \ref Popup
+   /// Internal helper function to maintain nested window position values; overridden in \::pointer Popup
    virtual void refresh_relative_placement();
       
       

@@ -584,7 +584,7 @@ namespace windowing
 //
 //            XResizeWindow(pdisplay, m_window, m_size.cx, m_size.cy);
 //
-//            XMoveWindow(pdisplay, m_window, m_point.x, m_point.y);
+//            XMoveWindow(pdisplay, m_window, m_point.x(), m_point.y());
 //
 //            hook();
 //
@@ -629,9 +629,9 @@ namespace windowing
 //
 //         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &info);
 //
-//         sizeLine.cx = maximum(sizeLine.cx, info.x + info.width - infoDummy.width);
+//         sizeLine.cx = maximum(sizeLine.cx, info.x() + info.width - infoDummy.width);
 //
-//         m_iTextAscent = maximum(m_iTextAscent, info.y);
+//         m_iTextAscent = maximum(m_iTextAscent, info.y());
 //
 //         sizeLine.cy = maximum(sizeLine.cy, info.height);
 //
@@ -661,7 +661,7 @@ namespace windowing
 //
 //         iMaxButtonTextWidth = maximum(iMaxButtonTextWidth, infoText.width);
 //
-//         m_iTextAscent = maximum(m_iTextAscent, info.y);
+//         m_iTextAscent = maximum(m_iTextAscent, info.y());
 //
 //         sizeLine.cy = maximum(sizeLine.cy, infoText.height);
 //
@@ -724,13 +724,13 @@ namespace windowing
 //
 //      }
 //
-//      m_point.x = xScreen;
+//      m_point.x() = xScreen;
 //
-//      m_point.y = yScreen;
+//      m_point.y() = yScreen;
 //
-//      m_point.x += (cxScreen - m_size.cx) / 2;
+//      m_point.x() += (cxScreen - m_size.cx) / 2;
 //
-//      m_point.y += (cyScreen - m_size.cy) / 3;
+//      m_point.y() += (cyScreen - m_size.cy) / 3;
 
    }
 
@@ -752,7 +752,7 @@ namespace windowing
 //         else if (e.type == MotionNotify)
 //         {
 //
-//            ::point_i32 point(e.xmotion.x, e.xmotion.y);
+//            ::point_i32 point(e.xmotion.x(), e.xmotion.y());
 //
 //            bool bRedraw = false;
 //
@@ -783,7 +783,7 @@ namespace windowing
 //         else if (e.type == ButtonPress)
 //         {
 //
-//            ::point_i32 point(e.xbutton.x, e.xbutton.y);
+//            ::point_i32 point(e.xbutton.x(), e.xbutton.y());
 //
 //            bool bRedraw = false;
 //
@@ -814,7 +814,7 @@ namespace windowing
 //         else if (e.type == ButtonRelease)
 //         {
 //
-//            ::point_i32 point(e.xbutton.x, e.xbutton.y);
+//            ::point_i32 point(e.xbutton.x(), e.xbutton.y());
 //
 //            bool bRedraw = false;
 //

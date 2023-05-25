@@ -30,7 +30,7 @@
 								because (thanks to Dick Borrett) I've
 								found that function with this name
 								are now present in distros like
-								Ubuntu 9.x and 10.x.
+								Ubuntu 9.x() and 10.x().
 
 */
 

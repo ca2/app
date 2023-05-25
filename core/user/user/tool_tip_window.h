@@ -83,7 +83,7 @@ namespace user
       tool_tip_tool * GetTool(i32 iTool);
       bool GetToolText(i32 iTool, string & str);
       void AddTool(tool_tip_tool * ptool);
-      bool GetToolRect(i32 iTool, RECTANGLE_I32 * prectangle);
+      bool GetToolRect(i32 iTool, ::rectangle_i32 * prectangle);
 
       void update_drawing_objects();
       bool ShowTip();
@@ -91,7 +91,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
-      bool CalcRect(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & lprectToolScreen, const ::string & pcsz);
+      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lprectToolScreen, const ::string & pcsz);
 
       void ShowTip(i32 iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);

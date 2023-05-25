@@ -437,13 +437,13 @@ namespace x11
       if (event_type == ConfigureNotify)
       {
 
-         m_pinterface->m_rectangle.left = pevent->xconfigure.x;
+         m_pinterface->m_rectangle.left = pevent->xconfigure.x();
 
-         m_pinterface->m_rectangle.top = pevent->xconfigure.y;
+         m_pinterface->m_rectangle.top = pevent->xconfigure.y();
 
-         m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
+         m_pinterface->m_rectangle.right = pevent->xconfigure.x() + pevent->xconfigure.width;
 
-         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
+         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y() + pevent->xconfigure.height;
 
          if (m_psurface)
          {
@@ -693,7 +693,7 @@ namespace x11
    void nano_window::move_to(const ::point_i32 & point)
    {
 
-      ::XMoveWindow(m_pdisplay->m_pdisplay, m_window, point.x, point.y);
+      ::XMoveWindow(m_pdisplay->m_pdisplay, m_window, point.x(), point.y());
 
    }
 

@@ -395,9 +395,9 @@ namespace html
 
          auto pointBound = top_left();
 
-         pointBound.x += m_margin.left + m_border.left + m_padding.left;
+         pointBound.x() += m_margin.left + m_border.left + m_padding.left;
 
-         float x = pointBound.x;
+         float x = pointBound.x();
 
          ::size_f32 sizeContent = ::size_f32(get_bound_size());
 
@@ -456,10 +456,10 @@ namespace html
 
             sizeText = pgraphics->get_text_extent(strLine);
 
-            if ((x + sizeText.cx) > pointBound.x + sizeContent.cx)
+            if ((x + sizeText.cx) > pointBound.x() + sizeContent.cx)
             {
 
-               if (x > pointBound.x && iLastSpace == 0)
+               if (x > pointBound.x() && iLastSpace == 0)
                {
 
                   m_straLines.add("");
@@ -496,7 +496,7 @@ namespace html
 
                iLastSpace = 0;
 
-               x = pointBound.x;
+               x = pointBound.x();
 
             }
 
@@ -820,9 +820,9 @@ namespace html
 
          const ::point_f32 & point = get_content_xy();
 
-         float x = ::point_f32.x;
+         float x = ::point_f32.x();
 
-         float y = ::point_f32.y;
+         float y = ::point_f32.y();
 
          if(m_pelemental->m_pparent != nullptr)
          {
@@ -1064,10 +1064,10 @@ namespace html
 
             x2 = x1 + m_sizea[i].cx;
 
-            if(point.x > x1 && point.x < x2)
+            if(point.x() > x1 && point.x() < x2)
             {
 
-               if(point.y > m_box.top + cy  && point.y < m_box.top + cy + m_sizea[i].cy)
+               if(point.y() > m_box.top + cy  && point.y() < m_box.top + cy + m_sizea[i].cy)
                {
 
                   return 1;

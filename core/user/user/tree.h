@@ -105,7 +105,7 @@ namespace user
       void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual bool _001GetItemElementRect(RECTANGLE_I32 * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
+      virtual bool _001GetItemElementRect(::rectangle_i32 * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
       void install_message_routing(::channel * pchannel) override;
       virtual double _001GetItemHeight();

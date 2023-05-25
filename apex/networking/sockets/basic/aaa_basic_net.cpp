@@ -697,7 +697,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //         {
 //            string s = host.substr(x, i - x);
 //            //
-//            if (strstr(s,".")) // x.x.x.x
+//            if (strstr(s,".")) // x.x().x().x()
 //            {
 //               Parse pa(s,".");
 //               char slask[100]; // u2ip temporary hgenstring conversion

@@ -49,8 +49,8 @@ int_bool message_queue::post_message(oswindow oswindow, ::u32 uMessage, WPARAM w
    message.message = uMessage;
    message.wParam = wParam;
    message.lParam = lParam;
-   message.pt.x = 0x80000000;
-   message.pt.y = 0x80000000;
+   message.pt.x() = 0x80000000;
+   message.pt.y() = 0x80000000;
 
    return post_message(message);
 
@@ -140,8 +140,8 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
          pMsg->message = WM_KICKIDLE;
          pMsg->wParam = 0;
          pMsg->lParam = 0;
-         pMsg->pt.x = INT_MIN;
-         pMsg->pt.y = INT_MIN;
+         pMsg->pt.x() = INT_MIN;
+         pMsg->pt.y() = INT_MIN;
          pMsg->time = 0;
 
          return true;

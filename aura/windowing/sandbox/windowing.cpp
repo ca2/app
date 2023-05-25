@@ -159,7 +159,7 @@ namespace sandbox_windowing
    }
 
 
-   void windowing::defer_initialize_host_window(const RECTANGLE_I32* lpcrect)
+   void windowing::defer_initialize_host_window(const ::rectangle_i32* lpcrect)
    {
 
       if (::is_set(m_phostinteraction))

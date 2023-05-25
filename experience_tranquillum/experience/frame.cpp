@@ -177,7 +177,7 @@ namespace experience_tranquillum
 
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
+   bool frame::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       switch (eelement)
@@ -206,9 +206,9 @@ namespace experience_tranquillum
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         rectangle.left = m_pointMoveGripMinimal.x + 2;
+         rectangle.left = m_pointMoveGripMinimal.x() + 2;
 
-         rectangle.top = m_pointMoveGripMinimal.y + 2;
+         rectangle.top = m_pointMoveGripMinimal.y() + 2;
 
          rectangle.right = rectangle.left + m_iCaptionHeight - 4;
 

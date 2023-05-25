@@ -25,8 +25,8 @@ namespace windowing
       ~desktop_environment() override;
 
 
-      virtual void get_monitor_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle);
-      virtual void get_workspace_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle);
+      virtual void get_monitor_rectangle(::index iMonitor, ::rectangle_i32 * prectangle);
+      virtual void get_workspace_rectangle(::index iMonitor, ::rectangle_i32 * prectangle);
 
 
       virtual void windowing_post(const ::procedure & procedure);

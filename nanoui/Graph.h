@@ -28,8 +28,8 @@ namespace nanoui
    public:
       Graph(Widget * parent, const ::scoped_string & caption = "Untitled");
 
-      ::string caption() const { return m_caption; }
-      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
+      ::string caption() const { return m_strCaption; }
+      void set_caption(const ::scoped_string & caption) { m_strCaption = caption; }
 
       ::string header() const { return m_header; }
       void set_header(const ::scoped_string & header) { m_header = header; }
@@ -56,7 +56,7 @@ namespace nanoui
       virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual void draw(::nano2d::context * pcontext) override;
    protected:
-      ::string m_caption, m_header, m_footer;
+      ::string m_strCaption, m_header, m_footer;
       ::color::color m_colorBackground, m_fill_color, m_stroke_color, m_colorText;
       ::f32_array m_values;
 };

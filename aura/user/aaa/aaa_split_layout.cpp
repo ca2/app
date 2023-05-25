@@ -300,7 +300,7 @@ namespace user
 
                i32 nPos;
                bool bMove;
-               nPos = GetPos(point.x, point.y);
+               nPos = GetPos(point.x(), point.y());
                if(m_iIndex <= 0)
                {
                   bMove = nPos > GetMinPos();

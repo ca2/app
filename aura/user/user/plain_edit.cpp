@@ -414,7 +414,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         point.y = 0;
+         point.y() = 0;
 
       }
 
@@ -511,7 +511,7 @@ namespace user
       //if (m_dLineHeight > 0.)
       //{
 
-      //   int iVerticalOffsetModule = (int) fmod(pointOffset.y, m_dLineHeight);
+      //   int iVerticalOffsetModule = (int) fmod(pointOffset.y(), m_dLineHeight);
 
       //   if (iVerticalOffsetModule > 0)
       //   {
@@ -522,7 +522,7 @@ namespace user
 
       //}
 
-      //pgraphics->offset_origin(-pointOffset.x, 0);
+      //pgraphics->offset_origin(-pointOffset.x(), 0);
 
       double y = rectangleClient.top + m_iCurrentPageLineStart * m_dLineHeight;
 
@@ -855,11 +855,11 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long)y);
 
-               point += client_to_screen();
+               client_to_screen()(point);
 
-               point += get_wnd()->screen_to_client();
+               get_wnd()->screen_to_client()(point);
 
-               ::SetCaretPos(point.x, point.y);
+               ::SetCaretPos(point.x(), point.y());
 
 #endif
 
@@ -877,11 +877,11 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long)y);
 
-               point+=client_to_screen();
+               client_to_screen()(point);
 
-               point+=get_wnd()->screen_to_client();
+               get_wnd()->screen_to_client()(point);
 
-               ::SetCaretPos(point.x, point.y);
+               ::SetCaretPos(point.x(), point.y());
 
 #endif
 
@@ -1020,7 +1020,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      point += screen_to_client();
+      screen_to_client()(point);
 
       m_bRMouseDown = true;
 
@@ -1064,7 +1064,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      point += screen_to_client();
+      screen_to_client()(point);
 
       //{
 
@@ -1126,32 +1126,32 @@ namespace user
 
             auto pointCursor = pwindow->get_cursor_position();
 
-            pointCursor += screen_to_client();
+            screen_to_client()(pointCursor);
 
             ::rectangle_i32 rectangleActiveClient;
 
             GetActiveClientRect(rectangleActiveClient);
 
-            if (pointCursor.x < rectangleActiveClient.left)
+            if (pointCursor.x() < rectangleActiveClient.left)
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x > rectangleActiveClient.right)
+            else if (pointCursor.x() > rectangleActiveClient.right)
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y < rectangleActiveClient.top)
+            if (pointCursor.y() < rectangleActiveClient.top)
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y > rectangleActiveClient.bottom)
+            else if (pointCursor.y() > rectangleActiveClient.bottom)
             {
 
                scroll_down_line();
@@ -1545,7 +1545,7 @@ namespace user
 
       client_rectangle(rectangleClient);
 
-      auto xContext = get_context_offset().x;
+      auto xContext = get_context_offset().x();
 
       int iBorder = 4;
 
@@ -1555,7 +1555,7 @@ namespace user
          xContext = 0;
 
       }
-      else if (xEnd - get_context_offset().x < rectangleClient.width() - iBorder * 2)
+      else if (xEnd - get_context_offset().x() < rectangleClient.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
@@ -1567,13 +1567,13 @@ namespace user
          xContext = x;
 
       }
-      else if (x > 0 && x < get_context_offset().x)
+      else if (x > 0 && x < get_context_offset().x())
       {
 
          xContext = maximum(0, x - rectangleClient.width() / 2);
 
       }
-      else if (x > get_context_offset().x + rectangleClient.width() - iBorder * 2)
+      else if (x > get_context_offset().x() + rectangleClient.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
@@ -1581,7 +1581,7 @@ namespace user
       }
 
 
-      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xContext == get_context_offset().x)
+      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xContext == get_context_offset().x())
       {
 
          return;
@@ -1592,7 +1592,7 @@ namespace user
 
       m_iColumn = iColumn;
 
-      if (xContext != get_context_offset().x)
+      if (xContext != get_context_offset().x())
       {
 
          set_context_offset_x(pgraphics, (int)xContext);
@@ -1742,20 +1742,20 @@ namespace user
 
       client_rectangle(rectangleClient);
 
-      int xVisibleStart = m_pointScroll.x;
+      int xVisibleStart = m_pointScroll.x();
 
       int xVisibleEnd = xVisibleStart + rectangleClient.width() - iBorder * 2;
 
       if (x < xVisibleStart)
       {
 
-         m_pointScroll.x = x;
+         m_pointScroll.x() = x;
 
       }
       else if (x > xVisibleEnd)
       {
 
-         m_pointScroll.x = x - rectangleClient.width() + iBorder * 2;
+         m_pointScroll.x() = x - rectangleClient.width() + iBorder * 2;
 
       }
 
@@ -1786,9 +1786,9 @@ namespace user
 
          GetFocusRect(rectangleClient);
 
-         int iCurrentPageTop = get_context_offset().y;
+         int iCurrentPageTop = get_context_offset().y();
 
-         int iCurrentPageBottom = get_context_offset().y + rectangleClient.height();
+         int iCurrentPageBottom = get_context_offset().y() + rectangleClient.height();
 
          index iLineTop = (::index)(iLine * m_dLineHeight);
 
@@ -1864,7 +1864,7 @@ namespace user
 
             ::point_i32 point = pmouse->m_point;
 
-            point += screen_to_client();
+            screen_to_client()(point);
 
             if (m_pointLastCursor != point)
             {
@@ -1878,7 +1878,7 @@ namespace user
 
                window_rectangle(rectangleWindow);
 
-               if (pmouse->m_point.x < rectangleWindow.left - 30)
+               if (pmouse->m_point.x() < rectangleWindow.left - 30)
                {
 
                   output_debug_string("test06");
@@ -1929,7 +1929,7 @@ namespace user
 
          ::point_i32 point = pmouse->m_point;
 
-         point += screen_to_client();
+         screen_to_client()(point);
 
          {
 
@@ -1997,7 +1997,7 @@ namespace user
 
          ::point_i32 point = pmouse->m_point;
 
-         point += screen_to_client();
+         screen_to_client()(point);
 
          queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
             {
@@ -2093,7 +2093,7 @@ namespace user
 
       //m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -2254,7 +2254,7 @@ namespace user
 
       //}
 
-      //m_dy = pointOffset.y;
+      //m_dy = pointOffset.y();
 
       ////::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -2544,7 +2544,7 @@ namespace user
       //
       //      m_iCurrentPagePotentialLineCount = (::count) ceil((double) rectangleClient.height() / m_dLineHeight);
       //
-      //      m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //      m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
       //
       //      bool bLoadFullFile = should_load_full_file();
       //
@@ -2710,7 +2710,7 @@ namespace user
       //
       //      }
       //
-      //      m_dy = pointOffset.y;
+      //      m_dy = pointOffset.y();
       //
       //      //::colorertake5::base_editor * pcolorer = colorertake5();
       //
@@ -2956,7 +2956,7 @@ namespace user
 
       m_iCurrentPagePotentialLineCount = (::count)ceil((double)rectangleClient.height() / m_dLineHeight);
 
-      m_iCurrentPageLineOffset = (::index)minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      m_iCurrentPageLineOffset = (::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -3117,7 +3117,7 @@ namespace user
 
       }
 
-      //m_dy = pointOffset.y;
+      //m_dy = pointOffset.y();
 
       ////::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -3322,7 +3322,7 @@ namespace user
 
 //m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
-//m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
+//m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
 //bool bLoadFullFile = should_load_full_file();
 
@@ -3483,7 +3483,7 @@ namespace user
 
 //}
 
-//m_dy = pointOffset.y;
+//m_dy = pointOffset.y();
 
 ////::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -3682,7 +3682,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * lprect, strsize iSel)
+   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * lprect, strsize iSel)
    {
 
       int x = 0;
@@ -3705,7 +3705,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * lprect, strsize iSel)
+   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * lprect, strsize iSel)
    {
 
       index iLine = plain_edit_char_to_line(pgraphics, iSel);
@@ -3715,7 +3715,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * lprect, ::index iLine)
+   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * lprect, ::index iLine)
    {
 
       if (iLine < 0)
@@ -4018,19 +4018,19 @@ namespace user
 
       GetFocusRect(rectangleClient);
 
-      point.y -= rectangleClient.top;
+      point.y() -= rectangleClient.top;
 
       auto pointOffset = get_context_offset();
 
       if (m_dLineHeight > 0)
       {
 
-         int iVerticalOffsetModule = (int)fmod(pointOffset.y, m_dLineHeight);
+         int iVerticalOffsetModule = (int)fmod(pointOffset.y(), m_dLineHeight);
 
          if (iVerticalOffsetModule > 0)
          {
 
-            point.y += iVerticalOffsetModule;
+            point.y() += iVerticalOffsetModule;
 
          }
 
@@ -4053,7 +4053,7 @@ namespace user
       for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
       {
 
-         if (point.y < Δy + dLineHeight)
+         if (point.y() < Δy + dLineHeight)
          {
 
             bFound = true;
@@ -4080,7 +4080,7 @@ namespace user
 
       }
 
-      return plain_edit_line_char_hit_test(pgraphics, point.x, iLine);
+      return plain_edit_line_char_hit_test(pgraphics, point.x(), iLine);
 
    }
 
@@ -4096,7 +4096,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (rectangleClient.left - pointOffset.x);
+      px -= (rectangleClient.left - pointOffset.x());
 
 
       if (px <= 0)
@@ -6338,7 +6338,7 @@ namespace user
 
       i32 x = m_iLastSelectionEndX;
 
-      double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y;
+      double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y();
 
       double y2 = y + m_dLineHeight;
 
@@ -6352,9 +6352,9 @@ namespace user
 
       rectangle.bottom = (::i32)y2;
 
-      rectangle += client_to_screen();
+      client_to_screen()(rectangle);
 
-      rectangle += get_wnd()->screen_to_client();
+      get_wnd()->screen_to_client()(rectangle);
 
    }
 
@@ -7049,7 +7049,7 @@ namespace user
 
       ::point_i32 pointOffset = get_context_offset();
 
-      set_context_offset_y(pgraphics, (int)(pointOffset.y - m_dLineHeight));
+      set_context_offset_y(pgraphics, (int)(pointOffset.y() - m_dLineHeight));
 
       double dHeight = 0.;
 
@@ -7061,7 +7061,7 @@ namespace user
 
       copy(pointOffset, get_context_offset());
 
-      while (pointOffset.y > dHeight && i < m_iaLineLength.get_size())
+      while (pointOffset.y() > dHeight && i < m_iaLineLength.get_size())
       {
 
          iLineSize = m_iaLineLength[i];

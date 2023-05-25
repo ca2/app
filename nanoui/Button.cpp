@@ -22,7 +22,7 @@ namespace nanoui
 
 
    Button::Button(Widget* parent, const ::scoped_string& caption, int icon)
-      : Widget(parent), m_caption(caption), m_icon(icon),
+      : Widget(parent), m_strCaption(caption), m_icon(icon),
       m_icon_position(IconPosition::LeftCentered), m_bChecked(false),
       m_flags(NormalButton), m_colorBackground(::color::color(0, 0)),
       m_colorText(::color::color(0, 0)),
@@ -39,10 +39,10 @@ namespace nanoui
       if (bRecalcTextSize || m_tw < 0.f || m_iw < 0.f || m_ih < 0.f)
       {
 
-         int font_size = m_font_size == -1 ? m_theme->m_iButtonFontSize : m_font_size;
+         int font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
          pcontext->font_size((float)font_size);
          pcontext->font_face("sans-bold");
-         m_tw = pcontext->text_bounds(0, 0, m_caption, nullptr);
+         m_tw = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
          m_iw = 0.0f;
          m_ih = (float)font_size;
 
@@ -81,10 +81,9 @@ namespace nanoui
       Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
       /* Temporarily increase the reference count of the button in case the
          button causes the parent window to be destructed */
-      ref<Button> self = this;
+      ::pointer<Button> self = this;
 
-      if (down &&
-         m_bEnabled &&
+      if (m_bEnabled &&
          (
 
             (emouse == ::user::e_mouse_left_button && !(m_flags & ContextMenuButton)) ||
@@ -94,48 +93,18 @@ namespace nanoui
          )
       {
 
-         bool bChecked = m_bChecked;
-
-         if (m_flags & PopupButton)
+         if (down)
          {
 
-            for (auto pwidget : parent()->children())
-            {
-
-               Button* pbutton = dynamic_cast<Button*>(pwidget);
-
-               if (pbutton != this && pbutton && (pbutton->flags() & PopupButton) && pbutton->m_bChecked)
-               {
-
-                  pbutton->set_checked(false, e_source_selection);
-
-                  //if (pbutton->m_change_callback)
-                  //{
-
-                  //   pbutton->m_change_callback(false);
-
-                  //}
-
-               }
-
-            }
-
-            dynamic_cast<nanoui::PopupButton*>(this)->popup()->request_focus();
-
-         }
-
-         if (m_flags & RadioButton)
-         {
-
-            if (m_button_group.empty())
+            if (m_flags & PopupButton)
             {
 
                for (auto pwidget : parent()->children())
                {
 
-                  Button* pbutton = dynamic_cast<Button*>(pwidget);
+                  ::pointer < Button > pbutton = pwidget;
 
-                  if (pbutton != this && pbutton && (pbutton->flags() & RadioButton) && pbutton->m_bChecked)
+                  if (pbutton != this && pbutton && (pbutton->flags() & PopupButton) && pbutton->m_bChecked)
                   {
 
                      pbutton->set_checked(false, e_source_selection);
@@ -150,51 +119,99 @@ namespace nanoui
                   }
 
                }
+
+               dynamic_cast<nanoui::PopupButton*>(this)->popup()->request_focus();
 
             }
-            else
+
+            if (m_flags & RadioButton)
             {
 
-               for (auto pbutton : m_button_group)
+               if (m_button_group.empty())
                {
 
-                  if (pbutton != this && (pbutton->flags() & RadioButton) && pbutton->m_bChecked)
+                  for (auto pwidget : parent()->children())
                   {
 
-                     pbutton->set_checked(false, e_source_selection);
+                     ::pointer < Button > pbutton = pwidget;
 
-                     //if (pbutton->m_change_callback)
-                     //{
+                     if (pbutton != this && pbutton && (pbutton->flags() & RadioButton) && pbutton->m_bChecked)
+                     {
 
-                     //   pbutton->m_change_callback(false);
+                        pbutton->set_checked(false, e_source_selection);
 
-                     //}
+                        //if (pbutton->m_change_callback)
+                        //{
+
+                        //   pbutton->m_change_callback(false);
+
+                        //}
+
+                     }
 
                   }
 
                }
+               else
+               {
+
+                  for (auto pbutton : m_button_group)
+                  {
+
+                     if (pbutton != this && (pbutton->flags() & RadioButton) && pbutton->m_bChecked)
+                     {
+
+                        pbutton->set_checked(false, e_source_selection);
+
+                        //if (pbutton->m_change_callback)
+                        //{
+
+                        //   pbutton->m_change_callback(false);
+
+                        //}
+
+                     }
+
+                  }
+
+               }
+
+               //m_bMouseDown = true;
 
             }
 
             screen()->m_pwidgetMouseDown = this;
 
-            //m_bMouseDown = true;
-
          }
-
-         if (m_flags & ToggleButton || m_flags & RadioButton)
+         else 
          {
 
-            m_bChecked = !m_bChecked;
+            auto pscreen = screen();
 
-         }
+            if (pscreen->m_pwidgetMouseDown == this
+               && (!pscreen->m_pwidgetDrop
+                  || pscreen->m_pwidgetDrop == this))
+            {
 
-         on_click();
+               bool bChecked = m_bChecked;
 
-         if (::is_different(bChecked, m_bChecked) && m_change_callback)
-         {
+               if (m_flags & ToggleButton || m_flags & RadioButton)
+               {
 
-            m_change_callback(m_bChecked);
+                  m_bChecked = !m_bChecked;
+
+               }
+
+               on_click();
+
+               if (::is_different(bChecked, m_bChecked) && m_change_callback)
+               {
+
+                  m_change_callback(m_bChecked);
+
+               }
+
+            }
 
          }
 
@@ -238,12 +255,13 @@ namespace nanoui
    }
 
 
-   bool Button::mouse_enter_event(const vector2_i32& p, bool enter, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_enter_event(const vector2_i32& p, bool bEnter, const ::user::e_key& ekeyModifiers)
    {
 
-      Widget::mouse_enter_event(p, enter, ekeyModifiers);
+      Widget::mouse_enter_event(p, bEnter, ekeyModifiers);
 
       set_need_redraw();
+
       post_redraw();
 
       return true;
@@ -256,8 +274,8 @@ namespace nanoui
 
       Widget::draw(pcontext);
 
-      ::color::color colorGradientTop = m_theme->m_colorButtonGradientUnfocused;
-      ::color::color colorGradientBottom = m_theme->m_colorButtonGradientBottomUnfocused;
+      ::color::color colorGradientTop = m_ptheme->m_colorButtonGradientUnfocused;
+      ::color::color colorGradientBottom = m_ptheme->m_colorButtonGradientBottomUnfocused;
 
       bool bPressed = false;
 
@@ -277,36 +295,57 @@ namespace nanoui
       if (bPressed || (m_bMouseHover && (m_flags & ContextMenuButton)))
       {
 
-         colorGradientTop = m_theme->m_colorButtonGradientTopPushed;
+         colorGradientTop = m_ptheme->m_colorButtonGradientTopPushed;
 
-         colorGradientBottom = m_theme->m_colorButtonGradientBottomPushed;
+         colorGradientBottom = m_ptheme->m_colorButtonGradientBottomPushed;
 
       }
       else if (m_bMouseHover && m_bEnabled)
       {
 
-         colorGradientTop = m_theme->m_colorButtonGradientTopFocused;
+         colorGradientTop = m_ptheme->m_colorButtonGradientTopFocused;
 
-         colorGradientBottom = m_theme->m_colorButtonGradientBottomFocused;
+         colorGradientBottom = m_ptheme->m_colorButtonGradientBottomFocused;
 
       }
 
       pcontext->begin_path();
 
       pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.x() - 3.f,
-         m_size.y() - 2.f, m_theme->m_iButtonCornerRadius - 1.f);
+         m_size.y() - 2.f, m_ptheme->m_iButtonCornerRadius - 1.f);
 
-      if (m_colorBackground.alpha != 0) {
-         pcontext->fill_color(::color::color(m_colorBackground.red, m_colorBackground.green,
-            m_colorBackground.blue, 1.f));
+      if (m_colorBackground.alpha != 0) 
+      {
+
+         auto colorBackground = m_colorBackground;
+
+         colorBackground.set_alpha(1.f);
+
+         pcontext->fill_color(colorBackground);
+
          pcontext->fill();
-         if (bPressed) {
-            colorGradientTop.set_alpha(colorGradientBottom.set_alpha(0.8f));
+
+         if (bPressed) 
+         {
+
+            colorGradientTop.set_alpha(0.8f);
+
+            colorGradientBottom.set_alpha(0.8f);
+
          }
-         else {
-            double v = 1 - m_colorBackground.fa();
-            colorGradientTop.set_alpha(colorGradientBottom.set_alpha((float)(m_bEnabled ? v : v * .5 + .5)));
+         else 
+         {
+            
+            auto alpha = 1.f - m_colorBackground.fa();
+
+            alpha = m_bEnabled ? alpha : alpha * .5f + .5f;
+
+            colorGradientTop.set_alpha(alpha);
+
+            colorGradientBottom.set_alpha(alpha);
+
          }
+
       }
 
       ::nano2d::paint bg = pcontext->linear_gradient((float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
@@ -318,27 +357,30 @@ namespace nanoui
       pcontext->begin_path();
       pcontext->stroke_width(1.0f);
       pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + (bPressed ? 0.5f : 1.5f), m_size.x() - 2.f,
-         m_size.y() - 1.f - (bPressed ? 0.0f : 1.0f), (float)m_theme->m_iButtonCornerRadius);
-      pcontext->stroke_color(m_theme->m_colorBorderLight);
+         m_size.y() - 1.f - (bPressed ? 0.0f : 1.0f), (float)m_ptheme->m_iButtonCornerRadius);
+      pcontext->stroke_color(m_ptheme->m_colorBorderLight);
       pcontext->stroke();
 
       pcontext->begin_path();
       pcontext->rounded_rectangle((float)m_pos.x() + 0.5f, (float)m_pos.y() + 0.5f, (float)m_size.x() - 2.f,
-         (float)m_size.y() - 2.f, (float)m_theme->m_iButtonCornerRadius);
-      pcontext->stroke_color(m_theme->m_colorBorderDark);
+         (float)m_size.y() - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+      pcontext->stroke_color(m_ptheme->m_colorBorderDark);
       pcontext->stroke();
 
-      int font_size = m_font_size == -1 ? m_theme->m_iButtonFontSize : m_font_size;
+      int font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
       pcontext->font_size((float)font_size);
       pcontext->font_face("sans-bold");
-      float tw = pcontext->text_bounds(0, 0, m_caption, nullptr);
+      pcontext->text_align(::e_align_left);
+      float tw = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
 
       vector2_f32 center = vector2_f32(m_pos) + vector2_f32(m_size) * 0.5f;
+      
       vector2_f32 text_pos(center.x() - tw * 0.5f, center.y() - 1);
+
       ::color::color text_color =
-         m_colorText.alpha == 0 ? m_theme->m_colorText : m_colorText;
+         m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;
       if (!m_bEnabled)
-         text_color = m_theme->m_colorDisableText;
+         text_color = m_ptheme->m_colorDisableText;
 
       if (m_icon) {
          auto icon = get_utf8_character(m_icon);
@@ -356,7 +398,7 @@ namespace nanoui
             pcontext->image_size(m_icon, &pwidgetChild, &h);
             iw = pwidgetChild * ih / h;
          }
-         if (m_caption != "")
+         if (m_strCaption != "")
             iw += m_size.y() * 0.15f;
          pcontext->fill_color(text_color);
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
@@ -402,11 +444,20 @@ namespace nanoui
       pcontext->font_size((float)font_size);
       pcontext->font_face("sans-bold");
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-      pcontext->fill_color(m_theme->m_colorTextShadow);
-      pcontext->text(text_pos.x(), text_pos.y(), m_caption);
-      pcontext->fill_color(text_color);
-      pcontext->text(text_pos.x(), text_pos.y() + 1, m_caption);
+      pcontext->fill_color(m_ptheme->m_colorTextShadow);
 
+      pcontext->text(text_pos.x(), text_pos.y(), m_strCaption);
+
+      pcontext->fill_color(text_color);
+
+      pcontext->text(text_pos.x(), text_pos.y() + 1, m_strCaption);
+      
+      if (m_strCaption == "Load Presets")
+      {
+
+         ::output_debug_string("Drawing Load Presets");
+
+      }
 
    }
 
@@ -473,7 +524,7 @@ namespace nanoui
    //
    //   //m_pbutton->post_redraw();
    //
-   //   //m_pbutton->set_window_text(m_caption.c_str());
+   //   //m_pbutton->set_window_text(m_strCaption.c_str());
    //
    //   //Widget::_nanoui_to_user(m_pbutton);
    //
@@ -497,8 +548,7 @@ namespace nanoui
    }
 
 
-
-
 } // namespace nanoui
+
 
 

@@ -27,7 +27,7 @@ namespace nanoui
     * \brief Button which launches a popup pwidget.
     *
     * \remark
-    *     This class overrides \ref nanoui::Widget::mIconExtraScale to be ``0.8f``,
+    *     This class overrides \::pointer nanoui::Widget::mIconExtraScale to be ``0.8f``,
     *     which affects all subclasses of this Widget.  Subclasses must explicitly
     *     set a different value if needed (e.g., in their constructor).
     */

@@ -49,7 +49,7 @@ namespace filehandler
 
          void parse(::filehandler::handler * phandler, const ::string & pszTopic);
 
-         void on_layout(const RECTANGLE_I32 * lpcrect);
+         void on_layout(const ::rectangle_i32 * lpcrect);
          void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics);
 
       };

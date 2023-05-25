@@ -69,9 +69,9 @@ protected:
    //void _001Hover(const ::point_i32 & point);
    //void _001Hover();
    //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, index iItem);
-   //index _001HitTest(const POINT_I32 * point_i32);
+   //index _001HitTest(const ::point_i32 * point_i32);
    //bool _001CheckItem(index iItem, bool bCheck);
-   //bool index_item_rectangle(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement);
+   //bool index_item_rectangle(index iItem, ::rectangle_i32 * prectangle, enum_element eelement);
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();

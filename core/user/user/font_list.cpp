@@ -379,7 +379,7 @@ namespace user
          if (!rectangleImpact.contains(rectangle))
          {
 
-            m_pointScroll.y = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
+            m_pointScroll.y() = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
 
          }
 
@@ -670,7 +670,7 @@ namespace user
 
          m_pfontlist->m_iSel = iItem;
 
-         m_pointScroll.y = m_pfontlist->m_pfontlistdata->element_at(iItem)->m_box[0].m_rectangle.top;
+         m_pointScroll.y() = m_pfontlist->m_pfontlistdata->element_at(iItem)->m_box[0].m_rectangle.top;
 
       }
       else

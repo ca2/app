@@ -898,14 +898,14 @@
 //}
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_I32 & rectangle)
+//inline void __exchange(::binary_stream < FILE > & s, ::rectangle_i32 & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //
 //}
 //
-//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_I64 & rectangle)
+//inline void __exchange(::binary_stream < FILE > & s, ::rectangle_i64 & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
@@ -914,14 +914,14 @@
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_F32 & rectangle)
+//inline void __exchange(::binary_stream < FILE > & s, ::rectangle_f32 & rectangle)
 //{
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_F64 & rectangle)
+//inline void __exchange(::binary_stream < FILE > & s, ::rectangle_f64 & rectangle)
 //{
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //}
@@ -964,30 +964,30 @@
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, POINT_I32 & point)
+//inline void __exchange(::binary_stream < FILE > & s, ::point_i32 & point)
 //{
-//   s.exchange("x", point.x); s.exchange("y", point.y);
+//   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, POINT_I64 & point)
+//inline void __exchange(::binary_stream < FILE > & s, ::point_i64 & point)
 //{
-//   s.exchange("x", point.x); s.exchange("y", point.y);
+//   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, POINT_F32 & point)
+//inline void __exchange(::binary_stream < FILE > & s, ::point_f32 & point)
 //{
-//   s.exchange("x", point.x); s.exchange("y", point.y);
+//   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, POINT_F64 & point)
+//inline void __exchange(::binary_stream < FILE > & s, ::point_f64 & point)
 //{
-//   s.exchange("x", point.x); s.exchange("y", point.y);
+//   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}
 //
 //template < typename TYPE >

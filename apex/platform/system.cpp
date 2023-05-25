@@ -3358,7 +3358,7 @@ pacmedirectory->create("/ca2core");
    //
    //
    //
-   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, RECTANGLE_F64 * prectangle)
+   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::rectangle_f64 * prectangle)
    //
    //   {
    //
@@ -3377,12 +3377,12 @@ pacmedirectory->create("/ca2core");
    //   }
    //
    //
-   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
+   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::rectangle_i32 * prectangle)
    //   {
    //
    //      ::rectangle_f64 rectangle;
    //
-   //      if (!window_rectangle(pwindow, (RECTANGLE_F64*)rectangle_i32))
+   //      if (!window_rectangle(pwindow, (::rectangle_f64*)rectangle_i32))
    //      {
    //
    //         return false;
@@ -4855,7 +4855,7 @@ namespace apex
 #ifdef UNIVERSAL_WINDOWS
 
 
-   bool system::window_rectangle(RECTANGLE_I32* prectangle)
+   bool system::window_rectangle(::rectangle_i32* prectangle)
    {
 
       if (::is_null(acmesession()))

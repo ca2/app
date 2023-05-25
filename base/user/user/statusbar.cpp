@@ -335,7 +335,7 @@ namespace user
       return _GetPanePtr(nIndex)->m_atom;
    }
 
-   void status_bar::GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle)
+   void status_bar::GetItemRect(i32 nIndex, ::rectangle_i32 * prectangle)
 
    {
       ASSERT_VALID(this);

@@ -391,7 +391,7 @@ int fons__tt_getGlyphKernAdvance(FONSttFontImpl * font, int glyph1, int glyph2)
 {
 	FT_Vector ftKerning;
 	FT_Get_Kerning(font->font, glyph1, glyph2, FT_KERNING_DEFAULT, &ftKerning);
-	return (int)((ftKerning.x + 32) >> 6);  // Round up and convert to integer
+	return (int)((ftKerning.x() + 32) >> 6);  // Round up and convert to integer
 }
 
 #else
@@ -558,8 +558,8 @@ static FONSatlas * fons__allocAtlas(int w, int h, int nnodes)
 	atlas->cnodes = nnodes;
 
 	// Init root node.
-	atlas->nodes[0].x = 0;
-	atlas->nodes[0].y = 0;
+	atlas->nodes[0].x() = 0;
+	atlas->nodes[0].y() = 0;
 	atlas->nodes[0].width = (short)w;
 	atlas->nnodes++;
 
@@ -582,8 +582,8 @@ static int fons__atlasInsertNode(FONSatlas * atlas, int idx, int x, int y, int w
 	}
 	for (i = atlas->nnodes; i > idx; i--)
 		atlas->nodes[i] = atlas->nodes[i - 1];
-	atlas->nodes[idx].x = (short)x;
-	atlas->nodes[idx].y = (short)y;
+	atlas->nodes[idx].x() = (short)x;
+	atlas->nodes[idx].y() = (short)y;
 	atlas->nodes[idx].width = (short)w;
 	atlas->nnodes++;
 
@@ -615,8 +615,8 @@ static void fons__atlasReset(FONSatlas * atlas, int w, int h)
 	atlas->nnodes = 0;
 
 	// Init root node.
-	atlas->nodes[0].x = 0;
-	atlas->nodes[0].y = 0;
+	atlas->nodes[0].x() = 0;
+	atlas->nodes[0].y() = 0;
 	atlas->nodes[0].width = (short)w;
 	atlas->nnodes++;
 }
@@ -631,9 +631,9 @@ static int fons__atlasAddSkylineLevel(FONSatlas * atlas, int idx, int x, int y, 
 
 	// Delete skyline segments that fall under the shadow of the memory_new segment.
 	for (i = idx + 1; i < atlas->nnodes; i++) {
-		if (atlas->nodes[i].x < atlas->nodes[i - 1].x + atlas->nodes[i - 1].width) {
-			int shrink = atlas->nodes[i - 1].x + atlas->nodes[i - 1].width - atlas->nodes[i].x;
-			atlas->nodes[i].x += (short)shrink;
+		if (atlas->nodes[i].x() < atlas->nodes[i - 1].x() + atlas->nodes[i - 1].width) {
+			int shrink = atlas->nodes[i - 1].x() + atlas->nodes[i - 1].width - atlas->nodes[i].x();
+			atlas->nodes[i].x() += (short)shrink;
 			atlas->nodes[i].width -= (short)shrink;
 			if (atlas->nodes[i].width <= 0) {
 				fons__atlasRemoveNode(atlas, i);
@@ -650,7 +650,7 @@ static int fons__atlasAddSkylineLevel(FONSatlas * atlas, int idx, int x, int y, 
 
 	// Merge same height skyline segments that are next to each other.
 	for (i = 0; i < atlas->nnodes - 1; i++) {
-		if (atlas->nodes[i].y == atlas->nodes[i + 1].y) {
+		if (atlas->nodes[i].y() == atlas->nodes[i + 1].y()) {
 			atlas->nodes[i].width += atlas->nodes[i + 1].width;
 			fons__atlasRemoveNode(atlas, i + 1);
 			i--;
@@ -665,15 +665,15 @@ static int fons__atlasRectFits(FONSatlas * atlas, int i, int w, int h)
 	// Checks if there is enough space at the location of skyline span 'i',
 	// and return the max height of all skyline spans under that at that location,
 	// (think tetris block being dropped at that position). Or -1 if no space found.
-	int x = atlas->nodes[i].x;
-	int y = atlas->nodes[i].y;
+	int x = atlas->nodes[i].x();
+	int y = atlas->nodes[i].y();
 	int spaceLeft;
 	if (x + w > atlas->width)
 		return -1;
 	spaceLeft = w;
 	while (spaceLeft > 0) {
 		if (i == atlas->nnodes) return -1;
-		y = fons__maxi(y, atlas->nodes[i].y);
+		y = fons__maxi(y, atlas->nodes[i].y());
 		if (y + h > atlas->height) return -1;
 		spaceLeft -= atlas->nodes[i].width;
 		++i;
@@ -694,7 +694,7 @@ static int fons__atlasAddRect(FONSatlas * atlas, int rw, int rh, int * rx, int *
 				besti = i;
 				bestw = atlas->nodes[i].width;
 				besth = y + rh;
-				bestx = atlas->nodes[i].x;
+				bestx = atlas->nodes[i].x();
 				besty = y;
 			}
 		}
@@ -1747,7 +1747,7 @@ int fonsExpandAtlas(FONScontext * stash, int width, int height)
 
 	// Add existing data as dirty.
 	for (i = 0; i < stash->atlas->nnodes; i++)
-		maxy = fons__maxi(maxy, stash->atlas->nodes[i].y);
+		maxy = fons__maxi(maxy, stash->atlas->nodes[i].y());
 	stash->dirtyRect[0] = 0;
 	stash->dirtyRect[1] = 0;
 	stash->dirtyRect[2] = stash->params.width;

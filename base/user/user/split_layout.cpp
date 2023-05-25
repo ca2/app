@@ -327,7 +327,7 @@ namespace user
 
          //      i32 nPos;
          //      bool bMove;
-         //      nPos = GetPos(point.x, point.y);
+         //      nPos = GetPos(point.x(), point.y());
          //      if(m_iIndex <= 0)
          //      {
          //         bMove = nPos > GetMinPos();
@@ -777,7 +777,7 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(index iPane, RECTANGLE_I32 & rectangle)
+   void split_layout::CalcPaneRect(index iPane, ::rectangle_i32 & rectangle)
    {
 
       i32 nMinPos = GetMinPos(iPane);
@@ -789,7 +789,7 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 & rectangle)
+   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, ::rectangle_i32 & rectangle)
    {
 
       client_rectangle(rectangle);
@@ -864,7 +864,7 @@ namespace user
    }
 
 
-   void split_layout::CalcSplitBarRect(index iIndex, RECTANGLE_I32 & rectangle)
+   void split_layout::CalcSplitBarRect(index iIndex, ::rectangle_i32 & rectangle)
    {
 
       ASSERT(iIndex >= 0);

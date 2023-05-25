@@ -569,7 +569,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement)
+      bool edit_impl::get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -606,7 +606,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(RECTANGLE_I32 * prectangle, index i)
+      bool edit_impl::get_item_rect(::rectangle_i32 * prectangle, index i)
 
       {
 
@@ -802,7 +802,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
+         //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
          m_pdata->_001OnDraw(pgraphics);
 

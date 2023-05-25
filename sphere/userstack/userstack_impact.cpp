@@ -241,7 +241,7 @@ namespace userstack
    }
 
 
-   void impact::GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea)
+   void impact::GetAreaThumbRect(::rectangle_i32 * lprect, i32 iArea)
    {
       
       ::rectangle_i32 rectangleClient = client_rectangle();

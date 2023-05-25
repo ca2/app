@@ -21,10 +21,10 @@
   Introduce:
      This file includes two classes CA2GZIP and CGZIP2A which do compressing and
     uncompressing in memory. and It 's very easy to use for small data compressing.
-    Some compress and uncompress codes came from gzip  unzip function of zlib 1.1.x.
+    Some compress and uncompress codes came from gzip  unzip function of zlib 1.1.x().
 
   Usage:
-     these two classes work used with zlib 1.1.x (http://www.gzip.org/zlib/).
+     these two classes work used with zlib 1.1.x() (http://www.gzip.org/zlib/).
     They were tested in Window OS.
   Exmaple:
      #include "GZipHelper.h"

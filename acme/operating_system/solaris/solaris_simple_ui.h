@@ -21,7 +21,7 @@ namespace os
       int                        m_h;
 /*      ::image_pointer           m_pimage;
       SIZE_I32                       m_size;
-      POINT_I32                      m_point;
+      ::point_i32                      m_point;
       window_xlib                m_xlib;
 
 
@@ -54,19 +54,19 @@ namespace os
 
       virtual ~simple_ui();
 
-      virtual bool create_window(const RECTANGLE_I32 * lprect);
+      virtual bool create_window(const ::rectangle_i32 * lprect);
 
-      virtual bool prepare_window(const RECTANGLE_I32 * lprect);
+      virtual bool prepare_window(const ::rectangle_i32 * lprect);
 
 
       using ::user::interaction::client_to_screen;
-      virtual void client_to_screen(POINT_I32 * ppt);
+      virtual void client_to_screen(::point_i32 * ppt);
 
       using ::user::interaction::screen_to_client;
-      virtual void screen_to_client(POINT_I32 * ppt);
+      virtual void screen_to_client(::point_i32 * ppt);
 
-      virtual void window_rectangle(RECTANGLE_I32 * prectangle);
-      virtual void client_rectangle(RECTANGLE_I32 * prectangle);
+      virtual void window_rectangle(::rectangle_i32 * prectangle);
+      virtual void client_rectangle(::rectangle_i32 * prectangle);
 
 
       virtual bool show_window(bool bShow = true);

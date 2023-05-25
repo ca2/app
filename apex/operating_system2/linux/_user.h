@@ -34,14 +34,14 @@
 //
 //
 //CLASS_DECL_APEX int xinerama_get_monitor_count();
-//CLASS_DECL_APEX int xinerama_get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
+//CLASS_DECL_APEX int xinerama_get_monitor_rect(index i, ::rectangle_i32 * prectangle);
 //
 //CLASS_DECL_APEX int xinerama_get_screen_size(int& width, int& height);
 //
 //
-//int best_xinerama_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet);
+//int best_xinerama_monitor(::user::interaction * pinteraction, ::rectangle_i32 * prectRet);
 //
-//int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, RECTANGLE_I32 * lprectRet);
+//int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::rectangle_i32 * lprectRet);
 //
 //
 //

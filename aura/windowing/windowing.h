@@ -99,7 +99,7 @@ namespace windowing
 
       virtual ::windowing::window * window(oswindow oswindow);
 
-      virtual void defer_initialize_host_window(const RECTANGLE_I32* lpcrect);
+      virtual void defer_initialize_host_window(const ::rectangle_i32* lpcrect);
 
       virtual bool is_sandboxed();
       
@@ -165,7 +165,7 @@ namespace windowing
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
-      virtual int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
+      virtual int_bool point_is_window_origin(::point_i32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
       //virtual void top_windows_by_z_order(::user::oswindow_array & a);
 

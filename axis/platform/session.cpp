@@ -52,7 +52,7 @@ void defer_term_ui();
 //extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
-int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
+int_bool point_is_window_origin(::point_i32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
 #ifdef UNIVERSAL_WINDOWS
 

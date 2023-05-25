@@ -629,7 +629,7 @@ namespace windows
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = point;
+            pmouse->m_point = { point.x, point.y };
 
             on_left_button_down(pmouse);
 
@@ -1015,7 +1015,7 @@ namespace windows
    void nano_window::move_to(const ::point_i32 & point)
    {
 
-      ::SetWindowPos(m_hwnd, nullptr, point.x, point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+      ::SetWindowPos(m_hwnd, nullptr, point.x(), point.y(), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
       ::GetWindowRect(m_hwnd, (RECT * ) & m_pinterface->m_rectangle);
 

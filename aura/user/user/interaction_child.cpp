@@ -129,7 +129,7 @@ namespace user
          //   INFORMATION("-------------------------------------------------------------------");
          //   INFORMATION("");
          //   INFORMATION("");
-         //   FORMATTED_INFORMATION("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
+         //   FORMATTED_INFORMATION("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
          //   INFORMATION("");
          //   INFORMATION("");
 
@@ -313,7 +313,7 @@ namespace user
    }
 
 
-   //void interaction_child::CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType)
+   //void interaction_child::CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pClientRect);

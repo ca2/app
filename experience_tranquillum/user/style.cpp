@@ -620,7 +620,7 @@ namespace experience_tranquillum
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer& pgraphics, ::user::frame* pframe)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       pgraphics->m_pdraw2dhost = pframe;
 
@@ -811,8 +811,8 @@ namespace experience_tranquillum
                iTabHeight = cy;
             }
 
-            pane.m_point.x = x;
-            pane.m_point.y = rectangleClient.top;
+            pane.m_point.x() = x;
+            pane.m_point.y() = rectangleClient.top;
 
 
             //            string str = pane.get_title();

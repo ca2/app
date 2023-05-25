@@ -632,7 +632,7 @@ namespace experience
    }
 
 
-   void frame_window::GetRegionClientRect(RECTANGLE_I32 * prectangle)
+   void frame_window::GetRegionClientRect(::rectangle_i32 * prectangle)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -642,7 +642,7 @@ namespace experience
    }
 
 
-   void frame_window::get_draw_client_rect(RECTANGLE_I32 * prectangle)
+   void frame_window::get_draw_client_rect(::rectangle_i32 * prectangle)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -1784,7 +1784,7 @@ namespace experience
    }
 
 
-   void frame_window::OnNcCalcSize(RECTANGLE_I32 * prectangle)
+   void frame_window::OnNcCalcSize(::rectangle_i32 * prectangle)
    {
 
       ASSERT(m_pframe != nullptr);

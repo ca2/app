@@ -58,9 +58,9 @@
                   ::point_i32 pointHitTest = pointCursor;
 
                   if (rectangleEvent.left < 0)
-                     pointHitTest.x -= rectangleEvent.left;
+                     pointHitTest.x() -= rectangleEvent.left;
                   if (rectangleEvent.top < 0)
-                     pointHitTest.y -= rectangleEvent.top;
+                     pointHitTest.y() -= rectangleEvent.top;
 
                   if (egrip & e_grip_top_left)
                   {
@@ -141,8 +141,8 @@
                   if (egrip & e_grip_top)
                   {
                      rectangle.top = rectangleEvent.top;
-                     rectangle.left = ptCenter.x - 8;
-                     rectangle.right = ptCenter.x + 8;
+                     rectangle.left = ptCenter.x() - 8;
+                     rectangle.right = ptCenter.x() + 8;
                      rectangle.bottom = rectangleEvent.top + 5;
                      if (rectangle.contains(pointHitTest))
                      {
@@ -153,8 +153,8 @@
                   if (egrip & e_grip_bottom)
                   {
                      rectangle.top = rectangleEvent.bottom - 5;
-                     rectangle.left = ptCenter.x - 8;
-                     rectangle.right = ptCenter.x + 8;
+                     rectangle.left = ptCenter.x() - 8;
+                     rectangle.right = ptCenter.x() + 8;
                      rectangle.bottom = rectangleEvent.bottom;
                      if (rectangle.contains(pointHitTest))
                      {
@@ -164,10 +164,10 @@
                   }
                   if (egrip & e_grip_left)
                   {
-                     rectangle.top = ptCenter.y - 8;
+                     rectangle.top = ptCenter.y() - 8;
                      rectangle.left = rectangleEvent.left;
                      rectangle.right = rectangleEvent.left + 5;
-                     rectangle.bottom = ptCenter.y + 8;
+                     rectangle.bottom = ptCenter.y() + 8;
                      if (rectangle.contains(pointHitTest))
                      {
                         etest = ::experience::e_frame_sizing_left;
@@ -176,10 +176,10 @@
                   }
                   if (egrip & e_grip_right)
                   {
-                     rectangle.top = ptCenter.y - 8;
+                     rectangle.top = ptCenter.y() - 8;
                      rectangle.left = rectangleEvent.right - 5;
                      rectangle.right = rectangleEvent.right;
-                     rectangle.bottom = ptCenter.y + 8;
+                     rectangle.bottom = ptCenter.y() + 8;
                      if (rectangle.contains(pointHitTest))
                      {
                         etest = ::experience::e_frame_sizing_right;
@@ -414,7 +414,7 @@ SizingNone:;
 
             void frame_011::GetBorderRect(
             const ::rectangle_i32 &lpcrectClient,
-            RECTANGLE_I32 * lprect,
+            ::rectangle_i32 * lprect,
             enum_border eside)
             {
                ::rectangle_i32 rectangleBig(lpcrectClient);

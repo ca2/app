@@ -172,11 +172,11 @@ namespace user
 
       ::point_i32 pointCenter = rectangleDropDown.center();
 
-      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
+      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
 
    }
 

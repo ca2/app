@@ -95,7 +95,7 @@ namespace color
 
       color contrasting_color() const {
          float luminance = 0.299f * fr() + 0.587f * fg() + 0.144f * fb();
-         return color(luminance < 0.5f ? 1.f : 0.f, 1.f);
+         return color(luminance < 0.5f ? 255 : 0, 255);
       }
 
       color & operator =(const ::payload & payload);

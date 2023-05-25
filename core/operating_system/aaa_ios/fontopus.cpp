@@ -52,7 +52,7 @@ namespace account
 
       virtual ~account();
 
-      virtual string show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual string show_auth_window(::rectangle_i32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
       virtual bool prepare_window(bool bShow);
 
@@ -133,24 +133,24 @@ namespace account
       point pc[4];
 
 
-      pa[0].x = rectangle.left;
-      pa[0].y = rectangle.top;
-      pa[1].x = rectangle.right - rectangle.width() / 10;
-      pa[1].y = rectangle.top + rectangle.height() / 10;
-      pa[2].x = rectangle.right - rectangle.width() / 8;
-      pa[2].y = rectangle.bottom - rectangle.height() / 10;
-      pa[3].x = rectangle.left;
-      pa[3].y = rectangle.bottom;
+      pa[0].x() = rectangle.left;
+      pa[0].y() = rectangle.top;
+      pa[1].x() = rectangle.right - rectangle.width() / 10;
+      pa[1].y() = rectangle.top + rectangle.height() / 10;
+      pa[2].x() = rectangle.right - rectangle.width() / 8;
+      pa[2].y() = rectangle.bottom - rectangle.height() / 10;
+      pa[3].x() = rectangle.left;
+      pa[3].y() = rectangle.bottom;
 
 
-      pb[0].x = rectangle.left + rectangle.width() / 6;
-      pb[0].y = rectangle.top + rectangle.height() / 6;
-      pb[1].x = rectangle.right - rectangle.width() / 6;
-      pb[1].y = rectangle.top + rectangle.height() / 6;
-      pb[2].x = rectangle.right - rectangle.width() / 5;
-      pb[2].y = rectangle.bottom - rectangle.height() / 4;
-      pb[3].x = rectangle.left + rectangle.width() / 5;
-      pb[3].y = rectangle.bottom - rectangle.height() / 4;
+      pb[0].x() = rectangle.left + rectangle.width() / 6;
+      pb[0].y() = rectangle.top + rectangle.height() / 6;
+      pb[1].x() = rectangle.right - rectangle.width() / 6;
+      pb[1].y() = rectangle.top + rectangle.height() / 6;
+      pb[2].x() = rectangle.right - rectangle.width() / 5;
+      pb[2].y() = rectangle.bottom - rectangle.height() / 4;
+      pb[3].x() = rectangle.left + rectangle.width() / 5;
+      pb[3].y() = rectangle.bottom - rectangle.height() / 4;
 
       {
 
@@ -187,10 +187,10 @@ namespace account
 
       // top
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[2].x = pb[1].x;
-      pc[2].y = pb[1].y;
-      pc[3].x = pb[0].x;
-      pc[3].y = pb[0].y;
+      pc[2].x() = pb[1].x();
+      pc[2].y() = pb[1].y();
+      pc[3].x() = pb[0].x();
+      pc[3].y() = pb[0].y();
 
       {
 
@@ -214,10 +214,10 @@ namespace account
       }
       // left
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[1].x = pb[0].x;
-      pc[1].y = pb[0].y;
-      pc[2].x = pb[3].x;
-      pc[2].y = pb[3].y;
+      pc[1].x() = pb[0].x();
+      pc[1].y() = pb[0].y();
+      pc[2].x() = pb[3].x();
+      pc[2].y() = pb[3].y();
       {
 
          simple_brush b;
@@ -240,10 +240,10 @@ namespace account
       }
       // bottom
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[0].x = pb[3].x;
-      pc[0].y = pb[3].y;
-      pc[1].x = pb[2].x;
-      pc[1].y = pb[2].y;
+      pc[0].x() = pb[3].x();
+      pc[0].y() = pb[3].y();
+      pc[1].x() = pb[2].x();
+      pc[1].y() = pb[2].y();
       {
 
          simple_brush b;
@@ -266,10 +266,10 @@ namespace account
       }
       // right
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[0].x = pb[1].x;
-      pc[0].y = pb[1].y;
-      pc[3].x = pb[2].x;
-      pc[3].y = pb[2].y;
+      pc[0].x() = pb[1].x();
+      pc[0].y() = pb[1].y();
+      pc[3].x() = pb[2].x();
+      pc[3].y() = pb[2].y();
       {
 
          simple_brush b;
@@ -370,7 +370,7 @@ namespace account
    {
    }
 
-   string account::show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string account::show_auth_window(::rectangle_i32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
       if (lprect == nullptr)
@@ -455,8 +455,8 @@ namespace account
       int w = m_w + 184;
       int h = m_h + 284;
 
-      rectangleFontopus.origin.x = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
-      rectangleFontopus.origin.y = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
+      rectangleFontopus.origin.x() = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
+      rectangleFontopus.origin.y() = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
       rectangleFontopus.size.width = w;
       rectangleFontopus.size.height = h;
 
@@ -608,9 +608,9 @@ namespace account
             m_bDrag = true;
             POINT32 ptNow;
             ::GetCursorPos(&ptNow);
-            m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
-            m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
-            set_window_position(m_oswindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            m_point.x() = ptNow.x() - m_pointLButtonDown.x() + m_pointLButtonDownPos.x();
+            m_point.y() = ptNow.y() - m_pointLButtonDown.y() + m_pointLButtonDownPos.y();
+            set_window_position(m_oswindow, nullptr, m_point.x(), m_point.y(), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             m_bDrag = false;
          }
          return true;
@@ -787,7 +787,7 @@ namespace account
 
    account account::s_account;
 
-   string CLASS_DECL_BOOT show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BOOT show_auth_window(::rectangle_i32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
       return ::account::account::s_account.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);

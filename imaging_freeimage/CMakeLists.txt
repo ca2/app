@@ -70,7 +70,7 @@ elseif (FREEBSD)
 elseif (LINUX)
 
 
-    #if(NOT DONT_USE_PKG_CONFIG)
+    #if(USE_PKGCONFIG)
     #    pkg_check_modules(PKGCONFIG librsvg-2.0)
     #endif()
 

@@ -48,7 +48,7 @@ namespace experience_tranquillum
          }
 
 
-          ::experience::enum_frame frame_008::experience_frame_hit_test(const ::point_i32 & pointCursor)
+          ::experience::enum_frame frame_008::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
          {
              ::experience::enum_frame etest =  ::experience::e_frame_client;
             {
@@ -66,12 +66,12 @@ namespace experience_tranquillum
                
                rectangleInner.deflate(4);
                
-               ::point_i32 pointHitTest = pointCursor;
+               ::point_i32 pointHitTest = point;
 
 //               if(rectangleEvent.left < 0)
-//                  pointHitTest.x -= rectangleEvent.left;
+//                  pointHitTest.x() -= rectangleEvent.left;
 //               if(rectangleEvent.top < 0)
-//                  pointHitTest.y -= rectangleEvent.top;
+//                  pointHitTest.y() -= rectangleEvent.top;
 
                if(egrip & e_grip_top_left)
                {
@@ -365,7 +365,7 @@ SizingNone:
          void frame_008::GetBorderRect(
          const ::rectangle_i32 & rectangleClient,
 
-         RECTANGLE_I32 * prectangle,
+         ::rectangle_i32 * prectangle,
 
          enum_border eside)
          {

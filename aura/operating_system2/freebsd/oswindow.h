@@ -245,9 +245,9 @@
 //   bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
 //   iptr get_window_long_ptr(i32 nIndex);
 //   iptr set_window_long_ptr(i32 nIndex, iptr l);
-//   bool client_to_screen(POINT_I32 * ppoint);
+//   bool client_to_screen(::point_i32 * ppoint);
 //
-//   bool screen_to_client(POINT_I32 * ppoint);
+//   bool screen_to_client(::point_i32 * ppoint);
 //
 //
 //   Atom intern_atom(const ::string & pszAtomName, bool bCreate);

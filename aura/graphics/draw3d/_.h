@@ -6,7 +6,11 @@
 //
 //#include "ortho.h"
 
+template < primitive_number NUMBER >
+class box_type;
 
-class box;
+
+
+using box_f64 = ::box_type < ::f64 >;
 
 

@@ -3,9 +3,9 @@
 
 #include "string_iterator.h"
 #include "string_meta_data.h"
-#include "string_range_const.h"
+#include "const_string_range.h"
 #include "string_range.h"
-#include "string_range_mutable.h"
+#include "mutable_string_range.h"
 #include "acme/memory/string_memory_allocator.h"
 
 
@@ -55,7 +55,7 @@ public:
    string_base(enum_zero_initialize) : NATURAL_POINTER(e_zero_initialize) { }
    string_base(nullptr_t) { }
    string_base(enum_for_moving) { }
-   string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
+   //string_base(enum_get_buffer, strsize len) { get_buffer(len); }
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
@@ -243,6 +243,40 @@ public:
    {
 
       return truncate(end);
+
+   }
+
+
+   bool contains_erase(const SCOPED_STRING& scopedstr)
+   {
+
+      if (scopedstr.is_empty())
+      {
+
+         return true;
+
+      }
+
+
+      bool bContains = false;
+
+      while (true)
+      {
+
+         auto p = this->find(scopedstr);
+
+         if (::is_null(p))
+         {
+
+            return bContains;
+
+         }
+
+         bContains = true;
+
+         this->erase(p, scopedstr.size());
+
+      }
 
    }
 
@@ -647,7 +681,7 @@ public:
    }
 
 
-   inline CHARACTER * get_string_buffer()
+   inline CHARACTER * get_buffer()
    {
 
       auto p = this->metadata();
@@ -666,7 +700,7 @@ public:
    }
 
 
-   inline CHARACTER * get_string_buffer(strsize characterCount)
+   inline CHARACTER * get_buffer(strsize characterCount)
    {
 
       auto p = this->metadata();
@@ -693,17 +727,17 @@ public:
    }
 
 
-   inline mutable_string_range < CHARACTER * > get_string_buffer_range(strsize characterCount)
+   inline mutable_string_range < CHARACTER * > get_range_buffer(strsize characterCount)
    {
 
-      auto p = get_string_buffer(characterCount);
+      auto p = get_buffer(characterCount);
 
       return { p, p + characterCount };
 
    }
 
 
-   inline void release_string_buffer_range(const mutable_string_range < CHARACTER * > & range)
+   inline void release_range_buffer(const mutable_string_range < CHARACTER * > & range)
    {
       
       if(range.m_end > (this->m_begin + this->storage_character_count()))
@@ -715,7 +749,7 @@ public:
       
       ::memmove((CHARACTER *) this->m_begin, range.m_begin, range.size());
          
-      release_string_buffer(range.size());
+      release_buffer(range.size());
 
    }
 
@@ -765,7 +799,8 @@ public:
 
    inline static string_base empty_string() { return string_base(); }
 
-   string_base & release_string_buffer(strsize nNewLength = -1);
+   string_base & release_buffer(strsize nNewLength = -1);
+
    inline this_iterator & truncate(this_iterator p);
    template < primitive_integral INTEGRAL >
    inline this_iterator & truncate(INTEGRAL count) {return truncate(this->m_begin + count);}
@@ -798,20 +833,29 @@ public:
    bool set_if_empty(const SCOPED_STRING & scopedstr) { return this->is_empty() ? (*this = scopedstr, true) : false; }
 
 
-   void push_back(CHARACTER ch);
+   void add(CHARACTER ch);
 
 
 
    void reserve(strsize res_arg = 0);
 
-   string_base & erase(strsize start = 0, strsize count = -1);
 
-   string_base& erase(const_iterator start, const_iterator end = 0)
+   string_base& erase_end(strsize start) { this->erase((::strsize)this->index_of(start), this->end()); }
+
+
+   string_base & erase(strsize start, strsize count);
+
+   /// erase count characters from start
+   string_base & erase(strsize count) { return this->erase((::strsize)0, count); }
+
+   string_base & erase(const_iterator start, strsize count) { return this->erase(this->index_of(start), count); }
+
+   string_base & erase(const_iterator start, const_iterator end = 0)
    {
 
       if (!end) end = this->end();
 
-      return this->erase(this->offset_of(start), this->offset_of(end) - this->offset_of(start));
+      return this->erase(this->index_of(start), this->index_of(end) - this->index_of(start));
 
    }
 
@@ -1229,7 +1273,7 @@ public:
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
    CHARACTER * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-   release_string_buffer( nLength );
+   release_buffer( nLength );
 
    return( true );
    }*/
@@ -1246,7 +1290,7 @@ public:
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
    CHARACTER * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-   release_string_buffer( nLength );
+   release_buffer( nLength );
 
    return( true );
    }*/
@@ -1460,13 +1504,13 @@ public:
 //
 //   auto len = scopedstrA.size() + scopedstrB.size();
 //
-//   auto p = str.get_string_buffer(len);
+//   auto p = str.get_buffer(len);
 //
 //   memcpy(p, scopedstrA, scopedstrA.size());
 //
 //   memcpy(p + scopedstrA.size(), scopedstrB, scopedstrB.size());
 //
-//   str.release_string_buffer(len);
+//   str.release_buffer(len);
 //
 //   return ::transfer(str);
 //

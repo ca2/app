@@ -38,11 +38,11 @@ namespace user
 
       virtual bool is_composite();
 
-      virtual ::item_pointer hit_test(::user::mouse * pmouse);
+      virtual ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder);
 
-      virtual ::item_pointer hit_test(const ::point_i32 & point);
+      virtual ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder);
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point);
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
 
    };
@@ -62,8 +62,8 @@ namespace user
 
 
 
-   //   //virtual bool _get_client_rect(RECTANGLE_I32 * prectangle) = 0;
-   //   //virtual bool _get_window_rect(RECTANGLE_I32 * prectangle) = 0;
+   //   //virtual bool _get_client_rect(::rectangle_i32 * prectangle) = 0;
+   //   //virtual bool _get_window_rect(::rectangle_i32 * prectangle) = 0;
    //   
    //   //virtual ::point_i32 _client_parent_top_left() = 0;
    //   //virtual ::point_i32 _client_screen_top_left() = 0;

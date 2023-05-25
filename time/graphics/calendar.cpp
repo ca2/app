@@ -141,7 +141,7 @@ namespace datetime
       }
 
 
-      void graphics::GetRectDay(::earth::time & time,RECTANGLE_I32 * lprect)
+      void graphics::GetRectDay(::earth::time & time,::rectangle_i32 * lprect)
       {
          int32_t iWeekDay = time.day_of_week();
          ::earth::time timeMonth(m_iYear,m_iMonth,1,0,0,0);
@@ -149,21 +149,21 @@ namespace datetime
          GetRectDay(iWeekDay,iWeek + 1,lprect);
       }
 
-      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,RECTANGLE_I32 * lprect)
+      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,::rectangle_i32 * lprect)
       {
-         lprect->left = m_point.x + m_iColWidth * (iWeekDay - 1);
+         lprect->left = m_point.x() + m_iColWidth * (iWeekDay - 1);
          lprect->right = lprect->left + m_iColWidth + 1;
-         lprect->top = m_point.y + m_iLineHeight * iLine;
+         lprect->top = m_point.y() + m_iLineHeight * iLine;
          lprect->bottom = lprect->top + m_iLineHeight + 1;
       }
 
-      void graphics::GetRect(RECTANGLE_I32 * lprect,enum enum_element eelement)
+      void graphics::GetRect(::rectangle_i32 * lprect,enum enum_element eelement)
       {
          if(eelement == e_element_month_title)
          {
-            lprect->left = m_point.x + m_iColWidth * 1;
+            lprect->left = m_point.x() + m_iColWidth * 1;
             lprect->right = lprect->left + m_iColWidth * 2 + 1;
-            lprect->top = m_point.y + m_iLineHeight * 7;
+            lprect->top = m_point.y() + m_iLineHeight * 7;
             lprect->bottom = lprect->top + m_iLineHeight + 1;
          }
          else
@@ -204,7 +204,7 @@ namespace datetime
 
 
 
-      enum_element graphics::hit_test(const ::point_i32 & point)
+      enum_element graphics::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)

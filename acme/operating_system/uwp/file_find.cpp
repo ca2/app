@@ -104,7 +104,7 @@ namespace universal_windows
             else
                *pstrBack = '\0';
          }
-         wstrRoot.release_string_buffer();
+         wstrRoot.release_buffer();
       }
       m_strRoot = unicode_to_utf8(wstrRoot);
       return true;

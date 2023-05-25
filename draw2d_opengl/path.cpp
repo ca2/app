@@ -162,9 +162,9 @@ namespace draw2d_opengl
    bool path::internal_add_move(i32 x, i32 y)
    {
 
-      m_pointLast.x = x;
+      m_pointLast.x() = x;
 
-      m_pointLast.y = y;
+      m_pointLast.y() = y;
 
       return true;
 

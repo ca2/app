@@ -299,7 +299,7 @@ namespace user
    //}
 
 
-   /*bool element::client_to_screen(RECTANGLE_I32 * prectangle)
+   /*bool element::client_to_screen(::rectangle_i32 * prectangle)
    {
 
       ::offset_rect(prectangle, client_screen_top_left());
@@ -309,7 +309,7 @@ namespace user
    }
 
 
-   bool element::client_to_screen(RECTANGLE_F64 * prectangle)
+   bool element::client_to_screen(::rectangle_f64 * prectangle)
    {
 
       ::offset_rect(prectangle, client_screen_top_left());
@@ -319,7 +319,7 @@ namespace user
    }
 */
 
-//bool element::client_to_screen(POINT_I32 * ppoint)
+//bool element::client_to_screen(::point_i32 * ppoint)
 //{
 
 //   ::offset_point(ppoint, client_screen_top_left());
@@ -329,7 +329,7 @@ namespace user
 //}
 
 
-//bool element::client_to_screen(POINT_F64 * ppoint)
+//bool element::client_to_screen(::point_f64 * ppoint)
 //{
 
 //   ::offset(ppoint, client_screen_top_left());
@@ -339,7 +339,7 @@ namespace user
 //}
 
 
-//bool element::client_to_screen(RECTANGLE_I64 * prectangle)
+//bool element::client_to_screen(::rectangle_i64 * prectangle)
 //{
 
 //   ::offset_rect(prectangle, point_i64(client_screen_top_left()));
@@ -349,7 +349,7 @@ namespace user
 //}
 
 
-//bool element::client_to_screen(POINT_I64 * ppoint)
+//bool element::client_to_screen(::point_i64 * ppoint)
 //{
 
 //   ::offset_point(ppoint, client_screen_top_left());
@@ -359,7 +359,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(RECTANGLE_I32 * prectangle)
+//bool element::screen_to_client(::rectangle_i32 * prectangle)
 //{
 
 //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -369,7 +369,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(RECTANGLE_F64 * prectangle)
+//bool element::screen_to_client(::rectangle_f64 * prectangle)
 //{
 
 //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -379,7 +379,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(POINT_I32 * ppoint)
+//bool element::screen_to_client(::point_i32 * ppoint)
 //{
 
 //   ::offset_point(ppoint, -client_screen_top_left());
@@ -389,7 +389,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(POINT_F64 * ppoint)
+//bool element::screen_to_client(::point_f64 * ppoint)
 //{
 
 //   ::offset_point(ppoint, -client_screen_top_left());
@@ -399,7 +399,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(RECTANGLE_I64 * prectangle)
+//bool element::screen_to_client(::rectangle_i64 * prectangle)
 //{
 
 //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -409,7 +409,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(POINT_I64 * ppoint)
+//bool element::screen_to_client(::point_i64 * ppoint)
 //{
 
 //   ::offset_point(ppoint, -client_screen_top_left());
@@ -419,7 +419,7 @@ namespace user
 //}
 
 
-//bool element::GetWindowPos(RECTANGLE_I32 * prectangle)
+//bool element::GetWindowPos(::rectangle_i32 * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -429,7 +429,7 @@ namespace user
 //}
 
 
-//bool element::window_rectangle(RECTANGLE_I32 * prectangle)
+//bool element::window_rectangle(::rectangle_i32 * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -447,7 +447,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(RECTANGLE_I32 * prectangle)
+//bool element::client_rectangle(::rectangle_i32 * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -457,7 +457,7 @@ namespace user
 //}
 
 
-//bool element::client_rectangle(RECTANGLE_I64 * prectangle)
+//bool element::client_rectangle(::rectangle_i64 * prectangle)
 
 //{
 
@@ -468,7 +468,7 @@ namespace user
 //}
 
 
-//bool element::window_rectangle(RECTANGLE_I64 * prectangle)
+//bool element::window_rectangle(::rectangle_i64 * prectangle)
 
 //{
 
@@ -1778,7 +1778,7 @@ namespace user
    //}
 
 
-   //void element::CalcWindowRect(RECTANGLE_I32 * prectangle,::u32 nAdjustType)
+   //void element::CalcWindowRect(::rectangle_i32 * prectangle,::u32 nAdjustType)
 
    //{
 
@@ -1787,7 +1787,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       throw ::interface_only();
@@ -1911,7 +1911,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(POINT_I32 & point)
+   void element::viewport_client_to_screen(::point_i32 & point)
    {
 
       throw ::interface_only();
@@ -1919,7 +1919,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(POINT_I32 & point)
+   void element::viewport_screen_to_client(::point_i32 & point)
    {
 
       throw ::interface_only();
@@ -1927,7 +1927,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(RECTANGLE_I32 & rectangle)
+   void element::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
       throw ::interface_only();
@@ -1935,7 +1935,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(RECTANGLE_I32 & rectangle)
+   void element::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
       throw ::interface_only();
@@ -2113,7 +2113,7 @@ namespace user
    }
 
 
-   bool element::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
+   bool element::GetUpdateRect(::rectangle_i32 * prectangle, bool bErase)
 
    {
 
@@ -2835,7 +2835,7 @@ namespace user
    }
 
 
-   bool element::GetFocusRect(RECTANGLE_I32 & rectangle)
+   bool element::GetFocusRect(::rectangle_i32 & rectangle)
    {
 
       return false;
@@ -3001,12 +3001,12 @@ namespace user
    }
 
 
-   void element::_001OnTriggerMouseInside()
-   {
-
-      throw ::interface_only();
-
-   }
+//   void element::_001OnTriggerMouseInside()
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void element::update_data(bool bSaveAndValidate)
@@ -4685,6 +4685,8 @@ namespace user
       auto pfiledialog = acmenode()->node_file_dialog();
 
       pfiledialog->m_bSave = bSave;
+
+      pfiledialog->m_filedialogfiltera = filedialogfiltera;
 
       pfiledialog->m_function = [this, function](auto pdialog)
       {

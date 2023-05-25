@@ -282,7 +282,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //
-//         FORMATTED_TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x, point.y);
+//         FORMATTED_TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x(), point.y());
 //
 //         //::point_i32 point(xPos, yPos);
 //
@@ -537,7 +537,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::index_item_rectangle(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement)
+/*bool simple_menu_bar::index_item_rectangle(index iItem, ::rectangle_i32 * prectangle, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -601,7 +601,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
+index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
 
 {
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)

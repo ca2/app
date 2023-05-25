@@ -42,8 +42,8 @@ public:
    virtual ::shift_i32 screen_to_client();
    virtual ::shift_i32 client_to_screen();
 
-   virtual ::nano_child * hit_test(::user::mouse * pmouse);
-   virtual ::nano_child * on_hit_test(const ::point_i32 & point);
+   virtual ::nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
+   virtual ::nano_child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
    virtual void add_child(nano_child * pchild);
 
    virtual ::atom get_result();

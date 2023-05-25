@@ -11,4 +11,4 @@
 //CLASS_DECL_CORE float x_dpi(float x);
 //
 //
-//CLASS_DECL_CORE int_bool GetCursorPos(POINT_I32 * lppoint);
+//CLASS_DECL_CORE int_bool GetCursorPos(::point_i32 * lppoint);

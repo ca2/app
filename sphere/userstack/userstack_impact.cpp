@@ -241,7 +241,7 @@ namespace userstack
    }
 
 
-   void impact::GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea)
+   void impact::GetAreaThumbRect(::rectangle_i32 * lprect, i32 iArea)
    {
       
       ::rectangle_i32 rectangleClient = client_rectangle();
@@ -304,7 +304,7 @@ namespace userstack
    }
 
 
-   ::item_pointer impact::on_hit_test(const ::point_i32 &point)
+   ::item_pointer impact::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
       
       ::rectangle_i32 rectangleArea;

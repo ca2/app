@@ -2,6 +2,7 @@
 #include "toolbar.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
+#include "acme/constant/timer.h"
 ////#include "acme/exception/exception.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/platform/timer.h"
@@ -12,7 +13,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
-#include "acme/constant/timer.h"
+#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
 
@@ -534,7 +535,7 @@ namespace user
    //      return 0;
    //   }
 
-   //   void toolbar::GetItemRect(index nIndex, RECTANGLE_I32 * prectangle)
+   //   void toolbar::GetItemRect(index nIndex, ::rectangle_i32 * prectangle)
    //
    //   {
    //      ASSERT_VALID(this);
@@ -742,9 +743,9 @@ namespace user
    //      //   {
    //      //      // a separator represents either a height or width
    //      //      if (pData[i].fsState & TBSTATE_WRAP)
-   //      //         sizeResult.cy = (::i32) maximum(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+   //      //         sizeResult.cy = (::i32) maximum(cur.y() + m_sizeButton.cy + cySep, sizeResult.cy);
    //      //      else
-   //      //         sizeResult.cx = maximum(cur.x + pData[i].iBitmap, sizeResult.cx);
+   //      //         sizeResult.cx = maximum(cur.x() + pData[i].iBitmap, sizeResult.cx);
    //      //   }
    //      //   else
    //      //   {
@@ -755,21 +756,21 @@ namespace user
    //      //         // add size_i32 of drop down
    //      //         cx += 2;
    //      //      }
-   //      //      sizeResult.cx = maximum(cur.x + cx, sizeResult.cx);
-   //      //      sizeResult.cy = maximum(cur.y + m_sizeButton.cy, sizeResult.cy);
+   //      //      sizeResult.cx = maximum(cur.x() + cx, sizeResult.cx);
+   //      //      sizeResult.cy = maximum(cur.y() + m_sizeButton.cy, sizeResult.cy);
    //      //   }
    //
    //      //   if (pData[i].fsStyle & TBSTYLE_SEP)
-   //      //      cur.x += pData[i].iBitmap;
+   //      //      cur.x() += pData[i].iBitmap;
    //      //   else
-   //      //      cur.x += cx - CX_OVERLAP;
+   //      //      cur.x() += cx - CX_OVERLAP;
    //
    //      //   if (pData[i].fsState & TBSTATE_WRAP)
    //      //   {
-   //      //      cur.x = 0;
-   //      //      cur.y += m_sizeButton.cy;
+   //      //      cur.x() = 0;
+   //      //      cur.y() += m_sizeButton.cy;
    //      //      if (pData[i].fsStyle & TBSTYLE_SEP)
-   //      //         cur.y += cySep;
+   //      //         cur.y() += cySep;
    //      //   }
    //      //}
    //      //return sizeResult;
@@ -1149,7 +1150,7 @@ namespace user
       //
       //                     auto point = rectangle.origin() + size;
       //
-      //                     pwindow->set_window_position(zorder_none, point.x, point.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+      //                     pwindow->set_window_position(zorder_none, point.x(), point.y(), 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
       //
       //                  }
       //
@@ -1539,7 +1540,9 @@ namespace user
    void toolbar::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      if (::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_iItem >= 0)
+      auto pwindowimpl = get_window_impl();
+
+      if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_iItem >= 0)
       {
 
          pmessage->m_bRet = true;
@@ -1842,7 +1845,7 @@ namespace user
    }
 
 
-   bool toolbar::index_item_rectangle(index iItem, RECTANGLE_I32 * prectangle)
+   bool toolbar::index_item_rectangle(index iItem, ::rectangle_i32 * prectangle)
    {
 
       if (!m_pitema->is_index_ok(iItem))
@@ -1859,7 +1862,7 @@ namespace user
    }
 
 
-   bool toolbar::index_element_rectangle(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement, ::user::enum_state estate)
+   bool toolbar::index_element_rectangle(index iItem, ::rectangle_i32 * prectangle, enum_element eelement, ::user::enum_state estate)
    {
 
       return false;

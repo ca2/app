@@ -574,13 +574,13 @@ namespace user
       //      if(get_data()->m_bVertical)
       //      {
 
-      //         bShowTabs = pointCursor.x <= rectangleWindow.left;
+      //         bShowTabs = pointCursor.x() <= rectangleWindow.left;
 
       //      }
       //      else
       //      {
 
-      //         bShowTabs = pointCursor.y <= rectangleWindow.top;
+      //         bShowTabs = pointCursor.y() <= rectangleWindow.top;
 
       //      }
 
@@ -1271,7 +1271,7 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(RECTANGLE_I32 & rectangle)
+   void tab::GetTabClientRect(::rectangle_i32 & rectangle)
    {
 
       rectangle = get_data()->m_rectangleTabClient;
@@ -1279,7 +1279,7 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(RECTANGLE_I64 & rectangle)
+   void tab::GetTabClientRect(::rectangle_i64 & rectangle)
    {
 
       ::rectangle_i32 rectangleTabClient;
@@ -1528,9 +1528,9 @@ namespace user
 
             }
 
-            ppane->m_point.x = x;
+            ppane->m_point.x() = x;
 
-            ppane->m_point.y = rectangleClient.top;
+            ppane->m_point.y() = rectangleClient.top;
 
             ixAdd = 5;
 
@@ -1625,7 +1625,7 @@ namespace user
       else
       {
 
-         m_sizeBarDragScroll.cx = m_pdata->m_tabpanecompositea.last()->m_point.x +
+         m_sizeBarDragScroll.cx = m_pdata->m_tabpanecompositea.last()->m_point.x() +
          m_pdata->m_tabpanecompositea.last()->m_size.cx;
 
       }
@@ -1719,7 +1719,7 @@ namespace user
 
       pmouse->previous();
 
-      m_pitemClick = hit_test(pmouse);
+      m_pitemClick = hit_test(pmouse, ::user::e_zorder_any);
 
       get_data()->m_bDrag = false;
 
@@ -1732,10 +1732,10 @@ namespace user
       if(::is_element(m_pitemClick, e_element_tab_near_scroll))
       {
 
-         if(m_pointBarDragScroll.x > 0)
+         if(m_pointBarDragScroll.x() > 0)
          {
 
-            m_pointBarDragScroll.x--;
+            m_pointBarDragScroll.x()--;
 
             set_need_redraw();
 
@@ -1753,10 +1753,10 @@ namespace user
       else if(::is_element(m_pitemClick, e_element_tab_far_scroll))
       {
 
-         if(m_pointBarDragScroll.x < m_pointBarDragScrollMax.x)
+         if(m_pointBarDragScroll.x() < m_pointBarDragScrollMax.x())
          {
 
-            m_pointBarDragScroll.x++;
+            m_pointBarDragScroll.x()++;
 
             set_need_redraw();
 
@@ -1835,7 +1835,7 @@ namespace user
 //
 //      }
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
       index iClickTab = get_data()->m_iClickTab;
 
@@ -1926,7 +1926,7 @@ namespace user
 
       if (m_bEffectiveVisibleTabs 
          && m_bTabVisibilityChanging
-         && pointClient.y < ptabdata->m_iTabHeight)
+         && pointClient.y() < ptabdata->m_iTabHeight)
       {
 
          KillTimer(e_timer_defer_handle_auto_hide_tabs);
@@ -1936,7 +1936,7 @@ namespace user
          m_bTabVisibilityChanging = false;
 
       }
-      else if (pointClient.y <= 1)
+      else if (pointClient.y() <= 1)
       {
 
          if (m_bHideTabsOnFullScreenOrTransparentFrame)
@@ -1955,7 +1955,7 @@ namespace user
          }
 
       }
-      else if (pointClient.y > ptabdata->m_iTabHeight)
+      else if (pointClient.y() > ptabdata->m_iTabHeight)
       {
 
          m_bOverrideVisibleTabs = false;
@@ -1988,7 +1988,7 @@ namespace user
    //}
 
 
-   bool tab::get_element_rect(::index iIndex, RECTANGLE_I32 & rectangle, enum_element eelement)
+   bool tab::get_element_rect(::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       point_i32 ptOffset(0,0);
@@ -2087,17 +2087,17 @@ namespace user
          if(get_data()->m_bVertical)
          {
 
-            ptOffset.y += 4;
+            ptOffset.y() += 4;
 
-            ptOffset.y -= m_pointBarDragScroll.y;
+            ptOffset.y() -= m_pointBarDragScroll.y();
 
          }
          else
          {
 
-            ptOffset.x += 4;
+            ptOffset.x() += 4;
 
-            ptOffset.x -= m_pointBarDragScroll.x;
+            ptOffset.x() -= m_pointBarDragScroll.x();
 
          }
 
@@ -2262,9 +2262,9 @@ namespace user
 
          auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
-         rectangle.left = ppane->m_point.x;
+         rectangle.left = ppane->m_point.x();
 
-         rectangle.top = ppane->m_point.y;
+         rectangle.top = ppane->m_point.y();
 
          rectangle.right = rectangle.left + ppane->m_size.cx;
 
@@ -2272,7 +2272,7 @@ namespace user
 
       }
 
-      ::offset(rectangle, ptOffset.x, ptOffset.y);
+      ::offset(rectangle, ptOffset.x(), ptOffset.y());
 
       return true;
 
@@ -2377,10 +2377,10 @@ namespace user
    }
 
 
-   ::item_pointer tab::on_hit_test(const ::point_i32 &pointParam)
+   ::item_pointer tab::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
       
-      auto point = pointParam;
+      auto pointCursor = point;
 
       //synchronous_lock synchronouslock(this->synchronization());
 
@@ -2401,7 +2401,7 @@ namespace user
             if (get_element_rect(-1, rectangleScroll, ::e_element_tab_near_scroll))
             {
 
-               if (rectangleScroll.contains(point))
+               if (rectangleScroll.contains(pointCursor))
                {
 
                   return __new(::item(::e_element_tab_near_scroll, -1));
@@ -2413,7 +2413,7 @@ namespace user
             if (get_element_rect(-1, rectangleScroll, ::e_element_tab_far_scroll))
             {
 
-               if (rectangleScroll.contains(point))
+               if (rectangleScroll.contains(pointCursor))
                {
 
                   return __new(::item(::e_element_tab_far_scroll, -1));
@@ -3533,7 +3533,7 @@ namespace user
    }
 
 
-   void tab::GetDragRect(RECTANGLE_I32 & rectangle, enum_position eposition)
+   void tab::GetDragRect(::rectangle_i32 & rectangle, enum_position eposition)
    {
 
       switch(eposition)
@@ -3615,7 +3615,7 @@ namespace user
    }
 
 
-   void tab::get_child_rect(RECTANGLE_I32 & rectangle)
+   void tab::get_child_rect(::rectangle_i32 & rectangle)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -3743,7 +3743,7 @@ namespace user
 
          auto pointCursor = get_cursor_position();
 
-         auto pitem = hit_test(pointCursor);
+         auto pitem = hit_test(pointCursor, ::user::e_zorder_any);
 
          index iClickTab = get_data()->m_iClickTab;
 

@@ -51,7 +51,10 @@ namespace integration
 
       virtual void prepare();
 
-      virtual void change_to_source_directory();
+      virtual ::file::path get_source_folder_path(const ::scoped_string& strRelative = {});
+
+      virtual void create_source_directory(const ::scoped_string& strRelative = {});
+      virtual void change_to_source_directory(const ::scoped_string& strRelative = {});
 
       virtual void prepare_compile_and_link_environment();
 

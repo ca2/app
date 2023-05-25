@@ -65,14 +65,40 @@ namespace user
 
       defer_set_icon();
 
-      add_user_item(__new(::item(::e_element_close_button, ::id_close_app)));
-      add_user_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
-      add_user_item(__new(::item(::e_element_minimize_button, ::id_minimize)));
+      {
+
+         auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
+
+         pitemClose->m_ezorder = e_zorder_front;
+
+         add_user_item(pitemClose);
+
+      }
+
+      {
+
+         auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
+
+         pitemMaximize->m_ezorder = e_zorder_front;
+
+         add_user_item(pitemMaximize);
+
+      }
+
+      {
+
+         auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
+
+         pitemMinimize->m_ezorder = e_zorder_front;
+
+         add_user_item(pitemMinimize);
+
+      }
 
    }
 
 
-   void main_window::input_client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout)
+   void main_window::input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    {
       
       client_rectangle(rectangle);
@@ -140,7 +166,7 @@ namespace user
    }
 
 
-   ::index main_window::get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore)
+   ::index main_window::get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore)
    {
 
       //return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);
@@ -179,6 +205,23 @@ namespace user
       //}
 
       //return ::success;
+
+   }
+
+
+
+   bool main_window::should_redraw_on_mouse_activate()
+   {
+
+      return false;
+
+   }
+
+
+   bool main_window::should_redraw_on_mouse_hover()
+   {
+
+      return false;
 
    }
 

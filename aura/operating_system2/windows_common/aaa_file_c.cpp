@@ -75,7 +75,7 @@ CLASS_DECL_AURA::winrt::Windows::Storage::StorageFolder^ winrt_folder(string& st
 //
 //   }
 //
-//   return wstrPath.release_string_buffer();
+//   return wstrPath.release_buffer();
 //
 //}
 //
@@ -172,14 +172,14 @@ pacmedirectory->is(path))
 //
 //         wstring wstr2;
 //
-//         auto * pwsz = wstr2.get_string_buffer(dw + 1);
+//         auto * pwsz = wstr2.get_buffer(dw + 1);
 //
 //         dw = GetFinalPathNameByHandleW(hfile, pwsz, dw + 1, VOLUME_NAME_DOS);
 //
 //         if (dw > 0)
 //         {
 //
-//            wstr2.release_string_buffer();
+//            wstr2.release_buffer();
 //
 //            wstr = wstr2;
 //

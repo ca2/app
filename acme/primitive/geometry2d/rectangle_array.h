@@ -8,7 +8,8 @@ class rectangle_array_base :
 public:
 
 
-   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
+   using BASE_ARRAY_TYPE = array < RECTANGLE_TYPE >;
+   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE;
    using UNIT_TYPE = typename RECTANGLE_TYPE::UNIT_TYPE;
    using POINT_TYPE = typename RECTANGLE_TYPE::POINT_TYPE;
    using SIZE_TYPE = typename RECTANGLE_TYPE::SIZE_TYPE;
@@ -51,12 +52,17 @@ public:
 
    }
 
+   rectangle_array_base& operator = (const rectangle_array_base& array) { BASE_ARRAY_TYPE::operator=(array); return *this; }
+   rectangle_array_base& operator = (rectangle_array_base&& array) { BASE_ARRAY_TYPE::operator=(::transfer(array)); return *this; }
+   rectangle_array_base& operator = (std::initializer_list < RECTANGLE_TYPE > initializer_list) { BASE_ARRAY_TYPE ::operator=(initializer_list); return *this; }
+
+
 };
 
 template < typename RECTANGLE_TYPE >
 inline void rectangle_array_base < RECTANGLE_TYPE >::offset(POINT_TYPE point)
 {
-   offset(point.x, point.y);
+   offset(point.x(), point.y());
 }
 
 

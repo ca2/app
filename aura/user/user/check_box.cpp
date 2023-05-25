@@ -16,7 +16,7 @@
 #include "aura/message/user.h"
 
 
-void scroll_x(RECTANGLE_I32 & rectangleTarget, double dRateX, const ::rectangle_i32 & rectangle)
+void scroll_x(::rectangle_i32 & rectangleTarget, double dRateX, const ::rectangle_i32 & rectangle)
 {
 
    ::i32 w = ::width(rectangle);
@@ -185,7 +185,7 @@ namespace user
 
       auto echeck = this->echeck();
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
@@ -250,11 +250,11 @@ namespace user
 
       {
 
-         string strText;
+         string strWindowText;
 
-         get_window_text(strText);
+         strWindowText = get_window_text();
 
-         if(strText.has_char())
+         if(strWindowText.has_char())
          {
 
             ::e_align ealign = e_align_left_center;
@@ -280,7 +280,7 @@ namespace user
 
             pgraphics->set_text_color(crText);
 
-            pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
+            pgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 
          }
 
@@ -347,7 +347,7 @@ namespace user
 
       //::enum_check echeck = _001GetCheck();
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       if (w > h * 2)
       {

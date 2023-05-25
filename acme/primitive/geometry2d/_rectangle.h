@@ -5,17 +5,23 @@
 //#include "_size.h"
 
 
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-class rectangle_type :
-   public BASE_TYPE
+//template < primitive_number NUMBER >
+template < primitive_number NUMBER >
+class rectangle_type
 {
 public:
 
 
-   using RECTANGLE_BASE_TYPE = BASE_TYPE;
-   using UNIT_TYPE = decltype(RECTANGLE_BASE_TYPE::left);
-   using POINT_TYPE = point_type < POINT_BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE >;
-   using SIZE_TYPE = size_type < SIZE_BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >;
+   NUMBER left;
+   NUMBER top;
+   NUMBER right;
+   NUMBER bottom;
+
+
+   //using RECTANGLE_BASE_TYPE = BASE_TYPE;
+   using UNIT_TYPE = decltype(left);
+   using POINT_TYPE = point_type < NUMBER >;
+   using SIZE_TYPE = size_type < NUMBER >;
    //using POINT_ARRAY_TYPE = point_array_base < POINT_TYPE >;
 
    rectangle_type() noexcept : rectangle_type((UNIT_TYPE)0) { }
@@ -35,7 +41,7 @@ public:
 //   rectangle_type(const Gdiplus::RectF * p) noexcept : { ::copy(this, p); }
 //#endif
    template < primitive_point POINT, primitive_size SIZE >
-   rectangle_type(const POINT & point, const SIZE & size) noexcept : rectangle_type((UNIT_TYPE)point.x, (UNIT_TYPE)point.y, (UNIT_TYPE)(point.x + size.cx), (UNIT_TYPE)(point.y + size.cy)) {}
+   rectangle_type(const POINT & point, const SIZE & size) noexcept : rectangle_type((UNIT_TYPE)point.x(), (UNIT_TYPE)point.y(), (UNIT_TYPE)(point.x() + size.cx), (UNIT_TYPE)(point.y() + size.cy)) {}
    template < primitive_size SIZE >
    rectangle_type(const SIZE & size) noexcept : rectangle_type(POINT_TYPE(), size) {}
    template < primitive_point POINT1, primitive_point POINT2 >
@@ -57,7 +63,7 @@ public:
    inline bool is_empty() const noexcept { return ::is_empty(*this); }
    inline bool is_null() const noexcept { return ::is_null(*this); }
    template < primitive_point POINT >
-   inline bool contains(const POINT & point) const noexcept { return ::contains(*this, point.x, point.y); }
+   inline bool contains(const POINT & point) const noexcept { return ::contains(*this, point.x(), point.y()); }
    inline bool contains_x(UNIT_TYPE x) const noexcept { return ::contains_x(*this, x); }
    inline bool contains_y(UNIT_TYPE y) const noexcept { return ::contains_y(*this, y); }
 
@@ -76,19 +82,19 @@ public:
    }
 
 
-   inline POINT_F64 to_point_rate(const POINT_TYPE & point) const
+   inline ::point_f64 to_point_rate(const POINT_TYPE & point) const
    {
 
-      return { ((double)point.x - (double)this->left) / (double)width(),
-         ((double)point.y - (double)this->top) / (double)height() };
+      return { ((double)point.x() - (double)this->left) / (double)width(),
+         ((double)point.y() - (double)this->top) / (double)height() };
 
    }
 
-   inline POINT_TYPE from_point_rate(const POINT_F64 & point) const
+   inline POINT_TYPE from_point_rate(const ::point_f64 & point) const
    {
 
-      return POINT_TYPE((UNIT_TYPE)(point.x * (double)width() + (double)this->left),
-         (UNIT_TYPE)(point.y * (double)height() + (double)this->top));
+      return POINT_TYPE((UNIT_TYPE)(point.x() * (double)width() + (double)this->left),
+         (UNIT_TYPE)(point.y() * (double)height() + (double)this->top));
 
    }
 
@@ -130,14 +136,14 @@ public:
    rectangle_type & move_bottom_to(UNIT_TYPE bottom) noexcept { this->top = bottom - height(); this->bottom = bottom; return *this; }
 
    rectangle_type & move_to(UNIT_TYPE left, UNIT_TYPE top) noexcept { move_left_to(left); return move_top_to(top); return *this; }
-   rectangle_type & move_to(const POINT_TYPE & point) noexcept { return move_to(point.x, point.y); }
+   rectangle_type & move_to(const POINT_TYPE & point) noexcept { return move_to(point.x(), point.y()); }
 
    POINT_TYPE & top_left() noexcept { return *((POINT_TYPE *)this); }
    POINT_TYPE & bottom_right() noexcept { return *((POINT_TYPE *)this + 1); }
    void swap_left_right() noexcept { ::swap_left_right(*this); }
 
-   operator RECTANGLE_BASE_TYPE * () noexcept { return this; }
-   operator const RECTANGLE_BASE_TYPE * () const noexcept { return (const RECTANGLE_BASE_TYPE *)this; }
+   //operator RECTANGLE_BASE_TYPE * () noexcept { return this; }
+   //operator const RECTANGLE_BASE_TYPE * () const noexcept { return (const RECTANGLE_BASE_TYPE *)this; }
 
    operator bool() const noexcept { return is_set(); }
 
@@ -147,7 +153,7 @@ public:
    template < primitive_size SIZE >
    rectangle_type & set(const SIZE & s) noexcept { return ::assign(*this, POINT_TYPE(), s); }
    template < primitive_point POINT1, primitive_point POINT2 >
-   rectangle_type & set(const POINT1 & p1, const POINT2 & p2) noexcept { return ::assign(*this, p1.x, p1.y, p2.x, p2.y); }
+   rectangle_type & set(const POINT1 & p1, const POINT2 & p2) noexcept { return ::assign(*this, p1.x(), p1.y(), p2.x(), p2.y()); }
    template < primitive_point POINT, primitive_size SIZE >
    rectangle_type & set(const POINT & p, const SIZE & s) noexcept { return ::assign(*this, p, s); }
    template < primitive_rectangle RECTANGLE >
@@ -185,7 +191,7 @@ public:
    rectangle_type & deflate(UNIT_TYPE u) noexcept { return deflate(u, u); }
 
    template < primitive_point POINT >
-   rectangle_type & offset(const POINT & point) noexcept { return offset_x(point.x).offset_y(point.y); }
+   rectangle_type & offset(const POINT & point) noexcept { return offset_x(point.x()).offset_y(point.y()); }
 
 
    template < primitive_size SIZE >
@@ -245,6 +251,16 @@ public:
    rectangle_type & unite(const rectangle_type & rectangle) noexcept { return ::unite(*this, *this, rectangle); }
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
+   rectangle_type left_difference(const rectangle_type& rectangle) const { return { this->left, ::maximum(this->top, rectangle.top), rectangle.left, ::minimum(this->bottom, rectangle.bottom) }; }
+   rectangle_type top_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left, rectangle.left), this->top, ::minimum(this->right, rectangle.right), rectangle.top }; }
+   rectangle_type right_difference(const rectangle_type& rectangle) const { return { this->right, ::maximum(this->top, rectangle.top), rectangle.right, ::minimum(this->bottom, rectangle.bottom) }; }
+   rectangle_type bottom_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left, rectangle.left), this->bottom, ::minimum(this->right, rectangle.right), rectangle.bottom }; }
+
+   rectangle_type left_plus_difference(const rectangle_type& rectangle) const { return { this->left, ::minimum(this->top, rectangle.top), rectangle.left,::maximum(this->bottom, rectangle.bottom) }; }
+   rectangle_type top_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->top, ::maximum(this->right, rectangle.right), rectangle.top }; }
+   rectangle_type right_plus_difference(const rectangle_type& rectangle) const { return { this->right, ::minimum(this->top, rectangle.top), rectangle.right, ::maximum(this->bottom, rectangle.bottom) }; }
+   rectangle_type bottom_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->bottom, ::maximum(this->right, rectangle.right), rectangle.bottom }; }
+
    template < primitive_rectangle RECTANGLE >
    rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { ::copy(*this, rectangle); return *this; }
 
@@ -252,7 +268,7 @@ public:
    bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
 //   template < primitive_point POINT >
-//   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x, point.y); }
+//   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x(), point.y()); }
 //
 //   template < primitive_size SIZE >
 //   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx, size.cy); }
@@ -273,7 +289,7 @@ public:
 
 
    //template < primitive_point POINT >
-   //rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x, point.y); }
+   //rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x(), point.y()); }
 
    template < primitive_size SIZE >
    rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract(*this, -size.cx, -size.cy); }
@@ -284,11 +300,11 @@ public:
 
    rectangle_type operator+(const POINT_TYPE & point) const noexcept
    {
-      rectangle_type rectangle(*this); rectangle.offset(point.x, point.y); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(point.x(), point.y()); return rectangle;
    }
    rectangle_type operator-(const POINT_TYPE & point) const noexcept
    {
-      rectangle_type rectangle(*this); rectangle.offset(-point.x, -point.y); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(-point.x(), -point.y()); return rectangle;
    }
 
    template < primitive_size SIZE >
@@ -395,11 +411,11 @@ public:
 
       UNIT_TYPE h = (UNIT_TYPE)(d * height());
 
-      this->left = point.x - w / 2;
+      this->left = point.x() - w / 2;
 
       this->right = this->left + w;
 
-      this->top = point.y - h / 2;
+      this->top = point.y() - h / 2;
 
       this->bottom = this->top + h;
 
@@ -544,38 +560,38 @@ public:
       if ((ealign & e_align_horizontal) == e_align_horizontal_center)
       {
 
-         point.x = rectangle.left + (rectangle.right - rectangle.left) / 2 - width() / 2 - this->left;
+         point.x() = rectangle.left + (rectangle.right - rectangle.left) / 2 - width() / 2 - this->left;
 
       }
       else if ((ealign & e_align_horizontal) == e_align_left)
       {
 
-         point.x = rectangle.left - this->left;
+         point.x() = rectangle.left - this->left;
 
       }
       else if ((ealign & e_align_horizontal) == e_align_right)
       {
 
-         point.x = rectangle.right - this->right;
+         point.x() = rectangle.right - this->right;
 
       }
 
       if ((ealign & e_align_vertical) == e_align_vertical_center)
       {
 
-         point.y = rectangle.top + (rectangle.bottom - rectangle.top) / 2 - height() / 2 - this->top;
+         point.y() = rectangle.top + (rectangle.bottom - rectangle.top) / 2 - height() / 2 - this->top;
 
       }
       else if ((ealign & e_align_vertical) == e_align_top)
       {
 
-         point.y = rectangle.top - this->top;
+         point.y() = rectangle.top - this->top;
 
       }
       else if ((ealign & e_align_vertical) == e_align_bottom)
       {
 
-         point.y = rectangle.bottom - this->bottom;
+         point.y() = rectangle.bottom - this->bottom;
 
       }
 
@@ -662,10 +678,10 @@ public:
    }
 
 
-   SIZE_F64 aspect_size(const rectangle_type & rectangle) const
+   ::size_f64 aspect_size(const rectangle_type & rectangle) const
    {
 
-      SIZE_F64 size = { (double) width(), (double) height()};
+      ::size_f64 size = { (double) width(), (double) height()};
 
       double dW = (double)rectangle.width() / size.cx;
 
@@ -805,6 +821,7 @@ public:
 
    }
 
+
    void _001Constrain(const rectangle_type & rectangle)
    {
 
@@ -855,7 +872,8 @@ public:
    }
 
 
-   void _001Constrain(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE & rectangleBounding)
+   template < primitive_rectangle RECTANGLE >
+   void _001Constrain(const rectangle_type & rectangle, RECTANGLE& rectangleBounding)
    {
 
       _001ConstrainX(rectangle, rectangleBounding);
@@ -865,7 +883,8 @@ public:
    }
 
 
-   void _001ConstrainX(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE & rectangleBounding)
+   template < primitive_rectangle RECTANGLE >
+   void _001ConstrainX(const rectangle_type & rectangle, RECTANGLE & rectangleBounding)
    {
 
       if (rectangleBounding.right > rectangle.right)
@@ -893,7 +912,8 @@ public:
    }
 
 
-   void _001ConstrainY(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE & rectangleBounding)
+   template < primitive_rectangle RECTANGLE >
+   void _001ConstrainY(const rectangle_type & rectangle, RECTANGLE & rectangleBounding)
    {
 
       if (rectangleBounding.bottom > rectangle.bottom)
@@ -1208,8 +1228,8 @@ using rectangle = ::rectangle_f64;
 
 
 
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-inline void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::normalize() noexcept
+template < primitive_number NUMBER >
+inline void rectangle_type < NUMBER >::normalize() noexcept
 {
 
    __sort(this->left, this->right);
@@ -1222,8 +1242,8 @@ inline void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::norma
 
 
 
-//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-//void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+//template < primitive_number NUMBER >
+//void rectangle_type < NUMBER > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
 //{
 //
 //   ::get_bounding_rectangle(*this, ppoint, count);

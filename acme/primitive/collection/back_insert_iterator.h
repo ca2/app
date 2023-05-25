@@ -12,7 +12,7 @@ public:
   typedef Container container_type;
   explicit back_insert_iterator (Container& x) : container(x) {}
   back_insert_iterator<Container>& operator= (typename Container::const_reference value)
-    { container->push_back(value); return *this; }
+    { container->add(value); return *this; }
   back_insert_iterator<Container>& operator* ()
     { return *this; }
   back_insert_iterator<Container>& operator++ ()

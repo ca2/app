@@ -1349,7 +1349,7 @@ namespace user
          //         break;*/
          //         //     }
          //      }
-         //      prompt.release_string_buffer();
+         //      prompt.release_buffer();
          //   }
          //}
 

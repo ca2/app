@@ -17,7 +17,7 @@ namespace experience_nanoui
    frame::frame()
    {
 
-      m_pointWindowIcon.x = 5;
+      m_pointWindowIcon.x() = 5;
 
       m_sizeIcon.cx = 32;
 
@@ -293,7 +293,7 @@ namespace experience_nanoui
    //   return (frame::enum_element) (*((i32*)&eelement))++;
    //}
 
-   bool frame::get_element_rect(RECTANGLE_I32 & rect, enum_element eelement)
+   bool frame::get_element_rect(::rectangle_i32 & rect, enum_element eelement)
    {
       switch(eelement)
       {
@@ -309,8 +309,8 @@ namespace experience_nanoui
 
          }
 
-         rect.left = m_pointWindowIcon.x;
-         rect.top = m_pointWindowIcon.y;
+         rect.left = m_pointWindowIcon.x();
+         rect.top = m_pointWindowIcon.y();
          rect.right = rect.left + m_sizeIcon.cx;
          rect.bottom = rect.top + m_sizeIcon.cy;
 
@@ -330,8 +330,8 @@ namespace experience_nanoui
 
          }
 
-         //lprect->left = m_pointMoveGripMinimal.x + 2;
-         //lprect->top = m_pointMoveGripMinimal.y + 2;
+         //lprect->left = m_pointMoveGripMinimal.x() + 2;
+         //lprect->top = m_pointMoveGripMinimal.y() + 2;
          rect.right = rect.left + m_iCaptionHeight - 4;
          rect.bottom = rect.top + m_iCaptionHeight - 4;
 
@@ -345,9 +345,9 @@ namespace experience_nanoui
    }
 
    
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
-      return ::experience::frame::experience_frame_hit_test(point);
+      return ::experience::frame::experience_frame_hit_test(point, ezorder);
 //               ::rectangle_i32 rectangle;
 //               for(enum_element eelement = (enum_element)(::e_element_none + 1);
 //                     eelement < ElementEnd;
@@ -690,7 +690,7 @@ namespace experience_nanoui
 
                ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130));
+               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130), 1.0);
 
                i += 5;
 

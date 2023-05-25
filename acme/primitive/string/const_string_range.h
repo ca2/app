@@ -8,6 +8,7 @@
 #include "acme/primitive/collection/null_terminated_iterator.h"
 #include "acme/primitive/collection/null_terminated_range.h"
 
+
 template<typename ITERATOR_TYPE>
 class string_range;
 
@@ -158,16 +159,15 @@ public:
 
    //inline const CHARACTER *ptr_at(::index i) { return this->data() + i; }
 
-   inline const CHARACTER* ptr_at(::index i) const { return this->data() + i; }
+   inline const CHARACTER* address_at(::index i) const { return this->data() + i; }
 
    //inline const CHARACTER *reverse_ptr(::index i) { return this->data() + this->size() + i; }
 
-   inline const CHARACTER* rear_ptr(::index i) const { return this->data() + this->size() + i; }
+   inline const CHARACTER* rear_address(::index i) const { return this->end() + i; }
 
    inline const CHARACTER& operator[](index i) const { return this->data()[i]; }
 
-   strsize offset_of(const CHARACTER* p) const { return ::offset_of(p, data()); }
-
+   strsize index_of(const CHARACTER* p) const { return ::index_of(p, data()); }
 
    //    string_range &operator=(const THIS_RANGE &range)
    //    {
@@ -395,12 +395,12 @@ public:
    }
    constexpr strsize find_index(const SCOPED_STRING& range, strsize start = 0) const {
 
-      return this->offset_of(start <= 0 ? this->find(range) : (*this)(start).find(range));
+      return this->index_of(start <= 0 ? this->find(range) : (*this)(start).find(range));
 
    }
    constexpr strsize find_index(CHARACTER ch, strsize start = 0) const {
 
-      return this->offset_of(start <= 0 ? this->find(ch) : (*this)(start).find(ch));
+      return this->index_of(start <= 0 ? this->find(ch) : (*this)(start).find(ch));
 
    }
 
@@ -467,7 +467,7 @@ public:
    constexpr strsize _rear_find_index(const SCOPED_STRING& range, strsize end = -1) const
    {
 
-      return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._rear_find(range));
+      return this->index_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._rear_find(range));
 
    }
 
@@ -475,7 +475,7 @@ public:
    constexpr strsize rear_find_index(const SCOPED_STRING& range, strsize end = -1) const
    {
 
-      return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1).rear_find(range));
+      return this->index_of((*this)(0, end >= 0 ? end : this->size() + end + 1).rear_find(range));
 
    }
 
@@ -499,7 +499,7 @@ public:
    constexpr strsize _rear_find_index(CHARACTER character, strsize end = -1) const
    {
 
-      return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._rear_find(character));
+      return this->index_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._rear_find(character));
 
    }
 
@@ -507,7 +507,7 @@ public:
    constexpr strsize rear_find_index(CHARACTER character, strsize end = -1) const
    {
 
-      return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1).rear_find(character));
+      return this->index_of((*this)(0, end >= 0 ? end : this->size() + end + 1).rear_find(character));
 
    }
 
@@ -523,12 +523,12 @@ public:
    strsize case_insensitive_find_index(const SCOPED_STRING& scopedstr) const RELEASENOTHROW
    {
 
-      return this->offset_of(case_insensitive_find(scopedstr));
+      return this->index_of(case_insensitive_find(scopedstr));
 
    }
 
 
-   strsize case_insensitive_find_index(const SCOPED_STRING& scopedstr, strsize start) const RELEASENOTHROW { return this->offset_of((*this)(start).case_insensitive_find(scopedstr)); }
+   strsize case_insensitive_find_index(const SCOPED_STRING& scopedstr, strsize start) const RELEASENOTHROW { return this->index_of((*this)(start).case_insensitive_find(scopedstr)); }
 
 
    constexpr const_iterator _case_insensitive_rear_find(const SCOPED_STRING& scopedstr) const
@@ -542,7 +542,7 @@ public:
    strsize _case_insensitive_rear_find_index(const SCOPED_STRING& scopedstr, strsize end = -1) const RELEASENOTHROW
    {
 
-      return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._case_insensitive_rear_find(scopedstr));
+      return this->index_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._case_insensitive_rear_find(scopedstr));
 
    }
 
@@ -559,7 +559,7 @@ public:
    {
 
 
-      return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1).case_insensitive_rear_find(scopedstr));
+      return this->index_of((*this)(0, end >= 0 ? end : this->size() + end + 1).case_insensitive_rear_find(scopedstr));
 
    }
 
@@ -613,7 +613,7 @@ public:
    }
 
    constexpr strsize _find_first_character_in_index(const SCOPED_STRING& range) const {
-      return this->offset_of(_find_first_character_in(range));
+      return this->index_of(_find_first_character_in(range));
    }
 
    using BASE_RANGE::find_first_character_in;
@@ -624,7 +624,7 @@ public:
 
    }
    constexpr strsize find_first_character_in_index(const SCOPED_STRING& range, ::strsize start = 0) const {
-      return this->offset_of((*this)(start).find_first_character_in(range));
+      return this->index_of((*this)(start).find_first_character_in(range));
    }
 
 
@@ -684,7 +684,7 @@ public:
 
 
    constexpr strsize skip_any_character_in_index(const SCOPED_STRING& range, ::strsize start = 0) const {
-      return this->offset_of((*this)(start).skip_any_character_in(range));
+      return this->index_of((*this)(start).skip_any_character_in(range));
    }
 
 
@@ -863,14 +863,14 @@ public:
 
        //constexpr strsize _rear_find_index(ARG_ITEM item) const {
 
-       //   return this->offset_of(this->_rear_find(item));
+       //   return this->index_of(this->_rear_find(item));
 
        //}
 
 
        //constexpr strsize rear_find_index(ARG_ITEM item) const {
 
-       //   return this->offset_of(this->rear_find(item));
+       //   return this->index_of(this->rear_find(item));
 
        //}
 
@@ -1267,12 +1267,12 @@ public:
    // find routines
 
 // find the first occurrence of character 'ch', starting at index 'iStart'
-    //strsize find_index(CHARACTER ch) const RELEASENOTHROW { return this->offset_of(this->find(ch)); }
+    //strsize find_index(CHARACTER ch) const RELEASENOTHROW { return this->index_of(this->find(ch)); }
 
     //   strsize find(CHARACTER ch) const RELEASENOTHROW;
     //   strsize find(CHARACTER ch) const RELEASENOTHROW;
-   strsize case_insensitive_find_index(CHARACTER ch) const RELEASENOTHROW { return this->offset_of(case_insensitive_find(ch)); }
-   strsize case_insensitive_find_index(CHARACTER ch, strsize start) const RELEASENOTHROW { return this->offset_of((*this)(start).case_insensitive_find(ch)); }
+   strsize case_insensitive_find_index(CHARACTER ch) const RELEASENOTHROW { return this->index_of(case_insensitive_find(ch)); }
+   strsize case_insensitive_find_index(CHARACTER ch, strsize start) const RELEASENOTHROW { return this->index_of((*this)(start).case_insensitive_find(ch)); }
 
    const_iterator find_skip_or_end(CHARACTER ch = 0) const RELEASENOTHROW
    {
@@ -1471,7 +1471,7 @@ public:
    ::index unicode_case_insensitive_find_index(const SCOPED_STRING& scopedstr, strsize start = 0) const RELEASENOTHROW
    {
 
-      return this->offset_of(this->operator()(start).unicode_case_insensitive_find(scopedstr));
+      return this->index_of(this->operator()(start).unicode_case_insensitive_find(scopedstr));
 
    }
 

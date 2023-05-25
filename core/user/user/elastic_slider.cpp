@@ -145,7 +145,7 @@ namespace user
 
       else
       {
-         m_dTensionPosition = ((double) point.x / (double) rectangleClient.width());
+         m_dTensionPosition = ((double) point.x() / (double) rectangleClient.width());
       }
    }
 

@@ -32,15 +32,15 @@ namespace user
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
 
-int get_main_screen_rectangle(RECTANGLE_I32 * prectangle);
+int get_main_screen_rectangle(::rectangle_i32 * prectangle);
 
 
-int GetScreenRect(RECTANGLE_I32 * prectangle, int iMonitor);
+int GetScreenRect(::rectangle_i32 * prectangle, int iMonitor);
 
 
 int GetScreenCount();
 
-int GetWorkspaceRect(RECTANGLE_I32 * prectangle, int iMonitor);
+int GetWorkspaceRect(::rectangle_i32 * prectangle, int iMonitor);
 
 
 int GetWorkspaceCount();
@@ -62,7 +62,7 @@ int_bool destroy_window(oswindow w);
 //oswindow set_active_window(oswindow window);
 //int_bool enable_window(oswindow hwnd, int_bool bEnable);
 
-//void get_main_screen_rectangle(RECTANGLE_I32 * prectangle);
+//void get_main_screen_rectangle(::rectangle_i32 * prectangle);
 
 
 int_bool SetForegroundWindow(oswindow window);
@@ -72,22 +72,22 @@ void ns_redraw_window(oswindow window);
 
 
 
-//void copy(CGRect & rectangle, const RECTANGLE_I32 * prectangle);
+//void copy(CGRect & rectangle, const ::rectangle_i32 * prectangle);
 //
-//void copy(RECTANGLE_I32 * prectangle, const CGRect & rectangleSource);
+//void copy(::rectangle_i32 * prectangle, const CGRect & rectangleSource);
 //
-//void screen_coordinates_aware_copy(CGRect & rectangle, const RECTANGLE_I32 * prectangle);
+//void screen_coordinates_aware_copy(CGRect & rectangle, const ::rectangle_i32 * prectangle);
 //
-//void screen_coordinates_aware_copy(RECTANGLE_I32 * prectangle, const CGRect & rectangleSource);
+//void screen_coordinates_aware_copy(::rectangle_i32 * prectangle, const CGRect & rectangleSource);
 //
 //#ifdef MM
-//void copy(NSRect & rectangle, const RECTANGLE_I32 * prectangle);
+//void copy(NSRect & rectangle, const ::rectangle_i32 * prectangle);
 //
-//void copy(RECTANGLE_I32 * prectangle, const NSRect & rectangleSource);
+//void copy(::rectangle_i32 * prectangle, const NSRect & rectangleSource);
 //
-//void screen_coordinates_aware_copy(NSRect & rectangle, const RECTANGLE_I32 * prectangle);
+//void screen_coordinates_aware_copy(NSRect & rectangle, const ::rectangle_i32 * prectangle);
 //
-//void screen_coordinates_aware_copy(RECTANGLE_I32 * prectangle, const NSRect & rectangleSource);
+//void screen_coordinates_aware_copy(::rectangle_i32 * prectangle, const NSRect & rectangleSource);
 //
 //#endif
 

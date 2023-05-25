@@ -265,9 +265,9 @@ ExposerFunction (void *DummyArg)
 	    // Come here after something moves in front of our window
 	    // so that we need to redraw it.
 	    XCopyArea (TcDisplay, TcPixmaps[TcVisualPage], TcWindow,
-		       TcGc, Event.xexpose.x, Event.xexpose.y,
+		       TcGc, Event.xexpose.x(), Event.xexpose.y(),
 		       Event.xexpose.width, Event.xexpose.height,
-		       Event.xexpose.x, Event.xexpose.y);
+		       Event.xexpose.x(), Event.xexpose.y());
 	    break;
 	  case KeyPress:
 	    // This needs to be fixed up some to accomodate things

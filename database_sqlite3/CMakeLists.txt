@@ -49,7 +49,7 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
 
 
-   if(NOT DONT_USE_PKG_CONFIG)
+   if(USE_PKGCONFIG)
       pkg_check_modules(PKGCONFIG sqlite3)
    endif()
 

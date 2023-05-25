@@ -25,11 +25,11 @@ void ns_app_stop();
 
 CLASS_DECL_ACME void ns_get_main_screen_size(int & cx, int & cy);
 
-void screen_coordinates_aware_copy(CGRect & rect, const RECTANGLE_I32 &rectangle);
+void screen_coordinates_aware_copy(CGRect & rect, const ::rectangle_i32 &rectangle);
 
-void screen_coordinates_aware_copy(CGPoint & cgpoint, const POINT_I32 & point);
+void screen_coordinates_aware_copy(CGPoint & cgpoint, const ::point_i32 & point);
 
-void screen_coordinates_aware_copy(POINT_I32 & point, const CGPoint & cgpoint);
+void screen_coordinates_aware_copy(::point_i32 & point, const CGPoint & cgpoint);
 
 //void macos_defer_initialize_nano_callbacks();
 
@@ -205,7 +205,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   ::nano_child * nano_window::hit_test(::user::mouse * pmouse)
+   ::nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 
       return m_pinterface->hit_test(pmouse);
@@ -306,7 +306,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    void nano_window::move_to(const ::point_i32 & point)
    {
 
-      m_pwindowbridge->move_to(point.x, point.y);
+      m_pwindowbridge->move_to(point.x(), point.y());
       
    }
 

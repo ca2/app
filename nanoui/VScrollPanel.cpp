@@ -1,9 +1,9 @@
 /*
-    src/vscrollpanel.cpp -- Adds a vertical scrollbar around a widget
+    src/vscrollpanel.cpp -- Adds a vertical scrollbar around a pwidget
     that is too big to fit into a certain area
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -65,7 +65,7 @@ namespace nanoui
       if (m_children.size() > 1)
       {
 
-         throw std::runtime_error("VScrollPanel should have one child.");
+         throw std::runtime_error("VScrollPanel should have one pwidgetChild.");
 
       }
 
@@ -75,37 +75,40 @@ namespace nanoui
 
       m_fTotalHeight = (float)size.y();
 
-      if (m_fTotalHeight > m_size.y())
-      {
+      //if (m_fTotalHeight > pwidgetPanel->m_size.y())
+      //{
 
-         m_fScroll = 0.f;
+      //   m_fScroll = ::minimum_maximum(m_fScroll, 0.f, ;
 
-      }
+      //}
 
       pwidgetPanel->perform_layout(pcontext, bRecalcTextSize);
 
    }
 
 
-   Vector2i VScrollPanel::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   vector2_i32 VScrollPanel::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize) 
    {
 
       if (m_children.empty())
       {
 
-         return Vector2i(0);
+         return vector2_i32(0);
 
       }
 
-      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + Vector2i(12, 0);
+      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + vector2_i32(12, 0);
 
    }
 
 
-   bool VScrollPanel::mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
-      if (!m_children.empty() && m_fTotalHeight > m_size.y() && bDown)
+      if (!m_children.empty()
+         && m_fTotalHeight > m_size.y()
+         && bDown
+         && m_bDrag)
       {
 
          float fScroll = y_coordinate_vertical_scroll(p.y());
@@ -134,7 +137,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers))
@@ -144,10 +147,12 @@ namespace nanoui
 
       }
 
-      if (down && emouse == ::user::e_mouse_left_button && !m_children.empty() &&
-         m_fTotalHeight > m_size.y() &&
-         p.x() > m_pos.x() + m_size.x() - 13 &&
-         p.x() < m_pos.x() + m_size.x() - 4)
+      if (down
+         && emouse == ::user::e_mouse_left_button
+         && !m_children.empty() 
+         && m_fTotalHeight > m_size.y() 
+         && p.x() > m_pos.x() + m_size.x() - 13 
+         && p.x() < m_pos.x() + m_size.x() - 4)
       {
 
          m_bDrag = true;
@@ -173,6 +178,8 @@ namespace nanoui
       else if (m_bDrag && !down)
       {
 
+         m_bDrag = false;
+
          screen()->m_puserinteraction->windowing()->release_mouse_capture();
 
       }
@@ -182,7 +189,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::scroll_event(const Vector2i& p, const Vector2f& rel)
+   bool VScrollPanel::scroll_event(const vector2_i32& p, const vector2_f32& rel)
    {
 
       if (!m_children.empty() && m_fTotalHeight > m_size.y())
@@ -195,15 +202,15 @@ namespace nanoui
 
             m_fScroll = fScroll;
 
-            auto child = m_children[0];
+            auto pwidgetChild = m_children[0];
 
-            Vector2i old_pos = child->position();
+            vector2_i32 old_pos = pwidgetChild->position();
 
-            auto yOffset = get_y_offset();
+            vector2_i32 offsetScroll = get_scroll_offset();
 
-            child->set_position(Vector2i(0, (int)yOffset));
+            pwidgetChild->set_position(offsetScroll);
 
-            Vector2i new_pos = child->position();
+            vector2_i32 new_pos = pwidgetChild->position();
 
             m_update_layout = true;
 
@@ -211,7 +218,7 @@ namespace nanoui
 
             post_redraw();
 
-            child->mouse_motion_event(p - m_pos, old_pos - new_pos, true, ::user::e_key_none);
+            pwidgetChild->mouse_motion_event(p - m_pos, old_pos - new_pos, true, ::user::e_key_none);
 
          }
 
@@ -238,17 +245,25 @@ namespace nanoui
    }
 
 
-   float VScrollPanel::get_y_offset() const
+   vector2_i32 VScrollPanel::get_scroll_offset() const
    {
+
+      int yOffset;
 
       if (m_fTotalHeight <= m_size.y())
       {
 
-         return 0;
+         yOffset = 0;
+
+      }
+      else
+      {
+
+         yOffset = (int) (- m_fScroll * (m_fTotalHeight - m_size.y()));
 
       }
 
-      return -m_fScroll * (m_fTotalHeight - m_size.y());
+      return { 0, yOffset };
 
    }
 
@@ -260,20 +275,20 @@ namespace nanoui
          return;
 
       Widget* pwidgetPanel = m_children[0];
-      //m_child_preferred_height = child->preferred_size(pcontext).y();
+      //m_child_preferred_height = pwidgetChild->preferred_size(pcontext).y();
       float fTrackBarHeight = get_track_bar_height();
       //int yoffset = 0;
       //if (m_child_preferred_height > m_size.y())
         // yoffset = (int)get_y_offset(m_scroll);
-      //child->set_position(Vector2i(0, yoffset));
+      //pwidgetChild->set_position(vector2_i32(0, yoffset));
 
       if (m_update_layout)
       {
 
          m_update_layout = false;
 
-         //child->m_iHoverCandidateChildStart = -1;
-         //child->m_iHoverCandidateChildEnd = -1;
+         //pwidgetChild->m_iHoverCandidateChildStart = -1;
+         //pwidgetChild->m_iHoverCandidateChildEnd = -1;
 
          auto size = pwidgetPanel->preferred_size(pcontext, false);
 
@@ -283,24 +298,30 @@ namespace nanoui
 
       }
 
-      pcontext->save();
-
-      float y = (float)m_pos.y();
-
-      float yOffset = get_y_offset();
-
-      pcontext->translate((float)0.f, (float)yOffset);
-
-      pcontext->intersect_scissor(0.f, -yOffset, (float)m_size.x(), (float)m_size.y());
-
-      if (pwidgetPanel->visible())
       {
+         ::nano2d::guard guard(pcontext);
+         //pcontext->save();
 
-         pwidgetPanel->draw(pcontext);
+         float y = (float)m_pos.y();
+
+         auto offsetScroll = get_scroll_offset();
+
+         pcontext->translate((float)offsetScroll.x(), (float)offsetScroll.y());
+
+         pcontext->intersect_scissor((float)-offsetScroll.x(), (float)-offsetScroll.y(), (float)m_size.x(), (float)m_size.y());
+
+         //pcontext->intersect_scissor(0.f, 0.f, (float)m_size.x(), (float)m_size.y());
+
+         if (pwidgetPanel->visible())
+         {
+
+            pwidgetPanel->draw(pcontext);
+
+         }
+
+         //  pcontext->restore();
 
       }
-
-      pcontext->restore();
 
       if (m_fTotalHeight <= m_size.y())
       {
@@ -332,6 +353,7 @@ namespace nanoui
       pcontext->fill_paint(paint);
 
       pcontext->fill();
+
 
    }
 

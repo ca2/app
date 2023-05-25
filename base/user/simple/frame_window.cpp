@@ -1313,13 +1313,13 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message* pmessage)
    //if (layout().is_full_screen())
    //{
 
-   //   pMMI->ptMaxSize.y = m_FullScreenWindowRect.height();
+   //   pMMI->ptMaxSize.y() = m_FullScreenWindowRect.height();
 
-   //   pMMI->ptMaxTrackSize.y = pMMI->ptMaxSize.y;
+   //   pMMI->ptMaxTrackSize.y() = pMMI->ptMaxSize.y();
 
-   //   pMMI->ptMaxSize.x = m_FullScreenWindowRect.width();
+   //   pMMI->ptMaxSize.x() = m_FullScreenWindowRect.width();
 
-   //   pMMI->ptMaxTrackSize.x = pMMI->ptMaxSize.x;
+   //   pMMI->ptMaxTrackSize.x() = pMMI->ptMaxSize.x();
 
    //}
 
@@ -1613,7 +1613,7 @@ void simple_frame_window::ActivateFrame(::e_display edisplay)
 }
 
 
-void simple_frame_window::GetBorderRect(RECTANGLE_I32* prectangle)
+void simple_frame_window::GetBorderRect(::rectangle_i32* prectangle)
 {
 
    *prectangle = m_rectangleBorder;
@@ -2409,25 +2409,25 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
    }
 
-   {
+   //{
 
-      synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pprimitiveimpl->m_puserinteraction == nullptr)
-      {
+   //   if (m_pprimitiveimpl->m_puserinteraction == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (!_000OnBeforeDraw(pgraphicsParam))
-      {
+   //   //if (!_000OnBeforeDraw(pgraphicsParam))
+   //   //{
 
-         return;
+   //     // return;
 
-      }
+   //   //}
 
-   }
+   //}
 
    auto pstyle = get_style(pgraphicsParam);
 
@@ -2493,38 +2493,38 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
       if (dAlpha > 0.0)
       {
 
-         bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
+         //bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
          int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 
-         if (!bBlurBackground)
-         {
+         //if (!bBlurBackground)
+         //{
 
-            iDrawingOrder = get_int(pstyle, ::user::e_int_top_level_drawing_order);
+         //   iDrawingOrder = get_int(pstyle, ::user::e_int_top_level_drawing_order);
 
-            if (pstyle)
-            {
+         //   if (pstyle)
+         //   {
 
-               pstyle->_001OnDrawMainFrameBackground(pgraphics, this);
+         //      pstyle->_001OnDrawMainFrameBackground(pgraphics, this);
 
-               //if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
-               //{
+         //      //if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+         //      //{
 
-               //   break;
+         //      //   break;
 
-               //}
+         //      //}
 
-               //style.next();
+         //      //style.next();
 
-            }
+         //   }
 
-         }
-
-#if TEST
-
-         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
-
-#endif
+         //}
+//
+//#if TEST
+//
+//         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
+//
+//#endif
 
          string strType = __type_name(this);
 
@@ -2577,7 +2577,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
       }
 
-      _008CallOnDraw(pgraphics);
+      if (m_bOverdraw)
+      {
+
+         _008CallOnDraw(pgraphics);
+
+      }
 
 #if TEST
 
@@ -2802,7 +2807,7 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-void simple_frame_window::client_rectangle(RECTANGLE_I32& rectangle, ::user::enum_layout elayout)
+void simple_frame_window::client_rectangle(::rectangle_i32& rectangle, ::user::enum_layout elayout)
 {
 
    ::experience::frame_window::client_rectangle(rectangle, elayout);
@@ -3134,7 +3139,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //
 //   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //
-//   //strCommand.release_string_buffer();
+//   //strCommand.release_buffer();
 //
 //#else
 //
@@ -3407,7 +3412,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (puserinteractionpointeraChild)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
       //if (0)
@@ -3502,7 +3507,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
 
@@ -3518,11 +3523,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                if (base_class < ::experience::control_box > ::bases(pinteraction))
                {
 
-                  string str;
+                  auto strWindowText = pinteraction->get_window_text();
 
-                  pinteraction->get_window_text(str);
+                  //pinteraction->get_window_text(str);
 
-                  if (str == "r")
+                  if (strWindowText == "r")
                   {
 
                      //TRACE0("x button");

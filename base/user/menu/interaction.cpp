@@ -192,13 +192,13 @@ namespace user
    void menu_interaction::on_calc_size(calc_size * pcalcsize)
    {
 
-      string strText;
+      auto strWindowText = get_window_text();
 
-      get_window_text(strText);
+      //get_window_text(strText);
 
       pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
 
-      auto size = pcalcsize->m_pgraphics->get_text_extent(strText);
+      auto size = pcalcsize->m_pgraphics->get_text_extent(strWindowText);
 
       auto pstyle = get_style(pcalcsize->m_pgraphics);
 

@@ -220,7 +220,7 @@ namespace html
 
          //m_pcombo->screen_to_client(rectangleWindow);
 
-         //::draw2d::savedc savedc(pgraphics);
+         //::draw2d::save_context savecontext(pgraphics);
 
          //pgraphics->set_origin(rectangleWindow.top_left());
 

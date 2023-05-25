@@ -95,8 +95,8 @@ public:
    void create_drawing_objects() override;
    void update_drawing_objects() override;
 
-   //::nano_child * hit_test(::user::mouse * pmouse) override;
-   ::nano_child * on_hit_test(const ::point_i32 & point) override;
+   //::nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
+   ::nano_child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
    void add_child(nano_child * pchild) override;
    nano_child * get_child_by_id(const ::atom & atom);
 

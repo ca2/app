@@ -25,7 +25,7 @@ namespace experience_tranquillum
 
       void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside);
 
-      void GetBorderRect(const ::rectangle_i32 & rectangleClient, RECTANGLE_I32 * prectangle, enum_border eside);
+      void GetBorderRect(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * prectangle, enum_border eside);
 
       void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient);
 
@@ -33,7 +33,7 @@ namespace experience_tranquillum
 
       void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       status < ::color::color > get_border_main_body_color() override;
 

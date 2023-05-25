@@ -76,11 +76,11 @@ namespace draw2d
       virtual bool harc(const ::point_f64 & point, double w, const ::angle & angle);
 
 
-      //virtual bool add_lines(const POINT_I32 * ppoint, ::count nCount);
+      //virtual bool add_lines(const ::point_i32 * ppoint, ::count nCount);
       virtual bool add_lines(const ::point_f64 * ppoint, ::count nCount);
 
 
-      //virtual bool add_polygon(const POINT_I32* ppoint, ::count nCount);
+      //virtual bool add_polygon(const ::point_i32* ppoint, ::count nCount);
       virtual bool add_polygon(const ::point_f64 * ppoint, ::count nCount);
 
 
@@ -100,7 +100,7 @@ namespace draw2d
 
 
       virtual bool get_bounding_rectangle(::rectangle_f64 & rectangle) const;
-      //virtual bool get_bounding_rectangle(RECTANGLE_I32 * prectangle) const;
+      //virtual bool get_bounding_rectangle(::rectangle_i32 * prectangle) const;
 
 
 

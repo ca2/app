@@ -568,7 +568,7 @@ void TransformSkewX(float* t, float a)
 
 
 	// State handling
-	void context::save()
+	void context::save1()
 	{
 		//if (m_nStates >= NVG_MAX_STATES)
 		//	return;
@@ -581,7 +581,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 	
-	void context::restore()
+	void context::restore1()
 	{
 		
 		//restore();
@@ -592,7 +592,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	void context::reset()
+	void context::reset1()
 	{
 
 		::nano2d::state * state = __getState();
@@ -972,8 +972,8 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	::nano2d::paint context::image_pattern(float cx, float cy, float w, float h, float angle,
-		int image, float alpha)
+	::nano2d::paint context::image_pattern_from_index(float cx, float cy, float w, float h, float angle,
+		float alpha, int image)
 	{
 
 		return {};
@@ -995,6 +995,15 @@ void TransformSkewX(float* t, float a)
 		//p.innerColor = p.outerColor = context::RGBAf)(1, 1, 1, alpha);
 
 		//return p;
+	}
+
+
+	::nano2d::paint context::image_pattern_from_image(float cx, float cy, float w, float h, float angle,
+		float alpha, ::image * pimage)
+	{
+
+		return {};
+
 	}
 
 	// Scissoring
@@ -1889,8 +1898,8 @@ void TransformSkewX(float* t, float a)
 	//
 	//		if (loop) {
 	//			// Loop it
-	//			context::__vset)(dst, verts[0].x, verts[0].y, u0, 1); dst++;
-	//			context::__vset)(dst, verts[1].x, verts[1].y, u1, 1); dst++;
+	//			context::__vset)(dst, verts[0].x(), verts[0].y(), u0, 1); dst++;
+	//			context::__vset)(dst, verts[1].x(), verts[1].y(), u1, 1); dst++;
 	//		}
 	//		else {
 	//			// Add cap
@@ -1983,7 +1992,7 @@ void TransformSkewX(float* t, float a)
 	//		}
 	//		else {
 	//			for (j = 0; j < path->count; ++j) {
-	//				context::__vset)(dst, pts[j].x, pts[j].y, 0.5f, 1);
+	//				context::__vset)(dst, pts[j].x(), pts[j].y(), 0.5f, 1);
 	//				dst++;
 	//			}
 	//		}
@@ -2023,8 +2032,8 @@ void TransformSkewX(float* t, float a)
 	//			}
 	//
 	//			// Loop it
-	//			context::__vset)(dst, verts[0].x, verts[0].y, lu, 1); dst++;
-	//			context::__vset)(dst, verts[1].x, verts[1].y, ru, 1); dst++;
+	//			context::__vset)(dst, verts[0].x(), verts[0].y(), lu, 1); dst++;
+	//			context::__vset)(dst, verts[1].x(), verts[1].y(), ru, 1); dst++;
 	//
 	//			path->nstroke = (int)(dst - verts);
 	//			verts = dst;
@@ -2299,7 +2308,7 @@ void TransformSkewX(float* t, float a)
 	void context::circle(float cx, float cy, float r)
 	{
 		
-		//context::Ellipse)(ctx, cx, cy, r, r);
+		ellipse(cx, cy, r, r);
 
 	}
 
@@ -2791,8 +2800,8 @@ void TransformSkewX(float* t, float a)
 		//	}
 		//	prevIter = iter;
 		//	positions[npos].str = iter.str;
-		//	positions[npos].x = iter.x * invscale;
-		//	positions[npos].minx = context::__minf)(iter.x, q.x0) * invscale;
+		//	positions[npos].x() = iter.x() * invscale;
+		//	positions[npos].minx = context::__minf)(iter.x(), q.x0) * invscale;
 		//	positions[npos].maxx = context::__maxf)(iter.nextx, q.x1) * invscale;
 		//	npos++;
 		//	if (npos >= maxPositions)
@@ -2910,14 +2919,14 @@ void TransformSkewX(float* t, float a)
 		//			// Skip white space until the beginning of the line
 		//			if (type == NVG_CHAR || type == NVG_CJK_CHAR) {
 		//				// The current char is the row so far
-		//				rowStartX = iter.x;
+		//				rowStartX = iter.x();
 		//				rowStart = iter.str;
 		//				rowEnd = iter.next;
 		//				rowWidth = iter.nextx - rowStartX;
 		//				rowMinX = q.x0 - rowStartX;
 		//				rowMaxX = q.x1 - rowStartX;
 		//				wordStart = iter.str;
-		//				wordStartX = iter.x;
+		//				wordStartX = iter.x();
 		//				wordMinX = q.x0 - rowStartX;
 		//				// Set null break point
 		//				breakEnd = rowStart;
@@ -2943,7 +2952,7 @@ void TransformSkewX(float* t, float a)
 		//			// track last beginning of a word
 		//			if ((ptype == NVG_SPACE && (type == NVG_CHAR || type == NVG_CJK_CHAR)) || type == NVG_CJK_CHAR) {
 		//				wordStart = iter.str;
-		//				wordStartX = iter.x;
+		//				wordStartX = iter.x();
 		//				wordMinX = q.x0;
 		//			}
 
@@ -2961,14 +2970,14 @@ void TransformSkewX(float* t, float a)
 		//					nrows++;
 		//					if (nrows >= maxRows)
 		//						return nrows;
-		//					rowStartX = iter.x;
+		//					rowStartX = iter.x();
 		//					rowStart = iter.str;
 		//					rowEnd = iter.next;
 		//					rowWidth = iter.nextx - rowStartX;
 		//					rowMinX = q.x0 - rowStartX;
 		//					rowMaxX = q.x1 - rowStartX;
 		//					wordStart = iter.str;
-		//					wordStartX = iter.x;
+		//					wordStartX = iter.x();
 		//					wordMinX = q.x0 - rowStartX;
 		//				}
 		//				else {

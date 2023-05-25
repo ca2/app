@@ -73,9 +73,8 @@ public:
 
 
    inline TYPE pop(::index i = -1);
-   inline ::index push(ARG_TYPE newElement,::index i = 0);
+   inline ::index push(ARG_TYPE newElement);
    inline void pop_back(::index i = -1);
-   inline void push_back(ARG_TYPE newElement, ::index = 0);
 
 
 
@@ -97,7 +96,7 @@ public:
    //inline TYPE& operator[](::index nIndex);
 
     //that transfer elements around
-   ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+   TYPE & insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //::index erase_at(::index nIndex, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
    //void erase_indexes(const index_array & ia); // erase indexes from ::index raw_array upper bound to ::index raw_array lower bound
@@ -160,13 +159,12 @@ public:
 };
 
 
-
-
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_all()
 {
    return this->allocate(0, -1);
 }
+
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::
@@ -295,17 +293,21 @@ inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pop_back(
 
 }
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push(ARG_TYPE newElement, ::index n)
-{
-   return insert_at(this->get_upper_bound(n), newElement);
-}
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push_back(ARG_TYPE newElement, ::index n)
+inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push(ARG_TYPE newElement)
 {
-   insert_at(this->get_upper_bound(n), newElement);
+
+   return this->index_of(&insert_at(this->size(), newElement));
+
 }
+
+//
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add(ARG_TYPE newElement, ::index n)
+//{
+//   insert_at(this->get_upper_bound(n), newElement);
+//}
 
 
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
@@ -626,7 +628,7 @@ inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::get_at_gr
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
 
    return array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(nIndex, newElement,nCount);
@@ -1001,7 +1003,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push_back(ARG_TYPE newElement, ::index n)
+//inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add(ARG_TYPE newElement, ::index n)
 //{
 //   insert_at(this->get_upper_bound(n), newElement);
 //}

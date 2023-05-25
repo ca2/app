@@ -35,7 +35,7 @@ list(APPEND library_source
         framework.h
         Graph.cpp
         Graph.h
-        Icons.h
+        #Icons.h
         ImagePanel.cpp
         ImagePanel.h
         ImageImpact.cpp
@@ -66,7 +66,7 @@ list(APPEND library_source
         Theme.h
         ToolButton.h
         traits.h
-        vector.h
+        #vector.h
         VScrollPanel.cpp
         VScrollPanel.h
         Widget.cpp

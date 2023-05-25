@@ -191,7 +191,7 @@ namespace experience
 
       }
 
-      auto eframeCursor = experience_frame_hit_test(pmouse->m_point);
+      auto eframeCursor = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
 
       if (eframeCursor == e_frame_none)
       {
@@ -446,8 +446,8 @@ namespace experience
 
       if(eframe == e_frame_sizing_top_left)
       {
-         rectangleWindow.top = point.y +1;
-         rectangleWindow.left = point.x +1;
+         rectangleWindow.top = point.y() +1;
+         rectangleWindow.left = point.x() +1;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = m_rectangleWindowOrigin.right;
          bSize = !rectangleWindow.is_empty();
@@ -464,7 +464,7 @@ namespace experience
       }
       else if(eframe == e_frame_sizing_top)
       {
-         rectangleWindow.top = point.y +1;
+         rectangleWindow.top = point.y() +1;
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = m_rectangleWindowOrigin.right;
@@ -481,10 +481,10 @@ namespace experience
       }
       else if(eframe == e_frame_sizing_top_right)
       {
-         rectangleWindow.top = point.y +1;
+         rectangleWindow.top = point.y() +1;
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
-         rectangleWindow.right = point.x;
+         rectangleWindow.right = point.x();
          if(rectangleWindow.width() < sizeMin.cx)
          {
             rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
@@ -502,7 +502,7 @@ namespace experience
          rectangleWindow.top = m_rectangleWindowOrigin.top;
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
-         rectangleWindow.right = point.x;
+         rectangleWindow.right = point.x();
          if(rectangleWindow.width() < sizeMin.cx)
          {
             rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
@@ -514,8 +514,8 @@ namespace experience
       {
          rectangleWindow.top = m_rectangleWindowOrigin.top;
          rectangleWindow.left = m_rectangleWindowOrigin.left;
-         rectangleWindow.bottom = point.y;
-         rectangleWindow.right = point.x;
+         rectangleWindow.bottom = point.y();
+         rectangleWindow.right = point.x();
          if (rectangleWindow.width() < sizeMin.cx)
          {
             rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
@@ -560,7 +560,7 @@ namespace experience
       {
          rectangleWindow.top = m_rectangleWindowOrigin.top;
          rectangleWindow.left = m_rectangleWindowOrigin.left;
-         rectangleWindow.bottom = point.y;
+         rectangleWindow.bottom = point.y();
          rectangleWindow.right = m_rectangleWindowOrigin.right;
          if(rectangleWindow.height() < sizeMin.cy)
          {
@@ -579,8 +579,8 @@ namespace experience
       else if(eframe == e_frame_sizing_bottom_left)
       {
          rectangleWindow.top = m_rectangleWindowOrigin.top;
-         rectangleWindow.left = point.x +1;
-         rectangleWindow.bottom = point.y;
+         rectangleWindow.left = point.x() +1;
+         rectangleWindow.bottom = point.y();
          rectangleWindow.right = m_rectangleWindowOrigin.right;
          if(rectangleWindow.width() < sizeMin.cx)
          {
@@ -597,7 +597,7 @@ namespace experience
       else if(eframe == e_frame_sizing_left)
       {
          rectangleWindow.top = m_rectangleWindowOrigin.top;
-         rectangleWindow.left = point.x +1;
+         rectangleWindow.left = point.x() +1;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = m_rectangleWindowOrigin.right;
          if(rectangleWindow.width() < sizeMin.cx)
@@ -765,10 +765,10 @@ namespace experience
    }
 
 
-   enum_frame size_manager::experience_frame_hit_test(const ::point_i32 & pointCursor)
+   enum_frame size_manager::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
-      enum_frame eframe = m_pframewindow->experience_frame_hit_test(pointCursor);
+      enum_frame eframe = m_pframewindow->experience_frame_hit_test(point, ::user::e_zorder_any);
 
       switch(eframe)
       {

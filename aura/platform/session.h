@@ -23,16 +23,16 @@ namespace aura
 
       bool                                                  m_bAcceptsFirstResponder;
 
-      ::user::interaction_impl *                            m_pimplPendingFocus2;
-      ::user::interaction *                                 m_puiLastUserInputPopup;
+      ::pointer < ::user::interaction_impl >                m_pimplPendingFocus2;
+      ::pointer < ::user::interaction >                     m_puiLastUserInputPopup;
 
       //pointer_array < ::user::interaction >                  m_uiptraToolWindow;
 
-      ::user::interaction *                                 m_puiMouseMoveCapture;
-      ::user::interaction *                                 m_puiLastLButtonDown;
+      ::pointer < ::user::interaction >                     m_puiMouseMoveCapture;
 
 
-      ::pointer<::apex::savings>                         m_psavings;
+
+      ::pointer<::apex::savings>                            m_psavings;
 
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
@@ -56,9 +56,9 @@ namespace aura
 #if defined(WINDOWS)
 
       ////#pragma message("at macos??")
-      //static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32* prcMonitor, lparam dwData);
+      //static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, ::rectangle_i32* prcMonitor, lparam dwData);
 
-      //void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32* prcMonitor);
+      //void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, ::rectangle_i32* prcMonitor);
 
 #if defined(WINDOWS_DESKTOP)
       
@@ -106,7 +106,7 @@ namespace aura
 
       //virtual size_i32 get_window_minimum_size() override;
 
-      //virtual void  get_cursor_position(POINT_I32 * ppoint);
+      //virtual void  get_cursor_position(::point_i32 * ppoint);
 
       bool on_get_task_name(string& strThreadName) override;
 
@@ -250,12 +250,12 @@ namespace aura
       //virtual void translate_os_key_message(::user::key * pkey);
       //virtual bool on_create_frame_window();
 
-      //virtual void get_cursor_position(POINT_I32 * ppoint) override;
+      //virtual void get_cursor_position(::point_i32 * ppoint) override;
       //inline ::point_i32 get_cursor_position() {::point_i32 point; get_cursor_position(&point); return point;}
 
       //virtual void set_cursor_pos(const ::point_i32 & point) override;
 
-//      virtual index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr) override;
+//      virtual index get_main_monitor(::rectangle_i32 * prectangle = nullptr) override;
 
       //virtual index get_ui_workspace(::user::interaction * pinteraction);
 
@@ -374,7 +374,7 @@ namespace aura
 
       virtual void     main() override;
 
-      virtual void defer_initialize_host_window(const RECTANGLE_I32 * lprect = nullptr) override;
+      virtual void defer_initialize_host_window(const ::rectangle_i32 * lprect = nullptr) override;
 
       //virtual ::user::interaction * get_host_window();
 

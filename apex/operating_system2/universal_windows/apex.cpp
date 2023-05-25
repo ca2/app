@@ -310,7 +310,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //string get_last_error_message(u32 dwError)
 //{
 //   wstring wstr;
-//   unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
+//   unichar * p = wstr.get_buffer(64 * 1024 / sizeof(unichar));
 //   ::u32 dw = FormatMessageW(
 //              FORMAT_MESSAGE_FROM_SYSTEM,
 //              nullptr,
@@ -320,7 +320,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //              wstr.get_length() / sizeof(unichar),
 //              nullptr);
 //   p[dw] = L'\0';
-//   wstr.release_string_buffer();
+//   wstr.release_buffer();
 //   string str(wstr);
 //   return str;
 //}

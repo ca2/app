@@ -67,7 +67,7 @@ namespace windowing
 
       virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
-      virtual void get_cursor_position(POINT_I32 * ppointCursor);
+      virtual void get_cursor_position(::point_i32 * ppointCursor);
 
       inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
 
@@ -146,9 +146,9 @@ namespace windowing
       virtual bool is_window_visible();
       
 
-      virtual bool client_to_screen(POINT_I32 * ppoint);
+      virtual bool client_to_screen(::point_i32 * ppoint);
 
-      virtual bool screen_to_client(POINT_I32 * ppoint);
+      virtual bool screen_to_client(::point_i32 * ppoint);
 
 
       virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
@@ -180,32 +180,32 @@ namespace windowing
       virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
 
-      virtual void set_window_text(const ::string & pszString);
+      virtual void set_window_text(const ::scoped_string & scopedstr);
 
-      virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
+      virtual ::string get_window_text();
 
-      virtual void get_window_text(string & rectangleString);
-      virtual strsize get_window_text_length();
+      //virtual void get_window_text(string & rectangleString);
+      //virtual strsize get_window_text_length();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
       virtual ::u32 ArrangeIconicWindows();
 
       virtual void rects_from_os();
-      virtual bool window_rect_from_os(RECTANGLE_I32 * prectangle);
-      virtual bool client_rect_from_os(RECTANGLE_I32 * prectangle);
+      virtual bool window_rect_from_os(::rectangle_i32 * prectangle);
+      virtual bool client_rect_from_os(::rectangle_i32 * prectangle);
 
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = true);
-      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase = false);
+      virtual bool GetUpdateRect(::rectangle_i32 * prectangle, bool bErase = false);
 
       virtual i32 GetUpdateRgn(::draw2d::region * pRgn, bool bErase = false);
       virtual void Invalidate(bool bErase = true);
-      virtual void InvalidateRect(const RECTANGLE_I32 * rectangle, bool bErase = true);
+      virtual void InvalidateRect(const ::rectangle_i32 * rectangle, bool bErase = true);
 
       virtual void InvalidateRgn(::draw2d::region * pRgn, bool bErase = true);
-      virtual void ValidateRect(const RECTANGLE_I32 * rectangle_i32);
+      virtual void ValidateRect(const ::rectangle_i32 * rectangle_i32);
 
       virtual void ValidateRgn(::draw2d::region * pRgn);
 
@@ -272,7 +272,7 @@ namespace windowing
       void on_set_parent(::user::interaction * pinteraction);
 
 
-      virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);
+      virtual bool get_rect_normal(::rectangle_i32 * prectangle);
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
 

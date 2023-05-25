@@ -10,7 +10,7 @@ public:
     typedef TYPE BASE_TYPE;
     typedef ARG_TYPE BASE_ARG_TYPE;
 
-    inline void push_back(ARG_TYPE t)
+    inline void add(ARG_TYPE t)
     {
        BASE_ARRAY::add(t);
     }

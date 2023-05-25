@@ -73,7 +73,7 @@ outtextxy (int x, int y, char * textstring)
       switch (TcTextHoriz)
         {
 	case LEFT_TEXT:
-	  // This does not actually work in true Turbo C 2.x.
+	  // This does not actually work in true Turbo C 2.x().
 	  // The text ends up right-justified in my tests.  
 	  // I'm not sure if I should duplicate Borland's bug or not ....
 	  // No, I guess I'll make it work the way it's documented,
@@ -146,8 +146,8 @@ outtextxy (int x, int y, char * textstring)
 		    if (0 != (Mask & 128))
 		      {
 			// Note that this CAN'T overflow the array.
-			Points[NumPoints].x = x;
-			Points[NumPoints].y = y;
+			Points[NumPoints].x() = x;
+			Points[NumPoints].y() = y;
 			NumPoints++;
 		      }
 		    x += DeltaX;
@@ -181,8 +181,8 @@ outtextxy (int x, int y, char * textstring)
 			  }  
 			for (i = 0; i < NumPoints; i++)
 			  {
-			    DumPoints[i].x = Points[i].x + OffX;
-			    DumPoints[i].y = Points[i].y + OffY;
+			    DumPoints[i].x() = Points[i].x() + OffX;
+			    DumPoints[i].y() = Points[i].y() + OffY;
 			  }  
 			XDrawPoints (TcDisplay, TcPixmaps[TcActivePage], TcGc, DumPoints, NumPoints, CoordModeOrigin);
 			if (TcActivePage == TcVisualPage)

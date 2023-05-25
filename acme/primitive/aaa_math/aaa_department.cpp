@@ -365,11 +365,11 @@ namespace mathematics
 
       string str;
 
-      char * psz = str.get_string_buffer(s);
+      char * psz = str.get_buffer(s);
 
       gen_rand_alnum(psz, s);
 
-      str.release_string_buffer(s);
+      str.release_buffer(s);
 
       return str;
 

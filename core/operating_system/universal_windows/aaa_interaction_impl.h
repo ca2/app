@@ -152,7 +152,7 @@ namespace universal_windows
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      virtual void CalcWindowRect(RECTANGLE_I32 * lpClientRect, ::u32 nAdjustType = adjustBorder);
+      virtual void CalcWindowRect(::rectangle_i32 * lpClientRect, ::u32 nAdjustType = adjustBorder);
 
 
       // get immediate child with given ID
@@ -203,11 +203,11 @@ namespace universal_windows
       //using ::user::interaction_impl::client_rectangle;
       //virtual bool client_rectangle(RECT64 * lpRect);
 
-      //virtual bool client_to_screen(RECTANGLE_I32 * lprect);
+      //virtual bool client_to_screen(::rectangle_i32 * lprect);
       //virtual bool client_to_screen(POINT32 * lppoint);
       //virtual bool client_to_screen(RECT64 * lprect);
       //virtual bool client_to_screen(POINT64 * lppoint);
-      //virtual bool screen_to_client(RECTANGLE_I32 * lprect);
+      //virtual bool screen_to_client(::rectangle_i32 * lprect);
       //virtual bool screen_to_client(POINT32 * lppoint);
       //virtual bool screen_to_client(RECT64 * lprect);
       //virtual bool screen_to_client(POINT64 * lppoint);
@@ -217,7 +217,7 @@ namespace universal_windows
 
       // Coordinate Mapping Functions
       virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, POINT32 * lpPoint, ::u32 nCount);
-      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, RECTANGLE_I32 * lpRect);
+      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, ::rectangle_i32 * lpRect);
 
       // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
@@ -228,7 +228,7 @@ namespace universal_windows
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = true);
-      //virtual bool GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase = false);
+      //virtual bool GetUpdateRect(::rectangle_i32 * lpRect, bool bErase = false);
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       //virtual void Invalidate(bool bErase = true);
       //virtual void InvalidateRect(LPCRECT32 lpRect, bool bErase = true);
@@ -355,7 +355,7 @@ namespace universal_windows
 
       //virtual int ScrollWindowEx(int Δx, int Δy,
       //                           LPCRECT32 lpRectScroll, LPCRECT32 lpRectClip,
-      //                           ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags);
+      //                           ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags);
       //      virtual bool SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo,
       //       bool bRedraw = true);
       //      virtual bool GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask = SIF_ALL);
@@ -579,8 +579,8 @@ namespace universal_windows
       // Win4 messages
       //      void OnStyleChanged(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
       //    void OnStyleChanging(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
-      void OnSizing(::u32 nSide, RECTANGLE_I32 * lpRect);
-      void OnMoving(::u32 nSide, RECTANGLE_I32 * lpRect);
+      void OnSizing(::u32 nSide, ::rectangle_i32 * lpRect);
+      void OnMoving(::u32 nSide, ::rectangle_i32 * lpRect);
       void OnCaptureChanged(::user::interaction_impl * pWnd);
       bool OnDeviceChange(::u32 nEventType, dword_ptr dwData);
 
@@ -682,14 +682,14 @@ namespace universal_windows
       virtual bool is_active() override;
 
 
-      void _001OnTriggerMouseInside();
+      //void _001OnTriggerMouseInside();
 
 
       Agile < ::winrt::Windows::UI::Core::CoreWindow > get_os_window();
 
       void set_impact_port_org(::image * pimage);
 
-      void offset_impact_port_org(RECTANGLE_I32 * lprectScreen);
+      void offset_impact_port_org(::rectangle_i32 * lprectScreen);
 
       virtual void queue_message_handler(::user::message * pusermessage) override;
 

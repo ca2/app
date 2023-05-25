@@ -348,7 +348,7 @@ namespace user
    //}
 
 
-   ::item_pointer image_list::on_hit_test(const ::point_i32 & point)
+   ::item_pointer image_list::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       //::count c = m_imagea.get_count();

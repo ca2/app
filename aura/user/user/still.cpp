@@ -101,9 +101,9 @@ namespace user
 
          auto psession = get_session();
 
-         string strText;
+         auto strWindowText = get_window_text();
 
-         get_window_text(strText);
+         //get_window_text(strText);
 
          ::rectangle_f64 rectangleClient;
 
@@ -394,7 +394,7 @@ namespace user
 
    //}
 
-   //::item_pointer still::on_hit_test(const ::point_i32 &point)
+   //::item_pointer still::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    //{
 
    //   return control::hit_test(pmouse);
@@ -430,9 +430,9 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      string strText(_get_window_text());
+      auto strWindowText = get_window_text();
 
-      auto size = pgraphics->get_text_extent(strText);
+      auto size = pgraphics->get_text_extent(strWindowText);
 
       ::write_text::text_metric tm;
 
@@ -449,8 +449,6 @@ namespace user
    }
 
    
-
-
    void still::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -459,11 +457,11 @@ namespace user
 
          pgraphics->set_font(this, ::e_element_none);
 
-         string str;
+         auto strWindowText = get_window_text();
 
-         get_window_text(str);
+         //get_window_text(str);
 
-         auto size = pgraphics->get_text_extent(str);
+         auto size = pgraphics->get_text_extent(strWindowText);
 
          ::rectangle_i32 rectangle(0, 0, 0, 0);
 
@@ -500,7 +498,6 @@ namespace user
    //}
 
 
-
    void still::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
    {
 
@@ -508,6 +505,34 @@ namespace user
 
    }
 
+
+   ::status < ::color::color > still::get_color(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout)
+   {
+
+
+      if (eelement == e_element_text)
+      {
+
+         if (m_statuscolorText.ok())
+         {
+
+            return m_statuscolorText;
+
+         }
+
+      }
+
+      return ::user::interaction::get_color(pstyle, eelement, elayout);
+
+   }
+
+
+   void still::set_text_color(::status < ::color::color > statuscolor)
+   {
+
+      m_statuscolorText = statuscolor;
+
+   }
 
    void still::on_message_create(::message::message * pmessage)
    {
@@ -565,9 +590,9 @@ namespace user
 
       }
 
-      ::string strText = _get_window_text();
+      ::string strWindowText = get_window_text();
 
-      if(strText.is_empty() || ::is_null(pfont))
+      if(strWindowText.is_empty() || ::is_null(pfont))
       {
 
          if(m_ptextouta)
@@ -583,7 +608,7 @@ namespace user
 
       auto pOsData = pfont->get_os_data(pgraphics, 0);
 
-      if(m_ptextouta && m_ptextouta->is_updated(strText, pOsData))
+      if(m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
       {
 
          return;
@@ -623,9 +648,9 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      pgraphics->create_simple_multiline_layout(*m_ptextouta, strText, rectangleClient, pfont, ealign, etextwrap);
+      pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleClient, pfont, ealign, etextwrap);
 
-      m_ptextouta->m_strLast = strText;
+      m_ptextouta->m_strLast = strWindowText;
 
       m_ptextouta->m_pLastOsData = pOsData;
 
@@ -883,11 +908,10 @@ namespace user
    void still::_001OnDrawImage(::draw2d::graphics_pointer & pgraphics)
    {
 
-      string strText;
-
-      get_window_text(strText);
+      auto strWindowText = get_window_text();
 
       ::rectangle_i32 rectangleClient;
+
       client_rectangle(rectangleClient);
 
 
@@ -1113,12 +1137,12 @@ namespace user
    }
 
 
-   ::item_pointer still::on_hit_test(const ::point_i32 & point)
+   ::item_pointer still::on_hit_test(const ::point_i32 & point, e_zorder ezorder)
    {
 
       ::index iItem = -1;
 
-      if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point)))
+      if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
       {
 
          auto pitemNone = __new(::item(e_element_none));
@@ -1132,7 +1156,7 @@ namespace user
    }
 
 
-   void still::BaseToolTipGetRect(RECTANGLE_I32 & rectangle)
+   void still::BaseToolTipGetRect(::rectangle_i32 & rectangle)
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32
@@ -1178,6 +1202,16 @@ namespace user
    {
 
       return m_strLink.has_char();
+
+   }
+
+
+   void still::on_set_window_text()
+   {
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

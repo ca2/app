@@ -133,7 +133,7 @@ public:
 
    void reset() { m_iterator = this->begin(); }
    
-   void reset(const ::ansi_range & range) { RANGE::operator = (range); reset(); }
+   void reset(const ::const_ansi_range & range) { RANGE::operator = (range); reset(); }
    
    bool get_next_token(::string & strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator = false);
 

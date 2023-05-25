@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   ::item_pointer drawable::hit_test(const ::point_i32& point)
+   ::item_pointer drawable::hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   ::item_pointer drawable::on_hit_test(const ::point_i32 & point)
+   ::item_pointer drawable::on_hit_test(const ::point_i32 & point, e_zorder ezorder)
    {
 
       return nullptr;
@@ -79,7 +79,7 @@ namespace user
 
 
 
-   //bool drawable::_get_client_rect(RECTANGLE_I64 * prectangle)
+   //bool drawable::_get_client_rect(::rectangle_i64 * prectangle)
    //{
 
    //   copy(prectangle, get_window_rect64());
@@ -91,7 +91,7 @@ namespace user
    //}
 
 
-   //bool drawable::_get_window_rect(RECTANGLE_I64 * prectangle)
+   //bool drawable::_get_window_rect(::rectangle_i64 * prectangle)
    //{
 
    //   copy(prectangle, get_client_rect64());
@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   item_pointer drawable::hit_test(::user::mouse* pmouse)
+   item_pointer drawable::hit_test(::user::mouse* pmouse, e_zorder ezorder)
    {
 
       return nullptr;
@@ -137,7 +137,7 @@ namespace user
    }
 
 
-   //::item * drawable::hit_test(const ::point_i32& point)
+   //::item * drawable::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    //{
 
    //   ::item item; hit_test(item, point); return item;

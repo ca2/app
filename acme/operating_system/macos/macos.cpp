@@ -74,7 +74,7 @@
 //
 //   }
 //
-//   wstrModuleFolder.release_string_buffer();
+//   wstrModuleFolder.release_buffer();
 //
 //   wstrModuleFolder.trim_right(L"\\/");
 //
@@ -84,7 +84,7 @@
 //
 //   string strModuleFolder;
 //
-//   auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
+//   auto wstrModuleFolder = strModuleFolder.get_buffer(MAX_PATH * 8);
 //
 //   throw ::exception(todo);
 //

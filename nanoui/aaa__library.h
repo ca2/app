@@ -13,7 +13,7 @@
 //*
 //* \rst
 //* The implementation defines all ``value < 1024`` as image icons, and
-//   * everything ``> = 1024`` as an Entypo icon(see :ref:`file_nanoui_entypo.h`).
+//   * everything ``> = 1024`` as an Entypo icon(see :::pointer:`file_nanoui_entypo.h`).
 //      * The value ``1024`` exists to provide a generous buffer on how many images
 //      * may have been loaded by NanoVG.
 //      * \endrst

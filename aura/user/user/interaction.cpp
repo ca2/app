@@ -27,6 +27,7 @@
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/time/_string.h"
 #include "apex/message/simple_command.h"
@@ -57,6 +58,8 @@
 
 
 #define INFO_LAYOUT_DISPLAY
+
+
 
 
 //template < typename R >
@@ -201,7 +204,7 @@ namespace user
       m_bPendingZorder = false;
 
       m_bMouseHoverOnCapture = false;
-      m_bMouseHover = false;
+      //m_bMouseHover = false;
       m_bClickDefaultMouseHandling = false;
       m_bHoverDefaultMouseHandling = false;
       m_bEditDefaultHandling = false;
@@ -309,7 +312,7 @@ namespace user
 
       m_flagNonClient.add(e_non_client_focus_rect);
 
-      m_bMouseHover = false;
+      //m_bMouseHover = false;
 
       m_bNeedRedraw = false;
 
@@ -351,8 +354,8 @@ namespace user
 
       //m_bEatsDoubleClick = true;
 
-      m_pointScroll.x = 0;
-      m_pointScroll.y = 0;
+      m_pointScroll.x() = 0;
+      m_pointScroll.y() = 0;
       //m_palphasource = nullptr;
 
       m_pform = nullptr;
@@ -561,9 +564,9 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cx += point.x - left;
+      size.cx += point.x() - left;
 
-      point.x = left;
+      point.x() = left;
 
       bool bOnSetSize = on_set_size(size, elayout);
 
@@ -588,7 +591,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      point.x = right - size.cx;
+      point.x() = right - size.cx;
 
       if (on_set_position(point, elayout))
       {
@@ -605,7 +608,7 @@ namespace user
 
       auto point = position(elayout);
 
-      point.y = top;
+      point.y() = top;
 
       if (on_set_position(point, elayout))
       {
@@ -907,12 +910,34 @@ namespace user
          return puserinteractionHost;
 
       }
-      else
+
+      return get_wnd();
+
+   }
+
+
+   ::user::interaction_impl* interaction::get_window_impl()
+   {
+
+      auto puserinteraction = get_host_window();
+
+      if (::is_null(puserinteraction))
       {
 
-         return get_wnd();
+         return nullptr;
 
       }
+
+      auto puserinteractionimpl = puserinteraction->m_pinteractionimpl;
+
+      if (::is_null(puserinteractionimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteractionimpl;
 
    }
 
@@ -1413,7 +1438,7 @@ namespace user
 
          auto rectangleHost = rectangle;
 
-         rectangleHost += client_to_host();
+         client_to_host()(rectangleHost);
 
          pinteraction->m_pprimitiveimpl->set_need_redraw(rectangleHost);
 
@@ -1422,8 +1447,15 @@ namespace user
    }
 
 
-   bool interaction::needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw)
+   bool interaction::needs_to_draw(::draw2d::graphics* pgraphics, const ::rectangle_i32& rectangleNeedsToDraw)
    {
+
+      if(get_host_window()->has_prodevian())
+      {
+
+         return true;
+
+      }
 
       auto* pinteraction = get_wnd();
 
@@ -1443,7 +1475,7 @@ namespace user
 
       }
 
-      rectangle += client_to_host();
+      client_to_host()(rectangle);
 
       bool bNeedsToDraw = false;
 
@@ -1471,7 +1503,7 @@ namespace user
       if (!bNeedsToDraw)
       {
 
-         INFORMATION("Opting out from draw!! " << typeid(*this).name() << " " << m_atom.as_string());
+         //INFORMATION("Opting out from draw!! " << typeid(*this).name() << " " << m_atom.as_string());
 
       }
 
@@ -1536,6 +1568,46 @@ namespace user
          pinteraction->m_pprimitiveimpl->post_redraw();
 
       }
+
+   }
+
+
+   bool interaction::should_redraw_on_mouse_activate()
+   {
+
+      return true;
+
+   }
+
+
+   bool interaction::should_redraw_on_mouse_hover()
+   {
+
+      return true;
+
+   }
+
+   
+   bool interaction::should_redraw_on_hover(::item* pitem)
+   {
+
+      if (!::is_item_set(pitem))
+      {
+
+         return false;
+
+      }
+
+      if (pitem->m_eelement == e_element_client)
+      {
+
+         bool bShouldRedrawOnMouseHover = should_redraw_on_mouse_hover();
+
+         return bShouldRedrawOnMouseHover;
+
+      }
+
+      return true;
 
    }
 
@@ -3181,8 +3253,8 @@ namespace user
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cx;
       info.nPage = (::i32)sizePage.cx;
-      info.nPos = pointOffset.x;
-      info.nTrackPos = pointOffset.x;
+      info.nPos = pointOffset.x();
+      info.nTrackPos = pointOffset.x();
 
    }
 
@@ -3199,8 +3271,8 @@ namespace user
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cy;
       info.nPage = (::i32)sizePage.cy;
-      info.nPos = pointOffset.y;
-      info.nTrackPos = pointOffset.y;
+      info.nPos = pointOffset.y();
+      info.nTrackPos = pointOffset.y();
 
    }
 
@@ -3720,16 +3792,16 @@ namespace user
          if (pChild->m_bParentScrollX)
          {
 
-            pointScroll.x += pChild->get_parent()->m_pointScroll.x;
-            //pointScroll.x += pChild->get_parent()->m_pointDragScroll.x;
+            pointScroll.x() += pChild->get_parent()->m_pointScroll.x();
+            //pointScroll.x() += pChild->get_parent()->m_pointDragScroll.x();
 
          }
 
          if (pChild->m_bParentScrollY)
          {
 
-            pointScroll.y += pChild->get_parent()->m_pointScroll.y;
-            //pointScroll.y += pChild->get_parent()->m_pointDragScroll.y;
+            pointScroll.y() += pChild->get_parent()->m_pointScroll.y();
+            //pointScroll.y() += pChild->get_parent()->m_pointDragScroll.y();
 
          }
 
@@ -3750,75 +3822,82 @@ namespace user
 
          pgraphics->reset_clip();
 
-         pgraphics->m_pointAddShapeTranslate = m_pointScroll;
-
-         if (pgraphics->m_rectangleaNeedRedraw.has_element())
+         if(!get_host_window()->has_prodevian())
          {
 
-            if (pgraphics->m_rectangleaNeedRedraw.size() == 1)
+            pgraphics->m_pointAddShapeTranslate = m_pointScroll;
+
+            if (pgraphics->m_rectangleaNeedRedraw.has_element())
             {
 
-               auto rectangleNeedRedraw = pgraphics->m_rectangleaNeedRedraw.first();
-
-               auto hostToClient = host_to_client();
-
-               rectangleNeedRedraw += hostToClient;
-
-               pgraphics->intersect_clip(rectangleNeedRedraw);
-
-            }
-            else
-            {
-
-               ::pointer < ::draw2d::region > pregion;
-
-               bool bFirst = true;
-
-               ::rectangle_i32 rUnion;
-
-               for (auto rectangleHostNeedRedraw : pgraphics->m_rectangleaNeedRedraw)
+               if (pgraphics->m_rectangleaNeedRedraw.size() == 1)
                {
 
-                  auto rectangleNeedRedraw = rectangleHostNeedRedraw;
+                  auto rectangleNeedRedraw = pgraphics->m_rectangleaNeedRedraw.first();
 
                   auto hostToClient = host_to_client();
 
-                  rectangleNeedRedraw += hostToClient;
+                  hostToClient(rectangleNeedRedraw);
 
-                  
+                  pgraphics->intersect_clip(rectangleNeedRedraw);
 
-                  ::pointer < ::draw2d::region > pregionItem = __create < ::draw2d::region >();
-
-                  pregionItem->create_rectangle(rectangleNeedRedraw);
-
-                  if (bFirst)
-                  {
-
-                     pregion = pregionItem;
-
-                     bFirst = false;
-
-                     rUnion = rectangleNeedRedraw;
-
-                  }
-                  else
-                  {
-
-                     ::pointer < ::draw2d::region > pregionCombine = __create < ::draw2d::region >();
-
-                     pregionCombine->combine(pregion, pregionItem, ::draw2d::e_combine_add);
-
-                     pregion = pregionCombine;
-
-                     rUnion.unite(rUnion, rectangleNeedRedraw);
-
-                  }
+                  INFORMATION("Single rectangle need redraw " << rectangleNeedRedraw);
 
                }
+               else
+               {
 
-               //pgraphics->set_clipping(pregion);
+                  ::pointer<::draw2d::region> pregion;
 
-               pgraphics->intersect_clip(rUnion);
+                  bool bFirst = true;
+
+                  //::rectangle_i32 rUnion;
+
+                  for (auto rectangleHostNeedRedraw: pgraphics->m_rectangleaNeedRedraw)
+                  {
+
+                     auto rectangleNeedRedraw = rectangleHostNeedRedraw;
+
+                     auto hostToClient = host_to_client();
+
+                     hostToClient(rectangleNeedRedraw);
+
+                     ::pointer<::draw2d::region> pregionItem = __create<::draw2d::region>();
+
+                     pregionItem->create_rectangle(rectangleNeedRedraw);
+
+                     INFORMATION("Multiple rectangle need redraw " << rectangleNeedRedraw);
+
+                     if (bFirst)
+                     {
+
+                        pregion = pregionItem;
+
+                        bFirst = false;
+
+                        //rUnion = rectangleNeedRedraw;
+
+                     }
+                     else
+                     {
+
+                        ::pointer<::draw2d::region> pregionCombine = __create<::draw2d::region>();
+
+                        pregionCombine->combine(pregion, pregionItem, ::draw2d::e_combine_add);
+
+                        pregion = pregionCombine;
+
+                        //rUnion.unite(rUnion, rectangleNeedRedraw);
+
+                     }
+
+                  }
+
+                  pgraphics->set_clipping(pregion);
+
+                  //pgraphics->intersect_clip(rUnion);
+
+               }
 
             }
 
@@ -3855,9 +3934,9 @@ namespace user
 
                pinteraction->client_rectangle(rectangleClient);
 
-               rectangleClient += pinteraction->client_to_host();
+               pinteraction->client_to_host()(rectangleClient);
 
-               rectangleClient += host_to_client();
+               host_to_client()(rectangleClient);
 
                if (i == 0)
                {
@@ -3898,7 +3977,7 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       scoped_restore(pgraphics->m_puserinteraction);
 
@@ -3920,6 +3999,7 @@ namespace user
 
             //synchronous_lock synchronouslock(this->synchronization());
 
+            if(pgraphics->m_bDraw)
             {
 
 #ifdef __DEBUG
@@ -3934,17 +4014,6 @@ namespace user
 
                //   if (pinteraction)
                //   {
-
-                     auto pimpl = m_pinteractionimpl;
-
-                     if (pimpl)
-                     {
-
-                        pgraphics->m_rectangleaNeedRedraw.clear();
-
-                        pgraphics->m_rectangleaNeedRedraw = pimpl->m_rectangleaNeedRedraw;
-
-                     }
 
                   //}
 
@@ -4102,7 +4171,7 @@ namespace user
       if (!pointScroll.is_null())
       {
 
-         pgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
+         pgraphics->offset_origin(-pointScroll.x(), -pointScroll.y());
 
       }
 
@@ -4111,7 +4180,7 @@ namespace user
       //if (!pointDragScroll.is_null())
       //{
 
-      //   pgraphics->offset_origin(-pointDragScroll.x, -pointDragScroll.y);
+      //   pgraphics->offset_origin(-pointDragScroll.x(), -pointDragScroll.y());
 
       //}
 
@@ -4127,6 +4196,7 @@ namespace user
 
       {
 
+         if(pgraphics->m_bDraw)
          {
 
 #ifdef __DEBUG
@@ -4207,7 +4277,7 @@ namespace user
 
 #endif //__DEBUG
 
-      pgraphics->offset_origin(pointScroll.x, pointScroll.y);
+      pgraphics->offset_origin(pointScroll.x(), pointScroll.y());
 
    }
 
@@ -4215,7 +4285,7 @@ namespace user
    void interaction::_008CallOnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       try
       {
@@ -4314,7 +4384,7 @@ namespace user
       try
       {
 
-         //::draw2d::savedc k(pgraphics);
+         //::draw2d::save_context savecontext(pgraphics);
 
          //on_context_offset(pgraphics);
          //// while drawing layout can occur and machine z-order.
@@ -4358,8 +4428,8 @@ namespace user
                         if (!bParentScrollX && pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->offset_origin(-pointScroll.x, 0);
-                           //pgraphics->offset_origin(-pointDragScroll.x, 0);
+                           pgraphics->offset_origin(-pointScroll.x(), 0);
+                           //pgraphics->offset_origin(-pointDragScroll.x(), 0);
 
                            bParentScrollX = true;
 
@@ -4367,8 +4437,8 @@ namespace user
                         else if (bParentScrollX && !pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->offset_origin(pointScroll.x, 0);
-                           //pgraphics->offset_origin(pointDragScroll.x, 0);
+                           pgraphics->offset_origin(pointScroll.x(), 0);
+                           //pgraphics->offset_origin(pointDragScroll.x(), 0);
 
 
                            bParentScrollX = false;
@@ -4378,8 +4448,8 @@ namespace user
                         if (!bParentScrollY && pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->offset_origin(0, -pointScroll.y);
-                           //pgraphics->offset_origin(0, -pointDragScroll.y);
+                           pgraphics->offset_origin(0, -pointScroll.y());
+                           //pgraphics->offset_origin(0, -pointDragScroll.y());
 
                            bParentScrollY = true;
 
@@ -4387,8 +4457,8 @@ namespace user
                         else if (bParentScrollY && !pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->offset_origin(0, pointScroll.y);
-                           //pgraphics->offset_origin(0, pointDragScroll.y);
+                           pgraphics->offset_origin(0, pointScroll.y());
+                           //pgraphics->offset_origin(0, pointDragScroll.y());
 
                            bParentScrollY = false;
 
@@ -4448,39 +4518,39 @@ namespace user
 
       }
 
-      //pgraphics->offset_origin(pointScroll.x, pointScroll.y);
+      //pgraphics->offset_origin(pointScroll.x(), pointScroll.y());
 
-      if (bParentScrollX && pointScroll.x)
+      if (bParentScrollX && pointScroll.x())
       {
 
-         pgraphics->offset_origin(pointScroll.x, 0);
+         pgraphics->offset_origin(pointScroll.x(), 0);
 
       }
 
-      if (bParentScrollY && pointScroll.y)
+      if (bParentScrollY && pointScroll.y())
       {
 
-         pgraphics->offset_origin(0, pointScroll.y);
+         pgraphics->offset_origin(0, pointScroll.y());
 
       }
 
    }
 
 
-   void interaction::_001PrintBuffer(::draw2d::graphics_pointer& pgraphics)
+   void interaction::do_graphics(::draw2d::graphics_pointer& pgraphics)
    {
 
-      windowing_output_debug_string("\n_001UpdateBuffer : before graphics lock");
+      windowing_output_debug_string("\ndo_graphics : before graphics lock");
 
-      windowing_output_debug_string("\n_001UpdateBuffer : after graphics lock");
+      windowing_output_debug_string("\ndo_graphics : after graphics lock");
 
-      windowing_output_debug_string("\n_001UpdateBuffer : after check1");
+      windowing_output_debug_string("\ndo_graphics : after check1");
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
-      windowing_output_debug_string("\n_001UpdateBuffer : after savedc");
+      windowing_output_debug_string("\ndo_graphics : after savedc");
 
-      windowing_output_debug_string("\n_001UpdateBuffer : after check2");
+      windowing_output_debug_string("\ndo_graphics : after check2");
 
       ::rectangle_i32 rectangleWindow;
 
@@ -4500,7 +4570,7 @@ namespace user
 
       //#endif
 
-      windowing_output_debug_string("\n_001UpdateBuffer : after set alphamode");
+      windowing_output_debug_string("\ndo_graphics : after set alphamode");
 
       //auto pstyle = get_style(pgraphics);
 
@@ -4552,7 +4622,7 @@ namespace user
 
       //}
 
-      windowing_output_debug_string("\n_001UpdateBuffer : before Print");
+      windowing_output_debug_string("\ndo_graphics : before Print");
 
       try
       {
@@ -4561,7 +4631,8 @@ namespace user
 
          //if (0) // abcxxx
          {
-            _001Print(pgraphics);
+
+            on_graphics(pgraphics);
 
          }
 
@@ -4592,7 +4663,7 @@ namespace user
       //      pgraphics->fill_solid_rect_dim(10, 50, 200, 200, argb(128, random(128, 255), random(128, 255), random(128, 255)));
 
 
-      windowing_output_debug_string("\n_001UpdateBuffer : after Print");
+      windowing_output_debug_string("\ndo_graphics : after Print");
 
 #if HARD_DEBUG
 
@@ -4609,14 +4680,14 @@ namespace user
    }
 
 
-   void interaction::_001Print(::draw2d::graphics_pointer& pgraphics)
+   void interaction::on_graphics(::draw2d::graphics_pointer& pgraphics)
    {
 
       windowing_output_debug_string("\n_001Print A");
 
       {
 
-         ::draw2d::savedc k(pgraphics);
+         ::draw2d::save_context savecontext(pgraphics);
 
          try
          {
@@ -4640,7 +4711,7 @@ namespace user
 
          {
 
-            ::draw2d::savedc k(pgraphics);
+            ::draw2d::save_context savecontext(pgraphics);
 
             try
             {
@@ -4651,7 +4722,7 @@ namespace user
 
                auto pointCursor = pwindow->get_cursor_position();
 
-               pointCursor += screen_to_client(e_layout_design);
+               screen_to_client(e_layout_design)(pointCursor);
 
                auto* pcursor = pwindowing->get_cursor();
 
@@ -4776,6 +4847,13 @@ namespace user
 
       sketch_to_design(bUpdateBuffer, bUpdateWindow);
 
+      if (!bUpdateBuffer)
+      {
+
+         bUpdateBuffer = needs_to_draw(pgraphics);
+
+      }
+
       //}
 
       if (m_bSketchToDesignLayout)
@@ -4784,8 +4862,6 @@ namespace user
          m_bSketchToDesignLayout = false;
 
          design_layout(pgraphics);
-
-
 
       }
 
@@ -4858,7 +4934,14 @@ namespace user
 
       }
 
-      //      if (type.name_contains("list_box"))
+      if (layout().is_iconic())
+      {
+
+         return;
+
+      }
+
+         //      if (type.name_contains("list_box"))
       //      {
       //
       //         output_debug_string("list_box");
@@ -4890,7 +4973,7 @@ namespace user
       if (!pointOffset.is_null())
       {
 
-         pgraphics->offset_origin(pointOffset.x, pointOffset.y);
+         pgraphics->offset_origin(pointOffset.x(), pointOffset.y());
 
       }
 
@@ -4908,7 +4991,7 @@ namespace user
       if (!pointOffset.is_null())
       {
 
-         pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
+         pgraphics->offset_origin(-pointOffset.x(), -pointOffset.y());
 
       }
 
@@ -4965,9 +5048,9 @@ namespace user
    void interaction::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
-      if (needs_to_draw(pgraphics))
+      if (pgraphics->m_bDraw && needs_to_draw(pgraphics))
       {
 
          try
@@ -4996,7 +5079,7 @@ namespace user
                      //}
                      ////         ::point_i32 pointParentOffset = get_parent_context_offset();
                      ////
-                     ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
+                     ////         pgraphics->offset_origin(-pointParentOffset.x(), -pointParentOffset.y());
 
             try
             {
@@ -5675,7 +5758,7 @@ namespace user
       //
       //            }
       //
-      //            if (!_001IsPointInside(point_i32(pdrag->point.x, pdrag->point.y)))
+      //            if (!_001IsPointInside(point_i32(pdrag->point.x(), pdrag->point.y())))
       //            {
       //
       //               return;
@@ -5706,7 +5789,7 @@ namespace user
       //            try
       //            {
       //
-      //               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->m_atom == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(point_i32(pdrag->point.x, pdrag->point.y))))
+      //               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->m_atom == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(point_i32(pdrag->point.x(), pdrag->point.y()))))
       //               {
       //
       //                  try
@@ -6143,12 +6226,11 @@ namespace user
 
       client_rectangle(rectangle);
 
-      rectangle += client_to_screen();
+      client_to_screen()(rectangle);
 
       return rectangle;
 
    }
-
 
 
    bool interaction::_001IsPointInsideInline(const ::point_i32& point)
@@ -6374,7 +6456,7 @@ namespace user
 
          set_reposition();
 
-         set_need_redraw();
+         //set_need_redraw();
 
          post_redraw();
 
@@ -6392,11 +6474,41 @@ namespace user
 
          size = size.maximum(sizeMinimum);
 
+         auto rectanglePrevious = layout().window().client_rect();
+
          layout().sketch().m_size = size;
+
+         auto rectangle = layout().sketch().client_rect();
 
          set_need_layout();
 
-         set_need_redraw();
+         if (rectangle.right > rectanglePrevious.right)
+         {
+
+            ::rectangle_i32 r;
+
+            r.left = rectanglePrevious.right;
+            r.right = rectangle.right;
+            r.top = rectangle.top;
+            r.bottom = rectangle.bottom;
+
+            set_need_redraw(r);
+
+         }
+
+         if (rectangle.bottom > rectanglePrevious.bottom)
+         {
+
+            ::rectangle_i32 r;
+
+            r.left = rectangle.left;
+            r.right = rectangle.right;
+            r.top = rectanglePrevious.bottom;
+            r.bottom = rectangle.bottom;
+
+            set_need_redraw(r);
+
+         }
 
          post_redraw();
 
@@ -6716,7 +6828,7 @@ namespace user
 
          puserinteractionParent = puserinteractionSearchChildren;
 
-         pointClient += puserinteractionParent->parent_to_client();
+         puserinteractionParent->parent_to_client()(pointClient);
 
          auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
 
@@ -7546,8 +7658,8 @@ namespace user
 
       //   //   }
 
-      //   //   pusersystem->m_createstruct.x = m_pprimitiveimpl->m_rectangle.left;
-      //   //   pusersystem->m_createstruct.y = m_pprimitiveimpl->m_rectangle.top;
+      //   //   pusersystem->m_createstruct.x() = m_pprimitiveimpl->m_rectangle.left;
+      //   //   pusersystem->m_createstruct.y() = m_pprimitiveimpl->m_rectangle.top;
       //   //   pusersystem->m_createstruct.cx = m_pprimitiveimpl->m_rectangle.width();
       //   //   pusersystem->m_createstruct.cy = m_pprimitiveimpl->m_rectangle.height();
 
@@ -8212,16 +8324,7 @@ namespace user
 
       m_strWindowText2 = pszString;
 
-      if (m_pprimitiveimpl != nullptr)
-      {
-
-         m_pprimitiveimpl->set_window_text(pszString);
-
-      }
-
-      set_need_layout();
-
-      set_need_redraw();
+      on_set_window_text();
 
    }
 
@@ -8242,7 +8345,20 @@ namespace user
    }
 
 
-   ::string interaction::_get_window_text()
+   void interaction::on_set_window_text()
+   {
+
+      if (m_pprimitiveimpl != nullptr)
+      {
+
+         m_pprimitiveimpl->on_set_window_text();
+
+      }
+
+   }
+
+
+   ::string interaction::get_window_text()
    {
 
       if (m_astringfunctionWindowText)
@@ -8263,58 +8379,55 @@ namespace user
    }
 
 
-   strsize interaction::get_window_text(char* pszStringBuf, strsize nMaxCount)
-   {
-
-      ::string strWindowText = _get_window_text();
-
-      strsize n = minimum(nMaxCount, strWindowText.length());
-
-      ansi_count_copy(pszStringBuf, strWindowText, n);
-
-      return n;
-
-   }
-
-
-   string interaction::get_window_text()
-   {
-
-      string str;
-
-      get_window_text(str);
-
-      return str;
-
-   }
+//   strsize interaction::get_window_text(char* pszStringBuf, strsize nMaxCount)
+//   {
+//
+//      ::string strWindowText = _get_window_text();
+//
+//      strsize n = minimum(nMaxCount, strWindowText.length());
+//
+//      ansi_count_copy(pszStringBuf, strWindowText, n);
+//
+//      return n;
+//
+//   }
 
 
-   void interaction::get_window_text(string& str)
-   {
-
-      str = _get_window_text();
-
-   }
-
-
-   strsize interaction::get_window_text_length()
-   {
-
-      synchronous_lock synchronouslock(this->synchronization());
-
-      if (m_pprimitiveimpl == nullptr)
-      {
-
-         return 0;
-
-      }
-
-      return m_pprimitiveimpl->get_window_text_length();
-
-   }
+//   string interaction::get_window_text()
+//   {
+//
+//      string str;
+//
+//      get_window_text(str);
+//
+//      return str;
+//
+//   }
 
 
+//   void interaction::get_window_text(string& str)
+//   {
+//
+//      str = _get_window_text();
+//
+//   }
 
+
+//   strsize interaction::get_window_text_length()
+//   {
+//
+//      synchronous_lock synchronouslock(this->synchronization());
+//
+//      if (m_pprimitiveimpl == nullptr)
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      return m_pprimitiveimpl->get_window_text_length();
+//
+//   }
 
 
    //::user::interaction * interaction::EnsureTopLevel()
@@ -8706,7 +8819,7 @@ namespace user
    }
 
 
-   //void interaction::CalcWindowRect(RECTANGLE_I32 * prectangle, ::u32 nAdjustType)
+   //void interaction::CalcWindowRect(::rectangle_i32 * prectangle, ::u32 nAdjustType)
    //{
 
    //   if (m_pprimitiveimpl == nullptr)
@@ -8742,7 +8855,7 @@ namespace user
 
 
    void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
-      RECTANGLE_I32* prectParam, const ::rectangle_i32& rectangleClient, bool bStretch)
+      ::rectangle_i32* prectParam, const ::rectangle_i32& rectangleClient, bool bStretch)
    {
 
       //if (m_pprimitiveimpl == nullptr)
@@ -8769,28 +8882,28 @@ namespace user
 
       ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
-      SIZEPARENTPARAMS sizeparentparams;
+      size_parent_parameters sizeparentparameters;
 
       ::pointer<::user::interaction>puiLeft;
 
-      sizeparentparams.bStretch = bStretch;
+      sizeparentparameters.m_bStretch = bStretch;
 
-      sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
+      sizeparentparameters.m_sizeTotal.cx = sizeparentparameters.m_sizeTotal.cy = 0;
 
-      if (rectangleClient != nullptr)
+      if (rectangleClient.is_set())
       {
 
-         sizeparentparams.rectangle = rectangleClient;
+         sizeparentparameters.m_rectangle = rectangleClient;
 
       }
       else
       {
 
-         input_client_rectangle(sizeparentparams.rectangle);
+         input_client_rectangle(sizeparentparameters.m_rectangle);
 
       }
 
-      if (::is_empty(sizeparentparams.rectangle))
+      if (::is_empty(sizeparentparameters.m_rectangle))
       {
 
          return;
@@ -8813,7 +8926,7 @@ namespace user
          else
          {
 
-            pinteraction->send_message(e_message_size_parent, 0, (lparam)&sizeparentparams);
+            pinteraction->send_message(e_message_size_parent, 0, (lparam)&sizeparentparameters);
 
          }
 
@@ -8827,7 +8940,7 @@ namespace user
          if (bStretch)
          {
 
-            ::copy(*prectParam, sizeparentparams.rectangle);
+            ::copy(*prectParam, sizeparentparameters.m_rectangle);
 
          }
          else
@@ -8835,9 +8948,9 @@ namespace user
 
             prectParam->left = prectParam->top = 0;
 
-            prectParam->right = sizeparentparams.sizeTotal.cx;
+            prectParam->right = sizeparentparameters.m_sizeTotal.cx;
 
-            prectParam->bottom = sizeparentparams.sizeTotal.cy;
+            prectParam->bottom = sizeparentparameters.m_sizeTotal.cy;
 
          }
 
@@ -8854,22 +8967,22 @@ namespace user
             ASSERT(prectParam != nullptr);
 
 
-            sizeparentparams.rectangle.left += prectParam->left;
+            sizeparentparameters.m_rectangle.left += prectParam->left;
 
-            sizeparentparams.rectangle.top += prectParam->top;
+            sizeparentparameters.m_rectangle.top += prectParam->top;
 
-            sizeparentparams.rectangle.right -= prectParam->right;
+            sizeparentparameters.m_rectangle.right -= prectParam->right;
 
-            sizeparentparams.rectangle.bottom -= prectParam->bottom;
+            sizeparentparameters.m_rectangle.bottom -= prectParam->bottom;
 
          }
 
          if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
          {
 
-            //puiLeft->CalcWindowRect(&sizeparentparams.rectangle);
+            //puiLeft->CalcWindowRect(&sizeparentparameters.m_rectangle);
 
-            puiLeft->place(sizeparentparams.rectangle);
+            puiLeft->place(sizeparentparameters.m_rectangle);
 
             puiLeft->display();
 
@@ -9104,7 +9217,7 @@ namespace user
    //   }
 
 
-   void interaction::viewport_client_to_screen(POINT_I32& point)
+   void interaction::viewport_client_to_screen(::point_i32& point)
    {
 
       m_pprimitiveimpl->viewport_client_to_screen(point);
@@ -9120,7 +9233,7 @@ namespace user
    }
 
 
-   void interaction::viewport_screen_to_client(POINT_I32& point)
+   void interaction::viewport_screen_to_client(::point_i32& point)
    {
 
       if (m_pprimitiveimpl.is_null())
@@ -9135,22 +9248,22 @@ namespace user
    }
 
 
-   void interaction::viewport_client_to_screen(RECTANGLE_I32& rectangle)
+   void interaction::viewport_client_to_screen(::rectangle_i32& rectangle)
    {
 
-      viewport_client_to_screen((POINT_I32&)rectangle.left);
+      viewport_client_to_screen((::point_i32&)rectangle.left);
 
-      viewport_client_to_screen((POINT_I32&)rectangle.right);
+      viewport_client_to_screen((::point_i32&)rectangle.right);
 
    }
 
 
-   void interaction::viewport_screen_to_client(RECTANGLE_I32& rectangle)
+   void interaction::viewport_screen_to_client(::rectangle_i32& rectangle)
    {
 
-      viewport_screen_to_client((POINT_I32&)rectangle.left);
+      viewport_screen_to_client((::point_i32&)rectangle.left);
 
-      viewport_screen_to_client((POINT_I32&)rectangle.right);
+      viewport_screen_to_client((::point_i32&)rectangle.right);
 
    }
 
@@ -9795,7 +9908,7 @@ namespace user
       if (type.name_contains("tap"))
       {
 
-         INFORMATION("tap prodevian_reposition (" << this->screen_origin().x << ", " << this->screen_origin().y << ")");
+         INFORMATION("tap prodevian_reposition (" << this->screen_origin().x() << ", " << this->screen_origin().y() << ")");
       }
 
       if (bRepositionThis)
@@ -10258,7 +10371,7 @@ namespace user
    }
 
 
-   bool interaction::GetUpdateRect(RECTANGLE_I32* prectangle, bool bErase)
+   bool interaction::GetUpdateRect(::rectangle_i32* prectangle, bool bErase)
    {
 
       //if (m_pprimitiveimpl == nullptr)
@@ -10425,11 +10538,9 @@ namespace user
 
       ::size_f64 setFittingFontHeight;
 
-      string str;
+      string strWindowText = get_window_text();
 
-      get_window_text(str);
-
-      ::size_f64 size = pgraphics->get_text_extent(str);
+      ::size_f64 size = pgraphics->get_text_extent(strWindowText);
 
       setFittingFontHeight.cx = size.cx;
 
@@ -10472,9 +10583,9 @@ namespace user
       else
       {
 
-         auto psession = get_session();
+         auto pwindowimpl = get_window_impl();
 
-         if (has_hover() && (::is_set(m_pitemHover) || psession->m_puiLastLButtonDown == this))
+         if (has_hover() && (::is_set(m_pitemHover) || pwindowimpl->m_puiLastLButtonDown == this))
          {
 
             return ::user::e_state_hover;
@@ -11699,7 +11810,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iBestWorkspace = pdisplay->get_best_monitor(rectangleWorkspace, rectangleRequest);
+      index iBestWorkspace = pdisplay->get_best_monitor(&rectangleWorkspace, rectangleRequest);
 
       bool bWindowCrossesWorkspaceBoundaries = !rectangleWorkspace.contains(rectangleRequest);
 
@@ -11883,6 +11994,13 @@ namespace user
 
          layout().design().copy_position(layout().sketch());
 
+         if (::is_set(get_parent()))
+         {
+
+            set_need_redraw(layout().design().client_rect());
+
+         }
+
       }
 
       if (bDisplay)
@@ -11973,7 +12091,21 @@ namespace user
 
       m_bUpdateVisual |= bDisplay || bZorder || bLayout || bActivation;
 
-      bUpdateBuffer = bLayout;
+      if (!bUpdateBuffer && ::is_set(get_parent()))
+      {
+
+         bUpdateBuffer = bPosition;
+
+      }
+
+      if (!bUpdateBuffer && m_pinteractionimpl)
+      {
+
+         bUpdateBuffer = m_pinteractionimpl->m_rectangleaNeedRedraw.has_element();
+
+      }
+
+      //INFORMATION("bLayout=" << (bLayout?"true":"false"));
 
       bUpdateWindow = bDisplay || bZorder || bPosition;
 
@@ -13285,7 +13417,7 @@ namespace user
    }
 
 
-   void interaction::get_child_rect(RECTANGLE_I32& rectangle)
+   void interaction::get_child_rect(::rectangle_i32& rectangle)
    {
 
       client_rectangle(rectangle);
@@ -13510,17 +13642,17 @@ namespace user
    }
 
 
-   void interaction::_001OnTriggerMouseInside()
-   {
-
-      if (m_pprimitiveimpl != nullptr)
-      {
-
-         m_pprimitiveimpl->_001OnTriggerMouseInside();
-
-      }
-
-   }
+//   void interaction::_001OnTriggerMouseInside()
+//   {
+//
+//      if (m_pprimitiveimpl != nullptr)
+//      {
+//
+//         m_pprimitiveimpl->_001OnTriggerMouseInside();
+//
+//      }
+//
+//   }
 
 
    void interaction::update_data(bool bSaveAndValidate)
@@ -14426,7 +14558,7 @@ namespace user
    }
 
 
-   ::user::interaction* interaction::best_top_level_parent(RECTANGLE_I32& rectangle)
+   ::user::interaction* interaction::best_top_level_parent(::rectangle_i32& rectangle)
    {
 
       auto ptoplevel = top_level();
@@ -14454,7 +14586,7 @@ namespace user
 
       auto rectangle = this->client_rectangle(elayout);
 
-      rectangle += this->client_to_parent(elayout);
+      this->client_to_parent(elayout)(rectangle);
 
       return rectangle;
 
@@ -14469,7 +14601,7 @@ namespace user
    ::i32          interaction::bottom(enum_layout elayout) { return parent_client_rectangle(elayout).bottom; }
 
 
-   void interaction::window_rectangle(RECTANGLE_I32& rect, enum_layout elayout)
+   void interaction::window_rectangle(::rectangle_i32& rect, enum_layout elayout)
    {
 
       rect = this->window_rectangle(elayout);
@@ -14482,7 +14614,7 @@ namespace user
 
       auto rectangle = this->client_rectangle(elayout);
 
-      rectangle += this->client_to_screen(elayout);
+      this->client_to_screen(elayout)(rectangle);
 
       return rectangle;
 
@@ -14694,7 +14826,7 @@ namespace user
    }
 
 
-   void interaction::input_client_rectangle(RECTANGLE_I32& rectangle, enum_layout elayout)
+   void interaction::input_client_rectangle(::rectangle_i32& rectangle, enum_layout elayout)
    {
 
       client_rectangle(rectangle, elayout);
@@ -14702,7 +14834,7 @@ namespace user
    }
 
 
-   void interaction::client_rectangle(RECTANGLE_I32& rectangle, enum_layout elayout)
+   void interaction::client_rectangle(::rectangle_i32& rectangle, enum_layout elayout)
    {
 
       const_layout().state(elayout).client_rect(rectangle);
@@ -14722,7 +14854,7 @@ namespace user
    }
 
 
-   index interaction::best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rectangle_i32 rectangleSample;
@@ -14780,7 +14912,7 @@ namespace user
 
             auto pdisplay = pwindowing->display();
 
-            iMatchingMonitor = pdisplay->get_best_monitor(rectangleNew, rectangleSample);
+            iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleSample);
 
          }
 
@@ -14811,7 +14943,7 @@ namespace user
    }
 
 
-   index interaction::best_workspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rectangle_i32 rectangleWindow;
@@ -14839,7 +14971,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iMatchingMonitor = pdisplay->get_best_monitor(rectangleNew, rectangleWindow, eactivation, window());
+      index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, window());
 
       ::rectangle_i32 rectangleWorkspace;
 
@@ -14994,7 +15126,7 @@ namespace user
    }
 
 
-   ::index interaction::get_preferred_restore(RECTANGLE_I32& rectWorkspace)
+   ::index interaction::get_preferred_restore(::rectangle_i32& rectWorkspace)
    {
 
       return -1;
@@ -15002,7 +15134,7 @@ namespace user
    }
 
 
-   bool interaction::calculate_window_rectangle_in_main_monitor(RECTANGLE_I32& rectangle, const ::rectangle_f64& rectangleOptionalRateOrSize)
+   bool interaction::calculate_window_rectangle_in_main_monitor(::rectangle_i32& rectangle, const ::rectangle_f64& rectangleOptionalRateOrSize)
    {
 
       ::rectangle_f64 rectangleRate(rectangleOptionalRateOrSize);
@@ -15065,7 +15197,7 @@ namespace user
    }
 
 
-   index interaction::calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace, const ::size_i32& sizeMinParam, const ::rectangle_i32& rectangleHintParam)
+   index interaction::calculate_broad_and_compact_restore(::rectangle_i32* prectWorkspace, const ::size_i32& sizeMinParam, const ::rectangle_i32& rectangleHintParam)
    {
 
       ::rectangle_i32 rectangleHint(rectangleHintParam);
@@ -15133,7 +15265,7 @@ namespace user
    //}
 
 
-   index interaction::make_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_display* pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::make_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_display* pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       if (pedisplay == nullptr || !is_docking_appearance(*pedisplay))
@@ -15225,7 +15357,7 @@ namespace user
    }
 
 
-   index interaction::get_best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation)
+   index interaction::get_best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation)
    {
 
       auto pwindowing = windowing();
@@ -15237,7 +15369,7 @@ namespace user
    }
 
 
-   index interaction::best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_display* pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_display* pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::e_display edisplay;
@@ -15302,7 +15434,7 @@ namespace user
    /// the rectangle parameter indicates to the function
    /// which monitor or monitors the window restore should
    /// be positioned at.
-   index interaction::good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam, ::e_display edisplay)
+   index interaction::good_restore(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam, ::e_display edisplay)
    {
 
       ::rectangle_i32 rectangleWindow;
@@ -15330,7 +15462,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iMatchingMonitor = pdisplay->get_good_restore(rectangleNew, rectangleWindow, this, edisplay);
+      index iMatchingMonitor = pdisplay->get_good_restore(&rectangleNew, rectangleWindow, this, edisplay);
 
       if (bSet)
       {
@@ -15378,7 +15510,7 @@ namespace user
    }
 
 
-   index interaction::good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::good_iconify(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rectangle_i32 rectangleWindow;
@@ -15425,7 +15557,7 @@ namespace user
    }
 
 
-   index interaction::good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::good_move(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rectangle_i32 rectangleWindow;
@@ -15449,7 +15581,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iMatchingMonitor = pdisplay->get_good_move(rectangleNew, rectangleWindow, this);
+      index iMatchingMonitor = pdisplay->get_good_move(&rectangleNew, rectangleWindow, this);
 
       if (!is_empty(rectangleNew) || iMatchingMonitor >= 0)
       {
@@ -15528,7 +15660,7 @@ namespace user
    //#endif
 
 
-   void interaction::get_rect_normal(RECTANGLE_I32* prectangle)
+   void interaction::get_rect_normal(::rectangle_i32* prectangle)
    {
 
       //return 
@@ -15575,7 +15707,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      set_context_offset(pgraphics, pointOffset.x + x, pointOffset.y + y);
+      set_context_offset(pgraphics, pointOffset.x() + x, pointOffset.y() + y);
 
    }
 
@@ -15641,7 +15773,7 @@ namespace user
    void interaction::set_context_offset_x(::draw2d::graphics_pointer& pgraphics, int x)
    {
 
-      set_context_offset(pgraphics, x, (::i32)get_context_offset().y);
+      set_context_offset(pgraphics, x, (::i32)get_context_offset().y());
 
    }
 
@@ -15649,7 +15781,7 @@ namespace user
    void interaction::set_context_offset_y(::draw2d::graphics_pointer& pgraphics, int y)
    {
 
-      set_context_offset(pgraphics, (::i32)get_context_offset().x, y);
+      set_context_offset(pgraphics, (::i32)get_context_offset().x(), y);
 
    }
 
@@ -15741,7 +15873,7 @@ namespace user
    }
 
 
-   void interaction::get_margin_rect(RECTANGLE_I32* prectMargin)
+   void interaction::get_margin_rect(::rectangle_i32* prectMargin)
    {
 
       prectMargin->left = 0;
@@ -16378,9 +16510,9 @@ namespace user
    bool interaction::is_left_button_pressed()
    {
 
-      auto psession = get_session();
+      auto pwindowimpl = get_window_impl();
 
-      return psession->m_puiLastLButtonDown == this;
+      return pwindowimpl->m_puiLastLButtonDown == this;
 
    }
 
@@ -17328,7 +17460,7 @@ namespace user
 
    //}
 
-   //::item interaction::on_hit_test(const ::point_i32& point)
+   //::item interaction::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    //{
 
    //   auto rectangle = this->rectangle(::e_element_client);
@@ -17345,7 +17477,7 @@ namespace user
    //}
 
 
-   bool interaction::scroll_bar_get_client_rect(RECTANGLE_I32& rectangle)
+   bool interaction::scroll_bar_get_client_rect(::rectangle_i32& rectangle)
    {
 
       client_rectangle(rectangle);
@@ -17571,7 +17703,7 @@ namespace user
    //   }
 
 
-      //void interaction::get_layout_rect(RECTANGLE_I32 * prectangle)
+      //void interaction::get_layout_rect(::rectangle_i32 * prectangle)
 
    //{
 
@@ -17817,36 +17949,6 @@ namespace user
 
       }
 
-      {
-
-         auto pappearance = get_appearance();
-
-         if (::is_set(pappearance))
-         {
-
-            ::point_i32 pointClient;
-
-            pointClient = pmouse->m_point + screen_to_client();
-
-            auto psession = m_puserinteraction->get_session();
-
-            auto ekeyModifiers = psession->key_modifiers();
-
-            bool bDoubleClick = false;
-
-            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
-            {
-
-               pmouse->m_bRet = true;
-
-               return;
-
-            }
-
-         }
-
-      }
-
       if ((m_bEnableHorizontalBarDragScroll && _001HasHorizontalBarDragScrolling())
          || (m_bEnableVerticalBarDragScroll && _001HasVerticalBarDragScrolling()))
       {
@@ -17861,9 +17963,9 @@ namespace user
 
       }
 
-      m_pitemLButtonDown = update_hover(pmouse);
+      auto pitemLButtonDown = update_hover(pmouse, e_zorder_front);
 
-      if (drag_on_button_down(m_pitemLButtonDown))
+      if (drag_on_button_down(pitemLButtonDown))
       {
 
          return;
@@ -17911,15 +18013,19 @@ namespace user
 
       //}
 
+      auto puserinteractionimplHost = get_window_impl();
+
       if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
       {
 
-         if (::is_item_set(m_pitemLButtonDown))
+         if (::is_item_set(pitemLButtonDown))
          {
 
-            auto psession = get_session();
+            //auto psession = get_session();
 
-            psession->m_puiLastLButtonDown = this;
+            puserinteractionimplHost->m_puiLastLButtonDown = this;
+
+            puserinteractionimplHost->m_pitemLButtonDown = pitemLButtonDown;
 
             //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
             //{
@@ -17971,6 +18077,36 @@ namespace user
 
       }
 
+      {
+
+         auto pappearance = get_appearance();
+
+         if (::is_set(pappearance))
+         {
+
+            ::point_i32 pointClient;
+
+            pointClient = pmouse->m_point;
+
+            screen_to_client()(pointClient);
+
+            auto ekeyModifiers = psession->key_modifiers();
+
+            bool bDoubleClick = false;
+
+            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+            {
+
+               pmouse->m_bRet = true;
+
+               return;
+
+            }
+
+         }
+
+      }
+
       //         else
       //         {
       //
@@ -18000,6 +18136,40 @@ namespace user
       //
       //      }
 
+      pitemLButtonDown = update_hover(pmouse, e_zorder_back);
+
+      if (drag_on_button_down(pitemLButtonDown))
+      {
+
+         return;
+
+      }
+
+      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+      {
+
+         if (::is_item_set(pitemLButtonDown))
+         {
+
+            puserinteractionimplHost->m_puiLastLButtonDown = this;
+
+            puserinteractionimplHost->m_pitemLButtonDown = pitemLButtonDown;
+
+            track_mouse_leave();
+
+            if (m_bClickDefaultMouseHandling)
+            {
+
+               pmouse->m_bRet = true;
+
+               return;
+
+            }
+
+         }
+
+      }
+
    }
 
 
@@ -18011,30 +18181,6 @@ namespace user
       auto pszType = typeid(*this).name();
 
       ::output_debug_string("interaction::on_message_left_button_up " + ::string(pszType));
-
-      auto pappearance = get_appearance();
-
-      if (::is_set(pappearance))
-      {
-
-         ::point_i32 pointClient;
-
-         pointClient = pmouse->m_point + screen_to_client();
-
-         auto psession = m_puserinteraction->get_session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
-         if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
-         {
-
-            pmessage->m_bRet = true;
-
-            return;
-
-         }
-
-      }
 
       if (!is_window_enabled())
       {
@@ -18081,12 +18227,12 @@ namespace user
 
       }
 
-      if (drag_on_button_up(pmouse))
-      {
+      //if (drag_on_button_up(pmouse))
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       //if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
       //{
@@ -18133,25 +18279,23 @@ namespace user
 
          //}
 
-         auto psession = get_session();
+         auto pwindowimpl = get_window_impl();
 
          if (m_bClickDefaultMouseHandling)
          {
 
-            auto pitemLeftButtonUp = hit_test(pmouse);
+            auto pitemLeftButtonUp = hit_test(pmouse, e_zorder_any);
 
-            bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
+            bool bSameUserInteractionAsMouseDown = pwindowimpl->m_puiLastLButtonDown == this;
 
-            bool bSameItemAsMouseDown = ::is_same_item(m_pitemLButtonDown, pitemLeftButtonUp);
+            bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, pitemLeftButtonUp);
 
             //TRACE("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
-            if (::is_set(m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
+            if (::is_set(pwindowimpl->m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
 
-               psession->m_puiLastLButtonDown = nullptr;
-
-               pmessage->m_bRet = on_click_generation(m_pitemLButtonDown);
+               pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
 
                INFORMATION("interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet);
 
@@ -18166,7 +18310,7 @@ namespace user
 
                   ::atom atom;
 
-                  if (m_pitemLButtonDown->m_atom.is_empty())
+                  if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
                   {
 
                      atom = translate_property_id(m_atom);
@@ -18175,7 +18319,7 @@ namespace user
                   else
                   {
 
-                     atom = translate_property_id(m_pitemLButtonDown->m_atom);
+                     atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
 
                   }
 
@@ -18186,7 +18330,7 @@ namespace user
 
                      ptopic->m_puserelement = this;
 
-                     ptopic->m_pitem = m_pitemLButtonDown;
+                     ptopic->m_pitem = pwindowimpl->m_pitemLButtonDown;
 
                      ptopic->m_actioncontext.m_pmessage = pmouse;
 
@@ -18265,11 +18409,37 @@ namespace user
 
          }
 
-         psession->m_puiLastLButtonDown = nullptr;
+         pwindowimpl->m_puiLastLButtonDown = nullptr;
 
          set_need_redraw();
 
          post_redraw();
+
+      }
+
+      auto pappearance = get_appearance();
+
+      if (::is_set(pappearance))
+      {
+
+         ::point_i32 pointClient;
+
+         pointClient = pmouse->m_point;
+         
+         screen_to_client()(pointClient);
+
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
+         {
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
 
       }
 
@@ -18284,32 +18454,6 @@ namespace user
       auto pszType = typeid(*this).name();
 
       ::output_debug_string("interaction::on_message_left_button_double_click" + ::string(pszType));
-
-      auto pappearance = get_appearance();
-
-      if (::is_set(pappearance))
-      {
-
-         ::point_i32 pointClient;
-
-         pointClient = pmouse->m_point + screen_to_client();
-
-         auto psession = m_puserinteraction->get_session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
-         bool bDoubleClick = true;
-
-         if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
-         {
-
-            pmessage->m_bRet = true;
-
-            return;
-
-         }
-
-      }
 
       if (!is_window_enabled())
       {
@@ -18335,21 +18479,20 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      auto pwindowimpl = get_window_impl();
 
-      auto pitemLeftButtonDoubleClick = hit_test(pmouse);
+      auto pitemLeftButtonDoubleClick = hit_test(pmouse, e_zorder_front);
 
-      bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
+      bool bSameUserInteractionAsMouseDown = pwindowimpl->m_puiLastLButtonDown == this;
 
-      bool bSameItemAsMouseDown = ::is_same_item(m_pitemLButtonDown, pitemLeftButtonDoubleClick);
+      bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, pitemLeftButtonDoubleClick);
 
-
-      if (::is_set(m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
+      if (::is_set(pwindowimpl->m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
       {
 
-         psession->m_puiLastLButtonDown = nullptr;
+         //psession->m_puiLastLButtonDown = nullptr;
 
-         pmessage->m_bRet = on_click_generation(m_pitemLButtonDown);
+         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
 
          INFORMATION("interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet);
 
@@ -18364,7 +18507,7 @@ namespace user
 
             ::atom atom;
 
-            if (m_pitemLButtonDown->m_atom.is_empty())
+            if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
             {
 
                atom = translate_property_id(m_atom);
@@ -18373,7 +18516,7 @@ namespace user
             else
             {
 
-               atom = translate_property_id(m_pitemLButtonDown->m_atom);
+               atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
 
             }
 
@@ -18384,7 +18527,7 @@ namespace user
 
                ptopic->m_puserelement = this;
 
-               ptopic->m_pitem = m_pitemLButtonDown;
+               ptopic->m_pitem = pwindowimpl->m_pitemLButtonDown;
 
                ptopic->m_actioncontext.m_pmessage = pmouse;
 
@@ -18461,11 +18604,39 @@ namespace user
       //
       //            }
 
-      psession->m_puiLastLButtonDown = nullptr;
+      pwindowimpl->m_puiLastLButtonDown = nullptr;
 
       set_need_redraw();
 
       post_redraw();
+
+      auto pappearance = get_appearance();
+
+      if (::is_set(pappearance))
+      {
+
+         ::point_i32 pointClient;
+
+         pointClient = pmouse->m_point;
+         
+         screen_to_client()(pointClient);
+
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         bool bDoubleClick = true;
+
+         if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+         {
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+      }
 
    }
 
@@ -18498,7 +18669,9 @@ namespace user
 
             ::point_i32 pointClient;
 
-            pointClient = pmouse->m_point + screen_to_client();
+            pointClient = pmouse->m_point;
+            
+            screen_to_client()(pointClient);
 
             auto psession = m_puserinteraction->get_session();
 
@@ -18553,7 +18726,9 @@ namespace user
 
          ::point_i32 pointClient;
 
-         pointClient = pmouse->m_point + screen_to_client();
+         pointClient = pmouse->m_point;
+         
+         screen_to_client()(pointClient);
 
          auto psession = m_puserinteraction->get_session();
 
@@ -18640,47 +18815,6 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pappearance = get_appearance();
-
-      if (::is_set(pappearance))
-      {
-
-         ::point_i32 pointClient;
-
-         pointClient = pmouse->m_point + screen_to_client();
-
-         bool bRet;
-
-         auto psession = m_puserinteraction->get_session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
-         bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
-         /*{
-
-            bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
-
-         }
-         else
-         {*/
-
-            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
-
-         //}
-
-         pappearance->m_pointMouseLast = pointClient;
-
-         if (bRet)
-         {
-
-            pmessage->m_bRet = true;
-
-            return;
-
-         }
-
-      }
-
       if (m_bBarDragScrollLeftButtonDown)
       {
 
@@ -18689,14 +18823,14 @@ namespace user
 
             m_bHorizontalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_point.x;
+            int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_point.x();
 
-            auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x + iOffset, 0, m_pointBarDragScrollMax.x);
+            auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x() + iOffset, 0, m_pointBarDragScrollMax.x());
 
-            if (iHorizontalBarDragScroll != m_pointBarDragScroll.x)
+            if (iHorizontalBarDragScroll != m_pointBarDragScroll.x())
             {
 
-               m_pointBarDragScroll.x = iHorizontalBarDragScroll;
+               m_pointBarDragScroll.x() = iHorizontalBarDragScroll;
 
                set_need_redraw();
 
@@ -18715,14 +18849,14 @@ namespace user
 
             m_bVerticalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_point.y;
+            int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_point.y();
 
-            auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y + iOffset, 0, m_pointBarDragScrollMax.y);
+            auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y() + iOffset, 0, m_pointBarDragScrollMax.y());
 
-            if (iVerticalBarDragScroll != m_pointBarDragScroll.y)
+            if (iVerticalBarDragScroll != m_pointBarDragScroll.y())
             {
 
-               m_pointBarDragScroll.y = iVerticalBarDragScroll;
+               m_pointBarDragScroll.y() = iVerticalBarDragScroll;
 
                set_need_redraw();
 
@@ -18804,38 +18938,85 @@ namespace user
 
          }
 
-         bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
+         //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
 
-         update_hover(pmouse, bAvoidRedraw);
+         update_hover(pmouse, e_zorder_any);
 
          //update_hover(pointCursorClient, false);
 
-         if (::is_set(m_pitemHover))
+//         if (::is_item_set(m_pitemHover))
+//         {
+//
+//            if (!m_bMouseHover)
+//            {
+//
+//               m_bMouseHover = true;
+//
+//               track_mouse_leave();
+//
+//               //auto pappearance = get_appearance();
+//
+//               //if (::is_set(pappearance))
+//               //{
+//
+//               //   ::point_i32 pointClient;
+//
+//               //   _screen_to_client(pointClient, pmouse->m_point);
+//
+//               //   auto psession = m_puserinteraction->get_session();
+//
+//               //   auto ekeyModifiers = psession->key_modifiers();
+//
+//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+//
+//               //}
+//
+//            }
+//
+//         }
+
+      }
+
+      {
+
+         auto pappearance = get_appearance();
+
+         if (::is_set(pappearance))
          {
 
-            if (!m_bMouseHover)
+            ::point_i32 pointClient;
+
+            pointClient = pmouse->m_point;
+            
+            screen_to_client()(pointClient);
+
+            bool bRet;
+
+            auto psession = m_puserinteraction->get_session();
+
+            auto ekeyModifiers = psession->key_modifiers();
+
+            bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
+            /*{
+
+               bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
+
+            }
+            else
+            {*/
+
+            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
+
+            //}
+
+            pappearance->m_pointMouseLast = pointClient;
+
+            if (bRet)
             {
 
-               m_bMouseHover = true;
+               pmessage->m_bRet = true;
 
-               track_mouse_leave();
-
-               //auto pappearance = get_appearance();
-
-               //if (::is_set(pappearance))
-               //{
-
-               //   ::point_i32 pointClient;
-
-               //   _screen_to_client(pointClient, pmouse->m_point);
-
-               //   auto psession = m_puserinteraction->get_session();
-
-               //   auto ekeyModifiers = psession->key_modifiers();
-
-               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
-
-               //}
+               return;
 
             }
 
@@ -18867,7 +19048,9 @@ namespace user
 
          ::point_i32 pointClient;
 
-         pointClient = pwheel->m_point + screen_to_client();
+         pointClient = pwheel->m_point;
+         
+         screen_to_client()(pointClient);
 
          bool bRet;
 
@@ -18893,25 +19076,59 @@ namespace user
    }
 
 
-   ::item_pointer interaction::update_hover(::user::mouse* pmouse, bool bAvoidRedraw)
+   ::item_pointer interaction::update_hover(::user::mouse* pmouse, e_zorder ezorder)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
-
-      auto pitemHitTest = hit_test(pmouse);
+      auto pitemHitTest = hit_test(pmouse, ezorder);
 
       drag_on_mouse_hover(pitemHitTest);
 
-      bool& bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
+      ///bool bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-      if (!::is_same_item(pitemHitTest, m_pitemHover))
+      if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
+
+         auto pitemOldHover = m_pitemHover;
 
          g_iMouseHoverCount++;
 
          m_pitemHover = pitemHitTest;
 
-         bAnyHoverChange = true;
+         //m_pitemHOver->m_bAnyHoverChange = true;
+
+         if(::is_item_set(pitemHitTest))
+         {
+
+            track_mouse_leave();
+
+         }
+
+         bool bAnyRedraw = false;
+
+         if(::is_item_set(pitemOldHover) && should_redraw_on_hover(pitemOldHover) && pitemOldHover->m_rectangle.is_set())
+         {
+
+            set_need_redraw(pitemOldHover->m_rectangle);
+
+            bAnyRedraw = true;
+
+         }
+
+         if(::is_item_set(pitemHitTest) && should_redraw_on_hover(pitemOldHover) && pitemHitTest->m_rectangle.is_set())
+         {
+
+            set_need_redraw(pitemHitTest->m_rectangle);
+
+            bAnyRedraw = true;
+
+         }
+
+         if(bAnyRedraw)
+         {
+
+            post_redraw();
+
+         }
 
       }
 
@@ -18932,53 +19149,84 @@ namespace user
       //if (::is_set(pmouse))
       //{
 
-      if (m_pitemHover != m_pitemHoverMouse)
-      {
-
-         auto pitemOldMouseHover = m_pitemHoverMouse;
-
-         m_pitemHoverMouse = m_pitemHover;
-
-         bAnyHoverChange = true;
-
-         if (::is_set(m_pitemHoverMouse) && !::is_set(pitemOldMouseHover))
-         {
-
-            track_mouse_hover();
-
-            //simple_on_control_event(pmouse, e_event_mouse_enter);
-
-         }
-         else if (!::is_set(m_pitemHoverMouse) && ::is_set(pitemOldMouseHover))
-         {
-
-            //simple_on_control_event(pmouse, e_event_mouse_leave);
-
-         }
-
-         //pmouse->m_bRet = true;
-
-      }
+//      auto pitemOldMouseHover = m_pitemHoverMouse;
+//
+//      if (!::is_item_equivalent(m_pitemHover, m_pitemHoverMouse))
+//      {
+//
+//         m_pitemHoverMouse = m_pitemHover;
+//
+//         bAnyHoverChange = true;
+//
+//         if (::is_set(m_pitemHoverMouse) && !::is_set(pitemOldMouseHover))
+//         {
+//
+//            track_mouse_hover();
+//
+//            //simple_on_control_event(pmouse, e_event_mouse_enter);
+//
+//         }
+//         else if (!::is_set(m_pitemHoverMouse) && ::is_set(pitemOldMouseHover))
+//         {
+//
+//            //simple_on_control_event(pmouse, e_event_mouse_leave);
+//
+//         }
+//
+//         //pmouse->m_bRet = true;
+//
+//      }
 
       //}
 
-      if (bAnyHoverChange || (!::is_set(m_pitemHover) || !m_pitemHover->is_drawn()))
-      {
-
-         if (!bAvoidRedraw)
-         {
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
-
-
+//      if (bAnyHoverChange)
+//      {
+//
+//         //if (!bAvoidRedraw)
+//         //{
+//
+//         bool bAnyRedraw = false;
+//
+//         if(::is_item_set(pitemOldMouseHover) && pitemOldMouseHover->m_rectangle.is_set())
+//         {
+//
+//            set_need_redraw(pitemOldMouseHover->m_rectangle);
+//
+//            bAnyRedraw = true;
+//
+//         }
+//
+//         if(::is_item_set(m_pitemHoverMouse) && m_pitemHoverMouse->m_rectangle.is_set())
+//         {
+//
+//            set_need_redraw(m_pitemHoverMouse->m_rectangle);
+//
+//            bAnyRedraw = true;
+//
+//         }
+//
+//         if(bAnyRedraw)
+//         {
+//
+//            post_redraw();
+//
+//         }
+//
+//         //}
+//
+//      }
 
       return pitemHitTest;
+
+   }
+
+
+   bool interaction::is_mouse_hover() const
+   {
+
+      bool bMouseHover = ::is_item_set(m_pitemHover);
+
+      return bMouseHover;
 
    }
 
@@ -18999,34 +19247,35 @@ namespace user
 
       auto pitemOldHover = m_pitemHover;
 
-      auto pitemOldHoverMouse = m_pitemHoverMouse;
-
       m_pitemHover = nullptr;
 
-      m_pitemHoverMouse = nullptr;
-
-      if (pitemOldHover.is_set() || pitemOldHoverMouse.is_set())
+      if (::is_item_set(pitemOldHover))
       {
 
-         set_need_redraw();
+         if(pitemOldHover->m_rectangle.is_set())
+         {
 
-         //simple_on_control_event(pmessage, e_event_mouse_leave);
+            set_need_redraw(pitemOldHover->m_rectangle);
 
-         post_redraw();
+            post_redraw();
+
+         }
 
       }
 
    }
 
 
-   ::item_pointer interaction::hit_test(::user::mouse* pmouse)
+   ::item_pointer interaction::hit_test(::user::mouse* pmouse, e_zorder ezorder)
    {
 
       ::point_i32 pointClient;
 
-      pointClient = pmouse->m_point + screen_to_client();
+      pointClient = pmouse->m_point;
+      
+      screen_to_client()(pointClient);
 
-      auto pitem = hit_test(pointClient);
+      auto pitem = hit_test(pointClient, ezorder);
 
       pitem->m_pointScreen = pmouse->m_point;
 
@@ -19037,10 +19286,10 @@ namespace user
    }
 
 
-   ::item_pointer interaction::hit_test(const ::point_i32& pointClient)
+   ::item_pointer interaction::hit_test(const ::point_i32& pointClient, e_zorder ezorder)
    {
 
-      auto pitem = on_hit_test(pointClient);
+      auto pitem = on_hit_test(pointClient, ezorder);
 
       pitem->m_pointClient = pointClient;
 
@@ -19049,19 +19298,74 @@ namespace user
    }
 
 
-   ::item_pointer interaction::on_hit_test(const ::point_i32& point)
+   ::item_pointer interaction::on_hit_test(const ::point_i32& point, e_zorder ezorder)
+   {
+
+      {
+
+         auto pitemHitTest = on_items_hit_test(point, ezorder);
+
+         if (::is_set(pitemHitTest))
+         {
+
+            return pitemHitTest;
+
+         }
+
+      }
+
+      {
+
+         auto pitemHitTest = on_default_bottom_right_resize_hit_test(point, ezorder);
+
+         if (::is_set(pitemHitTest))
+         {
+
+            return pitemHitTest;
+
+         }
+
+      }
+
+
+      {
+
+         auto pitemHitTest = on_default_full_client_area_hit_test(point, ezorder);
+
+         if (::is_set(pitemHitTest))
+         {
+
+            return pitemHitTest;
+
+         }
+
+      }
+
+      auto pitemNone = __new(::item(e_element_none));
+
+      return pitemNone;
+
+   }
+
+
+   ::item_pointer interaction::on_items_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
       auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
-      //auto pointScroll = point + m_pointScroll;
-
       for (auto& pitem : *m_pitema)
       {
 
          if (pitem->is_hidden())
+         {
+
+            continue;
+
+         }
+
+         if (!(pitem->m_ezorder & ezorder))
          {
 
             continue;
@@ -19099,35 +19403,59 @@ namespace user
 
       }
 
+      return nullptr;
+
+   }
+
+
+   ::item_pointer interaction::on_default_bottom_right_resize_hit_test(const ::point_i32& point, e_zorder ezorder)
+   {
+
+      synchronous_lock synchronouslock(this->synchronization());
+
+      auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+
       auto rectangleResize = this->rectangle(::e_element_resize);
 
       if (rectangleResize.ok() && rectangleResize.contains(point))
       {
 
-         auto pitemClient = __new(::item(e_element_resize));
+         auto pitemHitTest = __new(::item(e_element_resize));
 
-         pitemClient->m_rectangle = rectangleResize;
+         pitemHitTest->m_rectangle = rectangleResize;
 
-         return pitemClient;
+         return pitemHitTest;
 
       }
 
-      auto rectangleClient = this->rectangle(::e_element_client);
+      return nullptr;
 
-      if (rectangleClient.ok() && rectangleClient.contains(point))
+
+   }
+
+   
+   ::item_pointer interaction::on_default_full_client_area_hit_test(const ::point_i32& point, e_zorder ezorder)
+   {
+
+      if (ezorder & e_zorder_back)
       {
 
-         auto pitemClient = __new(::item(e_element_client));
+         auto rectangleClient = this->rectangle(::e_element_client);
 
-         pitemClient->m_rectangle = rectangleClient;
+         if (rectangleClient.ok() && rectangleClient.contains(point))
+         {
 
-         return pitemClient;
+            auto pitemHitTest = __new(::item(e_element_client));
+
+            pitemHitTest->m_rectangle = rectangleClient;
+
+            return pitemHitTest;
+
+         }
 
       }
 
-      auto pitemNone = __new(::item(e_element_none));
-
-      return pitemNone;
+      return nullptr;
 
    }
 
@@ -19193,8 +19521,7 @@ namespace user
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      if (m_flagNonClient.has(e_non_client_background)
-         && !(top_level()->frame_is_transparent()))
+      if (m_flagNonClient.has(e_non_client_background) && !top_level()->frame_is_transparent())
       {
 
          draw_control_background(pgraphics);
@@ -19214,6 +19541,13 @@ namespace user
    void interaction::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
+      if (!pgraphics->m_bDraw)
+      {
+
+         return;
+
+      }
+
       auto pappearance = get_appearance();
 
       if (::is_set(pappearance))
@@ -19230,7 +19564,6 @@ namespace user
          _001DrawItems(pgraphics);
 
       }
-
 
    }
 
@@ -19702,7 +20035,7 @@ namespace user
    // }
 
 
-   // bool interaction::_001FancyInitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
+   // bool interaction::_001FancyInitialFramePlacement(::rectangle_i32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
    // {
 
    //    return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
@@ -20380,7 +20713,7 @@ namespace user
    }
 
 
-   bool interaction::get_element_rect(RECTANGLE_I32& rectangle, enum_element eelement)
+   bool interaction::get_element_rect(::rectangle_i32& rectangle, enum_element eelement)
    {
 
       if (eelement == e_element_client)
@@ -20584,11 +20917,11 @@ namespace user
 
       ::point_i32 pointCenter = rectangleDropDown.center();
 
-      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
+      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
 
    }
 

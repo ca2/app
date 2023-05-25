@@ -18,7 +18,7 @@ public:
       m_stringCatcher(stringCatcher)
    {
 
-      get_string_buffer(iAllocCount);
+      get_buffer(iAllocCount);
 
    }
 

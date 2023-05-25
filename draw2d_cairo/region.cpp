@@ -68,6 +68,68 @@ namespace draw2d_cairo
    }
 
 
+   bool region::is_rectangular_shapes_only_region()
+   {
+
+      switch(m_eregion)
+      {
+         case ::draw2d::e_region_none:
+
+            return true;
+
+         case ::draw2d::e_region_rect:
+
+            return true;
+
+         case ::draw2d::e_region_ellipse:
+
+            return false;
+
+         case ::draw2d::e_region_polygon:
+
+            return false;
+
+         case ::draw2d::e_region_poly_polygon:
+
+            return false;
+
+         case ::draw2d::e_region_combine:
+         {
+
+            ::pointer < combine_item > pcombineitem = m_pitem;
+
+            ::pointer < region > pregion1 = pcombineitem->m_pregion1;
+
+            if(!pregion1->is_rectangular_shapes_only_region())
+            {
+
+               return false;
+
+            }
+
+            ::pointer < region > pregion2 = pcombineitem->m_pregion2;
+
+            if(!pregion2->is_rectangular_shapes_only_region())
+            {
+
+               return false;
+
+            }
+
+            return true;
+
+         }
+         default:
+
+            throw ::interface_only();
+
+      }
+
+      return true;
+
+   }
+
+
    bool region::_mask(cairo_t * pgraphics, double dOpacity, enum_mask emask)
    {
 
@@ -108,21 +170,31 @@ namespace draw2d_cairo
 
       cairo_set_antialias(m_pcairo, CAIRO_ANTIALIAS_BEST);
 
+      cairo_set_source_rgba(m_pcairo, 0, 0, 0, 0);
+
+      cairo_fill(m_pcairo);
+
       int x = m_rectangleBoundingBoxInternal.left;
 
       int y = m_rectangleBoundingBoxInternal.top;
 
-      cairo_translate(m_pcairo, -x, -y);
-
       cairo_push_group(m_pcairo);
 
-      _mask(m_pcairo);
+      cairo_translate(m_pcairo, -x, -y);
+
+      _fill(m_pcairo);
+
+      cairo_translate(m_pcairo, x, y);
 
       cairo_pop_group_to_source(m_pcairo);
 
       cairo_rectangle(m_pcairo, 0, 0, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
       cairo_fill(m_pcairo);
+
+      cairo_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
+
+      cairo_paint(pgraphics);
 
       cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top);
 
@@ -139,7 +211,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::_mask(cairo_t * pgraphics)
+   bool region::_fill(cairo_t * pgraphics)
    {
 
       switch(m_eregion)
@@ -150,7 +222,7 @@ namespace draw2d_cairo
 
       case ::draw2d::e_region_rect:
 
-         mask_rect(pgraphics);
+         _rect(pgraphics);
 
          cairo_set_source_rgba(pgraphics, 0.0, 0.0, 0.0, 1.0);
 
@@ -160,7 +232,7 @@ namespace draw2d_cairo
 
       case ::draw2d::e_region_ellipse:
 
-         mask_oval(pgraphics);
+         _oval(pgraphics);
 
          cairo_set_source_rgba(pgraphics, 0.0, 0.0, 0.0, 1.0);
 
@@ -170,7 +242,7 @@ namespace draw2d_cairo
 
       case ::draw2d::e_region_polygon:
 
-         mask_polygon(pgraphics);
+         _polygon(pgraphics);
 
          cairo_set_source_rgba(pgraphics, 0.0, 0.0, 0.0, 1.0);
 
@@ -180,7 +252,7 @@ namespace draw2d_cairo
 
       case ::draw2d::e_region_poly_polygon:
 
-         mask_polygon(pgraphics);
+         _polygon(pgraphics);
 
          cairo_set_source_rgba(pgraphics, 0.0, 0.0, 0.0, 1.0);
 
@@ -190,7 +262,7 @@ namespace draw2d_cairo
 
       case ::draw2d::e_region_combine:
 
-         mask_combine(pgraphics);
+         _mask_combine(pgraphics);
 
          cairo_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
 
@@ -201,6 +273,57 @@ namespace draw2d_cairo
       default:
 
          throw ::interface_only();
+
+      }
+
+      return true;
+
+   }
+
+
+
+   bool region::_path(cairo_t * pgraphics)
+   {
+
+      switch(m_eregion)
+      {
+         case ::draw2d::e_region_none:
+
+            break;
+
+         case ::draw2d::e_region_rect:
+
+            _rect(pgraphics);
+
+            break;
+
+         case ::draw2d::e_region_ellipse:
+
+            _oval(pgraphics);
+
+            break;
+
+         case ::draw2d::e_region_polygon:
+
+            _polygon(pgraphics);
+
+            break;
+
+         case ::draw2d::e_region_poly_polygon:
+
+            _polygon(pgraphics);
+
+            break;
+
+         case ::draw2d::e_region_combine:
+
+            _combine(pgraphics);
+
+            break;
+
+         default:
+
+            throw ::interface_only();
 
       }
 
@@ -233,7 +356,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask_rect(cairo_t * pgraphics)
+   bool region::_rect(cairo_t * pgraphics)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -252,7 +375,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask_oval(cairo_t * pgraphics)
+   bool region::_oval(cairo_t * pgraphics)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -263,9 +386,9 @@ namespace draw2d_cairo
 
       auto size = pitem->m_rectangle.size();
 
-      double centerx    = center.x;
+      double centerx    = center.x();
 
-      double centery    = center.y;
+      double centery    = center.y();
 
       double radiusx    = fabs(size.cx) / 2.0;
 
@@ -291,7 +414,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask_polygon(cairo_t * pgraphics)
+   bool region::_polygon(cairo_t * pgraphics)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -305,12 +428,12 @@ namespace draw2d_cairo
 
       }
 
-      cairo_move_to(pgraphics, pitem->m_polygon[0].x, pitem->m_polygon[0].y);
+      cairo_move_to(pgraphics, pitem->m_polygon[0].x(), pitem->m_polygon[0].y());
 
       for(i32 i = 1; i < pitem->m_polygon.size(); i++)
       {
 
-         cairo_line_to(pgraphics, pitem->m_polygon[i].x, pitem->m_polygon[i].y);
+         cairo_line_to(pgraphics, pitem->m_polygon[i].x(), pitem->m_polygon[i].y());
 
       }
 
@@ -319,7 +442,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask_poly_polygon(cairo_t * pgraphics)
+   bool region::_poly_polygon(cairo_t * pgraphics)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -345,14 +468,14 @@ namespace draw2d_cairo
 
             auto & polygon = *ppolygon;
 
-            cairo_move_to(pgraphics, polygon[n].x, polygon[n].y);
+            cairo_move_to(pgraphics, polygon[n].x(), polygon[n].y());
 
             n++;
 
             for(i32 j = 1; j < polygon.size(); j++)
             {
 
-               cairo_line_to(pgraphics, polygon[n].x, polygon[n].y);
+               cairo_line_to(pgraphics, polygon[n].x(), polygon[n].y());
 
                n++;
 
@@ -367,7 +490,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask_combine(cairo_t * pgraphics)
+   bool region::_mask_combine(cairo_t * pgraphics)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -376,7 +499,7 @@ namespace draw2d_cairo
 
       ::pointer<combine_item>pitem = m_pitem;
 
-      pitem->m_pregion1.cast < ::draw2d_cairo::region >()->_mask(pgraphics);
+      pitem->m_pregion1.cast < ::draw2d_cairo::region >()->_fill(pgraphics);
 
       if(pitem->m_ecombine == ::draw2d::e_combine_add)
       {
@@ -403,11 +526,127 @@ namespace draw2d_cairo
 
       }
 
-      pitem->m_pregion2.cast < ::draw2d_cairo::region >()->_mask(pgraphics);
+      pitem->m_pregion2.cast < ::draw2d_cairo::region >()->_fill(pgraphics);
 
       cairo_pop_group_to_source(pgraphics);
 
       return true;
+
+   }
+
+
+   bool region::_combine(cairo_t * pgraphics)
+   {
+
+      ::pointer<combine_item>pitem = m_pitem;
+
+      pitem->m_pregion1.cast < ::draw2d_cairo::region >()->_path(pgraphics);
+
+      if(pitem->m_ecombine == ::draw2d::e_combine_add)
+      {
+
+         cairo_set_fill_rule(pgraphics, CAIRO_FILL_RULE_WINDING);
+
+      }
+      else if(pitem->m_ecombine == ::draw2d::e_combine_exclude)
+      {
+
+         cairo_set_fill_rule(pgraphics, CAIRO_FILL_RULE_EVEN_ODD);
+
+      }
+      else if(pitem->m_ecombine == ::draw2d::e_combine_intersect)
+      {
+
+         cairo_set_fill_rule(pgraphics, CAIRO_FILL_RULE_EVEN_ODD);
+
+      }
+      else
+      {
+
+         cairo_set_fill_rule(pgraphics, CAIRO_FILL_RULE_EVEN_ODD);
+
+      }
+
+      pitem->m_pregion2.cast < ::draw2d_cairo::region >()->_path(pgraphics);
+
+      return true;
+
+   }
+
+
+   cairo_region_t * region::create_cairo_region()
+   {
+
+      switch(m_eregion)
+      {
+         case ::draw2d::e_region_none:
+
+            throw ::exception(error_not_expected, "expected rectangular shaped region");
+
+            return nullptr;
+
+         case ::draw2d::e_region_rect:
+         {
+            cairo_rectangle_int_t cairorectangleint;
+
+            ::pointer<rectangle_item> prectangleitem = m_pitem;
+
+            cairorectangleint.x() = prectangleitem->m_rectangle.left;
+            cairorectangleint.y() = prectangleitem->m_rectangle.top;
+            cairorectangleint.width = prectangleitem->m_rectangle.width();
+            cairorectangleint.height = prectangleitem->m_rectangle.height();
+
+            return cairo_region_create_rectangle(&cairorectangleint);
+
+      }
+
+         case ::draw2d::e_region_ellipse:
+
+            throw ::exception(error_not_expected, "expected rectangular shaped region");
+
+            return nullptr;
+
+
+         case ::draw2d::e_region_polygon:
+
+            throw ::exception(error_not_expected, "expected rectangular shaped region");
+
+            return nullptr;
+
+
+         case ::draw2d::e_region_poly_polygon:
+
+            throw ::exception(error_not_expected, "expected rectangular shaped region");
+
+            return nullptr;
+
+
+         case ::draw2d::e_region_combine:
+         {
+
+            ::pointer<combine_item> pcombineitem = m_pitem;
+
+            ::pointer<region> pregion1 = pcombineitem->m_pregion1;
+
+            auto pcairoregion1 = pregion1->create_cairo_region();
+
+            ::pointer<region> pregion2 = pcombineitem->m_pregion2;
+
+            auto pcairoregion2 = pregion2->create_cairo_region();
+
+            cairo_region_union(pcairoregion1, pcairoregion2);
+
+            return pcairoregion1;
+
+         }
+
+         default:
+
+            throw ::interface_only();
+
+      }
+
+      return nullptr;
 
    }
 
@@ -417,7 +656,103 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      _mask(pgraphics);
+//      return _mask(pgraphics, 1.0, e_mask_fill);
+
+       //if(is_rectangular_shapes_only_region())
+       {
+
+          cairo_new_path(pgraphics);
+
+          _path(pgraphics);
+
+          cairo_clip(pgraphics);
+
+          cairo_set_fill_rule(pgraphics, CAIRO_FILL_RULE_WINDING);
+
+          return true;
+
+       }
+
+
+//      if(is_rectangular_shapes_only_region())
+//      {
+//
+//         if(m_pcairoregion)
+//         {
+//
+//            cairo_region_destroy(m_pcairoregion);
+//
+//         }
+//
+//         m_pcairoregion = create_cairo_region();
+//
+//      }
+//      else
+      //synchronous_lock ml(cairo_mutex());
+
+      if(m_pcairo != nullptr)
+      {
+
+         cairo_destroy(m_pcairo);
+
+         m_pcairo = nullptr;
+
+      }
+
+      if(m_psurface != nullptr)
+      {
+
+         cairo_surface_destroy(m_psurface);
+
+         m_psurface = nullptr;
+
+      }
+
+      m_rectangleBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
+
+      max_bounding_box(m_rectangleBoundingBoxInternal);
+
+      m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
+
+      if(m_psurface == nullptr)
+      {
+
+         return false;
+
+      }
+
+      m_pcairo = cairo_create(m_psurface);
+
+      if(m_pcairo == nullptr)
+      {
+
+         return false;
+
+      }
+
+      cairo_set_antialias(m_pcairo, CAIRO_ANTIALIAS_BEST);
+
+      int x = m_rectangleBoundingBoxInternal.left;
+
+      int y = m_rectangleBoundingBoxInternal.top;
+
+      cairo_push_group(m_pcairo);
+
+      cairo_translate(m_pcairo, -x, -y);
+
+      _fill(m_pcairo);
+
+      cairo_translate(m_pcairo, x, y);
+
+      cairo_pop_group_to_source(m_pcairo);
+
+      cairo_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
+
+      cairo_paint(pgraphics);
+
+      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top);
+
+      cairo_rectangle(pgraphics, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
       cairo_clip(pgraphics);
 
@@ -489,12 +824,12 @@ namespace draw2d_cairo
 
    //   }
 
-   //   cairo_move_to(pgraphics, m_lppoints[0].x, m_lppoints[0].y);
+   //   cairo_move_to(pgraphics, m_lppoints[0].x(), m_lppoints[0].y());
 
    //   for(i32 i = 1; i < m_nCount; i++)
    //   {
 
-   //      cairo_line_to(pgraphics, m_lppoints[i].x, m_lppoints[i].y);
+   //      cairo_line_to(pgraphics, m_lppoints[i].x(), m_lppoints[i].y());
 
    //   }
 
@@ -535,6 +870,16 @@ namespace draw2d_cairo
          m_pcairo = nullptr;
 
       }
+
+      if(m_pcairoregion != nullptr)
+      {
+
+         cairo_region_destroy(m_pcairoregion);
+
+         m_pcairoregion = nullptr;
+
+      }
+
 
       //return ::success;
 

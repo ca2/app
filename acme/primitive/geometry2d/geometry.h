@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/primitive/particle.h"
 
 
@@ -16,7 +17,7 @@ namespace geometry
       i32      m_iXCenter;
       i32      m_iYCenter;
 
-      void rotate(POINT_I32 * ppoint, i32 iCount);
+      void rotate(::point_i32 * ppoint, i32 iCount);
 
    };
 
@@ -36,18 +37,18 @@ namespace geometry
 
       double rotate_y(double x, double y, double phi);
       double rotate_x(double x, double y, double phi);
-      void rotate(i32 x, i32 y, POINT_I32 * ppoint, i32 iCount, double phi);
+      void rotate(i32 x, i32 y, ::point_i32 * ppoint, i32 iCount, double phi);
 
-      void rotate(i32 x, i32 y, POINT_I32 * ppoint, i32 iCount, double cosphi, double sinphi);
+      void rotate(i32 x, i32 y, ::point_i32 * ppoint, i32 iCount, double cosphi, double sinphi);
 
-      void rotate(i32 x, i32 y, POINT_F64 * ppoint, i32 iCount, double phi);
+      void rotate(i32 x, i32 y, ::point_f64 * ppoint, i32 iCount, double phi);
 
-      void rotate(i32 x, i32 y, POINT_F64 * ppoint, i32 iCount, double cosphi, double sinphi);
+      void rotate(i32 x, i32 y, ::point_f64 * ppoint, i32 iCount, double cosphi, double sinphi);
 
 
 
-      //void RandomPoint(POINT_I32 * ppoint, const ::rectangle_i32 & rectangle);
-      void deflate(RECTANGLE_I32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
+      //void RandomPoint(::point_i32 * ppoint, const ::rectangle_i32 & rectangle);
+      void deflate(::rectangle_i32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
 

@@ -23,8 +23,8 @@ int IsChild(oswindow oswindowParent, ::oswindow oswindowCandidateChildOrDescenda
 int ShowWindow(::oswindow oswindow, i32 nCmdShow);
 //i32 GetWindowLongA(::oswindow oswindow, i32 nIndex);
 //i32 SetWindowLongA(::oswindow oswindow, i32 nIndex, i32 l);
-int client_to_screen(::oswindow oswindow, POINT_I32 * lppoint);
-int screen_to_client(::oswindow oswindow, POINT_I32 * lppoint);
+int client_to_screen(::oswindow oswindow, ::point_i32 * lppoint);
+int screen_to_client(::oswindow oswindow, ::point_i32 * lppoint);
 i32 IsIconic(::oswindow oswindow);
 i32 IsWindowVisible(::oswindow oswindow);
 

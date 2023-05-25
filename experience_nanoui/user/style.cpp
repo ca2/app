@@ -764,8 +764,8 @@ namespace experience_nanoui
                iTabHeight = cy;
             }
 
-            ppane->m_point.x = x;
-            ppane->m_point.y = rectangleClient.top;
+            ppane->m_point.x() = x;
+            ppane->m_point.y() = rectangleClient.top;
 
 
             //            string str = ppane->get_title();
@@ -876,7 +876,7 @@ namespace experience_nanoui
       else
       {
 
-         ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x +
+         ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x() +
          ptab->get_data()->m_tabpanecompositea.last()->m_size.cx;
 
          //ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
@@ -1681,23 +1681,23 @@ namespace experience_nanoui
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->set_current_point(pointCenter.x, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x, pointCenter.y + 5);
-         pgraphics->set_current_point(pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x() - 5, pointCenter.y() + 5);
+         pgraphics->set_current_point(pointCenter.x(), pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x(), pointCenter.y() + 5);
+         pgraphics->set_current_point(pointCenter.x() + 5, pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y() + 5);
 
       }
       else
       {
 
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y);
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y() - 5);
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y());
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y());
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y() + 5);
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y() + 5);
 
       }
 

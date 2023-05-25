@@ -951,10 +951,10 @@ void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
 
    ::rectangle_i32 rWindow;
 
-   rWindow.left      = attr.x;
-   rWindow.top       = attr.y;
-   rWindow.right     = attr.x    + attr.width;
-   rWindow.bottom    = attr.y    + attr.height;
+   rWindow.left      = attr.x();
+   rWindow.top       = attr.y();
+   rWindow.right     = attr.x()    + attr.width;
+   rWindow.bottom    = attr.y()    + attr.height;
 
    if(rBest != rWindow)
    {
@@ -1135,7 +1135,7 @@ iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr i)
 }
 
 
-bool oswindow_data::client_to_screen(POINT_I32 * ppoint)
+bool oswindow_data::client_to_screen(::point_i32 * ppoint)
 {
 
    return true;
@@ -1143,7 +1143,7 @@ bool oswindow_data::client_to_screen(POINT_I32 * ppoint)
 }
 
 
-bool oswindow_data::screen_to_client(POINT_I32 * ppoint)
+bool oswindow_data::screen_to_client(::point_i32 * ppoint)
 {
 
    return true;

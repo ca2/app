@@ -61,7 +61,7 @@ namespace simpledb
                      byte uchLen;
                      stream >> uchLen;
                      string str;
-                     stream.read(str.get_string_buffer(uchLen), uchLen);
+                     stream.read(str.get_buffer(uchLen), uchLen);
                      payload = str;
                      str.ReleaseBuffer(uchLen);
                      if (uchLen < item.m_iSize)

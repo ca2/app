@@ -49,7 +49,7 @@ bool CLASS_DECL_APEX __compare_class_name(oswindow hWnd, const char * lpszClassN
 }
 
 
-oswindow CLASS_DECL_APEX __child_window_from_point(oswindow hWnd, POINT_I32 point_i32)
+oswindow CLASS_DECL_APEX __child_window_from_point(oswindow hWnd, ::point_i32 point_i32)
 {
    ASSERT(hWnd != nullptr);
 

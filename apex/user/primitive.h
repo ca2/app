@@ -57,7 +57,7 @@ namespace user
 //#endif
 //      strsize _009GetWindowTextLength() override;
 
-      bool GetFocusRect(RECTANGLE_I32 & rectangle) override;
+      bool GetFocusRect(::rectangle_i32 & rectangle) override;
 
       void defer_update_display() override;
 
@@ -228,7 +228,7 @@ namespace user
       void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
-      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
@@ -251,7 +251,7 @@ namespace user
 
 //      virtual void UpdateWindow();
       void SetRedraw(bool bRedraw = true) override;
-      bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
+      bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
 
       void interaction_post(const ::procedure & procedure) override;
@@ -381,7 +381,7 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
 
       ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags) override;
@@ -438,7 +438,7 @@ namespace user
       //virtual bool merge(::user::interaction * pinteraction);
 
 
-      void _001OnTriggerMouseInside() override;
+      //void _001OnTriggerMouseInside() override;
 
       void _000OnMouseLeave(::message::message* pmessage) override;
 
@@ -449,10 +449,10 @@ namespace user
 
       void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      void viewport_screen_to_client(POINT_I32 & point) override;
-      void viewport_client_to_screen(POINT_I32 & point) override;
-      void viewport_client_to_screen(RECTANGLE_I32 & rectangle) override;
-      void viewport_screen_to_client(RECTANGLE_I32 & rectangle) override;
+      void viewport_screen_to_client(::point_i32 & point) override;
+      void viewport_client_to_screen(::point_i32 & point) override;
+      void viewport_client_to_screen(::rectangle_i32 & rectangle) override;
+      void viewport_screen_to_client(::rectangle_i32 & rectangle) override;
 
 
       string get_window_default_matter() override;

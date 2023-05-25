@@ -774,7 +774,7 @@ namespace user
 
       }
 
-      m_size.cx = (int) (m_iaColumnWidth.get_total()
+      m_size.cx = (int) (m_iaColumnWidth.get_sum()
                   + rectangleMargin.left + rectangleMargin.right
                   + rectangleBorder.left + rectangleBorder.right
                   + rectanglePadding.left + rectanglePadding.right);
@@ -823,8 +823,8 @@ namespace user
 
       ::rectangle_i32 rectangleWindow;
 
-      rectangleWindow.left = point.x;
-      rectangleWindow.top = point.y;
+      rectangleWindow.left = point.x();
+      rectangleWindow.top = point.y();
       rectangleWindow.right = rectangleWindow.left + m_size.cx;
       rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 
@@ -1361,11 +1361,11 @@ namespace user
       //else
       //{
 
-      //   RECTANGLE_I32 * prectangle = (RECTANGLE_I32 *)pusermessage->m_lparam.m_lparam;
+      //   ::rectangle_i32 * prectangle = (::rectangle_i32 *)pusermessage->m_lparam.m_lparam;
 
-      //   prectangle->left = m_pointTrack.x;
+      //   prectangle->left = m_pointTrack.x();
 
-      //   prectangle->top = m_pointTrack.y;
+      //   prectangle->top = m_pointTrack.y();
 
       //   prectangle->right = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cx, m_size.cx);
 

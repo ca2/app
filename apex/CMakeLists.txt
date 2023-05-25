@@ -1446,7 +1446,7 @@ if (MSVC)
     target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (LINUX OR FREEBSD)
 
-    if(NOT DONT_USE_PKG_CONFIG)
+    if(USE_PKGCONFIG)
          pkg_check_modules(PKGCONFIG libarchive)
     endif()
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)

@@ -93,7 +93,7 @@ namespace x11
 
       void update_drawing_objects() override;
 
-      nano_child * hit_test(::user::mouse * pmouse) override;
+      nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
       //virtual void add_child(nano_child * pchild);
 

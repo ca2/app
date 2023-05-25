@@ -23,7 +23,7 @@ namespace write_text
    }
 
 
-   ::index text_out_array::hit_test(const ::point_i32& point)
+   ::index text_out_array::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       ::index iFound = -1;

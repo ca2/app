@@ -30,7 +30,7 @@ public:
 
    inline void push(ARG_TYPE t)
    {
-      BASE_CONTAINER::push_back(t);
+      BASE_CONTAINER::add(t);
    }
 
    inline TYPE pop(index n = -1)

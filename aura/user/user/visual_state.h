@@ -47,11 +47,11 @@ namespace user
       template < primitive_rectangle RECTANGLE >
       visual_state & operator = (const RECTANGLE & rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
 
-      ::i32 left() const { return m_point.x; }
-      ::i32 & left() { return m_point.x; }
+      ::i32 left() const { return m_point.x(); }
+      ::i32 & left() { return m_point.x(); }
 
-      ::i32 top() const { return m_point.y; }
-      ::i32 & top() { return m_point.y; }
+      ::i32 top() const { return m_point.y(); }
+      ::i32 & top() { return m_point.y(); }
 
       ::i32 width() const { return m_size.cx; }
       ::i32 & width() { return m_size.cx; }
@@ -63,10 +63,10 @@ namespace user
       bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }
 
       auto client_rect() const { return ::rectangle_i32(m_size); }
-      void client_rect(RECTANGLE_I32 & rect) const { rect = client_rect(); }
+      void client_rect(::rectangle_i32 & rect) const { rect = client_rect(); }
 
       auto parent_client_rectangle() const { return ::rectangle_i32(m_point, m_size); }
-      void parent_client_rectangle(RECTANGLE_I32 & rect) const { rect = parent_client_rectangle(); }
+      void parent_client_rectangle(::rectangle_i32 & rect) const { rect = parent_client_rectangle(); }
 
       void bottom_right(const ::point_i32 & point) { m_size = point - m_point; }
 

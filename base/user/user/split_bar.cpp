@@ -213,7 +213,7 @@ namespace user
       {
          i32 nPos;
          bool bMove;
-         nPos = m_pparent->GetPos(point.x, point.y);
+         nPos = m_pparent->GetPos(point.x(), point.y());
          if(m_iIndex <= 0)
          {
             bMove = nPos > m_pparent->GetMinPos();

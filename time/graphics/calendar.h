@@ -35,15 +35,15 @@ namespace datetime
          void initialize(::particle * pparticle) override;
 
 
-         virtual void GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect);
-         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);
-         virtual void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);
+         virtual void GetRectDay(::earth::time& time, ::rectangle_i32 * lprect);
+         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, ::rectangle_i32 * lprect);
+         virtual void GetRect(::rectangle_i32 * lprect, enum enum_element eelement);
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 
          void set_pos(point_i32 pt, size_i32 sz);
 
-         virtual enum_element hit_test(const ::point_i32& point);
+         virtual enum_element hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
          virtual bool hit_test(enum_element eelement, const ::point_i32& point);
          virtual bool time_hit_test(::earth::time& time, const ::point_i32& point);
 

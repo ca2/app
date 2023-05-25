@@ -28,7 +28,7 @@ namespace write_text
       ~text_out_array() override;
       
       
-      virtual ::index hit_test(const ::point_i32& point);
+      virtual ::index hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
 
       virtual bool is_updated(const ::scoped_string & str, void * pOsData) const;

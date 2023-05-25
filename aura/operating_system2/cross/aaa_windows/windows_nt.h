@@ -177,7 +177,7 @@ extern "C" {
 
 #ifndef NONAMELESSSTRUCT
 # ifdef __GNUC__
-   /* Anonymous struct support starts with gcc 2.96 or gcc/g++ 3.x */
+   /* Anonymous struct support starts with gcc 2.96 or gcc/g++ 3.x() */
 #  if (__GNUC__ < 2) || ((__GNUC__ == 2) && (defined(__cplusplus) || (__GNUC_MINOR__ < 96)))
 #   define NONAMELESSSTRUCT
 #  endif
@@ -540,7 +540,7 @@ typedef ::u32 FLONG;
 #define DLL_WINE_PREATTACH      8       /* called before process attach for Wine builtins */
 #endif
 
-/* u.x.wProcessorArchitecture (NT) */
+/* u.x().wProcessorArchitecture (NT) */
 #define PROCESSOR_ARCHITECTURE_INTEL	0
 #define PROCESSOR_ARCHITECTURE_MIPS	1
 #define PROCESSOR_ARCHITECTURE_ALPHA	2

@@ -15,7 +15,7 @@ using namespace Microsoft::WRL;
 using namespace ::winrt::Windows::Graphics::Display;
 using namespace D2D1;
 
-static void __pre_init_dialog(::user::interaction * pWnd,RECTANGLE_I32 * lpRectOld,u32* pdwStyleOld);
+static void __pre_init_dialog(::user::interaction * pWnd,::rectangle_i32 * lpRectOld,u32* pdwStyleOld);
 static void __post_init_dialog(::user::interaction * pWnd,const ::rectangle_i32 &rectangleOld,u32 dwStyleOld);
 LRESULT CALLBACK __activation_window_procedure(oswindow hWnd,::u32 nMsg,WPARAM wParam,LPARAM lParam);
 
@@ -126,8 +126,8 @@ namespace universal_windows
                   if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
-                     m_rectangle.left = pusersystem->m_createstruct.x;
-                     m_rectangle.top = pusersystem->m_createstruct.y;
+                     m_rectangle.left = pusersystem->m_createstruct.x();
+                     m_rectangle.top = pusersystem->m_createstruct.y();
                      m_rectangle.right = pusersystem->m_createstruct.cx;
                      m_rectangle.bottom = pusersystem->m_createstruct.cy;
 
@@ -176,8 +176,8 @@ namespace universal_windows
          if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0 && m_rectangle.is_empty())
          {
 
-            m_rectangle.left = pusersystem->m_createstruct.x;
-            m_rectangle.top = pusersystem->m_createstruct.y;
+            m_rectangle.left = pusersystem->m_createstruct.x();
+            m_rectangle.top = pusersystem->m_createstruct.y();
             m_rectangle.right = pusersystem->m_createstruct.cx;
             m_rectangle.bottom = pusersystem->m_createstruct.cy;
 
@@ -658,7 +658,7 @@ namespace universal_windows
       if (hWnd != nullptr)
       {
          int nLen = ::GetWindowTextLength(hWnd);
-         ::GetWindowText(hWnd, rString.get_string_buffer(nLen), nLen+1);
+         ::GetWindowText(hWnd, rString.get_buffer(nLen), nLen+1);
          rString.ReleaseBuffer();
       }
 
@@ -796,8 +796,8 @@ namespace universal_windows
    //   //return ::SetLayeredWindowAttributes((oswindow)get_os_data(), crKey, bAlpha, dwFlags) != false;
    //}
 
-   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 *pptDst,SIZE_I32 *psize,
-   //      ::draw2d::graphics * pDCSrc,POINT_I32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
+   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,SIZE_I32 *psize,
+   //      ::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    //{
    //   throw ::exception(todo);
    //   //ASSERT(::is_window((oswindow)get_os_data()));
@@ -1099,16 +1099,16 @@ namespace universal_windows
 
                get_session()->get_monitor_rectangle(0,&rcMonitor);
                if(rectangleWindow.left >= rcMonitor.left)
-                  pmouse->m_point.x += (::i32)rectangleWindow.left;
+                  pmouse->m_point.x() += (::i32)rectangleWindow.left;
                if(rectangleWindow.top >= rcMonitor.top)
-                  pmouse->m_point.y += (::i32)rectangleWindow.top;
+                  pmouse->m_point.y() += (::i32)rectangleWindow.top;
             }
             else
             {
                if(rectangleWindow.left >= 0)
-                  pmouse->m_point.x += (::i32)rectangleWindow.left;
+                  pmouse->m_point.x() += (::i32)rectangleWindow.left;
                if(rectangleWindow.top >= 0)
-                  pmouse->m_point.y += (::i32)rectangleWindow.top;
+                  pmouse->m_point.y() += (::i32)rectangleWindow.top;
             }
          }
 
@@ -1586,7 +1586,7 @@ case ::ca2::Sig_v_u_p:
 break;
 
 case ::ca2::Sig_SIZING:
-(this->*mmf.pfn_v_u_pr)(static_cast<::u32>(wParam), reinterpret_cast<RECTANGLE_I32 *>(lParam));
+(this->*mmf.pfn_v_u_pr)(static_cast<::u32>(wParam), reinterpret_cast<::rectangle_i32 *>(lParam));
 lResult = true;
 break;
 
@@ -1899,7 +1899,7 @@ return true;
 
    }
 
-   //void interaction_impl::ScrollWindow(int xAmount,int yAmount,const ::rectangle_i32 & rectangle,const RECTANGLE_I32 * lpClipRect)
+   //void interaction_impl::ScrollWindow(int xAmount,int yAmount,const ::rectangle_i32 & rectangle,const ::rectangle_i32 * lpClipRect)
    //{
 
    //   throw ::exception(todo);
@@ -1936,7 +1936,7 @@ return true;
    //}
 
 
-   void interaction_impl::CalcWindowRect(RECTANGLE_I32 * lpClientRect,::u32 nAdjustType)
+   void interaction_impl::CalcWindowRect(::rectangle_i32 * lpClientRect,::u32 nAdjustType)
    {
 
       throw ::exception(todo);
@@ -2639,7 +2639,7 @@ return true;
       ////   hWndParent->client_rectangle(&rcArea);
       ////   ASSERT(hWndCenter->is_window());
       ////   hWndCenter->client_rectangle(&rcCenter);
-      ////   ::MapWindowPoints(hWndCenter->_get_handle(), hWndParent->_get_handle(), (POINT_I32*)&rcCenter, 2);
+      ////   ::MapWindowPoints(hWndCenter->_get_handle(), hWndParent->_get_handle(), (::point_i32*)&rcCenter, 2);
       ////}
 
       ////// find dialog's upper left based on rcCenter
@@ -3089,7 +3089,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::client_to_screen(RECTANGLE_I32 * lprect)
+   //bool interaction_impl::client_to_screen(::rectangle_i32 * lprect)
    //{
 
    //   ::rectangle_i64 rectangleWindow;
@@ -3111,7 +3111,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::client_to_screen(POINT_I32 * lppoint)
+   //bool interaction_impl::client_to_screen(::point_i32 * lppoint)
    //{
 
    //   ::rectangle_i64 rectangleWindow;
@@ -3131,7 +3131,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::client_to_screen(RECTANGLE_I64 * lprect)
+   //bool interaction_impl::client_to_screen(::rectangle_i64 * lprect)
    //{
 
    //   ::rectangle_i32 rectangleWindow;
@@ -3153,7 +3153,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::client_to_screen(POINT_I64 * lppoint)
+   //bool interaction_impl::client_to_screen(::point_i64 * lppoint)
    //{
 
    //   ::rectangle_i64 rectangleWindow;
@@ -3173,7 +3173,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::screen_to_client(RECTANGLE_I32 * lprect)
+   //bool interaction_impl::screen_to_client(::rectangle_i32 * lprect)
    //{
 
    //   ::rectangle_i64 rectangleWindow;
@@ -3195,7 +3195,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::screen_to_client(POINT_I32 * lppoint)
+   //bool interaction_impl::screen_to_client(::point_i32 * lppoint)
    //{
 
    //   ::rectangle_i64 rectangleWindow;
@@ -3215,7 +3215,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::screen_to_client(RECTANGLE_I64 * lprect)
+   //bool interaction_impl::screen_to_client(::rectangle_i64 * lprect)
    //{
 
    //   ::rectangle_i64 rectangleWindow;
@@ -3237,7 +3237,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::screen_to_client(POINT_I64 * lppoint)
+   //bool interaction_impl::screen_to_client(::point_i64 * lppoint)
    //{
 
    //   ::rectangle_i64 rectangleWindow;
@@ -3258,7 +3258,7 @@ return true;
 
 
 
-   //bool interaction_impl::window_rectangle(RECTANGLE_I64 * lprect)
+   //bool interaction_impl::window_rectangle(::rectangle_i64 * lprect)
    //{
 
    //   if(m_pwindow == nullptr)
@@ -3315,7 +3315,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::client_rectangle(RECTANGLE_I64 * lprect)
+   //bool interaction_impl::client_rectangle(::rectangle_i64 * lprect)
    //{
 
    //   if(!::is_window(get_handle()))
@@ -3567,7 +3567,7 @@ return true;
    }
 
 
-   bool interaction_impl::DragDetect(POINT_I32 point_i32) const
+   bool interaction_impl::DragDetect(::point_i32 point_i32) const
    {
 
 
@@ -3693,7 +3693,7 @@ return true;
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,POINT_I32 * lpPoint,::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,::point_i32 * lpPoint,::u32 nCount)
    {
 
       throw ::exception(todo);
@@ -3702,13 +3702,13 @@ return true;
       //::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_os_data(), lpPoint, nCount);
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,RECTANGLE_I32 * lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,::rectangle_i32 * lpRect)
    {
 
       throw ::exception(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_os_data(), (POINT_I32 *)lpRect, 2);
+      //::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_os_data(), (::point_i32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3777,7 +3777,7 @@ return true;
       //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    }
 
-   //bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * lpRect,bool bErase)
+   //bool interaction_impl::GetUpdateRect(::rectangle_i32 * lpRect,bool bErase)
    //{
 
    //   throw ::exception(todo);
@@ -3998,7 +3998,7 @@ return true;
 
 #endif
 
-   bool interaction_impl::DrawAnimatedRects(int idAni,const RECTANGLE_I32 *lprcFrom,const RECTANGLE_I32 *lprcTo)
+   bool interaction_impl::DrawAnimatedRects(int idAni,const ::rectangle_i32 *lprcFrom,const ::rectangle_i32 *lprcTo)
    {
 
       throw ::exception(todo);
@@ -4009,7 +4009,7 @@ return true;
 
    }
 
-   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 * lprc,::u32 uFlags)
+   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 * lprc,::u32 uFlags)
    {
 
       throw ::exception(todo);
@@ -4282,7 +4282,7 @@ return true;
    }
 
 
-   //int interaction_impl::ScrollWindowEx(int Δx,int Δy,const ::rectangle_i32 & rectangleScroll,const ::rectangle_i32 & rectangleClip,::draw2d::region* prgnUpdate,RECTANGLE_I32 * lpRectUpdate,::u32 flags)
+   //int interaction_impl::ScrollWindowEx(int Δx,int Δy,const ::rectangle_i32 & rectangleScroll,const ::rectangle_i32 & rectangleClip,::draw2d::region* prgnUpdate,::rectangle_i32 * lpRectUpdate,::u32 flags)
    //{
 
    //   throw ::exception(todo);
@@ -4305,7 +4305,7 @@ return true;
 
    }
 
-   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point_i32)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(::point_i32 point_i32)
    {
 
       throw ::exception(todo);
@@ -4316,7 +4316,7 @@ return true;
 
    }
 
-   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point,::u32 nFlags)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(::point_i32 point,::u32 nFlags)
    {
 
       throw ::exception(todo);
@@ -4374,7 +4374,7 @@ return true;
    //}
 
    
-   ::pointer<::user::interaction_impl>interaction_impl::WindowFromPoint(POINT_I32 point_i32)
+   ::pointer<::user::interaction_impl>interaction_impl::WindowFromPoint(::point_i32 point_i32)
    {
 
       throw ::exception(todo);
@@ -4465,7 +4465,7 @@ return true;
    }
 
 
-   void interaction_impl::SetCaretPos(POINT_I32 point_i32)
+   void interaction_impl::SetCaretPos(::point_i32 point_i32)
    {
 
       throw ::exception(todo);
@@ -5046,11 +5046,11 @@ return true;
 
 #endif
 
-   void interaction_impl::OnSizing(::u32,RECTANGLE_I32 *)
+   void interaction_impl::OnSizing(::u32,::rectangle_i32 *)
    {
       Default();
    }
-   void interaction_impl::OnMoving(::u32,RECTANGLE_I32 *)
+   void interaction_impl::OnMoving(::u32,::rectangle_i32 *)
    {
       Default();
    }
@@ -5438,19 +5438,19 @@ lCallNextHook:
    }
 
 
-   void interaction_impl::_001OnTriggerMouseInside()
-   {
-
-      //throw ::exception(todo);
-
-
-//      m_bMouseHover = true;
-      //TRACKMOUSEEVENT tme = { sizeof(tme) };
-      //tme.dwFlags = TME_LEAVE;
-      //tme.hwndTrack = get_handle();
-      //TrackMouseEvent(&tme);
-
-   }
+//   void interaction_impl::_001OnTriggerMouseInside()
+//   {
+//
+//      //throw ::exception(todo);
+//
+//
+////      m_bMouseHover = true;
+//      //TRACKMOUSEEVENT tme = { sizeof(tme) };
+//      //tme.dwFlags = TME_LEAVE;
+//      //tme.hwndTrack = get_handle();
+//      //TrackMouseEvent(&tme);
+//
+//   }
 
 
 } // namespace universal_windows
@@ -5521,7 +5521,7 @@ WNDPROC CLASS_DECL_AURA __get_window_procedure()
 // Special helpers for certain windows messages
 
 __STATIC void CLASS_DECL_AURA __pre_init_dialog(
-::user::interaction * pWnd, RECTANGLE_I32 * lpRectOld, u32* pdwStyleOld)
+::user::interaction * pWnd, ::rectangle_i32 * lpRectOld, u32* pdwStyleOld)
 {
    ASSERT(lpRectOld != nullptr);
    ASSERT(pdwStyleOld != nullptr);
@@ -5982,7 +5982,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::offset_impact_port_org(RECTANGLE_I32 * lprectScreen)
+   void interaction_impl::offset_impact_port_org(::rectangle_i32 * lprectScreen)
    {
    }
 
@@ -6130,9 +6130,9 @@ namespace universal_windows
 
          //      point_f64 pointNow(pmouse->m_point);
 
-         //      double Δx = pointNow.x - m_pointLastMouseMove.x;
+         //      double Δx = pointNow.x() - m_pointLastMouseMove.x();
 
-         //      double Δy = pointNow.y - m_pointLastMouseMove.y;
+         //      double Δy = pointNow.y() - m_pointLastMouseMove.y();
 
          //      m_pointLastMouseMove = pointNow;
 

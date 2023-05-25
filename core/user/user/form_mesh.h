@@ -61,9 +61,9 @@ namespace user
 
       virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
 
-      void control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
+      void control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
+      void control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle) override;
 
       bool control_001DisplayHitTest(const ::point_i32 & point);
 

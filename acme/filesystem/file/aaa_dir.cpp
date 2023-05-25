@@ -111,7 +111,7 @@ namespace dir
 //
 //      wstring wstrModuleFilePath;
 //
-//      auto pwszModuleFilePath = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
+//      auto pwszModuleFilePath = wstrModuleFilePath.get_buffer(MAX_PATH * 8);
 //
 //      if (!GetModuleFileNameW(nullptr, pwszModuleFilePath, MAX_PATH * 8))
 //      {
@@ -120,13 +120,13 @@ namespace dir
 //         
 //      }
 //
-//      wstrModuleFilePath.release_string_buffer();
+//      wstrModuleFilePath.release_buffer();
 //
 //      LPWSTR pszModuleFileName;
 //
 //      wstring wstrModuleFolder;
 //
-//      auto pwszModuleFolder = wstrModuleFolder.get_string_buffer(MAX_PATH * 8);
+//      auto pwszModuleFolder = wstrModuleFolder.get_buffer(MAX_PATH * 8);
 //
 //      if (!GetFullPathNameW(wstrModuleFilePath, MAX_PATH * 8, pwszModuleFolder, &pszModuleFileName))
 //      {
@@ -135,7 +135,7 @@ namespace dir
 //         
 //      }
 //
-//      wstrModuleFolder.release_string_buffer();
+//      wstrModuleFolder.release_buffer();
 //
 //      wstrModuleFolder.case_insensitive_ends_eat("\\");
 //      wstrModuleFolder.case_insensitive_ends_eat("/");
@@ -193,7 +193,7 @@ namespace dir
 //
 //         wcscpy(wstrModuleFolder, wstrModuleFilePath);
 //
-//         wstrModuleFilePath.release_string_buffer();
+//         wstrModuleFilePath.release_buffer();
 //
 //         return string(wstrModuleFolder);
 //
@@ -207,7 +207,7 @@ namespace dir
 //
 //      }
 //
-//      wstrModuleFilePath.release_string_buffer();
+//      wstrModuleFilePath.release_buffer();
 //
 //      LPWSTR pszModuleFileName;
 //
@@ -218,7 +218,7 @@ namespace dir
 //
 //      }
 //
-//      wstrModuleFolder.release_string_buffer();
+//      wstrModuleFolder.release_buffer();
 //
 //      if(wstrModuleFolder.has_char())
 //      {
@@ -274,7 +274,7 @@ namespace dir
 //
 //      string strModuleFolder;
 //
-//      auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
+//      auto wstrModuleFolder = strModuleFolder.get_buffer(MAX_PATH * 8);
 //
 //      void * handle = dlopen("libacme.so", RTLD_NOW);
 //
@@ -379,7 +379,7 @@ namespace dir
 
       }
 
-      wstrModuleFolder.release_string_buffer();
+      wstrModuleFolder.release_buffer();
 
       wstrModuleFolder.trim_right(L"\\/");
 
@@ -389,7 +389,7 @@ namespace dir
 
       string strModuleFolder;
 
-      auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
+      auto wstrModuleFolder = strModuleFolder.get_buffer(MAX_PATH * 8);
 
       throw ::exception(todo);
 

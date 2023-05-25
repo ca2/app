@@ -150,7 +150,7 @@ namespace experience
    }
 
 
-   void frame::OnNcCalcSize(RECTANGLE_I32 * prectangle)
+   void frame::OnNcCalcSize(::rectangle_i32 * prectangle)
    {
 
       if (m_pframewindow->m_bUseNc)
@@ -325,7 +325,7 @@ namespace experience
    bool frame::on_message_left_button_double_click(::message::mouse * pmouse)
    {
 
-      auto ehittest = experience_frame_hit_test(pmouse->m_point);
+      auto ehittest = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
 
       if (ehittest == ::experience::e_frame_client)
       {
@@ -846,7 +846,7 @@ namespace experience
 
       bool bIcon = get_element_rect(rectangleIcon, ::e_element_top_left_icon);
 
-      m_pointWindowIcon.y = rectangleMargin.top + ((iCaptionHeight - rectangleIcon.height()) / 2);
+      m_pointWindowIcon.y() = rectangleMargin.top + ((iCaptionHeight - rectangleIcon.height()) / 2);
 
       if (bIcon)
       {
@@ -978,7 +978,7 @@ namespace experience
    }
 
 
-   bool frame::get_window_client_rect(RECTANGLE_I32 * prectangle)
+   bool frame::get_window_client_rect(::rectangle_i32 * prectangle)
    {
 
       if (__type_name(this).case_insensitive_contains("file"))
@@ -996,7 +996,7 @@ namespace experience
    }
 
 
-   bool frame::get_draw_client_rect(RECTANGLE_I32 * prectangle)
+   bool frame::get_draw_client_rect(::rectangle_i32 * prectangle)
    {
 
       ::rectangle_i32 rectangle;
@@ -1461,7 +1461,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 & prectangle, ::enum_element eelement)
+   bool frame::get_element_rect(::rectangle_i32 & prectangle, ::enum_element eelement)
    {
 
       return false;
@@ -1469,7 +1469,7 @@ namespace experience
    }
 
 
-   void frame::get_parent_rect(RECTANGLE_I32 & rectangle)
+   void frame::get_parent_rect(::rectangle_i32 & rectangle)
 
    {
 
@@ -1522,7 +1522,7 @@ namespace experience
    //   }
 
 
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       __UNREFERENCED_PARAMETER(point);

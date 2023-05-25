@@ -172,11 +172,11 @@ namespace user
 
       ::point_i32 pointCenter = rectangleDropDown.center();
 
-      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
+      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
 
    }
 
@@ -453,7 +453,7 @@ namespace user
    }
 
 
-   ::item_pointer combo_box::on_hit_test(const ::point_i32 &point)
+   ::item_pointer combo_box::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       ::rectangle rectangleElement;
@@ -1015,9 +1015,9 @@ namespace user
 
       ASSERT(is_window());
 
-      GetLBText(nIndex, rString.get_string_buffer(GetLBTextLen(nIndex)));
+      GetLBText(nIndex, rString.get_buffer(GetLBTextLen(nIndex)));
 
-      rString.release_string_buffer();
+      rString.release_buffer();
 
    }
 

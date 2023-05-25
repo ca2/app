@@ -672,11 +672,11 @@ extern "C"
 //
 //   string str;
 //
-//   char* psz = str.get_string_buffer(iUtf8Len);
+//   char* psz = str.get_buffer(iUtf8Len);
 //
 //   wd16_to_ansi(psz, pwszUni32, iUni32Len);
 //
-//   str.release_string_buffer(iUtf8Len);
+//   str.release_buffer(iUtf8Len);
 //
 //   return str;
 //
@@ -932,11 +932,11 @@ strsize utf16_to_utf16(::wd16_character * p, const ::wd16_character* codepoints,
 //
 //   string str;
 //
-//   char * psz = str.get_string_buffer(iUtf8Len);
+//   char * psz = str.get_buffer(iUtf8Len);
 //
 //   wd16_to_ansi(psz, pwszUni32, iUni32Len);
 //
-//   str.release_string_buffer(iUtf8Len);
+//   str.release_buffer(iUtf8Len);
 //
 //   return str;
 //
@@ -962,11 +962,11 @@ string wd16_to_ansi_str(const ::wd16_character * pwsz, strsize srclen)
 
    string str;
 
-   char * psz = str.get_string_buffer(iUtf8Len);
+   char * psz = str.get_buffer(iUtf8Len);
 
    wd16_to_ansi(psz, pwsz, srclen);
 
-   str.release_string_buffer(iUtf8Len);
+   str.release_buffer(iUtf8Len);
 
    return str;
 

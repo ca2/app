@@ -3894,962 +3894,966 @@
   // prevent individual pages from being generated for all of these
 #if !defined(DOXYGEN_SHOULD_SKIP_THIS)
 
-#define FA_AD                                   0xf641
-#define FA_ADDRESS_BOOK                         0xf2b9
-#define FA_ADDRESS_CARD                         0xf2bb
-#define FA_ADJUST                               0xf042
-#define FA_AIR_FRESHENER                        0xf5d0
-#define FA_ALIGN_CENTER                         0xf037
-#define FA_ALIGN_JUSTIFY                        0xf039
-#define FA_ALIGN_LEFT                           0xf036
-#define FA_ALIGN_RIGHT                          0xf038
-#define FA_ALLERGIES                            0xf461
-#define FA_AMBULANCE                            0xf0f9
-#define FA_AMERICAN_SIGN_LANGUAGE_INTERPRETING  0xf2a3
-#define FA_ANCHOR                               0xf13d
-#define FA_ANGLE_DOUBLE_DOWN                    0xf103
-#define FA_ANGLE_DOUBLE_LEFT                    0xf100
-#define FA_ANGLE_DOUBLE_RIGHT                   0xf101
-#define FA_ANGLE_DOUBLE_UP                      0xf102
-#define FA_ANGLE_DOWN                           0xf107
-#define FA_ANGLE_LEFT                           0xf104
-#define FA_ANGLE_RIGHT                          0xf105
-#define FA_ANGLE_UP                             0xf106
-#define FA_ANGRY                                0xf556
-#define FA_ANKH                                 0xf644
-#define FA_APPLE_ALT                            0xf5d1
-#define FA_ARCHIVE                              0xf187
-#define FA_ARCHWAY                              0xf557
-#define FA_ARROW_ALT_CIRCLE_DOWN                0xf358
-#define FA_ARROW_ALT_CIRCLE_LEFT                0xf359
-#define FA_ARROW_ALT_CIRCLE_RIGHT               0xf35a
-#define FA_ARROW_ALT_CIRCLE_UP                  0xf35b
-#define FA_ARROW_CIRCLE_DOWN                    0xf0ab
-#define FA_ARROW_CIRCLE_LEFT                    0xf0a8
-#define FA_ARROW_CIRCLE_RIGHT                   0xf0a9
-#define FA_ARROW_CIRCLE_UP                      0xf0aa
-#define FA_ARROW_DOWN                           0xf063
-#define FA_ARROW_LEFT                           0xf060
-#define FA_ARROW_RIGHT                          0xf061
-#define FA_ARROW_UP                             0xf062
-#define FA_ARROWS_ALT                           0xf0b2
-#define FA_ARROWS_ALT_H                         0xf337
-#define FA_ARROWS_ALT_V                         0xf338
-#define FA_ASSISTIVE_LISTENING_SYSTEMS          0xf2a2
-#define FA_ASTERISK                             0xf069
-#define FA_AT                                   0xf1fa
-#define FA_ATLAS                                0xf558
-#define FA_ATOM                                 0xf5d2
-#define FA_AUDIO_DESCRIPTION                    0xf29e
-#define FA_AWARD                                0xf559
-#define FA_BABY                                 0xf77c
-#define FA_BABY_CARRIAGE                        0xf77d
-#define FA_BACKSPACE                            0xf55a
-#define FA_BACKWARD                             0xf04a
-#define FA_BACON                                0xf7e5
-#define FA_BALANCE_SCALE                        0xf24e
-#define FA_BALANCE_SCALE_LEFT                   0xf515
-#define FA_BALANCE_SCALE_RIGHT                  0xf516
-#define FA_BAN                                  0xf05e
-#define FA_BAND_AID                             0xf462
-#define FA_BARCODE                              0xf02a
-#define FA_BARS                                 0xf0c9
-#define FA_BASEBALL_BALL                        0xf433
-#define FA_BASKETBALL_BALL                      0xf434
-#define FA_BATH                                 0xf2cd
-#define FA_BATTERY_EMPTY                        0xf244
-#define FA_BATTERY_FULL                         0xf240
-#define FA_BATTERY_HALF                         0xf242
-#define FA_BATTERY_QUARTER                      0xf243
-#define FA_BATTERY_THREE_QUARTERS               0xf241
-#define FA_BED                                  0xf236
-#define FA_BEER                                 0xf0fc
-#define FA_BELL                                 0xf0f3
-#define FA_BELL_SLASH                           0xf1f6
-#define FA_BEZIER_CURVE                         0xf55b
-#define FA_BIBLE                                0xf647
-#define FA_BICYCLE                              0xf206
-#define FA_BIKING                               0xf84a
-#define FA_BINOCULARS                           0xf1e5
-#define FA_BIOHAZARD                            0xf780
-#define FA_BIRTHDAY_CAKE                        0xf1fd
-#define FA_BLENDER                              0xf517
-#define FA_BLENDER_PHONE                        0xf6b6
-#define FA_BLIND                                0xf29d
-#define FA_BLOG                                 0xf781
-#define FA_BOLD                                 0xf032
-#define FA_BOLT                                 0xf0e7
-#define FA_BOMB                                 0xf1e2
-#define FA_BONE                                 0xf5d7
-#define FA_BONG                                 0xf55c
-#define FA_BOOK                                 0xf02d
-#define FA_BOOK_DEAD                            0xf6b7
-#define FA_BOOK_MEDICAL                         0xf7e6
-#define FA_BOOK_OPEN                            0xf518
-#define FA_BOOK_READER                          0xf5da
-#define FA_BOOKMARK                             0xf02e
-#define FA_BORDER_ALL                           0xf84c
-#define FA_BORDER_NONE                          0xf850
-#define FA_BORDER_STYLE                         0xf853
-#define FA_BOWLING_BALL                         0xf436
-#define FA_BOX                                  0xf466
-#define FA_BOX_OPEN                             0xf49e
-#define FA_BOXES                                0xf468
-#define FA_BRAILLE                              0xf2a1
-#define FA_BRAIN                                0xf5dc
-#define FA_BREAD_SLICE                          0xf7ec
-#define FA_BRIEFCASE                            0xf0b1
-#define FA_BRIEFCASE_MEDICAL                    0xf469
-#define FA_BROADCAST_TOWER                      0xf519
-#define FA_BROOM                                0xf51a
-#define FA_BRUSH                                0xf55d
-#define FA_BUG                                  0xf188
-#define FA_BUILDING                             0xf1ad
-#define FA_BULLHORN                             0xf0a1
-#define FA_BULLSEYE                             0xf140
-#define FA_BURN                                 0xf46a
-#define FA_BUS                                  0xf207
-#define FA_BUS_ALT                              0xf55e
-#define FA_BUSINESS_TIME                        0xf64a
-#define FA_CALCULATOR                           0xf1ec
-#define FA_CALENDAR                             0xf133
-#define FA_CALENDAR_ALT                         0xf073
-#define FA_CALENDAR_CHECK                       0xf274
-#define FA_CALENDAR_DAY                         0xf783
-#define FA_CALENDAR_MINUS                       0xf272
-#define FA_CALENDAR_PLUS                        0xf271
-#define FA_CALENDAR_TIMES                       0xf273
-#define FA_CALENDAR_WEEK                        0xf784
-#define FA_CAMERA                               0xf030
-#define FA_CAMERA_RETRO                         0xf083
-#define FA_CAMPGROUND                           0xf6bb
-#define FA_CANDY_CANE                           0xf786
-#define FA_CANNABIS                             0xf55f
-#define FA_CAPSULES                             0xf46b
-#define FA_CAR                                  0xf1b9
-#define FA_CAR_ALT                              0xf5de
-#define FA_CAR_BATTERY                          0xf5df
-#define FA_CAR_CRASH                            0xf5e1
-#define FA_CAR_SIDE                             0xf5e4
-#define FA_CARET_DOWN                           0xf0d7
-#define FA_CARET_LEFT                           0xf0d9
-#define FA_CARET_RIGHT                          0xf0da
-#define FA_CARET_SQUARE_DOWN                    0xf150
-#define FA_CARET_SQUARE_LEFT                    0xf191
-#define FA_CARET_SQUARE_RIGHT                   0xf152
-#define FA_CARET_SQUARE_UP                      0xf151
-#define FA_CARET_UP                             0xf0d8
-#define FA_CARROT                               0xf787
-#define FA_CART_ARROW_DOWN                      0xf218
-#define FA_CART_PLUS                            0xf217
-#define FA_CASH_REGISTER                        0xf788
-#define FA_CAT                                  0xf6be
-#define FA_CERTIFICATE                          0xf0a3
-#define FA_CHAIR                                0xf6c0
-#define FA_CHALKBOARD                           0xf51b
-#define FA_CHALKBOARD_TEACHER                   0xf51c
-#define FA_CHARGING_STATION                     0xf5e7
-#define FA_CHART_AREA                           0xf1fe
-#define FA_CHART_BAR                            0xf080
-#define FA_CHART_LINE                           0xf201
-#define FA_CHART_PIE                            0xf200
-#define FA_CHECK                                0xf00c
-#define FA_CHECK_CIRCLE                         0xf058
-#define FA_CHECK_DOUBLE                         0xf560
-#define FA_CHECK_SQUARE                         0xf14a
-#define FA_CHEESE                               0xf7ef
-#define FA_CHESS                                0xf439
-#define FA_CHESS_BISHOP                         0xf43a
-#define FA_CHESS_BOARD                          0xf43c
-#define FA_CHESS_KING                           0xf43f
-#define FA_CHESS_KNIGHT                         0xf441
-#define FA_CHESS_PAWN                           0xf443
-#define FA_CHESS_QUEEN                          0xf445
-#define FA_CHESS_ROOK                           0xf447
-#define FA_CHEVRON_CIRCLE_DOWN                  0xf13a
-#define FA_CHEVRON_CIRCLE_LEFT                  0xf137
-#define FA_CHEVRON_CIRCLE_RIGHT                 0xf138
-#define FA_CHEVRON_CIRCLE_UP                    0xf139
-#define FA_CHEVRON_DOWN                         0xf078
-#define FA_CHEVRON_LEFT                         0xf053
-#define FA_CHEVRON_RIGHT                        0xf054
-#define FA_CHEVRON_UP                           0xf077
-#define FA_CHILD                                0xf1ae
-#define FA_CHURCH                               0xf51d
-#define FA_CIRCLE                               0xf111
-#define FA_CIRCLE_NOTCH                         0xf1ce
-#define FA_CITY                                 0xf64f
-#define FA_CLINIC_MEDICAL                       0xf7f2
-#define FA_CLIPBOARD                            0xf328
-#define FA_CLIPBOARD_CHECK                      0xf46c
-#define FA_CLIPBOARD_LIST                       0xf46d
-#define FA_CLOCK                                0xf017
-#define FA_CLONE                                0xf24d
-#define FA_CLOSED_CAPTIONING                    0xf20a
-#define FA_CLOUD                                0xf0c2
-#define FA_CLOUD_DOWNLOAD_ALT                   0xf381
-#define FA_CLOUD_MEATBALL                       0xf73b
-#define FA_CLOUD_MOON                           0xf6c3
-#define FA_CLOUD_MOON_RAIN                      0xf73c
-#define FA_CLOUD_RAIN                           0xf73d
-#define FA_CLOUD_SHOWERS_HEAVY                  0xf740
-#define FA_CLOUD_SUN                            0xf6c4
-#define FA_CLOUD_SUN_RAIN                       0xf743
-#define FA_CLOUD_UPLOAD_ALT                     0xf382
-#define FA_COCKTAIL                             0xf561
-#define FA_CODE                                 0xf121
-#define FA_CODE_BRANCH                          0xf126
-#define FA_COFFEE                               0xf0f4
-#define FA_COG                                  0xf013
-#define FA_COGS                                 0xf085
-#define FA_COINS                                0xf51e
-#define FA_COLUMNS                              0xf0db
-#define FA_COMMENT                              0xf075
-#define FA_COMMENT_ALT                          0xf27a
-#define FA_COMMENT_DOLLAR                       0xf651
-#define FA_COMMENT_DOTS                         0xf4ad
-#define FA_COMMENT_MEDICAL                      0xf7f5
-#define FA_COMMENT_SLASH                        0xf4b3
-#define FA_COMMENTS                             0xf086
-#define FA_COMMENTS_DOLLAR                      0xf653
-#define FA_COMPACT_DISC                         0xf51f
-#define FA_COMPASS                              0xf14e
-#define FA_COMPRESS                             0xf066
-#define FA_COMPRESS_ARROWS_ALT                  0xf78c
-#define FA_CONCIERGE_BELL                       0xf562
-#define FA_COOKIE                               0xf563
-#define FA_COOKIE_BITE                          0xf564
-#define FA_COPY                                 0xf0c5
-#define FA_COPYRIGHT                            0xf1f9
-#define FA_COUCH                                0xf4b8
-#define FA_CREDIT_CARD                          0xf09d
-#define FA_CROP                                 0xf125
-#define FA_CROP_ALT                             0xf565
-#define FA_CROSS                                0xf654
-#define FA_CROSSHAIRS                           0xf05b
-#define FA_CROW                                 0xf520
-#define FA_CROWN                                0xf521
-#define FA_CRUTCH                               0xf7f7
-#define FA_CUBE                                 0xf1b2
-#define FA_CUBES                                0xf1b3
-#define FA_CUT                                  0xf0c4
-#define FA_DATABASE                             0xf1c0
-#define FA_DEAF                                 0xf2a4
-#define FA_DEMOCRAT                             0xf747
-#define FA_DESKTOP                              0xf108
-#define FA_DHARMACHAKRA                         0xf655
-#define FA_DIAGNOSES                            0xf470
-#define FA_DICE                                 0xf522
-#define FA_DICE_D20                             0xf6cf
-#define FA_DICE_D6                              0xf6d1
-#define FA_DICE_FIVE                            0xf523
-#define FA_DICE_FOUR                            0xf524
-#define FA_DICE_ONE                             0xf525
-#define FA_DICE_SIX                             0xf526
-#define FA_DICE_THREE                           0xf527
-#define FA_DICE_TWO                             0xf528
-#define FA_DIGITAL_TACHOGRAPH                   0xf566
-#define FA_DIRECTIONS                           0xf5eb
-#define FA_DIVIDE                               0xf529
-#define FA_DIZZY                                0xf567
-#define FA_DNA                                  0xf471
-#define FA_DOG                                  0xf6d3
-#define FA_DOLLAR_SIGN                          0xf155
-#define FA_DOLLY                                0xf472
-#define FA_DOLLY_FLATBED                        0xf474
-#define FA_DONATE                               0xf4b9
-#define FA_DOOR_CLOSED                          0xf52a
-#define FA_DOOR_OPEN                            0xf52b
-#define FA_DOT_CIRCLE                           0xf192
-#define FA_DOVE                                 0xf4ba
-#define FA_DOWNLOAD                             0xf019
-#define FA_DRAFTING_COMPASS                     0xf568
-#define FA_DRAGON                               0xf6d5
-#define FA_DRAW_POLYGON                         0xf5ee
-#define FA_DRUM                                 0xf569
-#define FA_DRUM_STEELPAN                        0xf56a
-#define FA_DRUMSTICK_BITE                       0xf6d7
-#define FA_DUMBBELL                             0xf44b
-#define FA_DUMPSTER                             0xf793
-#define FA_DUMPSTER_FIRE                        0xf794
-#define FA_DUNGEON                              0xf6d9
-#define FA_EDIT                                 0xf044
-#define FA_EGG                                  0xf7fb
-#define FA_EJECT                                0xf052
-#define FA_ELLIPSIS_H                           0xf141
-#define FA_ELLIPSIS_V                           0xf142
-#define FA_ENVELOPE                             0xf0e0
-#define FA_ENVELOPE_OPEN                        0xf2b6
-#define FA_ENVELOPE_OPEN_TEXT                   0xf658
-#define FA_ENVELOPE_SQUARE                      0xf199
-#define FA_EQUALS                               0xf52c
-#define FA_ERASER                               0xf12d
-#define FA_ETHERNET                             0xf796
-#define FA_EURO_SIGN                            0xf153
-#define FA_EXCHANGE_ALT                         0xf362
-#define FA_EXCLAMATION                          0xf12a
-#define FA_EXCLAMATION_CIRCLE                   0xf06a
-#define FA_EXCLAMATION_TRIANGLE                 0xf071
-#define FA_EXPAND                               0xf065
-#define FA_EXPAND_ARROWS_ALT                    0xf31e
-#define FA_EXTERNAL_LINK_ALT                    0xf35d
-#define FA_EXTERNAL_LINK_SQUARE_ALT             0xf360
-#define FA_EYE                                  0xf06e
-#define FA_EYE_DROPPER                          0xf1fb
-#define FA_EYE_SLASH                            0xf070
-#define FA_FAN                                  0xf863
-#define FA_FAST_BACKWARD                        0xf049
-#define FA_FAST_FORWARD                         0xf050
-#define FA_FAX                                  0xf1ac
-#define FA_FEATHER                              0xf52d
-#define FA_FEATHER_ALT                          0xf56b
-#define FA_FEMALE                               0xf182
-#define FA_FIGHTER_JET                          0xf0fb
-#define FA_FILE                                 0xf15b
-#define FA_FILE_ALT                             0xf15c
-#define FA_FILE_ARCHIVE                         0xf1c6
-#define FA_FILE_AUDIO                           0xf1c7
-#define FA_FILE_CODE                            0xf1c9
-#define FA_FILE_CONTRACT                        0xf56c
-#define FA_FILE_CSV                             0xf6dd
-#define FA_FILE_DOWNLOAD                        0xf56d
-#define FA_FILE_EXCEL                           0xf1c3
-#define FA_FILE_EXPORT                          0xf56e
-#define FA_FILE_IMAGE                           0xf1c5
-#define FA_FILE_IMPORT                          0xf56f
-#define FA_FILE_INVOICE                         0xf570
-#define FA_FILE_INVOICE_DOLLAR                  0xf571
-#define FA_FILE_MEDICAL                         0xf477
-#define FA_FILE_MEDICAL_ALT                     0xf478
-#define FA_FILE_PDF                             0xf1c1
-#define FA_FILE_POWERPOINT                      0xf1c4
-#define FA_FILE_PRESCRIPTION                    0xf572
-#define FA_FILE_SIGNATURE                       0xf573
-#define FA_FILE_UPLOAD                          0xf574
-#define FA_FILE_VIDEO                           0xf1c8
-#define FA_FILE_WORD                            0xf1c2
-#define FA_FILL                                 0xf575
-#define FA_FILL_DRIP                            0xf576
-#define FA_FILM                                 0xf008
-#define FA_FILTER                               0xf0b0
-#define FA_FINGERPRINT                          0xf577
-#define FA_FIRE                                 0xf06d
-#define FA_FIRE_ALT                             0xf7e4
-#define FA_FIRE_EXTINGUISHER                    0xf134
-#define FA_FIRST_AID                            0xf479
-#define FA_FISH                                 0xf578
-#define FA_FIST_RAISED                          0xf6de
-#define FA_FLAG                                 0xf024
-#define FA_FLAG_CHECKERED                       0xf11e
-#define FA_FLAG_USA                             0xf74d
-#define FA_FLASK                                0xf0c3
-#define FA_FLUSHED                              0xf579
-#define FA_FOLDER                               0xf07b
-#define FA_FOLDER_MINUS                         0xf65d
-#define FA_FOLDER_OPEN                          0xf07c
-#define FA_FOLDER_PLUS                          0xf65e
-#define FA_FONT                                 0xf031
-#define FA_FONT_AWESOME_LOGO_FULL               0xf4e6
-#define FA_FOOTBALL_BALL                        0xf44e
-#define FA_FORWARD                              0xf04e
-#define FA_FROG                                 0xf52e
-#define FA_FROWN                                0xf119
-#define FA_FROWN_OPEN                           0xf57a
-#define FA_FUNNEL_DOLLAR                        0xf662
-#define FA_FUTBOL                               0xf1e3
-#define FA_GAMEPAD                              0xf11b
-#define FA_GAS_PUMP                             0xf52f
-#define FA_GAVEL                                0xf0e3
-#define FA_GEM                                  0xf3a5
-#define FA_GENDERLESS                           0xf22d
-#define FA_GHOST                                0xf6e2
-#define FA_GIFT                                 0xf06b
-#define FA_GIFTS                                0xf79c
-#define FA_GLASS_CHEERS                         0xf79f
-#define FA_GLASS_MARTINI                        0xf000
-#define FA_GLASS_MARTINI_ALT                    0xf57b
-#define FA_GLASS_WHISKEY                        0xf7a0
-#define FA_GLASSES                              0xf530
-#define FA_GLOBE                                0xf0ac
-#define FA_GLOBE_AFRICA                         0xf57c
-#define FA_GLOBE_AMERICAS                       0xf57d
-#define FA_GLOBE_ASIA                           0xf57e
-#define FA_GLOBE_EUROPE                         0xf7a2
-#define FA_GOLF_BALL                            0xf450
-#define FA_GOPURAM                              0xf664
-#define FA_GRADUATION_CAP                       0xf19d
-#define FA_GREATER_THAN                         0xf531
-#define FA_GREATER_THAN_EQUAL                   0xf532
-#define FA_GRIMACE                              0xf57f
-#define FA_GRIN                                 0xf580
-#define FA_GRIN_ALT                             0xf581
-#define FA_GRIN_BEAM                            0xf582
-#define FA_GRIN_BEAM_SWEAT                      0xf583
-#define FA_GRIN_HEARTS                          0xf584
-#define FA_GRIN_SQUINT                          0xf585
-#define FA_GRIN_SQUINT_TEARS                    0xf586
-#define FA_GRIN_STARS                           0xf587
-#define FA_GRIN_TEARS                           0xf588
-#define FA_GRIN_TONGUE                          0xf589
-#define FA_GRIN_TONGUE_SQUINT                   0xf58a
-#define FA_GRIN_TONGUE_WINK                     0xf58b
-#define FA_GRIN_WINK                            0xf58c
-#define FA_GRIP_HORIZONTAL                      0xf58d
-#define FA_GRIP_LINES                           0xf7a4
-#define FA_GRIP_LINES_VERTICAL                  0xf7a5
-#define FA_GRIP_VERTICAL                        0xf58e
-#define FA_GUITAR                               0xf7a6
-#define FA_H_SQUARE                             0xf0fd
-#define FA_HAMBURGER                            0xf805
-#define FA_HAMMER                               0xf6e3
-#define FA_HAMSA                                0xf665
-#define FA_HAND_HOLDING                         0xf4bd
-#define FA_HAND_HOLDING_HEART                   0xf4be
-#define FA_HAND_HOLDING_USD                     0xf4c0
-#define FA_HAND_LIZARD                          0xf258
-#define FA_HAND_MIDDLE_FINGER                   0xf806
-#define FA_HAND_PAPER                           0xf256
-#define FA_HAND_PEACE                           0xf25b
-#define FA_HAND_POINT_DOWN                      0xf0a7
-#define FA_HAND_POINT_LEFT                      0xf0a5
-#define FA_HAND_POINT_RIGHT                     0xf0a4
-#define FA_HAND_POINT_UP                        0xf0a6
-#define FA_HAND_POINTER                         0xf25a
-#define FA_HAND_ROCK                            0xf255
-#define FA_HAND_SCISSORS                        0xf257
-#define FA_HAND_SPOCK                           0xf259
-#define FA_HANDS                                0xf4c2
-#define FA_HANDS_HELPING                        0xf4c4
-#define FA_HANDSHAKE                            0xf2b5
-#define FA_HANUKIAH                             0xf6e6
-#define FA_HARD_HAT                             0xf807
-#define FA_HASHTAG                              0xf292
-#define FA_HAT_WIZARD                           0xf6e8
-#define FA_HAYKAL                               0xf666
-#define FA_HDD                                  0xf0a0
-#define FA_HEADING                              0xf1dc
-#define FA_HEADPHONES                           0xf025
-#define FA_HEADPHONES_ALT                       0xf58f
-#define FA_HEADSET                              0xf590
-#define FA_HEART                                0xf004
-#define FA_HEART_BROKEN                         0xf7a9
-#define FA_HEARTBEAT                            0xf21e
-#define FA_HELICOPTER                           0xf533
-#define FA_HIGHLIGHTER                          0xf591
-#define FA_HIKING                               0xf6ec
-#define FA_HIPPO                                0xf6ed
-#define FA_HISTORY                              0xf1da
-#define FA_HOCKEY_PUCK                          0xf453
-#define FA_HOLLY_BERRY                          0xf7aa
-#define FA_HOME                                 0xf015
-#define FA_HORSE                                0xf6f0
-#define FA_HORSE_HEAD                           0xf7ab
-#define FA_HOSPITAL                             0xf0f8
-#define FA_HOSPITAL_ALT                         0xf47d
-#define FA_HOSPITAL_SYMBOL                      0xf47e
-#define FA_HOT_TUB                              0xf593
-#define FA_HOTDOG                               0xf80f
-#define FA_HOTEL                                0xf594
-#define FA_HOURGLASS                            0xf254
-#define FA_HOURGLASS_END                        0xf253
-#define FA_HOURGLASS_HALF                       0xf252
-#define FA_HOURGLASS_START                      0xf251
-#define FA_HOUSE_DAMAGE                         0xf6f1
-#define FA_HRYVNIA                              0xf6f2
-#define FA_I_CURSOR                             0xf246
-#define FA_ICE_CREAM                            0xf810
-#define FA_ICICLES                              0xf7ad
-#define FA_ICONS                                0xf86d
-#define FA_ID_BADGE                             0xf2c1
-#define FA_ID_CARD                              0xf2c2
-#define FA_ID_CARD_ALT                          0xf47f
-#define FA_IGLOO                                0xf7ae
-#define FA_IMAGE                                0xf03e
-#define FA_IMAGES                               0xf302
-#define FA_INBOX                                0xf01c
-#define FA_INDENT                               0xf03c
-#define FA_INDUSTRY                             0xf275
-#define FA_INFINITY                             0xf534
-#define FA_INFO                                 0xf129
-#define FA_INFO_CIRCLE                          0xf05a
-#define FA_ITALIC                               0xf033
-#define FA_JEDI                                 0xf669
-#define FA_JOINT                                0xf595
-#define FA_JOURNAL_WHILLS                       0xf66a
-#define FA_KAABA                                0xf66b
-#define FA_KEY                                  0xf084
-#define FA_KEYBOARD                             0xf11c
-#define FA_KHANDA                               0xf66d
-#define FA_KISS                                 0xf596
-#define FA_KISS_BEAM                            0xf597
-#define FA_KISS_WINK_HEART                      0xf598
-#define FA_KIWI_BIRD                            0xf535
-#define FA_LANDMARK                             0xf66f
-#define FA_LANGUAGE                             0xf1ab
-#define FA_LAPTOP                               0xf109
-#define FA_LAPTOP_CODE                          0xf5fc
-#define FA_LAPTOP_MEDICAL                       0xf812
-#define FA_LAUGH                                0xf599
-#define FA_LAUGH_BEAM                           0xf59a
-#define FA_LAUGH_SQUINT                         0xf59b
-#define FA_LAUGH_WINK                           0xf59c
-#define FA_LAYER_GROUP                          0xf5fd
-#define FA_LEAF                                 0xf06c
-#define FA_LEMON                                0xf094
-#define FA_LESS_THAN                            0xf536
-#define FA_LESS_THAN_EQUAL                      0xf537
-#define FA_LEVEL_DOWN_ALT                       0xf3be
-#define FA_LEVEL_UP_ALT                         0xf3bf
-#define FA_LIFE_RING                            0xf1cd
-#define FA_LIGHTBULB                            0xf0eb
-#define FA_LINK                                 0xf0c1
-#define FA_LIRA_SIGN                            0xf195
-#define FA_LIST                                 0xf03a
-#define FA_LIST_ALT                             0xf022
-#define FA_LIST_OL                              0xf0cb
-#define FA_LIST_UL                              0xf0ca
-#define FA_LOCATION_ARROW                       0xf124
-#define FA_LOCK                                 0xf023
-#define FA_LOCK_OPEN                            0xf3c1
-#define FA_LONG_ARROW_ALT_DOWN                  0xf309
-#define FA_LONG_ARROW_ALT_LEFT                  0xf30a
-#define FA_LONG_ARROW_ALT_RIGHT                 0xf30b
-#define FA_LONG_ARROW_ALT_UP                    0xf30c
-#define FA_LOW_VISION                           0xf2a8
-#define FA_LUGGAGE_CART                         0xf59d
-#define FA_MAGIC                                0xf0d0
-#define FA_MAGNET                               0xf076
-#define FA_MAIL_BULK                            0xf674
-#define FA_MALE                                 0xf183
-#define FA_MAP                                  0xf279
-#define FA_MAP_MARKED                           0xf59f
-#define FA_MAP_MARKED_ALT                       0xf5a0
-#define FA_MAP_MARKER                           0xf041
-#define FA_MAP_MARKER_ALT                       0xf3c5
-#define FA_MAP_PIN                              0xf276
-#define FA_MAP_SIGNS                            0xf277
-#define FA_MARKER                               0xf5a1
-#define FA_MARS                                 0xf222
-#define FA_MARS_DOUBLE                          0xf227
-#define FA_MARS_STROKE                          0xf229
-#define FA_MARS_STROKE_H                        0xf22b
-#define FA_MARS_STROKE_V                        0xf22a
-#define FA_MASK                                 0xf6fa
-#define FA_MEDAL                                0xf5a2
-#define FA_MEDKIT                               0xf0fa
-#define FA_MEH                                  0xf11a
-#define FA_MEH_BLANK                            0xf5a4
-#define FA_MEH_ROLLING_EYES                     0xf5a5
-#define FA_MEMORY                               0xf538
-#define FA_MENORAH                              0xf676
-#define FA_MERCURY                              0xf223
-#define FA_METEOR                               0xf753
-#define FA_MICROCHIP                            0xf2db
-#define FA_MICROPHONE                           0xf130
-#define FA_MICROPHONE_ALT                       0xf3c9
-#define FA_MICROPHONE_ALT_SLASH                 0xf539
-#define FA_MICROPHONE_SLASH                     0xf131
-#define FA_MICROSCOPE                           0xf610
-#define FA_MINUS                                0xf068
-#define FA_MINUS_CIRCLE                         0xf056
-#define FA_MINUS_SQUARE                         0xf146
-#define FA_MITTEN                               0xf7b5
-#define FA_MOBILE                               0xf10b
-#define FA_MOBILE_ALT                           0xf3cd
-#define FA_MONEY_BILL                           0xf0d6
-#define FA_MONEY_BILL_ALT                       0xf3d1
-#define FA_MONEY_BILL_WAVE                      0xf53a
-#define FA_MONEY_BILL_WAVE_ALT                  0xf53b
-#define FA_MONEY_CHECK                          0xf53c
-#define FA_MONEY_CHECK_ALT                      0xf53d
-#define FA_MONUMENT                             0xf5a6
-#define FA_MOON                                 0xf186
-#define FA_MORTAR_PESTLE                        0xf5a7
-#define FA_MOSQUE                               0xf678
-#define FA_MOTORCYCLE                           0xf21c
-#define FA_MOUNTAIN                             0xf6fc
-#define FA_MOUSE_POINTER                        0xf245
-#define FA_MUG_HOT                              0xf7b6
-#define FA_MUSIC                                0xf001
-#define FA_NETWORK_WIRED                        0xf6ff
-#define FA_NEUTER                               0xf22c
-#define FA_NEWSPAPER                            0xf1ea
-#define FA_NOT_EQUAL                            0xf53e
-#define FA_NOTES_MEDICAL                        0xf481
-#define FA_OBJECT_GROUP                         0xf247
-#define FA_OBJECT_UNGROUP                       0xf248
-#define FA_OIL_CAN                              0xf613
-#define FA_OM                                   0xf679
-#define FA_OTTER                                0xf700
-#define FA_OUTDENT                              0xf03b
-#define FA_PAGER                                0xf815
-#define FA_PAINT_BRUSH                          0xf1fc
-#define FA_PAINT_ROLLER                         0xf5aa
-#define FA_PALETTE                              0xf53f
-#define FA_PALLET                               0xf482
-#define FA_PAPER_PLANE                          0xf1d8
-#define FA_PAPERCLIP                            0xf0c6
-#define FA_PARACHUTE_BOX                        0xf4cd
-#define FA_PARAGRAPH                            0xf1dd
-#define FA_PARKING                              0xf540
-#define FA_PASSPORT                             0xf5ab
-#define FA_PASTAFARIANISM                       0xf67b
-#define FA_PASTE                                0xf0ea
-#define FA_PAUSE                                0xf04c
-#define FA_PAUSE_CIRCLE                         0xf28b
-#define FA_PAW                                  0xf1b0
-#define FA_PEACE                                0xf67c
-#define FA_PEN                                  0xf304
-#define FA_PEN_ALT                              0xf305
-#define FA_PEN_FANCY                            0xf5ac
-#define FA_PEN_NIB                              0xf5ad
-#define FA_PEN_SQUARE                           0xf14b
-#define FA_PENCIL_ALT                           0xf303
-#define FA_PENCIL_RULER                         0xf5ae
-#define FA_PEOPLE_CARRY                         0xf4ce
-#define FA_PEPPER_HOT                           0xf816
-#define FA_PERCENT                              0xf295
-#define FA_PERCENTAGE                           0xf541
-#define FA_PERSON_BOOTH                         0xf756
-#define FA_PHONE                                0xf095
-#define FA_PHONE_ALT                            0xf879
-#define FA_PHONE_SLASH                          0xf3dd
-#define FA_PHONE_SQUARE                         0xf098
-#define FA_PHONE_SQUARE_ALT                     0xf87b
-#define FA_PHONE_VOLUME                         0xf2a0
-#define FA_PHOTO_VIDEO                          0xf87c
-#define FA_PIGGY_BANK                           0xf4d3
-#define FA_PILLS                                0xf484
-#define FA_PIZZA_SLICE                          0xf818
-#define FA_PLACE_OF_WORSHIP                     0xf67f
-#define FA_PLANE                                0xf072
-#define FA_PLANE_ARRIVAL                        0xf5af
-#define FA_PLANE_DEPARTURE                      0xf5b0
-#define FA_PLAY                                 0xf04b
-#define FA_PLAY_CIRCLE                          0xf144
-#define FA_PLUG                                 0xf1e6
-#define FA_PLUS                                 0xf067
-#define FA_PLUS_CIRCLE                          0xf055
-#define FA_PLUS_SQUARE                          0xf0fe
-#define FA_PODCAST                              0xf2ce
-#define FA_POLL                                 0xf681
-#define FA_POLL_H                               0xf682
-#define FA_POO                                  0xf2fe
-#define FA_POO_STORM                            0xf75a
-#define FA_POOP                                 0xf619
-#define FA_PORTRAIT                             0xf3e0
-#define FA_POUND_SIGN                           0xf154
-#define FA_POWER_OFF                            0xf011
-#define FA_PRAY                                 0xf683
-#define FA_PRAYING_HANDS                        0xf684
-#define FA_PRESCRIPTION                         0xf5b1
-#define FA_PRESCRIPTION_BOTTLE                  0xf485
-#define FA_PRESCRIPTION_BOTTLE_ALT              0xf486
-#define FA_PRINT                                0xf02f
-#define FA_PROCEDURES                           0xf487
-#define FA_PROJECT_DIAGRAM                      0xf542
-#define FA_PUZZLE_PIECE                         0xf12e
-#define FA_QRCODE                               0xf029
-#define FA_QUESTION                             0xf128
-#define FA_QUESTION_CIRCLE                      0xf059
-#define FA_QUIDDITCH                            0xf458
-#define FA_QUOTE_LEFT                           0xf10d
-#define FA_QUOTE_RIGHT                          0xf10e
-#define FA_QURAN                                0xf687
-#define FA_RADIATION                            0xf7b9
-#define FA_RADIATION_ALT                        0xf7ba
-#define FA_RAINBOW                              0xf75b
-#define FA_RANDOM                               0xf074
-#define FA_RECEIPT                              0xf543
-#define FA_RECYCLE                              0xf1b8
-#define FA_REDO                                 0xf01e
-#define FA_REDO_ALT                             0xf2f9
-#define FA_REGISTERED                           0xf25d
-#define FA_REMOVE_FORMAT                        0xf87d
-#define FA_REPLY                                0xf3e5
-#define FA_REPLY_ALL                            0xf122
-#define FA_REPUBLICAN                           0xf75e
-#define FA_RESTROOM                             0xf7bd
-#define FA_RETWEET                              0xf079
-#define FA_RIBBON                               0xf4d6
-#define FA_RING                                 0xf70b
-#define FA_ROAD                                 0xf018
-#define FA_ROBOT                                0xf544
-#define FA_ROCKET                               0xf135
-#define FA_ROUTE                                0xf4d7
-#define FA_RSS                                  0xf09e
-#define FA_RSS_SQUARE                           0xf143
-#define FA_RUBLE_SIGN                           0xf158
-#define FA_RULER                                0xf545
-#define FA_RULER_COMBINED                       0xf546
-#define FA_RULER_HORIZONTAL                     0xf547
-#define FA_RULER_VERTICAL                       0xf548
-#define FA_RUNNING                              0xf70c
-#define FA_RUPEE_SIGN                           0xf156
-#define FA_SAD_CRY                              0xf5b3
-#define FA_SAD_TEAR                             0xf5b4
-#define FA_SATELLITE                            0xf7bf
-#define FA_SATELLITE_DISH                       0xf7c0
-#define FA_SAVE                                 0xf0c7
-#define FA_SCHOOL                               0xf549
-#define FA_SCREWDRIVER                          0xf54a
-#define FA_SCROLL                               0xf70e
-#define FA_SD_CARD                              0xf7c2
-#define FA_SEARCH                               0xf002
-#define FA_SEARCH_DOLLAR                        0xf688
-#define FA_SEARCH_LOCATION                      0xf689
-#define FA_SEARCH_MINUS                         0xf010
-#define FA_SEARCH_PLUS                          0xf00e
-#define FA_SEEDLING                             0xf4d8
-#define FA_SERVER                               0xf233
-#define FA_SHAPES                               0xf61f
-#define FA_SHARE                                0xf064
-#define FA_SHARE_ALT                            0xf1e0
-#define FA_SHARE_ALT_SQUARE                     0xf1e1
-#define FA_SHARE_SQUARE                         0xf14d
-#define FA_SHEKEL_SIGN                          0xf20b
-#define FA_SHIELD_ALT                           0xf3ed
-#define FA_SHIP                                 0xf21a
-#define FA_SHIPPING_FAST                        0xf48b
-#define FA_SHOE_PRINTS                          0xf54b
-#define FA_SHOPPING_BAG                         0xf290
-#define FA_SHOPPING_BASKET                      0xf291
-#define FA_SHOPPING_CART                        0xf07a
-#define FA_SHOWER                               0xf2cc
-#define FA_SHUTTLE_VAN                          0xf5b6
-#define FA_SIGN                                 0xf4d9
-#define FA_SIGN_IN_ALT                          0xf2f6
-#define FA_SIGN_LANGUAGE                        0xf2a7
-#define FA_SIGN_OUT_ALT                         0xf2f5
-#define FA_SIGNAL                               0xf012
-#define FA_SIGNATURE                            0xf5b7
-#define FA_SIM_CARD                             0xf7c4
-#define FA_SITEMAP                              0xf0e8
-#define FA_SKATING                              0xf7c5
-#define FA_SKIING                               0xf7c9
-#define FA_SKIING_NORDIC                        0xf7ca
-#define FA_SKULL                                0xf54c
-#define FA_SKULL_CROSSBONES                     0xf714
-#define FA_SLASH                                0xf715
-#define FA_SLEIGH                               0xf7cc
-#define FA_SLIDERS_H                            0xf1de
-#define FA_SMILE                                0xf118
-#define FA_SMILE_BEAM                           0xf5b8
-#define FA_SMILE_WINK                           0xf4da
-#define FA_SMOG                                 0xf75f
-#define FA_SMOKING                              0xf48d
-#define FA_SMOKING_BAN                          0xf54d
-#define FA_SMS                                  0xf7cd
-#define FA_SNOWBOARDING                         0xf7ce
-#define FA_SNOWFLAKE                            0xf2dc
-#define FA_SNOWMAN                              0xf7d0
-#define FA_SNOWPLOW                             0xf7d2
-#define FA_SOCKS                                0xf696
-#define FA_SOLAR_PANEL                          0xf5ba
-#define FA_SORT                                 0xf0dc
-#define FA_SORT_ALPHA_DOWN                      0xf15d
-#define FA_SORT_ALPHA_DOWN_ALT                  0xf881
-#define FA_SORT_ALPHA_UP                        0xf15e
-#define FA_SORT_ALPHA_UP_ALT                    0xf882
-#define FA_SORT_AMOUNT_DOWN                     0xf160
-#define FA_SORT_AMOUNT_DOWN_ALT                 0xf884
-#define FA_SORT_AMOUNT_UP                       0xf161
-#define FA_SORT_AMOUNT_UP_ALT                   0xf885
-#define FA_SORT_DOWN                            0xf0dd
-#define FA_SORT_NUMERIC_DOWN                    0xf162
-#define FA_SORT_NUMERIC_DOWN_ALT                0xf886
-#define FA_SORT_NUMERIC_UP                      0xf163
-#define FA_SORT_NUMERIC_UP_ALT                  0xf887
-#define FA_SORT_UP                              0xf0de
-#define FA_SPA                                  0xf5bb
-#define FA_SPACE_SHUTTLE                        0xf197
-#define FA_SPELL_CHECK                          0xf891
-#define FA_SPIDER                               0xf717
-#define FA_SPINNER                              0xf110
-#define FA_SPLOTCH                              0xf5bc
-#define FA_SPRAY_CAN                            0xf5bd
-#define FA_SQUARE                               0xf0c8
-#define FA_SQUARE_FULL                          0xf45c
-#define FA_SQUARE_ROOT_ALT                      0xf698
-#define FA_STAMP                                0xf5bf
-#define FA_STAR                                 0xf005
-#define FA_STAR_AND_CRESCENT                    0xf699
-#define FA_STAR_HALF                            0xf089
-#define FA_STAR_HALF_ALT                        0xf5c0
-#define FA_STAR_OF_DAVID                        0xf69a
-#define FA_STAR_OF_LIFE                         0xf621
-#define FA_STEP_BACKWARD                        0xf048
-#define FA_STEP_FORWARD                         0xf051
-#define FA_STETHOSCOPE                          0xf0f1
-#define FA_STICKY_NOTE                          0xf249
-#define FA_STOP                                 0xf04d
-#define FA_STOP_CIRCLE                          0xf28d
-#define FA_STOPWATCH                            0xf2f2
-#define FA_STORE                                0xf54e
-#define FA_STORE_ALT                            0xf54f
-#define FA_STREAM                               0xf550
-#define FA_STREET_VIEW                          0xf21d
-#define FA_STRIKETHROUGH                        0xf0cc
-#define FA_STROOPWAFEL                          0xf551
-#define FA_SUBSCRIPT                            0xf12c
-#define FA_SUBWAY                               0xf239
-#define FA_SUITCASE                             0xf0f2
-#define FA_SUITCASE_ROLLING                     0xf5c1
-#define FA_SUN                                  0xf185
-#define FA_SUPERSCRIPT                          0xf12b
-#define FA_SURPRISE                             0xf5c2
-#define FA_SWATCHBOOK                           0xf5c3
-#define FA_SWIMMER                              0xf5c4
-#define FA_SWIMMING_POOL                        0xf5c5
-#define FA_SYNAGOGUE                            0xf69b
-#define FA_SYNC                                 0xf021
-#define FA_SYNC_ALT                             0xf2f1
-#define FA_SYRINGE                              0xf48e
-#define FA_TABLE                                0xf0ce
-#define FA_TABLE_TENNIS                         0xf45d
-#define FA_TABLET                               0xf10a
-#define FA_TABLET_ALT                           0xf3fa
-#define FA_TABLETS                              0xf490
-#define FA_TACHOMETER_ALT                       0xf3fd
-#define FA_TAG                                  0xf02b
-#define FA_TAGS                                 0xf02c
-#define FA_TAPE                                 0xf4db
-#define FA_TASKS                                0xf0ae
-#define FA_TAXI                                 0xf1ba
-#define FA_TEETH                                0xf62e
-#define FA_TEETH_OPEN                           0xf62f
-#define FA_TEMPERATURE_HIGH                     0xf769
-#define FA_TEMPERATURE_LOW                      0xf76b
-#define FA_TENGE                                0xf7d7
-#define FA_TERMINAL                             0xf120
-#define FA_TEXT_HEIGHT                          0xf034
-#define FA_TEXT_WIDTH                           0xf035
-#define FA_TH                                   0xf00a
-#define FA_TH_LARGE                             0xf009
-#define FA_TH_LIST                              0xf00b
-#define FA_THEATER_MASKS                        0xf630
-#define FA_THERMOMETER                          0xf491
-#define FA_THERMOMETER_EMPTY                    0xf2cb
-#define FA_THERMOMETER_FULL                     0xf2c7
-#define FA_THERMOMETER_HALF                     0xf2c9
-#define FA_THERMOMETER_QUARTER                  0xf2ca
-#define FA_THERMOMETER_THREE_QUARTERS           0xf2c8
-#define FA_THUMBS_DOWN                          0xf165
-#define FA_THUMBS_UP                            0xf164
-#define FA_THUMBTACK                            0xf08d
-#define FA_TICKET_ALT                           0xf3ff
-#define FA_TIMES                                0xf00d
-#define FA_TIMES_CIRCLE                         0xf057
-#define FA_TINT                                 0xf043
-#define FA_TINT_SLASH                           0xf5c7
-#define FA_TIRED                                0xf5c8
-#define FA_TOGGLE_OFF                           0xf204
-#define FA_TOGGLE_ON                            0xf205
-#define FA_TOILET                               0xf7d8
-#define FA_TOILET_PAPER                         0xf71e
-#define FA_TOOLBOX                              0xf552
-#define FA_TOOLS                                0xf7d9
-#define FA_TOOTH                                0xf5c9
-#define FA_TORAH                                0xf6a0
-#define FA_TORII_GATE                           0xf6a1
-#define FA_TRACTOR                              0xf722
-#define FA_TRADEMARK                            0xf25c
-#define FA_TRAFFIC_LIGHT                        0xf637
-#define FA_TRAIN                                0xf238
-#define FA_TRAM                                 0xf7da
-#define FA_TRANSGENDER                          0xf224
-#define FA_TRANSGENDER_ALT                      0xf225
-#define FA_TRASH                                0xf1f8
-#define FA_TRASH_ALT                            0xf2ed
-#define FA_TRASH_RESTORE                        0xf829
-#define FA_TRASH_RESTORE_ALT                    0xf82a
-#define FA_TREE                                 0xf1bb
-#define FA_TROPHY                               0xf091
-#define FA_TRUCK                                0xf0d1
-#define FA_TRUCK_LOADING                        0xf4de
-#define FA_TRUCK_MONSTER                        0xf63b
-#define FA_TRUCK_MOVING                         0xf4df
-#define FA_TRUCK_PICKUP                         0xf63c
-#define FA_TSHIRT                               0xf553
-#define FA_TTY                                  0xf1e4
-#define FA_TV                                   0xf26c
-#define FA_UMBRELLA                             0xf0e9
-#define FA_UMBRELLA_BEACH                       0xf5ca
-#define FA_UNDERLINE                            0xf0cd
-#define FA_UNDO                                 0xf0e2
-#define FA_UNDO_ALT                             0xf2ea
-#define FA_UNIVERSAL_ACCESS                     0xf29a
-#define FA_UNIVERSITY                           0xf19c
-#define FA_UNLINK                               0xf127
-#define FA_UNLOCK                               0xf09c
-#define FA_UNLOCK_ALT                           0xf13e
-#define FA_UPLOAD                               0xf093
-#define FA_USER                                 0xf007
-#define FA_USER_ALT                             0xf406
-#define FA_USER_ALT_SLASH                       0xf4fa
-#define FA_USER_ASTRONAUT                       0xf4fb
-#define FA_USER_CHECK                           0xf4fc
-#define FA_USER_CIRCLE                          0xf2bd
-#define FA_USER_CLOCK                           0xf4fd
-#define FA_USER_COG                             0xf4fe
-#define FA_USER_EDIT                            0xf4ff
-#define FA_USER_FRIENDS                         0xf500
-#define FA_USER_GRADUATE                        0xf501
-#define FA_USER_INJURED                         0xf728
-#define FA_USER_LOCK                            0xf502
-#define FA_USER_MD                              0xf0f0
-#define FA_USER_MINUS                           0xf503
-#define FA_USER_NINJA                           0xf504
-#define FA_USER_NURSE                           0xf82f
-#define FA_USER_PLUS                            0xf234
-#define FA_USER_SECRET                          0xf21b
-#define FA_USER_SHIELD                          0xf505
-#define FA_USER_SLASH                           0xf506
-#define FA_USER_TAG                             0xf507
-#define FA_USER_TIE                             0xf508
-#define FA_USER_TIMES                           0xf235
-#define FA_USERS                                0xf0c0
-#define FA_USERS_COG                            0xf509
-#define FA_UTENSIL_SPOON                        0xf2e5
-#define FA_UTENSILS                             0xf2e7
-#define FA_VECTOR_SQUARE                        0xf5cb
-#define FA_VENUS                                0xf221
-#define FA_VENUS_DOUBLE                         0xf226
-#define FA_VENUS_MARS                           0xf228
-#define FA_VIAL                                 0xf492
-#define FA_VIALS                                0xf493
-#define FA_VIDEO                                0xf03d
-#define FA_VIDEO_SLASH                          0xf4e2
-#define FA_VIHARA                               0xf6a7
-#define FA_VOICEMAIL                            0xf897
-#define FA_VOLLEYBALL_BALL                      0xf45f
-#define FA_VOLUME_DOWN                          0xf027
-#define FA_VOLUME_MUTE                          0xf6a9
-#define FA_VOLUME_OFF                           0xf026
-#define FA_VOLUME_UP                            0xf028
-#define FA_VOTE_YEA                             0xf772
-#define FA_VR_CARDBOARD                         0xf729
-#define FA_WALKING                              0xf554
-#define FA_WALLET                               0xf555
-#define FA_WAREHOUSE                            0xf494
-#define FA_WATER                                0xf773
-#define FA_WAVE_SQUARE                          0xf83e
-#define FA_WEIGHT                               0xf496
-#define FA_WEIGHT_HANGING                       0xf5cd
-#define FA_WHEELCHAIR                           0xf193
-#define FA_WIFI                                 0xf1eb
-#define FA_WIND                                 0xf72e
-#define FA_WINDOW_CLOSE                         0xf410
-#define FA_WINDOW_MAXIMIZE                      0xf2d0
-#define FA_WINDOW_MINIMIZE                      0xf2d1
-#define FA_WINDOW_RESTORE                       0xf2d2
-#define FA_WINE_BOTTLE                          0xf72f
-#define FA_WINE_GLASS                           0xf4e3
-#define FA_WINE_GLASS_ALT                       0xf5ce
-#define FA_WON_SIGN                             0xf159
-#define FA_WRENCH                               0xf0ad
-#define FA_X_RAY                                0xf497
-#define FA_YEN_SIGN                             0xf157
-#define FA_YIN_YANG                             0xf6ad
+enum enum_font_awesome : ::i32
+{
+   e_font_awesome_ad = 0xf641,
+   e_font_awesome_address_book = 0xf2b9,
+   e_font_awesome_address_card = 0xf2bb,
+   e_font_awesome_adjust = 0xf042,
+   e_font_awesome_air_freshener = 0xf5d0,
+   e_font_awesome_align_center = 0xf037,
+   e_font_awesome_align_justify = 0xf039,
+   e_font_awesome_align_left = 0xf036,
+   e_font_awesome_align_right = 0xf038,
+   e_font_awesome_allergies = 0xf461,
+   e_font_awesome_ambulance = 0xf0f9,
+   e_font_awesome_american_sign_language_interpreting = 0xf2a3,
+   e_font_awesome_anchor = 0xf13d,
+   e_font_awesome_angle_double_down = 0xf103,
+   e_font_awesome_angle_double_left = 0xf100,
+   e_font_awesome_angle_double_right = 0xf101,
+   e_font_awesome_angle_double_up = 0xf102,
+   e_font_awesome_angle_down = 0xf107,
+   e_font_awesome_angle_left = 0xf104,
+   e_font_awesome_angle_right = 0xf105,
+   e_font_awesome_angle_up = 0xf106,
+   e_font_awesome_angry = 0xf556,
+   e_font_awesome_ankh = 0xf644,
+   e_font_awesome_apple_alt = 0xf5d1,
+   e_font_awesome_archive = 0xf187,
+   e_font_awesome_archway = 0xf557,
+   e_font_awesome_arrow_alt_circle_down = 0xf358,
+   e_font_awesome_arrow_alt_circle_left = 0xf359,
+   e_font_awesome_arrow_alt_circle_right = 0xf35a,
+   e_font_awesome_arrow_alt_circle_up = 0xf35b,
+   e_font_awesome_arrow_circle_down = 0xf0ab,
+   e_font_awesome_arrow_circle_left = 0xf0a8,
+   e_font_awesome_arrow_circle_right = 0xf0a9,
+   e_font_awesome_arrow_circle_up = 0xf0aa,
+   e_font_awesome_arrow_down = 0xf063,
+   e_font_awesome_arrow_left = 0xf060,
+   e_font_awesome_arrow_right = 0xf061,
+   e_font_awesome_arrow_up = 0xf062,
+   e_font_awesome_arrows_alt = 0xf0b2,
+   e_font_awesome_arrows_alt_h = 0xf337,
+   e_font_awesome_arrows_alt_v = 0xf338,
+   e_font_awesome_assistive_listening_systems = 0xf2a2,
+   e_font_awesome_asterisk = 0xf069,
+   e_font_awesome_at = 0xf1fa,
+   e_font_awesome_atlas = 0xf558,
+   e_font_awesome_atom = 0xf5d2,
+   e_font_awesome_audio_description = 0xf29e,
+   e_font_awesome_award = 0xf559,
+   e_font_awesome_baby = 0xf77c,
+   e_font_awesome_baby_carriage = 0xf77d,
+   e_font_awesome_backspace = 0xf55a,
+   e_font_awesome_backward = 0xf04a,
+   e_font_awesome_bacon = 0xf7e5,
+   e_font_awesome_balance_scale = 0xf24e,
+   e_font_awesome_balance_scale_left = 0xf515,
+   e_font_awesome_balance_scale_right = 0xf516,
+   e_font_awesome_ban = 0xf05e,
+   e_font_awesome_band_aid = 0xf462,
+   e_font_awesome_barcode = 0xf02a,
+   e_font_awesome_bars = 0xf0c9,
+   e_font_awesome_baseball_ball = 0xf433,
+   e_font_awesome_basketball_ball = 0xf434,
+   e_font_awesome_bath = 0xf2cd,
+   e_font_awesome_battery_empty = 0xf244,
+   e_font_awesome_battery_full = 0xf240,
+   e_font_awesome_battery_half = 0xf242,
+   e_font_awesome_battery_quarter = 0xf243,
+   e_font_awesome_battery_three_quarters = 0xf241,
+   e_font_awesome_bed = 0xf236,
+   e_font_awesome_beer = 0xf0fc,
+   e_font_awesome_bell = 0xf0f3,
+   e_font_awesome_bell_slash = 0xf1f6,
+   e_font_awesome_bezier_curve = 0xf55b,
+   e_font_awesome_bible = 0xf647,
+   e_font_awesome_bicycle = 0xf206,
+   e_font_awesome_biking = 0xf84a,
+   e_font_awesome_binoculars = 0xf1e5,
+   e_font_awesome_biohazard = 0xf780,
+   e_font_awesome_birthday_cake = 0xf1fd,
+   e_font_awesome_blender = 0xf517,
+   e_font_awesome_blender_phone = 0xf6b6,
+   e_font_awesome_blind = 0xf29d,
+   e_font_awesome_blog = 0xf781,
+   e_font_awesome_bold = 0xf032,
+   e_font_awesome_bolt = 0xf0e7,
+   e_font_awesome_bomb = 0xf1e2,
+   e_font_awesome_bone = 0xf5d7,
+   e_font_awesome_bong = 0xf55c,
+   e_font_awesome_book = 0xf02d,
+   e_font_awesome_book_dead = 0xf6b7,
+   e_font_awesome_book_medical = 0xf7e6,
+   e_font_awesome_book_open = 0xf518,
+   e_font_awesome_book_reader = 0xf5da,
+   e_font_awesome_bookmark = 0xf02e,
+   e_font_awesome_border_all = 0xf84c,
+   e_font_awesome_border_none = 0xf850,
+   e_font_awesome_border_style = 0xf853,
+   e_font_awesome_bowling_ball = 0xf436,
+   e_font_awesome_box = 0xf466,
+   e_font_awesome_box_open = 0xf49e,
+   e_font_awesome_boxes = 0xf468,
+   e_font_awesome_braille = 0xf2a1,
+   e_font_awesome_brain = 0xf5dc,
+   e_font_awesome_bread_slice = 0xf7ec,
+   e_font_awesome_briefcase = 0xf0b1,
+   e_font_awesome_briefcase_medical = 0xf469,
+   e_font_awesome_broadcast_tower = 0xf519,
+   e_font_awesome_broom = 0xf51a,
+   e_font_awesome_brush = 0xf55d,
+   e_font_awesome_bug = 0xf188,
+   e_font_awesome_building = 0xf1ad,
+   e_font_awesome_bullhorn = 0xf0a1,
+   e_font_awesome_bullseye = 0xf140,
+   e_font_awesome_burn = 0xf46a,
+   e_font_awesome_bus = 0xf207,
+   e_font_awesome_bus_alt = 0xf55e,
+   e_font_awesome_business_time = 0xf64a,
+   e_font_awesome_calculator = 0xf1ec,
+   e_font_awesome_calendar = 0xf133,
+   e_font_awesome_calendar_alt = 0xf073,
+   e_font_awesome_calendar_check = 0xf274,
+   e_font_awesome_calendar_day = 0xf783,
+   e_font_awesome_calendar_minus = 0xf272,
+   e_font_awesome_calendar_plus = 0xf271,
+   e_font_awesome_calendar_times = 0xf273,
+   e_font_awesome_calendar_week = 0xf784,
+   e_font_awesome_camera = 0xf030,
+   e_font_awesome_camera_retro = 0xf083,
+   e_font_awesome_campground = 0xf6bb,
+   e_font_awesome_candy_cane = 0xf786,
+   e_font_awesome_cannabis = 0xf55f,
+   e_font_awesome_capsules = 0xf46b,
+   e_font_awesome_car = 0xf1b9,
+   e_font_awesome_car_alt = 0xf5de,
+   e_font_awesome_car_battery = 0xf5df,
+   e_font_awesome_car_crash = 0xf5e1,
+   e_font_awesome_car_side = 0xf5e4,
+   e_font_awesome_caret_down = 0xf0d7,
+   e_font_awesome_caret_left = 0xf0d9,
+   e_font_awesome_caret_right = 0xf0da,
+   e_font_awesome_caret_square_down = 0xf150,
+   e_font_awesome_caret_square_left = 0xf191,
+   e_font_awesome_caret_square_right = 0xf152,
+   e_font_awesome_caret_square_up = 0xf151,
+   e_font_awesome_caret_up = 0xf0d8,
+   e_font_awesome_carrot = 0xf787,
+   e_font_awesome_cart_arrow_down = 0xf218,
+   e_font_awesome_cart_plus = 0xf217,
+   e_font_awesome_cash_register = 0xf788,
+   e_font_awesome_cat = 0xf6be,
+   e_font_awesome_certificate = 0xf0a3,
+   e_font_awesome_chair = 0xf6c0,
+   e_font_awesome_chalkboard = 0xf51b,
+   e_font_awesome_chalkboard_teacher = 0xf51c,
+   e_font_awesome_charging_station = 0xf5e7,
+   e_font_awesome_chart_area = 0xf1fe,
+   e_font_awesome_chart_bar = 0xf080,
+   e_font_awesome_chart_line = 0xf201,
+   e_font_awesome_chart_pie = 0xf200,
+   e_font_awesome_check = 0xf00c,
+   e_font_awesome_check_circle = 0xf058,
+   e_font_awesome_check_double = 0xf560,
+   e_font_awesome_check_square = 0xf14a,
+   e_font_awesome_cheese = 0xf7ef,
+   e_font_awesome_chess = 0xf439,
+   e_font_awesome_chess_bishop = 0xf43a,
+   e_font_awesome_chess_board = 0xf43c,
+   e_font_awesome_chess_king = 0xf43f,
+   e_font_awesome_chess_knight = 0xf441,
+   e_font_awesome_chess_pawn = 0xf443,
+   e_font_awesome_chess_queen = 0xf445,
+   e_font_awesome_chess_rook = 0xf447,
+   e_font_awesome_chevron_circle_down = 0xf13a,
+   e_font_awesome_chevron_circle_left = 0xf137,
+   e_font_awesome_chevron_circle_right = 0xf138,
+   e_font_awesome_chevron_circle_up = 0xf139,
+   e_font_awesome_chevron_down = 0xf078,
+   e_font_awesome_chevron_left = 0xf053,
+   e_font_awesome_chevron_right = 0xf054,
+   e_font_awesome_chevron_up = 0xf077,
+   e_font_awesome_child = 0xf1ae,
+   e_font_awesome_church = 0xf51d,
+   e_font_awesome_circle = 0xf111,
+   e_font_awesome_circle_notch = 0xf1ce,
+   e_font_awesome_city = 0xf64f,
+   e_font_awesome_clinic_medical = 0xf7f2,
+   e_font_awesome_clipboard = 0xf328,
+   e_font_awesome_clipboard_check = 0xf46c,
+   e_font_awesome_clipboard_list = 0xf46d,
+   e_font_awesome_clock = 0xf017,
+   e_font_awesome_clone = 0xf24d,
+   e_font_awesome_closed_captioning = 0xf20a,
+   e_font_awesome_cloud = 0xf0c2,
+   e_font_awesome_cloud_download_alt = 0xf381,
+   e_font_awesome_cloud_meatball = 0xf73b,
+   e_font_awesome_cloud_moon = 0xf6c3,
+   e_font_awesome_cloud_moon_rain = 0xf73c,
+   e_font_awesome_cloud_rain = 0xf73d,
+   e_font_awesome_cloud_showers_heavy = 0xf740,
+   e_font_awesome_cloud_sun = 0xf6c4,
+   e_font_awesome_cloud_sun_rain = 0xf743,
+   e_font_awesome_cloud_upload_alt = 0xf382,
+   e_font_awesome_cocktail = 0xf561,
+   e_font_awesome_code = 0xf121,
+   e_font_awesome_code_branch = 0xf126,
+   e_font_awesome_coffee = 0xf0f4,
+   e_font_awesome_cog = 0xf013,
+   e_font_awesome_cogs = 0xf085,
+   e_font_awesome_coins = 0xf51e,
+   e_font_awesome_columns = 0xf0db,
+   e_font_awesome_comment = 0xf075,
+   e_font_awesome_comment_alt = 0xf27a,
+   e_font_awesome_comment_dollar = 0xf651,
+   e_font_awesome_comment_dots = 0xf4ad,
+   e_font_awesome_comment_medical = 0xf7f5,
+   e_font_awesome_comment_slash = 0xf4b3,
+   e_font_awesome_comments = 0xf086,
+   e_font_awesome_comments_dollar = 0xf653,
+   e_font_awesome_compact_disc = 0xf51f,
+   e_font_awesome_compass = 0xf14e,
+   e_font_awesome_compress = 0xf066,
+   e_font_awesome_compress_arrows_alt = 0xf78c,
+   e_font_awesome_concierge_bell = 0xf562,
+   e_font_awesome_cookie = 0xf563,
+   e_font_awesome_cookie_bite = 0xf564,
+   e_font_awesome_copy = 0xf0c5,
+   e_font_awesome_copyright = 0xf1f9,
+   e_font_awesome_couch = 0xf4b8,
+   e_font_awesome_credit_card = 0xf09d,
+   e_font_awesome_crop = 0xf125,
+   e_font_awesome_crop_alt = 0xf565,
+   e_font_awesome_cross = 0xf654,
+   e_font_awesome_crosshairs = 0xf05b,
+   e_font_awesome_crow = 0xf520,
+   e_font_awesome_crown = 0xf521,
+   e_font_awesome_crutch = 0xf7f7,
+   e_font_awesome_cube = 0xf1b2,
+   e_font_awesome_cubes = 0xf1b3,
+   e_font_awesome_cut = 0xf0c4,
+   e_font_awesome_database = 0xf1c0,
+   e_font_awesome_deaf = 0xf2a4,
+   e_font_awesome_democrat = 0xf747,
+   e_font_awesome_desktop = 0xf108,
+   e_font_awesome_dharmachakra = 0xf655,
+   e_font_awesome_diagnoses = 0xf470,
+   e_font_awesome_dice = 0xf522,
+   e_font_awesome_dice_d20 = 0xf6cf,
+   e_font_awesome_dice_d6 = 0xf6d1,
+   e_font_awesome_dice_five = 0xf523,
+   e_font_awesome_dice_four = 0xf524,
+   e_font_awesome_dice_one = 0xf525,
+   e_font_awesome_dice_six = 0xf526,
+   e_font_awesome_dice_three = 0xf527,
+   e_font_awesome_dice_two = 0xf528,
+   e_font_awesome_digital_tachograph = 0xf566,
+   e_font_awesome_directions = 0xf5eb,
+   e_font_awesome_divide = 0xf529,
+   e_font_awesome_dizzy = 0xf567,
+   e_font_awesome_dna = 0xf471,
+   e_font_awesome_dog = 0xf6d3,
+   e_font_awesome_dollar_sign = 0xf155,
+   e_font_awesome_dolly = 0xf472,
+   e_font_awesome_dolly_flatbed = 0xf474,
+   e_font_awesome_donate = 0xf4b9,
+   e_font_awesome_door_closed = 0xf52a,
+   e_font_awesome_door_open = 0xf52b,
+   e_font_awesome_dot_circle = 0xf192,
+   e_font_awesome_dove = 0xf4ba,
+   e_font_awesome_download = 0xf019,
+   e_font_awesome_drafting_compass = 0xf568,
+   e_font_awesome_dragon = 0xf6d5,
+   e_font_awesome_draw_polygon = 0xf5ee,
+   e_font_awesome_drum = 0xf569,
+   e_font_awesome_drum_steelpan = 0xf56a,
+   e_font_awesome_drumstick_bite = 0xf6d7,
+   e_font_awesome_dumbbell = 0xf44b,
+   e_font_awesome_dumpster = 0xf793,
+   e_font_awesome_dumpster_fire = 0xf794,
+   e_font_awesome_dungeon = 0xf6d9,
+   e_font_awesome_edit = 0xf044,
+   e_font_awesome_egg = 0xf7fb,
+   e_font_awesome_eject = 0xf052,
+   e_font_awesome_ellipsis_h = 0xf141,
+   e_font_awesome_ellipsis_v = 0xf142,
+   e_font_awesome_envelope = 0xf0e0,
+   e_font_awesome_envelope_open = 0xf2b6,
+   e_font_awesome_envelope_open_text = 0xf658,
+   e_font_awesome_envelope_square = 0xf199,
+   e_font_awesome_equals = 0xf52c,
+   e_font_awesome_eraser = 0xf12d,
+   e_font_awesome_ethernet = 0xf796,
+   e_font_awesome_euro_sign = 0xf153,
+   e_font_awesome_exchange_alt = 0xf362,
+   e_font_awesome_exclamation = 0xf12a,
+   e_font_awesome_exclamation_circle = 0xf06a,
+   e_font_awesome_exclamation_triangle = 0xf071,
+   e_font_awesome_expand = 0xf065,
+   e_font_awesome_expand_arrows_alt = 0xf31e,
+   e_font_awesome_external_link_alt = 0xf35d,
+   e_font_awesome_external_link_square_alt = 0xf360,
+   e_font_awesome_eye = 0xf06e,
+   e_font_awesome_eye_dropper = 0xf1fb,
+   e_font_awesome_eye_slash = 0xf070,
+   e_font_awesome_fan = 0xf863,
+   e_font_awesome_fast_backward = 0xf049,
+   e_font_awesome_fast_forward = 0xf050,
+   e_font_awesome_fax = 0xf1ac,
+   e_font_awesome_feather = 0xf52d,
+   e_font_awesome_feather_alt = 0xf56b,
+   e_font_awesome_female = 0xf182,
+   e_font_awesome_fighter_jet = 0xf0fb,
+   e_font_awesome_file = 0xf15b,
+   e_font_awesome_file_alt = 0xf15c,
+   e_font_awesome_file_archive = 0xf1c6,
+   e_font_awesome_file_audio = 0xf1c7,
+   e_font_awesome_file_code = 0xf1c9,
+   e_font_awesome_file_contract = 0xf56c,
+   e_font_awesome_file_csv = 0xf6dd,
+   e_font_awesome_file_download = 0xf56d,
+   e_font_awesome_file_excel = 0xf1c3,
+   e_font_awesome_file_export = 0xf56e,
+   e_font_awesome_file_image = 0xf1c5,
+   e_font_awesome_file_import = 0xf56f,
+   e_font_awesome_file_invoice = 0xf570,
+   e_font_awesome_file_invoice_dollar = 0xf571,
+   e_font_awesome_file_medical = 0xf477,
+   e_font_awesome_file_medical_alt = 0xf478,
+   e_font_awesome_file_pdf = 0xf1c1,
+   e_font_awesome_file_powerpoint = 0xf1c4,
+   e_font_awesome_file_prescription = 0xf572,
+   e_font_awesome_file_signature = 0xf573,
+   e_font_awesome_file_upload = 0xf574,
+   e_font_awesome_file_video = 0xf1c8,
+   e_font_awesome_file_word = 0xf1c2,
+   e_font_awesome_fill = 0xf575,
+   e_font_awesome_fill_drip = 0xf576,
+   e_font_awesome_film = 0xf008,
+   e_font_awesome_filter = 0xf0b0,
+   e_font_awesome_fingerprint = 0xf577,
+   e_font_awesome_fire = 0xf06d,
+   e_font_awesome_fire_alt = 0xf7e4,
+   e_font_awesome_fire_extinguisher = 0xf134,
+   e_font_awesome_first_aid = 0xf479,
+   e_font_awesome_fish = 0xf578,
+   e_font_awesome_fist_raised = 0xf6de,
+   e_font_awesome_flag = 0xf024,
+   e_font_awesome_flag_checkered = 0xf11e,
+   e_font_awesome_flag_usa = 0xf74d,
+   e_font_awesome_flask = 0xf0c3,
+   e_font_awesome_flushed = 0xf579,
+   e_font_awesome_folder = 0xf07b,
+   e_font_awesome_folder_minus = 0xf65d,
+   e_font_awesome_folder_open = 0xf07c,
+   e_font_awesome_folder_plus = 0xf65e,
+   e_font_awesome_font = 0xf031,
+   e_font_awesome_font_awesome_logo_full = 0xf4e6,
+   e_font_awesome_football_ball = 0xf44e,
+   e_font_awesome_forward = 0xf04e,
+   e_font_awesome_frog = 0xf52e,
+   e_font_awesome_frown = 0xf119,
+   e_font_awesome_frown_open = 0xf57a,
+   e_font_awesome_funnel_dollar = 0xf662,
+   e_font_awesome_futbol = 0xf1e3,
+   e_font_awesome_gamepad = 0xf11b,
+   e_font_awesome_gas_pump = 0xf52f,
+   e_font_awesome_gavel = 0xf0e3,
+   e_font_awesome_gem = 0xf3a5,
+   e_font_awesome_genderless = 0xf22d,
+   e_font_awesome_ghost = 0xf6e2,
+   e_font_awesome_gift = 0xf06b,
+   e_font_awesome_gifts = 0xf79c,
+   e_font_awesome_glass_cheers = 0xf79f,
+   e_font_awesome_glass_martini = 0xf000,
+   e_font_awesome_glass_martini_alt = 0xf57b,
+   e_font_awesome_glass_whiskey = 0xf7a0,
+   e_font_awesome_glasses = 0xf530,
+   e_font_awesome_globe = 0xf0ac,
+   e_font_awesome_globe_africa = 0xf57c,
+   e_font_awesome_globe_americas = 0xf57d,
+   e_font_awesome_globe_asia = 0xf57e,
+   e_font_awesome_globe_europe = 0xf7a2,
+   e_font_awesome_golf_ball = 0xf450,
+   e_font_awesome_gopuram = 0xf664,
+   e_font_awesome_graduation_cap = 0xf19d,
+   e_font_awesome_greater_than = 0xf531,
+   e_font_awesome_greater_than_equal = 0xf532,
+   e_font_awesome_grimace = 0xf57f,
+   e_font_awesome_grin = 0xf580,
+   e_font_awesome_grin_alt = 0xf581,
+   e_font_awesome_grin_beam = 0xf582,
+   e_font_awesome_grin_beam_sweat = 0xf583,
+   e_font_awesome_grin_hearts = 0xf584,
+   e_font_awesome_grin_squint = 0xf585,
+   e_font_awesome_grin_squint_tears = 0xf586,
+   e_font_awesome_grin_stars = 0xf587,
+   e_font_awesome_grin_tears = 0xf588,
+   e_font_awesome_grin_tongue = 0xf589,
+   e_font_awesome_grin_tongue_squint = 0xf58a,
+   e_font_awesome_grin_tongue_wink = 0xf58b,
+   e_font_awesome_grin_wink = 0xf58c,
+   e_font_awesome_grip_horizontal = 0xf58d,
+   e_font_awesome_grip_lines = 0xf7a4,
+   e_font_awesome_grip_lines_vertical = 0xf7a5,
+   e_font_awesome_grip_vertical = 0xf58e,
+   e_font_awesome_guitar = 0xf7a6,
+   e_font_awesome_h_square = 0xf0fd,
+   e_font_awesome_hamburger = 0xf805,
+   e_font_awesome_hammer = 0xf6e3,
+   e_font_awesome_hamsa = 0xf665,
+   e_font_awesome_hand_holding = 0xf4bd,
+   e_font_awesome_hand_holding_heart = 0xf4be,
+   e_font_awesome_hand_holding_usd = 0xf4c0,
+   e_font_awesome_hand_lizard = 0xf258,
+   e_font_awesome_hand_middle_finger = 0xf806,
+   e_font_awesome_hand_paper = 0xf256,
+   e_font_awesome_hand_peace = 0xf25b,
+   e_font_awesome_hand_point_down = 0xf0a7,
+   e_font_awesome_hand_point_left = 0xf0a5,
+   e_font_awesome_hand_point_right = 0xf0a4,
+   e_font_awesome_hand_point_up = 0xf0a6,
+   e_font_awesome_hand_pointer = 0xf25a,
+   e_font_awesome_hand_rock = 0xf255,
+   e_font_awesome_hand_scissors = 0xf257,
+   e_font_awesome_hand_spock = 0xf259,
+   e_font_awesome_hands = 0xf4c2,
+   e_font_awesome_hands_helping = 0xf4c4,
+   e_font_awesome_handshake = 0xf2b5,
+   e_font_awesome_hanukiah = 0xf6e6,
+   e_font_awesome_hard_hat = 0xf807,
+   e_font_awesome_hashtag = 0xf292,
+   e_font_awesome_hat_wizard = 0xf6e8,
+   e_font_awesome_haykal = 0xf666,
+   e_font_awesome_hdd = 0xf0a0,
+   e_font_awesome_heading = 0xf1dc,
+   e_font_awesome_headphones = 0xf025,
+   e_font_awesome_headphones_alt = 0xf58f,
+   e_font_awesome_headset = 0xf590,
+   e_font_awesome_heart = 0xf004,
+   e_font_awesome_heart_broken = 0xf7a9,
+   e_font_awesome_heartbeat = 0xf21e,
+   e_font_awesome_helicopter = 0xf533,
+   e_font_awesome_highlighter = 0xf591,
+   e_font_awesome_hiking = 0xf6ec,
+   e_font_awesome_hippo = 0xf6ed,
+   e_font_awesome_history = 0xf1da,
+   e_font_awesome_hockey_puck = 0xf453,
+   e_font_awesome_holly_berry = 0xf7aa,
+   e_font_awesome_home = 0xf015,
+   e_font_awesome_horse = 0xf6f0,
+   e_font_awesome_horse_head = 0xf7ab,
+   e_font_awesome_hospital = 0xf0f8,
+   e_font_awesome_hospital_alt = 0xf47d,
+   e_font_awesome_hospital_symbol = 0xf47e,
+   e_font_awesome_hot_tub = 0xf593,
+   e_font_awesome_hotdog = 0xf80f,
+   e_font_awesome_hotel = 0xf594,
+   e_font_awesome_hourglass = 0xf254,
+   e_font_awesome_hourglass_end = 0xf253,
+   e_font_awesome_hourglass_half = 0xf252,
+   e_font_awesome_hourglass_start = 0xf251,
+   e_font_awesome_house_damage = 0xf6f1,
+   e_font_awesome_hryvnia = 0xf6f2,
+   e_font_awesome_i_cursor = 0xf246,
+   e_font_awesome_ice_cream = 0xf810,
+   e_font_awesome_icicles = 0xf7ad,
+   e_font_awesome_icons = 0xf86d,
+   e_font_awesome_id_badge = 0xf2c1,
+   e_font_awesome_id_card = 0xf2c2,
+   e_font_awesome_id_card_alt = 0xf47f,
+   e_font_awesome_igloo = 0xf7ae,
+   e_font_awesome_image = 0xf03e,
+   e_font_awesome_images = 0xf302,
+   e_font_awesome_inbox = 0xf01c,
+   e_font_awesome_indent = 0xf03c,
+   e_font_awesome_industry = 0xf275,
+   e_font_awesome_infinity = 0xf534,
+   e_font_awesome_info = 0xf129,
+   e_font_awesome_info_circle = 0xf05a,
+   e_font_awesome_italic = 0xf033,
+   e_font_awesome_jedi = 0xf669,
+   e_font_awesome_joint = 0xf595,
+   e_font_awesome_journal_whills = 0xf66a,
+   e_font_awesome_kaaba = 0xf66b,
+   e_font_awesome_key = 0xf084,
+   e_font_awesome_keyboard = 0xf11c,
+   e_font_awesome_khanda = 0xf66d,
+   e_font_awesome_kiss = 0xf596,
+   e_font_awesome_kiss_beam = 0xf597,
+   e_font_awesome_kiss_wink_heart = 0xf598,
+   e_font_awesome_kiwi_bird = 0xf535,
+   e_font_awesome_landmark = 0xf66f,
+   e_font_awesome_language = 0xf1ab,
+   e_font_awesome_laptop = 0xf109,
+   e_font_awesome_laptop_code = 0xf5fc,
+   e_font_awesome_laptop_medical = 0xf812,
+   e_font_awesome_laugh = 0xf599,
+   e_font_awesome_laugh_beam = 0xf59a,
+   e_font_awesome_laugh_squint = 0xf59b,
+   e_font_awesome_laugh_wink = 0xf59c,
+   e_font_awesome_layer_group = 0xf5fd,
+   e_font_awesome_leaf = 0xf06c,
+   e_font_awesome_lemon = 0xf094,
+   e_font_awesome_less_than = 0xf536,
+   e_font_awesome_less_than_equal = 0xf537,
+   e_font_awesome_level_down_alt = 0xf3be,
+   e_font_awesome_level_up_alt = 0xf3bf,
+   e_font_awesome_life_ring = 0xf1cd,
+   e_font_awesome_lightbulb = 0xf0eb,
+   e_font_awesome_link = 0xf0c1,
+   e_font_awesome_lira_sign = 0xf195,
+   e_font_awesome_list = 0xf03a,
+   e_font_awesome_list_alt = 0xf022,
+   e_font_awesome_list_ol = 0xf0cb,
+   e_font_awesome_list_ul = 0xf0ca,
+   e_font_awesome_location_arrow = 0xf124,
+   e_font_awesome_lock = 0xf023,
+   e_font_awesome_lock_open = 0xf3c1,
+   e_font_awesome_long_arrow_alt_down = 0xf309,
+   e_font_awesome_long_arrow_alt_left = 0xf30a,
+   e_font_awesome_long_arrow_alt_right = 0xf30b,
+   e_font_awesome_long_arrow_alt_up = 0xf30c,
+   e_font_awesome_low_vision = 0xf2a8,
+   e_font_awesome_luggage_cart = 0xf59d,
+   e_font_awesome_magic = 0xf0d0,
+   e_font_awesome_magnet = 0xf076,
+   e_font_awesome_mail_bulk = 0xf674,
+   e_font_awesome_male = 0xf183,
+   e_font_awesome_map = 0xf279,
+   e_font_awesome_map_marked = 0xf59f,
+   e_font_awesome_map_marked_alt = 0xf5a0,
+   e_font_awesome_map_marker = 0xf041,
+   e_font_awesome_map_marker_alt = 0xf3c5,
+   e_font_awesome_map_pin = 0xf276,
+   e_font_awesome_map_signs = 0xf277,
+   e_font_awesome_marker = 0xf5a1,
+   e_font_awesome_mars = 0xf222,
+   e_font_awesome_mars_double = 0xf227,
+   e_font_awesome_mars_stroke = 0xf229,
+   e_font_awesome_mars_stroke_h = 0xf22b,
+   e_font_awesome_mars_stroke_v = 0xf22a,
+   e_font_awesome_mask = 0xf6fa,
+   e_font_awesome_medal = 0xf5a2,
+   e_font_awesome_medkit = 0xf0fa,
+   e_font_awesome_meh = 0xf11a,
+   e_font_awesome_meh_blank = 0xf5a4,
+   e_font_awesome_meh_rolling_eyes = 0xf5a5,
+   e_font_awesome_memory = 0xf538,
+   e_font_awesome_menorah = 0xf676,
+   e_font_awesome_mercury = 0xf223,
+   e_font_awesome_meteor = 0xf753,
+   e_font_awesome_microchip = 0xf2db,
+   e_font_awesome_microphone = 0xf130,
+   e_font_awesome_microphone_alt = 0xf3c9,
+   e_font_awesome_microphone_alt_slash = 0xf539,
+   e_font_awesome_microphone_slash = 0xf131,
+   e_font_awesome_microscope = 0xf610,
+   e_font_awesome_minus = 0xf068,
+   e_font_awesome_minus_circle = 0xf056,
+   e_font_awesome_minus_square = 0xf146,
+   e_font_awesome_mitten = 0xf7b5,
+   e_font_awesome_mobile = 0xf10b,
+   e_font_awesome_mobile_alt = 0xf3cd,
+   e_font_awesome_money_bill = 0xf0d6,
+   e_font_awesome_money_bill_alt = 0xf3d1,
+   e_font_awesome_money_bill_wave = 0xf53a,
+   e_font_awesome_money_bill_wave_alt = 0xf53b,
+   e_font_awesome_money_check = 0xf53c,
+   e_font_awesome_money_check_alt = 0xf53d,
+   e_font_awesome_monument = 0xf5a6,
+   e_font_awesome_moon = 0xf186,
+   e_font_awesome_mortar_pestle = 0xf5a7,
+   e_font_awesome_mosque = 0xf678,
+   e_font_awesome_motorcycle = 0xf21c,
+   e_font_awesome_mountain = 0xf6fc,
+   e_font_awesome_mouse_pointer = 0xf245,
+   e_font_awesome_mug_hot = 0xf7b6,
+   e_font_awesome_music = 0xf001,
+   e_font_awesome_network_wired = 0xf6ff,
+   e_font_awesome_neuter = 0xf22c,
+   e_font_awesome_newspaper = 0xf1ea,
+   e_font_awesome_not_equal = 0xf53e,
+   e_font_awesome_notes_medical = 0xf481,
+   e_font_awesome_object_group = 0xf247,
+   e_font_awesome_object_ungroup = 0xf248,
+   e_font_awesome_oil_can = 0xf613,
+   e_font_awesome_om = 0xf679,
+   e_font_awesome_otter = 0xf700,
+   e_font_awesome_outdent = 0xf03b,
+   e_font_awesome_pager = 0xf815,
+   e_font_awesome_paint_brush = 0xf1fc,
+   e_font_awesome_paint_roller = 0xf5aa,
+   e_font_awesome_palette = 0xf53f,
+   e_font_awesome_pallet = 0xf482,
+   e_font_awesome_paper_plane = 0xf1d8,
+   e_font_awesome_paperclip = 0xf0c6,
+   e_font_awesome_parachute_box = 0xf4cd,
+   e_font_awesome_paragraph = 0xf1dd,
+   e_font_awesome_parking = 0xf540,
+   e_font_awesome_passport = 0xf5ab,
+   e_font_awesome_pastafarianism = 0xf67b,
+   e_font_awesome_paste = 0xf0ea,
+   e_font_awesome_pause = 0xf04c,
+   e_font_awesome_pause_circle = 0xf28b,
+   e_font_awesome_paw = 0xf1b0,
+   e_font_awesome_peace = 0xf67c,
+   e_font_awesome_pen = 0xf304,
+   e_font_awesome_pen_alt = 0xf305,
+   e_font_awesome_pen_fancy = 0xf5ac,
+   e_font_awesome_pen_nib = 0xf5ad,
+   e_font_awesome_pen_square = 0xf14b,
+   e_font_awesome_pencil_alt = 0xf303,
+   e_font_awesome_pencil_ruler = 0xf5ae,
+   e_font_awesome_people_carry = 0xf4ce,
+   e_font_awesome_pepper_hot = 0xf816,
+   e_font_awesome_percent = 0xf295,
+   e_font_awesome_percentage = 0xf541,
+   e_font_awesome_person_booth = 0xf756,
+   e_font_awesome_phone = 0xf095,
+   e_font_awesome_phone_alt = 0xf879,
+   e_font_awesome_phone_slash = 0xf3dd,
+   e_font_awesome_phone_square = 0xf098,
+   e_font_awesome_phone_square_alt = 0xf87b,
+   e_font_awesome_phone_volume = 0xf2a0,
+   e_font_awesome_photo_video = 0xf87c,
+   e_font_awesome_piggy_bank = 0xf4d3,
+   e_font_awesome_pills = 0xf484,
+   e_font_awesome_pizza_slice = 0xf818,
+   e_font_awesome_place_of_worship = 0xf67f,
+   e_font_awesome_plane = 0xf072,
+   e_font_awesome_plane_arrival = 0xf5af,
+   e_font_awesome_plane_departure = 0xf5b0,
+   e_font_awesome_play = 0xf04b,
+   e_font_awesome_play_circle = 0xf144,
+   e_font_awesome_plug = 0xf1e6,
+   e_font_awesome_plus = 0xf067,
+   e_font_awesome_plus_circle = 0xf055,
+   e_font_awesome_plus_square = 0xf0fe,
+   e_font_awesome_podcast = 0xf2ce,
+   e_font_awesome_poll = 0xf681,
+   e_font_awesome_poll_h = 0xf682,
+   e_font_awesome_poo = 0xf2fe,
+   e_font_awesome_poo_storm = 0xf75a,
+   e_font_awesome_poop = 0xf619,
+   e_font_awesome_portrait = 0xf3e0,
+   e_font_awesome_pound_sign = 0xf154,
+   e_font_awesome_power_off = 0xf011,
+   e_font_awesome_pray = 0xf683,
+   e_font_awesome_praying_hands = 0xf684,
+   e_font_awesome_prescription = 0xf5b1,
+   e_font_awesome_prescription_bottle = 0xf485,
+   e_font_awesome_prescription_bottle_alt = 0xf486,
+   e_font_awesome_print = 0xf02f,
+   e_font_awesome_procedures = 0xf487,
+   e_font_awesome_project_diagram = 0xf542,
+   e_font_awesome_puzzle_piece = 0xf12e,
+   e_font_awesome_qrcode = 0xf029,
+   e_font_awesome_question = 0xf128,
+   e_font_awesome_question_circle = 0xf059,
+   e_font_awesome_quidditch = 0xf458,
+   e_font_awesome_quote_left = 0xf10d,
+   e_font_awesome_quote_right = 0xf10e,
+   e_font_awesome_quran = 0xf687,
+   e_font_awesome_radiation = 0xf7b9,
+   e_font_awesome_radiation_alt = 0xf7ba,
+   e_font_awesome_rainbow = 0xf75b,
+   e_font_awesome_random = 0xf074,
+   e_font_awesome_receipt = 0xf543,
+   e_font_awesome_recycle = 0xf1b8,
+   e_font_awesome_redo = 0xf01e,
+   e_font_awesome_redo_alt = 0xf2f9,
+   e_font_awesome_registered = 0xf25d,
+   e_font_awesome_remove_format = 0xf87d,
+   e_font_awesome_reply = 0xf3e5,
+   e_font_awesome_reply_all = 0xf122,
+   e_font_awesome_republican = 0xf75e,
+   e_font_awesome_restroom = 0xf7bd,
+   e_font_awesome_retweet = 0xf079,
+   e_font_awesome_ribbon = 0xf4d6,
+   e_font_awesome_ring = 0xf70b,
+   e_font_awesome_road = 0xf018,
+   e_font_awesome_robot = 0xf544,
+   e_font_awesome_rocket = 0xf135,
+   e_font_awesome_route = 0xf4d7,
+   e_font_awesome_rss = 0xf09e,
+   e_font_awesome_rss_square = 0xf143,
+   e_font_awesome_ruble_sign = 0xf158,
+   e_font_awesome_ruler = 0xf545,
+   e_font_awesome_ruler_combined = 0xf546,
+   e_font_awesome_ruler_horizontal = 0xf547,
+   e_font_awesome_ruler_vertical = 0xf548,
+   e_font_awesome_running = 0xf70c,
+   e_font_awesome_rupee_sign = 0xf156,
+   e_font_awesome_sad_cry = 0xf5b3,
+   e_font_awesome_sad_tear = 0xf5b4,
+   e_font_awesome_satellite = 0xf7bf,
+   e_font_awesome_satellite_dish = 0xf7c0,
+   e_font_awesome_save = 0xf0c7,
+   e_font_awesome_school = 0xf549,
+   e_font_awesome_screwdriver = 0xf54a,
+   e_font_awesome_scroll = 0xf70e,
+   e_font_awesome_sd_card = 0xf7c2,
+   e_font_awesome_search = 0xf002,
+   e_font_awesome_search_dollar = 0xf688,
+   e_font_awesome_search_location = 0xf689,
+   e_font_awesome_search_minus = 0xf010,
+   e_font_awesome_search_plus = 0xf00e,
+   e_font_awesome_seedling = 0xf4d8,
+   e_font_awesome_server = 0xf233,
+   e_font_awesome_shapes = 0xf61f,
+   e_font_awesome_share = 0xf064,
+   e_font_awesome_share_alt = 0xf1e0,
+   e_font_awesome_share_alt_square = 0xf1e1,
+   e_font_awesome_share_square = 0xf14d,
+   e_font_awesome_shekel_sign = 0xf20b,
+   e_font_awesome_shield_alt = 0xf3ed,
+   e_font_awesome_ship = 0xf21a,
+   e_font_awesome_shipping_fast = 0xf48b,
+   e_font_awesome_shoe_prints = 0xf54b,
+   e_font_awesome_shopping_bag = 0xf290,
+   e_font_awesome_shopping_basket = 0xf291,
+   e_font_awesome_shopping_cart = 0xf07a,
+   e_font_awesome_shower = 0xf2cc,
+   e_font_awesome_shuttle_van = 0xf5b6,
+   e_font_awesome_sign = 0xf4d9,
+   e_font_awesome_sign_in_alt = 0xf2f6,
+   e_font_awesome_sign_language = 0xf2a7,
+   e_font_awesome_sign_out_alt = 0xf2f5,
+   e_font_awesome_signal = 0xf012,
+   e_font_awesome_signature = 0xf5b7,
+   e_font_awesome_sim_card = 0xf7c4,
+   e_font_awesome_sitemap = 0xf0e8,
+   e_font_awesome_skating = 0xf7c5,
+   e_font_awesome_skiing = 0xf7c9,
+   e_font_awesome_skiing_nordic = 0xf7ca,
+   e_font_awesome_skull = 0xf54c,
+   e_font_awesome_skull_crossbones = 0xf714,
+   e_font_awesome_slash = 0xf715,
+   e_font_awesome_sleigh = 0xf7cc,
+   e_font_awesome_sliders_h = 0xf1de,
+   e_font_awesome_smile = 0xf118,
+   e_font_awesome_smile_beam = 0xf5b8,
+   e_font_awesome_smile_wink = 0xf4da,
+   e_font_awesome_smog = 0xf75f,
+   e_font_awesome_smoking = 0xf48d,
+   e_font_awesome_smoking_ban = 0xf54d,
+   e_font_awesome_sms = 0xf7cd,
+   e_font_awesome_snowboarding = 0xf7ce,
+   e_font_awesome_snowflake = 0xf2dc,
+   e_font_awesome_snowman = 0xf7d0,
+   e_font_awesome_snowplow = 0xf7d2,
+   e_font_awesome_socks = 0xf696,
+   e_font_awesome_solar_panel = 0xf5ba,
+   e_font_awesome_sort = 0xf0dc,
+   e_font_awesome_sort_alpha_down = 0xf15d,
+   e_font_awesome_sort_alpha_down_alt = 0xf881,
+   e_font_awesome_sort_alpha_up = 0xf15e,
+   e_font_awesome_sort_alpha_up_alt = 0xf882,
+   e_font_awesome_sort_amount_down = 0xf160,
+   e_font_awesome_sort_amount_down_alt = 0xf884,
+   e_font_awesome_sort_amount_up = 0xf161,
+   e_font_awesome_sort_amount_up_alt = 0xf885,
+   e_font_awesome_sort_down = 0xf0dd,
+   e_font_awesome_sort_numeric_down = 0xf162,
+   e_font_awesome_sort_numeric_down_alt = 0xf886,
+   e_font_awesome_sort_numeric_up = 0xf163,
+   e_font_awesome_sort_numeric_up_alt = 0xf887,
+   e_font_awesome_sort_up = 0xf0de,
+   e_font_awesome_spa = 0xf5bb,
+   e_font_awesome_space_shuttle = 0xf197,
+   e_font_awesome_spell_check = 0xf891,
+   e_font_awesome_spider = 0xf717,
+   e_font_awesome_spinner = 0xf110,
+   e_font_awesome_splotch = 0xf5bc,
+   e_font_awesome_spray_can = 0xf5bd,
+   e_font_awesome_square = 0xf0c8,
+   e_font_awesome_square_full = 0xf45c,
+   e_font_awesome_square_root_alt = 0xf698,
+   e_font_awesome_stamp = 0xf5bf,
+   e_font_awesome_star = 0xf005,
+   e_font_awesome_star_and_crescent = 0xf699,
+   e_font_awesome_star_half = 0xf089,
+   e_font_awesome_star_half_alt = 0xf5c0,
+   e_font_awesome_star_of_david = 0xf69a,
+   e_font_awesome_star_of_life = 0xf621,
+   e_font_awesome_step_backward = 0xf048,
+   e_font_awesome_step_forward = 0xf051,
+   e_font_awesome_stethoscope = 0xf0f1,
+   e_font_awesome_sticky_note = 0xf249,
+   e_font_awesome_stop = 0xf04d,
+   e_font_awesome_stop_circle = 0xf28d,
+   e_font_awesome_stopwatch = 0xf2f2,
+   e_font_awesome_store = 0xf54e,
+   e_font_awesome_store_alt = 0xf54f,
+   e_font_awesome_stream = 0xf550,
+   e_font_awesome_street_view = 0xf21d,
+   e_font_awesome_strikethrough = 0xf0cc,
+   e_font_awesome_stroopwafel = 0xf551,
+   e_font_awesome_subscript = 0xf12c,
+   e_font_awesome_subway = 0xf239,
+   e_font_awesome_suitcase = 0xf0f2,
+   e_font_awesome_suitcase_rolling = 0xf5c1,
+   e_font_awesome_sun = 0xf185,
+   e_font_awesome_superscript = 0xf12b,
+   e_font_awesome_surprise = 0xf5c2,
+   e_font_awesome_swatchbook = 0xf5c3,
+   e_font_awesome_swimmer = 0xf5c4,
+   e_font_awesome_swimming_pool = 0xf5c5,
+   e_font_awesome_synagogue = 0xf69b,
+   e_font_awesome_sync = 0xf021,
+   e_font_awesome_sync_alt = 0xf2f1,
+   e_font_awesome_syringe = 0xf48e,
+   e_font_awesome_table = 0xf0ce,
+   e_font_awesome_table_tennis = 0xf45d,
+   e_font_awesome_tablet = 0xf10a,
+   e_font_awesome_tablet_alt = 0xf3fa,
+   e_font_awesome_tablets = 0xf490,
+   e_font_awesome_tachometer_alt = 0xf3fd,
+   e_font_awesome_tag = 0xf02b,
+   e_font_awesome_tags = 0xf02c,
+   e_font_awesome_tape = 0xf4db,
+   e_font_awesome_tasks = 0xf0ae,
+   e_font_awesome_taxi = 0xf1ba,
+   e_font_awesome_teeth = 0xf62e,
+   e_font_awesome_teeth_open = 0xf62f,
+   e_font_awesome_temperature_high = 0xf769,
+   e_font_awesome_temperature_low = 0xf76b,
+   e_font_awesome_tenge = 0xf7d7,
+   e_font_awesome_terminal = 0xf120,
+   e_font_awesome_text_height = 0xf034,
+   e_font_awesome_text_width = 0xf035,
+   e_font_awesome_th = 0xf00a,
+   e_font_awesome_th_large = 0xf009,
+   e_font_awesome_th_list = 0xf00b,
+   e_font_awesome_theater_masks = 0xf630,
+   e_font_awesome_thermometer = 0xf491,
+   e_font_awesome_thermometer_empty = 0xf2cb,
+   e_font_awesome_thermometer_full = 0xf2c7,
+   e_font_awesome_thermometer_half = 0xf2c9,
+   e_font_awesome_thermometer_quarter = 0xf2ca,
+   e_font_awesome_thermometer_three_quarters = 0xf2c8,
+   e_font_awesome_thumbs_down = 0xf165,
+   e_font_awesome_thumbs_up = 0xf164,
+   e_font_awesome_thumbtack = 0xf08d,
+   e_font_awesome_ticket_alt = 0xf3ff,
+   e_font_awesome_times = 0xf00d,
+   e_font_awesome_times_circle = 0xf057,
+   e_font_awesome_tint = 0xf043,
+   e_font_awesome_tint_slash = 0xf5c7,
+   e_font_awesome_tired = 0xf5c8,
+   e_font_awesome_toggle_off = 0xf204,
+   e_font_awesome_toggle_on = 0xf205,
+   e_font_awesome_toilet = 0xf7d8,
+   e_font_awesome_toilet_paper = 0xf71e,
+   e_font_awesome_toolbox = 0xf552,
+   e_font_awesome_tools = 0xf7d9,
+   e_font_awesome_tooth = 0xf5c9,
+   e_font_awesome_torah = 0xf6a0,
+   e_font_awesome_torii_gate = 0xf6a1,
+   e_font_awesome_tractor = 0xf722,
+   e_font_awesome_trademark = 0xf25c,
+   e_font_awesome_traffic_light = 0xf637,
+   e_font_awesome_train = 0xf238,
+   e_font_awesome_tram = 0xf7da,
+   e_font_awesome_transgender = 0xf224,
+   e_font_awesome_transgender_alt = 0xf225,
+   e_font_awesome_trash = 0xf1f8,
+   e_font_awesome_trash_alt = 0xf2ed,
+   e_font_awesome_trash_restore = 0xf829,
+   e_font_awesome_trash_restore_alt = 0xf82a,
+   e_font_awesome_tree = 0xf1bb,
+   e_font_awesome_trophy = 0xf091,
+   e_font_awesome_truck = 0xf0d1,
+   e_font_awesome_truck_loading = 0xf4de,
+   e_font_awesome_truck_monster = 0xf63b,
+   e_font_awesome_truck_moving = 0xf4df,
+   e_font_awesome_truck_pickup = 0xf63c,
+   e_font_awesome_tshirt = 0xf553,
+   e_font_awesome_tty = 0xf1e4,
+   e_font_awesome_tv = 0xf26c,
+   e_font_awesome_umbrella = 0xf0e9,
+   e_font_awesome_umbrella_beach = 0xf5ca,
+   e_font_awesome_underline = 0xf0cd,
+   e_font_awesome_undo = 0xf0e2,
+   e_font_awesome_undo_alt = 0xf2ea,
+   e_font_awesome_universal_access = 0xf29a,
+   e_font_awesome_university = 0xf19c,
+   e_font_awesome_unlink = 0xf127,
+   e_font_awesome_unlock = 0xf09c,
+   e_font_awesome_unlock_alt = 0xf13e,
+   e_font_awesome_upload = 0xf093,
+   e_font_awesome_user = 0xf007,
+   e_font_awesome_user_alt = 0xf406,
+   e_font_awesome_user_alt_slash = 0xf4fa,
+   e_font_awesome_user_astronaut = 0xf4fb,
+   e_font_awesome_user_check = 0xf4fc,
+   e_font_awesome_user_circle = 0xf2bd,
+   e_font_awesome_user_clock = 0xf4fd,
+   e_font_awesome_user_cog = 0xf4fe,
+   e_font_awesome_user_edit = 0xf4ff,
+   e_font_awesome_user_friends = 0xf500,
+   e_font_awesome_user_graduate = 0xf501,
+   e_font_awesome_user_injured = 0xf728,
+   e_font_awesome_user_lock = 0xf502,
+   e_font_awesome_user_md = 0xf0f0,
+   e_font_awesome_user_minus = 0xf503,
+   e_font_awesome_user_ninja = 0xf504,
+   e_font_awesome_user_nurse = 0xf82f,
+   e_font_awesome_user_plus = 0xf234,
+   e_font_awesome_user_secret = 0xf21b,
+   e_font_awesome_user_shield = 0xf505,
+   e_font_awesome_user_slash = 0xf506,
+   e_font_awesome_user_tag = 0xf507,
+   e_font_awesome_user_tie = 0xf508,
+   e_font_awesome_user_times = 0xf235,
+   e_font_awesome_users = 0xf0c0,
+   e_font_awesome_users_cog = 0xf509,
+   e_font_awesome_utensil_spoon = 0xf2e5,
+   e_font_awesome_utensils = 0xf2e7,
+   e_font_awesome_vector_square = 0xf5cb,
+   e_font_awesome_venus = 0xf221,
+   e_font_awesome_venus_double = 0xf226,
+   e_font_awesome_venus_mars = 0xf228,
+   e_font_awesome_vial = 0xf492,
+   e_font_awesome_vials = 0xf493,
+   e_font_awesome_video = 0xf03d,
+   e_font_awesome_video_slash = 0xf4e2,
+   e_font_awesome_vihara = 0xf6a7,
+   e_font_awesome_voicemail = 0xf897,
+   e_font_awesome_volleyball_ball = 0xf45f,
+   e_font_awesome_volume_down = 0xf027,
+   e_font_awesome_volume_mute = 0xf6a9,
+   e_font_awesome_volume_off = 0xf026,
+   e_font_awesome_volume_up = 0xf028,
+   e_font_awesome_vote_yea = 0xf772,
+   e_font_awesome_vr_cardboard = 0xf729,
+   e_font_awesome_walking = 0xf554,
+   e_font_awesome_wallet = 0xf555,
+   e_font_awesome_warehouse = 0xf494,
+   e_font_awesome_water = 0xf773,
+   e_font_awesome_wave_square = 0xf83e,
+   e_font_awesome_weight = 0xf496,
+   e_font_awesome_weight_hanging = 0xf5cd,
+   e_font_awesome_wheelchair = 0xf193,
+   e_font_awesome_wifi = 0xf1eb,
+   e_font_awesome_wind = 0xf72e,
+   e_font_awesome_window_close = 0xf410,
+   e_font_awesome_window_maximize = 0xf2d0,
+   e_font_awesome_window_minimize = 0xf2d1,
+   e_font_awesome_window_restore = 0xf2d2,
+   e_font_awesome_wine_bottle = 0xf72f,
+   e_font_awesome_wine_glass = 0xf4e3,
+   e_font_awesome_wine_glass_alt = 0xf5ce,
+   e_font_awesome_won_sign = 0xf159,
+   e_font_awesome_wrench = 0xf0ad,
+   e_font_awesome_x_ray = 0xf497,
+   e_font_awesome_yen_sign = 0xf157,
+   e_font_awesome_yin_yang = 0xf6ad
+
+};
 
 #endif // DOXYGEN_SHOULD_SKIP_THIS

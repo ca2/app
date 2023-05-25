@@ -58,9 +58,9 @@ namespace aura
 
       ASSERT(nLen >= 0);
 
-      ::aura::memcpy_s(rString.get_string_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
+      ::aura::memcpy_s(rString.get_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
 
-      rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
+      rString.release_buffer();   // Need to call ReleaseBuffer after calling get_buffer
 
       return true;
 

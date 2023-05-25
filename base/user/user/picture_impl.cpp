@@ -8,7 +8,7 @@
 //#include "picture.h"
 
 
-//property & operator << (property & property, const RECTANGLE_F64 & rectangle)
+//property & operator << (property & property, const ::rectangle_f64 & rectangle)
 //{
 //
 //   property["left"] = rectangle.left;
@@ -20,7 +20,7 @@
 //
 //}
 //
-//property & operator >> (property & property, RECTANGLE_F64 & rectangle)
+//property & operator >> (property & property, ::rectangle_f64 & rectangle)
 //{
 //
 //   property["left"].as(rectangle.left);
@@ -44,8 +44,8 @@ namespace user
       set_flag(e_flag_default_io_exchange);
 
       m_dZoom = 1.0;
-      m_pointDrag2.x = 0.0;
-      m_pointDrag2.y = 0.0;
+      m_pointDrag2.x() = 0.0;
+      m_pointDrag2.y() = 0.0;
 
 
       m_bOutline = false;

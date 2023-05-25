@@ -70,11 +70,11 @@ namespace experience_nanoui
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement) override;
+      bool get_element_rect(::rectangle_i32 & rectangle, enum_element eelement) override;
 
-      //bool experience_frame_hit_test(const POINT_I32 &point, enum_element &eelementParam) override;
+      //bool experience_frame_hit_test(const ::point_i32 &point, enum_element &eelementParam) override;
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 

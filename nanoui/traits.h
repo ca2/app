@@ -1,6 +1,6 @@
 /*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -32,7 +32,7 @@ enum class VariableType {
    Bool
 };
 
-/// Convert from a C++ type to an element of \ref VariableType
+/// Convert from a C++ type to an element of \::pointer VariableType
 template <typename T> constexpr VariableType get_type() {
    if constexpr (std::is_same_v<T, bool>)
       return VariableType::Bool;

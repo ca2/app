@@ -27,10 +27,10 @@ namespace experience_tranquillum
 
       void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside);
 
-      void GetBorderRect(const ::rectangle_i32 & rectangleClient, RECTANGLE_I32 * prectangle, enum_border eside);
+      void GetBorderRect(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * prectangle, enum_border eside);
 
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       //color32_t get_border_main_body_color() override;
 
       //virtual bool get_color(color32_t & color32, ::user::e_color ecolor, ::user::style_context * pcontext) override;

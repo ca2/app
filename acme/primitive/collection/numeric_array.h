@@ -114,15 +114,26 @@ public:
    TYPE pop_max();
    TYPE pop_max_last_add_up(TYPE tLastAddUp);
 
-   TYPE get_total()
+   TYPE get_sum(::index first = 0, ::count in_count_out_last = -1)
    {
+
+      this->prepare_first_in_count_last_out(first, in_count_out_last);
+
       TYPE t = ::numeric_info < TYPE >:: null();
-      for(::index i = 0; i < this->get_count(); i++)
+
+      for(::index i = first; i <= in_count_out_last; i++)
       {
-         t+= this->element_at(i);
+
+         // TODO: numeric calculus
+
+         t += this->element_at(i);
+
       }
+
       return t;
+
    }
+
 
    TYPE pop_to();
 

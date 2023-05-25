@@ -9,7 +9,7 @@ template < typename FILE, primitive_point POINT >
 inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const POINT & point)
 {
 
-   return textstream << "(" << point.x  << ", " << point.y << ")";
+   return textstream << "(" << point.x()  << ", " << point.y() << ")";
 
 }
 
@@ -28,7 +28,7 @@ template < typename FILE, primitive_rectangle RECTANGLE >
 inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const RECTANGLE & rectangle)
 {
 
-   return textstream << "(" << rectangle.left  << ", " << rectangle.top << ", " << rectangle.right << ", " << rectangle.bottomm << ")";
+   return textstream << "xy(" << rectangle.left  << ", " << rectangle.top << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";
 
 }
 

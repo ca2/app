@@ -23,7 +23,7 @@ CLASS_DECL_ACME bool _istlead(i32 ch)
 
 
 
-//int_bool GetCursorPos(POINT_I32 * ppointCursor)
+//int_bool GetCursorPos(::point_i32 * ppointCursor)
 //
 //{
 //
@@ -34,9 +34,9 @@ CLASS_DECL_ACME bool _istlead(i32 ch)
 //   HIGetMousePosition(space, nullptr, &point);
 //
 //
-//   ppointCursor->x = point.x;
+//   ppointCursor->x = point.x();
 //
-//   ppointCursor->y = point.y;
+//   ppointCursor->y = point.y();
 //
 //
 //

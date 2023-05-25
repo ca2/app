@@ -101,8 +101,8 @@ public:
    bool show_window(enum_display edisplay);
    iptr get_window_long_ptr(iptr nIndex);
    iptr set_window_long_ptr(iptr nIndex, iptr l);
-   bool client_to_screen(POINT_I32 * lppoint);
-   bool screen_to_client(POINT_I32 * lppoint);
+   bool client_to_screen(::point_i32 * lppoint);
+   bool screen_to_client(::point_i32 * lppoint);
 
    bool is_null() const
    {

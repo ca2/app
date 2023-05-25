@@ -57,15 +57,46 @@ namespace integration
 
       m_pathSource2 = m_pathFolder / m_path / "source";
 
-      acmedirectory()->create(m_pathSource2);
+      //acmedirectory()->create(m_pathSource2);
 
    }
 
 
-   void context::change_to_source_directory()
+   ::file::path context::get_source_folder_path(const ::scoped_string& scopedstr)
    {
 
-      acmedirectory()->change_current(m_pathSource2);
+      ::file::path path;
+
+      path = m_pathSource2;
+
+      if (scopedstr.has_char())
+      {
+
+         path /= scopedstr;
+
+      }
+
+      return path;
+
+   }
+
+
+   void context::create_source_directory(const ::scoped_string& scopedstr)
+   {
+
+      ::file::path pathSourceFolder = get_source_folder_path(scopedstr);
+
+      acmedirectory()->create(pathSourceFolder);
+
+   }
+
+
+   void context::change_to_source_directory(const ::scoped_string & scopedstr)
+   {
+
+      ::file::path pathSourceFolder = get_source_folder_path(scopedstr);
+
+      acmedirectory()->change_current(pathSourceFolder);
 
    }
 
@@ -191,20 +222,37 @@ namespace integration
    void context::clean()
    {
 
+      ::file::path path;
+
+      path = this->prepare_path(m_pathFolder / m_path / "source");
+
+      if (acmeapplication()->payload("no-source-clean").is_true())
       {
 
-         string strPath;
-
-         strPath = this->prepare_path(m_pathFolder / m_path / "source");
-
-         if (strPath.length() > 20)
+         if (acmedirectory()->is(path))
          {
 
+            throw ::exception(error_failed, "Source Directory \""+path+"\" already exists.");
+
+         }
+
+      }
+      else
+      {
+
+         if (acmedirectory()->is(path))
+         {
+
+            if (path.length() > 20)
             {
 
-               ::string strCommand = "shopt -s dotglob; rm -Rf " + strPath + "/*";
+               {
 
-               this->bash(strCommand);
+                  ::string strCommand = "shopt -s dotglob; rm -Rf " + path + "/*";
+
+                  this->bash(strCommand);
+
+               }
 
             }
 
@@ -212,6 +260,7 @@ namespace integration
 
       }
 
+      if(!acmeapplication()->payload("no-prefix-clean").is_true())
       {
 
          string strPath;
@@ -287,6 +336,9 @@ namespace integration
       string strEscaped = scopedstr;
 
       ::string strCommand;
+
+      printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
+      printf("%s\n", strEscaped.c_str());
 
       if (m_bMsys)
       {

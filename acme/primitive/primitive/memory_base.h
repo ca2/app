@@ -244,7 +244,7 @@ public:
 
 
    template < primitive_character CHARACTER >
-   range < CHARACTER * > get_string_buffer(strsize len)
+   range < CHARACTER * > get_buffer(strsize len)
    {
 
       set_size((len + 1) * sizeof(CHARACTER));

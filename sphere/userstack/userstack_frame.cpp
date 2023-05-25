@@ -127,13 +127,13 @@ namespace userstack
             OnHoverAction();
          }
          point = psession->get_cursor_position();
-         if(!m_bHoverMouse && point.x == 0 && point.y == 0)
+         if(!m_bHoverMouse && point.x() == 0 && point.y() == 0)
          {
             m_timeLastHover = ::time::now();
             m_bHoverMouse = true;
 
          }
-         else if(m_bHoverMouse && (point.x > 10 || point.y > 0))
+         else if(m_bHoverMouse && (point.x() > 10 || point.y() > 0))
          {
             m_bHoverMouse = false;
          }

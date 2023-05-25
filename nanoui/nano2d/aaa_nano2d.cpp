@@ -2014,8 +2014,8 @@ void TransformSkewX(float* t, float a)
 	//
 	//		if (loop) {
 	//			// Loop it
-	//			CONTEXT::__vset)(dst, verts[0].x, verts[0].y, u0, 1); dst++;
-	//			CONTEXT::__vset)(dst, verts[1].x, verts[1].y, u1, 1); dst++;
+	//			CONTEXT::__vset)(dst, verts[0].x(), verts[0].y(), u0, 1); dst++;
+	//			CONTEXT::__vset)(dst, verts[1].x(), verts[1].y(), u1, 1); dst++;
 	//		}
 	//		else {
 	//			// Add cap
@@ -2108,7 +2108,7 @@ void TransformSkewX(float* t, float a)
 	//		}
 	//		else {
 	//			for (j = 0; j < path->count; ++j) {
-	//				CONTEXT::__vset)(dst, pts[j].x, pts[j].y, 0.5f, 1);
+	//				CONTEXT::__vset)(dst, pts[j].x(), pts[j].y(), 0.5f, 1);
 	//				dst++;
 	//			}
 	//		}
@@ -2148,8 +2148,8 @@ void TransformSkewX(float* t, float a)
 	//			}
 	//
 	//			// Loop it
-	//			CONTEXT::__vset)(dst, verts[0].x, verts[0].y, lu, 1); dst++;
-	//			CONTEXT::__vset)(dst, verts[1].x, verts[1].y, ru, 1); dst++;
+	//			CONTEXT::__vset)(dst, verts[0].x(), verts[0].y(), lu, 1); dst++;
+	//			CONTEXT::__vset)(dst, verts[1].x(), verts[1].y(), ru, 1); dst++;
 	//
 	//			path->nstroke = (int)(dst - verts);
 	//			verts = dst;
@@ -2441,12 +2441,12 @@ void TransformSkewX(float* t, float a)
 			if (path->nfill) {
 				printf("   - fill: %d\n", path->nfill);
 				for (j = 0; j < path->nfill; j++)
-					printf("%f\t%f\n", path->fill[j].x, path->fill[j].y);
+					printf("%f\t%f\n", path->fill[j].x(), path->fill[j].y());
 			}
 			if (path->nstroke) {
 				printf("   - stroke: %d\n", path->nstroke);
 				for (j = 0; j < path->nstroke; j++)
-					printf("%f\t%f\n", path->stroke[j].x, path->stroke[j].y);
+					printf("%f\t%f\n", path->stroke[j].x(), path->stroke[j].y());
 			}
 		}
 	}
@@ -2916,8 +2916,8 @@ void TransformSkewX(float* t, float a)
 		//	}
 		//	prevIter = iter;
 		//	positions[npos].str = iter.str;
-		//	positions[npos].x = iter.x * invscale;
-		//	positions[npos].minx = CONTEXT::__minf)(iter.x, q.x0) * invscale;
+		//	positions[npos].x() = iter.x() * invscale;
+		//	positions[npos].minx = CONTEXT::__minf)(iter.x(), q.x0) * invscale;
 		//	positions[npos].maxx = CONTEXT::__maxf)(iter.nextx, q.x1) * invscale;
 		//	npos++;
 		//	if (npos >= maxPositions)
@@ -3041,14 +3041,14 @@ void TransformSkewX(float* t, float a)
 		//			// Skip white space until the beginning of the line
 		//			if (type == NVG_CHAR || type == NVG_CJK_CHAR) {
 		//				// The current char is the row so far
-		//				rowStartX = iter.x;
+		//				rowStartX = iter.x();
 		//				rowStart = iter.str;
 		//				rowEnd = iter.next;
 		//				rowWidth = iter.nextx - rowStartX;
 		//				rowMinX = q.x0 - rowStartX;
 		//				rowMaxX = q.x1 - rowStartX;
 		//				wordStart = iter.str;
-		//				wordStartX = iter.x;
+		//				wordStartX = iter.x();
 		//				wordMinX = q.x0 - rowStartX;
 		//				// Set null break point
 		//				breakEnd = rowStart;
@@ -3074,7 +3074,7 @@ void TransformSkewX(float* t, float a)
 		//			// track last beginning of a word
 		//			if ((ptype == NVG_SPACE && (type == NVG_CHAR || type == NVG_CJK_CHAR)) || type == NVG_CJK_CHAR) {
 		//				wordStart = iter.str;
-		//				wordStartX = iter.x;
+		//				wordStartX = iter.x();
 		//				wordMinX = q.x0;
 		//			}
 
@@ -3092,14 +3092,14 @@ void TransformSkewX(float* t, float a)
 		//					nrows++;
 		//					if (nrows >= maxRows)
 		//						return nrows;
-		//					rowStartX = iter.x;
+		//					rowStartX = iter.x();
 		//					rowStart = iter.str;
 		//					rowEnd = iter.next;
 		//					rowWidth = iter.nextx - rowStartX;
 		//					rowMinX = q.x0 - rowStartX;
 		//					rowMaxX = q.x1 - rowStartX;
 		//					wordStart = iter.str;
-		//					wordStartX = iter.x;
+		//					wordStartX = iter.x();
 		//					wordMinX = q.x0 - rowStartX;
 		//				}
 		//				else {

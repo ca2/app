@@ -586,7 +586,7 @@ void ns_main_async(dispatch_block_t block);
 //#include <CoreFoundation/CoreFoundation.h>
 //
 //
-//int_bool set_need_redraw(oswindow hWnd, const RECTANGLE_I32 * pcrect, HRGN hrgnUpdate, ::u32 flags)
+//int_bool set_need_redraw(oswindow hWnd, const ::rectangle_i32 * pcrect, HRGN hrgnUpdate, ::u32 flags)
 //{
 //
 //   return true;
@@ -738,10 +738,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //         ::rectangle_i32 rectangleCopy;
 //
-//         rectangleCopy.left = rectangle.origin.x;
-//         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
+//         rectangleCopy.left = rectangle.origin.x();
+//         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
 //         rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
-//         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+//         rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
 //
 //         recta.add(rectangleCopy);
 //
@@ -776,12 +776,12 @@ void ns_main_async(dispatch_block_t block);
 //
 //   CFIndex maxSize = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
 //
-//   char *buffer = str.get_string_buffer(maxSize);
+//   char *buffer = str.get_buffer(maxSize);
 //
 //   if (CFStringGetCString(aString, buffer, maxSize, kCFStringEncodingUTF8))
 //   {
 //
-//      str.release_string_buffer();
+//      str.release_buffer();
 //
 //      return str;
 //
@@ -991,8 +991,8 @@ void ns_main_async(dispatch_block_t block);
 //#ifdef FUNCTION_TRACE
 //
 //         FUNCTION_TRACE("  %5.0f,%5.0f - %5.0f,%5.0f  ",
-//              rectangle.origin.x,
-//              rectangle.origin.y,
+//              rectangle.origin.x(),
+//              rectangle.origin.y(),
 //              rectangle.size.width,
 //              rectangle.size.height);
 //
@@ -1015,10 +1015,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //                  ::rectangle_i32 rectangleCopy;
 //
-//                  rectangleCopy.left = rectangle.origin.x;
-//                  rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
-//                  rectangleCopy.top = rectangle.origin.y;
-//                  rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
+//                  rectangleCopy.left = rectangle.origin.x();
+//                  rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
+//                  rectangleCopy.top = rectangle.origin.y();
+//                  rectangleCopy.bottom = rectangle.origin.y() + rectangle.size.height;
 //
 //                  recta.add(rectangleCopy);
 //
@@ -1225,15 +1225,15 @@ void ns_main_async(dispatch_block_t block);
 //
 //         ::rectangle_i32 rectangleCopy;
 //
-//         //rectangleCopy.left = rectangle.origin.x;
-//         //rectangleCopy.top = rMainScreen.height() - (rectangle.origrin.y + rectangle.size.height);
+//         //rectangleCopy.left = rectangle.origin.x();
+//         //rectangleCopy.top = rMainScreen.height() - (rectangle.origrin.y() + rectangle.size.height);
 //         //rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
-//         //rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+//         //rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
 //
-//         rectangleCopy.left = rectangle.origin.x;
-//         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
-//         rectangleCopy.top = rectangle.origin.y;
-//         rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
+//         rectangleCopy.left = rectangle.origin.x();
+//         rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
+//         rectangleCopy.top = rectangle.origin.y();
+//         rectangleCopy.bottom = rectangle.origin.y() + rectangle.size.height;
 //
 //         recta.add(rectangleCopy);
 //         windowida.add(iWindowId);
@@ -1325,7 +1325,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > & windowida);
 //
-//int_bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, int iMargin)
+//int_bool point_is_window_origin(::point_i32 pointHitTest, oswindow oswindowExclude, int iMargin)
 //{
 //
 //   CGWindowID windowidExclude = get_os_window_window_number(oswindowExclude);

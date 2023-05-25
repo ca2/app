@@ -449,6 +449,60 @@ constexpr TYPE maximum(const TYPE & a, const TYPE & b)
 }
 
 
+template< typename TYPE, typename COMPARE >
+constexpr TYPE compare_reduce(std::initializer_list<TYPE> list, COMPARE compare)
+{
+
+   auto p = list.begin();
+
+   if (!p)
+   {
+
+      return {};
+
+   }
+
+   TYPE t = *p;
+
+   p++;
+
+   while(p != list.end())
+   {
+
+      if (compare(*p, t))
+      {
+
+         t = *p;
+
+      }
+
+      p++;
+
+   }
+
+   return t;
+
+}
+
+
+template< typename TYPE >
+constexpr TYPE maximum(std::initializer_list<TYPE> list)
+{
+
+   return compare_reduce(list, [](auto a, auto b) {return a > b; });
+
+}
+
+
+template< typename TYPE >
+constexpr TYPE minimum(std::initializer_list<TYPE> list)
+{
+
+   return compare_reduce(list, [](auto a, auto b) {return a < b; });
+
+}
+
+
 template < typename TYPE1, typename TYPE2 >
 constexpr largest_type<TYPE1, TYPE2> maximum(const TYPE1 & a, const TYPE2 & b) 
 { 
@@ -692,6 +746,14 @@ inline int maximum_digits(int iBase)
 //CLASS_DECL_ACME int i64_maximum_digits(int iBase);
 //CLASS_DECL_ACME int u64_maximum_digits(int iBase);
 
+
+template <class T>
+inline T square_power(T v)
+{
+
+   return v * v;
+
+}
 
 
 

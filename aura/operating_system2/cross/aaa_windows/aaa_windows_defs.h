@@ -243,7 +243,7 @@ typedef struct tagRECT
    ::i32    top;
    ::i32    right;
    ::i32    bottom;
-} RECT32, *PRECT, *NPRECT, *RECTANGLE_I32 *;
+} RECT32, *PRECT, *NPRECT, *::rectangle_i32 *;
 
 typedef const RECT32 * LPCRECT32;
 

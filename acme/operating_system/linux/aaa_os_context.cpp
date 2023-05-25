@@ -1067,11 +1067,11 @@ namespace linux
 
             int iBufferSize = 4096;
 
-            char * pszError = strError.get_string_buffer(iBufferSize);
+            char * pszError = strError.get_buffer(iBufferSize);
 
             int iBool = aaa_gdk_launch_uri(strUri, pszError, iBufferSize);
 
-            strError.release_string_buffer();
+            strError.release_buffer();
 
             if(!iBool)
             {

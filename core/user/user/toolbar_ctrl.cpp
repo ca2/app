@@ -541,7 +541,7 @@ namespace user
    }
 
 
-   bool toolbar_control::GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle)
+   bool toolbar_control::GetItemRect(i32 nIndex, ::rectangle_i32 * prectangle)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -650,7 +650,7 @@ namespace user
    }
 
 
-   void toolbar_control::SetRows(i32 nRows, bool bLarger, RECTANGLE_I32 * prectangle)
+   void toolbar_control::SetRows(i32 nRows, bool bLarger, ::rectangle_i32 * prectangle)
 
    {
 
@@ -723,7 +723,7 @@ namespace user
    }
 
 
-   i32 toolbar_control::hit_test(POINT_I32 * ppt)
+   i32 toolbar_control::hit_test(::point_i32 * ppt)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -925,7 +925,7 @@ namespace user
    }
 
 
-   bool toolbar_control::GetRect(i32 nID, RECTANGLE_I32 * prectangle)
+   bool toolbar_control::GetRect(i32 nID, ::rectangle_i32 * prectangle)
 
    {
 
@@ -1290,7 +1290,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool toolbar_control::InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim)
+//   bool toolbar_control::InsertMarkHitTest(::point_i32 * ppt, LPTBINSERTMARK ptbim)
 //   {
 //
 //   ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != false;

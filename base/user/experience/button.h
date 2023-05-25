@@ -23,9 +23,9 @@ namespace experience
       ~button() override;
 
 
-      virtual void install_message_routing(::channel* pchannel) override;
+      void install_message_routing(::channel* pchannel) override;
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       virtual void UpdateWndRgn();
 

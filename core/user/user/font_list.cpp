@@ -156,7 +156,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
       auto psession = get_session();
 
@@ -211,7 +211,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
       if (!::is_item(pitem, m_pfontlist->m_iHover))
       {
@@ -379,7 +379,7 @@ namespace user
          if (!rectangleImpact.contains(rectangle))
          {
 
-            m_pointScroll.y = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
+            m_pointScroll.y() = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
 
          }
 
@@ -558,10 +558,10 @@ namespace user
    }
 
 
-   ::item_pointer font_list::on_hit_test(const ::point_i32 &point)
+   ::item_pointer font_list::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      return m_pfontlist->hit_test(point + m_pointScroll);
+      return m_pfontlist->hit_test(point + m_pointScroll, ezorder);
 
    }
 
@@ -670,7 +670,7 @@ namespace user
 
          m_pfontlist->m_iSel = iItem;
 
-         m_pointScroll.y = m_pfontlist->m_pfontlistdata->element_at(iItem)->m_box[0].m_rectangle.top;
+         m_pointScroll.y() = m_pfontlist->m_pfontlistdata->element_at(iItem)->m_box[0].m_rectangle.top;
 
       }
       else

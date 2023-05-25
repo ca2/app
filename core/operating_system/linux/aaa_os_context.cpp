@@ -358,7 +358,7 @@ namespace linux
 //      {
 //         dwSize = ::GetModuleFileName(
 //            hmodule,
-//            strPath.get_string_buffer(dwSize + 1024),
+//            strPath.get_buffer(dwSize + 1024),
 //            (dwSize + 1024));
 //         strPath.ReleaseBuffer();
 //      }
@@ -1083,11 +1083,11 @@ namespace linux
 
             int iBufferSize = 4096;
 
-            char * pszError = strError.get_string_buffer(iBufferSize);
+            char * pszError = strError.get_buffer(iBufferSize);
 
             int iBool = aaa_gdk_launch_uri(strUri, pszError, iBufferSize);
 
-            strError.release_string_buffer();
+            strError.release_buffer();
 
             if(!iBool)
             {

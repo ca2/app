@@ -1,11 +1,11 @@
 /*
-    nanoui/canvas.cpp -- Canvas widget for rendering full-fledged
+    nanoui/canvas.cpp -- Canvas pwidget for rendering full-fledged
     OpenGL content within its designated area. Very useful for
     displaying and manipulating 3D objects or scenes. Subclass it and
     overload `draw_contents` for rendering.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -20,7 +20,7 @@
 
 
 #define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
-//#include <nanoui/screen.h>
+//#include <nanoui/pscreen.h>
 //#include <nanoui/canvas.h>
 //#include <nanoui/texture.h>
 //#include <nanoui/renderpass.h>
@@ -35,22 +35,27 @@ namespace nanoui
 Canvas::Canvas(Widget * parent, uint8_t samples,
    bool has_depth_buffer, bool has_stencil_buffer,
    bool clear)
-   : Widget(parent), m_draw_border(true) {
-   m_size = Vector2i(250, 250);
-   m_border_color = m_theme->m_border_light;
+   : Widget(parent), m_bDrawBorder(true) {
+   m_size = vector2_i32(250, 250);
+   m_border_color = m_ptheme->m_colorBorderLight;
 
 #if defined(NANOUI_USE_GLES)
    samples = 1;
 #endif
 
-   Screen * scr = screen();
-   if (scr == nullptr)
-      throw std::runtime_error("Canvas::Canvas(): could not find parent screen!");
+   Screen * pscreen = screen();
+
+   if (pscreen == nullptr)
+   {
+
+      throw std::runtime_error("Canvas::Canvas(): could not find parent pscreen!");
+
+   }
 
    // opengl
    //m_render_to_texture = samples != 1
-   //   || (has_depth_buffer && !scr->has_depth_buffer())
-   //   || (has_stencil_buffer && !scr->has_stencil_buffer());
+   //   || (has_depth_buffer && !pscreen->has_depth_buffer())
+   //   || (has_stencil_buffer && !pscreen->has_stencil_buffer());
 
    //Object * color_texture = nullptr,
      // * depth_texture = nullptr;
@@ -60,19 +65,19 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
 
 
 //   if (!m_render_to_texture) {
-//      color_texture = scr;
+//      color_texture = pscreen;
 //      if (has_depth_buffer) {
 //#if defined(NANOUI_USE_METAL)
-//         depth_texture = scr->depth_stencil_texture();
+//         depth_texture = pscreen->depth_stencil_texture();
 //#else
-//         depth_texture = scr;
+//         depth_texture = pscreen;
 //#endif
 //      }
 //   }
 //   else {
       /*color_texture = memory_new Texture(
-         scr->pixel_format(),
-         scr->component_format(),
+         pscreen->pixel_format(),
+         pscreen->component_format(),
          m_size,
          Texture::InterpolationMode::Bilinear,
          Texture::InterpolationMode::Bilinear,
@@ -86,8 +91,8 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
 
       if (samples > 1) {
          color_texture_resolved = memory_new Texture(
-            scr->pixel_format(),
-            scr->component_format(),
+            pscreen->pixel_format(),
+            pscreen->component_format(),
             m_size,
             Texture::InterpolationMode::Bilinear,
             Texture::InterpolationMode::Bilinear,
@@ -129,16 +134,16 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
 }
 
 
-void Canvas::set_background_color(const ::color::color & background_color) 
+void Canvas::set_background_color(const ::color::color & colorBackground) 
 {
 
-   m_colorClear = background_color;
-   //m_render_pass->set_clear_color(0, background_color);
+   m_colorClear = colorBackground;
+   //m_render_pass->set_clear_color(0, colorBackground);
 
 }
 
 
-::color::color Canvas::background_color() const {
+::color::color Canvas::colorBackground() const {
    //return m_render_pass->clear_color(0);
    return ::color::color(
       m_colorClear.fr(), 
@@ -160,31 +165,31 @@ void Canvas::draw(::nano2d::context * pcontext) {
    }
 
    pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), m_pimage);
-//   Screen * scr = screen();
-//   if (scr == nullptr)
-//      throw std::runtime_error("Canvas::draw(): could not find parent screen!");
+//   Screen * pscreen = screen();
+//   if (pscreen == nullptr)
+//      throw std::runtime_error("Canvas::draw(): could not find parent pscreen!");
 //
-//   float pixel_ratio = scr->pixel_ratio();
+//   float pixel_ratio = pscreen->pixel_ratio();
 //
 //   Widget::draw(pcontext);
 //
-//   scr->::nano2d::_flush();
+//   pscreen->::nano2d::_flush();
 //
-//   Vector2i fbsize = m_size;
-//   Vector2i offset = absolute_position();
-//   if (m_draw_border)
+//   vector2_i32 fbsize = m_size;
+//   vector2_i32 offset = absolute_position();
+//   if (m_bDrawBorder)
 //      fbsize -= 2;
 //
 //#if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
 //   if (m_render_to_texture)
-//      offset = Vector2i(offset.x(), scr->size().y() - offset.y() - m_size.y());
+//      offset = vector2_i32(offset.x(), pscreen->size().y() - offset.y() - m_size.y());
 //#endif
 //
-//   if (m_draw_border)
-//      offset += Vector2i(1, 1);
+//   if (m_bDrawBorder)
+//      offset += vector2_i32(1, 1);
 //
-//   fbsize = Vector2i(Vector2f(fbsize) * pixel_ratio);
-//   offset = Vector2i(Vector2f(offset) * pixel_ratio);
+//   fbsize = vector2_i32(vector2_f32(fbsize) * pixel_ratio);
+//   offset = vector2_i32(vector2_f32(offset) * pixel_ratio);
 //
 //   if (m_render_to_texture) {
 //      m_render_pass->resize(fbsize);
@@ -194,7 +199,7 @@ void Canvas::draw(::nano2d::context * pcontext) {
 //#endif
 //   }
 //   else {
-//      m_render_pass->resize(scr->framebuffer_size());
+//      m_render_pass->resize(pscreen->framebuffer_size());
 //      m_render_pass->set_context(offset, fbsize);
 //   }
 //
@@ -202,13 +207,13 @@ void Canvas::draw(::nano2d::context * pcontext) {
 //   draw_contents();
 //   m_render_pass->end();
 //
-//   if (m_draw_border) {
+//   if (m_bDrawBorder) {
 //      pcontext->begin_path();
 //      pcontext->stroke_width(1.f);
 //      pcontext->stroke_color(m_border_color);
 //      ::nano2d::RoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + .5f,
 //         m_size.x() - 1.f, m_size.y() - 1.f,
-//         m_theme->m_window_corner_radius);
+//         m_ptheme->m_iWindowCorderRadius);
 //      pcontext->stroke();
 //   }
 //
@@ -218,7 +223,7 @@ void Canvas::draw(::nano2d::context * pcontext) {
 //      if (m_render_pass_resolved)
 //         rp = m_render_pass_resolved;
 //#endif
-//      rp->blit_to(Vector2i(0, 0), fbsize, scr, offset);
+//      rp->blit_to(vector2_i32(0, 0), fbsize, pscreen, offset);
 //   }
 }
 

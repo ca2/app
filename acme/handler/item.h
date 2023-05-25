@@ -9,6 +9,7 @@
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/constant/element.h"
+#include "acme/user/user/_constant.h"
 
 
 #pragma pack(push, user_ITEM, 1)
@@ -51,6 +52,7 @@ struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
    u64                           m_uFlags;
    ::pointer < ::particle >      m_pparticle;
    ::enum_item                   m_eitem;
+   ::user::e_zorder              m_ezorder;
    union // small 1 bedroom ap
    {
       void *                        m_data[4];
@@ -285,7 +287,7 @@ public:
    ::pointer<::draw2d::graphics>   m_pgraphics;
    ::pointer<::draw2d::path>       m_ppath;
    ::pointer<::user::mouse>        m_pmouse;
-   bool                             m_bAnyHoverChange;
+   //bool                             m_bAnyHoverChange;
 
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
    //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
@@ -511,6 +513,14 @@ inline bool is_item_set(const ::item * pitem)
 }
 
 
+inline bool is_item_set_and_non_negative(const ::item* pitem)
+{
+
+   return ::is_item_set(pitem) && pitem->m_iItem >= 0;
+
+}
+
+
 inline bool is_element(const ::item * pitem, ::enum_element eelement)
 {
 
@@ -624,6 +634,9 @@ inline bool is_item_index(const ::item * pitem, ::index iItem)
    return ::is_element(pitem, ::e_element_item) && ::is_item(pitem, iItem);
    
 }
+
+
+CLASS_DECL_ACME bool is_item_equivalent(const ::item * pitem1, const ::item * pitem2);
 
 
 

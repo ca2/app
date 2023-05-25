@@ -29,7 +29,7 @@ namespace write_text
       virtual ~glyph();
 
 
-      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, POINT_I32 * ppointoffset);
+      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, ::point_i32 * ppointoffset);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -39,7 +39,7 @@ namespace write_text
 //
 //#endif
 
-      void GetGlyphRect(i32 x, i32 y, RECTANGLE_I32 * prectangle);
+      void GetGlyphRect(i32 x, i32 y, ::rectangle_i32 * prectangle);
 
 
       void clear();

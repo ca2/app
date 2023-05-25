@@ -27,16 +27,23 @@ namespace user
       void on_create_user_interaction() override;
       
       
-      void input_client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_sketch) override;
+      void input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout = e_layout_sketch) override;
 
 
       void initial_frame_placement() override;
 
 
-      ::index get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore) override;
+      ::index get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore) override;
 
 
       virtual void create_main_window();
+
+
+      bool should_redraw_on_mouse_activate() override;
+
+
+      bool should_redraw_on_mouse_hover() override;
+
 
 
    };

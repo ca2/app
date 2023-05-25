@@ -66,12 +66,12 @@
 
          strsize iCount = unicode_to_multibyte_count(uCodePage, scopedwstr);
 
-         char * psz = str.get_string_buffer(iCount);
+         char * psz = str.get_buffer(iCount);
 
          if(unicode_to_multibyte(uCodePage, psz, iCount + 1, scopedwstr))
          {
 
-            str.release_string_buffer(iCount);
+            str.release_buffer(iCount);
 
             return true;
 
@@ -79,7 +79,7 @@
          else
          {
 
-            str.release_string_buffer(0);
+            str.release_buffer(0);
 
             str.empty();
 
@@ -106,12 +106,12 @@
 //
 //         strsize iMultiByteCount = unicode_to_multibyte_count(uCodePage, { pcsz, iCount});
 //
-//         char * psz = str.get_string_buffer(iMultiByteCount);
+//         char * psz = str.get_buffer(iMultiByteCount);
 //
 //         if(unicode_to_multibyte(uCodePage, psz, iMultiByteCount + 1, { pcsz, iCount}))
 //         {
 //
-//            str.release_string_buffer(iMultiByteCount);
+//            str.release_buffer(iMultiByteCount);
 //
 //            return true;
 //
@@ -119,7 +119,7 @@
 //         else
 //         {
 //
-//            str.release_string_buffer(0);
+//            str.release_buffer(0);
 //
 //            str.empty();
 //
@@ -135,11 +135,11 @@
 
          auto lenTarget = unichar_to_utf8_len(scopedwstr, scopedwstr.size());
 
-         char * psz = str.get_string_buffer(lenTarget); // worst guess?!?
+         char * psz = str.get_buffer(lenTarget); // worst guess?!?
 
          strsize iLen = unichar_to_utf8(psz, scopedwstr, scopedwstr.size());
 
-         str.release_string_buffer(iLen);
+         str.release_buffer(iLen);
 
          return true;
 
@@ -251,11 +251,11 @@
             return push;
          }
          wstring wstr;
-         auto pwsz = wstr.get_string_buffer(iBuffer);
+         auto pwsz = wstr.get_buffer(iBuffer);
          if(multibyte_to_unicode(uCodePage, pwsz, iBuffer + 1, scopedstr))
 
          {
-            wstr.release_string_buffer(iBuffer);
+            wstr.release_buffer(iBuffer);
             return wstr;
          }
          ::wide_character push[]={0};
@@ -288,12 +288,12 @@
 
          wstring wstr;
 
-         ::wide_character * pwsz = wstr.get_string_buffer(iBuffer);
+         ::wide_character * pwsz = wstr.get_buffer(iBuffer);
 
          if(multibyte_to_unicode(uCodePage,pwsz, iBuffer + 1, str, (strsize) str.length()))
          {
 
-            wstr.release_string_buffer(iBuffer);
+            wstr.release_buffer(iBuffer);
 
             return wstr;
 

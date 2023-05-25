@@ -15,7 +15,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
    for (;;)
    {
-      auto psz = buffer.get_string_buffer(dwBufferLength);
+      auto psz = buffer.get_buffer(dwBufferLength);
 
       ::SetLastError(ERROR_SUCCESS);
 
@@ -31,7 +31,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
       if (GetLastError() != ERROR_INSUFFICIENT_BUFFER)
       {
 
-         buffer.release_string_buffer(pathLength);
+         buffer.release_buffer(pathLength);
 
          return buffer;
 

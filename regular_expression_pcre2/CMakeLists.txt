@@ -48,9 +48,9 @@ if (MSVC)
 elseif (LINUX)
 
 
-    if (NOT DONT_USE_PKG_CONFIG)
+    #if (USE_PKGCONFIG)
         pkg_check_modules(PKGCONFIG libpcre2-8)
-    endif ()
+    #endif ()
 
     message(STATUS "regular_expression_pcre2")
     message(STATUS "PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")

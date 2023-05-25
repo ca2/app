@@ -1,8 +1,8 @@
 /*
-    src/button.cpp -- [Normal/Toggle/Radio/Popup] Button widget
+    src/button.cpp -- [Normal/Toggle/Radio/Popup] Button pwidget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -22,10 +22,10 @@ namespace nanoui
 
 
    Button::Button(Widget* parent, const ::scoped_string& caption, int icon)
-      : Widget(parent), m_caption(caption), m_icon(icon),
-      m_icon_position(IconPosition::LeftCentered), m_bMouseDown(false), m_bChecked(false),
-      m_flags(NormalButton), m_background_color(::color::color(0, 0)),
-      m_text_color(::color::color(0, 0)),
+      : Widget(parent), m_strCaption(caption), m_icon(icon),
+      m_icon_position(IconPosition::LeftCentered), m_bChecked(false),
+      m_flags(NormalButton), m_colorBackground(::color::color(0, 0)),
+      m_colorText(::color::color(0, 0)),
       m_tw(-1.f), m_iw(-1.f), m_ih(-1.f)
    {
 
@@ -33,16 +33,16 @@ namespace nanoui
    }
 
 
-   Vector2i Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   vector2_i32 Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize || m_tw < 0.f || m_iw < 0.f || m_ih < 0.f)
       {
 
-         int font_size = m_font_size == -1 ? m_theme->m_button_font_size : m_font_size;
+         int font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
          pcontext->font_size((float)font_size);
          pcontext->font_face("sans-bold");
-         m_tw = pcontext->text_bounds(0, 0, m_caption, nullptr);
+         m_tw = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
          m_iw = 0.0f;
          m_ih = (float)font_size;
 
@@ -54,18 +54,18 @@ namespace nanoui
                   + m_size.y() * 0.15f;
             }
             else {
-               int w, h;
-               pcontext->image_size(m_icon, &w, &h);
-               m_iw = w * m_ih / h;
+               int pwidgetChild, h;
+               pcontext->image_size(m_icon, &pwidgetChild, &h);
+               m_iw = pwidgetChild * m_ih / h;
             }
          }
 
       }
-      return Vector2i((int)(m_tw + m_iw) + 20, (int)(m_ih + 10));
+      return vector2_i32((int)(m_tw + m_iw) + 20, (int)(m_ih + 11));
    }
 
    //
-   //bool Button::mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers)
+   //bool Button::mouse_enter_event(const vector2_i32 & p, bool enter, const ::user::e_key & ekeyModifiers)
    //{
    //   
    //   Widget::mouse_enter_event(p, enter, ekeyModifiers);
@@ -75,20 +75,23 @@ namespace nanoui
    //}
 
 
-   bool Button::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
       /* Temporarily increase the reference count of the button in case the
          button causes the parent window to be destructed */
-      ref<Button> self = this;
+      ::pointer<Button> self = this;
 
-      if (m_enabled == 1 &&
-         ((emouse == ::user::e_mouse_left_button && !(m_flags & MenuButton)) ||
-            (emouse == ::user::e_mouse_right_button && (m_flags & MenuButton))))
+      if (m_bEnabled &&
+         (
+
+            (emouse == ::user::e_mouse_left_button && !(m_flags & ContextMenuButton)) ||
+            (emouse == ::user::e_mouse_right_button && (m_flags & ContextMenuButton))
+
+            )
+         )
       {
-
-         bool bChecked = m_bChecked;
 
          if (down)
          {
@@ -96,22 +99,22 @@ namespace nanoui
             if (m_flags & PopupButton)
             {
 
-               for (auto widget : parent()->children())
+               for (auto pwidget : parent()->children())
                {
 
-                  Button* b = dynamic_cast<Button*>(widget);
+                  ::pointer < Button > pbutton = pwidget;
 
-                  if (b != this && b && (b->flags() & PopupButton) && b->m_bChecked)
+                  if (pbutton != this && pbutton && (pbutton->flags() & PopupButton) && pbutton->m_bChecked)
                   {
 
-                     b->m_bChecked = false;
+                     pbutton->set_checked(false, e_source_selection);
 
-                     if (b->m_change_callback)
-                     {
+                     //if (pbutton->m_change_callback)
+                     //{
 
-                        b->m_change_callback(false);
+                     //   pbutton->m_change_callback(false);
 
-                     }
+                     //}
 
                   }
 
@@ -121,111 +124,144 @@ namespace nanoui
 
             }
 
-            m_bMouseDown = true;
-
-         }
-         else
-         {
-
-            if (m_bMouseDown || (m_flags & MenuButton))
+            if (m_flags & RadioButton)
             {
 
-               if (contains(p))
+               if (m_button_group.empty())
                {
 
-                  if (m_flags & RadioButton)
+                  for (auto pwidget : parent()->children())
                   {
 
-                     if (m_button_group.empty())
+                     ::pointer < Button > pbutton = pwidget;
+
+                     if (pbutton != this && pbutton && (pbutton->flags() & RadioButton) && pbutton->m_bChecked)
                      {
 
-                        for (auto widget : parent()->children())
-                        {
+                        pbutton->set_checked(false, e_source_selection);
 
-                           Button* b = dynamic_cast<Button*>(widget);
+                        //if (pbutton->m_change_callback)
+                        //{
 
-                           if (b != this && b && (b->flags() & RadioButton) && b->m_bChecked)
-                           {
+                        //   pbutton->m_change_callback(false);
 
-                              b->m_bChecked = false;
-
-                              if (b->m_change_callback)
-                              {
-
-                                 b->m_change_callback(false);
-
-                              }
-
-                           }
-
-                        }
-
-                     }
-                     else
-                     {
-
-                        for (auto b : m_button_group)
-                        {
-
-                           if (b != this && (b->flags() & RadioButton) && b->m_bChecked)
-                           {
-
-                              b->m_bChecked = false;
-
-                              if (b->m_change_callback)
-                              {
-
-                                 b->m_change_callback(false);
-
-                              }
-
-                           }
-
-                        }
+                        //}
 
                      }
 
                   }
 
-                  if (m_flags & ToggleButton || m_flags & RadioButton)
+               }
+               else
+               {
+
+                  for (auto pbutton : m_button_group)
                   {
 
-                     m_bChecked = !m_bChecked;
+                     if (pbutton != this && (pbutton->flags() & RadioButton) && pbutton->m_bChecked)
+                     {
+
+                        pbutton->set_checked(false, e_source_selection);
+
+                        //if (pbutton->m_change_callback)
+                        //{
+
+                        //   pbutton->m_change_callback(false);
+
+                        //}
+
+                     }
 
                   }
 
-                  on_click();
+               }
+
+               //m_bMouseDown = true;
+
+            }
+
+            screen()->m_pwidgetMouseDown = this;
+
+         }
+         else 
+         {
+
+            auto pscreen = screen();
+
+            if (pscreen->m_pwidgetMouseDown == this
+               && (!pscreen->m_pwidgetDrop
+                  || pscreen->m_pwidgetDrop == this))
+            {
+
+               bool bChecked = m_bChecked;
+
+               if (m_flags & ToggleButton || m_flags & RadioButton)
+               {
+
+                  m_bChecked = !m_bChecked;
+
+               }
+
+               on_click();
+
+               if (::is_different(bChecked, m_bChecked) && m_change_callback)
+               {
+
+                  m_change_callback(m_bChecked);
 
                }
 
             }
-
-            m_bMouseDown = false;
-
-         }
-
-         if (::is_different(bChecked, m_bChecked) && m_change_callback)
-         {
-
-            m_change_callback(m_bChecked);
 
          }
 
          return true;
 
       }
+      //else
+      //{
+
+      //   m_bMouseDown = false;
+
+      //}
 
       return false;
 
    }
 
 
-   bool Button::mouse_enter_event(const Vector2i& p, bool enter, const ::user::e_key& ekeyModifiers)
+   /// Sets whether or not this Button is currently pushed.
+   void Button::set_checked(bool bChecked, const ::action_context& actioncontext)
    {
 
-      Widget::mouse_enter_event(p, enter, ekeyModifiers);
+      if (::is_different(m_bChecked, bChecked))
+      {
+
+         m_bChecked = bChecked;
+
+         if (actioncontext.is_user_source() && m_change_callback)
+         {
+
+            m_change_callback(bChecked);
+
+         }
+
+         set_need_redraw();
+
+         post_redraw();
+
+      }
+
+   }
+
+
+   bool Button::mouse_enter_event(const vector2_i32& p, bool bEnter, const ::user::e_key& ekeyModifiers)
+   {
+
+      Widget::mouse_enter_event(p, bEnter, ekeyModifiers);
 
       set_need_redraw();
+
       post_redraw();
 
       return true;
@@ -238,8 +274,8 @@ namespace nanoui
 
       Widget::draw(pcontext);
 
-      ::color::color grad_top = m_theme->m_button_gradient_top_unfocused;
-      ::color::color grad_bot = m_theme->m_button_gradient_bot_unfocused;
+      ::color::color colorGradientTop = m_ptheme->m_colorButtonGradientUnfocused;
+      ::color::color colorGradientBottom = m_ptheme->m_colorButtonGradientBottomUnfocused;
 
       bool bPressed = false;
 
@@ -252,67 +288,99 @@ namespace nanoui
       else
       {
 
-         bPressed = m_bMouseDown;
+         bPressed = screen()->m_pwidgetMouseDown == this;
 
       }
 
-      if (bPressed || (m_mouse_focus && (m_flags & MenuButton))) {
-         grad_top = m_theme->m_button_gradient_top_pushed;
-         grad_bot = m_theme->m_button_gradient_bot_pushed;
+      if (bPressed || (m_bMouseHover && (m_flags & ContextMenuButton)))
+      {
+
+         colorGradientTop = m_ptheme->m_colorButtonGradientTopPushed;
+
+         colorGradientBottom = m_ptheme->m_colorButtonGradientBottomPushed;
+
       }
-      else if (m_mouse_focus && m_enabled) {
-         grad_top = m_theme->m_button_gradient_top_focused;
-         grad_bot = m_theme->m_button_gradient_bot_focused;
+      else if (m_bMouseHover && m_bEnabled)
+      {
+
+         colorGradientTop = m_ptheme->m_colorButtonGradientTopFocused;
+
+         colorGradientBottom = m_ptheme->m_colorButtonGradientBottomFocused;
+
       }
 
       pcontext->begin_path();
 
-      pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.x() - 2.f,
-         m_size.y() - 2.f, m_theme->m_button_corner_radius - 1.f);
+      pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.x() - 3.f,
+         m_size.y() - 2.f, m_ptheme->m_iButtonCornerRadius - 1.f);
 
-      if (m_background_color.alpha != 0) {
-         pcontext->fill_color(::color::color(m_background_color.red, m_background_color.green,
-            m_background_color.blue, 1.f));
+      if (m_colorBackground.alpha != 0) 
+      {
+
+         auto colorBackground = m_colorBackground;
+
+         colorBackground.set_alpha(1.f);
+
+         pcontext->fill_color(colorBackground);
+
          pcontext->fill();
-         if (bPressed) {
-            grad_top.set_alpha(grad_bot.set_alpha(0.8f));
+
+         if (bPressed) 
+         {
+
+            colorGradientTop.set_alpha(0.8f);
+
+            colorGradientBottom.set_alpha(0.8f);
+
          }
-         else {
-            double v = 1 - m_background_color.fa();
-            grad_top.set_alpha(grad_bot.set_alpha((float)(m_enabled ? v : v * .5 + .5)));
+         else 
+         {
+            
+            auto alpha = 1.f - m_colorBackground.fa();
+
+            alpha = m_bEnabled ? alpha : alpha * .5f + .5f;
+
+            colorGradientTop.set_alpha(alpha);
+
+            colorGradientBottom.set_alpha(alpha);
+
          }
+
       }
 
       ::nano2d::paint bg = pcontext->linear_gradient((float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
-         (float)(m_pos.y() + m_size.y()), grad_top, grad_bot);
+         (float)(m_pos.y() + m_size.y()), colorGradientTop, colorGradientBottom);
 
       pcontext->fill_paint(bg);
       pcontext->fill();
 
       pcontext->begin_path();
       pcontext->stroke_width(1.0f);
-      pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + (bPressed ? 0.5f : 1.5f), m_size.x() - 1.f,
-         m_size.y() - 1.f - (bPressed ? 0.0f : 1.0f), (float)m_theme->m_button_corner_radius);
-      pcontext->stroke_color(m_theme->m_border_light);
+      pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + (bPressed ? 0.5f : 1.5f), m_size.x() - 2.f,
+         m_size.y() - 1.f - (bPressed ? 0.0f : 1.0f), (float)m_ptheme->m_iButtonCornerRadius);
+      pcontext->stroke_color(m_ptheme->m_colorBorderLight);
       pcontext->stroke();
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle((float)m_pos.x() + 0.5f, (float)m_pos.y() + 0.5f, (float)m_size.x() - 1.f,
-         (float)m_size.y() - 2.f, (float)m_theme->m_button_corner_radius);
-      pcontext->stroke_color(m_theme->m_border_dark);
+      pcontext->rounded_rectangle((float)m_pos.x() + 0.5f, (float)m_pos.y() + 0.5f, (float)m_size.x() - 2.f,
+         (float)m_size.y() - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+      pcontext->stroke_color(m_ptheme->m_colorBorderDark);
       pcontext->stroke();
 
-      int font_size = m_font_size == -1 ? m_theme->m_button_font_size : m_font_size;
+      int font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
       pcontext->font_size((float)font_size);
       pcontext->font_face("sans-bold");
-      float tw = pcontext->text_bounds(0, 0, m_caption, nullptr);
+      pcontext->text_align(::e_align_left);
+      float tw = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
 
-      Vector2f center = Vector2f(m_pos) + Vector2f(m_size) * 0.5f;
-      Vector2f text_pos(center.x() - tw * 0.5f, center.y() - 1);
+      vector2_f32 center = vector2_f32(m_pos) + vector2_f32(m_size) * 0.5f;
+      
+      vector2_f32 text_pos(center.x() - tw * 0.5f, center.y() - 1);
+
       ::color::color text_color =
-         m_text_color.alpha == 0 ? m_theme->m_text_color : m_text_color;
-      if (!m_enabled)
-         text_color = m_theme->m_disabled_text_color;
+         m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;
+      if (!m_bEnabled)
+         text_color = m_ptheme->m_colorDisableText;
 
       if (m_icon) {
          auto icon = get_utf8_character(m_icon);
@@ -325,16 +393,16 @@ namespace nanoui
             iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
          }
          else {
-            int w, h;
+            int pwidgetChild, h;
             ih *= 0.9f;
-            pcontext->image_size(m_icon, &w, &h);
-            iw = w * ih / h;
+            pcontext->image_size(m_icon, &pwidgetChild, &h);
+            iw = pwidgetChild * ih / h;
          }
-         if (m_caption != "")
+         if (m_strCaption != "")
             iw += m_size.y() * 0.15f;
          pcontext->fill_color(text_color);
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-         Vector2f icon_pos = center;
+         vector2_f32 icon_pos = center;
          icon_pos.y() -= 1;
 
          if (m_icon_position == IconPosition::LeftCentered) {
@@ -352,26 +420,44 @@ namespace nanoui
             icon_pos.x() = m_pos.x() + m_size.x() - iw - 8.f;
          }
 
-         if (::nano2d_is_font_icon(m_icon)) {
+         if (::nano2d_is_font_icon(m_icon)) 
+         {
+
             pcontext->text(icon_pos.x(), icon_pos.y() + 1, icon.data());
+
          }
-         else {
-            ::nano2d::paint img_paint = pcontext->image_pattern(
-               icon_pos.x(), icon_pos.y() - ih / 2, iw, ih, 0, m_icon, m_enabled ? 0.5f : 0.25f);
+         else 
+         {
+
+            ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
+               icon_pos.x(), icon_pos.y() - ih / 2, iw, ih, 0, m_bEnabled ? 0.5f : 0.25f,
+               m_icon);
 
             pcontext->fill_paint(img_paint);
+
             pcontext->fill();
+
          }
+
       }
 
       pcontext->font_size((float)font_size);
       pcontext->font_face("sans-bold");
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-      pcontext->fill_color(m_theme->m_text_color_shadow);
-      pcontext->text(text_pos.x(), text_pos.y(), m_caption);
-      pcontext->fill_color(text_color);
-      pcontext->text(text_pos.x(), text_pos.y() + 1, m_caption);
+      pcontext->fill_color(m_ptheme->m_colorTextShadow);
 
+      pcontext->text(text_pos.x(), text_pos.y(), m_strCaption);
+
+      pcontext->fill_color(text_color);
+
+      pcontext->text(text_pos.x(), text_pos.y() + 1, m_strCaption);
+      
+      if (m_strCaption == "Load Presets")
+      {
+
+         ::output_debug_string("Drawing Load Presets");
+
+      }
 
    }
 
@@ -438,7 +524,7 @@ namespace nanoui
    //
    //   //m_pbutton->post_redraw();
    //
-   //   //m_pbutton->set_window_text(m_caption.c_str());
+   //   //m_pbutton->set_window_text(m_strCaption.c_str());
    //
    //   //Widget::_nanoui_to_user(m_pbutton);
    //
@@ -462,8 +548,7 @@ namespace nanoui
    }
 
 
-
-
 } // namespace nanoui
+
 
 

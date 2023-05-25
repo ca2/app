@@ -2732,7 +2732,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //{
 //   i64 iLen;
 //   read_n_number(pfile, pctx, iLen);
-//   char * psz = str.get_string_buffer((strsize)(iLen + 1));
+//   char * psz = str.get_buffer((strsize)(iLen + 1));
 //
 //   pfile->read(psz, (memsize)iLen);
 //
@@ -2749,7 +2749,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   }
 //   psz[iLen] = '\0';
 //
-//   str.release_string_buffer();
+//   str.release_buffer();
 //}
 
 

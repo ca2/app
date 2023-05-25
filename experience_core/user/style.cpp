@@ -86,7 +86,7 @@ namespace experience_core
 
       //return true;
       
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
       
 //      if (pdata->m_bVertical)
 //      {
@@ -504,11 +504,11 @@ namespace experience_core
 
                   pgraphics->set(pbrush);
 
-                  pgraphics->offset_origin(- (ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+                  pgraphics->offset_origin(- (ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                   pgraphics->fill(ppath);
 
-                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
+                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
 
                }
 
@@ -527,11 +527,11 @@ namespace experience_core
 
                   pgraphics->set(ppen);
 
-                  pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+                  pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                   pgraphics->draw(ppath);
 
-                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
+                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
 
                }
 
@@ -635,11 +635,11 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->fill(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
 
                   }
 
@@ -658,11 +658,11 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->draw(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
 
                      {
 
@@ -725,11 +725,11 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->fill(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
 
                   }
 
@@ -748,11 +748,11 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->draw(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
 
                   }
 
@@ -1140,8 +1140,8 @@ namespace experience_core
                iTabHeight = cy;
             }
 
-            ppane->m_point.x = x;
-            ppane->m_point.y = rectangleClient.top;
+            ppane->m_point.x() = x;
+            ppane->m_point.y() = rectangleClient.top;
 
 
             //            string str = ppane->get_title();
@@ -1246,7 +1246,7 @@ namespace experience_core
 
          ptab->m_iTabSize = (int)(pdata->m_tabpanecompositea.get_count() * pdata->m_iTabHeight);
 
-//         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
+//         ptab->m_pointDragScrollMax.y() = ptab->m_sizeDragScroll.cy - rcClient.height();
 
          ptab->m_sizeBarDragScroll.cy = (int)ptab->m_pdata->m_tabpanecompositea.get_count() * ptab->m_pdata->m_iTabHeight;
 
@@ -1254,12 +1254,12 @@ namespace experience_core
       else
       {
 
-         ptab->m_iTabSize = pdata->m_tabpanecompositea.last()->m_point.x +
+         ptab->m_iTabSize = pdata->m_tabpanecompositea.last()->m_point.x() +
             pdata->m_tabpanecompositea.last()->m_size.cx;
 
-         //ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx - rcClient.width();
+         //ptab->m_pointDragScrollMax.x() = ptab->m_sizeDragScroll.cx - rcClient.width();
 
-         ptab->m_sizeBarDragScroll.cx = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x +
+         ptab->m_sizeBarDragScroll.cx = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x() +
             ptab->m_pdata->m_tabpanecompositea.last()->m_size.cx;
 
          //if (m_pdata->m_bVertical)
@@ -1954,13 +1954,13 @@ namespace experience_core
 
          //auto pwindowing = puser->windowing();
 
-         //auto pointCursor = pwindowing->get_cursor_position();
+         //auto point = pwindowing->get_cursor_position();
 
          pbar->client_to_screen()(point1);
 
          //      prop("tracking_window").cast < trw >()->point1 = point1;
 
-         //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
+         //    prop("tracking_window").cast < trw >()->point2 = point;
 
          byte uchAlpha;
 
@@ -2071,23 +2071,23 @@ namespace experience_core
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->set_current_point(pointCenter.x, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x, pointCenter.y + 5);
-         pgraphics->set_current_point(pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x() - 5, pointCenter.y() + 5);
+         pgraphics->set_current_point(pointCenter.x(), pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x(), pointCenter.y() + 5);
+         pgraphics->set_current_point(pointCenter.x() + 5, pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y() + 5);
 
       }
       else
       {
 
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y);
-         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y() - 5);
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y() - 5);
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y());
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y());
+         pgraphics->set_current_point(pointCenter.x() - 5, pointCenter.y() + 5);
+         pgraphics->line_to(pointCenter.x() + 5, pointCenter.y() + 5);
 
       }
 

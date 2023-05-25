@@ -64,7 +64,7 @@ string module_path_from_pid(unsigned int iPid)
    int iSize = 1024 * 8;
 
    string path;
-   char * pszBuffer = path.get_string_buffer(iSize);
+   char * pszBuffer = path.get_buffer(iSize);
    char * systemPath = nullptr;
    char * candidateDir = nullptr;
 
@@ -81,7 +81,7 @@ string module_path_from_pid(unsigned int iPid)
 
    path.set_at(s, '\0');
 
-   path.release_string_buffer();
+   path.release_buffer();
 
 
    return path;

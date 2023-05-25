@@ -563,14 +563,14 @@
          
          string strLink;
 
-         char * psz = strLink.get_string_buffer(4096);
+         char * psz = strLink.get_buffer(4096);
 
          int count = (int) readlink(path, psz, 4096);
 
          if (count < 0)
          {
 
-            strLink.release_string_buffer(0);
+            strLink.release_buffer(0);
 
             if (elink & ::file::e_link_target)
             {
@@ -590,7 +590,7 @@
 
          }
 
-         strLink.release_string_buffer(count);
+         strLink.release_buffer(count);
 
          if (elink & ::file::e_link_target)
          {

@@ -1024,7 +1024,7 @@ namespace crypto_openssl
 
       //   int iLength = 256;
 
-      //   generate_random_alphanumeric(str.get_string_buffer(iLength), iLength);
+      //   generate_random_alphanumeric(str.get_buffer(iLength), iLength);
 
       //   file()->put_contents(strPath, str);
 

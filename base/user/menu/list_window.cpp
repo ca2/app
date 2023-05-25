@@ -221,7 +221,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangleBound)
+   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
    {
 
       if (!m_bMenuOk)

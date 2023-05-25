@@ -201,7 +201,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      string strText(_get_window_text());
+      string strText(get_window_text());
 
       const ::size_i32 & size = pgraphics->get_text_extent(strText);
 
@@ -721,7 +721,7 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 & rectText)
+   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 & rectText)
    {
 
       ::rectangle_i32 rectangleText(rectText);
@@ -729,11 +729,11 @@ namespace user
       if (m_estockicon == e_stock_icon_none)
       {
 
-         string strText;
+         auto strWindowText = get_window_text();
 
-         get_window_text(strText);
+         //get_window_text(strText);
 
-         if (strText.has_char())
+         if (strWindowText.has_char())
          {
 
             auto pstyle = get_style(pgraphics);
@@ -784,7 +784,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
+            pgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 
          }
 
@@ -1275,7 +1275,7 @@ namespace user
    }
 
 
-   void button::BaseToolTipGetRect(RECTANGLE_I32 & rectangle)
+   void button::BaseToolTipGetRect(::rectangle_i32 & rectangle)
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32

@@ -7,6 +7,8 @@ namespace user
 {
 
 
+
+
    enum enum_interaction
    {
 
@@ -319,14 +321,7 @@ namespace user
 #endif // !defined(WINDOWS)
 
 
-struct SIZEPARENTPARAMS
-{
 
-   RECTANGLE_I32  rectangle;     // parent client rectangle (trim as appropriate)
-   SIZE_I32       sizeTotal;     // total size on each side as on_layout proceeds
-   bool           bStretch;      // should stretch to fill all space
-
-};
 
 
 //CLASS_DECL_ACME i64 oswindow_id(oswindow w);

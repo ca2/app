@@ -443,7 +443,7 @@ namespace sockets_bsd
       // --------------------------------------------------------------------------
       /** @name IP options
       When an ip or base_socket option is available on all of the operating systems
-      I'm testing on (linux 2.4.x, _win32, macosx, solaris9 intel) they are not
+      I'm testing on (linux 2.4.x(), _win32, macosx, solaris9 intel) they are not
       checked with an #ifdef below.
       This might cause a compile error on other operating systems. */
       // --------------------------------------------------------------------------

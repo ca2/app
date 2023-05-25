@@ -137,7 +137,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    strsize iLen = str.length();
 
-   char * psz = str.get_string_buffer(iLen);
+   char * psz = str.get_buffer(iLen);
 
    //string strAbsolute(strParam);
 
@@ -268,7 +268,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 //                  if (!bDup)
 //                  {
 //
-//                     psz = str.get_string_buffer();
+//                     psz = str.get_buffer();
 //
 //                     bDup = true;
 //
@@ -325,7 +325,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 //               if (!bDup)
 //               {
 //
-//                  psz = str.get_string_buffer();
+//                  psz = str.get_buffer();
 //
 //                  bDup = true;
 //
@@ -420,11 +420,11 @@ ret:
    //if (bDup)
    //{
 
-      //str.release_string_buffer(p - psz);
+      //str.release_buffer(p - psz);
 
       auto iLenDebug = p - psz;
 
-   str.release_string_buffer(iLen);
+   str.release_buffer(iLen);
 
   // }
 //   else if (p < pend)
@@ -962,7 +962,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
          if (strPath.has_char())
          {
 
-            char * psz = strPath.get_string_buffer();
+            char * psz = strPath.get_buffer();
 
             char chSep = file_path_separator(epath);
 
@@ -973,7 +973,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
             }
 
-            strPath.release_string_buffer();
+            strPath.release_buffer();
 
          }
 

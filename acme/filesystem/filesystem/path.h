@@ -55,7 +55,7 @@ namespace file
       path(enum_no_initialize) : string(e_no_initialize) { }
       path(nullptr_t) { }
       //path(enum_for_moving) { }
-      //path(enum_get_buffer, strsize len) { get_string_buffer(len); }
+      //path(enum_get_buffer, strsize len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
       path(const ::ansi_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
       path(const ::wd16_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
@@ -425,9 +425,9 @@ namespace file
       path & operator *= (const ::scoped_string & scopedstr);
       //path & operator *= (const property & property);
 
-      ::file::path title() const;
+      ::const_ansi_range title() const;
 
-      string name() const;
+      ::const_ansi_range name() const;
 
       //string name(index i /* = -1 */) const;
 
@@ -436,19 +436,19 @@ namespace file
 
       /// return index just after first dot in file name
       /// -1 if not found
-      ::scoped_string find_all_extensions() const;
+      ::const_ansi_range find_all_extensions() const;
 
       /// return index just after last dot in file name
       /// -1 if not found
-      ::scoped_string find_final_extension() const;
+      ::const_ansi_range find_final_extension() const;
 
       //      bool is_equal(const ::file::path & path2) const;
 
-      ::scoped_string all_extensions() const;
+      ::const_ansi_range all_extensions() const;
 
       //string ext() const;
 
-      ::scoped_string final_extension() const;
+      ::const_ansi_range final_extension() const;
 
       //void split(string_array & patha) const;
       bool is_relative();

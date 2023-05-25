@@ -80,7 +80,7 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
 //   __UNREFERENCED_PARAMETER(hPrevInstance);
 //   __UNREFERENCED_PARAMETER(lpCmdLine);
 
-int cef_main(HINSTANCE hInstance, HWND hwnd, RECTANGLE_I32 rectangle_i32)
+int cef_main(HINSTANCE hInstance, HWND hwnd, ::rectangle_i32 rectangle_i32)
 {
 //   // Enable High-DPI support on Windows 7 or newer.
 //   CefEnableHighDPISupport();

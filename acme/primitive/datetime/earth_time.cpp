@@ -547,7 +547,7 @@ namespace earth
       timeUtc += (::i32)  (timeshift.m_d * 3600.0);
 
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+      char * szBuffer = str.get_buffer(maxTimeBufferSize);
    #if OSBIT == 32
       const time_t timet = (const time_t) timeUtc;
       struct tm * ptmTemp = gmtime(&timet);
@@ -559,7 +559,7 @@ namespace earth
          szBuffer[0] = '\0';
       }
 
-      str.release_string_buffer();
+      str.release_buffer();
 
       return str;
 
@@ -569,7 +569,7 @@ namespace earth
    #pragma error "error: long should 8-byte on __APPLE__"
    #endif
 
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+      char * szBuffer = str.get_buffer(maxTimeBufferSize);
 
       struct tm * ptmTemp = gmtime((time_t *)&time.m_time);
 
@@ -580,13 +580,13 @@ namespace earth
 
       }
 
-      str.release_string_buffer();
+      str.release_buffer();
 
       return str;
 
    #elif _SECURE_TEMPLATE
 
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+      char * szBuffer = str.get_buffer(maxTimeBufferSize);
 
       struct tm ptmTemp;
 

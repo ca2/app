@@ -56,8 +56,8 @@ using cairo_surface_holder = ::holder < cairo_surface_t* >;
 using cairo_pattern_holder = ::holder < cairo_pattern_t* >;
 
 
-void copy(RECTANGLE_I32 * prectTarget, const cairo_rectangle_int_t * prectSource);
-void copy(cairo_rectangle_int_t * prectTarget, const RECTANGLE_I32 * prectSource);
+void copy(::rectangle_i32 * prectTarget, const cairo_rectangle_int_t * prectSource);
+void copy(cairo_rectangle_int_t * prectTarget, const ::rectangle_i32 * prectSource);
 
 
 namespace draw2d_cairo
@@ -110,8 +110,8 @@ using cairo_pattern_holder = ::holder < cairo_pattern_t * >;
 
 
 
-void copy(RECTANGLE_I32 * prectTarget, const cairo_rectangle_int_t * prectSource);
-void copy(cairo_rectangle_int_t * prectTarget, const RECTANGLE_I32 * prectSource);
+void copy(::rectangle_i32 * prectTarget, const cairo_rectangle_int_t * prectSource);
+void copy(cairo_rectangle_int_t * prectTarget, const ::rectangle_i32 * prectSource);
 
 
 namespace draw2d_cairo

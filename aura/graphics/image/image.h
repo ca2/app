@@ -106,12 +106,12 @@ public:
    ::size_i32 get_image_drawer_size() const override;
 
 
-   ::image_pointer image_source_image(const concrete < ::size_i32 > &) override;
+   ::image_pointer image_source_image(const ::size_i32 &) override;
 
 
    // inline concrete < ::size_i32 > size_i32(const ::size_f64 &, const ::size_f64 &, enum_image_selection) const { return get_size(); }
-   concrete < ::size_i32 > image_source_size(const ::size_f64 &, enum_image_selection) const override;
-   concrete < ::size_i32 > image_source_size() const override;
+   ::size_i32 image_source_size(const ::size_f64 &, enum_image_selection) const override;
+   ::size_i32 image_source_size() const override;
    using image_meta::size;
    
    //inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr);
@@ -252,7 +252,7 @@ public:
 
 
    virtual u32 GetPixel(i32 x, i32 y);
-   virtual u32 GetPixel(const ::point_i32 & point) { return GetPixel(point.x, point.y); }
+   virtual u32 GetPixel(const ::point_i32 & point) { return GetPixel(point.x(), point.y()); }
    virtual void Mask(::color32_t crMask, ::color32_t crInMask, ::color32_t crOutMask);
    virtual void channel_mask(byte uchFind, byte uchSet, byte uchUnset, ::color::enum_channel echannel);
    virtual void transparent_color(const ::color::color & color);

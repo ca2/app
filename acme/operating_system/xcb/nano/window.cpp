@@ -377,10 +377,10 @@ void nano_window::on_mouse_move(::user::mouse * pmouse)
 }
 
 
-nano_child * nano_window::hit_test(::user::mouse * pmouse)
+nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
 {
 
-   return m_pinterface->hit_test(pmouse);
+   return m_pinterface->hit_test(pmouse, ezorder);
 
 }
 
@@ -1051,7 +1051,7 @@ void nano_window::redraw()
    void nano_window::move_to(const ::point_i32 & point)
    {
 
-      m_pdisplay->_move_window(m_window, point.x, point.y);
+      m_pdisplay->_move_window(m_window, point.x(), point.y());
 
       m_pinterface->m_rectangle.move_to(point);
 
@@ -1119,10 +1119,10 @@ void nano_window::redraw()
 
       _get_geometry(&geometry);
 
-      rectangle.left = geometry.x;
-      rectangle.top = geometry.y;
-      rectangle.right = geometry.x + geometry.width;
-      rectangle.bottom = geometry.y + geometry.height;
+      rectangle.left = geometry.x();
+      rectangle.top = geometry.y();
+      rectangle.right = geometry.x() + geometry.width;
+      rectangle.bottom = geometry.y() + geometry.height;
 
    }
 

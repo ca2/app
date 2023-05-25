@@ -67,10 +67,10 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
 
-      virtual bool get_item_rect(index i, RECTANGLE_I32 * prectangle);
+      virtual bool get_item_rect(index i, ::rectangle_i32 * prectangle);
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
 
       bool on_click(::item * pitem) override;

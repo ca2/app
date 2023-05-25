@@ -2735,18 +2735,18 @@ CLASS_DECL_AURA i32 WINAPI GetSystemMetrics(i32 nIndex);
 
 
 
-CLASS_DECL_AURA int_bool CopyRect(RECTANGLE_I32 * prectDest, LPCRECT32 pcrectSrc);
+CLASS_DECL_AURA int_bool CopyRect(::rectangle_i32 * prectDest, LPCRECT32 pcrectSrc);
 CLASS_DECL_AURA int_bool PtInRect(LPCRECT32 prect, POINT32 point);
-CLASS_DECL_AURA int_bool SetRect(RECTANGLE_I32 * prect, i32 x1, i32 y1, i32 x2, i32 y2);
-CLASS_DECL_AURA int_bool SetRectEmpty(RECTANGLE_I32 * prect);
+CLASS_DECL_AURA int_bool SetRect(::rectangle_i32 * prect, i32 x1, i32 y1, i32 x2, i32 y2);
+CLASS_DECL_AURA int_bool SetRectEmpty(::rectangle_i32 * prect);
 CLASS_DECL_AURA int_bool EqualRect(LPCRECT32 prect1, LPCRECT32 prect2);
-CLASS_DECL_AURA int_bool InflateRect(RECTANGLE_I32 * prect, i32 x, i32 y);
-CLASS_DECL_AURA int_bool OffsetRect(RECTANGLE_I32 * prect, i32 x, i32 y);
-CLASS_DECL_AURA int_bool IntersectRect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
-//CLASS_DECL_AURA int_bool x_intersect_rect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
-//CLASS_DECL_AURA int_bool y_intersect_rect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
-CLASS_DECL_AURA int_bool UnionRect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
-CLASS_DECL_AURA int_bool SubtractRect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+CLASS_DECL_AURA int_bool InflateRect(::rectangle_i32 * prect, i32 x, i32 y);
+CLASS_DECL_AURA int_bool OffsetRect(::rectangle_i32 * prect, i32 x, i32 y);
+CLASS_DECL_AURA int_bool IntersectRect(::rectangle_i32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_AURA int_bool x_intersect_rect(::rectangle_i32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_AURA int_bool y_intersect_rect(::rectangle_i32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+CLASS_DECL_AURA int_bool UnionRect(::rectangle_i32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+CLASS_DECL_AURA int_bool SubtractRect(::rectangle_i32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
 
 //typedef struct oswindow_data *   oswindow;
 

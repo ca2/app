@@ -79,4 +79,61 @@ bool item::is_hidden() const
 }
 
 
+CLASS_DECL_ACME bool is_item_equivalent(const ::item * pitem1, const ::item * pitem2)
+{
+
+   if(!::is_item_set(pitem1) || !::is_item_set(pitem2))
+   {
+
+      return false;
+
+   }
+
+   if(pitem1 == pitem2)
+   {
+
+      return true;
+
+   }
+
+   if(pitem1->m_eelement != pitem2->m_eelement)
+   {
+
+      return false;
+
+   }
+
+   if(pitem1->m_iItem != pitem2->m_iItem)
+   {
+
+      return false;
+
+   }
+
+   if(pitem1->m_iSubItem != pitem2->m_iSubItem)
+   {
+
+      return false;
+
+   }
+
+   if(pitem1->m_iListItem != pitem2->m_iListItem)
+   {
+
+      return false;
+
+   }
+
+   if(pitem1->m_rectangle != pitem2->m_rectangle)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
 

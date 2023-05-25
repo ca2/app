@@ -412,7 +412,7 @@ struct c_in_addr
 //
 //   string str;
 //
-//   char * psz = str.get_string_buffer(20);
+//   char * psz = str.get_buffer(20);
 //
 //   ansi_concatenate_i64(psz, b1);
 //
@@ -428,7 +428,7 @@ struct c_in_addr
 //
 //   ansi_concatenate_i64(psz, b4);
 //
-//   str.release_string_buffer();
+//   str.release_buffer();
 //
 //   return str;
 //

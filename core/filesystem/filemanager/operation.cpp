@@ -664,7 +664,7 @@ namespace filemanager
 
       string str;
 
-      str.format("Copying %s (%s) to %s", m_stra[iItem].name().c_str(),m_stra[iItem].name().c_str(),m_str.c_str());
+      str.format("Copying %s (%s) to %s", ::string(m_stra[iItem].name()).c_str(), ::string(m_stra[iItem].name()).c_str(),m_str.c_str());
 
       return str;
 

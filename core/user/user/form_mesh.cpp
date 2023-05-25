@@ -594,7 +594,7 @@ namespace user
    //}
 
 
-   void form_mesh::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32  & rectangle)
+   void form_mesh::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32  & rectangle)
    {
 
       if(pinteraction == nullptr)
@@ -606,26 +606,26 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleControl;
+      //::rectangle_i32 rectangleControl;
 
-      auto iItem = _001DisplayToStrict(m_iDisplayItemHover);
+      //auto iItem = _001DisplayToStrict(m_iDisplayItemHover);
 
-      auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
+      //auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
 
-      psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
+      //psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
 
-      psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
+      //psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
 
-      index_element_rectangle(*psubitem,::user::mesh::e_element_sub_item);
+      //index_element_rectangle(*psubitem,::user::mesh::e_element_sub_item);
 
-      rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
+      //rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
 
-      copy(rectangle, rectangleControl);
+      //copy(rectangle, rectangleControl);
 
    }
 
 
-   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 & rectangle)
+   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,::rectangle_i32 & rectangle)
    {
 
       control_get_client_rect(pinteraction,rectangle);

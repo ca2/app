@@ -533,7 +533,7 @@ namespace filemanager
       queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_context_offset(pgraphics, pointOffset.x, pointOffset.y);
+            set_context_offset(pgraphics, pointOffset.x(), pointOffset.y());
 
          });
 

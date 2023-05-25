@@ -322,10 +322,10 @@ namespace draw2d_opengl
       //virtual bool Pie(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
       //virtual bool Pie(const ::rectangle_i32 & rectangle, const ::point_i32 & pointStart, const ::point_i32 & pointEnd) override;
       void fill_polygon(const ::point_f64 * lpPoints,::count nCount) override;
-      //void fill_polygon(const POINT_I32 * lpPoints,::count nCount) override;
-      //void draw_polygon(const POINT_I32 * lpPoints,::count nCount) override;
+      //void fill_polygon(const ::point_i32 * lpPoints,::count nCount) override;
+      //void draw_polygon(const ::point_i32 * lpPoints,::count nCount) override;
       void draw_polygon(const ::point_f64 * lpPoints,::count nCount) override;
-      //void polygon_i32(const POINT_I32* lpPoints,::count nCount) override;
+      //void polygon_i32(const ::point_i32* lpPoints,::count nCount) override;
       void polygon(const ::point_f64* lpPoints,::count nCount) override;
       void poly_polygon(const point_f64 * lpPoints, const i32 * lpPolyCounts,::count nCount) override;
       //virtual bool rectangle_i32(i32 x1, i32 y1, i32 x2, i32 y2) override;
@@ -355,7 +355,7 @@ namespace draw2d_opengl
 //      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
 //                   u32 dwRop);
-//      bool PlgBlt(POINT_I32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
+//      bool PlgBlt(::point_i32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
 //                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask);
       void SetPixelV(i32 x, i32 y, ::color::color crColor);
       void SetPixelV(const ::point_i32 & point, ::color::color crColor);
@@ -436,7 +436,7 @@ namespace draw2d_opengl
 
       // Scrolling Functions
       //bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_i32 & lpRectScroll, const ::rectangle_i32 & lpRectClip,
-        //            ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate);
+        //            ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate);
 
       // font Functions
       //bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const;
@@ -506,7 +506,7 @@ namespace draw2d_opengl
 
       //float GetMiterLimit() const;
       //bool SetMiterLimit(float fMiterLimit);
-      //i32 GetPath(POINT_I32 * lpPoints, LPBYTE lpTypes,::count nCount) const;
+      //i32 GetPath(::point_i32 * lpPoints, LPBYTE lpTypes,::count nCount) const;
       void SelectClipPath(i32 nMode);
 
       // Misc Helper Functions
@@ -514,7 +514,7 @@ namespace draw2d_opengl
       //void DrawDragRect(const ::rectangle_i32 & rectangle, const ::size_i32 & size,
       //                  const ::rectangle_i32 & lpRectLast, const ::size_i32 & sizeLast,
       //                  ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
-      //void FillSolidRect(const RECTANGLE_I64 * rectangle, color32_t clr);
+      //void FillSolidRect(const ::rectangle_i64 * rectangle, color32_t clr);
       //void FillSolidRect(const ::rectangle_i32 & rectangle, color32_t clr);
       //void FillSolidRect(i32 x, i32 y, i32 cx, i32 cy, color32_t clr);
       /*void Draw3dRect(const ::rectangle_i32 & rectangle, color32_t clrTopLeft, color32_t clrBottomRight);

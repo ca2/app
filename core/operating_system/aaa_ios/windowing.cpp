@@ -463,7 +463,7 @@ int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, 
 
 
 
-int_bool window_rectangle(oswindow hwnd, RECTANGLE_I32 * lprect)
+int_bool window_rectangle(oswindow hwnd, ::rectangle_i32 * lprect)
 {
 
    if(void_ptr_is_null(hwnd))
@@ -479,7 +479,7 @@ int_bool window_rectangle(oswindow hwnd, RECTANGLE_I32 * lprect)
 }
 
 
-int_bool SetWindowRect(oswindow hwnd, RECTANGLE_I32 * lprect)
+int_bool SetWindowRect(oswindow hwnd, ::rectangle_i32 * lprect)
 {
 
    if(hwnd == nullptr)
@@ -600,7 +600,7 @@ void os_term_windowing()
 int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
-   return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;
+   return abs(ptHitTest.x()) < iMargin && abs(ptHitTest.y()) < iMargin;
 
 }
 

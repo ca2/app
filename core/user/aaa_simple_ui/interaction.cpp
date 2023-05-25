@@ -387,7 +387,7 @@ namespace simple_ui
 //
 //   }
 //
-//   ::item_pointer interaction::on_hit_test(const ::point_i32 &point)
+//   ::item_pointer interaction::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
 //   {
 //
 //      auto rectangle = this->rectangle(::e_element_client);
@@ -752,24 +752,24 @@ namespace simple_ui
 //      point_i32 pc[4];
 //
 //
-//      pa[0].x = rectangle.left;
-//      pa[0].y = rectangle.top;
-//      pa[1].x = rectangle.right - rectangle.width() / 10;
-//      pa[1].y = rectangle.top + rectangle.height() / 10;
-//      pa[2].x = rectangle.right - rectangle.width() / 8;
-//      pa[2].y = rectangle.bottom - rectangle.height() / 10;
-//      pa[3].x = rectangle.left;
-//      pa[3].y = rectangle.bottom;
+//      pa[0].x() = rectangle.left;
+//      pa[0].y() = rectangle.top;
+//      pa[1].x() = rectangle.right - rectangle.width() / 10;
+//      pa[1].y() = rectangle.top + rectangle.height() / 10;
+//      pa[2].x() = rectangle.right - rectangle.width() / 8;
+//      pa[2].y() = rectangle.bottom - rectangle.height() / 10;
+//      pa[3].x() = rectangle.left;
+//      pa[3].y() = rectangle.bottom;
 //
 //
-//      pb[0].x = rectangle.left + rectangle.width() / 6;
-//      pb[0].y = rectangle.top + rectangle.height() / 6;
-//      pb[1].x = rectangle.right - rectangle.width() / 6;
-//      pb[1].y = rectangle.top + rectangle.height() / 6;
-//      pb[2].x = rectangle.right - rectangle.width() / 5;
-//      pb[2].y = rectangle.bottom - rectangle.height() / 4;
-//      pb[3].x = rectangle.left + rectangle.width() / 5;
-//      pb[3].y = rectangle.bottom - rectangle.height() / 4;
+//      pb[0].x() = rectangle.left + rectangle.width() / 6;
+//      pb[0].y() = rectangle.top + rectangle.height() / 6;
+//      pb[1].x() = rectangle.right - rectangle.width() / 6;
+//      pb[1].y() = rectangle.top + rectangle.height() / 6;
+//      pb[2].x() = rectangle.right - rectangle.width() / 5;
+//      pb[2].y() = rectangle.bottom - rectangle.height() / 4;
+//      pb[3].x() = rectangle.left + rectangle.width() / 5;
+//      pb[3].y() = rectangle.bottom - rectangle.height() / 4;
 //
 //      {
 //
@@ -806,10 +806,10 @@ namespace simple_ui
 //
 //      // top
 //      ::memory_copy(pc, pa, sizeof(pb));
-//      pc[2].x = pb[1].x;
-//      pc[2].y = pb[1].y;
-//      pc[3].x = pb[0].x;
-//      pc[3].y = pb[0].y;
+//      pc[2].x() = pb[1].x();
+//      pc[2].y() = pb[1].y();
+//      pc[3].x() = pb[0].x();
+//      pc[3].y() = pb[0].y();
 //
 //      {
 //
@@ -833,10 +833,10 @@ namespace simple_ui
 //      }
 //      // left
 //      ::memory_copy(pc, pa, sizeof(pb));
-//      pc[1].x = pb[0].x;
-//      pc[1].y = pb[0].y;
-//      pc[2].x = pb[3].x;
-//      pc[2].y = pb[3].y;
+//      pc[1].x() = pb[0].x();
+//      pc[1].y() = pb[0].y();
+//      pc[2].x() = pb[3].x();
+//      pc[2].y() = pb[3].y();
 //      {
 //
 //         ::draw2d::brush_pointer b(e_create);
@@ -859,10 +859,10 @@ namespace simple_ui
 //      }
 //      // bottom
 //      ::memory_copy(pc, pa, sizeof(pb));
-//      pc[0].x = pb[3].x;
-//      pc[0].y = pb[3].y;
-//      pc[1].x = pb[2].x;
-//      pc[1].y = pb[2].y;
+//      pc[0].x() = pb[3].x();
+//      pc[0].y() = pb[3].y();
+//      pc[1].x() = pb[2].x();
+//      pc[1].y() = pb[2].y();
 //      {
 //
 //         ::draw2d::brush_pointer b(e_create);
@@ -885,10 +885,10 @@ namespace simple_ui
 //      }
 //      // right
 //      ::memory_copy(pc, pa, sizeof(pb));
-//      pc[0].x = pb[1].x;
-//      pc[0].y = pb[1].y;
-//      pc[3].x = pb[2].x;
-//      pc[3].y = pb[2].y;
+//      pc[0].x() = pb[1].x();
+//      pc[0].y() = pb[1].y();
+//      pc[3].x() = pb[2].x();
+//      pc[3].y() = pb[2].y();
 //      {
 //
 //         ::draw2d::brush_pointer b(e_create);
@@ -930,7 +930,7 @@ namespace simple_ui
 //   }
 //
 //
-//   //::item_pointer interaction::on_hit_test(const ::point_i32 &point)
+//   //::item_pointer interaction::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
 //   //{
 //
 //   //   auto rectangleClient = client_rectangle();

@@ -164,7 +164,7 @@ namespace windowing
    }
 
 
-   ::index display::get_main_monitor(RECTANGLE_I32 & rectangle)
+   ::index display::get_main_monitor(::rectangle_i32 & rectangle)
    {
 
       index iMainMonitor = get_main_monitor_index();
@@ -255,7 +255,7 @@ namespace windowing
    }
 
 
-   bool display::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 & rectangle)
+   bool display::get_monitor_rectangle(index iMonitor, ::rectangle_i32 & rectangle)
    {
 
       if(iMonitor < 0 || iMonitor >= get_monitor_count())
@@ -330,7 +330,7 @@ namespace windowing
    }
 
 
-   bool display::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 & rectangle)
+   bool display::get_desk_monitor_rect(index iMonitor, ::rectangle_i32 & rectangle)
    {
 
       return get_monitor_rectangle(iMonitor, rectangle);
@@ -339,7 +339,7 @@ namespace windowing
 
 
 
-   index display::get_main_workspace(RECTANGLE_I32 & rectangle)
+   index display::get_main_workspace(::rectangle_i32 & rectangle)
    {
 
       index iMainWorkspace = get_main_monitor_index();
@@ -364,7 +364,7 @@ namespace windowing
    }
 
 
-   bool display::get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 & rectangle)
+   bool display::get_workspace_rectangle(index iWorkspace, ::rectangle_i32 & rectangle)
    {
 
       if(iWorkspace < 0 || iWorkspace >= get_workspace_count())
@@ -409,7 +409,7 @@ namespace windowing
    }
 
 
-   bool display::get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 & rectangle)
+   bool display::get_desk_workspace_rect(index iWorkspace, ::rectangle_i32 & rectangle)
 
    {
 
@@ -448,7 +448,7 @@ namespace windowing
    }
 
 
-   bool display::workspace_to_monitor(RECTANGLE_I32 & rectangleToMonitor, index iMonitor, index iWorkspace)
+   bool display::workspace_to_monitor(::rectangle_i32 & rectangleToMonitor, index iMonitor, index iWorkspace)
    {
 
       ::rectangle_i32 rectangle(rectangleToMonitor);
@@ -482,7 +482,7 @@ namespace windowing
    }
 
 
-   bool display::workspace_to_monitor(RECTANGLE_I32 & rectangle)
+   bool display::workspace_to_monitor(::rectangle_i32 & rectangle)
    {
 
       index iWorkspace = get_best_workspace(nullptr, rectangle);
@@ -492,7 +492,7 @@ namespace windowing
    }
 
 
-   bool display::monitor_to_workspace(RECTANGLE_I32 & rectangle)
+   bool display::monitor_to_workspace(::rectangle_i32 & rectangle)
    {
 
       index iMonitor = get_best_monitor(nullptr, rectangle);
@@ -502,7 +502,7 @@ namespace windowing
    }
 
 
-   bool display::monitor_to_workspace(RECTANGLE_I32 & rectangleToWorkspace, index iWorkspace, index iMonitor)
+   bool display::monitor_to_workspace(::rectangle_i32 & rectangleToWorkspace, index iWorkspace, index iMonitor)
    {
 
       ::rectangle_i32 rectangle(rectangleToWorkspace);
@@ -872,7 +872,7 @@ namespace windowing
    }
 
 
-   index display::get_best_monitor(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::windowing::window * pwindowCursorPosition)
+   index display::get_best_monitor(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::windowing::window * pwindowCursorPosition)
    {
 
       index iMatchingMonitor = -1;
@@ -1044,12 +1044,12 @@ namespace windowing
    }
 
 
-   index display::get_good_iconify(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam)
+   index display::get_good_iconify(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam)
    {
 
       ::rectangle_i32 rectangleMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectangleMonitor, rectangleParam);
+      index iMatchingMonitor = get_best_monitor(&rectangleMonitor, rectangleParam);
 
       prectangle->left = rectangleMonitor.left;
 
@@ -1064,14 +1064,14 @@ namespace windowing
    }
 
 
-   index display::initial_frame_position(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, bool bMove, ::user::interaction * pinteraction)
+   index display::initial_frame_position(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, bool bMove, ::user::interaction * pinteraction)
    {
 
       ::rectangle_i32 rectangleRestore(rectangleParam);
 
       ::rectangle_i32 rectangleMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectangleMonitor, rectangleParam);
+      index iMatchingMonitor = get_best_monitor(&rectangleMonitor, rectangleParam);
 
       ::size_i32 sizeMin;
 
@@ -1099,7 +1099,7 @@ namespace windowing
 
          get_monitor(rectaMonitor, rectaIntersect, rectangleParam);
 
-         rectaIntersect.get_box(rectangleIntersect);
+         rectaIntersect.get_box(&rectangleIntersect);
 
       }
       else
@@ -1171,7 +1171,7 @@ namespace windowing
    }
 
 
-   index display::get_good_restore(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
+   index display::get_good_restore(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
    {
 
       ::rectangle_i32 rectangleHint(rectangleHintParam);
@@ -1202,7 +1202,7 @@ namespace windowing
 
          sizeMin = pinteraction->get_window_minimum_size();
 
-         iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectangleWorkspace, sizeMin, rectangleHint);
+         iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(&rectangleWorkspace, sizeMin, rectangleHint);
          
          if(rectangleHint.left < (rectangleWorkspace.left + rectangleWorkspace.width() / 48)
             || rectangleHint.top < (rectangleWorkspace.top + rectangleWorkspace.height() / 48))
@@ -1296,8 +1296,8 @@ namespace windowing
    }
 
 
-   index display::get_good_move(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction)
-   //index display::get_good_move(RECTANGLE_I32 * prectangle)
+   index display::get_good_move(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction)
+   //index display::get_good_move(::rectangle_i32 * prectangle)
    {
 
       // currently allow any moves of a window!!

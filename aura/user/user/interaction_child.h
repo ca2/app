@@ -41,7 +41,7 @@ namespace user
 
       // Advanced: virtual AdjustWindowRect
       //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
       void start_window_visual() override;
 
@@ -115,34 +115,34 @@ namespace user
       ::user::primitive * set_owner(::user::primitive * pinteraction) override;
       ::user::interaction * get_owner() override;
 
-      //bool _get_client_rect(RECTANGLE_I64 * prectangle) override;
-      //bool _get_window_rect(RECTANGLE_I64 * prectangle) override;
+      //bool _get_client_rect(::rectangle_i64 * prectangle) override;
+      //bool _get_window_rect(::rectangle_i64 * prectangle) override;
 
       //virtual point_i32 client_screen_top_left() override;
 
-      //virtual bool client_to_screen(RECTANGLE_F64 * prectangle) override;
+      //virtual bool client_to_screen(::rectangle_f64 * prectangle) override;
 
-      //virtual bool client_to_screen(RECTANGLE_I32 * prectangle) override;
+      //virtual bool client_to_screen(::rectangle_i32 * prectangle) override;
 
-      //virtual bool client_to_screen(RECTANGLE_I64 * prectangle) override;
+      //virtual bool client_to_screen(::rectangle_i64 * prectangle) override;
 
-      //virtual bool client_to_screen(POINT_F64 * ppoint) override;
+      //virtual bool client_to_screen(::point_f64 * ppoint) override;
 
-      //virtual bool client_to_screen(POINT_I32 * ppoint) override;
+      //virtual bool client_to_screen(::point_i32 * ppoint) override;
 
-      //virtual bool client_to_screen(POINT_I64 * ppoint) override;
+      //virtual bool client_to_screen(::point_i64 * ppoint) override;
 
-      //virtual bool screen_to_client(RECTANGLE_F64 * prectangle) override;
+      //virtual bool screen_to_client(::rectangle_f64 * prectangle) override;
 
-      //virtual bool screen_to_client(RECTANGLE_I32 * prectangle) override;
+      //virtual bool screen_to_client(::rectangle_i32 * prectangle) override;
 
-      //virtual bool screen_to_client(RECTANGLE_I64 * prectangle) override;
+      //virtual bool screen_to_client(::rectangle_i64 * prectangle) override;
 
-      //virtual bool screen_to_client(POINT_F64 * ppoint) override;
+      //virtual bool screen_to_client(::point_f64 * ppoint) override;
 
-      //virtual bool screen_to_client(POINT_I32 * ppoint) override;
+      //virtual bool screen_to_client(::point_i32 * ppoint) override;
 
-      //virtual bool screen_to_client(POINT_I64 * ppoint) override;
+      //virtual bool screen_to_client(::point_i64 * ppoint) override;
 
 
       bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;

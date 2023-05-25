@@ -1076,7 +1076,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 
       int iLength = 256;
 
-      generate_random_alphanumeric(str.get_string_buffer(iLength), iLength);
+      generate_random_alphanumeric(str.get_buffer(iLength), iLength);
 
       pcontext->m_papexcontext->file()->put_contents(strPath, str);
 

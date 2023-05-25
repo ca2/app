@@ -556,7 +556,7 @@ namespace draw2d
       {
 
          pgraphics->set(pfont);
-         pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
+         pgraphics->_DrawText(strText, rectangle, ealign, edrawtext);
 
       };
 
@@ -581,7 +581,7 @@ namespace draw2d
 
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
-      pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
+      pgraphics->_DrawText(strText, rectangle, ealign, edrawtext);
 
       //return true;
 

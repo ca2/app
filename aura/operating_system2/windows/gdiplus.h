@@ -33,10 +33,10 @@
 
 
 
-inline auto copy(RECTANGLE_I32 * prectTarget, const Gdiplus::Rect * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
-inline auto copy(RECTANGLE_F64 * prectTarget, const Gdiplus::Rect * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
-inline auto copy(RECTANGLE_I32 * prectTarget, const Gdiplus::RectF * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
-inline auto copy(RECTANGLE_F64 * prectTarget, const Gdiplus::RectF * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
+inline auto copy(::rectangle_i32 * prectTarget, const Gdiplus::Rect * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
+inline auto copy(::rectangle_f64 * prectTarget, const Gdiplus::Rect * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
+inline auto copy(::rectangle_i32 * prectTarget, const Gdiplus::RectF * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
+inline auto copy(::rectangle_f64 * prectTarget, const Gdiplus::RectF * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
 
 #endif
 

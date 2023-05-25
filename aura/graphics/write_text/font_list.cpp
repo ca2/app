@@ -314,7 +314,7 @@ namespace write_text
 
       auto pointCursor = m_puserinteraction->get_cursor_position();
 
-      pointCursor += m_puserinteraction->screen_to_client();
+      m_puserinteraction->screen_to_client()(pointCursor);
 
       pointCursor += m_puserinteraction->get_context_offset();
 
@@ -365,7 +365,7 @@ namespace write_text
 
          }
 
-         if (bCheckHover && rectangle.contains_y(pointCursor.y))
+         if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          {
 
             m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
@@ -1496,7 +1496,7 @@ namespace write_text
 
 
 
-   ::item_pointer font_list::hit_test(const ::point_i32& point)
+   ::item_pointer font_list::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -1617,7 +1617,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect(RECTANGLE_I32 * lprect, ::index i)
+   bool font_list::get_box_rect(::rectangle_i32 * lprect, ::index i)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -1638,7 +1638,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect_wide(RECTANGLE_I32 * lprect, ::index i)
+   bool font_list::get_box_rect_wide(::rectangle_i32 * lprect, ::index i)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -1673,7 +1673,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect_single_column(RECTANGLE_I32 * lprect, ::index i)
+   bool font_list::get_box_rect_single_column(::rectangle_i32 * lprect, ::index i)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

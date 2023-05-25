@@ -378,7 +378,7 @@ public:
    iterator add_tail(TYPE && newElement);
 
    void push_front(ARG_TYPE newElement);
-   void push_back(ARG_TYPE newElement);
+   void add(ARG_TYPE newElement);
 
    // add another list of elements before head or after tail
    void copy_head(const list < TYPE, ARG_TYPE > & l);
@@ -775,7 +775,7 @@ void list<TYPE, ARG_TYPE>::push_front(ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement)
+void list<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 {
 
    add_tail(newElement);

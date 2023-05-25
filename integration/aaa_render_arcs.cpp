@@ -228,7 +228,7 @@ namespace app_integration
 
       r.left = 0;
 
-      r.bottom = rClient.center().y;
+      r.bottom = rClient.center().y();
 
       int i = 0;
 

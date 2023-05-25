@@ -186,8 +186,8 @@ namespace user
       bool                                         m_bLockImpactUpdate;
       i32                                          m_iItemWidth;
 
-      index                                        m_iDisplayItemHover;
-      index                                        m_iSubItemHover;
+      //index                                        m_iDisplayItemHover;
+      //index                                        m_iSubItemHover;
 
       index                                        m_iLastItemSel;
       index                                        m_iLastSubItemSel;
@@ -287,8 +287,12 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       virtual mesh_data * GetDataInterface();
-      using interaction::update_hover;
-      ::item_pointer update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true) override;
+      
+      //using interaction::update_hover;
+      //::item_pointer update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
+
+      ::item_pointer on_hit_test(const ::point_i32& point, e_zorder ezorder);
+
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();
       virtual ::draw2d::pen * _001GetPenFocused();

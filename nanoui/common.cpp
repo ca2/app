@@ -2,7 +2,7 @@
     nanoui/nanoui.cpp -- Basic initialization and utility routines
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -21,8 +21,8 @@
 
 void CLASS_DECL_NANOUI file_dialog_from_platform(
    void * poswindow,
-   const ::array<std::pair<::string, ::string>> & filetypes,
-   const ::function < void(const ::array<::string> & ) > & function,
+   const ::array<::pair<::string, ::string>> & filetypes,
+   const ::function < void(const ::string_array & ) > & function,
    bool save, 
    bool multiple);
 
@@ -125,19 +125,19 @@ static float emscripten_refresh = 0;
 //      }
 //
 //      for (auto kv : __nanoui_screens) {
-//         Screen * screen = kv.second;
-//         if (!screen->visible()) {
+//         Screen * pscreen = kv.second;
+//         if (!pscreen->visible()) {
 //            continue;
 //         }
-//         else if (glfwWindowShouldClose(screen->glfw_window())) {
-//            screen->set_visible(false);
+//         else if (glfwWindowShouldClose(pscreen->glfw_window())) {
+//            pscreen->set_visible(false);
 //            continue;
 //         }
 //#if defined(EMSCRIPTEN)
-//         if (emscripten_redraw || screen->tooltip_fade_in_progress())
-//            screen->redraw();
+//         if (emscripten_redraw || pscreen->tooltip_fade_in_progress())
+//            pscreen->redraw();
 //#endif
-//         screen->draw_all();
+//         pscreen->draw_all();
 //         num_screens++;
 //      }
 //
@@ -217,7 +217,7 @@ static float emscripten_refresh = 0;
 
 //void async(const ::function<void()> & func) {
 //   std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
-//   m_async_functions.push_back(func);
+//   m_async_functions.add(func);
 //}
 
 //void leave() {
@@ -228,7 +228,7 @@ static float emscripten_refresh = 0;
 //   return mainloop_active;
 //}
 
-//std::pair<bool, bool> test_10bit_edr_support() {
+//::pair<bool, bool> test_10bit_edr_support() {
 //#if defined(NANOUI_USE_METAL)
 //   return metal_10bit_edr_support();
 //#else
@@ -253,23 +253,23 @@ static float emscripten_refresh = 0;
 #  define NANOUI_FALLTHROUGH
 #endif
 
-::string get_utf8_character(uint32_t c) {
+::string get_utf8_character(uint32_t pwidgetChild) {
    char seq[8];
    int n = 0;
-   if (c < 0x80) n = 1;
-   else if (c < 0x800) n = 2;
-   else if (c < 0x10000) n = 3;
-   else if (c < 0x200000) n = 4;
-   else if (c < 0x4000000) n = 5;
-   else if (c <= 0x7fffffff) n = 6;
+   if (pwidgetChild < 0x80) n = 1;
+   else if (pwidgetChild < 0x800) n = 2;
+   else if (pwidgetChild < 0x10000) n = 3;
+   else if (pwidgetChild < 0x200000) n = 4;
+   else if (pwidgetChild < 0x4000000) n = 5;
+   else if (pwidgetChild <= 0x7fffffff) n = 6;
    seq[n] = '\0';
    switch (n) {
-   case 6: seq[5] = 0x80 | (c & 0x3f); c = c >> 6; c |= 0x4000000; NANOUI_FALLTHROUGH
-   case 5: seq[4] = 0x80 | (c & 0x3f); c = c >> 6; c |= 0x200000;  NANOUI_FALLTHROUGH
-   case 4: seq[3] = 0x80 | (c & 0x3f); c = c >> 6; c |= 0x10000;   NANOUI_FALLTHROUGH
-   case 3: seq[2] = 0x80 | (c & 0x3f); c = c >> 6; c |= 0x800;     NANOUI_FALLTHROUGH
-   case 2: seq[1] = 0x80 | (c & 0x3f); c = c >> 6; c |= 0xc0;      NANOUI_FALLTHROUGH
-   case 1: seq[0] = c;
+   case 6: seq[5] = 0x80 | (pwidgetChild & 0x3f); pwidgetChild = pwidgetChild >> 6; pwidgetChild |= 0x4000000; NANOUI_FALLTHROUGH
+   case 5: seq[4] = 0x80 | (pwidgetChild & 0x3f); pwidgetChild = pwidgetChild >> 6; pwidgetChild |= 0x200000;  NANOUI_FALLTHROUGH
+   case 4: seq[3] = 0x80 | (pwidgetChild & 0x3f); pwidgetChild = pwidgetChild >> 6; pwidgetChild |= 0x10000;   NANOUI_FALLTHROUGH
+   case 3: seq[2] = 0x80 | (pwidgetChild & 0x3f); pwidgetChild = pwidgetChild >> 6; pwidgetChild |= 0x800;     NANOUI_FALLTHROUGH
+   case 2: seq[1] = 0x80 | (pwidgetChild & 0x3f); pwidgetChild = pwidgetChild >> 6; pwidgetChild |= 0xc0;      NANOUI_FALLTHROUGH
+   case 1: seq[0] = pwidgetChild;
    }
    return ::string(seq, seq + n);
 }
@@ -290,10 +290,10 @@ int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & nam
 
 
 
-void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::array<std::pair<int, ::string>> & images, const ::scoped_string & path)
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path)
 {
 
-//   ::array<std::pair<int, ::string> > result;
+//   ::array<::pair<int, ::string> > result;
 //#if !defined(_WIN32)
 //   DIR * dp = opendir(path.c_str());
 //   if (!dp)
@@ -323,7 +323,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
          
          string strTitle = path.title();
 
-         images.push_back(std::make_pair(iImage, strTitle.c_str()));
+         images.add({ iImage, strTitle });
 
       }
 
@@ -344,7 +344,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
 //      int img = pcontext->create_imagefull_name.c_str(), 0);
 //      if (img == 0)
 //         throw std::runtime_error("Could not open image data!");
-//      result.push_back(
+//      result.add(
 //         std::make_pair(img, full_name.substr(0, full_name.length() - 4)));
 //#if !defined(_WIN32)
 //   }
@@ -361,19 +361,31 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
 
 
 
-void Object::inc_ref() const {
-   m_ref_count++;
+void Object::inc_ref(){
+   //m_ref_count++;
+   increment_reference_count();
 }
 
-void Object::dec_ref(bool dealloc) const noexcept {
-   --m_ref_count;
-   if (m_ref_count == 0 && dealloc) {
-      delete this;
+void Object::dec_ref(bool dealloc)  {
+   if (dealloc)
+   {
+      release();
+
    }
-   else if (m_ref_count < 0) {
-      fprintf(stderr, "Internal error: %p: object reference count < 0!\n", this);
-      abort();
+   else
+   {
+
+      decrement_reference_count();
+
    }
+   //--m_ref_count;
+   //if (m_ref_count == 0 && dealloc) {
+   //   delete this;
+   //}
+   //else if (m_ref_count < 0) {
+   //   fprintf(stderr, "Internal error: %p: object reference count < 0!\n", this);
+   //   abort();
+   //}
 }
 
 Object::~Object() { }

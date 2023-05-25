@@ -62,10 +62,10 @@ namespace draw2d_opengl
    i32 region::OffsetRgn(i32 x, i32 y)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
    i32 region::OffsetRgn(const ::point_i32 & point)
-   { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
+   { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x(), point.y()); }
 
    */
-   bool region::get_bounding_box(RECTANGLE_I32 * lprect) const
+   bool region::get_bounding_box(::rectangle_i32 * lprect) const
    {
 
       //((region *)this)->defer_update();
@@ -100,7 +100,7 @@ namespace draw2d_opengl
 
     /*  ((region *) (this))->defer_update();
 
-      plusplus::PointF point_f32((plusplus::REAL) point.x, (plusplus::REAL) point.y);
+      plusplus::PointF point_f32((plusplus::REAL) point.x(), (plusplus::REAL) point.y());
       
       ASSERT(get_os_data() != nullptr);
 
@@ -231,7 +231,7 @@ namespace draw2d_opengl
 
    //   for(i32 i = 0; i < m_nCount; i++)
    //   {
-   //      pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[i].x, (plusplus::REAL) m_lppoints[i].y));
+   //      pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[i].x(), (plusplus::REAL) m_lppoints[i].y()));
    //   }
 
    //   if(m_efillmode == ::draw2d::e_fill_mode_alternate)
@@ -272,7 +272,7 @@ namespace draw2d_opengl
    //      pa.erase_all();
    //      for(i32 j = 0; j < jCount; j++)
    //      {
-   //         pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[n].x, (plusplus::REAL) m_lppoints[n].y));
+   //         pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[n].x(), (plusplus::REAL) m_lppoints[n].y()));
    //         n++;
    //      }
    //      path.AddPolygon(pa.get_data(), (i32) pa.get_count());

@@ -95,27 +95,27 @@
 //}
 //TEMPLATE void rectangle_i64::swap_left_right() noexcept
 //{
-//   swap_left_right((RECTANGLE_I64*)(this));
+//   swap_left_right((::rectangle_i64*)(this));
 //}
-//void WINAPI rectangle_i64::swap_left_right(RECTANGLE_I64 * RECT_TEMPLATE) noexcept
+//void WINAPI rectangle_i64::swap_left_right(::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
 //   i64 temp = RECT_TEMPLATE.left; RECT_TEMPLATE.left = RECT_TEMPLATE.right; RECT_TEMPLATE.right = temp;
 //}
 //
-//rectangle_i64::operator RECTANGLE_I64* () noexcept
+//rectangle_i64::operator ::rectangle_i64* () noexcept
 //{
 //   return this;
 //}
-//rectangle_i64::operator const RECTANGLE_I64* () const noexcept
+//rectangle_i64::operator const ::rectangle_i64* () const noexcept
 //{
 //   return this;
 //}
 //rectangle_i64::operator RECT_TEMPLATE() const
 //{
-//   return ::rect_TEMPLATE((const RECTANGLE_I64&)* this);
+//   return ::rect_TEMPLATE((const ::rectangle_i64&)* this);
 //}
-//TEMPLATE bool rectangle_i64::contains(POINT_I64 point_i32) const noexcept
+//TEMPLATE bool rectangle_i64::contains(::point_i64 point_i32) const noexcept
 //{
 //   return ::contains(this, point);
 //}
@@ -123,21 +123,21 @@
 //{
 //   ::set_rect(this, x1, y1, x2, y2);
 //}
-//TEMPLATE void rectangle_i64::set(POINT_I64 topLeft, POINT_I64 bottomRight) noexcept
+//TEMPLATE void rectangle_i64::set(::point_i64 topLeft, ::point_i64 bottomRight) noexcept
 //{
-//   ::set_rect(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
+//   ::set_rect(this, topLeft.x(), topLeft.y(), bottomRight.x(), bottomRight.y());
 //}
 //TEMPLATE void rectangle_i64::null() noexcept
 //{
 //   ::null(this);
 //}
-//TEMPLATE void rect64copy(const RECTANGLE_I64 * pSrcRect) noexcept
+//TEMPLATE void rect64copy(const ::rectangle_i64 * pSrcRect) noexcept
 //
 //{
 //   ::copy(this, pSrcRect);
 //}
 //
-//TEMPLATE bool rectangle_i64::is_equal(const RECTANGLE_I64 * RECT_TEMPLATE) const noexcept
+//TEMPLATE bool rectangle_i64::is_equal(const ::rectangle_i64 * RECT_TEMPLATE) const noexcept
 //
 //{
 //   return ::is_equal(this, RECT_TEMPLATE);
@@ -163,9 +163,9 @@
 //{
 //   ::offset(this, x, y);
 //}
-//TEMPLATE void rectangle_i64::offset(POINT_I64 point_i64) noexcept
+//TEMPLATE void rectangle_i64::offset(::point_i64 point_i64) noexcept
 //{
-//   ::offset(this, point_i64.x, point_i64.y);
+//   ::offset(this, point_i64.x(), point_i64.y());
 //}
 //TEMPLATE void rectangle_i64::set_size(SIZE_I64 s) noexcept
 //{
@@ -199,77 +199,77 @@
 //{
 //   move_to_x(x); move_to_y(y);
 //}
-//TEMPLATE void rectangle_i64::move_to(POINT_I64 point_i32) noexcept
+//TEMPLATE void rectangle_i64::move_to(::point_i64 point_i32) noexcept
 //{
-//   move_to_x(point.x); move_to_y(point.y);
+//   move_to_x(point.x()); move_to_y(point.y());
 //}
-//TEMPLATE bool rectangle_i64::intersect(const RECTANGLE_I64 * rect1, const RECTANGLE_I64 * rect2) noexcept
+//TEMPLATE bool rectangle_i64::intersect(const ::rectangle_i64 * rect1, const ::rectangle_i64 * rect2) noexcept
 //
 //{
 //   return ::intersect(this, rect1, rect2);
 //}
 //
-//TEMPLATE bool rectangle_i64::unite(const RECTANGLE_I64 * rect1, const RECTANGLE_I64 * rect2) noexcept
+//TEMPLATE bool rectangle_i64::unite(const ::rectangle_i64 * rect1, const ::rectangle_i64 * rect2) noexcept
 //
 //{
 //   return ::unite(this, rect1, rect2);
 //}
 //
-//TEMPLATE void rectangle_i64::operator=(const RECTANGLE_I64 & rectangleSource) noexcept
+//TEMPLATE void rectangle_i64::operator=(const ::rectangle_i64 & rectangleSource) noexcept
 //{
 //   ::copy(this, &rectangleSource);
 //}
-//TEMPLATE bool rectangle_i64::operator==(const RECTANGLE_I64 & rectangle_i64) const noexcept
+//TEMPLATE bool rectangle_i64::operator==(const ::rectangle_i64 & rectangle_i64) const noexcept
 //{
 //   return ::is_equal(this, &rectangle_i64);
 //}
-//TEMPLATE bool rectangle_i64::operator!=(const RECTANGLE_I64 & rectangle_i64) const noexcept
+//TEMPLATE bool rectangle_i64::operator!=(const ::rectangle_i64 & rectangle_i64) const noexcept
 //{
 //   return !::is_equal(this, &rectangle_i64);
 //}
-//TEMPLATE void rectangle_i64::operator+=(POINT_I64 point_i64) noexcept
+//TEMPLATE void rectangle_i64::operator+=(::point_i64 point_i64) noexcept
 //{
-//   ::offset(this, point_i64.x, point_i64.y);
+//   ::offset(this, point_i64.x(), point_i64.y());
 //}
 //TEMPLATE void rectangle_i64::operator+=(SIZE_I64 size_i64) noexcept
 //{
 //   ::offset(this, size_i64.cx, size_i64.cy);
 //}
-//TEMPLATE void rectangle_i64::operator+=(const RECTANGLE_I64 * RECT_TEMPLATE) noexcept
+//TEMPLATE void rectangle_i64::operator+=(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
 //   inflate(RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void rectangle_i64::operator-=(POINT_I64 point_i64) noexcept
+//TEMPLATE void rectangle_i64::operator-=(::point_i64 point_i64) noexcept
 //{
-//   ::offset(this, -point_i64.x, -point_i64.y);
+//   ::offset(this, -point_i64.x(), -point_i64.y());
 //}
 //TEMPLATE void rectangle_i64::operator-=(SIZE_I64 size_i64) noexcept
 //{
 //   ::offset(this, -size_i64.cx, -size_i64.cy);
 //}
-//TEMPLATE void rectangle_i64::operator-=(const RECTANGLE_I64 * RECT_TEMPLATE) noexcept
+//TEMPLATE void rectangle_i64::operator-=(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
 //   deflate(RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void rectangle_i64::operator&=(const RECTANGLE_I64 & rectangle_i64) noexcept
+//TEMPLATE void rectangle_i64::operator&=(const ::rectangle_i64 & rectangle_i64) noexcept
 //{
 //   ::intersect(this, this, &rectangle_i64);
 //}
-//TEMPLATE void rectangle_i64::operator|=(const RECTANGLE_I64 & rectangle_i64) noexcept
+//TEMPLATE void rectangle_i64::operator|=(const ::rectangle_i64 & rectangle_i64) noexcept
 //{
 //   ::unite(this, this, &rectangle_i64);
 //}
-//rectangle_i64 rectangle_i64::operator+(POINT_I64 point_i32) const noexcept
+//rectangle_i64 rectangle_i64::operator+(::point_i64 point_i32) const noexcept
 //{
-//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, point.x, point.y); return rectangle_i64;
+//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, point.x(), point.y()); return rectangle_i64;
 //}
-//rectangle_i64 rectangle_i64::operator-(POINT_I64 point_i32) const noexcept
+//rectangle_i64 rectangle_i64::operator-(::point_i64 point_i32) const noexcept
 //{
-//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, -point.x, -point.y); return rectangle_i64;
+//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, -point.x(), -point.y()); return rectangle_i64;
 //}
 //rectangle_i64 rectangle_i64::operator+(SIZE_I64 size_i64) const noexcept
 //{
@@ -279,29 +279,29 @@
 //{
 //   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, -size_i64.cx, -size_i64.cy); return rectangle_i64;
 //}
-//rectangle_i64 rectangle_i64::operator+(const RECTANGLE_I64 * RECT_TEMPLATE) const noexcept
+//rectangle_i64 rectangle_i64::operator+(const ::rectangle_i64 * RECT_TEMPLATE) const noexcept
 //
 //{
 //   rectangle_i64 rectangle_i64(this); rectangle_i64.inflate(RECT_TEMPLATE); return rectangle_i64;
 //}
 //
-//rectangle_i64 rectangle_i64::operator-(const RECTANGLE_I64 * RECT_TEMPLATE) const noexcept
+//rectangle_i64 rectangle_i64::operator-(const ::rectangle_i64 * RECT_TEMPLATE) const noexcept
 //
 //{
 //   rectangle_i64 rectangle_i64(this); rectangle_i64.deflate(RECT_TEMPLATE); return rectangle_i64;
 //}
 //
-//rectangle_i64 rectangle_i64::operator&(const RECTANGLE_I64 & rect2) const noexcept
+//rectangle_i64 rectangle_i64::operator&(const ::rectangle_i64 & rect2) const noexcept
 //{
 //   rectangle_i64 rectangle_i64; ::intersect(&rectangle_i64, this, &rect2);
 //   return rectangle_i64;
 //}
-//rectangle_i64 rectangle_i64::operator|(const RECTANGLE_I64 & rect2) const noexcept
+//rectangle_i64 rectangle_i64::operator|(const ::rectangle_i64 & rect2) const noexcept
 //{
 //   rectangle_i64 rectangle_i64; ::unite(&rectangle_i64, this, &rect2);
 //   return rectangle_i64;
 //}
-////TEMPLATE bool rectangle_i64::subtract(const RECTANGLE_I64 * pRectSrc1, const RECTANGLE_I64 * lpRectSrc2) noexcept
+////TEMPLATE bool rectangle_i64::subtract(const ::rectangle_i64 * pRectSrc1, const ::rectangle_i64 * lpRectSrc2) noexcept
 //
 ////   { return ::subtract(this, pRectSrc1, lpRectSrc2); }
 //
@@ -323,7 +323,7 @@
 //   }
 //}
 //
-//TEMPLATE void rectangle_i64::inflate(const RECTANGLE_I64 * RECT_TEMPLATE) noexcept
+//TEMPLATE void rectangle_i64::inflate(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
 //   left -= RECT_TEMPLATE.left;      top -= RECT_TEMPLATE.top;
@@ -338,7 +338,7 @@
 //   right += r;         bottom += b;
 //}
 //
-//TEMPLATE void rectangle_i64::deflate(const RECTANGLE_I64 * RECT_TEMPLATE) noexcept
+//TEMPLATE void rectangle_i64::deflate(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
 //{
 //   left += RECT_TEMPLATE.left;   top += RECT_TEMPLATE.top;
@@ -432,7 +432,7 @@
 //   return *((const point_f64*)this + 1);
 //  TEMPLATE void rectangle_f64::swap_left_right() noexcept { ::swap_left_right(this); }
 //
-//  TEMPLATE rectangle_f64::operator RECTANGLE_F64* () noexcept
+//  TEMPLATE rectangle_f64::operator ::rectangle_f64* () noexcept
 //   {
 //      return this;
 //   }
@@ -440,7 +440,7 @@
 //   {
 //      return (const rectangle_f64&)this;
 //   }
-//  TEMPLATE bool rectangle_f64::contains(POINT_F64 point_i32) const noexcept
+//  TEMPLATE bool rectangle_f64::contains(::point_f64 point_i32) const noexcept
 //   {
 //      return ::contains((const rectangle_f64&)this, point_i32) != false;
 //   }
@@ -448,9 +448,9 @@
 //   {
 //      ::set_rect(this, x1, y1, x2, y2);
 //   }
-//  TEMPLATE void rectangle_f64::set(POINT_F64 topLeft, POINT_F64 bottomRight) noexcept
+//  TEMPLATE void rectangle_f64::set(::point_f64 topLeft, ::point_f64 bottomRight) noexcept
 //   {
-//      ::set_rect(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
+//      ::set_rect(this, topLeft.x(), topLeft.y(), bottomRight.x(), bottomRight.y());
 //   }
 //
 //  TEMPLATE void rectangle_f64::null() noexcept
@@ -501,9 +501,9 @@
 //   {
 //      ::offset(this, x, y);
 //   }
-//  TEMPLATE void rectangle_f64::offset(POINT_F64 point_i32) noexcept
+//  TEMPLATE void rectangle_f64::offset(::point_f64 point_i32) noexcept
 //   {
-//      ::offset(this, point.x, point.y);
+//      ::offset(this, point.x(), point.y());
 //   }
 //  TEMPLATE void rectangle_f64::offset(SIZE_F64 size_i32) noexcept
 //   {
@@ -521,9 +521,9 @@
 //   {
 //      move_to_x(x); move_to_y(y);
 //   }
-//  TEMPLATE void rectangle_f64::move_to(POINT_F64 point_i32) noexcept
+//  TEMPLATE void rectangle_f64::move_to(::point_f64 point_i32) noexcept
 //   {
-//      move_to_x(point.x); move_to_y(point.y);
+//      move_to_x(point.x()); move_to_y(point.y());
 //   }
 //   //TEMPLATE bool rectangle_f64::intersect_x(const rectangle_f64 & rect1, const rectangle_f64 & rect2) noexcept
 //
@@ -569,9 +569,9 @@
 //   {
 //      return !::is_equal((const rectangle_f64&)this, (const rectangle_f64&)& rectangle_f64) != false;
 //   }
-//  TEMPLATE void rectangle_f64::operator+=(POINT_F64 point_i32) noexcept
+//  TEMPLATE void rectangle_f64::operator+=(::point_f64 point_i32) noexcept
 //   {
-//      ::offset(this, point.x, point.y);
+//      ::offset(this, point.x(), point.y());
 //   }
 //  TEMPLATE void rectangle_f64::operator+=(SIZE_F64 size_i32) noexcept
 //   {
@@ -583,9 +583,9 @@
 //      inflate(RECT_TEMPLATE);
 //   }
 //
-//  TEMPLATE void rectangle_f64::operator-=(POINT_F64 point_i32) noexcept
+//  TEMPLATE void rectangle_f64::operator-=(::point_f64 point_i32) noexcept
 //   {
-//      ::offset(this, -point.x, -point.y);
+//      ::offset(this, -point.x(), -point.y());
 //   }
 //  TEMPLATE void rectangle_f64::operator-=(SIZE_F64 size_i32) noexcept
 //   {
@@ -605,13 +605,13 @@
 //   {
 //      ::unite(this, this, (const rectangle_f64&)& rectangle_f64);
 //   }
-//  TEMPLATE rectangle_f64 rectangle_f64::operator+(POINT_F64 point_i32) const noexcept
+//  TEMPLATE rectangle_f64 rectangle_f64::operator+(::point_f64 point_i32) const noexcept
 //   {
-//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, point.x, point.y); return rectangle_f64;
+//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, point.x(), point.y()); return rectangle_f64;
 //   }
-//  TEMPLATE rectangle_f64 rectangle_f64::operator-(POINT_F64 point_i32) const noexcept
+//  TEMPLATE rectangle_f64 rectangle_f64::operator-(::point_f64 point_i32) const noexcept
 //   {
-//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, -point.x, -point.y); return rectangle_f64;
+//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, -point.x(), -point.y()); return rectangle_f64;
 //   }
 //  TEMPLATE rectangle_f64 rectangle_f64::operator+(SIZE_F64 size_i32) const noexcept
 //   {
@@ -711,7 +711,7 @@
 //   }
 //
 //
-//  TEMPLATE void rectangle_f64::get_bounding_rectangle(const POINT_F64 * ppoint, ::count count)
+//  TEMPLATE void rectangle_f64::get_bounding_rectangle(const ::point_f64 * ppoint, ::count count)
 //
 //   {
 //

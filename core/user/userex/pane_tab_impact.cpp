@@ -79,7 +79,7 @@ namespace userex
    }
 
 
-   void pane_tab_impact::GetTabClientRect(RECTANGLE_I32 & rectangle)
+   void pane_tab_impact::GetTabClientRect(::rectangle_i32 & rectangle)
    {
 
       if(m_pimpactdata == nullptr || m_pimpactdata->m_puserinteraction == nullptr || m_pimpactdata->m_iExtendOnParent == 0)

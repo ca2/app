@@ -60,7 +60,7 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void get_child_rect(RECTANGLE_I32 & rectangle) override;
+      virtual void get_child_rect(::rectangle_i32 & rectangle) override;
 
 
    };

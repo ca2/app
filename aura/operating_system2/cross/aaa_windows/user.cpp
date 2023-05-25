@@ -274,7 +274,7 @@ i32      cchWideChar)
 
         size_t sOut = sIn * 4;
 
-        wstr.get_string_buffer(sOut);
+        wstr.get_buffer(sOut);
 
         sOut *= sizeof(::wd16_character);
 
@@ -405,7 +405,7 @@ i32      cchWideChar)
 
         size_t sOut = sIn * 4;
 
-        wstr.get_string_buffer(sOut);
+        wstr.get_buffer(sOut);
 
         sOut *= sizeof(::wd32_character);
 
@@ -479,7 +479,7 @@ int_bool *  pUsedDefaultChar)
 
      auto len = unichar_to_utf8_len(wstr);
 
-     char * psz = str.get_string_buffer(len);
+     char * psz = str.get_buffer(len);
 
      unichar_to_utf8(psz, wstr, len);
 
@@ -489,7 +489,7 @@ int_bool *  pUsedDefaultChar)
 
      size_t sIn = wstr.get_length() * 2;
 
-     char * psz = str.get_string_buffer(sIn);
+     char * psz = str.get_buffer(sIn);
 
 
      size_t sOut = wstr.get_length() * 8;
@@ -505,7 +505,7 @@ int_bool *  pUsedDefaultChar)
 
   }
 
-  str.release_string_buffer();
+  str.release_buffer();
 
   if(cbMultiByte == 0)
   {

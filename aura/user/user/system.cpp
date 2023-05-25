@@ -101,8 +101,8 @@ namespace user
    //void system::set_rect(const ::rectangle_i32 & rectangle)
    //{
 
-   //   m_createstruct.x = rectangle.left;
-   //   m_createstruct.y = rectangle.top;
+   //   m_createstruct.x() = rectangle.left;
+   //   m_createstruct.y() = rectangle.top;
    //   m_createstruct.cx = rectangle.width();
    //   m_createstruct.cy = rectangle.height();
 
@@ -235,13 +235,13 @@ namespace user
    }
 
 
-   //void system::get_rect(RECTANGLE_I32 * lprect)
+   //void system::get_rect(::rectangle_i32 * lprect)
    //{
 
-   //   lprect->left = m_createstruct.x;
-   //   lprect->top = m_createstruct.y;
-   //   lprect->right = m_createstruct.x + m_createstruct.cx;
-   //   lprect->bottom = m_createstruct.y + m_createstruct.cy;
+   //   lprect->left = m_createstruct.x();
+   //   lprect->top = m_createstruct.y();
+   //   lprect->right = m_createstruct.x() + m_createstruct.cx;
+   //   lprect->bottom = m_createstruct.y() + m_createstruct.cy;
 
    //}
 

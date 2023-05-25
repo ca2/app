@@ -91,7 +91,7 @@ namespace user
       
       //::u32 GetItemID(index nIndex);
       
-//      virtual void index_item_rectangle(index nIndex, RECTANGLE_I32 * prectangle);
+//      virtual void index_item_rectangle(index nIndex, ::rectangle_i32 * prectangle);
       
       //::index tool_item_index(const ::atom & atom) const;
       
@@ -136,9 +136,9 @@ namespace user
 
       virtual void load_xml_toolbar(const ::payload & payloadFile);
 
-      virtual bool index_item_rectangle(index iItem,RECTANGLE_I32 * prectangle);
+      virtual bool index_item_rectangle(index iItem,::rectangle_i32 * prectangle);
 
-      virtual bool index_element_rectangle(index iItem,RECTANGLE_I32 * prectangle,enum_element eelement, ::user::enum_state estate);
+      virtual bool index_element_rectangle(index iItem,::rectangle_i32 * prectangle,enum_element eelement, ::user::enum_state estate);
 
       virtual void set_index_tool_item(index iItem, ::user::tool_item * pitem);
       virtual ::user::tool_item * index_tool_item(index iItem) const;

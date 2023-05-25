@@ -132,9 +132,9 @@ namespace regular_expression_pcre2
             nullptr,
             nullptr,
             (PCRE2_SPTR8)strPrefix.c_str(), strPrefix.length(),
-            (PCRE2_UCHAR8*)strRet.get_string_buffer(s), &s);
+            (PCRE2_UCHAR8*)strRet.get_buffer(s), &s);
 
-         strRet.release_string_buffer(s);
+         strRet.release_buffer(s);
 
          if (err >= 0)
          {

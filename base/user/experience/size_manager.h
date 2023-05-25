@@ -33,7 +33,7 @@ namespace experience
       virtual void initialize_size_manager(::experience::frame_window* pframewindow);
 
 
-      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & pointCursor);
+      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
       virtual enum_cursor experience_frame_to_cursor(::experience::enum_frame eframeHitTest);
 
 

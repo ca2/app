@@ -100,7 +100,7 @@ namespace user
       virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics, bool bDecoration);
       virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 & rectText);
+      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 & rectText);
 
       virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
 
@@ -118,7 +118,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
@@ -140,7 +140,7 @@ namespace user
       virtual void on_exit_button_style(enum_style estyle);
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(RECTANGLE_I32 & rectangle);
+      virtual void BaseToolTipGetRect(::rectangle_i32 & rectangle);
 
       virtual i32 BaseToolTipGetIndex();
 

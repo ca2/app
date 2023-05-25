@@ -388,7 +388,7 @@ namespace apex
 
 #ifdef UNIVERSAL_WINDOWS
 
-      virtual bool window_rectangle(RECTANGLE_I32* prectangle);
+      virtual bool window_rectangle(::rectangle_i32* prectangle);
 
 
 #endif

@@ -126,7 +126,7 @@ inline bool myspace(char ch)
 
 #define string_STRCAT2_beg_char_end(strCat, ch, str1, str2, beg1, end1, beg2, end2) \
 { \
-   string & psz = strCat.get_string_buffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
+   string & psz = strCat.get_buffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
    ansi_count_copy(psz, &((const string &)str1)[beg1], end1 - beg1 + 1); \
    psz[end1 - beg1 + 1] = ch; \
    ansi_count_copy(&psz[end1 - beg1 + 2], &((const string &)str2)[beg2], end2 - beg2 + 1); \
@@ -190,7 +190,7 @@ inline bool myspace(char ch)
 //   }
 //   else
 //   {
-//      string & psz = strPath.get_string_buffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
+//      string & psz = strPath.get_buffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
 //      ansi_count_copy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
 //      #if defined(LINUX) || defined(__APPLE__)
 //      psz[iFolderEnd - iFolderBeg + 1] = '/';
@@ -349,7 +349,7 @@ inline bool myspace(char ch)
 
 //   string strPath;
 
-//   string & psz = strPath.get_string_buffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
+//   string & psz = strPath.get_buffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
 //   ansi_count_copy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
 //   #if defined(LINUX) || defined(__APPLE__)
 //   psz[iFolderEnd - iFolderBeg + 1] = '/';

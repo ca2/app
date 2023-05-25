@@ -206,11 +206,11 @@ namespace user
 
       ::point_i32 pointCenter = rectangleDropDown.center();
 
-      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
+      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
 
-      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
+      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
 
    }
 
@@ -480,7 +480,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
+   bool combo_box::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
 
    {
 
@@ -496,7 +496,7 @@ namespace user
    }
 
 
-   ::item_pointer combo_box::on_hit_test(const ::point_i32 & point)
+   ::item_pointer combo_box::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
    {
 
       ::rectangle_i32 rectangleElement;
@@ -658,7 +658,7 @@ namespace user
       if (is_window_enabled())
       {
 
-         auto pitemHit = hit_test(pmouse);
+         auto pitemHit = hit_test(pmouse, e_zorder_any);
 
          if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {
@@ -704,7 +704,7 @@ namespace user
 
          //auto point = screen_to_client(pmouse->m_point);
 
-         auto pitemHit = hit_test(pmouse);
+         auto pitemHit = hit_test(pmouse, e_zorder_any);
 
          if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {
@@ -1054,9 +1054,9 @@ namespace user
 
       ASSERT(is_window());
 
-      GetLBText(nIndex, rString.get_string_buffer(GetLBTextLen(nIndex)));
+      GetLBText(nIndex, rString.get_buffer(GetLBTextLen(nIndex)));
 
-      rString.release_string_buffer();
+      rString.release_buffer();
 
    }
 
@@ -1315,7 +1315,7 @@ namespace user
    }
 
 
-   void combo_box::GetDroppedControlRect(RECTANGLE_I32 * prectangle)
+   void combo_box::GetDroppedControlRect(::rectangle_i32 * prectangle)
    {
 
       //ASSERT(is_window());

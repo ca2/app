@@ -390,7 +390,7 @@ public:
 //
 //
 //
-//text_stream & text_stream < FILE >::operator <<(const POINT_I32 * ppoint)
+//text_stream & text_stream < FILE >::operator <<(const ::point_i32 * ppoint)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -598,7 +598,7 @@ public:
 //
 //}
 //
-////text_stream & text_stream < FILE >::operator >>(RECTANGLE_I32 * prectangle)
+////text_stream & text_stream < FILE >::operator >>(::rectangle_i32 * prectangle)
 ////
 ////{
 ////   m_pfile->read(&prectangle->left, sizeof(prectangle->left));
@@ -617,7 +617,7 @@ public:
 ////   m_pfile->read(&psize->cy, sizeof(psize->cy));
 ////}
 ////
-////text_stream & text_stream < FILE >::operator >>(POINT_I32 * ppoint)
+////text_stream & text_stream < FILE >::operator >>(::point_i32 * ppoint)
 ////{
 ////   m_pfile->read(&ppoint->x, sizeof(ppoint->x));
 ////   m_pfile->read(&ppoint->y, sizeof(ppoint->y));

@@ -88,16 +88,16 @@ namespace hotplugin
 
       /*
       using ::user::interaction::client_to_screen;
-      virtual bool client_to_screen(POINT_I32 * ppt) override;
+      virtual bool client_to_screen(::point_i32 * ppt) override;
 
       using ::user::interaction::screen_to_client;
-      virtual bool screen_to_client(POINT_I32 * ppt) override;
+      virtual bool screen_to_client(::point_i32 * ppt) override;
 
       using ::user::interaction::window_rectangle;
-      virtual bool window_rectangle(RECTANGLE_I64 * prectangle) override;
+      virtual bool window_rectangle(::rectangle_i64 * prectangle) override;
 
       using ::user::interaction::client_rectangle;
-      virtual bool client_rectangle(RECTANGLE_I64 * prectangle) override;
+      virtual bool client_rectangle(::rectangle_i64 * prectangle) override;
       */
 
 

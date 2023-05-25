@@ -30,7 +30,7 @@ namespace windows
 
       wstring wstr;
 
-      auto pwsz = wstr.get_string_buffer(dw);
+      auto pwsz = wstr.get_buffer(dw);
 
       if (!SendMessageTimeoutW(hwnd, WM_GETTEXT, dw + 1, (LPARAM)pwsz, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait(timeSendMessageMax), &dw))
       {
@@ -44,12 +44,12 @@ namespace windows
          ::string str;
          auto psz = (const char *)pwsz;
          str = psz;
-         wstr.release_string_buffer();
+         wstr.release_buffer();
          wstr = str;
 
       }
 
-      wstr.release_string_buffer();
+      wstr.release_buffer();
 
       return wstr;
 

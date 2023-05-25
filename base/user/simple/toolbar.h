@@ -77,7 +77,7 @@ public:
    void _001SetImageList(::pointer<::image_list>imagelist);
    void _001DiscardImageList();
    virtual bool on_click(::item * pitem) override;
-   virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+   virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
    //void _001Hover(const ::point_i32 & point, bool bRedraw = true);
    //void _001Hover(bool bRedraw = true);
 
@@ -97,9 +97,9 @@ public:
       bool LoadBitmap(::u32 nIDResource);
    */
 
-//  virtual bool index_item_rectangle(index iItem,RECTANGLE_I32 * prectangle)
+//  virtual bool index_item_rectangle(index iItem,::rectangle_i32 * prectangle)
 
-   bool index_element_rectangle(index iItem,RECTANGLE_I32 * prectangle, ::enum_element eelement,
+   bool index_element_rectangle(index iItem,::rectangle_i32 * prectangle, ::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 

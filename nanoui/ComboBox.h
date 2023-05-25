@@ -1,6 +1,6 @@
 ﻿/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -9,7 +9,7 @@
 /**
  * \file nanoui/combobox.h
  *
- * \brief Simple combo box widget based on a popup button.
+ * \brief Simple combo box pwidget based on a popup button.
  */
 
 #pragma once
@@ -19,74 +19,79 @@
 #include "PopupButton.h"
 
 
-//#include <nanoui/popupbutton.h>
+ //#include <nanoui/popupbutton.h>
 
 namespace nanoui
 {
 
 
-/**
- * \class ComboBox combobox.h nanoui/combobox.h
- *
- * \brief Simple combo box widget based on a popup button.
- */
-   class CLASS_DECL_NANOUI ComboBox : public PopupButton {
+   /**
+    * \class ComboBox combobox.h nanoui/combobox.h
+    *
+    * \brief Simple combo box pwidget based on a popup button.
+    */
+   class CLASS_DECL_NANOUI ComboBox : public PopupButton
+   {
    public:
+
+
+      /// Scroll panel used to store the combo box contents
+      VScrollPanel* m_scroll = nullptr;
+
+      /// Container containing the buttons
+      Widget* m_container = nullptr;
+
+      /// The items associated with this ComboBox.
+      ::string_array m_straItems;
+
+      /// The short descriptions of items associated with this ComboBox.
+      ::string_array m_straItemsShort;
+
+      /// The callback for this ComboBox.
+      ::function<void(::index)> m_callback;
+
+      /// The current iIndex this ComboBox has selected.
+      ::index m_iSelectedIndex;
+
+
       /// Create an empty combo box
-      ComboBox(Widget * parent);
+      ComboBox(Widget* parent);
 
       /// Create a memory_new combo box with the given items
-      ComboBox(Widget * parent, const ::array<::string> & items);
+      ComboBox(Widget* parent, const ::string_array& items);
 
       /**
        * \brief Create a memory_new combo box with the given items, providing both short and
        * long descriptive labels for each item
        */
-      ComboBox(Widget * parent, const ::array<::string> & items,
-         const ::array<::string> & items_short);
+      ComboBox(Widget* parent, const ::string_array& items,
+         const ::string_array& items_short);
 
-      /// The current index this ComboBox has selected.
-      int selected_index() const { return m_selected_index; }
+      /// The current iIndex this ComboBox has selected.
+      ::index selected_index() const { return m_iSelectedIndex; }
 
-      /// Sets the current index this ComboBox has selected.
-      void set_selected_index(int idx);
+      /// Sets the current iIndex this ComboBox has selected.
+      void set_selected_index(::index iIndex, const ::action_context& actioncontext);
 
       /// The callback to execute for this ComboBox.
-      ::function<void(int)> callback() const { return m_callback; }
+      ::function<void(::index)> callback() const { return m_callback; }
 
       /// Sets the callback to execute for this ComboBox.
-      void set_callback(const ::function<void(int)> & callback) { m_callback = callback; }
+      void set_callback(const ::function<void(::index)>& callback) { m_callback = callback; }
 
       /// Sets the items for this ComboBox, providing both short and long descriptive lables for each item.
-      void set_items(const ::array<::string> & items, const ::array<::string> & items_short);
+      void set_items(const ::string_array& items, const ::string_array& items_short);
       /// Sets the items for this ComboBox.
-      void set_items(const ::array<::string> & items) { set_items(items, items); }
+      void set_items(const ::string_array& items) { set_items(items, items); }
       /// The items associated with this ComboBox.
-      const ::array<::string> & items() const { return m_items; }
+      const ::string_array& items() const { return m_straItems; }
       /// The short descriptions associated with this ComboBox.
-      const ::array<::string> & items_short() const { return m_items_short; }
+      const ::string_array& items_short() const { return m_straItemsShort; }
 
       /// Handles mouse scrolling events for this ComboBox.
-      virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
-   protected:
-      /// Scroll panel used to store the combo box contents
-      VScrollPanel * m_scroll = nullptr;
+      virtual bool scroll_event(const vector2_i32& p, const vector2_f32& rel) override;
 
-      /// Container containing the buttons
-      Widget * m_container = nullptr;
-
-      /// The items associated with this ComboBox.
-      ::array<::string> m_items;
-
-      /// The short descriptions of items associated with this ComboBox.
-      ::array<::string> m_items_short;
-
-      /// The callback for this ComboBox.
-      ::function<void(int)> m_callback;
-
-      /// The current index this ComboBox has selected.
-      int m_selected_index;
-};
+   };
 
 
 

@@ -150,7 +150,7 @@ namespace user
       virtual ::count get_visible_tab_count();
 
 
-      void get_child_rect(RECTANGLE_I32 & rectangle) override;
+      void get_child_rect(::rectangle_i32 & rectangle) override;
 
 
       virtual void _001OnRemoveTab(tab_pane * ptab);
@@ -159,11 +159,11 @@ namespace user
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       virtual enum_position DragHitTest(const ::point_i32 & point);
-      virtual void GetDragRect(RECTANGLE_I32 & rectangle, enum_position eposition);
+      virtual void GetDragRect(::rectangle_i32 & rectangle, enum_position eposition);
 
-      virtual bool get_element_rect(::index iTab, RECTANGLE_I32 & rectangle, enum_element eelement);
+      virtual bool get_element_rect(::index iTab, ::rectangle_i32 & rectangle, enum_element eelement);
 
 
       virtual void get_title(int iPane,string_array & stra);
@@ -172,9 +172,9 @@ namespace user
 
       virtual void layout_pane(index iPane, bool bDisplay = false);
 
-      virtual void GetTabClientRect(RECTANGLE_I32 & rectangle);
+      virtual void GetTabClientRect(::rectangle_i32 & rectangle);
 
-      virtual void GetTabClientRect(RECTANGLE_I64 & rectangle);
+      virtual void GetTabClientRect(::rectangle_i64 & rectangle);
 
       virtual bool add_tab(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 

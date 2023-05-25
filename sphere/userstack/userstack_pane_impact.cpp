@@ -492,7 +492,7 @@ namespace userstack
          menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
          ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
          get_parent_frame()->set_active_impact(this);
-         menuPopup.track_popup_menu(0, pmouse->m_point.x, pmouse->m_point.y, get_parent_frame());
+         menuPopup.track_popup_menu(0, pmouse->m_point.x(), pmouse->m_point.y(), get_parent_frame());
       }*/
    }
 

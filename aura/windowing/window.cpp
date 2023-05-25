@@ -135,7 +135,7 @@ namespace windowing
    }
 
 
-   void window::get_cursor_position(POINT_I32 * ppointCursor)
+   void window::get_cursor_position(::point_i32 * ppointCursor)
    {
 
       *ppointCursor = m_pointCursor;
@@ -307,7 +307,7 @@ namespace windowing
    }
 
 
-   void window::set_window_text(const ::string & pszString)
+   void window::set_window_text(const ::scoped_string & scopedstr)
    {
 
       throw ::interface_only();
@@ -315,32 +315,40 @@ namespace windowing
    }
 
 
-   strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
+   ::string window::get_window_text()
    {
 
-      throw ::interface_only();
-
-      return 0;
+      return {};
 
    }
 
 
-   void window::get_window_text(string & rectangleString)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   strsize window::get_window_text_length()
-   {
-
-      throw ::interface_only();
-
-      return 0;
-
-   }
+//   strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
+//
+//
+//   void window::get_window_text(string & rectangleString)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
+//
+//
+//   strsize window::get_window_text_length()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
 
 
    void window::on_layout(::draw2d::graphics_pointer & pgraphics)
@@ -378,7 +386,7 @@ namespace windowing
    }
 
 
-   bool window::window_rect_from_os(RECTANGLE_I32 * prectangle)
+   bool window::window_rect_from_os(::rectangle_i32 * prectangle)
    {
 
       return false;
@@ -386,7 +394,7 @@ namespace windowing
    }
 
 
-   bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
+   bool window::client_rect_from_os(::rectangle_i32 * prectangle)
    {
 
       return false;
@@ -448,7 +456,7 @@ namespace windowing
    }
 
 
-   bool window::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
+   bool window::GetUpdateRect(::rectangle_i32 * prectangle, bool bErase)
    {
 
       throw ::interface_only();
@@ -473,7 +481,7 @@ namespace windowing
    }
 
 
-   void window::InvalidateRect(const RECTANGLE_I32 * rectangle, bool bErase)
+   void window::InvalidateRect(const ::rectangle_i32 * rectangle, bool bErase)
    {
 
 
@@ -487,7 +495,7 @@ namespace windowing
    }
 
 
-   void window::ValidateRect(const RECTANGLE_I32 * prectangle)
+   void window::ValidateRect(const ::rectangle_i32 * prectangle)
    {
 
 
@@ -824,7 +832,7 @@ namespace windowing
    }
 
 
-   bool window::get_rect_normal(RECTANGLE_I32 * prectangle)
+   bool window::get_rect_normal(::rectangle_i32 * prectangle)
    {
 
       throw ::interface_only();
@@ -1042,7 +1050,7 @@ namespace windowing
    }
 
 
-   bool window::client_to_screen(POINT_I32 *ppoint)
+   bool window::client_to_screen(::point_i32 *ppoint)
    {
 
       return true;
@@ -1050,7 +1058,7 @@ namespace windowing
    }
 
 
-   bool window::screen_to_client(POINT_I32 *ppoint)
+   bool window::screen_to_client(::point_i32 *ppoint)
    {
 
       return true;
@@ -1268,9 +1276,9 @@ namespace windowing
 
       ::lparam lparam(x, y);
 
-      m_pointCursor.x = x;
+      m_pointCursor.x() = x;
 
-      m_pointCursor.y = y;
+      m_pointCursor.y() = y;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_down, 0, lparam);
 
@@ -1282,9 +1290,9 @@ namespace windowing
 
       ::lparam lparam(x, y);
 
-      m_pointCursor.x = x;
+      m_pointCursor.x() = x;
 
-      m_pointCursor.y = y;
+      m_pointCursor.y() = y;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_mouse_move, 0, lparam);
 
@@ -1296,9 +1304,9 @@ namespace windowing
 
       ::lparam lparam(x, y);
 
-      m_pointCursor.x = x;
+      m_pointCursor.x() = x;
 
-      m_pointCursor.y = y;
+      m_pointCursor.y() = y;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_up, 0, lparam);
 

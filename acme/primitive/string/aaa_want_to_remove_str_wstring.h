@@ -276,7 +276,7 @@ public:
       m_pwsz[iLength] = L'\0';
    }
 
-   inline void release_string_buffer()
+   inline void release_buffer()
    {
 
       set_length(wide_length(m_pwsz));

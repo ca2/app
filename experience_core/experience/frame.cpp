@@ -18,7 +18,7 @@ namespace experience_core
    frame::frame()
    {
 
-      m_pointWindowIcon.x = 5;
+      m_pointWindowIcon.x() = 5;
 
       m_sizeIcon.cx = 32;
 
@@ -289,7 +289,7 @@ namespace experience_core
 
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
+   bool frame::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       switch(eelement)
@@ -306,8 +306,8 @@ namespace experience_core
 
          }
 
-         rectangle.left = m_pointWindowIcon.x;
-         rectangle.top = m_pointWindowIcon.y;
+         rectangle.left = m_pointWindowIcon.x();
+         rectangle.top = m_pointWindowIcon.y();
          rectangle.right = rectangle.left + m_sizeIcon.cx;
          rectangle.bottom = rectangle.top + m_sizeIcon.cy;
 
@@ -327,8 +327,8 @@ namespace experience_core
 
          }
 
-         //rectangle.left = m_pointMoveGripMinimal.x + 2;
-         //rectangle.top = m_pointMoveGripMinimal.y + 2;
+         //rectangle.left = m_pointMoveGripMinimal.x() + 2;
+         //rectangle.top = m_pointMoveGripMinimal.y() + 2;
          rectangle.right = rectangle.left + m_iCaptionHeight - 4;
          rectangle.bottom = rectangle.top + m_iCaptionHeight - 4;
 
@@ -342,10 +342,10 @@ namespace experience_core
    }
 
    
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      return ::experience::frame::experience_frame_hit_test(point);
+      return ::experience::frame::experience_frame_hit_test(point, ezorder);
 //               ::rectangle_i32 rectangle;
 //               for(enum_element eelement = (enum_element)(::e_element_none + 1);
 //                     eelement < ElementEnd;
@@ -713,9 +713,9 @@ namespace experience_core
 
          status < ::color::color > crMoveableBorderShadow;
 
-         string str;
+         auto strWindowText = pframewindow->get_window_text();
 
-         pframewindow->get_window_text(str);
+         //pframewindow->get_window_text(str);
 
          if(pframewindow->is_active_window())
          {
@@ -768,9 +768,7 @@ namespace experience_core
 
          }
 
-         string wstrWindowText;
-
-         pframewindow->get_window_text(wstrWindowText);
+         auto wstrWindowText = pframewindow->get_window_text();
 
          pgraphics->set_text_color(m_colorCaptionText);
 

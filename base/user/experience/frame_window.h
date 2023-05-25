@@ -62,7 +62,7 @@ namespace experience
 
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
       void defer_save_window_placement() override;
@@ -71,7 +71,7 @@ namespace experience
       bool is_full_screen_enabled() override;
 
 
-      ::item_pointer hit_test(::user::mouse * pmouse) override;
+      ::item_pointer hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
 
 
@@ -115,7 +115,7 @@ namespace experience
 
 
 
-      void OnNcCalcSize(RECTANGLE_I32 * prectangle);
+      void OnNcCalcSize(::rectangle_i32 * prectangle);
 
       class dock_manager * dock_manager();
       class move_manager * move_manager();
@@ -167,9 +167,9 @@ namespace experience
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(::u32 uFlags);
 
-      void GetRegionClientRect(RECTANGLE_I32 * prectangle);
+      void GetRegionClientRect(::rectangle_i32 * prectangle);
 
-      void get_draw_client_rect(RECTANGLE_I32 * prectangle);
+      void get_draw_client_rect(::rectangle_i32 * prectangle);
 
 
       void relay_event(::message::message * pmessage);
@@ -190,7 +190,7 @@ namespace experience
       bool is_sysmenu_enabled();
 
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32& point);
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
       
       virtual button * get_box_button(enum_button ebutton);

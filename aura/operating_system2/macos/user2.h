@@ -71,7 +71,7 @@ i32 axis_main_command_line(const ::string & pszParams, int argc, char *argv[]);
  ::i32    top;
  ::i32    right;
  ::i32    bottom;
- } const rectangle_i32 &, *PRECT, *NPRECT, *RECTANGLE_I32 *;
+ } const rectangle_i32 &, *PRECT, *NPRECT, *::rectangle_i32 *;
  
  typedef const rectangle_i32 & * const rectangle_i32 &;
  
@@ -83,7 +83,7 @@ i32 axis_main_command_line(const ::string & pszParams, int argc, char *argv[]);
 //CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 //
 //
-//int_bool get_nswindow_rect(oswindow hwnd,RECTANGLE_I32 * prectangle);
+//int_bool get_nswindow_rect(oswindow hwnd,::rectangle_i32 * prectangle);
 
 
 
@@ -122,34 +122,34 @@ typedef int wxCoord;
 //   
 //   // no copy ctor or assignment operator - the defaults are ok
 //   
-//   bool operator==(const wxSize& sz) const { return x == sz.x && y == sz.y; }
-//   bool operator!=(const wxSize& sz) const { return x != sz.x || y != sz.y; }
+//   bool operator==(const wxSize& sz) const { return x == sz.x() && y == sz.y(); }
+//   bool operator!=(const wxSize& sz) const { return x != sz.x() || y != sz.y(); }
 //   
-//   wxSize operator+(const wxSize& sz) const { return wxSize(x + sz.x,y + sz.y); }
-//   wxSize operator-(const wxSize& sz) const { return wxSize(x - sz.x,y - sz.y); }
+//   wxSize operator+(const wxSize& sz) const { return wxSize(x + sz.x(),y + sz.y()); }
+//   wxSize operator-(const wxSize& sz) const { return wxSize(x - sz.x(),y - sz.y()); }
 //   wxSize operator/(int i) const { return wxSize(x / i,y / i); }
 //   wxSize operator*(int i) const { return wxSize(x * i,y * i); }
 //   
-//   wxSize& operator+=(const wxSize& sz) { x += sz.x; y += sz.y; return *this; }
-//   wxSize& operator-=(const wxSize& sz) { x -= sz.x; y -= sz.y; return *this; }
+//   wxSize& operator+=(const wxSize& sz) { x += sz.x(); y += sz.y(); return *this; }
+//   wxSize& operator-=(const wxSize& sz) { x -= sz.x(); y -= sz.y(); return *this; }
 //   wxSize& operator/=(const int i) { x /= i; y /= i; return *this; }
 //   wxSize& operator*=(const int i) { x *= i; y *= i; return *this; }
 //   
 //   void IncTo(const wxSize& sz)
 //   {
-//      if(sz.x > x) x = sz.x; if(sz.y > y) y = sz.y;
+//      if(sz.x() > x) x = sz.x(); if(sz.y() > y) y = sz.y();
 //   }
 //   void DecTo(const wxSize& sz)
 //   {
-//      if(sz.x < x) x = sz.x; if(sz.y < y) y = sz.y;
+//      if(sz.x() < x) x = sz.x(); if(sz.y() < y) y = sz.y();
 //   }
 //   
 //   void IncBy(int Δx,int Δy) { x += Δx; y += Δy; }
-//   void IncBy(const wxSize& sz) { IncBy(sz.x,sz.y); }
+//   void IncBy(const wxSize& sz) { IncBy(sz.x(),sz.y()); }
 //   void IncBy(int d) { IncBy(d,d); }
 //   
 //   void DecBy(int Δx,int Δy) { IncBy(-Δx,-Δy); }
-//   void DecBy(const wxSize& sz) { DecBy(sz.x,sz.y); }
+//   void DecBy(const wxSize& sz) { DecBy(sz.x(),sz.y()); }
 //   void DecBy(int d) { DecBy(d,d); }
 //   
 //   
@@ -173,9 +173,9 @@ typedef int wxCoord;
 //   void SetDefaults(const wxSize& size)
 //   {
 //      if(x == wxDefaultCoord)
-//         x = size.x;
+//         x = size.x();
 //      if(y == wxDefaultCoord)
-//         y = size.y;
+//         y = size.y();
 //   }
 //   
 //   // compatibility
@@ -195,15 +195,15 @@ typedef int wxCoord;
 //   // no copy ctor or assignment operator - the defaults are ok
 //   
 //   // comparison
-//   bool operator==(const wxPoint& point) const { return x == point.x && y == point.y; }
+//   bool operator==(const wxPoint& point) const { return x == point.x() && y == point.y(); }
 //   bool operator!=(const wxPoint& point) const { return !(*this == point); }
 //   
 //   // arithmetic operations (component wise)
-//   wxPoint operator+(const wxPoint& point) const { return wxPoint(x + point.x,y + point.y); }
-//   wxPoint operator-(const wxPoint& point) const { return wxPoint(x - point.x,y - point.y); }
+//   wxPoint operator+(const wxPoint& point) const { return wxPoint(x + point.x(),y + point.y()); }
+//   wxPoint operator-(const wxPoint& point) const { return wxPoint(x - point.x(),y - point.y()); }
 //   
-//   wxPoint& operator+=(const wxPoint& point) { x += point.x; y += point.y; return *this; }
-//   wxPoint& operator-=(const wxPoint& point) { x -= point.x; y -= point.y; return *this; }
+//   wxPoint& operator+=(const wxPoint& point) { x += point.x(); y += point.y(); return *this; }
+//   wxPoint& operator-=(const wxPoint& point) { x -= point.x(); y -= point.y(); return *this; }
 //   
 //   wxPoint& operator+=(const wxSize& s) { x += s.GetWidth(); y += s.GetHeight(); return *this; }
 //   wxPoint& operator-=(const wxSize& s) { x -= s.GetWidth(); y -= s.GetHeight(); return *this; }
@@ -306,12 +306,12 @@ typedef int wxCoord;
 //   
 //   wxCoord XLOG2DEVMAC(wxCoord x) const
 //   {
-//      return wxRound((double)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX + m_macLocalOrigin.x;
+//      return wxRound((double)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX + m_macLocalOrigin.x();
 //   }
 //   
 //   wxCoord YLOG2DEVMAC(wxCoord y) const
 //   {
-//      return wxRound((double)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY + m_macLocalOrigin.y;
+//      return wxRound((double)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY + m_macLocalOrigin.y();
 //   }
 //   
 //   
@@ -339,7 +339,7 @@ typedef int wxCoord;
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, const RECTANGLE_I32 * prectangle, int iDisplay);
+int_bool set_nswindow_frame(oswindow hwnd, const ::rectangle_i32 * prectangle, int iDisplay);
 int_bool move_nswindow(oswindow hwnd,int x,int y);
 int_bool make_key_and_order_front_nswindow(oswindow hwnd);
 int_bool order_front_nswindow(oswindow hwnd);

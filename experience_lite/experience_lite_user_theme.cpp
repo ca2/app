@@ -466,7 +466,7 @@ namespace lite
    }
 
 
-   void theme::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 * lpcrect,::draw2d::brush_pointer & pbrushText)
+   void theme::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 * lpcrect,::draw2d::brush_pointer & pbrushText)
    {
 
       string_array & straTitle = pane.m_straTitle;
@@ -718,8 +718,8 @@ namespace lite
                iTabHeight = cy;
             }
 
-            tab_pane.m_point.x = x;
-            tab_pane.m_point.y = rectangleClient.top;
+            tab_pane.m_point.x() = x;
+            tab_pane.m_point.y() = rectangleClient.top;
 
 
             //            string str = tab_pane.get_title();

@@ -1711,8 +1711,8 @@ namespace experience_anthill
 
             }
 
-            ppane->m_point.x = x;
-            ppane->m_point.y = rectangleClient.top;
+            ppane->m_point.x() = x;
+            ppane->m_point.y() = rectangleClient.top;
 
 
             //            string str = ppane->get_title();

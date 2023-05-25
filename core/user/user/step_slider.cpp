@@ -5,6 +5,7 @@
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
+#include "aura/user/user/interaction_impl.h"
 
 
 namespace user
@@ -68,7 +69,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_pitemLButtonDown = hit_test(pmouse);
+      auto pwindowimpl = get_window_impl();
+
+      pwindowimpl->m_pitemLButtonDown = hit_test(pmouse, ::user::e_zorder_any);
 
    }
 
@@ -78,9 +81,11 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
-      if(pitem == m_pitemLButtonDown)
+      auto pwindowimpl = get_window_impl();
+
+      if(pitem == pwindowimpl->m_pitemLButtonDown)
       {
 
          m_scalar.set(pitem->m_iItem);
@@ -167,7 +172,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
+   void step_slider::GetStepHoverRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
    {
 
       if((iMax - iMin) == 0)
@@ -188,7 +193,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
+   void step_slider::GetStepRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
    {
 
       if((iMax - iMin) == 0)
@@ -206,7 +211,7 @@ namespace user
    }
 
 
-   ::item_pointer step_slider::on_hit_test(const ::point_i32 &point)
+   ::item_pointer step_slider::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -228,7 +233,7 @@ namespace user
 
       iMax = m_scalar.maximum().get_i64();
 
-      return __new(::item((index) (iMin + (((point.x - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()))));
+      return __new(::item((index) (iMin + (((point.x() - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()))));
 
    }
 

@@ -106,13 +106,13 @@ namespace nano2d
 
 		// Pushes and saves the current render state into a state stack.
 		// A matching Restore)() must be used to restore the state.
-		virtual void save();
+		virtual void save1();
 
 		// Pops and restores current render state.
-		virtual void restore();
+		virtual void restore1();
 
 		// Resets current render state to default values. Does not affect the render state stack.
-		virtual void reset();
+		virtual void reset1();
 
 		//
 		// Render styles
@@ -262,7 +262,9 @@ namespace nano2d
 		// Creates and returns an image pattern. Parameters (ox,oy) specify the left-top location of the image pattern,
 		// (ex,ey) the size of one image, angle rotation around the top-left corner, image is handle to the image to render.
 		// The gradient is transformed by the current transform when it is passed to FillPaint)() or StrokePaint)().
-		virtual ::nano2d::paint image_pattern(float ox, float oy, float ex, float ey, float angle, int image, float alpha);
+		virtual ::nano2d::paint image_pattern_from_index(float ox, float oy, float ex, float ey, float angle, float alpha, int iImage);
+
+		virtual ::nano2d::paint image_pattern_from_image(float ox, float oy, float ex, float ey, float angle, float alpha, ::image * pimage);
 
 		//
 		// Scissoring
@@ -485,7 +487,7 @@ namespace nano2d
          m_pcontext(pcontext) 
       {
          
-         m_pcontext->save(); 
+         m_pcontext->save1(); 
       
       }
 
@@ -493,12 +495,14 @@ namespace nano2d
       ~guard()
       {
          
-         m_pcontext->restore(); 
+         m_pcontext->restore1(); 
       
       }
 
 
    };
+
+
 
 
 } // namespace nano2d

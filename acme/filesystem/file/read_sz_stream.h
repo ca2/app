@@ -98,7 +98,7 @@ public:
 //   text_stream& operator <<(u64 u);
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
-//   // void write(const POINT_I32 & point) ;
+//   // void write(const ::point_i32 & point) ;
 //   // void write(const SIZE_I32 & size) ;
 //   // void write(const ::rectangle_i32 &rectangle) ;
 //

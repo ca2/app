@@ -349,7 +349,7 @@ namespace user
 
          auto psession = get_session();
 
-         auto item = hit_test(pmouse);
+         auto item = hit_test(pmouse, ::user::e_zorder_any);
 
          if (item.is_set())
          {
@@ -442,7 +442,7 @@ namespace user
 
          m_bSelDrag = false;
 
-         auto item = hit_test(pmouse);
+         auto item = hit_test(pmouse, ::user::e_zorder_any);
 
          auto psession = get_session();
 
@@ -486,7 +486,7 @@ namespace user
 
          }
 
-         m_pitemHover = hit_test(pmouse);
+         m_pitemHover = hit_test(pmouse, ::user::e_zorder_any);
 
          if (::is_set(m_pitemHover))
          {
@@ -569,7 +569,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement)
+      bool edit_impl::get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -606,7 +606,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(RECTANGLE_I32 * prectangle, index i)
+      bool edit_impl::get_item_rect(::rectangle_i32 * prectangle, index i)
 
       {
 
@@ -639,7 +639,7 @@ namespace user
 
 
 
-      ::item_pointer edit_impl::on_hit_test(const ::point_i32 &point)
+      ::item_pointer edit_impl::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
       {
 
          //::point_f64 pointHit = item.m_pointHitTest;
@@ -802,7 +802,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
+         //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
          m_pdata->_001OnDraw(pgraphics);
 

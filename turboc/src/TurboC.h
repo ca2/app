@@ -103,7 +103,7 @@
 #include <linux/ppdev.h>
 #endif
 /*
- * You must have kernel-2.4.x or newer. For kernel 2.2.x you must
+ * You must have kernel-2.4.x() or newer. For kernel 2.2.x() you must
  * download ppdev-patch from ftp.torque.net/pub/parport
  */
 #include <linux/parport.h>

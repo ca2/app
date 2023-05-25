@@ -965,7 +965,7 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 {
 	int index;
 	int count;
-	RECTANGLE_I32 updateRect;
+	::rectangle_i32 updateRect;
 	RECTANGLE_16 windowRect;
 	ULONG_PTR* pKeys = nullptr;
 	wfRailWindow* railWindow;

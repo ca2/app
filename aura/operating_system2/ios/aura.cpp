@@ -221,7 +221,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
 //
 //   int len = _get_exe_path_len();
 //
-//   char * psz = str.get_string_buffer(len);
+//   char * psz = str.get_buffer(len);
 //
 //   _get_exe_path(psz, len);
 //

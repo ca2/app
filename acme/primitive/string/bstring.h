@@ -207,10 +207,10 @@
 //   const char & operator [](strsize i) const;
 //
 //
-//   char * get_string_buffer(strsize s);
+//   char * get_buffer(strsize s);
 //
 //
-//   void release_string_buffer(strsize s = -1);
+//   void release_buffer(strsize s = -1);
 //
 //
 //   void ReleaseBuffer(strsize s = -1);

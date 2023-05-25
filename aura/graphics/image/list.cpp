@@ -247,10 +247,10 @@ void image_list::_draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point
 
    __UNREFERENCED_PARAMETER(iFlag);
 
-   pointOffset.x = minimum(m_size.cx, pointOffset.x);
-   pointOffset.y = minimum(m_size.cy, pointOffset.y);
-   sz.cx = maximum(0, minimum(m_size.cx-pointOffset.x, sz.cx));
-   sz.cy = maximum(0, minimum(m_size.cy-pointOffset.y, sz.cy));
+   pointOffset.x() = minimum(m_size.cx, pointOffset.x());
+   pointOffset.y() = minimum(m_size.cy, pointOffset.y());
+   sz.cx = maximum(0, minimum(m_size.cx-pointOffset.x(), sz.cx));
+   sz.cy = maximum(0, minimum(m_size.cy-pointOffset.y(), sz.cy));
 
    point_f64 pointSource((double)(iImage * m_size.cx), 0.);
 

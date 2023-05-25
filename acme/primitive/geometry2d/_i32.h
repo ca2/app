@@ -39,9 +39,7 @@ struct RECTANGLE_I32
 
 };
 
-
-typedef const RECTANGLE_I32 * LPCRECTANGE_I32;
-
+ 
 
 
 #pragma pack(pop, geometry2d_i32)

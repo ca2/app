@@ -45,9 +45,9 @@ namespace sandbox_windowing
 
       auto pwindowingdisplay = pwindowing->display();
 
-      int x = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().x;
+      int x = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().x();
 
-      int y = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().y;
+      int y = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().y();
 
       int cx = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().width();
 
@@ -248,7 +248,7 @@ namespace sandbox_windowing
       //         // initial (XCreateWindow) size_i32 and position maybe not be honored.
       //         // so requesting the same change again in a effort to set the "docked/snapped" size_i32 and position.
 
-      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y,
+      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
       //         //                  pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
 
       //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
@@ -1430,10 +1430,10 @@ namespace sandbox_windowing
    //
    //      ::rectangle_i32 rWindow;
    //
-   //      rWindow.left = attr.x;
-   //      rWindow.top = attr.y;
-   //      rWindow.right = attr.x + attr.width;
-   //      rWindow.bottom = attr.y + attr.height;
+   //      rWindow.left = attr.x();
+   //      rWindow.top = attr.y();
+   //      rWindow.right = attr.x() + attr.width;
+   //      rWindow.bottom = attr.y() + attr.height;
    //
    //      if (rBest != rWindow)
    //      {
@@ -1600,7 +1600,7 @@ namespace sandbox_windowing
    //   }
 
 
-   bool window::client_to_screen(POINT_I32* ppoint)
+   bool window::client_to_screen(::point_i32* ppoint)
    {
 
       return true;
@@ -1608,7 +1608,7 @@ namespace sandbox_windowing
    }
 
 
-   bool window::screen_to_client(POINT_I32* ppoint)
+   bool window::screen_to_client(::point_i32* ppoint)
    {
 
       return true;
@@ -1860,10 +1860,10 @@ namespace sandbox_windowing
    //
    //      ::rectangle_i32 rWindow;
    //
-   //      rWindow.left      = attr.x;
-   //      rWindow.top       = attr.y;
-   //      rWindow.right     = attr.x    + attr.width;
-   //      rWindow.bottom    = attr.y    + attr.height;
+   //      rWindow.left      = attr.x();
+   //      rWindow.top       = attr.y();
+   //      rWindow.right     = attr.x()    + attr.width;
+   //      rWindow.bottom    = attr.y()    + attr.height;
    //
    //      if(rBest != rWindow)
    //      {
@@ -2473,7 +2473,7 @@ namespace sandbox_windowing
    //}
 
 
-   //bool window::x11_get_window_rect(RECTANGLE_I32 * prectangle)
+   //bool window::x11_get_window_rect(::rectangle_i32 * prectangle)
    //{
 
    //   return ::x11_get_window_rect(Display(), Window(), prectangle);
@@ -2481,7 +2481,7 @@ namespace sandbox_windowing
    //}
 
 
-   //::e_status window::window_rectangle(RECTANGLE_I32 * prectangle)
+   //::e_status window::window_rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   return x11_get_window_rect(prectangle);
@@ -2489,7 +2489,7 @@ namespace sandbox_windowing
    //}
 
 
-   //bool window::x11_get_client_rect(RECTANGLE_I32 * prectangle)
+   //bool window::x11_get_client_rect(::rectangle_i32 * prectangle)
    //{
 
    //   return ::x11_get_client_rect(Display(), Window(), prectangle);
@@ -2497,7 +2497,7 @@ namespace sandbox_windowing
    //}
 
 
-   //::e_status window::client_rectangle(RECTANGLE_I32 * prectangle)
+   //::e_status window::client_rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   return x11_get_client_rect(prectangle);
@@ -3320,7 +3320,7 @@ namespace sandbox_windowing
    //   }
 
    //// should be called in user_thread
-   //   int_bool window::x11_get_window_rect(RECTANGLE_I32 *prectangle)
+   //   int_bool window::x11_get_window_rect(::rectangle_i32 *prectangle)
    //   {
    //
    //      XWindowAttributes attrs;
@@ -3346,13 +3346,13 @@ namespace sandbox_windowing
    //
    //      XTranslateCoordinates(Display(), window, windowRoot, 0, 0, &x, &y, &child);
    //
-   //      prectangle->left = x + attrs.x;
+   //      prectangle->left = x + attrs.x();
    //
-   //      prectangle->top = y + attrs.y;
+   //      prectangle->top = y + attrs.y();
    //
-   //      prectangle->right = x + attrs.x + attrs.width;
+   //      prectangle->right = x + attrs.x() + attrs.width;
    //
-   //      prectangle->bottom = y + attrs.y + attrs.height;
+   //      prectangle->bottom = y + attrs.y() + attrs.height;
    //
    //
    //      windowing_output_debug_string("\n::x11_get_window_rect 2");
@@ -3361,7 +3361,7 @@ namespace sandbox_windowing
    //
    //   }
 
-   //   int_bool window::client_rectangle(RECTANGLE_I32 *prectangle)
+   //   int_bool window::client_rectangle(::rectangle_i32 *prectangle)
    //   {
    //
    //      synchronous_lock synchronouslock(user_synchronization());

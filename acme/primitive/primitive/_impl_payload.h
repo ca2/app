@@ -668,8 +668,45 @@ namespace file
    inline path path::sibling(const path& path) const { return { ::file_path_folder(c_str()) + ::string("/") + ::sz::trim_left_path_sep(path.c_str()), m_epath }; }
    inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(c_str()) + ::string("/") + ::sz::trim_left_path_sep(scopedstr.begin()), m_epath }; }
    inline path path::sibling(const ::ansi_string & str) const { return this->sibling((const ::scoped_string &)str); }
-   inline ::scoped_string path::all_extensions() const { return (*this)(this->rear_find_index('/') + 1).find_skip_or_end('.'); }
-   inline ::scoped_string path::final_extension() const { return file_path_final_extension(c_str()); }
+
+   inline ::const_ansi_range path::all_extensions() const
+   { 
+
+      auto p = this->rear_find('/');
+
+      if (::is_null(p))
+      {
+
+         p = this->begin();
+
+      }
+
+      auto range = substr(p);
+
+      p = range.find_skip_or_end('.');
+
+      return { p, this->end() };
+   
+   }
+
+
+   inline ::const_ansi_range path::final_extension() const
+   { 
+      
+      auto rangeName = this->name();
+
+      auto last_dot = rangeName.rear_find('.');
+
+      if (!last_dot)
+      {
+
+         return {};
+
+      }
+
+      return { last_dot + 1, rangeName.end() };
+
+   }
    //inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
    //inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
 

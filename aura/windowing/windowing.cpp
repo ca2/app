@@ -286,7 +286,7 @@ namespace windowing
 
    //}
 
-   void windowing::defer_initialize_host_window(const RECTANGLE_I32* lpcrect)
+   void windowing::defer_initialize_host_window(const ::rectangle_i32* lpcrect)
    {
 
 
@@ -413,7 +413,7 @@ namespace windowing
    }
 
 
-   //void windowing::get_cursor_position(POINT_I32 * ppoint)
+   //void windowing::get_cursor_position(::point_i32 * ppoint)
    //{
 
    //   *ppoint = m_pointCursor;
@@ -670,7 +670,7 @@ namespace windowing
    //}
 
 
-   int_bool windowing::point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
+   int_bool windowing::point_is_window_origin(::point_i32 ptHitTest, oswindow oswindowExclude, int iMargin)
    {
 
       return false;

@@ -23,19 +23,19 @@ char * __strdup(NSString * str);
 #include <CoreGraphics/CoreGraphics.h>
 
 
-void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
-void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);
-void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource);
-void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource);
-void screen_coordinates_aware_copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
-void screen_coordinates_aware_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);
+void copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource);
+void copy(::rectangle_i32 * prectTarget, const CGRect * prectSource);
+void copy(CGRect * prectTarget, const ::rectangle_f64 * prectSource);
+void copy(::rectangle_f64 * prectTarget, const CGRect * prectSource);
+void screen_coordinates_aware_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource);
+void screen_coordinates_aware_copy(::rectangle_i32 * prectTarget, const CGRect * prectSource);
 
 #ifdef MM
 
-void copy(NSRect & rectangle, const RECTANGLE_I32 * lpcrect);
-void copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
-void screen_coordinates_aware_copy(NSRect & rectangle, const RECTANGLE_I32 * lpcrect);
-void screen_coordinates_aware_copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
+void copy(NSRect & rectangle, const ::rectangle_i32 * lpcrect);
+void copy(::rectangle_i32 * lprect, const NSRect & rectangleSource);
+void screen_coordinates_aware_copy(NSRect & rectangle, const ::rectangle_i32 * lpcrect);
+void screen_coordinates_aware_copy(::rectangle_i32 * lprect, const NSRect & rectangleSource);
 
 #endif
 

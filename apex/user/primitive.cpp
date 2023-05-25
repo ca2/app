@@ -105,7 +105,7 @@ namespace user
 //   }
 //
 //
-//   bool primitive::RedrawOptimize(RECTANGLE_I32 * prectOut, const rectangle_i32 & rect1Param, const rectangle_i32 & rect2Param)
+//   bool primitive::RedrawOptimize(::rectangle_i32 * prectOut, const rectangle_i32 & rect1Param, const rectangle_i32 & rect2Param)
 //   {
 //
 //      ::rectangle_i32 rect1(rect1Param);
@@ -388,7 +388,7 @@ namespace user
    //}
 
 
-   /*bool primitive::client_to_screen(RECTANGLE_I32 * prectangle)
+   /*bool primitive::client_to_screen(::rectangle_i32 * prectangle)
    {
 
       ::offset_rect(prectangle, client_screen_top_left());
@@ -398,7 +398,7 @@ namespace user
    }
 
 
-   bool primitive::client_to_screen(RECTANGLE_F64 * prectangle)
+   bool primitive::client_to_screen(::rectangle_f64 * prectangle)
    {
 
       ::offset_rect(prectangle, client_screen_top_left());
@@ -408,7 +408,7 @@ namespace user
    }
 */
 
-   //bool primitive::client_to_screen(POINT_I32 * ppoint)
+   //bool primitive::client_to_screen(::point_i32 * ppoint)
    //{
 
    //   ::offset_point(ppoint, client_screen_top_left());
@@ -418,7 +418,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_to_screen(POINT_F64 * ppoint)
+   //bool primitive::client_to_screen(::point_f64 * ppoint)
    //{
 
    //   ::offset(ppoint, client_screen_top_left());
@@ -428,7 +428,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_to_screen(RECTANGLE_I64 * prectangle)
+   //bool primitive::client_to_screen(::rectangle_i64 * prectangle)
    //{
 
    //   ::offset_rect(prectangle, point_i64(client_screen_top_left()));
@@ -438,7 +438,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_to_screen(POINT_I64 * ppoint)
+   //bool primitive::client_to_screen(::point_i64 * ppoint)
    //{
 
    //   ::offset_point(ppoint, client_screen_top_left());
@@ -448,7 +448,7 @@ namespace user
    //}
 
 
-   //bool primitive::screen_to_client(RECTANGLE_I32 * prectangle)
+   //bool primitive::screen_to_client(::rectangle_i32 * prectangle)
    //{
 
    //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -458,7 +458,7 @@ namespace user
    //}
 
 
-   //bool primitive::screen_to_client(RECTANGLE_F64 * prectangle)
+   //bool primitive::screen_to_client(::rectangle_f64 * prectangle)
    //{
 
    //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -468,7 +468,7 @@ namespace user
    //}
 
 
-   //bool primitive::screen_to_client(POINT_I32 * ppoint)
+   //bool primitive::screen_to_client(::point_i32 * ppoint)
    //{
 
    //   ::offset_point(ppoint, -client_screen_top_left());
@@ -478,7 +478,7 @@ namespace user
    //}
 
 
-   //bool primitive::screen_to_client(POINT_F64 * ppoint)
+   //bool primitive::screen_to_client(::point_f64 * ppoint)
    //{
 
    //   ::offset_point(ppoint, -client_screen_top_left());
@@ -488,7 +488,7 @@ namespace user
    //}
 
 
-   //bool primitive::screen_to_client(RECTANGLE_I64 * prectangle)
+   //bool primitive::screen_to_client(::rectangle_i64 * prectangle)
    //{
 
    //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -498,7 +498,7 @@ namespace user
    //}
 
 
-   //bool primitive::screen_to_client(POINT_I64 * ppoint)
+   //bool primitive::screen_to_client(::point_i64 * ppoint)
    //{
 
    //   ::offset_point(ppoint, -client_screen_top_left());
@@ -508,7 +508,7 @@ namespace user
    //}
 
 
-   //bool primitive::GetWindowPos(RECTANGLE_I32 * prectangle)
+   //bool primitive::GetWindowPos(::rectangle_i32 * prectangle)
    //{
 
    //   throw ::interface_only();
@@ -518,7 +518,7 @@ namespace user
    //}
 
 
-   //bool primitive::window_rectangle(RECTANGLE_I32 * prectangle)
+   //bool primitive::window_rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   throw ::interface_only();
@@ -536,7 +536,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_rectangle(RECTANGLE_I32 * prectangle)
+   //bool primitive::client_rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   throw ::interface_only();
@@ -546,7 +546,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_rectangle(RECTANGLE_I64 * prectangle)
+   //bool primitive::client_rectangle(::rectangle_i64 * prectangle)
 
    //{
 
@@ -557,7 +557,7 @@ namespace user
    //}
 
 
-   //bool primitive::window_rectangle(RECTANGLE_I64 * prectangle)
+   //bool primitive::window_rectangle(::rectangle_i64 * prectangle)
 
    //{
 
@@ -1896,7 +1896,7 @@ namespace user
    //}
 
 
-   //void primitive::CalcWindowRect(RECTANGLE_I32 * prectangle,::u32 nAdjustType)
+   //void primitive::CalcWindowRect(::rectangle_i32 * prectangle,::u32 nAdjustType)
 
    //{
 
@@ -1905,7 +1905,7 @@ namespace user
    //}
 
 
-   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2056,7 +2056,7 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(POINT_I32 & point)
+   void primitive::viewport_client_to_screen(::point_i32 & point)
    {
 
       throw ::interface_only();
@@ -2064,7 +2064,7 @@ namespace user
    }
 
 
-   void primitive::viewport_screen_to_client(POINT_I32 & point)
+   void primitive::viewport_screen_to_client(::point_i32 & point)
    {
 
       throw ::interface_only();
@@ -2072,7 +2072,7 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(RECTANGLE_I32 & rectangle)
+   void primitive::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
       throw ::interface_only();
@@ -2080,7 +2080,7 @@ namespace user
    }
 
 
-   void primitive::viewport_screen_to_client(RECTANGLE_I32 & rectangle)
+   void primitive::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
       throw ::interface_only();
@@ -2258,7 +2258,7 @@ namespace user
    }
 
 
-   bool primitive::GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase)
+   bool primitive::GetUpdateRect(::rectangle_i32 * prectangle,bool bErase)
 
    {
 
@@ -2983,7 +2983,7 @@ namespace user
    }
 
 
-   bool primitive::GetFocusRect(RECTANGLE_I32 & rectangle)
+   bool primitive::GetFocusRect(::rectangle_i32 & rectangle)
    {
 
       return element::GetFocusRect(rectangle);
@@ -3082,12 +3082,12 @@ namespace user
    }
 
 
-   void primitive::_001OnTriggerMouseInside()
-   {
-
-      throw ::interface_only();
-
-   }
+//   void primitive::_001OnTriggerMouseInside()
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void primitive::update_data(bool bSaveAndValidate)

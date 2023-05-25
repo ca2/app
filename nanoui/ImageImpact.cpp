@@ -2,7 +2,7 @@
     nanoui/ImageImpact.cpp -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -22,7 +22,7 @@
 //#include <nanoui/renderpass.h>
 //#include <nanoui/shader.h>
 //#include <nanoui/texture.h>
-//#include <nanoui/screen.h>
+//#include <nanoui/pscreen.h>
 //#include <nanoui/opengl.h>
 //#include <nanoui_resources.h>
 
@@ -51,7 +51,7 @@ ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, fals
    //   positions);
    //m_render_pass->set_cull_mode(RenderPass::CullMode::Disabled);
 
-   m_image_border_color = m_theme->m_border_dark;
+   m_image_border_color = m_ptheme->m_colorBorderDark;
    m_draw_image_border = true;
    m_image_background_color = ::color::color(0.f, 0.f, 0.f, 0.f);
 }
@@ -72,40 +72,77 @@ float ImageImpact::scale() const {
    return std::pow(2.f, m_scale / 5.f);
 }
 
-void ImageImpact::set_scale(float scale) {
+void ImageImpact::set_scale(float scale) 
+{
+
    m_scale = std::log2(scale) * 5.f;
+
 }
 
-void ImageImpact::center() {
+
+void ImageImpact::center() 
+{
+
    if (!m_pimage)
+   {
+
       return;
-   m_offset = Vector2i(.5f * (Vector2f(m_size) * screen()->pixel_ratio() - Vector2f((float)m_pimage->width(), (float)m_pimage->height())) * scale());
+
+   }
+
+   m_offset = vector2_i32(.5f * (vector2_f32(m_size) * screen()->pixel_ratio() - vector2_f32((float)m_pimage->width(), (float)m_pimage->height())) * scale());
+
 }
 
-void ImageImpact::reset() {
+
+void ImageImpact::reset() 
+{
+
    m_scale = 0.f;
+
    center();
+
 }
 
-Vector2f ImageImpact::pos_to_pixel(const Vector2f & p) const {
-   Vector2f p2 = p;
-   if (m_draw_border)
+
+vector2_f32 ImageImpact::pos_to_pixel(const vector2_f32 & p) const 
+{
+
+   vector2_f32 p2 = p;
+
+   if (m_bDrawBorder)
+   {
+
       p2 -= 1.f;
+
+   }
+
    return (p2 * screen()->pixel_ratio() - m_offset) / scale();
+
 }
 
-Vector2f ImageImpact::pixel_to_pos(const Vector2f & p) const {
-   Vector2i pos = (p * scale() + m_offset) / screen()->pixel_ratio();
-   if (m_draw_border)
+
+vector2_f32 ImageImpact::pixel_to_pos(const vector2_f32 & p) const 
+{
+
+   vector2_i32 pos = (p * scale() + m_offset) / screen()->pixel_ratio();
+
+   if (m_bDrawBorder)
+   {
+
       pos += 1;
+
+   }
+
    return pos;
+
 }
 
 
 bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::string & strText) 
 {
 
-   if (!m_enabled || !m_pimage)
+   if (!m_bEnabled || !m_pimage)
    {
 
       return false;
@@ -131,10 +168,10 @@ bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int 
 }
 
 
-bool ImageImpact::mouse_motion_event(const Vector2i & /* p */, const Vector2i & rel, bool bDown, const ::user::e_key & /* modifiers */) 
+bool ImageImpact::mouse_motion_event(const vector2_i32 & /* p */, const vector2_i32 & rel, bool bDown, const ::user::e_key & /* modifiers */) 
 {
 
-   if (!m_enabled || !m_pimage || !bDown)
+   if (!m_bEnabled || !m_pimage || !bDown)
    {
 
       return false;
@@ -150,26 +187,26 @@ bool ImageImpact::mouse_motion_event(const Vector2i & /* p */, const Vector2i & 
 }
 
 
-bool ImageImpact::scroll_event(const Vector2i & p, const Vector2f & rel) 
+bool ImageImpact::scroll_event(const vector2_i32 & p, const vector2_f32 & rel) 
 {
 
-   if (!m_enabled || !m_pimage)
+   if (!m_bEnabled || !m_pimage)
    {
 
       return false;
 
    }
 
-   Vector2f p1 = pos_to_pixel(p - m_pos);
+   vector2_f32 p1 = pos_to_pixel(p - m_pos);
    m_scale += rel.y();
 
    // Restrict scaling to a reasonable range
    m_scale = maximum(
       m_scale, minimum(0.f, std::log2(40.f / maximum(m_pimage->width(),
          m_pimage->height())) * 5.f));
-   m_scale = std::min(m_scale, 45.f);
+   m_scale = ::minimum(m_scale, 45.f);
 
-   Vector2f p2 = pos_to_pixel(p - m_pos);
+   vector2_f32 p2 = pos_to_pixel(p - m_pos);
    m_offset += (p2 - p1) * scale();
    return true;
 
@@ -179,7 +216,7 @@ bool ImageImpact::scroll_event(const Vector2i & p, const Vector2f & rel)
 void ImageImpact::draw(::nano2d::context * pcontext) 
 {
 
-   //if (!m_enabled || !m_pimage)
+   //if (!m_bEnabled || !m_pimage)
      // return;
 
 
@@ -187,8 +224,8 @@ void ImageImpact::draw(::nano2d::context * pcontext)
 
    //Canvas::draw(pcontext);
 
-   //Vector2i top_left = Vector2i(pixel_to_pos(Vector2f(0.f, 0.f))),
-   //   size = Vector2i(pixel_to_pos(Vector2f(m_pimage->width(), m_pimage->height())) - Vector2f(top_left));
+   //vector2_i32 top_left = vector2_i32(pixel_to_pos(vector2_f32(0.f, 0.f))),
+   //   size = vector2_i32(pixel_to_pos(vector2_f32(m_pimage->width(), m_pimage->height())) - vector2_f32(top_left));
 
    //if (m_draw_image_border) {
    //   pcontext->begin_path();
@@ -205,22 +242,22 @@ void ImageImpact::draw(::nano2d::context * pcontext)
 
    //if (scale() > 100 && m_pixel_callback) {
    //   float font_size = scale() / 10.f;
-   //   float alpha = std::min(1.f, (scale() - 100) / 100.f);
+   //   float alpha = ::minimum(1.f, (scale() - 100) / 100.f);
    //   pcontext->font_size(font_size);
    //   pcontext->font_face("sans-bold");
    //   pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-   //   Vector2i start = max(Vector2i(0), Vector2i(pos_to_pixel(Vector2f(0.f, 0.f))) - 1),
-   //      end = ::nanoui::min(Vector2i(pos_to_pixel(Vector2f(m_size))) + Vector2i(1, 1), Vector2i(m_pimage->width(), m_pimage->height()) + Vector2i(-1, -1));
+   //   vector2_i32 start = max(vector2_i32(0), vector2_i32(pos_to_pixel(vector2_f32(0.f, 0.f))) - 1),
+   //      end = ::nanoui::min(vector2_i32(pos_to_pixel(vector2_f32(m_size))) + vector2_i32(1, 1), vector2_i32(m_pimage->width(), m_pimage->height()) + vector2_i32(-1, -1));
 
    //   char text_buf[80],
    //      * text[4] = { text_buf, text_buf + 20, text_buf + 40, text_buf + 60 };
 
    //   for (int y = start.y(); y <= end.y(); ++y) {
    //      for (int x = start.x(); x <= end.x(); ++x) {
-   //         Vector2i pos = Vector2i(pixel_to_pos(Vector2f(x + .5f, y + .5f)));
+   //         vector2_i32 pos = vector2_i32(pixel_to_pos(vector2_f32(x + .5f, y + .5f)));
 
-   //         m_pixel_callback(Vector2i(x, y), text, 20);
+   //         m_pixel_callback(vector2_i32(x, y), text, 20);
 
    //         for (int ch = 0; ch < 4; ++ch) {
    //            Color col(0.f, 0.f, 0.f, alpha);
@@ -254,17 +291,17 @@ void ImageImpact::draw_contents(::nano2d::context * pcontext)
 
    /* Ensure that 'offset' is a multiple of the pixel ratio */
    //float pixel_ratio = screen()->pixel_ratio();
-   //m_offset = (Vector2f(Vector2i(m_offset / pixel_ratio)) * pixel_ratio);
+   //m_offset = (vector2_f32(vector2_i32(m_offset / pixel_ratio)) * pixel_ratio);
 
-   //Vector2f bound1 = Vector2f(m_size) * pixel_ratio,
-   //   bound2 = -Vector2f(m_pimage->width(), m_pimage->height()) * scale();
+   //vector2_f32 bound1 = vector2_f32(m_size) * pixel_ratio,
+   //   bound2 = -vector2_f32(m_pimage->width(), m_pimage->height()) * scale();
 
    //if ((m_offset.x() >= bound1.x()) != (m_offset.x() < bound2.x()))
-   //   m_offset.x() = std::max(std::min(m_offset.x(), bound1.x()), bound2.x());
+   //   m_offset.x() = ::maximum(::minimum(m_offset.x(), bound1.x()), bound2.x());
    //if ((m_offset.y() >= bound1.y()) != (m_offset.y() < bound2.y()))
-   //   m_offset.y() = std::max(std::min(m_offset.y(), bound1.y()), bound2.y());
+   //   m_offset.y() = ::maximum(::minimum(m_offset.y(), bound1.y()), bound2.y());
 
-//   Vector2i viewport_size = render_pass()->viewport().second;
+//   vector2_i32 viewport_size = render_pass()->viewport().second;
 
    //float scale = std::pow(2.f, m_scale / 5.f);
 
@@ -280,7 +317,7 @@ void ImageImpact::draw_contents(::nano2d::context * pcontext)
 
    //m_image_shader->set_uniform("matrix_image", Matrix4f(matrix_image));
    //m_image_shader->set_uniform("matrix_background", Matrix4f(matrix_background));
-   //m_image_shader->set_uniform("background_color", m_image_background_color);
+   //m_image_shader->set_uniform("colorBackground", m_image_background_color);
 
    //m_image_shader->begin();
    //m_image_shader->draw_array(Shader::PrimitiveType::Triangle, 0, 6, false);

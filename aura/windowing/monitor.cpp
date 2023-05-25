@@ -58,7 +58,7 @@ namespace windowing
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 
-      pdesktopenvironment->get_monitor_rectangle(m_iIndex, m_rectangle);
+      pdesktopenvironment->get_monitor_rectangle(m_iIndex, &m_rectangle);
 
       return m_rectangle;
 
@@ -72,7 +72,7 @@ namespace windowing
 
       auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
 
-      pdesktopenvironment->get_workspace_rectangle(m_iIndex, m_rectangleWorkspace);
+      pdesktopenvironment->get_workspace_rectangle(m_iIndex, &m_rectangleWorkspace);
 
       return m_rectangleWorkspace;
 

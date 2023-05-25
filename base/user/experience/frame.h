@@ -116,18 +116,18 @@ namespace experience
 
 
 
-      virtual bool get_window_client_rect(RECTANGLE_I32 * prectangle);
+      virtual bool get_window_client_rect(::rectangle_i32 * prectangle);
 
-      virtual bool get_draw_client_rect(RECTANGLE_I32 * prectangle);
-
-
-      //virtual void calc_window_client_rect(RECTANGLE_I32 * prectangle, const rectangle_i32 & lprectWindow);
+      virtual bool get_draw_client_rect(::rectangle_i32 * prectangle);
 
 
-      virtual bool get_element_rect(RECTANGLE_I32 & rectangle, ::enum_element eelement);
+      //virtual void calc_window_client_rect(::rectangle_i32 * prectangle, const rectangle_i32 & lprectWindow);
 
 
-      virtual void get_parent_rect(RECTANGLE_I32 & rectangle);
+      virtual bool get_element_rect(::rectangle_i32 & rectangle, ::enum_element eelement);
+
+
+      virtual void get_parent_rect(::rectangle_i32 & rectangle);
 
       virtual rectangle_i32 get_margin_rect();
       virtual rectangle_i32 get_caption_text_padding();
@@ -158,11 +158,11 @@ namespace experience
       virtual size_i32 GetMinSize();
 
       virtual void OnActivate();
-      virtual void OnNcCalcSize(RECTANGLE_I32 * prectangle);
+      virtual void OnNcCalcSize(::rectangle_i32 * prectangle);
 
       //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow);
 
-      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point);
+      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
 
       virtual status < ::color::color > get_border_main_body_color();

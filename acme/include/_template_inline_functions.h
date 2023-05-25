@@ -16,7 +16,7 @@ inline void swap(A & a, B & b)
 
 
 template < typename TYPE >
-constexpr memsize offset_of(const TYPE & p, const TYPE & pBegin)
+constexpr memsize index_of(const TYPE * p, const TYPE * pBegin)
 {
 
    return ::is_set(p) ? (::memsize)(p - pBegin) : -1;
@@ -112,7 +112,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
    return ::make_pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
-//::std::pair<int, int> ia;
+//::::pair<int, int> ia;
 //inline ::u64 make64_from32(::u32 l, ::u32 h)
 //{
 //
@@ -810,6 +810,22 @@ bool not_found(const T * p)
 
 //template < primitive_floating FLOATING, int len >
 //inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f");
+
+
+template < typename BOOLEAN, typename ASSIGNED, typename ASSIGNEE >
+inline void set_if_different(BOOLEAN& bSetIfChanged, ASSIGNED& left, const ASSIGNEE& right)
+{
+
+   if (left != right)
+   {
+
+      bSetIfChanged = true;
+
+      left = right;
+
+   }
+
+}
 
 
 

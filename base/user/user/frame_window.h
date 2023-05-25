@@ -125,29 +125,29 @@ namespace user
 
 
       virtual void SetBorderRect(const ::rectangle_i32 & rectangle);
-      virtual void GetBorderRect(RECTANGLE_I32 * prectangle);
+      virtual void GetBorderRect(::rectangle_i32 * prectangle);
 
       virtual bool _001IsFrameWnd();
 
       //virtual void NotifyFloatingWindows(u32 dwFlags);
 
-      virtual string get_window_default_matter() override;
+      string get_window_default_matter() override;
       //virtual ::user::interaction::enum_type get_window_type() override;
 
 
-      virtual void on_simple_command(::message::simple_command * psimplecommand) override;
-      virtual void on_command(::message::command * pcommand) override;
+      void on_simple_command(::message::simple_command * psimplecommand) override;
+      void on_command(::message::command * pcommand) override;
 
 
 
-      virtual bool on_set_parent(::user::primitive * puiParent) override;
+      bool on_set_parent(::user::primitive * puiParent) override;
 
       //virtual void defer_synch_layered();
       //virtual bool calc_layered();
 
 
-
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer &pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       bool LoadAccelTable(const ::string & pszResourceName);
 
@@ -237,7 +237,7 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, RECTANGLE_I32 * pRectBorder);
+      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, ::rectangle_i32 * pRectBorder);
 
       virtual bool on_create_client(::user::system * pusersystem);
 

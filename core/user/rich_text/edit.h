@@ -34,11 +34,11 @@ namespace user
 
          //::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 
-         ::item_pointer on_hit_test(const ::point_i32 & point) override;
+         ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
-         virtual bool get_item_rect(RECTANGLE_I32 * prectangle, index i);
+         virtual bool get_item_rect(::rectangle_i32 * prectangle, index i);
 
-         virtual bool get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement);
+         virtual bool get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement);
 
 
          virtual ::size_f64 get_size() override;

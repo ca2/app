@@ -217,14 +217,14 @@
 //
 //   iReadAtMostByteCount = minimum_non_negative(iSize, iReadAtMostByteCount);
 //
-//   char * psz = str.get_string_buffer(iReadAtMostByteCount);
+//   char * psz = str.get_buffer(iReadAtMostByteCount);
 //
 //
 //   ::count iRead = fread(psz, 1, iReadAtMostByteCount, f);
 //
 //   psz[iRead] = '\0';
 //
-//   str.release_string_buffer(iRead);
+//   str.release_buffer(iRead);
 //
 //   str.case_insensitive_begins_eat("\xef\xbb\xbf");
 //

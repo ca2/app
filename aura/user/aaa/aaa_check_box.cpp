@@ -138,7 +138,7 @@ namespace user
 
       auto echeck = this->echeck();
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
@@ -285,7 +285,7 @@ namespace user
 
       //::enum_check echeck = _001GetCheck();
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       if (w > h * 2)
       {

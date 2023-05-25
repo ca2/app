@@ -3,7 +3,7 @@
     sub-widgets into tabs
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -13,9 +13,10 @@
 #include "Layout.h"
 #include "TabWidget.h"
 #include "Screen.h"
-#include "Icons.h"
 #include "Popup.h"
 #include "Button.h"
+#include "acme/constant/_font_awesome.h"
+#include "acme/handler/item.h"
 #include "aura/user/user/interaction.h"
 #include "nano2d/context.h"
 
@@ -24,487 +25,789 @@ namespace nanoui
 {
 
 
-TabWidgetBase::TabWidgetBase(Widget* parent, const ::scoped_string& scopedstrFont)
-   : Widget(parent), m_font(scopedstrFont), m_background_color(::color::color(0.f, 0.f)) {
-   m_tab_offsets.push_back(0);
-}
-
-void TabWidgetBase::remove_tab(int id) {
-   int index = tab_index(id);
-   bool close_active = index == m_active_tab;
-   m_tab_captions.erase(m_tab_captions.begin() + index);
-   m_tab_ids.erase(m_tab_ids.begin() + index);
-   if (index <= m_active_tab)
-      m_active_tab = ::maximum(0, m_active_tab - 1);
-   m_callbackLayout = [this](::nano2d::context * pcontext)
+   TabWidgetBase::TabWidgetBase(Widget* parent, const ::scoped_string& scopedstrFont)
+      : Widget(parent), m_font(scopedstrFont), m_colorBackground(::color::color(0.f, 0.f)) 
    {
-      perform_layout(pcontext);
-   };
-   if (m_close_callback)
-      m_close_callback(id);
-   if (close_active && m_callback) {
-      m_callback(selected_id());
-      update_visibility();
+
+      m_iaTabOffsets.add(0);
+
    }
 
-   //screen()->m_puserinteraction->set_need_layout();
 
-   set_need_redraw();
-
-   post_redraw();
-
-}
-
-int TabWidgetBase::insert_tab(int index, const ::scoped_string& scopedstrCaption) {
-   int id = m_tab_counter++;
-   m_tab_captions.insert_at(index, scopedstrCaption);
-   m_tab_ids.insert_at(index, id);
-   //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
-   m_callbackLayout = [this](::nano2d::context * pcontext)
+   void TabWidgetBase::erase_tab(::index iId) 
    {
-      perform_layout(pcontext);
-   };
-   if (index < m_active_tab)
-      m_active_tab++;
-   if (m_tab_ids.size() == 1 && m_callback) {
-      m_active_tab = 0;
-      m_callback(id);
-      update_visibility();
-   }
 
-   //screen()->m_puserinteraction->set_need_layout();
+      auto iIndex = tab_index(iId);
 
-   set_need_redraw();
+      bool close_active = iIndex == m_iActiveTab;
 
-   post_redraw();
+      m_straTabCaptions.erase_at(iIndex);
 
-   return id;
-}
+      m_iaTabIds.erase_at(iIndex);
 
-int TabWidgetBase::append_tab(const ::scoped_string & caption) {
-   return insert_tab((int)m_tab_captions.size(), caption);
-}
-
-int TabWidgetBase::tab_index(int id) const {
-   for (::index i = 0; i < m_tab_ids.size(); ++i) {
-      if (m_tab_ids[i] == id)
-         return (int)i;
-   }
-   throw std::runtime_error("TabWidgetBase::tab_index(): not found!");
-}
-
-void TabWidgetBase::update_visibility() { /* No-op */ }
-
-void TabWidgetBase::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
-   m_tab_offsets.clear();
-   pcontext->font_face(m_font.c_str());
-   pcontext->font_size(font_size());
-   pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-
-   m_tab_offsets.clear();
-   int width = 0;
-   float unused[4];
-   for (const ::scoped_string & label : m_tab_captions) {
-      int label_width = (int)pcontext->text_bounds(0.f, 0.f, label.c_str(), unused);
-      m_tab_offsets.push_back(width);
-      width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
-      if (m_tabs_closeable)
-         width += m_close_width;
-   }
-   m_tab_offsets.push_back(width);
-
-   pcontext->font_face("icons");
-   m_close_width = (int)
-      pcontext->text_bounds(0.f, 0.f, get_utf8_character(FA_TIMES_CIRCLE).data(), unused);
-}
-
-Vector2i TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
-{
-   pcontext->font_face(m_font.c_str());
-   pcontext->font_size(font_size());
-   pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-
-   int width = 0;
-   for (const ::scoped_string & label : m_tab_captions) {
-      float unused[4];
-      int label_width = (int)pcontext->text_bounds(0, 0, label.c_str(), unused);
-      width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
-      if (m_tabs_closeable)
-         width += m_close_width;
-   }
-
-   return Vector2i(width + 1,
-      (int)(font_size() + 2.f * m_theme->m_tab_button_vertical_padding + 2.f * m_padding));
-}
-
-void TabWidgetBase::draw(::nano2d::context * pcontext) {
-   if (m_callbackLayout)
-   {
-      m_callbackLayout(pcontext);
-
-      m_callbackLayout = nullptr;
-      //m_bPendingLayout = false;
-      //TabWidgetBase::perform_layout(pcontext);
-
-
-   }
-   if (m_tab_offsets.size() != m_tab_captions.size() + 1)
-      throw std::runtime_error("Must run TabWidget::perform_layout() after adding/removing tabs!");
-
-   int tab_height = (int)(font_size() + 2.f * m_theme->m_tab_button_vertical_padding);
-
-   if (m_background_color.fa() != 0.f) {
-      pcontext->fill_color(m_background_color);
-      pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + .5f + tab_height, (float)m_size.x(),
-         m_size.y() - tab_height - 2.f, (float)m_theme->m_button_corner_radius);
-      pcontext->fill();
-   }
-
-   Widget::draw(pcontext);
-
-   ::nano2d::paint tab_background_color = pcontext->linear_gradient(
-      (float)m_pos.x(), m_pos.y() + 1.f, (float)m_pos.x(), (float)m_pos.y() + tab_height,
-      m_theme->m_button_gradient_top_pushed, m_theme->m_button_gradient_bot_pushed);
-
-   pcontext->save();
-   pcontext->intersect_scissor((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)tab_height);
-   pcontext->font_size(font_size());
-   pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-   for (::index i = 0; i < m_tab_captions.size(); ++i) {
-      int x_pos = m_pos.x() + m_tab_offsets[i],
-         y_pos = m_pos.y(),
-         width = m_tab_offsets[i + 1] - m_tab_offsets[i];
-
-      if (i == (::index)m_active_tab) {
-         pcontext->begin_path();
-         pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
-         pcontext->stroke_color(m_theme->m_border_light);
-         pcontext->stroke();
-
-         pcontext->begin_path();
-         pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 0.5f, (float)width,
-            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
-         pcontext->stroke_color(m_theme->m_border_dark);
-         pcontext->stroke();
-      }
-      else {
-         pcontext->begin_path();
-         pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
-
-         pcontext->fill_paint(tab_background_color);
-         pcontext->fill();
-
-         pcontext->stroke_color(m_theme->m_border_dark);
-         pcontext->stroke();
-      }
-      x_pos += m_theme->m_tab_button_horizontal_padding;
-      y_pos += m_theme->m_tab_button_vertical_padding + 1;
-      pcontext->fill_color(m_theme->m_text_color);
-      pcontext->font_face(m_font.c_str());
-
-      pcontext->text((float)x_pos, (float)y_pos, m_tab_captions[i]);
-
-      if (m_tabs_closeable) {
-         x_pos = m_pos.x() + m_tab_offsets[i + 1] -
-            m_theme->m_tab_button_horizontal_padding - m_close_width + 5;
-         pcontext->font_face("icons");
-         pcontext->fill_color(i == (size_t)m_close_index_pushed ? m_theme->m_text_color_shadow
-            : m_theme->m_text_color);
-         bool highlight = m_close_index == (int)i;
-         auto icon = highlight ? FA_TIMES_CIRCLE : FA_TIMES;
-         float fs = font_size() * (highlight ? 1.f : .70f),
-            offset_x = highlight ? 0.f : (fs * .40f),
-            offset_y = highlight ? 0.f : (fs * .21f);
-         pcontext->font_size(fs);
-         pcontext->text(x_pos + offset_x, y_pos + offset_y + .5f, get_utf8_character(icon).data());
-         pcontext->font_size(font_size());
-      }
-   }
-   if (m_tab_drag_index != -1 && m_tab_drag_start != m_tab_drag_end) {
-      int x_pos = m_pos.x() + m_tab_drag_min + m_tab_drag_end - m_tab_drag_start;
-      pcontext->begin_path();
-      pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y() + 1.5f, (float)(m_tab_drag_max - m_tab_drag_min),
-         tab_height + 4.f, (float)m_theme->m_button_corner_radius);
-      pcontext->fill_color(::color::color(255, 255, 255, 30));
-      pcontext->fill();
-   }
-   pcontext->restore();
-
-   int x0 = m_tab_offsets[m_active_tab],
-      x1 = m_tab_offsets[m_tab_offsets.size() > 1 ? m_active_tab + 1 : 0];
-   for (int i = 1; i >= 0; --i) {
-      /* Top border */
-      pcontext->begin_path();
-      pcontext->move_to(m_pos.x() + .5f, m_pos.y() + tab_height + i + .5f);
-      pcontext->line_to(m_pos.x() + x0 + 1.0f, m_pos.y() + tab_height + i + .5f);
-      pcontext->move_to((float)(m_pos.x() + x1), m_pos.y() + tab_height + i + .5f);
-      pcontext->line_to(m_pos.x() + m_size.x() + .5f, m_pos.y() + tab_height + i + .5f);
-      pcontext->stroke_width(1.0f);
-      pcontext->stroke_color((i == 0) ? m_theme->m_border_dark : m_theme->m_border_light);
-      pcontext->stroke();
-
-      /* Bottom + side borders */
-      pcontext->save();
-      pcontext->intersect_scissor((float)m_pos.x(), (float)(m_pos.y() + tab_height), (float)m_size.x(), (float)m_size.y());
-      pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + i + .5f, m_size.x() - 1.f,
-         m_size.y() - 2.f, (float)m_theme->m_button_corner_radius);
-      pcontext->stroke();
-      pcontext->restore();
-   }
-}
-
-std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test_vertical) const {
-   int tab_height = (int)font_size() + 2 * m_theme->m_tab_button_vertical_padding;
-   if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
-      return { -1, false };
-
-   int x = p.x() - m_pos.x();
-   for (::index i = 0; i < m_tab_offsets.size() - 1; ++i) {
-      if (x >= m_tab_offsets[i] && x < m_tab_offsets[i + 1]) {
-         int r = m_tab_offsets[i + 1] - x;
-         return {
-             (int)i, m_tabs_closeable &&
-                r < m_theme->m_tab_button_horizontal_padding + m_close_width - 4 &&
-                r > m_theme->m_tab_button_horizontal_padding - 4 &&
-                p.y() - m_pos.y() > m_theme->m_tab_button_vertical_padding &&
-                p.y() - m_pos.y() <= tab_height - m_theme->m_tab_button_vertical_padding
-         };
-      }
-   }
-   return { -1, false };
-}
-
-bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
-{
-   int index; bool close;
-   std::tie(index, close) = tab_at_position(p);
-   bool handled = false;
-
-   Screen* screen = this->screen();
-   if (m_popup) {
-      m_popup->mouse_button_event(
-         p - m_pos + absolute_position() - m_popup->absolute_position() + m_popup->position(),emouse, down, bDoubleClick, ekeyModifiers);
-      screen->update_focus(this);
-      screen->remove_child(m_popup);
-      m_popup = nullptr;
-      handled = true;
-   }
-
-   bool drag_in_progress = m_tab_drag_index != -1 && m_tab_drag_start != m_tab_drag_end;
-   if (m_popup_callback && emouse == ::user::e_mouse_right_button && down && index != -1 &&
-      !drag_in_progress) {
-      m_popup = m_popup_callback(tab_id(index), screen);
-      m_popup->set_position(p + Vector2i(8, -6));
-      m_popup->set_anchor_offset(8);
-      m_popup->set_anchor_size(8);
-      if (m_popup->layout() == nullptr)
-         m_popup->set_layout(memory_new GroupLayout(5, 3));
-      for (Widget* w : m_popup->children()) {
-         Button* b = dynamic_cast<Button*>(w);
-         if (!b)
-            continue;
-         b->set_icon_position(Button::IconPosition::Right);
-         b->set_flags(Button::MenuButton);
-      }
-      m_popup->m_callbackLayout = [this](::nano2d::context * pcontext)
+      if (iIndex <= m_iActiveTab)
       {
-         m_popup->set_size(m_popup->preferred_size(pcontext) + Vector2i(40, 0));
-         m_popup->perform_layout(pcontext);
+
+         m_iActiveTab = ::maximum(0, m_iActiveTab - 1);
+
+      }
+
+      m_callbackLayout = [this](::nano2d::context* pcontext)
+      {
+
+         perform_layout(pcontext);
+
       };
 
-      set_need_layout();
+      if (m_closecallback)
+      {
+
+         m_closecallback(iId);
+
+      }
+
+      if (close_active && m_callback) 
+      {
+
+         m_callback(selected_id());
+
+         update_visibility();
+
+      }
+
+      //screen()->m_puserinteraction->set_need_layout();
 
       set_need_redraw();
 
       post_redraw();
 
-      //m_bPendingSizing = true;
-      //m_bPendingLayout = true;
-      handled = true;
    }
 
-   if (emouse == ::user::e_mouse_left_button && m_popup == nullptr) {
-      if (index >= 0) {
-         if (close && m_tab_drag_index == -1) {
-            if (down) {
-               m_close_index_pushed = index;
-            }
-            else if (m_close_index == m_close_index_pushed) {
-               remove_tab(tab_id(index));
-               mouse_motion_event(p, Vector2i(0), false, ::user::e_key_none);
-            }
-         }
-         else {
-            if (down) {
-               bool tab_changed = m_active_tab != index;
-               m_active_tab = index;
-               m_tab_drag_index = m_tabs_draggable ? index : -1;
-               m_tab_drag_start = m_tab_drag_end = p.x();
-               m_tab_drag_min = m_tab_offsets[index];
-               m_tab_drag_max = m_tab_offsets[index + 1];
-               m_close_index_pushed = -1;
-               if (tab_changed && m_callback) {
-                  m_callback(selected_id());
-                  update_visibility();
-               }
-            }
-            else if (m_tab_drag_index != -1) {
-               m_tab_drag_index = -1;
-               mouse_motion_event(p, Vector2i(0), false, ::user::e_key_none);
-            }
-         }
-         handled = true;
-      }
 
-      if (!down) {
-         handled = m_close_index_pushed != -1 || m_tab_drag_index != -1;
-         m_close_index_pushed = -1;
-         m_tab_drag_index = -1;
-      }
-
-      handled = true;
-   }
-
-   handled |= Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
-
-   return handled;
-
-}
-
-
-bool TabWidgetBase::mouse_enter_event(const Vector2i&/* p */, bool /* enter */, const ::user::e_key&)
-{
-
-   if (m_tabs_closeable && m_close_index >= 0)
+   ::index TabWidgetBase::insert_tab(::index iIndex, const ::scoped_string& scopedstrCaption) 
    {
-      m_close_index = -1;
-      m_close_index_pushed = -1;
-      return true;
+
+      ::index iId = m_iTabCounter++;
+
+      m_straTabCaptions.insert_at(iIndex, scopedstrCaption);
+
+      m_iaTabIds.insert_at(iIndex, iId);
+
+      //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
+
+      m_callbackLayout = [this](::nano2d::context* pcontext)
+      {
+         
+         perform_layout(pcontext);
+
+      };
+
+      if (iIndex < m_iActiveTab)
+      {
+       
+         m_iActiveTab++;
+
+      }
+      
+      if (m_iaTabIds.size() == 1 && m_callback) 
+      {
+
+         m_iActiveTab = 0;
+
+         m_callback(iId);
+
+         update_visibility();
+
+      }
+
+      //screen()->m_puserinteraction->set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+      return iId;
+
    }
-   return false;
-
-}
 
 
-bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers)
-{
+   ::index TabWidgetBase::append_tab(const ::scoped_string& caption) 
+   {
 
-   auto [index, close] = tab_at_position(p, false);
+      return insert_tab(m_straTabCaptions.size(), caption);
 
-   if (m_tab_drag_index != -1) {
-      m_tab_drag_end = p.x();
-      if (index != -1 && m_tab_drag_index != index) {
-         int i0 = std::min(m_tab_drag_index, index),
-            i1 = std::max(m_tab_drag_index, index);
-         int mid = (m_tab_offsets[i0] + m_tab_offsets[i1 + 1]) / 2;
-         if ((m_tab_drag_index < index && p.x() - m_pos.y() > mid) ||
-            (m_tab_drag_index > index && p.x() - m_pos.y() < mid)) {
-            std::swap(m_tab_captions[index], m_tab_captions[m_tab_drag_index]);
-            std::swap(m_tab_ids[index], m_tab_ids[m_tab_drag_index]);
-            //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
-            m_callbackLayout = [this](::nano2d::context * pcontext)
+   }
+
+
+   ::index TabWidgetBase::tab_index(::index iId) const
+   {
+
+      for (::index i = 0; i < m_iaTabIds.size(); ++i) 
+      {
+
+         if (m_iaTabIds[i] == iId)
+         {
+
+            return i;
+
+         }
+
+      }
+
+      throw ::exception(error_not_found, "TabWidgetBase::tab_index(): not found!");
+
+   }
+
+
+   void TabWidgetBase::update_visibility()
+   {
+      
+      /* No-op */ 
+   
+   }
+
+
+   void TabWidgetBase::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   {
+
+      m_iaTabOffsets.clear();
+      pcontext->font_face(m_font.c_str());
+      pcontext->font_size(font_size());
+      pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
+
+      m_iaTabOffsets.clear();
+      int width = 0;
+      float unused[4];
+      for (const ::scoped_string& label : m_straTabCaptions) 
+      {
+
+         int label_width = (int)pcontext->text_bounds(0.f, 0.f, label.c_str(), unused);
+         m_iaTabOffsets.add(width);
+         width += label_width + 2 * m_ptheme->m_iHorizontalPaddingTabButton;
+         if (m_bTabsCloseable)
+            width += m_iCloseButtonWidth;
+      }
+      m_iaTabOffsets.add(width);
+
+      pcontext->font_face("icons");
+      m_iCloseButtonWidth = (int)
+         pcontext->text_bounds(0.f, 0.f, get_utf8_character(e_font_awesome_times_circle).data(), unused);
+   }
+
+   vector2_i32 TabWidgetBase::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   {
+      pcontext->font_face(m_font.c_str());
+      pcontext->font_size(font_size());
+      pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
+
+      int width = 0;
+      for (const ::scoped_string& label : m_straTabCaptions) {
+         float unused[4];
+         int label_width = (int)pcontext->text_bounds(0, 0, label.c_str(), unused);
+         width += label_width + 2 * m_ptheme->m_iHorizontalPaddingTabButton;
+         if (m_bTabsCloseable)
+            width += m_iCloseButtonWidth;
+      }
+
+      return vector2_i32(width + 1,
+         (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton + 2.f * m_iPadding));
+   }
+
+   void TabWidgetBase::draw(::nano2d::context* pcontext) {
+      if (m_callbackLayout)
+      {
+         m_callbackLayout(pcontext);
+
+         m_callbackLayout = nullptr;
+         //m_bPendingLayout = false;
+         //TabWidgetBase::perform_layout(pcontext);
+
+
+      }
+      if (m_iaTabOffsets.size() != m_straTabCaptions.size() + 1)
+         throw std::runtime_error("Must run TabWidget::perform_layout() after adding/removing tabs!");
+
+      int tab_height = (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton);
+
+      if (m_colorBackground.fa() != 0.f) {
+         pcontext->fill_color(m_colorBackground);
+         pcontext->begin_path();
+         pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + .5f + tab_height, (float)m_size.x(),
+            m_size.y() - tab_height - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+         pcontext->fill();
+      }
+
+      Widget::draw(pcontext);
+
+      ::nano2d::paint tab_background_color = pcontext->linear_gradient(
+         (float)m_pos.x(), m_pos.y() + 1.f, (float)m_pos.x(), (float)m_pos.y() + tab_height,
+         m_ptheme->m_colorButtonGradientTopPushed, m_ptheme->m_colorButtonGradientBottomPushed);
+
+      {
+
+         ::nano2d::guard guard(pcontext);
+         //pcontext->save();
+         pcontext->intersect_scissor((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)tab_height);
+         pcontext->font_size(font_size());
+         pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
+         for (::index i = 0; i < m_straTabCaptions.size(); ++i) {
+            int x_pos = m_pos.x() + m_iaTabOffsets[i],
+               y_pos = m_pos.y(),
+               width = m_iaTabOffsets[i + 1] - m_iaTabOffsets[i];
+
+            if (i == (::index)m_iActiveTab) {
+               pcontext->begin_path();
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
+                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->stroke_color(m_ptheme->m_colorBorderLight);
+               pcontext->stroke();
+
+               pcontext->begin_path();
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 0.5f, (float)width,
+                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->stroke_color(m_ptheme->m_colorBorderDark);
+               pcontext->stroke();
+            }
+            else {
+               pcontext->begin_path();
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
+                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+
+               pcontext->fill_paint(tab_background_color);
+               pcontext->fill();
+
+               pcontext->stroke_color(m_ptheme->m_colorBorderDark);
+               pcontext->stroke();
+            }
+            x_pos += m_ptheme->m_iHorizontalPaddingTabButton;
+            y_pos += m_ptheme->m_iVerticalPaddingTabButton + 1;
+            pcontext->fill_color(m_ptheme->m_colorText);
+            pcontext->font_face(m_font.c_str());
+
+            pcontext->text((float)x_pos, (float)y_pos, m_straTabCaptions[i]);
+
+            if (m_bTabsCloseable) {
+               x_pos = m_pos.x() + m_iaTabOffsets[i + 1] -
+                  m_ptheme->m_iHorizontalPaddingTabButton - m_iCloseButtonWidth + 5;
+               pcontext->font_face("icons");
+               pcontext->fill_color(i == (size_t)m_iCloseIndexPushed ? m_ptheme->m_colorTextShadow
+                  : m_ptheme->m_colorText);
+               bool highlight = m_iCloseIndex == (int)i;
+               auto icon = highlight ? e_font_awesome_times_circle : e_font_awesome_times;
+               float sizeFixed = font_size() * (highlight ? 1.f : .70f),
+                  offset_x = highlight ? 0.f : (sizeFixed * .40f),
+                  offset_y = highlight ? 0.f : (sizeFixed * .21f);
+               pcontext->font_size(sizeFixed);
+               pcontext->text(x_pos + offset_x, y_pos + offset_y + .5f, get_utf8_character(icon).data());
+               pcontext->font_size(font_size());
+            }
+
+         }
+
+         if (m_iTabDragIndex != -1 && m_iTabDragStart != m_iTabDragEnd)
+         {
+
+            auto x_pos = m_pos.x() + m_iTabDragMinimum + m_iTabDragEnd - m_iTabDragStart;
+
+            pcontext->begin_path();
+
+            pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y() + 1.5f, (float)(m_iTabDragMaximum - m_iTabDragMinimum),
+               tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+
+            pcontext->fill_color(::color::color(255, 255, 255, 30));
+
+            pcontext->fill();
+
+         }
+
+       //  pcontext->restore();
+
+      }
+
+      auto x0 = m_iaTabOffsets[m_iActiveTab];
+
+      auto x1 = m_iaTabOffsets[m_iaTabOffsets.size() > 1 ? m_iActiveTab + 1 : 0];
+
+      for (int i = 1; i >= 0; --i)
+      {
+
+         /* Top border */
+
+         pcontext->begin_path();
+         pcontext->move_to(m_pos.x() + .5f, m_pos.y() + tab_height + i + .5f);
+         pcontext->line_to(m_pos.x() + x0 + 1.0f, m_pos.y() + tab_height + i + .5f);
+         pcontext->move_to((float)(m_pos.x() + x1), m_pos.y() + tab_height + i + .5f);
+         pcontext->line_to(m_pos.x() + m_size.x() + .5f, m_pos.y() + tab_height + i + .5f);
+         pcontext->stroke_width(1.0f);
+         pcontext->stroke_color((i == 0) ? m_ptheme->m_colorBorderDark : m_ptheme->m_colorBorderLight);
+         pcontext->stroke();
+
+         /* Bottom + side borders */
+         {
+            ::nano2d::guard guard(pcontext);
+            //pcontext->save();
+            pcontext->intersect_scissor((float)m_pos.x(), (float)(m_pos.y() + tab_height), (float)m_size.x(), (float)m_size.y());
+            pcontext->begin_path();
+            pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + i + .5f, m_size.x() - 1.f,
+               m_size.y() - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+            pcontext->stroke();
+            //pcontext->restore();
+
+         }
+
+      }
+
+   }
+
+
+   ::item_pointer TabWidgetBase::hit_test(const vector2_i32& p, bool test_vertical) const 
+   {
+
+      auto pitem = __new(::item);
+
+      int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
+
+      if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
+      {
+
+         pitem->m_eelement = e_element_none;
+
+         return pitem;
+
+      }
+
+      int x = p.x() - m_pos.x();
+
+      for (::index i = 0; i < m_iaTabOffsets.size() - 1; ++i) 
+      {
+
+         if (x >= m_iaTabOffsets[i] && x < m_iaTabOffsets[i + 1]) 
+         {
+
+            int r = m_iaTabOffsets[i + 1] - x;
+
+            pitem->m_iItem = i;
+
+            if (m_bTabsCloseable &&
+               r < m_ptheme->m_iHorizontalPaddingTabButton + m_iCloseButtonWidth - 4 &&
+               r > m_ptheme->m_iHorizontalPaddingTabButton - 4 &&
+               p.y() - m_pos.y() > m_ptheme->m_iVerticalPaddingTabButton &&
+               p.y() - m_pos.y() <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
             {
 
-               TabWidgetBase::perform_layout(pcontext);
+               pitem->m_eelement = e_element_close_button;
+             
+            }
+            else
+            {
 
-            };
-            m_tab_drag_index = index;
-            m_active_tab = index;
+               pitem->m_eelement = e_element_tab;
 
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
+            }
+            
+            return pitem;
 
          }
 
       }
 
-      return true;
+      pitem->m_eelement = e_element_none;
+
+      return pitem;
 
    }
 
-   if (!close)
-      index = -1;
 
-   if (index != m_close_index) {
-      m_close_index = index;
-      m_close_index_pushed = -1;
-      return true;
+   bool TabWidgetBase::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   {
+      
+      auto pitem = hit_test(p);
+
+      bool bHandled = false;
+
+      Screen* pscreen = screen();
+
+      if (m_ppopup) 
+      {
+
+         m_ppopup->mouse_button_event(
+            p - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), emouse, down, bDoubleClick, ekeyModifiers);
+
+         pscreen->update_focus(this);
+
+         pscreen->erase_child(m_ppopup);
+
+         m_ppopup = nullptr;
+
+         bHandled = true;
+
+      }
+
+      bool iDragInProgressIndex = m_iTabDragIndex != -1 && m_iTabDragStart != m_iTabDragEnd;
+
+      if (m_popupcallback && emouse == ::user::e_mouse_right_button && down 
+         && ::is_item_set_and_non_negative(pitem) &&
+         !iDragInProgressIndex) 
+      {
+
+         m_ppopup = m_popupcallback(tab_id(pitem->m_iItem), pscreen);
+         m_ppopup->set_position(p + vector2_i32(8, -6));
+         m_ppopup->set_anchor_offset(8);
+         m_ppopup->set_anchor_size(8);
+         
+         if (m_ppopup->layout() == nullptr)
+            m_ppopup->set_layout(memory_new GroupLayout(5, 3));
+
+         for (Widget* pwidgetChild : m_ppopup->children()) 
+         {
+
+            Button* b = dynamic_cast<Button*>(pwidgetChild);
+            
+            if (!b)
+            {
+
+               continue;
+
+            }
+
+            b->set_icon_position(Button::IconPosition::Right);
+
+            b->set_flags(Button::ContextMenuButton);
+
+         }
+
+         m_ppopup->m_callbackLayout =
+            [this](::nano2d::context* pcontext)
+         {
+            
+            m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + vector2_i32(40, 0));
+            
+            m_ppopup->perform_layout(pcontext);
+
+         };
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         post_redraw();
+
+         //m_bPendingSizing = true;
+         //m_bPendingLayout = true;
+         bHandled = true;
+
+      }
+
+      if (emouse == ::user::e_mouse_left_button && m_ppopup == nullptr)
+      {
+
+         if (::is_item_set_and_non_negative(pitem)) 
+         {
+
+            if (pitem->m_eelement == e_element_close_button && m_iTabDragIndex == -1) 
+            {
+
+               if (down) 
+               {
+
+                  m_iCloseIndexPushed = pitem->m_iItem;
+
+               }
+               else if (m_iCloseIndex == m_iCloseIndexPushed) 
+               {
+
+                  erase_tab(tab_id(pitem->m_iItem));
+
+                  mouse_motion_event(p, vector2_i32(0), false, ::user::e_key_none);
+
+               }
+
+            }
+            else
+            {
+
+               if (down) 
+               {
+
+                  bool bTabChanged = m_iActiveTab != pitem->m_iItem;
+
+                  m_iActiveTab = pitem->m_iItem;
+
+                  m_iTabDragIndex = m_bTabsDraggable ? pitem->m_iItem : -1;
+
+                  m_iTabDragStart = m_iTabDragEnd = p.x();
+
+                  m_iTabDragMinimum = m_iaTabOffsets[pitem->m_iItem];
+
+                  m_iTabDragMaximum = m_iaTabOffsets[pitem->m_iItem + 1];
+
+                  m_iCloseIndexPushed = -1;
+
+                  if (bTabChanged && m_callback) 
+                  {
+
+                     m_callback(selected_id());
+
+                     update_visibility();
+
+                  }
+
+               }
+               else if (m_iTabDragIndex != -1) 
+               {
+
+                  m_iTabDragIndex = -1;
+
+                  mouse_motion_event(p, vector2_i32(0), false, ::user::e_key_none);
+
+               }
+
+            }
+
+            bHandled = true;
+
+         }
+
+         if (!down) 
+         {
+
+            bHandled = m_iCloseIndexPushed != -1 || m_iTabDragIndex != -1;
+
+            m_iCloseIndexPushed = -1;
+
+            m_iTabDragIndex = -1;
+
+         }
+
+         bHandled = true;
+
+      }
+
+      bHandled |= Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+
+      return bHandled;
+
    }
 
-   return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
 
-}
+   bool TabWidgetBase::mouse_enter_event(const vector2_i32&/* p */, bool /* enter */, const ::user::e_key&)
+   {
 
+      if (m_bTabsCloseable && m_iCloseIndex >= 0)
+      {
+         m_iCloseIndex = -1;
+         m_iCloseIndexPushed = -1;
+         return true;
+      }
+      return false;
 
-TabWidget::TabWidget(Widget* parent, const ::scoped_string & font)
-   : TabWidgetBase(parent, font) { }
-
-void TabWidget::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
-   TabWidgetBase::perform_layout(pcontext, bRecalcTextSize);
-
-   int tab_height = (int)font_size() + 2 * m_theme->m_tab_button_vertical_padding;
-
-   for (Widget* child : m_children) {
-      child->set_position(Vector2i(m_padding, m_padding + tab_height + 1));
-      child->set_size(m_size - Vector2i(2 * m_padding, 2 * m_padding + tab_height + 1));
-      child->perform_layout(pcontext, bRecalcTextSize);
    }
-}
 
-void TabWidget::update_visibility() {
-   if (tab_count() == 0)
-      return;
-   for (Widget* child : m_children)
-      child->set_visible(false);
-   auto it = m_widgets.find(selected_id());
-   if (it != m_widgets.end())
-      it->second->set_visible(true);
-}
 
-Vector2i TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize) {
-   Vector2i base_size = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize),
-      content_size = Vector2i(0);
-   for (Widget* child : m_children)
-      content_size = max(content_size, child->preferred_size(pcontext, bRecalcTextSize));
+   bool TabWidgetBase::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   {
 
-   return Vector2i(
-      std::max(base_size.x(), content_size.x() + 2 * m_padding),
-      base_size.y() + content_size.y() + 2 * m_padding
-   );
-}
+      auto pitem = hit_test(p, false);
 
-int TabWidget::insert_tab(int index, const ::scoped_string & caption, Widget* widget) {
-   int id = TabWidgetBase::insert_tab(index, caption);
-   m_widgets[id] = widget;
-   update_visibility();
-   return id;
-}
+      if (m_iTabDragIndex != -1) 
+      {
 
-int TabWidget::append_tab(const ::scoped_string & caption, Widget* widget) {
-   widget->set_visible(false);
-   int id = TabWidgetBase::append_tab(caption);
-   m_widgets[id] = widget;
-   update_visibility();
-   return id;
-}
+         m_iTabDragEnd = p.x();
 
-void TabWidget::remove_tab(int id) {
-   TabWidgetBase::remove_tab(id);
-   Widget* widget = m_widgets[id];
-   m_widgets.erase(id);
-   if (m_remove_children)
-      remove_child(widget);
-}
+         if (::is_item_set_and_non_negative(pitem) && m_iTabDragIndex != pitem->m_iItem) 
+         {
 
+            auto i0 = ::minimum(m_iTabDragIndex, pitem->m_iItem);
+
+            auto i1 = ::maximum(m_iTabDragIndex, pitem->m_iItem);
+
+            auto mid = (m_iaTabOffsets[i0] + m_iaTabOffsets[i1 + 1]) / 2;
+
+            if ((m_iTabDragIndex < pitem->m_iItem && p.x() - m_pos.y() > mid) ||
+               (m_iTabDragIndex > pitem->m_iItem && p.x() - m_pos.y() < mid)) 
+            {
+            
+               ::swap(m_straTabCaptions[pitem->m_iItem], m_straTabCaptions[m_iTabDragIndex]);
+
+               ::swap(m_iaTabIds[pitem->m_iItem], m_iaTabIds[m_iTabDragIndex]);
+
+               //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
+               m_callbackLayout = [this](::nano2d::context* pcontext)
+               {
+
+                  TabWidgetBase::perform_layout(pcontext);
+
+               };
+
+               m_iTabDragIndex = pitem->m_iItem;
+
+               m_iActiveTab = pitem->m_iItem;
+
+               set_need_layout();
+
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
+         }
+
+         return true;
+
+      }
+
+      if (pitem->m_eelement != e_element_close_button)
+      {
+
+         pitem = nullptr;
+
+      }
+
+      if (pitem->m_iItem != m_iCloseIndex)
+      {
+
+         m_iCloseIndex = pitem->m_iItem;
+
+         m_iCloseIndexPushed = -1;
+
+         return true;
+
+      }
+
+      return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
+
+   }
+
+
+   TabWidget::TabWidget(Widget* parent, const ::scoped_string& font)
+      : TabWidgetBase(parent, font) 
+   { 
+   
+
+   }
+
+
+   void TabWidget::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   {
+
+      TabWidgetBase::perform_layout(pcontext, bRecalcTextSize);
+
+      int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
+
+      for (Widget* pwidgetChild : m_children) 
+      {
+
+         pwidgetChild->set_position(vector2_i32(m_iPadding, m_iPadding + tab_height + 1));
+
+         pwidgetChild->set_size(m_size - vector2_i32(2 * m_iPadding, 2 * m_iPadding + tab_height + 1));
+
+         pwidgetChild->perform_layout(pcontext, bRecalcTextSize);
+
+      }
+
+   }
+
+   void TabWidget::update_visibility() 
+   {
+
+      if (tab_count() == 0)
+      {
+
+         return;
+
+      }
+
+      for (Widget* pwidgetChild : m_children)
+      {
+
+         pwidgetChild->set_visible(false);
+
+      }
+
+      auto p = m_widgets.plookup(selected_id());
+
+      if (::is_set(p))
+      {
+
+         p->m_element2->set_visible(true);
+
+      }
+
+   }
+
+   vector2_i32 TabWidget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   {
+
+      auto sizeBase = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize);
+
+      vector2_i32 sizeContent;
+         
+      for (Widget* pwidgetChild : m_children)
+      {
+
+         sizeContent = sizeContent.maximum(pwidgetChild->preferred_size(pcontext, bRecalcTextSize));
+
+      }
+
+      return vector2_i32(
+         ::maximum(sizeBase.x(), sizeContent.x() + 2 * m_iPadding),
+         sizeBase.y() + sizeContent.y() + 2 * m_iPadding
+      );
+
+   }
+
+
+   ::index TabWidget::insert_tab(::index iIndex, const ::scoped_string& caption, Widget* pwidget) 
+   {
+
+      auto iId = TabWidgetBase::insert_tab(iIndex, caption);
+
+      m_widgets[iId] = pwidget;
+
+      update_visibility();
+
+      return iId;
+
+   }
+
+
+   ::index TabWidget::append_tab(const ::scoped_string& caption, Widget* pwidget) 
+   {
+
+      pwidget->set_visible(false);
+
+      auto iId = TabWidgetBase::append_tab(caption);
+
+      m_widgets[iId] = pwidget;
+
+      update_visibility();
+
+      return iId;
+
+   }
+
+
+   void TabWidget::erase_tab(::index iId) 
+   {
+
+      TabWidgetBase::erase_tab(iId);
+
+      Widget* pwidget = m_widgets[iId];
+
+      m_widgets.erase_item(iId);
+
+      if (m_bEraseChildren)
+      {
+
+         erase_child(pwidget);
+
+      }
+
+   }
 
 
 } // namespace nanoui
+
 
 

@@ -37,7 +37,7 @@ void simple_tab_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void simple_tab_impact::client_rectangle(RECTANGLE_I32 & rectangle, ::user::enum_layout elayout)
+void simple_tab_impact::client_rectangle(::rectangle_i32 & rectangle, ::user::enum_layout elayout)
 {
 
    ::user::impact::client_rectangle(rectangle, elayout);

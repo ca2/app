@@ -52,7 +52,7 @@ void defer_term_ui();
 //CLASS_DECL_ACME bool is_verbose();
 
 
-int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
+int_bool point_is_window_origin(::point_i32 ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -243,7 +243,7 @@ namespace apex
    //}
    
 
-   //index session::get_main_monitor(RECTANGLE_I32* prectangle)
+   //index session::get_main_monitor(::rectangle_i32* prectangle)
    //{
 
    //   return -1;
@@ -259,7 +259,7 @@ namespace apex
    //}
 
    
-   //bool  session::get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle)
+   //bool  session::get_monitor_rectangle(index iMonitor, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -275,7 +275,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
+   //bool  session::get_desk_monitor_rect(index iMonitor, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -283,7 +283,7 @@ namespace apex
    //}
 
 
-   //index session::get_main_workspace(RECTANGLE_I32* prectangle)
+   //index session::get_main_workspace(::rectangle_i32* prectangle)
    //{
 
    //   return -1;
@@ -299,7 +299,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_workspace_rectangle(index iWorkspace, RECTANGLE_I32* prectangle)
+   //bool  session::get_workspace_rectangle(index iWorkspace, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -315,7 +315,7 @@ namespace apex
    //}
   
    //
-   //bool  session::get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32* prectangle)
+   //bool  session::get_desk_workspace_rect(index iWorkspace, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -339,7 +339,7 @@ namespace apex
    //}
 
 
-   //bool session::workspace_to_monitor(RECTANGLE_I32* prectangle, index iMonitor, index iWorkspace)
+   //bool session::workspace_to_monitor(::rectangle_i32* prectangle, index iMonitor, index iWorkspace)
    //{
 
    //   return false;
@@ -347,7 +347,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_workspace(RECTANGLE_I32* prectangle, index iWorkspace, index iMonitor)
+   //bool session::monitor_to_workspace(::rectangle_i32* prectangle, index iWorkspace, index iMonitor)
    //{
 
    //   return false;
@@ -355,7 +355,7 @@ namespace apex
    //}
 
 
-   //bool session::workspace_to_monitor(RECTANGLE_I32* prectangle)
+   //bool session::workspace_to_monitor(::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -363,7 +363,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_workspace(RECTANGLE_I32* prectangle)
+   //bool session::monitor_to_workspace(::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -1297,7 +1297,7 @@ ret:
    }
 
 
-   void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
+   void session::defer_initialize_host_window(const ::rectangle_i32 * lpcrect)
    {
 
       //return ::success;

@@ -149,11 +149,11 @@ namespace xml
       if (escape)
       {
 
-         auto rangeOut = ps->get_string_buffer_range(range.size());
+         auto rangeOut = ps->get_range_buffer(range.size());
 
          rangeOut.escape_copy(escape, range);
 
-         ps->release_string_buffer_range(rangeOut);
+         ps->release_range_buffer(rangeOut);
 
       }
       else

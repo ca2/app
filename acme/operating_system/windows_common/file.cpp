@@ -495,11 +495,11 @@ namespace windows
          
       ::windows_path windowspathFinal;
 
-      auto pwszFinalPath = windowspathFinal.get_string_buffer(nCharacterCount);
+      auto pwszFinalPath = windowspathFinal.get_buffer(nCharacterCount);
 
       nCharacterCount = GetFinalPathNameByHandleW(m_handle, pwszFinalPath, nCharacterCount, VOLUME_NAME_DOS);
 
-      windowspathFinal.release_string_buffer(nCharacterCount);
+      windowspathFinal.release_buffer(nCharacterCount);
 
       return windowspathFinal;
 

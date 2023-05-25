@@ -322,9 +322,12 @@ public:
 
    }
 
-   constexpr auto offset_of(const_iterator p) const
+   
+   constexpr auto index_of(const_iterator p) const
    {
+
       return p - (const_iterator)this->begin();
+
    }
 
 

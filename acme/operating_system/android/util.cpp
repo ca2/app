@@ -47,7 +47,7 @@ int_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, c
    return ::::windows_definition::InvariantStrICmp(szTemp, lpszClassName) == 0;
 }
 
-oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, POINT_I32 pt)
+oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, ::point_i32 pt)
 {
    ASSERT(hWnd != nullptr);
 

@@ -1070,9 +1070,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       auto pmathematics = ::mathematics::mathematics();
 
-      pmathematics->gen_rand_alnum(strRndTitle.get_string_buffer(64),64);
+      pmathematics->gen_rand_alnum(strRndTitle.get_buffer(64),64);
 
-      strRndTitle.release_string_buffer();
+      strRndTitle.release_buffer();
 
       auto pacmedirectory = acmedirectory();
 

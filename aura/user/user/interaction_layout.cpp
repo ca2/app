@@ -142,7 +142,7 @@ namespace user
    //void interaction_layout::move_to(const point_i32 & point)
    //{
 
-   //   move_to(point.x, point.y);
+   //   move_to(point.x(), point.y());
 
    //}
 
@@ -445,7 +445,7 @@ namespace user
 
 
 
-   //void interaction_layout::window_rectangle(RECTANGLE_I32* prectangle) const
+   //void interaction_layout::window_rectangle(::rectangle_i32* prectangle) const
    //{
 
    //   ::set_rect_point_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);

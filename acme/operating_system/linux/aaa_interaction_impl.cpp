@@ -352,9 +352,9 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
-            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
+            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
             0,
             m_iDepth,
             InputOutput,
@@ -373,7 +373,7 @@ namespace linux
    //
    //            auto & uistate = m_puserinteraction->ui_state();
    //
-   //            uistate.m_point.set(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+   //            uistate.m_point.set(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
    //
    //            uistate.m_size.set(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
    //
@@ -383,11 +383,11 @@ namespace linux
    //
             {
 
-               m_puserinteraction->layout().sketch() = ::point_i32(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+               m_puserinteraction->layout().sketch() = ::point_i32(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
 
                m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
-               m_puserinteraction->screen_origin() = ::point_i32(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+               m_puserinteraction->screen_origin() = ::point_i32(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
 
             }
 
@@ -593,7 +593,7 @@ namespace linux
                      // initial (XCreateWindow) size and position maybe not be honored.
                      // so requesting the same change again in a effort to set the "docked/snapped" size and position.
 
-                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
 
                   }
 
@@ -760,7 +760,7 @@ namespace linux
       if (bMove)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
+         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x(), m_pointLastMove.y());
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -1200,7 +1200,7 @@ namespace linux
          if (hWnd != nullptr)
          {
             i32 nLen = ::GetWindowTextLength(hWnd);
-            ::GetWindowText(hWnd, rectangleString.get_string_buffer(nLen), nLen+1);
+            ::GetWindowText(hWnd, rectangleString.get_buffer(nLen), nLen+1);
             rectangleString.ReleaseBuffer();
          }
 
@@ -1524,16 +1524,16 @@ namespace linux
                ::rectangle rcMonitor;
                ::acmeacmesystem()->get_monitor_rectangle(0, &rcMonitor);
                if(rectangleWindow.left >= rcMonitor.left)
-                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+                  pmouse->m_point.x() += (::i32) rectangleWindow.left;
                if(rectangleWindow.top >= rcMonitor.top)
-                  pmouse->m_point.y += (::i32) rectangleWindow.top;
+                  pmouse->m_point.y() += (::i32) rectangleWindow.top;
             }
             else
             {
                if(rectangleWindow.left >= 0)
-                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+                  pmouse->m_point.x() += (::i32) rectangleWindow.left;
                if(rectangleWindow.top >= 0)
-                  pmouse->m_point.y += (::i32) rectangleWindow.top;
+                  pmouse->m_point.y() += (::i32) rectangleWindow.top;
             }
          }
 
@@ -4166,7 +4166,7 @@ namespace linux
 //   {
 //
 //      __s_throw(not_implemented());
-////      ::SetcaretPos(point.x, point.y);
+////      ::SetcaretPos(point.x(), point.y());
 //
 //   }
 //

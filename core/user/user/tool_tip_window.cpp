@@ -139,19 +139,19 @@ namespace user
          if(((m_ealign & AlignLeft) == AlignLeft) &&
                ((m_ealign & AlignTop) == AlignTop))
          {
-            m_pointOffset.x = + (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
-            m_pointOffset.y = + (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
+            m_pointOffset.x() = + (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
+            m_pointOffset.y() = + (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
          else if(((m_ealign & AlignRight) == AlignRight) &&
                  ((m_ealign & AlignTop) == AlignTop))
          {
-            m_pointOffset.x = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
-            m_pointOffset.y = + (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
+            m_pointOffset.x() = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
+            m_pointOffset.y() = + (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
          else
          {
-            m_pointOffset.x = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
-            m_pointOffset.y = - (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
+            m_pointOffset.x() = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
+            m_pointOffset.y() = - (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
          ::rectangle_i32 rectangleToolScreen;
          ptool->BaseToolTipGetRect(rectangleToolScreen);
@@ -217,7 +217,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangleTool, const ::string & pcsz)
+   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleTool, const ::string & pcsz)
    {
       
       pgraphics->set(m_pfont);
@@ -227,11 +227,11 @@ namespace user
       if(((m_ealign & AlignLeft) == AlignLeft) &&
             ((m_ealign & AlignTop) == AlignTop))
       {
-         prectangle->right = m_point.x - (m_point.x - rectangleTool.left) / 2;
+         prectangle->right = m_point.x() - (m_point.x() - rectangleTool.left) / 2;
 
          prectangle->left = (::i32) (prectangle->right - size.cx - m_sizeArrow.cx - 4);
 
-         prectangle->bottom = m_point.y - (m_point.y - rectangleTool.top) / 2;
+         prectangle->bottom = m_point.y() - (m_point.y() - rectangleTool.top) / 2;
 
          prectangle->top = (::i32) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
 
@@ -239,9 +239,9 @@ namespace user
       else if(((m_ealign & AlignRight) == AlignRight) &&
               ((m_ealign & AlignTop) == AlignTop))
       {
-         prectangle->left = m_point.x + (rectangleTool.right - m_point.x) / 2;
+         prectangle->left = m_point.x() + (rectangleTool.right - m_point.x()) / 2;
 
-         prectangle->bottom = m_point.y - (m_point.y - rectangleTool.top) / 2;
+         prectangle->bottom = m_point.y() - (m_point.y() - rectangleTool.top) / 2;
 
          prectangle->right = (::i32) (prectangle->left + size.cx + m_sizeArrow.cx + 4);
 
@@ -250,9 +250,9 @@ namespace user
       }
       else
       {
-         prectangle->left = prectangle->right + m_pointOffset.x;
+         prectangle->left = prectangle->right + m_pointOffset.x();
 
-         prectangle->top = prectangle->bottom + m_pointOffset.y;
+         prectangle->top = prectangle->bottom + m_pointOffset.y();
 
          prectangle->right = (::i32)(prectangle->left + size.cx + m_sizeArrow.cx + 4);
 
@@ -519,51 +519,51 @@ namespace user
       if(((m_ealign & AlignLeft) == AlignLeft) &&
          ((m_ealign & AlignTop) == AlignTop))
       {
-         pointa[0].x = rectangleClient.left;
-         pointa[0].y = rectangleClient.top;
-         pointa[1].x = rectangleClient.right - m_sizeArrow.cx;
-         pointa[1].y = rectangleClient.top;
-         pointa[2].x = rectangleClient.right - m_sizeArrow.cx;
-         pointa[2].y = rectangleClient.bottom - m_sizeArrow.cy * 2;
-         pointa[3].x = rectangleClient.right;
-         pointa[3].y = rectangleClient.bottom;
-         pointa[4].x = rectangleClient.right - m_sizeArrow.cx * 2;
-         pointa[4].y = rectangleClient.bottom - m_sizeArrow.cy;
-         pointa[5].x = rectangleClient.left;
-         pointa[5].y = rectangleClient.bottom - m_sizeArrow.cy;
+         pointa[0].x() = rectangleClient.left;
+         pointa[0].y() = rectangleClient.top;
+         pointa[1].x() = rectangleClient.right - m_sizeArrow.cx;
+         pointa[1].y() = rectangleClient.top;
+         pointa[2].x() = rectangleClient.right - m_sizeArrow.cx;
+         pointa[2].y() = rectangleClient.bottom - m_sizeArrow.cy * 2;
+         pointa[3].x() = rectangleClient.right;
+         pointa[3].y() = rectangleClient.bottom;
+         pointa[4].x() = rectangleClient.right - m_sizeArrow.cx * 2;
+         pointa[4].y() = rectangleClient.bottom - m_sizeArrow.cy;
+         pointa[5].x() = rectangleClient.left;
+         pointa[5].y() = rectangleClient.bottom - m_sizeArrow.cy;
 
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
          ((m_ealign & AlignTop) == AlignTop))
       {
-         pointa[0].x = rectangleClient.left + m_sizeArrow.cx;
-         pointa[0].y = rectangleClient.top;
-         pointa[1].x = rectangleClient.right;
-         pointa[1].y = rectangleClient.top;
-         pointa[2].x = rectangleClient.right;
-         pointa[2].y = rectangleClient.bottom - m_sizeArrow.cy;
-         pointa[3].x = rectangleClient.left + m_sizeArrow.cx * 2;
-         pointa[3].y = rectangleClient.bottom - m_sizeArrow.cy;
-         pointa[4].x = rectangleClient.left;
-         pointa[4].y = rectangleClient.bottom;
-         pointa[5].x = rectangleClient.left + m_sizeArrow.cx;
-         pointa[5].y = rectangleClient.bottom - m_sizeArrow.cy * 2;
+         pointa[0].x() = rectangleClient.left + m_sizeArrow.cx;
+         pointa[0].y() = rectangleClient.top;
+         pointa[1].x() = rectangleClient.right;
+         pointa[1].y() = rectangleClient.top;
+         pointa[2].x() = rectangleClient.right;
+         pointa[2].y() = rectangleClient.bottom - m_sizeArrow.cy;
+         pointa[3].x() = rectangleClient.left + m_sizeArrow.cx * 2;
+         pointa[3].y() = rectangleClient.bottom - m_sizeArrow.cy;
+         pointa[4].x() = rectangleClient.left;
+         pointa[4].y() = rectangleClient.bottom;
+         pointa[5].x() = rectangleClient.left + m_sizeArrow.cx;
+         pointa[5].y() = rectangleClient.bottom - m_sizeArrow.cy * 2;
 
       }
       else
       {
-         pointa[0].x = rectangleClient.left;
-         pointa[0].y = rectangleClient.top;
-         pointa[1].x = rectangleClient.left + m_sizeArrow.cx * 2;
-         pointa[1].y = rectangleClient.top + m_sizeArrow.cy;
-         pointa[2].x = rectangleClient.right;
-         pointa[2].y = pointa[1].y;
-         pointa[3].x = pointa[2].x;
-         pointa[3].y = rectangleClient.bottom;
-         pointa[4].x = rectangleClient.left + m_sizeArrow.cx;
-         pointa[4].y = pointa[3].y;
-         pointa[5].x = pointa[4].x;
-         pointa[5].y = rectangleClient.top + m_sizeArrow.cy * 2;
+         pointa[0].x() = rectangleClient.left;
+         pointa[0].y() = rectangleClient.top;
+         pointa[1].x() = rectangleClient.left + m_sizeArrow.cx * 2;
+         pointa[1].y() = rectangleClient.top + m_sizeArrow.cy;
+         pointa[2].x() = rectangleClient.right;
+         pointa[2].y() = pointa[1].y();
+         pointa[3].x() = pointa[2].x();
+         pointa[3].y() = rectangleClient.bottom;
+         pointa[4].x() = rectangleClient.left + m_sizeArrow.cx;
+         pointa[4].y() = pointa[3].y();
+         pointa[5].x() = pointa[4].x();
+         pointa[5].y() = rectangleClient.top + m_sizeArrow.cy * 2;
       }*/
 
       // rgn.CreatePolygonRgn(pointa, 6, ALTERNATE);
@@ -572,7 +572,7 @@ namespace user
 
 
 
-   bool tool_tip_window::GetToolRect(i32 iTool, RECTANGLE_I32 * prectangle)
+   bool tool_tip_window::GetToolRect(i32 iTool, ::rectangle_i32 * prectangle)
 
    {
       GetTool(iTool)->BaseToolTipGetRect(prectangle);
@@ -651,8 +651,8 @@ namespace user
       switch(eposition)
       {
       case PositionCenter:
-         m_point.x = (rectangle.left + rectangle.right) / 2;
-         m_point.y = (rectangle.top + rectangle.bottom) / 2;
+         m_point.x() = (rectangle.left + rectangle.right) / 2;
+         m_point.y() = (rectangle.top + rectangle.bottom) / 2;
          break;
       case PositionRandomTopRight:
          

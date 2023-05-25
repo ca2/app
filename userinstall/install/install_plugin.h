@@ -131,10 +131,10 @@ namespace install
       virtual string defer_get_plugin();
 
       using ::hotplugin::plugin::viewport_screen_to_client;
-      virtual void viewport_screen_to_client(POINT_I32 * ppt);
+      virtual void viewport_screen_to_client(::point_i32 * ppt);
       
       using ::hotplugin::plugin::viewport_client_to_screen;
-      virtual void viewport_client_to_screen(POINT_I32 * ppt);
+      virtual void viewport_client_to_screen(::point_i32 * ppt);
 
       virtual bool set_host(::hotplugin::host * phost);
 

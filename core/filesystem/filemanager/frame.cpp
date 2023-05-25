@@ -58,13 +58,15 @@ namespace filemanager
 
       pmessage->previous();
 
-      string str;
-
       ::filemanager::tab_impact * ptabimpact = get_typed_parent < ::filemanager::tab_impact >();
+      
       if (ptabimpact != nullptr)
       {
-         get_window_text(str);
-         ptabimpact->set_title_by_id(m_atomTab, str);
+         
+         auto strWindowText = get_window_text();
+
+         ptabimpact->set_title_by_id(m_atomTab, strWindowText);
+
       }
 
    }

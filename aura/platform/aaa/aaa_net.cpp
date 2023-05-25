@@ -61,7 +61,7 @@ string url_decode(const ::string & pszUrl,strsize iLen)
 
    string strDecode;
 
-   char * psz = strDecode.get_string_buffer(iLen * 4);
+   char * psz = strDecode.get_buffer(iLen * 4);
 
    strsize i = 0;
 
@@ -114,7 +114,7 @@ string url_decode(const ::string & pszUrl,strsize iLen)
       }
    }
 
-   strDecode.release_string_buffer(iLen);
+   strDecode.release_buffer(iLen);
 
    return strDecode;
 

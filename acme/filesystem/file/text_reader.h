@@ -452,7 +452,7 @@ public:
 
       string str;
 
-      auto pszBuffer = str.get_string_buffer(i);
+      auto pszBuffer = str.get_buffer(i);
 
       if (i == maximum_length && *psz != '\0')
       {
@@ -469,7 +469,7 @@ public:
 
       }
 
-      str.release_string_buffer(i);
+      str.release_buffer(i);
 
       return ::transfer(str);
 

@@ -1431,7 +1431,7 @@ typedef struct tagNMTTDISPINFOW {
 
 //WINCOMMCTRLAPI void WINAPI MenuHelp(::u32 uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) ::u32 *lpwIDs);
 //WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
-//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ RECTANGLE_I32 * lprc,_In_z_ const ::i32 *lpInfo);
+//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ ::rectangle_i32 * lprc,_In_z_ const ::i32 *lpInfo);
 
 #define MINSYSCOMMAND   SC_SIZE
 

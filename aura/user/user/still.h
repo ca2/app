@@ -30,7 +30,7 @@ namespace user
 
       ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;
-
+      ::status < ::color::color >         m_statuscolorText;
 
       still();
       ~still() override;
@@ -59,6 +59,12 @@ namespace user
 
       void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
       //virtual ::enum_check _001GetCheck() override;
+       
+      using ::user::interaction::get_color;
+      ::status < ::color::color > get_color(::user::style * pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) override; 
+
+
+      virtual void set_text_color(::status < ::color::color > statuscolor);
 
       //virtual bool is_pressed();
 
@@ -66,7 +72,7 @@ namespace user
 
       virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics);
 
-      //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
@@ -99,14 +105,14 @@ namespace user
 
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(RECTANGLE_I32 & rectangle);
+      virtual void BaseToolTipGetRect(::rectangle_i32 & rectangle);
 
       virtual i32 BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -114,6 +120,9 @@ namespace user
 
       void set_stock_icon(enum_stock_icon eicon) override;
       enum_stock_icon get_stock_icon() override;
+
+
+      void on_set_window_text() override;
 
 
    };

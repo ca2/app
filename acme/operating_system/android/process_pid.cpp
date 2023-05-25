@@ -72,7 +72,7 @@ string module_path_from_pid(unsigned int iPid)
    str = "/proc/" + as_string(iPid) + "/exe";
 
    /* the easiest case: we are in linux */
-   ssize_t s = readlink(pszBuffer,path,iSize);
+   ssize_t s = readlink(pszBuffer,(char *) (const char *) path,iSize);
 
    if(s == -1)
    {

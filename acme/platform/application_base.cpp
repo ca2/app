@@ -21,9 +21,9 @@ namespace acme
    application_base::~application_base()
    {
 
-      //::acme::acme::g_p->acme_finalize();
+      //::acme::acme::g_pacme->acme_finalize();
 
-      //::acme::acme::g_p->~acme();
+      //::acme::acme::g_pacme->~acme();
 
    }
 

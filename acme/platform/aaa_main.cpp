@@ -1889,7 +1889,7 @@ locale_t get_c_locale()
 //void acme_ref()
 //{
 //
-//   ::acme::acme::g_p->this_ref();
+//   ::acme::acme::g_pacme->this_ref();
 //
 //}
 

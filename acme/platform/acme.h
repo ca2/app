@@ -98,7 +98,7 @@ namespace acme
 
 #ifdef ANDROID
 
-      ::::critical_section m_criticalsectionOutputDebugStringA;
+      ::critical_section m_criticalsectionOutputDebugStringA;
 
 
 #endif

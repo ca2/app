@@ -2003,7 +2003,7 @@ CLASS_DECL_ACME::e_status get_last_status()
 //void acme_ref()
 //{
 //
-//   ::acme::acme::g_p->this_ref();
+//   ::acme::acme::g_pacme->this_ref();
 //
 //}
 

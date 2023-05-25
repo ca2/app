@@ -127,12 +127,6 @@
     <Filter Include="Source Files\user\appearance">
       <UniqueIdentifier>{db33bb51-5619-4f0e-a493-62f60a572ad1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system">
-      <UniqueIdentifier>{bc524458-9181-47f7-8e38-e19d9d52268b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\android">
-      <UniqueIdentifier>{673fbcb0-22fb-4cb0-812a-2385669ce1be}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{1319d443-e00f-4bee-9603-9264aa42ecd6}</UniqueIdentifier>
     </Filter>
@@ -1465,9 +1459,6 @@
     <ClCompile Include="user\user\main_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\message.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\message_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1545,12 +1536,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\_.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\_factory.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
     <ClCompile Include="windowing\text_editor_interface.cpp">
       <Filter>Source Files\windowing</Filter>

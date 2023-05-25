@@ -555,7 +555,7 @@ void system::TermSystem()
    //try
    //{
    
-   //   ::acme::acme::g_p->factory_close();
+   //   ::acme::acme::g_pacme->factory_close();
    
    //}
    //catch (...)

@@ -41,7 +41,7 @@ namespace factory
 //    CLASS_DECL_ACME critical_section * ::factory_critical_section()
 //    {
 //
-//       return &::acme::acme::g_p->factory_;
+//       return &::acme::acme::g_pacme->factory_;
 //
 //    }
 

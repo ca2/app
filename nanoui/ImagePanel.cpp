@@ -41,7 +41,7 @@ ImagePanel::ImagePanel(Widget * parent)
 vector2_i32 ImagePanel::grid_size() const
 {
    int n_cols = 1 + ::maximum(0,
-      (int)((m_size.x()() - 2 * m_iMargin - m_iThumbSize) /
+      (int)((m_size.x() - 2 * m_iMargin - m_iThumbSize) /
          (float)(m_iThumbSize + m_iSpacing)));
    int n_rows = ((int)m_images.size() + n_cols - 1) / n_cols;
    return vector2_i32(n_cols, n_rows);
@@ -51,13 +51,13 @@ int ImagePanel::index_for_position(const vector2_i32 & p) const {
    vector2_f32 pp = (vector2_f32(p - m_pos) - vector2_f32((float)m_iMargin)) /
       (float)(m_iThumbSize + m_iSpacing);
    float icon_region = m_iThumbSize / (float)(m_iThumbSize + m_iSpacing);
-   bool over_image = pp.x()() - std::floor(pp.x()()) < icon_region &&
-      pp.y()() - std::floor(pp.y()()) < icon_region;
+   bool over_image = pp.x() - std::floor(pp.x()) < icon_region &&
+      pp.y() - std::floor(pp.y()) < icon_region;
    vector2_i32 grid_pos(pp), grid = grid_size();
-   over_image &= grid_pos.x()() >= 0 && grid_pos.y()() >= 0 && pp.x()() >= 0 &&
-      pp.y()() >= 0 && grid_pos.x()() < grid.x()() &&
-      grid_pos.y()() < grid.y()();
-   return over_image ? (grid_pos.x()() + grid_pos.y()() * grid.x()()) : -1;
+   over_image &= grid_pos.x() >= 0 && grid_pos.y() >= 0 && pp.x() >= 0 &&
+      pp.y() >= 0 && grid_pos.x() < grid.x() &&
+      grid_pos.y() < grid.y();
+   return over_image ? (grid_pos.x() + grid_pos.y() * grid.x()) : -1;
 }
 
 
@@ -112,8 +112,8 @@ vector2_i32 ImagePanel::preferred_size(::nano2d::context * pcontext, bool bRecal
    vector2_i32 grid = grid_size();
    ((ImagePanel *)this)->_defer_load_image_directory(pcontext);
    return vector2_i32(
-      grid.x()() * m_iThumbSize + (grid.x()() - 1) * m_iSpacing + 2 * m_iMargin,
-      grid.y()() * m_iThumbSize + (grid.y()() - 1) * m_iSpacing + 2 * m_iMargin
+      grid.x() * m_iThumbSize + (grid.x() - 1) * m_iSpacing + 2 * m_iMargin,
+      grid.y() * m_iThumbSize + (grid.y() - 1) * m_iSpacing + 2 * m_iMargin
    );
 }
 
@@ -137,7 +137,7 @@ void ImagePanel::draw(::nano2d::context * pcontext)
 
    for (::index i = 0; i < m_images.size(); ++i) {
       vector2_i32 p = m_pos + vector2_i32(m_iMargin) +
-         vector2_i32((int)i % grid.x()(), (int)i / grid.x()()) * (m_iThumbSize + m_iSpacing);
+         vector2_i32((int)i % grid.x(), (int)i / grid.x()) * (m_iThumbSize + m_iSpacing);
       int imgw, imgh;
 
       if (pvscrollpanel)
@@ -145,16 +145,16 @@ void ImagePanel::draw(::nano2d::context * pcontext)
 
 
          ::rectangle_i32 rectangleViewableImagePanel(
-            pvscrollpanel->m_pos.x()(),
-            pvscrollpanel->m_pos.y()(),
-            pvscrollpanel->m_pos.x()() + pvscrollpanel->m_size.x()(),
-            pvscrollpanel->m_pos.y()() + pvscrollpanel->m_size.y()());
+            pvscrollpanel->m_pos.x(),
+            pvscrollpanel->m_pos.y(),
+            pvscrollpanel->m_pos.x() + pvscrollpanel->m_size.x(),
+            pvscrollpanel->m_pos.y() + pvscrollpanel->m_size.y());
 
          ::rectangle_i32 rectangleImageFinalPlacement(
-            p.x()(),
-            p.y()(),
-            p.x()() + m_iThumbSize,
-            p.y()() + m_iThumbSize);
+            p.x(),
+            p.y(),
+            p.x() + m_iThumbSize,
+            p.y() + m_iThumbSize);
 
          rectangleImageFinalPlacement.offset_y((int)-pvscrollpanel->scroll());
 
@@ -183,26 +183,26 @@ void ImagePanel::draw(::nano2d::context * pcontext)
       }
 
       ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
-         p.x()() + ix, p.y()() + iy, iw, ih, 0, m_iMouseIndex == (int)i ? 1.0f : 0.7f,
+         p.x() + ix, p.y() + iy, iw, ih, 0, m_iMouseIndex == (int)i ? 1.0f : 0.7f,
          m_images[i].m_element1);
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle((float)p.x()(), (float)p.y()(), (float)m_iThumbSize, (float)m_iThumbSize, 5);
+      pcontext->rounded_rectangle((float)p.x(), (float)p.y(), (float)m_iThumbSize, (float)m_iThumbSize, 5);
       pcontext->fill_paint(img_paint);
       pcontext->fill();
 
       ::nano2d::paint shadow_paint =
-         pcontext->box_gradient(p.x()() - 1.f, (float)p.y()(), m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
+         pcontext->box_gradient(p.x() - 1.f, (float)p.y(), m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
             ::color::RGBA_color(0, 0, 0, 128), ::color::RGBA_color(0, 0, 0, 0));
       pcontext->begin_path();
-      pcontext->rectangle(p.x()() - 5.f, p.y()() - 5.f, m_iThumbSize + 10.f, m_iThumbSize + 10.f);
-      pcontext->rounded_rectangle((float)p.x()(), (float)p.y()(), (float)m_iThumbSize, (float)m_iThumbSize, 6.f);
+      pcontext->rectangle(p.x() - 5.f, p.y() - 5.f, m_iThumbSize + 10.f, m_iThumbSize + 10.f);
+      pcontext->rounded_rectangle((float)p.x(), (float)p.y(), (float)m_iThumbSize, (float)m_iThumbSize, 6.f);
       pcontext->path_winding(::nano2d::e_solidity_hole);
       pcontext->fill_paint(shadow_paint);
       pcontext->fill();
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle(p.x()() + 0.5f, p.y()() + 0.5f, m_iThumbSize - 1.f, m_iThumbSize - 1.f, 4.f - 0.5f);
+      pcontext->rounded_rectangle(p.x() + 0.5f, p.y() + 0.5f, m_iThumbSize - 1.f, m_iThumbSize - 1.f, 4.f - 0.5f);
       pcontext->stroke_width(1.0f);
       pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 80));
       pcontext->stroke();

@@ -372,7 +372,7 @@ namespace user
    void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       ::rectangle_f64 rectangleClipBox;
 

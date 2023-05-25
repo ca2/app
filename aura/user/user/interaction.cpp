@@ -3977,7 +3977,7 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       scoped_restore(pgraphics->m_puserinteraction);
 
@@ -4285,7 +4285,7 @@ namespace user
    void interaction::_008CallOnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       try
       {
@@ -4384,7 +4384,7 @@ namespace user
       try
       {
 
-         //::draw2d::savedc k(pgraphics);
+         //::draw2d::save_context savecontext(pgraphics);
 
          //on_context_offset(pgraphics);
          //// while drawing layout can occur and machine z-order.
@@ -4546,7 +4546,7 @@ namespace user
 
       windowing_output_debug_string("\ndo_graphics : after check1");
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       windowing_output_debug_string("\ndo_graphics : after savedc");
 
@@ -4687,7 +4687,7 @@ namespace user
 
       {
 
-         ::draw2d::savedc k(pgraphics);
+         ::draw2d::save_context savecontext(pgraphics);
 
          try
          {
@@ -4711,7 +4711,7 @@ namespace user
 
          {
 
-            ::draw2d::savedc k(pgraphics);
+            ::draw2d::save_context savecontext(pgraphics);
 
             try
             {
@@ -5048,7 +5048,7 @@ namespace user
    void interaction::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       if (pgraphics->m_bDraw && needs_to_draw(pgraphics))
       {

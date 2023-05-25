@@ -33,7 +33,7 @@ public:
    //size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
    //size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
    //size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
-   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x()(), lparam.y()()) {}
+   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
    template < primitive_point POINT >
    size_type(const POINT & point) noexcept { this->cx = (UNIT_TYPE)point.x(); this->cy = (UNIT_TYPE)point.y(); }
    template < primitive_rectangle RECTANGLE >

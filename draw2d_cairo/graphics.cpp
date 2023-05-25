@@ -3981,7 +3981,7 @@ namespace draw2d_cairo
                                            const ::e_draw_text & edrawtext, PFN_PANGO_TEXT pfnPango)
    {
 
-      ::draw2d::savedc savedc(this);
+      ::draw2d::save_context savecontext(this);
 
       PangoFontDescription * pdesc = pfont->m_pdesc;
 

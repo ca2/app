@@ -101,3 +101,19 @@ inline auto left(const ::rectangle_f32& rectangle) { return rectangle.left; }
 inline auto top(const ::rectangle_f32& rectangle) { return rectangle.top; }
 inline auto left(const ::rectangle_f64& rectangle) { return rectangle.left; }
 inline auto top(const ::rectangle_f64& rectangle) { return rectangle.top; }
+
+
+
+template < raw_primitive_point RAW_PRIMITIVE_POINT, primitive_point PRIMITIVE_POINT >
+inline void copy(RAW_PRIMITIVE_POINT& rawprimitivepoint, const PRIMITIVE_POINT & primitivepoint)
+{
+
+   rawprimitivepoint.x = (decltype(rawprimitivepoint.x))primitivepoint.x();
+   rawprimitivepoint.y = (decltype(rawprimitivepoint.y))primitivepoint.y();
+
+}
+
+
+
+
+

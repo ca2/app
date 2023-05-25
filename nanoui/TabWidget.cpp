@@ -232,92 +232,97 @@ namespace nanoui
       if (m_colorBackground.fa() != 0.f) {
          pcontext->fill_color(m_colorBackground);
          pcontext->begin_path();
-         pcontext->rounded_rectangle(m_pos.x()() + .5f, m_pos.y()() + .5f + tab_height, (float)m_size.x()(),
-            m_size.y()() - tab_height - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+         pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + .5f + tab_height, (float)m_size.x(),
+            m_size.y() - tab_height - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
          pcontext->fill();
       }
 
       Widget::draw(pcontext);
 
       ::nano2d::paint tab_background_color = pcontext->linear_gradient(
-         (float)m_pos.x()(), m_pos.y()() + 1.f, (float)m_pos.x()(), (float)m_pos.y()() + tab_height,
+         (float)m_pos.x(), m_pos.y() + 1.f, (float)m_pos.x(), (float)m_pos.y() + tab_height,
          m_ptheme->m_colorButtonGradientTopPushed, m_ptheme->m_colorButtonGradientBottomPushed);
 
-      pcontext->save();
-      pcontext->intersect_scissor((float)m_pos.x()(), (float)m_pos.y()(), (float)m_size.x()(), (float)tab_height);
-      pcontext->font_size(font_size());
-      pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-      for (::index i = 0; i < m_straTabCaptions.size(); ++i) {
-         int x_pos = m_pos.x()() + m_iaTabOffsets[i],
-            y_pos = m_pos.y()(),
-            width = m_iaTabOffsets[i + 1] - m_iaTabOffsets[i];
-
-         if (i == (::index)m_iActiveTab) {
-            pcontext->begin_path();
-            pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-               tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
-            pcontext->stroke_color(m_ptheme->m_colorBorderLight);
-            pcontext->stroke();
-
-            pcontext->begin_path();
-            pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 0.5f, (float)width,
-               tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
-            pcontext->stroke_color(m_ptheme->m_colorBorderDark);
-            pcontext->stroke();
-         }
-         else {
-            pcontext->begin_path();
-            pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-               tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
-
-            pcontext->fill_paint(tab_background_color);
-            pcontext->fill();
-
-            pcontext->stroke_color(m_ptheme->m_colorBorderDark);
-            pcontext->stroke();
-         }
-         x_pos += m_ptheme->m_iHorizontalPaddingTabButton;
-         y_pos += m_ptheme->m_iVerticalPaddingTabButton + 1;
-         pcontext->fill_color(m_ptheme->m_colorText);
-         pcontext->font_face(m_font.c_str());
-
-         pcontext->text((float)x_pos, (float)y_pos, m_straTabCaptions[i]);
-
-         if (m_bTabsCloseable) {
-            x_pos = m_pos.x()() + m_iaTabOffsets[i + 1] -
-               m_ptheme->m_iHorizontalPaddingTabButton - m_iCloseButtonWidth + 5;
-            pcontext->font_face("icons");
-            pcontext->fill_color(i == (size_t)m_iCloseIndexPushed ? m_ptheme->m_colorTextShadow
-               : m_ptheme->m_colorText);
-            bool highlight = m_iCloseIndex == (int)i;
-            auto icon = highlight ? e_font_awesome_times_circle : e_font_awesome_times;
-            float sizeFixed = font_size() * (highlight ? 1.f : .70f),
-               offset_x = highlight ? 0.f : (sizeFixed * .40f),
-               offset_y = highlight ? 0.f : (sizeFixed * .21f);
-            pcontext->font_size(sizeFixed);
-            pcontext->text(x_pos + offset_x, y_pos + offset_y + .5f, get_utf8_character(icon).data());
-            pcontext->font_size(font_size());
-         }
-
-      }
-
-      if (m_iTabDragIndex != -1 && m_iTabDragStart != m_iTabDragEnd)
       {
 
-         auto x_pos = m_pos.x()() + m_iTabDragMinimum + m_iTabDragEnd - m_iTabDragStart;
+         ::nano2d::guard guard(pcontext);
+         //pcontext->save();
+         pcontext->intersect_scissor((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)tab_height);
+         pcontext->font_size(font_size());
+         pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
+         for (::index i = 0; i < m_straTabCaptions.size(); ++i) {
+            int x_pos = m_pos.x() + m_iaTabOffsets[i],
+               y_pos = m_pos.y(),
+               width = m_iaTabOffsets[i + 1] - m_iaTabOffsets[i];
 
-         pcontext->begin_path();
+            if (i == (::index)m_iActiveTab) {
+               pcontext->begin_path();
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
+                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->stroke_color(m_ptheme->m_colorBorderLight);
+               pcontext->stroke();
 
-         pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y()() + 1.5f, (float)(m_iTabDragMaximum - m_iTabDragMinimum),
-            tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->begin_path();
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 0.5f, (float)width,
+                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->stroke_color(m_ptheme->m_colorBorderDark);
+               pcontext->stroke();
+            }
+            else {
+               pcontext->begin_path();
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
+                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
 
-         pcontext->fill_color(::color::color(255, 255, 255, 30));
+               pcontext->fill_paint(tab_background_color);
+               pcontext->fill();
 
-         pcontext->fill();
+               pcontext->stroke_color(m_ptheme->m_colorBorderDark);
+               pcontext->stroke();
+            }
+            x_pos += m_ptheme->m_iHorizontalPaddingTabButton;
+            y_pos += m_ptheme->m_iVerticalPaddingTabButton + 1;
+            pcontext->fill_color(m_ptheme->m_colorText);
+            pcontext->font_face(m_font.c_str());
+
+            pcontext->text((float)x_pos, (float)y_pos, m_straTabCaptions[i]);
+
+            if (m_bTabsCloseable) {
+               x_pos = m_pos.x() + m_iaTabOffsets[i + 1] -
+                  m_ptheme->m_iHorizontalPaddingTabButton - m_iCloseButtonWidth + 5;
+               pcontext->font_face("icons");
+               pcontext->fill_color(i == (size_t)m_iCloseIndexPushed ? m_ptheme->m_colorTextShadow
+                  : m_ptheme->m_colorText);
+               bool highlight = m_iCloseIndex == (int)i;
+               auto icon = highlight ? e_font_awesome_times_circle : e_font_awesome_times;
+               float sizeFixed = font_size() * (highlight ? 1.f : .70f),
+                  offset_x = highlight ? 0.f : (sizeFixed * .40f),
+                  offset_y = highlight ? 0.f : (sizeFixed * .21f);
+               pcontext->font_size(sizeFixed);
+               pcontext->text(x_pos + offset_x, y_pos + offset_y + .5f, get_utf8_character(icon).data());
+               pcontext->font_size(font_size());
+            }
+
+         }
+
+         if (m_iTabDragIndex != -1 && m_iTabDragStart != m_iTabDragEnd)
+         {
+
+            auto x_pos = m_pos.x() + m_iTabDragMinimum + m_iTabDragEnd - m_iTabDragStart;
+
+            pcontext->begin_path();
+
+            pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y() + 1.5f, (float)(m_iTabDragMaximum - m_iTabDragMinimum),
+               tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+
+            pcontext->fill_color(::color::color(255, 255, 255, 30));
+
+            pcontext->fill();
+
+         }
+
+       //  pcontext->restore();
 
       }
-
-      pcontext->restore();
 
       auto x0 = m_iaTabOffsets[m_iActiveTab];
 
@@ -329,22 +334,26 @@ namespace nanoui
          /* Top border */
 
          pcontext->begin_path();
-         pcontext->move_to(m_pos.x()() + .5f, m_pos.y()() + tab_height + i + .5f);
-         pcontext->line_to(m_pos.x()() + x0 + 1.0f, m_pos.y()() + tab_height + i + .5f);
-         pcontext->move_to((float)(m_pos.x()() + x1), m_pos.y()() + tab_height + i + .5f);
-         pcontext->line_to(m_pos.x()() + m_size.x()() + .5f, m_pos.y()() + tab_height + i + .5f);
+         pcontext->move_to(m_pos.x() + .5f, m_pos.y() + tab_height + i + .5f);
+         pcontext->line_to(m_pos.x() + x0 + 1.0f, m_pos.y() + tab_height + i + .5f);
+         pcontext->move_to((float)(m_pos.x() + x1), m_pos.y() + tab_height + i + .5f);
+         pcontext->line_to(m_pos.x() + m_size.x() + .5f, m_pos.y() + tab_height + i + .5f);
          pcontext->stroke_width(1.0f);
          pcontext->stroke_color((i == 0) ? m_ptheme->m_colorBorderDark : m_ptheme->m_colorBorderLight);
          pcontext->stroke();
 
          /* Bottom + side borders */
-         pcontext->save();
-         pcontext->intersect_scissor((float)m_pos.x()(), (float)(m_pos.y()() + tab_height), (float)m_size.x()(), (float)m_size.y()());
-         pcontext->begin_path();
-         pcontext->rounded_rectangle(m_pos.x()() + .5f, m_pos.y()() + i + .5f, m_size.x()() - 1.f,
-            m_size.y()() - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
-         pcontext->stroke();
-         pcontext->restore();
+         {
+            ::nano2d::guard guard(pcontext);
+            //pcontext->save();
+            pcontext->intersect_scissor((float)m_pos.x(), (float)(m_pos.y() + tab_height), (float)m_size.x(), (float)m_size.y());
+            pcontext->begin_path();
+            pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + i + .5f, m_size.x() - 1.f,
+               m_size.y() - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+            pcontext->stroke();
+            //pcontext->restore();
+
+         }
 
       }
 
@@ -358,7 +367,7 @@ namespace nanoui
 
       int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
 
-      if (test_vertical && (p.y()() <= m_pos.y()() || p.y()() > m_pos.y()() + tab_height))
+      if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
       {
 
          pitem->m_eelement = e_element_none;
@@ -367,7 +376,7 @@ namespace nanoui
 
       }
 
-      int x = p.x()() - m_pos.x()();
+      int x = p.x() - m_pos.x();
 
       for (::index i = 0; i < m_iaTabOffsets.size() - 1; ++i) 
       {
@@ -382,8 +391,8 @@ namespace nanoui
             if (m_bTabsCloseable &&
                r < m_ptheme->m_iHorizontalPaddingTabButton + m_iCloseButtonWidth - 4 &&
                r > m_ptheme->m_iHorizontalPaddingTabButton - 4 &&
-               p.y()() - m_pos.y()() > m_ptheme->m_iVerticalPaddingTabButton &&
-               p.y()() - m_pos.y()() <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
+               p.y() - m_pos.y() > m_ptheme->m_iVerticalPaddingTabButton &&
+               p.y() - m_pos.y() <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
             {
 
                pitem->m_eelement = e_element_close_button;
@@ -526,7 +535,7 @@ namespace nanoui
 
                   m_iTabDragIndex = m_bTabsDraggable ? pitem->m_iItem : -1;
 
-                  m_iTabDragStart = m_iTabDragEnd = p.x()();
+                  m_iTabDragStart = m_iTabDragEnd = p.x();
 
                   m_iTabDragMinimum = m_iaTabOffsets[pitem->m_iItem];
 
@@ -603,7 +612,7 @@ namespace nanoui
       if (m_iTabDragIndex != -1) 
       {
 
-         m_iTabDragEnd = p.x()();
+         m_iTabDragEnd = p.x();
 
          if (::is_item_set_and_non_negative(pitem) && m_iTabDragIndex != pitem->m_iItem) 
          {
@@ -614,8 +623,8 @@ namespace nanoui
 
             auto mid = (m_iaTabOffsets[i0] + m_iaTabOffsets[i1 + 1]) / 2;
 
-            if ((m_iTabDragIndex < pitem->m_iItem && p.x()() - m_pos.y()() > mid) ||
-               (m_iTabDragIndex > pitem->m_iItem && p.x()() - m_pos.y()() < mid)) 
+            if ((m_iTabDragIndex < pitem->m_iItem && p.x() - m_pos.y() > mid) ||
+               (m_iTabDragIndex > pitem->m_iItem && p.x() - m_pos.y() < mid)) 
             {
             
                ::swap(m_straTabCaptions[pitem->m_iItem], m_straTabCaptions[m_iTabDragIndex]);
@@ -742,8 +751,8 @@ namespace nanoui
       }
 
       return vector2_i32(
-         ::maximum(sizeBase.x()(), sizeContent.x()() + 2 * m_iPadding),
-         sizeBase.y()() + sizeContent.y()() + 2 * m_iPadding
+         ::maximum(sizeBase.x(), sizeContent.x() + 2 * m_iPadding),
+         sizeBase.y() + sizeContent.y() + 2 * m_iPadding
       );
 
    }

@@ -940,7 +940,7 @@ namespace user
 
       }
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       ::draw2d::matrix mRot;
 

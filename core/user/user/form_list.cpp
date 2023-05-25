@@ -2449,7 +2449,7 @@ namespace user
             }
          ok_control:;
             //
-            //            ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
+            //            ::draw2d::save_context savecontext(pdrawitem->m_pgraphics);
             //
             //            on_context_offset(pdrawitem->m_pgraphics);
             //

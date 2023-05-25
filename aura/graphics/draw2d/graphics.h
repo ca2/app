@@ -1249,16 +1249,16 @@ namespace draw2d
       //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
 
       
-   protected:
+   //protected:
 
-      friend class savedc;
-      virtual i32 SaveDC();
-      virtual void RestoreDC(i32 nSavedDC);
+     // friend class savedc;
+      virtual i32 save_graphics_context();
+      virtual void restore_graphics_context(i32 nSavedContext);
 
    };
 
 
-   class CLASS_DECL_AURA savedc
+   class CLASS_DECL_AURA save_context
    {
    public:
 
@@ -1270,8 +1270,8 @@ namespace draw2d
       ::point_f64    m_pointOrigin;
       matrix         m_matrix;
 
-      savedc(graphics * graphics);
-      ~savedc();
+      save_context(graphics * graphics);
+      ~save_context();
 
 
    };

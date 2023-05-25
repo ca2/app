@@ -1134,7 +1134,7 @@ namespace user
 
       //   }
 
-      //   ::draw2d::savedc savedc(m_pgraphics);
+      //   ::draw2d::save_context savecontext(m_pgraphics);
 
       //   do_layout(m_pgraphics);
 

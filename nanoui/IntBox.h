@@ -146,7 +146,7 @@ namespace nanoui
          if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
          {
 
-            int value_delta = static_cast<int>((p.x()() - m_pointMouseDown.x()()) / float(10));
+            int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
 
             set_value(m_iMouseDownValue + value_delta * m_iIncrementValue);
 
@@ -179,7 +179,7 @@ namespace nanoui
          if (m_bSpinnable && !focused())
          {
 
-            int value_delta = (rel.y()() > 0) ? 1 : -1;
+            int value_delta = (rel.y() > 0) ? 1 : -1;
 
             set_value(value() + value_delta * m_iIncrementValue);
 

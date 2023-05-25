@@ -568,7 +568,7 @@ void TransformSkewX(float* t, float a)
 
 
 	// State handling
-	void context::save()
+	void context::save1()
 	{
 		//if (m_nStates >= NVG_MAX_STATES)
 		//	return;
@@ -581,7 +581,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 	
-	void context::restore()
+	void context::restore1()
 	{
 		
 		//restore();
@@ -592,7 +592,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	void context::reset()
+	void context::reset1()
 	{
 
 		::nano2d::state * state = __getState();

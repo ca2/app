@@ -3412,7 +3412,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (puserinteractionpointeraChild)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
       //if (0)
@@ -3507,7 +3507,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
 

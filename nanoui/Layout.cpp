@@ -258,9 +258,9 @@ namespace nanoui
 
          bool indent_cur = indent && !plabel;
 
-         height += sizeTarget.y()();
+         height += sizeTarget.y();
 
-         width = ::maximum(width, sizeTarget.x()() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
+         width = ::maximum(width, sizeTarget.x() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
 
          if (plabel)
          {
@@ -328,7 +328,7 @@ namespace nanoui
             {
 
                return vector2_i32(available_width - (indent_cur ? m_group_indent : 0),
-               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).y()());
+               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).y());
 
             });
 
@@ -338,7 +338,7 @@ namespace nanoui
 
          pwidgetChild->perform_layout(pcontext);
 
-         height += sizeTarget.y()();
+         height += sizeTarget.y();
 
          if (plabel)
          {

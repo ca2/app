@@ -170,8 +170,8 @@ NAMESPACE_END(detail)
          pwidget->set_editable(editable);
          pwidget->set_font_size((float)m_widget_font_size);
          vector2_i32 sizeFixed = pwidget->fixed_size();
-         pwidget->set_fixed_size(vector2_i32(sizeFixed.x()() != 0 ? sizeFixed.x()() : m_fixed_size.x()(),
-            sizeFixed.y()() != 0 ? sizeFixed.y()() : m_fixed_size.y()()));
+         pwidget->set_fixed_size(vector2_i32(sizeFixed.x() != 0 ? sizeFixed.x() : m_fixed_size.x(),
+            sizeFixed.y() != 0 ? sizeFixed.y() : m_fixed_size.y()));
          m_refresh_callbacks.add(refresh);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_variable_spacing);

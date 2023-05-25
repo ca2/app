@@ -43,11 +43,11 @@ bool Slider::mouse_motion_event(const vector2_i32 & p, const vector2_i32 & /* re
 
    }
 
-   const float kr =(m_size.y()() * 0.4f), kshadow = 3.f;
-   const float start_x = kr + kshadow + m_pos.x()() - 1.f;
-   const float width_x = m_size.x()() - 2.f * (kr + kshadow);
+   const float kr =(m_size.y() * 0.4f), kshadow = 3.f;
+   const float start_x = kr + kshadow + m_pos.x() - 1.f;
+   const float width_x = m_size.x() - 2.f * (kr + kshadow);
 
-   float value = (p.x()() - start_x) / width_x, old_value = m_value;
+   float value = (p.x() - start_x) / width_x, old_value = m_value;
    
    value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
    
@@ -75,13 +75,13 @@ bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, b
 
    }
 
-   const float kr = (m_size.y()() * 0.4f), kshadow = 3.f;
+   const float kr = (m_size.y() * 0.4f), kshadow = 3.f;
 
-   const float start_x = kr + kshadow + m_pos.x()() - 1;
+   const float start_x = kr + kshadow + m_pos.x() - 1;
 
-   const float width_x = m_size.x()() - 2 * (kr + kshadow);
+   const float width_x = m_size.x() - 2 * (kr + kshadow);
 
-   float value = (p.x()() - start_x) / width_x, old_value = m_value;
+   float value = (p.x() - start_x) / width_x, old_value = m_value;
    
    value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
    
@@ -96,21 +96,21 @@ bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, b
 
 void Slider::draw(::nano2d::context * pcontext) {
    vector2_f32 center = vector2_f32(m_pos) + vector2_f32(m_size) * 0.5f;
-   float kr = (m_size.y()() * 0.4f), kshadow = 3.f;
+   float kr = (m_size.y() * 0.4f), kshadow = 3.f;
 
-   float start_x = kr + kshadow + m_pos.x()();
-   float width_x = m_size.x()() - 2 * (kr + kshadow);
+   float start_x = kr + kshadow + m_pos.x();
+   float width_x = m_size.x() - 2 * (kr + kshadow);
 
    vector2_f32 knob_pos(start_x + (m_value - m_range.m_element1) /
       (m_range.m_element2 - m_range.m_element1) * width_x,
-      center.y()() + 0.5f);
+      center.y() + 0.5f);
 
    ::nano2d::paint bg = pcontext->box_gradient(
-      start_x, center.y()() - 3 + 1, width_x, 6, 3, 3,
+      start_x, center.y() - 3 + 1, width_x, 6, 3, 3,
                                                ::color::color(0, m_bEnabled ? 32 : 10),  ::color::color(0, m_bEnabled ? 128 : 210));
 
    pcontext->begin_path();
-   pcontext->rounded_rectangle(start_x, center.y()() - 3 + 1, width_x, 6, 2);
+   pcontext->rounded_rectangle(start_x, center.y() - 3 + 1, width_x, 6, 2);
    pcontext->fill_paint(bg);
    pcontext->fill();
 
@@ -119,8 +119,8 @@ void Slider::draw(::nano2d::context * pcontext) {
 
       pcontext->begin_path();
 
-      pcontext->rounded_rectangle(start_x + m_highlighted_range.m_element1 * m_size.x()(),
-         center.y()() - kshadow + 1,
+      pcontext->rounded_rectangle(start_x + m_highlighted_range.m_element1 * m_size.x(),
+         center.y() - kshadow + 1,
          width_x *
          (m_highlighted_range.m_element2 - m_highlighted_range.m_element1),
          kshadow * 2, 2);
@@ -132,33 +132,33 @@ void Slider::draw(::nano2d::context * pcontext) {
    }
 
    ::nano2d::paint knob_shadow =
-      pcontext->radial_gradient(knob_pos.x()(), knob_pos.y()(), kr - kshadow,
+      pcontext->radial_gradient(knob_pos.x(), knob_pos.y(), kr - kshadow,
          kr + kshadow,  ::color::color(0, 64), m_ptheme->m_colorTransparent);
 
    pcontext->begin_path();
-   pcontext->rectangle(knob_pos.x()() - kr - 5, knob_pos.y()() - kr - 5, kr * 2 + 10,
+   pcontext->rectangle(knob_pos.x() - kr - 5, knob_pos.y() - kr - 5, kr * 2 + 10,
       kr * 2 + 10 + kshadow);
-   pcontext->circle(knob_pos.x()(), knob_pos.y()(), kr);
+   pcontext->circle(knob_pos.x(), knob_pos.y(), kr);
    pcontext->path_winding(::nano2d::e_solidity_hole);
    pcontext->fill_paint(knob_shadow);
    pcontext->fill();
 
    ::nano2d::paint knob = pcontext->linear_gradient(
-      (float)m_pos.x()(), center.y()() - kr, (float)m_pos.x()(), center.y()() + kr,
+      (float)m_pos.x(), center.y() - kr, (float)m_pos.x(), center.y() + kr,
       m_ptheme->m_colorBorderLight, m_ptheme->m_colorBorderMedium);
    ::nano2d::paint knob_reverse = pcontext->linear_gradient(
-      (float)m_pos.x()(), center.y()() - kr, (float)m_pos.x()(), center.y()() + kr,
+      (float)m_pos.x(), center.y() - kr, (float)m_pos.x(), center.y() + kr,
       m_ptheme->m_colorBorderMedium,
       m_ptheme->m_colorBorderLight);
 
    pcontext->begin_path();
-   pcontext->circle(knob_pos.x()(), knob_pos.y()(), kr);
+   pcontext->circle(knob_pos.x(), knob_pos.y(), kr);
    pcontext->stroke_color(m_ptheme->m_colorBorderDark);
    pcontext->fill_paint(knob);
    pcontext->stroke();
    pcontext->fill();
    pcontext->begin_path();
-   pcontext->circle(knob_pos.x()(), knob_pos.y()(), kr / 2);
+   pcontext->circle(knob_pos.x(), knob_pos.y(), kr / 2);
    pcontext->fill_color( ::color::color(150, m_bEnabled ? 255 : 100));
    pcontext->stroke_paint(knob_reverse);
    pcontext->stroke();

@@ -2656,14 +2656,14 @@ namespace draw2d
    //}
 
 
-   i32 graphics::SaveDC()
+   i32 graphics::save_graphics_context()
    {
 
       return -1;
    }
 
 
-   void graphics::RestoreDC(i32)
+   void graphics::restore_graphics_context(i32)
    {
 
       //return false;
@@ -5682,7 +5682,7 @@ namespace draw2d
 
       //glContext(0, 0, width, height);
 
-      int n=SaveDC();
+      save_context savecontext(this);
 
       offset_origin(x, y);
 
@@ -5759,7 +5759,7 @@ namespace draw2d
 
       //glfwSwapBuffers(window);
 
-      RestoreDC(n);
+      
 
    }
 
@@ -5810,7 +5810,7 @@ namespace draw2d
    }
 
    
-   savedc::savedc(graphics * pgraphics)
+   save_context::save_context(graphics * pgraphics)
    {
       
       m_pgraphics = pgraphics;
@@ -5821,7 +5821,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
             
-            m_iSavedDC = m_pgraphics->SaveDC();
+            m_iSavedDC = m_pgraphics->save_graphics_context();
             m_sizeScaling = pgraphics->m_sizeScaling;
             m_pointOrigin = pgraphics->m_pointOrigin;
             m_matrix = pgraphics->m_matrix;
@@ -5837,7 +5837,7 @@ namespace draw2d
    }
 
 
-   savedc::~savedc()
+   save_context::~save_context()
    {
 
       try
@@ -5846,7 +5846,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
 
-            m_pgraphics->RestoreDC(m_iSavedDC);
+            m_pgraphics->restore_graphics_context(m_iSavedDC);
             m_pgraphics->m_sizeScaling = m_sizeScaling;
             m_pgraphics->m_matrix = m_matrix;
             m_pgraphics->m_pointOrigin = m_pointOrigin;

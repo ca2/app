@@ -86,7 +86,7 @@ namespace experience_core
 
       //return true;
       
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
       
 //      if (pdata->m_bVertical)
 //      {

@@ -284,7 +284,7 @@ namespace nano2d
          else if (paintimage.m_pimage)
          {
 
-            ::draw2d::savedc save(m_pgraphics);
+            ::draw2d::save_context savecontext(m_pgraphics);
 
             m_pgraphics->intersect_clip(m_pstate->m_ppath);
 
@@ -576,7 +576,7 @@ namespace nano2d
       //else if (paintimage.m_pimage)
       //{
 
-      //   ::draw2d::savedc save(m_pgraphics);
+      //   ::draw2d::save_context savecontext(m_pgraphics);
 
       //   m_pgraphics->intersect_clip(m_pstate->m_ppath);
 

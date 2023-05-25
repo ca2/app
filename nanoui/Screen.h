@@ -57,9 +57,9 @@ public:
    //   ::nano2d::context * m_nano2d_context = nullptr;
    //   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
    //   Cursor m_cursor;
-   ::pointer < Widget >       m_pwidgetMouseCapture;
-      ::pointer_array<Widget> m_focus_path;
-      Widget * m_pwidgetLeftButtonDown{nullptr};
+      ::pointer < Widget >                m_pwidgetMouseCapture;
+      ::pointer_array<Widget>             m_focus_path;
+      ::pointer < Widget >                m_pwidgetLeftButtonDown;
       ::pointer<::nano2d::font_sink>      m_pfontsink;
    //   vector2_i32 m_fbsize;
       float m_pixel_ratio;

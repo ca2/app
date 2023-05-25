@@ -76,7 +76,7 @@ namespace user
    void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       if (m_pcombo == nullptr)
       {

@@ -53,6 +53,7 @@ namespace nanoui
       vector2_i32             m_fixed_size;
       vector2_i32             m_offsetToApplyOnDraw;
       vector2_i32             m_offsetSizeToApplyOnDraw;
+      ::pointer<Widget>       m_pwidgetDragDropArena;
       ::pointer_array<Widget> m_children;
       //::index               m_iHoverCandidateChildStart;
       //::index               m_iHoverCandidateChildEnd;
@@ -169,14 +170,14 @@ namespace nanoui
       virtual void set_size(const vector2_i32& size);
 
       /// Return the width of the pwidget
-      int width() const { return m_size.x()(); }
+      int width() const { return m_size.x(); }
       /// Set the width of the pwidget
-      void set_width(int width) { m_size.x()() = width; }
+      void set_width(int width) { m_size.x() = width; }
 
       /// Return the height of the pwidget
-      int height() const { return m_size.y()(); }
+      int height() const { return m_size.y(); }
       /// Set the height of the pwidget
-      void set_height(int height) { m_size.y()() = height; }
+      void set_height(int height) { m_size.y() = height; }
 
 
       /// Whether or not this CheckBox is currently pushed.  See \::pointer nanoui::CheckBox::m_pushed.
@@ -210,16 +211,16 @@ namespace nanoui
       const vector2_i32& fixed_size() const { return m_fixed_size; }
 
       // Return the fixed width (see \::pointer set_fixed_size())
-      int fixed_width() const { return m_fixed_size.x()(); }
+      int fixed_width() const { return m_fixed_size.x(); }
       // Return the fixed height (see \::pointer set_fixed_size())
-      int fixed_height() const { return m_fixed_size.y()(); }
+      int fixed_height() const { return m_fixed_size.y(); }
       /// Set the fixed width (see \::pointer set_fixed_size())
-      void set_fixed_width(int width) { m_fixed_size.x()() = width; }
+      void set_fixed_width(int width) { m_fixed_size.x() = width; }
       /// Set the fixed height (see \::pointer set_fixed_size())
-      void set_fixed_height(int height) { m_fixed_size.y()() = height; }
+      void set_fixed_height(int height) { m_fixed_size.y() = height; }
 
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
-      bool visible() const;
+      virtual bool visible() const;
       /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
       void set_visible(bool bVisible);
       void toggle_visible();

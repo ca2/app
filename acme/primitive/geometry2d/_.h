@@ -1445,24 +1445,24 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////#endif
 //
 //
-////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x()(), lparam.y()()); }
+////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
 ////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
 ////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
 ////inline auto ::point_i32(const ::size_i32 & size) noexcept { return ::point_i32(size.cx, size.cy); }
 ////
-////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x()(), lparam.y()()); }
+////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
 ////inline auto __point64(const ::u32 u) noexcept { return ::point_i64((i64)__u32x(u), (i64)__u32y(u)); }
 ////inline auto __point64(const ::u64 u) noexcept { return ::point_i64((i64)__u64x(u), (i64)__u64y(u)); }
 ////inline auto __point64(const ::size_i64 & size) noexcept { return ::point_i64(size.cx, size.cy); }
 ////
 ////
-////inline auto __pointf(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x()(), (float)lparam.y()()); }
+////inline auto __pointf(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
 ////inline auto __pointf(const ::u32 u) noexcept { return ::point_f32((float)__u32x(u), (float)__u32y(u)); }
 ////inline auto __pointf(const ::u64 u) noexcept { return ::point_f32((float)__u64x(u), (float)__u64y(u)); }
 ////inline auto __pointf(const ::size_f32 & size) noexcept { return ::point_f32(size.cx, size.cy); }
 ////
 ////
-////inline auto __pointd(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x()(), lparam.y()()); }
+////inline auto __pointd(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
 ////inline auto __pointd(const ::u32 u) noexcept { return ::point_f64((double)__u32x(u), (double)__u32y(u)); }
 ////inline auto __pointd(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
 ////inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size.cx, size.cy); }

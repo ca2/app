@@ -22,8 +22,8 @@ namespace nanoui
 {
 
 
-   ColorPicker::ColorPicker(Widget* parent, const ::color::color& color) : 
-      PopupButton(parent, "") 
+   ColorPicker::ColorPicker(Widget* parent, const ::color::color& color) :
+      PopupButton(parent, "")
    {
 
       set_background_color(color);
@@ -50,32 +50,32 @@ namespace nanoui
       m_reset_button->set_text_color(color.contrasting_color());
       m_reset_button->set_fixed_size(vector2_i32(100, 20));
 
-      PopupButton::set_change_callback([&](bool) 
-      {
-      
-            if (m_pick_button->checked()) 
+      PopupButton::set_change_callback([&](bool)
+         {
+
+            if (m_pick_button->checked())
             {
-               
+
                set_color(colorBackground());
-            
+
                m_final_callback(colorBackground());
 
             }
 
          });
 
-      m_color_wheel->set_callback([&](const ::color::color& value) 
+      m_color_wheel->set_callback([&](const ::color::color& value)
          {
-         
-         m_pick_button->set_background_color(value);
-         
-         m_pick_button->set_text_color(value.contrasting_color());
-         
-         m_callback(value);
-         
-         m_ppopup->set_need_redraw();
 
-         m_ppopup->post_redraw();
+            m_pick_button->set_background_color(value);
+
+            m_pick_button->set_text_color(value.contrasting_color());
+
+            m_callback(value);
+
+            m_ppopup->set_need_redraw();
+
+            m_ppopup->post_redraw();
 
          });
 
@@ -101,13 +101,21 @@ namespace nanoui
          });
    }
 
-   ::color::color ColorPicker::color() const {
+
+   ::color::color ColorPicker::color() const
+   {
+
       return colorBackground();
+
    }
 
-   void ColorPicker::set_color(const ::color::color& color) {
+
+   void ColorPicker::set_color(const ::color::color& color)
+   {
+
       /* Ignore set_color() calls when the user is currently editing */
-      if (!m_bChecked) {
+      if (!m_bChecked)
+      {
          ::color::color fg = color.contrasting_color();
          set_background_color(color);
          set_text_color(fg);
@@ -119,10 +127,11 @@ namespace nanoui
          m_reset_button->set_background_color(color);
          m_reset_button->set_text_color(fg);
       }
+
    }
 
 
-
 } // namespace nanoui
+
 
 

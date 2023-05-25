@@ -107,13 +107,13 @@ namespace nanoui
 
       set_checked(false, e_source_selection);
       popup()->set_visible(false);
-      if (rel.y()() < 0) {
+      if (rel.y() < 0) {
          set_selected_index(::minimum(m_iSelectedIndex + 1, (int)(items().size() - 1)), e_source_selection);
          if (m_callback)
             m_callback(m_iSelectedIndex);
          return true;
       }
-      else if (rel.y()() > 0) {
+      else if (rel.y() > 0) {
          set_selected_index(::maximum(m_iSelectedIndex - 1, 0), e_source_user);
          if (m_callback)
             m_callback(m_iSelectedIndex);

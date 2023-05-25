@@ -9,7 +9,7 @@ public:
 
 
    using BASE_ARRAY_TYPE = array < RECTANGLE_TYPE >;
-   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE;
+   using RECTANGLE_BASE_TYPE = RECTANGLE_TYPE;
    using UNIT_TYPE = typename RECTANGLE_TYPE::UNIT_TYPE;
    using POINT_TYPE = typename RECTANGLE_TYPE::POINT_TYPE;
    using SIZE_TYPE = typename RECTANGLE_TYPE::SIZE_TYPE;

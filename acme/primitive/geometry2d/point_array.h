@@ -22,7 +22,7 @@ class point_array_base :
 public:
 
 
-   using POINT_BASE_TYPE = typename POINT_TYPE;
+   using POINT_BASE_TYPE = POINT_TYPE;
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
    using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;

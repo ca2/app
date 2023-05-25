@@ -12,18 +12,18 @@ class polygon_base :
 {
 public:
 
+
    using POLYGON_BASE_TYPE = point_array_base < POINT_TYPE >;
-   using POINT_BASE_TYPE = typename POINT_TYPE;
+   using POINT_BASE_TYPE = POINT_TYPE;
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
    using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
    //using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
-   bool                 m_bDirty;
-
-   bool                 m_bDirtyBoundingRect;
-   RECTANGLE_TYPE            m_rectangleBounding;
+   bool                    m_bDirty;
+   bool                    m_bDirtyBoundingRect;
+   RECTANGLE_TYPE          m_rectangleBounding;
 
 
    polygon_base();

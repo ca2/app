@@ -26,8 +26,8 @@ public:
    size_type(::std::nullptr_t) noexcept { this->cx = UNIT_TYPE{}; this->cy = UNIT_TYPE{}; }
    template < primitive_number CX, primitive_number CY >
    size_type(CX cx, CY cy) noexcept { this->cx = (UNIT_TYPE)cx; this->cy = (UNIT_TYPE)cy; }
-   template < primitive_number NUMBER >
-   size_type(NUMBER n) noexcept { this->cx = (UNIT_TYPE) n; this->cy = (UNIT_TYPE) n; }
+   template < primitive_number NUMBER_TYPE >
+   size_type(NUMBER_TYPE n) noexcept { this->cx = (UNIT_TYPE) n; this->cy = (UNIT_TYPE) n; }
    //size_type(::u32 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
    //size_type(::i64 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
    //size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
@@ -137,17 +137,17 @@ public:
    template < primitive_point POINT >
    inline size_type & operator-=(const POINT & point) noexcept { this->cx -= point.x(); this->cy -= point.y(); return *this; }
 
-   template < primitive_number NUMBER >
-   inline size_type & operator+=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx + n); this->cy = UNIT_TYPE(this->cy + n); return *this; }
+   template < primitive_number NUMBER_TYPE >
+   inline size_type & operator+=(NUMBER_TYPE n) noexcept { this->cx = UNIT_TYPE(this->cx + n); this->cy = UNIT_TYPE(this->cy + n); return *this; }
 
-   template < primitive_number NUMBER >
-   inline size_type & operator-=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx - n); this->cy = UNIT_TYPE(this->cy - n); return *this; }
+   template < primitive_number NUMBER_TYPE >
+   inline size_type & operator-=(NUMBER_TYPE n) noexcept { this->cx = UNIT_TYPE(this->cx - n); this->cy = UNIT_TYPE(this->cy - n); return *this; }
 
-   template < primitive_number NUMBER >
-   inline size_type & operator*=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx * n); this->cy = UNIT_TYPE(this->cy * n); return *this; }
+   template < primitive_number NUMBER_TYPE >
+   inline size_type & operator*=(NUMBER_TYPE n) noexcept { this->cx = UNIT_TYPE(this->cx * n); this->cy = UNIT_TYPE(this->cy * n); return *this; }
 
-   template < primitive_number NUMBER >
-   inline size_type & operator/=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx / n); this->cy = UNIT_TYPE(this->cy / n); return *this; }
+   template < primitive_number NUMBER_TYPE >
+   inline size_type & operator/=(NUMBER_TYPE n) noexcept { this->cx = UNIT_TYPE(this->cx / n); this->cy = UNIT_TYPE(this->cy / n); return *this; }
 
    inline void set_size(UNIT_TYPE cx, UNIT_TYPE cy) noexcept {this->cx = cx; this->cy = cy; }
    inline void set_size(const size_type & size_type) noexcept { set_size(size_type.cx, size_type.cy); }

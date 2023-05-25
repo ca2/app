@@ -117,8 +117,8 @@ public:
    }
 
 
-   template < primitive_number NUMBER >
-   pole_type& operator *= (NUMBER n)
+   template < primitive_number NUMBER_TYPE >
+   pole_type& operator *= (NUMBER_TYPE n)
    {
 
       this->x() *= n;
@@ -130,8 +130,8 @@ public:
    }
 
 
-   template < primitive_number NUMBER >
-   pole_type operator * (NUMBER n)
+   template < primitive_number NUMBER_TYPE >
+   pole_type operator * (NUMBER_TYPE n)
    {
 
       pole_type pole(*this);

@@ -83,7 +83,6 @@ using ellipse = ::ellipse_f64;
 #include "_rectangle.h"
 #include "_size.h"
 #include "_shift.h"
-#include "_polygon.h"
 #include "_ellipse.h"
 
 

@@ -31,7 +31,7 @@ image_drawing_options::image_drawing_options(const image_drawing_options & image
 }
 
 
-image_drawing_options::image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.), enum_image_selection eimageselection = e_image_selection_default) :
+image_drawing_options::image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement, const ::point_f64 & pointAlign, enum_image_selection eimageselection) :
    m_rectangleTarget(rectangleTarget),
    m_eplacement(eplacement),
    m_pointAlign(pointAlign),
@@ -126,7 +126,7 @@ image_drawing::image_drawing(const ::image_source & imagesource) :
 
       auto rectangle = source_rectangle();
 
-      rectangle.align_rate(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
+      rectangle.align_rate(m_pointAlign.x(), m_pointAlign.y(), m_rectangleTarget);
 
       return rectangle;
 
@@ -136,7 +136,7 @@ image_drawing::image_drawing(const ::image_source & imagesource) :
 
       auto rectangle = source_rectangle();
 
-      rectangle.aspect_align_fit(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
+      rectangle.aspect_align_fit(m_pointAlign.x(), m_pointAlign.y(), m_rectangleTarget);
 
       return rectangle;
 

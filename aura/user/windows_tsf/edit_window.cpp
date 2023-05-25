@@ -853,7 +853,7 @@ namespace tsf
        //int     nParts[2];
        //HDC     hdc;
        //HFONT   hFont;
-       //SIZE_I32    size;
+       //::size_i32    size;
        //TCHAR   szComposition[MAX_PATH];
 
        //hdc = GetDC(m_hwndStatus);

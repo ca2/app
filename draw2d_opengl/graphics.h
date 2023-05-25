@@ -113,8 +113,8 @@ namespace draw2d_opengl
       void DeleteDC() override;
 
       // Device-Context Functions
-      i32 SaveDC()override;
-      void RestoreDC(i32 nSavedDC)override;
+      i32 save_graphics_context()override;
+      void restore_graphics_context(i32 iSavedContext)override;
       //i32 GetDeviceCaps(i32 nIndex) override;
       ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags) override;
       ::u32 GetBoundsRect(rectangle_f64 * rectangleBounds, ::u32 flags) override;

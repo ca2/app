@@ -18,7 +18,7 @@
 #include "framework.h"
 #include "acme/exception/not_implemented.h"
 #include "nano2d/draw2d_context.h"
-//#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 //#include <stdlib.h>
 //#include <stdio.h>

@@ -1271,7 +1271,7 @@ namespace user
 //#endif
 
 
-   bool toolbar_control::GetMaxSize(::SIZE_I32 * pSize)
+   bool toolbar_control::GetMaxSize(::size_i32 * pSize)
    {
 //#ifdef WINDOWS_DESKTOP
 //

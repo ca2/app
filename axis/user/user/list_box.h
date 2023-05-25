@@ -47,7 +47,7 @@ namespace user
 
       virtual void _001OnDrawComboList(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize);
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32 * psize);
 
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 

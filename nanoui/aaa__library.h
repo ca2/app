@@ -30,7 +30,7 @@
  * \brief Determine whether an icon ID is a font-based icon (e.g. from ``entypo.ttf``).
  *
  * \rst
- * See :func:`nanoui::::nano2d::_is_image_icon` for details.
+ * See :func:`nanoui::nano2d::_is_image_icon` for details.
  * \endrst
  *
  * \param value

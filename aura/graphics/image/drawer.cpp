@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "drawer.h"
 #include "drawing.h"
+#include "image.h"
 
 
 void image_drawer::draw(const image_drawing & imagedrawing)

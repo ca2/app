@@ -33,7 +33,7 @@
  ASSERT(hCommands != nullptr);
 
  const char * lpszCommands = (const char *)::GlobalLock(hCommands);
- ENSURE_THROW(lpszCommands != nullptr, ::::windows_definition::ThrowMemoryException() );
+ ENSURE_THROW(lpszCommands != nullptr, ::windows_definition::ThrowMemoryException() );
  //      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
  ::GlobalUnlock(hCommands);
  }
@@ -54,7 +54,7 @@
  ASSERT(hAdvise != nullptr);
 
  DDEADVISE* lpAdvise = (DDEADVISE*)::GlobalLock(hAdvise);
- ENSURE_THROW(lpAdvise != nullptr, ::::windows_definition::ThrowMemoryException() );
+ ENSURE_THROW(lpAdvise != nullptr, ::windows_definition::ThrowMemoryException() );
  char szItem[80];
  szItem[0] = '\0';
 

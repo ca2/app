@@ -29,7 +29,7 @@ namespace account
       spa_login            m_login;
       simple_graphics      m_graphics;
       simple_bitmap        m_bitmap;
-      SIZE_I32                 m_size;
+      ::size_i32                 m_size;
       ::point_i32                m_point;
       bool                 m_bLButtonDown;
       ::point_i32                m_pointLButtonDown;

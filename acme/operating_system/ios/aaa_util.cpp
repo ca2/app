@@ -36,7 +36,7 @@
  // do expensive classname compare next
  char szCompare[_countof("combobox")+1];
  ::GetClassName(hWnd, szCompare, _countof(szCompare));
- return ::::windows_definition::InvariantStrICmp(szCompare, "combobox") == 0;
+ return ::windows_definition::InvariantStrICmp(szCompare, "combobox") == 0;
  }
 
  int_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const char * lpszClassName)
@@ -44,7 +44,7 @@
  ASSERT(::is_window(hWnd));
  char szTemp[32];
  ::GetClassName(hWnd, szTemp, _countof(szTemp));
- return ::::windows_definition::InvariantStrICmp(szTemp, lpszClassName) == 0;
+ return ::windows_definition::InvariantStrICmp(szTemp, lpszClassName) == 0;
  }
 
  oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, ::point_i32 point_i32)

@@ -630,7 +630,7 @@ namespace acme
 #endif
 
 #ifndef UNIVERSAL_WINDOWS
-      //virtual bool process_contains_module(string & strImage, ::::process_identifier processidentifier, const ::string & pszLibrary);
+      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
       //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
 #endif
 

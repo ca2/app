@@ -173,7 +173,7 @@ ref_array < CScriptVarLink > allocatedLinks;
 
 void mark_allocated(CScriptVar *v)
 {
-   allocatedVars.push_back(v);
+   allocatedVars.add(v);
 }
 
 void mark_deallocated(CScriptVar *v)
@@ -190,7 +190,7 @@ void mark_deallocated(CScriptVar *v)
 
 void mark_allocated(CScriptVarLink *v)
 {
-   allocatedLinks.push_back(v);
+   allocatedLinks.add(v);
 }
 
 void mark_deallocated(CScriptVarLink *v)
@@ -1642,7 +1642,7 @@ void tinyjs::execute(const string &code)
    callstack.clear();
 #endif
    scopes.clear();
-   scopes.push_back(root);
+   scopes.add(root);
    try
    {
       bool execute = true;
@@ -1677,7 +1677,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
    callstack.clear();
 #endif
    scopes.clear();
-   scopes.push_back(root);
+   scopes.add(root);
    CScriptVarLink *v = 0;
    try
    {
@@ -1834,9 +1834,9 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
       // execute function!
       // add the function's execute space to the symbol table so we can recurse
       CScriptVarLink *returnVarLink = functionRoot->addChild(TINYJS_RETURN_VAR);
-      scopes.push_back(functionRoot);
+      scopes.add(functionRoot);
 #ifdef TINYJS_callstack
-      callstack.push_back(function->name + " from " + l->getPosition());
+      callstack.add(function->name + " from " + l->getPosition());
 #endif
 
       if (function->payload->isNative())

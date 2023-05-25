@@ -40,21 +40,21 @@ public:
    size_type(const RECTANGLE & rectangle) noexcept { this->cx = (UNIT_TYPE)::width(rectangle); this->cy = (UNIT_TYPE)::height(rectangle); }
    template < primitive_size SIZE >
    size_type(const SIZE & size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const SIZE_I64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const SIZE_F32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const SIZE_F64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const SIZE_I32* psize) noexcept : size_type(*psize) {}
-   //size_type(const SIZE_I64* psize) noexcept : size_type(*psize) {}
-   //size_type(const SIZE_F32* psize) noexcept : size_type(*psize) {}
-   //size_type(const SIZE_F64* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::size_i64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const ::size_f32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const ::size_f64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const ::size_i32* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::size_i64* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::size_f32* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::size_f64* psize) noexcept : size_type(*psize) {}
 #ifdef __APPLE__
 //   size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
 //   size_type(const CGSize *psize) noexcept : size_type(*psize) {}
 #endif
 
 
-   //operator SIZE_I32* () noexcept { return this; }
-   //operator const SIZE_I32* () const noexcept { return this; }
+   //operator ::size_i32* () noexcept { return this; }
+   //operator const ::size_i32* () const noexcept { return this; }
    operator bool () const noexcept { return is_set(); }
 
    //constexpr NUMBER cx() const { return this->cx; }

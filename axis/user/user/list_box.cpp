@@ -546,7 +546,7 @@ namespace user
    }
 
 
-   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32 * psize)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

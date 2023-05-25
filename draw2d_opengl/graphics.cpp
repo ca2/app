@@ -3085,7 +3085,7 @@ namespace draw2d_opengl
 
    void graphics::DPtoHIMETRIC(::size_f64 * psize)
    {
-//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 //
 //      double nMapMode;
 //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3120,7 +3120,7 @@ namespace draw2d_opengl
 
    void graphics::HIMETRICtoDP(::size_f64 * psize)
    {
-//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 //
 //      double nMapMode;
 //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3155,7 +3155,7 @@ namespace draw2d_opengl
 
    void graphics::LPtoHIMETRIC(::size_f64 * psize)
    {
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //LPtoDP(LPSIZE32);
       //DPtoHIMETRIC(LPSIZE32);
@@ -3164,7 +3164,7 @@ namespace draw2d_opengl
 
    void graphics::HIMETRICtoLP(::size_f64 * psize)
    {
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //HIMETRICtoDP(LPSIZE32);
       //DPtoLP(LPSIZE32);
@@ -4609,7 +4609,7 @@ namespace draw2d_opengl
    void graphics::LPtoDP(::size_f64 *LPSIZE32) 
    {
 
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //size_i32 sizeWinExt = GetWindowExt();
       //size_i32 sizeVpExt = get_context_extents();
@@ -4622,7 +4622,7 @@ namespace draw2d_opengl
    void graphics::DPtoLP(::size_f64  * psize)
    {
 
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //size_i32 sizeWinExt = GetWindowExt();
       //size_i32 sizeVpExt = get_context_extents();
@@ -4819,7 +4819,7 @@ namespace draw2d_opengl
 
       //::pointer<font>pfont = m_pfont;
 
-      //SIZE_I32 s = { 0 };
+      //::size_i32 s = { 0 };
 
       //::GetTextExtentPointW(pfont->m_hdcFont, wstr, wstr.get_length(), &s);
 

@@ -388,7 +388,7 @@ namespace user
    //   return false;
    //}
 
-   //void interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 * pptDst,SIZE_I32 * psize,
+   //void interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 * pptDst,::size_i32 * psize,
    //      ::draw2d::graphics * pDCSrc,::point_i32 * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,u32 dwFlags)
    //{
    //   __UNREFERENCED_PARAMETER(pDCDst);

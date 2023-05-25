@@ -24,7 +24,7 @@ inline bool nano2d_is_image_icon(int value) { return value < 1024; }
  * \brief Determine whether an icon ID is a font-based icon (e.g. from ``entypo.ttf``).
  *
  * \rst
- * See :func:`nanoui::::nano2d::_is_image_icon` for details.
+ * See :func:`nanoui::nano2d::_is_image_icon` for details.
  * \endrst
  *
  * \param value

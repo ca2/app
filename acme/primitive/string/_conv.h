@@ -105,7 +105,7 @@ constexpr void __tosz(INTEGRAL i, CHARACTER * & p, int base, enum_digit_case edi
 
 }
 
-//::::pair <int,int> ia;
+//::pair <int,int> ia;
 
 
 

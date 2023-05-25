@@ -489,7 +489,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
 //
 
     // void write(const ::point_i32 & point) ;
-    // void write(const SIZE_I32 & size) ;
+    // void write(const ::size_i32 & size) ;
     // void write(const ::rectangle_i32 &rectangle) ;
 
 

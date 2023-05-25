@@ -104,7 +104,7 @@ namespace user
 
       virtual void __on_draw_ensure_sel_visible();
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::SIZE_I32 * psize) override;
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32 * psize) override;
 
 
       virtual void update_data(bool bSaveAndValidate) override;

@@ -48,7 +48,7 @@ namespace nanoui
        * Button is ``"Pick"``.  You can change it using
        * \::pointer nanoui::ColorPicker::set_pick_button_caption if you need.
        *
-       * The ::color::color of this Button will not affect \::pointer nanoui::ColorPicker::::color::color
+       * The ::color::color of this Button will not affect \::pointer nanoui::ColorPicker::color::color
        * until the user has actively selected by clicking this pick button.
        * Similarly, the \::pointer nanoui::ColorPicker::m_callback function is only
        * called when a user selects a memory_new ::color::color using by clicking this Button.

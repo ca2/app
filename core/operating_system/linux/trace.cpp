@@ -25,7 +25,7 @@ static void TraceDDE(const ::string & pszPrefix, const MESSAGE* pMsg)
 
       const ::scoped_string & scopedstrCommands = (const ::string &)::GlobalLock(hCommands);
 
-      ENSURE_THROW(pszCommands != nullptr, ::::windows_definition::ThrowMemoryException() );
+      ENSURE_THROW(pszCommands != nullptr, ::windows_definition::ThrowMemoryException() );
 
 //      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", pszPrefix, pszCommands);
 
@@ -49,7 +49,7 @@ static void TraceDDE(const ::string & pszPrefix, const MESSAGE* pMsg)
 
       DDEADVISE* pAdvise = (DDEADVISE*)::GlobalLock(hAdvise);
 
-      ENSURE_THROW(pAdvise != nullptr, ::::windows_definition::ThrowMemoryException() );
+      ENSURE_THROW(pAdvise != nullptr, ::windows_definition::ThrowMemoryException() );
 
       char szItem[80];
       szItem[0] = '\0';

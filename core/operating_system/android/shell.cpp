@@ -290,7 +290,7 @@ namespace android
 //            nullptr,
 //            lpiextractimage)))
 //         {
-//            SIZE_I32 s;
+//            ::size_i32 s;
 //            s.cx = 48;
 //            s.cy = 48;
 //            ::u32 dwDepth = 32;

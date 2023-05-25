@@ -700,7 +700,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE_I32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,::size_i32 * psize)
 {
 
    pgraphics->FillSolidRect(0, 0, psizecx, psize->cy, rgb(84, 90, 80));
@@ -794,7 +794,7 @@ public:
          if(bEmpty)
             str = "L";
 
-         SIZE_I32 sizeItem = g->get_text_extent(str);
+         ::size_i32 sizeItem = g->get_text_extent(str);
 
          int x = bTab ? 25 : 0;
 

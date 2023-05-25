@@ -591,8 +591,8 @@ namespace draw2d_cairo
 
             ::pointer<rectangle_item> prectangleitem = m_pitem;
 
-            cairorectangleint.x() = prectangleitem->m_rectangle.left;
-            cairorectangleint.y() = prectangleitem->m_rectangle.top;
+            cairorectangleint.x = prectangleitem->m_rectangle.left;
+            cairorectangleint.y = prectangleitem->m_rectangle.top;
             cairorectangleint.width = prectangleitem->m_rectangle.width();
             cairorectangleint.height = prectangleitem->m_rectangle.height();
 

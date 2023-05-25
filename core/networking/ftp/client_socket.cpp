@@ -2094,7 +2094,7 @@ auto tickStart = ::time::now();
    int client_socket::FileSize(const string& strPath, long& lSize)
    {
       reply Reply;
-      if (!SendCommand(command::SIZE_I32(), { strPath } , Reply))
+      if (!SendCommand(command::size_i32(), { strPath } , Reply))
          return FTP_ERROR;
       lSize = atoi(Reply.Value().substr(4));
       return SimpleErrorCheck(Reply);

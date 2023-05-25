@@ -681,6 +681,9 @@
     <ClCompile Include="user\user\interaction_listener.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\image\drawing.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">

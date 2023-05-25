@@ -809,7 +809,7 @@
 ////}
 ////
 ////
-////void stream::read(SIZE_I32 & size)
+////void stream::read(::size_i32 & size)
 ////{
 ////
 ////   throw ::exception(error_io);

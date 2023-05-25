@@ -22,7 +22,7 @@ namespace gen
       const char * lpcszType)
    {
 
-      HINSTANCE hinst = ::::windows_definition::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+      HINSTANCE hinst = ::windows_definition::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
       if(hinst == nullptr)
          return false;
       return ReadResource(hinst, storage, nID, lpcszType);

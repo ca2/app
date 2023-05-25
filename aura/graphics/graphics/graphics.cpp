@@ -6,6 +6,7 @@
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/image.h"
 
 
 namespace graphics

@@ -99,7 +99,7 @@ public:
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
 //   // void write(const ::point_i32 & point) ;
-//   // void write(const SIZE_I32 & size) ;
+//   // void write(const ::size_i32 & size) ;
 //   // void write(const ::rectangle_i32 &rectangle) ;
 //
 //   text_stream& operator <<(const ::ansi_character * psz);

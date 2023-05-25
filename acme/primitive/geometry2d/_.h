@@ -1025,7 +1025,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-//struct SIZE_I64;
+//struct ::size_i64;
 //struct ::point_i64;
 //struct ::rectangle_i64;
 ////::size_i32;
@@ -1041,30 +1041,30 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //typedef uchar      byte;
 //
 //struct ::point_i64;
-//struct SIZE_I64;
+//struct ::size_i64;
 //struct ::rectangle_i64;
 //struct ::point_f64;
-//struct SIZE_F64;
+//struct ::size_f64;
 //struct ::rectangle_f64;
 //
 //
 //
-//using point_i32 = point_type < ::point_i32, SIZE_I32, ::rectangle_i32 >;
-//using point_i64 = point_type < ::point_i64, SIZE_I64, ::rectangle_i64 >;
-//using point_f32 = point_type < ::point_f32, SIZE_F32, ::rectangle_f32 >;
-//using point_f64 = point_type < ::point_f64, SIZE_F64, ::rectangle_f64 >;
+//using point_i32 = point_type < ::point_i32, ::size_i32, ::rectangle_i32 >;
+//using point_i64 = point_type < ::point_i64, ::size_i64, ::rectangle_i64 >;
+//using point_f32 = point_type < ::point_f32, ::size_f32, ::rectangle_f32 >;
+//using point_f64 = point_type < ::point_f64, ::size_f64, ::rectangle_f64 >;
 //
 //
-//using size_i32 = size_type < SIZE_I32, ::point_i32, ::rectangle_i32 >;
-//using size_i64 = size_type < SIZE_I64, ::point_i64, ::rectangle_i64 >;
-//using size_f32 = size_type < SIZE_F32, ::point_f32, ::rectangle_f32 >;
-//using size_f64 = size_type < SIZE_F64, ::point_f64, ::rectangle_f64 >;
+//using size_i32 = size_type < ::size_i32, ::point_i32, ::rectangle_i32 >;
+//using size_i64 = size_type < ::size_i64, ::point_i64, ::rectangle_i64 >;
+//using size_f32 = size_type < ::size_f32, ::point_f32, ::rectangle_f32 >;
+//using size_f64 = size_type < ::size_f64, ::point_f64, ::rectangle_f64 >;
 //
 //
-//using rectangle_i32 = rectangle_type < ::rectangle_i32, ::point_i32, SIZE_I32 >;
-//using rectangle_i64 = rectangle_type < ::rectangle_i64, ::point_i64, SIZE_I64 >;
-//using rectangle_f32 = rectangle_type < ::rectangle_f32, ::point_f32, SIZE_F32 >;
-//using rectangle_f64 = rectangle_type < ::rectangle_f64, ::point_f64, SIZE_F64 >;
+//using rectangle_i32 = rectangle_type < ::rectangle_i32, ::point_i32, ::size_i32 >;
+//using rectangle_i64 = rectangle_type < ::rectangle_i64, ::point_i64, ::size_i64 >;
+//using rectangle_f32 = rectangle_type < ::rectangle_f32, ::point_f32, ::size_f32 >;
+//using rectangle_f64 = rectangle_type < ::rectangle_f64, ::point_f64, ::size_f64 >;
 //
 //
 //using point_i32_array = point_array_base < point_i32 >;
@@ -1171,10 +1171,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool is_empty(SIZE_I32 & size) { return size.cx <= 0 || size.cy <= 0; }
-////inline bool is_empty(SIZE_I64 & size) { return size.cx <= 0 || size.cy <= 0; }
-////inline bool is_empty(SIZE_F32 & size) { return size.cx <= 0.f || size.cy <= 0.f; }
-////inline bool is_empty(SIZE_F64 & size) { return size.cx <= 0. || size.cy <= 0.; }
+////inline bool is_empty(::size_i32 & size) { return size.cx <= 0 || size.cy <= 0; }
+////inline bool is_empty(::size_i64 & size) { return size.cx <= 0 || size.cy <= 0; }
+////inline bool is_empty(::size_f32 & size) { return size.cx <= 0.f || size.cy <= 0.f; }
+////inline bool is_empty(::size_f64 & size) { return size.cx <= 0. || size.cy <= 0.; }
 //
 //
 //

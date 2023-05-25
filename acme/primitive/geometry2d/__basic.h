@@ -49,7 +49,7 @@ inline double area(double cx, double cy) { return (cx < 0. && cy < 0. ? -1. : 1.
 
 
 
-struct SIZE_I64;
+struct ::size_i64;
 struct ::point_i64;
 struct ::rectangle_i64;
 //::size_i32;
@@ -65,10 +65,10 @@ struct ::rectangle_i64;
 typedef uchar      byte;
 
 struct ::point_i64;
-struct SIZE_I64;
+struct ::size_i64;
 struct ::rectangle_i64;
 struct ::point_f64;
-struct SIZE_F64;
+struct ::size_f64;
 struct ::rectangle_f64;
 
 
@@ -169,10 +169,10 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool is_empty(SIZE_I32 & size) { return size.cx <= 0 || size.cy <= 0; }
-//inline bool is_empty(SIZE_I64 & size) { return size.cx <= 0 || size.cy <= 0; }
-//inline bool is_empty(SIZE_F32 & size) { return size.cx <= 0.f || size.cy <= 0.f; }
-//inline bool is_empty(SIZE_F64 & size) { return size.cx <= 0. || size.cy <= 0.; }
+//inline bool is_empty(::size_i32 & size) { return size.cx <= 0 || size.cy <= 0; }
+//inline bool is_empty(::size_i64 & size) { return size.cx <= 0 || size.cy <= 0; }
+//inline bool is_empty(::size_f32 & size) { return size.cx <= 0.f || size.cy <= 0.f; }
+//inline bool is_empty(::size_f64 & size) { return size.cx <= 0. || size.cy <= 0.; }
 
 
 

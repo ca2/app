@@ -694,6 +694,7 @@
     <ClCompile Include="graphics\image\context_image.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
     <ClCompile Include="graphics\image\drawer.cpp" />
+    <ClCompile Include="graphics\image\drawing.cpp" />
     <ClCompile Include="graphics\image\dynamic.cpp" />
     <ClCompile Include="graphics\image\extension.cpp" />
     <ClCompile Include="graphics\image\fastblur.cpp" />

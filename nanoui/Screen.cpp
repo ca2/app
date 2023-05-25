@@ -698,7 +698,7 @@ namespace nanoui
       clear(pcontext);
    }
    //
-   //void Screen::::nano2d::_flush() {
+   //void Screen::nano2d::_flush() {
    //   NVGparams * params = ::nano2d::InternalParams(ctx);
    //   params->renderFlush(params->userPtr);
    //   params->renderContext(params->userPtr, m_size[0], m_size[1], m_pixel_ratio);

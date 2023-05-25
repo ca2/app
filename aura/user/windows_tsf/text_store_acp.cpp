@@ -1130,7 +1130,7 @@ namespace tsf
        //dwEnd = (::u32)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpEnd, 0);
        //
        ////calculate the width of the last character
-       //SIZE_I32    size;
+       //::size_i32    size;
        //GetTextExtentPoint32W(hdc, pwszText + acpEnd, 1, &size);
        //rc.right = LOWORD(dwEnd) + size.cx;
        //rc.bottom = HIWORD(dwEnd);

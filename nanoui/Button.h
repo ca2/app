@@ -66,8 +66,8 @@ namespace nanoui
        * The icon to display with this Button.  If not ``0``, may either be a
        * picture icon, or one of the icons enumerated in
        * :::pointer:`file_nanoui_entypo.h`.  The kind of icon (image or Entypo)
-       * is determined by the functions :func:`nanoui::::nano2d::IsImageIcon` and its
-       * reciprocal counterpart :func:`nanoui::::nano2d::IsFontIcon`.
+       * is determined by the functions :func:`nanoui::nano2d::IsImageIcon` and its
+       * reciprocal counterpart :func:`nanoui::nano2d::IsFontIcon`.
        * \endrst
        */
       int m_icon;

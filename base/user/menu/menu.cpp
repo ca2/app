@@ -774,7 +774,7 @@ namespace user
 
       }
 
-      m_size.cx = (int) (m_iaColumnWidth.get_total()
+      m_size.cx = (int) (m_iaColumnWidth.get_sum()
                   + rectangleMargin.left + rectangleMargin.right
                   + rectangleBorder.left + rectangleBorder.right
                   + rectanglePadding.left + rectanglePadding.right);

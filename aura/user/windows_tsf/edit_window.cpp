@@ -565,7 +565,7 @@ namespace tsf
    //{
    //    OutputDebugString(TEXT("edit_window::_OnSetFocus\n"));
    //    
-   //    SetFocus(m_hwndEdit);
+   //    XXXSetFocus(m_hwndEdit);
    //
    //    return 0;
    //}
@@ -582,7 +582,7 @@ namespace tsf
        OutputDebugString(TEXT("edit_window::_OnEditSetFocus\n"));
     
    #ifndef USE_ASSOC_FOCUS
-       m_pthreadmgr->SetFocus(m_pDocMgr);
+       m_pthreadmgr->XXXSetFocus(m_pDocMgr);
    #endif
 
        return 0;

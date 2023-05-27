@@ -497,7 +497,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //   m_strCommandLine = pszCommandLine;
 //
-//   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+//   //m_edisplay = windows_show_window_to_edisplay(edisplay, XXXm_eactivation);
 //
 //   //m_poslocal = nullptr;
 //

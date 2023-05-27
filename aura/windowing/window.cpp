@@ -32,6 +32,8 @@ namespace windowing
 
       m_bMessageOnlyWindow = false;
 
+      m_bUpdateScreenSynchronously = true;
+
    }
 
 
@@ -563,7 +565,7 @@ namespace windowing
 
 
    // the active interaction_impl applies only to top-level (frame windows)
-   ::user::interaction * window::GetActiveWindow()
+   ::user::interaction * window::get_active_window()
    {
 
       throw ::interface_only();
@@ -573,12 +575,12 @@ namespace windowing
    }
 
 
-   ::user::interaction * window::SetActiveWindow()
+   void window::set_active_window()
    {
 
       throw ::interface_only();
 
-      return nullptr;
+      //return nullptr;
 
    }
 
@@ -1011,12 +1013,12 @@ namespace windowing
    }
 
 
-   void window::set_active_window()
+   /*void window::set_active_window()
    {
 
       throw ::interface_only();
 
-   }
+   }*/
 
 
    void window::bring_to_front()

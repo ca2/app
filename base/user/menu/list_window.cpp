@@ -205,7 +205,7 @@ namespace user
 
       string str;
 
-      layout_buttons(m_pmenuitem, iMaxWidth + 4, rectangle, rectangleClient);
+      layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleClient);
 
       auto & puiClose = m_pitemClose->m_puserinteraction;
 

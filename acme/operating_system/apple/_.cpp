@@ -290,7 +290,7 @@ i64 oswindow_id(oswindow w)
 //      
 //   }
 //   
-//   return oswindow->m_pimpl->ShowWindow(iShow);
+//   return oswindow->m_pimpl->show_window(iShow);
 //   
 //}
 

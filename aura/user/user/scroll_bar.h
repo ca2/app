@@ -42,7 +42,7 @@ namespace user
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool GetTrackRect(::rectangle_i32* prectangle, ::draw2d::graphics_pointer & pgraphics);
+      virtual ::status < ::rectangle_i32 > get_track_rectangle(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual ::color::color scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement);

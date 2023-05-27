@@ -98,7 +98,7 @@ namespace prompt
 //         utf8_to_unicode(itema[0]->m_filepathFinal),
 //         nullptr,
 //         utf8_to_unicode(itema[0]->m_filepathFinal.folder()),
-//         e_display_restored);
+//         e_display_normal);
 //
 //#else
 //

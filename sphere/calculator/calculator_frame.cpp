@@ -113,7 +113,7 @@ namespace calculator
       ::u32 nShow;
       if(bShow)
       {
-         nShow = e_display_restored;
+         nShow = e_display_normal;
       }
       else
       {

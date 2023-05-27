@@ -65,7 +65,7 @@ int_bool enable_window(oswindow hwnd, int_bool bEnable);
 //void get_main_screen_rectangle(RECT32 * prect);
 
 
-int_bool SetForegroundWindow(oswindow window);
+int_bool set_foreground_window(oswindow window);
 int_bool BringWindowToTop(oswindow window);
 
 void ns_redraw_window(oswindow window);

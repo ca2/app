@@ -560,7 +560,7 @@ namespace user
       client_rectangle(rectangleClient);
       ::rectangle_i32 rectangleWindow;
       window_rectangle(rectangleWindow);
-      rectangleWindow+=screen_to_client();
+      screen_to_client()(rectangleWindow);
       rectangleClient.offset(-rectangleWindow.left, -rectangleWindow.top);
       
       //pgraphics->exclude_clip();
@@ -732,7 +732,7 @@ namespace user
 //            else if (swpFlags & SWP_SHOWWINDOW)
 //            {
 //
-//               display(e_display_restored, e_activation_no_activate);
+//               display(e_display_normal, e_activation_no_activate);
 //
 //            }
 //
@@ -751,7 +751,7 @@ namespace user
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
-      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pmessage->m_lparam.m_lparam;
+      size_parent_layout * playout = (size_parent_layout *) pmessage->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
 
@@ -763,12 +763,12 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         ::copy(rectangle, playout->rectangle);
+         ::copy(rectangle, playout->m_rectangle);
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 
          // get maximum requested size_i32
-         u32 dwMode = playout->bStretch ? LM_STRETCH : 0;
+         u32 dwMode = playout->m_bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
          {
@@ -804,42 +804,59 @@ namespace user
 
          if (uStyle & CBRS_ORIENT_HORZ)
          {
-            playout->sizeTotal.cy += size.cy;
 
-            playout->sizeTotal.cx = maximum(playout->sizeTotal.cx, size.cx);
+            playout->m_sizeTotal.cy += size.cy;
+
+            playout->m_sizeTotal.cx = maximum(playout->m_sizeTotal.cx, size.cx);
 
             if (uStyle & CBRS_ALIGN_TOP)
-               playout->rectangle.top += size.cy;
-
-            else if (uStyle & CBRS_ALIGN_BOTTOM)
             {
-               rectangle.top = rectangle.bottom - size.cy;
-               playout->rectangle.bottom -= size.cy;
+
+               playout->m_rectangle.top += size.cy;
 
             }
+            else if (uStyle & CBRS_ALIGN_BOTTOM)
+            {
+
+               rectangle.top = rectangle.bottom - size.cy;
+
+               playout->m_rectangle.bottom -= size.cy;
+
+            }
+
          }
          else if (uStyle & CBRS_ORIENT_VERT)
          {
-            playout->sizeTotal.cx += size.cx;
 
-            playout->sizeTotal.cy = maximum(playout->sizeTotal.cy, size.cy);
+            playout->m_sizeTotal.cx += size.cx;
+
+            playout->m_sizeTotal.cy = maximum(playout->m_sizeTotal.cy, size.cy);
 
             if (uStyle & CBRS_ALIGN_LEFT)
-               playout->rectangle.left += size.cx;
-
-            else if (uStyle & CBRS_ALIGN_RIGHT)
             {
-               rectangle.left = rectangle.right - size.cx;
-               playout->rectangle.right -= size.cx;
+
+               playout->m_rectangle.left += size.cx;
 
             }
+            else if (uStyle & CBRS_ALIGN_RIGHT)
+            {
+
+               rectangle.left = rectangle.right - size.cx;
+
+               playout->m_rectangle.right -= size.cx;
+
+            }
+
          }
          else
          {
+
             ASSERT(false);      // can never happen
+
          }
 
          rectangle.right = rectangle.left + size.cx;
+
          rectangle.bottom = rectangle.top + size.cy;
 
          // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
@@ -857,11 +874,11 @@ namespace user
 
          window_rectangle(rectangleOld);
 
-         rectangleOld += puiParent->screen_to_client();
+         puiParent->screen_to_client()(rectangleOld);
 
          place(rectangle);
 
-         display(e_display_restored, e_activation_no_activate);
+         display(e_display_normal, e_activation_no_activate);
 
       }
 

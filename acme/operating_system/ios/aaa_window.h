@@ -20,7 +20,7 @@ int is_window(oswindow oswindow);
 int IsChild(oswindow oswindowParent, ::oswindow oswindowCandidateChildOrDescendant);
 // oswindow get_parent(::oswindow oswindow);
 // oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent);
-int ShowWindow(::oswindow oswindow, i32 nCmdShow);
+int show_window(::oswindow oswindow, i32 nCmdShow);
 //i32 GetWindowLongA(::oswindow oswindow, i32 nIndex);
 //i32 SetWindowLongA(::oswindow oswindow, i32 nIndex, i32 l);
 int client_to_screen(::oswindow oswindow, ::point_i32 * lppoint);

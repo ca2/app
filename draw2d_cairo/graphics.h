@@ -31,8 +31,8 @@ namespace draw2d_cairo
    public:
 
 
-      int                        m_iSaveDC;
-      int                        m_iSaveDCPositiveClip;
+      int                        m_iSaveContext;
+      int                        m_iSaveContextPositiveClip;
       cairo_t *                  m_pdc;
       i32                        m_iType;
       bool                       m_bPrinting;

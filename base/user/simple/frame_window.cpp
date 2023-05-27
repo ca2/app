@@ -1512,7 +1512,7 @@ void simple_frame_window::ToggleFullScreen()
    if (layout().is_full_screen())
    {
 
-      display(e_display_restored);
+      display(e_display_normal);
 
    }
    else
@@ -1940,7 +1940,7 @@ void simple_frame_window::_001OnActivateApp(::message::message* pmessage)
    //   //   if (layout().is_iconic())
    //   //   {
 
-   //   //      display(e_display_restored);
+   //   //      display(e_display_normal);
 
    //   //   }
    //   //   
@@ -2218,7 +2218,7 @@ void simple_frame_window::on_frame_position()
       if (const_layout().design().display() == ::e_display_iconic)
       {
 
-         display(e_display_restored);
+         display(e_display_normal);
 
       }
 
@@ -2994,7 +2994,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 //{
 //
-//   SetActiveWindow();      // activate us first !
+//   set_active_window();      // activate us first !
 //   ::u32 nFiles = ::DragQueryFile(hDropInfo, (::u32)-1, nullptr, 0);
 //
 //   ::file::path_array patha;
@@ -3728,7 +3728,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer& pgraphics)
 //   {
 //      if (layout().is_full_screen())
 //      {
-//         display(e_display_restored);
+//         display(e_display_normal);
 //         return true;
 //      }
 //      ::pointer<::user::interaction>puserinteractionParentFrame = get_parent_frame();

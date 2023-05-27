@@ -1383,7 +1383,7 @@ namespace android
       {
          // clicking on floating frame when it does not have
          // focus itself -- activate the toplevel frame instead.
-         EnsureTopLevel()->SetForegroundWindow();
+         EnsureTopLevel()->set_foreground_window();
       }
    }
 
@@ -1525,7 +1525,7 @@ namespace android
    //   case SC_NEXTWINDOW:
    //   if (LOWORD(lparam) == VK_F6 && pParent != nullptr)
    //   {
-   //   pParent->SetFocus();
+   //   pParent->XXXSetFocus();
    //   return true;
    //   }
    //   break;
@@ -1546,14 +1546,14 @@ namespace android
    //   // and focus after sending it.
    //   oswindow hWndSave = get_handle();
    //   oswindow hWndFocus = ::GetFocus();
-   //   pParent->SetActiveWindow();
+   //   pParent->set_active_window();
    //   pParent->send_message(WM_SYSCOMMAND, nID, lparam);
 
    //   // be very careful here...
    //   if (::is_window(hWndSave))
-   //   ::SetActiveWindow(hWndSave);
+   //   ::XXXSetActiveWindow(hWndSave);
    //   if (::is_window(hWndFocus))
-   //   ::SetFocus(hWndFocus);
+   //   ::XXXSetFocus(hWndFocus);
    //   }
    //   }
    //   return true;
@@ -2452,7 +2452,7 @@ namespace android
 //
 //            /*XMapWindow(m_oswindow->display(), m_oswindow->window());*/
 //
-//            ::show_window(get_handle(), e_display_restored);
+//            ::show_window(get_handle(), e_display_normal);
 //
 //         }
 //
@@ -2729,7 +2729,7 @@ namespace android
    //   if (m_puserinteraction != nullptr)
    //   {
 
-   //      m_puserinteraction->m_edisplay = ::e_display_restored;
+   //      m_puserinteraction->m_edisplay = ::e_display_normal;
 
    //   }
 
@@ -3426,7 +3426,7 @@ namespace android
 
    }
 
-   ::user::interaction * interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::set_active_window()
    {
 
       return ::android::interaction_impl::ui_from_handle(::set_active_window(get_handle()));
@@ -3458,7 +3458,7 @@ namespace android
    }
 
 
-   bool interaction_impl::SetFocus()
+   bool interaction_impl::set_keyboard_focus()
    {
 
       ASSERT(::is_window((oswindow)get_handle()));
@@ -3844,11 +3844,11 @@ namespace android
 
    //}
 
-   bool interaction_impl::SetForegroundWindow()
+   bool interaction_impl::set_foreground_window()
    {
 
       //    throw ::not_implemented();
-      //      return ::SetForegroundWindow(get_handle()) != false;
+      //      return ::XXXSetForegroundWindow(get_handle()) != false;
 
       return false;
 

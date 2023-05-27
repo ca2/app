@@ -785,7 +785,7 @@ namespace windowing
       if (edisplay == e_display_none)
       {
 
-         edisplay = e_display_restored;
+         edisplay = e_display_normal;
 
       }
 
@@ -1184,7 +1184,7 @@ namespace windowing
 
       ::size_i32 sizeCompact;
 
-      ::size_i32 sizeNormal;
+      ::rectangle_i32 rectangleNormal;
 
       index iMatchingWorkspace;
       
@@ -1203,14 +1203,34 @@ namespace windowing
          sizeMin = pinteraction->get_window_minimum_size();
 
          iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(&rectangleWorkspace, sizeMin, rectangleHint);
+
+         if (iMatchingWorkspace < 0)
+         {
+
+            get_main_monitor(rectangleHint);
+
+            iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(&rectangleWorkspace, sizeMin, rectangleHint);
+
+            if (iMatchingWorkspace < 0)
+            {
+
+               return -1;
+
+            }
+
+         }
          
-         if(rectangleHint.left < (rectangleWorkspace.left + rectangleWorkspace.width() / 48)
-            || rectangleHint.top < (rectangleWorkspace.top + rectangleWorkspace.height() / 48))
+         if (rectangleHint.left < rectangleWorkspace.left)
+         {
+
+            rectangleHint.left = rectangleWorkspace.left + 5;
+
+         }
+
+         if(rectangleHint.top < rectangleWorkspace.top)
          {
             
-            rectangleHint.left = rectangleWorkspace.left + rectangleWorkspace.width() / 12;
-            
-            rectangleHint.top = rectangleWorkspace.top + rectangleWorkspace.height() / 12;
+            rectangleHint.top = rectangleWorkspace.top + 5;
             
          }
 
@@ -1218,12 +1238,16 @@ namespace windowing
 
          sizeCompact = pinteraction->m_sizeRestoreCompact;
 
-         sizeNormal = rectangleHint.size();
+         rectangleNormal.set_size(pinteraction->get_window_normal_stored_size());
 
-         if(sizeNormal < sizeMin)
+         rectangleNormal.move_to(rectangleHint.top_left());
+
+         if(rectangleNormal.size() < sizeMin)
          {
 
-            sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
+            rectangleNormal.set_size(rectangleWorkspace.size() * 3 / 5);
+
+            rectangleNormal.top_left() = rectangleWorkspace.size() * 1 / 10;
 
          }
 
@@ -1249,47 +1273,121 @@ namespace windowing
 
          sizeCompact = sizeMin.maximum(rectangleWorkspace.size() * 2 / 5);
 
-         sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
+         rectangleNormal.set_size(sizeMin.maximum(rectangleWorkspace.size() * 3 / 5));
+
+         rectangleNormal.move_to(rectangleHint.top_left());
 
       }
 
-      ::rectangle_i32 rectangleRestore;
+      ::rectangle_i32 rectanglePlacement;
 
       if(edisplay == e_display_broad)
       {
 
-         rectangleRestore.set_size(sizeBroad);
+         if (rectangleHint.size() == sizeBroad)
+         {
 
-         rectangleRestore.move_to(rectangleHint.top_left());
+            rectanglePlacement = rectangleHint;
+
+         }
+         else
+         {
+
+            rectanglePlacement.set_size(sizeBroad);
+
+            rectanglePlacement.move_to(rectangleHint.top_left());
+
+         }
 
       }
       else if(edisplay == e_display_compact)
       {
 
-         rectangleRestore.set_size(sizeCompact);
+         if (rectangleHint.size() == sizeCompact)
+         {
+
+            rectanglePlacement = rectangleHint;
+
+         }
+         else
+         {
+
+            rectanglePlacement.set_size(sizeCompact);
+
+            rectanglePlacement.move_to(rectangleHint.top_left());
+
+         }
 
       }
       else
       {
 
-         rectangleRestore.set_size(sizeNormal);
+         if (rectangleHint.size() == sizeBroad || rectangleHint.size() == sizeCompact)
+         {
+
+            rectanglePlacement.set_size(rectangleNormal.size());
+
+            rectanglePlacement.move_to(rectangleHint.top_left());
+
+         }
+         else
+         {
+
+            rectanglePlacement = rectangleNormal;
+
+         }
 
       }
 
-      rectangleRestore.move_to(rectangleHint.top_left());
-
-      ::rectangle_i32 rectangleWorkspaceBitSmaller(rectangleWorkspace);
-
-      rectangleWorkspaceBitSmaller.deflate(5);
-
-      if (!rectangleWorkspaceBitSmaller.intersects(rectangleRestore))
+      if (rectanglePlacement.is_empty())
       {
 
-         rectangleRestore.move_to(rectangleWorkspace.origin() + rectangleWorkspace.size() / 10);
+         rectanglePlacement = rectangleNormal;
 
       }
 
-      *prectangle = rectangleRestore;
+      //rectangleRestore.move_to(rectangleHint.top_left());
+
+      //::rectangle_i32 rectangleWorkspaceBitSmaller(rectangleWorkspace);
+
+      //rectangleWorkspaceBitSmaller.deflate(5);
+
+      if (rectanglePlacement.left < rectangleWorkspace.left
+         || rectanglePlacement.right > rectangleWorkspace.right
+         || rectanglePlacement.top < rectangleWorkspace.top
+         || rectanglePlacement.bottom > rectangleWorkspace.bottom)
+      {
+
+         rectanglePlacement.move_to(rectangleNormal.top_left());
+
+      }
+
+      if (rectanglePlacement.right > rectangleWorkspace.right)
+      {
+
+         rectanglePlacement.move_right_to(rectangleWorkspace.right - 5);
+
+      }
+      if (rectanglePlacement.left < rectangleWorkspace.left)
+      {
+
+         rectanglePlacement.move_left_to(rectangleWorkspace.left + 5);
+
+      }
+      if(rectanglePlacement.bottom > rectangleWorkspace.bottom)
+      {
+
+         rectanglePlacement.move_bottom_to(rectangleWorkspace.bottom - 5);
+
+      }
+      if (rectanglePlacement.top < rectangleWorkspace.top)
+      {
+
+         rectanglePlacement.move_top_to(rectangleWorkspace.top + 5);
+
+      }
+
+      *prectangle = rectanglePlacement;
 
       return iMatchingWorkspace;
 

@@ -448,7 +448,9 @@ namespace user
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
-      auto rectangle = pchannel->get_data()->m_rectangleTabClient+pchannel->client_to_screen();
+      auto rectangle = pchannel->get_data()->m_rectangleTabClient;
+
+      pchannel->client_to_screen()(rectangle);
 
       m_pdroptargetwindow->m_bTransparent = true;
 
@@ -458,7 +460,7 @@ namespace user
 
       m_pdroptargetwindow->place(rectangle);
 
-      m_pdroptargetwindow->display(e_display_restored);
+      m_pdroptargetwindow->display(e_display_normal);
 
       m_pdroptargetwindow->set_mouse_capture();
 

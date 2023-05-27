@@ -52,7 +52,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
       ::rectangle_i32 rectanglePlacement;
       
-      viewline.GetPlacement(rectanglePlacement);
+      viewline.GetPlacement(&rectanglePlacement);
       
       bInside = rectanglePlacement.contains(pointCursor) != 0;
       
@@ -465,7 +465,7 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
    index iLine;
    strsize iChar;
    ::rectangle_i32 rectanglePlacement;
-   viewline.GetPlacement(rectanglePlacement);
+   viewline.GetPlacement(&rectanglePlacement);
    bInside = rectanglePlacement.contains(point1) != 0;
    if(!bInside && GetState() == e_state_tracking)
    {

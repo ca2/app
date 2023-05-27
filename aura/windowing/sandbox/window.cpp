@@ -3620,14 +3620,14 @@ namespace sandbox_windowing
 
    //}
 
-   //windowing_output_debug_string("\noswindow_data::SetFocus 1");
+   //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1");
 
    //display_lock displaylock(x11_display()->Display());
 
    //if (!is_window())
    //{
 
-   //   windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+   //   windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1.1");
 
    //   throw ::exception(error_failed);
 
@@ -3636,13 +3636,13 @@ namespace sandbox_windowing
    //if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
    //{
 
-   //   windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+   //   windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1.3");
 
    //   throw ::exception(error_failed);
 
    //}
 
-   //windowing_output_debug_string("\noswindow_data::SetFocus 2");
+   //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 2");
 
    ////return ::success;
 
@@ -3704,14 +3704,14 @@ namespace sandbox_windowing
 //
 //      //}
 //
-//      //windowing_output_debug_string("\noswindow_data::SetFocus 1");
+//      //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1");
 //
 //      //display_lock displaylock(x11_display()->Display());
 //
 //      //if (!is_window())
 //      //{
 //
-//      //   windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+//      //   windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1.1");
 //
 //      //   throw ::exception(error_failed);
 //
@@ -3720,13 +3720,13 @@ namespace sandbox_windowing
 //      //if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
 //      //{
 //
-//      //   windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+//      //   windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1.3");
 //
 //      //   throw ::exception(error_failed);
 //
 //      //}
 //
-//      //windowing_output_debug_string("\noswindow_data::SetFocus 2");
+//      //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 2");
 //
 //      ////return ::success;
 //
@@ -3766,7 +3766,7 @@ namespace sandbox_windowing
 
       //}
 
-      //windowing_output_debug_string("\noswindow_data::SetFocus 1");
+      //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1");
 
       //display_lock displaylock(x11_display()->Display());
 

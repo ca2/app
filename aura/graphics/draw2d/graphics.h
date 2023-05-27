@@ -91,7 +91,7 @@ namespace draw2d
       ::pointer<::task>                     m_ptask;
       bool                                   m_bDraw;
 
-      image *                                m_pimage;
+      image_pointer                          m_pimage;
       ::draw2d::bitmap_pointer               m_pbitmap;
       ::draw2d::pen_pointer                  m_ppen;
       ::draw2d::brush_pointer                m_pbrush;
@@ -126,10 +126,6 @@ namespace draw2d
       //::e_status                             m_estatusLast;
 
       ::rectangle_i32_array                  m_rectangleaNeedRedraw;
-
-
-
-
 
       graphics();
       ~graphics() override;

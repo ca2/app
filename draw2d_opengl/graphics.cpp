@@ -3613,14 +3613,15 @@ namespace draw2d_opengl
    }
 
    
-   ::i32 graphics::SaveDC()
+   ::i32 graphics::save_graphics_context()
    {
 //      return m_pgraphics->Save();
       return 0;
+
    }
 
    
-   void graphics::RestoreDC(::i32 nSavedDC)
+   void graphics::restore_graphics_context(::i32 iSavedContext)
    {
 
       //return m_pgraphics->Restore(nSavedDC) != false;

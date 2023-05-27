@@ -1032,6 +1032,8 @@
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
+    <ClCompile Include="primitive\geometry2d\region.cpp" />
+    <ClCompile Include="primitive\geometry2d\region_item.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\geometry2d\_shape.cpp" />
     <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
@@ -1302,6 +1304,7 @@
     <ClInclude Include="primitive\collection\_text_stream.h" />
     <ClInclude Include="primitive\collection\__payload_array.h" />
     <ClInclude Include="primitive\collection\__property_set.h" />
+    <ClInclude Include="primitive\geometry2d\region.h" />
     <ClInclude Include="primitive\geometry2d\vector.h" />
     <ClInclude Include="primitive\geometry2d\_ellipse.h" />
     <ClInclude Include="primitive\geometry2d\_function.h" />

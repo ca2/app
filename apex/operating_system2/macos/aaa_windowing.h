@@ -65,7 +65,7 @@ int GetWorkspaceCount();
 ////void get_main_screen_rectangle(::rectangle_i32 * prectangle);
 //
 //
-//int_bool SetForegroundWindow(oswindow window);
+//int_bool set_foreground_window(oswindow window);
 //int_bool BringWindowToTop(oswindow window);
 //
 //void ns_redraw_window(oswindow window);

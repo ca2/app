@@ -612,9 +612,6 @@
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\region_item.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\holdee.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>

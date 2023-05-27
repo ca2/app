@@ -1878,9 +1878,7 @@ namespace experience_core
 
       }
 
-      ::rectangle_i32 rectangleTrack;
-
-      pscrollbar->GetTrackRect(rectangleTrack, pgraphics);
+      auto statusrectangleTrack = pscrollbar->get_track_rectangle(pgraphics);
 
       ::rectangle_i32 rectangleWindow;
 
@@ -1904,7 +1902,7 @@ namespace experience_core
 
       pgraphics->set(pbrushDraw);
 
-      pgraphics->rectangle(rectangleTrack);
+      pgraphics->rectangle(statusrectangleTrack);
 
       if (pbar->m_bTracking || pbar->is_true("tracking_on"))
       {
@@ -1944,7 +1942,7 @@ namespace experience_core
 
          }
 
-         ::point_i32 point1 = rectangleTrack.top_left() + pbar->m_sizeTrackOffset;
+         ::point_i32 point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
          pbar->client_to_screen()(point1);
 
@@ -2020,39 +2018,39 @@ namespace experience_core
          if (bSimple)
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
+            int iSize = statusrectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
 
-            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
             rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
             ::rectangle_i32 rectangleIntersect;
 
-            rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
+            rectangleIntersect.intersect(rectangleMachineThumb, statusrectangleTrack);
 
             i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
 
             rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
-            pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
 
          }
          else
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation);
+            int iSize = statusrectangleTrack.size().get_normal(pbar->m_eorientation);
 
-            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
             rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
-            rectangleMachineThumb.assign_normal(rectangleTrack, pbar->m_eorientation);
+            rectangleMachineThumb.assign_normal(statusrectangleTrack, pbar->m_eorientation);
 
-            rectangleMachineThumb._007Constrain(rectangleTrack);
+            rectangleMachineThumb._007Constrain(statusrectangleTrack);
 
             rectangleMachineThumb.deflate(1, 1);
 
-            pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
 
          }
 
@@ -2066,7 +2064,7 @@ namespace experience_core
 
       pgraphics->set(ppenGrip);
 
-      ::point_i32 pointCenter = rectangleTrack.center();
+      ::point_i32 pointCenter = statusrectangleTrack.center();
 
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
@@ -2113,32 +2111,30 @@ namespace experience_core
 
       pgraphics->rectangle(pbar->m_rectangleB);
 
-      ::rectangle_i32 rectangle;
-
       if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
-         pbar->GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+         auto statusrectanglePageA = pbar->get_pageA_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
          pgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->fill_rectangle(rectangle);
+         pgraphics->fill_rectangle(statusrectanglePageA);
 
       }
       else if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageB)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 
-         pbar->GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+         auto statusrectanglePageB = pbar->get_pageB_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
          pgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->fill_rectangle(rectangle);
+         pgraphics->fill_rectangle(statusrectanglePageB);
 
       }
 

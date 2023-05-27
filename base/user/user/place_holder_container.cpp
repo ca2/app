@@ -36,7 +36,7 @@ namespace user
 
       }
 
-      pplaceholder->display(e_display_restored);
+      pplaceholder->display(e_display_normal);
 
       pplaceholder->create_child(this);
 

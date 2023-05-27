@@ -766,7 +766,7 @@ namespace user
 
          keyboard_set_focus();
 
-         get_wnd()->SetActiveWindow();
+         get_wnd()->set_active_window();
 
       }
 

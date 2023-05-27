@@ -601,14 +601,14 @@ oswindow set_focus(oswindow window)
 
    }
 
-   windowing_output_debug_string("\noswindow_data::SetFocus 1");
+   windowing_output_debug_string("\nwindow(windowing)::set_keyboard_focus 1");
 
    xdisplay d(window->display());
 
    if(!is_window(window))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+      windowing_output_debug_string("\nwindow(windowing)::set_keyboard_focus 1.1");
 
       return nullptr;
 
@@ -619,7 +619,7 @@ oswindow set_focus(oswindow window)
    if(!IsWindowVisibleRaw(window))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.2");
+      windowing_output_debug_string("\nwindow(windowing)::set_keyboard_focus 1.2");
 
       return nullptr;
 
@@ -628,13 +628,13 @@ oswindow set_focus(oswindow window)
    if(!XSetInputFocus(d, window->window(), RevertToNone, CurrentTime))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+      windowing_output_debug_string("\nwindow(windowing)::set_keyboard_focus 1.3");
 
       return nullptr;
 
    }
 
-   windowing_output_debug_string("\noswindow_data::SetFocus 2");
+   windowing_output_debug_string("\nwindow(windowing)::set_keyboard_focus 2");
 
    return windowOld;
 
@@ -3379,7 +3379,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                            if(pinteraction->m_windowrectangle.m_edisplayPrevious == ::e_display_iconic)
                            {
 
-                              pinteraction->_001OnDeiconify(::e_display_restored);
+                              pinteraction->_001OnDeiconify(::e_display_normal);
 
                            }
                            else

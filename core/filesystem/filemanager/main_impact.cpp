@@ -212,7 +212,7 @@ namespace filemanager
 
             OnActivateFrame(e_activate_inactive, parent_frame());
 
-            parent_frame()->ActivateFrame(e_display_restored);
+            parent_frame()->ActivateFrame(e_display_normal);
 
             OnActivateImpact(true, this, this);
 

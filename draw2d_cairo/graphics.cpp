@@ -178,7 +178,7 @@ namespace draw2d_cairo
       m_pthis = this;
 
       m_bToyQuotedFontSelection = true;
-      m_iSaveDC = 0;
+      m_iSaveContext = 0;
 
 #ifdef WINDOWS
 
@@ -192,7 +192,7 @@ namespace draw2d_cairo
       m_ewritetextrendering = ::write_text::e_rendering_anti_alias_grid_fit;
 
 
-      m_iSaveDCPositiveClip = -1;
+      m_iSaveContextPositiveClip = -1;
 
       m_nStretchBltMode = ::draw2d::e_interpolation_mode_high_quality_bicubic;
 
@@ -3152,42 +3152,42 @@ namespace draw2d_cairo
 //}
 
 
-   i32 graphics::SaveDC()
+   i32 graphics::save_graphics_context()
    {
 
       _synchronous_lock synchronouslock(cairo_mutex());
 
-      m_iSaveDC++;
+      m_iSaveContext++;
 
       cairo_save(m_pdc);
 
-      return m_iSaveDC;
+      return m_iSaveContext;
 
    }
 
 
-   void graphics::RestoreDC(i32 nSavedDC)
+   void graphics::restore_graphics_context(i32 iSavedContext)
    {
 
       _synchronous_lock synchronouslock(cairo_mutex());
 
       //bool bRestored = false;
 
-      while (m_iSaveDC >= nSavedDC)
+      while (m_iSaveContext >= iSavedContext)
       {
 
          cairo_restore(m_pdc);
 
-         m_iSaveDC--;
+         m_iSaveContext--;
 
          //bRestored = true;
 
       }
 
-      if (m_iSaveDC < m_iSaveDCPositiveClip)
+      if (m_iSavedContext < m_iSavedContextPositiveClip)
       {
 
-         m_iSaveDCPositiveClip = -1;
+         m_iSaveContextPositiveClip = -1;
 
       }
 

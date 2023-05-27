@@ -228,7 +228,7 @@ namespace app_app
 
             pmouse->m_point = pointCursor;
 
-            update_hover(pmouse);
+            update_hover(pmouse, ::user::e_zorder_any);
 
             if (::is_set(pitemZoom))
             {

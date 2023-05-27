@@ -24,7 +24,7 @@ namespace graphics
       virtual bool update_window();
 
 
-      ::draw2d::graphics * on_begin_draw();
+      buffer_item * on_begin_draw();
 
 
    };

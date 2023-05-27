@@ -333,7 +333,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 
    infoa.lpDirectory = wstrDir;
 
-   infoa.nShow = is_visible(edisplay) ? e_display_restored : SW_HIDE;
+   infoa.nShow = is_visible(edisplay) ? e_display_normal : SW_HIDE;
 
    infoa.fMask |= SEE_MASK_NOCLOSEPROCESS | SEE_MASK_NOASYNC | SEE_MASK_FLAG_NO_UI;
 

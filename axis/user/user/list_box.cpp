@@ -427,7 +427,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      pointCursor+=screen_to_client(::user::e_layout_design);
+      screen_to_client(::user::e_layout_design)(pointCursor);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -701,7 +701,7 @@ namespace user
    void list_box::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
-      query_full_size(pgraphics, m_sizeFull);
+      query_full_size(pgraphics, &m_sizeFull);
 
    }
 
@@ -813,7 +813,7 @@ namespace user
 
             //      m_pcombo->keyboard_set_focus();
 
-            //      m_pcombo->get_wnd()->SetActiveWindow();
+            //      m_pcombo->get_wnd()->set_active_window();
 
             //   }
             //   else
@@ -864,7 +864,7 @@ namespace user
 
          auto pointCursor = get_cursor_position();
 
-         pointCursor+=m_pcombo->screen_to_client(::user::e_layout_sketch);
+         m_pcombo->screen_to_client(::user::e_layout_sketch)(pointCursor);
 
       }
       else
@@ -966,7 +966,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      point+=screen_to_client(e_layout_sketch);
+      screen_to_client(e_layout_sketch)(point);
 
       auto rectangleClient = client_rectangle();
 
@@ -993,7 +993,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      point+=screen_to_client(e_layout_sketch);
+      screen_to_client(e_layout_sketch)(point);
 
       auto rectangleClient = client_rectangle();
 
@@ -1134,7 +1134,7 @@ namespace user
 
          ::rectangle_i32 rectangleMonitor;
 
-         ::index i = get_best_monitor(rectangleMonitor, rectangleWindow);
+         ::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
          ::rectangle_i32 rectangleList;
 
@@ -1201,7 +1201,7 @@ namespace user
          if (i < 0)
          {
 
-            rectangleList+=m_pcombo->get_parent()->screen_to_client();
+            m_pcombo->get_parent()->screen_to_client()(rectangleList);
 
          }
 
@@ -1242,7 +1242,7 @@ namespace user
 
          order_top_most();
 
-         display(e_display_restored);
+         display(e_display_normal);
 
          auto & window_state = const_layout().sketch();
 

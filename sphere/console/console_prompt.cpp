@@ -47,7 +47,7 @@ namespace console
          }
          else
          {
-            m_pimpactsystem->get_document()->get_typed_impact < prompt_impact >()->display(e_display_restored);
+            m_pimpactsystem->get_document()->get_typed_impact < prompt_impact >()->display(e_display_normal);
 
          }
 

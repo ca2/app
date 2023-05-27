@@ -270,17 +270,17 @@ namespace user
 
       }
 
-      if (prequest->m_bMakeVisible)
-      {
+      //if (prequest->m_bMakeVisible)
+      //{
 
-         if (!::is_screen_visible(pframe->const_layout().sketch().display()))
-         {
+      //   if (!::is_screen_visible(pframe->const_layout().sketch().display()))
+      //   {
 
-            pframe->display(e_display_default);
+      //      pframe->display(e_display_normal);
 
-         }
+      //   }
 
-      }
+      //}
 
       ::pointer<::user::interaction>puserinteractionParent = prequest->m_puserelementParent;
 

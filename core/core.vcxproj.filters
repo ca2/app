@@ -527,9 +527,6 @@
     <ClInclude Include="user\userex\menu_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\menu_impact.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\message_box.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -1202,9 +1199,6 @@
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\menu_frame.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\menu_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\message_box.cpp">

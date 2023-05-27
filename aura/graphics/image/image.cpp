@@ -4213,30 +4213,19 @@ void image::Screen(::image* pimage)
 }
 
 
-void image::copy_from(::image* pimage, const ::point_i32  & point, ::enum_flag eflagCreate)
+void image::copy_from_no_create(::image * pimage, const ::point_i32 & point)
 {
 
    ::size_i32 s(pimage->size() - point);
 
-   if (size() != s)
+   auto sizeCopy = ::size_i32(::minimum(size().cx, s.cx), ::minimum(size().cy, s.cy));
+
+   if (sizeCopy.area() > 0)
    {
 
-      create(s);
-      //if (!create(s))
-      //{
+      image_source imagesource(pimage, { point, sizeCopy });
 
-      //   return false;
-
-      //}
-
-   }
-
-   if (s.area() > 0)
-   {
-
-      image_source imagesource(pimage, { point, s } );
-
-      ::rectangle_f64 rectangle(s);
+      ::rectangle_f64 rectangle(sizeCopy);
 
       image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4254,6 +4243,38 @@ void image::copy_from(::image* pimage, const ::point_i32  & point, ::enum_flag e
    }
 
    //return true;
+
+}
+
+
+void image::copy_from_no_create(::image * pimage)
+{
+
+   return copy_from_no_create(pimage, nullptr);
+
+}
+
+
+
+void image::copy_from(::image* pimage, const ::point_i32  & point, ::enum_flag eflagCreate)
+{
+
+   ::size_i32 s(pimage->size() - point);
+
+   if (size() != s)
+   {
+
+      create(s, eflagCreate);
+      //if (!create(s))
+      //{
+
+      //   return false;
+
+      //}
+
+   }
+
+   copy_from_no_create(pimage, point);
 
 }
 

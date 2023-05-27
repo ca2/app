@@ -63,9 +63,6 @@ namespace user
       //m_bUpdateBufferUpdateWindowPending = false;
 
       m_bRedraw = false;
-      m_bUpdateBuffer = false;
-      m_bUpdateScreen = false;
-      m_bUpdateWindow = false;
 
       m_bAuraMessageQueue = true;
 
@@ -77,7 +74,7 @@ namespace user
       m_bExclusiveMode = false;
 #endif
 
-      m_bVisualUpdated = true;
+      //m_bVisualUpdated = true;
 
       m_bSimpleMessageLoop = false;
 
@@ -186,14 +183,20 @@ namespace user
 
             m_bUpdatingScreen = false;
 
-            if(pimpl->m_rectangleaNeedRedraw.has_element())
             {
 
-               auto iRequestsRemaining = pimpl->m_rectangleaNeedRedraw.size();
+               _synchronous_lock synchronouslock(pimpl->synchronization());
 
-               INFORMATION(iRequestsRemaining << " redraw requests remaining after updating the screen.");
+               if(pimpl->m_rectangleaNeedRedraw.has_element())
+               {
 
-               m_puserinteraction->post_redraw();
+                  auto iRequestsRemaining = pimpl->m_rectangleaNeedRedraw.size();
+
+                  INFORMATION(iRequestsRemaining << " redraw requests remaining after updating the screen.");
+
+                  m_puserinteraction->post_redraw();
+
+               }
 
             }
 
@@ -655,7 +658,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         if (m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
+         if (m_pimpl->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
          {
 
             m_puserinteraction->m_bUpdateVisual = false;
@@ -671,7 +674,7 @@ namespace user
 
       }
 
-      bool bWait = ((m_bUpdateWindow || m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
+      bool bWait = ((m_pimpl->m_bUpdateWindow || m_pimpl->m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
 
       if (bWait)
       {
@@ -865,19 +868,19 @@ namespace user
 
       }
 
-      if (m_bVisualUpdated)
-      {
+      // if (m_bVisualUpdated)
+      // {
 
-         m_bVisualUpdated = false;
+      //    m_bVisualUpdated = false;
 
-         if (::is_set(m_pimpl->m_puserthread))
-         {
+      //    if (::is_set(m_pimpl->m_puserthread))
+      //    {
 
-            m_pimpl->m_puserthread->m_evApplyVisual.wait(15_s);
+      //       m_pimpl->m_puserthread->m_evApplyVisual.wait(15_s);
 
-         }
+      //    }
 
-      }
+      // }
 
       if (!this->task_get_run())
       {
@@ -1007,13 +1010,15 @@ namespace user
 
       m_bRedraw = bRedraw;
 
-      m_bUpdateBuffer = false;
+      m_pimpl->m_bUpdateBuffer = false;
 
-      m_bUpdateScreen = false;
+      m_pimpl->m_bUpdateScreen = false;
 
-      m_bUpdateWindow = false;
+      m_pimpl->m_bUpdateWindow = false;
 
-      update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
+      //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
+
+      update_buffer();
 
       //m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
 
@@ -1060,7 +1065,8 @@ namespace user
 
 
 
-   void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
+   //void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
+   void prodevian::update_buffer()
    {
 
       try
@@ -1075,9 +1081,9 @@ namespace user
 
          }
 
-         bUpdateBuffer = false;
+         //bUpdateBuffer = false;
 
-         bUpdateWindow = false;
+         //bUpdateWindow = false;
 
          i64 i1 = ::integral_nanosecond();
 
@@ -1118,130 +1124,6 @@ namespace user
 
          }
 
-         bool bDraw = false;
-
-         m_bVisualUpdated = false;
-
-         if(!m_puserinteraction)
-         {
-
-            return;
-
-         }
-
-         {
-
-
-            synchronouslock.unlock();
-
-            //if (!m_puserinteraction->is_sketch_to_design_locked())
-            //{
-
-               m_puserinteraction->sketch_to_design(bUpdateBuffer, bUpdateWindow);
-
-            //}
-
-            synchronouslock.lock();
-
-            if(!m_puserinteraction)
-            {
-
-               return;
-
-            }
-
-            if (!this->task_get_run())
-            {
-
-               return;
-
-            }
-
-            if(!m_puserinteraction)
-            {
-
-               return;
-
-            }
-
-            bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
-
-            if(!m_pimpl)
-            {
-
-               return;
-
-            }
-
-            bool bHasProdevian = m_pimpl->has_prodevian();
-
-            if(!m_puserinteraction)
-            {
-
-               return;
-
-            }
-
-            bool bRedraw = m_puserinteraction->m_bNeedRedraw;
-
-            if(!m_puserinteraction)
-            {
-
-               return;
-
-            }
-
-            bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
-
-            if (bIsThisScreenVisible
-               &&
-               (bForce
-               || bUpdateBuffer
-               || bHasProdevian
-               || bRedraw
-               || bHasPendingGraphicalUpdate
-               )
-               )
-            {
-
-               bDraw = true;
-
-            }
-
-            if(!m_puserinteraction)
-            {
-
-               return;
-
-            }
-
-            if (m_puserinteraction->m_bOffScreenRender)
-            {
-
-               bDraw = true;
-
-            }
-
-            m_pimpl->update_graphics_resources();
-
-            if (bDraw && m_pimpl->m_pgraphics.is_null())
-            {
-
-               bDraw = false;
-
-            }
-
-         }
-
-         if (m_puserinteraction->has_flag(e_flag_destroying)
-            || m_puserinteraction->has_finishing_flag()
-            || m_pimpl->has_flag(e_flag_destroying)
-            || m_pimpl->has_finishing_flag())
-         {
-
-            bDraw = false;
-
-         }
 
          if (!m_pimpl)
          {
@@ -1266,7 +1148,7 @@ namespace user
 
 #endif
 
-         m_pimpl->do_graphics(bDraw);
+         m_pimpl->do_graphics();
 
 #if TIME_REPORTING
 
@@ -1276,9 +1158,6 @@ namespace user
 
 #endif
 
-         bUpdateBuffer = true;
-
-         bUpdateScreen = true;
 
          m_timeAfterDrawing.Now();
 

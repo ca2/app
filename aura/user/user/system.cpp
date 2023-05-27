@@ -184,7 +184,7 @@ namespace user
 
       pinteraction->m_pusersystem = this;
 
-      pinteraction->display(e_display_restored);
+      pinteraction->display(e_display_normal);
 
       pinteraction->m_atom = atom;
 

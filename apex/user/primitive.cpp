@@ -1664,7 +1664,7 @@ namespace user
    //}
 
 
-   //bool primitive::SetFocus()
+   //bool primitive::XXXSetFocus()
    //{
 
    //   ::pointer<::user::interaction>pinteraction = get_wnd();
@@ -1676,12 +1676,12 @@ namespace user
 
    //   }
 
-   //   return get_wnd()->SetFocus();
+   //   return get_wnd()->XXXSetFocus();
 
    //}
 
 
-   //interaction * primitive::SetActiveWindow()
+   //interaction * primitive::set_active_window()
    //{
 
    //   //throw ::interface_only();
@@ -1691,7 +1691,7 @@ namespace user
    //}
 
 
-   //bool primitive::SetForegroundWindow()
+   //bool primitive::XXXSetForegroundWindow()
    //{
 
    //   return true;
@@ -2602,7 +2602,7 @@ namespace user
    }
 
 
-   void primitive::design_window_restore(e_display edisplay)
+   void primitive::design_window_normal(e_display edisplay)
    {
 
       throw ::interface_only();

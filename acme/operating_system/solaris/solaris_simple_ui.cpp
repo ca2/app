@@ -173,7 +173,7 @@ namespace os
       else
       {
 
-         ShowWindow(m_window, SW_HIDE);
+         solaris_show_window(m_window, SW_HIDE);
 
       }
 

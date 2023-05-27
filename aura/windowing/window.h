@@ -38,6 +38,7 @@ namespace windowing
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::point_i32                               m_pointCursor;
       ::oswindow                                m_oswindow;
+      bool                                      m_bUpdateScreenSynchronously;
 
 
       window();
@@ -223,8 +224,8 @@ namespace windowing
       virtual bool enable_window(bool bEnable = true);
 
       // the active interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow();
-      virtual ::user::interaction * SetActiveWindow();
+      virtual ::user::interaction * get_active_window();
+      //void set_active_window() override;
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
       virtual void set_foreground_window();

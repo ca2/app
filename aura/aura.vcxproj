@@ -677,7 +677,6 @@
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />
     <ClCompile Include="graphics\draw2d\region.cpp" />
-    <ClCompile Include="graphics\draw2d\region_item.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />

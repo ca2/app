@@ -1084,7 +1084,7 @@ namespace user
    void thread::start_window_visual()
    {
 
-      m_evApplyVisual.ResetEvent();
+      //m_evApplyVisual.ResetEvent();
 
       m_pimpl->m_puserinteraction->post_message(e_message_apply_visual);
 

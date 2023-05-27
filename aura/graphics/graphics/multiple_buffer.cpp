@@ -46,51 +46,54 @@ namespace graphics
 
       //}
 
-      __construct_new(m_pimageaBuffer);
+      //__construct_new(m_pim);
 
 #ifdef MACOS
 
-      m_pimageaBuffer->m_imagea.set_size(3);
+      m_bufferitema.set_size(3);
 
 #else
 
-      m_pimageaBuffer->m_imagea.set_size(5);
+      m_bufferitema.set_size(5);
 
 #endif
 
-      for (auto & pimage : m_pimageaBuffer->imagea())
+      for (auto & pbufferitem : m_bufferitema)
       {
 
-         __construct(pimage);
+         __construct_new(pbufferitem);
 
          //pimage->defer_create_synchronization();
 
       }
 
-      m_mutexa.set_size(m_pimageaBuffer->image_count());
+      //m_mutexa.set_size(m_pimageaBuffer->image_count());
 
       //return estatus;
 
    }
 
 
-   ::particle * multiple_buffer::get_draw_lock()
+   //::particle * multiple_buffer::get_draw_lock()
+   //{
+
+   //   return get_buffer_item()->m_pmutex;
+
+   //}
+
+
+   buffer_item * multiple_buffer::on_begin_draw()
    {
 
-      return m_mutexa[m_iBuffer];
+      auto pitem = get_buffer_item();
 
-   }
-
-
-   ::draw2d::graphics * multiple_buffer::on_begin_draw()
-   {
-
-      auto sizeBuffer = window_size();
+      //auto sizeBuffer = window_size();
+      buffer_size_and_position(pitem);
 
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         m_pimageaBuffer->image_at(m_iBuffer)->create(sizeBuffer);
+         pitem->m_pimage->create(pitem->m_size);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{
@@ -101,7 +104,7 @@ namespace graphics
 
       }
 
-      ::image_pointer & pimage = m_pimageaBuffer->image_at(m_iBuffer);
+      ::image_pointer & pimage = m_bufferitema[m_iBuffer]->m_pimage;
 
       if (!pimage)
       {
@@ -110,7 +113,7 @@ namespace graphics
 
       }
 
-      return pimage->g();
+      return pitem;
 
    }
 
@@ -130,19 +133,19 @@ namespace graphics
 
       bool bBigger = false;
 
-      if (m_pimageaBuffer->image_count() == 1)
+      if (m_bufferitema.size() == 1)
       {
 
          return 0;
 
       }
 
-      if (m_pimageaBuffer->image_at(m_iDone))
+      if (m_bufferitema[m_iDone]->m_pimage)
       {
 
          iFound = m_iDone;
 
-         ::size_i32 sizeBuffer = m_pimageaBuffer->image_at(iFound)->get_size();
+         ::size_i32 sizeBuffer = m_bufferitema[iFound]->m_pimage->size();
 
          bBigger = sizeBuffer.cx > size.cx || sizeBuffer.cy > size.cy;
 
@@ -158,14 +161,14 @@ namespace graphics
 
          }
 
-         if (!m_pimageaBuffer->image_at(i))
+         if (!m_bufferitema[i]->m_pimage)
          {
 
             break;
 
          }
 
-         ::size_i32 sizeBuffer = m_pimageaBuffer->image_at(i)->get_size();
+         ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage->size();
 
          if (size == sizeBuffer)
          {
@@ -196,7 +199,7 @@ namespace graphics
       if (!bFoundExact)
       {
 
-         for (index i = m_pimageaBuffer->m_imagea.get_upper_bound(); i > m_iDone; i--)
+         for (index i = m_bufferitema.get_upper_bound(); i > m_iDone; i--)
          {
 
             if(i == m_iBuffer)
@@ -206,14 +209,14 @@ namespace graphics
 
             }
 
-            if (!m_pimageaBuffer->image_at(i))
+            if (!m_bufferitema[i]->m_pimage)
             {
 
                break;
 
             }
 
-            ::size_i32 sizeBuffer = m_pimageaBuffer->image_at(i)->get_size();
+            ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage->get_size();
 
             if (sizeBuffer == size)
             {
@@ -269,7 +272,7 @@ namespace graphics
       else
       {
 
-         iAge = (int)(m_pimageaBuffer->image_count() - iGot + m_iDone);
+         iAge = (int)(m_bufferitema.size() - iGot + m_iDone);
 
       }
 
@@ -321,14 +324,14 @@ namespace graphics
 
       m_iBuffer++;
 
-      m_iBuffer %= m_pimageaBuffer->image_count();
+      m_iBuffer %= m_bufferitema.size();
 
       return true;
 
    }
 
 
-   ::particle * multiple_buffer::get_screen_sync()
+   buffer_item * multiple_buffer::get_screen_item()
    {
 
       auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
@@ -342,17 +345,17 @@ namespace graphics
 
       }
 
-      return m_mutexa[m_iScreen];
+      return m_bufferitema[m_iScreen];
 
    }
 
 
-   ::image_pointer & multiple_buffer::get_screen_image()
-   {
+   //::image_pointer & multiple_buffer::get_screen_image()
+   //{
 
-      return m_pimageaBuffer->image_at(m_iScreen);
+   //   return m_bufferitema[m_iScreen].m_pimage;
 
-   }
+   //}
 
 
 
@@ -372,11 +375,15 @@ namespace graphics
 
       }
 
-      synchronous_lock slBuffer(get_screen_sync());
+      auto pitem = get_screen_item();
 
-      auto bOk = update_screen(get_screen_image());
+      synchronous_lock slScreen(pitem->m_pmutex);
 
-      ipc_copy(get_screen_image());
+      //auto bOk = update_screen(get_screen_item());
+
+      bool bOk = false;
+
+      ipc_copy(pitem->m_pimage);
 
       return bOk;
 

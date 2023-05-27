@@ -266,8 +266,10 @@ namespace user
    }
 
 
-   bool menu_impact::get_item_rect(index i, ::rectangle_i32 * prectangle)
+   ::status < ::rectangle_i32 > menu_impact::get_menu_item_rectangle(index iMenuItemIndex)
    {
+
+      ::status < ::rectangle_i32 > rectangleMenuItem;
 
       int iHeight = (int) ( m_pfontTitle->m_dFontSize * 1.25 + 20);
 
@@ -292,7 +294,7 @@ namespace user
       for (int j = 0; j < m_iaPopup.get_count(); j++)
       {
 
-         if (i < k + m_iaPopup[j])
+         if (iMenuItemIndex < k + m_iaPopup[j])
          {
 
             break;
@@ -304,16 +306,17 @@ namespace user
          iSep++;
       }
 
-      prectangle->top = (::i32)( y + (i + iSep) * iHeight);
+      rectangleMenuItem.top = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
 
-      prectangle->bottom = prectangle->top + iHeight;
+      rectangleMenuItem.bottom = rectangleMenuItem.top + iHeight;
 
-      prectangle->left = x;
+      rectangleMenuItem.left = x;
 
-      prectangle->right = x + w;
+      rectangleMenuItem.right = x + w;
 
+      rectangleMenuItem.m_estatus = ::success;
 
-      return true;
+      return rectangleMenuItem;
 
    }
 
@@ -323,7 +326,7 @@ namespace user
 
       index iPos = 0;
 
-      ::rectangle_i32 rectangle;
+      ::status < ::rectangle_i32 > statusrectangle;
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
@@ -341,9 +344,9 @@ namespace user
 
          ::index iCommand = -1;
 
-         get_item_rect(iPos, rectangle);
+         statusrectangle = get_menu_item_rectangle(iPos);
 
-         if (rectangle.contains(point))
+         if (statusrectangle.ok() && statusrectangle.contains(point))
          {
 
             return __new(::item(::e_element_item, iPos, iMenu, -1));
@@ -355,9 +358,9 @@ namespace user
          for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
          {
 
-            get_item_rect(iPos, rectangle);
+            statusrectangle = get_menu_item_rectangle(iPos);
 
-            if (rectangle.contains(point))
+            if (statusrectangle.ok() && statusrectangle.contains(point))
             {
 
                return __new(::item(::e_element_item, iPos, iMenu, iCommand));
@@ -442,8 +445,6 @@ namespace user
       for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
       {
 
-         ::rectangle_i32 rMenu;
-
          xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
          string strTitle;
@@ -452,15 +453,15 @@ namespace user
 
          pgraphics->set(m_pfontTitle);
 
-         get_item_rect(iPos, rMenu);
+         auto statusrectangleMenu = get_menu_item_rectangle(iPos);
 
          pgraphics->set(m_ppen);
 
-         draw_header_rectangle(pgraphics, rMenu);
+         draw_header_rectangle(pgraphics, statusrectangleMenu);
 
          pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-         pgraphics->text_out(rMenu.left + 10, rMenu.top + 5, strTitle);
+         pgraphics->text_out(statusrectangleMenu.left + 10, statusrectangleMenu.top + 5, strTitle);
 
          iPos++;
 
@@ -478,9 +479,9 @@ namespace user
 
                strItem = pnodeItem->get_value();
 
-               get_item_rect(iPos, rectangle);
+               auto statusrectangle = get_menu_item_rectangle(iPos);
 
-               rMenu.unite(rMenu, rectangle);
+               statusrectangleMenu.unite(statusrectangleMenu, statusrectangle);
 
                pgraphics->set(m_ppen);
 
@@ -586,7 +587,7 @@ namespace user
 
          }
 
-         raMenu.add(rMenu);
+         raMenu.add(statusrectangleMenu);
 
       }
 
@@ -597,11 +598,11 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-         get_item_rect(iPos, rectangle);
+         auto statusrectangle = get_menu_item_rectangle(iPos);
 
          pgraphics->set(m_ppen);
 
-         draw_header_separator(pgraphics, rectangle.bottom_left(), rectangle.bottom_right());
+         draw_header_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
 
          iPos++;
 
@@ -617,9 +618,9 @@ namespace user
 
                strItem = pnodeItem->get_value();
 
-               get_item_rect(iPos, rectangle);
+               statusrectangle = get_menu_item_rectangle(iPos);
 
-               draw_item_separator(pgraphics, rectangle.bottom_left(), rectangle.bottom_right());
+               draw_item_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
 
                iPos++;
 
@@ -707,7 +708,7 @@ namespace user
 
       int iPos = 0;
 
-      ::rectangle_i32 rectangle;
+      ::status < ::rectangle_i32 > statusrectangle;
 
       int iMenu;
 
@@ -738,7 +739,7 @@ namespace user
          for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
          {
 
-            get_item_rect(iPos, rectangle);
+            statusrectangle = get_menu_item_rectangle(iPos);
 
             auto pcontext = m_pcontext->m_pauracontext;
 

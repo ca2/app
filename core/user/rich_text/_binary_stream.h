@@ -166,7 +166,7 @@ template < typename FILE >
 
    editimpl.place(rectangleWindow);
 
-   editimpl.display(e_display_restored);
+   editimpl.display(e_display_normal);
 
    editimpl.set_need_layout();
 

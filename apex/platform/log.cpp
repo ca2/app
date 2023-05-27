@@ -563,7 +563,7 @@ namespace apex
 ////                  if (!acmepath()->app_module().case_insensitive_contains("logviewer") && acmefile()->exists(acmedirectory()->system() / "logviewer.txt"))
 ////                  {
 ////
-////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_restored, false);
+////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
 ////
 ////                  }
 ////

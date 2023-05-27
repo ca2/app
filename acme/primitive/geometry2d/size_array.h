@@ -8,7 +8,7 @@ class size_array_base :
 public:
 
    using SIZE_TYPE = _SIZE_TYPE;
-   using SIZE_BASE_TYPE = typename SIZE_TYPE::SIZE_BASE_TYPE;
+   using SIZE_BASE_TYPE = SIZE_TYPE;
    using UNIT_TYPE = typename SIZE_TYPE::UNIT_TYPE;
    using POINT_TYPE = typename SIZE_TYPE::POINT_TYPE;
 

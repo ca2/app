@@ -369,6 +369,8 @@ public:
 
    virtual void lighten(double dRate);
 
+   virtual void copy_from_no_create(::image * pimage, const ::point_i32 & point);
+   virtual void copy_from_no_create(::image * pimage);
    virtual void copy_from(::image * pimage, const ::point_i32 & point, enum_flag eflagCreate = e_flag_success);
    virtual void copy_from(::image * pimage, enum_flag eflagCreate = e_flag_success);
    //virtual void copy_to(::image * pimage, const ::point_i32 & point = nullptr);

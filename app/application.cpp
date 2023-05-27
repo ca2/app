@@ -41,7 +41,7 @@ namespace app_app
 
       auto pmainwindow = __create_new < ::app_app::main_window >();
 
-      pmainwindow->display(e_display_restored);
+      pmainwindow->display(e_display_normal);
 
       pmainwindow->create_main_window();
 

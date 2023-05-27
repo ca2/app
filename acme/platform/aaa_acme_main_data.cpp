@@ -262,7 +262,7 @@ void apex_main_data::system_construct(const ::scoped_string & scopedstrCommandLi
 
    m_strCommandLine = pszCommandLine;
 
-   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+   //m_edisplay = windows_show_window_to_edisplay(edisplay, XXXm_eactivation);
 
    //m_poslocal = nullptr;
 

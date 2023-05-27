@@ -1845,27 +1845,29 @@ namespace user
    }
 
 
-   bool toolbar::index_item_rectangle(index iItem, ::rectangle_i32 * prectangle)
+   ::status < ::rectangle_i32 > toolbar::index_item_rectangle(index iItem)
    {
 
       if (!m_pitema->is_index_ok(iItem))
       {
 
-         return false;
+         return error_failed;
 
       }
 
-      *prectangle = m_pitema->element_at(iItem)->m_rectangle;
+      ::status < ::rectangle_i32 > statusrectangle = m_pitema->element_at(iItem)->m_rectangle;
 
-      return true;
+      statusrectangle.m_estatus = ::success;
+
+      return statusrectangle;
 
    }
 
 
-   bool toolbar::index_element_rectangle(index iItem, ::rectangle_i32 * prectangle, enum_element eelement, ::user::enum_state estate)
+   ::status < ::rectangle_i32 >  toolbar::index_element_rectangle(index iItem, enum_element eelement, ::user::enum_state estate)
    {
 
-      return false;
+      return error_failed;
 
    }
 

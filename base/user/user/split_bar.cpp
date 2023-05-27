@@ -185,7 +185,9 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto point = pmouse->m_point+ m_pparent->screen_to_client();
+      auto point = pmouse->m_point;
+      
+      m_pparent->screen_to_client()(point);
 
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {

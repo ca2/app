@@ -143,7 +143,7 @@ namespace universal_windows
 
          auto puserinteraction = m_pdxi;
 
-         //puserinteraction->display(e_display_restored);
+         //puserinteraction->display(e_display_normal);
 
          //puserinteraction->set_need_layout();
 

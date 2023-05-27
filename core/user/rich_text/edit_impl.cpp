@@ -2087,7 +2087,7 @@ namespace user
 
       //   place(rectangleWindow);
 
-      //   display(e_display_restored);
+      //   display(e_display_normal);
 
       //   set_need_layout();
 

@@ -975,7 +975,7 @@ int_bool ReleaseCapture()
 }
 
 
-oswindow SetFocus(oswindow window)
+oswindow solaris_set_focus(oswindow window)
 {
 
    single_lock synchronouslock(&user_synchronization(), true);
@@ -1033,10 +1033,10 @@ oswindow GetActiveWindow()
 }
 
 
-oswindow SetActiveWindow(oswindow window)
+oswindow solaris_set_active_window(oswindow window)
 {
 
-   return SetFocus(window);
+   return solaris_set_focus(window);
 
 }
 

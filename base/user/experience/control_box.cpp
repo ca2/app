@@ -58,7 +58,7 @@ namespace experience
 
          m_pointDrag = pmouse->m_point;
 
-         m_pointDrag+=screen_to_client();
+         screen_to_client()(m_pointDrag);
 
          set_mouse_capture();
 
@@ -81,7 +81,7 @@ namespace experience
 
          ::point_i32 point = pmouse->m_point;
 
-         point+=m_pframewindow->screen_to_client();
+         m_pframewindow->screen_to_client()(point);
 
          drag(point);
 
@@ -111,7 +111,7 @@ namespace experience
 
             ::point_i32 point = pmouse->m_point;
 
-            point+=m_pframewindow->screen_to_client();
+            m_pframewindow->screen_to_client()(point);
 
             drag(point);
 
@@ -583,13 +583,13 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangleParent(rectangleWindow);
 
-      rectangleParent+=m_pframewindow->screen_to_client();
+      m_pframewindow->screen_to_client()(rectangleParent);
 
       ::rectangle_i32 rectangle;
 
       window_rectangle(rectangle);
 
-      rectangle+=m_pframewindow->screen_to_client();
+      m_pframewindow->screen_to_client()(rectangle);
 
       reset_layout(pgraphics);
 
@@ -1105,7 +1105,7 @@ if(rectangle.left > 400)
 
       window_rectangle(rectangle);
 
-      rectangle+=m_pframewindow->screen_to_client();
+      m_pframewindow->screen_to_client()(rectangle);
 
       m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x() > (rectangleWindow.width() / 2);
 

@@ -243,10 +243,13 @@ bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
    if (!bIntersect)
    {
 
-      left = 0; right = 0;
+      rectangle.left = 0;
+
+      rectangle.right = 0;
 
    }
-
+   else
+   {
    //if (::is_set(rectangle))
    //{
 
@@ -254,7 +257,7 @@ bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
 
       rectangle.right = right;
 
-   //}
+   }
 
    return bIntersect;
 
@@ -265,11 +268,14 @@ template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
 bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   auto left = maximum(rect1.left, rect2.left);
 
-   auto right = minimum(rect1.right, rect2.right);
+   return rect1.left < rect2.right && rect1.right > rect2.left;
 
-   return right > left;
+   //auto left = maximum(rect1.left, rect2.left);
+
+   //auto right = minimum(rect1.right, rect2.right);
+
+   //return right > left;
 
 }
 
@@ -287,10 +293,13 @@ bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
    if (!bIntersect)
    {
 
-      top = 0; bottom = 0;
+      rectangle.top =0;
+
+      rectangle.bottom = 0;
 
    }
-
+   else
+   {
    //if (::is_set(rectangle))
    //{
 
@@ -298,7 +307,7 @@ bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
 
       rectangle.bottom = bottom;
 
-   //}
+   }
 
    return bIntersect;
 
@@ -309,11 +318,13 @@ template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
 bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   auto top = maximum(rect1.top, rect2.top);
+   //auto top = maximum(rect1.top, rect2.top);
 
-   auto bottom = minimum(rect1.bottom, rect2.bottom);
+   //auto bottom = minimum(rect1.bottom, rect2.bottom);
 
-   return bottom > top;
+   //return bottom > top;
+
+   return rect1.top < rect2.bottom && rect1.bottom > rect2.top;
 
 }
 

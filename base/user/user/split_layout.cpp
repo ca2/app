@@ -90,7 +90,7 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_restored);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
@@ -134,7 +134,7 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_restored);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 

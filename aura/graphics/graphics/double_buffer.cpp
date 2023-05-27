@@ -13,7 +13,8 @@ namespace graphics
    {
 
       m_iCurrentBuffer = 0;
-      m_bSingleBufferMode = true;
+      //m_bSingleBufferMode = true;
+      //m_bSingleBufferMode = false;
 
    }
 
@@ -37,55 +38,69 @@ namespace graphics
       //   return estatus;
 
       //}
+      m_bufferitema.set_size(2);
 
-      m_mutexa.set_size(2);
+      __construct_new(m_bufferitema[0]);
+      __construct(m_bufferitema[0]->m_pimage);
+      __construct(m_bufferitema[0]->m_pmutex);
+      m_bufferitema[0]->m_pimage->m_atom = 0;
 
-      __construct(m_imageaBuffer[0]);
-      __construct(m_mutexa[0]);
-      m_imageaBuffer[0]->m_atom = 0;
-
-      __construct(m_imageaBuffer[1]);
-      __construct(m_mutexa[1]);
-      m_imageaBuffer[1]->m_atom = 1;
+      __construct_new(m_bufferitema[1]);
+      __construct(m_bufferitema[1]->m_pimage);
+      __construct(m_bufferitema[1]->m_pmutex);
+      m_bufferitema[1]->m_pimage->m_atom = 1;
 
       //return estatus;
 
    }
 
 
-   ::particle * double_buffer::get_draw_lock()
+   bool double_buffer::is_single_buffer_mode() const
    {
 
-      return get_buffer_sync();
+      return true;
 
    }
 
 
-   ::draw2d::graphics * double_buffer::on_begin_draw()
+   //::particle * double_buffer::get_draw_lock()
+   //{
+
+   //   return get_buffer_item()->m_pmutex;
+
+   //}
+
+
+   buffer_item * double_buffer::on_begin_draw()
    {
 
-      auto & pimage = get_buffer_image();
+      auto pitem = get_buffer_item();
 
-      auto sizeWindow = window_size();
+
+
+
+      buffer_size_and_position(pitem);
 
       if (!m_bDibIsHostingBuffer)
       {
+
+         auto & pimage = pitem->m_pimage;
 
          auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
 
          auto sizeReserved = ::size_i32(1920, 1080);
 
-         if (sizeWindow.cx > sizeImage.cx)
+         if (pitem->m_size.cx > sizeImage.cx)
          {
 
-            sizeImage.cx = sizeWindow.cx;
+            sizeImage.cx = pitem->m_size.cx;
 
          }
 
-         if (sizeWindow.cy > sizeImage.cy)
+         if (pitem->m_size.cy > sizeImage.cy)
          {
 
-            sizeImage.cy = sizeWindow.cy;
+            sizeImage.cy = pitem->m_size.cy;
 
          }
 
@@ -112,86 +127,74 @@ namespace graphics
 
          }
 
+         auto pgraphics = pimage->g();
+
+         if (pgraphics)
+         {
+
+            pgraphics->resize(pitem->m_size);
+
+         }
+
       }
 
-      auto pgraphics = pimage->g();
-
-      if (!m_bDibIsHostingBuffer)
-      {
-
-         pgraphics->resize(sizeWindow);
-
-      }
-
-      return pgraphics;
+      return pitem;
 
    }
 
 
-   ::image_pointer & double_buffer::get_buffer_image()
+   buffer_item * double_buffer::get_buffer_item()
    {
 
-      if (m_bSingleBufferMode)
-      {
-
-         return m_imageaBuffer[0];
-
-      }
-
-      return m_imageaBuffer[get_buffer_index()];
+      return m_bufferitema[get_buffer_index()];
 
    }
 
 
-   ::particle * double_buffer::get_buffer_sync()
+   //::image_pointer & double_buffer::get_buffer_image()
+   //{
+
+   //   return get_buffer_item()->m_pimage;
+
+   //}
+
+
+   //::particle * double_buffer::get_buffer_sync()
+   //{
+
+   //   return get_buffer_item()->m_pparticleSynchronization;
+
+   //}
+
+
+   buffer_item * double_buffer::get_screen_item()
    {
 
-      if (m_bSingleBufferMode)
-      {
-
-         return m_mutexa[0];
-
-      }
-
-      return m_mutexa[get_buffer_index()];
+      return m_bufferitema[get_screen_index()];
 
    }
 
 
-   ::image_pointer & double_buffer::get_screen_image()
-   {
+   //::image_pointer & double_buffer::get_screen_image()
+   //{
 
-      if (m_bSingleBufferMode)
-      {
+   //   return get_screen_item()->m_pimage;
 
-         return m_imageaBuffer[0];
-
-      }
-
-      return m_imageaBuffer[get_screen_index()];
-
-   }
+   //}
 
 
-   ::particle * double_buffer::get_screen_sync()
-   {
+   //::particle * double_buffer::get_screen_sync()
+   //{
 
-      if (m_bSingleBufferMode)
-      {
+   //   return get_screen_item()->m_pmutex;
 
-         return m_mutexa[0];
-
-      }
-
-      return m_mutexa[get_screen_index()];
-
-   }
+   //}
 
 
    ::index double_buffer::get_buffer_index() const
    {
 
-      if (m_bSingleBufferMode)
+      if (is_single_buffer_mode())
       {
 
          return 0;
@@ -216,7 +219,7 @@ namespace graphics
    ::index double_buffer::get_screen_index() const
    {
 
-      if (m_bSingleBufferMode)
+      if (is_single_buffer_mode())
       {
 
          return 0;
@@ -242,9 +245,20 @@ namespace graphics
    bool double_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      _synchronous_lock slBuffer(get_buffer_sync());
+      if (is_single_buffer_mode())
+      {
 
-      _synchronous_lock slScreen(get_screen_sync());
+         m_iCurrentBuffer = 0;
+
+         return true;
+
+      }
+
+      _synchronous_lock sl(this->synchronization());
+
+      _synchronous_lock slBuffer(get_buffer_item()->m_pmutex);
+
+      _synchronous_lock slScreen(get_screen_item()->m_pmutex);
 
       if (m_iCurrentBuffer == 0)
       {
@@ -263,14 +277,19 @@ namespace graphics
 
       }
 
-      if(!m_bSingleBufferMode)
+      if(!is_single_buffer_mode())
       {
 
-         auto pimageNewScreen = get_screen_image();
+         auto pimageNewScreen = get_screen_item()->m_pimage;
 
-         auto pimageNewBuffer = get_buffer_image();
+         auto pimageNewBuffer = get_buffer_item()->m_pimage;
 
-         pimageNewBuffer->copy_from(pimageNewScreen);
+         if (pimageNewBuffer->size() == pimageNewScreen->size())
+         {
+
+            pimageNewBuffer->copy_from_no_create(pimageNewScreen);
+
+         }
 
       }
 
@@ -326,20 +345,13 @@ namespace graphics
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      synchronous_lock slScreen(get_screen_sync());
+      auto pitemScreen = get_screen_item();
 
-      auto pimage = get_screen_image();
+      synchronous_lock synchronouslockScreen(pitemScreen->m_pmutex);
 
       synchronouslock.unlock();
 
-      if (pimage->nok())
-      {
-
-         return false;
-
-      }
-
-      return update_screen(pimage);
+      return on_update_screen(pitemScreen);
 
    }
 
@@ -347,8 +359,8 @@ namespace graphics
    void double_buffer::destroy_buffer()
    {
 
-      m_imageaBuffer[0].release();
-      m_imageaBuffer[1].release();
+      m_bufferitema[0]->m_pimage.release();
+      m_bufferitema[1]->m_pimage.release();
 
    }
 

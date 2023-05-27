@@ -22,6 +22,7 @@
 #include "base/user/user/multiple_document_template.h"
 #include "base/user/user/document_manager.h"
 #include "base/user/form/document.h"
+#include "base/user/form/impact.h"
 #include "base/user/experience/orto_button.h"
 #include "base/user/simple/child_frame.h"
 #include "base/user/simple/toolbar.h"
@@ -42,7 +43,7 @@
 #include "core/user/userex/form_child_frame.h"
 #include "core/user/userex/menu_document.h"
 #include "core/user/userex/menu_frame.h"
-#include "core/user/userex/menu_impact.h"
+//#include "core/user/userex/menu_impact.h"
 #include "core/user/userex/pane_tab_impact.h"
 #include "core/user/userex/progress.h"
 #include "core/user/userex/split_impact.h"
@@ -282,7 +283,7 @@ namespace core
 
       factory()->add_factory_item <menu_document >();
       factory()->add_factory_item <menu_frame >();
-      factory()->add_factory_item <menu_impact >();
+      //factory()->add_factory_item <menu_impact >();
 
       auto psystem = acmesystem()->m_paurasystem;
 

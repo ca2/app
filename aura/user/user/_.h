@@ -10,6 +10,9 @@
 #include "acme/primitive/geometry2d/_geometry2d.h"
 
 
+#include "acme/primitive/geometry2d/_collection.h"
+
+
 #include "acme/primitive/mathematics/c_number.h"
 
 
@@ -431,7 +434,7 @@ CLASS_DECL_AURA ::user::e_mouse user_key_to_user_mouse(::user::e_key ekeyButton)
 
 
 
-struct size_parent_parameters
+struct size_parent_layout
 {
 
    ::rectangle_i32      m_rectangle;     // parent client rectangle (trim as appropriate)

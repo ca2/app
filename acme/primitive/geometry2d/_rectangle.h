@@ -142,8 +142,8 @@ public:
    POINT_TYPE & bottom_right() noexcept { return *((POINT_TYPE *)this + 1); }
    void swap_left_right() noexcept { ::swap_left_right(*this); }
 
-   //operator RECTANGLE_BASE_TYPE * () noexcept { return this; }
-   //operator const RECTANGLE_BASE_TYPE * () const noexcept { return (const RECTANGLE_BASE_TYPE *)this; }
+   operator rectangle_type * () noexcept { return this; }
+   operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
 
    operator bool() const noexcept { return is_set(); }
 

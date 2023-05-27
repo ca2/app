@@ -142,6 +142,12 @@ namespace user
 
       m_bUpdateBufferPending = false;
 
+
+      m_bUpdateBuffer = false;
+      m_bUpdateScreen = false;
+      m_bUpdateWindow = false;
+
+
    }
 
 
@@ -1098,7 +1104,7 @@ namespace user
 
       }
 
-      return m_pgraphics->get_screen_image()->pixel(x - origin.x(), y - origin.y());
+      return m_pgraphics->get_screen_item()->m_pimage->pixel(x - origin.x(), y - origin.y());
 
    }
 
@@ -3926,7 +3932,7 @@ namespace user
    void interaction_impl::set_need_redraw(const ::rectangle_i32& rectangleHostNeedRedraw, bool bAscendants)
    {
 
-      synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+      _synchronous_lock synchronouslock(synchronization());
 
       if (rectangleHostNeedRedraw.is_empty())
       {
@@ -3954,6 +3960,15 @@ namespace user
 
    bool interaction_impl::needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw)
    {
+
+      _synchronous_lock synchronouslock(synchronization());
+
+      if (!m_pgraphics->is_single_buffer_mode())
+      {
+
+         return true;
+
+      }
 
       if (m_rectangleaNeedRedraw.is_empty())
       {
@@ -4135,7 +4150,7 @@ namespace user
    //}
 
 
-   //::user::interaction * interaction_impl::SetActiveWindow()
+   //::user::interaction * interaction_impl::set_active_window()
    //{
 
    //   throw ::interface_only();
@@ -4145,7 +4160,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::SetFocus()
+   //void interaction_impl::set_keyboard_focus()
    //{
 
    //   return false;
@@ -4486,7 +4501,7 @@ namespace user
    }
 
 
-   //void interaction_impl::SetForegroundWindow()
+   //void interaction_impl::set_foreground_window()
    //{
 
    //   throw ::interface_only();
@@ -4954,7 +4969,7 @@ namespace user
    }
 
 
-   void interaction_impl::do_graphics(bool bDraw)
+   void interaction_impl::do_graphics()
    {
 
       if (!m_puserinteraction || has_destroying_flag())
@@ -4972,9 +4987,9 @@ namespace user
 
 #endif
 
-      ::rectangle_i32 rectangleWindow;
+      //::rectangle_i32 rectangleWindow;
 
-      m_puserinteraction->window_rectangle(rectangleWindow);
+      //m_puserinteraction->window_rectangle(rectangleWindow);
 
       windowing_output_debug_string("\n_001UpdateBuffer : after window_rectangle");
 
@@ -4987,11 +5002,198 @@ namespace user
       //
       //      }
 
+      //preempt(10_s);
+
+      bool bDraw = false;
+
       {
 
          ::draw2d::lock draw2dlock(this);
 
-         ::size_i32 sizeDrawn;
+         m_bUpdateBuffer = false;
+
+         m_bUpdateWindow = false;
+
+         m_puserinteraction->sketch_to_design(m_bUpdateBuffer, m_bUpdateWindow);
+
+         bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
+
+         //if (!m_pimpl)
+         //{
+
+         //   return;
+
+         //}
+
+         bool bHasProdevian = this->has_prodevian();
+
+         if (!m_puserinteraction)
+         {
+
+            return;
+
+         }
+
+         bool bRedraw = m_puserinteraction->m_bNeedRedraw;
+
+         if (!m_puserinteraction)
+         {
+
+            return;
+
+         }
+
+         bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
+
+         if (bIsThisScreenVisible
+            &&
+            (//bForce
+               //||
+               m_bUpdateBuffer
+               || bHasProdevian
+               || bRedraw
+               || bHasPendingGraphicalUpdate
+               )
+            )
+         {
+
+            bDraw = true;
+
+         }
+
+         if (!m_puserinteraction)
+         {
+
+            return;
+
+         }
+
+         /*bool bDraw = false;
+
+         m_bVisualUpdated = false;
+
+         if (!m_puserinteraction)
+         {
+
+            return;
+
+         }
+
+         {*/
+
+
+            //synchronouslock.unlock();
+
+            ////if (!m_puserinteraction->is_sketch_to_design_locked())
+            ////{
+
+            //   /*m_puserinteraction->sketch_to_design(bUpdateBuffer, bUpdateWindow);*/
+
+            ////}
+
+            //synchronouslock.lock();
+
+            //if (!m_puserinteraction)
+            //{
+
+            //   return;
+
+            //}
+
+            //if (!this->task_get_run())
+            //{
+
+            //   return;
+
+            //}
+
+            //if (!m_puserinteraction)
+            //{
+
+            //   return;
+
+            //}
+
+            /*       bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
+
+                   if(!m_pimpl)
+                   {
+
+                      return;
+
+                   }
+
+                   bool bHasProdevian = m_pimpl->has_prodevian();
+
+                   if(!m_puserinteraction)
+                   {
+
+                      return;
+
+                   }
+
+                   bool bRedraw = m_puserinteraction->m_bNeedRedraw;
+
+                   if(!m_puserinteraction)
+                   {
+
+                      return;
+
+                   }
+
+                   bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
+
+                   if (bIsThisScreenVisible
+                      &&
+                      (bForce
+                      || bUpdateBuffer
+                      || bHasProdevian
+                      || bRedraw
+                      || bHasPendingGraphicalUpdate
+                      )
+                      )
+                   {
+
+                      bDraw = true;
+
+                   }
+
+                   if(!m_puserinteraction)
+                   {
+
+                      return;
+
+                   }*/
+
+            if (m_puserinteraction->m_bOffScreenRender)
+            {
+
+               bDraw = true;
+
+            }
+
+            update_graphics_resources();
+
+            if (bDraw && m_pgraphics.is_null())
+            {
+
+               return;
+
+            }
+
+         //}
+
+         if (m_puserinteraction->has_flag(e_flag_destroying)
+            || m_puserinteraction->has_finishing_flag()
+            || has_flag(e_flag_destroying)
+            || has_finishing_flag())
+         {
+
+            return;
+
+         }
+
+         //::size_i32 sizeDrawn;
 
          //single_lock synchronouslockObjects(acmesystem()->m_paurasystem->draw2d()->get_object_list_mutex());
 
@@ -5017,138 +5219,172 @@ namespace user
          //   return;
 
          //}
-         _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-         auto pparticleSynchronization = m_pgraphics->get_buffer_sync();
+         
 
-         _synchronous_lock synchronouslock(pparticleSynchronization);
-
-         //windowing::graphics_lock graphicslock(m_pwindow);
-
-         //m_pgraphics->update_buffer(rectangleWindow.size());
-
-         ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
-
-         slGraphics.unlock();
-
-         windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
-
-         if (has_destroying_flag())
          {
 
-            return;
 
-         }
+            _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-         //#ifdef UNIVERSAL_WINDOWS
-         if (::is_null(pgraphics) || pgraphics->nok())
-         {
+            //windowing::graphics_lock graphicslock(m_pwindow);
 
-            //#define SEVERITY_HIGH 5
+            //m_pgraphics->update_buffer(rectangleWindow.size());
 
-                        //int iSeverity = SEVERITY_HIGH;
+            auto pbufferitem = m_pgraphics->on_begin_draw();
+            //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
-                        //for(index i = 0; i < iSeverity * 20; i++)
-                        //{
+            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
-            output_debug_string("m_pgraphics->on_begin_draw FAILED (1)\n");
 
-            //}
+            slGraphics.unlock();
 
-            return;
+            windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
 
-         }
-
-         //#endif
-
-         pgraphics->on_begin_draw();
-
-         pgraphics->m_rectangleaNeedRedraw = ::transfer(m_rectangleaNeedRedraw);
-
-         pgraphics->m_pdraw2dhost = m_puserinteraction;
-
-         pgraphics->m_puserstyle.release();
-
-         if (pgraphics->m_pimage)
-         {
-
-            pgraphics->m_pimage->m_rectangleTag.Null();
-
-            //sizeDrawn = pgraphics->m_pimage->m_size;
-
-            sizeDrawn = m_puserinteraction->const_layout().design().size();
-
-         }
-
-         string strBitmapSource = payload("bitmap-source");
-
-         if (strBitmapSource.has_char())
-         {
-
-            //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
-            //
-            //            if(pbitmapsourcebuffer)
-            //            {
-            //
-            //
-            //
-            //
-            //            }
-
-         }
-
-         if (m_puserinteraction)
-         {
-
-            //auto r = m_puserinteraction->screen_rect();
-
-            if (m_puserinteraction->has_finishing_flag())
-            {
-
-               output_debug_string("::user::interaction_impl set_finish");
-
-            }
-            else
-            {
-
-               pgraphics->m_bDraw = bDraw;
-
-               m_puserinteraction->do_graphics(pgraphics);
-
-               if (!bDraw && m_rectangleaNeedRedraw.has_element())
-               {
-
-                  bDraw = true;
-
-                  pgraphics->m_bDraw = bDraw;
-
-                  m_puserinteraction->do_graphics(pgraphics);
-
-               }
-
-            }
-
-            //m_rectangleUpdateBuffer = r;
-
-            //FORMATTED_TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
-
-            if (!m_pgraphics)
+            if (has_destroying_flag())
             {
 
                return;
 
             }
 
-            m_pgraphics->m_bNewBuffer = true;
+            ::pointer < ::draw2d::graphics > pgraphics = pbufferitem->m_pimage->g();
 
-         }
+            //#ifdef UNIVERSAL_WINDOWS
+            if (::is_null(pgraphics) || pgraphics->nok())
+            {
 
-         if (pgraphics->m_pimage)
-         {
+               //#define SEVERITY_HIGH 5
 
-            //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+                           //int iSeverity = SEVERITY_HIGH;
 
-            m_sizeDrawn = sizeDrawn;
+                           //for(index i = 0; i < iSeverity * 20; i++)
+                           //{
+
+               output_debug_string("m_pgraphics->on_begin_draw FAILED (1)\n");
+
+               //}
+
+               return;
+
+            }
+
+            //#endif
+
+            pgraphics->on_begin_draw();
+
+            {
+
+               _synchronous_lock synchronouslock(synchronization());
+
+               pgraphics->m_rectangleaNeedRedraw = ::transfer(m_rectangleaNeedRedraw);
+
+            }
+
+            if (!bDraw)
+            {
+
+               if (pgraphics->m_rectangleaNeedRedraw.has_element())
+               {
+
+                  bDraw = true;
+
+               }
+
+            }
+
+            pgraphics->m_pdraw2dhost = m_puserinteraction;
+
+            pgraphics->m_puserstyle.release();
+
+            if (pgraphics->m_pimage)
+            {
+
+               pgraphics->m_pimage->m_rectangleTag.Null();
+
+               //sizeDrawn = pgraphics->m_pimage->m_size;
+
+               ///sizeDrawn = m_puserinteraction->const_layout().design().size();
+
+            }
+
+            string strBitmapSource = payload("bitmap-source");
+
+            if (strBitmapSource.has_char())
+            {
+
+               //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+               //
+               //            if(pbitmapsourcebuffer)
+               //            {
+               //
+               //
+               //
+               //
+               //            }
+
+            }
+
+            if (m_puserinteraction)
+            {
+
+               //auto r = m_puserinteraction->screen_rect();
+
+               if (m_puserinteraction->has_finishing_flag())
+               {
+
+                  output_debug_string("::user::interaction_impl set_finish");
+
+               }
+               else
+               {
+
+                  pgraphics->m_bDraw = bDraw;
+
+                  m_puserinteraction->do_graphics(pgraphics);
+
+                  if (!bDraw && m_rectangleaNeedRedraw.has_element())
+                  {
+
+                     synchronouslock.unlock();
+
+                     bDraw = true;
+
+                     pgraphics->m_bDraw = bDraw;
+
+                     m_puserinteraction->do_graphics(pgraphics);
+
+                  }
+
+               }
+
+               //m_rectangleUpdateBuffer = r;
+
+               //FORMATTED_TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+
+               if (!m_pgraphics)
+               {
+
+                  return;
+
+               }
+
+               m_pgraphics->m_bNewBuffer = true;
+
+            }
+
+            //if (pgraphics->m_pimage.ok())
+            //{
+
+            //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+
+            //   //m_sizeDrawn = sizeDrawn;
+
+            //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+
+            //}
+
+            m_sizeLastBuffer = pbufferitem->m_size;
 
          }
 
@@ -5202,14 +5438,14 @@ namespace user
 
          //   }
 
-            if (m_rectangleaNeedRedraw.has_element())
-            {
+         if (m_rectangleaNeedRedraw.has_element())
+         {
 
-               auto iRequestsDuringDrawing = m_rectangleaNeedRedraw.size();
+            auto iRequestsDuringDrawing = m_rectangleaNeedRedraw.size();
 
-               INFORMATION(iRequestsDuringDrawing << " redraw requests while drawing.");
+            INFORMATION(iRequestsDuringDrawing << " redraw requests while drawing.");
 
-            }
+         }
 
          //}
 
@@ -5222,6 +5458,10 @@ namespace user
       output_debug_string("_001UpdateBuffer " + as_string(elapsed.floating_millisecond().m_d) + "ms\n");
 
 #endif
+
+      m_bUpdateBuffer = true;
+
+      m_bUpdateScreen = true;
 
    }
 
@@ -5401,7 +5641,7 @@ namespace user
 
             m_pgraphics->update_screen();
 
-            m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design());
+            m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
 
          }
 
@@ -5592,7 +5832,7 @@ namespace user
 
    //   pinteraction->place(rectangle);
 
-   //   pinteraction->display(e_display_restored, e_activation_no_activate);
+   //   pinteraction->display(e_display_normal, e_activation_no_activate);
 
    //}
 
@@ -5636,9 +5876,9 @@ namespace user
 
             _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-            auto pparticleSynchronization = m_pgraphics->get_draw_lock();
+            auto pbufferitem = m_pgraphics->get_buffer_item();
 
-            _synchronous_lock synchronouslock(pparticleSynchronization);
+            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
             slGraphics.unlock();
 
@@ -5667,9 +5907,9 @@ namespace user
 
             _synchronous_lock slGraphics(m_pgraphics->synchronization());
 
-            auto pparticleSynchronization = m_pgraphics->get_draw_lock();
+            auto pbufferitem = m_pgraphics->get_buffer_item();
 
-            _synchronous_lock slDraw(pparticleSynchronization);
+            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
             slGraphics.unlock();
 
@@ -6789,17 +7029,18 @@ namespace user
 
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
-         if (sizeOutput.cx > m_sizeDrawn.cx || sizeOutput.cy > m_sizeDrawn.cy)
-         {
+         //if (sizeOutput.cx > m_sizeDrawn.cx || sizeOutput.cy > m_sizeDrawn.cy)
+         // if (sizeOutput != m_sizeDrawn)
+         // {
 
-            m_puserinteraction->set_need_layout();
+         //    m_puserinteraction->set_need_layout();
 
-            //m_puserinteraction->set_need_redraw();
+         //    //m_puserinteraction->set_need_redraw();
 
-            m_puserinteraction->post_redraw();
+         //    m_puserinteraction->post_redraw();
 
-         }
-         else
+         // }
+         // else
          {
 
             bHasSetWindowPosition = m_pwindow->on_set_window_position(
@@ -6875,7 +7116,7 @@ namespace user
       {
 
          //throw ::exception(todo);
-         ///m_puserinteraction->SetActiveWindow();
+         ///m_puserinteraction->XXXSetActiveWindow();
 
          m_pwindow->set_active_window();
 
@@ -6916,7 +7157,7 @@ namespace user
          if (pimplFocus == this)
          {
 
-            output_debug_string("optimized out a SetFocus");
+            output_debug_string("optimized out a set_keyboard_focus");
 
          }
          else
@@ -7080,12 +7321,12 @@ namespace user
 
          window_show();
 
-         if (::is_set(m_puserthread))
-         {
+         //if (::is_set(m_puserthread))
+         //{
 
-            m_puserthread->m_evApplyVisual.set_event();
+         //   m_puserthread->m_evApplyVisual.set_event();
 
-         }
+         //}
 
       }
 
@@ -7178,10 +7419,10 @@ namespace user
 
       //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-      //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
+      //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
       //{
 
-        // m_puserinteraction->display(e_display_restored);
+        // m_puserinteraction->display(e_display_normal);
 
       //}
 
@@ -7244,10 +7485,10 @@ namespace user
       //
       //         m_puserinteraction->layout().sketch() = psize->m_size;
       //
-      //         if (m_puserinteraction->layout().sketch().display() != e_display_restored)
+      //         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
       //         {
       //
-      //            m_puserinteraction->display(e_display_restored);
+      //            m_puserinteraction->display(e_display_normal);
       //
       //         }
       //
@@ -7295,10 +7536,10 @@ namespace user
 
          //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
+         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          //{
 
-         // m_puserinteraction->display(e_display_restored);
+         // m_puserinteraction->display(e_display_normal);
 
          //}
 
@@ -7528,7 +7769,9 @@ namespace user
    i64 interaction_impl::opaque_area(const ::rectangle_i32& rect)
    {
 
-      _synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
+      auto pitem = m_pgraphics->get_screen_item();
+
+      _synchronous_lock synchronouslock(pitem->m_pmutex);
 
       ::color::color colorTransparent(0);
 
@@ -7536,7 +7779,7 @@ namespace user
 
       m_puserinteraction->screen_to_client()(rectangle);
 
-      return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent, rectangle);
+      return rectangle.area() - pitem->m_pimage->get_rgba_area(colorTransparent, rectangle);
 
    }
 
@@ -7556,19 +7799,27 @@ namespace user
    i64 interaction_impl::opaque_area()
    {
 
+      auto pitem = m_pgraphics->get_screen_item();
+
+      _synchronous_lock synchronouslock(pitem->m_pmutex);
+
       ::color::color colorTransparent(0);
 
       ::rectangle_i32 rectangle;
 
       m_puserinteraction->window_rectangle(rectangle);
 
-      return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent);
+      return rectangle.area() - pitem->m_pimage->get_rgba_area(colorTransparent);
 
    }
 
 
    i64 interaction_impl::_001GetTopLeftWeightedArea()
    {
+
+      auto pitem = m_pgraphics->get_screen_item();
+
+      _synchronous_lock synchronouslock(pitem->m_pmutex);
 
       ::color::color colorTransparent(0);
 
@@ -7583,7 +7834,7 @@ namespace user
 
       }
 
-      auto pimage = m_pgraphics->get_screen_image();
+      auto pimage = pitem->m_pimage;
 
       if (::is_null(pimage))
       {
@@ -7784,9 +8035,13 @@ namespace user
    void interaction_impl::android_fill_plasma(const void* pixels, int width, int height, int stride, ::i64 time_ms)
    {
 
-      synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
+      auto pitem = m_pgraphics->get_screen_item();
 
-      auto pimageSource = m_pgraphics->get_screen_image();
+      _synchronous_lock synchronouslock(pitem->m_pmutex);
+
+      //synchronous_lock synchronouslock(pitem->m_pmutex);
+
+      auto pimageSource = pitem->m_pimage;
 
       pimageSource->map();
 

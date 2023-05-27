@@ -461,7 +461,7 @@ namespace user
          if (m_pcombo != nullptr && m_pcombo->is_window_visible(::user::e_layout_sketch))
          {
 
-            m_pcombo->SetFocus();
+            m_pcombo->set_keyboard_focus();
 
          }
 
@@ -550,7 +550,7 @@ namespace user
 
          //      m_pcombo->keyboard_set_focus();
 
-         //      m_pcombo->get_wnd()->SetActiveWindow();
+         //      m_pcombo->get_wnd()->set_active_window();
 
          //   }
          //   else
@@ -1073,7 +1073,7 @@ namespace user
 
       order_top_most();
 
-      display(e_display_restored);
+      display(e_display_normal);
 
       set_need_redraw();
 

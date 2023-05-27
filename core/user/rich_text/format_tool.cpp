@@ -765,7 +765,7 @@ namespace user
 
       order(e_zorder_top_most);
 
-      display(e_display_restored, e_activation_no_activate);
+      display(e_display_normal, e_activation_no_activate);
 
       set_need_redraw();
 

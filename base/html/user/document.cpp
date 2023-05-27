@@ -390,7 +390,7 @@ void html_document::on_command(::message::command * pcommand)
 
       auto plauncher = __new(::apex::shell_launcher);
       
-      plauncher->setup(nullptr, "open", get_file_path(), nullptr, get_file_path().folder(), e_display_restored);
+      plauncher->setup(nullptr, "open", get_file_path(), nullptr, get_file_path().folder(), e_display_normal);
 
       plauncher->launch();
 

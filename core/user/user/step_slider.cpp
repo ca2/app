@@ -131,7 +131,7 @@ namespace user
       ::rectangle_i32 rectangle;
       for(i64 i = iMin; i <= iMax; i++)
       {
-         GetStepRect(rectangle, i, iMin, iMax, rectangleClient);
+         GetStepRect(&rectangle, i, iMin, iMax, rectangleClient);
          if(i == iVal)
          {
             

@@ -9,8 +9,7 @@
 inline bool is_custom_size(enum_display edisplay)
 {
 
-   return edisplay == e_display_restored
-         || edisplay == e_display_restore
+   return edisplay == e_display_normal
          || edisplay == e_display_compact
          || edisplay == e_display_broad
          || edisplay == e_display_minimal
@@ -127,7 +126,7 @@ namespace user
 
          place_rate_or_size(m_rectangleInitialRateOrSize);
 
-         display(e_display_restored);
+         display(e_display_normal);
 
       }
       else
@@ -157,7 +156,7 @@ namespace user
 
             place_rate_or_size(rectangleRateOrSize);
 
-            display(e_display_restored);
+            display(e_display_normal);
 
          }
 

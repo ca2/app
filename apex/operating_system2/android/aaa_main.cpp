@@ -49,7 +49,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //         pinitmaindata->m_strCommandLine     += "\"";
 //      }
 //   }
-//   pinitmaindata->m_nCmdShow              = e_display_restored;
+//   pinitmaindata->m_nCmdShow              = e_display_normal;
 //
 //
 //   psystem->init_main_data(pinitmaindata);

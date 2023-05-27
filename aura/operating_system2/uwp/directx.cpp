@@ -389,7 +389,7 @@ namespace universal_windows
 
          m_pimpl->m_puserinteraction->order_top();
 
-         m_pimpl->m_puserinteraction->display(e_display_restored);
+         m_pimpl->m_puserinteraction->display(e_display_normal);
 
          //defer_resize_top_level_windows();
 

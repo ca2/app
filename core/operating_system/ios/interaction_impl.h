@@ -209,7 +209,7 @@ namespace ios
 //      virtual bool round_window_key_up(unsigned int uiKeyCode);
 
 
-      virtual bool SetFocus() override;
+      virtual bool set_keyboard_focus() override;
 
       virtual bool has_keyboard_focus() override;
       virtual bool is_active() override;
@@ -265,8 +265,8 @@ namespace ios
       virtual bool IsWindowEnabled();
       virtual bool EnableWindow(bool bEnable = true);
 
-      virtual ::user::interaction *  GetActiveWindow() override;
-      virtual ::user::interaction *  SetActiveWindow() override;
+      virtual ::user::interaction * get_active_window() override;
+      virtual ::user::interaction * set_active_window() override;
 
       virtual bool SetForegroundWindow() override;
       static ::user::interaction * PASCAL GetForegroundWindow();

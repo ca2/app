@@ -382,6 +382,6 @@ int is_window(oswindow window)
 //      
 //   }
 //   
-//   return oswindow->m_pimpl->ShowWindow(iShow);
+//   return oswindow->m_pimpl->show_window(iShow);
 //   
 //}

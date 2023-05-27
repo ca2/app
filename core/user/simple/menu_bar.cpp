@@ -169,9 +169,8 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_iTracking = iItem;
    m_pitemPressed = __new(::item(::e_element_item, iItem));
    set_need_redraw();
-   ::rectangle_i32 rectangle;
-   index_element_rectangle(iItem, rectangle, ::e_element_item, ::user::e_state_none);
-   client_to_screen()(rectangle);
+   auto statusrectangle = index_element_rectangle(iItem, ::e_element_item, ::user::e_state_none);
+   client_to_screen()(statusrectangle);
 
    /*#ifdef WINDOWS_DESKTOP
        TPMPARAMS tpm;

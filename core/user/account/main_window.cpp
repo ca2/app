@@ -308,7 +308,7 @@ namespace account
 
       //BringWindowToTop();
 
-      display(e_display_restored);
+      display(e_display_normal);
 
       SetTimer(2000, 300_ms, nullptr);
 

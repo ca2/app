@@ -4669,11 +4669,11 @@ namespace apex
       //
       //#elif defined(WINDOWS)
       //
-      //      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_restored, false);
+      //      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_normal, false);
       //
       //#elif defined(LINUX)
       //
-      //      call_async("gedit", "\"" + strFile + "\"", "", e_display_restored, false);
+      //      call_async("gedit", "\"" + strFile + "\"", "", e_display_normal, false);
       //
       //#else
       //
@@ -7007,7 +7007,7 @@ namespace apex
 
          int iExitCode = 0;
 
-         return pnode->call_sync(pathApp, pszCommandLine, pathFolder, e_display_restored, 2_minute, set, &iExitCode);
+         return pnode->call_sync(pathApp, pszCommandLine, pathFolder, e_display_normal, 2_minute, set, &iExitCode);
 
 #endif
 

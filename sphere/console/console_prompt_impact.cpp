@@ -124,7 +124,7 @@ namespace console
 
          get_typed_parent < prompt_frame > ()->hide();
 
-         papp->m_puiMain->m_puiThis->SetActiveWindow();
+         papp->m_puiMain->m_puiThis->set_active_window();
 
          clear();
 

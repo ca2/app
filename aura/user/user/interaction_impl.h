@@ -113,7 +113,7 @@ namespace user
       ::frequency                                    m_frequencyNominalFramesPerSecond;
       ::frequency                                    m_frequencyOutputFramesPerSecond;
       point_i32                                 m_pointMouseMove;
-      ::size_i32                                m_sizeDrawn;
+      //::size_i32                                m_sizeDrawnAAA;
       ::size_i32                                m_sizeSetWindowSizeRequest;
       particle_array                            m_particleaRedraw;
 
@@ -133,7 +133,8 @@ namespace user
 
       //native_window *                         m_pwindow;
 
-      ::pointer<::graphics::graphics>        m_pgraphics;
+      ::pointer<::graphics::graphics>           m_pgraphics;
+      ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
 
       ::pointer < ::mutex >                     m_pmutexDraw;
       ::pointer < ::mutex >                     m_pmutexRedraw;
@@ -168,6 +169,13 @@ namespace user
       ::pointer < ::user::interaction >                     m_puiLastLButtonDown;
       ::pointer < ::item >                                  m_pitemLButtonDown;
 
+
+      bool                                      m_bUpdateBuffer; // internal offscreen buffer
+      bool                                      m_bUpdateScreen; // screen buffer
+      bool                                      m_bUpdateWindow; // window frame
+
+
+      ::size_i32                                m_sizeLastBuffer;
 
 
       interaction_impl();
@@ -731,7 +739,7 @@ namespace user
 
       virtual void start_window_visual() override;
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
-      virtual void do_graphics(bool bDraw);
+      virtual void do_graphics();
       virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
 

@@ -2,37 +2,9 @@
 
 
 #include "object.h"
-//#include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
-//#include "acme/primitive/collection/pointer_array.h"
-//#include "acme/primitive/collection/string_array.h"
-
-
-template < primitive_rectangle RECTANGLE >
-inline void max_bounding_box(RECTANGLE & rectangle, const ::point_f64 & p)
-{
-
-   rectangle.left = (decltype(rectangle.left))minimum(rectangle.left, p.x());
-   rectangle.right = (decltype(rectangle.right))maximum(rectangle.right, p.x());
-   rectangle.top = (decltype(rectangle.top))minimum(rectangle.top, p.y());
-   rectangle.bottom = (decltype(rectangle.bottom))maximum(rectangle.bottom, p.y());
-
-}
-
-template < primitive_rectangle RECTANGLE >
-inline void max_bounding_box(RECTANGLE & rectangle, ::point_f64 * p, ::count c)
-{
-
-   for (::index i = 0; i < c; i++)
-   {
-    
-      max_bounding_box(rectangle, *p);
-      
-      p++;
-
-   }
-
-}
+#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/primitive/geometry2d/region.h"
 
 
 namespace draw2d
@@ -40,159 +12,10 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA region :
-      virtual public object
+      virtual public object,
+      virtual public geometry2d::region
    {
    public:
-
-
-      class CLASS_DECL_AURA item :
-         virtual public ::particle
-      {
-      public:
-
-         virtual void translate(const ::point_i32 & point);
-         virtual void max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics);
-         virtual bool internal_contains(const ::point_f64 & p);
-
-      };
-
-
-      class CLASS_DECL_AURA rectangle_item :
-         virtual public item
-      {
-      public:
-
-         ::rectangle_f64 m_rectangle;
-
-         void translate(const ::point_i32 & point) override;
-         void max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics) override;
-         bool internal_contains(const ::point_f64 & p) override;
-
-      };
-
-      class CLASS_DECL_AURA ellipse_item :
-         virtual public item
-      {
-      public:
-
-
-         ::rectangle_f64 m_rectangle;
-
-         void translate(const ::point_i32 & point) override;
-         void max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics) override;
-         bool internal_contains(const ::point_f64 & p) override;
-
-
-
-      };
-
-      class CLASS_DECL_AURA polygon_item :
-         virtual public item
-      {
-      public:
-
-         ::polygon m_polygon;
-         ::draw2d::enum_fill_mode            m_efillmode;
-         
-         
-         void translate(const ::point_i32 & point) override;
-         void max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics) override;
-         bool internal_contains(const ::point_f64 & p) override;
-
-
-      };
-
-
-      class CLASS_DECL_AURA poly_polygon_item :
-         virtual public item
-      {
-      public:
-
-         pointer_array < ::polygon > m_polygona;
-         ::draw2d::enum_fill_mode            m_efillmode;
-
-         void translate(const ::point_i32 & point) override;
-         void max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics) override;
-         bool internal_contains(const ::point_f64 & p) override;
-
-
-      };
-
-      class CLASS_DECL_AURA combine_item :
-         virtual public item
-      {
-      public:
-
-         pointer_array < ::polygon > m_polygon;
-
-         ::pointer<::draw2d::region>  m_pregion1;
-         ::pointer<::draw2d::region>  m_pregion2;
-         enum_combine                        m_ecombine;
-
-         void translate(const ::point_i32 & point) override;
-         void max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics) override;
-         bool internal_contains(const ::point_f64 & p) override;
-
-
-
-      };
-
-
-      class CLASS_DECL_AURA round_rectangle_item :
-         virtual public item
-      {
-      public:
-
-         
-         ::rectangle_f64   m_rectangle;
-         ::size_f64        m_sizeRadius;
-
-
-         void translate(const ::point_i32 & point) override;
-         void max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics) override;
-         bool internal_contains(const ::point_f64 & p) override;
-
-      };
-
-
-      enum_region                         m_eregion;
-      ::pointer<item>                    m_pitem;
-      //union
-      //{
-
-      //   ::rectangle_f64      m_rectangle; // rectangle/ellipse
-      //   struct
-      //   {
-
-      //      ::point_f64 * m_lppoints;
-      //      int * m_lppolycounts;
-      //      i32                                 m_nCount;
-
-      //   } m_polygon;
-      //   struct
-      //   {
-
-      //      ::point_f64 * m_lppoints;
-      //      int * m_lppolycounts;
-      //      i32                                 m_nCount;
-
-      //   } m_polypolygon;
-      //   struct
-      //   {
-
-
-
-      //   } m_combine;
-
-      //};
-
-      //double                              m_x1;
-      //double                              m_y1;
-      //double                              m_x2;
-      //double                              m_y2;
-      //double                              m_x3;
-      //double                              m_y3;
-      ::point_i32                             m_pointOffset;
 
 
       region();

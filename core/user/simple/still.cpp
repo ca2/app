@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "still.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/drawing.h"
 

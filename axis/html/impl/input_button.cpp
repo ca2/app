@@ -119,7 +119,7 @@ namespace html
 
          m_pbutton->place(m_box);
 
-         m_pbutton->display(::e_display_restored);
+         m_pbutton->display(::e_display_normal);
 
       }
 

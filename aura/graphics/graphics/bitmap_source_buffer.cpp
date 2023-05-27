@@ -75,6 +75,8 @@ namespace graphics
 
       }
 
+
+
       //return estatus;
 
    }
@@ -242,7 +244,7 @@ namespace graphics
       if (is_ipc_copy_enabled())
       {
 
-         if (!ipc_copy(get_screen_image()))
+         if (!ipc_copy(get_screen_item()->m_pimage))
          {
 
             return false;

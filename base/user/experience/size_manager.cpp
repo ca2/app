@@ -6,6 +6,7 @@
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
+CLASS_DECL_BASE::count get_top_left_oriented_damaged_areas_by_resizing(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld);
 
 namespace experience
 {
@@ -440,7 +441,7 @@ namespace experience
 
       ::rectangle_i32 rectangleMonitor;
 
-      pframewindow->best_monitor(rectangleMonitor);
+      pframewindow->best_monitor(&rectangleMonitor);
 
       ::size_i32 sizeMin = GetMinSize();
 
@@ -633,9 +634,7 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectangleWindowNow;
-
-      m_pframewindow->window_rectangle(rectangleWindowNow);
+      ::rectangle_i32 rectangleWindowNow = m_pframewindow->window_rectangle(::user::e_layout_sketch);
 
       if (rectangleWindowNow == rectangleWindow)
       {
@@ -651,7 +650,7 @@ namespace experience
          if (m_pframewindow->layout().is_zoomed())
          {
 
-            m_pframewindow->display(e_display_restore);
+            m_pframewindow->display(e_display_normal);
 
          }
 
@@ -666,7 +665,7 @@ namespace experience
          if (m_pframewindow->get_parent() != nullptr)
          {
 
-            rectangleParentClient+=m_pframewindow->get_parent()->screen_to_client();
+            m_pframewindow->get_parent()->screen_to_client()(rectangleParentClient);
 
          }
 
@@ -676,19 +675,42 @@ namespace experience
 
          m_pframewindow->m_rectanglePending.unite(rectangleBefore, rectangleAfter);
 
+         m_pframewindow->m_pframe->set_need_redraw_frame(::user::e_layout_design);
+
+
          pframewindow->place(rectangleParentClient);
 
          FORMATTED_TRACE("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
 
-         pframewindow->display();
+         //pframewindow->display();
 
          pframewindow->set_need_layout();
 
-         pframewindow->set_need_redraw();
+         //pframewindow->set_need_redraw();
+
+         m_pframewindow->m_pframe->set_need_redraw_frame(::user::e_layout_sketch);
+
+         ::rectangle_i32 rectangleaBorders[4];
+
+         auto c = get_top_left_oriented_damaged_areas_by_resizing(rectangleaBorders, rectangleAfter, rectangleBefore);
+
+         for (::index i = 0; i < c; i++)
+         {
+
+            auto rectangleBorder = rectangleaBorders[i];
+
+            rectangleBorder -= rectangleAfter.top_left();
+
+            pframewindow->set_need_redraw(rectangleBorder);
+
+         }
+
 
       }
 
       pframewindow->post_redraw();
+
+
 
    }
 
@@ -800,5 +822,49 @@ namespace experience
 
 } // namespace experience
 
+
+
+CLASS_DECL_BASE::count get_top_left_oriented_damaged_areas_by_resizing(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld)
+{
+
+   if (rectangleOld.contains(rectangleNew))
+   {
+
+      return 0;
+
+   }
+
+   auto rectangleBefore = rectangleOld;
+
+   rectangleBefore.move_to(rectangleNew.top_left());
+
+   ::count c = 0;
+
+   // Right
+   rectanglea[c] = rectangleNew;
+   rectanglea[c].left = rectangleBefore.right;
+   rectanglea[c].bottom = ::minimum(rectangleBefore.bottom, rectangleNew.bottom);
+
+   if (rectanglea[c].is_set())
+   {
+
+      c++;
+
+   }
+
+   // Bottom
+   rectanglea[c] = rectangleNew;
+   rectanglea[c].top = rectangleBefore.bottom;
+
+   if (rectanglea[c].is_set())
+   {
+
+      c++;
+
+   }
+
+   return c;
+
+}
 
 

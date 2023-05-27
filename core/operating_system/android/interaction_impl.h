@@ -113,8 +113,8 @@ namespace android
       //virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow() override;
-      virtual ::user::interaction * SetActiveWindow() override;
+      virtual ::user::interaction * get_active_window() override;
+      virtual ::user::interaction * set_active_window() override;
 
 
       LRESULT send_message(const ::atom & atom,WPARAM wParam = 0,lparam lParam = 0) override;
@@ -209,8 +209,8 @@ namespace android
 
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
-      virtual bool SetForegroundWindow() override;
-      virtual ::user::interaction * GetForegroundWindow();
+      virtual bool set_foreground_window() override;
+      virtual ::user::interaction * get_foreground_window();
 
 
 
@@ -219,7 +219,7 @@ namespace android
       //virtual ::user::interaction * SetCapture(::user::interaction * pinterface = nullptr);
       //virtual ::user::interaction * ReleaseCapture();
       //virtual ::user::interaction * GetCapture();
-      virtual bool SetFocus() override;
+      virtual bool set_keyboard_focus() override;
 
       virtual bool has_keyboard_focus() override;
       virtual bool is_active() override;

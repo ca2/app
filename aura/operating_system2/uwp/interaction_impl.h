@@ -293,12 +293,12 @@ namespace universal_windows
       virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction *  GetActiveWindow();
-      virtual ::user::interaction *  SetActiveWindow();
+      virtual ::user::interaction * get_active_window();
+      virtual ::user::interaction * set_active_window();
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
-      virtual bool SetForegroundWindow();
-      static ::pointer<::user::interaction_impl>GetForegroundWindow();
+      virtual bool set_foreground_window();
+      static ::pointer<::user::interaction_impl>get_foreground_window();
 
       virtual atom SetDlgCtrlId(atom atom);
       virtual atom GetDlgCtrlId();
@@ -306,7 +306,7 @@ namespace universal_windows
 
 
       virtual ::user::interaction *  GetFocus();
-      virtual bool  SetFocus() override;
+      virtual bool  set_keyboard_focus() override;
 
       static ::user::interaction *  get_desktop_window();
 

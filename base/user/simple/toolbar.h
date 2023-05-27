@@ -99,7 +99,7 @@ public:
 
 //  virtual bool index_item_rectangle(index iItem,::rectangle_i32 * prectangle)
 
-   bool index_element_rectangle(index iItem,::rectangle_i32 * prectangle, ::enum_element eelement,
+   ::status < ::rectangle_i32 > index_element_rectangle(index iItem, ::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 

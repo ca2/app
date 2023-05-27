@@ -202,7 +202,7 @@ namespace user
 
       update_drawing_objects();
 
-      display(e_display_restored, e_activation_no_activate);
+      display(e_display_normal, e_activation_no_activate);
    }
 
    ///////////////////////////////////////////////////////////

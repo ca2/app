@@ -9,6 +9,20 @@
 namespace graphics
 {
 
+   class buffer_item :
+      virtual public ::particle
+   {
+   public:
+
+      
+      ::image_pointer               m_pimage;
+      ::mutex_pointer               m_pmutex;
+      ::point_i32                   m_point;
+      ::size_i32                    m_size;
+      ::pointer < ::particle >      m_pparticleData;
+
+
+   };
 
    class CLASS_DECL_AURA graphics :
       virtual public ::object
@@ -31,6 +45,9 @@ namespace graphics
       };
 
 
+      ::pointer_array<buffer_item >          m_bufferitema;
+
+
       graphics();
       ~graphics() override;
 
@@ -40,24 +57,29 @@ namespace graphics
 
       virtual void destroy_buffer();
 
+      virtual bool is_single_buffer_mode() const;
+
+
       virtual void on_after_graphical_update();
 
       virtual bool buffer_lock_round_swap_key_buffers();
 
       virtual bool update_screen();
 
-      virtual bool update_screen(::image * pimage);
+      virtual bool on_update_screen(buffer_item * pitem);
 
-      virtual ::size_i32 window_size();
+      virtual void buffer_size_and_position(buffer_item * pitem);
 
       virtual i64 _001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect);
 
-      virtual ::particle * get_draw_lock();
-      virtual ::draw2d::graphics * on_begin_draw();
+      //virtual ::particle * get_draw_lock();
+      virtual buffer_item * on_begin_draw();
 
       virtual void on_end_draw();
 
-      virtual bool update_buffer(const ::size_i32 & size, int iStrideParam = -1);
+      //virtual bool update_buffer(const ::size_i32 & size, int iStrideParam = -1);
+
+      virtual bool update_buffer(buffer_item * pitem);
 
       virtual bool ipc_copy(const pixmap* ppixmap);
 
@@ -67,11 +89,12 @@ namespace graphics
 
       virtual string get_bitmap_source() const;
 
-
-      virtual ::image_pointer & get_buffer_image();
-      virtual ::particle * get_buffer_sync();
-      virtual ::image_pointer & get_screen_image();
-      virtual ::particle * get_screen_sync();
+      virtual buffer_item * get_buffer_item();
+      //virtual ::image_pointer & get_buffer_image();
+      //virtual ::particle * get_buffer_sync();
+      virtual buffer_item * get_screen_item();
+      //virtual ::image_pointer & get_screen_image();
+      //virtual ::particle * get_screen_sync();
 
 
 

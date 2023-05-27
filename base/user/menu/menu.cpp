@@ -668,7 +668,7 @@ namespace user
       if (get_parent() != nullptr)
       {
 
-         m_pointTrack+=get_parent()->screen_to_client();
+         get_parent()->screen_to_client()(m_pointTrack);
 
       }
 
@@ -830,7 +830,7 @@ namespace user
 
       ::rectangle_i32 rectangleMonitor;
 
-      auto iMonitor = get_best_monitor(rectangleMonitor, rectangleWindow);
+      auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
          
       if(iMonitor >= 0)
       {
@@ -869,7 +869,7 @@ namespace user
 
       place(rectangleWindow);
 
-      display(e_display_restored, e_activation_no_activate);
+      display(e_display_normal, e_activation_no_activate);
 
       set_need_redraw();
 

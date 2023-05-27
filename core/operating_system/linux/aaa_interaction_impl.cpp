@@ -910,7 +910,7 @@ namespace linux
             if(m_puserinteraction->m_windowrectangle.m_edisplayPrevious == ::e_display_iconic)
             {
 
-               m_puserinteraction->_001OnDeiconify(::e_display_restored);
+               m_puserinteraction->_001OnDeiconify(::e_display_normal);
 
             }
             else
@@ -1789,7 +1789,7 @@ namespace linux
 //      {
 //         // clicking on floating frame when it does not have
 //         // focus itself -- activate the toplevel frame instead.
-//         EnsureTopLevel()->SetForegroundWindow();
+//         EnsureTopLevel()->set_foreground_window();
 //      }
 //   }
 
@@ -1991,7 +1991,7 @@ namespace linux
 //               if (LOWORD(lparam) == VK_F6 && pParent != nullptr)
 //
 //               {
-//                  pParent->SetFocus();
+//                  pParent->XXXSetFocus();
 //                  return true;
 //               }
 //               break;
@@ -2014,15 +2014,15 @@ namespace linux
 //                     // and focus after sending it.
 //                     oswindow hWndSave = get_handle();
 //                     oswindow hWndFocus = ::GetFocus();
-//                     pParent->SetActiveWindow();
+//                     pParent->set_active_window();
 //                     pParent->send_message(WM_SYSCOMMAND, nID, lparam);
 //
 //
 //                     // be very careful here...
 //                     if (::is_window(hWndSave))
-//                        ::SetActiveWindow(hWndSave);
+//                        ::XXXSetActiveWindow(hWndSave);
 //                     if (::is_window(hWndFocus))
-//                        ::SetFocus(hWndFocus);
+//                        ::XXXSetFocus(hWndFocus);
 //                  }
 //               }
 //               return true;
@@ -2994,11 +2994,11 @@ namespace linux
 //      if(m_puserinteraction != nullptr)
 //      {
 //
-//         m_puserinteraction->dis = ::e_display_restored;
+//         m_puserinteraction->dis = ::e_display_normal;
 //
 //      }
 //
-//      ::show_window(m_oswindow, e_display_restored);
+//      ::show_window(m_oswindow, e_display_normal);
 //
 //   }
 
@@ -3794,7 +3794,7 @@ namespace linux
    }
 
 
-   ::user::interaction * interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::set_active_window()
    {
 
       return nullptr;
@@ -3827,7 +3827,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::SetFocus()
+   bool interaction_impl::set_keyboard_focus()
    {
 
       oswindow w = ::set_focus(get_handle());
@@ -4216,7 +4216,7 @@ namespace linux
 //
 
 
-   bool interaction_impl::SetForegroundWindow()
+   bool interaction_impl::SetForegrset_foreground_windowoundWindow()
    {
 
       return ::set_foreground_window(get_handle()) != false;

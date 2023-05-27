@@ -182,7 +182,7 @@ namespace user
       virtual void design_window_minimize(::e_activation eactivation);
       virtual void design_window_maximize();
       virtual void design_window_full_screen(const ::rectangle_i32 & rectangleHint = nullptr);
-      virtual void design_window_restore(e_display edisplay);
+      virtual void design_window_normal(e_display edisplay);
       virtual void design_window_dock(e_display edisplayDock);
 
 

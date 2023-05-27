@@ -156,7 +156,7 @@ namespace filemanager
             if (::is_set(pframe))
             {
 
-               pframe->ActivateFrame(e_display_restored);
+               pframe->ActivateFrame(e_display_normal);
 
             }
 

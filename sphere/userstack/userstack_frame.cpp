@@ -148,7 +148,7 @@ namespace userstack
       ::u32 nShow;
       if(bShow)
       {
-         nShow = e_display_restored;
+         nShow = e_display_normal;
       }
       else
       {
@@ -267,7 +267,7 @@ namespace userstack
          if(pusermessage->m_lparam == 2)
          {
             //OnHoverAction(true);
-            //display(e_display_restored);
+            //display(e_display_normal);
             
             display();
             

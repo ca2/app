@@ -95,7 +95,7 @@ struct CLASS_DECL_ACME oswindow_data
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool ShowWindow(int nCmdShow);
+   bool show_window(int nCmdShow);
    ::i32 get_window_long(i32 nIndex);
    ::i32 set_window_long(i32 nIndex, ::i32 l);
    bool client_to_screen(POINT32 * lppoint);

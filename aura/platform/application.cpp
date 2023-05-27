@@ -2951,11 +2951,11 @@ retry_license:
 ////
 ////#elif defined(WINDOWS)
 ////
-////      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_restored, false);
+////      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_normal, false);
 ////
 ////#elif defined(LINUX)
 ////
-////      call_async("gedit", "\"" + strFile + "\"", "", e_display_restored, false);
+////      call_async("gedit", "\"" + strFile + "\"", "", e_display_normal, false);
 ////
 ////#else
 ////
@@ -5243,7 +5243,7 @@ retry_license:
 //
 //         ::property_set set;
 //
-//         return ::call_sync(::path::app_app(process_platform_name(), process_configuration_name()), pszCommandLine, ::path::app_app(process_platform_name(), process_configuration_name()), e_display_restored, 2_min, set);
+//         return ::call_sync(::path::app_app(process_platform_name(), process_configuration_name()), pszCommandLine, ::path::app_app(process_platform_name(), process_configuration_name()), e_display_normal, 2_min, set);
 //
 //#endif
 //
@@ -7276,7 +7276,7 @@ namespace aura
 
          auto puserinteractionMain = m_puserinteractionMain;
 
-         puserinteractionMain->display(e_display_restored);
+         puserinteractionMain->display(e_display_normal);
 
       }
 
@@ -9028,7 +9028,7 @@ namespace aura
 
       //      //}
 
-      //      //pframe->display(e_display_restored);
+      //      //pframe->display(e_display_normal);
 
       //   }
 

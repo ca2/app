@@ -118,7 +118,7 @@
 //
 //   ::BringWindowToTop(w);
 //
-//   ::SetForegroundWindow(w);
+//   ::XXXSetForegroundWindow(w);
 //
 //   if (!is_good_active_w(w))
 //      return 0;

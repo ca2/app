@@ -452,7 +452,7 @@ namespace draw2d
       if (m_pitem)
       {
 
-         m_pitem->max_bounding_box(rectangle, pgraphics);
+         m_pitem->max_bounding_box(rectangle);
 
       }
 

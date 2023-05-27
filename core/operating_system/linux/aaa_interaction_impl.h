@@ -353,11 +353,11 @@ namespace linux
       virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow() override;
-      virtual ::user::interaction * SetActiveWindow() override;
+      virtual ::user::interaction * get_active_window() override;
+      virtual ::user::interaction * set_active_window() override;
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
-      virtual bool SetForegroundWindow() override;
+      virtual bool set_foreground_window() override;
       //static::user::interaction * PASCAL GetForegroundWindow();
 //
 //      virtual atom SetDlgCtrlId(atom atom);

@@ -367,7 +367,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      if (m_pfontlist->get_box_rect(rectangle, iSel) && rectangle.area() > 0)
+      if (m_pfontlist->get_box_rect(&rectangle, iSel) && rectangle.area() > 0)
       {
 
          ::rectangle_i32 rectangleImpact;

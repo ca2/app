@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "control_box_button.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/user/user/frame.h"
 #include "base/user/experience/control_box.h"
@@ -210,8 +212,19 @@ namespace experience_core
 
       m_pregion->create_ellipse(rectangleClient);
 
-   }
+      __defer_construct_new(m_pitemClient);
 
+      __construct(m_pitemClient->m_ppath);
+
+      m_pitemClient->m_eelement = e_element_client;
+
+      ::ellipse_f64 ellipse;
+
+      ellipse.set(rectangleClient);
+
+      m_pitemClient->m_ppath->add_ellipse(ellipse);
+
+   }
 
 
    bool control_box_button::keyboard_focus_is_focusable()

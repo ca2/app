@@ -296,6 +296,9 @@ class pointer_array;
 using image_pointer = ::pointer<::image>;
 
 
+using mutex_pointer = ::pointer<::mutex>;
+
+
 namespace write_text
 {
 

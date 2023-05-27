@@ -1773,7 +1773,7 @@ return true;
       //{
       //   // clicking on floating frame when it does not have
       //   // focus itself -- activate the toplevel frame instead.
-      //   EnsureTopLevelParent()->SetForegroundWindow();
+      //   EnsureTopLevelParent()->set_foreground_window();
       //}
    }
 
@@ -1964,7 +1964,7 @@ return true;
       //case SC_NEXTWINDOW:
       //   if (LOWORD(lParam) == VK_F6 && pParent != nullptr)
       //   {
-      //      pParent->SetFocus();
+      //      pParent->XXXSetFocus();
       //      return true;
       //   }
       //   break;
@@ -1985,14 +1985,14 @@ return true;
       //         // and focus after sending it.
       //         oswindow hWndSave = get_handle();
       //         oswindow hWndFocus = ::GetFocus();
-      //         pParent->SetActiveWindow();
+      //         pParent->set_active_window();
       //         pParent->send_message(WM_SYSCOMMAND, nID, lParam);
 
       //         // be very careful here...
       //         if (::is_window(hWndSave))
-      //            ::SetActiveWindow(hWndSave);
+      //            ::XXXSetActiveWindow(hWndSave);
       //         if (::is_window(hWndFocus))
-      //            ::SetFocus(hWndFocus);
+      //            ::XXXSetFocus(hWndFocus);
       //      }
       //   }
       //   return true;
@@ -3376,9 +3376,9 @@ return true;
 
       throw ::exception(todo);
 
-      /*      m_edisplay = e_display_restored;
+      /*      m_edisplay = e_display_normal;
             if(m_puserinteraction != nullptr)
-            m_puserinteraction->m_edisplay = e_display_restored;
+            m_puserinteraction->m_edisplay = e_display_normal;
             ::ShowWindow(get_handle(), SW_RESTORE);*/
    }
 
@@ -4058,7 +4058,7 @@ return true;
    }
 
 
-   ::user::interaction *  interaction_impl::GetActiveWindow()
+   ::user::interaction * interaction_impl::get_active_window()
    {
 
       oswindow window = ::get_active_window();
@@ -4068,7 +4068,7 @@ return true;
    }
 
 
-   ::user::interaction *  interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::set_active_window()
    {
 
       oswindow window = ::set_active_window(get_handle());
@@ -4086,7 +4086,7 @@ return true;
    }
 
 
-   bool interaction_impl::SetFocus()
+   bool interaction_impl::set_keyboard_focus()
    {
 
       ::set_focus(m_puserinteraction->get_handle());
@@ -4493,12 +4493,12 @@ return true;
    }
 
 
-   bool interaction_impl::SetForegroundWindow()
+   bool interaction_impl::set_foreground_window()
    {
 
       throw ::exception(todo);
 
-      //return ::SetForegroundWindow(get_handle()) != false;
+      //return ::XXXSetForegroundWindow(get_handle()) != false;
 
    }
 
@@ -5671,7 +5671,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, ::u32 nHitTest, ::u32 nMsg)
             pLastActive != ::universal_windows::interaction_impl::GetForegroundWindow() &&
             pLastActive->IsWindowEnabled())
       {
-         pLastActive->SetForegroundWindow();
+         pLastActive->set_foreground_window();
          return true;
       }
    }

@@ -31,8 +31,12 @@ namespace graphics
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto bOk = update_screen(m_pimageBuffer);
-
+      auto bOk = on_update_screen(get_screen_item());
+      // 
+      // 
+      // 
+  //    bool bOk = false;
+//
       ipc_copy(m_pimageBuffer);
 
       return bOk;
@@ -40,14 +44,14 @@ namespace graphics
    }
 
 
-   bool buffer::update_screen(::image * pimage)
-   {
+   //bool buffer::update_screen(buffer_item * pitem)
+   //{
 
-      __UNREFERENCED_PARAMETER(pimage);
+   //   __UNREFERENCED_PARAMETER(pitem);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    ::image_pointer & buffer::get_buffer()
@@ -82,13 +86,15 @@ namespace graphics
    }
 
 
-   bool buffer::update_buffer(const ::size_i32 & size, int iScan)
+   bool buffer::update_buffer(buffer_item * pitem)
    {
+
+      //auto pitem = get_buffer_item();
 
       try
       {
 
-         m_pimageBuffer->create(size);
+         m_pimageBuffer->create(pitem->m_size);
 
       }
       catch (...)
@@ -112,34 +118,36 @@ namespace graphics
    }
 
 
-   ::image_pointer & buffer::get_screen_image()
+   //::image_pointer & buffer::get_screen_image()
+   //{
+
+   //   return m_pimageBuffer;
+
+   //}
+
+
+   //::particle * buffer::get_screen_sync()
+   //{
+
+   //   return synchronization();
+
+   //}
+
+
+   //::particle * buffer::get_draw_lock()
+   //{
+
+   //   return synchronization();
+
+   //}
+
+
+   buffer_item * buffer::on_begin_draw()
    {
 
-      return m_pimageBuffer;
+      auto pitem = get_buffer_item();
 
-   }
-
-
-   ::particle * buffer::get_screen_sync()
-   {
-
-      return synchronization();
-
-   }
-
-
-   ::particle * buffer::get_draw_lock()
-   {
-
-      return synchronization();
-
-   }
-
-
-   ::draw2d::graphics * buffer::on_begin_draw()
-   {
-
-      auto sizeWindow = window_size();
+      buffer_size_and_position(pitem);
 
       ///if (buffer_size() != sizeWindow)
       {
@@ -153,7 +161,7 @@ namespace graphics
 //
 //         }
 
-         update_buffer(sizeWindow);
+         update_buffer(pitem);
 
          //if (!)
          //{
@@ -180,7 +188,7 @@ namespace graphics
 
       }
 
-      return m_pimageBuffer->g();
+      return pitem;
 
    }
 

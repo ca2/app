@@ -72,11 +72,11 @@ CLASS_DECL_CORE bool _istlead(i32 ch);
 oswindow GetCapture();
 oswindow SetCapture(oswindow window);
 int_bool ReleaseCapture();
-oswindow SetFocus(oswindow window);
+oswindow solaris_set_focus(oswindow window);
 oswindow GetFocus();
 oswindow GetWindow(oswindow window, int iParentHood);
-oswindow GetActiveWindow();
-oswindow SetActiveWindow(oswindow window);
+oswindow solaris_get_active_window();
+oswindow solaris_set_active_window(oswindow window);
 int_bool DestroyWindow(oswindow window);
 oswindow get_desktop_window();
 

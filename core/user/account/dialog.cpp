@@ -228,7 +228,7 @@ namespace account
 
             m_plogin->m_peditUser->set_keyboard_focus();
 
-            display(e_display_restore, e_activation_set_foreground);
+            display(e_display_normal, e_activation_set_foreground);
 
             set_need_redraw();
 
@@ -517,7 +517,7 @@ namespace account
 
       m_plogin->place(rectangleClient);
 
-      m_plogin->display(::e_display_restored);
+      m_plogin->display(::e_display_normal);
 
    }
 

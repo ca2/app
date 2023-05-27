@@ -156,7 +156,7 @@ namespace html
 
          m_pedit->place(m_box);
 
-         m_pedit->display(::e_display_restored);
+         m_pedit->display(::e_display_normal);
 
          //m_pedit->m_pointRequest.offset(500, 100);
 

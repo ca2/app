@@ -12,7 +12,11 @@ public:
 
 
    ellipse_base() {}
-   ellipse_base(const RECTANGLE_TYPE & ellipse) : RECTANGLE_TYPE(ellipse) { }
+   ellipse_base(const ellipse_base & ellipse) : RECTANGLE_TYPE(ellipse) {}
+   
+   
+   template < primitive_rectangle RECTANGLE >
+   void set(const RECTANGLE & rectangle) { RECTANGLE_TYPE::operator =(rectangle); }
 
 
 };

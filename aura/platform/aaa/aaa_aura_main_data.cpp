@@ -47,7 +47,7 @@ void aura_main_data::system_construct(int argc, char** argv)
 
    m_hPrevInstance = nullptr;
 
-   m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
+   m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, XXXm_eactivation);
 
 #elif defined(LINUX)
 
@@ -79,7 +79,7 @@ void aura_main_data::system_construct(int argc, wchar_t** argv)
 
    m_hPrevInstance = nullptr;
 
-   m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
+   m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, XXXm_eactivation);
 
 #elif defined(LINUX)
 
@@ -95,7 +95,7 @@ void aura_main_data::system_construct(const ::string & pszCommandLine, const ::e
 
    m_strCommandLine = pszCommandLine;
 
-   m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+   m_edisplay = windows_show_window_to_edisplay(edisplay, XXXm_eactivation);
 
    m_poslocal = nullptr;
 
@@ -107,8 +107,8 @@ void aura_main_data::system_construct(os_local* poslocal, const ::e_display& edi
 {
 
    m_strCommandLine = poslocal->m_strCommandLine;
-
-   m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+   XX
+   m_edisplay = windows_show_window_to_edisplay(edisplay, XXXm_eactivation);
 
    m_poslocal = poslocal;
 
@@ -133,7 +133,7 @@ void aura_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 
    m_strCommandLine = pCmdLine;
 
-   m_edisplay = windows_show_window_to_edisplay(nCmdShow, m_eactivation);
+   m_edisplay = windows_show_window_to_edisplay(nCmdShow, XXXm_eactivation);
 
    m_argc = __argc;
 

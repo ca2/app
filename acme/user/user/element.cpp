@@ -1546,7 +1546,7 @@ namespace user
    //}
 
 
-   //bool element::SetFocus()
+   //bool element::XXXSetFocus()
    //{
 
    //   ::pointer<::user::interaction>pinteraction = get_wnd();
@@ -1558,12 +1558,12 @@ namespace user
 
    //   }
 
-   //   return get_wnd()->SetFocus();
+   //   return get_wnd()->XXXSetFocus();
 
    //}
 
 
-   //interaction * element::SetActiveWindow()
+   //interaction * element::set_active_window()
    //{
 
    //   //throw ::interface_only();
@@ -1573,7 +1573,7 @@ namespace user
    //}
 
 
-   //bool element::SetForegroundWindow()
+   //bool element::set_foreground_window()
    //{
 
    //   return true;
@@ -2454,7 +2454,7 @@ namespace user
    //}
 
 
-   //void element::design_window_restore(::e_display edisplay)
+   //void element::design_window_normal(::e_display edisplay)
    //{
 
    //   throw ::interface_only();

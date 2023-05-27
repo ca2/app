@@ -419,7 +419,7 @@ SizingNone:;
             {
                ::rectangle_i32 rectangleBig(lpcrectClient);
                ::rectangle_i32 rectangleSmall;
-               get_window_client_rect(rectangleSmall);
+               get_window_client_rect(&rectangleSmall);
                ::rectangle_i32 rectangle;
                if(eside == e_border_top)
                {

@@ -1672,7 +1672,7 @@ namespace user
 
       pholder->window_rectangle(rectangleWindow);
 
-      rectangleWindow+=screen_to_client();
+      screen_to_client()(rectangleWindow);
 
       if(bDisplay && iIndex == get_current_tab_index())
       {
@@ -1686,7 +1686,7 @@ namespace user
       if (bDisplay)
       {
 
-         pholder->display(::e_display_restored);
+         pholder->display(::e_display_normal);
 
 //         if (ppane->m_bNeedLayout)
 //         {
@@ -1920,7 +1920,9 @@ namespace user
 
       }
 
-      auto pointClient = pmouse->m_point + screen_to_client();
+      auto pointClient = pmouse->m_point;
+
+      screen_to_client()(pointClient);
 
       auto ptabdata = get_data();
 
@@ -3204,7 +3206,7 @@ namespace user
 //      set_current_tab_by_index(iIndex);
 //      // if(get_tab_holder(get_current_tab_index()) != nullptr)
 //      //{
-//      // get_tab_holder(get_current_tab_index())->display(e_display_restored);
+//      // get_tab_holder(get_current_tab_index())->display(e_display_normal);
 //      // }
 //
 //      //on_layout(pgraphics);
@@ -4279,7 +4281,7 @@ namespace user
 //         if (pshowwindow->m_bShow)
 //         {
 //
-//            pholder->display(e_display_restored);
+//            pholder->display(e_display_normal);
 //
 //         }
 //         else

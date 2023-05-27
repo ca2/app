@@ -3131,6 +3131,9 @@
     <ClInclude Include="include\_other_initial_concepts.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\geometry2d\region.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4263,6 +4266,12 @@
     </ClCompile>
     <ClCompile Include="user\user\keyboard.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\region.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\region_item.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

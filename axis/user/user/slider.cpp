@@ -142,7 +142,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      pointCursor += screen_to_client(e_layout_design);
+      screen_to_client(e_layout_design)(pointCursor);
 
       ::rectangle_i32 rectangle;
 

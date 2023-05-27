@@ -106,10 +106,10 @@ namespace user
    }
 
 
-   bool scroll_bar::GetTrackRect(::rectangle_i32* prectangle, ::draw2d::graphics_pointer & pgraphics)
+   ::status < ::rectangle_i32 > scroll_bar::get_track_rectangle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return false;
+      return error_interface_only;
 
    }
 

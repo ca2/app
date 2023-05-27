@@ -383,6 +383,8 @@ namespace user
       pointer_array < interaction >                 m_menua;
       ::pointer<::appearance::appearance>         m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
+      ::item_pointer                               m_pitemClient;
+      
 
 
       interaction();
@@ -726,19 +728,22 @@ namespace user
       virtual void design_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_restored();
+      virtual void display_previous();
+      virtual void display_normal(::e_display edisplay, ::e_activation eactivation);
+      virtual void display_docked(::e_display edisplay, ::e_activation eactivation);
       virtual void display_zoomed();
       virtual void display_iconic();
-      virtual void display_restore();
+      virtual void display_full_screen(::index iMonitor, ::e_activation eactivation);
+      virtual void display_stored_state();
       virtual void display_notify_icon();
 
       
-      virtual void design_restored();
-      virtual void design_iconic();
+      virtual void design_window_stored_state();
+      virtual void design_window_iconic();
       virtual void design_window_minimize(::e_activation eactivation) override;
       virtual void design_window_maximize() override;
       virtual void design_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
-      virtual void design_window_restore(::e_display edisplay) override;
+      virtual void design_window_normal(::e_display edisplay) override;
       virtual void design_window_dock(::e_display edisplay) override;
 
 
@@ -752,7 +757,7 @@ namespace user
       //virtual void _001OnAfterAppearance();
 
 
-      virtual void defer_restore(const ::rectangle_i32& rectangleRequest);
+      //virtual void constrain_window_boundaries(::rectangle_i32& rectangleRequest);
       ::property_object * parent_property_set_holder() const override;
 
 
@@ -785,11 +790,11 @@ namespace user
       ///virtual bool is_sketch_to_design_locked();
 
       
-      virtual void clear_activation(enum_layout elayout = e_layout_design);
+      virtual void clear_activation(enum_layout elayout = e_layout_sketch);
       
-      virtual void set_display(::e_display edisplay = e_display_default, enum_layout elayout = e_layout_design);
+      virtual void set_display(::e_display edisplay = e_display_default, enum_layout elayout = e_layout_sketch);
       
-      virtual void set_layout_state(const layout_state & state, enum_layout elayout = e_layout_design);
+      virtual void set_layout_state(const layout_state & state, enum_layout elayout = e_layout_sketch);
 
       virtual void set_activation(::e_activation eactivation, enum_layout elayout = e_layout_sketch);
 
@@ -831,24 +836,24 @@ namespace user
       virtual void display_previous_restore();
 
       // Client Rect : e_layout_design : Design/_001OnDraw time
-      virtual void input_client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_sketch);
+      virtual void input_client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
 
 
-      virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_sketch);
-      virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_sketch);
+      virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
 
 
-      virtual ::rectangle_i32 parent_client_rectangle(enum_layout elayout = e_layout_sketch);
-      virtual ::point_i32 position(enum_layout elayout = e_layout_sketch);
-      virtual ::size_i32 size(enum_layout elayout = e_layout_sketch);
-      virtual ::i32 top(enum_layout elayout = e_layout_sketch);
-      virtual ::i32 left(enum_layout elayout = e_layout_sketch);
-      virtual ::i32 right(enum_layout elayout = e_layout_sketch);
-      virtual ::i32 bottom(enum_layout elayout = e_layout_sketch);
+      virtual ::rectangle_i32 parent_client_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 position(enum_layout elayout = e_layout_design);
+      virtual ::size_i32 size(enum_layout elayout = e_layout_design);
+      virtual ::i32 top(enum_layout elayout = e_layout_design);
+      virtual ::i32 left(enum_layout elayout = e_layout_design);
+      virtual ::i32 right(enum_layout elayout = e_layout_design);
+      virtual ::i32 bottom(enum_layout elayout = e_layout_design);
 
 
-      virtual void window_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_sketch);
-      virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_sketch);
+      virtual void window_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_design);
 
 
       inline void set_prodevian() { return add_prodevian(this); }
@@ -1451,6 +1456,8 @@ namespace user
 
       ::graphics::graphics* get_window_graphics() override;
 
+      virtual ::draw2d::graphics_pointer get_internal_draw2d_graphics();
+
       //virtual void _001PrintBuffer(::draw2d::graphics_pointer& pgraphics);
       //virtual void _001Print(::draw2d::graphics_pointer& pgraphics);
       //virtual void _001DrawThis(::draw2d::graphics_pointer& pgraphics);
@@ -1865,7 +1872,7 @@ namespace user
       virtual index best_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index good_restore(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_restore);
+      virtual index good_restore(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
       virtual index good_iconify(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
       virtual index good_move(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
@@ -1914,6 +1921,8 @@ namespace user
 
 
       virtual ::size_i32 get_window_minimum_size();
+
+      virtual ::size_i32 get_window_normal_stored_size();
 
 
       virtual void UpDownTargetAttach(::user::interaction* pupdown);
@@ -2124,11 +2133,15 @@ namespace user
       ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
 
+      virtual bool item_contains(::item * pitem, const ::point_i32 & point);
+
       virtual ::item_pointer on_items_hit_test(const ::point_i32& point, e_zorder ezorder);
 
       virtual ::item_pointer on_default_bottom_right_resize_hit_test(const ::point_i32& point, e_zorder ezorder);
 
-      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32& point, e_zorder ezorder);
+      virtual ::item_pointer on_client_area_hit_test(const ::point_i32& point, e_zorder ezorder);
+
+      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);

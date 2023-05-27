@@ -26,7 +26,7 @@ namespace experience_core
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
-      m_rectangleClient.set(0, 0, 0, 0);
+      //m_rectangleClient.set(0, 0, 0, 0);
 
    }
 
@@ -99,7 +99,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleScreen;
 
-      pframewindow->best_monitor(rectangleScreen);
+      pframewindow->best_monitor(&rectangleScreen);
 
       ::image_pointer pimage1;
 
@@ -111,7 +111,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleWindow = rectangleClient;
 
-      rectangleWindow(pframewindow->client_to_screen());
+      pframewindow->client_to_screen()(rectangleWindow);
 
       ::point_i32 pointInflate(iInflate, iInflate);
 

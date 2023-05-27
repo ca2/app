@@ -7,9 +7,11 @@
 #include "acme/primitive/primitive/particle.h"
 ////#include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/region.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/constant/element.h"
 #include "acme/user/user/_constant.h"
+
 
 
 #pragma pack(push, user_ITEM, 1)
@@ -274,6 +276,14 @@ public:
 
 };
 
+//
+//namespace geometry2d
+//{
+//
+//   class region;
+//
+//} // namespace geometry2d
+//
 
 class CLASS_DECL_ACME item :
    virtual public item_data
@@ -284,9 +294,10 @@ public:
    
    // a user item is a "pointer"/address to a user interface matter
 
-   ::pointer<::draw2d::graphics>   m_pgraphics;
-   ::pointer<::draw2d::path>       m_ppath;
-   ::pointer<::user::mouse>        m_pmouse;
+   //::pointer<::draw2d::graphics>     m_pgraphics;
+   //::pointer<::geometry2d::region>     m_pregion;
+   ::pointer<::draw2d::path>           m_ppath;
+   ::pointer<::user::mouse>            m_pmouse;
    //bool                             m_bAnyHoverChange;
 
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
@@ -445,7 +456,7 @@ public:
 
       item_data::operator=(item);
 
-      m_pgraphics = item.m_pgraphics;
+      //m_pgraphics = item.m_pgraphics;
 
       m_ppath = item.m_ppath;
 

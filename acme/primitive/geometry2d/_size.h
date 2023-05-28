@@ -1,12 +1,12 @@
-﻿#pragma once
+#pragma once
 
 
 #include "vector.h"
 
 
 template < primitive_number NUMBER >
-class size_type// :
-   //public vector_type < NUMBER, 2 >
+class size_type :
+   public vector_type < NUMBER, 2 >
 {
 public:
 

@@ -272,6 +272,7 @@ namespace acme
 
       //return estatus;
 
+
    }
 
 
@@ -2751,6 +2752,15 @@ return false;
 //      throw interface_only();
 //
 //   }
+
+   int node::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut)
+   {
+
+      throw interface_only();
+
+      return -1;
+
+   }
 
 
    int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)

@@ -990,7 +990,6 @@
 		9A68AE8B25114435008DABD2 /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6862511442F008DABD2 /* memory.h */; };
 		9A68AE8F25114435008DABD2 /* var_element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A68A2511442F008DABD2 /* var_element.cpp */; };
 		9A68AE9025114435008DABD2 /* memory_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A68B2511442F008DABD2 /* memory_base.h */; };
-		9A68AE9425114435008DABD2 /* natural.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A68F2511442F008DABD2 /* natural.h */; };
 		9A68AE9525114435008DABD2 /* number.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6902511442F008DABD2 /* number.h */; };
 		9A68AE9825114435008DABD2 /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6932511442F008DABD2 /* factory.cpp */; };
 		9A68AE9C25114435008DABD2 /* pointer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6972511442F008DABD2 /* pointer2.h */; };
@@ -2249,7 +2248,6 @@
 		9AD68FE8251A753A00C0EBD7 /* _papaya_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A67A2511442F008DABD2 /* _papaya_impl.h */; };
 		9AD68FEE251A753A00C0EBD7 /* numeric_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5F52511442F008DABD2 /* numeric_array.h */; };
 		9AD68FF0251A753A00C0EBD7 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7702511442F008DABD2 /* list.h */; };
-		9AD68FF5251A753A00C0EBD7 /* natural.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A68F2511442F008DABD2 /* natural.h */; };
 		9AD68FF6251A753A00C0EBD7 /* trace_category.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5482511442E008DABD2 /* trace_category.h */; };
 		9AD68FF8251A753A00C0EBD7 /* allocate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4C72511442E008DABD2 /* allocate.h */; };
 		9AD68FF9251A753A00C0EBD7 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7D825114430008DABD2 /* _impl.h */; };
@@ -3042,7 +3040,6 @@
 		9A615C0128B1B5B600377F68 /* __acme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __acme.h; sourceTree = "<group>"; };
 		9A64519D284660A600A94AAB /* ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ptr.h; sourceTree = "<group>"; };
 		9A64519E2846618B00A94AAB /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
-		9A6451A02846676E00A94AAB /* move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move.h; sourceTree = "<group>"; };
 		9A68A41425114352008DABD2 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68A4552511442E008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A68A4562511442E008DABD2 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
@@ -3253,7 +3250,6 @@
 		9A68A6862511442F008DABD2 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
 		9A68A68A2511442F008DABD2 /* var_element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = var_element.cpp; sourceTree = "<group>"; };
 		9A68A68B2511442F008DABD2 /* memory_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_base.h; sourceTree = "<group>"; };
-		9A68A68F2511442F008DABD2 /* natural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = natural.h; sourceTree = "<group>"; };
 		9A68A6902511442F008DABD2 /* number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = number.h; sourceTree = "<group>"; };
 		9A68A6932511442F008DABD2 /* factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory.cpp; sourceTree = "<group>"; };
 		9A68A6972511442F008DABD2 /* pointer2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pointer2.h; sourceTree = "<group>"; };
@@ -4975,9 +4971,7 @@
 				9A68A6772511442F008DABD2 /* memory_container.h */,
 				9A68A6382511442F008DABD2 /* memory.cpp */,
 				9A68A6862511442F008DABD2 /* memory.h */,
-				9A6451A02846676E00A94AAB /* move.h */,
 				9A08437029366BAC009F7FF4 /* muldiv64.h */,
-				9A68A68F2511442F008DABD2 /* natural.h */,
 				9A68A6902511442F008DABD2 /* number.h */,
 				9A0842C92935EB38009F7FF4 /* object_meta.cpp */,
 				9A786179264B908D003DF8A0 /* object_meta.h */,
@@ -6549,7 +6543,6 @@
 				9A68ADFD25114435008DABD2 /* numeric_array.h in Headers */,
 				9A68AF6825114435008DABD2 /* list.h in Headers */,
 				9AA8F92B27BA7269008FF9AA /* _.h in Headers */,
-				9A68AE9425114435008DABD2 /* natural.h in Headers */,
 				9AA8F8E327BA7268008FF9AA /* still.h in Headers */,
 				9A0843F829366ED3009F7FF4 /* __string.h in Headers */,
 				9A68AD5725114434008DABD2 /* trace_category.h in Headers */,
@@ -7434,7 +7427,6 @@
 				9AC018FC274892F2006BEBCC /* e_flag.h in Headers */,
 				9A3BFBBB29C83392005DE2BF /* _impl_text_stream.h in Headers */,
 				9A0843222936667D009F7FF4 /* create_task_attributes.h in Headers */,
-				9AD68FF5251A753A00C0EBD7 /* natural.h in Headers */,
 				9AD68FF6251A753A00C0EBD7 /* trace_category.h in Headers */,
 				9AD68FF8251A753A00C0EBD7 /* allocate.h in Headers */,
 				9AD68FF9251A753A00C0EBD7 /* _impl.h in Headers */,

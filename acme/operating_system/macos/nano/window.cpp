@@ -208,7 +208,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    ::nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 
-      return m_pinterface->hit_test(pmouse);
+      return m_pinterface->hit_test(pmouse, ezorder);
 
    }
 

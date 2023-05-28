@@ -164,7 +164,7 @@ namespace geometry2d
       ~region() override;
 
 
-      virtual void destroy();
+      virtual void destroy() override;
 
 
       region & operator = (const region & regionSrc);

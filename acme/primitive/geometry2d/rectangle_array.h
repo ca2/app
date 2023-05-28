@@ -14,7 +14,11 @@ public:
    using POINT_TYPE = typename RECTANGLE_TYPE::POINT_TYPE;
    using SIZE_TYPE = typename RECTANGLE_TYPE::SIZE_TYPE;
 
+   
+   using array < RECTANGLE_TYPE >::array;
+   rectangle_array_base(rectangle_array_base && a) noexcept : array < RECTANGLE_TYPE >(::transfer(a)) { }
 
+   
    virtual ~rectangle_array_base();
 
    using array < RECTANGLE_TYPE >::add;

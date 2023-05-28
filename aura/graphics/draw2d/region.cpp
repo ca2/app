@@ -51,207 +51,207 @@ namespace draw2d
    }
 
 
-   bool region::create_rectangle(const ::rectangle_i32 & rectangle)
-   {
+   //bool region::create_rectangle(const ::rectangle_i32 & rectangle)
+   //{
 
-      if(m_eregion != e_region_none)
-      {
+   //   if(m_eregion != e_region_none)
+   //   {
 
-         destroy();
+   //      destroy();
 
-      }
+   //   }
 
-      m_eregion = e_region_rect;
+   //   m_eregion = e_region_rect;
 
-      auto pitem = __new(rectangle_item);
+   //   auto pitem = __new(rectangle_item);
 
-      pitem->m_rectangle = rectangle;
+   //   pitem->m_rectangle = rectangle;
 
-      m_pitem = pitem;
+   //   m_pitem = pitem;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool region::create_ellipse(const ::rectangle_i32 & rectangle)
-   {
+   //bool region::create_ellipse(const ::rectangle_i32 & rectangle)
+   //{
 
-      if(m_eregion != e_region_none)
-      {
+   //   if(m_eregion != e_region_none)
+   //   {
 
-         destroy();
+   //      destroy();
 
-      }
+   //   }
 
-      m_eregion = e_region_ellipse;
+   //   m_eregion = e_region_ellipse;
 
-      auto pitem = __new(ellipse_item);
+   //   auto pitem = __new(ellipse_item);
 
-      pitem->m_rectangle = rectangle;
+   //   pitem->m_rectangle = rectangle;
 
-      m_pitem = pitem;
+   //   m_pitem = pitem;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool region::create_polygon(const ::point_f64 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
-   {
+   //bool region::create_polygon(const ::point_f64 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   //{
 
-      if(m_eregion != e_region_none)
-      {
+   //   if(m_eregion != e_region_none)
+   //   {
 
-         destroy();
+   //      destroy();
 
-      }
+   //   }
 
-      m_eregion = e_region_polygon;
+   //   m_eregion = e_region_polygon;
 
-      auto pitem = __new(polygon_item);
+   //   auto pitem = __new(polygon_item);
 
-      pitem->m_polygon.set_size(nCount);
+   //   pitem->m_polygon.set_size(nCount);
 
-      memcpy(pitem->m_polygon.data(), ppoints, pitem->m_polygon.get_size_in_bytes());
+   //   memcpy(pitem->m_polygon.data(), ppoints, pitem->m_polygon.get_size_in_bytes());
 
-      pitem->m_efillmode = efillmode;
+   //   pitem->m_efillmode = efillmode;
 
-      m_pitem = pitem;
+   //   m_pitem = pitem;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool region::create_polygon(const polygon& polygon, ::draw2d::enum_fill_mode efillmode)
-   {
+   //bool region::create_polygon(const polygon& polygon, ::draw2d::enum_fill_mode efillmode)
+   //{
 
-      return create_polygon(polygon.data(), (::i32) polygon.size(), efillmode);
+   //   return create_polygon(polygon.data(), (::i32) polygon.size(), efillmode);
 
-   }
+   //}
 
 
-   bool region::create_polygon(const ::point_i32 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
-   {
+   //bool region::create_polygon(const ::point_i32 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   //{
 
-      if(m_eregion != e_region_none)
-      {
+   //   if(m_eregion != e_region_none)
+   //   {
 
-         destroy();
+   //      destroy();
 
-      }
+   //   }
 
-      m_eregion = e_region_polygon;
+   //   m_eregion = e_region_polygon;
 
-      auto pitem = __new(polygon_item);
+   //   auto pitem = __new(polygon_item);
 
-      pitem->m_polygon.set_size(nCount);
+   //   pitem->m_polygon.set_size(nCount);
 
-      for (::i32 i = 0; i < nCount; i++)
-      {
+   //   for (::i32 i = 0; i < nCount; i++)
+   //   {
 
-         auto& p = pitem->m_polygon[i];
+   //      auto& p = pitem->m_polygon[i];
 
-         p = (const ::point_i32&)ppoints[i];
+   //      p = (const ::point_i32&)ppoints[i];
 
-      }
+   //   }
 
-      pitem->m_efillmode = efillmode;
+   //   pitem->m_efillmode = efillmode;
 
-      m_pitem = pitem;
+   //   m_pitem = pitem;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool region::create_poly_polygon(const ::point_f64 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
-   {
+   //bool region::create_poly_polygon(const ::point_f64 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   //{
 
-      if(m_eregion != e_region_none)
-      {
+   //   if(m_eregion != e_region_none)
+   //   {
 
-         destroy();
+   //      destroy();
 
-      }
+   //   }
 
-      m_eregion = e_region_polygon;
+   //   m_eregion = e_region_polygon;
 
-      auto pitem = __new(poly_polygon_item);
+   //   auto pitem = __new(poly_polygon_item);
 
-      pitem->m_polygona.set_size(nCount);
+   //   pitem->m_polygona.set_size(nCount);
 
-      for (::index i = 0; i < nCount; i++)
-      {
+   //   for (::index i = 0; i < nCount; i++)
+   //   {
 
-         pitem->m_polygona[i] = __new(polygon);
+   //      pitem->m_polygona[i] = __new(polygon);
 
-         pitem->m_polygona[i]->set_size(ppolycounts[i]);
+   //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
-         for (::index j = 0; j < ppolycounts[i]; j++)
-         {
+   //      for (::index j = 0; j < ppolycounts[i]; j++)
+   //      {
 
-            pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
-            pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
+   //         pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
+   //         pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
 
-            ppoints++;
+   //         ppoints++;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      pitem->m_efillmode = efillmode;
+   //   pitem->m_efillmode = efillmode;
 
-      m_pitem = pitem;
+   //   m_pitem = pitem;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool region::create_poly_polygon(const ::point_i32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::enum_fill_mode efillmode)
-   {
+   //bool region::create_poly_polygon(const ::point_i32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::enum_fill_mode efillmode)
+   //{
 
-      if(m_eregion != e_region_none)
-      {
+   //   if(m_eregion != e_region_none)
+   //   {
 
-         destroy();
+   //      destroy();
 
-      }
+   //   }
 
-      m_eregion = e_region_poly_polygon;
+   //   m_eregion = e_region_poly_polygon;
 
-      auto pitem = __new(poly_polygon_item);
+   //   auto pitem = __new(poly_polygon_item);
 
-      pitem->m_polygona.set_size(nCount);
+   //   pitem->m_polygona.set_size(nCount);
 
-      for (::index i = 0; i < nCount; i++)
-      {
+   //   for (::index i = 0; i < nCount; i++)
+   //   {
 
-         pitem->m_polygona[i] = __new(polygon);
+   //      pitem->m_polygona[i] = __new(polygon);
 
-         pitem->m_polygona[i]->set_size(ppolycounts[i]);
+   //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
-         for (::index j = 0; j < ppolycounts[i]; j++)
-         {
+   //      for (::index j = 0; j < ppolycounts[i]; j++)
+   //      {
 
-            pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
-            pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
+   //         pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
+   //         pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
 
-            ppoints++;
+   //         ppoints++;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      pitem->m_efillmode = efillmode;
+   //   pitem->m_efillmode = efillmode;
 
-      m_pitem = pitem;
+   //   m_pitem = pitem;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics)

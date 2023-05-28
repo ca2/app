@@ -24,7 +24,7 @@ namespace experience_tranquillum
 
       m_colorCaptionText = argb(255, 255, 255, 255);
 
-      m_rectangleClient = nullptr;
+      //m_rectangleClient = nullptr;
 
    }
 

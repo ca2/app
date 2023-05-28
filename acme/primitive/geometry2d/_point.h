@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "vector.h"
@@ -40,6 +40,12 @@ public:
 //   point_type(const CGPoint & point) noexcept : point_type(point.x(), point.y()){}
 //   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x(), ppoint->y()){}
 #endif
+   
+   const UNIT_TYPE & x() const {return this->a();}
+   UNIT_TYPE & x() {return this->a();}
+   const UNIT_TYPE & y() const {return this->b();}
+   UNIT_TYPE & y() {return this->b();}
+
    template < raw_primitive_point RAW_PRIMITIVE_POINT >
    inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE)point.x; this->y() = (UNIT_TYPE)point.y; return *this; }
 

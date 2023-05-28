@@ -284,24 +284,24 @@ struct vector_type
    constexpr COORDINATE& operator[](size_t i) { return m_coordinatea[i]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
-   const COORDINATE& x() const { return m_coordinatea[0]; }
+   const COORDINATE& a() const { return m_coordinatea[0]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
-   COORDINATE& x() { return m_coordinatea[0]; }
+   COORDINATE& a() { return m_coordinatea[0]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
-   const COORDINATE& y() const { return m_coordinatea[1]; }
+   const COORDINATE& b() const { return m_coordinatea[1]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
-   COORDINATE& y() { return m_coordinatea[1]; }
+   COORDINATE& b() { return m_coordinatea[1]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
-   const COORDINATE& z() const { return m_coordinatea[2]; }
+   const COORDINATE& c() const { return m_coordinatea[2]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
-   COORDINATE& z() { return m_coordinatea[2]; }
+   COORDINATE& c() { return m_coordinatea[2]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
-   const COORDINATE& w() const { return m_coordinatea[3]; }
+   const COORDINATE& d() const { return m_coordinatea[3]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
-   COORDINATE& w() { return m_coordinatea[3]; }
+   COORDINATE& d() { return m_coordinatea[3]; }
 
    vector_type maximum(const vector_type & vector) const
    {

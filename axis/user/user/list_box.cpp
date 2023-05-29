@@ -559,7 +559,7 @@ namespace user
 
       ::size_f64 size;
 
-      psize->cx = 0;
+      psize->cx() = 0;
 
       m_dItemHeight = 0.;
 
@@ -572,21 +572,21 @@ namespace user
 
          size = pgraphics->get_text_extent(strItem);
 
-         size.cx += m_iPadding * 2;
+         size.cx() += m_iPadding * 2;
 
-         if (size.cx > psize->cx)
+         if (size.cx() > psize->cx())
          {
 
-            psize->cx = (::i32)size.cx;
+            psize->cx() = (::i32)size.cx();
 
          }
 
-         if (size.cy > m_dItemHeight)
+         if (size.cy() > m_dItemHeight)
          {
 
-            m_dItemHeight = (::i32)size.cy;
+            m_dItemHeight = (::i32)size.cy();
 
-            if (size.cy != 18)
+            if (size.cy() != 18)
             {
 
                //output_debug_string("\nCOMBO LIST ITEM HEIGHT != 18\n");
@@ -622,9 +622,9 @@ namespace user
 
       }
 
-      psize->cy = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
+      psize->cy() = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
-      psize->cx += m_iBorder * 2;
+      psize->cx() += m_iBorder * 2;
 
       //auto rectangleComboClient = client_rectangle();
 
@@ -1139,9 +1139,9 @@ namespace user
          ::rectangle_i32 rectangleList;
 
          rectangleList.left = rectangleWindow.left;
-         rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx);
+         rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx());
          rectangleList.top = rectangleWindow.bottom;
-         rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy;
+         rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy();
 
          if (i < 0)
          {
@@ -1160,7 +1160,7 @@ namespace user
             rectangleListOver.left = rectangleList.left;
             rectangleListOver.right = rectangleList.right;
             rectangleListOver.bottom = rectangleWindow.top;
-            rectangleListOver.top = rectangleWindow.top - sizeFull.cy;
+            rectangleListOver.top = rectangleWindow.top - sizeFull.cy();
 
             if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
             {

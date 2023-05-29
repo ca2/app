@@ -90,31 +90,31 @@ namespace graphics
 
          auto sizeReserved = ::size_i32(1920, 1080);
 
-         if (pitem->m_size.cx > sizeImage.cx)
+         if (pitem->m_size.cx() > sizeImage.cx())
          {
 
-            sizeImage.cx = pitem->m_size.cx;
+            sizeImage.cx() = pitem->m_size.cx();
 
          }
 
-         if (pitem->m_size.cy > sizeImage.cy)
+         if (pitem->m_size.cy() > sizeImage.cy())
          {
 
-            sizeImage.cy = pitem->m_size.cy;
+            sizeImage.cy() = pitem->m_size.cy();
 
          }
 
-         if (sizeReserved.cx > sizeImage.cx)
+         if (sizeReserved.cx() > sizeImage.cx())
          {
 
-            sizeImage.cx = sizeReserved.cx;
+            sizeImage.cx() = sizeReserved.cx();
 
          }
 
-         if (sizeReserved.cy > sizeImage.cy)
+         if (sizeReserved.cy() > sizeImage.cy())
          {
 
-            sizeImage.cy = sizeReserved.cy;
+            sizeImage.cy() = sizeReserved.cy();
 
          }
 

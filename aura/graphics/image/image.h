@@ -427,7 +427,7 @@ public:
    //static void static_initialize();
 
    inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::color32_t); }
-   inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
+   inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy(); }
 
 
 
@@ -543,7 +543,7 @@ public:
 
       }
 
-      return m_size.cx;
+      return m_size.cx();
 
    }
 
@@ -558,7 +558,7 @@ public:
 
       }
 
-      return m_size.cy;
+      return m_size.cy();
 
    }
 
@@ -848,7 +848,7 @@ public:
    inline ::color::color pixel(int x, int y) const
    {
 
-      if (::is_null(this) || ::is_null(colorref()) || x < 0 || y < 0 || x>= m_size.cx || y >= m_size.cy)
+      if (::is_null(this) || ::is_null(colorref()) || x < 0 || y < 0 || x>= m_size.cx() || y >= m_size.cy())
       {
 
          return 0;

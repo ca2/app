@@ -886,8 +886,8 @@ namespace user
       //m_puserinteraction->place(rectangle_i32_dimension(
       //                      pusersystem->m_createstruct.x(),
       //                      pusersystem->m_createstruct.y(),
-      //                      pusersystem->m_createstruct.cx,
-      //                      pusersystem->m_createstruct.cy));
+      //                      pusersystem->m_createstruct.cx(),
+      //                      pusersystem->m_createstruct.cy()));
 
       //auto psynca = __new(synchronization_array);
 
@@ -1075,9 +1075,9 @@ namespace user
 
       //   send_message(e_message_create, 0, (lparam)&pusersystem);
 
-      //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.cy, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+      //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.cy(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
-      //   send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy));
+      //   send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
 
       //   m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
 
@@ -1144,8 +1144,8 @@ namespace user
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
 //      //pusersystem->m_createstruct.x() = rectangle.left;
 //      //pusersystem->m_createstruct.y() = rectangle.top;
-//      //pusersystem->m_createstruct.cx = rectangle.width();
-//      //pusersystem->m_createstruct.cy = rectangle.height();
+//      //pusersystem->m_createstruct.cx() = rectangle.width();
+//      //pusersystem->m_createstruct.cy() = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
 //      //pusersystem->m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (LPVOID)pcreate;
 //
@@ -7029,7 +7029,7 @@ namespace user
 
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
-         //if (sizeOutput.cx > m_sizeDrawn.cx || sizeOutput.cy > m_sizeDrawn.cy)
+         //if (sizeOutput.cx() > m_sizeDrawn.cx() || sizeOutput.cy() > m_sizeDrawn.cy())
          // if (sizeOutput != m_sizeDrawn)
          // {
 
@@ -7047,8 +7047,8 @@ namespace user
                zorderNew,
                pointOutput.x(),
                pointOutput.y(),
-               sizeOutput.cx,
-               sizeOutput.cy,
+               sizeOutput.cx(),
+               sizeOutput.cy(),
                eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
 
             m_sizeSetWindowSizeRequest = sizeOutput;
@@ -7057,7 +7057,7 @@ namespace user
 
          //::SetWindowPos(get_handle(), oswindowInsertAfter,
          //   pointOutput.x(), pointOutput.y(),
-         //   sizeOutput.cx, sizeOutput.cy,
+         //   sizeOutput.cx(), sizeOutput.cy(),
          //   uFlags);
 
 //#endif

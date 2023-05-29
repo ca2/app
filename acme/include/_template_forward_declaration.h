@@ -326,8 +326,8 @@ concept primitive_XY = requires(POINT point)
 template < typename SIZE >
 concept primitive_size = requires(SIZE size)
 {
-   size.cx;
-   size.cy;
+   size.cx();
+   size.cy();
 };
 
 

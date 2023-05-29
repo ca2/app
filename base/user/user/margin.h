@@ -96,7 +96,7 @@ namespace user
 
          auto s = BASE::get_total_size();
 
-         return decltype(s)(s.cx + m_rectangleMargin.left + m_rectangleMargin.right,s.cy + m_rectangleMargin.top + m_rectangleMargin.bottom);
+         return decltype(s)(s.cx() + m_rectangleMargin.left + m_rectangleMargin.right,s.cy() + m_rectangleMargin.top + m_rectangleMargin.bottom);
 
       }
 

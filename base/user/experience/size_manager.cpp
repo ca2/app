@@ -452,16 +452,16 @@ namespace experience
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = m_rectangleWindowOrigin.right;
          bSize = !rectangleWindow.is_empty();
-         if(rectangleWindow.width() < sizeMin.cx)
+         if(rectangleWindow.width() < sizeMin.cx())
          {
-            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx;
+            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx();
          }
-         if(rectangleWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy())
          {
-            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy;
+            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy();
          }
-         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx);
-         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx());
+         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy());
       }
       else if(eframe == e_frame_sizing_top)
       {
@@ -469,11 +469,11 @@ namespace experience
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = m_rectangleWindowOrigin.right;
-         if(rectangleWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy())
          {
-            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy;
+            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy();
          }
-         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy());
          auto pframewindow = m_pframewindow;
          if (pframewindow->find_i32("ysnap") > 1)
          {
@@ -486,17 +486,17 @@ namespace experience
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = point.x();
-         if(rectangleWindow.width() < sizeMin.cx)
+         if(rectangleWindow.width() < sizeMin.cx())
          {
-            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
+            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx();
 
          }
-         if(rectangleWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy())
          {
-            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy;
+            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy();
          }
-         rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx);
-         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx());
+         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy());
       }
       else if(eframe == e_frame_sizing_right)
       {
@@ -504,12 +504,12 @@ namespace experience
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = point.x();
-         if(rectangleWindow.width() < sizeMin.cx)
+         if(rectangleWindow.width() < sizeMin.cx())
          {
-            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
+            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx();
 
          }
-         rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx);
+         rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx());
       }
       else if(eframe == e_frame_sizing_bottom_right)
       {
@@ -517,9 +517,9 @@ namespace experience
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = point.y();
          rectangleWindow.right = point.x();
-         if (rectangleWindow.width() < sizeMin.cx)
+         if (rectangleWindow.width() < sizeMin.cx())
          {
-            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
+            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx();
 
          }
          if (m_pframewindow->m_bDerivedHeight)
@@ -531,12 +531,12 @@ namespace experience
             
             int iHeight = m_pframewindow->m_pframe->adjust_client_height(iDerivedHeight);
 
-            if (iHeight < sizeMin.cy)
+            if (iHeight < sizeMin.cy())
             {
                
-               rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
+               rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy();
 
-               rectangleWindow.right = m_rectangleWindowOrigin.left + m_pframewindow->m_pframe->adjust_client_width(m_pframewindow->get_derived_width(sizeMin.cy));
+               rectangleWindow.right = m_rectangleWindowOrigin.left + m_pframewindow->m_pframe->adjust_client_width(m_pframewindow->get_derived_width(sizeMin.cy()));
                
             }
             else
@@ -549,12 +549,12 @@ namespace experience
          }
          else
          {
-            if (rectangleWindow.height() < sizeMin.cy)
+            if (rectangleWindow.height() < sizeMin.cy())
             {
-               rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
+               rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy();
             }
-            rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx);
-            rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy);
+            rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx());
+            rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy());
          }
       }
       else if(eframe == e_frame_sizing_bottom)
@@ -563,11 +563,11 @@ namespace experience
          rectangleWindow.left = m_rectangleWindowOrigin.left;
          rectangleWindow.bottom = point.y();
          rectangleWindow.right = m_rectangleWindowOrigin.right;
-         if(rectangleWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy())
          {
-            rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
+            rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy();
          }
-         rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy);
+         rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy());
          auto pframewindow = m_pframewindow;
 
          if (pframewindow->find_i32("ysnap") > 1)
@@ -583,17 +583,17 @@ namespace experience
          rectangleWindow.left = point.x() +1;
          rectangleWindow.bottom = point.y();
          rectangleWindow.right = m_rectangleWindowOrigin.right;
-         if(rectangleWindow.width() < sizeMin.cx)
+         if(rectangleWindow.width() < sizeMin.cx())
          {
-            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx;
+            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx();
 
          }
-         if(rectangleWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy())
          {
-            rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
+            rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy();
          }
-         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx);
-         rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy);
+         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx());
+         rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy());
       }
       else if(eframe == e_frame_sizing_left)
       {
@@ -601,12 +601,12 @@ namespace experience
          rectangleWindow.left = point.x() +1;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = m_rectangleWindowOrigin.right;
-         if(rectangleWindow.width() < sizeMin.cx)
+         if(rectangleWindow.width() < sizeMin.cx())
          {
-            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx;
+            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx();
 
          }
-         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx);
+         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx());
       }
       else
       {
@@ -627,7 +627,7 @@ namespace experience
 
       auto sizeMin = GetMinSize();
 
-      if (rectangleWindow.width() < sizeMin.cx || rectangleWindow.height() < sizeMin.cy)
+      if (rectangleWindow.width() < sizeMin.cx() || rectangleWindow.height() < sizeMin.cy())
       {
 
          return;

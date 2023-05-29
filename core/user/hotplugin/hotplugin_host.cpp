@@ -489,13 +489,13 @@ namespace hotplugin
 
          //::draw2d::bitmap_pointer b(e_create);
 
-         //b->create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pgraphics);
+         //b->create_from_data(m_sizeBitmap.cx(), m_sizeBitmap.cy(), m_pcolorref, pgraphics);
 
          //::draw2d::graphics_pointer g(e_create);
 
          //g->create_from_bitmap(b);
 
-         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pgraphics, prectangle.left, prectangle.top);
+         //g.bit_blt(0, 0, m_sizeBitmap.cx(), m_sizeBitmap.cy(), pgraphics, prectangle.left, prectangle.top);
 
 
       }
@@ -528,13 +528,13 @@ namespace hotplugin
 
          //simple_bitmap b;
 
-         //b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, pgraphics);
+         //b.create_from_data(m_sizeBitmap.cx(), m_sizeBitmap.cy(), m_pcolorref, pgraphics);
 
          //simple_graphics g;
 
          //g.create_from_bitmap(b);
 
-         //pgraphics.bit_blt(prectangle.left, prectangle.top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0);
+         //pgraphics.bit_blt(prectangle.left, prectangle.top, m_sizeBitmap.cx(), m_sizeBitmap.cy(), g, 0, 0);
 
 
       }

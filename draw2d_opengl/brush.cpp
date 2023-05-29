@@ -153,7 +153,7 @@ namespace draw2d_opengl
    //   //      {
 
    //   //         plusplus::GraphicsPath * gp = memory_new plusplus::GraphicsPath();
-   //   //         gp->AddEllipse((plusplus::REAL) (m_point.x() - m_size.cx / 2),(plusplus::REAL)(m_point.y() - m_size.cy / 2),(plusplus::REAL) (m_size.cx),(plusplus::REAL) (m_size.cy));
+   //   //         gp->AddEllipse((plusplus::REAL) (m_point.x() - m_size.cx() / 2),(plusplus::REAL)(m_point.y() - m_size.cy() / 2),(plusplus::REAL) (m_size.cx()),(plusplus::REAL) (m_size.cy()));
 
    //   //         plusplus::PathGradientBrush * pgb = memory_new plusplus::PathGradientBrush(gp);
 

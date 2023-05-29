@@ -466,7 +466,7 @@ namespace user
                         //if(estatus.succeeded())
                         {
 
-                           pimage->create({ (int)ceil(s.cx), (int)ceil(s.cy) });
+                           pimage->create({ (int)ceil(s.cx()), (int)ceil(s.cy()) });
 
                            //if (is_status_ok())
                            //{

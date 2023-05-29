@@ -18,7 +18,7 @@ template < typename FILE, primitive_size SIZE >
 inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const SIZE & size)
 {
 
-   return textstream << "(" << size.cx  << ", " << size.cy << ")";
+   return textstream << "(" << size.cx()  << ", " << size.cy() << ")";
 
 }
 

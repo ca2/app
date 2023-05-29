@@ -211,9 +211,9 @@ namespace user
 
       ::size_i32 sizeTotal;
 
-      sizeTotal.cx = (::i32) size.cx;
+      sizeTotal.cx() = (::i32) size.cx();
 
-      sizeTotal.cy = (::i32)tm.get_line_spacing();
+      sizeTotal.cy() = (::i32)tm.get_line_spacing();
 
       return sizeTotal;
 
@@ -319,13 +319,13 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx) / 2);
+      rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
 
-      rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy) / 2);
+      rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
 
-      rectangle.right = (::i32)(rectangle.left + sizeText.cx);
+      rectangle.right = (::i32)(rectangle.left + sizeText.cx());
 
-      rectangle.bottom = (::i32)(rectangle.top + sizeText.cy);
+      rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
 
       m_rectangleText = rectangle;
 

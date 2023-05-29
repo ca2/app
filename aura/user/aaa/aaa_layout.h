@@ -281,7 +281,7 @@ namespace user
       }
       inline bool set_window_position(::zorder zorder, const ::point_i32 & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return set_window_position(zorder, point.x(), point.y(), size.cx, size.cy, edisplay, eactivation);
+         return set_window_position(zorder, point.x(), point.y(), size.cx(), size.cy(), edisplay, eactivation);
       }
       inline bool window_move(const ::point_i32 & point)
       {
@@ -289,11 +289,11 @@ namespace user
       }
       inline bool window_size(const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return window_size(size.cx, size.cy, edisplay, eactivation);
+         return window_size(size.cx(), size.cy(), edisplay, eactivation);
       }
       inline bool window_place(const ::point_i32 & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return window_place(point.x(), point.y(), size.cx, size.cy, edisplay, eactivation);
+         return window_place(point.x(), point.y(), size.cx(), size.cy(), edisplay, eactivation);
       }
       inline bool set_window_position(::zorder zorder, const ::rectangle & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {

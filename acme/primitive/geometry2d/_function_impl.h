@@ -42,8 +42,8 @@ template < primitive_size SIZE_TYPE >
 bool is_null(const SIZE_TYPE & size)
 {
 
-   return size.cx == (decltype(SIZE_TYPE::cx))0
-      && size.cy == (decltype(SIZE_TYPE::cy))0;
+   return size.cx() == (decltype(SIZE_TYPE::cx))0
+      && size.cy() == (decltype(SIZE_TYPE::cy))0;
 
 }
 
@@ -603,7 +603,7 @@ template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
 bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 {
 
-   return size1.cx == size2.cx && size1.cy == size2.cy;
+   return size1.cx() == size2.cx() && size1.cy() == size2.cy();
 
 }
 
@@ -649,8 +649,8 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 {
 
-   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy);
+   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx());
+   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy());
 
    return rectangle;
 
@@ -663,8 +663,8 @@ RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size
 
    rectangle.left = (decltype(RECTANGLE::left))point.x();
    rectangle.top = (decltype(RECTANGLE::top))point.y();
-   rectangle.right = (decltype(RECTANGLE::right))(point.x() + size.cx);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y() + size.cy);
+   rectangle.right = (decltype(RECTANGLE::right))(point.x() + size.cx());
+   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y() + size.cy());
 
    return rectangle;
 
@@ -912,9 +912,9 @@ inline constexpr auto __horz(const POINT& point) { return point.x(); }
 template < primitive_point POINT >
 inline constexpr auto __vert(const POINT& point) { return point.y(); }
 template < primitive_size SIZE >
-inline constexpr auto __horz(const SIZE& size) { return size.cx; }
+inline constexpr auto __horz(const SIZE& size) { return size.cx(); }
 template < primitive_size SIZE >
-inline constexpr auto __vert(const SIZE& size) { return size.cy; }
+inline constexpr auto __vert(const SIZE& size) { return size.cy(); }
 
 
 template < primitive_rectangle RECTANGLE >
@@ -1145,6 +1145,6 @@ namespace geometry
 //inline ::string as_string(const SIZE & size)
 //{
 //
-//   return as_string(size.cx) + ", " + as_string(size.cy);
+//   return as_string(size.cx()) + ", " + as_string(size.cy());
 //
 //}

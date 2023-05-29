@@ -872,7 +872,7 @@ void edit_window::_UpdateStatusBar(void)
     //}
 
     //GetTextExtentPoint32(hdc, szComposition, lstrlen(szComposition), &size);
-    //nParts[0] = size.cx + (GetSystemMetrics(SM_CXEDGE) * 4);
+    //nParts[0] = size.cx() + (GetSystemMetrics(SM_CXEDGE) * 4);
 
     //nParts[1] = -1;
     

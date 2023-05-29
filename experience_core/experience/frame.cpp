@@ -20,9 +20,9 @@ namespace experience_core
 
       m_pointWindowIcon.x() = 5;
 
-      m_sizeIcon.cx = 32;
+      m_sizeIcon.cx() = 32;
 
-      m_sizeIcon.cy = 32;
+      m_sizeIcon.cy() = 32;
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
@@ -308,11 +308,11 @@ namespace experience_core
 
          rectangle.left = m_pointWindowIcon.x();
          rectangle.top = m_pointWindowIcon.y();
-         rectangle.right = rectangle.left + m_sizeIcon.cx;
-         rectangle.bottom = rectangle.top + m_sizeIcon.cy;
+         rectangle.right = rectangle.left + m_sizeIcon.cx();
+         rectangle.bottom = rectangle.top + m_sizeIcon.cy();
 
-         //rectangle.right = rectangle.left + pdrawicon->get_size().cx;
-         //rectangle.bottom = rectangle.top + pdrawicon->get_size().cy;
+         //rectangle.right = rectangle.left + pdrawicon->get_size().cx();
+         //rectangle.bottom = rectangle.top + pdrawicon->get_size().cy();
 
          return true;
 
@@ -459,7 +459,7 @@ namespace experience_core
 
       m_minSize = size_i32(144, 48);
 
-      m_minSize.cy = 48;
+      m_minSize.cy() = 48;
 
       if (pcontrolbox)
       {

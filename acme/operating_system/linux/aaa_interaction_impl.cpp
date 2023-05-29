@@ -286,17 +286,17 @@ namespace linux
 
             xdisplay d(display);
 
-            if(pusersystem->m_createstruct.cx <= 0)
+            if(pusersystem->m_createstruct.cx() <= 0)
             {
 
-               pusersystem->m_createstruct.cx = 1;
+               pusersystem->m_createstruct.cx() = 1;
 
             }
 
-            if(pusersystem->m_createstruct.cy <= 0)
+            if(pusersystem->m_createstruct.cy() <= 0)
             {
 
-               pusersystem->m_createstruct.cy = 1;
+               pusersystem->m_createstruct.cy() = 1;
 
             }
 
@@ -352,9 +352,9 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
-            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
+            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(),
             0,
             m_iDepth,
             InputOutput,
@@ -375,7 +375,7 @@ namespace linux
    //
    //            uistate.m_point.set(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
    //
-   //            uistate.m_size.set(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+   //            uistate.m_size.set(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
    //
    //            uistate.m_pointScreen = uistate.m_point;
    //
@@ -385,7 +385,7 @@ namespace linux
 
                m_puserinteraction->layout().sketch() = ::point_i32(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
 
-               m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+               m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
                m_puserinteraction->screen_origin() = ::point_i32(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
 
@@ -593,7 +593,7 @@ namespace linux
                      // initial (XCreateWindow) size and position maybe not be honored.
                      // so requesting the same change again in a effort to set the "docked/snapped" size and position.
 
-                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
 
                   }
 
@@ -775,7 +775,7 @@ namespace linux
       if (bSize)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 

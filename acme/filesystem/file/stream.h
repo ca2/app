@@ -996,8 +996,8 @@ public:
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
 //
-//   s << size.cx;
-//   s << size.cy;
+//   s << size.cx();
+//   s << size.cy();
 //
 //   return s;
 //
@@ -1008,8 +1008,8 @@ public:
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
-//   s >> size.cx;
-//   s >> size.cy;
+//   s >> size.cx();
+//   s >> size.cy();
 //   return s;
 //}
 //

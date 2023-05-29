@@ -229,7 +229,7 @@ namespace draw2d
    //{
 
 
-   //   return SetBitmapDimension(size.cx,size.cy);
+   //   return SetBitmapDimension(size.cx(),size.cy());
 
 
    //}
@@ -633,7 +633,7 @@ void copy_colorref(::color32_t * pcolorrefDst, int xParam, int yParam, int cxPar
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
 {
 
-   copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+   copy_colorref(pcolorrefDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
 
 }
 

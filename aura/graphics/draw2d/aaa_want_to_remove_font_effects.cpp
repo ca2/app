@@ -65,7 +65,7 @@ namespace draw2d
 //         if(pglyph != nullptr)
 
 //         {
-//            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx);
+//            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx());
 //            pglyph->DrawGlyph(
 
 //               pgraphics,

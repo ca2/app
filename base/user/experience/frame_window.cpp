@@ -2012,19 +2012,19 @@ namespace experience
 
       auto sizeMinimum = get_window_minimum_size();
 
-      if (rectangle.height() < sizeMinimum.cy)
+      if (rectangle.height() < sizeMinimum.cy())
       {
 
-         rectangle.set_height(sizeMinimum.cy);
+         rectangle.set_height(sizeMinimum.cy());
 
          rectangle._001ConstrainY(rectangleWorkspace);
 
       }
 
-      if (rectangle.width() < sizeMinimum.cx)
+      if (rectangle.width() < sizeMinimum.cx())
       {
 
-         rectangle.set_width(sizeMinimum.cx);
+         rectangle.set_width(sizeMinimum.cx());
 
          rectangle._001ConstrainX(rectangleWorkspace);
 

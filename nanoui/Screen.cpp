@@ -1456,7 +1456,7 @@ namespace nanoui
 
       auto size = m_puserinteraction->get_size();
 
-      set_size({ (int)size.cx, (int)size.cy });
+      set_size({ (int)size.cx(), (int)size.cy() });
 
       resize_event(m_size);
 

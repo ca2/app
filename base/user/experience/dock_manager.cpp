@@ -73,7 +73,7 @@ namespace experience
 
       auto sizeMove = pmouse->m_point - m_pointCursorDockOrigin + m_sizeDockRightOrigin;
 
-      sizeMove.cx -= m_pframewindow->width();
+      sizeMove.cx() -= m_pframewindow->width();
 
       m_pframewindow->screen_to_client()(pointDock);
 
@@ -327,7 +327,7 @@ namespace experience
 
          auto sizeWindow = pmouse->m_point - m_pointCursorDockOrigin + m_sizeDockRightOrigin;
 
-         sizeWindow.cx -= rectangleNew.width();
+         sizeWindow.cx() -= rectangleNew.width();
 
          rectangleNew.move_to(::point_i32(sizeWindow));
 

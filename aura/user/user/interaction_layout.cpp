@@ -15,13 +15,13 @@ namespace user
 
       m_bFillParent = true;
 
-      m_sizeSpan.cx = 1;
+      m_sizeSpan.cx() = 1;
 
-      m_sizeSpan.cy = 1;
+      m_sizeSpan.cy() = 1;
 
-      m_sizeWeight.cx = 1.0;
+      m_sizeWeight.cx() = 1.0;
 
-      m_sizeWeight.cy = 1.0;
+      m_sizeWeight.cy() = 1.0;
 
       m_elayoutexperience = e_layout_experience_none;
 
@@ -160,7 +160,7 @@ namespace user
    //void interaction_layout::set_size(const ::size_i32& size)
    //{
 
-   //   set_size(size.cx, size.cy);
+   //   set_size(size.cx(), size.cy());
 
    //}
 

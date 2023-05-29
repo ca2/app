@@ -88,8 +88,8 @@ namespace user
       m_evOpen.m_eflagElement += e_flag_alertable_wait;
       m_evExpand.m_eflagElement += e_flag_alertable_wait;
 
-      m_sizeItemMaximum.cx = 16;
-      m_sizeItemMaximum.cy = 16;
+      m_sizeItemMaximum.cx() = 16;
+      m_sizeItemMaximum.cy() = 16;
 
    }
 
@@ -957,9 +957,9 @@ namespace user
 
       ::size_f64 sizeTotal;
 
-      sizeTotal.cx = m_iCurrentImpactWidth;
+      sizeTotal.cx() = m_iCurrentImpactWidth;
 
-      sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
+      sizeTotal.cy() = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
       m_pscrolldataVertical->m_iLine = (::i32)m_dItemHeight;
 
@@ -1001,7 +1001,7 @@ namespace user
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = (::i32)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy);
+            iHDiff = (::i32)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy());
 
          }
 
@@ -1308,9 +1308,9 @@ namespace user
 
       size_f64 sizeTotal;
 
-      sizeTotal.cx = m_iCurrentImpactWidth;
+      sizeTotal.cx() = m_iCurrentImpactWidth;
 
-      sizeTotal.cy = _001CalcTotalImpactHeight();
+      sizeTotal.cy() = _001CalcTotalImpactHeight();
 
       set_total_size(sizeTotal);
 
@@ -1656,7 +1656,7 @@ namespace user
 
          size_f64 s = pgraphics->get_text_extent(strText);
 
-         iWidth = (i32)(48 + s.cx + iIndent * (iLevel + 1));
+         iWidth = (i32)(48 + s.cx() + iIndent * (iLevel + 1));
 
          if (iWidth > iMaxWidth)
          {

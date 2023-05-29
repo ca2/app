@@ -797,7 +797,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 //#endif
 //         }
 
-         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
+         uptr size = m_sizeBitmapData.cx() * m_sizeBitmapData.cy() * sizeof(color32_t);
 
          ::file::path pathName = dir()->appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
 
@@ -856,7 +856,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 //
 //         }
 //
-//         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
+//         uptr size = m_sizeBitmapData.cx() * m_sizeBitmapData.cy() * sizeof(color32_t);
 //
 //
 //#ifdef UNIVERSAL_WINDOWS

@@ -271,7 +271,7 @@ namespace turboc
 
       pgraphics->SelectObject(pbrushText);
 
-      pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+      pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
 
       byte a,R,g,b;
 

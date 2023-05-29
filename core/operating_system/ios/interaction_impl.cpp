@@ -2374,8 +2374,8 @@ namespace ios
       //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
-      //      rectx.right = size.cx;
-      //      rectx.bottom = size.cy;
+      //      rectx.right = size.cx();
+      //      rectx.bottom = size.cy();
       //      try
       //      {
       //         ::rectangle_i32 rectangleWindow;
@@ -4922,7 +4922,7 @@ namespace ios
       
       ::size_i32 size = m_puserinteraction->get_client_size();
       
-      int iSoftwareKeyboardTop = size.cy / 2;
+      int iSoftwareKeyboardTop = size.cy() / 2;
       
       if(r1.top > iSoftwareKeyboardTop)
       {

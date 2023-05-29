@@ -537,7 +537,7 @@ namespace experience
          auto rectangleMargin = get_button_margin(ebutton);
 
          rectangle.right = rectangle.left - rectangleMargin.right;
-         rectangle.left = rectangle.right - sizeButton.cx;
+         rectangle.left = rectangle.right - sizeButton.cx();
 if(rectangle.left > 400)
 {
    output_debug_string("rectangle.left > 400");
@@ -547,7 +547,7 @@ if(rectangle.left > 400)
          {
 
             rectangle.top = rectangleMargin.top;
-            rectangle.bottom = sizeButton.cy + rectangle.top;
+            rectangle.bottom = sizeButton.cy() + rectangle.top;
 
             pbutton->order(e_zorder_top);
             pbutton->place(rectangle);

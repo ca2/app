@@ -289,9 +289,9 @@ namespace windows
 
                size_i32 s;
 
-               s.cx = 48;
+               s.cx() = 48;
 
-               s.cy = 48;
+               s.cy() = 48;
 
                DWORD dwDepth = 32;
 

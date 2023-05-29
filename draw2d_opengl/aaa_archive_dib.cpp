@@ -15,8 +15,8 @@ namespace draw2d_opengl
    image::image()
    {
 
-      m_sizeWnd.cx         = 0;
-      m_sizeWnd.cy         = 0;
+      m_sizeWnd.cx()         = 0;
+      m_sizeWnd.cy()         = 0;
       m_hbitmap            = nullptr;
 
       zero(m_bitmapinfo);
@@ -55,7 +55,7 @@ namespace draw2d_opengl
 
    bool image::create(::size size)
    {
-      return create(size.cx, size.cy);
+      return create(size.cx(), size.cy());
    }
 
    bool image::create(i32 width, i32 height)
@@ -66,8 +66,8 @@ namespace draw2d_opengl
 
       if(m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
-            && width == m_size.cx
-            && height == m_size.cy)
+            && width == m_size.cx()
+            && height == m_size.cy())
          return true;
 
       destroy();
@@ -88,9 +88,9 @@ namespace draw2d_opengl
       if(m_pbitmap.m_p == nullptr)
       {
 
-         m_size.cx       = 0;
+         m_size.cx()       = 0;
 
-         m_size.cy       = 0;
+         m_size.cy()       = 0;
 
          m_iScan     = 0;
 
@@ -101,9 +101,9 @@ namespace draw2d_opengl
       if(!m_pbitmap->CreateDIBSection(nullptr, &m_info, DIB_RGB_COLORS, (void **) &m_pcolorref, &m_iScan, nullptr, 0))
       {
 
-         m_size.cx      = 0;
+         m_size.cx()      = 0;
 
-         m_size.cy      = 0;
+         m_size.cy()      = 0;
 
          m_iScan        = 0;
 
@@ -124,9 +124,9 @@ namespace draw2d_opengl
 
       m_spgraphics->m_pimage = this;
 
-      m_size.cx       = width;
+      m_size.cx()       = width;
 
-      m_size.cy       = height;
+      m_size.cy()       = height;
 
       m_iScan         = m_pbitmap->m_iStride;
 
@@ -195,7 +195,7 @@ namespace draw2d_opengl
       /*  return SetDIBitsToDevice(
            (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(),
            point.x(), point.y(),
-           size.cx, size.cy,
+           size.cx(), size.cy(),
            ptSrc.x(), ptSrc.y(), ptSrc.y(), cy - ptSrc.y(),
            m_pcolorref, &m_info, 0)
               != false; */
@@ -230,7 +230,7 @@ namespace draw2d_opengl
 
       }
 
-      bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != false;
+      bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy(), m_pcolorref, &(m_info), DIB_RGB_COLORS) != false;
 
       GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
 
@@ -602,8 +602,8 @@ namespace draw2d_opengl
    //void image::FillStippledGlass ( i32 R, i32 G, i32 B )
    //{
    //   color32_t color=rgb ( B, G, R );
-   //   i32 w=m_size.cx;
-   //   i32 h=m_size.cy;
+   //   i32 w=m_size.cx();
+   //   i32 h=m_size.cy();
 
    //   for ( i32 j=0; j<w; j++ )
    //   {
@@ -812,8 +812,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
-   //   i32 Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
+   //   i32 Δx=((x+pimage->width())<m_size.cx()) ? pimage.width() : m_size.cx()-x;
+   //   i32 Δy=((y+pimage->height())<m_size.cy()) ? pimage.height() : m_size.cy()-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -825,7 +825,7 @@ namespace draw2d_opengl
    //      pimage = create_image ( Δx, Δy );
 
    //   // Prepare buffer Addresses
-   //   color32_t *src=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t *src=m_pcolorref+(py*m_size.cx())+px;
    //   color32_t *dst=pimage->get_data();
 
    //   // Do copy
@@ -833,7 +833,7 @@ namespace draw2d_opengl
    //   {
    //      for ( i32 i=0; i<Δx; i++ )
    //         dst[i]=src[i];
-   //      src+=m_size.cx;
+   //      src+=m_size.cx();
    //      dst+=pimage->width();
    //   }
    //}
@@ -843,8 +843,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
-   //   i32 Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
+   //   i32 Δx=((x+pimage->width())<m_size.cx()) ? pimage.width() : m_size.cx()-x;
+   //   i32 Δy=((y+pimage->height())<m_size.cy()) ? pimage.height() : m_size.cy()-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -854,7 +854,7 @@ namespace draw2d_opengl
 
    //   // Prepare buffer Addresses
    //   color32_t *src=pimage->get_data()+((py-y)*pimage->width())+px-x;
-   //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t *dst=m_pcolorref+(py*m_size.cx())+px;
 
    //   // Do Paste
    //   while ( Δy-- )
@@ -862,7 +862,7 @@ namespace draw2d_opengl
    //      for ( i32 i=0; i<Δx; i++ )
    //         dst[i]=src[i];
    //      src+=pimage->width();
-   //      dst+=m_size.cx;
+   //      dst+=m_size.cx();
    //   }
    //}
 
@@ -871,8 +871,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
-   //   i32 Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
+   //   i32 Δx=((x+w)<m_size.cx()) ? w : m_size.cx()-x;
+   //   i32 Δy=((y+h)<m_size.cy()) ? h : m_size.cy()-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -881,7 +881,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Address
-   //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t *dst=m_pcolorref+(py*m_size.cx())+px;
    //   color32_t color=rgb ( B, G, R );
 
    //   // Do Fill
@@ -891,7 +891,7 @@ namespace draw2d_opengl
    //      {
    //         dst[i]=color;
    //      }
-   //      dst+=m_size.cx;
+   //      dst+=m_size.cx();
    //   }
    //}
 
@@ -900,8 +900,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
-   //   i32 Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
+   //   i32 Δx=((x+w)<m_size.cx()) ? w : m_size.cx()-x;
+   //   i32 Δy=((y+h)<m_size.cy()) ? h : m_size.cy()-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -910,7 +910,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Address
-   //   byte *dst=(byte *)m_pcolorref+((py*m_size.cx)+px)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*m_size.cx())+px)*4;
 
    //   // Do FillGlass
    //   while ( Δy-- )
@@ -922,7 +922,7 @@ namespace draw2d_opengl
    //         dst[2]=(byte)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //      }
-   //      dst+=(m_size.cx-Δx)<<2;
+   //      dst+=(m_size.cx()-Δx)<<2;
    //   }
    //}
 
@@ -931,8 +931,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
-   //   i32 Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
+   //   i32 Δx=((x+w)<m_size.cx()) ? w : m_size.cx()-x;
+   //   i32 Δy=((y+h)<m_size.cy()) ? h : m_size.cy()-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -941,7 +941,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Address
-   //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
+   //   color32_t *dst=m_pcolorref+(py*m_size.cx())+px;
    //   color32_t color=rgb ( B, G, R );
 
    //   // Do FillStippledGlass
@@ -951,7 +951,7 @@ namespace draw2d_opengl
    //      {
    //         dst[i]=((i+j)&0x1) ? dst[i] : color;
    //      }
-   //      dst+=m_size.cx;
+   //      dst+=m_size.cx();
    //   }
    //}
 
@@ -960,8 +960,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
-   //   i32 Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
+   //   i32 Δx=((x+pimage->width())<m_size.cx()) ? pimage.width() : m_size.cx()-x;
+   //   i32 Δy=((y+pimage->height())<m_size.cy()) ? pimage.height() : m_size.cy()-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -971,7 +971,7 @@ namespace draw2d_opengl
 
    //   // Prepare buffer Addresses
    //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->width())+px-x)*4;
-   //   byte *dst=(byte *)m_pcolorref+((py*m_size.cx)+px)*4;
+   //   byte *dst=(byte *)m_pcolorref+((py*m_size.cx())+px)*4;
 
    //   // Do Blend
    //   while ( Δy-- )
@@ -984,7 +984,7 @@ namespace draw2d_opengl
    //         dst+=4;
    //         src+=4;
    //      }
-   //      dst+=(m_size.cx-Δx)<<2;
+   //      dst+=(m_size.cx()-Δx)<<2;
    //      src+=(pimage->width()-Δx)<<2;
    //   }
    //}
@@ -2133,8 +2133,8 @@ namespace draw2d_opengl
    //void image::create_frame(::size size, i32 iFrameCount)
    //{
    //   i32 iSliceCount = (i32) sqrt((double) iFrameCount);
-   //   i32 iFrameWidth = size.cx / iSliceCount;
-   //   i32 iFrameHeight = size.cy / iSliceCount;
+   //   i32 iFrameWidth = size.cx() / iSliceCount;
+   //   i32 iFrameHeight = size.cy() / iSliceCount;
    //   create(iFrameWidth, iFrameHeight);
    //}
 
@@ -2344,7 +2344,7 @@ namespace draw2d_opengl
       if (area() <= 0 || pimage->area() <= 0)
          return;
 
-      //plusplus::rectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
+      //plusplus::rectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx(), (plusplus::REAL) m_size.cy());
 
       //plusplus::rectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
 
@@ -2377,7 +2377,7 @@ namespace draw2d_opengl
    // void image::fill_channel(i32 intensity, color::color::color::rgba::echannel echannel)
    // {
    //     i32 offset = ((i32)echannel) % 4;
-   //    i32 size=m_size.cx*cy;
+   //    i32 size=m_size.cx()*cy;
 
    //    byte * pb;
 
@@ -2449,7 +2449,7 @@ namespace draw2d_opengl
 
    /*   i32 image::width()
       {
-         return m_size.cx;
+         return m_size.cx();
       }
 
       i32 image::height()
@@ -2479,7 +2479,7 @@ namespace draw2d_opengl
 ////
 ////         map();
 ////
-////         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
+////         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx(),m_size.cy(),m_size.cx() * 4);
 ////
 ////         byte *dstR=(byte*)get_data();
 ////         byte *dstG=dstR + 1;
@@ -2563,7 +2563,7 @@ namespace draw2d_opengl
 //         // separately. This is much faster than the below case where the image
 //         // width is not a multiple of 4.
 //
-//         int totalBytes = b->m_sizeOut.cx * b.m_sizeOut.cy * 4;
+//         int totalBytes = b->m_sizeOut.cx() * b.m_sizeOut.cy() * 4;
 //         byte * p = (byte*)b->m_memOut.get_data();
 //         for (int i = 0; i < totalBytes; i += 4)
 //         {
@@ -2575,7 +2575,7 @@ namespace draw2d_opengl
 //      }
 //
 //
-//      puserinteraction->get_window_graphics()->update_window(puserinteraction->get_handle(),(color32_t*)b->m_memOut.get_data(),rectangle, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
+//      puserinteraction->get_window_graphics()->update_window(puserinteraction->get_handle(),(color32_t*)b->m_memOut.get_data(),rectangle, b->m_sizeOut.cx(), b.m_sizeOut.cy(), b.m_sizeOut.cx() * 4,bTransferBuffer);
 //      b->m_bFlashed = true;
 //
 //      return true;
@@ -2604,8 +2604,8 @@ namespace draw2d_opengl
 //
 //      rectx.left = 0;
 //      rectx.top = 0;
-//      rectx.right = size.cx;
-//      rectx.bottom = size.cy;
+//      rectx.right = size.cx();
+//      rectx.bottom = size.cy();
 //
 //      try
 //      {

@@ -74,9 +74,9 @@ bool nano_button::is_focusable() const
 //
 //   auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
 //
-//   m_rectangle.right = m_rectangle.left + size.cx;
+//   m_rectangle.right = m_rectangle.left + size.cx();
 //
-//   m_rectangle.bottom = m_rectangle.top + size.cy;
+//   m_rectangle.bottom = m_rectangle.top + size.cy();
 //
 //}
 

@@ -132,7 +132,7 @@ namespace graphics
 
       pitem->m_size = m_pimpl->m_puserinteraction->const_layout().design().size();
 
-//      if(d.m_size.cx == 1)
+//      if(d.m_size.cx() == 1)
 //      {
 //
 //         printf("cx=1");

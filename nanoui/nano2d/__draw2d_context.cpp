@@ -708,32 +708,32 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
       
       m_pgraphics->text_out({ (double)x + offsetx, (double)y + offsety }, strText);
 
-      return (float) (x + offsetx + size.cx);
+      return (float) (x + offsetx + size.cx());
 
    }
 
@@ -756,26 +756,26 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
 
@@ -830,26 +830,26 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
 
@@ -858,12 +858,12 @@ namespace nano2d
 
          bounds[0] = (float) (x + offsetx);
          bounds[1] = (float) (y + offsety);
-         bounds[2] = (float) (x + offsetx + size.cx);
-         bounds[3] = (float) (y + offsety + size.cy);
+         bounds[2] = (float) (x + offsetx + size.cx());
+         bounds[3] = (float) (y + offsety + size.cy());
 
       }
 
-      return (float) (x + offsetx + size.cx);
+      return (float) (x + offsetx + size.cx());
 
    }
 

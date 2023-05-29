@@ -700,10 +700,10 @@ namespace experience_tranquillum
 
             if (pane.m_pimage->is_set())
             {
-               size.cx += pane.m_pimage->width() + 2;
-               size.cy = maximum(size.cy, pane.m_pimage->height());
+               size.cx() += pane.m_pimage->width() + 2;
+               size.cy() = maximum(size.cy(), pane.m_pimage->height());
             }
-            cx = size.cx + 2;
+            cx = size.cx() + 2;
 
             if (!pane.m_bPermanent)
             {
@@ -714,7 +714,7 @@ namespace experience_tranquillum
             {
                iTabWidth = cx;
             }
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -800,11 +800,11 @@ namespace experience_tranquillum
             if (pane.m_pimage->is_set())
             {
 
-               size.cy = (::i32)maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_spacing());
+               size.cy() = (::i32)maximum(maximum(size.cy(), pane.m_pimage->size().cy()), metric.get_line_spacing());
 
             }
 
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
 
             if (cy > iTabHeight)
             {
@@ -835,12 +835,12 @@ namespace experience_tranquillum
 
 
 
-            pane.m_size.cx = size.cx + ixAdd
+            pane.m_size.cx() = size.cx() + ixAdd
                + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
                + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
-            x += pane.m_size.cx;
+            x += pane.m_size.cx();
 
          }
 
@@ -861,7 +861,7 @@ namespace experience_tranquillum
 
             auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
-            pane.m_size.cy = iTabHeight;
+            pane.m_size.cy() = iTabHeight;
 
          }
 
@@ -1405,12 +1405,12 @@ namespace experience_tranquillum
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
-            rectangleText.right = rectangleText.left + s.cx;
+            rectangleText.right = rectangleText.left + s.cx();
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left += s.cx;
+            rectangleText.left += s.cx();
             if (i < straTitle.get_upper_bound())
             {
-               rectangleText.right = rectangleText.left + sSep.cx;
+               rectangleText.right = rectangleText.left + sSep.cx();
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
@@ -1437,7 +1437,7 @@ namespace experience_tranquillum
                pgraphics->set_font(ptab, ::e_element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
-               rectangleText.left += sSep.cx;
+               rectangleText.left += sSep.cx();
 
             }
 

@@ -239,10 +239,10 @@ template < typename POINT_TYPE >
 
    ::count c = 0;
 
-   for (typename POINT_TYPE::TYPE x = x1; x <= x2; x += size.cx)
+   for (typename POINT_TYPE::TYPE x = x1; x <= x2; x += size.cx())
    {
 
-      for (typename POINT_TYPE::TYPE y = y1; y <= y2; y += size.cy)
+      for (typename POINT_TYPE::TYPE y = y1; y <= y2; y += size.cy())
       {
 
          if (this->add_unique(POINT_TYPE(x, y)))

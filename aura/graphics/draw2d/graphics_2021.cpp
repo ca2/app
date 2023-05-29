@@ -2871,7 +2871,7 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
 //   {
 //
-//      return OffsetClipRgn(size.cx, size.cy);
+//      return OffsetClipRgn(size.cx(), size.cy());
 //
 //   }
 
@@ -2891,9 +2891,9 @@ namespace draw2d
 //      /*
 //       i32 nRetVal = ERROR;
 //       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
+//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx(), size.cy());
 //       if(get_handle2() != nullptr)
-//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
+//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx(), size.cy());
 //       return nRetVal;
 //       */
 //   }
@@ -3462,7 +3462,7 @@ namespace draw2d
 
          daLeft.add(dLeft);
 
-         dLeft = get_text_extent(str, iAsciiCharCount).cx;
+         dLeft = get_text_extent(str, iAsciiCharCount).cx();
 
          daRight.add(dLeft);
 
@@ -3525,8 +3525,8 @@ namespace draw2d
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
 
-      size.cx = sz.cx;
-      size.cy = sz.cy;
+      size.cx() = sz.cx();
+      size.cy() = sz.cy();
 
       //return true;
 
@@ -3538,8 +3538,8 @@ namespace draw2d
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount);
 
-      size.cx = sz.cx;
-      size.cy = sz.cy;
+      size.cx() = sz.cx();
+      size.cy() = sz.cy();
 
       //return true;
 
@@ -3551,8 +3551,8 @@ namespace draw2d
 
       ::size_f64 sz = get_text_extent(str);
 
-      size.cx = sz.cx;
-      size.cy = sz.cy;
+      size.cx() = sz.cx();
+      size.cy() = sz.cy();
 
       //return true;
 
@@ -3614,13 +3614,13 @@ namespace draw2d
       if(ealign & e_align_right)
       {
 
-         Δx = rectangleParam.right - rectangleParam.left - size.cx;
+         Δx = rectangleParam.right - rectangleParam.left - size.cx();
 
       }
       else if(ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx)) / 2.0;
+         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
 
       }
       else
@@ -3633,13 +3633,13 @@ namespace draw2d
       if(ealign & e_align_bottom)
       {
 
-         Δy = rectangleParam.bottom - rectangleParam.top - size.cy;
+         Δy = rectangleParam.bottom - rectangleParam.top - size.cy();
 
       }
       else if(ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy)) / 2.0;
+         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
 
       }
       else
@@ -3690,7 +3690,7 @@ namespace draw2d
 
             text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
 
-            offsety += (i32) size1.cy;
+            offsety += (i32) size1.cy();
 
          }
 
@@ -4226,9 +4226,9 @@ namespace draw2d
 
       size_f64 sz;
 
-      sz.cx = 0;
+      sz.cx() = 0;
 
-      sz.cy = 0;
+      sz.cy() = 0;
 
       strsize iUnderline = -1;
 
@@ -4256,7 +4256,7 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent(str, (i32)iLen);
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             const ::scoped_string & scopedstrStart = str;
@@ -4276,7 +4276,7 @@ namespace draw2d
 
                sz = pgraphics->get_text_extent(strSample);
 
-               if (sz.cx > rectangleClip.width())
+               if (sz.cx() > rectangleClip.width())
                {
 
                   str = strLastSample;
@@ -4297,7 +4297,7 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent(str);
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             strsize i = iLen;
@@ -4316,7 +4316,7 @@ namespace draw2d
 
                sz = pgraphics->get_text_extent(str, (i32)i);
 
-               if ((int) sz.cx > rectangleClip.width())
+               if ((int) sz.cx() > rectangleClip.width())
                {
 
                   i = ::str::uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
@@ -4374,7 +4374,7 @@ namespace draw2d
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right = (::i32) sz.cx;
+      rectangle.right = (::i32) sz.cx();
       rectangle.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
@@ -4441,11 +4441,11 @@ namespace draw2d
             char wch = str[iUnderline];
             /*::TextOutU(
             (HDC)pgraphics->get_os_data(),
-            rectangle.left + sz.cx,
+            rectangle.left + sz.cx(),
             rectangle.top,
             &wch,
             1);*/
-            pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
+            pgraphics->text_out(rectangle.left + sz.cx(), (double)rectangle.top, { &wch, 1 });
             if (iUnderline + 1 <= str.length())
             {
                sz = pgraphics->get_text_extent(str, (i32)(iUnderline + 1));
@@ -4455,10 +4455,10 @@ namespace draw2d
                iUnderline + 1,
                &sz);*/
                strsize iCount = str.length() - iUnderline - 1;
-               pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.right(iCount).c_str(), (i32)iCount });
+               pgraphics->text_out(rectangle.left + sz.cx(), (double)rectangle.top, { str.right(iCount).c_str(), (i32)iCount });
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
-               rectangle.left + sz.cx,
+               rectangle.left + sz.cx(),
                rectangle.top,
                str.right(iCount),
                iCount);*/
@@ -4530,9 +4530,9 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent(pszSource, psz - pszSource);
 
-         dNewY = y + sz.cy;
+         dNewY = y + sz.cy();
 
-         if(dNewY + sz.cy > rectangle.bottom)
+         if(dNewY + sz.cy() > rectangle.bottom)
          {
 
             bLastLine = true;
@@ -4545,7 +4545,7 @@ namespace draw2d
             sz = pgraphics->get_text_extent(str,(i32)iLen);
 
 
-            if(sz.cx > rectangleClip.width())
+            if(sz.cx() > rectangleClip.width())
             {
 
                strsize iSampleLen = strSource.length();
@@ -4559,7 +4559,7 @@ namespace draw2d
 
                   sz = pgraphics->get_text_extent(str);
 
-                  if(sz.cx < rectangleClip.width())
+                  if(sz.cx() < rectangleClip.width())
                   {
 
                      break;
@@ -4605,7 +4605,7 @@ namespace draw2d
 
          }
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             if(psz == pszStart)

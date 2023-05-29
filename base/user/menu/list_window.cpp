@@ -131,20 +131,20 @@ namespace user
 
          auto size = pgraphics->get_text_extent(strWindowText);
 
-         size.cy = size.cy * 5 / 4;
+         size.cy() = size.cy() * 5 / 4;
 
-         size.cx = size.cx * 5 / 4;
+         size.cx() = size.cx() * 5 / 4;
 
-         size.cx += pitem->m_iLevel * g_base_menu_indent;
+         size.cx() += pitem->m_iLevel * g_base_menu_indent;
 
          if(pitem->IsPopup())
-            size.cx += 12 + 16;
+            size.cx() += 12 + 16;
 
-         if(size.cy > iMaxHeight)
-            iMaxHeight = (i32) size.cy;
+         if(size.cy() > iMaxHeight)
+            iMaxHeight = (i32) size.cy();
 
-         if(size.cx > iMaxWidth)
-            iMaxWidth = (i32)size.cx;
+         if(size.cx() > iMaxWidth)
+            iMaxWidth = (i32)size.cx();
 
          calc_size(pitem, pgraphics, iMaxWidth, iMaxHeight);
 
@@ -187,21 +187,21 @@ namespace user
 
       const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
 
-      i32 iMaxHeight = size.cy;
+      i32 iMaxHeight = size.cy();
 
-      i32 iMaxWidth = size.cx;
+      i32 iMaxWidth = size.cx();
 
-      m_dHeaderHeight = size.cy;
+      m_dHeaderHeight = size.cy();
 
       calc_size(m_pmenuitem, pgraphics, iMaxWidth, iMaxHeight);
 
       m_dItemHeight = iMaxHeight * 3 / 2;
 
-      m_size.cx = iMaxWidth * 7 / 4;
+      m_size.cx() = iMaxWidth * 7 / 4;
 
-      m_size.cy = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
+      m_size.cy() = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
 
-      ::rectangle_i32 rectangle(4, (::i32) m_dHeaderHeight + 4, m_size.cx - 8, 4);
+      ::rectangle_i32 rectangle(4, (::i32) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
 
       string str;
 
@@ -214,7 +214,7 @@ namespace user
 
          puiClose->resize_to_fit(pgraphics);
 
-         puiClose->set_position({m_size.cx - puiClose->width() - 2, 2});
+         puiClose->set_position({m_size.cx() - puiClose->width() - 2, 2});
 
       }
 

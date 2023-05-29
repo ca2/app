@@ -1441,7 +1441,7 @@ namespace experience_anthill
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
-            rectangleText.right = rectangleText.left + s.cx;
+            rectangleText.right = rectangleText.left + s.cx();
 
             if (estate & ::user::e_state_selected)
             {
@@ -1459,10 +1459,10 @@ namespace experience_anthill
             pfont->set_modified();
 
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left += s.cx;
+            rectangleText.left += s.cx();
             if (i < straTitle.get_upper_bound())
             {
-               rectangleText.right = rectangleText.left + sSep.cx;
+               rectangleText.right = rectangleText.left + sSep.cx();
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
@@ -1492,7 +1492,7 @@ namespace experience_anthill
 
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
 
-               rectangleText.left += sSep.cx;
+               rectangleText.left += sSep.cx();
 
             }
 
@@ -1586,13 +1586,13 @@ namespace experience_anthill
 
             if (ppane->m_pimage->is_set())
             {
-               size.cx += ppane->m_pimage->width() + 2;
-               size.cy = maximum(size.cy, ppane->m_pimage->height());
+               size.cx() += ppane->m_pimage->width() + 2;
+               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
             }
 
             int iTextLeftMargin = 4;
 
-            cx = size.cx + 2 + iTextLeftMargin;
+            cx = size.cx() + 2 + iTextLeftMargin;
 
             if (!ppane->m_bPermanent)
             {
@@ -1608,7 +1608,7 @@ namespace experience_anthill
 
             }
 
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
 
             if (cy > iTabHeight)
             {
@@ -1698,11 +1698,11 @@ namespace experience_anthill
             if (ppane->m_pimage)
             {
 
-               size.cy = maximum(size.cy, ppane->m_pimage->height());
+               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
 
             }
 
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
 
             if (cy > iTabHeight)
             {
@@ -1736,12 +1736,12 @@ namespace experience_anthill
 
             }
 
-            ppane->m_size.cx = size.cx + ixAdd
+            ppane->m_size.cx() = size.cx() + ixAdd
                + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
                + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
-            x += ppane->m_size.cx;
+            x += ppane->m_size.cx();
 
          }
 
@@ -1768,7 +1768,7 @@ namespace experience_anthill
 
             auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-            ppane->m_size.cy = iTabHeight;
+            ppane->m_size.cy() = iTabHeight;
 
          }
 

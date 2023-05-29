@@ -100,10 +100,10 @@ namespace universal_windows
                   //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
 
                   m_impact = ::winrt::Windows::ApplicationModel::Core::CoreApplication::CreateNewImpact();
-                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0)
                   {
 
-                     m_applicationview->SetPreferredMinSize({ (float)pusersystem->m_createstruct.cx, (float)pusersystem->m_createstruct.cy });
+                     m_applicationview->SetPreferredMinSize({ (float)pusersystem->m_createstruct.cx(), (float)pusersystem->m_createstruct.cy() });
 
                   }
 
@@ -123,13 +123,13 @@ namespace universal_windows
                      Id1,
                      ::winrt::Windows::UI::ViewManagement::ViewSizePreference::UseMore);
 
-                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0)
                   {
 
                      m_rectangle.left = pusersystem->m_createstruct.x();
                      m_rectangle.top = pusersystem->m_createstruct.y();
-                     m_rectangle.right = pusersystem->m_createstruct.cx;
-                     m_rectangle.bottom = pusersystem->m_createstruct.cy;
+                     m_rectangle.right = pusersystem->m_createstruct.cx();
+                     m_rectangle.bottom = pusersystem->m_createstruct.cy();
 
                   }
                   else
@@ -150,10 +150,10 @@ namespace universal_windows
                   //   Id2,
                   //   ::winrt::Windows::UI::ViewManagement::ViewSizePreference::Default));
 
-                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0)
                   {
 
-                     m_applicationview->TryResizeImpact(::winrt::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx,(float)pusersystem->m_createstruct.cy }));
+                     m_applicationview->TryResizeImpact(::winrt::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx(),(float)pusersystem->m_createstruct.cy() }));
 
                   }
 
@@ -173,13 +173,13 @@ namespace universal_windows
       else
       {
 
-         if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0 && m_rectangle.is_empty())
+         if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0 && m_rectangle.is_empty())
          {
 
             m_rectangle.left = pusersystem->m_createstruct.x();
             m_rectangle.top = pusersystem->m_createstruct.y();
-            m_rectangle.right = pusersystem->m_createstruct.cx;
-            m_rectangle.bottom = pusersystem->m_createstruct.cy;
+            m_rectangle.right = pusersystem->m_createstruct.cx();
+            m_rectangle.bottom = pusersystem->m_createstruct.cy();
 
          }
 
@@ -204,7 +204,7 @@ namespace universal_windows
 
       send_message(e_message_create, 0, (LPARAM)&pusersystem->m_createstruct);
 
-      //send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy));
+      //send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
 
       //::size_i32 sizeDrawn;
 
@@ -2432,8 +2432,8 @@ return true;
       //::size_i32 size = pbitmap->get_size();
       //rectx.left = 0;
       //rectx.top = 0;
-      //rectx.right = size.cx;
-      //rectx.bottom = size.cy;
+      //rectx.right = size.cx();
+      //rectx.bottom = size.cy();
       //try
       //{
       //   ::rectangle_i32 rectangleWindow;

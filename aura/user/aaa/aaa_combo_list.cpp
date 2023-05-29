@@ -314,21 +314,21 @@ namespace user
 
          size = pgraphics->get_text_extent(strItem);
 
-         size.cx += m_iPadding * 2;
+         size.cx() += m_iPadding * 2;
 
-         if (size.cx > psize->cx)
+         if (size.cx() > psize->cx)
          {
 
-            psize->cx = size.cx;
+            psize->cx = size.cx();
 
          }
 
-         if (size.cy > m_iItemHeight)
+         if (size.cy() > m_iItemHeight)
          {
 
-            m_iItemHeight = size.cy;
+            m_iItemHeight = size.cy();
 
-            if (size.cy != 18)
+            if (size.cy() != 18)
             {
 
                //output_debug_string("\nCOMBO LIST ITEM HEIGHT != 18\n");
@@ -988,9 +988,9 @@ namespace user
       ::rectangle rectangleList;
 
       rectangleList.left = rectangleWindow.left;
-      rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx);
+      rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx());
       rectangleList.top = rectangleWindow.bottom;
-      rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy;
+      rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy();
 
       if (rectangleList.bottom > rectangleMonitor.bottom -m_iBorder)
       {
@@ -1000,9 +1000,9 @@ namespace user
          ::rectangle rectangleListOver;
 
          rectangleListOver.left = rectangleWindow.left;
-         rectangleListOver.right = rectangleWindow.left + sizeFull.cx;
+         rectangleListOver.right = rectangleWindow.left + sizeFull.cx();
          rectangleListOver.bottom = rectangleWindow.top;
-         rectangleListOver.top = rectangleWindow.top - sizeFull.cy;
+         rectangleListOver.top = rectangleWindow.top - sizeFull.cy();
 
          if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
          {

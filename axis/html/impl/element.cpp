@@ -1112,12 +1112,12 @@ namespace html
 
          /*         if(m_point.x() < m_pointBound.x())
          m_point.x() = m_pointBound.x();
-         else if(m_point.x() > (m_pointBound.x() + m_sizeBound.cx))
-         m_point.x() = m_pointBound.x() + m_sizeBound.cx;
+         else if(m_point.x() > (m_pointBound.x() + m_sizeBound.cx()))
+         m_point.x() = m_pointBound.x() + m_sizeBound.cx();
          if(m_point.y() < m_pointBound.y())
          m_point.y() = m_pointBound.y();
-         else if(m_point.y() > (m_pointBound.y() + m_sizeBound.cy))
-         m_point.y() = m_pointBound.y() + m_sizeBound.cy;*/
+         else if(m_point.y() > (m_pointBound.y() + m_sizeBound.cy()))
+         m_point.y() = m_pointBound.y() + m_sizeBound.cy();*/
          on_change_layout(pdata);
       }
 
@@ -1283,7 +1283,7 @@ namespace html
          else
          {
 
-            return get_bound_size().cx;
+            return get_bound_size().cx();
 
          }
 
@@ -1314,8 +1314,8 @@ namespace html
 
          auto size = m_box.size();
 
-         size.cx = maximum(0.f, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
-         size.cy = maximum(0.f, size.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+         size.cx() = maximum(0.f, size.cx() - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         size.cy() = maximum(0.f, size.cy() - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          return size;
 

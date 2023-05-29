@@ -392,7 +392,7 @@
 ////inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
 ////{
 ////
-////   return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+////   return copy_colorref(pcolorrefDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
 ////
 ////}
 //
@@ -402,7 +402,7 @@
 //
 //   byte * pDst = (byte *)pcolorrefDst;
 //
-//   return copy_colorref((::color32_t *)pDst + point.x() * sizeof(::color32_t) + point.y() * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+//   return copy_colorref((::color32_t *)pDst + point.x() * sizeof(::color32_t) + point.y() * iStrideDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
 //
 //}
 //

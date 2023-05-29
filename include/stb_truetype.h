@@ -3657,14 +3657,14 @@ static stbtt__point * stbtt_FlattenCurves(stbtt_vertex * vertices, int num_verts
             break;
          case STBTT_vcurve:
             stbtt__tesselate_curve(points, &num_points, x, y,
-               vertices[i].cx, vertices[i].cy,
+               vertices[i].cx(), vertices[i].cy(),
                vertices[i].x(), vertices[i].y(),
                objspace_flatness_squared, 0);
             x = vertices[i].x(), y = vertices[i].y();
             break;
          case STBTT_vcubic:
             stbtt__tesselate_cubic(points, &num_points, x, y,
-               vertices[i].cx, vertices[i].cy,
+               vertices[i].cx(), vertices[i].cy(),
                vertices[i].cx1, vertices[i].cy1,
                vertices[i].x(), vertices[i].y(),
                objspace_flatness_squared, 0);
@@ -4494,7 +4494,7 @@ static int stbtt__compute_crossings_x(float x, float y, int nverts, stbtt_vertex
       }
       if (verts[i].type == STBTT_vcurve) {
          int x0 = (int)verts[i - 1].x(), y0 = (int)verts[i - 1].y();
-         int x1 = (int)verts[i].cx, y1 = (int)verts[i].cy;
+         int x1 = (int)verts[i].cx(), y1 = (int)verts[i].cy();
          int x2 = (int)verts[i].x(), y2 = (int)verts[i].y();
          int ax = STBTT_min(x0, STBTT_min(x1, x2)), ay = STBTT_min(y0, STBTT_min(y1, y2));
          int by = STBTT_max(y0, STBTT_max(y1, y2));
@@ -4622,7 +4622,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
          }
          else if (verts[i].type == STBTT_vcurve) {
             float x2 = verts[j].x() * scale_x, y2 = verts[j].y() * scale_y;
-            float x1 = verts[i].cx * scale_x, y1 = verts[i].cy * scale_y;
+            float x1 = verts[i].cx() * scale_x, y1 = verts[i].cy() * scale_y;
             float x0 = verts[i].x() * scale_x, y0 = verts[i].y() * scale_y;
             float bx = x0 - 2 * x1 + x2, by = y0 - 2 * y1 + y2;
             float len2 = bx * bx + by * by;
@@ -4677,7 +4677,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
                }
                else if (verts[i].type == STBTT_vcurve) {
                   float x2 = verts[i - 1].x() * scale_x, y2 = verts[i - 1].y() * scale_y;
-                  float x1 = verts[i].cx * scale_x, y1 = verts[i].cy * scale_y;
+                  float x1 = verts[i].cx() * scale_x, y1 = verts[i].cy() * scale_y;
                   float box_x0 = STBTT_min(STBTT_min(x0, x1), x2);
                   float box_y0 = STBTT_min(STBTT_min(y0, y1), y2);
                   float box_x1 = STBTT_max(STBTT_max(x0, x1), x2);

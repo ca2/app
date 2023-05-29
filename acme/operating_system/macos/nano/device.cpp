@@ -142,8 +142,8 @@ namespace quartz2d
 
       ::size_i32 size;
       
-      size.cx = pointSize.x;
-      size.cy = pnanofont->m_iFontSize;
+      size.cx() = pointSize.x;
+      size.cy() = pnanofont->m_iFontSize;
       
       return size;
 

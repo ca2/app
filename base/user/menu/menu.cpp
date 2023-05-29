@@ -712,11 +712,11 @@ namespace user
          m_pitemClose->m_puserinteraction->on_calc_size(&calcsize);
 
          m_pitemClose->m_rectangleUi.left = x;
-         m_pitemClose->m_rectangleUi.right = x + calcsize.m_size.cx;
+         m_pitemClose->m_rectangleUi.right = x + calcsize.m_size.cx();
          m_pitemClose->m_rectangleUi.top = y;
-         m_pitemClose->m_rectangleUi.bottom = y + calcsize.m_size.cy;
+         m_pitemClose->m_rectangleUi.bottom = y + calcsize.m_size.cy();
 
-         y += calcsize.m_size.cy;
+         y += calcsize.m_size.cy();
 
       }
 
@@ -726,7 +726,7 @@ namespace user
 
       m_iaColumnHeight.set_size(1);
 
-      m_iaColumnWidth[0] = calcsize.m_size.cx;
+      m_iaColumnWidth[0] = calcsize.m_size.cx();
 
       m_iaColumnHeight[0] = yClose;
 
@@ -742,18 +742,18 @@ namespace user
          pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 
          pmenuitema->element_at(i)->m_rectangleUi.left = x;
-         pmenuitema->element_at(i)->m_rectangleUi.right = x + calcsize.m_size.cx;
+         pmenuitema->element_at(i)->m_rectangleUi.right = x + calcsize.m_size.cx();
          pmenuitema->element_at(i)->m_rectangleUi.top = y;
-         pmenuitema->element_at(i)->m_rectangleUi.bottom = y + calcsize.m_size.cy;
+         pmenuitema->element_at(i)->m_rectangleUi.bottom = y + calcsize.m_size.cy();
 
-         y += calcsize.m_size.cy;
+         y += calcsize.m_size.cy();
 
          m_iaColumnHeight[0] = y;
 
-         if (calcsize.m_size.cx > m_iaColumnWidth[0])
+         if (calcsize.m_size.cx() > m_iaColumnWidth[0])
          {
 
-            m_iaColumnWidth[0] = calcsize.m_size.cx;
+            m_iaColumnWidth[0] = calcsize.m_size.cx();
 
          }
 
@@ -774,20 +774,20 @@ namespace user
 
       }
 
-      m_size.cx = (int) (m_iaColumnWidth.get_sum()
+      m_size.cx() = (int) (m_iaColumnWidth.get_sum()
                   + rectangleMargin.left + rectangleMargin.right
                   + rectangleBorder.left + rectangleBorder.right
                   + rectanglePadding.left + rectanglePadding.right);
 
-      m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
+      m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
                   + rectangleMargin.top + rectangleMargin.bottom
                   + rectangleBorder.top + rectangleBorder.bottom
                   + rectanglePadding.top + rectanglePadding.bottom);
 
 
-      m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
+      m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
 
-      m_size.cy = maximum(m_sizeMinimum.cy, m_size.cy);
+      m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
 
       ::count iItemCount = pmenuitema->get_size();
 
@@ -802,7 +802,7 @@ namespace user
 
          pbasestyle->prepare_menu(pgraphics, pitem);
 
-         pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
+         pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx());
 
          pitem->m_puserinteraction->place(pitem->m_rectangleUi);
 
@@ -825,8 +825,8 @@ namespace user
 
       rectangleWindow.left = point.x();
       rectangleWindow.top = point.y();
-      rectangleWindow.right = rectangleWindow.left + m_size.cx;
-      rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
+      rectangleWindow.right = rectangleWindow.left + m_size.cx();
+      rectangleWindow.bottom = rectangleWindow.top + m_size.cy();
 
       ::rectangle_i32 rectangleMonitor;
 
@@ -1367,9 +1367,9 @@ namespace user
 
       //   prectangle->top = m_pointTrack.y();
 
-      //   prectangle->right = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cx, m_size.cx);
+      //   prectangle->right = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cx(), m_size.cx());
 
-      //   prectangle->bottom = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cy, m_size.cy);
+      //   prectangle->bottom = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cy(), m_size.cy());
 
       //   pusermessage->m_bRet = true;
       //   pusermessage->set_lresult(0);

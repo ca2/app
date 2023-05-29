@@ -298,7 +298,7 @@ namespace turboc
       //if(!m_bAlternate)
       {
 
-         pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+         pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
 
       }
 

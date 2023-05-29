@@ -26,9 +26,9 @@ namespace write_text
    {
 
       return point.x() >= m_point.x()
-         && point.x() <= (m_point.x() + m_size.cx)
+         && point.x() <= (m_point.x() + m_size.cx())
          && point.y() >= m_point.y()
-         && point.y() <= (m_point.y() + m_size.cy);
+         && point.y() <= (m_point.y() + m_size.cy());
 
    }
 

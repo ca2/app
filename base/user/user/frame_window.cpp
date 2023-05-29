@@ -558,7 +558,7 @@ namespace user
 
                   //estatus = 
                   
-                  pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
+                  pimage2->create({ 300, rectangle.size().cy() * 300 / rectangle.size().cx() });
 
                   //if (!estatus)
                   //{
@@ -2577,8 +2577,8 @@ namespace user
    void frame_window::common_construct()
    {
 
-      m_sizeMinimum.cx = 0;
-      m_sizeMinimum.cy = 0;
+      m_sizeMinimum.cx() = 0;
+      m_sizeMinimum.cy() = 0;
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
       m_nIDTracking = 0;

@@ -528,7 +528,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cx = width;
+      size.cx() = width;
 
       if (on_set_size(size, elayout))
       {
@@ -545,7 +545,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cy = height;
+      size.cy() = height;
 
       if (on_set_size(size, elayout))
       {
@@ -564,7 +564,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cx += point.x() - left;
+      size.cx() += point.x() - left;
 
       point.x() = left;
 
@@ -591,7 +591,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      point.x() = right - size.cx;
+      point.x() = right - size.cx();
 
       if (on_set_position(point, elayout))
       {
@@ -645,10 +645,10 @@ namespace user
 
             //output_debug_string("control_box::on_set_size(" + as_string(size) + ")");
 
-            //if (size.cx > 500)
+            //if (size.cx() > 500)
             //{
 
-            //   output_debug_string("size.cx > 500");
+            //   output_debug_string("size.cx() > 500");
 
             //}
 
@@ -3330,8 +3330,8 @@ namespace user
       auto pointOffset = get_context_offset();
 
       info.nMin = 0;
-      info.nMax = (::i32)sizeTotal.cx;
-      info.nPage = (::i32)sizePage.cx;
+      info.nMax = (::i32)sizeTotal.cx();
+      info.nPage = (::i32)sizePage.cx();
       info.nPos = pointOffset.x();
       info.nTrackPos = pointOffset.x();
 
@@ -3348,8 +3348,8 @@ namespace user
       auto pointOffset = get_context_offset();
 
       info.nMin = 0;
-      info.nMax = (::i32)sizeTotal.cy;
-      info.nPage = (::i32)sizePage.cy;
+      info.nMax = (::i32)sizeTotal.cy();
+      info.nPage = (::i32)sizePage.cy();
       info.nPos = pointOffset.y();
       info.nTrackPos = pointOffset.y();
 
@@ -4407,7 +4407,7 @@ namespace user
 
       auto offset = pointOffset - pointContextOffset;
 
-      pgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
+      pgraphics->offset_origin((::i32)offset.cx(), (::i32)offset.cy());
 
    }
 
@@ -4757,9 +4757,9 @@ namespace user
 
       g->debug();
 
-      m_size.cx = 0;
+      m_size.cx() = 0;
 
-      m_size.cy = 0;
+      m_size.cy() = 0;
 
 #endif
 
@@ -7747,8 +7747,8 @@ namespace user
 
       //   //   pusersystem->m_createstruct.x() = m_pprimitiveimpl->m_rectangle.left;
       //   //   pusersystem->m_createstruct.y() = m_pprimitiveimpl->m_rectangle.top;
-      //   //   pusersystem->m_createstruct.cx = m_pprimitiveimpl->m_rectangle.width();
-      //   //   pusersystem->m_createstruct.cy = m_pprimitiveimpl->m_rectangle.height();
+      //   //   pusersystem->m_createstruct.cx() = m_pprimitiveimpl->m_rectangle.width();
+      //   //   pusersystem->m_createstruct.cy() = m_pprimitiveimpl->m_rectangle.height();
 
       //   //}
       //   //else
@@ -8975,7 +8975,7 @@ namespace user
 
       sizeparentlayout.m_bStretch = bStretch;
 
-      sizeparentlayout.m_sizeTotal.cx = sizeparentlayout.m_sizeTotal.cy = 0;
+      sizeparentlayout.m_sizeTotal.cx() = sizeparentlayout.m_sizeTotal.cy() = 0;
 
       if (rectangleClient.is_set())
       {
@@ -9035,9 +9035,9 @@ namespace user
 
             prectParam->left = prectParam->top = 0;
 
-            prectParam->right = sizeparentlayout.m_sizeTotal.cx;
+            prectParam->right = sizeparentlayout.m_sizeTotal.cx();
 
-            prectParam->bottom = sizeparentlayout.m_sizeTotal.cy;
+            prectParam->bottom = sizeparentlayout.m_sizeTotal.cy();
 
          }
 
@@ -10641,9 +10641,9 @@ namespace user
 
       ::size_f64 size = pgraphics->get_text_extent(strWindowText);
 
-      setFittingFontHeight.cx = size.cx;
+      setFittingFontHeight.cx() = size.cx();
 
-      setFittingFontHeight.cy = metric.get_line_spacing();
+      setFittingFontHeight.cy() = metric.get_line_spacing();
 
       return setFittingFontHeight;
 
@@ -10661,9 +10661,9 @@ namespace user
 
       ::size_f64 sizePaddedFitting;
 
-      sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
+      sizePaddedFitting.cx() = rectanglePadding.left + sizeFitting.cx() + rectanglePadding.right;
 
-      sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
+      sizePaddedFitting.cy() = rectanglePadding.top + sizeFitting.cy() + rectanglePadding.bottom;
 
       return sizePaddedFitting;
 
@@ -11913,8 +11913,8 @@ namespace user
 
    //   bool bWindowCrossesWorkspaceBoundaries = !rectangleWorkspace.contains(rectangleRequest);
 
-   //   bool bWindowLargerThanBroadRestore = rectangleRequest.width() > m_sizeRestoreBroad.cx
-   //      || rectangleRequest.height() > m_sizeRestoreBroad.cy;
+   //   bool bWindowLargerThanBroadRestore = rectangleRequest.width() > m_sizeRestoreBroad.cx()
+   //      || rectangleRequest.height() > m_sizeRestoreBroad.cy();
 
    //   if (bWindowCrossesWorkspaceBoundaries || bWindowLargerThanBroadRestore)
    //   {
@@ -12046,7 +12046,7 @@ namespace user
       if (m_bDerivedHeight)
       {
 
-         int iDerivedWidth = sizeSketch.cx;
+         int iDerivedWidth = sizeSketch.cx();
 
          int iDerivedHeight = get_derived_height(iDerivedWidth);
 
@@ -12055,10 +12055,10 @@ namespace user
          if (iDerivedHeight > 0)
          {
 
-            if (iDerivedHeight < sizeMinimum.cy)
+            if (iDerivedHeight < sizeMinimum.cy())
             {
 
-               iDerivedHeight = sizeMinimum.cy;
+               iDerivedHeight = sizeMinimum.cy();
 
                iDerivedWidth = get_derived_width(iDerivedHeight);
 
@@ -12066,12 +12066,12 @@ namespace user
 
          }
 
-         if (iDerivedWidth >= sizeMinimum.cx && iDerivedHeight >= sizeMinimum.cy)
+         if (iDerivedWidth >= sizeMinimum.cx() && iDerivedHeight >= sizeMinimum.cy())
          {
 
-            sizeSketch.cx = iDerivedWidth;
+            sizeSketch.cx() = iDerivedWidth;
 
-            sizeSketch.cy = iDerivedHeight;
+            sizeSketch.cy() = iDerivedHeight;
 
             layout().sketch().size() = sizeSketch;
 
@@ -13023,7 +13023,7 @@ namespace user
 
       size = pgraphics->get_text_extent(unitext("Ág"));
 
-      return size.cy;
+      return size.cy();
 
    }
 
@@ -15162,10 +15162,10 @@ namespace user
 
          prectangle->move_top_to(rectangleWorkspace.top);
 
-         if (::height(*prectangle) < sizeMinimum.cy)
+         if (::height(*prectangle) < sizeMinimum.cy())
          {
 
-            prectangle->bottom = prectangle->top + sizeMinimum.cy;
+            prectangle->bottom = prectangle->top + sizeMinimum.cy();
 
          }
 
@@ -15176,10 +15176,10 @@ namespace user
 
          prectangle->move_bottom_to(rectangleWorkspace.bottom);
 
-         if (::height(*prectangle) < sizeMinimum.cy)
+         if (::height(*prectangle) < sizeMinimum.cy())
          {
 
-            prectangle->top = prectangle->bottom - sizeMinimum.cy;
+            prectangle->top = prectangle->bottom - sizeMinimum.cy();
 
          }
 
@@ -15190,10 +15190,10 @@ namespace user
 
          prectangle->move_left_to(rectangleWorkspace.left);
 
-         if (::width(*prectangle) < sizeMinimum.cx)
+         if (::width(*prectangle) < sizeMinimum.cx())
          {
 
-            prectangle->right = prectangle->left + sizeMinimum.cx;
+            prectangle->right = prectangle->left + sizeMinimum.cx();
 
          }
 
@@ -15204,10 +15204,10 @@ namespace user
 
          prectangle->move_right_to(rectangleWorkspace.right);
 
-         if (::width(*prectangle) < sizeMinimum.cx)
+         if (::width(*prectangle) < sizeMinimum.cx())
          {
 
-            prectangle->left = prectangle->right + sizeMinimum.cx;
+            prectangle->left = prectangle->right + sizeMinimum.cx();
 
          }
 
@@ -16836,7 +16836,7 @@ namespace user
 
       //rectangleWindow.SetBottomRightSize(sizeTooltip);
 
-      //rectangleWindow.offset(0, -sizeTooltip.cy);
+      //rectangleWindow.offset(0, -sizeTooltip.cy());
 
       //if (rectangleWindow.top < rectangleMonitor.top)
       //{
@@ -16848,7 +16848,7 @@ namespace user
       //if (rectangleWindow.right > rectangleMonitor.right)
       //{
 
-      //   rectangleWindow.move_left_to(rectangleMonitor.right - sizeTooltip.cx - rectangleThisWindow.height());
+      //   rectangleWindow.move_left_to(rectangleMonitor.right - sizeTooltip.cx() - rectangleThisWindow.height());
 
       //}
 

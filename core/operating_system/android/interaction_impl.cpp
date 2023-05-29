@@ -466,8 +466,8 @@ namespace android
       pusersystem->m_createstruct.style = dwStyle | WS_CHILD;
       pusersystem->m_createstruct.x() = rectangle.left;
       pusersystem->m_createstruct.y() = rectangle.top;
-      pusersystem->m_createstruct.cx = width(rectangle);
-      pusersystem->m_createstruct.cy = height(rectangle);
+      pusersystem->m_createstruct.cx() = width(rectangle);
+      pusersystem->m_createstruct.cy() = height(rectangle);
       pusersystem->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
       pusersystem->m_createstruct.lpCreateParams = (LPVOID)pcreate;
 
@@ -1993,8 +1993,8 @@ namespace android
       //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
-      //      rectx.right = size.cx;
-      //      rectx.bottom = size.cy;
+      //      rectx.right = size.cx();
+      //      rectx.bottom = size.cy();
       //      try
       //      {
       //         ::rectangle_i32 rectangleWindow;
@@ -4661,7 +4661,7 @@ namespace android
 
       ::size_i32 size = m_puserinteraction->get_client_size();
 
-      int iSoftwareKeyboardTop = size.cy / 2;
+      int iSoftwareKeyboardTop = size.cy() / 2;
 
       if (r1.top > iSoftwareKeyboardTop)
       {

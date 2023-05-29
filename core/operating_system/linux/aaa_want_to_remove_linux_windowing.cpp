@@ -2490,7 +2490,7 @@ bool x11_process_message(Display * pdisplay)
                (pinteraction->m_pointMouseMoveSkip.y() - pinteraction.m_pointMouseMove.y()));
 
                if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
-               && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
+               && sizeDistance.cx() * sizeDistance.cx() + sizeDistance.cy() * sizeDistance.cy() < pinteraction->m_iMouseMoveSkipSquareDistance)
                {
 
                   pinteraction->m_iMouseMoveSkipCount++;

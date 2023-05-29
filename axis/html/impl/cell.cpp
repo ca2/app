@@ -349,15 +349,15 @@ namespace html
 
             iTableBorder += 2;
 
-            ::size_f32.cx = (float) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
+            ::size_f32.cx() = (float) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
 
-            ::size_f32.cy -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            ::size_f32.cy() -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
 
          }
          else*/
          {
 
-            size.cx = iColumnWidth;
+            size.cx() = iColumnWidth;
 
          }
 
@@ -467,26 +467,26 @@ namespace html
 
          auto size = ::html::impl::element::get_content_size();
 
-         //::size_f32.cx -= get_table()->m_iCellSpacing;
+         //::size_f32.cx() -= get_table()->m_iCellSpacing;
 
          //if(m_iColBeg == 0)
          //{
-         //   ::size_f32.cx -= get_table()->m_iCellSpacing / 2.f;
+         //   ::size_f32.cx() -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
          //{
-         //   ::size_f32.cx -= get_table()->m_iCellSpacing / 2.f;
+         //   ::size_f32.cx() -= get_table()->m_iCellSpacing / 2.f;
          //}
 
-         //::size_f32.cy -= get_table()->m_iCellSpacing;
+         //::size_f32.cy() -= get_table()->m_iCellSpacing;
 
          //if(m_iRowBeg == 0)
          //{
-         //   ::size_f32.cy -= get_table()->m_iCellSpacing / 2.f;
+         //   ::size_f32.cy() -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
          //{
-         //   ::size_f32.cy -= get_table()->m_iCellSpacing / 2.f;
+         //   ::size_f32.cy() -= get_table()->m_iCellSpacing / 2.f;
          //}
 
          return size;

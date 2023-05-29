@@ -211,10 +211,10 @@ namespace user
 
          auto sizePage = get_page_size();
 
-         if (point.x() > maximum(0, sizeTotal.cx - sizePage.cx))
+         if (point.x() > maximum(0, sizeTotal.cx() - sizePage.cx()))
          {
 
-            point.x() = (::i32)maximum(0, sizeTotal.cx - sizePage.cx);
+            point.x() = (::i32)maximum(0, sizeTotal.cx() - sizePage.cx());
 
          }
 
@@ -246,9 +246,9 @@ namespace user
 
       client_rectangle(rectangleClient);
 
-      ::i32 iTotalHeight = (::i32)sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32)sizeTotal.cy();
 
-      ::i32 iTotalWidth = (::i32)sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32)sizeTotal.cx();
 
       ::i32 iClientHeight = rectangleClient.height();
 

@@ -67,8 +67,8 @@
 //   pusersystem->m_createstruct.style = 0;
 //   pusersystem->m_createstruct.x() = 0;
 //   pusersystem->m_createstruct.y() = 0;
-//   pusersystem->m_createstruct.cx = 0;
-//   pusersystem->m_createstruct.cy = 0;
+//   pusersystem->m_createstruct.cx() = 0;
+//   pusersystem->m_createstruct.cy() = 0;
 //   //      pusersystem->m_createstruct.hwndParent = hWndParent;
 //   //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
 //   pusersystem->m_createstruct.hMenu = nullptr;

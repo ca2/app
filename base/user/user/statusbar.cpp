@@ -134,7 +134,7 @@ namespace user
                            bResult = false;
                            break;
                         } */
-            pSBP->cxText = (i32) (spgraphicsScreen->get_text_extent(pSBP->strText).cx);
+            pSBP->cxText = (i32) (spgraphicsScreen->get_text_extent(pSBP->strText).cx());
             ASSERT(pSBP->cxText >= 0);
             if (!SetPaneText(i, pSBP->strText, false))
             {
@@ -514,8 +514,8 @@ namespace user
 //
 //      CalcInsideRect(pgraphics, rectangle, bHorz);
 //      ::size_i32 size;
-//      size.cx =0;
-//      size.cy =0;
+//      size.cx() =0;
+//      size.cy() =0;
 //
 ////#ifdef WINDOWS_DESKTOP
 ////      i32 rgBorders[3];
@@ -523,12 +523,12 @@ namespace user
 ////      DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
 ////
 ////      // determine size, including borders
-////      size.cx = 32767;
-////      size.cy = tm.tmHeight - tm.tmInternalLeading - 1
+////      size.cx() = 32767;
+////      size.cy() = tm.tmHeight - tm.tmInternalLeading - 1
 ////         + rgBorders[1] * 2 + ::GetSystemMetrics(SM_CYBORDER) * 2
 ////         - rectangle.height();
-////      if (size.cy < m_nMinHeight)
-////         size.cy = m_nMinHeight;
+////      if (size.cy() < m_nMinHeight)
+////         size.cy() = m_nMinHeight;
 ////#endif
 
       //return size;

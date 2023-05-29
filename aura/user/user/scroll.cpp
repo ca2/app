@@ -91,9 +91,9 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::i32 iTotalHeight = (::i32) sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32) sizeTotal.cy();
 
-      ::i32 iTotalWidth = (::i32) sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32) sizeTotal.cx();
 
       ::i32 iClientHeight = rectangleClient.height();
 
@@ -186,9 +186,9 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x()));
+      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolldataHorizontal->m_iPage - pointOffset.x()));
 
-      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y()));
+      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolldataVertical->m_iPage - pointOffset.y()));
 
       return true;
 
@@ -214,8 +214,8 @@ namespace user
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right = const_layout().sketch().size().cx;
-      rectangle.bottom = const_layout().sketch().size().cy;
+      rectangle.right = const_layout().sketch().size().cx();
+      rectangle.bottom = const_layout().sketch().size().cy();
 
       return true;
 
@@ -233,9 +233,9 @@ namespace user
    void scroll_base::set_total_size(const ::size_f64& size)
    {
 
-      m_sizeTotal.cx = size.cx;
+      m_sizeTotal.cx() = size.cx();
 
-      m_sizeTotal.cy = size.cy;
+      m_sizeTotal.cy() = size.cy();
 
       //return ::success;
 
@@ -267,8 +267,8 @@ namespace user
 
          rectangle.top = rectangleClient.bottom;
          rectangle.left = rectangleClient.right;
-         rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->const_layout().design().size().cx);
-         rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->const_layout().design().size().cy);
+         rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->const_layout().design().size().cx());
+         rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->const_layout().design().size().cy());
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 

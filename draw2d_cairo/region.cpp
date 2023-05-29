@@ -390,9 +390,9 @@ namespace draw2d_cairo
 
       double centery    = center.y();
 
-      double radiusx    = fabs(size.cx) / 2.0;
+      double radiusx    = fabs(size.cx()) / 2.0;
 
-      double radiusy    = fabs(size.cy) / 2.0;
+      double radiusy    = fabs(size.cy()) / 2.0;
 
       if(radiusx == 0.0 || radiusy == 0.0)
       {

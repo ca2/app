@@ -635,11 +635,11 @@ namespace userex
 
       size_f64 sizeBeam(dSize,dSize);
 
-      rectangle_f64 rectangleOuter(point.x() - sizeBeam.cx / 2.0, point.y() - sizeBeam.cy / 2.0, point.x() + sizeBeam.cx / 2.0, point.y() + sizeBeam.cy / 2.0);
+      rectangle_f64 rectangleOuter(point.x() - sizeBeam.cx() / 2.0, point.y() - sizeBeam.cy() / 2.0, point.x() + sizeBeam.cx() / 2.0, point.y() + sizeBeam.cy() / 2.0);
 
       rectangle_f64 rectangleInner(rectangleOuter);
 
-      rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
+      rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -827,7 +827,7 @@ namespace userex
 
       }
 
-      rTarget.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+      rTarget.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx() - 1, 0);
 
       rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 

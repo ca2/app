@@ -322,9 +322,9 @@ namespace universal_windows
          if (m_bCreated)
          {
 
-            //m_size.cx = (::i32)m_window->Bounds.Width;
+            //m_size.cx() = (::i32)m_window->Bounds.Width;
 
-            //m_size.cy = (::i32)m_window->Bounds.Height;
+            //m_size.cy() = (::i32)m_window->Bounds.Height;
 
 
 
@@ -353,7 +353,7 @@ namespace universal_windows
    void directx_base::OnWindowSizeChange()
    {
 
-      if (m_size.cx != m_windowBounds.Width || m_size.cy != m_windowBounds.Height)
+      if (m_size.cx() != m_windowBounds.Width || m_size.cy() != m_windowBounds.Height)
       {
 
          ::draw2d::lock draw2dlock;
@@ -385,7 +385,7 @@ namespace universal_windows
 
          m_pimpl->m_puserinteraction->start_layout();
 
-         m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+         m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx(), m_size.cy());
 
          m_pimpl->m_puserinteraction->order_top();
 
@@ -434,7 +434,7 @@ namespace universal_windows
    //            //if (pinteraction->is_window_visible())
    //            {
 
-   //               pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+   //               pinteraction->set_dim(0, 0, m_size.cx(), m_size.cy());
 
    //               pinteraction->order_top();
 
@@ -467,8 +467,8 @@ namespace universal_windows
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size_i32 is identical.
-      m_windowBounds.Width = (float) m_size.cx;
-      m_windowBounds.Height = (float) m_size.cy;
+      m_windowBounds.Width = (float) m_size.cx();
+      m_windowBounds.Height = (float) m_size.cy();
 
       if(m_swapChain != nullptr)
       {
@@ -537,8 +537,8 @@ namespace universal_windows
 
          // Otherwise, create a memory_new one using the same adapter as the existing Direct3D device.
          DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
-         swapChainDesc.Width = m_sizeBuffer.cx;                                     // Use automatic sizing.
-         swapChainDesc.Height = m_sizeBuffer.cy;
+         swapChainDesc.Width = m_sizeBuffer.cx();                                     // Use automatic sizing.
+         swapChainDesc.Height = m_sizeBuffer.cy();
          swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;           // This is the most common __swap chain format.
          swapChainDesc.Stereo = false;
          swapChainDesc.SampleDesc.Count = 1;                          // Don't use multi-sampling.
@@ -703,8 +703,8 @@ namespace universal_windows
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size_i32 is identical.
-      m_windowBounds.Width = (float)m_size.cx;
-      m_windowBounds.Height = (float)m_size.cy;
+      m_windowBounds.Width = (float)m_size.cx();
+      m_windowBounds.Height = (float)m_size.cy();
 
       m_sizeBuffer = { 0,0 };
 

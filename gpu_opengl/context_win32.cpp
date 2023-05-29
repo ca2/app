@@ -52,8 +52,8 @@ namespace opengl
       dwStyle &= ~WS_BORDER;
       int x = 0;
       int y = 0;
-      int nWidth = size.cx;
-      int nHeight = size.cy;
+      int nWidth = size.cx();
+      int nHeight = size.cy();
       HWND hWndParent = nullptr;
       HMENU hMenu = nullptr;
       HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -250,7 +250,7 @@ namespace opengl
 
 #ifdef WINDOWS_DESKTOP
 
-      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx, size.cy, SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
+      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx(), size.cy(), SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
 
 #else
 
@@ -267,10 +267,10 @@ namespace opengl
 
       make_current();
 
-      glViewport(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx(), size.cy());
       //glMatrixMode(GL_PROJECTION);
       //glLoadIdentity();
-      //glOrtho(0, size.cx, 0, size.cy, -10, 10);
+      //glOrtho(0, size.cx(), 0, size.cy(), -10, 10);
       //glMatrixMode(GL_MODELVIEW);
       //glutPostRedisplay();
 

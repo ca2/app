@@ -175,9 +175,9 @@ namespace user
 
       ::size sizeTotal;
 
-      sizeTotal.cx = size.cx;
+      sizeTotal.cx() = size.cx();
 
-      sizeTotal.cy = tm.tmHeight;
+      sizeTotal.cy() = tm.tmHeight;
 
       return sizeTotal;
 
@@ -197,8 +197,8 @@ namespace user
          const ::size & size = pgraphics->get_text_extent(str);
 
          ::rectangle rectangle(0, 0, 0, 0);
-         rectangle.right = ::i32(size.cx * 1.6);
-         rectangle.bottom = ::i32(size.cy * 1.4);
+         rectangle.right = ::i32(size.cx() * 1.6);
+         rectangle.bottom = ::i32(size.cy() * 1.4);
 
          set_size(rectangle.size());
 
@@ -216,9 +216,9 @@ namespace user
 
          ::size sizeTotal = calc_text_size();
 
-         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
+         sizeTotal.cx() = (::i32)(sizeTotal.cx() * 1.6);
 
-         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
+         sizeTotal.cy() = (::i32)(sizeTotal.cy() * 1.4);
 
          set_size(sizeTotal);
 
@@ -295,13 +295,13 @@ namespace user
 
       ::rectangle rectangle;
 
-      rectangle.left = rectangleClient.left + (rectangleClient.width() - sizeText.cx) / 2;
+      rectangle.left = rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2;
 
-      rectangle.top = rectangleClient.top + (rectangleClient.height() - sizeText.cy) / 2;
+      rectangle.top = rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2;
 
-      rectangle.right = rectangle.left + sizeText.cx;
+      rectangle.right = rectangle.left + sizeText.cx();
 
-      rectangle.bottom = rectangle.top + sizeText.cy;
+      rectangle.bottom = rectangle.top + sizeText.cy();
 
       m_rectangleText = rectangle;
 

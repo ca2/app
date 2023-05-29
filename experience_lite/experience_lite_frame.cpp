@@ -244,8 +244,8 @@
 
                   lprect->left = m_pointWindowIcon.x();
                   lprect->top = m_pointWindowIcon.y();
-                  //lprect->right = lprect->left + m_pframewindow->m_picon->get_size().cx;
-                  //lprect->bottom = lprect->top + m_pframewindow->m_picon->get_size().cy;
+                  //lprect->right = lprect->left + m_pframewindow->m_picon->get_size().cx();
+                  //lprect->bottom = lprect->top + m_pframewindow->m_picon->get_size().cy();
                   lprect->right = lprect->left + 24;
                   lprect->bottom = lprect->top + 24;
 
@@ -375,7 +375,7 @@
 
 
                m_minSize = size_i32(144, 48);
-               m_minSize.cy = 48;
+               m_minSize.cy() = 48;
                pcontrolbox->set_button_color_system_default_001();
                set_frame_color_system_default_001();
                set_moveable_border_color(get_style_moveable_border_color(m_estyle));

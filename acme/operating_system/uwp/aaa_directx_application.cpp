@@ -247,9 +247,9 @@ namespace universal_windows
 
       m_directx->m_size.set_size((i32) args->Size.Width, (i32)args->Size.Height);
 
-      m_rectangleLastWindowRect.Width = (float) m_directx->m_size.cx;
+      m_rectangleLastWindowRect.Width = (float) m_directx->m_size.cx();
 
-      m_rectangleLastWindowRect.Height = (float) m_directx->m_size.cy;
+      m_rectangleLastWindowRect.Height = (float) m_directx->m_size.cy();
 
       m_directx->OnWindowSizeChange();
 

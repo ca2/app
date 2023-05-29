@@ -1132,7 +1132,7 @@ namespace tsf
        ////calculate the width of the last character
        //::size_i32    size;
        //GetTextExtentPoint32W(hdc, pwszText + acpEnd, 1, &size);
-       //rc.right = LOWORD(dwEnd) + size.cx;
+       //rc.right = LOWORD(dwEnd) + size.cx();
        //rc.bottom = HIWORD(dwEnd);
 
        ////calculate the line height

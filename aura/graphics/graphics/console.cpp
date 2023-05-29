@@ -182,11 +182,11 @@ namespace graphics
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      m_sizeWindow.cx = iWidth;
+      m_sizeWindow.cx() = iWidth;
 
-      m_sizeWindow.cy = iHeight;
+      m_sizeWindow.cy() = iHeight;
 
-      ::size_i32 sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
+      ::size_i32 sizeImage(m_sizeTile.cx() * m_sizeWindow.cx() + m_iBorder * 2, m_sizeTile.cy() * m_sizeWindow.cy() + m_iBorder * 2);
 
       m_pimage = m_pcontext->m_pauracontext->create_image(sizeImage);
 
@@ -196,11 +196,11 @@ namespace graphics
 
 #ifdef LINUX
 
-      m_pimage->g()->m_pfont->create_pixel_font("Ubuntu Mono", m_sizeTile.cy * 0.92);
+      m_pimage->g()->m_pfont->create_pixel_font("Ubuntu Mono", m_sizeTile.cy() * 0.92);
 
 #else
 
-      m_pimage->g()->m_pfont->create_pixel_font("Lucida Console", m_sizeTile.cy * 0.92);
+      m_pimage->g()->m_pfont->create_pixel_font("Lucida Console", m_sizeTile.cy() * 0.92);
 
 #endif
 
@@ -235,7 +235,7 @@ namespace graphics
       m_edoscolor = color;
       //synchronous_lock synchronouslock(m_pmutex);
 
-      //m_pimage->g()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy,console_dos_color(color));
+      //m_pimage->g()->FillSolidRect(0,iLineStart * m_sizeTile.cy(),m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy(),console_dos_color(color));
 
       //update_image();
 
@@ -261,7 +261,7 @@ namespace graphics
 
          m_x++;
 
-         if (m_x >= (m_pimage->width() / m_sizeTile.cx))
+         if (m_x >= (m_pimage->width() / m_sizeTile.cx()))
          {
             m_x = 0;
             m_y++;
@@ -385,7 +385,7 @@ namespace graphics
 
       int i2 = 2;
 
-      if (!defer_write(ch, m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy, m_sizeTile.cx, m_sizeTile.cy, edoscolor))
+      if (!defer_write(ch, m_iBorder + x * m_sizeTile.cx(), m_iBorder + y * m_sizeTile.cy(), m_sizeTile.cx(), m_sizeTile.cy(), edoscolor))
       {
 
          m_pimage->g()->set_smooth_mode(::draw2d::e_smooth_mode_none);
@@ -400,19 +400,19 @@ namespace graphics
             m_pimage->g()->set(ppen2);
 
             m_pimage->g()->draw_line(
-               ::point_i32(m_iBorder + x * m_sizeTile.cx,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
+               ::point_i32(m_iBorder + x * m_sizeTile.cx(),
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
+               ::point_i32(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2)
             );
 
             m_pimage->g()->set(ppen1);
 
             m_pimage->g()->draw_line(
-               ::point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
+               ::point_i32(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
+               ::point_i32(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1)
             );
 
             m_iLastPenColor = edoscolor;
@@ -432,10 +432,10 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               point_i32(m_iBorder + x * m_sizeTile.cx,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
+               point_i32(m_iBorder + x * m_sizeTile.cx(),
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
+               point_i32(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2)
             );
 
             m_iLastPenColor = edoscolor;
@@ -455,10 +455,10 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               point_i32(m_iBorder + x * m_sizeTile.cx,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
+               point_i32(m_iBorder + x * m_sizeTile.cx(),
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
+               point_i32(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2)
             );
 
             m_iLastPenColor = edoscolor;
@@ -478,10 +478,10 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-                  m_iBorder + y * m_sizeTile.cy),
-               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
+               point_i32(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+                  m_iBorder + y * m_sizeTile.cy()),
+               point_i32(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1)
             );
 
             m_iLastPenColor = edoscolor;
@@ -495,18 +495,18 @@ namespace graphics
             m_pimage->g()->set(ppen2);
 
            m_pimage->g()->draw_line(
-              ::point_f64( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy ),
-              ::point_f64( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-              m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1 )
+              ::point_f64( m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() ),
+              ::point_f64( m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+              m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1 )
             );
             m_pimage->g()->set(ppen1);
 
             m_pimage->g()->draw_line(
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2)
             );
 
             m_iLastPenColor = edoscolor;
@@ -520,18 +520,18 @@ namespace graphics
             m_pimage->g()->set(ppen2);
 
             m_pimage->g()->draw_line(
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy),
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy()),
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, 
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1)
             );
             m_pimage->g()->set(ppen1);
 
             m_pimage->g()->draw_line(
-               ::point_f64(m_iBorder + x * m_sizeTile.cx,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
+               ::point_f64(m_iBorder + x * m_sizeTile.cx(),
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2)
             );
 
             m_iLastPenColor = edoscolor;
@@ -551,10 +551,10 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy),
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy()),
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, 
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1)
             );
 
             m_iLastPenColor = edoscolor;
@@ -574,15 +574,15 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, 
-                  m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
+               ::point_f64(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, 
+                  m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2)
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy()
             );
 
             m_iLastPenColor = edoscolor;
@@ -602,14 +602,14 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 - i2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1
             );
 
             m_iLastPenColor = edoscolor;
@@ -629,14 +629,14 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 - i2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
             );
 
             m_iLastPenColor = edoscolor;
@@ -656,14 +656,14 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
             );
 
             m_iLastPenColor = edoscolor;
@@ -683,14 +683,14 @@ namespace graphics
             }
 
            m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+               m_iBorder + x * m_sizeTile.cx(),
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 + i2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
             );
 
             m_iLastPenColor = edoscolor;
@@ -710,14 +710,14 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+               m_iBorder + x * m_sizeTile.cx(),
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
             );
 
             m_iLastPenColor = edoscolor;
@@ -737,14 +737,14 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+               m_iBorder + x * m_sizeTile.cx(),
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 + i2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1
             );
 
             m_iLastPenColor = edoscolor;
@@ -764,14 +764,14 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+               m_iBorder + x * m_sizeTile.cx(),
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
             m_pimage->g()->draw_line(
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
+               m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1
             );
 
             m_iLastPenColor = edoscolor;
@@ -789,8 +789,8 @@ namespace graphics
 
             m_pimage->g()->set_text_color(console_dos_color(edoscolor));
 
-           m_pimage->g()->draw_text(str, rectangle_i32(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
-               m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_center);
+           m_pimage->g()->draw_text(str, rectangle_i32(m_iBorder + x * m_sizeTile.cx(), m_iBorder + y * m_sizeTile.cy(),
+               m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx(), m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy()), e_align_center);
 
          }
 

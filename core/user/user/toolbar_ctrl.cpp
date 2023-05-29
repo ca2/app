@@ -584,7 +584,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
+//   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx(), size.cy())) != false;
 //
 //#else
 //
@@ -600,7 +600,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
+//   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx(), size.cy())) != false;
 //
 //#else
 //

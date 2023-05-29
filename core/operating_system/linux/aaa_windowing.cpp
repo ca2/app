@@ -3219,7 +3219,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                         (pinteraction->m_pointMouseMoveSkip.y() - pinteraction->m_pointMouseMove.y()));
 
                      if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
-                        && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
+                        && sizeDistance.cx() * sizeDistance.cx() + sizeDistance.cy() * sizeDistance.cy() < pinteraction->m_iMouseMoveSkipSquareDistance)
                      {
 
                         pinteraction->m_iMouseMoveSkipCount++;
@@ -3639,8 +3639,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
 //      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x();
 //      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y();
-//      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx;
-//      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy;
+//      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx();
+//      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy();
 //
 //      ::rectangle r;
 //

@@ -85,10 +85,10 @@ image_drawing::image_drawing(const ::image_source & imagesource) :
       auto size = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
 
       return ::rectangle_f64(
-         m_rectangleSubImage.left * size.cx,
-         m_rectangleSubImage.top * size.cy,
-         m_rectangleSubImage.right * size.cx,
-         m_rectangleSubImage.bottom * size.cy);
+         m_rectangleSubImage.left * size.cx(),
+         m_rectangleSubImage.top * size.cy(),
+         m_rectangleSubImage.right * size.cx(),
+         m_rectangleSubImage.bottom * size.cy());
 
    }
    else if (m_esubimage == e_sub_image_coordinates)

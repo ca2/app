@@ -17,7 +17,7 @@ public:
    template < primitive_integral INTEGRAL >
    lparam(INTEGRAL i) { m_lparam = (iptr)i; }
    template < primitive_size SIZE >
-   lparam(const SIZE & size):lparam((::i32)size.cx, (::i32) size.cy) {}
+   lparam(const SIZE & size):lparam((::i32)size.cx(), (::i32) size.cy()) {}
    template < primitive_point POINT >
    lparam(const POINT & point) : lparam((::i32)point.x(), (::i32)point.y()) {}
    lparam(::i32 x, ::i32 y) { m_lparam = __MAKE_LPARAM(x, y); }

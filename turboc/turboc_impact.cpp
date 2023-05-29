@@ -209,9 +209,9 @@ namespace turboc
 
             ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
-            double ratey = fHeight * 0.84 / size.cy;
+            double ratey = fHeight * 0.84 / size.cy();
 
-            m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+            m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy() * ratey / size.cx()),e_font_weight_bold);
 
             //m_dMinRadius = maximum(1.0,m_pfont->m_dFontSize / 23.0);
 
@@ -225,7 +225,7 @@ namespace turboc
 
             //::draw2d::path_pointer path(this_create);
 
-            //ppath->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_pfont);
+            //ppath->add_string((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse,m_pfont);
 
             //::draw2d::pen_pointer pen(this_create);
 
@@ -262,7 +262,7 @@ namespace turboc
 
          ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
-         pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+         pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
 
          return;
 
@@ -433,9 +433,9 @@ namespace turboc
 
       ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
-      double ratey = fHeight * 0.84 / size.cy;
+      double ratey = fHeight * 0.84 / size.cy();
 
-      m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+      m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy() * ratey / size.cx()),e_font_weight_bold);
 
       m_dMinRadius = maximum(1.0,m_pfont->m_dFontSize / 23.0);
 
@@ -451,7 +451,7 @@ namespace turboc
 
       ppath->m_bFill = false;
 
-      ppath->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_pfont);
+      ppath->add_string((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse,m_pfont);
 
       ::draw2d::pen_pointer pen(this_create);
 
@@ -509,7 +509,7 @@ namespace turboc
          synchronous_lock sl3(m_pmutexDraw);
          synchronous_lock sl4(m_pmutexSwap);
 
-/*         bool bNewSize = m_pimage->width() < sizeNew.cx || m_pimage->m_size.cy < sizeNew.cy;
+/*         bool bNewSize = m_pimage->width() < sizeNew.cx() || m_pimage->m_size.cy() < sizeNew.cy();
 
          m_bNewLayout = false;
 

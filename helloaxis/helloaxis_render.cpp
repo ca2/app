@@ -306,8 +306,8 @@ namespace helloaxis
 //
 //      size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//      m_cxTarget = int (size.cx * 1.2);
-//      m_cyTarget = int (size.cy * 1.2);
+//      m_cxTarget = int (size.cx() * 1.2);
+//      m_cyTarget = int (size.cy() * 1.2);
 //
 //      if (!m_bFirstDone)
 //      {
@@ -463,7 +463,7 @@ namespace helloaxis
 //      //if(!m_bAlternate)
 //      {
 //
-//         pgraphics->text_out((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient.height() - size.cy) / 2, strHelloAXIS);
+//         pgraphics->text_out((m_rectangleClient.width() - size.cx()) / 2, (m_rectangleClient.height() - size.cy()) / 2, strHelloAXIS);
 //
 //      }
 //      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
@@ -571,8 +571,8 @@ namespace helloaxis
 //
 //      ::size_i32 size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//      m_cxTarget = int(size.cx * 1.2);
-//      m_cyTarget = int(size.cy * 1.2);
+//      m_cxTarget = int(size.cx() * 1.2);
+//      m_cyTarget = int(size.cy() * 1.2);
 //
 //      {
 //
@@ -608,7 +608,7 @@ namespace helloaxis
 //
 //            m_pimage->g()->set_font(m_pfont);
 //
-//            m_pimage->g()->text_out((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient->height() - size_i32->cy) / 2, strHelloAXIS);
+//            m_pimage->g()->text_out((m_rectangleClient.width() - size.cx()) / 2, (m_rectangleClient->height() - size_i32->cy) / 2, strHelloAXIS);
 //
 //            if (m_dMinRadius > 3.0)
 //            {
@@ -675,7 +675,7 @@ namespace helloaxis
 //
 //      pgraphics->SelectObject(pbrushText);
 //
-//      pgraphics->text_out((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient.height() - size.cy) / 2, strHelloAXIS);
+//      pgraphics->text_out((m_rectangleClient.width() - size.cx()) / 2, (m_rectangleClient.height() - size.cy()) / 2, strHelloAXIS);
 //
 //      byte a, R, g, b;
 //
@@ -987,9 +987,9 @@ namespace helloaxis
 //
 //               ::size_i32 size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//               double ratey = fHeight * 0.84 / size.cy;
+//               double ratey = fHeight * 0.84 / size.cy();
 //
-//               pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
+//               pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy() * ratey / size.cx()), e_font_weight_bold);
 //
 //               m_pfont = font;
 //
@@ -1017,7 +1017,7 @@ namespace helloaxis
 //
 //            ::size_i32 size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//            pgraphics->text_out((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient.height() - size.cy) / 2, strHelloAXIS);
+//            pgraphics->text_out((m_rectangleClient.width() - size.cx()) / 2, (m_rectangleClient.height() - size.cy()) / 2, strHelloAXIS);
 //
 //            return;
 //
@@ -1249,11 +1249,11 @@ namespace helloaxis
 //
 //      ::size_i32 size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//      double ratey = fHeight * 0.84 / size.cy;
+//      double ratey = fHeight * 0.84 / size.cy();
 //
-////      pfont->create_pixel_font(m_pimpact->m_strFont, minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
+////      pfont->create_pixel_font(m_pimpact->m_strFont, minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy() * ratey / size.cx()), e_font_weight_bold);
 //
-//      m_dMinRadius = maximum(1.0, minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx) / 46.0);
+//      m_dMinRadius = maximum(1.0, minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy() * ratey / size.cx()) / 46.0);
 //
 //      m_dMaxRadius = m_dMinRadius * 2.3;
 //
@@ -1267,7 +1267,7 @@ namespace helloaxis
 //
 //      ppath->m_bFill = false;
 //
-//      ppath->add_string((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient.height() - size.cy) / 2, strHelloAXIS, m_pfont);
+//      ppath->add_string((m_rectangleClient.width() - size.cx()) / 2, (m_rectangleClient.height() - size.cy()) / 2, strHelloAXIS, m_pfont);
 //
 //      auto ppen = __create < ::draw2d::pen > ();
 //
@@ -1279,7 +1279,7 @@ namespace helloaxis
 //
 //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
-//      //      pgraphics->FillSolidRect((m_rectangleClient.width() - size.cx) / 2,(m_rectangleClient.height() - size.cy) / 2, 100, 100, argb(255,255,200,240));
+//      //      pgraphics->FillSolidRect((m_rectangleClient.width() - size.cx()) / 2,(m_rectangleClient.height() - size.cy()) / 2, 100, 100, argb(255,255,200,240));
 //
 //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //

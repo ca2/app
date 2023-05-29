@@ -1406,13 +1406,13 @@ namespace user
             if(ppane->m_pimage->is_set())
             {
 
-               size.cx += ppane->m_pimage->width()+ 2;
+               size.cx() += ppane->m_pimage->width()+ 2;
 
-               size.cy = maximum(size.cy, ppane->m_pimage->height());
+               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
 
             }
 
-            cx = size.cx + 2;
+            cx = size.cx() + 2;
 
             if(!ppane->m_bPermanent)
             {
@@ -1428,7 +1428,7 @@ namespace user
 
             }
 
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
 
             if(cy > iTabHeight)
             {
@@ -1515,11 +1515,11 @@ namespace user
             if(ppane->m_pimage->is_ok())
             {
 
-               size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
+               size.cy() = maximum(size.cy(), ppane->m_pimage->size().cy());
 
             }
 
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
 
             if(cy > iTabHeight)
             {
@@ -1548,12 +1548,12 @@ namespace user
 
             }
 
-            ppane->m_size.cx = size.cx + ixAdd
+            ppane->m_size.cx() = size.cx() + ixAdd
                                  + get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right
                                  + get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right
                                  + get_data()->m_rectangleTextMargin.left + get_data()->m_rectangleTextMargin.right;
 
-            x += ppane->m_size.cx;
+            x += ppane->m_size.cx();
          }
 
          // close tab button
@@ -1573,7 +1573,7 @@ namespace user
 
             auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
-            ppane->m_size.cy = iTabHeight;
+            ppane->m_size.cy() = iTabHeight;
 
          }
 
@@ -1618,15 +1618,15 @@ namespace user
       if(m_pdata->m_bVertical)
       {
 
-         m_sizeBarDragScroll.cy = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeBarDragScroll.cy() = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
 
 
       }
       else
       {
 
-         m_sizeBarDragScroll.cx = m_pdata->m_tabpanecompositea.last()->m_point.x() +
-         m_pdata->m_tabpanecompositea.last()->m_size.cx;
+         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanecompositea.last()->m_point.x() +
+         m_pdata->m_tabpanecompositea.last()->m_size.cx();
 
       }
 
@@ -2268,9 +2268,9 @@ namespace user
 
          rectangle.top = ppane->m_point.y();
 
-         rectangle.right = rectangle.left + ppane->m_size.cx;
+         rectangle.right = rectangle.left + ppane->m_size.cx();
 
-         rectangle.bottom = rectangle.top + ppane->m_size.cy;
+         rectangle.bottom = rectangle.top + ppane->m_size.cy();
 
       }
 
@@ -2451,9 +2451,9 @@ namespace user
                   for(int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                   {
 
-                     rectangleText.left += ppane->m_sizeaText[iTitle].cx;
+                     rectangleText.left += ppane->m_sizeaText[iTitle].cx();
 
-                     rectangleText.right = rectangleText.left + get_data()->m_sizeSep.cx;
+                     rectangleText.right = rectangleText.left + get_data()->m_sizeSep.cx();
 
                      if(rectangleText.contains(point))
                      {
@@ -2462,7 +2462,7 @@ namespace user
 
                      }
 
-                     rectangleText.left += get_data()->m_sizeSep.cx;
+                     rectangleText.left += get_data()->m_sizeSep.cx();
 
                   }
 

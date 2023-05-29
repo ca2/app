@@ -777,8 +777,8 @@ public:
 
       size_i32 sz;
 
-      sz.cx = 0;
-      sz.cy = 0;
+      sz.cx() = 0;
+      sz.cy() = 0;
 
       for(index i = 0; i < stra.get_count(); i++)
       {
@@ -798,18 +798,18 @@ public:
 
          int x = bTab ? 25 : 0;
 
-         if(sizeItem.cx + x > sz.cx)
+         if(sizeItem.cx() + x > sz.cx())
          {
 
-            sz.cx = sizeItem.cx + x;
+            sz.cx() = sizeItem.cx() + x;
 
          }
 
          baTab.add(bTab);
 
-         ya.add( sz.cy);
+         ya.add( sz.cy());
 
-         sz.cy += sizeItem.cy;
+         sz.cy() += sizeItem.cy();
 
          if(bEmpty)
          {
@@ -836,19 +836,19 @@ public:
          label.m_bVisible = true;
 
          label.m_rectangle.left = 10;
-         label.m_rectangle.top = 10 + (sz.cy / stra.get_count()) * i;
-         label.m_rectangle.right = label.m_rectangle.left+sz.cx - 20;
-         label.m_rectangle.bottom = label.m_rectangle.top+ (sz.cy / stra.get_count());
+         label.m_rectangle.top = 10 + (sz.cy() / stra.get_count()) * i;
+         label.m_rectangle.right = label.m_rectangle.left+sz.cx() - 20;
+         label.m_rectangle.bottom = label.m_rectangle.top+ (sz.cy() / stra.get_count());
 
       }
 
-      sz.cx += 20;
-      sz.cy += 20;
+      sz.cx() += 20;
+      sz.cy() += 20;
 
-      rectangle.left = m_rectangleDesktop.left + ((m_rectangleDesktop.width() - sz.cx) / 2);
-      rectangle.top = m_rectangleDesktop.top + ((m_rectangleDesktop.height() - sz.cy) / 4);
-      rectangle.right = rectangle.left + sz.cx;
-      rectangle.bottom = rectangle.top + sz.cy;
+      rectangle.left = m_rectangleDesktop.left + ((m_rectangleDesktop.width() - sz.cx()) / 2);
+      rectangle.top = m_rectangleDesktop.top + ((m_rectangleDesktop.height() - sz.cy()) / 4);
+      rectangle.right = rectangle.left + sz.cx();
+      rectangle.bottom = rectangle.top + sz.cy();
 
 
       if(!prepare_window(rectangle))

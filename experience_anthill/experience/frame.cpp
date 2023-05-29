@@ -249,8 +249,8 @@ namespace experience_anthill
 
          rectangle.left = m_pointWindowIcon.x();
          rectangle.top = m_pointWindowIcon.y();
-         //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx;
-         //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy;
+         //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx();
+         //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy();
          rectangle.right = rectangle.left + 24;
          rectangle.bottom = rectangle.top + 24;
 
@@ -372,7 +372,7 @@ namespace experience_anthill
 
 
       m_minSize = size_i32(144, 48);
-      m_minSize.cy = 48;
+      m_minSize.cy() = 48;
 
       set_frame_color_system_default_001();
 

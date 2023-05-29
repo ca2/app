@@ -249,8 +249,8 @@ namespace opengl
          glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
          glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
             GL_TEXTURE_2D, m_gluTextureBitmap1, 0);
-         glBlitFramebuffer(0, 0, m_sizeBitmap1.cx, m_sizeBitmap1.cy,
-            0, 0, m_size.cx, m_size.cy,
+         glBlitFramebuffer(0, 0, m_sizeBitmap1.cx(), m_sizeBitmap1.cy(),
+            0, 0, m_size.cx(), m_size.cy(),
             GL_COLOR_BUFFER_BIT, GL_LINEAR);
          glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
          glDeleteFramebuffers(1, &readFboId);
@@ -322,15 +322,15 @@ namespace opengl
 
          vertical_swap_copy_colorref_swap_red_blue(
             (color32_t *) m_memorySwap.data(),
-            m_sizeBitmap1.cx,
-            m_sizeBitmap1.cy,
-            m_sizeBitmap1.cx * 4,
+            m_sizeBitmap1.cx(),
+            m_sizeBitmap1.cy(),
+            m_sizeBitmap1.cx() * 4,
             pimage->get_data(),
             pimage->m_iScan);
 
          glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
-            m_sizeBitmap1.cx,
-            m_sizeBitmap1.cy,
+            m_sizeBitmap1.cx(),
+            m_sizeBitmap1.cy(),
             0, GL_RGBA, GL_UNSIGNED_BYTE,
             m_memorySwap.data()); // upload image data to the textur
 

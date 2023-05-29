@@ -3778,13 +3778,13 @@ namespace draw2d_cairo
       if (ealign & e_align_right)
       {
 
-         Δx = rectangle.right - rectangle.left - sz.cx;
+         Δx = rectangle.right - rectangle.left - sz.cx();
 
       }
       else if (ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangle.right - rectangle.left) - (sz.cx)) / 2.0;
+         Δx = ((rectangle.right - rectangle.left) - (sz.cx())) / 2.0;
 
       }
       else
@@ -3866,7 +3866,7 @@ namespace draw2d_cairo
       for (auto & strLine : stra)
       {
 
-         //cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy * (i) / stra.get_size());
+         //cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy() * (i) / stra.get_size());
 
          cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + e.ascent * i);
 
@@ -4167,13 +4167,13 @@ namespace draw2d_cairo
    //    if (ealign & e_align_right)
    //    {
 
-   //        Δx = rectangle.right - rectangle.left - sz.cx;
+   //        Δx = rectangle.right - rectangle.left - sz.cx();
 
    //    }
    //    else if (ealign & e_align_horizontal_center)
    //    {
 
-   //        Δx = ((rectangle.right - rectangle.left) - (sz.cx)) / 2.0;
+   //        Δx = ((rectangle.right - rectangle.left) - (sz.cx())) / 2.0;
 
    //    }
    //    else
@@ -4253,7 +4253,7 @@ namespace draw2d_cairo
    //    for (auto & strLine : stra)
    //    {
 
-   //        cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy * (i) / stra.get_size());
+   //        cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy() * (i) / stra.get_size());
 
    //        (*ftext)(m_pdc, strLine);
 
@@ -4396,9 +4396,9 @@ namespace draw2d_cairo
 
             pango_layout_get_pixel_size(playout, &width, &height);
 
-            //size.cx = ;
+            //size.cx() = ;
 
-            //size.cy = height;
+            //size.cy() = height;
 
             g_object_unref(playout);                         // free the layout
 
@@ -4421,9 +4421,9 @@ namespace draw2d_cairo
 
             cairo_font_extents(m_pdc, &fontextents);
 
-            //size.cx = x;
+            //size.cx() = x;
 
-            //size.cy = x;
+            //size.cy() = x;
 
             return {textextents.x_advance, textextents.height} ;
 
@@ -4441,18 +4441,18 @@ namespace draw2d_cairo
 
       ::size_f64 size;
 
-      size.cx = 0.0;
+      size.cx() = 0.0;
 
-      size.cy = 0.0;
+      size.cy() = 0.0;
 
       for (auto & strLine: straLines)
       {
 
          auto sizeLine = get_text_extent(strLine, str.length());
 
-         size.cx = maximum(size.cx, sizeLine.cx);
+         size.cx() = maximum(size.cx(), sizeLine.cx());
 
-         size.cy += sizeLine.cy;
+         size.cy() += sizeLine.cy();
 
       }
 
@@ -4529,9 +4529,9 @@ namespace draw2d_cairo
 
          g_object_unref(playout);                         // free the layout
 
-         size.cx = width * m_pfont->m_dFontWidth;
+         size.cx() = width * m_pfont->m_dFontWidth;
 
-         size.cy = height;
+         size.cy() = height;
 
       }
       else
@@ -4556,9 +4556,9 @@ namespace draw2d_cairo
          if (!str.has_char())
          {
 
-            size.cx = 0;
+            size.cx() = 0;
 
-            size.cy = e.height;
+            size.cy() = e.height;
 
             return true;
 
@@ -4577,9 +4577,9 @@ namespace draw2d_cairo
 
          }
 
-         size.cx = (::i32) (ex.x_advance * m_pfont->m_dFontWidth);
+         size.cx() = (::i32) (ex.x_advance * m_pfont->m_dFontWidth);
 
-         size.cy = (::i32) e.height;
+         size.cy() = (::i32) e.height;
 
       }
 
@@ -5003,7 +5003,7 @@ namespace draw2d_cairo
 
          cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x() - x, pbrush->m_point.y() - y, 0,
                                                                   pbrush->m_point.x() - x, pbrush->m_point.y() - y,
-                                                                  maximum(pbrush->m_size.cx, pbrush->m_size.cy));
+                                                                  maximum(pbrush->m_size.cx(), pbrush->m_size.cy()));
 
          cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_rgba(pbrush->m_color1));
 
@@ -5941,14 +5941,14 @@ namespace draw2d_cairo
    bool graphics::_set(const ::arc & arc)
    {
 
-      if (arc.m_sizeRadius.cx <= 0.0000001)
+      if (arc.m_sizeRadius.cx() <= 0.0000001)
       {
 
          return 0;
 
       }
 
-      if (arc.m_sizeRadius.cy <= 0.0000001)
+      if (arc.m_sizeRadius.cy() <= 0.0000001)
       {
 
          return 0;
@@ -5961,18 +5961,18 @@ namespace draw2d_cairo
 
       cairo_translate(m_pdc, arc.m_pointCenter.x(), arc.m_pointCenter.y());
 
-      cairo_scale(m_pdc, 1.0, arc.m_sizeRadius.cy / arc.m_sizeRadius.cx);
+      cairo_scale(m_pdc, 1.0, arc.m_sizeRadius.cy() / arc.m_sizeRadius.cx());
 
       if (arc.m_angleExt > 0)
       {
 
-         cairo_arc(m_pdc, 0.0, 0.0, arc.m_sizeRadius.cx, arc.m_angleBeg, arc.m_angleEnd2);
+         cairo_arc(m_pdc, 0.0, 0.0, arc.m_sizeRadius.cx(), arc.m_angleBeg, arc.m_angleEnd2);
 
       }
       else
       {
 
-         cairo_arc_negative(m_pdc, 0.0, 0.0, arc.m_sizeRadius.cx, arc.m_angleBeg, arc.m_angleEnd2);
+         cairo_arc_negative(m_pdc, 0.0, 0.0, arc.m_sizeRadius.cx(), arc.m_angleBeg, arc.m_angleEnd2);
 
       }
 

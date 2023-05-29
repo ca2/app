@@ -622,12 +622,12 @@ namespace user
 
       }
 
-      if (windowrect.m_rectangleNormal.width() < get_window_minimum_size().cx
-         || windowrect.m_rectangleNormal.height() < get_window_minimum_size().cy)
+      if (windowrect.m_rectangleNormal.width() < get_window_minimum_size().cx()
+         || windowrect.m_rectangleNormal.height() < get_window_minimum_size().cy())
       {
 
-         if (windowrect.m_rectangleWindow.width() > get_window_minimum_size().cx
-            && windowrect.m_rectangleWindow.height() > get_window_minimum_size().cy)
+         if (windowrect.m_rectangleWindow.width() > get_window_minimum_size().cx()
+            && windowrect.m_rectangleWindow.height() > get_window_minimum_size().cy())
          {
 
             windowrect.m_rectangleNormal = windowrect.m_rectangleWindow;

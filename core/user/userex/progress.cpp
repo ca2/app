@@ -292,8 +292,8 @@ namespace userex
       //         if (::is_set(pframe))
       //         {
       //
-      //            pframe->m_sizeMinimum.cx = 300;
-      //            pframe->m_sizeMinimum.cy = 50;
+      //            pframe->m_sizeMinimum.cx() = 300;
+      //            pframe->m_sizeMinimum.cy() = 50;
       //
       //            pframe->good_restore(nullptr, rectangle, true);
       //

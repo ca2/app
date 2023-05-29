@@ -667,14 +667,14 @@ namespace html
 
       }
 
-      /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx)
+      /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx())
             {
 
-            m_pimpl->set_bound_size(phtmldata, ::size_f32(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
+            m_pimpl->set_bound_size(phtmldata, ::size_f32(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx()));
 
             }
 
-            m_pimpl->set_x(phtmldata, maximum(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));*/
+            m_pimpl->set_x(phtmldata, maximum(m_pimpl->get_bound_size().cx(), m_pimpl->get_x()));*/
 
 
    }

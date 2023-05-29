@@ -9,10 +9,10 @@ template < primitive_rectangle RECTANGLE >
 inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ::arc & arc)
 {
 
-   rectangleBounding.left = (decltype(rectangleBounding.left)) (arc.m_pointCenter.x() - arc.m_sizeRadius.cx);
-   rectangleBounding.right = (decltype(rectangleBounding.right))(arc.m_pointCenter.x() + arc.m_sizeRadius.cx);
-   rectangleBounding.top = (decltype(rectangleBounding.top))(arc.m_pointCenter.y() - arc.m_sizeRadius.cy);
-   rectangleBounding.bottom = (decltype(rectangleBounding.bottom))(arc.m_pointCenter.y() + arc.m_sizeRadius.cy);
+   rectangleBounding.left = (decltype(rectangleBounding.left)) (arc.m_pointCenter.x() - arc.m_sizeRadius.cx());
+   rectangleBounding.right = (decltype(rectangleBounding.right))(arc.m_pointCenter.x() + arc.m_sizeRadius.cx());
+   rectangleBounding.top = (decltype(rectangleBounding.top))(arc.m_pointCenter.y() - arc.m_sizeRadius.cy());
+   rectangleBounding.bottom = (decltype(rectangleBounding.bottom))(arc.m_pointCenter.y() + arc.m_sizeRadius.cy());
 
    return true;
 
@@ -22,10 +22,10 @@ inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ::arc & 
 //inline bool get_bounding_rectangle(::rectangle_f64 * prectangleBounding, const ::arc * parc)
 //{
 //
-//   rectangleBounding.left = arc.m_pointCenter.x() - arc.m_sizeRadius.cx;
-//   rectangleBounding.right = arc.m_pointCenter.x() + arc.m_sizeRadius.cx;
-//   rectangleBounding.top = arc.m_pointCenter.y() - arc.m_sizeRadius.cy;
-//   rectangleBounding.bottom = arc.m_pointCenter.y() + arc.m_sizeRadius.cy;
+//   rectangleBounding.left = arc.m_pointCenter.x() - arc.m_sizeRadius.cx();
+//   rectangleBounding.right = arc.m_pointCenter.x() + arc.m_sizeRadius.cx();
+//   rectangleBounding.top = arc.m_pointCenter.y() - arc.m_sizeRadius.cy();
+//   rectangleBounding.bottom = arc.m_pointCenter.y() + arc.m_sizeRadius.cy();
 //
 //   return true;
 //

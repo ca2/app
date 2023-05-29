@@ -280,7 +280,7 @@ namespace user
          for (index i = 0; i < sizea.get_size(); i++)
          {
 
-            if ((sizea[i].cx - x > right)
+            if ((sizea[i].cx() - x > right)
                   || i == sizea.get_upper_bound())
             {
 
@@ -290,17 +290,17 @@ namespace user
 
                if (i == 0)
                {
-                  w = sizea[0].cx - x;
-                  x = sizea[0].cx;
-                  y += sizea[0].cy;
+                  w = sizea[0].cx() - x;
+                  x = sizea[0].cx();
+                  y += sizea[0].cy();
                   iNewStart = 0;
 
                }
                else
                {
-                  w = sizea[i - 1].cx - x;
-                  x = sizea[i - 1].cx;
-                  y += sizea[i - 1].cy;
+                  w = sizea[i - 1].cx() - x;
+                  x = sizea[i - 1].cx();
+                  y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
                rectangle.left = ::i32(-pointOffset.x());
@@ -1003,7 +1003,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      //m_dItemHeight = m_sizeMaximumItem.cy + 1;
+      //m_dItemHeight = m_sizeMaximumItem.cy() + 1;
 
       _001CalculateItemHeight(pgraphics);
 
@@ -1049,7 +1049,7 @@ namespace user
          if (m_pcolumna->get_count() > 0)
          {
 
-            iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
+            iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
          }
          else
@@ -1582,10 +1582,10 @@ namespace user
 
          }
 
-         if (pcolumn->m_sizeIcon.cy + 2 > iItemHeight)
+         if (pcolumn->m_sizeIcon.cy() + 2 > iItemHeight)
          {
 
-            iItemHeight = pcolumn->m_sizeIcon.cy + 2;
+            iItemHeight = pcolumn->m_sizeIcon.cy() + 2;
 
          }
 
@@ -1943,7 +1943,7 @@ namespace user
 
          const ::size_i32 & sizeItem = get_item_size();
 
-         return maximum((rectangleImpact.width() / sizeItem.cx) * (rectangleImpact.height() / sizeItem.cy),
+         return maximum((rectangleImpact.width() / sizeItem.cx()) * (rectangleImpact.height() / sizeItem.cy()),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
 
       }
@@ -2458,7 +2458,7 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
+         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
          index iItemSize = iIconSize * 2;
 
@@ -2837,7 +2837,7 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
+         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
          index iItemSize = iIconSize * 2;
 
@@ -3025,7 +3025,7 @@ namespace user
          if (eelement == ::user::list::e_element_image)
          {
 
-            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy;
+            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy();
 
             pdrawlistsubitem->m_rectangleImage.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left + iIconSize / 2;
             pdrawlistsubitem->m_rectangleImage.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top;
@@ -3038,7 +3038,7 @@ namespace user
          else if (eelement == ::user::mesh::e_element_text)
          {
 
-            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy;
+            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy();
 
             pdrawlistsubitem->m_rectangleText.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left;
             pdrawlistsubitem->m_rectangleText.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top + iIconSize;
@@ -3096,7 +3096,7 @@ namespace user
 
                      rectangleAlign.left = x;
                      ::rectangle_i32 rectangleIcon;
-                     rectangleIcon.set(0, 0, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cy);
+                     rectangleIcon.set(0, 0, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx(), pdrawlistsubitem->m_pcolumn->m_sizeIcon.cy());
                      rectangleIcon.Align(e_align_left_center, rectangleAlign);
                      pdrawlistsubitem->m_rectangleImage = rectangleIcon;
 
@@ -3106,7 +3106,7 @@ namespace user
                   else
                   {
 
-                     x += pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx;
+                     x += pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx();
 
                      x += m_iImageSpacing;
 
@@ -3147,13 +3147,13 @@ namespace user
                      rectangleIcon.Align(e_align_left_center, rectangleAlign);
                      pdrawlistsubitem->m_rectangleImage = rectangleIcon;
 
-                     if (ii.m_rectangle.size().cx > m_sizeMaximumImage.cx 
-                        || ii.m_rectangle.size().cy > m_sizeMaximumImage.cy)
+                     if (ii.m_rectangle.size().cx() > m_sizeMaximumImage.cx() 
+                        || ii.m_rectangle.size().cy() > m_sizeMaximumImage.cy())
                      {
 
-                        m_sizeMaximumImage.cx = maximum(m_sizeMaximumImage.cx, ii.m_rectangle.size().cx);
+                        m_sizeMaximumImage.cx() = maximum(m_sizeMaximumImage.cx(), ii.m_rectangle.size().cx());
 
-                        m_sizeMaximumImage.cy = maximum(m_sizeMaximumImage.cy, ii.m_rectangle.size().cy);
+                        m_sizeMaximumImage.cy() = maximum(m_sizeMaximumImage.cy(), ii.m_rectangle.size().cy());
 
                         set_need_layout();
 
@@ -3520,7 +3520,7 @@ namespace user
 
                client_rectangle(rectangleClient);
 
-               index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
+               index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
                index iItemSize = iIconSize * 2;
 
@@ -5655,18 +5655,18 @@ namespace user
       index y = 0;
       for (index i = 0; i < sizea.get_size(); i++)
       {
-         if ((sizea[i].cx - x > right)
+         if ((sizea[i].cx() - x > right)
                || i == sizea.get_upper_bound())
          {
             if (i == 0)
             {
-               x = sizea[0].cx;
-               y += sizea[0].cy;
+               x = sizea[0].cx();
+               y += sizea[0].cy();
             }
             else
             {
-               x = sizea[i - 1].cx;
-               y += sizea[i - 1].cy;
+               x = sizea[i - 1].cx();
+               y += sizea[i - 1].cy();
             }
          }
       }
@@ -5822,7 +5822,7 @@ namespace user
 
          m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
-         cx += size.cx;
+         cx += size.cx();
 
       }
 
@@ -7068,7 +7068,7 @@ namespace user
 
             client_rectangle(rectangleClient);
 
-            index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
+            index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
             index iItemSize = iIconSize * 2;
 
@@ -7226,7 +7226,7 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
+         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
          index iItemSize = iIconSize * 2;
 

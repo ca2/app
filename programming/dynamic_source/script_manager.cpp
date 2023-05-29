@@ -1579,9 +1579,9 @@ namespace dynamic_source
 
       synchronouslock.unlock();
 
-      size.cx = 49;
+      size.cx() = 49;
 
-      size.cy = 49;
+      size.cy() = 49;
 
       if (extract_image_size(strFile, &size))
       {

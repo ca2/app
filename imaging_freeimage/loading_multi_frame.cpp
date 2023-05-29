@@ -80,7 +80,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                            {
 
-                              pframea->m_size.cx = *((short *)FreeImage_GetTagValue(ptag));
+                              pframea->m_size.cx() = *((short *)FreeImage_GetTagValue(ptag));
 
                            }
 
@@ -92,7 +92,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                            {
 
-                              pframea->m_size.cy = *((short *)FreeImage_GetTagValue(ptag));
+                              pframea->m_size.cy() = *((short *)FreeImage_GetTagValue(ptag));
 
                            }
 

@@ -241,9 +241,9 @@ namespace windowing
                if (pcursor.is_set())
                {
 
-                  pcursor->m_szHotspotOffset.cx = atoi(straComma[0].trimmed());
+                  pcursor->m_szHotspotOffset.cx() = atoi(straComma[0].trimmed());
 
-                  pcursor->m_szHotspotOffset.cy = atoi(straComma[1].trimmed());
+                  pcursor->m_szHotspotOffset.cy() = atoi(straComma[1].trimmed());
 
                }
 

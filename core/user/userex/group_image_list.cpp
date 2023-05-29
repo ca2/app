@@ -21,8 +21,8 @@ namespace userex
    group_image_list_impact::group_image_list_impact()
    {
 
-      m_size.cx = 7;
-      m_size.cy = 5;
+      m_size.cx() = 7;
+      m_size.cy() = 5;
 
 
    }

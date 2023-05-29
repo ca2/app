@@ -53,11 +53,11 @@ namespace user
       ::i32 top() const { return m_point.y(); }
       ::i32 & top() { return m_point.y(); }
 
-      ::i32 width() const { return m_size.cx; }
-      ::i32 & width() { return m_size.cx; }
+      ::i32 width() const { return m_size.cx(); }
+      ::i32 & width() { return m_size.cx(); }
 
-      ::i32 height() const { return m_size.cy; }
-      ::i32 & height() { return m_size.cy; }
+      ::i32 height() const { return m_size.cy(); }
+      ::i32 & height() { return m_size.cy(); }
 
       bool operator == (const visual_state & visualstate) const { return !memcmp(this, &visualstate, sizeof(visual_state)); }
       bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }

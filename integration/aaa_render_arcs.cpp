@@ -45,15 +45,15 @@ namespace app_integration
 
       auto size1 = pgraphics->get_text_extent(str1);
 
-      size1.cx += 32;
+      size1.cx() += 32;
 
-      size1.cy += 4;
+      size1.cy() += 4;
 
       auto size2 = pgraphics->get_text_extent(str2);
 
-      size2.cx += 32;
+      size2.cx() += 32;
 
-      size2.cy += 4;
+      size2.cy() += 4;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -65,13 +65,13 @@ namespace app_integration
 
       rectangleBack.deflate(2, 2);
 
-      rectangleBack.bottom = rectangleBack.top + size.cy * 2 + 4 * 3;
+      rectangleBack.bottom = rectangleBack.top + size.cy() * 2 + 4 * 3;
 
       pgraphics->fill_rectangle(rectangleBack, argb(127, 80, 80, 80));
 
       pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + 4, str1);
 
-      pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + size.cy + 8, str2);
+      pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + size.cy() + 8, str2);
 
       auto ppen = __create < ::draw2d::pen >();
 

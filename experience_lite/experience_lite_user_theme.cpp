@@ -492,12 +492,12 @@ namespace lite
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
-            rectangleText.right =rectangleText.left + s.cx;
+            rectangleText.right =rectangleText.left + s.cx();
             pgraphics->_DrawText(str,rectangleText,e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left += s.cx;
+            rectangleText.left += s.cx();
             if(i < straTitle.get_upper_bound())
             {
-               rectangleText.right = rectangleText.left + sSep.cx;
+               rectangleText.right = rectangleText.left + sSep.cx();
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
@@ -515,7 +515,7 @@ namespace lite
                pgraphics->set_font(ptab->_001GetFont(::user::font_tab_big_bold));
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectangleText, e align_center, e_draw_text_no_prefix);
-               rectangleText.left += sSep.cx;
+               rectangleText.left += sSep.cx();
                pgraphics->selectFont(font);
                pgraphics->SelectObject(pbrushText);
             }
@@ -611,10 +611,10 @@ namespace lite
 
 /*            if(tab_pane.m_pimage->is_set())
             {
-/*               size.cx += tab_pane.m_pimage->width() + 2;
-/*               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
+/*               size.cx() += tab_pane.m_pimage->width() + 2;
+/*               size.cy() = maximum(size.cy(),tab_pane.m_pimage->height());
             }
-            cx = size.cx + 2;
+            cx = size.cx() + 2;
 
             if(!tab_pane.m_bPermanent)
             {
@@ -625,7 +625,7 @@ namespace lite
             {
                iTabWidth = cx;
             }
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
             if(cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -707,11 +707,11 @@ namespace lite
 /*            if(tab_pane.m_pimage)
             {
 
-/*               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
+/*               size.cy() = maximum(size.cy(),tab_pane.m_pimage->height());
 
             }
 
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
 
             if(cy > iTabHeight)
             {
@@ -742,12 +742,12 @@ namespace lite
 
 
 
-            tab_pane.m_size.cx = size.cx + ixAdd
+            tab_pane.m_size.cx() = size.cx() + ixAdd
                                  + ptab->get_data()->m_rectangleBorder.left + ptab->get_data().m_rectangleBorder.right
                                  + ptab->get_data()->m_rectangleMargin.left + ptab->get_data().m_rectangleMargin.right
                                  + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data().m_rectangleTextMargin.right;
 
-            x += tab_pane.m_size.cx;
+            x += tab_pane.m_size.cx();
          }
 
          // close tab button
@@ -767,7 +767,7 @@ namespace lite
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
 
-            tab_pane.m_size.cy = iTabHeight;
+            tab_pane.m_size.cy() = iTabHeight;
 
          }
 

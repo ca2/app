@@ -222,7 +222,7 @@ namespace user
 
    //   sizeparentparams.bStretch = bStretch;
 
-   //   sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
+   //   sizeparentparams.sizeTotal.cx() = sizeparentparams.sizeTotal.cy() = 0;
 
    //   if (rectangleClient != nullptr)
    //   {
@@ -282,9 +282,9 @@ namespace user
 
    //         prectParam->left = prectParam->top = 0;
 
-   //         prectParam->right = sizeparentparams.sizeTotal.cx;
+   //         prectParam->right = sizeparentparams.sizeTotal.cx();
 
-   //         prectParam->bottom = sizeparentparams.sizeTotal.cy;
+   //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
 
 
    //      }

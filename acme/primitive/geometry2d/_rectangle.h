@@ -41,7 +41,7 @@ public:
 //   rectangle_type(const Gdiplus::RectF * p) noexcept : { ::copy(this, p); }
 //#endif
    template < primitive_point POINT, primitive_size SIZE >
-   rectangle_type(const POINT & point, const SIZE & size) noexcept : rectangle_type((UNIT_TYPE)point.x(), (UNIT_TYPE)point.y(), (UNIT_TYPE)(point.x() + size.cx), (UNIT_TYPE)(point.y() + size.cy)) {}
+   rectangle_type(const POINT & point, const SIZE & size) noexcept : rectangle_type((UNIT_TYPE)point.x(), (UNIT_TYPE)point.y(), (UNIT_TYPE)(point.x() + size.cx()), (UNIT_TYPE)(point.y() + size.cy())) {}
    template < primitive_size SIZE >
    rectangle_type(const SIZE & size) noexcept : rectangle_type(POINT_TYPE(), size) {}
    template < primitive_point POINT1, primitive_point POINT2 >
@@ -127,7 +127,7 @@ public:
    void set_width(UNIT_TYPE cx) noexcept { this->right = this->left + cx; }
    void set_height(UNIT_TYPE cy) noexcept { this->bottom = this->top + cy; }
    void set_size(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { set_width(cx); set_height(cy); }
-   void set_size(const SIZE_TYPE & size) noexcept { set_size(size.cx, size.cy); }
+   void set_size(const SIZE_TYPE & size) noexcept { set_size(size.cx(), size.cy()); }
 
    rectangle_type & move_top_to(UNIT_TYPE top) noexcept { this->bottom = height() + top; this->top = top; return *this; }
    rectangle_type & move_left_to(UNIT_TYPE left) noexcept { this->right = width() + left; this->left = left; return *this; }
@@ -180,9 +180,9 @@ public:
    }
 
    rectangle_type & inflate(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->left -= x; this->right += y; this->top -= x; this->bottom += y; return *this; }
-   rectangle_type & inflate(const SIZE_TYPE & size) noexcept { this->left -= size.cx; this->right += size.cy; this->top -= size.cx; this->bottom += size.cy; return *this; }
+   rectangle_type & inflate(const SIZE_TYPE & size) noexcept { this->left -= size.cx(); this->right += size.cy(); this->top -= size.cx(); this->bottom += size.cy(); return *this; }
    rectangle_type & deflate(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->left += x; this->right -= y; this->top += x; this->bottom -= y; return *this; }
-   rectangle_type & deflate(const SIZE_TYPE & size) noexcept { this->left += size.cx; this->right -= size.cy; this->top += size.cx; this->bottom -= size.cy; return *this; }
+   rectangle_type & deflate(const SIZE_TYPE & size) noexcept { this->left += size.cx(); this->right -= size.cy(); this->top += size.cx(); this->bottom -= size.cy(); return *this; }
 
    rectangle_type & offset(UNIT_TYPE x, UNIT_TYPE y) noexcept { return offset_x(x).offset_y(y); }
    rectangle_type & offset_x(UNIT_TYPE x) noexcept { this->left += x; this->right += x; return *this; }
@@ -195,7 +195,7 @@ public:
 
 
    template < primitive_size SIZE >
-   rectangle_type & offset(const SIZE & size) noexcept { return offset_x(size.cx).offset_y(size.cy);
+   rectangle_type & offset(const SIZE & size) noexcept { return offset_x(size.cx()).offset_y(size.cy());
    }
 
 
@@ -271,7 +271,7 @@ public:
 //   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x(), point.y()); }
 //
 //   template < primitive_size SIZE >
-//   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx, size.cy); }
+//   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx(), size.cy()); }
 
    rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }
@@ -292,7 +292,7 @@ public:
    //rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x(), point.y()); }
 
    template < primitive_size SIZE >
-   rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract(*this, -size.cx, -size.cy); }
+   rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract(*this, -size.cx(), -size.cy()); }
    rectangle_type & operator-=(const rectangle_type & rectangle) noexcept { return ::subtract(*this, rectangle); }
 
    rectangle_type & operator&=(const rectangle_type & rectangle) noexcept { ::intersect(*this, *this, rectangle); return*this; }
@@ -311,7 +311,7 @@ public:
    rectangle_type operator+(const SIZE & size) const noexcept
    {
 
-      rectangle_type rectangle(*this); rectangle.offset(size.cx, size.cy); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(size.cx(), size.cy()); return rectangle;
 
    }
 
@@ -319,7 +319,7 @@ public:
    rectangle_type operator-(const SIZE & size) const noexcept
    {
 
-      rectangle_type rectangle(*this); rectangle.offset(-size.cx, -size.cy); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(-size.cx(), -size.cy()); return rectangle;
 
    }
 
@@ -455,7 +455,7 @@ public:
 
    void SetBottomRightSize(const SIZE_TYPE & size)
    {
-      SetBottomRightSize(size.cx, size.cy);
+      SetBottomRightSize(size.cx(), size.cy());
    }
 
    void ExtendOnCenter(const rectangle_type & rectangle)
@@ -481,8 +481,8 @@ public:
    void FitOnCenterOf(const rectangle_type & rectangle, const SIZE_TYPE & size)
    {
 
-      UNIT_TYPE cx = size.cx;
-      UNIT_TYPE cy = size.cy;
+      UNIT_TYPE cx = size.cx();
+      UNIT_TYPE cy = size.cy();
 
       double Δx = ::width(rectangle);
       double Δy = ::height(rectangle);
@@ -508,8 +508,8 @@ public:
 
    void CenterOf(const rectangle_type & rectangle, const SIZE_TYPE & size)
    {
-      UNIT_TYPE cx = size.cx;
-      UNIT_TYPE cy = size.cy;
+      UNIT_TYPE cx = size.cx();
+      UNIT_TYPE cy = size.cy();
 
       UNIT_TYPE Δx = ::width(rectangle);
       UNIT_TYPE Δy = ::height(rectangle);
@@ -683,13 +683,13 @@ public:
 
       ::size_f64 size = { (double) width(), (double) height()};
 
-      double dW = (double)rectangle.width() / size.cx;
+      double dW = (double)rectangle.width() / size.cx();
 
-      double dH = (double)rectangle.height() / size.cy;
+      double dH = (double)rectangle.height() / size.cy();
 
       double d = minimum(dW, dH);
 
-      return { size.cx * d, size.cy * d };
+      return { size.cx() * d, size.cy() * d };
 
    }
 
@@ -759,10 +759,10 @@ public:
       if (this->bottom > rectangle.bottom)
          this->bottom = rectangle.bottom;
 
-      if (width() < sizeMin.cx)
-         this->right = this->left + sizeMin.cx;
-      if (height() < sizeMin.cy)
-         this->bottom = this->top + sizeMin.cy;
+      if (width() < sizeMin.cx())
+         this->right = this->left + sizeMin.cx();
+      if (height() < sizeMin.cy())
+         this->bottom = this->top + sizeMin.cy();
 
    }
 
@@ -771,7 +771,7 @@ public:
 
       const SIZE_TYPE & size = this->size();
 
-      if (size.cx > ::width(rectangle))
+      if (size.cx() > ::width(rectangle))
       {
 
          intersect_x(*this, rectangle);
@@ -783,19 +783,19 @@ public:
          if (this->left == rectangle.left)
          {
 
-            this->right = this->left + size.cx;
+            this->right = this->left + size.cx();
 
          }
          else
          {
 
-            this->left = this->right - size.cx;
+            this->left = this->right - size.cx();
 
          }
 
       }
 
-      if (size.cy > ::height(rectangle))
+      if (size.cy() > ::height(rectangle))
       {
 
          intersect_y(*this, rectangle);
@@ -807,13 +807,13 @@ public:
          if (this->top == rectangle.top)
          {
 
-            this->bottom = this->top + size.cy;
+            this->bottom = this->top + size.cy();
 
          }
          else
          {
 
-            this->top = this->bottom - size.cy;
+            this->top = this->bottom - size.cy();
 
          }
 
@@ -1181,7 +1181,7 @@ public:
    inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    template < primitive_size SIZE >
-   inline bool operator == (const SIZE & size) const noexcept { return this->width() == size.cx && this->height() == size.cy; }
+   inline bool operator == (const SIZE & size) const noexcept { return this->width() == size.cx() && this->height() == size.cy(); }
 
    template < primitive_size SIZE >
    inline bool operator != (const SIZE & size) const noexcept { return !operator ==(size); }

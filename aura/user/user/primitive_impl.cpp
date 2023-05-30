@@ -2717,7 +2717,7 @@ namespace user
    }
 
 
-   void primitive_impl::InvalidateRect(class ::rectangle_i32 const &,bool)
+   void primitive_impl::InvalidateRect(::rectangle_i32 const &,bool)
    {
 
 
@@ -2731,7 +2731,7 @@ namespace user
    }
 
 
-   void primitive_impl::ValidateRect(class ::rectangle_i32 const &)
+   void primitive_impl::ValidateRect(::rectangle_i32 const &)
    {
 
 

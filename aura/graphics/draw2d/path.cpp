@@ -569,11 +569,11 @@ namespace draw2d
    bool path::add_line(const point_f64 & point)
    {
 
-      auto pline = __new(line_shape < path >);
+      auto pline = __new(line_f64_shape < path >);
 
       pline->m_pholdee = this;
 
-      ::line & line = pline->m_shape;
+      auto & line = pline->m_shape;
 
       line.m_p1 = m_pointEnd;
 
@@ -601,7 +601,7 @@ namespace draw2d
    bool path::add_polygon(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto ppolygon = __new(polygon_shape < path >);
+      auto ppolygon = __new(polygon_f64_shape < path >);
 
       ppolygon->m_pholdee = this;
 
@@ -626,7 +626,7 @@ namespace draw2d
    bool path::add_lines(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto plines = __new(lines_shape < path >);
+      auto plines = __new(lines_f64_shape < path >);
 
       plines->m_pholdee = this;
 
@@ -1170,13 +1170,13 @@ namespace draw2d
       case e_shape_end_figure:
          return _set(pgraphics, e_shape_end_figure);
       case e_shape_arc:
-         return _set(pgraphics, pshape->shape < ::arc>());
+         return _set(pgraphics, pshape->shape < ::arc_f64>());
       //case e_shape_line:
       //   return  _set(pgraphics, pshape->shape < ::line>());
       case e_shape_line:
-         return  _set(pgraphics, pshape->shape < ::line>());
+         return  _set(pgraphics, pshape->shape < ::line_f64>());
       case e_shape_lines:
-         return _set(pgraphics, pshape->shape < ::lines>());
+         return _set(pgraphics, pshape->shape < ::lines_f64>());
       case e_shape_rectangle:
          return _set(pgraphics, pshape->shape < ::rectangle_f64>());
       case e_shape_ellipse:
@@ -1206,7 +1206,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::arc & arc)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::arc_f64 & arc)
    {
 
       throw ::interface_only();
@@ -1226,7 +1226,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::line_f64 & line)
    {
 
       throw ::interface_only();
@@ -1246,7 +1246,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::lines & lines)
+   bool path::_set(::draw2d::graphics* pgraphics, const::lines_f64 & lines)
    {
 
       throw ::interface_only();

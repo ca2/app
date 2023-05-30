@@ -48,6 +48,16 @@ public:
    }
 
    
+   template < primitive_size SIZE >
+   point_type(const SIZE & size)
+   {
+      
+      this->x() = (UNIT_TYPE) size.cx();
+      this->y() = (UNIT_TYPE) size.cy();
+      
+   }
+
+   
    ///point_type(const ::vector_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
 
 //   template < primitive_size SIZE >

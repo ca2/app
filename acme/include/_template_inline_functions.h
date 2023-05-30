@@ -898,7 +898,7 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
    rectangle1.left = (decltype(RECTANGLE1::left))rectangle2.origin.x;
    rectangle1.top = (decltype(RECTANGLE1::top))rectangle2.origin.y;
    rectangle1.right = (decltype(RECTANGLE1::right))(rectangle2.origin.x - rectangle2.size.width);
-   rectangle1.size.height = (decltype(RECTANGLE1::bottom))(rectangle2.origin.y - rectangle2.size.height);
+   rectangle1.bottom = (decltype(RECTANGLE1::bottom))(rectangle2.origin.y - rectangle2.size.height);
 
 }
 

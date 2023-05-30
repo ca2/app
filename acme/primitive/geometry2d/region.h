@@ -106,7 +106,7 @@ namespace geometry2d
       {
       public:
 
-         pointer_array < ::polygon > m_polygona;
+         pointer_array < ::polygon_f64 > m_polygona;
          ::draw2d::enum_fill_mode            m_efillmode;
 
          void translate(const ::point_i32 & point) override;
@@ -121,7 +121,7 @@ namespace geometry2d
       {
       public:
 
-         pointer_array < ::polygon >         m_polygon;
+         pointer_array < ::polygon_f64 >         m_polygon;
 
          ::pointer<::geometry2d::region>     m_pregion1;
          ::pointer<::geometry2d::region>     m_pregion2;
@@ -178,7 +178,7 @@ namespace geometry2d
 
       virtual bool create_polygon(const ::point_f64 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
-      virtual bool create_polygon(const polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
+      virtual bool create_polygon(const polygon_f64 & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
       virtual bool create_poly_polygon(const ::point_f64 * pPoints, const i32 * lpPolyCounts, i32 nCount, ::draw2d::enum_fill_mode efillmode);
 

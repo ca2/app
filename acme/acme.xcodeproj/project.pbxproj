@@ -3454,7 +3454,8 @@
 		9A750D9B282B367400C4861B /* earth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = earth.h; sourceTree = "<group>"; };
 		9A750D9D282B367500C4861B /* aaa_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_topic.h; sourceTree = "<group>"; };
 		9A77243A2A2548D400B9A835 /* _operating_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
-		9A7724502A25689D00B9A835 /* machine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = machine.xcconfig; path = ../../../../operating_system/machine.xcconfig; sourceTree = "<group>"; };
+		9A7724F12A257CE900B9A835 /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		9A7724F42A257D0700B9A835 /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		9A786175264B908C003DF8A0 /* enumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enumeration.h; sourceTree = "<group>"; };
 		9A786179264B908D003DF8A0 /* object_meta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object_meta.h; sourceTree = "<group>"; };
 		9A78617A264B908D003DF8A0 /* payload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = payload.cpp; sourceTree = "<group>"; };
@@ -4356,7 +4357,6 @@
 		9A68A40B25114352008DABD2 = {
 			isa = PBXGroup;
 			children = (
-				9A7724502A25689D00B9A835 /* machine.xcconfig */,
 				9AD8626529B1272C0054C9B3 /* idn.xcodeproj */,
 				9A68A4522511442E008DABD2 /* acme */,
 				9AEA11DE275FE2FD006437A3 /* acme_framework */,
@@ -4379,6 +4379,8 @@
 		9A68A4522511442E008DABD2 /* acme */ = {
 			isa = PBXGroup;
 			children = (
+				9A7724F12A257CE900B9A835 /* debug.xcconfig */,
+				9A7724F42A257D0700B9A835 /* release.xcconfig */,
 				9A68A4582511442E008DABD2 /* compress */,
 				9A892DBC26CD9061008D6412 /* constant */,
 				9A68AC1125114432008DABD2 /* exception */,
@@ -8745,7 +8747,7 @@
 /* Begin XCBuildConfiguration section */
 		9A68A41B25114352008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A7724502A25689D00B9A835 /* machine.xcconfig */;
+			baseConfigurationReference = 9A7724F12A257CE900B9A835 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -8811,7 +8813,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
@@ -8848,7 +8849,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -8862,7 +8862,7 @@
 		};
 		9A68A41C25114352008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A7724502A25689D00B9A835 /* machine.xcconfig */;
+			baseConfigurationReference = 9A7724F42A257D0700B9A835 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -8927,7 +8927,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
@@ -8963,7 +8962,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

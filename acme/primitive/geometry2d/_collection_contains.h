@@ -1,7 +1,8 @@
-﻿#pragma once
+#pragma once
 
 
-inline bool shape_contains(const ::lines & lines, const ::point_i32& point)
+template < primitive_number LINES_NUMBER, primitive_number POINT_NUMBER >
+inline bool shape_contains(const ::lines_base < LINES_NUMBER > & lines, const ::point_type < POINT_NUMBER > & point)
 {
 
    return false;
@@ -9,13 +10,13 @@ inline bool shape_contains(const ::lines & lines, const ::point_i32& point)
 }
 
 
-inline bool shape_contains(const ::lines & lines, const ::point_f64& point)
-{
-
-   return false;
-
-}
-
+//inline bool shape_contains(const ::lines & lines, const ::point_f64& point)
+//{
+//
+//   return false;
+//
+//}
+//
 
 //inline bool shape_contains(const ::linesd* plines, const ::point_i32& point)
 //{

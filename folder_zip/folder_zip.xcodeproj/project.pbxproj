@@ -132,7 +132,8 @@
 		9A5D7607274E4D2100403BC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A5D7609274E4EED00403BC3 /* file_function_definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_function_definitions.h; sourceTree = "<group>"; };
 		9A5D760A274E4EED00403BC3 /* file_function_definitions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_function_definitions.cpp; sourceTree = "<group>"; };
-		9A7724482A25681B00B9A835 /* machine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = machine.xcconfig; path = ../../../../operating_system/machine.xcconfig; sourceTree = "<group>"; };
+		9A7724FD2A259D3700B9A835 /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		9A7724FE2A259D3700B9A835 /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		9AA14DDC282A17D900B1621E /* libios_folder_zip.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_folder_zip.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC09A2D274DFC67008B042E /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -162,6 +163,8 @@
 		9A1F6E3D274DFD0F000B7A22 /* folder_zip */ = {
 			isa = PBXGroup;
 			children = (
+				9A7724FD2A259D3700B9A835 /* debug.xcconfig */,
+				9A7724FE2A259D3700B9A835 /* release.xcconfig */,
 				9A1F6E5C274DFD0F000B7A22 /* _.cpp */,
 				9A1F6E81274DFD11000B7A22 /* _.h */,
 				9A1F6E7F274DFD11000B7A22 /* _factory.cpp */,
@@ -206,7 +209,6 @@
 		9AC09A24274DFC67008B042E = {
 			isa = PBXGroup;
 			children = (
-				9A7724482A25681B00B9A835 /* machine.xcconfig */,
 				9A1F6EAD274DFDB1000B7A22 /* acme.xcodeproj */,
 				9A1F6E3D274DFD0F000B7A22 /* folder_zip */,
 				9AC09A2E274DFC67008B042E /* Products */,
@@ -507,6 +509,7 @@
 		};
 		9AC09A2F274DFC67008B042E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A7724FD2A259D3700B9A835 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -562,7 +565,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
@@ -599,7 +602,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -612,6 +614,7 @@
 		};
 		9AC09A30274DFC67008B042E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A7724FE2A259D3700B9A835 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -662,7 +665,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
@@ -698,7 +701,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

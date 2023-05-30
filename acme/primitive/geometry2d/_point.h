@@ -22,12 +22,22 @@ public:
    point_type(enum_no_initialize) noexcept {  }
    point_type(::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
    point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
-   point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
+   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
    //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
    //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
    //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
-   //template < primitive_point POINT >
-   point_type(const ::vector_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
+   
+   template < primitive_point POINT >
+   point_type(const POINT & point)
+   {
+      
+      this->x() = (UNIT_TYPE) point.x();
+      this->y() = (UNIT_TYPE) point.y();
+      
+   }
+
+   
+   ///point_type(const ::vector_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
 
 //   template < primitive_size SIZE >
   // point_type(const SIZE & size) noexcept { ::copy(*this, size); }
@@ -56,7 +66,7 @@ public:
 
    //operator POINT_BASE_TYPE*() noexcept { return this; }
    //operator const POINT_BASE_TYPE*() const noexcept { return this; }
-   operator ::lparam() const { return lparam(); }
+   //operator ::lparam() const { return lparam(); }
 
    ::u32 u32() const noexcept { return __u32(this->x(), this->y()); }
    ::u64 u64() const noexcept { return __u64(this->x(), this->y()); }

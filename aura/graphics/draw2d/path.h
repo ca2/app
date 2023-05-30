@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "object.h"
@@ -141,25 +141,25 @@ namespace draw2d
 
       virtual bool _set(::draw2d::graphics * pgraphics, const enum_shape & eshape);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::arc & arc);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::arc_f64 & arc);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::line & pline);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::line & line);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::line_f64 & line);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::lines & pline);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::lines & lines);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::lines_f64 & lines);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle_f64 & prectangle);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle & rectangle);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::ellipse & ellipse);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::ellipse_f64 & ellipse);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_i32 & ppolygon);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon & polygon);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_f64 & polygon);
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::text_out & textout);
 

@@ -262,10 +262,26 @@ public:
    rectangle_type bottom_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->bottom, ::maximum(this->right, rectangle.right), rectangle.bottom }; }
 
    template < primitive_rectangle RECTANGLE >
-   rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { ::copy(*this, rectangle); return *this; }
+   rectangle_type & operator =(const RECTANGLE & rectangle) noexcept
+   {
+      
+      if((void *) this != (void *) &rectangle)
+      {
+      
+         this->left = (UNIT_TYPE) rectangle.left;
+         this->top = (UNIT_TYPE) rectangle.top;
+         this->right = (UNIT_TYPE) rectangle.right;
+         this->bottom = (UNIT_TYPE) rectangle.bottom;
+      
+      }
+      
+      return *this;
+      
+   }
+   
 
    bool operator==(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
-   bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
+//   bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
 //   template < primitive_point POINT >
 //   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x(), point.y()); }
@@ -1178,25 +1194,25 @@ public:
    }
 
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(*this); }
-   inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
+//   inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    template < primitive_size SIZE >
    inline bool operator == (const SIZE & size) const noexcept { return this->width() == size.cx() && this->height() == size.cy(); }
 
-   template < primitive_size SIZE >
-   inline bool operator != (const SIZE & size) const noexcept { return !operator ==(size); }
+//   template < primitive_size SIZE >
+//   inline bool operator != (const SIZE & size) const noexcept { return !operator ==(size); }
 
-   template < primitive_size SIZE >
-   inline bool operator > (const SIZE & size) const noexcept { return this->size() > size; }
-
-   template < primitive_size SIZE >
-   inline bool operator >= (const SIZE & size) const noexcept { return this->size() >= size; }
-
-   template < primitive_size SIZE >
-   inline bool operator < (const SIZE & size) const noexcept { return this->size() < size; }
-
-   template < primitive_size SIZE >
-   inline bool operator <= (const SIZE & size) const noexcept { return this->size() <= size; }
+//   template < primitive_size SIZE >
+//   inline bool operator > (const SIZE & size) const noexcept { return this->size() > size; }
+//
+//   template < primitive_size SIZE >
+//   inline bool operator >= (const SIZE & size) const noexcept { return this->size() >= size; }
+//
+//   template < primitive_size SIZE >
+//   inline bool operator < (const SIZE & size) const noexcept { return this->size() < size; }
+//
+//   template < primitive_size SIZE >
+//   inline bool operator <= (const SIZE & size) const noexcept { return this->size() <= size; }
 
    template < primitive_size SIZE >
    inline bool any_gt(const SIZE & size) const noexcept { return this->size().any_gt(size); }
@@ -1220,7 +1236,7 @@ public:
 
 
 
-using rectangle = ::rectangle_f64;
+//using rectangle = ::rectangle_f64;
 
 
 

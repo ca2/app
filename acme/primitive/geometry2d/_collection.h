@@ -81,12 +81,10 @@ using rectangle_f64_array = rectangle_array_base < ::f64 >;
 #include "acme/primitive/geometry2d/rectangle_array.h"
 
 
-using point_i32_array = point_array_base < point_i32 >;
-using point_i64_array = point_array_base < point_i64 >;
-using point_f32_array = point_array_base < point_f32 >;
-using point_f64_array = point_array_base < point_f64 >;
-
-
+using point_i32_array = point_array_base < ::i32 >;
+using point_i64_array = point_array_base < ::i64 >;
+using point_f32_array = point_array_base < ::f32 >;
+using point_f64_array = point_array_base < ::f64 >;
 
 
 #include "acme/primitive/geometry2d/_polygon.h"

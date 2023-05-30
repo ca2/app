@@ -639,7 +639,7 @@ public:
 
 
 
-   inline bool contains(const TYPE * pmatter) const { return pmatter >= this->m_begin && pmatter < this->end(); }
+   inline bool contains_address(const TYPE * pmatter) const { return pmatter >= this->m_begin && pmatter < this->end(); }
 
 
    inline ::count get_size() const;

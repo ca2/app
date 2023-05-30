@@ -8,6 +8,7 @@ namespace geometry2d
 {
 
 
+
    region::region()
    {
 
@@ -36,7 +37,6 @@ namespace geometry2d
       destroy();
 
    }
-
 
    void region::destroy()
    {
@@ -98,6 +98,7 @@ namespace geometry2d
    }
 
 
+
    bool region::create_polygon(const ::point_f64 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
@@ -125,7 +126,9 @@ namespace geometry2d
    }
 
 
-   bool region::create_polygon(const polygon & polygon, ::draw2d::enum_fill_mode efillmode)
+
+
+   bool region::create_polygon(const polygon_f64 & polygon, ::draw2d::enum_fill_mode efillmode)
    {
 
       return create_polygon(polygon.data(), (::i32)polygon.size(), efillmode);
@@ -164,7 +167,9 @@ namespace geometry2d
 
       return true;
 
+
    }
+
 
 
    bool region::create_poly_polygon(const ::point_f64 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
@@ -186,7 +191,7 @@ namespace geometry2d
       for (::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polygona[i] = __new(polygon);
+         pitem->m_polygona[i] = __new(polygon_f64);
 
          pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
@@ -209,6 +214,7 @@ namespace geometry2d
       return true;
 
    }
+
 
 
    bool region::create_poly_polygon(const ::point_i32 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
@@ -230,7 +236,7 @@ namespace geometry2d
       for (::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polygona[i] = __new(polygon);
+         pitem->m_polygona[i] = __new(polygon_f64);
 
          pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
@@ -253,6 +259,8 @@ namespace geometry2d
       return true;
 
    }
+
+
 
 
    bool region::combine(const ::geometry2d::region * prgn1, const ::geometry2d::region * prgn2, ::draw2d::enum_combine ecombine)
@@ -284,6 +292,8 @@ namespace geometry2d
       return true;
 
    }
+
+
 
 
    region & region::operator = (const ::geometry2d::region & regionSrc)
@@ -353,6 +363,8 @@ namespace geometry2d
    }
 
 
+
+
    bool region::translate(const ::point_i32 & point)
    {
 
@@ -370,12 +382,16 @@ namespace geometry2d
    }
 
 
+
+
    bool region::contains(const ::point_i32 & point)
    {
 
       return contains(point_f64(point));
 
    }
+
+
 
 
    void region::max_bounding_box(::rectangle_i32 & rectangle)
@@ -385,7 +401,7 @@ namespace geometry2d
 
       max_bounding_box(rectangleMaxBounding);
 
-      copy(rectangle, rectangleMaxBounding);
+      rectangle = rectangleMaxBounding;
 
    }
 
@@ -825,6 +841,7 @@ namespace geometry2d
    //   return internal_combine_contains(point_f64(point));
 
    //}
+
 
 
 } // namespace geometry2d

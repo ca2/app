@@ -56,6 +56,13 @@ public:
    void sort();
 
    bool bounding_rectangle_contains(const ::point_type < NUMBER > & point) const;
+   
+   bool contains(const ::point_type < NUMBER > & point) const
+   {
+    
+      return point_array_base < NUMBER >::polygon_contains(point);
+    
+   }
 
    polygon_base& operator = (const polygon_base& polygon_i32);
    polygon_base& operator = (polygon_base&& polygon_i32);

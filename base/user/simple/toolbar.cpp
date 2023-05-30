@@ -800,7 +800,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          else
          {
 
-            auto statusrectangleShadow = index_element_rectangle(iItem, ::e_element_item, estate);
+//            auto statusrectangleShadow = index_element_rectangle(iItem, ::e_element_item, estate);
 
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {

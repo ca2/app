@@ -5542,7 +5542,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
 }
 
 
-void image::rotate(const ::angle& angle, double dScale)
+void image::rotate(const ::angle_f64 & angle, double dScale)
 {
 
    image_pointer pimage = clone();
@@ -5552,7 +5552,7 @@ void image::rotate(const ::angle& angle, double dScale)
 }
 
 
-void image::rotate(image * pimage, const ::angle& angle, double dScale)
+void image::rotate(image * pimage, const ::angle_f64 & angle, double dScale)
 {
 
    if (dScale == 1.0)
@@ -5758,7 +5758,7 @@ void image::rotate(image * pimage, const ::angle& angle, double dScale)
 }
 
 
-image_pointer image::rotated(const ::angle & angle, double dScale)
+image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
 {
 
    if (dScale == 1.0)

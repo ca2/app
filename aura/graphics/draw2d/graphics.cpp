@@ -856,7 +856,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
+   void graphics::arc(double x, double y, double w, double h, ::angle_f64 start, ::angle_f64 extends)
    {
 
       arc(rectangle_f64_dimension(x, y, w, h), start, extends);
@@ -864,7 +864,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc(const ::rectangle_f64 & rectangle, angle start, angle extends)
+   void graphics::arc(const ::rectangle_f64 & rectangle, ::angle_f64 start, ::angle_f64 extends)
    {
 
       arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
@@ -2024,7 +2024,7 @@ namespace draw2d
    }
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -3212,15 +3212,15 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_shape_rectangle:
-         _add_clipping_shape(shape.shape < ::rectangle >(), shape);
+         _add_clipping_shape(shape.shape < ::rectangle_f64 >(), shape);
          break;
       case e_shape_ellipse:
-         _add_clipping_shape(shape.shape < ::ellipse >(), shape);
+         _add_clipping_shape(shape.shape < ::ellipse_f64 >(), shape);
          break;
 //      case e_shape_lines:
 //         return _add_shape(shape.shape < ::lines >());
       case e_shape_polygon:
-         _add_clipping_shape(shape.shape < ::polygon >(), shape);
+         _add_clipping_shape(shape.shape < ::polygon_f64 >(), shape);
          break;
       default:
          throw ::exception(error_not_implemented);
@@ -3270,7 +3270,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ___shape < ::draw2d::region > & shape)
    {
    
       throw ::interface_only();
@@ -3300,30 +3300,30 @@ namespace draw2d
    }
 
 
-   void graphics::intersect_clip(const ::rectangle & rectangle)
+   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
    {
       
-      _shape < ::rectangle, e_shape_rectangle, ::draw2d::region > regionshape;
+      _shape < ::rectangle_f64, e_shape_rectangle, ::draw2d::region > regionshape;
 
       _add_clipping_shape(rectangle, regionshape);
 
    }
 
 
-   void graphics::intersect_clip(const ::ellipse & ellipse)
+   void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    {
    
-      _shape < ::ellipse, e_shape_ellipse, ::draw2d::region > regionshape;
+      _shape < ::ellipse_f64, e_shape_ellipse, ::draw2d::region > regionshape;
 
       _add_clipping_shape(ellipse, regionshape);
    
    }
 
 
-   void graphics::intersect_clip(const ::polygon & polygon)
+   void graphics::intersect_clip(const ::polygon_f64 & polygon)
    {
 
-      _shape < ::polygon, e_shape_polygon, ::draw2d::region > regionshape;
+      _shape < ::polygon_f64, e_shape_polygon, ::draw2d::region > regionshape;
 
       _add_clipping_shape(polygon, regionshape);
 

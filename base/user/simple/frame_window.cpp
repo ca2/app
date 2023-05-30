@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_window.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
@@ -2429,7 +2429,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
    //}
 
-   auto pstyle = get_style(pgraphicsParam);
+   //auto pstyle = get_style(pgraphicsParam);
 
    windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 

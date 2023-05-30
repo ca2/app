@@ -103,6 +103,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A03B82F2A25C08C00A0E33E /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		9A03B8302A25C08C00A0E33E /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		9A389A6924F5414A00185630 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
 		9A42D7D1266599BA0011645D /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A42D7E02665A4620011645D /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,8 +201,10 @@
 				9A927DD527F10EFB002BCA3C /* user */,
 				9A8F889E240BEBF50097E249 /* _.h */,
 				9A42D7D1266599BA0011645D /* _factory.cpp */,
+				9A03B82F2A25C08C00A0E33E /* debug.xcconfig */,
 				9A8F886F240BEBF50097E249 /* framework.cpp */,
 				9A8F8891240BEBF50097E249 /* framework.h */,
+				9A03B8302A25C08C00A0E33E /* release.xcconfig */,
 			);
 			name = experience_tranquillum;
 			sourceTree = "<group>";
@@ -588,6 +592,7 @@
 		};
 		9AEB75F616F78EDC0085103B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A03B82F2A25C08C00A0E33E /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -688,6 +693,7 @@
 		};
 		9AEB75F716F78EDC0085103B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A03B8302A25C08C00A0E33E /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;

@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "_arc.h"
-#include "_line.h"
+#include "arc.h"
+#include "line.h"
 
 
 template < primitive_rectangle RECTANGLE, primitive_number NUMBER >

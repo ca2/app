@@ -1,4 +1,4 @@
-﻿// From _initial_concepts.h by camilo on 2023-05-23 <3ThomasBorregaardSørensen!!
+// From _initial_concepts.h by camilo on 2023-05-23 <3ThomasBorregaardSørensen!!
 //
 //  _numeric_concepts.h
 //  acme
@@ -16,14 +16,12 @@ concept primitive_number =
    std::is_floating_point_v < ::std::decay_t < NUMBER > >;
 
 
-// template < typename POINT >
-// concept raw_primitive_point = requires(POINT point)
-// {
-//    {point.x}->primitive_number;
-//    {point.y}->primitive_number;
-// };
-
-
+template < typename POINT >
+concept raw_primitive_point = requires(POINT point)
+{
+   {point.x}->primitive_number;
+   {point.y}->primitive_number;
+};
 
 
 template < typename POINT >
@@ -32,7 +30,6 @@ concept primitive_point = requires(POINT point)
    {point.x()}->primitive_number;
    {point.y()}->primitive_number;
 };
-
 
 
 template < typename POLE >
@@ -44,16 +41,84 @@ concept primitive_pole = requires(POLE pole)
 };
 
 
-
-
-template < typename ORIGIN_SIZE >
-concept origin_size = requires(ORIGIN_SIZE origin_size)
+template < typename POINT >
+concept primitive_XY = requires(POINT point)
 {
-
-   { origin_size.origin } -> primitive_point;
-   { origin_size.size } -> primitive_dim;
-
+   point.X;
+   point.Y;
 };
+
+
+template < typename SIZE >
+concept primitive_size = requires(SIZE size)
+{
+   size.cx();
+   size.cy();
+};
+
+
+template < typename Dimension >
+concept primitive_Dimension = requires(Dimension dimension)
+{
+   dimension.Width;
+   dimension.Height;
+};
+
+
+template < typename DIMENSION >
+concept primitive_dimension = requires(DIMENSION dimension)
+{
+   dimension.width;
+   dimension.height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_XYDim = requires(RECTANGLE rectangle)
+{
+   rectangle.X;
+   rectangle.Y;
+   rectangle.Width;
+   rectangle.Height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_xydim = requires(RECTANGLE rectangle)
+{
+   rectangle.x();
+   rectangle.y();
+   rectangle.width;
+   rectangle.height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_origin_size = requires(RECTANGLE rectangle)
+{
+   {rectangle.origin}->raw_primitive_point;
+   {rectangle.size}->primitive_dimension;
+};
+
+
+//template < typename ORIGIN_SIZE >
+//concept origin_size = requires(ORIGIN_SIZE origin_size)
+//{
+//
+//   { origin_size.origin } -> primitive_point;
+//   { origin_size.size } -> primitive_dim;
+//
+//};
 
 
 
@@ -187,27 +252,5 @@ void copy(SIZE_TYPE1& size1, const SIZE_TYPE2& size2)
 
 
 
-template < primitive_rectangle RECTANGLE, origin_size ORIGIN_SIZE >
-constexpr void copy(RECTANGLE& rectangle, const ORIGIN_SIZE& origin_size)
-{
-
-   rectangle.left = (decltype(rectangle.left))origin_size.origin.x();
-   rectangle.top = (decltype(rectangle.top))origin_size.origin.y();
-   rectangle.right = (decltype(rectangle.right))(origin_size.origin.x() + origin_size.size.width);
-   rectangle.bottom = (decltype(rectangle.bottom))(origin_size.origin.y() + origin_size.size.height);
-
-}
-
-
-template < origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
-constexpr void copy(ORIGIN_SIZE& origin_size, const RECTANGLE& rectangle)
-{
-
-   origin_size.origin.x() = (decltype(origin_size.origin.x()))rectangle.left;
-   origin_size.origin.y() = (decltype(origin_size.origin.y()))rectangle.top;
-   origin_size.size.width = (decltype(origin_size.size.width))(rectangle.right - rectangle.left);
-   origin_size.size.height = (decltype(origin_size.size.height))(rectangle.bottom - rectangle.top);
-
-}
 
 

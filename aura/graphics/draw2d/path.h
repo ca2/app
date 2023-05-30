@@ -63,17 +63,17 @@ namespace draw2d
       virtual bool contains(::draw2d::graphics_pointer & pgraphics, const point_f64 & point);
 
 
-      virtual bool add_rectangle(const ::rectangle_f64 & rectangle, const ::point_f64 & point, const ::angle & angleRotation);
+      virtual bool add_rectangle(const ::rectangle_f64 & rectangle, const ::point_f64 & point, const ::angle_f64 & angleRotation);
 
-      virtual bool add_rectangle(const ::rectangle_f64 & rectangle, const ::angle & angleCenterRotation);
+      virtual bool add_rectangle(const ::rectangle_f64 & rectangle, const ::angle_f64 & angleCenterRotation);
 
       virtual bool add_rectangle(const ::rectangle_f64 & rectangle);
 
       virtual bool add_ellipse(const ::ellipse_f64 & ellipse);
 
-      virtual bool add_arc(const ::rectangle_f64 & rectangle, const ::angle & angleBeg, const ::angle & angleSweep);
-      virtual bool varc(const ::point_f64 & point, double h, const ::angle & angle);
-      virtual bool harc(const ::point_f64 & point, double w, const ::angle & angle);
+      virtual bool add_arc(const ::rectangle_f64 & rectangle, const ::angle_f64 & angleBeg, const ::angle_f64 & angleSweep);
+      virtual bool varc(const ::point_f64 & point, double h, const ::angle_f64 & angle);
+      virtual bool harc(const ::point_f64 & point, double w, const ::angle_f64 & angle);
 
 
       //virtual bool add_lines(const ::point_i32 * ppoint, ::count nCount);

@@ -630,6 +630,8 @@
 
 /* Begin PBXFileReference section */
 		07F5B188184A3B430092C3E1 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
+		9A03B7BA2A25B8D700A0E33E /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		9A03B7BB2A25B8D700A0E33E /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		9A16414A19C4A4CE00966C5E /* base_iosTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "base_iosTests-Info.plist"; sourceTree = "<group>"; };
 		9A16414B19C4A4CE00966C5E /* base_iosTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base_iosTests.m; sourceTree = "<group>"; };
 		9A1E1D5922F0AF69004243B8 /* multiple_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multiple_buffer.cpp; sourceTree = "<group>"; };
@@ -1767,6 +1769,8 @@
 				9AE7233517E83B69003E47F9 /* user */,
 				9AC2CEA22653455600CC8096 /* windowing */,
 				9A2489742452D59400F23D28 /* _.h */,
+				9A03B7BB2A25B8D700A0E33E /* debug.xcconfig */,
+				9A03B7BA2A25B8D700A0E33E /* release.xcconfig */,
 				9A24892D2452CE7900F23D28 /* framework.h */,
 				9A16414919C4A4CE00966C5E /* aura_iosTests */,
 				9A4E846F1D1FD3A7008A419B /* Products */,
@@ -2692,6 +2696,7 @@
 		};
 		CEA754D014411F2C007E04DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A03B7BB2A25B8D700A0E33E /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -2810,6 +2815,7 @@
 		};
 		CEA754D114411F2C007E04DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A03B7BA2A25B8D700A0E33E /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;

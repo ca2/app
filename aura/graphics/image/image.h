@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "meta.h"
@@ -193,9 +193,9 @@ public:
 
    //virtual void rotated(const angle & angle);
    //virtual image_pointer rotated(const angle& angle);
-   virtual void rotate(const ::angle& angle, double dScale = 1.0);
-   virtual void rotate(::image * pimage, const ::angle& angle, double dScale = 1.0);
-   virtual image_pointer rotated(const ::angle& angle, double dScale = 1.0);
+   virtual void rotate(const ::angle_f64 & angle, double dScale = 1.0);
+   virtual void rotate(::image * pimage, const ::angle_f64 & angle, double dScale = 1.0);
+   virtual image_pointer rotated(const ::angle_f64 & angle, double dScale = 1.0);
 
    //virtual void rotate(::image * pimage, double dAngle, double dScale);
    //virtual void rotate(::image * pimage, double dAngle);

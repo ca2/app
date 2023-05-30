@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/geometry2d/size_array.h"
@@ -19,7 +19,7 @@ namespace draw2d
       ~graphics_extension() override;
 
 
-      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_array & sizea);
+      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_f64_array & sizea);
 
       void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, size_i32 & size);
 

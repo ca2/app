@@ -275,7 +275,7 @@ namespace user
       ::windowing::window *                     m_pwindow;
 
 
-      ::rectangle                               m_rectangleClip;
+      ::rectangle_f64                               m_rectangleClip;
       ::pointer<::aura::draw_context>          m_pdrawcontext;
 
       ::draw2d::path_pointer                    m_pathFocusRect1;

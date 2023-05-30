@@ -163,12 +163,11 @@
 		9A1F6E3D274DFD0F000B7A22 /* folder_zip */ = {
 			isa = PBXGroup;
 			children = (
-				9A7724FD2A259D3700B9A835 /* debug.xcconfig */,
-				9A7724FE2A259D3700B9A835 /* release.xcconfig */,
 				9A1F6E5C274DFD0F000B7A22 /* _.cpp */,
 				9A1F6E81274DFD11000B7A22 /* _.h */,
 				9A1F6E7F274DFD11000B7A22 /* _factory.cpp */,
 				9A1F6E58274DFD0F000B7A22 /* crypt.h */,
+				9A7724FD2A259D3700B9A835 /* debug.xcconfig */,
 				9A1F6E5D274DFD0F000B7A22 /* file.cpp */,
 				9A1F6E4C274DFD0F000B7A22 /* file.h */,
 				9A5D760A274E4EED00403BC3 /* file_function_definitions.cpp */,
@@ -180,6 +179,7 @@
 				9A1F6E47274DFD0F000B7A22 /* ioapi.cpp */,
 				9A1F6E7A274DFD10000B7A22 /* ioapi.h */,
 				9A1F6E4A274DFD0F000B7A22 /* iowin32.h */,
+				9A7724FE2A259D3700B9A835 /* release.xcconfig */,
 				9A1F6E4E274DFD0F000B7A22 /* unzip.cpp */,
 				9A1F6E63274DFD0F000B7A22 /* unzip.h */,
 				9A1F6E7B274DFD11000B7A22 /* zip.cpp */,

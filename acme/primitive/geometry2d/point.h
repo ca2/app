@@ -26,6 +26,17 @@ public:
    //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
    //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
    //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
+
+   
+//   template < raw_primitive_point POINT >
+//   point_type(const POINT & point)
+//   {
+//      
+//      this->x() = (UNIT_TYPE) point.x;
+//      this->y() = (UNIT_TYPE) point.y
+//      
+//   }
+
    
    template < primitive_point POINT >
    point_type(const POINT & point)

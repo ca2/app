@@ -119,7 +119,6 @@
 		9A93B5A72846EA94005ACD11 /* field_definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC4252A5BE900BED5B8 /* field_definition.h */; };
 		9A93B5A82846EA94005ACD11 /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC7252A5BE900BED5B8 /* dataset.h */; };
 		9A93B5A92846EA94005ACD11 /* ifft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DF92748CC4B006BEBCC /* ifft.h */; };
-		9A93B5AA2846EA94005ACD11 /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FED252A5BEB00BED5B8 /* message.h */; };
 		9A93B5AB2846EA94005ACD11 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6405D252A5BEB00BED5B8 /* _new_impl.h */; };
 		9A93B5AC2846EA94005ACD11 /* _acid_app_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64062252A5BEB00BED5B8 /* _acid_app_impl.h */; };
 		9A93B5AD2846EA94005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6400B252A5BEB00BED5B8 /* _.h */; };
@@ -177,7 +176,6 @@
 		9A93B5ED2846EA94005ACD11 /* product_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64420252A5BEE00BED5B8 /* product_array.h */; };
 		9A93B5EE2846EA94005ACD11 /* astr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F5E252A5BEA00BED5B8 /* astr.h */; };
 		9A93B5F12846EA94005ACD11 /* _strconv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16268E26F0041A003D9CB9 /* _strconv.h */; };
-		9A93B5F22846EA94005ACD11 /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FE9252A5BEB00BED5B8 /* id.h */; };
 		9A93B5F32846EA94005ACD11 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64437252A5BEE00BED5B8 /* user.h */; };
 		9A93B5F42846EA94005ACD11 /* objc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F70252A5BEA00BED5B8 /* objc.h */; };
 		9A93B5F52846EA94005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626A926F0041A003D9CB9 /* _.h */; };
@@ -510,8 +508,6 @@
 		9AE6453C252A5BF100BED5B8 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FD5252A5BEB00BED5B8 /* application.cpp */; };
 		9AE64549252A5BF100BED5B8 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FE3252A5BEB00BED5B8 /* _platform.h */; };
 		9AE6454C252A5BF100BED5B8 /* _generic_object_constructor_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FE6252A5BEB00BED5B8 /* _generic_object_constructor_impl.h */; };
-		9AE6454E252A5BF100BED5B8 /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FE9252A5BEB00BED5B8 /* id.h */; };
-		9AE64550252A5BF100BED5B8 /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FED252A5BEB00BED5B8 /* message.h */; };
 		9AE6455B252A5BF100BED5B8 /* reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FFD252A5BEB00BED5B8 /* reader.h */; };
 		9AE6455C252A5BF100BED5B8 /* tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FFE252A5BEB00BED5B8 /* tag.h */; };
 		9AE6455D252A5BF100BED5B8 /* entity_resolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FFF252A5BEB00BED5B8 /* entity_resolver.cpp */; };
@@ -637,6 +633,8 @@
 		9A00E5ED26614F9400517464 /* transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transaction.cpp; sourceTree = "<group>"; };
 		9A00E5EE26614F9400517464 /* transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transaction.h; sourceTree = "<group>"; };
 		9A00E5EF26614F9400517464 /* database_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_impl.cpp; sourceTree = "<group>"; };
+		9A03B7C12A25BA1E00A0E33E /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		9A03B7C32A25BA2F00A0E33E /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		9A16268926F0041A003D9CB9 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A16268A26F0041A003D9CB9 /* email_department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = email_department.cpp; sourceTree = "<group>"; };
 		9A16268D26F0041A003D9CB9 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -863,8 +861,6 @@
 		9AE63FD5252A5BEB00BED5B8 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9AE63FE3252A5BEB00BED5B8 /* _platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _platform.h; sourceTree = "<group>"; };
 		9AE63FE6252A5BEB00BED5B8 /* _generic_object_constructor_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _generic_object_constructor_impl.h; sourceTree = "<group>"; };
-		9AE63FE9252A5BEB00BED5B8 /* id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = id.h; sourceTree = "<group>"; };
-		9AE63FED252A5BEB00BED5B8 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
 		9AE63FEF252A5BEB00BED5B8 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		9AE63FF0252A5BEB00BED5B8 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		9AE63FF1252A5BEB00BED5B8 /* city.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = city.cpp; sourceTree = "<group>"; };
@@ -1294,12 +1290,12 @@
 				9AE64451252A5BEE00BED5B8 /* callback.h */,
 				9AE642BC252A5BED00BED5B8 /* console_slim.h */,
 				9AE63EC0252A5BE900BED5B8 /* console.h */,
+				9A03B7C12A25BA1E00A0E33E /* debug.xcconfig */,
 				9AE64450252A5BEE00BED5B8 /* framework_c.h */,
 				9AE642BD252A5BED00BED5B8 /* framework.h */,
-				9AE63FE9252A5BEB00BED5B8 /* id.h */,
 				9AE63F5C252A5BEA00BED5B8 /* library.h */,
-				9AE63FED252A5BEB00BED5B8 /* message.h */,
 				9AE63EBF252A5BE900BED5B8 /* procedure.h */,
+				9A03B7C32A25BA2F00A0E33E /* release.xcconfig */,
 				9AE6445C252A5BEE00BED5B8 /* update.h */,
 			);
 			name = axis;
@@ -1654,7 +1650,6 @@
 				9A93B5A72846EA94005ACD11 /* field_definition.h in Headers */,
 				9A93B5A82846EA94005ACD11 /* dataset.h in Headers */,
 				9A93B5A92846EA94005ACD11 /* ifft.h in Headers */,
-				9A93B5AA2846EA94005ACD11 /* message.h in Headers */,
 				9A93B5AB2846EA94005ACD11 /* _new_impl.h in Headers */,
 				9A93B5AC2846EA94005ACD11 /* _acid_app_impl.h in Headers */,
 				9A93B5AD2846EA94005ACD11 /* _.h in Headers */,
@@ -1727,7 +1722,6 @@
 				9A93B5EE2846EA94005ACD11 /* astr.h in Headers */,
 				9A979DE228C835540013DC54 /* control.h in Headers */,
 				9A93B5F12846EA94005ACD11 /* _strconv.h in Headers */,
-				9A93B5F22846EA94005ACD11 /* id.h in Headers */,
 				9A93B5F32846EA94005ACD11 /* user.h in Headers */,
 				9A93B5F42846EA94005ACD11 /* objc.h in Headers */,
 				9A93B5F52846EA94005ACD11 /* _.h in Headers */,
@@ -1848,7 +1842,6 @@
 				9AE64464252A5BEF00BED5B8 /* field_definition.h in Headers */,
 				9AE64467252A5BEF00BED5B8 /* dataset.h in Headers */,
 				9AC01E182748CC4C006BEBCC /* ifft.h in Headers */,
-				9AE64550252A5BF100BED5B8 /* message.h in Headers */,
 				9AE645AE252A5BF200BED5B8 /* _new_impl.h in Headers */,
 				9AE645B3252A5BF200BED5B8 /* _acid_app_impl.h in Headers */,
 				9AE64568252A5BF100BED5B8 /* _.h in Headers */,
@@ -1928,7 +1921,6 @@
 				9AE644DA252A5BF000BED5B8 /* astr.h in Headers */,
 				9A979DE128C835540013DC54 /* control.h in Headers */,
 				9A1626BA26F0041A003D9CB9 /* _strconv.h in Headers */,
-				9AE6454E252A5BF100BED5B8 /* id.h in Headers */,
 				9AE64925252A5BF700BED5B8 /* user.h in Headers */,
 				9A5ECCEB28CCBE040084D354 /* table.h in Headers */,
 				9AE644E1252A5BF000BED5B8 /* objc.h in Headers */,
@@ -2372,6 +2364,7 @@
 		};
 		9AE63E9D252A5B7800BED5B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A03B7C12A25BA1E00A0E33E /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -2481,6 +2474,7 @@
 		};
 		9AE63E9E252A5B7800BED5B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A03B7C32A25BA2F00A0E33E /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;

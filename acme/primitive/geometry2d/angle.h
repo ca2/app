@@ -1,47 +1,56 @@
-﻿#pragma once
+#pragma once
 
 
-class CLASS_DECL_ACME angle
+template < primitive_floating FLOAT >
+class angle_type
 {
 public:
 
+   
+   using UNIT_TYPE = FLOAT;
+   
 
-   double m_d; // in radians
+   UNIT_TYPE m_fAngle; // in radians
 
 
-   angle() : m_d(0.0) {}
-   angle(enum_no_initialize) {}
-   angle(nullptr_t) : m_d(0.0) {}
-   angle(double d) : m_d(d) {}
+   angle_type() : m_fAngle(0.0) {}
+   angle_type(enum_no_initialize) {}
+   angle_type(nullptr_t) : m_fAngle(0.0) {}
+   angle_type(UNIT_TYPE d) : m_fAngle(d) {}
 
-   angle operator -() const { return (angle)-m_d; }
+   angle_type operator -() const { return (angle_type)-m_fAngle; }
 
-   operator double() const { return m_d; }
+   operator UNIT_TYPE() const { return m_fAngle; }
 
-   double radian() const { return m_d; }
+   UNIT_TYPE radian() const { return m_fAngle; }
 
-   double degree() const { return m_d * 180.0 / MATH_PI; }
+   UNIT_TYPE degree() const { return (UNIT_TYPE) m_fAngle * (UNIT_TYPE)180.0 / (UNIT_TYPE)MATH_PI; }
 
-   angle operator - (const ::angle & angle) const { return m_d - angle.m_d; }
-   angle operator + (const ::angle & angle) const { return m_d + angle.m_d; }
-   angle operator / (double d) const { return m_d / d; }
-   angle operator * (double d) const { return m_d * d; }
+   angle_type operator - (const angle_type & angle) const { return m_fAngle - angle.m_fAngle; }
+   angle_type operator + (const angle_type & angle) const { return m_fAngle + angle.m_fAngle; }
+   angle_type operator / (FLOAT f) const { return m_fAngle / f; }
+   FLOAT operator / (const angle_type & angle) const { return m_fAngle / angle.m_fAngle; }
+   angle_type operator * (FLOAT f) const { return m_fAngle * f; }
 
-   double normalized() const { auto d = fmod(m_d, 360); return d < 0.0 ? d + 360.0 : d; }
-   void normalize() { m_d = normalized(); }
+   double normalized() const { auto d = (FLOAT) fmod(m_fAngle, 2.0 * MATH_PI); return d <  (FLOAT) 0.0 ? d + (FLOAT) (2.0 * MATH_PI) : d; }
+   void normalize() { m_fAngle = normalized(); }
 
 };
 
 
-inline angle operator "" _degree(long double d)
+using angle_f32 = angle_type < ::f32 >;
+using angle_f64 = angle_type < ::f64 >;
+
+
+inline angle_f64 operator "" _degree(long double d)
 {
 
-   return (angle)(d * MATH_PI / 180.0);
+   return (angle_f64)(d * MATH_PI / 180.0);
 
 }
 
 
-inline angle operator "" _degrees(long double d)
+inline angle_f64 operator "" _degrees(long double d)
 {
 
    return operator "" _degree(d);
@@ -49,7 +58,7 @@ inline angle operator "" _degrees(long double d)
 }
 
 
-inline angle operator "" _degree(unsigned long long int ull)
+inline angle_f64 operator "" _degree(unsigned long long int ull)
 {
 
    return ((long double)ull) * MATH_PI / 180.0;
@@ -57,7 +66,7 @@ inline angle operator "" _degree(unsigned long long int ull)
 }
 
 
-inline angle operator "" _degrees(unsigned long long int ull)
+inline angle_f64 operator "" _degrees(unsigned long long int ull)
 {
 
    return operator "" _degree(ull);

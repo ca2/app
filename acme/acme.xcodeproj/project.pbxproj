@@ -10,6 +10,8 @@
 		9A017F5827AE49D900DB039E /* result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A017F5627AE49D800DB039E /* result.cpp */; };
 		9A017F5927AE49D900DB039E /* result.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A017F5727AE49D900DB039E /* result.h */; };
 		9A017F6527AE727100DB039E /* atom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A017F5F27AE727000DB039E /* atom.h */; };
+		9A03B7B82A25B65400A0E33E /* shift.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A03B7B72A25B65400A0E33E /* shift.h */; };
+		9A03B7B92A25B65400A0E33E /* shift.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A03B7B72A25B65400A0E33E /* shift.h */; };
 		9A0840E829348AAB009F7FF4 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0840BA29348AAB009F7FF4 /* time.h */; };
 		9A0840E929348AAB009F7FF4 /* frequency.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0840BB29348AAB009F7FF4 /* frequency.h */; };
 		9A0840EA29348AAB009F7FF4 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0840BC29348AAB009F7FF4 /* _impl.h */; };
@@ -1515,8 +1517,8 @@
 		9A892E7826CDD00D008D6412 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892E7026CDD00D008D6412 /* file_path.h */; };
 		9A8F434C2A23022C00097EE1 /* shape_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43142A23022000097EE1 /* shape_array.h */; };
 		9A8F434D2A23022C00097EE1 /* shape_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43142A23022000097EE1 /* shape_array.h */; };
-		9A8F434E2A23022C00097EE1 /* _rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43152A23022000097EE1 /* _rectangle.h */; };
-		9A8F434F2A23022C00097EE1 /* _rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43152A23022000097EE1 /* _rectangle.h */; };
+		9A8F434E2A23022C00097EE1 /* rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43152A23022000097EE1 /* rectangle.h */; };
+		9A8F434F2A23022C00097EE1 /* rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43152A23022000097EE1 /* rectangle.h */; };
 		9A8F43502A23022C00097EE1 /* shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43162A23022000097EE1 /* shape.h */; };
 		9A8F43512A23022C00097EE1 /* shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43162A23022000097EE1 /* shape.h */; };
 		9A8F43522A23022C00097EE1 /* _i64.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43172A23022100097EE1 /* _i64.h */; };
@@ -1541,30 +1543,30 @@
 		9A8F43692A23022C00097EE1 /* region.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F43222A23022300097EE1 /* region.cpp */; };
 		9A8F436A2A23022C00097EE1 /* bounding_rect.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43232A23022300097EE1 /* bounding_rect.h */; };
 		9A8F436B2A23022C00097EE1 /* bounding_rect.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43232A23022300097EE1 /* bounding_rect.h */; };
-		9A8F436C2A23022C00097EE1 /* _angle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43242A23022300097EE1 /* _angle.h */; };
-		9A8F436D2A23022C00097EE1 /* _angle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43242A23022300097EE1 /* _angle.h */; };
-		9A8F436E2A23022C00097EE1 /* _size.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43252A23022300097EE1 /* _size.h */; };
-		9A8F436F2A23022C00097EE1 /* _size.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43252A23022300097EE1 /* _size.h */; };
+		9A8F436C2A23022C00097EE1 /* angle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43242A23022300097EE1 /* angle.h */; };
+		9A8F436D2A23022C00097EE1 /* angle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43242A23022300097EE1 /* angle.h */; };
+		9A8F436E2A23022C00097EE1 /* size.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43252A23022300097EE1 /* size.h */; };
+		9A8F436F2A23022C00097EE1 /* size.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43252A23022300097EE1 /* size.h */; };
 		9A8F43702A23022C00097EE1 /* collection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43262A23022400097EE1 /* collection.h */; };
 		9A8F43712A23022C00097EE1 /* collection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43262A23022400097EE1 /* collection.h */; };
 		9A8F43722A23022C00097EE1 /* _binary_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43272A23022400097EE1 /* _binary_stream.h */; };
 		9A8F43732A23022C00097EE1 /* _binary_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43272A23022400097EE1 /* _binary_stream.h */; };
-		9A8F43742A23022C00097EE1 /* _polygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43282A23022400097EE1 /* _polygon.h */; };
-		9A8F43752A23022C00097EE1 /* _polygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43282A23022400097EE1 /* _polygon.h */; };
+		9A8F43742A23022C00097EE1 /* polygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43282A23022400097EE1 /* polygon.h */; };
+		9A8F43752A23022C00097EE1 /* polygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43282A23022400097EE1 /* polygon.h */; };
 		9A8F43762A23022C00097EE1 /* shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F43292A23022400097EE1 /* shape.cpp */; };
 		9A8F43772A23022C00097EE1 /* shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F43292A23022400097EE1 /* shape.cpp */; };
-		9A8F43782A23022C00097EE1 /* _ellipse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432A2A23022500097EE1 /* _ellipse.h */; };
-		9A8F43792A23022C00097EE1 /* _ellipse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432A2A23022500097EE1 /* _ellipse.h */; };
+		9A8F43782A23022C00097EE1 /* ellipse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432A2A23022500097EE1 /* ellipse.h */; };
+		9A8F43792A23022C00097EE1 /* ellipse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432A2A23022500097EE1 /* ellipse.h */; };
 		9A8F437A2A23022C00097EE1 /* _function_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432B2A23022500097EE1 /* _function_impl.h */; };
 		9A8F437B2A23022C00097EE1 /* _function_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432B2A23022500097EE1 /* _function_impl.h */; };
-		9A8F437C2A23022C00097EE1 /* _arc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432C2A23022500097EE1 /* _arc.h */; };
-		9A8F437D2A23022C00097EE1 /* _arc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432C2A23022500097EE1 /* _arc.h */; };
-		9A8F43802A23022C00097EE1 /* _lines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432E2A23022500097EE1 /* _lines.h */; };
-		9A8F43812A23022C00097EE1 /* _lines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432E2A23022500097EE1 /* _lines.h */; };
+		9A8F437C2A23022C00097EE1 /* arc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432C2A23022500097EE1 /* arc.h */; };
+		9A8F437D2A23022C00097EE1 /* arc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432C2A23022500097EE1 /* arc.h */; };
+		9A8F43802A23022C00097EE1 /* lines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432E2A23022500097EE1 /* lines.h */; };
+		9A8F43812A23022C00097EE1 /* lines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432E2A23022500097EE1 /* lines.h */; };
 		9A8F43822A23022C00097EE1 /* _i32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432F2A23022600097EE1 /* _i32.h */; };
 		9A8F43832A23022C00097EE1 /* _i32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F432F2A23022600097EE1 /* _i32.h */; };
-		9A8F43842A23022C00097EE1 /* _point.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43302A23022600097EE1 /* _point.h */; };
-		9A8F43852A23022C00097EE1 /* _point.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43302A23022600097EE1 /* _point.h */; };
+		9A8F43842A23022C00097EE1 /* point.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43302A23022600097EE1 /* point.h */; };
+		9A8F43852A23022C00097EE1 /* point.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43302A23022600097EE1 /* point.h */; };
 		9A8F43882A23022C00097EE1 /* point_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43322A23022600097EE1 /* point_array.h */; };
 		9A8F43892A23022C00097EE1 /* point_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43322A23022600097EE1 /* point_array.h */; };
 		9A8F438A2A23022C00097EE1 /* _f32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43332A23022600097EE1 /* _f32.h */; };
@@ -1611,8 +1613,8 @@
 		9A8F43B72A23022D00097EE1 /* geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F43492A23022B00097EE1 /* geometry.cpp */; };
 		9A8F43B82A23022D00097EE1 /* _shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F434A2A23022C00097EE1 /* _shape.cpp */; };
 		9A8F43B92A23022D00097EE1 /* _shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F434A2A23022C00097EE1 /* _shape.cpp */; };
-		9A8F43BA2A23022D00097EE1 /* _line.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F434B2A23022C00097EE1 /* _line.h */; };
-		9A8F43BB2A23022D00097EE1 /* _line.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F434B2A23022C00097EE1 /* _line.h */; };
+		9A8F43BA2A23022D00097EE1 /* line.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F434B2A23022C00097EE1 /* line.h */; };
+		9A8F43BB2A23022D00097EE1 /* line.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F434B2A23022C00097EE1 /* line.h */; };
 		9A8FDB602852061F00D947A8 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FDB5F2852061E00D947A8 /* file.cpp */; };
 		9A8FDB612852061F00D947A8 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FDB5F2852061E00D947A8 /* file.cpp */; };
 		9A9066C52845841F00333D60 /* LaunchServicesWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A9066C42845841F00333D60 /* LaunchServicesWrapper.mm */; };
@@ -2621,6 +2623,7 @@
 		9A017F5627AE49D800DB039E /* result.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = result.cpp; sourceTree = "<group>"; };
 		9A017F5727AE49D900DB039E /* result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = result.h; sourceTree = "<group>"; };
 		9A017F5F27AE727000DB039E /* atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = atom.h; sourceTree = "<group>"; };
+		9A03B7B72A25B65400A0E33E /* shift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shift.h; sourceTree = "<group>"; };
 		9A0840BA29348AAB009F7FF4 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		9A0840BB29348AAB009F7FF4 /* frequency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frequency.h; sourceTree = "<group>"; };
 		9A0840BC29348AAB009F7FF4 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
@@ -3641,7 +3644,7 @@
 		9A892E6F26CDD00D008D6412 /* acme_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = acme_file.cpp; sourceTree = "<group>"; };
 		9A892E7026CDD00D008D6412 /* file_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_path.h; sourceTree = "<group>"; };
 		9A8F43142A23022000097EE1 /* shape_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape_array.h; sourceTree = "<group>"; };
-		9A8F43152A23022000097EE1 /* _rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _rectangle.h; sourceTree = "<group>"; };
+		9A8F43152A23022000097EE1 /* rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rectangle.h; sourceTree = "<group>"; };
 		9A8F43162A23022000097EE1 /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
 		9A8F43172A23022100097EE1 /* _i64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _i64.h; sourceTree = "<group>"; };
 		9A8F43192A23022100097EE1 /* _collection_contains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _collection_contains.h; sourceTree = "<group>"; };
@@ -3654,18 +3657,18 @@
 		9A8F43212A23022300097EE1 /* _defer_shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer_shape.h; sourceTree = "<group>"; };
 		9A8F43222A23022300097EE1 /* region.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = region.cpp; sourceTree = "<group>"; };
 		9A8F43232A23022300097EE1 /* bounding_rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bounding_rect.h; sourceTree = "<group>"; };
-		9A8F43242A23022300097EE1 /* _angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _angle.h; sourceTree = "<group>"; };
-		9A8F43252A23022300097EE1 /* _size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _size.h; sourceTree = "<group>"; };
+		9A8F43242A23022300097EE1 /* angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = angle.h; sourceTree = "<group>"; };
+		9A8F43252A23022300097EE1 /* size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = size.h; sourceTree = "<group>"; };
 		9A8F43262A23022400097EE1 /* collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection.h; sourceTree = "<group>"; };
 		9A8F43272A23022400097EE1 /* _binary_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _binary_stream.h; sourceTree = "<group>"; };
-		9A8F43282A23022400097EE1 /* _polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _polygon.h; sourceTree = "<group>"; };
+		9A8F43282A23022400097EE1 /* polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polygon.h; sourceTree = "<group>"; };
 		9A8F43292A23022400097EE1 /* shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shape.cpp; sourceTree = "<group>"; };
-		9A8F432A2A23022500097EE1 /* _ellipse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ellipse.h; sourceTree = "<group>"; };
+		9A8F432A2A23022500097EE1 /* ellipse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ellipse.h; sourceTree = "<group>"; };
 		9A8F432B2A23022500097EE1 /* _function_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _function_impl.h; sourceTree = "<group>"; };
-		9A8F432C2A23022500097EE1 /* _arc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _arc.h; sourceTree = "<group>"; };
-		9A8F432E2A23022500097EE1 /* _lines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _lines.h; sourceTree = "<group>"; };
+		9A8F432C2A23022500097EE1 /* arc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arc.h; sourceTree = "<group>"; };
+		9A8F432E2A23022500097EE1 /* lines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lines.h; sourceTree = "<group>"; };
 		9A8F432F2A23022600097EE1 /* _i32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _i32.h; sourceTree = "<group>"; };
-		9A8F43302A23022600097EE1 /* _point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _point.h; sourceTree = "<group>"; };
+		9A8F43302A23022600097EE1 /* point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point.h; sourceTree = "<group>"; };
 		9A8F43322A23022600097EE1 /* point_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_array.h; sourceTree = "<group>"; };
 		9A8F43332A23022600097EE1 /* _f32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _f32.h; sourceTree = "<group>"; };
 		9A8F43352A23022700097EE1 /* _string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _string.h; sourceTree = "<group>"; };
@@ -3689,7 +3692,7 @@
 		9A8F43482A23022A00097EE1 /* region_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = region_item.cpp; sourceTree = "<group>"; };
 		9A8F43492A23022B00097EE1 /* geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometry.cpp; sourceTree = "<group>"; };
 		9A8F434A2A23022C00097EE1 /* _shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _shape.cpp; sourceTree = "<group>"; };
-		9A8F434B2A23022C00097EE1 /* _line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _line.h; sourceTree = "<group>"; };
+		9A8F434B2A23022C00097EE1 /* line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = line.h; sourceTree = "<group>"; };
 		9A8FDB1A2850AE9D00D947A8 /* str_to.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = str_to.cpp; sourceTree = "<group>"; };
 		9A8FDB272850AEA000D947A8 /* _string.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _string.h; sourceTree = "<group>"; };
 		9A8FDB292850AEA000D947A8 /* str.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = str.h; sourceTree = "<group>"; };
@@ -4379,8 +4382,6 @@
 		9A68A4522511442E008DABD2 /* acme */ = {
 			isa = PBXGroup;
 			children = (
-				9A7724F12A257CE900B9A835 /* debug.xcconfig */,
-				9A7724F42A257D0700B9A835 /* release.xcconfig */,
 				9A68A4582511442E008DABD2 /* compress */,
 				9A892DBC26CD9061008D6412 /* constant */,
 				9A68AC1125114432008DABD2 /* exception */,
@@ -4398,14 +4399,16 @@
 				9A68A76F2511442F008DABD2 /* template */,
 				9AAE6E98251920DB00F10692 /* user */,
 				9A68A82525114430008DABD2 /* version */,
-				9A68A4552511442E008DABD2 /* procedure.h */,
-				9A68A4562511442E008DABD2 /* console.h */,
-				9A68A4E52511442E008DABD2 /* framework.cpp */,
-				9AE6DF2A2962B099008A1335 /* _operating_system.h */,
-				9A68A81425114430008DABD2 /* _.cpp */,
-				9A68AA9525114431008DABD2 /* framework.h */,
 				9A68AC8B25114433008DABD2 /* _.h */,
+				9A68A81425114430008DABD2 /* _.cpp */,
+				9AE6DF2A2962B099008A1335 /* _operating_system.h */,
 				9AD199862511CFB000B4C44A /* _start.h */,
+				9A68A4562511442E008DABD2 /* console.h */,
+				9A7724F12A257CE900B9A835 /* debug.xcconfig */,
+				9A68A4E52511442E008DABD2 /* framework.cpp */,
+				9A68AA9525114431008DABD2 /* framework.h */,
+				9A68A4552511442E008DABD2 /* procedure.h */,
+				9A7724F42A257D0700B9A835 /* release.xcconfig */,
 			);
 			name = acme;
 			sourceTree = "<group>";
@@ -4862,8 +4865,6 @@
 				9A8F43412A23022900097EE1 /* __basic.h */,
 				9A8F43372A23022700097EE1 /* _.cpp */,
 				9A8F43382A23022700097EE1 /* _.h */,
-				9A8F43242A23022300097EE1 /* _angle.h */,
-				9A8F432C2A23022500097EE1 /* _arc.h */,
 				9A8F43272A23022400097EE1 /* _binary_stream.h */,
 				9A8F431D2A23022200097EE1 /* _collection_bounding_rect.h */,
 				9A8F43192A23022100097EE1 /* _collection_contains.h */,
@@ -4871,7 +4872,6 @@
 				9A8F433E2A23022900097EE1 /* _collection.h */,
 				9A8F43212A23022300097EE1 /* _defer_shape.h */,
 				9A8F433A2A23022800097EE1 /* _defer.h */,
-				9A8F432A2A23022500097EE1 /* _ellipse.h */,
 				9A8F431B2A23022100097EE1 /* _enhanced.h */,
 				9A8F43332A23022600097EE1 /* _f32.h */,
 				9A8F43422A23022900097EE1 /* _f64.h */,
@@ -4880,33 +4880,37 @@
 				9A8F433F2A23022900097EE1 /* _geometry2d.h */,
 				9A8F432F2A23022600097EE1 /* _i32.h */,
 				9A8F43172A23022100097EE1 /* _i64.h */,
-				9A8F434B2A23022C00097EE1 /* _line.h */,
-				9A8F432E2A23022500097EE1 /* _lines.h */,
-				9A8F43302A23022600097EE1 /* _point.h */,
-				9A8F43282A23022400097EE1 /* _polygon.h */,
 				9A8F43402A23022900097EE1 /* _random.h */,
-				9A8F43152A23022000097EE1 /* _rectangle.h */,
 				9A8F434A2A23022C00097EE1 /* _shape.cpp */,
 				9A8F431A2A23022100097EE1 /* _shape.h */,
-				9A8F43252A23022300097EE1 /* _size.h */,
 				9A8F43352A23022700097EE1 /* _string.h */,
 				9A8F43202A23022200097EE1 /* _struct.h */,
 				9A8F431E2A23022200097EE1 /* _text_stream.h */,
+				9A8F43242A23022300097EE1 /* angle.h */,
+				9A8F432C2A23022500097EE1 /* arc.h */,
 				9A8F43232A23022300097EE1 /* bounding_rect.h */,
 				9A8F43262A23022400097EE1 /* collection.h */,
 				9A8F431F2A23022200097EE1 /* contains.h */,
+				9A8F432A2A23022500097EE1 /* ellipse.h */,
 				9A8F43492A23022B00097EE1 /* geometry.cpp */,
 				9A8F43452A23022A00097EE1 /* geometry.h */,
+				9A8F434B2A23022C00097EE1 /* line.h */,
+				9A8F432E2A23022500097EE1 /* lines.h */,
 				9A8F43322A23022600097EE1 /* point_array.h */,
+				9A8F43302A23022600097EE1 /* point.h */,
+				9A8F43282A23022400097EE1 /* polygon.h */,
 				9A8F43462A23022A00097EE1 /* rectangle_array.h */,
 				9A8F43472A23022A00097EE1 /* rectangle.cpp */,
+				9A8F43152A23022000097EE1 /* rectangle.h */,
 				9A8F43482A23022A00097EE1 /* region_item.cpp */,
 				9A8F43222A23022300097EE1 /* region.cpp */,
 				9A8F43432A23022A00097EE1 /* region.h */,
 				9A8F43142A23022000097EE1 /* shape_array.h */,
 				9A8F43292A23022400097EE1 /* shape.cpp */,
 				9A8F43162A23022000097EE1 /* shape.h */,
+				9A03B7B72A25B65400A0E33E /* shift.h */,
 				9A8F433D2A23022800097EE1 /* size_array.h */,
+				9A8F43252A23022300097EE1 /* size.h */,
 				9A8F43392A23022800097EE1 /* types.h */,
 				9A8F43442A23022A00097EE1 /* vector.h */,
 			);
@@ -6134,6 +6138,7 @@
 				9AA8FF2527BA729E008FF9AA /* aaa_2.h in Headers */,
 				9A0843C829366DA6009F7FF4 /* as_string.h in Headers */,
 				9A15A743264B6F2D0080670E /* _data.h in Headers */,
+				9A03B7B82A25B65400A0E33E /* shift.h in Headers */,
 				9A68AF8025114435008DABD2 /* ___serialization_draft001.h in Headers */,
 				9A0F53C528E8D9DA00025231 /* __implement.h in Headers */,
 				9A08437B29366BAD009F7FF4 /* payload2.h in Headers */,
@@ -6283,7 +6288,7 @@
 				9A0841862935C1FD009F7FF4 /* _impl.h in Headers */,
 				9A5DCE50271A75CE00C2ED86 /* not_implemented.h in Headers */,
 				9A892DEE26CD9061008D6412 /* id.h in Headers */,
-				9A8F434E2A23022C00097EE1 /* _rectangle.h in Headers */,
+				9A8F434E2A23022C00097EE1 /* rectangle.h in Headers */,
 				9A922FEC27EAC9D400B5A78D /* item.h in Headers */,
 				9A68ADA225114434008DABD2 /* packset.h in Headers */,
 				9A68ADB625114434008DABD2 /* fifo_map.h in Headers */,
@@ -6369,7 +6374,7 @@
 				9A0842AD2935E694009F7FF4 /* aaa__papaya.h in Headers */,
 				9A0842732935E694009F7FF4 /* aaa__papaya_array2d_impl.h in Headers */,
 				9A68AD9825114434008DABD2 /* auto_pointer.h in Headers */,
-				9A8F43742A23022C00097EE1 /* _polygon.h in Headers */,
+				9A8F43742A23022C00097EE1 /* polygon.h in Headers */,
 				9A68AD9925114434008DABD2 /* auto.h in Headers */,
 				9A786228264B90B5003DF8A0 /* objects.h in Headers */,
 				9A68AEEE25114435008DABD2 /* _impl.h in Headers */,
@@ -6385,7 +6390,7 @@
 				9A08437329366BAD009F7FF4 /* ___url.h in Headers */,
 				9A787CFC264C0740003DF8A0 /* context.h in Headers */,
 				9A68AD5A25114434008DABD2 /* less.h in Headers */,
-				9A8F43BA2A23022D00097EE1 /* _line.h in Headers */,
+				9A8F43BA2A23022D00097EE1 /* line.h in Headers */,
 				9A786224264B90B5003DF8A0 /* value.h in Headers */,
 				9A0841A62935C8F0009F7FF4 /* _template_inline_functions.h in Headers */,
 				9A68ADBC25114434008DABD2 /* map_to_smart_pointer.h in Headers */,
@@ -6409,7 +6414,7 @@
 				9A8660E92966A849000C82F0 /* concrete.h in Headers */,
 				9AA8FCC727BA7299008FF9AA /* graphics.h in Headers */,
 				9A787BB6264BB154003DF8A0 /* predicate_process.h in Headers */,
-				9A8F43842A23022C00097EE1 /* _point.h in Headers */,
+				9A8F43842A23022C00097EE1 /* point.h in Headers */,
 				9A68ACF825114434008DABD2 /* heap_.h in Headers */,
 				9A08439B29366D39009F7FF4 /* __string.h in Headers */,
 				9A865FA7296616BA000C82F0 /* time_array.h in Headers */,
@@ -6423,7 +6428,7 @@
 				9A68AD8625114434008DABD2 /* hyperlink.h in Headers */,
 				9A08437F29366BAD009F7FF4 /* __payload_cast.h in Headers */,
 				9A68AE0825114435008DABD2 /* forward.h in Headers */,
-				9A8F437C2A23022C00097EE1 /* _arc.h in Headers */,
+				9A8F437C2A23022C00097EE1 /* arc.h in Headers */,
 				9A68AF8625114436008DABD2 /* binary_stream.h in Headers */,
 				9AA8FD8B27BA729B008FF9AA /* device.h in Headers */,
 				9A786220264B90B4003DF8A0 /* classes.h in Headers */,
@@ -6545,7 +6550,7 @@
 				9A08429D2935E694009F7FF4 /* aaa__array_impl2.h in Headers */,
 				9A78624A264B90B5003DF8A0 /* scalar_enum.h in Headers */,
 				9A0843B829366D8F009F7FF4 /* _1.h in Headers */,
-				9A8F436C2A23022C00097EE1 /* _angle.h in Headers */,
+				9A8F436C2A23022C00097EE1 /* angle.h in Headers */,
 				9AA8FDE927BA729B008FF9AA /* process_c.h in Headers */,
 				9A15A6F0264B59EF0080670E /* _thread_os_create_impl.h in Headers */,
 				9A0843CD29366DBB009F7FF4 /* command_line.h in Headers */,
@@ -6616,7 +6621,7 @@
 				9A98149928E4EA8E001C9855 /* procedure.h in Headers */,
 				9AA8FCCF27BA7299008FF9AA /* time.h in Headers */,
 				9A68AE5425114435008DABD2 /* map.h in Headers */,
-				9A8F436E2A23022C00097EE1 /* _size.h in Headers */,
+				9A8F436E2A23022C00097EE1 /* size.h in Headers */,
 				9A68ACE225114434008DABD2 /* heap_item.h in Headers */,
 				9A0841E12935DD5C009F7FF4 /* ansi.h in Headers */,
 				9A68AD4225114434008DABD2 /* _include.h in Headers */,
@@ -6728,7 +6733,7 @@
 				9A0842252935DD6E009F7FF4 /* wd32_impl.h in Headers */,
 				9A8F43882A23022C00097EE1 /* point_array.h in Headers */,
 				9A68AFD325114436008DABD2 /* console.h in Headers */,
-				9A8F43782A23022C00097EE1 /* _ellipse.h in Headers */,
+				9A8F43782A23022C00097EE1 /* ellipse.h in Headers */,
 				9A68AFD025114436008DABD2 /* listing.h in Headers */,
 				9A68ADF425114435008DABD2 /* file_path_map.h in Headers */,
 				9A08442329367B73009F7FF4 /* bidirectional_pipe.h in Headers */,
@@ -6882,7 +6887,7 @@
 				9A08430929366654009F7FF4 /* counter.h in Headers */,
 				9A0840ED29348AAB009F7FF4 /* _unit_operator.h in Headers */,
 				9A0843252936667D009F7FF4 /* signalization.h in Headers */,
-				9A8F43802A23022C00097EE1 /* _lines.h in Headers */,
+				9A8F43802A23022C00097EE1 /* lines.h in Headers */,
 				9A68AF3525114435008DABD2 /* _international.h in Headers */,
 				9A78622A264B90B5003DF8A0 /* math_int_biunique.h in Headers */,
 				9ADD653E26B5CFE600D11298 /* string_memory_allocate.h in Headers */,
@@ -7037,7 +7042,7 @@
 				9AA8021A27BA72A6008FF9AA /* graphics.h in Headers */,
 				9A0841F02935DD5C009F7FF4 /* encoding.h in Headers */,
 				9A110F5527CDD2450081BCCD /* serial_shared.h in Headers */,
-				9A8F436D2A23022C00097EE1 /* _angle.h in Headers */,
+				9A8F436D2A23022C00097EE1 /* angle.h in Headers */,
 				9A08432A2936667D009F7FF4 /* synchronously_keep_bit.h in Headers */,
 				9A750DAB282B367600C4861B /* earth.h in Headers */,
 				9AA8033427BA72A9008FF9AA /* _.h in Headers */,
@@ -7090,6 +7095,7 @@
 				9AD68E7B251A753A00C0EBD7 /* _c.h in Headers */,
 				9A0843EC29366DF5009F7FF4 /* string.h in Headers */,
 				9AD68E7E251A753A00C0EBD7 /* text_stream.h in Headers */,
+				9A03B7B92A25B65400A0E33E /* shift.h in Headers */,
 				9A0841FA2935DD5D009F7FF4 /* ansi.h in Headers */,
 				9AA8F8E827BA7268008FF9AA /* message_box.h in Headers */,
 				9A892DFF26CD9062008D6412 /* character_set.h in Headers */,
@@ -7168,7 +7174,7 @@
 				9AA8038627BACA53008FF9AA /* windows_time.h in Headers */,
 				9A786198264B9096003DF8A0 /* enumeration.h in Headers */,
 				9AA8FDEE27BA729B008FF9AA /* cross.h in Headers */,
-				9A8F43852A23022C00097EE1 /* _point.h in Headers */,
+				9A8F43852A23022C00097EE1 /* point.h in Headers */,
 				9AD68EC7251A753A00C0EBD7 /* quaternions.h in Headers */,
 				9A08430C29366654009F7FF4 /* _.h in Headers */,
 				9AD68EC8251A753A00C0EBD7 /* _draw2d_impl.h in Headers */,
@@ -7342,7 +7348,7 @@
 				9AC0191627489446006BEBCC /* set_app_id.h in Headers */,
 				9A786253264B90B5003DF8A0 /* complex.h in Headers */,
 				9A15A6D7264B59EF0080670E /* manual_reset_event.h in Headers */,
-				9A8F43812A23022C00097EE1 /* _lines.h in Headers */,
+				9A8F43812A23022C00097EE1 /* lines.h in Headers */,
 				9AD68F6D251A753A00C0EBD7 /* bstring.h in Headers */,
 				9AA8F8E027BA7268008FF9AA /* pen.h in Headers */,
 				9ADD64CC26B5CB3800D11298 /* object_type_counter.h in Headers */,
@@ -7521,7 +7527,7 @@
 				9A359B3529A4ABCE007AAC52 /* _.h in Headers */,
 				9A0842B42935E694009F7FF4 /* aaa_string_to_string_map.h in Headers */,
 				9AD6900C251A753A00C0EBD7 /* _.h in Headers */,
-				9A8F43752A23022C00097EE1 /* _polygon.h in Headers */,
+				9A8F43752A23022C00097EE1 /* polygon.h in Headers */,
 				9A08430829366654009F7FF4 /* asynchronous.h in Headers */,
 				9AD69012251A753A00C0EBD7 /* x_encodings.h in Headers */,
 				9AD69013251A753A00C0EBD7 /* _.h in Headers */,
@@ -7579,7 +7585,7 @@
 				9A15A6E3264B59EF0080670E /* initial_single_lock.h in Headers */,
 				9AD6904B251A753A00C0EBD7 /* base64.h in Headers */,
 				9A0842282935DD6E009F7FF4 /* wd16_impl.h in Headers */,
-				9A8F43BB2A23022D00097EE1 /* _line.h in Headers */,
+				9A8F43BB2A23022D00097EE1 /* line.h in Headers */,
 				9A0843E629366DF5009F7FF4 /* string_file.h in Headers */,
 				9A0842C42935E695009F7FF4 /* aaa_raw_array_impl.h in Headers */,
 				9A8F43652A23022C00097EE1 /* _struct.h in Headers */,
@@ -7606,7 +7612,7 @@
 				9AD6905E251A753A00C0EBD7 /* status.h in Headers */,
 				9A787B8F264BB13F003DF8A0 /* timer_array.h in Headers */,
 				9A0842722935E694009F7FF4 /* aaa__array_base_impl.h in Headers */,
-				9A8F437D2A23022C00097EE1 /* _arc.h in Headers */,
+				9A8F437D2A23022C00097EE1 /* arc.h in Headers */,
 				9AD6905F251A753A00C0EBD7 /* exception.h in Headers */,
 				9A08442A29367B73009F7FF4 /* message.h in Headers */,
 				9A787DB2264C9742003DF8A0 /* extended_transport.h in Headers */,
@@ -7747,7 +7753,7 @@
 				9AD690D9251A753A00C0EBD7 /* cancel.h in Headers */,
 				9A787CBA264C04CC003DF8A0 /* international.h in Headers */,
 				9AD690DA251A753A00C0EBD7 /* _impl_prio.h in Headers */,
-				9A8F436F2A23022C00097EE1 /* _size.h in Headers */,
+				9A8F436F2A23022C00097EE1 /* size.h in Headers */,
 				9A750DAF282B367600C4861B /* aaa_topic.h in Headers */,
 				9A15A56C264B0ECB0080670E /* microsecond_sleep.h in Headers */,
 				9A7861C2264B9096003DF8A0 /* bits.h in Headers */,
@@ -7822,11 +7828,11 @@
 				9AD69124251A753A00C0EBD7 /* string_iterable.h in Headers */,
 				9A0842F92936661E009F7FF4 /* _.h in Headers */,
 				9A0842842935E694009F7FF4 /* aaa__point_array.h in Headers */,
-				9A8F43792A23022C00097EE1 /* _ellipse.h in Headers */,
+				9A8F43792A23022C00097EE1 /* ellipse.h in Headers */,
 				9AD69126251A753A00C0EBD7 /* bit_array.h in Headers */,
 				9A08438C29366BAD009F7FF4 /* __url_string.h in Headers */,
 				9A8F43512A23022C00097EE1 /* shape.h in Headers */,
-				9A8F434F2A23022C00097EE1 /* _rectangle.h in Headers */,
+				9A8F434F2A23022C00097EE1 /* rectangle.h in Headers */,
 				9A0842982935E694009F7FF4 /* _map_binary_stream.h in Headers */,
 				9AA8F92627BA7269008FF9AA /* _style.h in Headers */,
 				9AD69128251A753A00C0EBD7 /* static_string.h in Headers */,

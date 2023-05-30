@@ -3157,6 +3157,28 @@ namespace draw2d
    }
 
 
+   ::draw2d::region * graphics::defer_get_os_data(::pointer < ::geometry2d::region > & pregion)
+   {
+     
+      ::pointer < ::draw2d::region > pdraw2dregion = pregion;
+      
+      if(!pdraw2dregion)
+      {
+         
+         __construct(pdraw2dregion);
+         
+         pdraw2dregion->m_eregion = pregion->m_eregion;
+         
+         pdraw2dregion->m_pitem = pregion->m_pitem;
+         
+         pregion = pdraw2dregion;
+         
+      }
+
+      return pdraw2dregion;
+      
+   }
+
    void graphics::add_clipping_shapes(const shape_array < ::draw2d::region > & shapea)
    {
       

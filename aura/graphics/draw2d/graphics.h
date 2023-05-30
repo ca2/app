@@ -471,6 +471,10 @@ namespace draw2d
       virtual void intersect_clip(const ::rectangle_f64 & rectangle_f64);
       virtual void intersect_clip(const ::ellipse_f64 & ellipse);
       virtual void intersect_clip(const ::polygon_f64 & polygon);
+      
+
+      virtual ::draw2d::region * defer_get_os_data(::pointer < ::geometry2d::region > & pregion);
+
 
       // Maybe used by some 2d Graphics backends as group of helper
       // methods working together for some purpose

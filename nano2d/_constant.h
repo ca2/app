@@ -303,7 +303,7 @@ namespace nano2d
 
 	//struct point {
 	//	float x, y;
-	//	float Δx, Δy;
+	//	float greekdeltax, greekdeltay;
 	//	float len;
 	//	float dmx, dmy;
 	//	unsigned char flags;

@@ -1180,6 +1180,8 @@
 		9A750FF9282B936500C4861B /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A727264B6F2C0080670E /* node.cpp */; };
 		9A750FFA282B936500C4861B /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A730264B6F2C0080670E /* listener.cpp */; };
 		9A750FFB282B936500C4861B /* tree_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A729264B6F2C0080670E /* tree_item.cpp */; };
+		9A77243D2A2548D400B9A835 /* _operating_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A77243A2A2548D400B9A835 /* _operating_system.h */; };
+		9A77243E2A2548D400B9A835 /* _operating_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A77243A2A2548D400B9A835 /* _operating_system.h */; };
 		9A786197264B9096003DF8A0 /* enumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A786175264B908C003DF8A0 /* enumeration.h */; };
 		9A786198264B9096003DF8A0 /* enumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A786175264B908C003DF8A0 /* enumeration.h */; };
 		9A78619F264B9096003DF8A0 /* object_meta.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A786179264B908D003DF8A0 /* object_meta.h */; };
@@ -3451,6 +3453,8 @@
 		9A750D9A282B367300C4861B /* flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flag.h; sourceTree = "<group>"; };
 		9A750D9B282B367400C4861B /* earth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = earth.h; sourceTree = "<group>"; };
 		9A750D9D282B367500C4861B /* aaa_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_topic.h; sourceTree = "<group>"; };
+		9A77243A2A2548D400B9A835 /* _operating_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
+		9A7724502A25689D00B9A835 /* machine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = machine.xcconfig; path = ../../../../operating_system/machine.xcconfig; sourceTree = "<group>"; };
 		9A786175264B908C003DF8A0 /* enumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enumeration.h; sourceTree = "<group>"; };
 		9A786179264B908D003DF8A0 /* object_meta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object_meta.h; sourceTree = "<group>"; };
 		9A78617A264B908D003DF8A0 /* payload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = payload.cpp; sourceTree = "<group>"; };
@@ -4352,6 +4356,7 @@
 		9A68A40B25114352008DABD2 = {
 			isa = PBXGroup;
 			children = (
+				9A7724502A25689D00B9A835 /* machine.xcconfig */,
 				9AD8626529B1272C0054C9B3 /* idn.xcodeproj */,
 				9A68A4522511442E008DABD2 /* acme */,
 				9AEA11DE275FE2FD006437A3 /* acme_framework */,
@@ -5695,6 +5700,7 @@
 				9AA8FC9827BA7297008FF9AA /* _common.h */,
 				9AA8FB1F27BA7296008FF9AA /* _const_console.h */,
 				9AA8F99827BA7295008FF9AA /* _impl.h */,
+				9A77243A2A2548D400B9A835 /* _operating_system.h */,
 				9AA8FA7F27BA7296008FF9AA /* aaa_2.h */,
 				9AA8F99A27BA7295008FF9AA /* aaa_c2.h */,
 				9AA8FBE427BA7297008FF9AA /* aaa_node2.h */,
@@ -6217,6 +6223,7 @@
 				9A68AE8B25114435008DABD2 /* memory.h in Headers */,
 				9A68AEE625114435008DABD2 /* _.h in Headers */,
 				9AA8FDA527BA729B008FF9AA /* os.h in Headers */,
+				9A77243D2A2548D400B9A835 /* _operating_system.h in Headers */,
 				9A78620E264B90B4003DF8A0 /* count.h in Headers */,
 				9A0842032935DD5D009F7FF4 /* _.h in Headers */,
 				9A68AE2825114435008DABD2 /* _c.h in Headers */,
@@ -7674,6 +7681,7 @@
 				9A0841952935C1FD009F7FF4 /* _configuration.h in Headers */,
 				9AB812422A01F9CE0032F4C8 /* application.h in Headers */,
 				9A786209264B90B4003DF8A0 /* std_template.h in Headers */,
+				9A77243E2A2548D400B9A835 /* _operating_system.h in Headers */,
 				9AA8FE0027BA729C008FF9AA /* datetime_c.h in Headers */,
 				9AD69096251A753A00C0EBD7 /* parsing.h in Headers */,
 				9AD69099251A753A00C0EBD7 /* attrib_map.h in Headers */,
@@ -8737,6 +8745,7 @@
 /* Begin XCBuildConfiguration section */
 		9A68A41B25114352008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A7724502A25689D00B9A835 /* machine.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -8825,6 +8834,7 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/../operating_system/include",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -8838,6 +8848,7 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -8851,6 +8862,7 @@
 		};
 		9A68A41C25114352008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A7724502A25689D00B9A835 /* machine.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -8937,6 +8949,7 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/../operating_system/include",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -8950,6 +8963,7 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

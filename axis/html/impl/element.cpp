@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "element.h"
 #include "acme/primitive/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -100,39 +100,39 @@ namespace html
 
          __UNREFERENCED_PARAMETER(pdata);
 
-         float Δx;
+         float greekdeltax;
 
-         float Δy;
+         float greekdeltay;
 
          if (point.x() < m_box.left)
          {
 
-            Δx = m_box.left - point.x();
+            greekdeltax = m_box.left - point.x();
 
          }
          else if (point.x() > m_box.right)
          {
-            Δx = point.x() - m_box.right;
+            greekdeltax = point.x() - m_box.right;
          }
          else
          {
-            Δx = 0;
+            greekdeltax = 0;
          }
 
          if (point.y() < m_box.top)
          {
-            Δy = m_box.top - point.y();
+            greekdeltay = m_box.top - point.y();
          }
          else if (point.y() > m_box.bottom)
          {
-            Δy = point.y() - m_box.bottom;
+            greekdeltay = point.y() - m_box.bottom;
          }
          else
          {
-            Δy = 0;
+            greekdeltay = 0;
          }
 
-         return sqrt(Δx * Δx + Δy * Δy);
+         return sqrt(greekdeltax * greekdeltax + greekdeltay * greekdeltay);
       }
 
       void element::OnLButtonDown(::message::message* pmessage)

@@ -4309,13 +4309,13 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + w) < width()) ? w : width() - x;
-   i32 Δy = ((y + h) < height()) ? h : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + w) < width()) ? w : width() - x;
+   i32 greekdeltay = ((y + h) < height()) ? h : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to Fill return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
    {
 
       return;
@@ -4326,10 +4326,10 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B
 
    color32_t* dst = data() + (py * width()) + px;
 
-   while (Δy--)
+   while (greekdeltay--)
    {
 
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
 
          ((u8*)&dst[i])[0] = R;
@@ -4378,24 +4378,24 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, color32_t cr)
          h = -h;
       }
       py = (py >= 0) ? py : 0;
-      i32 Δx;
-      Δx = ((px + w) < width()) ? w : width() - px;
-      i32 Δy;
-      Δy = ((py + h) < height()) ? h : height() - py;
-      Δx = (px >= 0) ? Δx : Δx + x;
-      Δy = (py >= 0) ? Δy : Δy + y;
+      i32 greekdeltax;
+      greekdeltax = ((px + w) < width()) ? w : width() - px;
+      i32 greekdeltay;
+      greekdeltay = ((py + h) < height()) ? h : height() - py;
+      greekdeltax = (px >= 0) ? greekdeltax : greekdeltax + x;
+      greekdeltay = (py >= 0) ? greekdeltay : greekdeltay + y;
 
       // If Nothing to Fill return
-      if ((Δx <= 0) || (Δy <= 0))
+      if ((greekdeltax <= 0) || (greekdeltay <= 0))
          return;
 
       // Prepare buffer Address
       color32_t* dst = data() + (py * width()) + px;
 
-      while (Δy--)
+      while (greekdeltay--)
       {
 
-         for (i32 i = 0; i < Δx; i++)
+         for (i32 i = 0; i < greekdeltax; i++)
          {
 
             dst[i] = cr;
@@ -4451,22 +4451,22 @@ void image::fill_glass_rect(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + w) < width()) ? w : width() - x;
-   i32 Δy = ((y + h) < height()) ? h : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + w) < width()) ? w : width() - x;
+   i32 greekdeltay = ((y + h) < height()) ? h : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to FillGlass return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Address
    u8* dst = (u8*)data() + ((py * width()) + px) * 4;
 
    // Do FillGlass
-   while (Δy--)
+   while (greekdeltay--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          dst[0] = (byte)(((B - dst[0]) * A + (dst[0] << 8)) >> 8);
          dst[1] = (byte)(((G - dst[1]) * A + (dst[1] << 8)) >> 8);
@@ -4474,7 +4474,7 @@ void image::fill_glass_rect(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 
          dst += 4;
       }
 
-      dst += (width() - Δx) << 2;
+      dst += (width() - greekdeltax) << 2;
 
    }
 
@@ -4499,13 +4499,13 @@ void image::fill_stippled_glass_rect(const ::rectangle_i32& rectangle, i32 R, i3
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + w) < width()) ? w : width() - x;
-   i32 Δy = ((y + h) < height()) ? h : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + w) < width()) ? w : width() - x;
+   i32 greekdeltay = ((y + h) < height()) ? h : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to FillStippledGlass return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Address
@@ -4513,9 +4513,9 @@ void image::fill_stippled_glass_rect(const ::rectangle_i32& rectangle, i32 R, i3
    color32_t color = rgb(B, G, R);
 
    // Do FillStippledGlass
-   for (i32 j = 0; j < Δy; j++)
+   for (i32 j = 0; j < greekdeltay; j++)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          dst[i] = ((i + j) & 0x1) ? dst[i] : color;
       }
@@ -4532,13 +4532,13 @@ void image::BlendRect(::image* pimage, i32 x, i32 y, i32 A)
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   i32 greekdeltay = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to Blend return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Addresses
@@ -4546,9 +4546,9 @@ void image::BlendRect(::image* pimage, i32 x, i32 y, i32 A)
    u8* dst = (u8*)data() + ((py * width()) + px) * 4;
 
    // Do Blend
-   while (Δy--)
+   while (greekdeltay--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          dst[0] = (byte)(((src[0] - dst[0]) * A + (dst[0] << 8)) >> 8);
          dst[1] = (byte)(((src[1] - dst[1]) * A + (dst[1] << 8)) >> 8);
@@ -4556,8 +4556,8 @@ void image::BlendRect(::image* pimage, i32 x, i32 y, i32 A)
          dst += 4;
          src += 4;
       }
-      dst += (width() - Δx) << 2;
-      src += (pimage->width() - Δx) << 2;
+      dst += (width() - greekdeltax) << 2;
+      src += (pimage->width() - greekdeltax) << 2;
    }
 
    //return true;
@@ -4570,13 +4570,13 @@ void image::DarkenRect(::image* pimage, i32 x, i32 y)
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   i32 greekdeltay = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to Darken return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Addresses
@@ -4584,9 +4584,9 @@ void image::DarkenRect(::image* pimage, i32 x, i32 y)
    u8* dst = (u8*)data() + ((py * width()) + px) * 4;
 
    // Do Darken
-   while (Δy--)
+   while (greekdeltay--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          dst[0] = (byte)((src[0] < dst[0]) ? src[0] : dst[0]);
          dst[1] = (byte)((src[1] < dst[1]) ? src[1] : dst[1]);
@@ -4594,8 +4594,8 @@ void image::DarkenRect(::image* pimage, i32 x, i32 y)
          dst += 4;
          src += 4;
       }
-      dst += (width() - Δx) << 2;
-      src += (pimage->width() - Δx) << 2;
+      dst += (width() - greekdeltax) << 2;
+      src += (pimage->width() - greekdeltax) << 2;
    }
 
    //return true;
@@ -4608,13 +4608,13 @@ void image::DifferenceRect(::image* pimage, i32 x, i32 y)
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   i32 greekdeltay = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to Difference return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Addresses
@@ -4622,9 +4622,9 @@ void image::DifferenceRect(::image* pimage, i32 x, i32 y)
    u8* dst = (u8*)data() + ((py * width()) + px) * 4;
 
    // Do Difference
-   while (Δy--)
+   while (greekdeltay--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          i32 Difference;
          Difference = src[0] - dst[0];
@@ -4636,8 +4636,8 @@ void image::DifferenceRect(::image* pimage, i32 x, i32 y)
          dst += 4;
          src += 4;
       }
-      dst += (width() - Δx) << 2;
-      src += (pimage->width() - Δx) << 2;
+      dst += (width() - greekdeltax) << 2;
+      src += (pimage->width() - greekdeltax) << 2;
    }
 
    //return true;
@@ -4650,13 +4650,13 @@ void image::LightenRect(::image* pimage, i32 x, i32 y)
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   i32 greekdeltay = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to Lighten return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Addresses
@@ -4664,9 +4664,9 @@ void image::LightenRect(::image* pimage, i32 x, i32 y)
    u8* dst = (u8*)data() + ((py * width()) + px) * 4;
 
    // Do Lighten
-   while (Δy--)
+   while (greekdeltay--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          dst[0] = (byte)((src[0] > dst[0]) ? src[0] : dst[0]);
          dst[1] = (byte)((src[1] > dst[1]) ? src[1] : dst[1]);
@@ -4674,8 +4674,8 @@ void image::LightenRect(::image* pimage, i32 x, i32 y)
          dst += 4;
          src += 4;
       }
-      dst += (width() - Δx) << 2;
-      src += (pimage->width() - Δx) << 2;
+      dst += (width() - greekdeltax) << 2;
+      src += (pimage->width() - greekdeltax) << 2;
    }
 
    return;
@@ -4688,13 +4688,13 @@ void image::MultiplyRect(::image* pimage, i32 x, i32 y)
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   i32 greekdeltay = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to Multiply return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Addresses
@@ -4702,9 +4702,9 @@ void image::MultiplyRect(::image* pimage, i32 x, i32 y)
    u8* dst = (u8*)data() + ((py * width()) + px) * 4;
 
    // Do Multiply
-   while (Δy--)
+   while (greekdeltay--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          dst[0] = (byte)(((src[0]) * (dst[0])) >> 8);
          dst[1] = (byte)(((src[1]) * (dst[1])) >> 8);
@@ -4712,8 +4712,8 @@ void image::MultiplyRect(::image* pimage, i32 x, i32 y)
          dst += 4;
          src += 4;
       }
-      dst += (width() - Δx) << 2;
-      src += (pimage->width() - Δx) << 2;
+      dst += (width() - greekdeltax) << 2;
+      src += (pimage->width() - greekdeltax) << 2;
    }
 
    //return true;
@@ -4726,13 +4726,13 @@ void image::ScreenRect(::image* pimage, i32 x, i32 y)
    // Clip Rect
    i32 px = (x >= 0) ? x : 0;
    i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
-   Δx = (x >= 0) ? Δx : Δx + x;
-   Δy = (y >= 0) ? Δy : Δy + y;
+   i32 greekdeltax = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   i32 greekdeltay = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   greekdeltax = (x >= 0) ? greekdeltax : greekdeltax + x;
+   greekdeltay = (y >= 0) ? greekdeltay : greekdeltay + y;
 
    // If Nothing to Screen return
-   if ((Δx <= 0) || (Δy <= 0))
+   if ((greekdeltax <= 0) || (greekdeltay <= 0))
       return;
 
    // Prepare buffer Addresses
@@ -4740,9 +4740,9 @@ void image::ScreenRect(::image* pimage, i32 x, i32 y)
    u8* dst = (u8*)data() + ((py * width()) + px) * 4;
 
    // Do Screen
-   while (Δy--)
+   while (greekdeltay--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (i32 i = 0; i < greekdeltax; i++)
       {
          dst[0] = (byte)(255 - (((255 - src[0]) * (255 - dst[0])) >> 8));
          dst[1] = (byte)(255 - (((255 - src[1]) * (255 - dst[1])) >> 8));
@@ -4750,8 +4750,8 @@ void image::ScreenRect(::image* pimage, i32 x, i32 y)
          dst += 4;
          src += 4;
       }
-      dst += (width() - Δx) << 2;
-      src += (pimage->width() - Δx) << 2;
+      dst += (width() - greekdeltax) << 2;
+      src += (pimage->width() - greekdeltax) << 2;
    }
 
    //return true;
@@ -4765,19 +4765,19 @@ void image::ScreenRect(::image* pimage, i32 x, i32 y)
 
 /*void image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
 {
-i32 Δx, Δy, k1, k2, d, x, y;
+i32 greekdeltax, greekdeltay, k1, k2, d, x, y;
 color32_t color=rgb ( B, G, R );
 
-Δx=x2-x1;
-Δy=y2-y1;
-d=(Δy<<1)-Δx;
-k1=Δy<<1;
-k2=(Δy-Δx)<<1;
+greekdeltax=x2-x1;
+greekdeltay=y2-y1;
+d=(greekdeltay<<1)-greekdeltax;
+k1=greekdeltay<<1;
+k2=(greekdeltay-greekdeltax)<<1;
 x=x1;
 y=y1;
 
 data()[y*width()+x]=color;
-while (x<Δx)
+while (x<greekdeltax)
 {
 if (d<=0)
 {
@@ -4834,15 +4834,15 @@ void image::horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A, i32 x1, i32 x2)
 
 void image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 {
-   i32 d, x, y, aura, ay, sx, sy, Δx, Δy;
+   i32 d, x, y, aura, ay, sx, sy, greekdeltax, greekdeltay;
    color32_t color = rgb(B, G, R);
 
-   Δx = x2 - x1;
-   aura = abs(Δx) << 1;
-   sx = (Δx < 0) ? -1 : 1;
-   Δy = y2 - y1;
-   ay = abs(Δy) << 1;
-   sy = (Δy < 0) ? -1 : 1;
+   greekdeltax = x2 - x1;
+   aura = abs(greekdeltax) << 1;
+   sx = (greekdeltax < 0) ? -1 : 1;
+   greekdeltay = y2 - y1;
+   ay = abs(greekdeltay) << 1;
+   sy = (greekdeltay < 0) ? -1 : 1;
    x = x1;
    y = y1;
 
@@ -4884,16 +4884,16 @@ void image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 
 void image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A)
 {
-   i32 d, x, y, aura, ay, sx, sy, Δx, Δy;
+   i32 d, x, y, aura, ay, sx, sy, greekdeltax, greekdeltay;
    //      color32_t color=rgb ( B, G, R );
    u8* dst = (u8*)data();
 
-   Δx = x2 - x1;
-   aura = abs(Δx) << 1;
-   sx = (Δx < 0) ? -1 : 1;
-   Δy = y2 - y1;
-   ay = abs(Δy) << 1;
-   sy = (Δy < 0) ? -1 : 1;
+   greekdeltax = x2 - x1;
+   aura = abs(greekdeltax) << 1;
+   sx = (greekdeltax < 0) ? -1 : 1;
+   greekdeltay = y2 - y1;
+   ay = abs(greekdeltay) << 1;
+   sy = (greekdeltay < 0) ? -1 : 1;
    x = x1;
    y = y1;
 
@@ -5086,7 +5086,7 @@ void image::RadialFill(byte alpha, byte red, byte green, byte blue, i32 xCenter,
    i32 size=m_Size.(m_iScan / sizeof(color32_t))*m_Size.height();
    double iLevel;
 
-   i32 Δx, Δy;
+   i32 greekdeltax, greekdeltay;
    i32 dx0, dy0;
    i32 dx1, dy1;
    i32 dx2, dy2;
@@ -5129,9 +5129,9 @@ void image::RadialFill(byte alpha, byte red, byte green, byte blue, i32 xCenter,
    {
    for(x = xL; x <= xU; x++)
    {
-   Δx = abs(x - xCenter);
-   Δy = abs(y - yCenter);
-   isqrt((Δx * Δx) + (Δy * Δy), &dr, &dq);
+   greekdeltax = abs(x - xCenter);
+   greekdeltay = abs(y - yCenter);
+   isqrt((greekdeltax * greekdeltax) + (greekdeltay * greekdeltay), &dr, &dq);
    if(dr < iRadius)
    {
    iLevel = 1.0 - dr * 1.0 / iRadius;
@@ -5196,7 +5196,7 @@ void image::RadialFill(byte alpha, byte red, byte green, byte blue, i32 xCenter,
       u32 dwAdd = (((m_iScan / sizeof(color32_t)) - 1 - xU) + xL) * 4;
       //         i64 size = area();
 
-      i32 Δx, Δy;
+      i32 greekdeltax, greekdeltay;
 
       // Top Left
 
@@ -5204,9 +5204,9 @@ void image::RadialFill(byte alpha, byte red, byte green, byte blue, i32 xCenter,
       {
          for (x = xL; x <= xU; x++)
          {
-            Δx = abs(x - xCenter);
-            Δy = abs(y - yCenter);
-            b = pb[Δx + Δy * iRadius];
+            greekdeltax = abs(x - xCenter);
+            greekdeltay = abs(y - yCenter);
+            b = pb[greekdeltax + greekdeltay * iRadius];
 
             dst[0] = byte(blue * b / 255);
             dst[1] = byte(green * b / 255);
@@ -5258,7 +5258,7 @@ void image::RadialFill(
    i32 size=m_Size.(m_iScan / sizeof(color32_t))*m_Size.height();
    double iLevel;
 
-   i32 Δx, Δy;
+   i32 greekdeltax, greekdeltay;
    i32 dx0, dy0;
    i32 dx1, dy1;
    i32 dx2, dy2;
@@ -5301,9 +5301,9 @@ void image::RadialFill(
    {
    for(x = xL; x <= xU; x++)
    {
-   Δx = abs(x - xCenter);
-   Δy = abs(y - yCenter);
-   isqrt((Δx * Δx) + (Δy * Δy), &dr, &dq);
+   greekdeltax = abs(x - xCenter);
+   greekdeltay = abs(y - yCenter);
+   isqrt((greekdeltax * greekdeltax) + (greekdeltay * greekdeltay), &dr, &dq);
    if(dr < iRadius)
    {
    iLevel = 1.0 - dr * 1.0 / iRadius;
@@ -5373,7 +5373,7 @@ void image::RadialFill(
       u32 dwAdd = (((m_iScan / sizeof(color32_t)) - xU) + xL) * 4;
       //         i64 size = area();
 
-      double Δx, Δy;
+      double greekdeltax, greekdeltay;
 
       double dRadius = 255.0 / (double)iRadius;
 
@@ -5390,9 +5390,9 @@ void image::RadialFill(
       {
          for (x = xL; x < xU; x++)
          {
-            Δx = abs(x - xCenter);
-            Δy = abs(y - yCenter);
-            b = (int)(sqrt((Δx * Δx) + (Δy * Δy)) * dRadius);
+            greekdeltax = abs(x - xCenter);
+            greekdeltay = abs(y - yCenter);
+            b = (int)(sqrt((greekdeltax * greekdeltax) + (greekdeltay * greekdeltay)) * dRadius);
 
             if (b > 255)
             {
@@ -7180,7 +7180,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
       //}
 
-      int Δx;
+      int greekdeltax;
 
       int x = 0;
 
@@ -7192,13 +7192,13 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
       xPrevious = 0;
       cxPrevious = cxSource;
 
-      for (Δx = (i32)cx; Δx > 0; x += Δx, Δx /= 2)
+      for (greekdeltax = (i32)cx; greekdeltax > 0; x += greekdeltax, greekdeltax /= 2)
       {
 
          yPrevious = 0;
          cyPrevious = pimage->height();
 
-         for (int y = 0, Δy = (i32)cy; Δy > 0; y += Δy, Δy /= 2)
+         for (int y = 0, greekdeltay = (i32)cy; greekdeltay > 0; y += greekdeltay, greekdeltay /= 2)
          {
 
             if (::parallelization::get_priority() == ::e_priority_idle)
@@ -7210,8 +7210,8 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
                scale.Scale(
                   &colorref()[x + y * m_iScan / sizeof(color32_t)],
-                  Δx,
-                  Δy,
+                  greekdeltax,
+                  greekdeltay,
                   m_iScan,
                   &pimage->colorref()[xPrevious + yPrevious * pimage->m_iScan / sizeof(color32_t)],
                   cxPrevious,
@@ -7220,7 +7220,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
                );
 
                yPrevious = y;
-               cyPrevious = Δy;
+               cyPrevious = greekdeltay;
                pimage = this;
 
             }
@@ -7229,7 +7229,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
                image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
 
-               auto rectangle = rectangle_f64_dimension(x, y, Δx, Δy);
+               auto rectangle = rectangle_f64_dimension(x, y, greekdeltax, greekdeltay);
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -7242,7 +7242,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
          }
 
          xPrevious = x;
-         cxPrevious = Δx;
+         cxPrevious = greekdeltax;
 
       }
 
@@ -8927,11 +8927,11 @@ void image::set_mapped()
 void image::gradient_fill(::color32_t clr1, ::color32_t clr2, const point_i32& point1, const point_i32& point2)
 {
 
-   double Δx = point2.x() - point1.x();
+   double greekdeltax = point2.x() - point1.x();
 
-   double Δy = point1.y() - point2.y();
+   double greekdeltay = point1.y() - point2.y();
 
-   if (Δx == 0.0 && Δy == 0.0)
+   if (greekdeltax == 0.0 && greekdeltay == 0.0)
    {
 
       fill(
@@ -8941,13 +8941,13 @@ void image::gradient_fill(::color32_t clr1, ::color32_t clr2, const point_i32& p
          byte_clip(colorref_get_b_value(clr1) * 0.5 + colorref_get_b_value(clr2) * 0.5));
 
    }
-   else if (Δx == 0.0)
+   else if (greekdeltax == 0.0)
    {
 
       gradient_horizontal_fill(clr1, clr2, point1.y(), point2.y());
 
    }
-   else if (Δy == 0.0)
+   else if (greekdeltay == 0.0)
    {
 
       gradient_vertical_fill(clr1, clr2, point1.x(), point2.x());
@@ -8974,13 +8974,13 @@ void image::gradient_fill(::color32_t clr1, ::color32_t clr2, const point_i32& p
 
       int dim = maximum(width(), height());
 
-      double angle = atan2(Δy, Δx);
+      double angle = atan2(greekdeltay, greekdeltax);
 
       ::image_pointer pimage;
 
       auto pmathematics = ::mathematics::mathematics();
 
-      if (fabs(Δx) > fabs(Δy))
+      if (fabs(greekdeltax) > fabs(greekdeltay))
       {
 
          double sin = ::sin(angle);
@@ -9323,11 +9323,11 @@ void image::create_circle(::image* pimage, int diameter)
       for (int x = 0; x < s.cx(); x++)
       {
 
-         double Δx = x;
+         double greekdeltax = x;
 
-         double Δy = y;
+         double greekdeltay = y;
 
-         double distance = sqrt((Δx - radius) * (Δx - radius) + (Δy - radius) * (Δy - radius));
+         double distance = sqrt((greekdeltax - radius) * (greekdeltax - radius) + (greekdeltay - radius) * (greekdeltay - radius));
 
          crA = (int)((rmin - distance) * 255.0 / dBorder);
 
@@ -9745,7 +9745,7 @@ void image::defer_update_image()
 #if 0
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 greekdeltax, i32 greekdeltay, void* pftbitmap, int xParam, int yParam)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -9767,7 +9767,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 
          i32 a = bitmap->buffer[q * bitmap->width + point_i32];
 
-         *((color32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a, 0, 0, 0);
+         *((color32_t*)&((u8*)m_p->data())[(greekdeltay + j) * m_p->m_iScan + (greekdeltax + i) * 4]) = argb(a, 0, 0, 0);
 
       }
    }
@@ -9775,7 +9775,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 }
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam, byte aParam, byte rectangle, byte g, byte b)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 greekdeltax, i32 greekdeltay, void* pftbitmap, int xParam, int yParam, byte aParam, byte rectangle, byte g, byte b)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -9800,13 +9800,13 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
          if (a > 0)
          {
 
-            *((color32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
+            *((color32_t*)&((u8*)m_p->data())[(greekdeltay + j) * m_p->m_iScan + (greekdeltax + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
 
          }
          else
          {
 
-            *((color32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = 0;
+            *((color32_t*)&((u8*)m_p->data())[(greekdeltay + j) * m_p->m_iScan + (greekdeltax + i) * 4]) = 0;
 
          }
 
@@ -9828,7 +9828,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 #if 0
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 greekdeltax, i32 greekdeltay, void* pftbitmap, int xParam, int yParam)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -9850,7 +9850,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 
          i32 a = bitmap->buffer[q * bitmap->width + point_i32];
 
-         *((color32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a, 0, 0, 0);
+         *((color32_t*)&((u8*)m_p->data())[(greekdeltay + j) * m_p->m_iScan + (greekdeltax + i) * 4]) = argb(a, 0, 0, 0);
 
       }
    }
@@ -9858,7 +9858,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 }
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam, byte aParam, byte rectangle, byte g, byte b)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 greekdeltax, i32 greekdeltay, void* pftbitmap, int xParam, int yParam, byte aParam, byte rectangle, byte g, byte b)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -9883,13 +9883,13 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
          if (a > 0)
          {
 
-            *((color32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
+            *((color32_t*)&((u8*)m_p->data())[(greekdeltay + j) * m_p->m_iScan + (greekdeltax + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
 
          }
          else
          {
 
-            *((color32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = 0;
+            *((color32_t*)&((u8*)m_p->data())[(greekdeltay + j) * m_p->m_iScan + (greekdeltax + i) * 4]) = 0;
 
          }
 

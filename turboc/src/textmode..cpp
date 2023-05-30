@@ -404,7 +404,7 @@ textmode (int newmode)
 //      // The following resizes the physical console, but it only works on
 //      // xterm (not on KDE Konsole, for example).  If xterm is not being 
 //      // run it causes a fairly chunky delay until it times out.
-//      sprintf (s, "xtermset -geometry %Δx%d", Columns, Rows);
+//      sprintf (s, "xtermset -geometry %greekdeltax%d", Columns, Rows);
 //      system (s);
 //    }
 //#else // OBSOLETE_TERM_RESIZE

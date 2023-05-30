@@ -1,4 +1,4 @@
-﻿// Super Fast Blur v1.1
+// Super Fast Blur v1.1
 // by Mario Klingemann <http://incubator.quasimondo.com>
 //
 // Tip: Multiple invovations of this filter with a small
@@ -652,10 +652,10 @@ auto tick2 = ::time::now();
 
 
    inline void boxBlurNEON(u32* sourcePixel,u32* destinationPixel,
-                           unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                           unsigned greekdeltax,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      float32x4_t deltaX = vdupq_n_f32(1.0 / Δx);
+      float32x4_t deltaX = vdupq_n_f32(1.0 / greekdeltax);
 
       int pixelLine = strideLine / 4;
 
@@ -882,10 +882,10 @@ auto tick2 = ::time::now();
 #if VECTOR3_SSE
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
-                          unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                          unsigned greekdeltax,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      vector4 deltaX = vector4(1.0f / Δx,1.0f / Δx,1.0f / Δx,1.0f / Δx);
+      vector4 deltaX = vector4(1.0f / greekdeltax,1.0f / greekdeltax,1.0f / greekdeltax,1.0f / greekdeltax);
 
       int pixelLine = strideLine / 4;
 

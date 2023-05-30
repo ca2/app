@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -1786,9 +1786,89 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 
 
+template < primitive_number NUMBER >
+class point_type;
+
+template < primitive_number NUMBER >
+class size_type;
+
+template < primitive_number NUMBER >
+class line_base;
+
+template < primitive_number NUMBER >
+class rectangle_type;
+
+template < primitive_number NUMBER >
+class ellipse_base;
+
+template < primitive_number NUMBER >
+class arc_type;
+
+template < primitive_number NUMBER >
+class point_array_base;
+
+
+template < primitive_number NUMBER >
+class polygon_base;
+
+
+
+using point_i32 = point_type < ::i32 >;
+using point_i64 = point_type < ::i64 >;
+using point_f32 = point_type < ::f32 >;
+using point_f64 = point_type < ::f64 >;
 
 
 
 
+
+using size_i32 = size_type < ::i32 >;
+using size_i64 = size_type < ::i64 >;
+using size_f32 = size_type < ::f32 >;
+using size_f64 = size_type < ::f64 >;
+
+
+
+
+
+using rectangle_i32 = rectangle_type < ::i32 >;
+using rectangle_i64 = rectangle_type < ::i64 >;
+using rectangle_f32 = rectangle_type < ::f32 >;
+using rectangle_f64 = rectangle_type < ::f64 >;
+
+
+using ellipse_i32 = ellipse_base < ::i32 >;
+using ellipse_i64 = ellipse_base < ::i64 >;
+using ellipse_f32 = ellipse_base < ::f32 >;
+using ellipse_f64 = ellipse_base < ::f64 >;
+
+
+
+using line_i32 = line_base < ::i32 >;
+using line_i64 = line_base < ::i64 >;
+using line_f32 = line_base < ::f32 >;
+using line_f64 = line_base < ::f64 >;
+
+
+
+using arc_i32 = arc_type < ::i32 >;
+using arc_i64 = arc_type < ::i64 >;
+using arc_f32 = arc_type < ::f32 >;
+using arc_f64 = arc_type < ::f64 >;
+
+
+
+using point_i32_array = point_array_base < ::i32 >;
+using point_i64_array = point_array_base < ::i64 >;
+using point_f32_array = point_array_base < ::f32 >;
+using point_f64_array = point_array_base < ::f64 >;
+
+
+
+
+using polygon_i32 = polygon_base < ::i32 >;
+using polygon_i64 = polygon_base < ::i64 >;
+using polygon_f32 = polygon_base < ::f32 >;
+using polygon_f64 = polygon_base < ::f64 >;
 
 

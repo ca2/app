@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "water_routine.h"
 
 
@@ -493,7 +493,7 @@ namespace draw2d
       
       __UNREFERENCED_PARAMETER(page);
       //  i32 ox, oy;
-      i32 Δx, Δy;
+      i32 greekdeltax, greekdeltay;
       i32 x, y;
       u32 ca;
 
@@ -505,23 +505,23 @@ namespace draw2d
       {
          for (x = offset+m_iWidth-2; offset < x; offset++)
          {
-            Δx = ptr[offset] - ptr[offset+1];
-            Δy = ptr[offset] - ptr[offset+m_iWidth];
+            greekdeltax = ptr[offset] - ptr[offset+1];
+            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
 
-            //Shading = Δx;?
+            //Shading = greekdeltax;?
             // Water draw method?
-            //      ca = BkGdImage[offset + WATERWID*(Δy>>3) + (Δx>>3)];
-            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)];
+            //      ca = BkGdImage[offset + WATERWID*(greekdeltay>>3) + (greekdeltax>>3)];
+            ca = pSrcImage[offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3)];
 
             // If anyone knows a better/faster way to do this, please tell me...
             //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
             pTargetImage[offset] = ca;
 
             offset++;
-            Δx = ptr[offset] - ptr[offset+1];
-            Δy = ptr[offset] - ptr[offset+m_iWidth];
-            //    ca = BkGdImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)];
-            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)];
+            greekdeltax = ptr[offset] - ptr[offset+1];
+            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
+            //    ca = BkGdImage[offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3)];
+            ca = pSrcImage[offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3)];
             pTargetImage[offset] = ca;
             //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
 
@@ -535,7 +535,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(page);
       __UNREFERENCED_PARAMETER(LightModifier);
       //  i32 ox, oy;
-      i32 Δx, Δy;
+      i32 greekdeltax, greekdeltay;
       i32 x, y;
       u32 ca;
 
@@ -550,29 +550,29 @@ namespace draw2d
       {
          for (x = offset+m_iWidth-2; offset < x; offset++)
          {
-            Δx = ptr[offset] - ptr[offset+1];
-            Δy = ptr[offset] - ptr[offset+m_iWidth];
+            greekdeltax = ptr[offset] - ptr[offset+1];
+            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
 
-            lIndex = offset + m_iWidth*(Δy>>3) + (Δx>>3);
+            lIndex = offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3);
             if(lIndex < lBreak && lIndex > 0)
             {
-               ca = pSrcImage[lIndex];// - (Δx>>LightModifier);
-               // Now we shift it by the Δx component...
+               ca = pSrcImage[lIndex];// - (greekdeltax>>LightModifier);
+               // Now we shift it by the greekdeltax component...
                //
-               ca = GetShiftedColor(ca,Δx);
+               ca = GetShiftedColor(ca,greekdeltax);
 
                pTargetImage[offset] = ca;
             }
 
             offset++;
-            Δx = ptr[offset] - ptr[offset+1];
-            Δy = ptr[offset] - ptr[offset+m_iWidth];
+            greekdeltax = ptr[offset] - ptr[offset+1];
+            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
 
-            lIndex = offset + m_iWidth*(Δy>>3) + (Δx>>3);
+            lIndex = offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3);
             if(lIndex < lBreak && lIndex > 0)
             {
-               ca = pSrcImage[lIndex];// - (Δx>>LightModifier);
-               ca = GetShiftedColor(ca, Δx);
+               ca = pSrcImage[lIndex];// - (greekdeltax>>LightModifier);
+               ca = GetShiftedColor(ca, greekdeltax);
                //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
                pTargetImage[offset] = ca;
             }

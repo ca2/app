@@ -4282,14 +4282,14 @@ return true;
    }
 
 
-   //int interaction_impl::ScrollWindowEx(int Δx,int Δy,const ::rectangle_i32 & rectangleScroll,const ::rectangle_i32 & rectangleClip,::draw2d::region* prgnUpdate,::rectangle_i32 * lpRectUpdate,::u32 flags)
+   //int interaction_impl::ScrollWindowEx(int greekdeltax,int greekdeltay,const ::rectangle_i32 & rectangleScroll,const ::rectangle_i32 & rectangleClip,::draw2d::region* prgnUpdate,::rectangle_i32 * lpRectUpdate,::u32 flags)
    //{
 
    //   throw ::exception(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //
-   //   //return ::ScrollWindowEx(get_handle(), Δx, Δy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_os_data(), lpRectUpdate, flags);
+   //   //return ::ScrollWindowEx(get_handle(), greekdeltax, greekdeltay, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_os_data(), lpRectUpdate, flags);
 
    //}
 
@@ -6130,13 +6130,13 @@ namespace universal_windows
 
          //      point_f64 pointNow(pmouse->m_point);
 
-         //      double Δx = pointNow.x() - m_pointLastMouseMove.x();
+         //      double greekdeltax = pointNow.x() - m_pointLastMouseMove.x();
 
-         //      double Δy = pointNow.y() - m_pointLastMouseMove.y();
+         //      double greekdeltay = pointNow.y() - m_pointLastMouseMove.y();
 
          //      m_pointLastMouseMove = pointNow;
 
-         //      double dDistanceFromLast = sqrt(Δx * Δx + Δy * Δy);
+         //      double dDistanceFromLast = sqrt(greekdeltax * greekdeltax + greekdeltay * greekdeltay);
 
          //      m_dAccumulatedMouseMoveDistance += dDistanceFromLast;
 

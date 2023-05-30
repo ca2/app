@@ -1,8 +1,8 @@
-﻿#pragma once
+#pragma once
 
 
-template < primitive_point POINT >
-inline bool shape_contains(const ::arc & arc, const POINT & point)
+template < primitive_number NUMBER, primitive_point POINT >
+inline bool shape_contains(const ::arc_type < NUMBER > & arc, const POINT & point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
@@ -21,8 +21,8 @@ inline bool shape_contains(const ::arc & arc, const POINT & point)
 }
 
 
-template < primitive_point POINT >
-inline bool shape_contains(const line & line, const POINT & point)
+template < primitive_number NUMBER, primitive_point POINT >
+inline bool shape_contains(const line_base < NUMBER > & line, const POINT & point)
 {
 
    return false;

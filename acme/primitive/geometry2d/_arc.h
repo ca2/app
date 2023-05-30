@@ -6,15 +6,17 @@
 #include "_size.h"
 
 
-class CLASS_DECL_ACME arc
+template < primitive_number NUMBER >
+class arc_type
 {
 public:
 
+   using UNIT_TYPE = NUMBER;
 
-   point_f64      m_pointCenter;
-   ::size_f64     m_sizeRadius;
-   point_f64      m_pointBegin;
-   point_f64      m_pointEnd;
+   ::point_type < UNIT_TYPE >      m_pointCenter;
+   ::size_type < UNIT_TYPE>     m_sizeRadius;
+   ::point_type < UNIT_TYPE >      m_pointBegin;
+   ::point_type < UNIT_TYPE >      m_pointEnd;
    angle          m_angleBeg;
    angle          m_angleExt;
    angle          m_angleEnd2;

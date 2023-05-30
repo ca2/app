@@ -284,22 +284,22 @@ struct vector_type
    constexpr COORDINATE& operator[](size_t i) { return m_coordinatea[i]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
-   const COORDINATE& a() const { return m_coordinatea[0]; }
+   constexpr const COORDINATE& a() const { return m_coordinatea[0]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
    COORDINATE& a() { return m_coordinatea[0]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
-   const COORDINATE& b() const { return m_coordinatea[1]; }
+   constexpr const COORDINATE& b() const { return m_coordinatea[1]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
    COORDINATE& b() { return m_coordinatea[1]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
-   const COORDINATE& c() const { return m_coordinatea[2]; }
+   constexpr const COORDINATE& c() const { return m_coordinatea[2]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
    COORDINATE& c() { return m_coordinatea[2]; }
 
    template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
-   const COORDINATE& d() const { return m_coordinatea[3]; }
+   constexpr const COORDINATE& d() const { return m_coordinatea[3]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
    COORDINATE& d() { return m_coordinatea[3]; }
 

@@ -6,24 +6,24 @@
 #include "point_array.h"
 
 
-template < typename POINT_TYPE >
+template < primitive_number NUMBER >
 class polygon_base :
-   virtual public point_array_base < POINT_TYPE >
+   virtual public point_array_base < NUMBER >
 {
 public:
 
 
-   using POLYGON_BASE_TYPE = point_array_base < POINT_TYPE >;
-   using POINT_BASE_TYPE = POINT_TYPE;
-   using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
-   using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
-   using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
+   //using POLYGON_BASE_TYPE = point_array_base < NUMBER >;
+   //using POINT_BASE_TYPE = POINT_TYPE;
+   using UNIT_TYPE = NUMBER;
+   //using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
+   //using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
    //using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
-   bool                    m_bDirty;
-   bool                    m_bDirtyBoundingRect;
-   RECTANGLE_TYPE          m_rectangleBounding;
+   bool                          m_bDirty;
+   bool                          m_bDirtyBoundingRect;
+   ::rectangle_type < NUMBER >   m_rectangleBounding;
 
 
    polygon_base();
@@ -31,7 +31,7 @@ public:
    polygon_base(polygon_base&& polygon_i32);
    ~polygon_base();
 
-   void set_rect(const RECTANGLE_TYPE & rectangle);
+   void set_rect(const ::rectangle_type < NUMBER > & rectangle);
 
 
    void check_dirty()
@@ -46,7 +46,7 @@ public:
 
    }
 
-   const RECTANGLE_TYPE & bounding_rect() const;
+   const ::rectangle_type < NUMBER > & bounding_rect() const;
 
    bool overlaps(const polygon_base & polygon_i32) const;
 
@@ -55,7 +55,7 @@ public:
    // sort clockwise
    void sort();
 
-   bool bounding_rectangle_contains(const POINT_TYPE & point) const;
+   bool bounding_rectangle_contains(const ::point_type < NUMBER > & point) const;
 
    polygon_base& operator = (const polygon_base& polygon_i32);
    polygon_base& operator = (polygon_base&& polygon_i32);
@@ -63,16 +63,16 @@ public:
 
 };
 
-template < typename POINT_TYPE >
-inline polygon_base < POINT_TYPE >::polygon_base(const polygon_base& polygon_i32)
+template < primitive_number NUMBER >
+inline polygon_base < NUMBER >::polygon_base(const polygon_base& polygon_i32)
 {
    operator = (polygon_i32);
 
 }
 
-template < typename POINT_TYPE >
-inline polygon_base < POINT_TYPE >::polygon_base(polygon_base&& polygon_i32) :
-   point_array_base < POINT_TYPE >(::transfer(polygon_i32))
+template < primitive_number NUMBER >
+inline polygon_base < NUMBER >::polygon_base(polygon_base&& polygon_i32) :
+   point_array_base < NUMBER >(::transfer(polygon_i32))
 {
    
    m_bDirty = polygon_i32.m_bDirty;
@@ -81,8 +81,8 @@ inline polygon_base < POINT_TYPE >::polygon_base(polygon_base&& polygon_i32) :
 
 }
 
-template < typename POINT_TYPE >
-inline bool polygon_base < POINT_TYPE >::bounding_rectangle_contains(const POINT_TYPE & point) const
+template < primitive_number NUMBER >
+inline bool polygon_base < NUMBER >::bounding_rectangle_contains(const ::point_type < NUMBER > & point) const
 {
 
    return this->bounding_rect().contains(point);
@@ -102,8 +102,8 @@ inline double atan(const point_f64 & point, double x, double y)
 
 //https://www.swtestacademy.com/intersection-convex-polygons-algorithm/
 // Sinan Oz is an experienced IT professional who has a big passion on software science and algorithms since he attended International Olympiads in Informatics in his early ages.He finished Istanbul Technical University Computer Engineering Department.He worked at Garanti Technology, one of the biggest technology centres in the country for about 5 years.After that, he started Kariyer.net and takes some serious projects as a Lead Architect and he promoted as a Software Development Manager.Currently, he is working at Movie Star Planet Kopenhagen office as a Senior Backend Game Developer.
-template < typename POINT_TYPE >
-void polygon_base < POINT_TYPE >::sort()
+template < primitive_number NUMBER >
+void polygon_base < NUMBER >::sort()
 {
    UNIT_TYPE x = 0;
    UNIT_TYPE y = 0;
@@ -119,14 +119,14 @@ void polygon_base < POINT_TYPE >::sort()
 }
 
 
-template < typename POINT_TYPE >
-polygon_base<POINT_TYPE> & polygon_base < POINT_TYPE >::operator = (const polygon_base& polygon_i32)
+template < primitive_number NUMBER >
+polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (const polygon_base& polygon_i32)
 {
 
    if (&polygon_i32 != this)
    {
 
-      point_array_base < POINT_TYPE >::operator = (polygon_i32);
+      point_array_base < NUMBER >::operator = (polygon_i32);
       m_bDirty = polygon_i32.m_bDirty;
       m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
       m_rectangleBounding = polygon_i32.m_rectangleBounding;
@@ -137,14 +137,14 @@ polygon_base<POINT_TYPE> & polygon_base < POINT_TYPE >::operator = (const polygo
 
 }
 
-template < typename POINT_TYPE >
-polygon_base<POINT_TYPE>& polygon_base < POINT_TYPE >::operator = (polygon_base&& polygon_i32)
+template < primitive_number NUMBER >
+polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (polygon_base&& polygon_i32)
 {
 
    if (&polygon_i32 != this)
    {
 
-      point_array_base < POINT_TYPE >::operator = (::transfer(polygon_i32));
+      point_array_base < NUMBER >::operator = (::transfer(polygon_i32));
       m_bDirty = polygon_i32.m_bDirty;
       m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
       m_rectangleBounding = polygon_i32.m_rectangleBounding;
@@ -325,8 +325,8 @@ inline void get_intersection_points(point_f64_array & pa, const point_f64 & poin
 }
 
 
-template < typename POINT_TYPE >
-polygon_base < POINT_TYPE >::polygon_base()
+template < primitive_number NUMBER >
+polygon_base < NUMBER >::polygon_base()
 {
 
    m_bDirty = false;
@@ -336,16 +336,16 @@ polygon_base < POINT_TYPE >::polygon_base()
 }
 
 
-template < typename POINT_TYPE >
-polygon_base < POINT_TYPE >::~polygon_base()
+template < primitive_number NUMBER >
+polygon_base < NUMBER >::~polygon_base()
 
 {
 
 }
 
 
-template < typename POINT_TYPE >
-void polygon_base < POINT_TYPE >::set_rect(const RECTANGLE_TYPE & rectangle)
+template < primitive_number NUMBER >
+void polygon_base < NUMBER >::set_rect(const ::rectangle_type < NUMBER > & rectangle)
 {
 
    m_rectangleBounding = rectangle;
@@ -363,8 +363,8 @@ void polygon_base < POINT_TYPE >::set_rect(const RECTANGLE_TYPE & rectangle)
 }
 
 
-template < typename POINT_TYPE >
-const typename polygon_base < POINT_TYPE >::RECTANGLE_TYPE & polygon_base < POINT_TYPE >::bounding_rect() const
+template < primitive_number NUMBER >
+const ::rectangle_type < NUMBER > & polygon_base < NUMBER >::bounding_rect() const
 {
 
    ((polygon_base *)this)->check_dirty();
@@ -396,8 +396,8 @@ const typename polygon_base < POINT_TYPE >::RECTANGLE_TYPE & polygon_base < POIN
 }
 
 
-template < typename POINT_TYPE >
-bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon_i32) const
+template < primitive_number NUMBER >
+bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon_i32) const
 {
 
    if (this->get_count() >= 3 && polygon_i32.get_count() >= 3)
@@ -471,8 +471,8 @@ bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon_i32) con
 
 
 
-template < typename POINT_TYPE >
-polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(const polygon_base & polygon_i32) const
+template < primitive_number NUMBER >
+polygon_base < NUMBER > polygon_base < NUMBER >::convex_intersection(const polygon_base & polygon_i32) const
 {
 
    ::count c1 = this->get_count();
@@ -528,10 +528,6 @@ polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(con
 
 
 
-using polygon_i32 = polygon_base < point_i32 >;
-using polygon_i64 = polygon_base < point_i64 >;
-using polygon_f32 = polygon_base < point_f32 >;
-using polygon_f64 = polygon_base < point_f64 >;
 
-
-using polygon = polygon_f64;
+//
+//using polygon = polygon_f64;

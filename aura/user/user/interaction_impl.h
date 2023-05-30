@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "primitive_impl.h"
@@ -598,7 +598,7 @@ namespace user
       //virtual void ShowScrollBar(::u32 nBar,bool bShow = true);
       //virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = true);
 
-      //virtual i32 ScrollWindowEx(i32 Δx,i32 Δy, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
+      //virtual i32 ScrollWindowEx(i32 greekdeltax,i32 greekdeltay, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
 
 
 //#ifdef WINDOWS_DESKTOP

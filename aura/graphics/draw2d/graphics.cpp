@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "graphics.h"
 #include "brush.h"
 #include "pen.h"
@@ -3700,45 +3700,45 @@ namespace draw2d
 
       size_f64 size = get_text_extent(str);
 
-      double Δx;
+      double greekdeltax;
 
-      double Δy;
+      double greekdeltay;
 
       if(ealign & e_align_right)
       {
 
-         Δx = rectangleParam.right - rectangleParam.left - size.cx();
+         greekdeltax = rectangleParam.right - rectangleParam.left - size.cx();
 
       }
       else if(ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
+         greekdeltax = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
 
       }
       else
       {
 
-         Δx = 0.;
+         greekdeltax = 0.;
 
       }
 
       if(ealign & e_align_bottom)
       {
 
-         Δy = rectangleParam.bottom - rectangleParam.top - size.cy();
+         greekdeltay = rectangleParam.bottom - rectangleParam.top - size.cy();
 
       }
       else if(ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
+         greekdeltay = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
 
       }
       else
       {
 
-         Δy = 0.;
+         greekdeltay = 0.;
 
       }
 
@@ -3762,7 +3762,7 @@ namespace draw2d
 
          str.replace_with("", "\n");
 
-         text_out(rectangleParam.left + Δx, rectangleParam.top + Δy, str);
+         text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay, str);
 
       }
       else
@@ -3781,7 +3781,7 @@ namespace draw2d
 
             auto size1 = get_text_extent(str);
 
-            text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
+            text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay + offsety, str);
 
             offsety += (i32) size1.cy();
 
@@ -5145,27 +5145,27 @@ namespace draw2d
 
          auto wscan = scan / sizeof(::color32_t);
 
-         for (double Δx = 0; Δx < w; Δx += dStep)
+         for (double greekdeltax = 0; greekdeltax < w; greekdeltax += dStep)
          {
-            dCircleX = fmod(Δx, (double)(dPeriod));
+            dCircleX = fmod(greekdeltax, (double)(dPeriod));
             double dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
             dCircleX -= dPeriod / 2.0;
             dTint = dBaseTint * 0.51;
             dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                ;
-               Δy = (Δy * dHalfH + dH - dHSpan);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               greekdeltay = (greekdeltay * dHalfH + dH - dHSpan);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5173,18 +5173,18 @@ namespace draw2d
             }
             dTint = dBaseTint * 0.51;
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH + dHSpan);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               greekdeltay = (greekdeltay * dHalfH + dH + dHSpan);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5195,18 +5195,18 @@ namespace draw2d
             dTint = dBaseTint * 2.3;
 
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               greekdeltay = (greekdeltay * dHalfH + dH);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5528,19 +5528,19 @@ namespace draw2d
    float graphics::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
    {
 
-      float pqx, pqy, Δx, Δy, d, t;
+      float pqx, pqy, greekdeltax, greekdeltay, d, t;
       pqx = qx - px;
       pqy = qy - py;
-      Δx = x - px;
-      Δy = y - py;
+      greekdeltax = x - px;
+      greekdeltay = y - py;
       d = pqx*pqx + pqy*pqy;
-      t = pqx*Δx + pqy*Δy;
+      t = pqx*greekdeltax + pqy*greekdeltay;
       if (d > 0) t /= d;
       if (t < 0) t = 0;
       else if (t > 1) t = 1;
-      Δx = px + t*pqx - x;
-      Δy = py + t*pqy - y;
-      return Δx*Δx + Δy*Δy;
+      greekdeltax = px + t*pqx - x;
+      greekdeltay = py + t*pqy - y;
+      return greekdeltax*greekdeltax + greekdeltay*greekdeltay;
 
    }
 

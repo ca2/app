@@ -318,7 +318,7 @@ namespace ios
       //      virtual CScrollBar* GetScrollBarCtrl(i32 nBar) const;
       // return sibling scrollbar control (or nullptr if none)
 
-//      virtual i32 ScrollWindowEx(i32 Δx, i32 Δy,
+//      virtual i32 ScrollWindowEx(i32 greekdeltax, i32 greekdeltay,
 //                                 const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip,
 //                                 ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags) override;
       //xxx      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO lpScrollInfo,

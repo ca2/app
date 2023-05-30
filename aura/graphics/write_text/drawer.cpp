@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSørensen__!!
 #include "framework.h"
 #include "drawer.h"
 #include "text_out.h"
@@ -480,19 +480,19 @@ namespace write_text
       if (ealign & (e_align_vertical_center | e_align_bottom))
       {
 
-         double Δy = (h - cy);
+         double greekdeltay = (h - cy);
 
          if (ealign & e_align_vertical_center)
          {
 
-            Δy /= 2.0;
+            greekdeltay /= 2.0;
 
          }
 
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.y() += Δy;
+            ptextout->m_point.y() += greekdeltay;
 
          }
 

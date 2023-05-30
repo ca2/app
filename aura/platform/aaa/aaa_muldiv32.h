@@ -195,7 +195,7 @@ inline u32 MulDivRU( u32 a, u32 b, u32 ca )
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    shr     bx,1            //  sar  ebx,1
         _asm _emit 0x66 _asm    add     ax,bx           //  add  eax,ebx
-        _asm _emit 0x66 _asm    adc     Δx,0            //  adc  edx,0
+        _asm _emit 0x66 _asm    adc     greekdeltax,0            //  adc  edx,0
         _asm _emit 0x66 _asm    div     cx              //  div  ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16
         _asm _emit 0x0F
@@ -214,7 +214,7 @@ inline u32 MulDivRU( u32 a, u32 b, u32 ca )
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    dec     bx              //  dec  ebx
         _asm _emit 0x66 _asm    add     ax,bx           //  add  eax,ebx
-        _asm _emit 0x66 _asm    adc     Δx,0            //  adc  edx,0
+        _asm _emit 0x66 _asm    adc     greekdeltax,0            //  adc  edx,0
         _asm _emit 0x66 _asm    div     cx              //  div  ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16
         _asm _emit 0x0F

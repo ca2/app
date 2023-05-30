@@ -15,6 +15,8 @@ public:
    using SIZE_TYPE = size_type < NUMBER >;
    using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
+   
+   using vector_type < NUMBER, 2 >::vector_type;
 
    point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
    point_type(enum_no_initialize) noexcept {  }
@@ -24,11 +26,11 @@ public:
    //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
    //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
    //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
-   template < primitive_point POINT >
-   point_type(const POINT& point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
+   //template < primitive_point POINT >
+   point_type(const ::vector_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
 
-   template < primitive_size SIZE >
-   point_type(const SIZE & size) noexcept { ::copy(*this, size); }
+//   template < primitive_size SIZE >
+  // point_type(const SIZE & size) noexcept { ::copy(*this, size); }
 
 #ifdef WINDOWS
    //rectangle_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }
@@ -41,13 +43,13 @@ public:
 //   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x(), ppoint->y()){}
 #endif
    
-   const UNIT_TYPE & x() const {return this->a();}
+   constexpr const UNIT_TYPE & x() const {return this->a();}
    UNIT_TYPE & x() {return this->a();}
-   const UNIT_TYPE & y() const {return this->b();}
+   constexpr const UNIT_TYPE & y() const {return this->b();}
    UNIT_TYPE & y() {return this->b();}
 
-   template < raw_primitive_point RAW_PRIMITIVE_POINT >
-   inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE)point.x; this->y() = (UNIT_TYPE)point.y; return *this; }
+//   template < raw_primitive_point RAW_PRIMITIVE_POINT >
+//   inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE)point.x; this->y() = (UNIT_TYPE)point.y; return *this; }
 
    template < primitive_point PRIMITIVE_POINT >
    inline point_type & operator = (const PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE)point.y(); return *this; }
@@ -136,11 +138,11 @@ public:
    inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
 
 
-   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.Δx); this->y() = (UNIT_TYPE)(this->y() + shift.Δy); return *this; }
-   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.Δx); this->y() = (UNIT_TYPE)(this->y() - shift.Δy); return *this; }
+   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() + shift.greekdeltay); return *this; }
+   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() - shift.greekdeltay); return *this; }
 
-   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.Δx), (UNIT_TYPE)(this->y() + shift.Δy) }; }
-   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.Δx), (UNIT_TYPE)(this->y() - shift.Δy) }; }
+   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.greekdeltax), (UNIT_TYPE)(this->y() + shift.greekdeltay) }; }
+   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.greekdeltax), (UNIT_TYPE)(this->y() - shift.greekdeltay) }; }
 
 
 

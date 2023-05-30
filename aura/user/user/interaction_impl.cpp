@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "interaction_scaler.h"
@@ -4324,14 +4324,14 @@ namespace user
    //}
 
 
-   //i32 interaction_impl::ScrollWindowEx(i32 Δx,i32 Δy,
+   //i32 interaction_impl::ScrollWindowEx(i32 greekdeltax,i32 greekdeltay,
    //                                     const ::rectangle_i32 * prectScroll,
    //                                       const ::rectangle_i32 * prectClip,
    //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,::u32 flags)
    //{
 
-   //   __UNREFERENCED_PARAMETER(Δx);
-   //   __UNREFERENCED_PARAMETER(Δy);
+   //   __UNREFERENCED_PARAMETER(greekdeltax);
+   //   __UNREFERENCED_PARAMETER(greekdeltay);
    //   __UNREFERENCED_PARAMETER(prectScroll);
    //   __UNREFERENCED_PARAMETER(prectClip);
    //   __UNREFERENCED_PARAMETER(prgnUpdate);

@@ -89,7 +89,7 @@ namespace geometry2d
       {
       public:
 
-         ::polygon m_polygon;
+         ::polygon_f64 m_polygon;
          ::draw2d::enum_fill_mode            m_efillmode;
 
 

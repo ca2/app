@@ -1280,6 +1280,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/../operating_system/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1344,6 +1345,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/../operating_system/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (

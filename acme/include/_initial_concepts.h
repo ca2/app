@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-22 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-22 <3ThomasBorregaardSørensen!!
 //
 //  _numeric_concepts.h
 //  acme
@@ -276,15 +276,15 @@ namespace std
 
 
 
-template < typename TYPED_BLOCK, typename ITEM_TYPE >
-concept typed_block = requires(TYPED_BLOCK typed_block, ITEM_TYPE item_type)
-{
-
-   { typed_block.data() }->::std::convertible_to<ITEM_TYPE*>;
-   typed_block.size();
-   typed_block.length_in_bytes();
-
-};
+//template < typename TYPED_BLOCK, typename ITEM_TYPE >
+//concept typed_block = requires(TYPED_BLOCK typed_block, ITEM_TYPE item_type)
+//{
+//
+//   { typed_block.data() }->::std::convertible_to<ITEM_TYPE*>;
+//   typed_block.size();
+//   typed_block.length_in_bytes();
+//
+//};
 
 template < typename CONTAINER >
 concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;

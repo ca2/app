@@ -1,19 +1,19 @@
 #pragma once
 
 
-template < typename POINT_TYPE >
+template < primitive_number NUMBER >
 class line_base
 {
 public:
 
-   using LINE_TYPE = line_base < POINT_TYPE >;
-   using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
-   using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
-   using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
+   using LINE_TYPE = line_base < NUMBER >;
+   using UNIT_TYPE = NUMBER;
+   //using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
+   //using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
 
 
-   POINT_TYPE  m_p1;
-   POINT_TYPE  m_p2;
+   ::point_type < UNIT_TYPE >  m_p1;
+   ::point_type < UNIT_TYPE >  m_p2;
 
 
    line_base() {}

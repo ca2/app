@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "toolbar.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
@@ -794,15 +794,15 @@ namespace user
    //   //      if (pData[i].fsState & e_toolbar_button_hidden)
    //   //         continue;
    //   //      GetButtonText(i, str);
-   //   //      index Δx, dxNext;
+   //   //      index greekdeltax, dxNext;
    //   //      if (pData[i].fsStyle & TBSTYLE_SEP)
    //   //      {
-   //   //         Δx = pData[i].iBitmap;
-   //   //         dxNext = Δx;
+   //   //         greekdeltax = pData[i].iBitmap;
+   //   //         dxNext = greekdeltax;
    //   //      }
    //   //      else if (!str.is_empty())
    //   //      {
-   //   //         Δx = m_sizeButton.cx();
+   //   //         greekdeltax = m_sizeButton.cx();
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
    //   //         //         str = (const unichar *) pData[i].iString;
@@ -812,16 +812,16 @@ namespace user
    //   //         str,
    //   //         (index) str.length(),
    //   //         &size);
-   //   //         Δx += size.cx();
-   //   //         dxNext = Δx - CX_OVERLAP;
+   //   //         greekdeltax += size.cx();
+   //   //         dxNext = greekdeltax - CX_OVERLAP;
    //   //      }
    //   //      else
    //   //      {
-   //   //         Δx = m_sizeButton.cx();
-   //   //         dxNext = Δx - CX_OVERLAP;
+   //   //         greekdeltax = m_sizeButton.cx();
+   //   //         dxNext = greekdeltax - CX_OVERLAP;
    //   //      }
    //
-   //   //      if (x + Δx > nWidth)
+   //   //      if (x + greekdeltax > nWidth)
    //   //      {
    //   //         bool bFound = false;
    //   //         for (index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)

@@ -1,22 +1,18 @@
 #pragma once
 
 
-template < typename RECTANGLE_TYPE >
+template < primitive_number NUMBER >
 class ellipse_base :
-   public RECTANGLE_TYPE
+public ::rectangle_type < NUMBER >
 {
 public:
 
-   
-   using RECTANGLE_BASE_TYPE = RECTANGLE_TYPE;
-
 
    ellipse_base() {}
-   ellipse_base(const ellipse_base & ellipse) : RECTANGLE_TYPE(ellipse) {}
+   ellipse_base(const ellipse_base & ellipse) : ::rectangle_type < NUMBER >(ellipse) {}
    
    
-   template < primitive_rectangle RECTANGLE >
-   void set(const RECTANGLE & rectangle) { RECTANGLE_TYPE::operator =(rectangle); }
+   void set(const ::rectangle_type < NUMBER > & rectangle) { ::rectangle_type < NUMBER >::operator =(rectangle); }
 
 
 };

@@ -1,12 +1,12 @@
-﻿#pragma once
+#pragma once
 
 
 #include "_arc.h"
 #include "_line.h"
 
 
-template < primitive_rectangle RECTANGLE >
-inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ::arc & arc)
+template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
+inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ::arc_type < NUMBER > & arc)
 {
 
    rectangleBounding.left = (decltype(rectangleBounding.left)) (arc.m_pointCenter.x() - arc.m_sizeRadius.cx());
@@ -31,8 +31,8 @@ inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ::arc & 
 //
 //}
 
-template < primitive_rectangle RECTANGLE >
-inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const line & line)
+template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
+inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const line_base < NUMBER > & line)
 {
 
    rectangleBounding.left = (decltype(rectangleBounding.left)) minimum(line.m_p1.x(), line.m_p2.x());
@@ -84,8 +84,8 @@ inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const line & l
 //}
 
 
-template < primitive_rectangle RECTANGLE >
-inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ellipse & ellipse)
+template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
+inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ellipse_base < NUMBER > & ellipse)
 {
 
    copy(rectangleBounding, ellipse);

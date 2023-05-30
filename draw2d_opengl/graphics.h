@@ -435,7 +435,7 @@ namespace draw2d_opengl
 //      bool DrawFrameControl(const ::rectangle_i32 & rectangle,::u32 nType,::u32 nState);
 
       // Scrolling Functions
-      //bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_i32 & lpRectScroll, const ::rectangle_i32 & lpRectClip,
+      //bool ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 & lpRectScroll, const ::rectangle_i32 & lpRectClip,
         //            ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate);
 
       // font Functions

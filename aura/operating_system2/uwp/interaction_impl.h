@@ -351,7 +351,7 @@ namespace universal_windows
 //      virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
       // return sibling scrollbar control (or nullptr if none)
 
-      //virtual int ScrollWindowEx(int Δx, int Δy,
+      //virtual int ScrollWindowEx(int greekdeltax, int greekdeltay,
       //                           const ::rectangle_i32 * lpRectScroll, const ::rectangle_i32 * lpRectClip,
       //                           ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags);
       //      virtual bool SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo,

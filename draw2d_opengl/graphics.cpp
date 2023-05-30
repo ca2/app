@@ -2096,13 +2096,13 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::ScrollDC(double Δx, double Δy,
+   //bool graphics::ScrollDC(double greekdeltax, double greekdeltay,
    //                        const ::rectangle_f64 & lpRectScroll,const ::rectangle_f64 & rectangleClip,
    //                        ::draw2d::region* pRgnUpdate, ::rectangle_f64 * lpRectUpdate)
    //{
    //   
    //   // ASSERT(m_hdc != nullptr);
-   //   //return ::ScrollDC(m_hdc,Δx,Δy,&rectangleClip,
+   //   //return ::ScrollDC(m_hdc,greekdeltax,greekdeltay,&rectangleClip,
    //     //                &rectangleClip, (HRGN)pRgnUpdate->get_os_data(), lpRectUpdate) != false;
    //   return 0;
 

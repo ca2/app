@@ -737,14 +737,14 @@
 //      double cx = size.cx();
 //      double cy = size.cy();
 //
-//      double Δx = ::width(RECT_TEMPLATE);
+//      double greekdeltax = ::width(RECT_TEMPLATE);
 //
-//      double Δy = ::height(RECT_TEMPLATE);
+//      double greekdeltay = ::height(RECT_TEMPLATE);
 //
 //
-//      left = RECT_TEMPLATE.left + (Δx - cx) / 2;
+//      left = RECT_TEMPLATE.left + (greekdeltax - cx) / 2;
 //
-//      top = RECT_TEMPLATE.top + (Δy - cy) / 2;
+//      top = RECT_TEMPLATE.top + (greekdeltay - cy) / 2;
 //
 //      right = left + cx;
 //      bottom = top + cy;

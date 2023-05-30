@@ -2132,7 +2132,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::ScrollDC(i32 Δx, i32 Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate)
+//void graphics::ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate)
 //{
 //
 //    throw ::interface_only();
@@ -3771,45 +3771,45 @@ namespace draw2d_cairo
 
       cairo_font_extents(m_pdc, &e);
 
-      double Δx;
+      double greekdeltax;
 
-      double Δy;
+      double greekdeltay;
 
       if (ealign & e_align_right)
       {
 
-         Δx = rectangle.right - rectangle.left - sz.cx();
+         greekdeltax = rectangle.right - rectangle.left - sz.cx();
 
       }
       else if (ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangle.right - rectangle.left) - (sz.cx())) / 2.0;
+         greekdeltax = ((rectangle.right - rectangle.left) - (sz.cx())) / 2.0;
 
       }
       else
       {
 
-         Δx = 0.;
+         greekdeltax = 0.;
 
       }
 
       if (ealign & e_align_bottom)
       {
 
-         Δy = rectangle.bottom - rectangle.top - e.ascent;
+         greekdeltay = rectangle.bottom - rectangle.top - e.ascent;
 
       }
       else if (ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
+         greekdeltay = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
 
       }
       else
       {
 
-         Δy = 0.;
+         greekdeltay = 0.;
 
       }
 
@@ -3866,9 +3866,9 @@ namespace draw2d_cairo
       for (auto & strLine : stra)
       {
 
-         //cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy() * (i) / stra.get_size());
+         //cairo_move_to(m_pdc, rectangle.left + greekdeltax, rectangle.top + greekdeltay + e.ascent + sz.cy() * (i) / stra.get_size());
 
-         cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + e.ascent * i);
+         cairo_move_to(m_pdc, rectangle.left + greekdeltax, rectangle.top + greekdeltay + e.ascent + e.ascent * i);
 
          (*ftext)(m_pdc, strLine);
 
@@ -4160,45 +4160,45 @@ namespace draw2d_cairo
 
    //    size_f64 sz = get_text_extent(str);
 
-   //    double Δx;
+   //    double greekdeltax;
 
-   //    double Δy;
+   //    double greekdeltay;
 
    //    if (ealign & e_align_right)
    //    {
 
-   //        Δx = rectangle.right - rectangle.left - sz.cx();
+   //        greekdeltax = rectangle.right - rectangle.left - sz.cx();
 
    //    }
    //    else if (ealign & e_align_horizontal_center)
    //    {
 
-   //        Δx = ((rectangle.right - rectangle.left) - (sz.cx())) / 2.0;
+   //        greekdeltax = ((rectangle.right - rectangle.left) - (sz.cx())) / 2.0;
 
    //    }
    //    else
    //    {
 
-   //        Δx = 0.;
+   //        greekdeltax = 0.;
 
    //    }
 
    //    if (ealign & e_align_bottom)
    //    {
 
-   //        Δy = rectangle.bottom - rectangle.top - e.ascent;
+   //        greekdeltay = rectangle.bottom - rectangle.top - e.ascent;
 
    //    }
    //    else if (ealign & e_align_vertical_center)
    //    {
 
-   //        Δy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
+   //        greekdeltay = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
 
    //    }
    //    else
    //    {
 
-   //        Δy = 0.;
+   //        greekdeltay = 0.;
 
    //    }
 
@@ -4253,7 +4253,7 @@ namespace draw2d_cairo
    //    for (auto & strLine : stra)
    //    {
 
-   //        cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy() * (i) / stra.get_size());
+   //        cairo_move_to(m_pdc, rectangle.left + greekdeltax, rectangle.top + greekdeltay + e.ascent + sz.cy() * (i) / stra.get_size());
 
    //        (*ftext)(m_pdc, strLine);
 
@@ -6294,11 +6294,11 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(cairo_mutex());
 
-      double Δx = ellipse.center_x();
+      double greekdeltax = ellipse.center_x();
 
-      double Δy = ellipse.center_y();
+      double greekdeltay = ellipse.center_y();
 
-      cairo_translate(m_pdc, Δx, Δy);
+      cairo_translate(m_pdc, greekdeltax, greekdeltay);
 
       double rx = ellipse.width() / 2.0;
 
@@ -6310,7 +6310,7 @@ namespace draw2d_cairo
 
       cairo_scale(m_pdc, 1.0 / rx, 1.0 / ry);
 
-      cairo_translate(m_pdc, -Δx, -Δy);
+      cairo_translate(m_pdc, -greekdeltax, -greekdeltay);
 
       return true;
 

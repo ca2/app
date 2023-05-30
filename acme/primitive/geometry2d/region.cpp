@@ -1,7 +1,4 @@
 // From aura/graphics/draw2d/region by camilo on 2023-05-26 13:55 <3ThomasBorregaardSorensen!!
-#pragma once
-
-
 #include "framework.h"
 #include "region.h"
 #include "acme/exception/interface_only.h"
@@ -601,16 +598,16 @@ namespace geometry2d
 
    //   double y = point.y();
    //   
-   //   double Δx = x - centerx;
+   //   double greekdeltax = x - centerx;
    //   
-   //   double Δy = y - centery;
+   //   double greekdeltay = y - centery;
    //   
    //   if(rx == ry)
    //   {
    //      
    //      double r = rx;
    //      
-   //      double square_distance = (Δx * Δx) + (Δy * Δy);
+   //      double square_distance = (greekdeltax * greekdeltax) + (greekdeltay * greekdeltay);
    //      
    //      double square_boundary = (r * r);
    //      
@@ -620,7 +617,7 @@ namespace geometry2d
    //   else
    //   {
 
-   //      double normal_distance = ((Δx * Δx) / (rx * rx) + (Δy * Δy) / (ry * ry));
+   //      double normal_distance = ((greekdeltax * greekdeltax) / (rx * rx) + (greekdeltay * greekdeltay) / (ry * ry));
    //      
    //      return normal_distance <= 1.0;
    //      

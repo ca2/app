@@ -1,4 +1,4 @@
-﻿//
+//
 //  shape.hpp
 //  acme
 //
@@ -361,24 +361,42 @@ bool ___shape<HOLDEE>::contains(const ::point_f64 & point) const
 
 
 
-template < typename HOLDEE >
-using arc_shape = _shape < ::arc, e_shape_arc, HOLDEE >;
+template < primitive_number NUMBER, typename HOLDEE >
+using arc_shape = _shape < ::arc_type < NUMBER >, e_shape_arc, HOLDEE >;
+
+template < primitive_number NUMBER, typename HOLDEE >
+using line_shape = _shape < ::line_base < NUMBER >, e_shape_line, HOLDEE >;
+
+template < primitive_number NUMBER, typename HOLDEE >
+using rectangle_shape = _shape < ::rectangle_type < NUMBER >, e_shape_rectangle, HOLDEE >;
+
+template < primitive_number NUMBER, typename HOLDEE >
+using ellipse_shape = _shape < ::ellipse_base < NUMBER >, e_shape_ellipse, HOLDEE >;
+
+template < primitive_number NUMBER, typename HOLDEE >
+using lines_shape = _shape < ::lines_base < NUMBER >, e_shape_lines, HOLDEE >;
+
+template < primitive_number NUMBER, typename HOLDEE >
+using polygon_shape = _shape < ::polygon_base < NUMBER >, e_shape_polygon, HOLDEE >;
+
 
 template < typename HOLDEE >
-using line_shape = _shape < ::line, e_shape_line, HOLDEE >;
+using arc_f64_shape = arc_shape < ::f64, HOLDEE >;
 
 template < typename HOLDEE >
-using rectangle_shape = _shape < ::rectangle, e_shape_rectangle, HOLDEE >;
+using line_f64_shape = line_shape < ::f64, HOLDEE >;
 
 template < typename HOLDEE >
-using ellipse_shape = _shape < ::ellipse, e_shape_ellipse, HOLDEE >;
+using rectangle_f64_shape = rectangle_shape < ::f64, HOLDEE >;
 
 template < typename HOLDEE >
-using lines_shape = _shape < ::lines, e_shape_lines, HOLDEE >;
+using ellipse_f64_shape = ellipse_shape < ::f64, HOLDEE >;
 
 template < typename HOLDEE >
-using polygon_shape = _shape < ::polygon, e_shape_polygon, HOLDEE >;
+using lines_f64_shape = lines_shape < ::f64, HOLDEE >;
 
+template < typename HOLDEE >
+using polygon_f64_shape = polygon_shape < ::f64, HOLDEE >;
 
 
 

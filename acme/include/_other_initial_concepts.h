@@ -16,12 +16,12 @@ concept primitive_number =
    std::is_floating_point_v < ::std::decay_t < NUMBER > >;
 
 
-template < typename POINT >
-concept raw_primitive_point = requires(POINT point)
-{
-   {point.x}->primitive_number;
-   {point.y}->primitive_number;
-};
+// template < typename POINT >
+// concept raw_primitive_point = requires(POINT point)
+// {
+//    {point.x}->primitive_number;
+//    {point.y}->primitive_number;
+// };
 
 
 

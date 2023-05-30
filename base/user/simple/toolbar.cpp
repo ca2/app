@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "toolbar.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
@@ -1885,32 +1885,32 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
       str = ptoolitem->m_str;
 
-      index Δx, ΔxNext;
+      index greekdeltax, greekdeltaxNext;
 
       if (ptoolitem->m_estyle & e_tool_item_style_separator)
       {
 
-         Δx = sizeSeparator.cx();
+         greekdeltax = sizeSeparator.cx();
 
-         ΔxNext = Δx;
+         greekdeltaxNext = greekdeltax;
 
       }
       else
       {
 
-         Δx = rectangleItemPad.left;
+         greekdeltax = rectangleItemPad.left;
 
          if (ptoolitem->m_pimage->is_set())
          {
 
-            Δx += ptoolitem->m_pimage->height();
+            greekdeltax += ptoolitem->m_pimage->height();
 
          }
 
          if (str.has_char() && ptoolitem->m_pimage->is_set())
          {
 
-            Δx += iImageSpacing;
+            greekdeltax += iImageSpacing;
 
          }
 
@@ -1919,19 +1919,19 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
             size_f64 size = pgraphics->get_text_extent(str);
 
-            Δx = (index)  (size.cx() + EXTRA_TEXT_CX);
+            greekdeltax = (index)  (size.cx() + EXTRA_TEXT_CX);
 
          }
 
-         Δx += rectangleItemPad.right; // +sPress.cx();
+         greekdeltax += rectangleItemPad.right; // +sPress.cx();
 
-         ΔxNext = Δx - CX_OVERLAP;
+         greekdeltaxNext = greekdeltax - CX_OVERLAP;
 
       }
 
       bool bFound = false;
 
-      if (x + Δx > nWidth - rectangleBorder.right)
+      if (x + greekdeltax > nWidth - rectangleBorder.right)
       {
 
          for (index iItemHere = iItem; iItemHere >= 0; iItemHere--)
@@ -2040,7 +2040,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
          bFirstInRow = false;
 
-         x += ΔxNext;
+         x += greekdeltaxNext;
 
       }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/operating_system.h"
 //#include "aura/operating_system/_user.h"
 #include "acme/constant/message.h"
@@ -1107,19 +1107,19 @@ namespace user
             //   rectangle.top+m_rectangleBorder.top,
             //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top-m_rectangleBorder.bottom,
             //   ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
-            i32 Δx = CX_GRIPPER / 2;
-            i32 Δy = CY_GRIPPER / 2;
+            i32 greekdeltax = CX_GRIPPER / 2;
+            i32 greekdeltay = CY_GRIPPER / 2;
             i32 ix = rectangle.left + CX_BORDER_GRIPPER;
-            i32 iy = rectangle.top + m_rectangleBorder.top + Δy / 2;
-            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - Δy * 3;
+            i32 iy = rectangle.top + m_rectangleBorder.top + greekdeltay / 2;
+            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - greekdeltay * 3;
 
-            for(; iy < cy; iy += Δy)
+            for(; iy < cy; iy += greekdeltay)
             {
-               DrawGripperElement001(pgraphics, ix + Δx, iy);
-               iy += Δy;
+               DrawGripperElement001(pgraphics, ix + greekdeltax, iy);
+               iy += greekdeltay;
                DrawGripperElement001(pgraphics, ix,      iy);
             }
-            DrawGripperElement001(pgraphics, ix + Δx, iy);
+            DrawGripperElement001(pgraphics, ix + greekdeltax, iy);
          }
          else
          {
@@ -1127,19 +1127,19 @@ namespace user
             //            rectangle.top+CY_BORDER_GRIPPER,
             //            rectangle.width()-m_rectangleBorder.top-m_rectangleBorder.bottom, CY_GRIPPER,
             //            ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
-            i32 Δx = CX_GRIPPER / 2;
-            i32 Δy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left + m_rectangleBorder.top + Δx / 2;
+            i32 greekdeltax = CX_GRIPPER / 2;
+            i32 greekdeltay = CY_GRIPPER / 2;
+            i32 ix = rectangle.left + m_rectangleBorder.top + greekdeltax / 2;
             i32 iy = rectangle.top + CY_BORDER_GRIPPER;
-            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - Δx * 3;
+            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - greekdeltax * 3;
 
-            for(; ix < cx; ix += Δx)
+            for(; ix < cx; ix += greekdeltax)
             {
-               DrawGripperElement001(pgraphics, ix, iy + Δy);
-               ix += Δx;
+               DrawGripperElement001(pgraphics, ix, iy + greekdeltay);
+               ix += greekdeltax;
                DrawGripperElement001(pgraphics, ix, iy);
             }
-            DrawGripperElement001(pgraphics, ix, iy + Δy);
+            DrawGripperElement001(pgraphics, ix, iy + greekdeltay);
          }
       }
    }

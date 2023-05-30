@@ -25,10 +25,10 @@ void copy(CGRect & rectTarget, const ::rectangle_i32 & rectSource);
 void copy(::rectangle_i32 & rectTarget, const CGRect & rectSource);
 
 
-void copy(CGPoint & pointTarget, const ::point_i32 & pointSource);
-void copy(::point_i32 & pointTarget, const CGPoint & pointSource);
-void copy(CGPoint & pointTarget, const ::point_f64 & pointSource);
-void copy(::point_f64 & pointTarget, const CGPoint & pointSource);
+//void copy(CGPoint & pointTarget, const ::point_i32 & pointSource);
+//void copy(::point_i32 & pointTarget, const CGPoint & pointSource);
+//void copy(CGPoint & pointTarget, const ::point_f64 & pointSource);
+//void copy(::point_f64 & pointTarget, const CGPoint & pointSource);
 
 CGRect mm_get_screen_cgrect();
 

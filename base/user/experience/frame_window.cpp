@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_window.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
@@ -1413,7 +1413,9 @@ namespace experience
                return __new(::item(e_element_resize_bottom_left));
             case e_frame_sizing_bottom_right:
                return __new(::item(e_element_resize_bottom_right));
-
+               default:
+                  
+                  return nullptr;
 
             }
 
@@ -2033,7 +2035,7 @@ namespace experience
       if (iBestWorkspace >= 0)
       {
 
-         ::rectangle rectangleOld(rectangle);
+         ::rectangle_i32 rectangleOld(rectangle);
 
          auto pwindowing = windowing();
 
@@ -2445,7 +2447,7 @@ namespace experience
 
       calculate_broad_and_compact_restore();
 
-      auto rectangleCurrent = screen_rect();
+      //auto rectangleCurrent = screen_rect();
 
       ::e_display edisplay = const_layout().sketch().display();
 

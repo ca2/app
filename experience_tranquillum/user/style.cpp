@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/handler/item.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
@@ -668,7 +668,7 @@ namespace experience_tranquillum
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -690,13 +690,11 @@ namespace experience_tranquillum
 
             string str = pane.get_title();
 
-            pane.do_split_layout(ptab->m_pdcextension, pgraphics);
+            pane.do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
-
-
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if (pane.m_pimage->is_set())
             {
@@ -787,11 +785,11 @@ namespace experience_tranquillum
 
             string str = pane.get_title();
 
-            pane.do_split_layout(ptab->m_pdcextension, pgraphics);
+            pane.do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             ::write_text::text_metric metric;
 

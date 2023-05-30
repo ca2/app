@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "path.h"
 //#include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -173,7 +173,7 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::rectangle_f64& rectangle, const ::angle& angleRotationCenter)
+   bool path::add_rectangle(const ::rectangle_f64& rectangle, const ::angle_f64 & angleRotationCenter)
    {
 
       if (angleRotationCenter == 0)
@@ -226,7 +226,7 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotationCenter)
+   bool path::add_rectangle(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle_f64 & angleRotationCenter)
    {
 
       ::polygon_f64 polygon_i32;
@@ -261,7 +261,7 @@ namespace draw2d
    }
 
 
-   bool path::varc(const ::point_f64 & point, double h, const ::angle& angle)
+   bool path::varc(const ::point_f64 & point, double h, const ::angle_f64 & angle)
    {
 
       if (fabs(angle) <= 0.00001 || fabs(h) <= 0.001)
@@ -269,11 +269,12 @@ namespace draw2d
          return false;
       }
 
-      auto parc = __new(arc_shape< path >);
+      auto parc = __new(arc_f64_shape< path >);
 
-      ::arc& arc = parc->m_shape;
+      auto & arc = parc->m_shape;
 
-      ::angle t = 90_degrees - angle;
+      auto t = 90_degrees - angle;
+      
       double x = point.x();
       double y = point.y();
       arc.m_pointCenter.y() = point.y() + h/2.0;
@@ -313,7 +314,7 @@ namespace draw2d
    }
 
 
-   bool path::harc(const ::point_f64 & point, double w, const ::angle& angle)
+   bool path::harc(const ::point_f64 & point, double w, const ::angle_f64 & angle)
    {
 
 
@@ -324,11 +325,11 @@ namespace draw2d
 
       }
 
-      auto parc = __new(arc_shape < path >);
+      auto parc = __new(arc_f64_shape < path >);
 
-      ::arc& arc = parc->m_shape;
+      auto & arc = parc->m_shape;
 
-      ::angle t = angle + 90_degrees;
+      auto t = angle + 90_degrees;
       arc.m_pointBegin.x() = point.x() + w / 2.0;
       double a = (point.x() - arc.m_pointBegin.x()) / cos(t);
       double x = point.x() - arc.m_pointBegin.x();
@@ -370,7 +371,7 @@ namespace draw2d
    }
 
 
-   bool path::add_arc(const ::rectangle_f64 & rectangle, const ::angle & angleBeg, const ::angle& angleExt)
+   bool path::add_arc(const ::rectangle_f64 & rectangle, const ::angle_f64 & angleBeg, const ::angle_f64 & angleExt)
    {
 
       if (rectangle.width() <= 0 || rectangle.height() <= 0)
@@ -380,9 +381,9 @@ namespace draw2d
 
       }
 
-      auto parc = __new(arc_shape< ::draw2d::path>);
+      auto parc = __new(arc_f64_shape< ::draw2d::path>);
 
-      ::arc& arc = parc->m_shape;
+      auto & arc = parc->m_shape;
 
       arc.m_pointCenter.x()   = (rectangle.right + rectangle.left) / 2.0;
       arc.m_pointCenter.y()   = (rectangle.bottom + rectangle.top) / 2.0;
@@ -537,11 +538,11 @@ namespace draw2d
    bool path::add_line(const point_f64 & p1, const point_f64 & p2)
    {
 
-      auto pline = __new(line_shape< path>);
+      auto pline = __new(line_f64_shape< path>);
 
       pline->m_pholdee = this;
 
-      ::line & line = pline->m_shape;
+      auto & line = pline->m_shape;
 
       line.m_p1 = p1;
 

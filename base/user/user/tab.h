@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "place_holder_container.h"
@@ -53,7 +53,7 @@ namespace user
 
       enum_state                                   m_estate;
       ::pointer<tab_data>                          m_pdata;
-      ::pointer<::draw2d::graphics_extension>      m_pdcextension;
+      ::pointer<::draw2d::graphics_extension>      m_pgraphicsextension;
       bool                                         m_bDisableSavingRestorableTabs;
       bool                                         m_bEffectiveVisibleTabs;
       bool                                         m_bTabVisibilityChanging;

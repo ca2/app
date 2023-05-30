@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "dock_manager.h"
 #include "frame_window.h"
 #include "frame.h"
@@ -194,7 +194,7 @@ namespace experience
 
       enum_display edisplayOld = m_pframewindow->const_layout().sketch().display();
 
-      ::rectangle_i32 rectangleScreenOld = m_pframewindow->screen_rect();
+//      ::rectangle_i32 rectangleScreenOld = m_pframewindow->screen_rect();
 
       if (rectangleCenter.contains_x(pointCursor.x()))
       {

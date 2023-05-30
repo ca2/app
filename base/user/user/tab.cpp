@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab.h"
 #include "tab_pane_array.h"
 #include "tab_pane.h"
@@ -1370,7 +1370,7 @@ namespace user
 
       pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-      m_pdcextension->get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
+      m_pgraphicsextension->get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
 
       if(get_data()->m_bVertical)
       {
@@ -1397,11 +1397,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_pdcextension, pgraphics);
+            ppane->do_split_layout(m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            m_pdcextension->get_text_extent(pgraphics, str, size);
+            m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_set())
             {
@@ -1506,11 +1506,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_pdcextension,pgraphics);
+            ppane->do_split_layout(m_pgraphicsextension,pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            m_pdcextension->get_text_extent(pgraphics, str, size);
+            m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_ok())
             {

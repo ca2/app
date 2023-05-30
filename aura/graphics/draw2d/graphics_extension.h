@@ -21,7 +21,7 @@ namespace draw2d
 
       void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_f64_array & sizea);
 
-      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, size_i32 & size);
+      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, size_f64 & size);
 
       //void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::string & pcwsz, strsize iCount, size_i32 & size);
 

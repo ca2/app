@@ -1,4 +1,4 @@
-﻿// Created by Camilo 2021-01-08 <3TBS!!
+// Created by Camilo 2021-01-08 <3TBS!!
 #pragma once
 
 
@@ -22,7 +22,7 @@ namespace user
    public:
 
 
-      ::size_i32                          m_sizeSep;
+      ::size_f64                          m_sizeSep;
       i32                                 m_iHeightAddUp;
       ::draw2d::pen_pointer               m_ppen;
       ::draw2d::brush_pointer             m_pbrushTextHover;

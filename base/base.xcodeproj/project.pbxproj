@@ -208,8 +208,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A03B7C42A25BA8300A0E33E /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
-		9A03B7C52A25BA8300A0E33E /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		9A03B7C42A25BA8300A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
+		9A03B7C52A25BA8300A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
 		9A1D5D492751A98B003D9B5F /* procedure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A1D5D4A2751A98B003D9B5F /* console.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A1D5D562751A98B003D9B5F /* library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -465,12 +465,12 @@
 				9A1D5D5B2751A98B003D9B5F /* application.h */,
 				9A1D5EB02751A98D003D9B5F /* callback.h */,
 				9A1D5D4A2751A98B003D9B5F /* console.h */,
-				9A03B7C42A25BA8300A0E33E /* debug.xcconfig */,
+				9A03B7C42A25BA8300A0E33E /* _____debug.xcconfig */,
 				9A1D5E912751A98D003D9B5F /* framework.h */,
 				9A1D5D812751A98B003D9B5F /* id.h */,
 				9A1D5D562751A98B003D9B5F /* library.h */,
 				9A1D5D492751A98B003D9B5F /* procedure.h */,
-				9A03B7C52A25BA8300A0E33E /* release.xcconfig */,
+				9A03B7C52A25BA8300A0E33E /* _____release.xcconfig */,
 				9A1D5E752751A98C003D9B5F /* user.h */,
 			);
 			name = base;
@@ -1140,7 +1140,7 @@
 		};
 		9AD117FA24F51BE400177261 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B7C42A25BA8300A0E33E /* debug.xcconfig */;
+			baseConfigurationReference = 9A03B7C42A25BA8300A0E33E /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1243,7 +1243,7 @@
 		};
 		9AD117FB24F51BE400177261 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B7C52A25BA8300A0E33E /* release.xcconfig */;
+			baseConfigurationReference = 9A03B7C52A25BA8300A0E33E /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

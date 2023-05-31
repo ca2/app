@@ -132,8 +132,8 @@
 		9A5D7607274E4D2100403BC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A5D7609274E4EED00403BC3 /* file_function_definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_function_definitions.h; sourceTree = "<group>"; };
 		9A5D760A274E4EED00403BC3 /* file_function_definitions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_function_definitions.cpp; sourceTree = "<group>"; };
-		9A7724FD2A259D3700B9A835 /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
-		9A7724FE2A259D3700B9A835 /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		9A7724FD2A259D3700B9A835 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
+		9A7724FE2A259D3700B9A835 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
 		9AA14DDC282A17D900B1621E /* libios_folder_zip.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_folder_zip.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC09A2D274DFC67008B042E /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -167,7 +167,7 @@
 				9A1F6E81274DFD11000B7A22 /* _.h */,
 				9A1F6E7F274DFD11000B7A22 /* _factory.cpp */,
 				9A1F6E58274DFD0F000B7A22 /* crypt.h */,
-				9A7724FD2A259D3700B9A835 /* debug.xcconfig */,
+				9A7724FD2A259D3700B9A835 /* _____debug.xcconfig */,
 				9A1F6E5D274DFD0F000B7A22 /* file.cpp */,
 				9A1F6E4C274DFD0F000B7A22 /* file.h */,
 				9A5D760A274E4EED00403BC3 /* file_function_definitions.cpp */,
@@ -179,7 +179,7 @@
 				9A1F6E47274DFD0F000B7A22 /* ioapi.cpp */,
 				9A1F6E7A274DFD10000B7A22 /* ioapi.h */,
 				9A1F6E4A274DFD0F000B7A22 /* iowin32.h */,
-				9A7724FE2A259D3700B9A835 /* release.xcconfig */,
+				9A7724FE2A259D3700B9A835 /* _____release.xcconfig */,
 				9A1F6E4E274DFD0F000B7A22 /* unzip.cpp */,
 				9A1F6E63274DFD0F000B7A22 /* unzip.h */,
 				9A1F6E7B274DFD11000B7A22 /* zip.cpp */,
@@ -507,7 +507,7 @@
 		};
 		9AC09A2F274DFC67008B042E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A7724FD2A259D3700B9A835 /* debug.xcconfig */;
+			baseConfigurationReference = 9A7724FD2A259D3700B9A835 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -611,7 +611,7 @@
 		};
 		9AC09A30274DFC67008B042E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A7724FE2A259D3700B9A835 /* release.xcconfig */;
+			baseConfigurationReference = 9A7724FE2A259D3700B9A835 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

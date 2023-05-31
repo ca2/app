@@ -702,8 +702,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A03B7BE2A25B93B00A0E33E /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
-		9A03B7C02A25B93B00A0E33E /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		9A03B7BE2A25B93B00A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
+		9A03B7C02A25B93B00A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
 		9A1FB958287253E90042849A /* socket_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_thread.cpp; sourceTree = "<group>"; };
 		9A1FB959287253E90042849A /* socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
 		9A1FB95A287253E90042849A /* socket_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_thread.h; sourceTree = "<group>"; };
@@ -1307,10 +1307,10 @@
 				9A68B68C2511444B008DABD2 /* template */,
 				9A68B6B32511444B008DABD2 /* user */,
 				9A68B76E2511444B008DABD2 /* version */,
-				9A03B7C02A25B93B00A0E33E /* debug.xcconfig */,
+				9A03B7C02A25B93B00A0E33E /* _____debug.xcconfig */,
 				9A68B5772511444A008DABD2 /* framework.cpp */,
 				9A68B9A12511444C008DABD2 /* framework.h */,
-				9A03B7BE2A25B93B00A0E33E /* release.xcconfig */,
+				9A03B7BE2A25B93B00A0E33E /* _____release.xcconfig */,
 				9A68BB162511444D008DABD2 /* aaa_want_to_move_xml.h */,
 				9A68BB2C2511444D008DABD2 /* _.h */,
 			);
@@ -2667,7 +2667,7 @@
 /* Begin XCBuildConfiguration section */
 		9A68A44D251143F8008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B7C02A25B93B00A0E33E /* debug.xcconfig */;
+			baseConfigurationReference = 9A03B7C02A25B93B00A0E33E /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -2785,7 +2785,7 @@
 		};
 		9A68A44E251143F8008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B7BE2A25B93B00A0E33E /* release.xcconfig */;
+			baseConfigurationReference = 9A03B7BE2A25B93B00A0E33E /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;

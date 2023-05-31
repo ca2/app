@@ -30,6 +30,29 @@
 		9A86606029668296000C82F0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86605F29668296000C82F0 /* application.cpp */; };
 		9A8C81712783F8A7000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81702783F8A7000C8587 /* _matter.zip */; };
 		9A8C81792783F8C5000C8587 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81752783F8C5000C8587 /* Images.xcassets */; };
+		9A8F4DBC2A26D5C800097EE1 /* _____release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D852A26D5C600097EE1 /* _____release.xcconfig */; };
+		9A8F4DBD2A26D5C800097EE1 /* shared_app_message_box.vcxproj.filters in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D8F2A26D5C600097EE1 /* shared_app_message_box.vcxproj.filters */; };
+		9A8F4DBE2A26D5C800097EE1 /* nord_impl_app_message_box.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D902A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj */; };
+		9A8F4DBF2A26D5C800097EE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D922A26D5C600097EE1 /* InfoPlist.strings */; };
+		9A8F4DC02A26D5C800097EE1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D942A26D5C600097EE1 /* MainMenu.xib */; };
+		9A8F4DC12A26D5C800097EE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D962A26D5C600097EE1 /* Images.xcassets */; };
+		9A8F4DC22A26D5C800097EE1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D972A26D5C600097EE1 /* Info.plist */; };
+		9A8F4DC32A26D5C800097EE1 /* nord_impl_app_message_box.vcxproj.filters in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D982A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj.filters */; };
+		9A8F4DC42A26D5C800097EE1 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D992A26D5C600097EE1 /* CMakeLists.txt */; };
+		9A8F4DC52A26D5C800097EE1 /* nord_impl_app_message_box.vcxproj.user in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D9A2A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj.user */; };
+		9A8F4DC62A26D5C800097EE1 /* main.rc in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D9B2A26D5C600097EE1 /* main.rc */; };
+		9A8F4DC72A26D5C800097EE1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F4D9C2A26D5C600097EE1 /* framework.cpp */; };
+		9A8F4DC82A26D5C800097EE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DAA2A26D5C600097EE1 /* InfoPlist.strings */; };
+		9A8F4DC92A26D5C800097EE1 /* wiosapp_core_beatmapper-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DAC2A26D5C600097EE1 /* wiosapp_core_beatmapper-Info.plist */; };
+		9A8F4DCA2A26D5C800097EE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DAD2A26D5C600097EE1 /* Images.xcassets */; };
+		9A8F4DCB2A26D5C800097EE1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DAE2A26D5C600097EE1 /* Launch Screen.storyboard */; };
+		9A8F4DCC2A26D5C800097EE1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DAF2A26D5C600097EE1 /* Info.plist */; };
+		9A8F4DCD2A26D5C800097EE1 /* icon.ico in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DB02A26D5C600097EE1 /* icon.ico */; };
+		9A8F4DCE2A26D5C800097EE1 /* _app_message_box copy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DB12A26D5C600097EE1 /* _app_message_box copy-Info.plist */; };
+		9A8F4DCF2A26D5C800097EE1 /* shared_app_message_box.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DB22A26D5C700097EE1 /* shared_app_message_box.vcxproj */; };
+		9A8F4DD02A26D5C800097EE1 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F4DB32A26D5C700097EE1 /* application.cpp */; };
+		9A8F4DD12A26D5C800097EE1 /* shared_app_message_box.vcxproj.user in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DB42A26D5C700097EE1 /* shared_app_message_box.vcxproj.user */; };
+		9A8F4DD22A26D5C800097EE1 /* _____debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */; };
 		9AB15BD729A8796500DFDF90 /* libacme_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; };
 		9AB15BD829A8796500DFDF90 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BD929A8796600DFDF90 /* libapex_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */; };
@@ -140,6 +163,27 @@
 			remoteGlobalIDString = 9A64C1702660C62C0074030F;
 			remoteInfo = write_text_quartz2d;
 		};
+		9A8F4D8B2A26D5C600097EE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
+			remoteInfo = static_folder_zip;
+		};
+		9A8F4DB72A26D5C700097EE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8F4D9D2A26D5C600097EE1 /* _ios_app_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 078C352F1921758500354453;
+			remoteInfo = _ios_app_message_box;
+		};
+		9A8F4DB92A26D5C700097EE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8F4D9D2A26D5C600097EE1 /* _ios_app_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 078C35451921758600354453;
+			remoteInfo = ios_simple_drawing_simple_drawingTests;
+		};
 		9AB3DE7C278385AD0025099F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */;
@@ -242,6 +286,31 @@
 		9A8C81702783F8A7000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
 		9A8C81752783F8C5000C8587 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8C81772783F8C5000C8587 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A8F4D852A26D5C600097EE1 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
+		9A8F4D8F2A26D5C600097EE1 /* shared_app_message_box.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = shared_app_message_box.vcxproj.filters; sourceTree = "<group>"; };
+		9A8F4D902A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = nord_impl_app_message_box.vcxproj; sourceTree = "<group>"; };
+		9A8F4D932A26D5C600097EE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9A8F4D952A26D5C600097EE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9A8F4D962A26D5C600097EE1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9A8F4D972A26D5C600097EE1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A8F4D982A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = nord_impl_app_message_box.vcxproj.filters; sourceTree = "<group>"; };
+		9A8F4D992A26D5C600097EE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		9A8F4D9A2A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj.user */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = nord_impl_app_message_box.vcxproj.user; sourceTree = "<group>"; };
+		9A8F4D9B2A26D5C600097EE1 /* main.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.rc; sourceTree = "<group>"; };
+		9A8F4D9C2A26D5C600097EE1 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9A8F4D9D2A26D5C600097EE1 /* _ios_app_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = _ios_app_message_box.xcodeproj; sourceTree = "<group>"; };
+		9A8F4DA62A26D5C600097EE1 /* _app_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = _app_message_box.xcodeproj; sourceTree = "<group>"; };
+		9A8F4DAB2A26D5C600097EE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9A8F4DAC2A26D5C600097EE1 /* wiosapp_core_beatmapper-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wiosapp_core_beatmapper-Info.plist"; sourceTree = "<group>"; };
+		9A8F4DAD2A26D5C600097EE1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9A8F4DAE2A26D5C600097EE1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		9A8F4DAF2A26D5C600097EE1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A8F4DB02A26D5C600097EE1 /* icon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = icon.ico; sourceTree = "<group>"; };
+		9A8F4DB12A26D5C600097EE1 /* _app_message_box copy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "_app_message_box copy-Info.plist"; sourceTree = "<group>"; };
+		9A8F4DB22A26D5C700097EE1 /* shared_app_message_box.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = shared_app_message_box.vcxproj; sourceTree = "<group>"; };
+		9A8F4DB32A26D5C700097EE1 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
+		9A8F4DB42A26D5C700097EE1 /* shared_app_message_box.vcxproj.user */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = shared_app_message_box.vcxproj.user; sourceTree = "<group>"; };
+		9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
 		9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +410,7 @@
 			children = (
 				9A4E96C027853D4200B74C76 /* libfolder_zip.dylib */,
 				9A1FB54028713D320042849A /* libios_folder_zip.a */,
+				9A8F4D8C2A26D5C600097EE1 /* libstatic_folder_zip.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -364,9 +434,72 @@
 			path = macos;
 			sourceTree = "<group>";
 		};
+		9A8F4D8E2A26D5C600097EE1 /* __implement */ = {
+			isa = PBXGroup;
+			children = (
+				9A8F4D8F2A26D5C600097EE1 /* shared_app_message_box.vcxproj.filters */,
+				9A8F4D902A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj */,
+				9A8F4D912A26D5C600097EE1 /* macos */,
+				9A8F4D982A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj.filters */,
+				9A8F4D992A26D5C600097EE1 /* CMakeLists.txt */,
+				9A8F4D9A2A26D5C600097EE1 /* nord_impl_app_message_box.vcxproj.user */,
+				9A8F4D9B2A26D5C600097EE1 /* main.rc */,
+				9A8F4D9C2A26D5C600097EE1 /* framework.cpp */,
+				9A8F4D9D2A26D5C600097EE1 /* _ios_app_message_box.xcodeproj */,
+				9A8F4DA62A26D5C600097EE1 /* _app_message_box.xcodeproj */,
+				9A8F4DA92A26D5C600097EE1 /* ios */,
+				9A8F4DB02A26D5C600097EE1 /* icon.ico */,
+				9A8F4DB12A26D5C600097EE1 /* _app_message_box copy-Info.plist */,
+				9A8F4DB22A26D5C700097EE1 /* shared_app_message_box.vcxproj */,
+				9A8F4DB32A26D5C700097EE1 /* application.cpp */,
+				9A8F4DB42A26D5C700097EE1 /* shared_app_message_box.vcxproj.user */,
+			);
+			name = __implement;
+			sourceTree = "<group>";
+		};
+		9A8F4D912A26D5C600097EE1 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				9A8F4D922A26D5C600097EE1 /* InfoPlist.strings */,
+				9A8F4D942A26D5C600097EE1 /* MainMenu.xib */,
+				9A8F4D962A26D5C600097EE1 /* Images.xcassets */,
+				9A8F4D972A26D5C600097EE1 /* Info.plist */,
+			);
+			path = macos;
+			sourceTree = "<group>";
+		};
+		9A8F4D9E2A26D5C600097EE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A8F4DB82A26D5C700097EE1 /* _ios_app_message_box.app */,
+				9A8F4DBA2A26D5C700097EE1 /* ios_simple_drawing_simple_drawingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A8F4DA72A26D5C600097EE1 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A8F4DA92A26D5C600097EE1 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				9A8F4DAA2A26D5C600097EE1 /* InfoPlist.strings */,
+				9A8F4DAC2A26D5C600097EE1 /* wiosapp_core_beatmapper-Info.plist */,
+				9A8F4DAD2A26D5C600097EE1 /* Images.xcassets */,
+				9A8F4DAE2A26D5C600097EE1 /* Launch Screen.storyboard */,
+				9A8F4DAF2A26D5C600097EE1 /* Info.plist */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
 		9AB3DCD32783849D0025099F /* message_box */ = {
 			isa = PBXGroup;
 			children = (
+				9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */,
+				9A8F4D852A26D5C600097EE1 /* _____release.xcconfig */,
+				9A8F4D8E2A26D5C600097EE1 /* __implement */,
 				9A86605F29668296000C82F0 /* application.cpp */,
 				9A8C81722783F8C5000C8587 /* macos */,
 				9A8C81702783F8A7000C8587 /* _matter.zip */,
@@ -515,6 +648,14 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A8F4DA72A26D5C600097EE1 /* Products */;
+					ProjectRef = 9A8F4DA62A26D5C600097EE1 /* _app_message_box.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A8F4D9E2A26D5C600097EE1 /* Products */;
+					ProjectRef = 9A8F4D9D2A26D5C600097EE1 /* _ios_app_message_box.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A46D36826785A9C000B22D0 /* Products */;
 					ProjectRef = 9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */;
 				},
@@ -604,6 +745,27 @@
 			remoteRef = 9A64C1CF2660C7890074030F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9A8F4D8C2A26D5C600097EE1 /* libstatic_folder_zip.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_folder_zip.a;
+			remoteRef = 9A8F4D8B2A26D5C600097EE1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8F4DB82A26D5C700097EE1 /* _ios_app_message_box.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = _ios_app_message_box.app;
+			remoteRef = 9A8F4DB72A26D5C700097EE1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8F4DBA2A26D5C700097EE1 /* ios_simple_drawing_simple_drawingTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ios_simple_drawing_simple_drawingTests.xctest;
+			remoteRef = 9A8F4DB92A26D5C700097EE1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AC01D6C2748C46A006BEBCC /* libcrypto_openssl.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -632,9 +794,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8F4DC92A26D5C800097EE1 /* wiosapp_core_beatmapper-Info.plist in Resources */,
+				9A8F4DC12A26D5C800097EE1 /* Images.xcassets in Resources */,
+				9A8F4DCD2A26D5C800097EE1 /* icon.ico in Resources */,
+				9A8F4DBC2A26D5C800097EE1 /* _____release.xcconfig in Resources */,
+				9A8F4DD22A26D5C800097EE1 /* _____debug.xcconfig in Resources */,
+				9A8F4DBF2A26D5C800097EE1 /* InfoPlist.strings in Resources */,
+				9A8F4DCF2A26D5C800097EE1 /* shared_app_message_box.vcxproj in Resources */,
+				9A8F4DBE2A26D5C800097EE1 /* nord_impl_app_message_box.vcxproj in Resources */,
+				9A8F4DC82A26D5C800097EE1 /* InfoPlist.strings in Resources */,
 				9A8C81792783F8C5000C8587 /* Images.xcassets in Resources */,
+				9A8F4DC32A26D5C800097EE1 /* nord_impl_app_message_box.vcxproj.filters in Resources */,
 				9A273C7529CF172400CBEB97 /* InfoPlist.strings in Resources */,
+				9A8F4DCC2A26D5C800097EE1 /* Info.plist in Resources */,
 				9A8C81712783F8A7000C8587 /* _matter.zip in Resources */,
+				9A8F4DC42A26D5C800097EE1 /* CMakeLists.txt in Resources */,
+				9A8F4DCA2A26D5C800097EE1 /* Images.xcassets in Resources */,
+				9A8F4DCB2A26D5C800097EE1 /* Launch Screen.storyboard in Resources */,
+				9A8F4DBD2A26D5C800097EE1 /* shared_app_message_box.vcxproj.filters in Resources */,
+				9A8F4DC22A26D5C800097EE1 /* Info.plist in Resources */,
+				9A8F4DC52A26D5C800097EE1 /* nord_impl_app_message_box.vcxproj.user in Resources */,
+				9A8F4DCE2A26D5C800097EE1 /* _app_message_box copy-Info.plist in Resources */,
+				9A8F4DC02A26D5C800097EE1 /* MainMenu.xib in Resources */,
+				9A8F4DC62A26D5C800097EE1 /* main.rc in Resources */,
+				9A8F4DD12A26D5C800097EE1 /* shared_app_message_box.vcxproj.user in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,7 +835,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8F4DC72A26D5C800097EE1 /* framework.cpp in Sources */,
 				9A86606029668296000C82F0 /* application.cpp in Sources */,
+				9A8F4DD02A26D5C800097EE1 /* application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,11 +905,36 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
+		9A8F4D922A26D5C600097EE1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A8F4D932A26D5C600097EE1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9A8F4D942A26D5C600097EE1 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A8F4D952A26D5C600097EE1 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		9A8F4DAA2A26D5C600097EE1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A8F4DAB2A26D5C600097EE1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		070B8F051B6E53FA00D26137 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -817,6 +1027,7 @@
 		};
 		070B8F061B6E53FA00D26137 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A8F4D852A26D5C600097EE1 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

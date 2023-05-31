@@ -633,8 +633,8 @@
 		9A00E5ED26614F9400517464 /* transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transaction.cpp; sourceTree = "<group>"; };
 		9A00E5EE26614F9400517464 /* transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transaction.h; sourceTree = "<group>"; };
 		9A00E5EF26614F9400517464 /* database_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_impl.cpp; sourceTree = "<group>"; };
-		9A03B7C12A25BA1E00A0E33E /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
-		9A03B7C32A25BA2F00A0E33E /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		9A03B7C12A25BA1E00A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
+		9A03B7C32A25BA2F00A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
 		9A16268926F0041A003D9CB9 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A16268A26F0041A003D9CB9 /* email_department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = email_department.cpp; sourceTree = "<group>"; };
 		9A16268D26F0041A003D9CB9 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -1290,12 +1290,12 @@
 				9AE64451252A5BEE00BED5B8 /* callback.h */,
 				9AE642BC252A5BED00BED5B8 /* console_slim.h */,
 				9AE63EC0252A5BE900BED5B8 /* console.h */,
-				9A03B7C12A25BA1E00A0E33E /* debug.xcconfig */,
+				9A03B7C12A25BA1E00A0E33E /* _____debug.xcconfig */,
 				9AE64450252A5BEE00BED5B8 /* framework_c.h */,
 				9AE642BD252A5BED00BED5B8 /* framework.h */,
 				9AE63F5C252A5BEA00BED5B8 /* library.h */,
 				9AE63EBF252A5BE900BED5B8 /* procedure.h */,
-				9A03B7C32A25BA2F00A0E33E /* release.xcconfig */,
+				9A03B7C32A25BA2F00A0E33E /* _____release.xcconfig */,
 				9AE6445C252A5BEE00BED5B8 /* update.h */,
 			);
 			name = axis;
@@ -2362,7 +2362,7 @@
 		};
 		9AE63E9D252A5B7800BED5B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B7C12A25BA1E00A0E33E /* debug.xcconfig */;
+			baseConfigurationReference = 9A03B7C12A25BA1E00A0E33E /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -2471,7 +2471,7 @@
 		};
 		9AE63E9E252A5B7800BED5B8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B7C32A25BA2F00A0E33E /* release.xcconfig */;
+			baseConfigurationReference = 9A03B7C32A25BA2F00A0E33E /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;

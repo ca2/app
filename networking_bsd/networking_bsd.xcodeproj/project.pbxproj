@@ -82,8 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A03B82A2A25BFF100A0E33E /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
-		9A03B82B2A25BFF100A0E33E /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		9A03B82A2A25BFF100A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
+		9A03B82B2A25BFF100A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
 		9A0F89AD28D1166C002601B1 /* ip_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ip_enum.h; sourceTree = "<group>"; };
 		9A0F89AE28D1166C002601B1 /* port_forward.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = port_forward.cpp; sourceTree = "<group>"; };
 		9A0F89B328D1166C002601B1 /* _impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 				9A0F8AB828D1166C002601B1 /* _references.txt */,
 				9A0F8AAA28D1166C002601B1 /* address.cpp */,
 				9A0F8A9128D1166C002601B1 /* address.h */,
-				9A03B82A2A25BFF100A0E33E /* debug.xcconfig */,
+				9A03B82A2A25BFF100A0E33E /* _____debug.xcconfig */,
 				9A0F8A8C28D1166C002601B1 /* framework.cpp */,
 				9A0F8ABA28D1166C002601B1 /* framework.h */,
 				9A0F8AA128D1166C002601B1 /* ip_enum.cpp */,
@@ -236,7 +236,7 @@
 				9A366DB028E597CA0064C704 /* networking_bsd.cpp */,
 				9A0F89AE28D1166C002601B1 /* port_forward.cpp */,
 				9A0F8A9F28D1166C002601B1 /* port_forward.h */,
-				9A03B82B2A25BFF100A0E33E /* release.xcconfig */,
+				9A03B82B2A25BFF100A0E33E /* _____release.xcconfig */,
 				9A0F8AAD28D1166C002601B1 /* resource.h */,
 			);
 			name = networking_bsd;
@@ -635,7 +635,7 @@
 		};
 		9AC019362748A002006BEBCC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B82A2A25BFF100A0E33E /* debug.xcconfig */;
+			baseConfigurationReference = 9A03B82A2A25BFF100A0E33E /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -735,7 +735,7 @@
 		};
 		9AC019372748A002006BEBCC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A03B82B2A25BFF100A0E33E /* release.xcconfig */;
+			baseConfigurationReference = 9A03B82B2A25BFF100A0E33E /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

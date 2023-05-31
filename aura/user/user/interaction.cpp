@@ -20547,15 +20547,36 @@ namespace user
             estate |= e_state_hover;
 
          }
-
-         auto pprimitiveFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
-
-         if (pprimitiveFocus == this)
+         
+         auto puserinteractionHost = get_host_window();
+         
+         if(::is_set(puserinteractionHost) && puserinteractionHost->has_keyboard_focus())
          {
-
-            estate |= e_state_focused;
-
+            
+            auto puserinteractionimpl = puserinteractionHost->m_pinteractionimpl;
+            
+            if(::is_set(puserinteractionimpl))
+            {
+               
+               if(puserinteractionimpl->m_puserinteractionKeyboardFocus == this)
+               {
+                  
+                  estate |= e_state_focused;
+                  
+               }
+               
+            }
+            
          }
+
+//         auto pprimitiveFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+//
+//         if (pprimitiveFocus == this)
+//         {
+//
+//            estate |= e_state_focused;
+//
+//         }
 
          return estate;
 

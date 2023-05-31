@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #pragma once
 
@@ -39,6 +39,9 @@ namespace windowing
       ::point_i32                               m_pointCursor;
       ::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
+      
+      bool                                      m_bActiveWindow;
+      bool                                      m_bKeyboardFocus;
 
 
       window();
@@ -50,6 +53,11 @@ namespace windowing
 
       void on_initialize_particle() override;
 
+      
+      virtual void window_on_activate();
+      virtual void window_on_deactivate();
+      virtual void window_on_set_keyboard_focus();
+      virtual void window_on_kill_keyboard_focus();
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;

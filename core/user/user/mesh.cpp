@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "mesh.h"
 #include "list.h"
 #include "mesh_cache_interface.h"
@@ -248,8 +248,8 @@ namespace user
          const ::point_i32 & pointContextOrg = pgraphics->get_origin();
 
          pgraphics->set(pbrushText);
-         ::size_array sizea;
-         m_pdcextension->get_text_extent(pgraphics,m_strTopText,sizea);
+         ::size_f64_array sizea;
+         m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
          index x = 0;
          index right = (index)rectangleClient.right;
          double y = m_dItemHeight;
@@ -3571,9 +3571,9 @@ namespace user
       on_enable_hover_select();
 
 
-      __defer_construct_new(m_pdcextension);
+      __defer_construct_new(m_pgraphicsextension);
 
-      m_pdcextension->initialize(this);
+      //m_pdcextension->initialize(this);
 
       //on_create_draw_item();
 
@@ -4181,9 +4181,9 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::size_array sizea;
+      ::size_f64_array sizea;
 
-      m_pdcextension->get_text_extent(pgraphics,m_strTopText,sizea);
+      m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
 
       ::rectangle_i32 rectangleClient;
 
@@ -4371,9 +4371,9 @@ namespace user
       if(psubitem->m_bOk)
       {
 
-         ::size_i32 size{};
+         ::size_f64 size{};
          
-         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, size);
+         m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
          cx += size.cx();
 

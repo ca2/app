@@ -60,8 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A03B8362A25C11D00A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
-		9A03B8382A25C12D00A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
+		9A03B8362A25C11D00A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A03B8382A25C12D00A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A0DB3902864309200D061F7 /* libdatabase_sqlite3.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdatabase_sqlite3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0DB3A2286430CC00D061F7 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A0DB3A9286430CC00D061F7 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
@@ -128,6 +128,8 @@
 		9A0DB397286430CC00D061F7 /* database_sqlite3 */ = {
 			isa = PBXGroup;
 			children = (
+				9A03B8362A25C11D00A0E33E /* _____debug.xcconfig */,
+				9A03B8382A25C12D00A0E33E /* _____release.xcconfig */,
 				9A0DB3B2286430CD00D061F7 /* _.cpp */,
 				9A0DB3C3286430CD00D061F7 /* _.h */,
 				9A0DB3B4286430CD00D061F7 /* _2.h */,
@@ -135,11 +137,9 @@
 				9A0DB3B1286430CD00D061F7 /* database.cpp */,
 				9A0DB3B3286430CD00D061F7 /* database.h */,
 				9A0DB3B0286430CD00D061F7 /* dataset.h */,
-				9A03B8362A25C11D00A0E33E /* _____debug.xcconfig */,
 				9A0DB3A9286430CC00D061F7 /* factory_exchange.h */,
 				9A0DB3A2286430CC00D061F7 /* framework.cpp */,
 				9A0DB3B8286430CD00D061F7 /* framework.h */,
-				9A03B8382A25C12D00A0E33E /* _____release.xcconfig */,
 			);
 			name = database_sqlite3;
 			sourceTree = "<group>";

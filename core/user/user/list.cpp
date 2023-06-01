@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list.h"
 #include "list_column.h"
 #include "list_column_array.h"
@@ -261,9 +261,9 @@ namespace user
 
          pgraphics->set(pbrushText);
 
-         ::size_array sizea;
+         ::size_f64_array sizea;
 
-         m_pdcextension->get_text_extent(pgraphics, m_strTopText, sizea);
+         m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
 
          index x = 0;
 
@@ -5645,9 +5645,9 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::size_array sizea;
+      ::size_f64_array sizea;
 
-      m_pdcextension->get_text_extent(pgraphics, m_strTopText, sizea);
+      m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
       ::rectangle_i32 rectangleClient;
       client_rectangle(rectangleClient);
       index x = 0;
@@ -5781,7 +5781,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      ::size_i32 size;
+      ::size_f64 size;
 
       index cx = 0;
 
@@ -5820,7 +5820,7 @@ namespace user
 
          pgraphics->set_font(this, ::e_element_none);
 
-         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, size);
+         m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
          cx += size.cx();
 

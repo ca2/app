@@ -82,8 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A03B82A2A25BFF100A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
-		9A03B82B2A25BFF100A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
+		9A03B82A2A25BFF100A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A03B82B2A25BFF100A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A0F89AD28D1166C002601B1 /* ip_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ip_enum.h; sourceTree = "<group>"; };
 		9A0F89AE28D1166C002601B1 /* port_forward.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = port_forward.cpp; sourceTree = "<group>"; };
 		9A0F89B328D1166C002601B1 /* _impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
@@ -217,6 +217,8 @@
 				9A0F8AF528D1170B002601B1 /* bsd */,
 				9A0F89B928D1166C002601B1 /* sockets */,
 				9A0F8ABF28D1166C002601B1 /* winsock2 */,
+				9A03B82A2A25BFF100A0E33E /* _____debug.xcconfig */,
+				9A03B82B2A25BFF100A0E33E /* _____release.xcconfig */,
 				9A0F8AA428D1166C002601B1 /* _.cpp */,
 				9A0F8AEB28D1166D002601B1 /* _.h */,
 				9A0F8AB928D1166C002601B1 /* _byte_order.h */,
@@ -226,7 +228,6 @@
 				9A0F8AB828D1166C002601B1 /* _references.txt */,
 				9A0F8AAA28D1166C002601B1 /* address.cpp */,
 				9A0F8A9128D1166C002601B1 /* address.h */,
-				9A03B82A2A25BFF100A0E33E /* _____debug.xcconfig */,
 				9A0F8A8C28D1166C002601B1 /* framework.cpp */,
 				9A0F8ABA28D1166C002601B1 /* framework.h */,
 				9A0F8AA128D1166C002601B1 /* ip_enum.cpp */,
@@ -236,7 +237,6 @@
 				9A366DB028E597CA0064C704 /* networking_bsd.cpp */,
 				9A0F89AE28D1166C002601B1 /* port_forward.cpp */,
 				9A0F8A9F28D1166C002601B1 /* port_forward.h */,
-				9A03B82B2A25BFF100A0E33E /* _____release.xcconfig */,
 				9A0F8AAD28D1166C002601B1 /* resource.h */,
 			);
 			name = networking_bsd;

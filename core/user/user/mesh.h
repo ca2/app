@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/user/user/scroll.h"
@@ -170,7 +170,7 @@ namespace user
       ::pointer<mesh_cache_interface>             m_pmeshcache;
       e_cache_hinting                              m_ecachehinting;
 
-      ::pointer<draw2d::graphics_extension>       m_pdcextension;
+      ::pointer<draw2d::graphics_extension>        m_pgraphicsextension;
 
       index                                        m_iClick;
       bool                                         m_bLButtonDown;
@@ -291,7 +291,7 @@ namespace user
       //using interaction::update_hover;
       //::item_pointer update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
-      ::item_pointer on_hit_test(const ::point_i32& point, e_zorder ezorder);
+      ::item_pointer on_hit_test(const ::point_i32& point, e_zorder ezorder) override;
 
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();

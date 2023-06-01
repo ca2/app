@@ -3867,11 +3867,13 @@ namespace user
 
       while (::is_set(pChild) && ::is_set(pChild->get_parent()))
       {
+         
+         auto pointChildScroll = pChild->get_context_offset();
 
          if (pChild->m_bParentScrollX)
          {
 
-            pointScroll.x() += pChild->get_parent()->m_pointScroll.x();
+            pointScroll.x() += pointChildScroll.x();
             //pointScroll.x() += pChild->get_parent()->m_pointDragScroll.x();
 
          }
@@ -3879,7 +3881,7 @@ namespace user
          if (pChild->m_bParentScrollY)
          {
 
-            pointScroll.y() += pChild->get_parent()->m_pointScroll.y();
+            pointScroll.y() += pointChildScroll.y();
             //pointScroll.y() += pChild->get_parent()->m_pointDragScroll.y();
 
          }

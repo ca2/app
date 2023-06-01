@@ -57,10 +57,10 @@ namespace user
       ealign                              m_ealignText;
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
-      ::rectangle                              m_rectangleText;
+      ::rectangle_f64                              m_rectangleText;
       index                               m_iClick;
       e_stock_icon                        m_estockicon;
-      ::rectangle                              m_rectangleCheckBox;
+      ::rectangle_f64                              m_rectangleCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 

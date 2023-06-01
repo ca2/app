@@ -18,16 +18,16 @@ namespace user
       };
 
       ::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::rectangle                              m_rectangleMargin;
-      //::rectangle                              m_rectangleBorder;
-      //::rectangle                              m_rectanglePadding;
+      //::rectangle_f64                              m_rectangleMargin;
+      //::rectangle_f64                              m_rectangleBorder;
+      //::rectangle_f64                              m_rectanglePadding;
       ::e_align                             m_ealignText;
       e_style                             m_estyle;
-      ::rectangle                              m_rectangleText;
+      ::rectangle_f64                              m_rectangleText;
       index                               m_iClick;
       e_stock_icon                        m_estockicon;
 
-      ::rectangle                              m_rectangleCheckBox;
+      ::rectangle_f64                              m_rectangleCheckBox;
       string                              m_strLink;
       ::write_text::font_pointer              m_pfont;
       

@@ -153,13 +153,13 @@ int xinerama_get_screen_size(int& width, int& height)
 
    index iMonitor = 0;
 
-   ::array < ::rectangle > rectaMonitor;
+   ::array < ::rectangle_f64 > rectaMonitor;
 
    ::aura::system & system = Sys(pparticle);
 
    ::count cMonitor = system.get_monitor_count();
 
-   ::rectangle rectangleMonitor;
+   ::rectangle_f64 rectangleMonitor;
 
    rectaMonitor.set_size(cMonitor);
 
@@ -226,12 +226,12 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle & rectangleParam, RECT32 * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_f64 & rectangleParam, RECT32 * prectRet)
 {
 
    ::null_rect(prectRet);
 
-   ::rectangle rectangle(rectangleParam);
+   ::rectangle_f64 rectangle(rectangleParam);
 
    if(rectangle == nullptr)
    {
@@ -244,7 +244,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle 
 
    ::count cMonitor = xinerama_get_monitor_count();
 
-   ::rectangle rectangleMonitor;
+   ::rectangle_f64 rectangleMonitor;
 
    for(index i = 0; i < cMonitor; i++)
    {
@@ -279,12 +279,12 @@ int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, const ::rectangle & rectangleParam, RECT32 * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_f64 & rectangleParam, RECT32 * prectRet)
 {
 
-   ::rectangle rNull = nullptr;
+   ::rectangle_f64 rNull = nullptr;
 
-   ::rectangle rectangle(rectangleParam);
+   ::rectangle_f64 rectangle(rectangleParam);
 
    if(rectangle == nullptr)
    {

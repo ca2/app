@@ -1034,7 +1034,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////::point_i32;
 ////class point_i64;
 ////class point_f64;
-////::rectangle;
+////::rectangle_f64;
 ////::rectangle_i64;
 ////::rectangle_f64;
 //

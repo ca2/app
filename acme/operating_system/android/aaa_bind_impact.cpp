@@ -249,7 +249,7 @@
 //
 //   set_context(env);
 //
-//   ::rectangle rectangle;
+//   ::rectangle_f64 rectangle;
 //
 //   rectangle.left = 0;
 //   rectangle.top = 0;

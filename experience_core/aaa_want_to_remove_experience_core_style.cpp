@@ -33,12 +33,12 @@ namespace experience_lite
    bool user_style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
    {
 
-      ::rectangle rectangle;
-      ::rectangle rectangleBorder;
-      ::rectangle rectangleText;
-      ::rectangle rectangleClient;
-      ::rectangle rectangleIcon;
-      ::rectangle rectangleClose;
+      ::rectangle_f64 rectangle;
+      ::rectangle_f64 rectangleBorder;
+      ::rectangle_f64 rectangleText;
+      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleIcon;
+      ::rectangle_f64 rectangleClose;
 
       ptab->get_data()->m_ppen->create_solid(1,rgb(32,32,32));
 
@@ -337,12 +337,12 @@ namespace experience_lite
       else
       {
 
-         ::rectangle rectangleText(lpcrect);
+         ::rectangle_f64 rectangleText(lpcrect);
 
          ::write_text::font_pointer pfont;
          font = pgraphics->get_current_font();
          size sSep = ptab->get_data()->m_sizeSep;
-         ::rectangle rectangleEmp;
+         ::rectangle_f64 rectangleEmp;
          for(index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
@@ -471,7 +471,7 @@ namespace experience_lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle rectangleClient;
+         ::rectangle_f64 rectangleClient;
          ptab->GetClientRect(rectangleClient);
 
          ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
@@ -502,7 +502,7 @@ namespace experience_lite
          ::draw2d::graphics_pointer & pgraphics = graphics;
          pgraphics->SelectObject(ptab->get_data()->m_pfontBold);
 
-         ::rectangle rectangleClient;
+         ::rectangle_f64 rectangleClient;
          ptab->GetClientRect(rectangleClient);
          int x = rectangleClient.left;
 
@@ -639,7 +639,7 @@ namespace experience_lite
 
       pbar->get_color(crBackground, ::user::color_scrollbar_background);
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       pbar->GetClientRect(rectangleClient);
 
@@ -663,11 +663,11 @@ namespace experience_lite
 
       }
 
-      ::rectangle rectangleTrack;
+      ::rectangle_f64 rectangleTrack;
 
       pbar->GetTrackRect(rectangleTrack);
 
-      ::rectangle rectangleWindow;
+      ::rectangle_f64 rectangleWindow;
 
       pbar->GetWindowRect(rectangleWindow);
 
@@ -763,7 +763,7 @@ namespace experience_lite
             uchAlpha = 255;
          }
 
-         ::rectangle rectangleMachineThumb;
+         ::rectangle_f64 rectangleMachineThumb;
 
          bool bSimple = (bool)pbar->prop("tracking_simple");
 
@@ -776,7 +776,7 @@ namespace experience_lite
 
             rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + size(iSize, iSize);
 
-            ::rectangle rectangleIntersect;
+            ::rectangle_f64 rectangleIntersect;
 
             rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
@@ -867,7 +867,7 @@ namespace experience_lite
 
       pgraphics->Rectangle(pbar->m_rectangleB);
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
 
       if (pbar->m_eelement == ::e_element_scrollbar_pageA || pbar->m_eelementHover == ::e_element_scrollbar_pageA)
       {

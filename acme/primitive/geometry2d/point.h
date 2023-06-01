@@ -32,8 +32,8 @@ public:
 //   point_type(const POINT & point)
 //   {
 //      
-//      this->x() = (UNIT_TYPE) point.x;
-//      this->y() = (UNIT_TYPE) point.y
+//      this->x() = (UNIT_TYPE) point.x();
+//      this->y() = (UNIT_TYPE) point.y()
 //      
 //   }
 
@@ -80,7 +80,7 @@ public:
    UNIT_TYPE & y() {return this->b();}
 
 //   template < raw_primitive_point RAW_PRIMITIVE_POINT >
-//   inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE)point.x; this->y() = (UNIT_TYPE)point.y; return *this; }
+//   inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x() = (UNIT_TYPE)point.x(); this->y() = (UNIT_TYPE)point.y(); return *this; }
 
    
 //   template < primitive_size PRIMITIVE_SIZE >

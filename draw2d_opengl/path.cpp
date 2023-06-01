@@ -253,7 +253,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle & prectangle)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64 & prectangle)
    {
 
       throw ::exception(todo, "::opengl::path");

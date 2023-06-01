@@ -2778,7 +2778,7 @@ CLASS_DECL_AURA int_bool IsRectEmpty(LPCRECT32 lpcrect);
 
 //#ifdef cplusplus
 //
-//CLASS_DECL_AURA int_bool IsRectEmpty(const ::rectangle & rectangle);
+//CLASS_DECL_AURA int_bool IsRectEmpty(const ::rectangle_f64 & rectangle);
 //
 //#endif
 

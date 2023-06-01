@@ -942,14 +942,14 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
       }
 
-      ::rectangle rectangleTest;
+      ::rectangle_f64 rectangleTest;
 
       for(index i = 0; i < windowa.get_size(); i++)
       {
 
          string strItem = x11_get_name(display, windowa[i]);
 
-         ::rectangle rectangleHigher;
+         ::rectangle_f64 rectangleHigher;
 
          if(::is_set(oswindowExclude) && windowa[i] == oswindowExclude->window())
          {
@@ -961,7 +961,7 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
          if(x11_get_window_rect(display, windowa[i], rectangleHigher))
          {
 
-            ::rectangle rectangleHitTest;
+            ::rectangle_f64 rectangleHitTest;
 
             rectangleHitTest.set(rectangleHigher.origin(), ::size());
 
@@ -1038,7 +1038,7 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
 //    }
 
-//    ::rectangle rectangle;
+//    ::rectangle_f64 rectangle;
 
 //    x11_get_window_rect(display, oswindow->window(), rectangle);
 
@@ -1046,14 +1046,14 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
 //    string strTopic = x11_get_name(display, oswindow->window());
 
-//    ::rectangle rectangleTest;
+//    ::rectangle_f64 rectangleTest;
 
 //    for(iFind++; iFind < windowa.get_size(); iFind++)
 //    {
 
 //       string strItem = x11_get_name(display, windowa[iFind]);
 
-//       ::rectangle rectangleHigher;
+//       ::rectangle_f64 rectangleHigher;
 
 //       if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
 //       {
@@ -1128,7 +1128,7 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    }
 
-   ::rectangle rectangle;
+   ::rectangle_f64 rectangle;
 
    x11_get_window_rect(display, oswindow->window(), rectangle);
 
@@ -1136,14 +1136,14 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    //string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rectangle rectangleTest;
+   ::rectangle_f64 rectangleTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       //string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rectangle rectangleHigher;
+      ::rectangle_f64 rectangleHigher;
 
       if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
       {
@@ -1796,7 +1796,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   pgraphics->fill_rectangle(::rectangle(*psize), rgb(84, 90, 80));
+   pgraphics->fill_rectangle(::rectangle_f64(*psize), rgb(84, 90, 80));
 
    ::draw2d::brush_pointer pen(e_create_new);
 
@@ -3642,7 +3642,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx();
 //      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy();
 //
-//      ::rectangle r;
+//      ::rectangle_f64 r;
 //
 //      window_rectangle(msg.hwnd, &r);
 //
@@ -4396,7 +4396,7 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
 //}
 
 
-void wm_full_screen(oswindow w, const ::rectangle & rectangle)
+void wm_full_screen(oswindow w, const ::rectangle_f64 & rectangle)
 
 {
 
@@ -5076,7 +5076,7 @@ void x11_store_name(oswindow oswindow, const ::string & pszName)
 //
 //   }
 //
-//   ::rectangle rectangle;
+//   ::rectangle_f64 rectangle;
 //
 //   x11_get_window_rect(display, oswindow->window(), rectangle);
 //
@@ -5203,11 +5203,11 @@ void x11_store_name(oswindow oswindow, const ::string & pszName)
 //
 //   }
 //
-//   ::rectangle rectangleSource;
+//   ::rectangle_f64 rectangleSource;
 //
 //   x11_get_window_rect(display, oswindow->window(), rectangleSource);
 //
-//   ::rectangle rectangleTarget;
+//   ::rectangle_f64 rectangleTarget;
 //
 //   pinteraction->window_rectangle(rectangleTarget);
 //

@@ -312,7 +312,7 @@ namespace write_text
 //   }
 //
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str)
 //   {
 //
 //
@@ -325,7 +325,7 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      ::rectangle rectangleOffset(rectangle);
+//      //      ::rectangle_f64 rectangleOffset(rectangle);
 //      //      const ::point_i32 & pointOffset(rectangleOffset.top_left());
 //      //
 //      //      glyph * pglyph;
@@ -367,7 +367,7 @@ namespace write_text
 //
 //   }
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
 
 //   {
 //
@@ -381,7 +381,7 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      const ::rectangle rectangleOffset(rectangle);
+//      //      const ::rectangle_f64 rectangleOffset(rectangle);
 //      //      ::point_i32 pointOffset;
 //      //
 //      //

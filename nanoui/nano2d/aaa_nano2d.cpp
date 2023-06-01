@@ -2352,7 +2352,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	void CONTEXT::rectangle(float x, float y, float w, float h)
+	void CONTEXT::rectangle_f64(float x, float y, float w, float h)
 	{
 		//float vals[] = {
 		//	::nano2d::e_command_move_to, x,y,
@@ -2404,7 +2404,7 @@ void TransformSkewX(float* t, float a)
 		//}
 	}
 
-	void CONTEXT::ellipse(float cx, float cy, float rx, float ry)
+	void CONTEXT::ellipse_f64(float cx, float cy, float rx, float ry)
 	{
 		//float vals[] = {
 		//	::nano2d::e_command_move_to, cx - rx, cy,

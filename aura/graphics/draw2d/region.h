@@ -112,8 +112,8 @@ namespace draw2d
    
    //using arc_shape_region = _shape < ::arc, e_shape_arc, region>;
    ////using line_shape_with_region = _shape < ::line, e_shape_line, region >;
-   //using rectangle_shape_region = _shape < ::rectangle, e_shape_rectangle, region >;
-   //using ellipse_shape_region = _shape < ::ellipse, e_shape_ellipse, region >;
+   //using rectangle_shape_region = _shape < ::rectangle_f64, e_shape_rectangle, region >;
+   //using ellipse_shape_region = _shape < ::ellipse_f64, e_shape_ellipse, region >;
    //using polygon_shape_region = _shape < ::polygon, e_shape_polygon, region >;
 
    /*template < >

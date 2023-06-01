@@ -333,7 +333,7 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //
 //
 //
-//void FillSolidRect_dup(HDC hdc, const ::rectangle & rectangle, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::rectangle_f64 & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
@@ -773,7 +773,7 @@ int_bool client_rectangle(oswindow hwnd, RECT32 * prect)
 
 
 /*
- int FillRect(HDC hdc, const ::rectangle & prc, HBRUSH hbr)
+ int FillRect(HDC hdc, const ::rectangle_f64 & prc, HBRUSH hbr)
 
  {
 
@@ -1088,7 +1088,7 @@ int_bool client_rectangle(oswindow hwnd, RECT32 * prect)
 
 
 
-// void FillSolidRect_dup(HDC hdc, const ::rectangle & rectangle, color32_t clr)
+// void FillSolidRect_dup(HDC hdc, const ::rectangle_f64 & rectangle, color32_t clr)
 
 // {
 //    CGColorRef color = cg_create_color(clr);

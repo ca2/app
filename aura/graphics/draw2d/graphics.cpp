@@ -3260,7 +3260,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::_add_shape(const ::ellipse & ellipse)
+   //void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    //{
    //
    //   throw ::interface_only();
@@ -3330,7 +3330,7 @@ namespace draw2d
    }
 
 
-//   void graphics::intersect_clip(const ::ellipse & ellipse)
+//   void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
 //   {
 //
 //      throw interface_only();

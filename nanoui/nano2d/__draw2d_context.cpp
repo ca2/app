@@ -925,7 +925,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::ellipse(float cx, float cy, float rx, float ry)
+   void draw2d_context::ellipse_f64(float cx, float cy, float rx, float ry)
    {
 
       if (m_pstate->m_ppath)

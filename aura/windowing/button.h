@@ -15,7 +15,7 @@
 //
 //      string m_strLabel;
 //      bool m_bTextRect;
-//      ::rectangle m_rectangle;
+//      ::rectangle_f64 m_rectangle;
 //      //XGlyphInfo m_infoText;
 //      bool m_bPress;
 //      bool m_bHover;

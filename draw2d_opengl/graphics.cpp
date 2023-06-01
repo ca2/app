@@ -1513,7 +1513,7 @@ namespace draw2d_opengl
    }
 
 
-   //bool graphics::rectangle(double x1, double y1, double x2, double y2)
+   //bool graphics::rectangle_f64(double x1, double y1, double x2, double y2)
    //{
 
    //   //plusplus::rectF rectangle_f32((plusplus::REAL) x1, (plusplus::REAL) y1, (plusplus::REAL) (x2 - x1), (plusplus::REAL) (y2 - y1));
@@ -1591,7 +1591,7 @@ namespace draw2d_opengl
    //}
 
    
-   void graphics::rectangle(const ::rectangle_f64 &  rectangleParam)
+   void graphics::rectangle_f64(const ::rectangle_f64 &  rectangleParam)
    {
 
       fill_rectangle(rectangleParam);

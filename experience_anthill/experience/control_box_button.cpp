@@ -126,7 +126,7 @@ namespace experience_anthill
 
          string str;
 
-         get_window_text(str);
+         str = get_window_text();
 
          pgraphics->set_font(this, ::e_element_none);
 

@@ -940,10 +940,10 @@ bool oswindow_data::show_window(int iShow)
 }
 
 
-void oswindow_data::full_screen(const ::rectangle & rectangle)
+void oswindow_data::full_screen(const ::rectangle_f64 & rectangle)
 {
 
-   ::rectangle rBest;
+   ::rectangle_f64 rBest;
 
    int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
 
@@ -973,7 +973,7 @@ void oswindow_data::full_screen(const ::rectangle & rectangle)
 
    }
 
-   ::rectangle rWindow;
+   ::rectangle_f64 rWindow;
 
    rWindow.left      = attr.x();
    rWindow.top       = attr.y();

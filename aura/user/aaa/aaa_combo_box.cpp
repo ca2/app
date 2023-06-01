@@ -92,7 +92,7 @@ namespace user
 
       }
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
       //::user::e_::color::color colorText = color_text;
@@ -146,7 +146,7 @@ namespace user
 
       //}
 
-      ::rectangle rectangleText;
+      ::rectangle_f64 rectangleText;
 
       get_element_rect(rectangleText, e_element_text);
 
@@ -162,7 +162,7 @@ namespace user
    void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
    {
 
-      ::rectangle rectangleDropDown;
+      ::rectangle_f64 rectangleDropDown;
 
       get_element_rect(rectangleDropDown, e_element_drop_down);
 
@@ -184,7 +184,7 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -207,11 +207,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle rectangleDropDown;
+      ::rectangle_f64 rectangleDropDown;
 
       get_element_rect(rectangleDropDown, e_element_drop_down);
 
-      ::rectangle rectangleDropIn(rectangleDropDown);
+      ::rectangle_f64 rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
       ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
@@ -456,7 +456,7 @@ namespace user
    ::item_pointer combo_box::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      ::rectangle rectangleElement;
+      ::rectangle_f64 rectangleElement;
 
       if(get_element_rect(rectangleElement, e_element_drop_down))
       {
@@ -514,7 +514,7 @@ namespace user
       if (is_drop_down())
       {
 
-         ::rectangle rectangleWindow;
+         ::rectangle_f64 rectangleWindow;
 
          window_rectangle(rectangleWindow);
 
@@ -743,7 +743,7 @@ namespace user
 
          m_plist->query_full_size(pgraphics, m_sizeFull);
 
-         ::rectangle rectangleWindow;
+         ::rectangle_f64 rectangleWindow;
 
          window_rectangle(rectangleWindow);
 
@@ -794,7 +794,7 @@ namespace user
 
       }
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -877,7 +877,7 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            ::rectangle rectangleClient;
+            ::rectangle_f64 rectangleClient;
 
             client_rectangle(rectangleClient);
 

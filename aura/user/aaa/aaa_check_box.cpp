@@ -3,7 +3,7 @@
 #include "acme/constant/timer.h"
 
 
-void scroll_x(RECT32 * prect, double dRateX, const ::rectangle & rectangle)
+void scroll_x(RECT32 * prect, double dRateX, const ::rectangle_f64 & rectangle)
 {
 
    ::i32 w = ::width(prect);
@@ -121,7 +121,7 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -142,9 +142,9 @@ namespace user
 
       pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
-      ::rectangle rectangleCheckBox;
+      ::rectangle_f64 rectangleCheckBox;
 
-      ::rectangle rectangleText;
+      ::rectangle_f64 rectangleText;
 
       {
 
@@ -250,7 +250,7 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -300,15 +300,15 @@ namespace user
 
       }
 
-      ::rectangle rectangle(1, 1, w-2, h-2);
+      ::rectangle_f64 rectangle(1, 1, w-2, h-2);
 
-      ::rectangle rectangleEllipse(1, 1, h-2, h-2);
+      ::rectangle_f64 rectangleEllipse(1, 1, h-2, h-2);
 
       //double dNow = ::get_millis();
 
       ::draw2d::path_pointer point(e_create);
 
-      ::rectangle rectangleL(1, 1, h-2, h-2);
+      ::rectangle_f64 rectangleL(1, 1, h-2, h-2);
 
       auto rectangleR = rectangle_i32_dimension(h-2, 1, h-2, h-2);
 
@@ -478,13 +478,13 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
       int iMin = maximum(rectangleClient.min_dim() -1, 1);
 
-      ::rectangle rectangleCheckBox;
+      ::rectangle_f64 rectangleCheckBox;
       rectangleCheckBox.left = 1;
       rectangleCheckBox.top = 1;
       rectangleCheckBox.right = iMin + 1;

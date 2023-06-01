@@ -1119,10 +1119,10 @@ void nano_window::redraw()
 
       _get_geometry(&geometry);
 
-      rectangle.left = geometry.x;
-      rectangle.top = geometry.y;
-      rectangle.right = geometry.x + geometry.width;
-      rectangle.bottom = geometry.y + geometry.height;
+      rectangle.left = geometry.x();
+      rectangle.top = geometry.y();
+      rectangle.right = geometry.x() + geometry.width;
+      rectangle.bottom = geometry.y() + geometry.height;
 
    }
 

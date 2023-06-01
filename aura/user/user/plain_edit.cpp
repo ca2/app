@@ -7059,7 +7059,7 @@ namespace user
 
       ::index i = 0;
 
-      copy(pointOffset, get_context_offset());
+      //copy(pointOffset, get_context_offset());
 
       while (pointOffset.y() > dHeight && i < m_iaLineLength.get_size())
       {

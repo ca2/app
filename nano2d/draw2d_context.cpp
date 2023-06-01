@@ -796,7 +796,7 @@ namespace nano2d
 
          positions[iChar].str = psz;
 
-         positions[iChar].x = (float) (x+ offsetx+daLeft[psz - pszStart]);
+         positions[iChar].x() = (float) (x+ offsetx+daLeft[psz - pszStart]);
 
          positions[iChar].minx = (float) (x + offsetx + daLeft[psz - pszStart]);
 
@@ -908,7 +908,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::rectangle(float x, float y, float w, float h)
+   void draw2d_context::rectangle_f64(float x, float y, float w, float h)
    {
 
       if (m_pstate->m_ppath)
@@ -927,7 +927,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::ellipse(float cx, float cy, float rx, float ry)
+   void draw2d_context::ellipse_f64(float cx, float cy, float rx, float ry)
    {
 
       if (m_pstate->m_ppath)

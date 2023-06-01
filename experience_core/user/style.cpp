@@ -1023,40 +1023,54 @@ namespace experience_core
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_f64size;
+            ::size_f64 size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
-
-
             if (ppane->m_pimage->is_set())
             {
+
                size.cx() += ppane->m_pimage->width() + 2;
+
                size.cy() = maximum(size.cy(), ppane->m_pimage->height());
+
             }
-            cx = size.cx() + 2;
+
+            cx = (::i32) (size.cx() + 2);
 
             if (!ppane->m_bPermanent)
             {
+               
                cx += 2 + 16 + 2;
+
             }
 
             if (cx > iTabWidth)
             {
+               
                iTabWidth = cx;
+
             }
-            cy = size.cy() + 2;
+
+            cy = (::i32) ( size.cy() + 2);
+
             if (cy > iTabHeight)
             {
+
                iTabHeight = cy;
+
             }
+
          }
 
          // close tab button
          cy = 2 + 16 + 2;
+
          if (cy > iTabHeight)
          {
+
             iTabHeight = cy;
+
          }
 
          iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
@@ -1120,11 +1134,11 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            size_i32 size;
+            size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if (ppane->m_pimage.ok())
             {
@@ -1133,7 +1147,7 @@ namespace experience_core
 
             }
 
-            cy = size.cy() + 2;
+            cy = (::i32)(size.cy() + 2);
 
             if (cy > iTabHeight)
             {
@@ -1164,10 +1178,10 @@ namespace experience_core
 
 
 
-            ppane->m_size.cx() = size.cx() + ixAdd
+            ppane->m_size.cx() = (::i32) (size.cx() + ixAdd
                + pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right
                + pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right
-               + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right;
+               + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right);
 
             x += ppane->m_size.cx();
          }

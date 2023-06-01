@@ -75,7 +75,7 @@ namespace draw2d_opengl
       //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(i32 R, i32 G, i32 B);
 
-      //void rotate(::image::image * pimage, const ::rectangle & rectangle, double dAngle, double dScale);
+      //void rotate(::image::image * pimage, const ::rectangle_f64 & rectangle, double dAngle, double dScale);
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
 

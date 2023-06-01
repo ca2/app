@@ -1914,7 +1914,7 @@ namespace draw2d_opengl
 
    //void image::rotate(
    //   ::image * pimage,
-   //   const ::rectangle & rectangle,
+   //   const ::rectangle_f64 & rectangle,
    //   double dAngle,
    //   double dScale)
    //{
@@ -1923,7 +1923,7 @@ namespace draw2d_opengl
 
 
 
-   //   ::rectangle rectangle(rectangle);
+   //   ::rectangle_f64 rectangle(rectangle);
 
    //   i32 cx = rectangle.width();
    //   i32 cy = rectangle.height();
@@ -2540,7 +2540,7 @@ namespace draw2d_opengl
 //////
 ////      }
 ////#endif
-//      ::rectangle rectangle(rectangleWindow);
+//      ::rectangle_f64 rectangle(rectangleWindow);
 //
 //      // Copy the contents of the framebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
@@ -2593,7 +2593,7 @@ namespace draw2d_opengl
 //
 //      m_spgraphics->attach((HDC) pusermessage->m_wparam);
 //
-//      ::rectangle rectx;
+//      ::rectangle_f64 rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 //
@@ -2610,7 +2610,7 @@ namespace draw2d_opengl
 //      try
 //      {
 //
-//         ::rectangle rectangleWindow;
+//         ::rectangle_f64 rectangleWindow;
 //
 //         puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -2624,8 +2624,8 @@ namespace draw2d_opengl
 //         if(pgraphics->get_os_data() == nullptr)
 //            return false;
 //
-//         ::rectangle rectanglePaint;
-//         ::rectangle rectangleUpdate;
+//         ::rectangle_f64 rectanglePaint;
+//         ::rectangle_f64 rectangleUpdate;
 //         rectangleUpdate = rectangleWindow;
 //         rectanglePaint = rectangleWindow;
 //         rectanglePaint.offset(-rectanglePaint.top_left());

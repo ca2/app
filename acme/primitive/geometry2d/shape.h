@@ -219,8 +219,8 @@ public:
 
 //using arc_shape = _shape < ::arc, e_shape_arc>;
 //using line_shape = _shape < ::line, e_shape_line >;
-//using rectangle_shape = _shape < ::rectangle, e_shape_rectangle >;
-//using ellipse_shape = _shape < ::ellipse, e_shape_ellipse >;
+//using rectangle_shape = _shape < ::rectangle_f64, e_shape_rectangle >;
+//using ellipse_shape = _shape < ::ellipse_f64, e_shape_ellipse >;
 //using lines_shape = _shape < ::lines, e_shape_lines >;
 //using polygon_shape = _shape < ::polygon, e_shape_polygon >;
 

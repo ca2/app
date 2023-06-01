@@ -60,7 +60,7 @@ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWn
          (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
          // see if point hits the child ::interaction_impl
-         ::rectangle rectangle;
+         ::rectangle_f64 rectangle;
          ::window_rectangle(hWndChild, rectangle);
          if (rectangle.contains(point))
             return hWndChild;

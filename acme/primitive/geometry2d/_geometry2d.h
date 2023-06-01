@@ -51,8 +51,8 @@ inline auto top(const ::rectangle_f64& rectangle) { return rectangle.top; }
 //inline void copy(RAW_PRIMITIVE_POINT& rawprimitivepoint, const PRIMITIVE_POINT & primitivepoint)
 //{
 //
-//   rawprimitivepoint.x = (decltype(rawprimitivepoint.x))primitivepoint.x();
-//   rawprimitivepoint.y = (decltype(rawprimitivepoint.y))primitivepoint.y();
+//   rawprimitivepoint.x() = (decltype(rawprimitivepoint.x()))primitivepoint.x();
+//   rawprimitivepoint.y() = (decltype(rawprimitivepoint.y()))primitivepoint.y();
 //
 //}
 

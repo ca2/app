@@ -64,7 +64,7 @@ void window_android::destroy()
 }
 
 
-void window_android::update_window(oswindow interaction_impl, color32_t * pOsBitmapData, const ::rectangle & rectangle, int iStride)
+void window_android::update_window(oswindow interaction_impl, color32_t * pOsBitmapData, const ::rectangle_f64 & rectangle, int iStride)
 {
 
 

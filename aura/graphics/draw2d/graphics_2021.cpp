@@ -749,7 +749,7 @@ namespace draw2d
    }
 
 
-   void graphics::rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::rectangle_f64(const ::rectangle_f64 & rectangle)
    {
 
       //if (fill_rectangle(rectangle))
@@ -912,7 +912,7 @@ namespace draw2d
    }
 
 
-   void graphics::ellipse(const ::rectangle_f64 & rectangle)
+   void graphics::ellipse_f64(const ::rectangle_f64 & rectangle)
    {
 
       //auto ealphamode = m_ealphamode;
@@ -930,7 +930,7 @@ namespace draw2d
    }
 
 
-   void graphics::ellipse(double x1, double y1, double x2, double y2)
+   void graphics::ellipse_f64(double x1, double y1, double x2, double y2)
    {
 
       fill_ellipse(x1, y1, x2, y2);
@@ -3067,10 +3067,10 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_shape_rectangle:
-         _add_shape(pshape->shape < ::rectangle >());
+         _add_shape(pshape->shape < ::rectangle_f64 >());
          break;
       case e_shape_ellipse:
-         _add_shape(pshape->shape < ::ellipse >());
+         _add_shape(pshape->shape < ::ellipse_f64 >());
          break;
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
@@ -3115,7 +3115,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::_add_shape(const ::ellipse & ellipse)
+   //void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    //{
    //
    //   throw ::interface_only();
@@ -3125,7 +3125,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::ellipse & ellipse)
+   void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    {
    
       throw ::interface_only();
@@ -3209,7 +3209,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::intersect_clip(const ::ellipse & ellipse)
+   //void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    //{
    //
    //   auto estatus = _add_shape(ellipse);
@@ -3235,7 +3235,7 @@ namespace draw2d
    //}
 
 
-   void graphics::intersect_clip(const ::ellipse & ellipse)
+   void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    {
    
       //auto estatus =

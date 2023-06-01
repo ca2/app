@@ -289,7 +289,7 @@ namespace nano2d
    }
 
 
-   void context::ellipse(float cx, float cy, float rx, float ry)
+   void context::ellipse_f64(float cx, float cy, float rx, float ry)
    {
 
 

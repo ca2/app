@@ -1038,7 +1038,7 @@ namespace nanoui
       if (iIndex == size)
          pos = lastx; // last character
       else
-         pos = glyphs[iIndex].x;
+         pos = glyphs[iIndex].x();
 
       return pos;
 
@@ -1048,7 +1048,7 @@ namespace nanoui
    ::strsize TextBox::position_to_cursor_index(float posx, float lastx, const ::nano2d::glyphPosition* glyphs, ::strsize size)
    {
 
-      float caretx = glyphs[0].x;
+      float caretx = glyphs[0].x();
 
       if (posx < caretx)
       {
@@ -1069,13 +1069,13 @@ namespace nanoui
          if (cursor >= size)
          {
 
-            dNextX = (dLastX + glyphs[cursor - 1].x) / 2.0;
+            dNextX = (dLastX + glyphs[cursor - 1].x()) / 2.0;
 
          }
          else
          {
 
-            dNextX = (glyphs[cursor].x + glyphs[cursor - 1].x) / 2.0;
+            dNextX = (glyphs[cursor].x() + glyphs[cursor - 1].x()) / 2.0;
 
          }
 

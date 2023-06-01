@@ -2236,7 +2236,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	void context::rectangle(float x, float y, float w, float h)
+	void context::rectangle_f64(float x, float y, float w, float h)
 	{
 		//float vals[] = {
 		//	::nano2d::e_command_move_to, x,y,
@@ -2288,7 +2288,7 @@ void TransformSkewX(float* t, float a)
 		//}
 	}
 
-	void context::ellipse(float cx, float cy, float rx, float ry)
+	void context::ellipse_f64(float cx, float cy, float rx, float ry)
 	{
 		//float vals[] = {
 		//	::nano2d::e_command_move_to, cx - rx, cy,
@@ -2325,12 +2325,12 @@ void TransformSkewX(float* t, float a)
 			if (path->nfill) {
 				printf("   - fill: %d\n", path->nfill);
 				for (j = 0; j < path->nfill; j++)
-					printf("%f\t%f\n", path->fill[j].x, path->fill[j].y);
+					printf("%f\t%f\n", path->fill[j].x(), path->fill[j].y());
 			}
 			if (path->nstroke) {
 				printf("   - stroke: %d\n", path->nstroke);
 				for (j = 0; j < path->nstroke; j++)
-					printf("%f\t%f\n", path->stroke[j].x, path->stroke[j].y);
+					printf("%f\t%f\n", path->stroke[j].x(), path->stroke[j].y());
 			}
 		}
 	}

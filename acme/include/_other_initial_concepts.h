@@ -19,8 +19,8 @@ concept primitive_number =
 template < typename POINT >
 concept raw_primitive_point = requires(POINT point)
 {
-   {point.x}->primitive_number;
-   {point.y}->primitive_number;
+   {point.x()}->primitive_number;
+   {point.y()}->primitive_number;
 };
 
 
@@ -234,8 +234,8 @@ template < primitive_point POINT1, raw_primitive_point POINT2 >
 void copy(POINT1& point1, const POINT2& point2)
 {
 
-   point1.x() = (const ::std::decay_t <decltype(point1.x())>&)point2.x;
-   point1.y() = (const ::std::decay_t <decltype(point1.y())>&)point2.y;
+   point1.x() = (const ::std::decay_t <decltype(point1.x())>&)point2.x();
+   point1.y() = (const ::std::decay_t <decltype(point1.y())>&)point2.y();
    
 }
 
@@ -243,8 +243,8 @@ template < raw_primitive_point POINT1, primitive_point POINT2 >
 void copy(POINT1& point1, const POINT2& point2)
 {
 
-   point1.x = (const ::std::decay_t <decltype(point1.x)>&)point2.x();
-   point1.y = (const ::std::decay_t <decltype(point1.y)>&)point2.y();
+   point1.x() = (const ::std::decay_t <decltype(point1.x())>&)point2.x();
+   point1.y() = (const ::std::decay_t <decltype(point1.y())>&)point2.y();
 
 }
 

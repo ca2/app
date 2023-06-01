@@ -606,7 +606,7 @@ namespace linux
             //if(pshowwindow->m_bShow)
             {
 
-               //::rectangle rect32;
+               //::rectangle_f64 rect32;
 
                //(::window_rectangle((oswindow) get_handle(), rect32))
                {
@@ -1089,7 +1089,7 @@ namespace linux
 
       char szBuf [64];
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
       ((::user::interaction_impl *) this)->m_puserinteraction->window_rectangle(&rectangle);
       dumpcontext << "\nrect = " << rectangle;
       dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
@@ -1506,12 +1506,12 @@ namespace linux
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
             pmouse->m_bTranslated = true;
-            ::rectangle rectangleWindow;
+            ::rectangle_f64 rectangleWindow;
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
                INFORMATION("Screen Relative Mouse Message Position");
-               ::rectangle rectangleWindow32;
+               ::rectangle_f64 rectangleWindow32;
                ::window_rectangle((oswindow) get_handle(), &rectangleWindow32);
                ::copy(rectangleWindow, rectangleWindow32);
             }
@@ -1521,7 +1521,7 @@ namespace linux
             }
             if(::acmeacmesystem()->get_monitor_count() > 0)
             {
-               ::rectangle rcMonitor;
+               ::rectangle_f64 rcMonitor;
                ::acmeacmesystem()->get_monitor_rectangle(0, &rcMonitor);
                if(rectangleWindow.left >= rcMonitor.left)
                   pmouse->m_point.x() += (::i32) rectangleWindow.left;
@@ -1902,7 +1902,7 @@ namespace linux
 //   }
 //
 //   void interaction_impl::ScrollWindow(i32 xAmount, i32 yAmount,
-//                                       const ::rectangle & rectangle, const ::rectangle & lpClipRect)
+//                                       const ::rectangle_f64 & rectangle, const ::rectangle_f64 & lpClipRect)
 //
 //   {
 //      /*      ASSERT(::is_window((oswindow) get_handle()));
@@ -1926,7 +1926,7 @@ namespace linux
 //                  for (; hWndChild != nullptr;
 //                     hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
 //                  {
-//                     ::rectangle rectangle;
+//                     ::rectangle_f64 rectangle;
 //                     ::window_rectangle(hWndChild, &rectangle);
 //                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
@@ -2435,7 +2435,7 @@ namespace linux
 //   void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
 //   {
 //
-//      ::rectangle rectangleClient;
+//      ::rectangle_f64 rectangleClient;
 //
 //      m_puserinteraction->client_rectangle(rectangleClient);
 //
@@ -2443,10 +2443,10 @@ namespace linux
 //      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 //
 //      //return;
-//      ::rectangle rectangleUpdate;
+//      ::rectangle_f64 rectangleUpdate;
 //      m_puserinteraction->window_rectangle(rectangleUpdate);
 ////      SetContextOrgEx(hdc, 0, 0, nullptr);
-//      ::rectangle rectanglePaint;
+//      ::rectangle_f64 rectanglePaint;
 //      rectanglePaint = rectangleUpdate;
 //      m_puserinteraction->screen_to_client(rectanglePaint);
 //      user::oswindow_array wndaApp;
@@ -2668,7 +2668,7 @@ namespace linux
 
 //   {
 //
-//      ::rectangle rectangleWindow;
+//      ::rectangle_f64 rectangleWindow;
 //
 //      if(!window_rectangle(rectangleWindow))
 //      {
@@ -2832,7 +2832,7 @@ namespace linux
 //      // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
 //      //if(m_puserinteraction == nullptr || m_puserinteraction == this)
 //      {
-//         ::rectangle rect32;
+//         ::rectangle_f64 rect32;
 //
 //         if(!::window_rectangle((oswindow) get_handle(), rect32))
 //         {
@@ -2890,7 +2890,7 @@ namespace linux
 //      //if(m_puserinteraction == nullptr || m_puserinteraction == this)
 //      {
 //
-//         ::rectangle rect32;
+//         ::rectangle_f64 rect32;
 //
 //         //if(!::client_rectangle((oswindow) get_handle(), rect32))
 //         //{
@@ -3278,7 +3278,7 @@ namespace linux
 //   */
 //
 //
-////   void interaction_impl::MoveWindow(const ::rectangle & rectangle, bool bRepaint)
+////   void interaction_impl::MoveWindow(const ::rectangle_f64 & rectangle, bool bRepaint)
 ////   {
 ////
 ////      MoveWindow(rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, bRepaint);
@@ -3380,7 +3380,7 @@ namespace linux
 //
 //      }
 //
-//      ::rectangle rectangleClient;
+//      ::rectangle_f64 rectangleClient;
 //
 //      //oswindow->client_rectangle(rectangleClient);
 //
@@ -3479,7 +3479,7 @@ namespace linux
 //      //::InvalidateRect(get_handle(), nullptr, bErase);
 //   }
 //
-//   void interaction_impl::InvalidateRect(const ::rectangle & rectangle, bool bErase)
+//   void interaction_impl::InvalidateRect(const ::rectangle_f64 & rectangle, bool bErase)
 //
 //   {
 //      throw ::not_implemented();
@@ -3495,7 +3495,7 @@ namespace linux
 //      //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
 //   }
 //
-//   void interaction_impl::ValidateRect(const ::rectangle & rectangle)
+//   void interaction_impl::ValidateRect(const ::rectangle_f64 & rectangle)
 //
 //   {
 //      throw ::not_implemented();
@@ -3622,7 +3622,7 @@ namespace linux
 //   }
 //
 
-//   bool interaction_impl::RedrawWindow(const ::rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+//   bool interaction_impl::RedrawWindow(const ::rectangle_f64& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
 //   {
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));

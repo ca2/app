@@ -54,7 +54,7 @@ namespace draw2d_opengl
 
       //virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_i32& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle& prectangle) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle) override;
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon& ppolygon) override;
 

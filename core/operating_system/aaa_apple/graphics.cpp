@@ -256,7 +256,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 
 
 
-//void FillSolidRect_dup(HDC hdc, const ::rectangle & rectangle, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::rectangle_f64 & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);

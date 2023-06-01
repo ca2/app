@@ -622,9 +622,7 @@ namespace experience_anthill
 
          color32_t    crMoveableBorderShadow;
 
-         string str;
-
-         pframewindow->get_window_text(str);
+         auto str = pframewindow->get_window_text();
 
          if (pframewindow->m_fActive)
          {
@@ -682,11 +680,9 @@ namespace experience_anthill
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
-         string wstrWindowText;
+         auto strWindowText = pframewindow->get_window_text();
 
-         pframewindow->get_window_text(wstrWindowText);
-
-         if(wstrWindowText.has_char())
+         if(strWindowText.has_char())
          {
 
             auto pbrushText = __create<::draw2d::brush>();
@@ -697,7 +693,7 @@ namespace experience_anthill
 
             pgraphics->set(pframewindow->get_font(pstyle));
 
-            pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+            pgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
          }
 

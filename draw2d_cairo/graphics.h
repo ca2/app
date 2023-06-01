@@ -228,15 +228,15 @@ namespace draw2d_cairo
       // "inline" paths.
       void _intersect_clip() override;
       //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-      void _add_clipping_shape(const ::rectangle & rectangle_f64, ___shape < ::draw2d::region > & shape) override;
-      //virtual void _add_shape(const ::ellipse & ellipse) override;
-      void _add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::rectangle_f64 & rectangle_f64, ___shape < ::draw2d::region > & shape) override;
+      //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;
+      void _add_clipping_shape(const ::ellipse_f64 & ellipse, ___shape < ::draw2d::region > & shape) override;
       //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
       void _add_clipping_shape(const ::polygon & polygon_i32, ___shape < ::draw2d::region > & shape) override;
 
       void _add_shape(const ::rectangle_f64 & rectangle_f64);
-      //virtual void _add_shape(const ::ellipse & ellipse) override;
-      void _add_shape(const ::ellipse & ellipse);
+      //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;
+      void _add_shape(const ::ellipse_f64 & ellipse);
       //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
       void _add_shape(const ::polygon_f64 & polygon_i32);
 
@@ -556,8 +556,8 @@ namespace draw2d_cairo
       bool _set(const ::arc & arc, const ::pointer<::draw2d::region>& pregion);
       //bool _set(const ::line & line);
       //bool _set(const ::lines & lines);
-      bool _set(const ::rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::rectangle_f64 & rectangle, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::ellipse_f64 & ellipse, const ::pointer<::draw2d::region>& pregion);
       bool _set(const ::polygon & polygon, const ::pointer<::draw2d::region>& pregion);
       bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
@@ -566,8 +566,8 @@ namespace draw2d_cairo
       bool _set(const ::arc & arc, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::line & line, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::lines & lines, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::rectangle_f64 & rectangle, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::ellipse_f64 & ellipse, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::polygon & polygon, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
@@ -576,8 +576,8 @@ namespace draw2d_cairo
       bool _set(const ::arc & arc);
       bool _set(const ::line & line);
       bool _set(const ::lines & lines);
-      bool _set(const ::rectangle & rectangle);
-      bool _set(const ::ellipse & ellipse);
+      bool _set(const ::rectangle_f64 & rectangle);
+      bool _set(const ::ellipse_f64 & ellipse);
       bool _set(const ::polygon & polygon);
       bool _set(const ::write_text::text_out & textout);
       bool _set(const ::write_text::draw_text & drawtext);

@@ -196,7 +196,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //
 //   }
 //
-//   ::rectangle rectangle;
+//   ::rectangle_f64 rectangle;
 //
 //   rectangle.left = 0;
 //   rectangle.top = 0;

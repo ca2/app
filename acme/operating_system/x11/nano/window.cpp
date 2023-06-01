@@ -437,13 +437,13 @@ namespace x11
       if (event_type == ConfigureNotify)
       {
 
-         m_pinterface->m_rectangle.left = pevent->xconfigure.x;
+         m_pinterface->m_rectangle.left = pevent->xconfigure.x();
 
-         m_pinterface->m_rectangle.top = pevent->xconfigure.y;
+         m_pinterface->m_rectangle.top = pevent->xconfigure.y();
 
-         m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
+         m_pinterface->m_rectangle.right = pevent->xconfigure.x() + pevent->xconfigure.width;
 
-         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
+         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y() + pevent->xconfigure.height;
 
          if (m_psurface)
          {

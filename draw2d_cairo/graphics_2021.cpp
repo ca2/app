@@ -367,7 +367,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_add_shape(const ::ellipse & ellipse)
+   void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    {
 
       cairo_keep keep(m_pdc);
@@ -1372,7 +1372,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::rectangle_f64(const ::rectangle_f64 & rectangle)
    {
 
       _synchronous_lock ml(cairo_mutex());
@@ -5736,11 +5736,11 @@ namespace draw2d_cairo
             //case ::e_shape_rect:
             //   return _set(pshape->shape < ::rectangle_i32 > ());
          case ::e_shape_rectangle:
-            return _set(pshape->shape<::rectangle>());
+            return _set(pshape->shape<::rectangle_f64>());
             //case ::e_shape_polygon:
             //   return _set(pshape->shape < ::polygon_i32 > ());
          case ::e_shape_ellipse:
-            return _set(pshape->shape<::ellipse>());
+            return _set(pshape->shape<::ellipse_f64>());
          case ::e_shape_polygon:
             return _set(pshape->shape<::polygon>());
          case ::e_shape_text_out:
@@ -6134,7 +6134,7 @@ namespace draw2d_cairo
 //}
 
 
-   bool graphics::_set(const ::rectangle & rectangle)
+   bool graphics::_set(const ::rectangle_f64 & rectangle)
    {
 
       _synchronous_lock ml(cairo_mutex());
@@ -6151,7 +6151,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::ellipse & ellipse)
+   bool graphics::_set(const ::ellipse_f64 & ellipse)
    {
 
       _synchronous_lock ml(cairo_mutex());

@@ -132,7 +132,7 @@ public:
    Colormap                               m_colormap;
    ::duration                                   m_durationLastMouseMove;
    Window                                 m_parent;
-   ::rectangle                                 m_rect;
+   ::rectangle_f64                                 m_rect;
    string                                 m_strWMClass;
    int                                    m_iaNetWmState[net_wm_state_count];
 
@@ -228,7 +228,7 @@ public:
 
    void exit_iconify();
 
-   void full_screen(const ::rectangle & rectangle = nullptr);
+   void full_screen(const ::rectangle_f64 & rectangle = nullptr);
 
    void exit_full_screen();
 

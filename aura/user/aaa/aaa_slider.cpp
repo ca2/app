@@ -53,7 +53,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      //::rectangle rectangle;
+      //::rectangle_f64 rectangle;
 
       //get_slider_rect(rectangle);
 
@@ -140,7 +140,7 @@ namespace user
 
       screen_to_client(point, e_layout_design);
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
 
       client_rectangle(rectangle);
 
@@ -199,7 +199,7 @@ namespace user
 
       }
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -209,7 +209,7 @@ namespace user
 
       imaging.color_blend(pgraphics, rectangleClient, rgb(250,255,255), bAlpha1);
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
 
       get_slider_rect(rectangle);
 
@@ -232,10 +232,10 @@ namespace user
    }
 
 
-   void slider::get_slider_rect(::rectangle & rectangle)
+   void slider::get_slider_rect(::rectangle_f64 & rectangle)
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 

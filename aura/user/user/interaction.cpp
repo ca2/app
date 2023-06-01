@@ -3913,7 +3913,7 @@ namespace user
          if(!get_host_window()->has_prodevian())
          {
 
-            pgraphics->m_pointAddShapeTranslate = m_pointScroll;
+            //pgraphics->m_pointAddShapeTranslate = m_pointScroll;
 
             if (pgraphics->m_rectangleaNeedRedraw.has_element())
             {

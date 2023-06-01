@@ -1003,7 +1003,7 @@ namespace experience_core
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
 
       if (pdata->m_bVertical)
       {
@@ -1021,11 +1021,11 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
 
 

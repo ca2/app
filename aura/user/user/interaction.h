@@ -1916,6 +1916,8 @@ namespace user
       virtual int get_final_x_scroll_bar_width();
       virtual int get_final_y_scroll_bar_width();
 
+      //virtual double get_x_scroll();
+      //virtual double get_y_scroll();
 
       virtual bool is_system_message_window();
 

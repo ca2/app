@@ -75,8 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A03B8342A25C0F300A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____release.xcconfig; sourceTree = "<group>"; };
-		9A03B8352A25C0F300A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = _____debug.xcconfig; sourceTree = "<group>"; };
+		9A03B8342A25C0F300A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A03B8352A25C0F300A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A2199932761000D001E14CC /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../../operating_system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9A226D4127CE99B40042BAC2 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../../operating_system/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
 		9A81FBDD27516603003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,12 +139,13 @@
 		9AC019412748A057006BEBCC /* crypto_openssl */ = {
 			isa = PBXGroup;
 			children = (
+				9A03B8352A25C0F300A0E33E /* _____debug.xcconfig */,
+				9A03B8342A25C0F300A0E33E /* _____release.xcconfig */,
 				9AC019682748A057006BEBCC /* _.cpp */,
 				9AC0198F2748A059006BEBCC /* _.h */,
 				9AC0196E2748A057006BEBCC /* crypto.cpp */,
 				9AC019612748A057006BEBCC /* crypto.h */,
 				9AC0196C2748A057006BEBCC /* _factory.cpp */,
-				9A03B8352A25C0F300A0E33E /* _____debug.xcconfig */,
 				9AC019582748A057006BEBCC /* framework.cpp */,
 				9AC019732748A057006BEBCC /* framework.h */,
 				9AC0194A2748A057006BEBCC /* hasher_algorithm.cpp */,
@@ -153,7 +154,6 @@
 				9AC019652748A057006BEBCC /* hasher.h */,
 				9AC019472748A057006BEBCC /* initializer.cpp */,
 				9AC0196B2748A057006BEBCC /* initializer.h */,
-				9A03B8342A25C0F300A0E33E /* _____release.xcconfig */,
 				9AC0198E2748A059006BEBCC /* rsa.cpp */,
 				9AC019742748A057006BEBCC /* rsa.h */,
 			);

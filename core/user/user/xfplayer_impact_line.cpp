@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "xfplayer_impact_line.h"
 #include "xfplayer_impact_lines.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -766,11 +766,15 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    }
 
    i32 i;
-   ::size_i32 size;
+   
+   ::size_f64 size;
+   
    ::rectangle_i32 rectangleClient(rectangle);
 
    m_rectangleClient = rectangleClient;
+   
    ::rectangle_i32 rectanglePlacement;
+   
    GetPlacement(rectanglePlacement);
 
    string strMain = m_str;
@@ -806,10 +810,12 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
    if (m_straLink.get_size() > 0)
    {
+      
       *m_pfontLink = *m_pfont;
+      
       m_pfontLink->set_underline();
+      
    }
-
 
    if (m_bColonPrefix)
    {
@@ -837,22 +843,25 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       pgraphics->set(m_pfontPrefix);
 
       m_iaPosition[0] = 0;
+      
       for (i = 1; i <= m_strPrefix.length(); i++)
       {
 
-         m_pdcextension->get_text_extent(
-         pgraphics,
-         m_strPrefix(0, i),
-         size);
+         m_pgraphicsextension->get_text_extent(
+                                                pgraphics,
+                                                m_strPrefix(0, i),
+                                                size);
 
          m_iaPosition.add(size.cx());
 
       }
+      
       int iSize = size.cx();
-      m_pdcextension->get_text_extent(
-      pgraphics,
-      " ",
-      size);
+      
+      m_pgraphicsextension->get_text_extent(
+                                            pgraphics,
+                                            " ",
+                                            size);
 
       m_iaPosition.add(iSize + size.cx());
       
@@ -861,7 +870,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       for (i = 1; i <= m_strRoot.length(); i++)
       {
 
-         m_pdcextension->get_text_extent(
+         m_pgraphicsextension->get_text_extent(
          pgraphics,
          m_strRoot(0, i),
          size);
@@ -881,7 +890,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       for (i = 1; i <= m_str.length(); i++)
       {
 
-         m_pdcextension->get_text_extent(
+         m_pgraphicsextension->get_text_extent(
          pgraphics,
          m_str(0, i),
          size);
@@ -1562,20 +1571,24 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    //FORMATTED_TRACE("CLyricImpactLine::CacheEmboss: %s\n", pcsz);
 
-   ::size_i32 size;
+   ::size_f64 size;
 
    pgraphics->set(m_pfont);
 
-   m_pdcextension->get_text_extent(pgraphics, scopedstr, size);
+   m_pgraphicsextension->get_text_extent(pgraphics, scopedstr, size);
 
    size.cx() += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
+   
    size.cy() += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
-
 
    pimageCache = m_pcontext->m_pauracontext->create_image(size);
 
    if (!pimageCache)
+   {
+      
       return;
+      
+   }
 
    pimageCache->fill(0, 0, 0, 0);
 
@@ -1593,27 +1606,30 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    pdcCache->set(pbrushText);
 
-   ::size_i32 s;
+   ::size_f64 s;
 
    if (m_bColonPrefix)
    {
 
       pdcCache->set(m_pfontPrefix);
+      
       const ::size_i32 & size = pdcCache->get_text_extent(m_strPrefix);
-      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy(), m_strPrefix, s);
+      
+      m_pgraphicsextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy(), m_strPrefix, s);
+      
       pdcCache->set(m_pfont);
 
       int x = (i32) (s.cx() + (s.cx() / m_strPrefix.length()) + (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
       int y = (i32) (1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      m_pdcextension->text_out(pdcCache, x, y, m_strRoot, s);
+      m_pgraphicsextension->text_out(pdcCache, x, y, m_strRoot, s);
 
    }
    else
    {
 
-      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), scopedstr, s);
+      m_pgraphicsextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), scopedstr, s);
 
    }
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "xfplayer_impact_line_selection.h"
@@ -9,9 +9,6 @@ class CLASS_DECL_CORE xfplayer_impact_line  :
    virtual public ::object
 {
 public:
-
-
-
 
    enum EAnimate
    {
@@ -30,9 +27,9 @@ public:
    bool                                            m_bColonPrefix;
 
 
-   ::pointer<xfplayer_impact_line_selection>      m_pselection;
+   ::pointer<xfplayer_impact_line_selection>       m_pselection;
    byte *                                          m_lpBitmapData;
-   ::pointer<::draw2d::graphics_extension>        m_pdcextension;
+   ::pointer<::draw2d::graphics_extension>         m_pgraphicsextension;
 
    index                                           m_iLinkHoverIndex;
    index                                           m_iIndex;

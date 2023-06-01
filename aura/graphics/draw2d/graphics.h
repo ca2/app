@@ -119,7 +119,7 @@ namespace draw2d
       bool                                   m_bPrinting;
       void *                                 m_osdata[8];
       ::user::style_pointer                  m_puserstyle;
-      ::point_f64                            m_pointAddShapeTranslate;
+      //::point_f64                            m_pointAddShapeTranslate;
       bool                                   m_bUseImageMipMapsOrResizedImages;
 
       //::e_status                             m_estatus;

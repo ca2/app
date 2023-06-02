@@ -463,7 +463,7 @@ namespace draw2d
       
 
       
-      virtual void add_clipping_shapes(const shape_array < ::draw2d::region > & shapea);
+      virtual void add_clipping_shapes(const pointer_array < ::draw2d::region > & regiona);
       virtual void reset_clip();
 
       virtual void set_clipping(::draw2d::region * pregion);
@@ -482,10 +482,11 @@ namespace draw2d
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
       virtual void _intersect_clip();
-      virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
-      virtual void _add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape);
-      virtual void _add_clipping_shape(const ::ellipse_f64 & ellipse, ___shape < ::draw2d::region > & shape);
-      virtual void _add_clipping_shape(const ::polygon_f64 & polygon, ___shape < ::draw2d::region > & shape);
+      //virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
+      virtual void _add_clipping_shape(::draw2d::region * pregion);
+      virtual void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion);
+      virtual void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion);
+      virtual void _add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);

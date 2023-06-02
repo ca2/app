@@ -57,15 +57,23 @@ public:
 
    bool bounding_rectangle_contains(const ::point_type < NUMBER > & point) const;
    
-   bool contains(const ::point_type < NUMBER > & point) const
+   bool contains_winding(const ::point_type < NUMBER > & point) const
    {
     
-      return point_array_base < NUMBER >::polygon_contains(point);
+      return point_array_base < NUMBER >::polygon_contains_winding(point);
     
+   }
+
+   bool contains_alternate(const ::point_type < NUMBER > & point) const
+   {
+
+      return point_array_base < NUMBER >::polygon_contains_alternate(point);
+
    }
 
    polygon_base& operator = (const polygon_base& polygon_i32);
    polygon_base& operator = (polygon_base&& polygon_i32);
+
 
 
 };

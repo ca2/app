@@ -75,3 +75,13 @@ inline angle_f64 operator "" _degrees(unsigned long long int ull)
 
 
 
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+inline bool angle(const ::point_type < NUMBER1 > & center, const ::point_type < NUMBER2 > & point)
+{
+
+   return atan2(point.y() - center.y(), point.x() - center.x());
+
+}
+
+
+

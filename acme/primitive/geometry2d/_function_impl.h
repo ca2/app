@@ -579,31 +579,41 @@ auto get_dimension(enum_orientation eorientation, X x, Y y);
 template < typename X, typename Y >
 auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
 
-
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 {
 
-   return rectangle1.left == rectangle2.left && rectangle1.top == rectangle2.top
-      && rectangle1.right == rectangle2.right && rectangle1.bottom == rectangle2.bottom;
+   return fabs(n1 - n2) < epsilon;
+
+}
+
+
+template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, float epsilon)
+{
+
+   return is_equal(rectangle1.left, rectangle2.left, epsilon)
+      && is_equal(rectangle1.top, rectangle2.top, epsilon)
+      && is_equal(rectangle1.right, rectangle2.right, epsilon)
+      && is_equal(rectangle1.bottom, rectangle2.bottom, epsilon);
 
 }
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
-bool is_equal(const POINT1 & point1, const POINT2 & point2)
+bool is_equal(const POINT1 & point1, const POINT2 & point2, float epsilon)
 {
 
-   return point1.x() == point2.x() && point1.y() == point2.y();
+   return is_equal(point1.x(), point2.x(), epsilon) && is_equal(point1.y(), point2.y(), epsilon);
 
 }
 
 
 template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
-bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
+bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2, float epsilon)
 {
 
-   return size1.cx() == size2.cx() && size1.cy() == size2.cy();
+   return is_equal(size1.cx(), size2.cx(), epsilon) && is_equal(size1.cy(), size2.cy(), epsilon);
 
 }
 
@@ -808,7 +818,7 @@ inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rec
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
-inline bool polygon_contains(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
+inline bool polygon_contains_winding(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
 {
 
    int i, j = iCount - 1;
@@ -836,6 +846,86 @@ inline bool polygon_contains(const POINT1 * ppPolygon, i32 iCount, const POINT2 
    return oddNodes;
 
 }
+
+
+
+// there are degenerated cases for this ray-casting method for even odd rule (use holes)
+//https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon
+
+
+/* intersection function */
+template < primitive_point POINT1, primitive_point POINT2 >
+inline bool polygon_contains_alternate(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point, const bool use_holes, float epsilon)
+{
+
+   using UNIT_TYPE = ::decay < non_const < largest_type < decltype(ppPolygon->x()), decltype(point.x()) > > >;
+
+   /* we do the angle rule, define that all added angles should be about zero or (2 * PI) */
+   UNIT_TYPE angletot{};
+   //float fp1[2], fp2[2];
+   //unsigned int i;
+   //const float * p1, * p2;
+
+   auto * p1 = &ppPolygon[iCount - 1];
+
+   const POINT1 * p2 = nullptr;
+
+   /* first vector */
+   POINT1 fp1 = *p1 - point;
+
+   for (int i = 0; i < iCount; i++)
+   {
+      
+      p2 = &ppPolygon[i];
+
+      /* second vector */
+      POINT1 fp2 = *p2 - point;
+
+      /* dot and angle and cross */
+      angletot += fp1.angle(fp2);
+
+      /* circulate */
+      fp1 = fp2;
+
+      p1 = p2;
+
+   }
+
+   angletot = (UNIT_TYPE) fabs(angletot);
+   
+   if (use_holes) 
+   {
+   
+      auto nested = (UNIT_TYPE) (floor((double) (angletot / (UNIT_TYPE)(MATH_PI * 2.0)) + (double) epsilon));
+
+      angletot -= nested * (UNIT_TYPE)(MATH_PI * 2.0);
+
+      return (angletot > 4.0f) != ((int)nested % 2);
+
+   }
+   else
+   {
+
+      return (angletot > 4.0f);
+
+   }
+
+}
+
+
+/* math lib */
+
+//static float dot_v2v2(const float a[2], const float b[2])
+//{
+//   return a[0] * b[0] + a[1] * b[1];
+//}
+
+
+//static void copy_v2_v2(float r[2], const float a[2])
+//{
+//   r[0] = a[0];
+//   r[1] = a[1];
+//}
 
 template < primitive_point POINT, primitive_point POINT2 >
 inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }

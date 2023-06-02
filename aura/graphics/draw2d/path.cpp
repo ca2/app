@@ -1,12 +1,16 @@
 #include "framework.h"
 #include "path.h"
+#include "acme/exception/interface_only.h"
 //#include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "acme/primitive/geometry2d/_collection_enhanced.h"
-#include "acme/primitive/geometry2d/shape_array.h"
-#include "aura/graphics/write_text/_shape.h"
+//#include "acme/primitive/geometry2d/_collection_enhanced.h"
+//#include "acme/primitive/geometry2d/shape_array.h"
+#include "acme/primitive/geometry2d/item.h"
+#include "aura/graphics/write_text/draw_text.h"
+#include "acme/primitive/geometry2d/_defer_item.h"
+#include "aura/graphics/write_text/_defer_geometry2d_item.h"
 #include "path_shape.h"
-#include "acme/primitive/geometry2d/_defer_shape.h"
+//#include "acme/primitive/geometry2d/_defer_shape.h"
 
 
 point_f64 arc_point(double dAngle, size_f64 sizeRadius)
@@ -85,36 +89,43 @@ namespace draw2d
    }
 
 
-   bool path::get_bounding_rectangle(::rectangle_f64 & rectangle) const
+   bool path::get_bounding_box(::rectangle_f64 & rectangle) const
    {
 
-      rectangle_f64 r;
-
-      bool bGotAny = false;
-
-      if (m_pshapea)
-      {
-
-         for (auto & pshape : *m_pshapea)
-         {
-
-            if (pshape->expand_bounding_rect(r))
-            {
-
-               bGotAny = true;
-
-            }
-
-         }
-
-      }
-
-      if (!bGotAny)
+      if (m_itema.is_empty())
       {
 
          return false;
 
       }
+
+      rectangle_f64 r;
+
+      //bool bGotAny = false;
+
+      //if (m_pshapea)
+      //{
+
+         for (auto & pitem : m_itema)
+         {
+
+            pitem->expand_bounding_box(r);
+            //{
+
+            //   bGotAny = true;
+
+            //}
+
+         }
+
+      //}
+
+      //if (!bGotAny)
+      //{
+
+      //   return false;
+
+      //}
 
       copy(rectangle, r);
 
@@ -149,14 +160,14 @@ namespace draw2d
    bool path::is_empty()
    {
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
-      return m_pshapea->is_empty();
+      return m_itema.is_empty();
 
    }
 
@@ -192,34 +203,44 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::rectangle_f64& rectangleParam)
+   bool path::add_rectangle(const ::rectangle_f64& rectangle)
    {
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_shape(rectangleParam);
+      auto pitem = __create_new < ::geometry2d::rectangle_item >();
+
+      pitem->m_item = rectangle;
+
+      m_itema.add(pitem);
 
       return true;
 
    }
 
 
-   bool path::add_ellipse(const ::ellipse_f64 & ellipseParam)
+   bool path::add_ellipse(const ::ellipse_f64 & ellipse)
    {
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_shape(ellipseParam);
+      //m_pshapea->add_shape(ellipseParam);
+
+      auto pitem = __create_new < ::geometry2d::ellipse_item >();
+
+      pitem->m_item = ellipse;
+
+      m_itema.add(pitem);
 
       return true;
 
@@ -229,32 +250,38 @@ namespace draw2d
    bool path::add_rectangle(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle_f64 & angleRotationCenter)
    {
 
-      ::polygon_f64 polygon_i32;
+      ::polygon_f64 polygon;
 
-      polygon_i32.set_size(4);
+      polygon.set_size(4);
 
-      polygon_i32[0].x() = rectangle.left;
-      polygon_i32[0].y() = rectangle.top;
+      polygon[0].x() = rectangle.left;
+      polygon[0].y() = rectangle.top;
 
-      polygon_i32[1].x() = rectangle.right;
-      polygon_i32[1].y() = rectangle.top;
+      polygon[1].x() = rectangle.right;
+      polygon[1].y() = rectangle.top;
 
-      polygon_i32[2].x() = rectangle.right;
-      polygon_i32[2].y() = rectangle.bottom;
+      polygon[2].x() = rectangle.right;
+      polygon[2].y() = rectangle.bottom;
 
-      polygon_i32[3].x() = rectangle.left;
-      polygon_i32[3].y() = rectangle.bottom;
+      polygon[3].x() = rectangle.left;
+      polygon[3].y() = rectangle.bottom;
 
-      polygon_i32.rotate(angleRotationCenter, point);
+      polygon.rotate(angleRotationCenter, point);
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_shape(polygon_i32);
+      //m_pshapea->add_shape(polygon_i32);
+
+      auto pitem = __create_new < ::geometry2d::polygon_item >();
+
+      pitem->m_polygon = polygon;
+
+      m_itema.add(pitem);
 
       return true;
 
@@ -269,9 +296,13 @@ namespace draw2d
          return false;
       }
 
-      auto parc = __new(arc_f64_shape< path >);
+      auto pitem = __create_new < ::geometry2d::arc_item >();
 
-      auto & arc = parc->m_shape;
+      //pitem->m_rectangle = rectangle;
+
+      //auto parc = __new(arc_f64_shape< path >);
+
+      auto & arc = pitem->m_item;
 
       auto t = 90_degrees - angle;
       
@@ -292,14 +323,16 @@ namespace draw2d
       arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add(parc);
+      //m_pshapea->add(parc);
+
+      m_itema.add(pitem);
 
       m_bHasPoint = true;
 
@@ -325,9 +358,9 @@ namespace draw2d
 
       }
 
-      auto parc = __new(arc_f64_shape < path >);
+      auto pitem = __create_new<::geometry2d::arc_item>();
 
-      auto & arc = parc->m_shape;
+      auto & arc = pitem->m_item;
 
       auto t = angle + 90_degrees;
       arc.m_pointBegin.x() = point.x() + w / 2.0;
@@ -349,14 +382,15 @@ namespace draw2d
       arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_item(parc);
+      //m_pshapea->add_item(parc);
+      m_itema.add(pitem);
 
       m_bHasPoint = true;
 
@@ -381,9 +415,9 @@ namespace draw2d
 
       }
 
-      auto parc = __new(arc_f64_shape< ::draw2d::path>);
+      auto pitem = __create_new < ::geometry2d::arc_item >();
 
-      auto & arc = parc->m_shape;
+      auto & arc = pitem->m_item;
 
       arc.m_pointCenter.x()   = (rectangle.right + rectangle.left) / 2.0;
       arc.m_pointCenter.y()   = (rectangle.bottom + rectangle.top) / 2.0;
@@ -396,14 +430,16 @@ namespace draw2d
       arc.m_pointBegin        = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd        = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add(parc);
+      //m_pshapea->add(parc);
+
+      m_itema.add(pitem);
 
       m_bHasPoint = true;
 
@@ -421,14 +457,16 @@ namespace draw2d
    bool path::begin_figure()
    {
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_shape(e_shape_begin_figure);
+      m_itema.add(__create_new<::geometry2d::begin_figure_item>());
+
+      //m_pshapea->add_shape(e_shape_begin_figure);
 
       m_bHasPoint = false;
 
@@ -442,14 +480,16 @@ namespace draw2d
    bool path::close_figure()
    {
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_shape(e_shape_close_figure);
+      // m_pshapea->add_shape(e_shape_close_figure);
+
+      m_itema.add(__create_new<::geometry2d::close_figure_item>());
 
       set_modified();
 
@@ -461,14 +501,16 @@ namespace draw2d
    bool path::end_figure()
    {
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_shape(e_shape_end_figure);
+      //m_pshapea->add_shape(e_shape_end_figure);
+
+      m_itema.add(__create_new<::geometry2d::end_figure_item>());
 
       set_modified();
 
@@ -480,24 +522,26 @@ namespace draw2d
    bool path::add_text_out(const ::point_f64 & point, const ::string & strText,::write_text::font_pointer pfont)
    {
 
-      auto ptextout = __new(text_out_shape < path >);
+      auto pitem = __create_new < ::geometry2d::text_out_item >();
 
-      auto& textout = ptextout->m_shape;
+      auto& textout = pitem->m_item;
 
-      ptextout->m_pholdee = this;
+      //ptextout->m_pholdee = this;
 
       textout.m_strText     = strText;
       textout.m_pfont       = pfont;
       textout.m_point       = point;
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add_item(ptextout);
+      //m_pshapea->add_item(ptextout);
+
+      m_itema.add(pitem);
 
       return true;
 
@@ -507,11 +551,11 @@ namespace draw2d
    bool path::add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
    {
 
-      auto pdrawtext = __new(draw_text_shape < path >);
+      auto pitem = __create_new < ::geometry2d::draw_text_item >();
 
-      auto & drawtext = pdrawtext->m_shape;
+      auto & drawtext = pitem->m_item;
 
-      pdrawtext->m_pholdee = this;
+      //pdrawtext->m_pholdee = this;
 
       drawtext.m_strText            = strText;
       drawtext.m_pfont              = pfont;
@@ -521,14 +565,16 @@ namespace draw2d
       drawtext.m_ealign             = ealign;
       drawtext.m_edrawtext          = edrawtext;
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add(pdrawtext);
+      //m_pshapea->add(pdrawtext);
+
+      m_itema.add(pitem);
 
       return true;
 
@@ -538,24 +584,28 @@ namespace draw2d
    bool path::add_line(const point_f64 & p1, const point_f64 & p2)
    {
 
-      auto pline = __new(line_f64_shape< path>);
+      //auto pline = __new(line_f64_shape< path>);
 
-      pline->m_pholdee = this;
+      auto pitem = __create_new < ::geometry2d::line_item >();
 
-      auto & line = pline->m_shape;
+      //pline->m_pholdee = this;
+
+      auto & line = pitem->m_item;
 
       line.m_p1 = p1;
 
       line.m_p2 = p2;
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add(pline);
+      //m_pshapea->add(pline);
+
+      m_itema.add(pitem);
 
       m_pointBegin = line.m_p1;
 
@@ -569,24 +619,28 @@ namespace draw2d
    bool path::add_line(const point_f64 & point)
    {
 
-      auto pline = __new(line_f64_shape < path >);
+      //auto pline = __new(line_f64_shape < path >);
 
-      pline->m_pholdee = this;
+      auto pitem = __create_new < ::geometry2d::line_item >();
 
-      auto & line = pline->m_shape;
+      //pline->m_pholdee = this;
+
+      auto & line = pitem->m_item;
 
       line.m_p1 = m_pointEnd;
 
       line.m_p2 = point;
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add(pline);
+      //m_pshapea->add(pline);
+
+      m_itema.add(pitem);
 
       m_pointBegin = line.m_p1;
 
@@ -601,22 +655,24 @@ namespace draw2d
    bool path::add_polygon(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto ppolygon = __new(polygon_f64_shape < path >);
+      auto pitem = __create_new < ::geometry2d::polygon_item >();
 
-      ppolygon->m_pholdee = this;
+      //ppolygon->m_pholdee = this;
 
-      ppolygon->m_shape.set_size(nCount);
+      pitem->m_polygon.set_size(nCount);
 
-      memcpy(ppolygon->m_shape.data(), ppoint, ppolygon->m_shape.get_size_in_bytes());
+      memcpy(pitem->m_polygon.data(), ppoint, pitem->m_polygon.get_size_in_bytes());
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         m_pshapea = __new(shape_array < path>());
+      //   m_pshapea = __new(shape_array < path>());
 
-      }
+      //}
 
-      m_pshapea->add(ppolygon);
+      //m_pshapea->add(ppolygon);
+
+      m_itema.add(pitem);
 
       return true;
 
@@ -626,22 +682,26 @@ namespace draw2d
    bool path::add_lines(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto plines = __new(lines_f64_shape < path >);
+      //auto plines = __new(lines_f64_shape < path >);
 
-      plines->m_pholdee = this;
+      auto pitem = __create_new < ::geometry2d::lines_item >();
 
-      plines->m_shape.set_size(nCount);
+      //plines->m_pholdee = this;
 
-      memcpy(plines->m_shape.data(), ppoint, plines->m_shape.get_size_in_bytes());
+      pitem->m_item.set_size(nCount);
 
-      if (!m_pshapea)
-      {
+      memcpy(pitem->m_item.data(), ppoint, pitem->m_item.get_size_in_bytes());
 
-         m_pshapea = __new(shape_array < path>());
+      //if (!m_pshapea)
+      //{
 
-      }
+      //   m_pshapea = __new(shape_array < path>());
 
-      m_pshapea->add(plines);
+      //}
+
+      //m_pshapea->add(plines);
+
+      m_itema.add(pitem);
 
       return true;
 
@@ -1132,17 +1192,18 @@ namespace draw2d
    bool path::_set_create(::draw2d::graphics* pgraphics)
    {
 
-      if (!m_pshapea)
+      //if (!m_pshapea)
+      //{
+
+      //   return true;
+
+      //}
+
+      //for (auto& pmatter : *m_pshapea)
+      for (auto & pitem : m_itema)
       {
 
-         return true;
-
-      }
-
-      for (auto& pmatter : *m_pshapea)
-      {
-
-         if (!_set(pgraphics, pmatter))
+         if (!_set(pgraphics, pitem))
          {
 
             return false;
@@ -1156,39 +1217,83 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ___shape < path > * pshape)
+   //bool path::_set(::draw2d::graphics* pgraphics, ___shape < path > * pshape)
+   //{
+
+   //   auto eshape = pshape->eshape();
+
+   //   switch (eshape)
+   //   {
+   //   case e_shape_begin_figure:
+   //      return _set(pgraphics, e_shape_begin_figure);
+   //   case e_shape_close_figure:
+   //      return _set(pgraphics, e_shape_close_figure);
+   //   case e_shape_end_figure:
+   //      return _set(pgraphics, e_shape_end_figure);
+   //   case e_shape_arc:
+   //      return _set(pgraphics, pshape->shape < ::arc_f64>());
+   //   //case e_shape_line:
+   //   //   return  _set(pgraphics, pshape->shape < ::line>());
+   //   case e_shape_line:
+   //      return  _set(pgraphics, pshape->shape < ::line_f64>());
+   //   case e_shape_lines:
+   //      return _set(pgraphics, pshape->shape < ::lines_f64>());
+   //   case e_shape_rectangle:
+   //      return _set(pgraphics, pshape->shape < ::rectangle_f64>());
+   //   case e_shape_ellipse:
+   //      return _set(pgraphics, pshape->shape < ::ellipse_f64>());
+   //   case e_shape_polygon:
+   //      return _set(pgraphics, pshape->shape < ::polygon_f64>());
+   //   case e_shape_draw_text:
+   //      m_estatus = success;
+   //      return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
+   //   case e_shape_text_out:
+   //      m_estatus = success;
+   //      return _set(pgraphics, pshape->shape < ::write_text::text_out>());
+   //   default:
+   //      throw "unexpected simple os graphics matter type";
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   bool path::_set(::draw2d::graphics * pgraphics, ::geometry2d::item * pitem)
    {
 
-      auto eshape = pshape->eshape();
+      auto eitem = pitem->type();
 
-      switch (eshape)
+      switch (eitem)
       {
-      case e_shape_begin_figure:
-         return _set(pgraphics, e_shape_begin_figure);
-      case e_shape_close_figure:
-         return _set(pgraphics, e_shape_close_figure);
-      case e_shape_end_figure:
-         return _set(pgraphics, e_shape_end_figure);
-      case e_shape_arc:
-         return _set(pgraphics, pshape->shape < ::arc_f64>());
-      //case e_shape_line:
-      //   return  _set(pgraphics, pshape->shape < ::line>());
-      case e_shape_line:
-         return  _set(pgraphics, pshape->shape < ::line_f64>());
-      case e_shape_lines:
-         return _set(pgraphics, pshape->shape < ::lines_f64>());
-      case e_shape_rectangle:
-         return _set(pgraphics, pshape->shape < ::rectangle_f64>());
-      case e_shape_ellipse:
-         return _set(pgraphics, pshape->shape < ::ellipse_f64>());
-      case e_shape_polygon:
-         return _set(pgraphics, pshape->shape < ::polygon_f64>());
-      case e_shape_draw_text:
+      case e_item_begin_figure:
+         return _set(pgraphics, e_item_begin_figure);
+      case e_item_close_figure:
+         return _set(pgraphics, e_item_close_figure);
+      case e_item_end_figure:
+         return _set(pgraphics, e_item_end_figure);
+      case e_item_arc:
+         return _set(pgraphics, pitem->cast < ::geometry2d::arc_item >()->m_item);
+         //case e_shape_line:
+         //   return  _set(pgraphics, pshape->shape < ::line>());
+      case e_item_line:
+         return  _set(pgraphics, pitem->cast < ::geometry2d::line_item >()->m_item);
+      case e_item_lines:
+         return _set(pgraphics, pitem->cast < ::geometry2d::lines_item >()->m_item);
+      case e_item_rectangle:
+         return _set(pgraphics, pitem->cast < ::geometry2d::rectangle_item >()->m_item);
+      case e_item_ellipse:
+         return _set(pgraphics, pitem->cast < ::geometry2d::ellipse_item >()->m_item);
+      case e_item_polygon:
+         return _set(pgraphics, pitem->cast < ::geometry2d::polygon_item >()->m_polygon);
+      case e_item_poly_polygon:
+         return _set(pgraphics, pitem->cast < ::geometry2d::poly_polygon_item >()->m_polypolygon);
+      case e_item_draw_text:
          m_estatus = success;
-         return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
-      case e_shape_text_out:
+         return _set(pgraphics, pitem->cast < ::geometry2d::draw_text_item >()->m_item);
+      case e_item_text_out:
          m_estatus = success;
-         return _set(pgraphics, pshape->shape < ::write_text::text_out>());
+         return _set(pgraphics, pitem->cast < ::geometry2d::text_out_item >()->m_item);
       default:
          throw "unexpected simple os graphics matter type";
       }
@@ -1198,7 +1303,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const enum_shape& eshape)
+   bool path::_set(::draw2d::graphics* pgraphics, const enum_item& eitem)
    {
 
       return false;
@@ -1296,7 +1401,17 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& polygon_f64)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& polygon)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
+
+   bool path::_set(::draw2d::graphics * pgraphics, const ::poly_polygon_f64 & polypolygon)
    {
 
       throw ::interface_only();
@@ -1681,19 +1796,19 @@ namespace draw2d
    bool path::contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point)
    {
 
-      if (!m_pshapea)
-      {
+      //if (!m_pshapea)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       int iFill = 0;
 
-      for (auto& pmatter : *m_pshapea)
+      for (auto& pitem : m_itema)
       {
 
-         if (pmatter->contains(point))
+         if (pitem->contains(point))
          {
 
             if (m_efillmode == ::draw2d::e_fill_mode_winding)
@@ -1783,19 +1898,21 @@ namespace draw2d
       if (this != &path)
       {
 
-         if(!m_pshapea)
+         //if(!m_pshapea)
+         //{
+
+         //   m_pshapea = __new(shape_array <class path>());
+
+         //}
+
+         // m_pshapea->erase_all();
+
+         m_itema.clear();
+
+         for (auto & pitem : path.m_itema)
          {
 
-            m_pshapea = __new(shape_array <class path>());
-
-         }
-
-         m_pshapea->erase_all();
-
-         for (auto & pshape : *path.m_pshapea)
-         {
-
-            m_pshapea->add(::clone(pshape));
+            m_itema.add(::clone(pitem));
 
          }
 
@@ -1810,10 +1927,8 @@ namespace draw2d
       return *this;
    }
 
+
 } // namespace draw2d
-
-
-
 
 
 

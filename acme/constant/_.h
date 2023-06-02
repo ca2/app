@@ -83,7 +83,7 @@ enum enum_image_type
 #include "_geometry.h"
 
 
-#include "geometry2d.h"
+//#include "geometry2d.h"
 
 
 #include "code_page.h"

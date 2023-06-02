@@ -60,6 +60,16 @@ struct const_of_struct< TYPE const && >
 };
 
 
+template <typename T>
+struct decay_struct {
+   template <typename U> static U impl(U);
+   using type = decltype(impl(std::declval<T>()));
+};
+
+template <typename T>
+using decay = typename decay_struct<T>::type;
+
+
 //template < typename FUNCTION  >
 //struct const_of_struct < void(*FUNCTION) >
 //{

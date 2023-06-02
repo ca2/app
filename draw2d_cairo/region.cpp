@@ -155,7 +155,7 @@ namespace draw2d_cairo
 
       m_rectangleBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
 
-      max_bounding_box(m_rectangleBoundingBoxInternal);
+      expand_bounding_box(m_rectangleBoundingBoxInternal);
 
       m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
@@ -710,7 +710,7 @@ namespace draw2d_cairo
 
       m_rectangleBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
 
-      max_bounding_box(m_rectangleBoundingBoxInternal);
+      expand_bounding_box(m_rectangleBoundingBoxInternal);
 
       m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 

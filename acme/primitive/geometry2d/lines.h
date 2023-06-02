@@ -22,6 +22,50 @@ public:
    ~lines_base() override;
 
 
+   bool contains(const ::point_type <NUMBER > & point, float epsilon = 0.001f)
+   {
+
+      if (this->is_empty())
+      {
+
+         return false;
+
+      }
+
+      if (this->count() == 1)
+      {
+
+         return is_equal(this->first(), point, epsilon);
+
+      }
+
+
+      if (segment_contains(this->first(), this->last(), point, epsilon))
+      {
+
+         return true;
+
+      }
+
+      auto upper_bound = this->get_upper_bound();
+
+      for (::index i = 0; i < upper_bound; i++)
+      {
+
+         if (segment_contains(this->element_at(i), this->element_at(i+1), point, epsilon))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
 };
 
 

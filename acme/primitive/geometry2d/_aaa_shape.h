@@ -53,9 +53,9 @@ public:
 
    virtual bool expand_bounding_rect(::rectangle_i32 & rectangle) const;
 
-   virtual bool get_bounding_rectangle(::rectangle_f64 & rectangle) const;
+   virtual bool get_bounding_box(::rectangle_f64 & rectangle) const;
 
-   virtual bool get_bounding_rectangle(::rectangle_i32 & prectangle) const;
+   virtual bool get_bounding_box(::rectangle_i32 & prectangle) const;
 
    virtual bool contains(const ::point_i32 & point) const;
 
@@ -190,10 +190,10 @@ public:
    bool expand_bounding_rect(::rectangle_i32 & prectangle) const override;
 
 
-   bool get_bounding_rectangle(::rectangle_f64 & prectangle) const override;
+   bool get_bounding_box(::rectangle_f64 & prectangle) const override;
 
 
-   bool get_bounding_rectangle(::rectangle_i32 & prectangle) const override;
+   bool get_bounding_box(::rectangle_i32 & prectangle) const override;
 
 
    bool contains(const ::point_i32 & point) const override;
@@ -260,7 +260,7 @@ bool ___shape <HOLDEE>::expand_bounding_rect(::rectangle_f64 & rectangle) const
 
    rectangle_f64 r;
 
-   if (!get_bounding_rectangle(r))
+   if (!get_bounding_box(r))
    {
 
       return false;
@@ -295,7 +295,7 @@ bool ___shape<HOLDEE>::expand_bounding_rect(::rectangle_i32 & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::get_bounding_rectangle(::rectangle_f64 & rectangle) const
+bool ___shape<HOLDEE>::get_bounding_box(::rectangle_f64 & rectangle) const
 {
 
    ::null(rectangle);
@@ -306,7 +306,7 @@ bool ___shape<HOLDEE>::get_bounding_rectangle(::rectangle_f64 & rectangle) const
 
 
 template < typename HOLDEE >
-bool ___shape<HOLDEE>::get_bounding_rectangle(::rectangle_i32 & rectangle) const
+bool ___shape<HOLDEE>::get_bounding_box(::rectangle_i32 & rectangle) const
 {
 
    ::null(rectangle);
@@ -324,7 +324,7 @@ bool ___shape<HOLDEE>::contains(const ::point_i32 & point) const
 
    ::rectangle_i32 r;
 
-   if (!get_bounding_rectangle(r))
+   if (!get_bounding_box(r))
    {
 
       return false;
@@ -345,7 +345,7 @@ bool ___shape<HOLDEE>::contains(const ::point_f64 & point) const
 
    ::rectangle_f64 r;
 
-   if (!get_bounding_rectangle(r))
+   if (!get_bounding_box(r))
    {
 
       return false;

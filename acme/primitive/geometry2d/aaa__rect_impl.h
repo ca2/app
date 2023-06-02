@@ -711,19 +711,19 @@
 //   }
 //
 //
-//  TEMPLATE void rectangle_f64::get_bounding_rectangle(const ::point_f64 * ppoint, ::count count)
+//  TEMPLATE void rectangle_f64::get_bounding_box(const ::point_f64 * ppoint, ::count count)
 //
 //   {
 //
-//      point_f64_array::get_bounding_rectangle(this, ppoint, count);
+//      point_f64_array::get_bounding_box(this, ppoint, count);
 //
 //
 //   }
 //
-//  TEMPLATE void rectangle_f64::get_bounding_rectangle(const point_f64_array & pointa)
+//  TEMPLATE void rectangle_f64::get_bounding_box(const point_f64_array & pointa)
 //   {
 //
-//      pointa.get_bounding_rectangle(this);
+//      pointa.get_bounding_box(this);
 //
 //   }
 //
@@ -1020,10 +1020,10 @@
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count)
 {
 
-   ::get_bounding_rectangle(this, ppoint, count);
+   ::get_bounding_box(this, ppoint, count);
 
 }
 

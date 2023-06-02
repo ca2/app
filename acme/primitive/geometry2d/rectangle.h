@@ -2,7 +2,7 @@
 
 
 #include "_function_impl.h"
-//#include "_size.h"
+#include "acme/primitive/mathematics/numeric_info.h"
 
 
 //template < primitive_number NUMBER >
@@ -422,8 +422,8 @@ public:
    }
 
 
-   //void get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count);
-   //void get_bounding_rectangle(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_rectangle(*this); }
+   //void get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count);
+   //void get_bounding_box(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_box(*this); }
 
 
    void rate(double d) noexcept
@@ -1235,6 +1235,17 @@ public:
    inline bool any_le(const SIZE & size) const noexcept { return this->size().any_le(size); }
 
 
+   void maximum_minimum()
+   {
+
+      ::maximum(this->left);
+      ::maximum(this->top);
+      ::minimum(this->right);
+      ::minimum(this->bottom);
+
+   }
+
+
 };
 
 
@@ -1267,10 +1278,10 @@ inline void rectangle_type < NUMBER >::normalize() noexcept
 
 
 //template < primitive_number NUMBER >
-//void rectangle_type < NUMBER > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+//void rectangle_type < NUMBER > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count)
 //{
 //
-//   ::get_bounding_rectangle(*this, ppoint, count);
+//   ::get_bounding_box(*this, ppoint, count);
 //
 //}
 

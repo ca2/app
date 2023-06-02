@@ -9,7 +9,7 @@ inline bool shape_contains(const ::arc_type < NUMBER > & arc, const POINT & poin
 
    ::rectangle_i32 rectangle;
 
-   if (!get_bounding_rectangle(rectangle, arc))
+   if (!get_bounding_box(rectangle, arc))
    {
 
       return false;
@@ -37,6 +37,70 @@ inline bool shape_contains(const RECTANGLE & rectangle, const POINT & point)
    return ::contains(rectangle, point.x(), point.y());
 
 }
+
+
+// https://forums.codeguru.com/showthread.php?419763-Check-a-Point-lies-in-a-Line-segment
+
+
+template < primitive_number NUMBER1, primitive_number NUMBER2, primitive_number NUMBER >
+bool segment_contains(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2, const ::point_type < NUMBER > & point, const float epsilon = 0.001f)
+{
+
+   double dx = point2.x() - point1.x();
+
+   double dy = point2.y () - point1.y();
+
+   return is_equal(((point.x() - point1.x()) * dy), ((point.y() - point1.y()) * dx), epsilon);
+
+   //return false;
+}
+
+
+
+template < primitive_number NUMBER1, primitive_number NUMBER2, primitive_number NUMBER >
+bool ellipse_contains(const ::point_type < NUMBER1 > & center, const ::size_type < NUMBER2 > & radius, const ::point_type < NUMBER > & point)
+{
+
+
+   if (radius.is_empty())
+   {
+
+      return false;
+
+   }
+
+   double x = point.x();
+
+   double y = point.y();
+
+   double greekdeltax = x - center.x();
+
+   double greekdeltay = y - center.y();
+
+   if (radius.cx() == radius.cy())
+   {
+
+      double r = radius.cx();
+
+      double square_distance = (greekdeltax * greekdeltax) + (greekdeltay * greekdeltay);
+
+      double square_boundary = (r * r);
+
+      return square_distance <= square_boundary;
+
+   }
+   else
+   {
+
+      double normal_distance = ((greekdeltax * greekdeltax) / (radius.cx() * radius.cx()) + (greekdeltay * greekdeltay) / (radius.cx() * radius.cy()));
+
+      return normal_distance <= 1.0;
+
+   }
+
+
+}
+
 
 
 

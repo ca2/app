@@ -685,7 +685,6 @@
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
-    <ClInclude Include="constant\geometry2d.h" />
     <ClInclude Include="constant\happening.h" />
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
@@ -1032,10 +1031,28 @@
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
+    <ClCompile Include="primitive\geometry2d\aaa_shape.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="primitive\geometry2d\region.cpp" />
-    <ClCompile Include="primitive\geometry2d\region_item.cpp" />
-    <ClCompile Include="primitive\geometry2d\shape.cpp" />
-    <ClCompile Include="primitive\geometry2d\_shape.cpp" />
+    <ClCompile Include="primitive\geometry2d\item.cpp" />
+    <ClCompile Include="primitive\geometry2d\_aaa_shape.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
     <ClCompile Include="primitive\mathematics\cvt.cpp" />
     <ClCompile Include="primitive\mathematics\cvt_g.cpp" />
@@ -1304,14 +1321,45 @@
     <ClInclude Include="primitive\collection\_text_stream.h" />
     <ClInclude Include="primitive\collection\__payload_array.h" />
     <ClInclude Include="primitive\collection\__property_set.h" />
+    <ClInclude Include="primitive\geometry2d\angle.h" />
+    <ClInclude Include="primitive\geometry2d\arc.h" />
+    <ClInclude Include="primitive\geometry2d\ellipse.h" />
+    <ClInclude Include="primitive\geometry2d\item.h" />
+    <ClInclude Include="primitive\geometry2d\line.h" />
+    <ClInclude Include="primitive\geometry2d\lines.h" />
+    <ClInclude Include="primitive\geometry2d\point.h" />
+    <ClInclude Include="primitive\geometry2d\polygon.h" />
+    <ClInclude Include="primitive\geometry2d\rectangle.h" />
+    <ClInclude Include="primitive\geometry2d\rectangle_array.h" />
     <ClInclude Include="primitive\geometry2d\region.h" />
+    <ClInclude Include="primitive\geometry2d\shift.h" />
+    <ClInclude Include="primitive\geometry2d\size.h" />
     <ClInclude Include="primitive\geometry2d\vector.h" />
-    <ClInclude Include="primitive\geometry2d\_ellipse.h" />
+    <ClInclude Include="primitive\geometry2d\_.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_collection_enhanced.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_defer_shape.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_enhanced.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_shape.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_shape_array.h" />
+    <ClInclude Include="primitive\geometry2d\_binary_stream.h" />
+    <ClInclude Include="primitive\geometry2d\_collection.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_bounding_box.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
+    <ClInclude Include="primitive\geometry2d\_defer.h" />
+    <ClInclude Include="primitive\geometry2d\_defer_item.h" />
+    <ClInclude Include="primitive\geometry2d\_f32.h" />
+    <ClInclude Include="primitive\geometry2d\_f64.h" />
     <ClInclude Include="primitive\geometry2d\_function.h" />
     <ClInclude Include="primitive\geometry2d\_function_impl.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
+    <ClInclude Include="primitive\geometry2d\_i32.h" />
+    <ClInclude Include="primitive\geometry2d\_i64.h" />
     <ClInclude Include="primitive\geometry2d\_random.h" />
+    <ClInclude Include="primitive\geometry2d\_shape.h" />
     <ClInclude Include="primitive\geometry2d\_string.h" />
+    <ClInclude Include="primitive\geometry2d\_struct.h" />
+    <ClInclude Include="primitive\geometry2d\_text_stream.h" />
+    <ClInclude Include="primitive\geometry2d\__basic.h" />
     <ClInclude Include="primitive\mathematics\logarithm.h" />
     <ClInclude Include="primitive\mathematics\_random.h" />
     <ClInclude Include="primitive\mathematics\_string.h" />
@@ -1639,28 +1687,8 @@
     <ClInclude Include="primitive\datetime\time_zone.h" />
     <ClInclude Include="primitive\datetime\_binary_stream.h" />
     <ClInclude Include="primitive\datetime\_datetime.h" />
-    <ClInclude Include="primitive\geometry2d\_angle.h" />
-    <ClInclude Include="primitive\geometry2d\_arc.h" />
-    <ClInclude Include="primitive\geometry2d\bounding_rect.h" />
+    <ClInclude Include="primitive\geometry2d\bounding_box.h" />
     <ClInclude Include="primitive\geometry2d\contains.h" />
-    <ClInclude Include="primitive\geometry2d\_shift.h" />
-    <ClInclude Include="primitive\geometry2d\_binary_stream.h" />
-    <ClInclude Include="primitive\geometry2d\_collection.h" />
-    <ClInclude Include="primitive\geometry2d\_collection_enhanced.h" />
-    <ClInclude Include="primitive\geometry2d\_f32.h" />
-    <ClInclude Include="primitive\geometry2d\_f64.h" />
-    <ClInclude Include="primitive\geometry2d\__basic.h" />
-    <ClInclude Include="primitive\geometry2d\_enhanced.h" />
-    <ClInclude Include="primitive\geometry2d\_i32.h" />
-    <ClInclude Include="primitive\geometry2d\_line.h" />
-    <ClInclude Include="primitive\geometry2d\_lines.h" />
-    <ClInclude Include="primitive\geometry2d\shape.h" />
-    <ClInclude Include="primitive\geometry2d\shape_array.h" />
-    <ClInclude Include="primitive\geometry2d\_collection_bounding_rect.h" />
-    <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
-    <ClInclude Include="primitive\geometry2d\_i64.h" />
-    <ClInclude Include="primitive\geometry2d\_shape.h" />
-    <ClInclude Include="primitive\geometry2d\_struct.h" />
     <ClInclude Include="primitive\geometry3d\box.h" />
     <ClInclude Include="primitive\geometry3d\dimension.h" />
     <ClInclude Include="primitive\geometry3d\location.h" />
@@ -1890,17 +1918,11 @@
     <ClInclude Include="primitive\datetime\earth_time_span.h" />
     <ClInclude Include="primitive\datetime\zonetime.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
-    <ClInclude Include="primitive\geometry2d\aaa_align.h" />
     <ClInclude Include="primitive\geometry2d\collection.h" />
     <ClInclude Include="primitive\geometry2d\geometry.h" />
-    <ClInclude Include="primitive\geometry2d\_point.h" />
     <ClInclude Include="primitive\geometry2d\point_array.h" />
-    <ClInclude Include="primitive\geometry2d\_polygon.h" />
-    <ClInclude Include="primitive\geometry2d\_rectangle.h" />
-    <ClInclude Include="primitive\geometry2d\_size.h" />
     <ClInclude Include="primitive\geometry2d\size_array.h" />
     <ClInclude Include="primitive\geometry2d\types.h" />
-    <ClInclude Include="primitive\geometry2d\_.h" />
     <ClInclude Include="primitive\primitive\atomic.h" />
     <ClInclude Include="primitive\primitive\bit.h" />
     <ClInclude Include="primitive\primitive\collection_file.h" />

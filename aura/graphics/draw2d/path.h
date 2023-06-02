@@ -22,15 +22,16 @@ namespace draw2d
    public:
 
 
-      bool                                m_bPersistent;
-      pointer< shape_array < path > >     m_pshapea;
-      bool                                m_bHasPoint;
-      point_f64                           m_pointBegin;
-      point_f64                           m_pointEnd;
-      ::draw2d::enum_fill_mode            m_efillmode;
-      point_f64                           m_pointOffset;
-      ::pointer<path_optimization>        m_ppathoptimization;
-      bool                                m_bUseGeometryRealization;
+      bool                                   m_bPersistent;
+      //pointer< shape_array < path > >      m_pshapea;
+      ::pointer_array < ::geometry2d::item > m_itema;
+      bool                                   m_bHasPoint;
+      point_f64                              m_pointBegin;
+      point_f64                              m_pointEnd;
+      ::draw2d::enum_fill_mode               m_efillmode;
+      point_f64                              m_pointOffset;
+      ::pointer<path_optimization>           m_ppathoptimization;
+      bool                                   m_bUseGeometryRealization;
 
 
       path();
@@ -99,8 +100,8 @@ namespace draw2d
       virtual void * detach();
 
 
-      virtual bool get_bounding_rectangle(::rectangle_f64 & rectangle) const;
-      //virtual bool get_bounding_rectangle(::rectangle_i32 * prectangle) const;
+      virtual bool get_bounding_box(::rectangle_f64 & rectangle) const;
+      //virtual bool get_bounding_box(::rectangle_i32 * prectangle) const;
 
 
 
@@ -137,9 +138,11 @@ namespace draw2d
 
       virtual bool _set_create(::draw2d::graphics * pgraphics);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, ::___shape<path> * pshape);
+      //virtual bool _set(::draw2d::graphics * pgraphics, ::___shape<path> * pshape);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const enum_shape & eshape);
+      virtual bool _set(::draw2d::graphics * pgraphics, ::geometry2d::item * pitem);
+
+      virtual bool _set(::draw2d::graphics * pgraphics, const enum_item & eitem);
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::arc_f64 & arc);
 
@@ -160,6 +163,8 @@ namespace draw2d
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_i32 & ppolygon);
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_f64 & polygon);
+
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::poly_polygon_f64 & polygon);
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::text_out & textout);
 

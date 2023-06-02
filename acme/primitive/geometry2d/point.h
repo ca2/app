@@ -6,7 +6,7 @@
 
 template < primitive_number NUMBER >
 class point_type :
-   public vector_type < NUMBER, 2 >
+   public vector2_type < NUMBER >
 {
 public:
 
@@ -16,7 +16,7 @@ public:
    using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
    
-   using vector_type < NUMBER, 2 >::vector_type;
+   using vector2_type < NUMBER >::vector2_type;
 
    point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
    point_type(enum_no_initialize) noexcept {  }

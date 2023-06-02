@@ -22,7 +22,23 @@ namespace write_text
    }
 
 
+   void text_out::offset(const ::point_f64 & point)
+   {
+
+      m_point.offset(point);
+
+   }
+
+
    bool text_out::hit_test(const ::point_f64& point)
+   {
+
+      return contains(point);
+
+   }
+
+
+   bool text_out::contains(const ::point_f64 & point)
    {
 
       return point.x() >= m_point.x()

@@ -3,19 +3,19 @@
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_rectangle(::rectangle_i32 & rectangle) const
+inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_box(::rectangle_i32 & rectangle) const
 {
 
-   return ::get_bounding_rectangle(rectangle, m_shape);
+   return ::get_bounding_box(rectangle, m_shape);
 
 }
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_rectangle(::rectangle_f64 & rectangle) const
+inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_box(::rectangle_f64 & rectangle) const
 {
 
-   return ::get_bounding_rectangle(rectangle, m_shape);
+   return ::get_bounding_box(rectangle, m_shape);
 
 }
 
@@ -26,7 +26,7 @@ bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(::rectangle_f64 & re
 
    ::rectangle_f64 r;
 
-   if (!this->get_bounding_rectangle(r))
+   if (!this->get_bounding_box(r))
    {
 
       return false;
@@ -46,7 +46,7 @@ bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(::rectangle_i32 & re
 
    ::rectangle_i32 r;
 
-   if (!this->get_bounding_rectangle(r))
+   if (!this->get_bounding_box(r))
    {
 
       return false;

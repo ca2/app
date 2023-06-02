@@ -187,6 +187,10 @@ public:
    virtual void call_run();
 
 
+   template < typename TYPE >
+   TYPE * cast() { return dynamic_cast <TYPE *>(this); }
+
+
    virtual void run();
    virtual bool step();
    virtual void on_sequence();

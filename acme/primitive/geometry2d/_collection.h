@@ -84,3 +84,10 @@ using point_f64_array = point_array_base < ::f64 >;
 #include "lines.h"
 
 
+#include "_collection_bounding_box.h"
+
+
+#include "_collection_contains.h"
+
+
+

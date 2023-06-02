@@ -46,9 +46,10 @@ public:
 
    void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter);
 
-   //void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const;
+   //void get_bounding_box(RECTANGLE_BASE_TYPE & rectangle) const;
 
-   bool polygon_contains(const ::point_type < UNIT_TYPE > & point) const;
+   bool polygon_contains_winding(const ::point_type < UNIT_TYPE > & point) const;
+   bool polygon_contains_alternate(const ::point_type < UNIT_TYPE > & point) const;
 
    inline index add(UNIT_TYPE x, UNIT_TYPE y) { return ::array < ::point_type < NUMBER > >::add({x, y}); }
    inline index add(const ::point_type < NUMBER > & point) { return ::array < ::point_type < NUMBER > >::add(point); }
@@ -146,10 +147,10 @@ void point_array_base < NUMBER >::rotate(double dAngle)
 
 //
 //template < typename POINT_TYPE >
-//void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const
+//void point_array_base < POINT_TYPE >::get_bounding_box(RECTANGLE_BASE_TYPE & rectangle) const
 //{
 //
-//   ::get_bounding_rectangle(rectangle, this->get_data(), this->get_count());
+//   ::get_bounding_box(rectangle, this->get_data(), this->get_count());
 //
 //}
 
@@ -211,10 +212,19 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //}
 
 template < primitive_number NUMBER >
-bool point_array_base < NUMBER >::polygon_contains(const ::point_type < NUMBER > & point) const
+bool point_array_base < NUMBER >::polygon_contains_winding(const ::point_type < NUMBER > & point) const
 {
 
-   return ::polygon_contains( this->data(), (int)this->size(), point);
+   return ::polygon_contains_winding( this->data(), (int)this->size(), point);
+
+}
+
+
+template < primitive_number NUMBER >
+bool point_array_base < NUMBER >::polygon_contains_alternate(const ::point_type < NUMBER > & point) const
+{
+
+   return ::polygon_contains_alternate(this->data(), (int)this->size(), point, true);
 
 }
 

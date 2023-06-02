@@ -1,7 +1,9 @@
 // From aura/graphics/draw2d/region by camilo on 2023-05-26 13:55 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "item.h"
 #include "region.h"
 #include "acme/exception/interface_only.h"
+#include "_defer_item.h"
 
 
 namespace geometry2d
@@ -12,7 +14,7 @@ namespace geometry2d
    region::region()
    {
 
-      m_eregion = ::draw2d::e_region_none;
+      //m_eregion = ::draw2d::e_region_none;
       //m_lppoints        = nullptr;
       //m_lppolycounts    = nullptr;
 
@@ -24,7 +26,7 @@ namespace geometry2d
 
       //m_lppolycounts    = nullptr;
       //m_lppoints        = nullptr;
-      m_eregion = ::draw2d::e_region_none;
+      //m_eregion = ::draw2d::e_region_none;
 
       m_pitem = ::clone(region.m_pitem);
 
@@ -38,35 +40,35 @@ namespace geometry2d
 
    }
 
-   void region::destroy()
+   //void region::destroy()
+   //{
+
+   //   m_pitem.release();
+   //   //::acme::adel(m_lppoints);
+   //   //::acme::adel(m_lppolycounts);
+   //   //m_pregion1.release();
+   //   //m_pregion2.release();
+
+   //   //return ::success;
+
+   //}
+
+
+   bool region::create_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      m_pitem.release();
-      //::acme::adel(m_lppoints);
-      //::acme::adel(m_lppolycounts);
-      //m_pregion1.release();
-      //m_pregion2.release();
-
-      //return ::success;
-
-   }
-
-
-   bool region::create_rectangle(const ::rectangle_i32 & rectangle)
-   {
-
-      if (m_eregion != ::draw2d::e_region_none)
+      if (m_pitem)
       {
 
          destroy();
 
       }
 
-      m_eregion = ::draw2d::e_region_rect;
+      //m_eregion = ::draw2d::e_region_rect;
 
-      auto pitem = __new(rectangle_item);
+      auto pitem = __create_new < rectangle_item >();
 
-      pitem->m_rectangle = rectangle;
+      pitem->m_item = rectangle;
 
       m_pitem = pitem;
 
@@ -75,43 +77,43 @@ namespace geometry2d
    }
 
 
-   bool region::create_ellipse(const ::rectangle_i32 & rectangle)
+   bool region::create_ellipse(const ::ellipse_f64 & ellipse)
    {
 
-      if (m_eregion != ::draw2d::e_region_none)
+      if (m_pitem)
       {
 
          destroy();
 
       }
 
-      m_eregion = ::draw2d::e_region_ellipse;
+      //m_eregion = ::draw2d::e_region_ellipse;
 
-      auto pitem = __new(ellipse_item);
+      auto pitem = __create_new < ellipse_item >();
 
-      pitem->m_rectangle = rectangle;
+      pitem->m_item = ellipse;
 
       m_pitem = pitem;
 
       return true;
 
    }
-
 
 
    bool region::create_polygon(const ::point_f64 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
-      if (m_eregion != ::draw2d::e_region_none)
+      //if (m_eregion != ::draw2d::e_region_none)
+      if (m_pitem)
       {
 
          destroy();
 
       }
 
-      m_eregion = ::draw2d::e_region_polygon;
+      //m_eregion = ::draw2d::e_region_polygon;
 
-      auto pitem = __new(polygon_item);
+      auto pitem = __create_new < polygon_item >();
 
       pitem->m_polygon.set_size(nCount);
 
@@ -139,16 +141,17 @@ namespace geometry2d
    bool region::create_polygon(const ::point_i32 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
-      if (m_eregion != ::draw2d::e_region_none)
-      {
+      //if (m_eregion != ::draw2d::e_region_none)
+      //if(m_pitem)
+      //{
 
-         destroy();
+      //   destroy();
 
-      }
+      //}
 
-      m_eregion = ::draw2d::e_region_polygon;
+      //m_eregion = ::draw2d::e_region_polygon;
 
-      auto pitem = __new(polygon_item);
+      auto pitem = __create_new < polygon_item>();
 
       pitem->m_polygon.set_size(nCount);
 
@@ -175,31 +178,32 @@ namespace geometry2d
    bool region::create_poly_polygon(const ::point_f64 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
-      if (m_eregion != ::draw2d::e_region_none)
-      {
+      //if (m_eregion != ::draw2d::e_region_none)
+      //{
 
-         destroy();
+      //   destroy();
 
-      }
+      //}
 
-      m_eregion = ::draw2d::e_region_polygon;
+      //m_eregion = ::draw2d::e_region_polygon;
 
-      auto pitem = __new(poly_polygon_item);
+      auto pitem = __create_new < poly_polygon_item >();
 
-      pitem->m_polygona.set_size(nCount);
+      pitem->m_polypolygon.set_size(nCount);
 
       for (::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polygona[i] = __new(polygon_f64);
+         pitem->m_polypolygon[i] = __new(polygon_f64);
 
-         pitem->m_polygona[i]->set_size(ppolycounts[i]);
+         pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
          for (::index j = 0; j < ppolycounts[i]; j++)
          {
 
-            pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
-            pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
+            pitem->m_polypolygon[i]->element_at(j).x() = ppoints->x();
+
+            pitem->m_polypolygon[i]->element_at(j).y() = ppoints->y();
 
             ppoints++;
 
@@ -220,31 +224,32 @@ namespace geometry2d
    bool region::create_poly_polygon(const ::point_i32 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
-      if (m_eregion != ::draw2d::e_region_none)
-      {
+      //if (m_eregion != ::draw2d::e_region_none)
+      //{
 
-         destroy();
+      //   destroy();
 
-      }
+      //}
 
-      m_eregion = ::draw2d::e_region_poly_polygon;
+      //m_eregion = ::draw2d::e_region_poly_polygon;
 
-      auto pitem = __new(poly_polygon_item);
+      auto pitem = __create_new < poly_polygon_item >();
 
-      pitem->m_polygona.set_size(nCount);
+      pitem->m_polypolygon.set_size(nCount);
 
       for (::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polygona[i] = __new(polygon_f64);
+         pitem->m_polypolygon[i] = __new(polygon_f64);
 
-         pitem->m_polygona[i]->set_size(ppolycounts[i]);
+         pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
          for (::index j = 0; j < ppolycounts[i]; j++)
          {
 
-            pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
-            pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
+            pitem->m_polypolygon[i]->element_at(j).x() = ppoints->x();
+
+            pitem->m_polypolygon[i]->element_at(j).y() = ppoints->y();
 
             ppoints++;
 
@@ -261,6 +266,29 @@ namespace geometry2d
    }
 
 
+   bool region::create_poly_polygon(const ::poly_polygon_f64 & polypolygon, ::draw2d::enum_fill_mode efillmode)
+   {
+
+      ////if (m_eregion != ::draw2d::e_region_none)
+      //{
+
+      //   destroy();
+
+      //}
+
+      //m_eregion = ::draw2d::e_region_poly_polygon;
+
+      auto pitem = __create_new < poly_polygon_item >();
+
+      pitem->m_polypolygon = polypolygon;
+
+      pitem->m_efillmode = efillmode;
+
+      m_pitem = pitem;
+
+      return true;
+
+   }
 
 
    bool region::combine(const ::geometry2d::region * prgn1, const ::geometry2d::region * prgn2, ::draw2d::enum_combine ecombine)
@@ -270,16 +298,16 @@ namespace geometry2d
 
       ::pointer<::geometry2d::region>pregion2 = (::geometry2d::region *)prgn2;
 
-      if (m_eregion != ::draw2d::e_region_none)
-      {
+      //if (m_eregion != ::draw2d::e_region_none)
+      //{
 
-         destroy();
+      //   destroy();
 
-      }
+      //}
 
-      m_eregion = ::draw2d::e_region_combine;
+      //m_eregion = ::draw2d::e_region_combine;
 
-      auto pitem = __new(combine_item);
+      auto pitem = __create_new < combine_item >();
 
       pitem->m_pregion1 = pregion1;
 
@@ -306,51 +334,92 @@ namespace geometry2d
 
       }
 
-      if (m_eregion != ::draw2d::e_region_none)
+      if (!regionSrc.m_pitem)
       {
 
-         destroy();
+         m_pitem.release();
+
+      }
+      else
+      {
+
+         m_pitem = regionSrc.m_pitem->clone();
 
       }
 
-      m_eregion = regionSrc.m_eregion;
+      //if (m_eregion != ::draw2d::e_region_none)
+      //{
 
-      switch (m_eregion)
-      {
-      case ::draw2d::e_region_none:
-         return *this;
-      case ::draw2d::e_region_rect:
-      case ::draw2d::e_region_ellipse:
-         m_pitem = regionSrc.m_pitem->clone();
-         return *this;
-      case ::draw2d::e_region_polygon:
-         m_pitem = regionSrc.m_pitem->clone();
-         return *this;
-      case ::draw2d::e_region_poly_polygon:
-      {
-         m_pitem = regionSrc.m_pitem->clone();
-      }
-      return *this;
-      case ::draw2d::e_region_round_rect:
-         m_pitem = regionSrc.m_pitem->clone();
-         return *this;
-      case ::draw2d::e_region_combine:
-         m_pitem = regionSrc.m_pitem->clone();
-         return *this;
-      default:
-         throw ::interface_only();
-      };
+      //   destroy();
+
+      //}
+
+      //auto eitem = regionSrc.type();
+
+      //switch (eitem)
+      //{
+      //case ::draw2d::e_item_none:
+      //   return *this;
+      //case ::draw2d::e_item_rectangle:
+      //case ::draw2d::e_region_ellipse:
+      //   m_pitem = regionSrc.m_pitem->clone();
+      //   return *this;
+      //case ::draw2d::e_region_polygon:
+      //   m_pitem = regionSrc.m_pitem->clone();
+      //   return *this;
+      //case ::draw2d::e_region_poly_polygon:
+      //{
+      //   m_pitem = regionSrc.m_pitem->clone();
+      //}
+      //return *this;
+      //case ::draw2d::e_region_round_rect:
+      //   m_pitem = regionSrc.m_pitem->clone();
+      //   return *this;
+      //case ::draw2d::e_region_combine:
+      //   m_pitem = regionSrc.m_pitem->clone();
+      //   return *this;
+      //default:
+      //   throw ::interface_only();
+      //};
       return *this;
 
    }
 
 
-   bool region::get_bounding_box(::rectangle_i32 & rectangle)
+   bool region::get_bounding_box(::rectangle_f64 & rectangle)
    {
 
-      throw ::interface_only();
+      if (!m_pitem)
+      {
 
-      return false;
+         return false;
+
+      }
+
+      rectangle.maximum_minimum();
+
+      expand_bounding_box(rectangle);
+
+      return true;
+
+   }
+
+
+   void region::expand_bounding_box(::rectangle_f64 & rectangle)
+   {
+
+      if (!m_pitem)
+      {
+
+         return;
+
+      }
+
+      m_pitem->expand_bounding_box(rectangle);
+
+      //throw ::interface_only();
+
+      //return true;
 
    }
 
@@ -358,14 +427,13 @@ namespace geometry2d
    bool region::contains(const ::point_f64 & point)
    {
 
-      return internal_contains(point);
+      return contains(point);
 
    }
 
 
 
-
-   bool region::translate(const ::point_i32 & point)
+   bool region::translate(const ::point_f64 & point)
    {
 
       //set_modified();
@@ -382,31 +450,27 @@ namespace geometry2d
    }
 
 
+   //bool region::contains(const ::point_f64 & point)
+   //{
+
+   //   return internal_contains(point);
+
+   //}
 
 
-   bool region::contains(const ::point_i32 & point)
-   {
+   //void region::expand_bounding_box(::rectangle_f64 & rectangle)
+   //{
 
-      return contains(point_f64(point));
+   //   ::rectangle_f64 rectangleMaxBounding;
 
-   }
+   //   expand_bounding_box(rectangleMaxBounding);
 
+   //   rectangle = rectangleMaxBounding;
 
-
-
-   void region::max_bounding_box(::rectangle_i32 & rectangle)
-   {
-
-      ::rectangle_f64 rectangleMaxBounding;
-
-      max_bounding_box(rectangleMaxBounding);
-
-      rectangle = rectangleMaxBounding;
-
-   }
+   //}
 
 
-   //void region::max_bounding_box(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::expand_bounding_box(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   ::rectangle_f64 rectangle;
@@ -467,17 +531,17 @@ namespace geometry2d
    //}
 
 
-   void region::max_bounding_box(::rectangle_f64 & rectangle)
-   {
+   //void region::expand_bounding_box(::rectangle_f64 & rectangle)
+   //{
 
-      if (m_pitem)
-      {
+   //   if (m_pitem)
+   //   {
 
-         m_pitem->max_bounding_box(rectangle);
+   //      m_pitem->expand_bounding_box(rectangle);
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //void region::max_bounding_box_rect(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
@@ -564,9 +628,9 @@ namespace geometry2d
    //void region::max_bounding_box_combine(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
-   //   m_pregion1->max_bounding_box(prectangle);
+   //   m_pregion1->expand_bounding_box(prectangle);
 
-   //   m_pregion2->max_bounding_box(prectangle);
+   //   m_pregion2->expand_bounding_box(prectangle);
 
    //}
 
@@ -577,7 +641,7 @@ namespace geometry2d
       if (m_pitem)
       {
 
-         return m_pitem->internal_contains(point);
+         return m_pitem->contains(point);
 
       }
 
@@ -696,14 +760,14 @@ namespace geometry2d
    //   if(m_ecombine == e_combine_add)
    //   {
 
-   //      if (m_pregion1->internal_contains(point))
+   //      if (m_pregion1->contains(point))
    //      {
 
    //         return true;
 
    //      }
 
-   //      if (m_pregion2->internal_contains(point))
+   //      if (m_pregion2->contains(point))
    //      {
 
    //         return true;
@@ -716,14 +780,14 @@ namespace geometry2d
    //   else if(m_ecombine == e_combine_exclude)
    //   {
 
-   //      if (m_pregion2->internal_contains(point))
+   //      if (m_pregion2->contains(point))
    //      {
 
    //         return false;
 
    //      }
 
-   //      if (m_pregion1->internal_contains(point))
+   //      if (m_pregion1->contains(point))
    //      {
 
    //         return true;
@@ -736,10 +800,10 @@ namespace geometry2d
    //   else if(m_ecombine == e_combine_intersect)
    //   {
    //      
-   //      if(m_pregion1->internal_contains(point))
+   //      if(m_pregion1->contains(point))
    //      {
 
-   //         if (m_pregion2->internal_contains(point))
+   //         if (m_pregion2->contains(point))
    //         {
 
    //            return true;
@@ -754,10 +818,10 @@ namespace geometry2d
    //   else if(m_ecombine == e_combine_xor)
    //   {
    //      
-   //      if(m_pregion1->internal_contains(point))
+   //      if(m_pregion1->contains(point))
    //      {
 
-   //         if (m_pregion2->internal_contains(point))
+   //         if (m_pregion2->contains(point))
    //         {
 
    //            return false;
@@ -771,7 +835,7 @@ namespace geometry2d
    //         }
 
    //      }
-   //      else if(m_pregion2->internal_contains(point))
+   //      else if(m_pregion2->contains(point))
    //      {
 
    //         return true;
@@ -795,12 +859,12 @@ namespace geometry2d
    //}
 
 
-   bool region::internal_contains(const ::point_i32 & point)
-   {
+   //bool region::contains(const ::point_i32 & point)
+   //{
 
-      return internal_contains(point_f64(point));
+   //   return internal_contains(point_f64(point));
 
-   }
+   //}
 
 
    //bool region::internal_rectangle_contains(const ::point_i32 & point)

@@ -15,7 +15,7 @@ namespace draw2d
 
 
    }
-   void region::item::max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
 
@@ -38,10 +38,10 @@ namespace draw2d
    }
 
 
-   void region::rectangle_item::max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
 
    }
 
@@ -63,10 +63,10 @@ namespace draw2d
 
 
 
-   void region::ellipse_item::max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::ellipse_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
 
    }
 
@@ -129,10 +129,10 @@ namespace draw2d
    }
 
 
-   void region::polygon_item::max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::polygon_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(rectangle, m_polygon.data(), m_polygon.get_size());
+      ::expand_bounding_box(rectangle, m_polygon.data(), m_polygon.get_size());
 
    }
 
@@ -163,7 +163,7 @@ namespace draw2d
    }
 
 
-   void region::poly_polygon_item::max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::poly_polygon_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       for (auto & ppolygon : m_polygona)
@@ -172,7 +172,7 @@ namespace draw2d
          for (auto & pointVertex : *ppolygon)
          {
 
-            ::max_bounding_box(rectangle, pointVertex);
+            ::expand_bounding_box(rectangle, pointVertex);
 
          }
 
@@ -210,12 +210,12 @@ namespace draw2d
    }
 
 
-   void region::combine_item::max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::combine_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
    {
       // "fake" implementation
 
-      m_pregion1->max_bounding_box(rectangle, pgraphics);
-      m_pregion2->max_bounding_box(rectangle, pgraphics);
+      m_pregion1->expand_bounding_box(rectangle, pgraphics);
+      m_pregion2->expand_bounding_box(rectangle, pgraphics);
 
    }
 
@@ -333,10 +333,10 @@ namespace draw2d
 
    }
 
-   void region::round_rectangle_item::max_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::round_rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
 
    }
 

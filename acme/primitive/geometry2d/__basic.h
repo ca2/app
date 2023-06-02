@@ -287,7 +287,7 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 
 
 
-//inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const ::rectangle_i32 &rectangle)
+//inline bool get_bounding_box(::rectangle_f64 & rectangleBounding, const ::rectangle_i32 &rectangle)
 //{
 //
 //   copy(rectangleBounding, rectangle);
@@ -297,7 +297,7 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 //}
 
 
-//inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const ::rectangle_f64 & rectangle)
+//inline bool get_bounding_box(::rectangle_i32 & rectangleBounding, const ::rectangle_f64 & rectangle)
 //{
 //
 //   copy(rectangleBounding, rectangle);
@@ -307,7 +307,7 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 //}
 
 
-//inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const ::rectangle_f64 & rectangle)
+//inline bool get_bounding_box(::rectangle_f64 & rectangleBounding, const ::rectangle_f64 & rectangle)
 //{
 //
 //   copy(rectangleBounding, rectangle);

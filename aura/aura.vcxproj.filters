@@ -612,12 +612,6 @@
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\holdee.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\holder.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\desktop_environment.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
@@ -1322,7 +1316,7 @@
     <ClInclude Include="graphics\write_text\bounding_rect.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\write_text\_shape.h">
+    <ClInclude Include="graphics\write_text\_defer_geometry2d_item.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
     <ClInclude Include="graphics\write_text\_.h">

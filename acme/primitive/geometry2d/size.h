@@ -6,7 +6,7 @@
 
 template < primitive_number NUMBER >
 class size_type :
-   public vector_type < NUMBER, 2 >
+   public vector2_type < NUMBER >
 {
 public:
 

@@ -5,6 +5,7 @@
 #include <memory.h>
 #include <float.h>
 
+
 namespace numeric_info_internal
 {
 
@@ -644,6 +645,15 @@ T & minimum(T & t)
 {
 
    return t = numeric_info<T>::minimum();
+
+}
+
+
+template < typename T >
+T & maximum(T & t)
+{
+
+   return t = numeric_info<T>::maximum();
 
 }
 

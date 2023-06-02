@@ -4,6 +4,8 @@
 #include "pen.h"
 #include "path.h"
 #include "draw2d.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/geometry2d/item.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -12,9 +14,9 @@
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "acme/parallelization/single_lock.h"
-#include "acme/primitive/geometry2d/_enhanced.h"
-#include "acme/primitive/geometry2d/_collection_enhanced.h"
-#include "acme/primitive/geometry2d/_defer_shape.h"
+//#include "acme/primitive/geometry2d/_enhanced.h"
+//#include "acme/primitive/geometry2d/_collection_enhanced.h"
+//#include "acme/primitive/geometry2d/_defer_shape.h"
 #include "acme/primitive/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg.h"
@@ -3167,7 +3169,7 @@ namespace draw2d
          
          __construct(pdraw2dregion);
          
-         pdraw2dregion->m_eregion = pregion->m_eregion;
+         //pdraw2dregion->m_eregion = pregion->m_eregion;
          
          pdraw2dregion->m_pitem = pregion->m_pitem;
          
@@ -3179,13 +3181,14 @@ namespace draw2d
       
    }
 
-   void graphics::add_clipping_shapes(const shape_array < ::draw2d::region > & shapea)
+
+   void graphics::add_clipping_shapes(const ::pointer_array < ::draw2d::region > & regiona)
    {
       
-      for(auto & pshape : shapea)
+      for(auto & pregion : regiona)
       {
          
-         _add_clipping_shape(*pshape);
+         _add_clipping_shape(pregion);
          
       }
 
@@ -3201,26 +3204,40 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(::draw2d::region * pregion)
    {
-   
-      switch(shape.eshape())
+
+      if (::is_null(pregion))
       {
-      case e_shape_none:
+
          return;
-      case e_shape_intersect_clip:
+
+      }
+
+      if (::is_null(pregion->m_pitem))
+      {
+
+         return;
+
+      }
+
+      switch(pregion->m_pitem->type())
+      {
+      case e_item_none:
+         return;
+      case e_item_intersect_clip:
          _intersect_clip();
          break;
-      case e_shape_rectangle:
-         _add_clipping_shape(shape.shape < ::rectangle_f64 >(), shape);
+      case e_item_rectangle:
+         _add_clipping_shape(pregion->m_pitem.cast < ::rectangle_item >()->m_item, pregion);
          break;
       case e_shape_ellipse:
-         _add_clipping_shape(shape.shape < ::ellipse_f64 >(), shape);
+         _add_clipping_shape(pregion->m_pitem.cast < ::ellipse_item >()->m_item, pregion);
          break;
 //      case e_shape_lines:
 //         return _add_shape(shape.shape < ::lines >());
       case e_shape_polygon:
-         _add_clipping_shape(shape.shape < ::polygon_f64 >(), shape);
+         _add_clipping_shape(pregion->m_pitem.cast < ::polygon_item >()->m_polygon, pregion);
          break;
       default:
          throw ::exception(error_not_implemented);

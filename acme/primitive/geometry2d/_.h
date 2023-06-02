@@ -1,6 +1,15 @@
 #pragma once
 
 
+namespace geometry2d
+{
+
+
+   class region;
+   class item;
+
+
+} // namespace geometry2d
 
 
 DECLARE_ENUMERATION(e_align, enum_align);
@@ -1297,7 +1306,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 ////template < typename RECTANGLE_BASE_TYPE, typename POINT_BASE_TYPE >
-////void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * lppoint, ::count count)
+////void get_bounding_box(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * lppoint, ::count count)
 ////{
 ////
 ////   if (count <= 0)
@@ -1333,7 +1342,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 //
 //
-////inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const ::rectangle_i32 &rectangle)
+////inline bool get_bounding_box(::rectangle_i32 & rectangleBounding, const ::rectangle_i32 &rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1343,7 +1352,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 //
 //
-////inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const ::rectangle_i32 &rectangle)
+////inline bool get_bounding_box(::rectangle_f64 & rectangleBounding, const ::rectangle_i32 &rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1353,7 +1362,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 ////
 ////
-////inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const ::rectangle_f64 & rectangle)
+////inline bool get_bounding_box(::rectangle_i32 & rectangleBounding, const ::rectangle_f64 & rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1363,7 +1372,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 ////
 ////
-////inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const ::rectangle_f64 & rectangle)
+////inline bool get_bounding_box(::rectangle_f64 & rectangleBounding, const ::rectangle_f64 & rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1374,10 +1383,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-////void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+////void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count)
 ////{
 ////
-////   ::get_bounding_rectangle(*this, ppoint, count);
+////   ::get_bounding_box(*this, ppoint, count);
 ////
 ////}
 ////
@@ -1812,6 +1821,9 @@ template < primitive_number NUMBER >
 class polygon_base;
 
 
+template < primitive_number NUMBER >
+using poly_polygon_type = ::pointer_array < ::polygon_base < NUMBER > >;
+
 
 using point_i32 = point_type < ::i32 >;
 using point_i64 = point_type < ::i64 >;
@@ -1872,3 +1884,7 @@ using polygon_f32 = polygon_base < ::f32 >;
 using polygon_f64 = polygon_base < ::f64 >;
 
 
+using poly_polygon_i32 = poly_polygon_type < ::i32 >;
+using poly_polygon_i64 = poly_polygon_type < ::i64 >;
+using poly_polygon_f32 = poly_polygon_type < ::f32 >;
+using poly_polygon_f64 = poly_polygon_type < ::f64 >;

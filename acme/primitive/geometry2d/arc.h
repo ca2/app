@@ -23,6 +23,42 @@ public:
    ::angle_f64                      m_angleRotation;
 
 
+   void offset(const ::size_type < UNIT_TYPE > & offset)
+   {
+
+      m_pointCenter += offset;
+      m_pointBegin += offset;
+      m_pointEnd += offset;
+
+   }
+
+
+   bool contains(const ::point_type < UNIT_TYPE > & point)
+   {
+
+      if (!::ellipse_contains(m_pointCenter, m_sizeRadius, point))
+      {
+
+         return false;
+
+      }
+
+      //auto angle = ::ellipse_angle(m_pointCenter, m_sizeRadius, point);
+
+      auto angle = ::angle(m_pointCenter, point);
+
+      if (angle < m_angleBeg || angle > m_angleEnd2)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
 };
 
 

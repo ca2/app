@@ -117,16 +117,27 @@ namespace draw2d
 
    };
 
-   enum enum_region
+
+   enum enum_item
    {
 
-      e_region_none,
-      e_region_rect,
-      e_region_ellipse,
-      e_region_polygon,
-      e_region_poly_polygon,
-      e_region_round_rect,
-      e_region_combine
+      e_item_none,
+      e_item_line,
+      e_item_rectangle,
+      e_item_ellipse,
+      e_item_arc,
+      e_item_lines,
+      e_item_polygon,
+      e_item_poly_polygon,
+      e_item_round_rect,
+      e_item_combine,
+      e_item_close_figure,
+      e_item_begin_figure,
+      e_item_end_figure,
+      e_item_intersect_clip,
+
+      e_item_text_out,
+      e_item_draw_text,
 
    };
 

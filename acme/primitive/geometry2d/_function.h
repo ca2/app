@@ -131,13 +131,13 @@ auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
 
 
 template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2);
+bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, float epsilon = 0.0001);
 
 template < primitive_point POINT1, primitive_point POINT2 >
-bool is_equal(const POINT1 & point1, const POINT2 & point2);
+bool is_equal(const POINT1 & point1, const POINT2 & point2, float epsilon = 0.0001);
 
 template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
-bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2);
+bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2, float epsilon = 0.0001);
 
 template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
 RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b);
@@ -215,7 +215,10 @@ inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle);
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
-inline bool polygon_contains(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point);
+inline bool polygon_contains_winding(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point);
+
+template < primitive_point POINT1, primitive_point POINT2 >
+inline bool polygon_contains_alternate(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point, bool bUseHoles, float epsilon = 0.00001f);
 
 template < primitive_point POINT, primitive_point POINT2 >
 inline POINT & operator -= (POINT & point, const POINT2 & pointOffset);

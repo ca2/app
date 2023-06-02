@@ -6,6 +6,7 @@
 #include "draw2d.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/geometry2d/item.h"
+#include "acme/primitive/geometry2d/_defer_item.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -3229,15 +3230,15 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_item_rectangle:
-         _add_clipping_shape(pregion->m_pitem.cast < ::rectangle_item >()->m_item, pregion);
+         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::rectangle_item >()->m_item, pregion);
          break;
-      case e_shape_ellipse:
-         _add_clipping_shape(pregion->m_pitem.cast < ::ellipse_item >()->m_item, pregion);
+      case e_item_ellipse:
+         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::ellipse_item >()->m_item, pregion);
          break;
 //      case e_shape_lines:
 //         return _add_shape(shape.shape < ::lines >());
-      case e_shape_polygon:
-         _add_clipping_shape(pregion->m_pitem.cast < ::polygon_item >()->m_polygon, pregion);
+      case e_item_polygon:
+         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::polygon_item >()->m_polygon, pregion);
          break;
       default:
          throw ::exception(error_not_implemented);
@@ -3257,7 +3258,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
    {
    
       throw ::interface_only();
@@ -3287,7 +3288,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion)
    {
    
       throw ::interface_only();
@@ -3307,7 +3308,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion)
    {
 
       throw ::interface_only();

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "control_box_button.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
@@ -199,8 +199,12 @@ namespace experience_tranquillum
       ::rectangle_i32 rectangleClient;
 
       client_rectangle(rectangleClient);
+      
+      ::ellipse_f64 ellipse;
+      
+      ellipse.set(rectangleClient);
 
-      m_spregion->create_ellipse(rectangleClient);
+      m_spregion->create_ellipse(ellipse);
 
    }
 

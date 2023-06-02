@@ -71,7 +71,7 @@ inline bool expand_bounding_box(::rectangle_type < RECTANGLE_NUMBER > & rectangl
 
 
 template < primitive_number NUMBER1, primitive_number NUMBER2 >
-void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::polygon_base < NUMBER2 > & polygon)
+void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::polygon_type < NUMBER2 > & polygon)
 {
 
    for (auto & point : polygon)

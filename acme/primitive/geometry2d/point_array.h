@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "bounding_box.h"
+
+
 //#include "_concept.h"
 
 
@@ -46,7 +49,9 @@ public:
 
    void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter);
 
-   //void get_bounding_box(RECTANGLE_BASE_TYPE & rectangle) const;
+   void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const;
+
+   bool get_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const;
 
    bool polygon_contains_winding(const ::point_type < UNIT_TYPE > & point) const;
    bool polygon_contains_alternate(const ::point_type < UNIT_TYPE > & point) const;
@@ -269,6 +274,35 @@ template < primitive_number NUMBER >
 }
 
 
+template < primitive_number NUMBER >
+void point_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
+{
+
+   expand_bounding_box(top_left, bottom_right, this->data(), this->size());
+   
+}
+
+
+template < primitive_number NUMBER >
+bool point_array_base < NUMBER >::get_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
+{
+   
+   if(this->is_empty())
+   {
+      
+      return false;
+      
+   }
+   
+   top_left = this->first();
+   
+   bottom_right = this->first();
+   
+   this->expand_bounding_box(top_left, bottom_right, this->element_at[1], this->count() - 1);
+   
+   return true;
+   
+}
 
 
 

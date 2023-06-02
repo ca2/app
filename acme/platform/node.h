@@ -672,8 +672,9 @@ namespace acme
 
 
       //virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
-      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
+//      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
       virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
+//      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
       /// This version of command_system is originally meant for implementators
       /// to not use standard I/O redirection.
       virtual int command_system(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);

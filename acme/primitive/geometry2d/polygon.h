@@ -7,7 +7,7 @@
 
 
 template < primitive_number NUMBER >
-class polygon_base :
+class polygon_type :
    virtual public point_array_base < NUMBER >
 {
 public:
@@ -26,10 +26,10 @@ public:
    ::rectangle_type < NUMBER >   m_rectangleBounding;
 
 
-   polygon_base();
-   polygon_base(const polygon_base & polygon_i32);
-   polygon_base(polygon_base&& polygon_i32);
-   ~polygon_base();
+   polygon_type();
+   polygon_type(const polygon_type & polygon_i32);
+   polygon_type(polygon_type&& polygon_i32);
+   ~polygon_type();
 
    void set_rect(const ::rectangle_type < NUMBER > & rectangle);
 
@@ -48,9 +48,9 @@ public:
 
    const ::rectangle_type < NUMBER > & bounding_rect() const;
 
-   bool overlaps(const polygon_base & polygon_i32) const;
+   bool overlaps(const polygon_type & polygon_i32) const;
 
-   polygon_base convex_intersection(const polygon_base & polygon_i32) const;
+   polygon_type convex_intersection(const polygon_type & polygon) const;
 
    // sort clockwise
    void sort();
@@ -71,33 +71,33 @@ public:
 
    }
 
-   polygon_base& operator = (const polygon_base& polygon_i32);
-   polygon_base& operator = (polygon_base&& polygon_i32);
+   polygon_type& operator = (const polygon_type& polygon_i32);
+   polygon_type& operator = (polygon_type&& polygon_i32);
 
 
 
 };
 
 template < primitive_number NUMBER >
-inline polygon_base < NUMBER >::polygon_base(const polygon_base& polygon_i32)
+inline polygon_type < NUMBER >::polygon_type(const polygon_type& polygon) :
+point_array_base < NUMBER >(polygon)
 {
-   operator = (polygon_i32);
 
 }
 
 template < primitive_number NUMBER >
-inline polygon_base < NUMBER >::polygon_base(polygon_base&& polygon_i32) :
-   point_array_base < NUMBER >(::transfer(polygon_i32))
+inline polygon_type < NUMBER >::polygon_type(polygon_type&& polygon) :
+   point_array_base < NUMBER >(::transfer(polygon))
 {
    
-   m_bDirty = polygon_i32.m_bDirty;
-   m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
-   m_rectangleBounding = polygon_i32.m_rectangleBounding;
+   m_bDirty = polygon.m_bDirty;
+   m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
+   m_rectangleBounding = polygon.m_rectangleBounding;
 
 }
 
 template < primitive_number NUMBER >
-inline bool polygon_base < NUMBER >::bounding_rectangle_contains(const ::point_type < NUMBER > & point) const
+inline bool polygon_type < NUMBER >::bounding_rectangle_contains(const ::point_type < NUMBER > & point) const
 {
 
    return this->bounding_rect().contains(point);
@@ -112,39 +112,40 @@ inline double atan(const point_f64 & point, double x, double y)
 
 }
 
-
-
-
 //https://www.swtestacademy.com/intersection-convex-polygons-algorithm/
 // Sinan Oz is an experienced IT professional who has a big passion on software science and algorithms since he attended International Olympiads in Informatics in his early ages.He finished Istanbul Technical University Computer Engineering Department.He worked at Garanti Technology, one of the biggest technology centres in the country for about 5 years.After that, he started Kariyer.net and takes some serious projects as a Lead Architect and he promoted as a Software Development Manager.Currently, he is working at Movie Star Planet Kopenhagen office as a Senior Backend Game Developer.
 template < primitive_number NUMBER >
-void polygon_base < NUMBER >::sort()
+void polygon_type < NUMBER >::sort()
 {
+   
    UNIT_TYPE x = 0;
    UNIT_TYPE y = 0;
+   
    for (auto & point : *this)
    {
       x += point.x();
       y += point.y();
    }
+   
    x /= this->get_count();
    y /= this->get_count();
 
    this->predicate_sort([x, y](auto & point1, auto & point2) { return atan(point1, x, y) >= atan(point2, x, y); });
+   
 }
 
 
 template < primitive_number NUMBER >
-polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (const polygon_base& polygon_i32)
+polygon_type < NUMBER > & polygon_type < NUMBER >::operator = (const polygon_type& polygon)
 {
 
-   if (&polygon_i32 != this)
+   if (&polygon != this)
    {
 
-      point_array_base < NUMBER >::operator = (polygon_i32);
-      m_bDirty = polygon_i32.m_bDirty;
-      m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
-      m_rectangleBounding = polygon_i32.m_rectangleBounding;
+      point_array_base < NUMBER >::operator = (polygon);
+      m_bDirty = polygon.m_bDirty;
+      m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
+      m_rectangleBounding = polygon.m_rectangleBounding;
 
    }
 
@@ -152,27 +153,30 @@ polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (const polygon_bas
 
 }
 
+
 template < primitive_number NUMBER >
-polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (polygon_base&& polygon_i32)
+polygon_type < NUMBER > & polygon_type < NUMBER >::operator = (polygon_type&& polygon)
 {
 
-   if (&polygon_i32 != this)
+   if (&polygon != this)
    {
 
-      point_array_base < NUMBER >::operator = (::transfer(polygon_i32));
-      m_bDirty = polygon_i32.m_bDirty;
-      m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
-      m_rectangleBounding = polygon_i32.m_rectangleBounding;
+      point_array_base < NUMBER >::operator = (::transfer(polygon));
+      m_bDirty = polygon.m_bDirty;
+      m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
+      if(!m_bDirtyBoundingRect)
+      {
+         m_rectangleBounding = polygon.m_rectangleBounding;
+      }
 
    }
 
    return *this;
 
 }
+
 
 inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3, const point_f64 & pt4);
-
-
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
@@ -341,7 +345,7 @@ inline void get_intersection_points(point_f64_array & pa, const point_f64 & poin
 
 
 template < primitive_number NUMBER >
-polygon_base < NUMBER >::polygon_base()
+polygon_type < NUMBER >::polygon_type()
 {
 
    m_bDirty = false;
@@ -352,15 +356,14 @@ polygon_base < NUMBER >::polygon_base()
 
 
 template < primitive_number NUMBER >
-polygon_base < NUMBER >::~polygon_base()
-
+polygon_type < NUMBER >::~polygon_type()
 {
 
 }
 
 
 template < primitive_number NUMBER >
-void polygon_base < NUMBER >::set_rect(const ::rectangle_type < NUMBER > & rectangle)
+void polygon_type < NUMBER >::set_rect(const ::rectangle_type < NUMBER > & rectangle)
 {
 
    m_rectangleBounding = rectangle;
@@ -379,30 +382,32 @@ void polygon_base < NUMBER >::set_rect(const ::rectangle_type < NUMBER > & recta
 
 
 template < primitive_number NUMBER >
-const ::rectangle_type < NUMBER > & polygon_base < NUMBER >::bounding_rect() const
+const ::rectangle_type < NUMBER > & polygon_type < NUMBER >::bounding_rect() const
 {
 
-   ((polygon_base *)this)->check_dirty();
+   ((polygon_type *)this)->check_dirty();
 
    if (m_bDirtyBoundingRect && this->has_elements())
    {
 
-      ((polygon_base *)this)->m_bDirtyBoundingRect = false;
+      ((polygon_type *)this)->m_bDirtyBoundingRect = false;
+      
+      ::get_bounding_box(((polygon_type *)this)->m_rectangleBounding, *this);
 
-      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x();
-      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y();
-      ((polygon_base *)this)->m_rectangleBounding.right = this->element_at(0).x();
-      ((polygon_base *)this)->m_rectangleBounding.bottom = this->element_at(0).y();
+//      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x();
+//      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y();
+//      ((polygon_base *)this)->m_rectangleBounding.right = this->element_at(0).x();
+//      ((polygon_base *)this)->m_rectangleBounding.bottom = this->element_at(0).y();
+//
+//      for (index i = 1; i < this->get_count(); i++)
+//      {
+//
+//         ((polygon_base *)this)->m_rectangleBounding.left = minimum(m_rectangleBounding.left, this->element_at(i).x());
+//         ((polygon_base *)this)->m_rectangleBounding.right = maximum(m_rectangleBounding.right, this->element_at(i).x());
+//         ((polygon_base *)this)->m_rectangleBounding.top = minimum(m_rectangleBounding.top, this->element_at(i).y());
+//         ((polygon_base *)this)->m_rectangleBounding.bottom = maximum(m_rectangleBounding.bottom, this->element_at(i).y());
 
-      for (index i = 1; i < this->get_count(); i++)
-      {
-
-         ((polygon_base *)this)->m_rectangleBounding.left = minimum(m_rectangleBounding.left, this->element_at(i).x());
-         ((polygon_base *)this)->m_rectangleBounding.right = maximum(m_rectangleBounding.right, this->element_at(i).x());
-         ((polygon_base *)this)->m_rectangleBounding.top = minimum(m_rectangleBounding.top, this->element_at(i).y());
-         ((polygon_base *)this)->m_rectangleBounding.bottom = maximum(m_rectangleBounding.bottom, this->element_at(i).y());
-
-      }
+//      }
 
    }
 
@@ -412,15 +417,15 @@ const ::rectangle_type < NUMBER > & polygon_base < NUMBER >::bounding_rect() con
 
 
 template < primitive_number NUMBER >
-bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon_i32) const
+bool polygon_type < NUMBER >::overlaps(const polygon_type & polygon) const
 {
 
-   if (this->get_count() >= 3 && polygon_i32.get_count() >= 3)
+   if (this->get_count() >= 3 && polygon.get_count() >= 3)
    {
 
-      const rectangle_f64 & r1 = bounding_rect();
+      auto & r1 = bounding_rect();
 
-      const rectangle_f64 & r2 = polygon_i32.bounding_rect();
+      auto & r2 = polygon.bounding_rect();
 
       if (!r1.intersects(r2))
       {
@@ -431,13 +436,12 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon_i32) const
 
       ::count c1 = this->get_count();
 
-      ::count c2 = polygon_i32.get_count();
-
+      ::count c2 = polygon.get_count();
 
       for (int i = 0; i < c1; i++)
       {
 
-         if (polygon_i32.polygon_contains(this->element_at(i)))
+         if (polygon.contains(this->element_at(i)))
          {
 
             return true;
@@ -449,7 +453,7 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon_i32) const
       for (int i = 0; i < c2; i++)
       {
 
-         if (this->polygon_contains(polygon_i32[i]))
+         if (this->contains(polygon[i]))
          {
 
             return true;
@@ -457,7 +461,6 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon_i32) const
          }
 
       }
-
 
       point_f64 point;
 
@@ -467,7 +470,7 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon_i32) const
          for (int k = 0; k < c2; k++)
          {
 
-            if (line_intersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon_i32[k], polygon_i32[(k + 1) % c2]))
+            if (line_intersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
             {
 
                return true;
@@ -485,16 +488,15 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon_i32) const
 }
 
 
-
 template < primitive_number NUMBER >
-polygon_base < NUMBER > polygon_base < NUMBER >::convex_intersection(const polygon_base & polygon_i32) const
+polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polygon_type & polygon_i32) const
 {
 
    ::count c1 = this->get_count();
 
    ::count c2 = polygon_i32.get_count();
 
-   polygon_base polygonResult;
+   polygon_type polygonResult;
 
    if (c1 >= 3 && c2 >= 3)
    {

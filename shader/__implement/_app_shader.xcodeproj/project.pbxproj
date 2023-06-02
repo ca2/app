@@ -40,8 +40,6 @@
 		9A8C4E032783C287000C8587 /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8C4DFF2783C24F000C8587 /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8C5ECE2783E821000C8587 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C5ECA2783E821000C8587 /* Images.xcassets */; };
 		9A8C816F2783F891000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C816E2783F891000C8587 /* _matter.zip */; };
-		9A8F4D832A26D57C00097EE1 /* _____debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D782A26D57C00097EE1 /* _____debug.xcconfig */; };
-		9A8F4D842A26D57C00097EE1 /* _____release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D822A26D57C00097EE1 /* _____release.xcconfig */; };
 		9AB15BE629A87A0B00DFDF90 /* libacme_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BE329A87A0B00DFDF90 /* libacme_darwin.dylib */; };
 		9AB15BE729A87A0B00DFDF90 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BE329A87A0B00DFDF90 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BE829A87A0B00DFDF90 /* libapex_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BE429A87A0B00DFDF90 /* libapex_darwin.dylib */; };
@@ -706,11 +704,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8F4D832A26D57C00097EE1 /* _____debug.xcconfig in Resources */,
 				9A8C5ECE2783E821000C8587 /* Images.xcassets in Resources */,
 				9A273C7C29CF174200CBEB97 /* InfoPlist.strings in Resources */,
 				9A8C816F2783F891000C8587 /* _matter.zip in Resources */,
-				9A8F4D842A26D57C00097EE1 /* _____release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

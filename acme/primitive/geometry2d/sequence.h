@@ -30,13 +30,18 @@ struct sequence_type
    static constexpr size_t SIZE = t_iSize;
 
 
-   sequence_type():
-      sequence_type(COORDINATE{})
-   { 
+   sequence_type()
+   {
    
+      set_all(0);
+      
    }
 
-   sequence_type(enum_no_initialize) { }
+   sequence_type(enum_no_initialize)
+   {
+      
+      
+   }
 
    sequence_type(const sequence_type&) = default;
 
@@ -49,39 +54,66 @@ struct sequence_type
 //   }
 
    template <typename T>
-   sequence_type(const sequence_type<T, SIZE>& a) {
+   sequence_type(const sequence_type<T, SIZE>& sequence)
+   {
       for (size_t i = 0; i < SIZE; ++i)
-         m_coordinatea[i] = (COORDINATE)a.m_coordinatea[i];
+         m_coordinatea[i] = (COORDINATE)sequence.m_coordinatea[i];
    }
 
-   sequence_type(COORDINATE s) {
-      for (size_t i = 0; i < SIZE; ++i)
-         m_coordinatea[i] = s;
-   }
+//   sequence_type(COORDINATE s) {
+//      for (size_t i = 0; i < SIZE; ++i)
+//         m_coordinatea[i] = s;
+//   }
 
    template <size_t S = SIZE, std::enable_if_t<S == 2, int> = 0>
-   sequence_type(COORDINATE v0, COORDINATE v1) {
-      m_coordinatea[0] = v0; m_coordinatea[1] = v1;
+   sequence_type(COORDINATE coordinate0, COORDINATE coordinate1)
+   {
+      m_coordinatea[0] = coordinate0;
+      m_coordinatea[1] = coordinate1;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 3, int> = 0>
-   sequence_type(COORDINATE v0, COORDINATE v1, COORDINATE v2) {
-      m_coordinatea[0] = v0; m_coordinatea[1] = v1; m_coordinatea[2] = v2;
+   sequence_type(COORDINATE coordinate0, COORDINATE coordinate1,
+                 COORDINATE coordinate2)
+   {
+      m_coordinatea[0] = coordinate0;
+      m_coordinatea[1] = coordinate1;
+      m_coordinatea[2] = coordinate2;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   sequence_type(COORDINATE v0, COORDINATE v1, COORDINATE v2, COORDINATE v3) {
-      m_coordinatea[0] = v0; m_coordinatea[1] = v1; m_coordinatea[2] = v2; m_coordinatea[3] = v3;
+   sequence_type(
+                 COORDINATE coordinate0, COORDINATE coordinate1,
+                 COORDINATE coordinate2, COORDINATE coordinate3)
+   {
+      m_coordinatea[0] = coordinate0;
+      m_coordinatea[1] = coordinate1;
+      m_coordinatea[2] = coordinate2;
+      m_coordinatea[3] = coordinate3;
    }
 
-   sequence_type operator-() const {
+   void set_all(COORDINATE coordinate)
+   {
+      
+      for (size_t i = 0; i < SIZE; ++i)
+      {
+         
+         m_coordinatea[i] = coordinate;
+         
+      }
+      
+   }
+
+   sequence_type operator-() const
+   {
       sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = -m_coordinatea[i];
       return result;
    }
 
-   friend sequence_type operator+(const sequence_type& a, const sequence_type& b) {
+   friend sequence_type operator+(const sequence_type& a, const sequence_type& b)
+   {
       sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] + b.m_coordinatea[i];

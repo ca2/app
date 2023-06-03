@@ -25,7 +25,7 @@ NAMESPACE_BEGIN(nanoui)
  */
    class NANOUI_EXPORT ImageImpact : public Canvas {
    public:
-      using PixelCallback = ::function<void(const vector2_i32 &, char **, size_t)>;
+      using PixelCallback = ::function<void(const sequence2_i32 &, char **, size_t)>;
 
       /// Initialize the widget
       ImageImpact(Widget * parent);
@@ -59,9 +59,9 @@ NAMESPACE_BEGIN(nanoui)
       const PixelCallback & pixel_callback() const { return m_pixel_callback; }
 
       /// Return the pixel offset of the zoomed image rectangle
-      vector2_f32 offset() const { return m_offset; }
+      sequence2_f32 offset() const { return m_offset; }
       /// Set the pixel offset of the zoomed image rectangle
-      void set_offset(const vector2_f32 & offset) { m_offset = offset; }
+      void set_offset(const sequence2_f32 & offset) { m_offset = offset; }
 
       /// Return the current magnification of the image
       float scale() const;
@@ -69,14 +69,14 @@ NAMESPACE_BEGIN(nanoui)
       void set_scale(float scale);
 
       /// Convert a position within the widget to a pixel position in the image
-      vector2_f32 pos_to_pixel(const vector2_f32 & p) const;
+      sequence2_f32 pos_to_pixel(const sequence2_f32 & p) const;
       /// Convert a pixel position in the image to a position within the widget
-      vector2_f32 pixel_to_pos(const vector2_f32 & p) const;
+      sequence2_f32 pixel_to_pos(const sequence2_f32 & p) const;
 
       // Widget implementation
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) override;
-      bool mouse_drag_event(const vector2_i32 & p, const vector2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
-      bool scroll_event(const vector2_i32 & p, const vector2_f32 & rel) override;
+      bool mouse_drag_event(const sequence2_i32 & p, const sequence2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
+      bool scroll_event(const point_i32 & p, const size_f32 & rel) override;
       void draw(::nano2d::context * pcontext) override;
       void draw_contents(::nano2d::context * pcontext) override;
 
@@ -87,7 +87,7 @@ NAMESPACE_BEGIN(nanoui)
       //nanoui::ref<Texture> m_image;
       //::image_pointer m_pimage;
       float m_scale = 0;
-      vector2_f32 m_offset = 0;
+      sequence2_f32 m_offset = 0;
       bool m_draw_image_border;
       Color m_image_border_color;
       Color m_image_background_color;

@@ -105,7 +105,7 @@ NAMESPACE_END(detail)
  *    FormHelper* h = memory_new FormHelper(pscreen);
  *
  *    // Add a memory_new windows pwidget
- *    h->add_window(vector2_i32(10,10),"Menu");
+ *    h->add_window(sequence2_i32(10,10),"Menu");
  *
  *    // Start a memory_new group
  *    h->add_group("Group 1");
@@ -130,7 +130,7 @@ NAMESPACE_END(detail)
       FormHelper(Screen * pscreen) : m_screen(pscreen) { }
 
       /// Add a memory_new top-level window
-      Window * add_window(const vector2_i32 & pos,
+      Window * add_window(const sequence2_i32 & pos,
          const ::scoped_string & title = "Untitled") {
          ASSERT(m_screen);
          m_window = memory_new Window(m_screen, title);
@@ -169,9 +169,9 @@ NAMESPACE_END(detail)
          pwidget->set_callback(setter);
          pwidget->set_editable(editable);
          pwidget->set_font_size((float)m_widget_font_size);
-         vector2_i32 sizeFixed = pwidget->fixed_size();
-         pwidget->set_fixed_size(vector2_i32(sizeFixed.x() != 0 ? sizeFixed.x() : m_fixed_size.x(),
-            sizeFixed.y() != 0 ? sizeFixed.y() : m_fixed_size.y()));
+         sequence2_i32 sizeFixed = pwidget->fixed_size();
+         pwidget->set_fixed_size(sequence2_i32(sizeFixed.x() != 0 ? sizeFixed.x() : m_fixed_size.cx(),
+            sizeFixed.y() != 0 ? sizeFixed.y() : m_fixed_size.cy()));
          m_refresh_callbacks.add(refresh);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_variable_spacing);
@@ -235,10 +235,10 @@ NAMESPACE_END(detail)
       }
 
       /// Specify a fixed size for newly added widgets
-      void set_fixed_size(const vector2_i32 & fw) { m_fixed_size = fw; }
+      void set_fixed_size(const sequence2_i32 & fw) { m_fixed_size = fw; }
 
       /// The current fixed size being used for newly added widgets.
-      vector2_i32 fixed_size() { return m_fixed_size; }
+      sequence2_i32 fixed_size() { return m_fixed_size; }
 
       /// The font name being used for group headers.
       ::string group_font_name() const { return m_group_font_name; }
@@ -284,7 +284,7 @@ NAMESPACE_END(detail)
       /// The label font name.
       ::string m_label_font_name = "sans";
       /// The fixed size for newly added widgets.
-      vector2_i32 m_fixed_size = vector2_i32(0, 20);
+      sequence2_i32 m_fixed_size = sequence2_i32(0, 20);
       /// The font size for group headers.
       int m_group_font_size = 20;
       /// The font size for labels.

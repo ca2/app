@@ -1,12 +1,12 @@
 #pragma once
 
 
-#include "vector.h"
+#include "sequence.h"
 
 
 template < primitive_number NUMBER >
 class size_type :
-   public vector2_type < NUMBER >
+   public sequence_type < NUMBER, 2 >
 {
 public:
 
@@ -20,26 +20,26 @@ public:
    using POINT_TYPE = point_type < NUMBER >;
    using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
+   using sequence_type < NUMBER, 2 >::sequence_type;
 
    size_type() noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
    size_type(enum_no_initialize) noexcept {}
    size_type(::std::nullptr_t) noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
-   template < primitive_number CX, primitive_number CY >
-   size_type(CX cx, CY cy) noexcept { this->cx() = (UNIT_TYPE)cx; this->cy() = (UNIT_TYPE)cy; }
-   template < primitive_number NUMBER_TYPE >
-   size_type(NUMBER_TYPE n) noexcept { this->cx() = (UNIT_TYPE) n; this->cy() = (UNIT_TYPE) n; }
+   size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
+//   template < primitive_number NUMBER_TYPE >
+//   size_type(NUMBER_TYPE n) noexcept { this->cx() = (UNIT_TYPE) n; this->cy() = (UNIT_TYPE) n; }
    //size_type(::u32 u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
    //size_type(::i64 i) noexcept { this->cx() = (UNIT_TYPE) i; this->cy() = (UNIT_TYPE) i; }
    //size_type(::u64 u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
    //size_type(float f) noexcept { this->cx() = (UNIT_TYPE) f; this->cy() = (UNIT_TYPE) f; }
    //size_type(double d) noexcept { this->cx() = (UNIT_TYPE) d; this->cy() = (UNIT_TYPE) d; }
-   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
-   template < primitive_point POINT >
-   size_type(const POINT & point) noexcept { this->cx() = (UNIT_TYPE)point.x(); this->cy() = (UNIT_TYPE)point.y(); }
-   template < primitive_rectangle RECTANGLE >
-   size_type(const RECTANGLE & rectangle) noexcept { this->cx() = (UNIT_TYPE)::width(rectangle); this->cy() = (UNIT_TYPE)::height(rectangle); }
-   template < primitive_size SIZE >
-   size_type(const SIZE & size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
+//   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
+   //template < primitive_point POINT >
+   size_type(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx() = sequence.a(); this->cy() = sequence.b(); }
+//   template < primitive_rectangle RECTANGLE >
+//   size_type(const RECTANGLE & rectangle) noexcept { this->cx() = (UNIT_TYPE)::width(rectangle); this->cy() = (UNIT_TYPE)::height(rectangle); }
+//   template < primitive_size SIZE >
+//   size_type(const SIZE & size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
    //size_type(const ::size_i64& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
    //size_type(const ::size_f32& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
    //size_type(const ::size_f64& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
@@ -55,7 +55,7 @@ public:
 
    //operator ::size_i32* () noexcept { return this; }
    //operator const ::size_i32* () const noexcept { return this; }
-   operator bool () const noexcept { return is_set(); }
+   //operator bool () const noexcept { return is_set(); }
 
    constexpr const NUMBER & cx() const { return this->a(); }
    constexpr const NUMBER & cy() const { return this->b(); }
@@ -123,7 +123,7 @@ public:
       if (get_expand(s) == ::design::e_match_height) return aspect_height(s.cy()); else return aspect_width(s.cx());
    }
 
-   inline size_type & operator=(const size_type & size) noexcept { this->cx() = size.cx(); this->cy() = size.cy(); return *this; }
+   inline size_type & operator=(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx() = sequence.a(); this->cy() = sequence.b(); return *this; }
 
    template < primitive_size SIZE > 
    inline size_type & operator+=(const SIZE & size) noexcept { this->cx() += size.cx(); this->cy() += size.cy(); return *this; }
@@ -131,61 +131,73 @@ public:
    template < primitive_size SIZE >
    inline size_type & operator-=(const SIZE & size) noexcept { this->cx() -= size.cx(); this->cy() -= size.cy(); return *this; }
 
-   template < primitive_point POINT >
-   inline size_type & operator+=(const POINT & point) noexcept { this->cx() += point.x(); this->cy() += point.y(); return *this; }
+//   template < primitive_point POINT >
+//   inline size_type & operator+=(const POINT & point) noexcept { this->cx() += point.x(); this->cy() += point.y(); return *this; }
 
-   template < primitive_point POINT >
-   inline size_type & operator-=(const POINT & point) noexcept { this->cx() -= point.x(); this->cy() -= point.y(); return *this; }
+   template < primitive_number NUMBER1 >
+   inline size_type & operator +=(const sequence_type < NUMBER1, 2 > & sequence) noexcept { this->cx() = (UNIT_TYPE) (this->cx() + sequence.a()); this->cy() = (UNIT_TYPE) (this->cy() + sequence.b()); return *this; }
 
-   template < primitive_number NUMBER_TYPE >
-   inline size_type & operator+=(NUMBER_TYPE n) noexcept { this->cx() = UNIT_TYPE(this->cx() + n); this->cy() = UNIT_TYPE(this->cy() + n); return *this; }
+   template < primitive_number NUMBER1 >
+   inline size_type & operator -=(const sequence_type < NUMBER1, 2 > & sequence) noexcept { this->cx() = (UNIT_TYPE) (this->cx() - sequence.a()); this->cy() = (UNIT_TYPE) (this->cy() - sequence.b()); return *this; }
 
-   template < primitive_number NUMBER_TYPE >
-   inline size_type & operator-=(NUMBER_TYPE n) noexcept { this->cx() = UNIT_TYPE(this->cx() - n); this->cy() = UNIT_TYPE(this->cy() - n); return *this; }
+//   template < primitive_point POINT >
+//   inline size_type & operator-=(const POINT & point) noexcept { this->cx() -= point.x(); this->cy() -= point.y(); return *this; }
 
-   template < primitive_number NUMBER_TYPE >
-   inline size_type & operator*=(NUMBER_TYPE n) noexcept { this->cx() = UNIT_TYPE(this->cx() * n); this->cy() = UNIT_TYPE(this->cy() * n); return *this; }
+   template < primitive_number NUMBER1 >
+   inline size_type & operator +=(NUMBER1 n) noexcept { this->cx() = UNIT_TYPE(this->cx() + n); this->cy() = UNIT_TYPE(this->cy() + n); return *this; }
 
-   template < primitive_number NUMBER_TYPE >
-   inline size_type & operator/=(NUMBER_TYPE n) noexcept { this->cx() = UNIT_TYPE(this->cx() / n); this->cy() = UNIT_TYPE(this->cy() / n); return *this; }
+   template < primitive_number NUMBER1 >
+   inline size_type & operator -=(NUMBER1 n) noexcept { this->cx() = UNIT_TYPE(this->cx() - n); this->cy() = UNIT_TYPE(this->cy() - n); return *this; }
+
+   template < primitive_number NUMBER1 >
+   inline size_type & operator *=(NUMBER1 n) noexcept { this->cx() = UNIT_TYPE(this->cx() * n); this->cy() = UNIT_TYPE(this->cy() * n); return *this; }
+
+   template < primitive_number NUMBER1 >
+   inline size_type & operator /=(NUMBER1 n) noexcept { this->cx() = UNIT_TYPE(this->cx() / n); this->cy() = UNIT_TYPE(this->cy() / n); return *this; }
 
    inline void set_size(UNIT_TYPE cx, UNIT_TYPE cy) noexcept {this->cx() = cx; this->cy() = cy; }
    inline void set_size(const size_type & size_type) noexcept { set_size(size_type.cx(), size_type.cy()); }
 
-   template < primitive_size SIZE >
-   inline size_type operator+(const SIZE & size) const noexcept { return size_type((UNIT_TYPE) (this->cx() + size.cx()), (UNIT_TYPE) (this->cy() + size.cy())); }
-   template < primitive_size SIZE >
-   inline size_type operator-(const SIZE & size) const noexcept { return size_type((UNIT_TYPE) (this->cx() - size.cx()), (UNIT_TYPE) (this->cy() - size.cy())); }
+   template < primitive_number NUMBER1 >
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator +(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > > ((largest_number < UNIT_TYPE, NUMBER1 >) (this->cx() + sequence.a()), (largest_number < UNIT_TYPE, NUMBER1 >) (this->cy() + sequence.b())); }
+
+   template < primitive_number NUMBER1 >
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator -(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > > ((largest_number < UNIT_TYPE, NUMBER1 >) (this->cx() - sequence.a()), (largest_number < UNIT_TYPE, NUMBER1 >) (this->cy() - sequence.b())); }
 
    inline size_type operator-() const noexcept { return size_type(-this->cx(), -this->cy()); }
 
 //#ifdef WINDOWS
 //   inline size_type operator /(int i) const noexcept { return size_type((UNIT_TYPE)(this->cx() / i), (UNIT_TYPE)(this->cy() / i)); }
 //#endif
-   inline size_type operator /(i32 l) const noexcept { return size_type((UNIT_TYPE)(this->cx() / l), (UNIT_TYPE)(this->cy() / l)); }
-   inline size_type operator /(i64 i) const noexcept { return size_type((UNIT_TYPE)(this->cx() / i), (UNIT_TYPE)(this->cy() / i)); }
-   inline size_type operator /(float f) const noexcept { return size_type((UNIT_TYPE)(this->cx() / f), (UNIT_TYPE)(this->cy() / f)); }
-   inline size_type operator /(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx() / d), (UNIT_TYPE)(this->cy() / d)); }
-   template < primitive_number UNIT_TYPE2 >
-   inline size_type operator /(const vector_type <UNIT_TYPE2, 2> & v2) const { return size_type((UNIT_TYPE)(this->cx() / v2.a()), (UNIT_TYPE)(this->cy() / v2.b())); }
+   
+   template < primitive_number NUMBER1 >
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(NUMBER1 l) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx() / l), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy() / l)); }
+//   inline size_type operator /(i64 i) const noexcept { return size_type((UNIT_TYPE)(this->cx() / i), (UNIT_TYPE)(this->cy() / i)); }
+//   inline size_type operator /(float f) const noexcept { return size_type((UNIT_TYPE)(this->cx() / f), (UNIT_TYPE)(this->cy() / f)); }
+//   inline size_type operator /(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx() / d), (UNIT_TYPE)(this->cy() / d)); }
+   template < primitive_number NUMBER1 >
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(const sequence_type <NUMBER1, 2> & sequence) const { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx() / sequence.a()), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy() / sequence.b())); }
 
-   inline size_type operator *(int i) const noexcept { return size_type(this->cx() * i, this->cy() * i); }
-   inline size_type operator *(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx() * d), (UNIT_TYPE)(this->cy() * d)); }
+   template < primitive_number NUMBER1 >
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 d) const noexcept { return size_type(( largest_type < UNIT_TYPE, NUMBER1 >)(this->cx() * d), ( largest_type < UNIT_TYPE, NUMBER1 >)(this->cy() * d)); }
 
-   inline size_type operator +(int i) const noexcept { return size_type(this->cx() + i, this->cy() + i); }
-   inline size_type operator +(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx() + d), (UNIT_TYPE)(this->cy() + d)); }
+   //inline size_type operator +(int i) const noexcept { return size_type(this->cx() + i, this->cy() + i); }
+   template < primitive_number NUMBER1 >
+   inline size_type<largest_number < UNIT_TYPE, NUMBER1 >> operator +(NUMBER1 d) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx() + d), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy() + d)); }
 
-   inline size_type operator -(int i) const noexcept { return size_type(this->cx() - i, this->cy() - i); }
-   inline size_type operator -(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx() - d), (UNIT_TYPE)(this->cy() - d)); }
+//   inline size_type operator -(int i) const noexcept { return size_type(this->cx() - i, this->cy() - i); }
+   template < primitive_number NUMBER1 >
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator -(NUMBER1 d) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx() - d), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy() - d)); }
 
 
-   inline size_type half_away(const size_type& size) { return size_type((this->cx() - size.cx()) / (UNIT_TYPE) 2, (this->cy() - size.cy()) / (UNIT_TYPE)2); }
+   template < primitive_number NUMBER1 >
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > half_away(const size_type < NUMBER1 >& size) { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((this->cx() - size.cx()) / (largest_number < UNIT_TYPE, NUMBER1 >) 2, (this->cy() - size.cy()) / (largest_number < UNIT_TYPE, NUMBER1 >) 2); }
 
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(this); }
-   inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
+//   inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    inline bool operator == (const size_type & size) const noexcept { return this->cx() == size.cx() && this->cy() == size.cy(); }
-   inline bool operator != (const size_type & size) const noexcept { return !operator ==(size); }
+//   inline bool operator != (const size_type & size) const noexcept { return !operator ==(size); }
 
    inline bool operator == (const RECTANGLE_TYPE & rectangle) const noexcept { return this->cx() == rectangle.width() && this->cy() == rectangle.height(); }
    //inline bool operator != (const RECTANGLE_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }

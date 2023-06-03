@@ -37,9 +37,9 @@ namespace nanoui
       Popup(Widget * parent, Window * parent_window = nullptr);
 
       /// Return the anchor position in the parent window; the placement of the popup is relative to it
-      void set_anchor_pos(const vector2_i32 & anchor_pos) { m_anchor_pos = anchor_pos; }
+      void set_anchor_pos(const sequence2_i32 & anchor_pos) { m_anchor_pos = anchor_pos; }
       /// Set the anchor position in the parent window; the placement of the popup is relative to it
-      const vector2_i32 & anchor_pos() const { return m_anchor_pos; }
+      const sequence2_i32 & anchor_pos() const { return m_anchor_pos; }
 
       /// Set the anchor height; this determines the vertical shift relative to the anchor position
       void set_anchor_offset(int anchor_offset) { m_anchor_offset = anchor_offset; }
@@ -73,7 +73,7 @@ namespace nanoui
    protected:
       
       Window * m_parent_window;
-      vector2_i32 m_anchor_pos;
+      sequence2_i32 m_anchor_pos;
       int m_anchor_offset, m_anchor_size;
       Side m_side;
 };

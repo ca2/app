@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/vscrollpanel.h -- Adds a vertical scrollbar around a pwidget
     that is too big to fit into a certain area
 
@@ -54,13 +54,13 @@ namespace nanoui
       virtual float y_coordinate_vertical_scroll(int y);
 
       virtual void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      virtual bool mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      virtual bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      //virtual bool mouse_drag_event(const vector2_i32 & p, const vector2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
-      virtual bool scroll_event(const vector2_i32& p, const vector2_f32& rel) override;
+      virtual size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      virtual bool mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      virtual bool mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      //virtual bool mouse_drag_event(const sequence2_i32 & p, const sequence2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
+      virtual bool scroll_event(const point_i32& p, const size_f32& rel) override;
       virtual void draw(::nano2d::context* pcontext) override;
-      vector2_i32 get_scroll_offset() const override;
+      size_i32 get_scroll_offset() const override;
 
       virtual float get_track_bar_height() const;
 

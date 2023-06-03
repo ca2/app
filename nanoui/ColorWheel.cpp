@@ -32,7 +32,7 @@ namespace nanoui
    }
 
 
-   vector2_i32 ColorWheel::preferred_size(::nano2d::context*, bool bRecalcTextSize) 
+   size_i32 ColorWheel::preferred_size(::nano2d::context*, bool bRecalcTextSize) 
    {
 
       return { 100, 100 };
@@ -55,7 +55,7 @@ namespace nanoui
       }
 
       float x = (float)m_pos.x(), y = (float)m_pos.y(),
-         w = (float)m_size.x(), h = (float)m_size.y();
+         w = (float)m_size.cx(), h = (float)m_size.cy();
 
       float hue = m_hue;
       ::nano2d::paint paint;
@@ -125,9 +125,9 @@ namespace nanoui
             //// Center triangle
             float r = r0 - 6;
             float ax = -0.5f * r;
-            float ay = 0.5f * std::sqrt(3.f) * r;
+            float ay = 0.5f * ::sqrt(3.f) * r;
             float bx = -0.5f * r;
-            float by = -0.5f * std::sqrt(3.f) * r;
+            float by = -0.5f * ::sqrt(3.f) * r;
             pcontext->begin_path();
             pcontext->move_to(r, 0);
             pcontext->line_to(ax, ay);
@@ -163,7 +163,7 @@ namespace nanoui
    }
 
 
-   bool ColorWheel::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
       
       if (!m_bEnabled || emouse != ::user::e_mouse_left_button)
@@ -201,13 +201,13 @@ namespace nanoui
 
       }
 
-      Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      //Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
 
 
    }
 
 
-   bool ColorWheel::mouse_motion_event(const vector2_i32& p, const vector2_i32& shift, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_motion_event(const point_i32& p, const size_i32& shift, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       if (m_regionDrag)
@@ -224,16 +224,16 @@ namespace nanoui
    }
 
 
-   ColorWheel::Region ColorWheel::adjust_position(const vector2_i32& p)
+   ColorWheel::Region ColorWheel::adjust_position(const point_i32& p)
    {
 
       float x = (float) p.x();
       
       float y = (float) p.y();
       
-      float pwidget = (float)m_size.x();
+      float pwidget = (float)m_size.cx();
       
-      float h = (float)m_size.y();
+      float h = (float)m_size.cy();
 
       float cx = pwidget / 2.f;
 
@@ -249,12 +249,12 @@ namespace nanoui
 
       y -= cy;
 
-      float mr = std::sqrt(x * x + y * y);
+      float mr = ::sqrt(x * x + y * y);
 
       if ((m_regionDrag & OuterCircle) || (!m_regionDrag && (mr >= r0 && mr <= r1))) 
       {
 
-         m_hue = std::atan(y / x);
+         m_hue = ::atan(y / x);
          
          if (x < 0)
          {
@@ -278,15 +278,16 @@ namespace nanoui
 
       }
 
-      float a = -m_hue * 2 * ::nano2d::f_pi,
-         sin_a = std::sin(a),
-         cos_a = std::cos(a);
-      vector2_f32 xy(cos_a * x - sin_a * y,
+      float a = -m_hue * 2 * ::nano2d::f_pi;
+      float sin_a = ::sinf(a);
+      float cos_a = ::cosf(a);
+      
+      point_f32 xy(cos_a * x - sin_a * y,
          sin_a * x + cos_a * y);
 
       float r = r0 - 6;
-      float l0 = (float)(r - xy.x() + std::sqrt(3.f) * xy.y()) / (3.f * r);
-      float l1 = (float)(r - xy.x() - std::sqrt(3.f) * xy.y()) / (3.f * r);
+      float l0 = (float)(r - xy.x() + ::sqrt(3.f) * xy.y()) / (3.f * r);
+      float l1 = (float)(r - xy.x() - ::sqrt(3.f) * xy.y()) / (3.f * r);
       float l2 = 1 - l0 - l1;
       bool triangle_test = l0 >= 0 && l0 <= 1.f && l1 >= 0.f && l1 <= 1.f &&
          l2 >= 0.f && l2 <= 1.f;

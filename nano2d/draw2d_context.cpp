@@ -796,7 +796,7 @@ namespace nano2d
 
          positions[iChar].str = psz;
 
-         positions[iChar].x() = (float) (x+ offsetx+daLeft[psz - pszStart]);
+         positions[iChar].x = (float) (x+ offsetx+daLeft[psz - pszStart]);
 
          positions[iChar].minx = (float) (x + offsetx + daLeft[psz - pszStart]);
 
@@ -908,7 +908,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::rectangle_f64(float x, float y, float w, float h)
+   void draw2d_context::rectangle(float x, float y, float w, float h)
    {
 
       if (m_pstate->m_ppath)
@@ -927,19 +927,26 @@ namespace nano2d
    }
 
 
-   void draw2d_context::ellipse_f64(float cx, float cy, float rx, float ry)
+   void draw2d_context::ellipse(float cx, float cy, float rx, float ry)
    {
+      
+      ::ellipse_f64 ellipse;
+      
+      ellipse.left = cx - rx;
+      ellipse.top = cy - ry;
+      ellipse.right = cx + rx;
+      ellipse.bottom = cy + ry;
 
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_ellipse(rectangle_f64_dimension(cx - rx, cy - ry, rx *2.0, ry*2.0));
+         m_pstate->m_ppath->add_ellipse(ellipse);
 
       }
       else
       {
 
-         m_pgraphics->ellipse(rectangle_f64_dimension(cx - rx, cy - ry, rx * 2.0, ry * 2.0));
+         m_pgraphics->ellipse(ellipse);
 
       }
 
@@ -948,17 +955,19 @@ namespace nano2d
 
    void draw2d_context::arc(float cx, float cy, float r, float a0, float a1, int dir)
    {
+      
+      ::rectangle_f64 rectangle(cx - r, cy - r, cx + r, cy + r);
 
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_arc(rectangle_f64_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pstate->m_ppath->add_arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
 
       }
       else
       {
 
-         m_pgraphics->arc(rectangle_f64_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pgraphics->arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
 
       }
 

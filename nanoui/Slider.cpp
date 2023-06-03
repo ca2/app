@@ -25,15 +25,15 @@ Slider::Slider(Widget * parent)
 }
 
 
-vector2_i32 Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
+size_i32 Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
 {
    
-   return vector2_i32(70, 16);
+   return { 70, 16 };
 
 }
 
 
-bool Slider::mouse_motion_event(const vector2_i32 & p, const vector2_i32 & /* rel */, bool bDown,const ::user::e_key & /* modifiers */)
+bool Slider::mouse_motion_event(const point_i32 & p, const size_i32 & /* rel */, bool bDown,const ::user::e_key & /* modifiers */)
 {
 
    if (!m_bEnabled || !bDown)
@@ -43,9 +43,9 @@ bool Slider::mouse_motion_event(const vector2_i32 & p, const vector2_i32 & /* re
 
    }
 
-   const float kr =(m_size.y() * 0.4f), kshadow = 3.f;
+   const float kr =(m_size.cy() * 0.4f), kshadow = 3.f;
    const float start_x = kr + kshadow + m_pos.x() - 1.f;
-   const float width_x = m_size.x() - 2.f * (kr + kshadow);
+   const float width_x = m_size.cx() - 2.f * (kr + kshadow);
 
    float value = (p.x() - start_x) / width_x, old_value = m_value;
    
@@ -65,7 +65,7 @@ bool Slider::mouse_motion_event(const vector2_i32 & p, const vector2_i32 & /* re
 }
 
 
-bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */) 
+bool Slider::mouse_button_event(const point_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */) 
 {
 
    if (!m_bEnabled)
@@ -75,11 +75,11 @@ bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, b
 
    }
 
-   const float kr = (m_size.y() * 0.4f), kshadow = 3.f;
+   const float kr = (m_size.cy() * 0.4f), kshadow = 3.f;
 
    const float start_x = kr + kshadow + m_pos.x() - 1;
 
-   const float width_x = m_size.x() - 2 * (kr + kshadow);
+   const float width_x = m_size.cx() - 2 * (kr + kshadow);
 
    float value = (p.x() - start_x) / width_x, old_value = m_value;
    
@@ -88,20 +88,36 @@ bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, b
    m_value = ::minimum_maximum(value, m_range.m_element1, m_range.m_element2);
 
    if (m_callback && m_value != old_value)
+   {
+      
       m_callback(m_value);
+      
+   }
+   
    if (m_final_callback && !down)
+   {
+      
       m_final_callback(m_value);
+      
+   }
+   
    return true;
+   
 }
 
-void Slider::draw(::nano2d::context * pcontext) {
-   vector2_f32 center = vector2_f32(m_pos) + vector2_f32(m_size) * 0.5f;
-   float kr = (m_size.y() * 0.4f), kshadow = 3.f;
+
+void Slider::draw(::nano2d::context * pcontext)
+{
+   
+   auto center = point_f32(m_pos) + size_f32(m_size) * 0.5f;
+   
+   float kr = (m_size.cy() * 0.4f), kshadow = 3.f;
 
    float start_x = kr + kshadow + m_pos.x();
-   float width_x = m_size.x() - 2 * (kr + kshadow);
+   
+   float width_x = m_size.cx() - 2 * (kr + kshadow);
 
-   vector2_f32 knob_pos(start_x + (m_value - m_range.m_element1) /
+   point_f32 knob_pos(start_x + (m_value - m_range.m_element1) /
       (m_range.m_element2 - m_range.m_element1) * width_x,
       center.y() + 0.5f);
 
@@ -119,7 +135,7 @@ void Slider::draw(::nano2d::context * pcontext) {
 
       pcontext->begin_path();
 
-      pcontext->rounded_rectangle(start_x + m_highlighted_range.m_element1 * m_size.x(),
+      pcontext->rounded_rectangle(start_x + m_highlighted_range.m_element1 * m_size.cx(),
          center.y() - kshadow + 1,
          width_x *
          (m_highlighted_range.m_element2 - m_highlighted_range.m_element1),

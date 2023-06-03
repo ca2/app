@@ -24,14 +24,14 @@ public:
    using SIZE_TYPE = size_type < NUMBER >;
    //using POINT_ARRAY_TYPE = point_array_base < POINT_TYPE >;
 
-   rectangle_type() noexcept : rectangle_type((UNIT_TYPE)0) { }
+   rectangle_type() noexcept : rectangle_type(0, 0, 0, 0) { }
    rectangle_type(enum_no_initialize) noexcept { }
-   rectangle_type(::std::nullptr_t) noexcept : rectangle_type((UNIT_TYPE)0) {}
+   rectangle_type(::std::nullptr_t) noexcept : rectangle_type(0, 0, 0, 0) {}
 
    template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
    rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom) noexcept { this->left = (UNIT_TYPE)left; this->top = (UNIT_TYPE)top; this->right = (UNIT_TYPE)right; this->bottom = (UNIT_TYPE)bottom; }
-   rectangle_type(UNIT_TYPE x, UNIT_TYPE y) noexcept : rectangle_type(x, y, x, y) {}
-   rectangle_type(UNIT_TYPE i) noexcept : rectangle_type(i, i) {}
+   //rectangle_type(UNIT_TYPE x, UNIT_TYPE y) noexcept : rectangle_type(x, y, x, y) {}
+   //rectangle_type(UNIT_TYPE i) noexcept : rectangle_type(i, i) {}
 
 
 //#ifdef APPLE
@@ -301,15 +301,15 @@ public:
    rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }
 
 
-   inline rectangle_type & operator+=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.greekdeltax); this->top = (UNIT_TYPE)(this->top + shift.greekdeltay); this->right = (UNIT_TYPE)(this->right + shift.greekdeltax); this->bottom = (UNIT_TYPE)(this->bottom + shift.greekdeltay); return *this; }
-   inline rectangle_type & operator-=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left - shift.greekdeltax); this->top = (UNIT_TYPE)(this->top - shift.greekdeltay); this->right = (UNIT_TYPE)(this->right + shift.greekdeltax); this->bottom = (UNIT_TYPE)(this->bottom + shift.greekdeltay); return *this; }
-
-
-   inline rectangle_type & operator()(const SHIFT_I32 & shift) noexcept { return operator +=(shift); }
-
-
-   inline rectangle_type operator+(const SHIFT_I32 & shift) noexcept { return { (UNIT_TYPE)(this->left + shift.greekdeltax), (UNIT_TYPE)(this->top + shift.greekdeltay), (UNIT_TYPE)(this->right + shift.greekdeltax), (UNIT_TYPE)(this->bottom + shift.greekdeltay) }; }
-   inline rectangle_type operator-(const SHIFT_I32 & shift) noexcept { return { (UNIT_TYPE)(this->left - shift.greekdeltax), (UNIT_TYPE)(this->top - shift.greekdeltay), (UNIT_TYPE)(this->right - shift.greekdeltax), (UNIT_TYPE)(this->bottom - shift.greekdeltay) }; }
+//   inline rectangle_type & operator+=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.greekdeltax); this->top = (UNIT_TYPE)(this->top + shift.greekdeltay); this->right = (UNIT_TYPE)(this->right + shift.greekdeltax); this->bottom = (UNIT_TYPE)(this->bottom + shift.greekdeltay); return *this; }
+//   inline rectangle_type & operator-=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left - shift.greekdeltax); this->top = (UNIT_TYPE)(this->top - shift.greekdeltay); this->right = (UNIT_TYPE)(this->right + shift.greekdeltax); this->bottom = (UNIT_TYPE)(this->bottom + shift.greekdeltay); return *this; }
+//
+//
+//   inline rectangle_type & operator()(const SHIFT_I32 & shift) noexcept { return operator +=(shift); }
+//
+//
+//   inline rectangle_type operator+(const SHIFT_I32 & shift) noexcept { return { (UNIT_TYPE)(this->left + shift.greekdeltax), (UNIT_TYPE)(this->top + shift.greekdeltay), (UNIT_TYPE)(this->right + shift.greekdeltax), (UNIT_TYPE)(this->bottom + shift.greekdeltay) }; }
+//   inline rectangle_type operator-(const SHIFT_I32 & shift) noexcept { return { (UNIT_TYPE)(this->left - shift.greekdeltax), (UNIT_TYPE)(this->top - shift.greekdeltay), (UNIT_TYPE)(this->right - shift.greekdeltax), (UNIT_TYPE)(this->bottom - shift.greekdeltay) }; }
 
 
    //template < primitive_point POINT >

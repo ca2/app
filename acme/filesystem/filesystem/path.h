@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "file_path.h"
@@ -409,19 +409,19 @@ namespace file
 
 //      void to_string(string & str) const;
 
-      path sibling(const path & path) const;
-      path sibling(const ::ansi_string & str) const;
+      //path sibling(const path & path) const;
+      //path sibling(const ::ansi_string & str) const;
       path sibling(const ::scoped_string & scopedstr) const;
 
-      path operator * (const path & path) const;
+      //path operator * (const path & path) const;
 
-      path operator * (const ::ansi_string & str) const;
+      //path operator * (const ::ansi_string & str) const;
       path operator * (const ::scoped_string & scopedstr) const;
       //path operator * (const property & property) const;
 
-      path & operator *= (const path & path);
+      //path & operator *= (const path & path);
 
-      path & operator *= (const ::ansi_string & str);
+      //path & operator *= (const ::ansi_string & str);
       path & operator *= (const ::scoped_string & scopedstr);
       //path & operator *= (const property & property);
 

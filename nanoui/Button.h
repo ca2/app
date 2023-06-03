@@ -166,10 +166,10 @@ namespace nanoui
       void set_button_group(const ::array<Button *> & button_group) { m_button_group = button_group; }
 
       /// The preferred size of this Button.
-      virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual size_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       /// The callback that is called when any type of mouse button event is issued to this Button.
-      virtual bool mouse_enter_event(const vector2_i32 & p, bool enter, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_enter_event(const point_i32 & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const point_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
       /// Responsible for drawing the Button.
       virtual void draw(::nano2d::context * pcontext) override;
 

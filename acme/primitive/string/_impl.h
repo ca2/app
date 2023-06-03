@@ -357,10 +357,23 @@ namespace file
     }
 
 
-    inline path path::operator * (const ::scoped_string & scopedstr) const { return operator * (::file::path(scopedstr)); }
+   inline path path::operator * (const ::scoped_string & scopedstr) const
+   {
+      
+      return ::transfer(this->sibling(scopedstr));
+      
+      
+   }
 
 
-    inline path& path::operator *= (const ::scoped_string & scopedstr) { return operator *= (::file::path(scopedstr)); }
+   inline path& path::operator *= (const ::scoped_string & scopedstr)
+   {
+      
+      this->operator = (::transfer(this->sibling(scopedstr)));
+      
+      return *this;
+      
+   }
 
 
     inline bool path::operator == (const ::scoped_string & scopedstr) const

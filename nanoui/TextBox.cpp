@@ -41,9 +41,9 @@ namespace nanoui
       m_strValueEdit(value),
       m_iSelectionStart(-1),
       m_iSelectionEnd(-1),
-      m_mouse_pos(vector2_i32(-1, -1)),
-      m_pointMouseDown(vector2_i32(-1, -1)),
-      m_pointMouseDrag(vector2_i32(-1, -1)),
+      m_mouse_pos(sequence2_i32(-1, -1)),
+      m_pointMouseDown(sequence2_i32(-1, -1)),
+      m_pointMouseDrag(sequence2_i32(-1, -1)),
       m_ekeyMouseDownModifier(::user::e_key_none),
       m_fTextOffset(0)
    {
@@ -78,10 +78,10 @@ namespace nanoui
    }
 
 
-   vector2_i32 TextBox::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   size_i32 TextBox::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
-      vector2_i32 size(0, (int)(font_size() * 1.4f));
+      size_i32 size(0, (int)(font_size() * 1.4f));
 
       float uw = 0;
       if (m_iUnitImage > 0) {
@@ -120,18 +120,18 @@ namespace nanoui
       Widget::draw(pcontext);
 
       ::nano2d::paint bg = pcontext->box_gradient(
-         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
+         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
          3.f, 4.f, ::color::color(255, 32), m_colorBackground);
       ::nano2d::paint fg1 = pcontext->box_gradient(
-         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
+         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
          3.f, 4.f, ::color::color(150, 32), m_colorBackground);
       ::nano2d::paint fg2 = pcontext->box_gradient(
-         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
+         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
          3.f, 4.f, ::color::RGBA_color(255, 0, 0, 100), m_colorBackground);
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f,
-         m_size.y() - 2.f, 3);
+      pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f,
+         m_size.cy() - 2.f, 3);
 
       if (m_bEditable && focused())
          m_bValidFormat ? pcontext->fill_paint(fg1) : pcontext->fill_paint(fg2);
@@ -143,16 +143,16 @@ namespace nanoui
       pcontext->fill();
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.x() - 1.f,
-         m_size.y() - 1.f, 2.5f);
+      pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.cx() - 1.f,
+         m_size.cy() - 1.f, 2.5f);
       pcontext->stroke_color(::color::color(0, 48));
       pcontext->stroke();
 
       pcontext->font_size(font_size());
       pcontext->font_face("sans");
-      vector2_f32 draw_pos((float)m_pos.x(), (float)(m_pos.y() + m_size.y() * 0.5f + 1.f));
+      point_f32 draw_pos((float)m_pos.x(), (float)(m_pos.y() + m_size.cy() * 0.5f + 1.f));
 
-      float x_spacing = m_size.y() * 0.3f;
+      float x_spacing = m_size.cy() * 0.3f;
 
       float unit_width = 0;
 
@@ -161,14 +161,14 @@ namespace nanoui
 
          int pwidgetChild, h;
          pcontext->image_size(m_iUnitImage, &pwidgetChild, &h);
-         float unit_height = m_size.y() * 0.4f;
+         float unit_height = m_size.cy() * 0.4f;
          unit_width = pwidgetChild * unit_height / h;
          ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
-            m_pos.x() + m_size.x() - x_spacing - unit_width,
+            m_pos.x() + m_size.cx() - x_spacing - unit_width,
             draw_pos.y() - unit_height * 0.5f, unit_width, unit_height, 0,
             m_bEnabled ? 0.7f : 0.35f, m_iUnitImage);
          pcontext->begin_path();
-         pcontext->rectangle(m_pos.x() + m_size.x() - x_spacing - unit_width,
+         pcontext->rectangle(m_pos.x() + m_size.cx() - x_spacing - unit_width,
             draw_pos.y() - unit_height * 0.5f, unit_width, unit_height);
          pcontext->fill_paint(img_paint);
          pcontext->fill();
@@ -180,7 +180,7 @@ namespace nanoui
          unit_width = pcontext->text_bounds(0, 0, m_strUnit, nullptr);
          pcontext->fill_color(::color::color(255, m_bEnabled ? 64 : 32));
          pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_middle);
-         pcontext->text(m_pos.x() + m_size.x() - x_spacing, (float)draw_pos.y(), m_strUnit);
+         pcontext->text(m_pos.x() + m_size.cx() - x_spacing, (float)draw_pos.y(), m_strUnit);
          unit_width += 2;
 
       }
@@ -202,9 +202,12 @@ namespace nanoui
             pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_ptheme->m_colorText : m_ptheme->m_colorDisableText);
             auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxUp);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-            vector2_f32 icon_pos(m_pos.x() + 4.f,
-               m_pos.y() + m_size.y() / 2.f - x_spacing / 2.f);
+            
+            point_f32 icon_pos(m_pos.x() + 4.f,
+               m_pos.y() + m_size.cy() / 2.f - x_spacing / 2.f);
+            
             pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
+            
          }
 
          /* down button */ {
@@ -212,9 +215,12 @@ namespace nanoui
             pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_ptheme->m_colorText : m_ptheme->m_colorDisableText);
             auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxDown);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-            vector2_f32 icon_pos(m_pos.x() + 4.f,
-               m_pos.y() + m_size.y() / 2.f + x_spacing / 2.f + 1.5f);
+            
+            point_f32 icon_pos(m_pos.x() + 4.f,
+               m_pos.y() + m_size.cy() / 2.f + x_spacing / 2.f + 1.5f);
+            
             pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
+            
          }
 
          pcontext->font_size(font_size());
@@ -228,11 +234,11 @@ namespace nanoui
          break;
       case e_alignment_right:
          pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_middle);
-         draw_pos.x() += (int)(m_size.x() - unit_width - x_spacing);
+         draw_pos.x() += (int)(m_size.cx() - unit_width - x_spacing);
          break;
       case e_alignment_center:
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
-         draw_pos.x() += (int)(m_size.x() * 0.5f);
+         draw_pos.x() += (int)(m_size.cx() * 0.5f);
          break;
       }
 
@@ -244,8 +250,8 @@ namespace nanoui
       // clip visible text area
       float clip_x = m_pos.x() + x_spacing + spin_arrows_width - 1.0f;
       float clip_y = m_pos.y() + 1.0f;
-      float clip_width = m_size.x() - unit_width - spin_arrows_width - 2 * x_spacing + 2.0f;
-      float clip_height = m_size.y() - 3.0f;
+      float clip_width = m_size.cx() - unit_width - spin_arrows_width - 2 * x_spacing + 2.0f;
+      float clip_height = m_size.cy() - 3.0f;
 
 
       {
@@ -253,7 +259,7 @@ namespace nanoui
          //pcontext->save();
          pcontext->intersect_scissor(clip_x, clip_y, clip_width, clip_height);
 
-         vector2_f32 old_draw_pos(draw_pos);
+         point_f32 old_draw_pos(draw_pos);
 
          draw_pos.x() += m_fTextOffset;
 
@@ -333,7 +339,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_enter_event(const vector2_i32& p, bool enter, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_enter_event(const point_i32& p, bool enter, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_enter_event(p, enter, ekeyModifiers);
@@ -343,7 +349,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (emouse == ::user::e_mouse_left_button && down && !focused())
@@ -360,9 +366,9 @@ namespace nanoui
 
             release_mouse_capture();
 
-            m_pointMouseDown = vector2_i32(-1, -1);
+            m_pointMouseDown = sequence2_i32(-1, -1);
 
-            m_pointMouseDrag = vector2_i32(-1, -1);
+            m_pointMouseDrag = sequence2_i32(-1, -1);
 
             return true;
 
@@ -382,7 +388,7 @@ namespace nanoui
 
             m_iSelectionEnd = (int)m_strValueEdit.size();
 
-            m_pointMouseDown = vector2_i32(-1, -1);
+            m_pointMouseDown = sequence2_i32(-1, -1);
 
             set_need_redraw();
 
@@ -446,7 +452,7 @@ namespace nanoui
 
                   post_redraw();
 
-                  m_pointMouseDown = vector2_i32(-1, -1);
+                  m_pointMouseDown = sequence2_i32(-1, -1);
 
                }
 
@@ -456,9 +462,9 @@ namespace nanoui
             else 
             {
 
-               m_pointMouseDown = vector2_i32(-1, -1);
+               m_pointMouseDown = sequence2_i32(-1, -1);
                
-               m_pointMouseDrag = vector2_i32(-1, -1);
+               m_pointMouseDrag = sequence2_i32(-1, -1);
 
             }
 
@@ -466,9 +472,9 @@ namespace nanoui
          else
          {
 
-            m_pointMouseDown = vector2_i32(-1, -1);
+            m_pointMouseDown = sequence2_i32(-1, -1);
 
-            m_pointMouseDrag = vector2_i32(-1, -1);
+            m_pointMouseDrag = sequence2_i32(-1, -1);
 
          }
 
@@ -481,7 +487,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_motion_event(const vector2_i32& p, const vector2_i32& /* rel */, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_motion_event(const point_i32& p, const size_i32& /* rel */, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       m_mouse_pos = p;
@@ -525,7 +531,7 @@ namespace nanoui
 
 
 
-   //bool TextBox::mouse_drag_event(const vector2_i32& p, const vector2_i32&/* rel */, const ::user::e_key& ekeyModifiers)
+   //bool TextBox::mouse_drag_event(const point_i32& p, const size_i32&/* rel */, const ::user::e_key& ekeyModifiers)
    //{
    // 
    // 
@@ -999,7 +1005,7 @@ namespace nanoui
 
          }
 
-         m_pointMouseDown = vector2_i32(-1, -1);
+         m_pointMouseDown = sequence2_i32(-1, -1);
 
       }
       else if (m_pointMouseDrag.x() != -1)
@@ -1038,7 +1044,7 @@ namespace nanoui
       if (iIndex == size)
          pos = lastx; // last character
       else
-         pos = glyphs[iIndex].x();
+         pos = glyphs[iIndex].x;
 
       return pos;
 
@@ -1048,7 +1054,7 @@ namespace nanoui
    ::strsize TextBox::position_to_cursor_index(float posx, float lastx, const ::nano2d::glyphPosition* glyphs, ::strsize size)
    {
 
-      float caretx = glyphs[0].x();
+      float caretx = glyphs[0].x;
 
       if (posx < caretx)
       {
@@ -1069,13 +1075,13 @@ namespace nanoui
          if (cursor >= size)
          {
 
-            dNextX = (dLastX + glyphs[cursor - 1].x()) / 2.0;
+            dNextX = (dLastX + glyphs[cursor - 1].x) / 2.0;
 
          }
          else
          {
 
-            dNextX = (glyphs[cursor].x() + glyphs[cursor - 1].x()) / 2.0;
+            dNextX = (glyphs[cursor].x + glyphs[cursor - 1].x) / 2.0;
 
          }
 
@@ -1095,14 +1101,14 @@ namespace nanoui
    }
 
 
-   TextBox::SpinArea TextBox::spin_area(const vector2_i32& pos) 
+   TextBox::SpinArea TextBox::spin_area(const point_i32& pos) 
    {
 
       if (0 <= pos.x() - m_pos.x() && pos.x() - m_pos.x() < 14.f) { /* on scrolling arrows */
-         if (m_size.y() >= pos.y() - m_pos.y() && pos.y() - m_pos.y() <= m_size.y() / 2.f) { /* top part */
+         if (m_size.cy() >= pos.y() - m_pos.y() && pos.y() - m_pos.y() <= m_size.cy() / 2.f) { /* top part */
             return SpinArea::Top;
          }
-         else if (0.f <= pos.y() - m_pos.y() && pos.y() - m_pos.y() > m_size.y() / 2.f) { /* bottom part */
+         else if (0.f <= pos.y() - m_pos.y() && pos.y() - m_pos.y() > m_size.cy() / 2.f) { /* bottom part */
             return SpinArea::Bottom;
          }
       }

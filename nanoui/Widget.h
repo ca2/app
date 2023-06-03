@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/pwidget.h -- Base class of all widgets
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -15,8 +15,8 @@
 #include "Object.h"
 #include "Theme.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
-#include <vector>
-#include <algorithm>
+//#include <xxxvector>
+//#include <xxxalgorithm>
 //#include "acme/primitive/primitive/function.h"
 
 namespace nanoui
@@ -48,11 +48,11 @@ namespace nanoui
       ::pointer < Widget>     m_pwidgetParent;
       ::pointer<Theme>        m_ptheme;
       ::pointer<Layout>       m_playout;
-      vector2_i32             m_pos;
-      vector2_i32             m_size;
-      vector2_i32             m_fixed_size;
-      vector2_i32             m_offsetToApplyOnDraw;
-      vector2_i32             m_offsetSizeToApplyOnDraw;
+      point_i32               m_pos;
+      size_i32                m_size;
+      size_i32                m_fixed_size;
+      size_i32                m_offsetToApplyOnDraw;
+      size_i32                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;
       ::pointer_array<Widget> m_children;
       //::index               m_iHoverCandidateChildStart;
@@ -148,36 +148,36 @@ namespace nanoui
       virtual void set_theme(Theme* theme);
 
       /// Return the position relative to the parent pwidget
-      const vector2_i32& position() const { return m_pos; }
+      const point_i32& position() const { return m_pos; }
       /// Set the position relative to the parent pwidget
-      void set_position(const vector2_i32& pos) { m_pos = pos; }
+      void set_position(const point_i32& pos) { m_pos = pos; }
 
       /// Return the absolute position on pscreen
-      vector2_i32 absolute_position() const {
+      point_i32 absolute_position() const {
          return m_pwidgetParent ?
             (parent()->absolute_position() + m_pos) : m_pos;
       }
 
-      virtual vector2_i32 screen_position() const;
+      virtual point_i32 screen_position() const;
 
 
-      virtual vector2_i32 get_scroll_offset() const;
-      virtual vector2_i32 get_accumulated_scroll_offset() const;
+      virtual size_i32 get_scroll_offset() const;
+      virtual size_i32 get_accumulated_scroll_offset() const;
 
       /// Return the size of the pwidget
-      const vector2_i32& size() const { return m_size; }
+      const size_i32& size() const { return m_size; }
       /// set the size of the pwidget
-      virtual void set_size(const vector2_i32& size);
+      virtual void set_size(const size_i32& size);
 
       /// Return the width of the pwidget
-      int width() const { return m_size.x(); }
+      int width() const { return m_size.cx(); }
       /// Set the width of the pwidget
-      void set_width(int width) { m_size.x() = width; }
+      void set_width(int width) { m_size.cx() = width; }
 
       /// Return the height of the pwidget
-      int height() const { return m_size.y(); }
+      int height() const { return m_size.cy(); }
       /// Set the height of the pwidget
-      void set_height(int height) { m_size.y() = height; }
+      void set_height(int height) { m_size.cy() = height; }
 
 
       /// Whether or not this CheckBox is currently pushed.  See \::pointer nanoui::CheckBox::m_pushed.
@@ -205,19 +205,19 @@ namespace nanoui
        * size; this is done with a call to \::pointer set_size or a call to \::pointer perform_layout()
        * in the parent pwidget.
        */
-      virtual void set_fixed_size(const vector2_i32& fixed_size) { m_fixed_size = fixed_size; }
+      virtual void set_fixed_size(const size_i32& fixed_size) { m_fixed_size = fixed_size; }
 
       /// Return the fixed size (see \::pointer set_fixed_size())
-      const vector2_i32& fixed_size() const { return m_fixed_size; }
+      const size_i32& fixed_size() const { return m_fixed_size; }
 
       // Return the fixed width (see \::pointer set_fixed_size())
-      int fixed_width() const { return m_fixed_size.x(); }
+      int fixed_width() const { return m_fixed_size.cx(); }
       // Return the fixed height (see \::pointer set_fixed_size())
-      int fixed_height() const { return m_fixed_size.y(); }
+      int fixed_height() const { return m_fixed_size.cy(); }
       /// Set the fixed width (see \::pointer set_fixed_size())
-      void set_fixed_width(int width) { m_fixed_size.x() = width; }
+      void set_fixed_width(int width) { m_fixed_size.cx() = width; }
       /// Set the fixed height (see \::pointer set_fixed_size())
-      void set_fixed_height(int height) { m_fixed_size.y() = height; }
+      void set_fixed_height(int height) { m_fixed_size.cy() = height; }
 
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual bool visible() const;
@@ -331,30 +331,30 @@ namespace nanoui
       void set_cursor(Cursor cursor) { m_cursor = cursor; }
 
       /// Check if the pwidget contains a certain position
-      bool contains(const vector2_i32& p) const;
+      bool contains(const point_i32& p) const;
 
       /// Determine the pwidget located at the given position value (recursive)
-      Widget* find_widget(const vector2_i32& p);
-      const Widget* find_widget(const vector2_i32& p) const;
+      Widget* find_widget(const point_i32& p);
+      const Widget* find_widget(const point_i32& p) const;
 
       /// Handle a mouse button event (default implementation: propagate to children)
-      virtual bool mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers);
+      virtual bool mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers);
 
       /// Handle a mouse motion event (default implementation: propagate to children)
-      virtual bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers);
+      virtual bool mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers);
 
       /// Handle a mouse drag event (default implementation: do nothing)
-      // virtual bool mouse_drag_event(const vector2_i32& p, const vector2_i32& rel, const ::user::e_key& ekeyModifiers);
+      // virtual bool mouse_drag_event(const point_i32& p, const size_i32& rel, const ::user::e_key& ekeyModifiers);
 
       /// Handle a mouse enter/leave event (default implementation: record this fact, but do nothing)
-      virtual bool mouse_enter_event(const vector2_i32& p, bool enter, const ::user::e_key& ekeyModifiers);
+      virtual bool mouse_enter_event(const point_i32& p, bool enter, const ::user::e_key& ekeyModifiers);
 
       virtual void set_mouse_capture();
 
       virtual void release_mouse_capture();
 
       /// Handle a mouse scroll event (default implementation: propagate to children)
-      virtual bool scroll_event(const vector2_i32& p, const vector2_f32& rel);
+      virtual bool scroll_event(const point_i32& p, const size_f32& rel);
 
       /// Handle a focus change event (default implementation: record the focus status, but do nothing)
       virtual bool focus_event(bool focused);
@@ -370,7 +370,7 @@ namespace nanoui
       virtual void on_begin_draw(::nano2d::context* pcontext);
 
       /// Compute the preferred size of the pwidget
-      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true);
+      virtual size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true);
 
 
       virtual void set_need_layout();

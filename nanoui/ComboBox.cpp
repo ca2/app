@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/combobox.cpp -- simple combo box pwidget based on a popup button
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -102,18 +102,18 @@ namespace nanoui
    }
 
 
-   bool ComboBox::scroll_event(const vector2_i32& p, const vector2_f32& rel)
+   bool ComboBox::scroll_event(const point_i32& p, const size_f32& rel)
    {
 
       set_checked(false, e_source_selection);
       popup()->set_visible(false);
-      if (rel.y() < 0) {
+      if (rel.cy() < 0) {
          set_selected_index(::minimum(m_iSelectedIndex + 1, (int)(items().size() - 1)), e_source_selection);
          if (m_callback)
             m_callback(m_iSelectedIndex);
          return true;
       }
-      else if (rel.y() > 0) {
+      else if (rel.cy() > 0) {
          set_selected_index(::maximum(m_iSelectedIndex - 1, 0), e_source_user);
          if (m_callback)
             m_callback(m_iSelectedIndex);

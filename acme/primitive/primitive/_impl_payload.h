@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 23/12/2022 01:48 <3ThomasBorregaardSørensen!!
 //
 #pragma once
@@ -665,9 +665,9 @@ namespace file
    //inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
    //inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
    inline path path::folder() const { return { ::file_path_folder(c_str()), m_epath }; }
-   inline path path::sibling(const path& path) const { return { ::file_path_folder(c_str()) + ::string("/") + ::sz::trim_left_path_sep(path.c_str()), m_epath }; }
+//   inline path path::sibling(const path& path) const { return { ::file_path_folder(c_str()) + ::string("/") + ::sz::trim_left_path_sep(path.c_str()), m_epath }; }
    inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(c_str()) + ::string("/") + ::sz::trim_left_path_sep(scopedstr.begin()), m_epath }; }
-   inline path path::sibling(const ::ansi_string & str) const { return this->sibling((const ::scoped_string &)str); }
+//   inline path path::sibling(const ::ansi_string & str) const { return this->sibling((const ::scoped_string &)str); }
 
    inline ::const_ansi_range path::all_extensions() const
    { 

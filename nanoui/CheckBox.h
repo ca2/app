@@ -49,7 +49,7 @@ namespace nanoui
       /// The function to execute when \::pointer nanoui::CheckBox::m_bChecked is changed.
       ::function<void(bool)> m_callback;
 
-      vector2_i32 m_sizePreferred;
+      sequence2_i32 m_sizePreferred;
 
       /**
        * Adds a CheckBox to the specified ``parent``.
@@ -93,10 +93,10 @@ namespace nanoui
       void set_callback(const ::function<void(bool)> & callback) { m_callback = callback; }
 
       /// Mouse button event processing for this check box
-      virtual bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const point_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 
       /// The preferred size of this CheckBox.
-      virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual size_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws this CheckBox.
       virtual void draw(::nano2d::context * pcontext) override;

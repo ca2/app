@@ -162,7 +162,7 @@ enum class Cursor {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 /* Forward declarations */
-template <typename T> class ::pointer;
+//template <typename T> class ::pointer;
 class AdvancedGridLayout;
 class BoxLayout;
 class Button;

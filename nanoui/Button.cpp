@@ -33,7 +33,7 @@ namespace nanoui
    }
 
 
-   vector2_i32 Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   size_i32 Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize || m_tw < 0.f || m_iw < 0.f || m_ih < 0.f)
@@ -51,7 +51,7 @@ namespace nanoui
                pcontext->font_face("icons");
                pcontext->font_size(m_ih * icon_scale());
                m_iw = pcontext->text_bounds(0, 0, get_utf8_character(m_icon), nullptr)
-                  + m_size.y() * 0.15f;
+                  + m_size.cy() * 0.15f;
             }
             else {
                int pwidgetChild, h;
@@ -61,11 +61,11 @@ namespace nanoui
          }
 
       }
-      return vector2_i32((int)(m_tw + m_iw) + 20, (int)(m_ih + 11));
+      return sequence2_i32((int)(m_tw + m_iw) + 20, (int)(m_ih + 11));
    }
 
    //
-   //bool Button::mouse_enter_event(const vector2_i32 & p, bool enter, const ::user::e_key & ekeyModifiers)
+   //bool Button::mouse_enter_event(const point_i32 & p, bool enter, const ::user::e_key & ekeyModifiers)
    //{
    //   
    //   Widget::mouse_enter_event(p, enter, ekeyModifiers);
@@ -75,7 +75,7 @@ namespace nanoui
    //}
 
 
-   bool Button::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
@@ -255,7 +255,7 @@ namespace nanoui
    }
 
 
-   bool Button::mouse_enter_event(const vector2_i32& p, bool bEnter, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_enter_event(const point_i32& p, bool bEnter, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_enter_event(p, bEnter, ekeyModifiers);
@@ -311,8 +311,8 @@ namespace nanoui
 
       pcontext->begin_path();
 
-      pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.x() - 3.f,
-         m_size.y() - 2.f, m_ptheme->m_iButtonCornerRadius - 1.f);
+      pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.cx() - 3.f,
+         m_size.cy() - 2.f, m_ptheme->m_iButtonCornerRadius - 1.f);
 
       if (m_colorBackground.alpha != 0) 
       {
@@ -349,21 +349,21 @@ namespace nanoui
       }
 
       ::nano2d::paint bg = pcontext->linear_gradient((float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
-         (float)(m_pos.y() + m_size.y()), colorGradientTop, colorGradientBottom);
+         (float)(m_pos.y() + m_size.cy()), colorGradientTop, colorGradientBottom);
 
       pcontext->fill_paint(bg);
       pcontext->fill();
 
       pcontext->begin_path();
       pcontext->stroke_width(1.0f);
-      pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + (bPressed ? 0.5f : 1.5f), m_size.x() - 2.f,
-         m_size.y() - 1.f - (bPressed ? 0.0f : 1.0f), (float)m_ptheme->m_iButtonCornerRadius);
+      pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + (bPressed ? 0.5f : 1.5f), m_size.cx() - 2.f,
+         m_size.cy() - 1.f - (bPressed ? 0.0f : 1.0f), (float)m_ptheme->m_iButtonCornerRadius);
       pcontext->stroke_color(m_ptheme->m_colorBorderLight);
       pcontext->stroke();
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle((float)m_pos.x() + 0.5f, (float)m_pos.y() + 0.5f, (float)m_size.x() - 2.f,
-         (float)m_size.y() - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+      pcontext->rounded_rectangle((float)m_pos.x() + 0.5f, (float)m_pos.y() + 0.5f, (float)m_size.cx() - 2.f,
+         (float)m_size.cy() - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
       pcontext->stroke_color(m_ptheme->m_colorBorderDark);
       pcontext->stroke();
 
@@ -371,11 +371,12 @@ namespace nanoui
       pcontext->font_size((float)font_size);
       pcontext->font_face("sans-bold");
       pcontext->text_align(::e_align_left);
-      float tw = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
-
-      vector2_f32 center = vector2_f32(m_pos) + vector2_f32(m_size) * 0.5f;
       
-      vector2_f32 text_pos(center.x() - tw * 0.5f, center.y() - 1);
+      float text_width = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
+
+      auto center = m_pos + m_size * 0.5f;
+      
+      auto text_pos = center - ::size_i32(text_width * 0.5f, 1.f);
 
       ::color::color text_color =
          m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;
@@ -399,25 +400,25 @@ namespace nanoui
             iw = pwidgetChild * ih / h;
          }
          if (m_strCaption != "")
-            iw += m_size.y() * 0.15f;
+            iw += m_size.cy() * 0.15f;
          pcontext->fill_color(text_color);
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-         vector2_f32 icon_pos = center;
+         point_f32 icon_pos = center;
          icon_pos.y() -= 1;
 
          if (m_icon_position == IconPosition::LeftCentered) {
-            icon_pos.x() -= (tw + iw) * 0.5f;
+            icon_pos.x() -= (text_width + iw) * 0.5f;
             text_pos.x() += iw * 0.5f;
          }
          else if (m_icon_position == IconPosition::RightCentered) {
             text_pos.x() -= iw * 0.5f;
-            icon_pos.x() += tw * 0.5f;
+            icon_pos.x() += text_width * 0.5f;
          }
          else if (m_icon_position == IconPosition::Left) {
             icon_pos.x() = m_pos.x() + 8.f;
          }
          else if (m_icon_position == IconPosition::Right) {
-            icon_pos.x() = m_pos.x() + m_size.x() - iw - 8.f;
+            icon_pos.x() = m_pos.x() + m_size.cx() - iw - 8.f;
          }
 
          if (::nano2d_is_font_icon(m_icon)) 

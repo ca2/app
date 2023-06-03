@@ -9,13 +9,13 @@
 #include "_f64.h"
 
 
-struct SHIFT_I32
-{
-
-   int greekdeltax;
-   int greekdeltay;
-
-};
+//struct SHIFT_I32
+//{
+//
+//   int greekdeltax;
+//   int greekdeltay;
+//
+//};
 
 
 

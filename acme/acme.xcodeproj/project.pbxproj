@@ -1583,8 +1583,8 @@
 		9A8F43A92A23022C00097EE1 /* _f64.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43422A23022900097EE1 /* _f64.h */; };
 		9A8F43AA2A23022C00097EE1 /* region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43432A23022A00097EE1 /* region.h */; };
 		9A8F43AB2A23022C00097EE1 /* region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43432A23022A00097EE1 /* region.h */; };
-		9A8F43AC2A23022C00097EE1 /* vector.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43442A23022A00097EE1 /* vector.h */; };
-		9A8F43AD2A23022C00097EE1 /* vector.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43442A23022A00097EE1 /* vector.h */; };
+		9A8F43AC2A23022C00097EE1 /* sequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43442A23022A00097EE1 /* sequence.h */; };
+		9A8F43AD2A23022C00097EE1 /* sequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43442A23022A00097EE1 /* sequence.h */; };
 		9A8F43AE2A23022C00097EE1 /* geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43452A23022A00097EE1 /* geometry.h */; };
 		9A8F43AF2A23022C00097EE1 /* geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43452A23022A00097EE1 /* geometry.h */; };
 		9A8F43B02A23022C00097EE1 /* rectangle_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F43462A23022A00097EE1 /* rectangle_array.h */; };
@@ -3667,7 +3667,7 @@
 		9A8F43412A23022900097EE1 /* __basic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __basic.h; sourceTree = "<group>"; };
 		9A8F43422A23022900097EE1 /* _f64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _f64.h; sourceTree = "<group>"; };
 		9A8F43432A23022A00097EE1 /* region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = region.h; sourceTree = "<group>"; };
-		9A8F43442A23022A00097EE1 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		9A8F43442A23022A00097EE1 /* sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sequence.h; sourceTree = "<group>"; };
 		9A8F43452A23022A00097EE1 /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
 		9A8F43462A23022A00097EE1 /* rectangle_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rectangle_array.h; sourceTree = "<group>"; };
 		9A8F43472A23022A00097EE1 /* rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rectangle.cpp; sourceTree = "<group>"; };
@@ -4888,11 +4888,11 @@
 				9A8F43152A23022000097EE1 /* rectangle.h */,
 				9A8F43222A23022300097EE1 /* region.cpp */,
 				9A8F43432A23022A00097EE1 /* region.h */,
+				9A8F43442A23022A00097EE1 /* sequence.h */,
 				9A03B7B72A25B65400A0E33E /* shift.h */,
 				9A8F433D2A23022800097EE1 /* size_array.h */,
 				9A8F43252A23022300097EE1 /* size.h */,
 				9A8F43392A23022800097EE1 /* types.h */,
-				9A8F43442A23022A00097EE1 /* vector.h */,
 			);
 			path = geometry2d;
 			sourceTree = "<group>";
@@ -6876,7 +6876,7 @@
 				9A08410929348AAB009F7FF4 /* microsecond.h in Headers */,
 				9A68B23F25114437008DABD2 /* framework.h in Headers */,
 				9A98149B28E4EA8E001C9855 /* uint64_utilities.h in Headers */,
-				9A8F43AC2A23022C00097EE1 /* vector.h in Headers */,
+				9A8F43AC2A23022C00097EE1 /* sequence.h in Headers */,
 				9A68AF8325114436008DABD2 /* ___serialization_draft.h in Headers */,
 				9AA8F8E727BA7268008FF9AA /* message_box.h in Headers */,
 				9A68AD3F25114434008DABD2 /* _c_bridge.h in Headers */,
@@ -7224,7 +7224,7 @@
 				9AD68F06251A753A00C0EBD7 /* stream.h in Headers */,
 				9A97C7B2282365C600755A0A /* from_numeric_type.h in Headers */,
 				9AD68F08251A753A00C0EBD7 /* _.h in Headers */,
-				9A8F43AD2A23022C00097EE1 /* vector.h in Headers */,
+				9A8F43AD2A23022C00097EE1 /* sequence.h in Headers */,
 				9A892DDB26CD9061008D6412 /* status_range_authentication.h in Headers */,
 				9A08421E2935DD6E009F7FF4 /* ansi.h in Headers */,
 				9AD68F0A251A753A00C0EBD7 /* error.h in Headers */,

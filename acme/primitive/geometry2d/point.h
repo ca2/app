@@ -1,22 +1,22 @@
 #pragma once
 
 
-#include "vector.h"
+#include "sequence.h"
 
 
 template < primitive_number NUMBER >
 class point_type :
-   public vector2_type < NUMBER >
+   public sequence_type < NUMBER, 2 >
 {
 public:
 
 
    using UNIT_TYPE = NUMBER;
-   using SIZE_TYPE = size_type < NUMBER >;
-   using RECTANGLE_TYPE = rectangle_type < NUMBER >;
+   //using SIZE_TYPE = size_type < NUMBER >;
+   //using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
    
-   using vector2_type < NUMBER >::vector2_type;
+   using sequence_type < NUMBER, 2 >::sequence_type;
 
    point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
    point_type(enum_no_initialize) noexcept {  }
@@ -38,27 +38,26 @@ public:
 //   }
 
    
-   template < primitive_point POINT >
-   point_type(const POINT & point)
+   point_type(const sequence_type < UNIT_TYPE, 2 > & sequence)
    {
       
-      this->x() = (UNIT_TYPE) point.x();
-      this->y() = (UNIT_TYPE) point.y();
+      this->x() = sequence.a();
+      this->y() = sequence.b();
       
    }
 
    
-   template < primitive_size SIZE >
-   point_type(const SIZE & size)
-   {
-      
-      this->x() = (UNIT_TYPE) size.cx();
-      this->y() = (UNIT_TYPE) size.cy();
-      
-   }
+//   template < primitive_size SIZE >
+//   point_type(const SIZE & size)
+//   {
+//
+//      this->x() = (UNIT_TYPE) size.cx();
+//      this->y() = (UNIT_TYPE) size.cy();
+//
+//   }
 
    
-   ///point_type(const ::vector_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
+   ///point_type(const ::sequence_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
 
 //   template < primitive_size SIZE >
   // point_type(const SIZE & size) noexcept { ::copy(*this, size); }
@@ -87,7 +86,7 @@ public:
 //   inline point_type & operator = (const PRIMITIVE_SIZE  & point) { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE)point.y(); return *this; }
 
    
-   inline point_type & operator = (const point_type & point) { this->x() = point.x(); this->y() = point.y(); return *this; }
+   inline point_type & operator = (const ::sequence_type < UNIT_TYPE, 2 > & sequence2) { this->x() = sequence2.a(); this->y() = sequence2.b(); return *this; }
 
    //operator POINT_BASE_TYPE*() noexcept { return this; }
    //operator const POINT_BASE_TYPE*() const noexcept { return this; }
@@ -101,8 +100,8 @@ public:
 
 
    point_type & offset(UNIT_TYPE xOffset, UNIT_TYPE yOffset) noexcept { this->x() += xOffset; this->y() += yOffset; return *this; }
-   point_type & offset(const point_type& point) noexcept { this->x() += point.x(); this->y() += point.y(); return *this; }
-   point_type & offset(const SIZE_TYPE& size) noexcept { this->x() += size.cx(); this->y() += size.cy(); return *this; }
+   point_type & offset(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->x() += sequence.a(); this->y() += sequence.b(); return *this; }
+//   point_type & offset(const SIZE_TYPE& size) noexcept { this->x() += size.cx(); this->y() += size.cy(); return *this; }
    point_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; return *this; }
 
 
@@ -141,90 +140,90 @@ public:
    inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_null(this); }
 
    template < primitive_size SIZE >
-   inline point_type& operator+=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE) (this->x() + size.cx()); this->y() = (UNIT_TYPE)(this->y() + size.cy()); return *this; }
+   inline point_type& operator +=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE) (this->x() + size.cx()); this->y() = (UNIT_TYPE)(this->y() + size.cy()); return *this; }
 
    template < primitive_size SIZE >
-   inline point_type& operator-=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE)(this->x() - size.cx()); this->y() = (UNIT_TYPE)(this->y() - size.cy()); return *this; }
+   inline point_type& operator -=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE)(this->x() - size.cx()); this->y() = (UNIT_TYPE)(this->y() - size.cy()); return *this; }
 
 //   template < primitive_point POINT >
-//   inline point_type& operator+=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() + point.x()); this->y() = (UNIT_TYPE)(this->y() + point.y()); return *this; }
+//   inline point_type& operator +=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() + point.x()); this->y() = (UNIT_TYPE)(this->y() + point.y()); return *this; }
 //
 //   template < primitive_point POINT >
-//   inline point_type& operator-=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() - point.x()); this->y() = (UNIT_TYPE)(this->y() - point.y()); return *this; }
+//   inline point_type& operator -=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() - point.x()); this->y() = (UNIT_TYPE)(this->y() - point.y()); return *this; }
 
-   template < primitive_size SIZE >
-   inline point_type operator+(const SIZE & size) const noexcept { return point_type(this->x() + size.cx(), this->y() + size.cy()); }
+   template < primitive_number NUMBER1 >
+   inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator+(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x() + sequence.a(), this->y() + sequence.b()); }
 
-   template < primitive_point POINT >
-   inline point_type operator+(const POINT & point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
+//   template < primitive_point POINT >
+//   inline point_type operator+(const POINT & point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
 
-   template < primitive_point POINT >
-   inline SIZE_TYPE operator-(const POINT & point) const noexcept { return SIZE_TYPE(this->x() - point.x(), this->y() - point.y()); }
+//   template < primitive_number POINT >
+//   inline SIZE_TYPE operator-(const POINT & point) const noexcept { return SIZE_TYPE(this->x() - point.x(), this->y() - point.y()); }
 
-   template < primitive_size SIZE >
-   inline point_type operator-(const SIZE & size) const noexcept { return point_type(this->x() - size.cx(), this->y() - size.cy()); }
+   template < primitive_number NUMBER1 >
+   inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator-(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x() - sequence.a(), this->y() - sequence.b()); }
 
    inline point_type operator-() const noexcept { return point_type(-this->x(), -this->y()); }
    inline point_type operator+() const noexcept { return point_type(this->x(), this->y()); }
    //inline point_type operator+(const point_type& point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
    //inline SIZE_TYPE operator-(const point_type& point) const noexcept { return SIZE_TYPE(this->x() - point.x(), this->y() - point.y()); }
 
-   inline RECTANGLE_TYPE operator+(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) + *this; }
-   inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
+//   inline RECTANGLE_TYPE operator+(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) + *this; }
+//   inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
 
 
-   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() + shift.greekdeltay); return *this; }
-   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() - shift.greekdeltay); return *this; }
+//   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() + shift.greekdeltay); return *this; }
+//   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() - shift.greekdeltay); return *this; }
+//
+//   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.greekdeltax), (UNIT_TYPE)(this->y() + shift.greekdeltay) }; }
+//   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.greekdeltax), (UNIT_TYPE)(this->y() - shift.greekdeltay) }; }
 
-   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.greekdeltax), (UNIT_TYPE)(this->y() + shift.greekdeltay) }; }
-   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.greekdeltax), (UNIT_TYPE)(this->y() - shift.greekdeltay) }; }
 
 
-
-   void x_constraint(const RECTANGLE_TYPE& rectangle) noexcept
-   {
-
-      if (this->x() < rectangle.left)
-      {
-
-         this->x() = rectangle.left;
-
-      }
-      else if (this->x() > rectangle.right)
-      {
-
-         this->x() = rectangle.right;
-
-      }
-
-   }
-
-   void y_constraint(const RECTANGLE_TYPE& rectangle) noexcept
-   {
-
-      if (this->y() < rectangle.top)
-      {
-
-         this->y() = rectangle.top;
-
-      }
-      else if (this->y() > rectangle.bottom)
-      {
-
-         this->y() = rectangle.bottom;
-
-      }
-
-   }
-
-   void constraint(const RECTANGLE_TYPE & rectangle) noexcept
-   {
-
-      x_constraint(rectangle);
-
-      y_constraint(rectangle);
-
-   }
+//   void x_constraint(const RECTANGLE_TYPE& rectangle) noexcept
+//   {
+//
+//      if (this->x() < rectangle.left)
+//      {
+//
+//         this->x() = rectangle.left;
+//
+//      }
+//      else if (this->x() > rectangle.right)
+//      {
+//
+//         this->x() = rectangle.right;
+//
+//      }
+//
+//   }
+//
+//   void y_constraint(const RECTANGLE_TYPE& rectangle) noexcept
+//   {
+//
+//      if (this->y() < rectangle.top)
+//      {
+//
+//         this->y() = rectangle.top;
+//
+//      }
+//      else if (this->y() > rectangle.bottom)
+//      {
+//
+//         this->y() = rectangle.bottom;
+//
+//      }
+//
+//   }
+//
+//   void constraint(const RECTANGLE_TYPE & rectangle) noexcept
+//   {
+//
+//      x_constraint(rectangle);
+//
+//      y_constraint(rectangle);
+//
+//   }
 
 
 

@@ -30,7 +30,7 @@ namespace nanoui
          const ::scoped_string & caption = "")
          : Button(parent, caption, icon) {
          set_flags(Flags::RadioButton | Flags::ToggleButton);
-         set_fixed_size(vector2_i32(25, 25));
+         set_fixed_size(sequence2_i32(25, 25));
       }
 };
 

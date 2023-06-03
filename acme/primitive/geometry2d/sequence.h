@@ -17,7 +17,7 @@
 
 
 template < primitive_number COORDINATE, size_t t_iSize >
-struct vector_type
+struct sequence_type
 {
 
    using BASE_COORDINATE = COORDINATE;
@@ -30,110 +30,110 @@ struct vector_type
    static constexpr size_t SIZE = t_iSize;
 
 
-   vector_type():
-      vector_type(COORDINATE{})
+   sequence_type():
+      sequence_type(COORDINATE{})
    { 
    
    }
 
-   vector_type(enum_no_initialize) { }
+   sequence_type(enum_no_initialize) { }
 
-   vector_type(const vector_type&) = default;
+   sequence_type(const sequence_type&) = default;
 
-   template <primitive_number T,
-      std::enable_if_t<T::SIZE == SIZE &&
-      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
-   vector_type(const T & a) {
-      for (size_t i = 0; i < SIZE; ++i)
-         m_coordinatea[i] = (COORDINATE)a[i];
-   }
+//   template <primitive_number T,
+//      std::enable_if_t<T::SIZE == SIZE &&
+//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
+//   sequence_type(const T & a) {
+//      for (size_t i = 0; i < SIZE; ++i)
+//         m_coordinatea[i] = (COORDINATE)a[i];
+//   }
 
    template <typename T>
-   vector_type(const vector_type<T, SIZE>& a) {
+   sequence_type(const sequence_type<T, SIZE>& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] = (COORDINATE)a.m_coordinatea[i];
    }
 
-   vector_type(COORDINATE s) {
+   sequence_type(COORDINATE s) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] = s;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 2, int> = 0>
-   vector_type(COORDINATE v0, COORDINATE v1) {
+   sequence_type(COORDINATE v0, COORDINATE v1) {
       m_coordinatea[0] = v0; m_coordinatea[1] = v1;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 3, int> = 0>
-   vector_type(COORDINATE v0, COORDINATE v1, COORDINATE v2) {
+   sequence_type(COORDINATE v0, COORDINATE v1, COORDINATE v2) {
       m_coordinatea[0] = v0; m_coordinatea[1] = v1; m_coordinatea[2] = v2;
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   vector_type(COORDINATE v0, COORDINATE v1, COORDINATE v2, COORDINATE v3) {
+   sequence_type(COORDINATE v0, COORDINATE v1, COORDINATE v2, COORDINATE v3) {
       m_coordinatea[0] = v0; m_coordinatea[1] = v1; m_coordinatea[2] = v2; m_coordinatea[3] = v3;
    }
 
-   vector_type operator-() const {
-      vector_type result;
+   sequence_type operator-() const {
+      sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = -m_coordinatea[i];
       return result;
    }
 
-   friend vector_type operator+(const vector_type& a, const vector_type& b) {
-      vector_type result;
+   friend sequence_type operator+(const sequence_type& a, const sequence_type& b) {
+      sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] + b.m_coordinatea[i];
       return result;
    }
 
-   vector_type& operator+=(const vector_type& a) {
+   sequence_type& operator+=(const sequence_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] += a.m_coordinatea[i];
       return *this;
    }
 
-   friend vector_type operator-(const vector_type& a, const vector_type& b) {
-      vector_type result;
+   friend sequence_type operator-(const sequence_type& a, const sequence_type& b) {
+      sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] - b.m_coordinatea[i];
       return result;
    }
 
-   vector_type& operator-=(const vector_type& a) {
+   sequence_type& operator-=(const sequence_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] -= a.m_coordinatea[i];
       return *this;
    }
 
-   friend vector_type operator*(const vector_type& a, const vector_type& b) {
-      vector_type result;
+   friend sequence_type operator*(const sequence_type& a, const sequence_type& b) {
+      sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] * b.m_coordinatea[i];
       return result;
    }
 
-   vector_type& operator*=(const vector_type& a) {
+   sequence_type& operator*=(const sequence_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] *= a.m_coordinatea[i];
       return *this;
    }
 
-   friend vector_type operator/(const vector_type& a, const vector_type& b) {
-      vector_type result;
+   friend sequence_type operator/(const sequence_type& a, const sequence_type& b) {
+      sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] / b.m_coordinatea[i];
       return result;
    }
 
-   vector_type& operator/=(const vector_type& a) {
+   sequence_type& operator/=(const sequence_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
          m_coordinatea[i] /= a.m_coordinatea[i];
       return *this;
    }
 
-   bool operator==(const vector_type& a) const {
+   bool operator==(const sequence_type& a) const {
       for (size_t i = 0; i < SIZE; ++i) {
          if (m_coordinatea[i] != a.m_coordinatea[i])
             return false;
@@ -196,10 +196,10 @@ struct vector_type
 
 
    template < typename PREDICATE >
-   vector_type prefer_self_coordinate_if(const vector_type &vectorOther, PREDICATE predicate) const
+   sequence_type prefer_self_coordinate_if(const sequence_type &vectorOther, PREDICATE predicate) const
    {
 
-      vector_type vector;
+      sequence_type vector;
 
       for (size_t i = 0; i < SIZE; ++i)
       {
@@ -224,7 +224,7 @@ struct vector_type
    }
 
 
-   vector_type prefer_self_coordinate_if_set(const vector_type& vectorOther) const
+   sequence_type prefer_self_coordinate_if_set(const sequence_type& vectorOther) const
    {
 
       return prefer_self_coordinate_if(vectorOther, [](auto coordinate) {return coordinate != 0; });
@@ -232,7 +232,7 @@ struct vector_type
    }
 
 
-   vector_type prefer_self_coordinate_if_positive(const vector_type& vectorOther) const
+   sequence_type prefer_self_coordinate_if_positive(const sequence_type& vectorOther) const
    {
 
       return prefer_self_coordinate_if(vectorOther, [](auto coordinate) {return coordinate > COORDINATE{}; });
@@ -241,7 +241,7 @@ struct vector_type
 
 
    template < typename PREDICATE, typename SOURCE_PREDICATE >
-   vector_type pred_prefer_self_coordinate_if(PREDICATE predicate, SOURCE_PREDICATE sourcepredicate) const
+   sequence_type pred_prefer_self_coordinate_if(PREDICATE predicate, SOURCE_PREDICATE sourcepredicate) const
    {
 
       if (is_every(predicate))
@@ -259,7 +259,7 @@ struct vector_type
 
 
    template < typename SOURCE_PREDICATE >
-   vector_type pred_prefer_self_coordinate_if_set(SOURCE_PREDICATE sourcepredicate) const
+   sequence_type pred_prefer_self_coordinate_if_set(SOURCE_PREDICATE sourcepredicate) const
    {
 
       return pred_prefer_self_coordinate_if([](auto coordinate) {return coordinate != COORDINATE{}; }, sourcepredicate);
@@ -268,7 +268,7 @@ struct vector_type
 
 
    template < typename SOURCE_PREDICATE >
-   vector_type pred_prefer_self_coordinate_if_positive(SOURCE_PREDICATE sourcepredicate) const
+   sequence_type pred_prefer_self_coordinate_if_positive(SOURCE_PREDICATE sourcepredicate) const
    {
 
       return pred_prefer_self_coordinate_if([](auto coordinate) {return coordinate > COORDINATE{}; }, sourcepredicate);
@@ -277,7 +277,7 @@ struct vector_type
 
 
 
-   constexpr bool operator!=(const vector_type& a) const { return !operator==(a); }
+   constexpr bool operator!=(const sequence_type& a) const { return !operator==(a); }
 
    constexpr const COORDINATE& operator[](size_t i) const { return m_coordinatea[i]; }
 
@@ -305,7 +305,7 @@ struct vector_type
    
    
    template <size_t S = SIZE, std::enable_if_t<(S == 2), int> = 0>
-   COORDINATE dot_with_left_perpendicular_of(const vector_type & b)
+   COORDINATE dot_with_left_perpendicular_of(const sequence_type & b)
    {
 
       return (this->b() * b.a()) - (this->a() * b.b());
@@ -314,7 +314,7 @@ struct vector_type
 
    
    template <size_t S = SIZE, std::enable_if_t<(S == 2), int> = 0>
-   COORDINATE angle(const vector_type & b)
+   COORDINATE angle(const sequence_type & b)
    {
 
       return atan2f(this->dot_with_left_perpendicular_of(b), this->dot(b));
@@ -322,10 +322,10 @@ struct vector_type
    }
 
 
-   vector_type maximum(const vector_type & vector) const
+   sequence_type maximum(const sequence_type & vector) const
    {
 
-      vector_type result;
+      sequence_type result;
 
       for (size_t i = 0; i < SIZE; ++i)
       {
@@ -338,10 +338,10 @@ struct vector_type
 
    }
 
-   vector_type minimum(const vector_type& vector) const
+   sequence_type minimum(const sequence_type& vector) const
    {
 
-      vector_type result;
+      sequence_type result;
 
       for (size_t i = 0; i < SIZE; ++i)
       {
@@ -356,7 +356,7 @@ struct vector_type
 
 
 
-   COORDINATE dot(const vector_type & vector) const
+   COORDINATE dot(const sequence_type & vector) const
    {
 
       COORDINATE result = m_coordinatea[0] * vector.m_coordinatea[0];
@@ -388,7 +388,7 @@ struct vector_type
 
    }
 
-   vector_type normalize() const
+   sequence_type normalize() const
    {
 
       return *this / norm(*this);
@@ -401,8 +401,8 @@ struct vector_type
 
 
 template <typename COORDINATE>
-vector_type<COORDINATE, 3> cross(const vector_type<COORDINATE, 3>& a, const vector_type<COORDINATE, 3>& b) {
-   return vector_type<COORDINATE, 3>(
+sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const sequence_type<COORDINATE, 3>& b) {
+   return sequence_type<COORDINATE, 3>(
       a.y() * b.z() - a.z() * b.y(),
       a.z() * b.x() - a.x() * b.z(),
       a.x() * b.y() - a.y() * b.x()
@@ -412,24 +412,24 @@ vector_type<COORDINATE, 3> cross(const vector_type<COORDINATE, 3>& a, const vect
 
 
 //template <typename COORDINATE, size_t SIZE>
-//vector_type<COORDINATE, SIZE> min(const vector_type<COORDINATE, SIZE>& a1, const vector_type<COORDINATE, SIZE>& a2) {
-//   vector_type<COORDINATE, SIZE> result;
+//sequence_type<COORDINATE, SIZE> min(const sequence_type<COORDINATE, SIZE>& a1, const sequence_type<COORDINATE, SIZE>& a2) {
+//   sequence_type<COORDINATE, SIZE> result;
 //   for (size_t i = 0; i < SIZE; ++i)
 //      result.m_coordinatea[i] = std::min(a1.m_coordinatea[i], a2.m_coordinatea[i]);
 //   return result;
 //}
 //
 //template < primitive_number NUMBER >
-//class vector2_type :
-//   public vector_type < NUMBER, 2 >
+//class sequence2_type :
+//   public sequence_type < NUMBER, 2 >
 //{
 //public:
 //
 //
-//   using vector_type < NUMBER, 2 >::vector_type;
+//   using sequence_type < NUMBER, 2 >::sequence_type;
 //
 //
-//   NUMBER dot_with_left_perpendicular_of(const vector2_type & b)
+//   NUMBER dot_with_left_perpendicular_of(const sequence2_type & b)
 //   {
 //
 //      return (this->b() * b.a()) - (this->a() * b.b());
@@ -437,7 +437,7 @@ vector_type<COORDINATE, 3> cross(const vector_type<COORDINATE, 3>& a, const vect
 //   }
 //
 //
-//   NUMBER angle(const vector2_type & b)
+//   NUMBER angle(const sequence2_type & b)
 //   {
 //
 //      return atan2f(this->dot_with_left_perpendicular_of(b), this->dot(b));
@@ -449,21 +449,21 @@ vector_type<COORDINATE, 3> cross(const vector_type<COORDINATE, 3>& a, const vect
 //};
 
 // Import some common Enoki types
-using vector2_i32 = vector_type<::i32, 2>;
-using vector3_i32 = vector_type<::i32, 3>;
-using vector4_i32 = vector_type<::i32, 4>;
+using sequence2_i32 = sequence_type<::i32, 2>;
+using sequence3_i32 = sequence_type<::i32, 3>;
+using sequence4_i32 = sequence_type<::i32, 4>;
 
-using vector2_i64 = vector_type<::i64, 2>;
-using vector3_i64 = vector_type<::i64, 3>;
-using vector4_i64 = vector_type<::i64, 4>;
+using sequence2_i64 = sequence_type<::i64, 2>;
+using sequence3_i64 = sequence_type<::i64, 3>;
+using sequence4_i64 = sequence_type<::i64, 4>;
 
-using vector2_f32 = vector_type<::f32, 2>;
-using vector3_f32 = vector_type<::f32, 3>;
-using vector4_f32 = vector_type<::f32, 4>;
+using sequence2_f32 = sequence_type<::f32, 2>;
+using sequence3_f32 = sequence_type<::f32, 3>;
+using sequence4_f32 = sequence_type<::f32, 4>;
 
-using vector2_f64 = vector_type<::f64, 2>;
-using vector3_f64 = vector_type<::f64, 3>;
-using vector4_f64 = vector_type<::f64, 4>;
+using sequence2_f64 = sequence_type<::f64, 2>;
+using sequence3_f64 = sequence_type<::f64, 3>;
+using sequence4_f64 = sequence_type<::f64, 4>;
 
 ///**
 // * \class Color common.h nanoui/common.h
@@ -476,7 +476,7 @@ using vector4_f64 = vector_type<::f64, 4>;
 // *
 // * \rst
 // * +---------+-------------+----------------+-------------+
-// * | Channel | vector_type Index | Vector4f field | Color field |
+// * | Channel | sequence_type Index | Vector4f field | Color field |
 // * +=========+=============+================+=============+
 // * | Red     | ``0``       | x()            | r()         |
 // * +---------+-------------+----------------+-------------+
@@ -679,7 +679,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return c;
    }
 
-   static Matrix scale(const vector_type<COORDINATE, SIZE - 1>& m_coordinatea) {
+   static Matrix scale(const sequence_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (size_t i = 0; i < SIZE; ++i)
@@ -687,7 +687,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return result;
    }
 
-   static Matrix scale(const vector_type<COORDINATE, SIZE>& m_coordinatea) {
+   static Matrix scale(const sequence_type<COORDINATE, SIZE>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (size_t i = 0; i < SIZE; ++i)
@@ -695,7 +695,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return result;
    }
 
-   static Matrix translate(const vector_type<COORDINATE, SIZE - 1>& m_coordinatea) {
+   static Matrix translate(const sequence_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (size_t i = 0; i < SIZE; ++i) {
@@ -708,7 +708,7 @@ template <typename Value_, size_t Size_> struct Matrix {
 
 
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   static Matrix rotate(const vector_type<COORDINATE, 3>& axis, COORDINATE angle)
+   static Matrix rotate(const sequence_type<COORDINATE, 3>& axis, COORDINATE angle)
    {
 
       COORDINATE s = ::sin(angle);
@@ -749,7 +749,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       COORDINATE recip = 1 / (near_ - far_);
       COORDINATE c = 1 / ::tan(.5f * fov);
 
-      Matrix trafo = Matrix::scale(vector_type<COORDINATE, SIZE>(c / aspect, c, (near_ + far_) * recip, 0.f));
+      Matrix trafo = Matrix::scale(sequence_type<COORDINATE, SIZE>(c / aspect, c, (near_ + far_) * recip, 0.f));
 
       trafo.m[3][2] = 2.f * near_ * far_ * recip;
       trafo.m[2][3] = -1.f;
@@ -781,9 +781,9 @@ template <typename Value_, size_t Size_> struct Matrix {
    }
 
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   static Matrix look_at(const vector_type<COORDINATE, 3>& origin,
-      const vector_type<COORDINATE, 3>& target,
-      const vector_type<COORDINATE, 3>& up)
+   static Matrix look_at(const sequence_type<COORDINATE, 3>& origin,
+      const sequence_type<COORDINATE, 3>& target,
+      const sequence_type<COORDINATE, 3>& up)
    {
 
       auto dir = normalize(target - origin);

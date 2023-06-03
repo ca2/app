@@ -451,12 +451,27 @@ template <class... Types> struct inherits : Types... {};
 
 template < typename T1, typename T2 >
 struct largest_type_struct {
-   using type = if_else< (sizeof(T1) >= sizeof(T2)), T1, T2>;
+   using type = if_else< (sizeof(T1) >= sizeof(T2) ), T1, T2>;
 };
 
 
 template < typename T1, typename T2 >
 using largest_type = typename largest_type_struct<T1, T2>::type;
+
+
+template < typename T1, typename T2 >
+struct largest_number_struct {
+   using type = if_else< (sizeof(T1) > sizeof(T2)
+                          || (sizeof(T1) == sizeof(T2)
+                              && std::is_floating_point < T1 >::value
+                              && !std::is_floating_point < T2 >::value))
+   , T1, T2>;
+};
+
+
+template < typename T1, typename T2 >
+using largest_number = typename largest_number_struct<T1, T2>::type;
+
 
 
 template < typename T1, typename T2 >

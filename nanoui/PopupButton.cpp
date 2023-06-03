@@ -29,7 +29,7 @@ namespace nanoui
 
       m_ppopup = memory_new Popup(screen(), window());
 
-      m_ppopup->set_size(vector2_i32(320, 250));
+      m_ppopup->set_size({320, 250 });
 
       m_ppopup->set_visible(false);
 
@@ -38,10 +38,10 @@ namespace nanoui
    }
 
 
-   vector2_i32 PopupButton::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   size_i32 PopupButton::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
-      return Button::preferred_size(pcontext) + vector2_i32(15, 0);
+      return Button::preferred_size(pcontext) + size_i32(15, 0);
 
    }
 
@@ -68,10 +68,10 @@ namespace nanoui
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
          float iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
-         vector2_f32 icon_pos(0, m_pos.y() + m_size.y() * 0.5f - 1);
+         point_f32 icon_pos(0, m_pos.y() + m_size.cy() * 0.5f - 1);
 
          if (m_ppopup->side() == Popup::Right)
-            icon_pos[0] = m_pos.x() + m_size.x() - iw - 8.f;
+            icon_pos[0] = m_pos.x() + m_size.cx() - iw - 8.f;
          else
             icon_pos[0] = m_pos.x() + 8.f;
 
@@ -87,14 +87,14 @@ namespace nanoui
       int anchor_size = m_ppopup->anchor_size();
 
       if (parent_window) {
-         int pos_y = absolute_position().y() - parent_window->position().y() + m_size.y() / 2;
+         int pos_y = absolute_position().y() - parent_window->position().y() + m_size.cy() / 2;
          if (m_ppopup->side() == Popup::Right)
-            m_ppopup->set_anchor_pos(vector2_i32(parent_window->width() + anchor_size, pos_y));
+            m_ppopup->set_anchor_pos(sequence2_i32(parent_window->width() + anchor_size, pos_y));
          else
-            m_ppopup->set_anchor_pos(vector2_i32(-anchor_size, pos_y));
+            m_ppopup->set_anchor_pos(sequence2_i32(-anchor_size, pos_y));
       }
       else {
-         m_ppopup->set_position(absolute_position() + vector2_i32(width() + anchor_size + 1, m_size.y() / 2 - anchor_size));
+         m_ppopup->set_position(absolute_position() + sequence2_i32(width() + anchor_size + 1, m_size.cy() / 2 - anchor_size));
       }
    }
 

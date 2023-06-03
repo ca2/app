@@ -525,7 +525,7 @@ namespace experience_lite
 
 /*            if(tab_pane.m_pimage->m_p != NULL)
             {
-/*               size.cy() = maximum(size.cy(),tab_pane.m_pimage->size()->cy);
+/*               size.cy() = maximum(size.cy(),tab_pane.m_pimage->size()->cy());
             }
             cy = size.cy() + 2;
 

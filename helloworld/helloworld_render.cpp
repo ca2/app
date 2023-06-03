@@ -493,7 +493,7 @@ namespace helloworld
 
 /*                  m_pimage->g()->SelectObject(pbrushText);
 
-/*                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2, (m_cyCache1 - size_i32->cy) / 2, strHelloWorld);
+/*                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx()) / 2, (m_cyCache1 - size_i32->cy()) / 2, strHelloWorld);
 
 /*                  m_pimage->map();
 
@@ -761,7 +761,7 @@ namespace helloworld
 
 /*            m_pimage->g()->set_font(m_pfont);
 
-/*            m_pimage->g()->text_out((m_cx - size_i32->cx) / 2, (m_cy - size_i32->cy) / 2, strHelloWorld);
+/*            m_pimage->g()->text_out((m_cx - size_i32->cx()) / 2, (m_cy - size_i32->cy()) / 2, strHelloWorld);
 
             if (m_dMinRadius > 3.0)
             {
@@ -1360,7 +1360,7 @@ namespace helloworld
 
       ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 
-      bool bNewSize = m_pimageFast->width() != sizeNew->cx || m_pimageFast->height() != sizeNew->cy;
+      bool bNewSize = m_pimageFast->width() != sizeNew->cx() || m_pimageFast->height() != sizeNew->cy();
 
       if (bNewSize)
       {

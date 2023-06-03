@@ -3321,9 +3321,11 @@ namespace draw2d
    void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
    {
       
-      _shape < ::rectangle_f64, e_shape_rectangle, ::draw2d::region > regionshape;
+      //_shape < ::rectangle_f64, e_shape_rectangle, ::draw2d::region > regionshape;
+      
+      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(rectangle, regionshape);
+      _add_clipping_shape(rectangle, pregion);
 
    }
 
@@ -3331,9 +3333,11 @@ namespace draw2d
    void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    {
    
-      _shape < ::ellipse_f64, e_shape_ellipse, ::draw2d::region > regionshape;
+      //_shape < ::ellipse_f64, e_shape_ellipse, ::draw2d::region > regionshape;
+      
+      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(ellipse, regionshape);
+      _add_clipping_shape(ellipse, pregion);
    
    }
 
@@ -3341,9 +3345,11 @@ namespace draw2d
    void graphics::intersect_clip(const ::polygon_f64 & polygon)
    {
 
-      _shape < ::polygon_f64, e_shape_polygon, ::draw2d::region > regionshape;
+      //_shape < ::polygon_f64, e_shape_polygon, ::draw2d::region > regionshape;
+      
+      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(polygon, regionshape);
+      _add_clipping_shape(polygon, pregion);
 
    }
 

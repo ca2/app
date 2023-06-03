@@ -35,8 +35,8 @@
 //
 //   inline ::size_f32::size_f32(float cx, float cy)
 //   {
-//      this->cx = cx;
-//      this->cy = cy;
+//      this->cx() = cx;
+//      this->cy() = cy;
 //   }
 //
 //

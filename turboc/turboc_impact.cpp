@@ -410,7 +410,7 @@ namespace turboc
 
       ::size_i32 sizeNew = ::size_i32(m_cx,m_cy) + ::size_i32(100,100);
 
-      bool bNewSize = m_pimageFast->width() < sizeNew->cx || m_pimageFast->height() < sizeNew->cy;
+      bool bNewSize = m_pimageFast->width() < sizeNew->cx() || m_pimageFast->height() < sizeNew->cy();
 
       if(bNewSize)
       {
@@ -530,7 +530,7 @@ namespace turboc
             if(bNewSize)
             {
 
-               //if(!m_pimage->initialize(sizeNew->cx,sizeNew->cy,5))
+               //if(!m_pimage->initialize(sizeNew->cx(),sizeNew->cy(),5))
                //   return;
 
                //m_pimage->Fill(0,0,0,0);

@@ -883,8 +883,8 @@ template < primitive_origin_size RECTANGLE1, primitive_rectangle RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle1.origin.x() = (const ::std::decay_t < decltype(rectangle1.origin.x()) > &)rectangle2.left;
-   rectangle1.origin.y() = (const ::std::decay_t < decltype(rectangle1.origin.y()) > &)rectangle2.top;
+   rectangle1.origin.x = (const ::std::decay_t < decltype(rectangle1.origin.x) > &)rectangle2.left;
+   rectangle1.origin.y = (const ::std::decay_t < decltype(rectangle1.origin.y) > &)rectangle2.top;
    rectangle1.size.width = (const ::std::decay_t < decltype(rectangle1.size.width) > &)(rectangle2.right - rectangle2.left);
    rectangle1.size.height = (const ::std::decay_t < decltype(rectangle1.size.height) > &)(rectangle2.bottom - rectangle2.top);
 
@@ -895,10 +895,10 @@ template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle1.left = (decltype(RECTANGLE1::left))rectangle2.origin.x();
-   rectangle1.top = (decltype(RECTANGLE1::top))rectangle2.origin.y();
-   rectangle1.right = (decltype(RECTANGLE1::right))(rectangle2.origin.x() - rectangle2.size.width);
-   rectangle1.bottom = (decltype(RECTANGLE1::bottom))(rectangle2.origin.y() - rectangle2.size.height);
+   rectangle1.left = (decltype(RECTANGLE1::left))rectangle2.origin.x;
+   rectangle1.top = (decltype(RECTANGLE1::top))rectangle2.origin.y;
+   rectangle1.right = (decltype(RECTANGLE1::right))(rectangle2.origin.x - rectangle2.size.width);
+   rectangle1.bottom = (decltype(RECTANGLE1::bottom))(rectangle2.origin.y - rectangle2.size.height);
 
 }
 

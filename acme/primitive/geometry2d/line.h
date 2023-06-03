@@ -38,6 +38,16 @@ public:
       return *this;
 
    }
+   
+   
+   void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right)
+   {
+      
+      m_p1.expand_bounding_box(top_left, bottom_right);
+      
+      m_p2.expand_bounding_box(top_left, bottom_right);
+      
+   }
 
 
 };

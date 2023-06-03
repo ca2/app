@@ -3112,8 +3112,8 @@ namespace draw2d_opengl
 
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-//         LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
-//         LPSIZE32->cy = MulDiv(LPSIZE32->cy, HIMETRIC_INCH, cyPerInch);
+//         LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), HIMETRIC_INCH, cxPerInch);
+//         LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), HIMETRIC_INCH, cyPerInch);
 //      }
    }
 
@@ -3147,8 +3147,8 @@ namespace draw2d_opengl
 
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-//         LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
-//         LPSIZE32->cy = MulDiv(LPSIZE32->cy, cyPerInch, HIMETRIC_INCH);
+//         LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), cxPerInch, HIMETRIC_INCH);
+//         LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), cyPerInch, HIMETRIC_INCH);
 //      }
    }
 
@@ -4614,8 +4614,8 @@ namespace draw2d_opengl
 
       //size_i32 sizeWinExt = GetWindowExt();
       //size_i32 sizeVpExt = get_context_extents();
-      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx()), abs(sizeWinExt.cx()));
-      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy()), abs(sizeWinExt.cy()));
+      //LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), abs(sizeVpExt.cx()), abs(sizeWinExt.cx()));
+      //LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), abs(sizeVpExt.cy()), abs(sizeWinExt.cy()));
 
    }
 
@@ -4627,8 +4627,8 @@ namespace draw2d_opengl
 
       //size_i32 sizeWinExt = GetWindowExt();
       //size_i32 sizeVpExt = get_context_extents();
-      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeWinExt.cx()), abs(sizeVpExt.cx()));
-      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeWinExt.cy()), abs(sizeVpExt.cy()));
+      //LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), abs(sizeWinExt.cx()), abs(sizeVpExt.cx()));
+      //LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), abs(sizeWinExt.cy()), abs(sizeVpExt.cy()));
 
    }
 

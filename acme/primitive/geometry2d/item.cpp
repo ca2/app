@@ -292,7 +292,7 @@ namespace geometry2d
    void polygon_item::expand_bounding_box(::rectangle_f64 & rectangle)
    {
 
-      ::expand_bounding_box(rectangle, m_polygon);
+      m_polygon.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
 
    }
 
@@ -357,13 +357,9 @@ namespace geometry2d
    void poly_polygon_item::expand_bounding_box(::rectangle_f64 & rectangle)
    {
 
-      ::expand_bounding_box(rectangle, m_polypolygon);
+      m_polypolygon.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
 
    }
-
-
-
-
 
 
    //void poly_polygon_item::expand_bounding_box(::rectangle_f64 & rectangle)

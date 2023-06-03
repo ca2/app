@@ -248,8 +248,33 @@ public:
       return this->x() == 0 && this->y() == 0;
 
    }
+   
+   
+   void expand_bounding_box(point_type & top_left, point_type & bottom_right)
+   {
+      
+      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->x());
+      
+      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->y());
+      
+   }
+   
+   
+   static void expand_bounding_box(point_type & top_left, point_type & bottom_right, const point_type * ppoint, ::count count)
+   {
 
+      for (::index i = 0; i < count; i++)
+      {
+         
+         expand_minimum_maximum(top_left.x(), top_left.x(), ppoint->x());
+         
+         expand_minimum_maximum(top_left.y(), top_left.y(), ppoint->y());
 
+      }
+
+   }
+
+   
 };
 
 
@@ -296,42 +321,7 @@ inline bool is_different(const ::point_f64& p1, const ::point_f64& p2, double dT
 }
 
 
-/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
-template < primitive_number NUMBER >
-constexpr void expand_minimum_maximum(NUMBER & minimum, NUMBER & maximum, NUMBER n)
-{
 
-   if (n < minimum)
-   {
-
-      minimum = n;
-
-   }
-   else if (n > maximum)
-   {
-
-      maximum = n;
-
-   }
-
-}
-
-
-
-template < primitive_point POINT >
-void expand_bounding_box(POINT & top_left, POINT & bottom_right, const POINT * ppoint, ::count count)
-{
-
-   for (::index i = 0; i < count; i++)
-   {
-      
-      expand_minimum_maximum(top_left.left, top_left.right, ppoint->x);
-      
-      expand_minimum_maximum(top_left.top, top_left.bottom, ppoint->y);
-
-   }
-
-}
 
 
 

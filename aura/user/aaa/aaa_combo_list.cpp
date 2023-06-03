@@ -301,7 +301,7 @@ namespace user
 
       ::size size;
 
-      psize->cx = 0;
+      psize->cx() = 0;
 
       m_iItemHeight = 0;
 
@@ -316,10 +316,10 @@ namespace user
 
          size.cx() += m_iPadding * 2;
 
-         if (size.cx() > psize->cx)
+         if (size.cx() > psize->cx())
          {
 
-            psize->cx = size.cx();
+            psize->cx() = size.cx();
 
          }
 
@@ -364,13 +364,13 @@ namespace user
 
       }
 
-      psize->cy = (::i32)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
+      psize->cy() = (::i32)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
-      psize->cx += m_iBorder * 2;
+      psize->cx() += m_iBorder * 2;
 
       auto rectangleComboClient = m_pcombo->client_rectangle();
 
-      psize->cx = maximum(psize->cx, rectangleComboClient.width());
+      psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
 
    }
 

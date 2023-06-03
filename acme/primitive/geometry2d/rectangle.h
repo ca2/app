@@ -1244,6 +1244,17 @@ public:
       ::minimum(this->bottom);
 
    }
+   
+   
+   void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
+   {
+      
+      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->left);
+      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->top);
+      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->right);
+      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->bottom);
+
+   }
 
 
 };

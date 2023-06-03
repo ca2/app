@@ -1598,8 +1598,8 @@ static void stbtt_setvertex(stbtt_vertex * v, stbtt_uint8 type, stbtt_int32 x, s
    v->type = type;
    v->x = (stbtt_int16)x;
    v->y = (stbtt_int16)y;
-   v->cx = (stbtt_int16)cx;
-   v->cy = (stbtt_int16)cy;
+   v->cx() = (stbtt_int16)cx;
+   v->cy() = (stbtt_int16)cy;
 }
 
 static int stbtt__GetGlyfOffset(const stbtt_fontinfo * info, int glyph_index)
@@ -1881,9 +1881,9 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
                x = v->x; y = v->y;
                v->x = (stbtt_vertex_type)(m * (mtx[0] * x + mtx[2] * y + mtx[4]));
                v->y = (stbtt_vertex_type)(n * (mtx[1] * x + mtx[3] * y + mtx[5]));
-               x = v->cx; y = v->cy;
-               v->cx = (stbtt_vertex_type)(m * (mtx[0] * x + mtx[2] * y + mtx[4]));
-               v->cy = (stbtt_vertex_type)(n * (mtx[1] * x + mtx[3] * y + mtx[5]));
+               x = v->cx(); y = v->cy();
+               v->cx() = (stbtt_vertex_type)(m * (mtx[0] * x + mtx[2] * y + mtx[4]));
+               v->cy() = (stbtt_vertex_type)(n * (mtx[1] * x + mtx[3] * y + mtx[5]));
             }
             // Append vertices.
             tmp = (stbtt_vertex *)STBTT_malloc((num_vertices + comp_num_verts) * sizeof(stbtt_vertex), info->userdata);

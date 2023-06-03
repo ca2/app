@@ -77,7 +77,7 @@ public:
 
       auto radius = this->radius();
 
-      if (!contains(center, radius))
+      if (!contains(center, radius, point))
       {
 
          return false;

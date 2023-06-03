@@ -1815,7 +1815,7 @@ template < primitive_number NUMBER >
 class polygon_type;
 
 template < primitive_number NUMBER >
-using poly_polygon_type = ::pointer_array < ::polygon_type < NUMBER > >;
+class poly_polygon_type;
 
 
 using point_i32 = point_type < ::i32 >;

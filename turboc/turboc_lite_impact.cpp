@@ -193,7 +193,7 @@ namespace turboc
 
 /*            m_pimage->g()->SelectObject(pbrushText);
 
-/*            m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2,(m_cyCache1 - size_i32->cy) / 2,strHelloMultiverse);
+/*            m_pimage->g()->text_out((m_cxCache1 - size_i32->cx()) / 2,(m_cyCache1 - size_i32->cy()) / 2,strHelloMultiverse);
 
 /*            m_pimage->blur(m_cxCache1,m_cyCache1);
 

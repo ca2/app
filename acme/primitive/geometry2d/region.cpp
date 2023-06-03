@@ -426,8 +426,24 @@ namespace geometry2d
 
    bool region::contains(const ::point_f64 & point)
    {
+      
+      if(!m_pitem)
+      {
+         
+         return false;
+         
+      }
 
-      return contains(point);
+      auto bContains = m_pitem->contains(point);
+      
+      if(!bContains)
+      {
+         
+         return false;
+         
+      }
+      
+      return true;
 
    }
 

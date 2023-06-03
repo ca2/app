@@ -288,121 +288,123 @@ namespace draw2d
    }
 
 
-   bool path::varc(const ::point_f64 & point, double h, const ::angle_f64 & angle)
-   {
-
-      if (fabs(angle) <= 0.00001 || fabs(h) <= 0.001)
-      {
-         return false;
-      }
-
-      auto pitem = __create_new < ::geometry2d::arc_item >();
-
-      //pitem->m_rectangle = rectangle;
-
-      //auto parc = __new(arc_f64_shape< path >);
-
-      auto & arc = pitem->m_item;
-
-      auto t = 90_degrees - angle;
-      
-      double x = point.x();
-      double y = point.y();
-      arc.m_pointCenter.y() = point.y() + h/2.0;
-      double b = point.y() - arc.m_pointCenter.y() / sin(t);
-      double a = sqrt((b*b*x*x) / (y*y - b *b));
-
-      arc.m_sizeRadius.cx() = a;
-      arc.m_sizeRadius.cy() = b;
-      arc.m_pointCenter.x() = point.x() - a * cos(t);
-      arc.m_angleBeg = t;
-      arc.m_angleExt = -90_degrees;
-      arc.m_angleEnd2 = t - 90_degrees;
-      arc.m_angleRotation = 0.0;
-      ///arc.m_dAngle = (arc.m_angleEnd - arc.m_angleBeg) * g_dPi / 180.0;
-      arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
-      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
-
-      //if (!m_pshapea)
-      //{
-
-      //   m_pshapea = __new(shape_array < path>());
-
-      //}
-
-      //m_pshapea->add(parc);
-
-      m_itema.add(pitem);
-
-      m_bHasPoint = true;
-
-      m_pointBegin = arc.m_pointBegin;
-
-      m_pointEnd = arc.m_pointEnd;
-
-      set_modified();
-
-      return true;
-
-   }
-
-
-   bool path::harc(const ::point_f64 & point, double w, const ::angle_f64 & angle)
-   {
-
-
-      if (fabs(angle) <= 0.00001 || fabs(w) <= 0.001)
-      {
-
-         return false;
-
-      }
-
-      auto pitem = __create_new<::geometry2d::arc_item>();
-
-      auto & arc = pitem->m_item;
-
-      auto t = angle + 90_degrees;
-      arc.m_pointBegin.x() = point.x() + w / 2.0;
-      double a = (point.x() - arc.m_pointBegin.x()) / cos(t);
-      double x = point.x() - arc.m_pointBegin.x();
-      double b = 0;
-      //double y = b * b  *w / (4.0* tan(dAngle));
-      double y = 0;
-      b = sqrt((a*a*y*y) / (a*a-x *x));
-
-      arc.m_sizeRadius.cx() = a;
-      arc.m_sizeRadius.cy() = b;
-      arc.m_pointCenter.y() = point.y() - b * sin(t);
-      arc.m_angleBeg = t;
-      arc.m_angleEnd2 = fmod(180_degrees - arc.m_angleBeg, 360_degrees);
-      arc.m_angleExt = arc.m_angleEnd2 - arc.m_angleBeg;
-      arc.m_angleRotation = arc.m_angleEnd2 - arc.m_angleBeg;
-
-      arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
-      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
-
-      //if (!m_pshapea)
-      //{
-
-      //   m_pshapea = __new(shape_array < path>());
-
-      //}
-
-      //m_pshapea->add_item(parc);
-      m_itema.add(pitem);
-
-      m_bHasPoint = true;
-
-      m_pointBegin = arc.m_pointBegin;
-
-      m_pointEnd = arc.m_pointEnd;
-
-      set_modified();
-
-      return true;
-
-   }
+//   bool path::varc(const ::point_f64 & point, double h, const ::angle_f64 & angle)
+//   {
+//
+//      if (fabs(angle) <= 0.00001 || fabs(h) <= 0.001)
+//      {
+//         return false;
+//      }
+//
+//      auto pitem = __create_new < ::geometry2d::arc_item >();
+//
+//      //pitem->m_rectangle = rectangle;
+//
+//      //auto parc = __new(arc_f64_shape< path >);
+//
+//      auto & arc = pitem->m_item;
+//
+//      auto t = 90_degrees - angle;
+//
+//      double x = point.x();
+//      double y = point.y();
+//      //arc.m_pointCenter.y() = point.y() + h/2.0;
+//      arc.left = x;
+//      arc.top = y;
+//      double b = point.y() - arc.m_pointCenter.y() / sin(t);
+//      double a = sqrt((b*b*x*x) / (y*y - b *b));
+//
+//      arc.m_sizeRadius.cx() = a;
+//      arc.m_sizeRadius.cy() = b;
+//      arc.m_pointCenter.x() = point.x() - a * cos(t);
+//      arc.m_angleBeg = t;
+//      arc.m_angleExt = -90_degrees;
+//      arc.m_angleEnd2 = t - 90_degrees;
+//      arc.m_angleRotation = 0.0;
+//      ///arc.m_dAngle = (arc.m_angleEnd - arc.m_angleBeg) * g_dPi / 180.0;
+//      arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+//      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
+//
+//      //if (!m_pshapea)
+//      //{
+//
+//      //   m_pshapea = __new(shape_array < path>());
+//
+//      //}
+//
+//      //m_pshapea->add(parc);
+//
+//      m_itema.add(pitem);
+//
+//      m_bHasPoint = true;
+//
+//      m_pointBegin = arc.m_pointBegin;
+//
+//      m_pointEnd = arc.m_pointEnd;
+//
+//      set_modified();
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool path::harc(const ::point_f64 & point, double w, const ::angle_f64 & angle)
+//   {
+//
+//
+//      if (fabs(angle) <= 0.00001 || fabs(w) <= 0.001)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto pitem = __create_new<::geometry2d::arc_item>();
+//
+//      auto & arc = pitem->m_item;
+//
+//      auto t = angle + 90_degrees;
+//      arc.m_pointBegin.x() = point.x() + w / 2.0;
+//      double a = (point.x() - arc.m_pointBegin.x()) / cos(t);
+//      double x = point.x() - arc.m_pointBegin.x();
+//      double b = 0;
+//      //double y = b * b  *w / (4.0* tan(dAngle));
+//      double y = 0;
+//      b = sqrt((a*a*y*y) / (a*a-x *x));
+//
+//      arc.m_sizeRadius.cx() = a;
+//      arc.m_sizeRadius.cy() = b;
+//      arc.m_pointCenter.y() = point.y() - b * sin(t);
+//      arc.m_angleBeg = t;
+//      arc.m_angleEnd2 = fmod(180_degrees - arc.m_angleBeg, 360_degrees);
+//      arc.m_angleExt = arc.m_angleEnd2 - arc.m_angleBeg;
+//      arc.m_angleRotation = arc.m_angleEnd2 - arc.m_angleBeg;
+//
+//      arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+//      arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
+//
+//      //if (!m_pshapea)
+//      //{
+//
+//      //   m_pshapea = __new(shape_array < path>());
+//
+//      //}
+//
+//      //m_pshapea->add_item(parc);
+//      m_itema.add(pitem);
+//
+//      m_bHasPoint = true;
+//
+//      m_pointBegin = arc.m_pointBegin;
+//
+//      m_pointEnd = arc.m_pointEnd;
+//
+//      set_modified();
+//
+//      return true;
+//
+//   }
 
 
    bool path::add_arc(const ::rectangle_f64 & rectangle, const ::angle_f64 & angleBeg, const ::angle_f64 & angleExt)
@@ -419,16 +421,14 @@ namespace draw2d
 
       auto & arc = pitem->m_item;
 
-      arc.m_pointCenter.x()   = (rectangle.right + rectangle.left) / 2.0;
-      arc.m_pointCenter.y()   = (rectangle.bottom + rectangle.top) / 2.0;
-      arc.m_sizeRadius.cx()   = fabs(rectangle.right - rectangle.left) / 2.0;
-      arc.m_sizeRadius.cy()   = fabs(rectangle.bottom - rectangle.top) / 2.0;
+      arc.set(rectangle);
+      
       arc.m_angleBeg        = angleBeg;
       arc.m_angleExt        = angleExt;
       arc.m_angleEnd2       = angleBeg + angleExt;
       arc.m_angleRotation   = 0_degrees;
-      arc.m_pointBegin        = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
-      arc.m_pointEnd        = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
+      arc.m_pointBegin      = arc.center() + arc_point(arc.m_angleBeg, arc.radius());
+      arc.m_pointEnd        = arc.center() + arc_point(arc.m_angleEnd2, arc.radius());
 
       //if (!m_pshapea)
       //{

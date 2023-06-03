@@ -50,7 +50,7 @@ bool segment_contains(const ::point_type < NUMBER1 > & point1, const ::point_typ
 
    double dy = point2.y () - point1.y();
 
-   return is_equal(((point.x() - point1.x()) * dy), ((point.y() - point1.y()) * dx), epsilon);
+   return ::is_equal(((point.x() - point1.x()) * dy), ((point.y() - point1.y()) * dx), epsilon);
 
    //return false;
 }

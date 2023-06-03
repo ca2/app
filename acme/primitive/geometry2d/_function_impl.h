@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 16:19 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 16:19 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -578,14 +578,6 @@ auto get_dimension(enum_orientation eorientation, X x, Y y);
 
 template < typename X, typename Y >
 auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
-
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
-{
-
-   return fabs(n1 - n2) < epsilon;
-
-}
 
 
 template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >

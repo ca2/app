@@ -169,7 +169,7 @@ i32                 cy)
 //   ::count nSize;
 //
 //   nSize = pArray->get_size();
-//   pSize->cx = 0;
+//   pSize->cx() = 0;
 //
 //   ::size_i32 size;
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
@@ -177,18 +177,18 @@ i32                 cy)
 //      const string &str = pArray->get_at(nIndex);
 //      wstring wstr(str);
 //      GetTextExtentPoint32W(hDC,wstr,(i32)wstr.get_length(),&size);
-//      if(size.cx() > pSize->cx)
+//      if(size.cx() > pSize->cx())
 //
-//         pSize->cx = size.cx();
+//         pSize->cx() = size.cx();
 //
 //   }
-//   //   pSize->cy =
+//   //   pSize->cy() =
 //
 //   //      (tm.tmHeight +
 //   //      tm.tmExternalLeading +
 //   //      tm.tmInternalLeading) *
 //   nSize;
-//   pSize->cy = (::i32)((tm.tmHeight + tm.tmExternalLeading) * nSize);
+//   pSize->cy() = (::i32)((tm.tmHeight + tm.tmExternalLeading) * nSize);
 //
 //
 //#else

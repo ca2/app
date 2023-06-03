@@ -278,7 +278,7 @@ template < primitive_number NUMBER >
 void point_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
 {
 
-   expand_bounding_box(top_left, bottom_right, this->data(), this->size());
+   ::point_type < NUMBER > ::expand_bounding_box(top_left, bottom_right, this->data(), this->size());
    
 }
 

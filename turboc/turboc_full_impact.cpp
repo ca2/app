@@ -206,7 +206,7 @@ namespace turboc
 
 /*         m_pimage->g()->set_font(m_pfont);
 
-/*         m_pimage->g()->text_out((m_cx - size_i32->cx) / 2,(m_cy - size_i32->cy) / 2,strHelloMultiverse);
+/*         m_pimage->g()->text_out((m_cx - size_i32->cx()) / 2,(m_cy - size_i32->cy()) / 2,strHelloMultiverse);
 
          if(m_dMinRadius > 3.0)
          {

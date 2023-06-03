@@ -268,7 +268,7 @@ pacmedirectory->system() / "obs.png");
 
          m_pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         m_pimage1->get_graphics()->StretchBlt(0, 0, s2.cx(), s2->cy, pgraphics, 0, 0, s->cx, s->cy);
+         m_pimage1->get_graphics()->StretchBlt(0, 0, s2.cx(), s2->cy(), pgraphics, 0, 0, s->cx(), s->cy());
 
          //if (0)
          {
@@ -277,7 +277,7 @@ pacmedirectory->system() / "obs.png");
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-               pgraphics->StretchBlt(0, 0, s.cx(), s.cy(), m_pimage1->get_graphics(), 0, 0, s2->cx, s2->cy);
+               pgraphics->StretchBlt(0, 0, s.cx(), s.cy(), m_pimage1->get_graphics(), 0, 0, s2->cx(), s2->cy());
 
 
             }
@@ -287,7 +287,7 @@ pacmedirectory->system() / "obs.png");
 /*               m_pimage2 = create_image(s);
 
                m_pimage2->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-               m_pimage2->get_graphics()->StretchBlt(0, 0, s.cx(), s.cy(), m_pimage1->get_graphics(), 0, 0, s2->cx, s2->cy);
+               m_pimage2->get_graphics()->StretchBlt(0, 0, s.cx(), s.cy(), m_pimage1->get_graphics(), 0, 0, s2->cx(), s2->cy());
 
 
             }

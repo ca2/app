@@ -78,7 +78,7 @@ BOOL wf_set_rop2(HDC hdc, int rop2)
 wfBitmap* wf_glyph_new(wfContext* wfc, GLYPH_DATA* glyph)
 {
 	wfBitmap* glyph_bmp;
-	glyph_bmp = wf_image_new(wfc, glyph->cx, glyph->cy, 1, glyph->aj);
+	glyph_bmp = wf_image_new(wfc, glyph->cx(), glyph->cy(), 1, glyph->aj);
 	return glyph_bmp;
 }
 

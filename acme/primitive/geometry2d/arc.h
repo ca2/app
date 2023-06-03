@@ -50,7 +50,7 @@ public:
 
       auto radius = this->radius();
 
-      if (!::ellipse_type < NUMBER >::contains(center, radius))
+      if (!::ellipse_type < NUMBER >::contains(center, radius, point))
       {
 
          return false;

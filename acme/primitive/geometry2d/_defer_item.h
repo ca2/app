@@ -19,9 +19,9 @@ namespace geometry2d
       ::draw2d::enum_item type() const override { return t_eitem; }
 
 
-      virtual void translate(const ::point_f64 & point) { m_item.offset(point); }
-      virtual bool contains(const ::point_f64 & point) { return m_item.contains(point); }
-      virtual void expand_bounding_box(::rectangle_f64 & rectangle) { ::expand_bounding_box(rectangle, m_item); }
+      void translate(const ::point_f64 & point) override { m_item.offset(point); }
+      bool contains(const ::point_f64 & point) override { return m_item.contains(point); }
+      void expand_bounding_box(::rectangle_f64 & rectangle) override { m_item.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right()); }
 
 
    };

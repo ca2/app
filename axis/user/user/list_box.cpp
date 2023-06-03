@@ -628,8 +628,8 @@ namespace user
 
       //auto rectangleComboClient = client_rectangle();
 
-      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
-      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
+      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
+      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
 
    }
 

@@ -994,8 +994,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 greekdeltax=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   i32 greekdeltay=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   i32 greekdeltax=((x+pimage->cx())<cx) ? pimage->cx() : cx-x;
+   //   i32 greekdeltay=((y+pimage->cy())<cy) ? pimage->cy() : cy-y;
    //   greekdeltax=(x>=0) ? greekdeltax : greekdeltax + x;
    //   greekdeltay=(y>=0) ? greekdeltay : greekdeltay + y;
 
@@ -1004,7 +1004,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
    //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Darken
@@ -1019,7 +1019,7 @@ namespace draw2d_opengl
    //         src+=4;
    //      }
    //      dst+=(cx-greekdeltax)<<2;
-   //      src+=(pimage->cx-greekdeltax)<<2;
+   //      src+=(pimage->cx()-greekdeltax)<<2;
    //   }
    //}
 
@@ -1028,8 +1028,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 greekdeltax=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   i32 greekdeltay=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   i32 greekdeltax=((x+pimage->cx())<cx) ? pimage->cx() : cx-x;
+   //   i32 greekdeltay=((y+pimage->cy())<cy) ? pimage->cy() : cy-y;
    //   greekdeltax=(x>=0) ? greekdeltax : greekdeltax + x;
    //   greekdeltay=(y>=0) ? greekdeltay : greekdeltay + y;
 
@@ -1038,7 +1038,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
    //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Difference
@@ -1057,7 +1057,7 @@ namespace draw2d_opengl
    //         src+=4;
    //      }
    //      dst+=(cx-greekdeltax)<<2;
-   //      src+=(pimage->cx-greekdeltax)<<2;
+   //      src+=(pimage->cx()-greekdeltax)<<2;
    //   }
    //}
 
@@ -1066,8 +1066,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 greekdeltax=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   i32 greekdeltay=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   i32 greekdeltax=((x+pimage->cx())<cx) ? pimage->cx() : cx-x;
+   //   i32 greekdeltay=((y+pimage->cy())<cy) ? pimage->cy() : cy-y;
    //   greekdeltax=(x>=0) ? greekdeltax : greekdeltax + x;
    //   greekdeltay=(y>=0) ? greekdeltay : greekdeltay + y;
 
@@ -1076,7 +1076,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
    //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Lighten
@@ -1091,7 +1091,7 @@ namespace draw2d_opengl
    //         src+=4;
    //      }
    //      dst+=(cx-greekdeltax)<<2;
-   //      src+=(pimage->cx-greekdeltax)<<2;
+   //      src+=(pimage->cx()-greekdeltax)<<2;
    //   }
    //}
 
@@ -1100,8 +1100,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 greekdeltax=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   i32 greekdeltay=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   i32 greekdeltax=((x+pimage->cx())<cx) ? pimage->cx() : cx-x;
+   //   i32 greekdeltay=((y+pimage->cy())<cy) ? pimage->cy() : cy-y;
    //   greekdeltax=(x>=0) ? greekdeltax : greekdeltax + x;
    //   greekdeltay=(y>=0) ? greekdeltay : greekdeltay + y;
 
@@ -1110,7 +1110,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
    //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Multiply
@@ -1125,7 +1125,7 @@ namespace draw2d_opengl
    //         src+=4;
    //      }
    //      dst+=(cx-greekdeltax)<<2;
-   //      src+=(pimage->cx-greekdeltax)<<2;
+   //      src+=(pimage->cx()-greekdeltax)<<2;
    //   }
    //}
 
@@ -1134,8 +1134,8 @@ namespace draw2d_opengl
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
    //   i32 py=(y>=0) ? y : 0;
-   //   i32 greekdeltax=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   i32 greekdeltay=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   i32 greekdeltax=((x+pimage->cx())<cx) ? pimage->cx() : cx-x;
+   //   i32 greekdeltay=((y+pimage->cy())<cy) ? pimage->cy() : cy-y;
    //   greekdeltax=(x>=0) ? greekdeltax : greekdeltax + x;
    //   greekdeltay=(y>=0) ? greekdeltay : greekdeltay + y;
 
@@ -1144,7 +1144,7 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   byte *src=(byte *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
    //   byte *dst=(byte *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Screen
@@ -1159,7 +1159,7 @@ namespace draw2d_opengl
    //         src+=4;
    //      }
    //      dst+=(cx-greekdeltax)<<2;
-   //      src+=(pimage->cx-greekdeltax)<<2;
+   //      src+=(pimage->cx()-greekdeltax)<<2;
    //   }
    //}
 
@@ -1760,8 +1760,8 @@ namespace draw2d_opengl
    //  // ::image pimage;
    ////   pimage->Paste(this);
 
-   //   i32 cx = this->cx;
-   //   i32 cy = this->cy;
+   //   i32 cx = this->cx();
+   //   i32 cy = this->cy();
 
    //   i32 l = maximum(cx, cy);
 
@@ -1845,8 +1845,8 @@ namespace draw2d_opengl
    //void image::Rotate034(::image * pimage, double dAngle, double dScale)
    //{
    //
-   //   i32 cx = this->cx;
-   //   i32 cy = this->cy;
+   //   i32 cx = this->cx();
+   //   i32 cy = this->cy();
 
    //   i32 l = maximum(cx, cy);
 
@@ -2114,8 +2114,8 @@ namespace draw2d_opengl
 
    //void image::xor(::image * pimage)
    //{
-   //   if(cx != pimage->cx
-   //   || cy != pimage->cy)
+   //   if(cx != pimage->cx()
+   //   || cy != pimage->cy())
    //   {
    //      return;
    //   }

@@ -1667,8 +1667,8 @@ namespace dynamic_source
                if (pfile->read({ buf, 5 }) < 5)
                   return false;
 
-               psize->cy = buf[i + 1] * 256 + buf[i + 2];
-               psize->cx = buf[i + 3] * 256 + buf[i + 4];
+               psize->cy() = buf[i + 1] * 256 + buf[i + 2];
+               psize->cx() = buf[i + 3] * 256 + buf[i + 4];
                return true;
             }
             else
@@ -1683,9 +1683,9 @@ namespace dynamic_source
       if (buf[0] == 0xFF && buf[1] == 0xD8 && buf[2] == 0xFF)
       {
 
-         psize->cy = (buf[7] << 8) + buf[8];
+         psize->cy() = (buf[7] << 8) + buf[8];
 
-         psize->cx = (buf[9] << 8) + buf[10];
+         psize->cx() = (buf[9] << 8) + buf[10];
 
          return true;
 
@@ -1695,9 +1695,9 @@ namespace dynamic_source
       if (buf[0] == 'G' && buf[1] == 'I' && buf[2] == 'F')
       {
 
-         psize->cx = buf[6] + (buf[7] << 8);
+         psize->cx() = buf[6] + (buf[7] << 8);
 
-         psize->cy = buf[8] + (buf[9] << 8);
+         psize->cy() = buf[8] + (buf[9] << 8);
 
          return true;
 
@@ -1708,9 +1708,9 @@ namespace dynamic_source
          && buf[12] == 'I' && buf[13] == 'H' && buf[14] == 'D' && buf[15] == 'R')
       {
 
-         psize->cx = (buf[16] << 24) + (buf[17] << 16) + (buf[18] << 8) + (buf[19] << 0);
+         psize->cx() = (buf[16] << 24) + (buf[17] << 16) + (buf[18] << 8) + (buf[19] << 0);
 
-         psize->cy = (buf[20] << 24) + (buf[21] << 16) + (buf[22] << 8) + (buf[23] << 0);
+         psize->cy() = (buf[20] << 24) + (buf[21] << 16) + (buf[22] << 8) + (buf[23] << 0);
 
          return true;
 

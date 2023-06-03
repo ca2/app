@@ -544,7 +544,33 @@ polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polyg
 }
 
 
+template < primitive_number NUMBER >
+class poly_polygon_type :
+   public ::pointer_array < ::polygon_type < NUMBER > >
+{
+public:
+   
+   
+   using UNIT_TYPE = NUMBER;
+   
+   
+   using ::pointer_array < ::polygon_type < NUMBER > >::pointer_array;
+   
+   
+   void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right)
+   {
+      
+      for(auto & ppolygon : *this)
+      {
+         
+         ppolygon->expand_bounding_box(top_left, bottom_right);
+         
+      }
+      
+   }
+   
+   
+};
 
 
-//
-//using polygon = polygon_f64;
+

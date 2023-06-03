@@ -1,5 +1,8 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
 #pragma once
+
+
+#include <math.h>
 
 
 //template < typename A, typename B >
@@ -644,6 +647,38 @@ constexpr ::std::strong_ordering negation(const ::std::strong_ordering & orderin
    }
 
 }
+
+
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+{
+
+   return fabs(n1 - n2) < epsilon;
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_number NUMBER >
+constexpr void expand_minimum_maximum(NUMBER & minimum, NUMBER & maximum, NUMBER n)
+{
+
+   if (n < minimum)
+   {
+
+      minimum = n;
+
+   }
+   else if (n > maximum)
+   {
+
+      maximum = n;
+
+   }
+
+}
+
+
 
 
 

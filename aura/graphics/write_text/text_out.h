@@ -23,6 +23,10 @@ namespace write_text
 
 
       virtual void offset(const ::point_f64 & point);
+      
+      
+      virtual ::rectangle_f64 get_rectangle() const
+      { return { m_point, m_size }; }
 
 
       virtual bool hit_test(const ::point_f64& point);
@@ -30,6 +34,14 @@ namespace write_text
 
       virtual bool contains(const ::point_f64 & point);
 
+      
+      virtual void expand_bounding_box(point_f64 & top_left, point_f64 &  bottom_right) const
+      {
+         
+         get_rectangle().expand_bounding_box(top_left, bottom_right);
+         
+      }
+      
 
    };
 

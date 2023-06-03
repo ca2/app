@@ -302,6 +302,25 @@ struct vector_type
    constexpr const COORDINATE& d() const { return m_coordinatea[3]; }
    template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
    COORDINATE& d() { return m_coordinatea[3]; }
+   
+   
+   template <size_t S = SIZE, std::enable_if_t<(S == 2), int> = 0>
+   COORDINATE dot_with_left_perpendicular_of(const vector_type & b)
+   {
+
+      return (this->b() * b.a()) - (this->a() * b.b());
+
+   }
+
+   
+   template <size_t S = SIZE, std::enable_if_t<(S == 2), int> = 0>
+   COORDINATE angle(const vector_type & b)
+   {
+
+      return atan2f(this->dot_with_left_perpendicular_of(b), this->dot(b));
+
+   }
+
 
    vector_type maximum(const vector_type & vector) const
    {
@@ -399,50 +418,50 @@ vector_type<COORDINATE, 3> cross(const vector_type<COORDINATE, 3>& a, const vect
 //      result.m_coordinatea[i] = std::min(a1.m_coordinatea[i], a2.m_coordinatea[i]);
 //   return result;
 //}
-
-template < primitive_number NUMBER >
-class vector2_type :
-   public vector_type < NUMBER, 2 >
-{
-public:
-
-
-   using vector_type < NUMBER, 2 >::vector_type;
-
-   
-   NUMBER dot_with_left_perpendicular_of(const vector2_type & b)
-   {
-
-      return (this->b() * b.a()) - (this->a() * b.b());
-
-   }
-
-   
-   NUMBER angle(const vector2_type & b)
-   {
-
-      return atan2f(this->dot_with_left_perpendicular_of(b), this->dot(b));
-
-   }
-
-
-
-};
+//
+//template < primitive_number NUMBER >
+//class vector2_type :
+//   public vector_type < NUMBER, 2 >
+//{
+//public:
+//
+//
+//   using vector_type < NUMBER, 2 >::vector_type;
+//
+//
+//   NUMBER dot_with_left_perpendicular_of(const vector2_type & b)
+//   {
+//
+//      return (this->b() * b.a()) - (this->a() * b.b());
+//
+//   }
+//
+//
+//   NUMBER angle(const vector2_type & b)
+//   {
+//
+//      return atan2f(this->dot_with_left_perpendicular_of(b), this->dot(b));
+//
+//   }
+//
+//
+//
+//};
 
 // Import some common Enoki types
-using vector2_i32 = vector2_type<::i32>;
+using vector2_i32 = vector_type<::i32, 2>;
 using vector3_i32 = vector_type<::i32, 3>;
 using vector4_i32 = vector_type<::i32, 4>;
 
-using vector2_i64 = vector2_type<::i64>;
+using vector2_i64 = vector_type<::i64, 2>;
 using vector3_i64 = vector_type<::i64, 3>;
 using vector4_i64 = vector_type<::i64, 4>;
 
-using vector2_f32 = vector2_type<::f32>;
+using vector2_f32 = vector_type<::f32, 2>;
 using vector3_f32 = vector_type<::f32, 3>;
 using vector4_f32 = vector_type<::f32, 4>;
 
-using vector2_f64 = vector2_type<::f64>;
+using vector2_f64 = vector_type<::f64, 2>;
 using vector3_f64 = vector_type<::f64, 3>;
 using vector4_f64 = vector_type<::f64, 4>;
 

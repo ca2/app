@@ -22,10 +22,10 @@ public:
 
    using sequence_type < NUMBER, 2 >::sequence_type;
 
-   size_type() noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
-   size_type(enum_no_initialize) noexcept {}
-   size_type(::std::nullptr_t) noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
-   size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
+   //size_type() noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
+   //size_type(enum_no_initialize) noexcept {}
+   //size_type(::std::nullptr_t) noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
+   //size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
 //   template < primitive_number NUMBER_TYPE >
 //   size_type(NUMBER_TYPE n) noexcept { this->cx() = (UNIT_TYPE) n; this->cy() = (UNIT_TYPE) n; }
    //size_type(::u32 u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
@@ -35,7 +35,7 @@ public:
    //size_type(double d) noexcept { this->cx() = (UNIT_TYPE) d; this->cy() = (UNIT_TYPE) d; }
 //   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
    //template < primitive_point POINT >
-   size_type(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx() = sequence.a(); this->cy() = sequence.b(); }
+//   size_type(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx() = sequence.a(); this->cy() = sequence.b(); }
 //   template < primitive_rectangle RECTANGLE >
 //   size_type(const RECTANGLE & rectangle) noexcept { this->cx() = (UNIT_TYPE)::width(rectangle); this->cy() = (UNIT_TYPE)::height(rectangle); }
 //   template < primitive_size SIZE >
@@ -47,10 +47,10 @@ public:
    //size_type(const ::size_i64* psize) noexcept : size_type(*psize) {}
    //size_type(const ::size_f32* psize) noexcept : size_type(*psize) {}
    //size_type(const ::size_f64* psize) noexcept : size_type(*psize) {}
-#ifdef __APPLE__
-//   size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
-//   size_type(const CGSize *psize) noexcept : size_type(*psize) {}
-#endif
+//#ifdef __APPLE__
+////   size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
+////   size_type(const CGSize *psize) noexcept : size_type(*psize) {}
+//#endif
 
 
    //operator ::size_i32* () noexcept { return this; }
@@ -123,7 +123,7 @@ public:
       if (get_expand(s) == ::design::e_match_height) return aspect_height(s.cy()); else return aspect_width(s.cx());
    }
 
-   inline size_type & operator=(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx() = sequence.a(); this->cy() = sequence.b(); return *this; }
+   inline size_type & operator =(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx() = sequence.a(); this->cy() = sequence.b(); return *this; }
 
    template < primitive_size SIZE > 
    inline size_type & operator+=(const SIZE & size) noexcept { this->cx() += size.cx(); this->cy() += size.cy(); return *this; }

@@ -43,6 +43,13 @@ struct sequence_type
       
    }
 
+   sequence_type(::std::nullptr_t)
+   {
+      
+      set_all(0);
+      
+   }
+
    sequence_type(const sequence_type&) = default;
 
 //   template <primitive_number T,

@@ -249,7 +249,7 @@ namespace nanoui
       /// The number of rows or columns before starting a memory_new one, depending on the enum_orientation.
       int m_resolution;
       /// The spacing used for each dimension.
-      sequence2_i32 m_iSpacing;
+      size_i32 m_sizeSpacing;
       /// The margin around this GridLayout.
       int m_iMargin;
       /**
@@ -273,9 +273,10 @@ namespace nanoui
       GridLayout(enum_orientation orientation = e_orientation_horizontal, int resolution = 2,
          enum_alignment alignment = e_alignment_middle,
          int margin = 0, int spacing = 0)
-         : m_eorientation(orientation), m_resolution(resolution), m_iMargin(margin) {
+         : m_eorientation(orientation), m_resolution(resolution), m_iMargin(margin)
+      {
          m_default_alignment[0] = m_default_alignment[1] = alignment;
-         m_iSpacing = sequence2_i32(spacing);
+         m_sizeSpacing = { spacing, spacing };
       }
 
       /// The enum_orientation of this GridLayout.

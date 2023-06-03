@@ -18,60 +18,60 @@ public:
    
    using sequence_type < NUMBER, 2 >::sequence_type;
 
-   point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
-   point_type(enum_no_initialize) noexcept {  }
-   point_type(::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
-   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
-   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
-   //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
-   //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
-   //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
-
-   
-//   template < raw_primitive_point POINT >
-//   point_type(const POINT & point)
-//   {
-//      
-//      this->x() = (UNIT_TYPE) point.x();
-//      this->y() = (UNIT_TYPE) point.y()
-//      
-//   }
-
-   
-   point_type(const sequence_type < UNIT_TYPE, 2 > & sequence)
-   {
-      
-      this->x() = sequence.a();
-      this->y() = sequence.b();
-      
-   }
-
-   
-//   template < primitive_size SIZE >
-//   point_type(const SIZE & size)
+//   point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
+//   point_type(enum_no_initialize) noexcept {  }
+//   point_type(::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
+//   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
+//   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
+//   //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
+//   //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
+//   //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
+//
+//
+////   template < raw_primitive_point POINT >
+////   point_type(const POINT & point)
+////   {
+////
+////      this->x() = (UNIT_TYPE) point.x();
+////      this->y() = (UNIT_TYPE) point.y()
+////
+////   }
+//
+//
+//   point_type(const sequence_type < UNIT_TYPE, 2 > & sequence)
 //   {
 //
-//      this->x() = (UNIT_TYPE) size.cx();
-//      this->y() = (UNIT_TYPE) size.cy();
+//      this->x() = sequence.a();
+//      this->y() = sequence.b();
 //
 //   }
-
-   
-   ///point_type(const ::sequence_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
-
-//   template < primitive_size SIZE >
-  // point_type(const SIZE & size) noexcept { ::copy(*this, size); }
-
-#ifdef WINDOWS
-   //rectangle_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }
-   //rectangle_type(const Gdiplus::RectF& t) noexcept : { ::copy(this, &t); }
-   //rectangle_type(const Gdiplus::Rect* p) noexcept : { ::copy(this, p); }
-   //rectangle_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
-#endif
-#ifdef __APPLE__
-//   point_type(const CGPoint & point) noexcept : point_type(point.x(), point.y()){}
-//   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x(), ppoint->y()){}
-#endif
+//
+//
+////   template < primitive_size SIZE >
+////   point_type(const SIZE & size)
+////   {
+////
+////      this->x() = (UNIT_TYPE) size.cx();
+////      this->y() = (UNIT_TYPE) size.cy();
+////
+////   }
+//
+//
+//   ///point_type(const ::sequence_type < NUMBER, 2 > & point) noexcept { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE) point.y(); }
+//
+////   template < primitive_size SIZE >
+//  // point_type(const SIZE & size) noexcept { ::copy(*this, size); }
+//
+//#ifdef WINDOWS
+//   //rectangle_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }
+//   //rectangle_type(const Gdiplus::RectF& t) noexcept : { ::copy(this, &t); }
+//   //rectangle_type(const Gdiplus::Rect* p) noexcept : { ::copy(this, p); }
+//   //rectangle_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
+//#endif
+//#ifdef __APPLE__
+////   point_type(const CGPoint & point) noexcept : point_type(point.x(), point.y()){}
+////   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x(), ppoint->y()){}
+//#endif
    
    constexpr const UNIT_TYPE & x() const {return this->a();}
    UNIT_TYPE & x() {return this->a();}

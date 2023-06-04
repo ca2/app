@@ -331,7 +331,7 @@ namespace nano2d
 		// Creates new circle arc shaped sub-path. The arc center is at cx,cy, the arc radius is r,
 		// and the arc is drawn from angle a0 to a1, and swept in direction dir (_CCW, or _CW).
 		// Angles are specified in radians.
-		virtual void arc(float cx, float cy, float r, float a0, float a1, int dir);
+		virtual void arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir);
 
 		// Creates new rectangle shaped sub-path.
 		virtual void rectangle(float x, float y, float w, float h);

@@ -953,7 +953,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::arc(float cx, float cy, float r, float a0, float a1, int dir)
+   void draw2d_context::arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir)
    {
       
       ::rectangle_f64 rectangle(cx - r, cy - r, cx + r, cy + r);

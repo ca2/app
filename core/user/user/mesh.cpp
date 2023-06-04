@@ -5816,7 +5816,7 @@ namespace user
 
          ASSERT(false);
 
-         return nullptr;
+         return {};
 
       }
 
@@ -6121,11 +6121,11 @@ namespace user
 
             auto psystem = m_pitem->m_pmesh->acmesystem()->m_paurasystem;
 
-            psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
+            psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
             pimage1->fill(0,0,0,0);
-            psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
+            psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),{},0,1);
             pimage2->fill(0,0,0,0);
-            psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
+            psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),{},0,1);
             pimage2->set_rgb(0,0,0);
 
             image_source imagesource(pimage2, rectangle_i32(1,1, m_rectangleText.width(), m_rectangleText.height()));

@@ -74,8 +74,8 @@ namespace nanoui
          float aeps = 0.5f / r1;   // half a pixel arc length in radians (2pi cancels out).
 
          for (int i = 0; i < 6; i++) {
-            float a0 = (float)i / 6.0f * ::nano2d::f_pi * 2.0f - aeps;
-            float a1 = (float)(i + 1.0f) / 6.0f * ::nano2d::f_pi * 2.0f + aeps;
+            auto a0 = radians((float)i / 6.0f * ::nano2d::f_pi * 2.0f - aeps);
+            auto a1 = radians((float)(i + 1.0f) / 6.0f * ::nano2d::f_pi * 2.0f + aeps);
             pcontext->begin_path();
             pcontext->arc(cx, cy, r0, a0, a1, ::nano2d::e_winding_cw);
             pcontext->arc(cx, cy, r1, a1, a0, ::nano2d::e_winding_ccw);

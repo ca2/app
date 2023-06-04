@@ -155,7 +155,7 @@ namespace nano2d
 
       void rectangle(float x, float y, float w, float h) override;
       void ellipse(float cx, float cy, float rx, float ry) override;
-      void arc(float cx, float cy, float r, float a0, float a1, int dir) override;
+      void arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir) override;
 
 
       int create_image(const ::scoped_string & scopedstrFilename, int imageFlags) override;

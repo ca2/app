@@ -19,7 +19,7 @@
 #include "acme/exception/not_implemented.h"
 #include "nano2d/draw2d_context.h"
 #include "aura/graphics/draw2d/graphics.h"
-
+#include "_function.h"
 //#include <stdlib.h>
 //#include <stdio.h>
 //#include <math.h>
@@ -149,153 +149,6 @@ namespace nano2d
 	//	int strokeTriCount;
 	//	int textTriCount;
 	//};
-
-	inline float __sqrtf(float a) { return sqrtf(a); }
-	//static float __modf(float a, float b) { return fmodf(a, b); }
-inline float __sinf(float a) { return sinf(a); }
-inline float __cosf(float a) { return cosf(a); }
-inline float __tanf(float a) { return tanf(a); }
-inline float __atan2f(float a, float b) { return atan2f(a, b); }
-inline float __acosf(float a) { return acosf(a); }
-
-	//inline int __mini(int a, int b) { return a < b ? a : b; }
-	//inline int __maxi(int a, int b) { return a > b ? a : b; }
-	//inline int __clampi(int a, int mn, int mx) { return a < mn ? mn : (a > mx ? mx : a); }
-inline float __minf(float a, float b) { return a < b ? a : b; }
-inline float __maxf(float a, float b) { return a > b ? a : b; }
-inline float __absf(float a) { return a >= 0.0f ? a : -a; }
-inline float __signf(float a) { return a >= 0.0f ? 1.0f : -1.0f; }
-	//static float __clampf(float a, float mn, float mx) { return a < mn ? mn : (a > mx ? mx : a); }
-	static float __cross(float dx0, float dy0, float dx1, float dy1) { return dx1 * dy0 - dx0 * dy1; }
-
-	static float __normalize(float * x, float * y)
-	{
-		float d = __sqrtf((*x) * (*x) + (*y) * (*y));
-		if (d > 1e-6f) {
-			float id = 1.0f / d;
-			*x *= id;
-			*y *= id;
-		}
-		return d;
-	}
-
-
-	//static void context::__deletePathCache)(NVGpathCache * c)
-	//{
-	//	if (c == NULL) return;
-	//	if (c->points != NULL) free(c->points);
-	//	if (c->paths != NULL) free(c->paths);
-	//	if (c->verts != NULL) free(c->verts);
-	//	free(c);
-	//}
-
-	//static NVGpathCache * context::__allocPathCache)(void)
-	//{
-	//	NVGpathCache * c = (NVGpathCache *)malloc(sizeof(NVGpathCache));
-	//	if (c == NULL) goto error;
-	//	memset(c, 0, sizeof(NVGpathCache));
-	//
-	//	c->points = (NVGpoint *)malloc(sizeof(NVGpoint) * NVG_INIT_POINTS_SIZE);
-	//	if (!c->points) goto error;
-	//	c->npoints = 0;
-	//	c->cpoints = NVG_INIT_POINTS_SIZE;
-	//
-	//	c->paths = (::nano2d::path *)malloc(sizeof(::nano2d::path) * NVG_INIT_PATHS_SIZE);
-	//	if (!c->paths) goto error;
-	//	c->npaths = 0;
-	//	c->cpaths = NVG_INIT_PATHS_SIZE;
-	//
-	//	c->verts = (NVGvertex *)malloc(sizeof(NVGvertex) * NVG_INIT_VERTS_SIZE);
-	//	if (!c->verts) goto error;
-	//	c->nverts = 0;
-	//	c->cverts = NVG_INIT_VERTS_SIZE;
-	//
-	//	return c;
-	//error:
-	//	context::__deletePathCache)(c);
-	//	return NULL;
-	//}
-
-	//static void context::__setDevicePixelRatio(float ratio)
-	//{
-	//	tessTol = 0.25f / ratio;
-	//	distTol = 0.01f / ratio;
-	//	fringeWidth = 1.0f / ratio;
-	//	devicePxRatio = ratio;
-	//}
-
-	static ::nano2d::compositeOperationState __compositeOperationState(int op)
-	{
-		int sfactor, dfactor;
-
-		if (op == ::nano2d::e_composite_operation_source_over)
-		{
-			sfactor = ::nano2d::e_blend_factor_zero;
-			dfactor = ::nano2d::e_blend_factor_one_minus_src_alpha;
-		}
-		else if (op == ::nano2d::e_composite_operation_source_in)
-		{
-			sfactor = ::nano2d::e_blend_factor_dst_alpha;
-			dfactor = ::nano2d::e_blend_factor_zero;
-		}
-		else if (op == ::nano2d::e_composite_operation_source_out)
-		{
-			sfactor = ::nano2d::e_blend_factor_one_minus_dst_alpha;
-			dfactor = ::nano2d::e_blend_factor_zero;
-		}
-		else if (op == ::nano2d::e_composite_operation_atop)
-		{
-			sfactor = ::nano2d::e_blend_factor_dst_alpha;
-			dfactor = ::nano2d::e_blend_factor_one_minus_src_alpha;
-		}
-		else if (op == ::nano2d::e_composite_operation_destination_over)
-		{
-			sfactor = ::nano2d::e_blend_factor_one_minus_dst_alpha;
-			dfactor = ::nano2d::e_blend_factor_one;
-		}
-		else if (op == ::nano2d::e_composite_operation_destination_in)
-		{
-			sfactor = ::nano2d::e_blend_factor_zero;
-			dfactor = ::nano2d::e_blend_factor_src_alpha;
-		}
-		else if (op == ::nano2d::e_composite_operation_destination_out)
-		{
-			sfactor = ::nano2d::e_blend_factor_zero;
-			dfactor = ::nano2d::e_blend_factor_one_minus_src_alpha;
-		}
-		else if (op == ::nano2d::e_composite_operation_destination_atop)
-		{
-			sfactor = ::nano2d::e_blend_factor_one_minus_dst_alpha;
-			dfactor = ::nano2d::e_blend_factor_src_alpha;
-		}
-		else if (op == ::nano2d::e_composite_operation_lighter)
-		{
-			sfactor = ::nano2d::e_blend_factor_one;
-			dfactor = ::nano2d::e_blend_factor_one;
-		}
-		else if (op == ::nano2d::e_composite_operation_copy)
-		{
-			sfactor = ::nano2d::e_blend_factor_one;
-			dfactor = ::nano2d::e_blend_factor_zero;
-		}
-		else if (op == ::nano2d::e_composite_operation_xor)
-		{
-			sfactor = ::nano2d::e_blend_factor_one_minus_dst_alpha;
-			dfactor = ::nano2d::e_blend_factor_one_minus_src_alpha;
-		}
-		else
-		{
-			sfactor = ::nano2d::e_blend_factor_one;
-			dfactor = ::nano2d::e_blend_factor_zero;
-		}
-
-		::nano2d::compositeOperationState state;
-		state.srcRGB = sfactor;
-		state.dstRGB = dfactor;
-		state.srcAlpha = sfactor;
-		state.dstAlpha = dfactor;
-		return state;
-	}
 
 	
 	::nano2d::state * context::__getState()
@@ -2165,7 +2018,7 @@ void TransformSkewX(float* t, float a)
 
 	}
 
-	void context::arc(float cx, float cy, float r, float a0, float a1, int dir)
+	void context::arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir)
 	{
 		//arc(cx, cy, r, a0, a1, dir);
 		//float a = 0, da = 0, hda = 0, kappa = 0;
@@ -2767,7 +2620,7 @@ void TransformSkewX(float* t, float a)
 	int context::text_glyph_positions(float x, float y, const ::scoped_string& scopedstr, ::nano2d::glyphPosition * positions, int maxPositions)
 	{
 
-		return text_glyph_positions(x, y, scopedstr, positions, maxPositions);
+		//return text_glyph_positions(x, y, scopedstr, positions, maxPositions);
 
 		//throw_todo();
 		//return -1;
@@ -2810,6 +2663,7 @@ void TransformSkewX(float* t, float a)
 		//}
 
 		//return npos;
+      return 0;
 	}
 
 

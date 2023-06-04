@@ -746,6 +746,8 @@
 		9A52199A2A00B37500EA2057 /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5219952A00B37500EA2057 /* main_window.cpp */; };
 		9A52199B2A00B37600EA2057 /* main_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5219962A00B37500EA2057 /* main_window.h */; };
 		9A52199C2A00B37600EA2057 /* main_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5219962A00B37500EA2057 /* main_window.h */; };
+		9A54986E2A2C30FC0052BAB6 /* _random.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A54986D2A2C30FC0052BAB6 /* _random.h */; };
+		9A54986F2A2C30FC0052BAB6 /* _random.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A54986D2A2C30FC0052BAB6 /* _random.h */; };
 		9A5DCE21271A3BCC00C2ED86 /* nanosecond_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */; };
 		9A5DCE22271A3BCC00C2ED86 /* nanosecond_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */; };
 		9A5DCE23271A3BCC00C2ED86 /* nanosecond_timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5DCE20271A3BCB00C2ED86 /* nanosecond_timer.h */; };
@@ -3033,6 +3035,8 @@
 		9A5219962A00B37500EA2057 /* main_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
 		9A54986A2A2C162D0052BAB6 /* quadruple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quadruple.h; sourceTree = "<group>"; };
 		9A54986C2A2C17550052BAB6 /* sequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sequence.h; sourceTree = "<group>"; };
+		9A54986D2A2C30FC0052BAB6 /* _random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _random.h; sourceTree = "<group>"; };
+		9A5498702A2C33380052BAB6 /* color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nanosecond_timer.cpp; sourceTree = "<group>"; };
 		9A5DCE20271A3BCB00C2ED86 /* nanosecond_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanosecond_timer.h; sourceTree = "<group>"; };
 		9A5DCE39271A75CA00C2ED86 /* mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm.mm; sourceTree = "<group>"; };
@@ -4340,6 +4344,7 @@
 			isa = PBXGroup;
 			children = (
 				9A54986A2A2C162D0052BAB6 /* quadruple.h */,
+				9A5498702A2C33380052BAB6 /* color.h */,
 			);
 			path = geometry4d;
 			sourceTree = "<group>";
@@ -5469,6 +5474,7 @@
 				9A7861F0264B90B4003DF8A0 /* _.cpp */,
 				9A786204264B90B4003DF8A0 /* _.h */,
 				9A7861DC264B90B4003DF8A0 /* _impl.h */,
+				9A54986D2A2C30FC0052BAB6 /* _random.h */,
 				9A7861DF264B90B4003DF8A0 /* binary_operation.cpp */,
 				9A7861F6264B90B4003DF8A0 /* binary_operation.h */,
 				9A7861F2264B90B4003DF8A0 /* c_number.h */,
@@ -6259,6 +6265,7 @@
 				9A08428D2935E694009F7FF4 /* _iterator.h in Headers */,
 				9A68AEF525114435008DABD2 /* _conv.h in Headers */,
 				9A7861B7264B9096003DF8A0 /* enumeration1.h in Headers */,
+				9A54986E2A2C30FC0052BAB6 /* _random.h in Headers */,
 				9A08434629366768009F7FF4 /* ini.h in Headers */,
 				9AA8FD9B27BA729B008FF9AA /* nsimpact.h in Headers */,
 				9A68B39625114438008DABD2 /* trap.h in Headers */,
@@ -7396,6 +7403,7 @@
 				9AA8021427BA72A6008FF9AA /* winpr_input.h in Headers */,
 				9AD68F8B251A753A00C0EBD7 /* winrt.h in Headers */,
 				9A0841E42935DD5C009F7FF4 /* ansi_impl.h in Headers */,
+				9A54986F2A2C30FC0052BAB6 /* _random.h in Headers */,
 				9AD68F8D251A753A00C0EBD7 /* block.h in Headers */,
 				9A0842A22935E694009F7FF4 /* _array.h in Headers */,
 				9A8F43592A23022C00097EE1 /* _shape.h in Headers */,

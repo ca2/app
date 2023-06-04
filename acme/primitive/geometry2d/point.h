@@ -227,8 +227,6 @@ public:
 //   template < primitive_point POINT >
 //   inline point_type operator+(const POINT & point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
 
-//   template < primitive_number POINT >
-//   inline SIZE_TYPE operator-(const POINT & point) const noexcept { return SIZE_TYPE(this->x() - point.x(), this->y() - point.y()); }
 
    template < primitive_number NUMBER1 >
    inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator-(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x() - sequence.a(), this->y() - sequence.b()); }
@@ -394,3 +392,11 @@ inline bool is_different(const ::point_f64& p1, const ::point_f64& p2, double dT
 
 
 
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+inline ::size_type < largest_number < NUMBER1, NUMBER2 > > operator -(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2) noexcept
+{
+   
+   return ::size_type < largest_number < NUMBER1, NUMBER2 > >((largest_number < NUMBER1, NUMBER2 >) (point1.x() - point2.x()),
+                                                              (largest_number < NUMBER1, NUMBER2 >)(point1.y() - point2.y()));
+   
+}

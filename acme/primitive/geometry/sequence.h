@@ -6,6 +6,7 @@
     All rights reserved. Use of this source code is governed by a
     BSD-style license that can be found in the LICENSE.txt file.
 */
+// Merge with estamira/particle/vec4:linear_rand
 #pragma once
 
 //#include "common.h"
@@ -14,6 +15,18 @@
 //#include <cmath>
 //#include <iosfwd>
 //#include <string.h> // memset
+
+
+template < typename UNIT_TYPE >
+inline UNIT_TYPE linear_rand(const UNIT_TYPE & t1, const UNIT_TYPE & t2)
+{
+   if (t2 == t1)
+      return t1;
+   return ((t2 - t1) * rand()/ RAND_MAX) + t1;
+
+}
+
+
 
 struct no_initialize_t {};
 
@@ -134,8 +147,134 @@ struct sequence_type
       }
       
    }
-
    
+   // simple menthods: operates on x, y
+   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   inline void add2(const sequence_type & a)
+   {
+      this->a() += a.a();
+      this->b() += a.b();
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   inline void sub2(const sequence_type & a)
+   {
+      this->a() -= a.a();
+      this->b() -= a.b();
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   inline void mul2(UNIT_TYPE n)
+   {
+      this->a() *= n;
+      this->b() *= n;
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   inline void set2(UNIT_TYPE a, UNIT_TYPE b)
+   {
+      this->a() = a;
+      this->b() = b;
+   }
+
+   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   static inline void mix2(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
+   {
+      c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
+      c.b() = a.b()*((UNIT_TYPE)1.0 - t) + b.b()*t;
+   }
+
+   // simple menthods: operates on x, y, z
+   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   inline void add3(const sequence_type & a)
+   {
+      this->a() += a.a();
+      this->b() += a.b();
+      this->c() += a.c();
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   inline void sub3(const sequence_type & a)
+   {
+      this->a() -= a.a();
+      this->b() -= a.b();
+      this->c() -= a.c();
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   inline void mul3(UNIT_TYPE n)
+   {
+      this->a() *= n;
+      this->b() *= n;
+      this->c() *= n;
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   inline void set3(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c)
+   {
+      this->a() = a;
+      this->b() = b;
+      this->c() = c;
+   }
+
+   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   static inline void mix3(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
+   {
+      c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
+      c.b() = a.b()*((UNIT_TYPE)1.0 - t) + b.b()*t;
+      c.c() = a.c()*((UNIT_TYPE)1.0 - t) + b.c()*t;
+   }
+
+   // simple menthods: operates on x, y, z, w
+   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   inline void add4(const sequence_type & q)
+   {
+      this->a() += q.a();
+      this->b() += q.b();
+      this->c() += q.c();
+      this->d() += q.d();
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   inline void sub4(const sequence_type & q)
+   {
+      this->a() -= q.a();
+      this->b() -= q.b();
+      this->c() -= q.c();
+      this->d() -= q.d();
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   inline void mul4(UNIT_TYPE n)
+   {
+      this->a() *= n;
+      this->b() *= n;
+      this->c() *= n;
+      this->d() *= n;
+   }
+   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   inline void set4(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d)
+   {
+      this->a() = a;
+      this->b() = b;
+      this->c() = c;
+      this->d() = d;
+   }
+
+   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   static inline void mix4(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
+   {
+      c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
+      c.b() = a.b()*((UNIT_TYPE)1.0 - t) + b.b()*t;
+      c.c() = a.c()*((UNIT_TYPE)1.0 - t) + b.c()*t;
+      c.d() = a.d()*((UNIT_TYPE)1.0 - t) + b.d()*t;
+   }
+
+
+
+   inline sequence_type linear_rand(const sequence_type &sequence) const
+   {
+
+      return sequence_type(
+             linear_rand(this->a(), sequence.a()),
+             linear_rand(this->b(), sequence.b()),
+             linear_rand(this->c(), sequence.c()),
+             linear_rand(this->d(), sequence.d()));
+
+   }
+
    sequence_type operator-() const
    {
       sequence_type result;
@@ -573,9 +712,9 @@ struct sequence_type
 template <typename COORDINATE>
 sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const sequence_type<COORDINATE, 3>& b) {
    return sequence_type<COORDINATE, 3>(
-      a.y() * b.z() - a.z() * b.y(),
-      a.z() * b.x() - a.x() * b.z(),
-      a.x() * b.y() - a.y() * b.x()
+      a.b() * b.c() - a.c() * b.b(),
+      a.c() * b.a() - a.a() * b.c(),
+      a.a() * b.b() - a.b() * b.a()
    );
 }
 
@@ -887,23 +1026,23 @@ template <typename Value_, size_t Size_> struct Matrix {
 
       Matrix result(0);
       result.m[3][3] = 1;
-      result.m[0][0] = c + axis.x() * axis.x() * t;
-      result.m[1][1] = c + axis.y() * axis.y() * t;
-      result.m[2][2] = c + axis.z() * axis.z() * t;
+      result.m[0][0] = c + axis.a() * axis.a() * t;
+      result.m[1][1] = c + axis.b() * axis.b() * t;
+      result.m[2][2] = c + axis.c() * axis.c() * t;
 
-      COORDINATE tmp1 = axis.x() * axis.y() * t;
-      COORDINATE tmp2 = axis.z() * s;
+      COORDINATE tmp1 = axis.a() * axis.b() * t;
+      COORDINATE tmp2 = axis.c() * s;
 
       result.m[0][1] = tmp1 + tmp2;
       result.m[1][0] = tmp1 - tmp2;
 
-      tmp1 = axis.x() * axis.z() * t;
-      tmp2 = axis.y() * s;
+      tmp1 = axis.a() * axis.c() * t;
+      tmp2 = axis.b() * s;
       result.m[0][2] = tmp1 - tmp2;
       result.m[2][0] = tmp1 + tmp2;
 
-      tmp1 = axis.y() * axis.z() * t;
-      tmp2 = axis.x() * s;
+      tmp1 = axis.b() * axis.c() * t;
+      tmp2 = axis.a() * s;
       result.m[1][2] = tmp1 + tmp2;
       result.m[2][1] = tmp1 - tmp2;
 
@@ -962,15 +1101,15 @@ template <typename Value_, size_t Size_> struct Matrix {
       dir = -dir;
 
       Matrix result(0);
-      result.m[0][0] = left.x();
-      result.m[0][1] = left.y();
-      result.m[0][2] = left.z();
-      result.m[1][0] = new_up.x();
-      result.m[1][1] = new_up.y();
-      result.m[1][2] = new_up.z();
-      result.m[2][0] = dir.x();
-      result.m[2][1] = dir.y();
-      result.m[2][2] = dir.z();
+      result.m[0][0] = left.a();
+      result.m[0][1] = left.b();
+      result.m[0][2] = left.c();
+      result.m[1][0] = new_up.a();
+      result.m[1][1] = new_up.b();
+      result.m[1][2] = new_up.c();
+      result.m[2][0] = dir.a();
+      result.m[2][1] = dir.b();
+      result.m[2][2] = dir.c();
       result.m[3][0] = -dot(left, origin);
       result.m[3][1] = -dot(new_up, origin);
       result.m[3][2] = -dot(dir, origin);

@@ -240,7 +240,11 @@ namespace experience
 
       __defer_construct(m_pregion);
 
-      m_pregion->create_ellipse(rectangleClient);
+      ::ellipse_f64 ellipse;
+
+      ellipse.set(rectangleClient);
+
+      m_pregion->create_ellipse(ellipse);
 
    }
 

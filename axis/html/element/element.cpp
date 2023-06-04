@@ -527,7 +527,7 @@ namespace html
       if (m_etag == tag_html || m_etag == tag_body || m_etag == tag_head || m_pparent == nullptr)
       {
 
-         m_pimpl->move_bound_to(phtmldata, nullptr);
+         m_pimpl->move_bound_to(phtmldata, {});
 
          m_pimpl->set_bound_size(phtmldata, phtmldata->m_pcoredata->m_box.size());
 

@@ -42,13 +42,13 @@ namespace draw2d_opengl
 
       virtual void destroy() override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::arc& parc) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::arc_f64& parc) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::line& pline) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::line_f64& pline) override;
 
       //virtual bool _set(::draw2d::graphics* pgraphics, const ::lined& pline) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::lines& pline) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::lines_f64& pline) override;
 
       //virtual bool _set(::draw2d::graphics* pgraphics, const ::linesd& pline) override;
 
@@ -56,7 +56,7 @@ namespace draw2d_opengl
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon& ppolygon) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygon) override;
 
       //virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond) override;
 

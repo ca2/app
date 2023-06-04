@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "orto_button.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
@@ -239,8 +239,12 @@ namespace experience
       ::user::interaction::client_rectangle(rectangleClient);
 
       __defer_construct(m_pregion);
+      
+      ::ellipse_f64 ellipse;
+      
+      ellipse.set(rectangleClient);
 
-      m_pregion->create_ellipse(rectangleClient);
+      m_pregion->create_ellipse(ellipse);
 
    }
 

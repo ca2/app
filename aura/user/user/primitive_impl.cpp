@@ -770,7 +770,7 @@ namespace user
       case ::message::e_prototype_move:
       {
          _NEW_MESSAGE(::message::reposition);
-         pmessage->m_point = ::point_i32(lparam);
+         pmessage->m_point = lparam.point();
       }
       break;
       case ::message::e_prototype_erase_background:

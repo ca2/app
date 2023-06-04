@@ -279,7 +279,7 @@ inline bool get_bounding_box(RECTANGLE & rectangleBounding, const TYPE & t)
 
    rectangleBounding.maximum_minimum();
 
-   t.expand_bounding_box(rectangleBounding);
+   t.expand_bounding_box(rectangleBounding.top_left(), rectangleBounding.bottom_right());
 
    //rectangleBounding.left = (decltype(rectangleBounding.left))minimum(line.m_p1.x(), line.m_p2.x());
    //rectangleBounding.top = (decltype(rectangleBounding.top))minimum(line.m_p1.y(), line.m_p2.y());

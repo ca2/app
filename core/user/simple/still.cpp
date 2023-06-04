@@ -61,7 +61,7 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
          image_source imagesource(picon);
          
-         auto iMinimumDimension =this->get_client_size().minimum();
+         auto iMinimumDimension = this->get_client_size().minimum();
          
          ::size_i32 size(iMinimumDimension, iMinimumDimension);
 

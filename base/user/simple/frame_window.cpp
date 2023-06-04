@@ -2702,8 +2702,10 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
                m_pimageBlur->g()->draw(imagedrawing);
 
             }
+            
+            m_pfastblur->initialize(m_pimageBlur->size(), 2);
 
-            m_pfastblur->blur(m_pimageBlur, 2);
+            m_pfastblur->blur(m_pimageBlur);
 
             {
 

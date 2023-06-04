@@ -769,7 +769,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      return nullptr;
+      return {};
 
    }
 

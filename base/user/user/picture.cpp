@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/handler/item.h"
 #include "aura/platform/context.h"
 #include <math.h>
@@ -857,8 +857,10 @@ namespace user
             pimageDropShadow->g()->draw(imagedrawing);
 
             pimageDropShadow->paint_rgb(m_ppictureimpl->m_hlsGlowDropShadow);
+            
+            blurDropShadow.initialize(pimageDropShadow->size(), iBlur);
 
-            blurDropShadow.blur(pimageDropShadow, iBlur);
+            blurDropShadow.blur(pimageDropShadow);
 
          }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "scroll_bar.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
@@ -665,7 +665,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
    ::size_i32 size = rectangleClient.size();
 
    int iArrowForce = 4;
-   int iArrowStability = size.get_orthogonal_dimension(m_eorientation) - 2 - 3 * 2;
+   int iArrowStability = size.get_normal_dimension(m_eorientation) - 2 - 3 * 2;
 
    auto pstyle = get_style(pgraphics);
 

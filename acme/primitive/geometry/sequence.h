@@ -9,10 +9,11 @@
 // Merge with estamira/particle/vec4:linear_rand
 #pragma once
 
+
 //#include "common.h"
 //#include "traits.h"
 //#include <cassert>
-//#include <cmath>
+#include <cmath>
 //#include <iosfwd>
 //#include <string.h> // memset
 
@@ -543,7 +544,7 @@ struct sequence_type
    COORDINATE angle(const sequence_type & b)
    {
 
-      return atan2f(this->dot_with_left_perpendicular_of(b), this->dot(b));
+      return ::std::atan2(this->dot_with_left_perpendicular_of(b), this->dot(b));
 
    }
 

@@ -244,7 +244,7 @@ namespace draw2d
 
   //    return sizeRet;
       
-      return nullptr;
+      return {};
 
    }
 

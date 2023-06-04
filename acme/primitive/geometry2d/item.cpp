@@ -276,7 +276,7 @@ namespace geometry2d
       if (m_efillmode == ::draw2d::e_fill_mode_winding)
       {
 
-         return m_polygon.contains_winding(p);
+         return m_polygon.contains(p);
 
       }
       else
@@ -330,16 +330,32 @@ namespace geometry2d
       for (auto & ppolygon : m_polypolygon)
       {
 
-         if (ppolygon->contains_winding(point))
+         if (m_efillmode == ::draw2d::e_fill_mode_winding)
          {
 
-            return true;
+            if (ppolygon->contains(point))
+            {
+
+               return true;
+
+            }
 
          }
-         else if (ppolygon->contains_alternate(point))
+         else if (m_efillmode == ::draw2d::e_fill_mode_alternate)
          {
 
-            return true;
+            if (ppolygon->contains_alternate(point))
+            {
+
+               return true;
+
+            }
+
+         }
+         else
+         {
+
+            throw ::exception(error_wrong_state, "poly_polygon_item::contains not expected fill mode");
 
          }
 

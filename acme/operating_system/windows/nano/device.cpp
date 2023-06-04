@@ -99,7 +99,7 @@ namespace windows
 
       }
 
-      return { size.cx(), size.cy() };
+      return { size.cx, size.cy };
 
    }
 

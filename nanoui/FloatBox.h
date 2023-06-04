@@ -17,7 +17,9 @@ namespace nanoui
 {
 
 
-   template <typename Scalar> class FloatBox : public TextBox {
+   template <typename Scalar> class FloatBox : 
+      public TextBox 
+   {
    public:
       FloatBox(Widget* parent, Scalar value = (Scalar)0.f) : TextBox(parent) {
          m_number_format = sizeof(Scalar) == sizeof(float) ? "%.4g" : "%.7g";
@@ -135,7 +137,8 @@ namespace nanoui
       }
 
 
-      bool mouse_drag_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
+      //bool mouse_drag_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
+      bool mouse_motion_event(const point_i32 & p, const size_i32 & rel, bool bDown, const ::user::e_key & ekeyModifiers) override
       {
 
          if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
@@ -145,21 +148,26 @@ namespace nanoui
 
          }
 
-         if (m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_pointMouseDown.x() != -1)
+         if (bDown)
          {
 
-            int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
-
-            set_value(m_mouse_down_value + value_delta * m_value_increment);
-
-            if (m_callback)
+            if (m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_pointMouseDown.x() != -1)
             {
 
-               m_callback(m_strValue);
+               int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
+
+               set_value(m_mouse_down_value + value_delta * m_value_increment);
+
+               if (m_callback)
+               {
+
+                  m_callback(m_strValue);
+
+               }
+
+               return true;
 
             }
-
-            return true;
 
          }
 
@@ -181,7 +189,7 @@ namespace nanoui
          if (m_bSpinnable && !focused())
          {
 
-            int value_delta = (rel.y() > 0) ? 1 : -1;
+            int value_delta = (rel.cy() > 0) ? 1 : -1;
 
             set_value(value() + value_delta * m_value_increment);
 

@@ -62,7 +62,7 @@ namespace draw2d_opengl
 
       destroy();
 
-      if (!size)
+      if (size.is_empty())
       {
 
          //return true;
@@ -2705,7 +2705,7 @@ namespace draw2d_opengl
 
       }
 
-      if (!m_size)
+      if (m_size.is_empty())
       {
 
          //return false;
@@ -2788,7 +2788,7 @@ namespace draw2d_opengl
 
       }
 
-      if (!m_size)
+      if (m_size.is_empty())
       {
 
          //return false;

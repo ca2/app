@@ -1591,7 +1591,7 @@ namespace draw2d_opengl
    //}
 
    
-   void graphics::rectangle_f64(const ::rectangle_f64 &  rectangleParam)
+   void graphics::rectangle(const ::rectangle_f64 &  rectangleParam)
    {
 
       fill_rectangle(rectangleParam);

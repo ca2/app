@@ -265,7 +265,7 @@ namespace draw2d_opengl
       //bool Arc(i32 x1,i32 y1,i32 x2,i32 y2,double start, double extends);
       void arc(double x1,double y1,double x2,double y2,double start, double extends);
 
-      void angle_arc(double x, double y, double nRadius,::angle fStartAngle, ::angle fSweepAngle);
+      void angle_arc(double x, double y, double nRadius,::angle_f64 fStartAngle, ::angle_f64 fSweepAngle);
       void arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       void arc_to(const ::rectangle_i32 & rectangle, const ::point_i32 & pointStart, const ::point_i32 & pointEnd);
       //i32 GetArcDirection() const;
@@ -582,7 +582,7 @@ namespace draw2d_opengl
       void is_valid_update_window_thread() override;
 
 
-      void _add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion) override;
 
 
       void on_begin_draw() override;

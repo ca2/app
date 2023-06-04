@@ -2,13 +2,13 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/shape.h"
+//#include "acme/primitive/geometry2d/shape.h"
 
 
-#include "acme/primitive/geometry2d/shape_array.h"
+//#include "acme/primitive/geometry2d/shape_array.h"
 
 
-template < typename HOLDEE >
+tem/*plate < typename HOLDEE >
 inline ::pointer<___shape<HOLDEE >> __create_shape(const enum_shape & eshape)
 {
 
@@ -34,4 +34,4 @@ inline ::pointer<___shape<HOLDEE >> __create_shape(const enum_shape & eshape)
 }
 
 
-
+*/

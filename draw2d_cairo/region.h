@@ -56,7 +56,7 @@ namespace draw2d_cairo
       bool _fill(cairo_t * pdc);
       bool _path(cairo_t * pdc);
       bool _rect(cairo_t * pdc);
-      bool _oval(cairo_t * pdc);
+      bool _ellipse(cairo_t * pdc);
       bool _polygon(cairo_t * pdc);
       bool _poly_polygon(cairo_t * pdc);
       bool _combine(cairo_t * pdc);

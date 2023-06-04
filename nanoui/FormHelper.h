@@ -170,8 +170,7 @@ NAMESPACE_END(detail)
          pwidget->set_editable(editable);
          pwidget->set_font_size((float)m_widget_font_size);
          sequence2_i32 sizeFixed = pwidget->fixed_size();
-         pwidget->set_fixed_size(sequence2_i32(sizeFixed.x() != 0 ? sizeFixed.x() : m_fixed_size.cx(),
-            sizeFixed.y() != 0 ? sizeFixed.y() : m_fixed_size.cy()));
+         pwidget->set_fixed_size(sizeFixed.prefer_self_coordinate_if_set(m_fixed_size));
          m_refresh_callbacks.add(refresh);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_variable_spacing);
@@ -311,7 +310,7 @@ NAMESPACE_BEGIN(detail)
       FormWidget(Widget * p) : CheckBox(p, "") { set_fixed_width(20); }
 
       /// Pass-through function for \::pointer nanoui::CheckBox::set_checked.
-      void set_value(bool v) { set_checked(v); }
+      void set_value(bool v, const ::action_context & actioncontext) { set_checked(v, actioncontext); }
 
       /// Pass-through function for \::pointer nanoui::Widget::set-enabled.
       void set_editable(bool e) { set_enabled(e); }

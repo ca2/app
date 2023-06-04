@@ -97,6 +97,18 @@ namespace geometry2d
       };
 
 
+      class CLASS_DECL_ACME intersect_clip_item :
+         virtual public item
+      {
+      public:
+
+
+         ::draw2d::enum_item type() const override;
+
+
+      };
+
+
       class CLASS_DECL_ACME polygon_item :
          virtual public item
       {

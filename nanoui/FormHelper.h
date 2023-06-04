@@ -161,8 +161,8 @@ NAMESPACE_END(detail)
       /// Add a memory_new data pwidget controlled using custom getter/setter functions
       template <typename Type> detail::FormWidget<Type> *
          add_variable(const ::scoped_string & label,
-                      const std::function<void(const Type &)> & setter,
-            const std::function<Type()> & getter,
+                      const ::function<void(const Type &)> & setter,
+            const ::function<Type()> & getter,
                       bool editable = true)
       {
          Label * plabel_w = memory_new Label(m_pwindow, label, m_label_font_name, m_label_font_size);
@@ -189,7 +189,8 @@ NAMESPACE_END(detail)
 
       /// Add a memory_new data pwidget that exposes a raw variable in memory
       template <typename Type> detail::FormWidget<Type> *
-         add_variable(const ::scoped_string & label, Type & value, bool editable = true) {
+         add_variable(const ::scoped_string & label, Type & value, bool editable = true)
+      {
          return add_variable<Type>(label,
             [&](const Type & v) { value = v; },
             [&]() -> Type { return value; },
@@ -198,7 +199,7 @@ NAMESPACE_END(detail)
       }
 
       /// Add a button with a custom callback
-      Button * add_button(const ::scoped_string & label, const std::function<void()> & cb)
+      Button * add_button(const ::scoped_string & label, const ::function<void()> & cb)
       {
          Button * pbutton = memory_new Button(m_pwindow, label);
          pbutton->set_callback(cb);
@@ -287,7 +288,7 @@ NAMESPACE_END(detail)
       /// A reference to the \::pointer nanoui::AdvancedGridLayout this FormHelper is using.
       ::pointer<AdvancedGridLayout> m_playout;
       /// The callbacks associated with all widgets this FormHelper is managing.
-      ::array<std::function<void()>> m_refresh_callbacks;
+      ::array<::function<void()>> m_refresh_callbacks;
       /// The group header font name.
       ::string m_group_font_name = "sans-bold";
       /// The label font name.
@@ -356,8 +357,9 @@ public:
    }
 
    /// Pass-through function for \::pointer nanoui::ComboBox::set_callback.
-   void set_callback(const std::function<void(const T &)> & cb) {
-      ComboBox::set_callback([cb](int v) { cb((T)v); });
+   void set_callback(const ::function<void(const T &)> & cb)
+   {
+      ComboBox::set_callback([cb](::index v) { cb((T)v); });
    }
 
    /// Pass-through function for \::pointer nanoui::Widget::set_enabled.
@@ -397,7 +399,7 @@ public:
    FormWidget(Widget * p) : TextBox(p) { set_alignment(TextBox::e_alignment_left); }
 
    /// Pass-through function for \::pointer nanoui::TextBox::set_callback.
-   void set_callback(const std::function<void(const ::scoped_string &)> & cb) {
+   void set_callback(const ::function<void(const ::scoped_string &)> & cb) {
       TextBox::set_callback([cb](const ::scoped_string & str) { cb(str); return true; });
    }
 };

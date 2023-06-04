@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "sequence.h"
+#include "acme/primitive/geometry/sequence.h"
 
 
 template < primitive_number NUMBER >
@@ -20,7 +20,49 @@ public:
    using POINT_TYPE = point_type < NUMBER >;
    using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
-   using sequence_type < NUMBER, 2 >::sequence_type;
+   
+   
+   
+   size_type() {}
+   size_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
+   //size_type(::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
+
+//   sequence_type(const sequence_type&) = default;
+
+//   template <primitive_number T,
+//      std::enable_if_t<T::SIZE == SIZE &&
+//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
+//   sequence_type(const T & a) {
+//      for (size_t i = 0; i < SIZE; ++i)
+//         m_coordinatea[i] = (COORDINATE)a[i];
+//   }
+   
+   size_type(UNIT_TYPE n)
+   {
+   
+      this->set_all(n);
+      
+   }
+
+   
+   size_type(NUMBER x, NUMBER y)
+   {
+      this->m_coordinatea[0] = x;
+      this->m_coordinatea[1] = y;
+   }
+   
+   template < primitive_number NUMBER1 >
+   size_type(const sequence_type < NUMBER1, 2 > & sequence) :
+      sequence_type < UNIT_TYPE, 2 >(sequence)
+   {
+      
+   }
+   
+
+   
+   
+   
+   //using sequence_type < NUMBER, 2 >::sequence_type;
 
    //size_type() noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
    //size_type(enum_no_initialize) noexcept {}
@@ -84,20 +126,20 @@ public:
    inline UNIT_TYPE width() const noexcept { return this->cx(); }
    inline UNIT_TYPE height() const noexcept { return this->cy(); }
 
-   inline UNIT_TYPE get_minimum_dimension() const noexcept { return ::minimum(this->cx(), this->cy()); }
-   inline UNIT_TYPE get_maximum_dimension() const noexcept { return ::maximum(this->cx(), this->cy()); }
+//   inline UNIT_TYPE get_minimum_dimension() const noexcept { return ::minimum(this->cx(), this->cy()); }
+//   inline UNIT_TYPE get_maximum_dimension() const noexcept { return ::maximum(this->cx(), this->cy()); }
 
-   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->cx(), this->cy()); }
-   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->cx(), this->cy()); }
-   inline UNIT_TYPE get_orthogonal(enum_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal_dimension(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
-
-   inline UNIT_TYPE set_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept { if (eorientation == e_orientation_horizontal) this->cx() = l; else if (eorientation == e_orientation_vertical) this->cy() = l; return l; }
-   inline UNIT_TYPE set_orthogonal_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept { if(eorientation == e_orientation_horizontal) this->cy() = l; else if (eorientation == e_orientation_vertical) this->cx() = l; return l;}
-   inline UNIT_TYPE set_orthogonal(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
-   inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
-   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation, l); }
+//   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->cx(), this->cy()); }
+//   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->cx(), this->cy()); }
+//   inline UNIT_TYPE get_orthogonal(enum_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
+//   inline UNIT_TYPE get_normal_dimension(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+//   inline UNIT_TYPE get_normal(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+//
+//   inline UNIT_TYPE set_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept { if (eorientation == e_orientation_horizontal) this->cx() = l; else if (eorientation == e_orientation_vertical) this->cy() = l; return l; }
+//   inline UNIT_TYPE set_orthogonal_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept { if(eorientation == e_orientation_horizontal) this->cy() = l; else if (eorientation == e_orientation_vertical) this->cx() = l; return l;}
+//   inline UNIT_TYPE set_orthogonal(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
+//   inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
+//   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation, l); }
 
    inline void set(UNIT_TYPE c) noexcept { this->cx() = this->cy() = c; }
    inline void set(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
@@ -123,7 +165,7 @@ public:
       if (get_expand(s) == ::design::e_match_height) return aspect_height(s.cy()); else return aspect_width(s.cx());
    }
 
-   inline size_type & operator =(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->cx() = sequence.a(); this->cy() = sequence.b(); return *this; }
+   inline size_type & operator =(const size_type & size) noexcept { this->cx() = size.cx(); this->cy() = size.cy(); return *this; }
 
    template < primitive_size SIZE > 
    inline size_type & operator+=(const SIZE & size) noexcept { this->cx() += size.cx(); this->cy() += size.cy(); return *this; }

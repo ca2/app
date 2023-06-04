@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "xfplayer_impact_line_selection.h"
 #include "xfplayer_impact_line.h"
 #include "acme/constant/message.h"
@@ -48,7 +48,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       
       bool bInside;
       
-      auto pointCursor = ::point_i32(pusermessage->m_lparam);
+      auto pointCursor = pusermessage->m_lparam.point();
 
       ::rectangle_i32 rectanglePlacement;
       

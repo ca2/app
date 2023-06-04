@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "control_box_button.h"
 #include "control_box.h"
 #include "acme/handler/item.h"
@@ -202,8 +202,12 @@ namespace experience_anthill
 
 
       auto rectangleClient = client_rectangle();
+      
+      ::ellipse_f64 ellipse;
+      
+      ellipse.set(rectangleClient);
 
-      m_spregion->create_ellipse(rectangleClient);
+      m_spregion->create_ellipse(ellipse);
 
    }
 

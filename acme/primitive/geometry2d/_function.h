@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 16:01 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 16:01 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -236,6 +236,126 @@ inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point);
 CLASS_DECL_ACME double d_distance(const point_i32& point1, const point_i32& point2);
 
 
+template < typename X, typename Y >
+inline auto get_dimension(enum_orientation eorientation, X x, Y y)
+{
+
+   if (eorientation == e_orientation_horizontal)
+   {
+
+      return x;
+
+   }
+   else if (eorientation == e_orientation_vertical)
+   {
+
+      return y;
+
+   }
+   else
+   {
+
+      throw ::exception(error_bad_argument, "invalid orientation");
+
+   }
+
+}
+
+
+template < typename X, typename Y, typename Z >
+inline auto get_dimension(enum_orientation eorientation, X x, Y y, Z z)
+{
+
+   if (eorientation == e_orientation_horizontal)
+   {
+
+      return x;
+
+   }
+   else if (eorientation == e_orientation_vertical)
+   {
+
+      return y;
+
+   }
+   else if (eorientation == e_orientation_z)
+   {
+
+      return z;
+
+   }
+   else
+   {
+
+      throw ::exception(error_bad_argument, "invalid orientation (2)");
+
+   }
+
+}
+
+
+template < typename X, typename Y, typename Z, typename W >
+inline auto get_dimension(enum_orientation eorientation, X x, Y y, Z z, W w)
+{
+
+   if (eorientation == e_orientation_horizontal)
+   {
+
+      return x;
+
+   }
+   else if (eorientation == e_orientation_vertical)
+   {
+
+      return y;
+
+   }
+   else if (eorientation == e_orientation_z)
+   {
+
+      return z;
+
+   }
+   else if (eorientation == e_orientation_w)
+   {
+
+      return w;
+
+   }
+   else
+   {
+
+      throw ::exception(error_bad_argument, "invalid orientation (3)");
+
+   }
+
+}
+
+
+template < typename X, typename Y >
+inline auto get_normal_dimension2(enum_orientation eorientation, X x, Y y)
+{
+
+   if (eorientation == e_orientation_horizontal)
+   {
+
+      return y;
+
+   }
+   else if (eorientation == e_orientation_vertical)
+   {
+
+      return x;
+
+   }
+   else
+   {
+
+      throw ::exception(error_bad_argument, "invalid orientation (4)");
+
+   }
+
+}
 
 
 

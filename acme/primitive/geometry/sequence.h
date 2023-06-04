@@ -15,12 +15,14 @@
 //#include <iosfwd>
 //#include <string.h> // memset
 
+struct no_initialize_t {};
 
 template < primitive_number COORDINATE, size_t t_iSize >
 struct sequence_type
 {
 
    using BASE_COORDINATE = COORDINATE;
+   using UNIT_TYPE = COORDINATE;
 
 
    COORDINATE m_coordinatea[t_iSize];
@@ -37,20 +39,20 @@ struct sequence_type
       
    }
 
-   sequence_type(enum_no_initialize)
+   sequence_type(no_initialize_t)
    {
       
       
    }
 
-   sequence_type(::std::nullptr_t)
+   sequence_type(UNIT_TYPE n)
    {
-      
-      set_all(0);
-      
+
+     set_all(n);
+
    }
 
-   sequence_type(const sequence_type&) = default;
+//   sequence_type(const sequence_type&) = default;
 
 //   template <primitive_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
@@ -60,11 +62,30 @@ struct sequence_type
 //         m_coordinatea[i] = (COORDINATE)a[i];
 //   }
 
-   template <typename T>
-   sequence_type(const sequence_type<T, SIZE>& sequence)
+   template < primitive_number NUMBER1, size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   sequence_type(const sequence_type < NUMBER1, 2 > & sequence)
    {
-      for (size_t i = 0; i < SIZE; ++i)
-         m_coordinatea[i] = (COORDINATE)sequence.m_coordinatea[i];
+      m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
+      m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
+   }
+
+   
+   template < primitive_number NUMBER1, size_t S = SIZE, std::enable_if_t<S == 3, int> = 0 >
+   sequence_type(const sequence_type < NUMBER1, 3 > & sequence)
+   {
+      m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
+      m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
+      m_coordinatea[2] = (UNIT_TYPE) sequence.m_coordinatea[2];
+   }
+
+   
+   template < primitive_number NUMBER1, size_t S = SIZE, std::enable_if_t<S == 4, int> = 0 >
+   sequence_type(const sequence_type < NUMBER1, 4 > & sequence)
+   {
+      m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
+      m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
+      m_coordinatea[2] = (UNIT_TYPE) sequence.m_coordinatea[2];
+      m_coordinatea[3] = (UNIT_TYPE) sequence.m_coordinatea[3];
    }
 
 //   sequence_type(COORDINATE s) {
@@ -72,13 +93,14 @@ struct sequence_type
 //         m_coordinatea[i] = s;
 //   }
 
-   template <size_t S = SIZE, std::enable_if_t<S == 2, int> = 0>
+   template < size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
    sequence_type(COORDINATE coordinate0, COORDINATE coordinate1)
    {
       m_coordinatea[0] = coordinate0;
       m_coordinatea[1] = coordinate1;
    }
 
+   
    template <size_t S = SIZE, std::enable_if_t<S == 3, int> = 0>
    sequence_type(COORDINATE coordinate0, COORDINATE coordinate1,
                  COORDINATE coordinate2)
@@ -88,6 +110,7 @@ struct sequence_type
       m_coordinatea[2] = coordinate2;
    }
 
+   
    template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
    sequence_type(
                  COORDINATE coordinate0, COORDINATE coordinate1,
@@ -99,6 +122,7 @@ struct sequence_type
       m_coordinatea[3] = coordinate3;
    }
 
+   
    void set_all(COORDINATE coordinate)
    {
       
@@ -111,6 +135,7 @@ struct sequence_type
       
    }
 
+   
    sequence_type operator-() const
    {
       sequence_type result;
@@ -119,6 +144,7 @@ struct sequence_type
       return result;
    }
 
+   
    friend sequence_type operator+(const sequence_type& a, const sequence_type& b)
    {
       sequence_type result;
@@ -146,12 +172,22 @@ struct sequence_type
       return *this;
    }
 
-   friend sequence_type operator*(const sequence_type& a, const sequence_type& b) {
+   friend sequence_type operator *(const sequence_type& a, const sequence_type& b) {
       sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] * b.m_coordinatea[i];
       return result;
    }
+   
+   template < primitive_number NUMBER1 >
+   sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > operator *(NUMBER1 n) const
+   {
+      sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > result;
+      for (size_t i = 0; i < SIZE; ++i)
+         result[i] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[i] * n);
+      return result;
+   }
+
 
    sequence_type& operator*=(const sequence_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
@@ -159,12 +195,24 @@ struct sequence_type
       return *this;
    }
 
+   
    friend sequence_type operator/(const sequence_type& a, const sequence_type& b) {
       sequence_type result;
       for (size_t i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] / b.m_coordinatea[i];
       return result;
    }
+   
+   
+   template < primitive_number NUMBER1 >
+   sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > operator /(NUMBER1 n) const
+   {
+      sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > result;
+      for (size_t i = 0; i < SIZE; ++i)
+         result[i] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[i] / n);
+      return result;
+   }
+
 
    sequence_type& operator/=(const sequence_type& a) {
       for (size_t i = 0; i < SIZE; ++i)
@@ -393,8 +441,41 @@ struct sequence_type
 
    }
 
+   
+   UNIT_TYPE minimum() const
+   {
+
+      UNIT_TYPE nMinimum = this->m_coordinatea[0];
+
+      for (size_t i = 1; i < SIZE; ++i)
+      {
+
+         nMinimum = ::minimum(nMinimum, this->m_coordinatea[i]);
+
+      }
+
+      return nMinimum;
+
+   }
 
 
+   UNIT_TYPE maximum() const
+   {
+
+      UNIT_TYPE nMaximum = this->m_coordinatea[0];
+
+      for (size_t i = 1; i < SIZE; ++i)
+      {
+
+         nMaximum = ::maximum(nMaximum, this->m_coordinatea[i]);
+
+      }
+
+      return nMaximum;
+
+   }
+   
+   
    COORDINATE dot(const sequence_type & vector) const
    {
 
@@ -434,6 +515,56 @@ struct sequence_type
 
    }
 
+
+   const UNIT_TYPE & get_dimension(enum_orientation eorientation) const
+   {
+      
+      return this->m_coordinatea[eorientation];
+      
+   }
+
+   UNIT_TYPE & get_dimension(enum_orientation eorientation)
+   {
+      
+      return this->m_coordinatea[eorientation];
+      
+   }
+
+   
+   template < size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   const UNIT_TYPE & get_normal_dimension(enum_orientation eorientation) const
+   {
+      
+      return this->m_coordinatea[orthogonal2_index_of(eorientation)];
+   
+   }
+
+   
+   template < size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   UNIT_TYPE & get_normal_dimension(enum_orientation eorientation)
+   {
+      
+      return this->m_coordinatea[orthogonal2_index_of(eorientation)];
+   
+   }
+   
+   
+   inline UNIT_TYPE & set_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept
+   {
+      
+      return this->m_coordinatea[eorientation] = l;
+      
+   }
+   
+   
+   inline UNIT_TYPE & set_orthogonal_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept
+   {
+      
+      return this->m_coordinatea[orthogonal2_index_of(eorientation)] = l;
+      
+   }
+
+   
 
 };
 

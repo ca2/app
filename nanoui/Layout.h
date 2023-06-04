@@ -293,11 +293,11 @@ namespace nanoui
       void set_resolution(int resolution) { m_resolution = resolution; }
 
       /// The spacing at the specified iAxisIndex (row or column number, depending on the enum_orientation).
-      int spacing(int iAxisIndex) const { return m_iSpacing[iAxisIndex]; }
+      int spacing(int iAxisIndex) const { return m_sizeSpacing[iAxisIndex]; }
       /// Sets the spacing for a specific iAxisIndex.
-      void set_spacing(int iAxisIndex, int spacing) { m_iSpacing[iAxisIndex] = spacing; }
+      void set_spacing(int iAxisIndex, int spacing) { m_sizeSpacing[iAxisIndex] = spacing; }
       /// Sets the spacing for all axes.
-      void set_spacing(int spacing) { m_iSpacing[0] = m_iSpacing[1] = spacing; }
+      void set_spacing(int spacing) { m_sizeSpacing[0] = m_sizeSpacing[1] = spacing; }
 
       /// The margin around this GridLayout.
       int margin() const { return m_iMargin; }

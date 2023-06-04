@@ -3031,6 +3031,8 @@
 		9A5219922A00B37500EA2057 /* operating_system_summary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = operating_system_summary.h; sourceTree = "<group>"; };
 		9A5219952A00B37500EA2057 /* main_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_window.cpp; sourceTree = "<group>"; };
 		9A5219962A00B37500EA2057 /* main_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
+		9A54986A2A2C162D0052BAB6 /* quadruple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quadruple.h; sourceTree = "<group>"; };
+		9A54986C2A2C17550052BAB6 /* sequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sequence.h; sourceTree = "<group>"; };
 		9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nanosecond_timer.cpp; sourceTree = "<group>"; };
 		9A5DCE20271A3BCB00C2ED86 /* nanosecond_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanosecond_timer.h; sourceTree = "<group>"; };
 		9A5DCE39271A75CA00C2ED86 /* mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm.mm; sourceTree = "<group>"; };
@@ -4334,6 +4336,22 @@
 			path = data;
 			sourceTree = "<group>";
 		};
+		9A5498692A2C162D0052BAB6 /* geometry4d */ = {
+			isa = PBXGroup;
+			children = (
+				9A54986A2A2C162D0052BAB6 /* quadruple.h */,
+			);
+			path = geometry4d;
+			sourceTree = "<group>";
+		};
+		9A54986B2A2C17550052BAB6 /* geometry */ = {
+			isa = PBXGroup;
+			children = (
+				9A54986C2A2C17550052BAB6 /* sequence.h */,
+			);
+			path = geometry;
+			sourceTree = "<group>";
+		};
 		9A615C0028B1B5B600377F68 /* __acme */ = {
 			isa = PBXGroup;
 			children = (
@@ -4697,8 +4715,10 @@
 				9A68A6DB2511442F008DABD2 /* comparison */,
 				9A15A720264B6F2C0080670E /* data */,
 				9A68A61B2511442F008DABD2 /* datetime */,
+				9A54986B2A2C17550052BAB6 /* geometry */,
 				9A68A6042511442F008DABD2 /* geometry2d */,
 				9A68A7672511442F008DABD2 /* geometry3d */,
+				9A5498692A2C162D0052BAB6 /* geometry4d */,
 				9A7861D9264B90B4003DF8A0 /* mathematics */,
 				9A13DCF428442369009ED8FC /* media_library */,
 				9A68A6332511442F008DABD2 /* primitive */,

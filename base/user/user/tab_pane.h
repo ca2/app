@@ -13,8 +13,8 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_pane :
-      virtual public ::property_object
-//,      virtual public ::draw2d::holder
+      virtual public ::property_object,
+      virtual public ::draw2d::holder
    {
    public:
 

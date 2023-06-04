@@ -32,7 +32,7 @@ namespace nanoui
 
    Widget::Widget(Widget* parent)
       : m_pwidgetParent(nullptr), m_ptheme(nullptr), m_playout(nullptr),
-      m_pos(0), m_size(0), m_fixed_size(0), m_bVisible(true), m_bEnabled(true),
+      m_bVisible(true), m_bEnabled(true),
       m_bMouseHover(false), m_tooltip(""), m_font_size(-1)
       , m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/
    {
@@ -1001,7 +1001,7 @@ namespace nanoui
 
       auto pointScreenMainWindow = screen()->m_puserinteraction->position();
 
-      auto pointScreen = sequence2_i32(pointScreenMainWindow.x(), pointScreenMainWindow.y());
+      auto pointScreen = pointScreenMainWindow;
 
       pointScreen += absolutePosition;
 
@@ -1100,9 +1100,9 @@ namespace nanoui
    void Widget::fixed_placement(const ::rectangle_i32& rectangle)
    {
 
-      set_position(::sequence2_i32(::sequence2_i32(rectangle.left, rectangle.top)));
+      set_position(rectangle.top_left());
 
-      set_fixed_size(::sequence2_i32(rectangle.width(), rectangle.height()));
+      set_fixed_size(rectangle.size());
 
    }
 
@@ -1114,11 +1114,11 @@ namespace nanoui
 
       auto rectangleOld = interaction_rectangle();
 
-      auto positionNew = ::sequence2_i32(::sequence2_i32(rectangle.left, rectangle.top));
+      auto positionNew = rectangle.top_left();
 
       set_position(positionNew);
 
-      auto sizeNew = ::sequence2_i32(rectangle.width(), rectangle.height());
+      auto sizeNew = rectangle.size();
 
       set_fixed_size(sizeNew);
 

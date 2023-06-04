@@ -1314,9 +1314,9 @@ namespace user
       using ::user::primitive::send;
       virtual lresult send(::message::message* pmessage) override;
       void post(::message::message* pmessage) override;
-      virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
 
@@ -1770,7 +1770,7 @@ namespace user
 
 
       //virtual void track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point_i32& point) override;
-      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32& sizeMinimum = nullptr) override;
+      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32 & sizeMinimum = {}) override;
 
       bool _001OnBeforeEnterIconic() override;
       bool _001OnBeforeEnterNormal() override;
@@ -1864,7 +1864,7 @@ namespace user
 
       virtual bool calculate_window_rectangle_in_main_monitor(::rectangle_i32 & rectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
 
-      virtual index calculate_broad_and_compact_restore(::rectangle_i32 * prectWorkspace = nullptr, const ::size_i32 & sizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(::rectangle_i32 * prectWorkspace = nullptr, const ::size_i32 & sizeMin = {}, const ::rectangle_i32& rectangleHint = nullptr);
 
        //virtual void reset_window_state();
 

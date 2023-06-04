@@ -572,12 +572,7 @@ RECT_TYPE1 & unite(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 }
 
 
-template < typename X, typename Y >
-auto get_dimension(enum_orientation eorientation, X x, Y y);
 
-
-template < typename X, typename Y >
-auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
 
 
 template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
@@ -1035,56 +1030,6 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return bottom_right(&rectangle); }
 
 
-template < typename X, typename Y >
-inline auto get_dimension(enum_orientation eorientation, X x, Y y)
-{
-
-   if (eorientation == e_orientation_horizontal)
-   {
-
-      return x;
-
-   }
-   else if (eorientation == e_orientation_vertical)
-   {
-
-      return y;
-
-   }
-   else
-   {
-
-      throw ::exception(error_bad_argument, "invalid orientation");
-
-   }
-
-}
-
-
-template < typename X, typename Y >
-inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
-{
-
-   if (eorientation == e_orientation_vertical)
-   {
-
-      return x;
-
-   }
-   else if (eorientation == e_orientation_horizontal)
-   {
-
-      return y;
-
-   }
-   else
-   {
-
-      throw ::exception(error_bad_argument, "invalid orientation");
-
-   }
-
-}
 
 
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >

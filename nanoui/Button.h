@@ -55,9 +55,9 @@ namespace nanoui
       /// The caption of this Button.
       ::string m_strCaption;
 
-      float m_tw;
-      float m_iw;
-      float m_ih;
+      float m_fTextWidth;
+      ::size_f32 m_sizeImage;
+      //float m_ih;
 
       /**
        * \brief The icon of this Button (``0`` means no icon).
@@ -70,7 +70,7 @@ namespace nanoui
        * reciprocal counterpart :func:`nanoui::nano2d::IsFontIcon`.
        * \endrst
        */
-      int m_icon;
+      int m_iIcon;
 
       /// The position to draw the icon at.
       IconPosition m_icon_position;
@@ -130,9 +130,9 @@ namespace nanoui
    
    
       /// Returns the icon of this Button.  See \::pointer nanoui::Button::m_icon.
-      int icon() const { return m_icon; }
+      int icon() const { return m_iIcon; }
       /// Sets the icon of this Button.  See \::pointer nanoui::Button::m_icon.
-      void set_icon(int icon) { m_icon = icon; }
+      void set_icon(int iIcon) { m_iIcon = iIcon; }
 
       /// The current flags of this Button (see \::pointer nanoui::Button::Flags for options).
       int flags() const { return m_flags; }

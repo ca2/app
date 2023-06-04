@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/point.h"
 #include "acme/primitive/primitive/ptr.h"
 
 
@@ -126,6 +127,12 @@ public:
 
    }
 
+   ::point_i32 point() const
+   {
+      
+      return {(::i32) this->x(), (::i32) this->y()};
+      
+   }
 
 };
 

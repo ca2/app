@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -1982,7 +1982,7 @@ namespace experience_anthill
             else
             {
 
-               auto rectangleShadow = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
+               //auto rectangleShadow = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -2248,7 +2248,7 @@ namespace experience_anthill
             else
             {
 
-               auto rectangleShadow = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
+               //auto rectangleShadow = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {

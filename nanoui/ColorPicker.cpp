@@ -42,13 +42,13 @@ namespace nanoui
       m_pick_button = memory_new Button(m_ppopup, "Pick");
       m_pick_button->set_background_color(color);
       m_pick_button->set_text_color(color.contrasting_color());
-      m_pick_button->set_fixed_size(sequence2_i32(100, 20));
+      m_pick_button->set_fixed_size({100, 20});
 
       // set the reset button to the specified color
       m_reset_button = memory_new Button(m_ppopup, "Reset");
       m_reset_button->set_background_color(color);
       m_reset_button->set_text_color(color.contrasting_color());
-      m_reset_button->set_fixed_size(sequence2_i32(100, 20));
+      m_reset_button->set_fixed_size({100, 20});
 
       PopupButton::set_change_callback([&](bool)
          {

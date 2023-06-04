@@ -148,7 +148,7 @@ namespace user
       virtual bool _is_window();
 
       
-      virtual ::lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32& point = nullptr);
+      virtual ::lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = {});
 
 
       virtual void post_message(const ::atom& atom, wparam wParam = 0, ::lparam lParam = 0);
@@ -355,7 +355,7 @@ namespace user
       //virtual ::user::frame * EnsureParentFrame();
 
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point = nullptr);
+      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "sequence.h"
+#include "acme/primitive/geometry/sequence.h"
 
 
 template < primitive_number NUMBER >
@@ -16,7 +16,57 @@ public:
    //using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
    
-   using sequence_type < NUMBER, 2 >::sequence_type;
+   ///using sequence_type < NUMBER, 2 >::sequence_type;
+   
+   
+   point_type() {}
+   point_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
+   //point_type(::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
+
+//   sequence_type(const sequence_type&) = default;
+
+//   template <primitive_number T,
+//      std::enable_if_t<T::SIZE == SIZE &&
+//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
+   point_type(UNIT_TYPE n)
+   {
+   
+      this->set_all(n);
+      
+   }
+   
+   point_type(NUMBER x, NUMBER y)
+   {
+      this->m_coordinatea[0] = x;
+      this->m_coordinatea[1] = y;
+   }
+   
+   template < primitive_number NUMBER1 >
+   point_type(const sequence_type < NUMBER1, 2 > & sequence) :
+      sequence_type < UNIT_TYPE, 2 >(sequence)
+   {
+      
+   }
+   
+
+//   sequence_type(COORDINATE s) {
+//      for (size_t i = 0; i < SIZE; ++i)
+//         m_coordinatea[i] = s;
+//   }
+
+
+//   void set_all(COORDINATE coordinate)
+//   {
+//
+//      for (size_t i = 0; i < SIZE; ++i)
+//      {
+//
+//         m_coordinatea[i] = coordinate;
+//
+//      }
+//
+//   }
+
 
 //   point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
 //   point_type(enum_no_initialize) noexcept {  }
@@ -86,7 +136,7 @@ public:
 //   inline point_type & operator = (const PRIMITIVE_SIZE  & point) { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE)point.y(); return *this; }
 
    
-   inline point_type & operator = (const ::sequence_type < UNIT_TYPE, 2 > & sequence2) { this->x() = sequence2.a(); this->y() = sequence2.b(); return *this; }
+   inline point_type & operator = (const ::point_type < UNIT_TYPE > & point) { this->x() = point.x(); this->y() = point.y(); return *this; }
 
    //operator POINT_BASE_TYPE*() noexcept { return this; }
    //operator const POINT_BASE_TYPE*() const noexcept { return this; }
@@ -94,7 +144,7 @@ public:
 
    ::u32 u32() const noexcept { return __u32(this->x(), this->y()); }
    ::u64 u64() const noexcept { return __u64(this->x(), this->y()); }
-   ::lparam lparam() const noexcept { return { this->x(), this->y() }; }
+   //::lparam lparam() const noexcept { return { this->x(), this->y() }; }
 
    point_type& Null() { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE) 0;  return *this; }
 
@@ -106,18 +156,18 @@ public:
 
 
 
-   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->x(), this->y()); }
-   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->x(), this->y()); }
-   inline UNIT_TYPE get_orthogonal(enum_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal_dimension(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+//   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return get_dimension(eorientation, this->x(), this->y()); }
+//   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return get_normal_dimension(eorientation, this->x(), this->y()); }
+//   inline UNIT_TYPE get_orthogonal(enum_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
+//   inline UNIT_TYPE get_normal_dimension(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+//   inline UNIT_TYPE get_normal(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
 
 
-   inline UNIT_TYPE set_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept;
-   inline UNIT_TYPE set_orthogonal_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept;
-   inline UNIT_TYPE set_orthogonal(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
-   inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
-   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
+//   inline UNIT_TYPE set_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept;
+//   inline UNIT_TYPE set_orthogonal_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept;
+//   inline UNIT_TYPE set_orthogonal(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
+//   inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
+//   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
 
    template < primitive_point POINT >
    double distance(const POINT& point) const { auto s = *this - point; return sqrt((double) (s.cx() * s.cx() + s.cy() * s.cy())); }
@@ -139,6 +189,26 @@ public:
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_null(this); }
 
+   template < primitive_number NUMBER1 >
+   point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 n) const
+   {
+      point_type < largest_number < UNIT_TYPE, NUMBER1 > > result;
+      result[0] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[0] * n);
+      result[1] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[1] * n);
+      return result;
+   }
+
+
+   template < primitive_number NUMBER1 >
+   point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(NUMBER1 n) const
+   {
+      point_type < largest_number < UNIT_TYPE, NUMBER1 > > result;
+      result[0] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[0] / n);
+      result[1] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[1] / n);
+      return result;
+   }
+
+   
    template < primitive_size SIZE >
    inline point_type& operator +=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE) (this->x() + size.cx()); this->y() = (UNIT_TYPE)(this->y() + size.cy()); return *this; }
 
@@ -280,22 +350,22 @@ public:
 
 
 
-inline auto __point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
+//inline auto __point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
 inline auto __point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
 inline auto __point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
 
 
-inline auto __point_i64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
+//inline auto __point_i64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
 inline auto __point_i64(const ::u32 u) noexcept { return ::point_i64((i64)__u32x(u), (i64)__u32y(u)); }
 inline auto __point_i64(const ::u64 u) noexcept { return ::point_i64((i64)__u64x(u), (i64)__u64y(u)); }
 
 
-inline auto __point_f32(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
+//inline auto __point_f32(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
 inline auto __point_f32(const ::u32 u) noexcept { return ::point_f32((float)__u32x(u), (float)__u32y(u)); }
 inline auto __point_f32(const ::u64 u) noexcept { return ::point_f32((float)__u64x(u), (float)__u64y(u)); }
 
 
-inline auto __point_f64(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
+//inline auto __point_f64(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
 inline auto __point_f64(const ::u32 u) noexcept { return ::point_f64((double)__u32x(u), (double)__u32y(u)); }
 inline auto __point_f64(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
 

@@ -104,7 +104,7 @@ namespace draw2d_opengl
                     const char * lpszOutput, const void * lpInitData);
       bool CreateIC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
                     const char * lpszOutput, const void * lpInitData);
-      void create_memory_graphics(const ::size_i32 & size = nullptr) override;
+      void create_memory_graphics(const ::size_i32 & size = {}) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       virtual bool opengl_create_offscreen_buffer(const ::size_i32 & size);

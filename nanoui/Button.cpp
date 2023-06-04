@@ -21,12 +21,12 @@ namespace nanoui
 {
 
 
-   Button::Button(Widget* parent, const ::scoped_string& caption, int icon)
-      : Widget(parent), m_strCaption(caption), m_icon(icon),
+   Button::Button(Widget* parent, const ::scoped_string& caption, int iIcon)
+      : Widget(parent), m_strCaption(caption), m_iIcon(iIcon),
       m_icon_position(IconPosition::LeftCentered), m_bChecked(false),
       m_flags(NormalButton), m_colorBackground(::color::color(0, 0)),
       m_colorText(::color::color(0, 0)),
-      m_tw(-1.f), m_iw(-1.f), m_ih(-1.f)
+      m_fTextWidth(-1.f), m_sizeImage(-1.f, -1.f)
    {
 
 
@@ -36,32 +36,34 @@ namespace nanoui
    size_i32 Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
-      if (bRecalcTextSize || m_tw < 0.f || m_iw < 0.f || m_ih < 0.f)
+      if (bRecalcTextSize || m_fTextWidth < 0.f || m_sizeImage.cx() < 0.f || m_sizeImage.cy() < 0.f)
       {
 
          int font_size = m_font_size == -1 ? m_ptheme->m_iButtonFontSize : m_font_size;
          pcontext->font_size((float)font_size);
          pcontext->font_face("sans-bold");
-         m_tw = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
-         m_iw = 0.0f;
-         m_ih = (float)font_size;
+         m_fTextWidth = pcontext->text_bounds(0, 0, m_strCaption, nullptr);
+         m_sizeImage.cx() = 0.0f;
+         m_sizeImage.cy() = (float)font_size;
 
-         if (m_icon) {
-            if (::nano2d_is_font_icon(m_icon)) {
+         if (m_iIcon) {
+            if (::nano2d_is_font_icon(m_iIcon)) {
                pcontext->font_face("icons");
-               pcontext->font_size(m_ih * icon_scale());
-               m_iw = pcontext->text_bounds(0, 0, get_utf8_character(m_icon), nullptr)
+               pcontext->font_size(m_sizeImage.cy() * icon_scale());
+               m_sizeImage.cx() = pcontext->text_bounds(0, 0, get_utf8_character(m_iIcon), nullptr)
                   + m_size.cy() * 0.15f;
             }
             else {
                int pwidgetChild, h;
-               pcontext->image_size(m_icon, &pwidgetChild, &h);
-               m_iw = pwidgetChild * m_ih / h;
+               pcontext->image_size(m_iIcon, &pwidgetChild, &h);
+               m_sizeImage.cx() = pwidgetChild * m_sizeImage.cy() / h;
             }
          }
 
       }
-      return sequence2_i32((int)(m_tw + m_iw) + 20, (int)(m_ih + 11));
+      
+      return ::size_i32((int)(m_fTextWidth + m_sizeImage.cx()) + 20, (int)(m_sizeImage.cy() + 11));
+      
    }
 
    //
@@ -383,11 +385,11 @@ namespace nanoui
       if (!m_bEnabled)
          text_color = m_ptheme->m_colorDisableText;
 
-      if (m_icon) {
-         auto icon = get_utf8_character(m_icon);
+      if (m_iIcon) {
+         auto icon = get_utf8_character(m_iIcon);
 
          float iw, ih = (float)font_size;
-         if (::nano2d_is_font_icon(m_icon)) {
+         if (::nano2d_is_font_icon(m_iIcon)) {
             ih *= icon_scale();
             pcontext->font_size(ih);
             pcontext->font_face("icons");
@@ -396,7 +398,7 @@ namespace nanoui
          else {
             int pwidgetChild, h;
             ih *= 0.9f;
-            pcontext->image_size(m_icon, &pwidgetChild, &h);
+            pcontext->image_size(m_iIcon, &pwidgetChild, &h);
             iw = pwidgetChild * ih / h;
          }
          if (m_strCaption != "")
@@ -421,7 +423,7 @@ namespace nanoui
             icon_pos.x() = m_pos.x() + m_size.cx() - iw - 8.f;
          }
 
-         if (::nano2d_is_font_icon(m_icon)) 
+         if (::nano2d_is_font_icon(m_iIcon))
          {
 
             pcontext->text(icon_pos.x(), icon_pos.y() + 1, icon.data());
@@ -432,7 +434,7 @@ namespace nanoui
 
             ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
                icon_pos.x(), icon_pos.y() - ih / 2, iw, ih, 0, m_bEnabled ? 0.5f : 0.25f,
-               m_icon);
+               m_iIcon);
 
             pcontext->fill_paint(img_paint);
 

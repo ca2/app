@@ -409,7 +409,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = nullptr) override;
+      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = {}) override;
 
 
 //#ifdef LINUX

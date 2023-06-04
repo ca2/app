@@ -96,7 +96,7 @@ void ImageImpact::center()
 
    }
 
-   m_offset = sequence2_i32(.5f * (sequence2_f32(m_size) * screen()->pixel_ratio() - sequence2_f32((float)m_pimage->width(), (float)m_pimage->height())) * scale());
+   m_offset = m_size * .5f * screen()->pixel_ratio() - m_pimage->size() * scale();
 
 }
 
@@ -111,15 +111,15 @@ void ImageImpact::reset()
 }
 
 
-sequence2_f32 ImageImpact::pos_to_pixel(const sequence2_f32 & p) const 
+point_f32 ImageImpact::pos_to_pixel(const point_f32 & p) const
 {
 
-   sequence2_f32 p2 = p;
+   auto p2 = p;
 
    if (m_bDrawBorder)
    {
 
-      p2 -= 1.f;
+      p2 -= ::size_f32(1.f, 1.f);
 
    }
 
@@ -128,15 +128,15 @@ sequence2_f32 ImageImpact::pos_to_pixel(const sequence2_f32 & p) const
 }
 
 
-sequence2_f32 ImageImpact::pixel_to_pos(const sequence2_f32 & p) const 
+point_f32 ImageImpact::pixel_to_pos(const point_f32 & p) const
 {
 
-   sequence2_i32 pos = (p * scale() + m_offset) / screen()->pixel_ratio();
+   auto pos = (p * scale() + m_offset) / screen()->pixel_ratio();
 
    if (m_bDrawBorder)
    {
 
-      pos += 1;
+      pos += ::size_f32(1.f, 1.f);
 
    }
 

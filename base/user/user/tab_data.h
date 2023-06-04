@@ -16,8 +16,8 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_data :
-      virtual public ::data::data
-// , virtual public ::draw2d::holder
+      virtual public ::data::data,
+      virtual public ::draw2d::holder
    {
    public:
 

@@ -284,7 +284,7 @@ namespace draw2d
 
       virtual void create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
-      virtual void create_memory_graphics(const ::size_i32 & size = nullptr);
+      virtual void create_memory_graphics(const ::size_i32 & size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics * pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 

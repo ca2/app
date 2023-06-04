@@ -159,6 +159,9 @@
 		9A4AE70027F9549A00A4B000 /* control_box_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4AE6FD27F9549900A4B000 /* control_box_button.h */; };
 		9A4AE70127F9549A00A4B000 /* control_box_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AE6FE27F9549900A4B000 /* control_box_icon.cpp */; };
 		9A5494812A2AB0070052BAB6 /* _defer_geometry2d_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5494802A2AB0070052BAB6 /* _defer_geometry2d_item.h */; };
+		9A5498662A2C00320052BAB6 /* holdee.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5498632A2C00310052BAB6 /* holdee.cpp */; };
+		9A5498672A2C00320052BAB6 /* holdee.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5498642A2C00310052BAB6 /* holdee.h */; };
+		9A5498682A2C00320052BAB6 /* holder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5498652A2C00310052BAB6 /* holder.cpp */; };
 		9A5ECD4028CCC3940084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
 		9A5ECD4128CCC3940084D354 /* shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5ECD3E28CCC3940084D354 /* shape.h */; };
 		9A5ECD4428CCC39E0084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
@@ -734,6 +737,9 @@
 		9A4AE6FD27F9549900A4B000 /* control_box_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = control_box_button.h; sourceTree = "<group>"; };
 		9A4AE6FE27F9549900A4B000 /* control_box_icon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control_box_icon.cpp; sourceTree = "<group>"; };
 		9A5494802A2AB0070052BAB6 /* _defer_geometry2d_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer_geometry2d_item.h; sourceTree = "<group>"; };
+		9A5498632A2C00310052BAB6 /* holdee.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = holdee.cpp; sourceTree = "<group>"; };
+		9A5498642A2C00310052BAB6 /* holdee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = holdee.h; sourceTree = "<group>"; };
+		9A5498652A2C00310052BAB6 /* holder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = holder.cpp; sourceTree = "<group>"; };
 		9A5ECD3D28CCC3940084D354 /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
 		9A5ECD3E28CCC3940084D354 /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
 		9A6854782432ED410002FE94 /* bitmap_source_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_source_buffer.h; sourceTree = "<group>"; };
@@ -1247,6 +1253,9 @@
 				9A3764572409BF05002D15D3 /* graphics_extension.h */,
 				9A37646E2409BF0B002D15D3 /* graphics.cpp */,
 				9A37640A2409BEF8002D15D3 /* graphics.h */,
+				9A5498632A2C00310052BAB6 /* holdee.cpp */,
+				9A5498642A2C00310052BAB6 /* holdee.h */,
+				9A5498652A2C00310052BAB6 /* holder.cpp */,
 				9A1FB50D28712FAC0042849A /* holder.h */,
 				9AE245DB27F1227900B849D0 /* host.cpp */,
 				9AE245DC27F1227900B849D0 /* host.h */,
@@ -1923,6 +1932,7 @@
 				9A92313B27EACF2100B5A78D /* _.h in Headers */,
 				9A979D9328C82B1C0013DC54 /* text_composition_composite.h in Headers */,
 				9AC2CE4326533BFC00CC8096 /* title.h in Headers */,
+				9A5498672A2C00320052BAB6 /* holdee.h in Headers */,
 				9A92312127EACF2100B5A78D /* cursor.h in Headers */,
 				9A979D8928C82B1C0013DC54 /* plain_edit_style.h in Headers */,
 				9AC2CE4526533BFC00CC8096 /* timeout.h in Headers */,
@@ -2368,6 +2378,7 @@
 				9A979D6F28C82ACE0013DC54 /* drawable.cpp in Sources */,
 				9A92313A27EACF2100B5A78D /* gif_antialias_8bit.cpp in Sources */,
 				9A8660702966888E000C82F0 /* object.cpp in Sources */,
+				9A5498662A2C00320052BAB6 /* holdee.cpp in Sources */,
 				9A92313527EACF2100B5A78D /* cursor.cpp in Sources */,
 				9A1E1D8722F0AF69004243B8 /* graphics.cpp in Sources */,
 				9AC2CED52653455600CC8096 /* monitor.cpp in Sources */,
@@ -2471,6 +2482,7 @@
 				9A75C6AA283D6E6400EC37F2 /* device_listener.cpp in Sources */,
 				9A92311127EACF2100B5A78D /* frame.cpp in Sources */,
 				9A979D9628C82B1C0013DC54 /* zorder.cpp in Sources */,
+				9A5498682A2C00320052BAB6 /* holder.cpp in Sources */,
 				9A8FCD8A2651AFAB00C0D8A1 /* font_enumeration.cpp in Sources */,
 				9A8EB3562449821B0056E362 /* callback.cpp in Sources */,
 				9AC2CEDA2653455600CC8096 /* display.cpp in Sources */,

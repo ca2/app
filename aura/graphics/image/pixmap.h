@@ -229,7 +229,7 @@ struct pixmap
    //   pixmap& operator = (const ::rectangle_i32& rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
    //
    //
-   //   inline ::rectangle_i32 rectangle(const point_i32& point = nullptr) const { return m_pbitmapMap->rectangle(point); }
+   //   inline ::rectangle_i32 rectangle(const point_i32 & point = {}) const { return m_pbitmapMap->rectangle(point); }
    //
    //   pixmap& operator =(const pixmap& pixmap);
    //

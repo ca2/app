@@ -209,18 +209,18 @@ namespace experience_core
       auto rectangleClient = client_rectangle();
 
       __defer_construct(m_pregion);
+      
+      ::ellipse_f64 ellipse;
+      
+      ellipse.set(rectangleClient);
 
-      m_pregion->create_ellipse(rectangleClient);
+      m_pregion->create_ellipse(ellipse);
 
       __defer_construct_new(m_pitemClient);
 
       __construct(m_pitemClient->m_ppath);
 
       m_pitemClient->m_eelement = e_element_client;
-
-      ::ellipse_f64 ellipse;
-
-      ellipse.set(rectangleClient);
 
       m_pitemClient->m_ppath->add_ellipse(ellipse);
 

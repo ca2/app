@@ -681,4 +681,3 @@ constexpr void expand_minimum_maximum(NUMBER & minimum, NUMBER & maximum, NUMBER
 
 
 
-

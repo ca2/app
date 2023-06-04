@@ -519,7 +519,7 @@ namespace nanoui
 
                   erase_tab(tab_id(pitem->m_iItem));
 
-                  mouse_motion_event(p, sequence2_i32(0), false, ::user::e_key_none);
+                  mouse_motion_event(p, {}, false, ::user::e_key_none);
 
                }
 
@@ -559,7 +559,7 @@ namespace nanoui
 
                   m_iTabDragIndex = -1;
 
-                  mouse_motion_event(p, sequence2_i32(0), false, ::user::e_key_none);
+                  mouse_motion_event(p, {}, false, ::user::e_key_none);
 
                }
 

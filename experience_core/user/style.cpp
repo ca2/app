@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
@@ -2032,7 +2032,7 @@ namespace experience_core
          if (bSimple)
          {
 
-            int iSize = statusrectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
+            int iSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
 
             rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
@@ -2052,7 +2052,7 @@ namespace experience_core
          else
          {
 
-            int iSize = statusrectangleTrack.size().get_normal(pbar->m_eorientation);
+            int iSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
             rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 

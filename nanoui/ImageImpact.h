@@ -87,9 +87,9 @@ namespace nanoui
       void set_scale(float scale);
 
       /// Convert a position within the pwidget to a pixel position in the image
-      sequence2_f32 pos_to_pixel(const sequence2_f32 & p) const;
+      point_f32 pos_to_pixel(const point_f32 & p) const;
       /// Convert a pixel position in the image to a position within the pwidget
-      sequence2_f32 pixel_to_pos(const sequence2_f32 & p) const;
+      point_f32 pixel_to_pos(const point_f32 & p) const;
 
       // Widget implementation
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) override;

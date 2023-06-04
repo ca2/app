@@ -30,7 +30,7 @@ namespace nanoui
    size_i32 BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      size_i32 size(2 * m_iMargin);
+      size_i32 size(2 * m_iMargin, 2 * m_iMargin);
 
       int y_offset = 0;
 
@@ -58,7 +58,7 @@ namespace nanoui
 
       auto iAxisIndex1 = index_of(m_eorientation);
 
-      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = orthogonal2_index_of(m_eorientation);
 
       for (auto pwidgetChild : pwidget->children())
       {
@@ -117,7 +117,7 @@ namespace nanoui
 
       auto iAxisIndex1 = index_of(m_eorientation);
 
-      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = orthogonal2_index_of(m_eorientation);
 
       int position = m_iMargin;
 
@@ -364,9 +364,9 @@ namespace nanoui
 
       sequence2_i32 size(
          2 * m_iMargin + grid[0].get_sum()
-         + ::maximum((::i32) grid[0].size() - 1, 0) * m_iSpacing[0],
+         + ::maximum((::i32) grid[0].size() - 1, 0) * m_sizeSpacing[0],
          2 * m_iMargin + grid[1].get_sum()
-         + ::maximum((::i32)grid[1].size() - 1, 0) * m_iSpacing[1]
+         + ::maximum((::i32) grid[1].size() - 1, 0) * m_sizeSpacing[1]
       );
 
       const Window* window = dynamic_cast<const Window*>(pwidget);
@@ -388,7 +388,7 @@ namespace nanoui
 
       auto iAxisIndex1 = index_of(m_eorientation);
 
-      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = orthogonal2_index_of(m_eorientation);
 
       auto iChildrenCount = pwidget->children().size();
 
@@ -479,20 +479,20 @@ namespace nanoui
 
       int dim[2] = { (int)grid[0].size(), (int)grid[1].size() };
 
-      sequence2_i32 extra(0);
+      size_i32 sizeExtra;
 
       const Window* window = dynamic_cast<const Window*>(pwidget);
 
       if (window && window->title().has_char())
-         extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+         sizeExtra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
       /* Strech to size provided by \pwidgetChild pwidget */
       for (int i = 0; i < 2; i++) {
-         int grid_size = 2 * m_iMargin + extra[i];
+         int grid_size = 2 * m_iMargin + sizeExtra[i];
          for (int s : grid[i]) {
             grid_size += s;
             if (i + 1 < dim[i])
-               grid_size += m_iSpacing[i];
+               grid_size += m_sizeSpacing[i];
          }
 
          if (grid_size < container_size[i]) {
@@ -509,9 +509,9 @@ namespace nanoui
 
       auto iAxisIndex1 = ::index_of(m_eorientation);
 
-      auto iAxisIndex2 = ::orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = ::orthogonal2_index_of(m_eorientation);
 
-      sequence2_i32 start = m_iMargin + extra;
+      point_i32 start = sizeExtra + ::size_i32(m_iMargin, m_iMargin);
 
       auto iChildrenCount = pwidget->children().size();
 
@@ -577,9 +577,9 @@ namespace nanoui
             pwidgetChild->set_position(item_pos);
             pwidgetChild->set_size(sizeTarget);
             pwidgetChild->perform_layout(pcontext, bRecalcTextSize);
-            pos[iAxisIndex1] += grid[iAxisIndex1][i1] + m_iSpacing[iAxisIndex1];
+            pos[iAxisIndex1] += grid[iAxisIndex1][i1] + m_sizeSpacing[iAxisIndex1];
          }
-         pos[iAxisIndex2] += grid[iAxisIndex2][i2] + m_iSpacing[iAxisIndex2];
+         pos[iAxisIndex2] += grid[iAxisIndex2][i2] + m_sizeSpacing[iAxisIndex2];
       }
    }
 
@@ -598,20 +598,20 @@ namespace nanoui
 
       compute_layout(pcontext, pwidget, grid);
 
-      sequence2_i32 size(grid[0].get_sum(), grid[1].get_sum());
+      size_i32 size(grid[0].get_sum(), grid[1].get_sum());
 
-      sequence2_i32 extra(2 * m_iMargin);
+      size_i32 sizeExtra(2 * m_iMargin, 2 * m_iMargin);
 
       const Window* window = dynamic_cast<const Window*>(pwidget);
 
       if (window && window->title().has_char())
       {
 
-         extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+         sizeExtra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
       }
 
-      return size + extra;
+      return size + sizeExtra;
 
    }
 
@@ -716,7 +716,7 @@ namespace nanoui
          fs_w[1] ? fs_w[1] : pwidget->height()
       );
 
-      sequence2_i32 extra(2 * m_iMargin);
+      size_i32 extra(2 * m_iMargin, 2 * m_iMargin);
       Window* window = dynamic_cast<Window*>(pwidget);
       if (window && window->title().has_char())
          extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;

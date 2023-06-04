@@ -1635,11 +1635,11 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    auto psystem = acmesystem()->m_pcoresystem;
 
-   psystem->imaging().channel_spread_set_color(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
+   psystem->imaging().channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
    pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   psystem->imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
-   psystem->imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
+   psystem->imaging().channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
+   psystem->imaging().channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
 
    pimageCache->set_rgb(0, 0, 0);
 

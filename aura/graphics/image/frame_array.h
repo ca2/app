@@ -34,8 +34,8 @@ public:
    const ::size_i32 size() { return m_size; }
    const ::size_i32 & size() const { return m_size; }
 
-   ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) { return ::rectangle_i32(point, m_size); }
-   const ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) const { return ::rectangle_i32(point, m_size); }
+   ::rectangle_i32 rectangle(const ::point_i32 & point = {}) { return ::rectangle_i32(point, m_size); }
+   const ::rectangle_i32 rectangle(const ::point_i32 & point = {}) const { return ::rectangle_i32(point, m_size); }
 
    virtual ::image_pointer calc_current_frame(image_dynamic & dynamic);
    virtual void update(::image * pimageHost, const ::image_drawing & imagedrawing);

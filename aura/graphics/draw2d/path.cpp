@@ -1704,20 +1704,20 @@ namespace draw2d
       // bottom left
       Corner.left -= (rectangle.width() - iDiameter - 1);
       Corner.right = Corner.left + iDiameter2;
-      add_arc(Corner, 135, 45);
+      add_arc(Corner, 135_degree, 45_degree);
 
       add_line(rectangle.left, rectangle.top + rectangle.height() - iDiameter / 2, rectangle.left, rectangle.top + iDiameter / 2);
 
 
       Corner.top -= (rectangle.height() - iDiameter - 1);
       Corner.bottom = Corner.top + iDiameter2;
-      add_arc(Corner, 180, 90);
+      add_arc(Corner, 180_degree, 90_degree);
 
       add_line(rectangle.left + iDiameter / 2, rectangle.top, rectangle.left + rectangle.width() - iDiameter / 2, rectangle.top);
 
       Corner.left += (rectangle.width() - iDiameter - 1);
       Corner.right = Corner.left + iDiameter2;
-      add_arc(Corner, 270, 45);
+      add_arc(Corner, 270_degree, 45_degree);
 
 
       // end path
@@ -1757,7 +1757,7 @@ namespace draw2d
       // top right
       Corner.left += (rectangle.width() - iDiameter - 1);
       Corner.right = Corner.left + iDiameter2;
-      add_arc(Corner, 315, 45);
+      add_arc(Corner, 315_degree, 45_degree);
 
       add_line(rectangle.left + rectangle.width(), rectangle.top + iDiameter / 2, rectangle.left + rectangle.width(), rectangle.top + rectangle.height() - iDiameter / 2);
 

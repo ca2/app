@@ -228,11 +228,11 @@ namespace draw2d_cairo
       // "inline" paths.
       void _intersect_clip() override;
       //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-      void _add_clipping_shape(const ::rectangle_f64 & rectangle_f64, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::rectangle_f64 & rectangle_f64, ::draw2d::region * pregion) override;
       //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;
-      void _add_clipping_shape(const ::ellipse_f64 & ellipse, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion) override;
       //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
-      void _add_clipping_shape(const ::polygon & polygon_i32, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::polygon_f64 & polygon_i32, ::draw2d::region * pregion) override;
 
       void _add_shape(const ::rectangle_f64 & rectangle_f64);
       //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;

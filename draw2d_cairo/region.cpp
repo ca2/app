@@ -3,6 +3,7 @@
 #include "keep.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/item.h"
 #include <math.h>
 
 
@@ -31,29 +32,31 @@ namespace draw2d_cairo
    bool region::is_simple_positive_region()
    {
 
-      switch(m_eregion)
+      auto eitem = m_pitem->type();
+
+      switch(eitem)
       {
-      case ::draw2d::e_region_none:
+      case ::draw2d::e_item_none:
 
          return true;
 
-      case ::draw2d::e_region_rect:
+      case ::draw2d::e_item_rectangle:
 
          return true;
 
-      case ::draw2d::e_region_ellipse:
+      case ::draw2d::e_item_ellipse:
 
          return true;
 
-      case ::draw2d::e_region_polygon:
+      case ::draw2d::e_item_polygon:
 
          return true;
 
-      case ::draw2d::e_region_poly_polygon:
+      case ::draw2d::e_item_poly_polygon:
 
          return false;
 
-      case ::draw2d::e_region_combine:
+      case ::draw2d::e_item_combine:
 
          return false;
 
@@ -73,27 +76,27 @@ namespace draw2d_cairo
 
       switch(m_eregion)
       {
-         case ::draw2d::e_region_none:
+         case ::draw2d::e_item_none:
 
             return true;
 
-         case ::draw2d::e_region_rect:
+         case ::draw2d::e_item_rect:
 
             return true;
 
-         case ::draw2d::e_region_ellipse:
+         case ::draw2d::e_item_ellipse:
 
             return false;
 
-         case ::draw2d::e_region_polygon:
+         case ::draw2d::e_item_polygon:
 
             return false;
 
-         case ::draw2d::e_region_poly_polygon:
+         case ::draw2d::e_item_poly_polygon:
 
             return false;
 
-         case ::draw2d::e_region_combine:
+         case ::draw2d::e_item_combine:
          {
 
             ::pointer < combine_item > pcombineitem = m_pitem;
@@ -216,11 +219,11 @@ namespace draw2d_cairo
 
       switch(m_eregion)
       {
-      case ::draw2d::e_region_none:
+      case ::draw2d::e_item_none:
 
          break;
 
-      case ::draw2d::e_region_rect:
+      case ::draw2d::e_item_rect:
 
          _rect(pgraphics);
 
@@ -230,7 +233,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_ellipse:
+      case ::draw2d::e_item_ellipse:
 
          _oval(pgraphics);
 
@@ -240,7 +243,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_polygon:
+      case ::draw2d::e_item_polygon:
 
          _polygon(pgraphics);
 
@@ -250,7 +253,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_poly_polygon:
+      case ::draw2d::e_item_poly_polygon:
 
          _polygon(pgraphics);
 
@@ -260,7 +263,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_combine:
+      case ::draw2d::e_item_combine:
 
          _mask_combine(pgraphics);
 
@@ -287,35 +290,35 @@ namespace draw2d_cairo
 
       switch(m_eregion)
       {
-         case ::draw2d::e_region_none:
+         case ::draw2d::e_item_none:
 
             break;
 
-         case ::draw2d::e_region_rect:
+         case ::draw2d::e_item_rect:
 
             _rect(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_ellipse:
+         case ::draw2d::e_item_ellipse:
 
             _oval(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_polygon:
+         case ::draw2d::e_item_polygon:
 
             _polygon(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_poly_polygon:
+         case ::draw2d::e_item_poly_polygon:
 
             _polygon(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_combine:
+         case ::draw2d::e_item_combine:
 
             _combine(pgraphics);
 
@@ -579,13 +582,13 @@ namespace draw2d_cairo
 
       switch(m_eregion)
       {
-         case ::draw2d::e_region_none:
+         case ::draw2d::e_item_none:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
-         case ::draw2d::e_region_rect:
+         case ::draw2d::e_item_rect:
          {
             cairo_rectangle_int_t cairorectangleint;
 
@@ -600,28 +603,28 @@ namespace draw2d_cairo
 
       }
 
-         case ::draw2d::e_region_ellipse:
+         case ::draw2d::e_item_ellipse:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
 
-         case ::draw2d::e_region_polygon:
+         case ::draw2d::e_item_polygon:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
 
-         case ::draw2d::e_region_poly_polygon:
+         case ::draw2d::e_item_poly_polygon:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
 
-         case ::draw2d::e_region_combine:
+         case ::draw2d::e_item_combine:
          {
 
             ::pointer<combine_item> pcombineitem = m_pitem;

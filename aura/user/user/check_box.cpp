@@ -380,7 +380,7 @@ namespace user
 
       ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.bottom);
 
-      ppath->add_arc(rectangleR, 90.0, -180.0);
+      ppath->add_arc(rectangleR, 90_degree, -180_degree);
 
       ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.top);
 

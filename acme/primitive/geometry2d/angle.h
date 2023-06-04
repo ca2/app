@@ -19,7 +19,7 @@ public:
    template < primitive_floating FLOATING1 >
    constexpr angle_type(const ::angle_type <FLOATING1 > & angle) : m_fAngle((UNIT_TYPE) angle.m_fAngle) {}
 
-   angle_type operator -() const { return (angle_type)-m_fAngle; }
+   angle_type operator -() const { return radians(-m_fAngle); }
 
    operator UNIT_TYPE() const { return m_fAngle; }
 

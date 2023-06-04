@@ -16253,7 +16253,7 @@ namespace user
    size_i32 interaction::get_window_minimum_size()
    {
 
-      return nullptr;
+      return {};
 
    }
 

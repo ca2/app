@@ -612,7 +612,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 
    }
 
-   draw(pimage->get_graphics(), iImage, nullptr, 0);
+   draw(pimage->get_graphics(), iImage, {}, 0);
 
    return pimage;
 

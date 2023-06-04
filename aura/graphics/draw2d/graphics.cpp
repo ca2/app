@@ -394,7 +394,7 @@ namespace draw2d
    point_f64 graphics::GetBrushOrg()
    {
 
-      return nullptr;
+      return {};
 
    }
 
@@ -438,7 +438,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(x);
       __UNREFERENCED_PARAMETER(y);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -448,7 +448,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(point);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -600,7 +600,7 @@ namespace draw2d
    size_f64 graphics::get_extents()
    {
 
-      return ::size_f64(0, 0);
+      return {};
 
    }
 
@@ -608,7 +608,7 @@ namespace draw2d
    point_f64 graphics::GetWindowOrg()
    {
 
-      return nullptr;
+      return {};
 
    }
 
@@ -616,7 +616,7 @@ namespace draw2d
    size_f64 graphics::GetWindowExt()
    {
 
-      return ::size_f64(0, 0);
+      return {};
 
    }
 
@@ -644,7 +644,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(point);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -846,7 +846,7 @@ namespace draw2d
 
       double y = (y1 + y2) / 2.0;
 
-      arc(x1, y1, x2 - x1, y2 - y1, atan2(x3 - x, y3 - y), atan2(x4 - x, y4 - y));
+      arc(x1, y1, x2 - x1, y2 - y1, radians(atan2(x3 - x, y3 - y)), radians(atan2(x4 - x, y4 - y)));
 
    }
 
@@ -2828,7 +2828,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(x);
       __UNREFERENCED_PARAMETER(y);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -2840,7 +2840,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(nHeight);
 
-      return nullptr;
+      return {};
 
    }
 

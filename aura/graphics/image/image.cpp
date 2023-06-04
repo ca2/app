@@ -4250,7 +4250,7 @@ void image::copy_from_no_create(::image * pimage, const ::point_i32 & point)
 void image::copy_from_no_create(::image * pimage)
 {
 
-   return copy_from_no_create(pimage, nullptr);
+   return copy_from_no_create(pimage, {});
 
 }
 
@@ -4282,7 +4282,7 @@ void image::copy_from(::image* pimage, const ::point_i32  & point, ::enum_flag e
 void image::copy_from(::image * pimage, enum_flag eflagCreate)
 {
 
-   return copy_from(pimage, nullptr, eflagCreate);
+   return copy_from(pimage, {}, eflagCreate);
 
 }
 
@@ -8974,7 +8974,7 @@ void image::gradient_fill(::color32_t clr1, ::color32_t clr2, const point_i32& p
 
       int dim = maximum(width(), height());
 
-      double angle = atan2(greekdeltay, greekdeltax);
+      auto angle = radians(atan2(greekdeltay, greekdeltax));
 
       ::image_pointer pimage;
 
@@ -9040,7 +9040,7 @@ void image::gradient_fill(::color32_t clr1, ::color32_t clr2, const point_i32& p
 
          pimage->gradient_vertical_fill(clr1, clr2, point1.x(), point2.x());
 
-         pimage->rotate(this, pmathematics->get_pi() - angle, 1.0);
+         pimage->rotate(this, radians(pmathematics->get_pi() - angle), 1.0);
 
       }
 

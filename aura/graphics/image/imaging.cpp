@@ -2248,7 +2248,9 @@ void imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
 
       pixmap_lock lock(pimage, rectangle);
 
-      fastblur.blur(pimage, iRadius);
+      //fastblur.initialize(pimage->size(), iRadisu)
+
+      fastblur.blur(pimage);
 
    }
 

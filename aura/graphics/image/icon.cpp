@@ -134,7 +134,7 @@ namespace draw2d
       if (m_sizea.is_empty())
       {
 
-         return nullptr;
+         return {};
 
       }
 
@@ -191,7 +191,7 @@ namespace draw2d
       if (m_sizea.is_empty())
       {
 
-         return nullptr;
+         return {};
 
       }
 
@@ -218,7 +218,7 @@ namespace draw2d
       if (iFound < 0)
       {
 
-         return nullptr;
+         return {};
 
       }
 

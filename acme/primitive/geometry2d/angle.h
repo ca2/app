@@ -13,10 +13,10 @@ public:
    UNIT_TYPE m_fAngle; // in radians
 
 
-   angle_type() : m_fAngle(0.0) {}
-   angle_type(enum_no_initialize) {}
-   angle_type(nullptr_t) : m_fAngle(0.0) {}
-   angle_type(UNIT_TYPE d) : m_fAngle(d) {}
+   constexpr angle_type() : m_fAngle(0.0) {}
+   constexpr angle_type(no_initialize_t) {}
+   //constexpr angle_type(nullptr_t) : m_fAngle(0.0) {}
+   constexpr angle_type(const angle_type & angle) : m_fAngle(angle.m_fAngle) {}
 
    angle_type operator -() const { return (angle_type)-m_fAngle; }
 
@@ -41,27 +41,49 @@ public:
 using angle_f32 = angle_type < ::f32 >;
 using angle_f64 = angle_type < ::f64 >;
 
+template < primitive_floating FLOATING >
+constexpr angle_f64 radians(FLOATING fAngle)
+{
+   
+   angle_f64 angle;
+   
+   angle.m_fAngle = (::f64) fAngle;
+   
+   return angle;
+   
+}
 
-inline angle_f64 operator "" _degree(long double d)
+
+template < primitive_number NUMBER >
+constexpr angle_f64 degrees(NUMBER degrees)
+{
+   
+   return radians(degrees * MATH_PI / 180.0);
+   
+}
+
+
+
+inline angle_f64 operator "" _degree(long double degrees)
 {
 
-   return (angle_f64)(d * MATH_PI / 180.0);
+   return radians(degrees * MATH_PI / 180.0);
 
 }
 
 
-inline angle_f64 operator "" _degrees(long double d)
+inline angle_f64 operator "" _degrees(long double degrees)
 {
 
-   return operator "" _degree(d);
+   return operator "" _degree(degrees);
 
 }
 
 
-inline angle_f64 operator "" _degree(unsigned long long int ull)
+inline angle_f64 operator "" _degree(unsigned long long int degrees)
 {
 
-   return ((long double)ull) * MATH_PI / 180.0;
+   return radians(degrees * MATH_PI / 180.0);
 
 }
 

@@ -7240,7 +7240,7 @@ namespace user
 
          ASSERT(false);
 
-         return nullptr;
+         return {};
 
       }
 

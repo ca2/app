@@ -174,7 +174,7 @@ namespace message
    {
    public:
 
-      i16 m_Δ;
+      i16 m_greekdelta;
 
       mouse_wheel();
 

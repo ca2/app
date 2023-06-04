@@ -127,43 +127,50 @@ NAMESPACE_END(detail)
    class FormHelper {
    public:
       /// Create a helper class to construct NanoGUI widgets on the given pscreen
-      FormHelper(Screen * pscreen) : m_screen(pscreen) { }
+      FormHelper(Screen * pscreen) : m_pscreen(pscreen) { }
 
+      
       /// Add a memory_new top-level window
       Window * add_window(const sequence2_i32 & pos,
-         const ::scoped_string & title = "Untitled") {
-         ASSERT(m_screen);
-         m_window = memory_new Window(m_screen, title);
+         const ::scoped_string & title = "Untitled")
+      {
+         ASSERT(m_pscreen);
+         m_pwindow = memory_new Window(m_pscreen, title);
          m_playout = memory_new AdvancedGridLayout({ 10, 0, 10, 0 }, {});
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);
-         m_window->set_position(pos);
-         m_window->set_layout(m_playout);
-         m_window->set_visible(true);
-         return m_window;
+         m_pwindow->set_position(pos);
+         m_pwindow->set_layout(m_playout);
+         m_pwindow->set_visible(true);
+         return m_pwindow;
       }
+      
 
       /// Add a memory_new group that may contain several sub-widgets
-      Label * add_group(const ::scoped_string & caption) {
-         Label * label = memory_new Label(m_window, caption, m_group_font_name, m_group_font_size);
+      Label * add_group(const ::scoped_string & caption)
+      {
+         Label * plabel = memory_new Label(m_pwindow, caption, m_group_font_name, m_group_font_size);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_pre_group_spacing); /* Spacing */
          m_playout->append_row(0);
-         m_playout->set_anchor(label, AdvancedGridLayout::Anchor(0, m_playout->row_count() - 1, 4, 1));
+         m_playout->set_anchor(plabel, AdvancedGridLayout::Anchor(0, m_playout->row_count() - 1, 4, 1));
          m_playout->append_row(m_post_group_spacing);
-         return label;
+         return plabel;
       }
 
       /// Add a memory_new data pwidget controlled using custom getter/setter functions
       template <typename Type> detail::FormWidget<Type> *
-         add_variable(const ::scoped_string & label, const std::function<void(const Type &)> & setter,
-            const std::function<Type()> & getter, bool editable = true) {
-         Label * label_w = memory_new Label(m_window, label, m_label_font_name, m_label_font_size);
-         auto pwidget = memory_new detail::FormWidget<Type>(m_window);
+         add_variable(const ::scoped_string & label,
+                      const std::function<void(const Type &)> & setter,
+            const std::function<Type()> & getter,
+                      bool editable = true)
+      {
+         Label * plabel_w = memory_new Label(m_pwindow, label, m_label_font_name, m_label_font_size);
+         auto pwidget = memory_new detail::FormWidget<Type>(m_pwindow);
          auto refresh = [pwidget, getter] {
             Type value = getter(), current = pwidget->value();
             if (value != current)
-               pwidget->set_value(value);
+               pwidget->set_value(value, e_source_sync);
          };
          refresh();
          pwidget->set_callback(setter);
@@ -175,7 +182,7 @@ NAMESPACE_END(detail)
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_variable_spacing);
          m_playout->append_row(0);
-         m_playout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
+         m_playout->set_anchor(plabel_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
          m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_playout->row_count() - 1));
          return pwidget;
       }
@@ -191,26 +198,28 @@ NAMESPACE_END(detail)
       }
 
       /// Add a button with a custom callback
-      Button * add_button(const ::scoped_string & label, const std::function<void()> & cb) {
-         Button * button = memory_new Button(m_window, label);
-         button->set_callback(cb);
-         button->set_fixed_height(25);
+      Button * add_button(const ::scoped_string & label, const std::function<void()> & cb)
+      {
+         Button * pbutton = memory_new Button(m_pwindow, label);
+         pbutton->set_callback(cb);
+         pbutton->set_fixed_height(25);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_variable_spacing);
          m_playout->append_row(0);
-         m_playout->set_anchor(button, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
-         return button;
+         m_playout->set_anchor(pbutton, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
+         return pbutton;
       }
 
-      /// Add an arbitrary (optionally labeled) pwidget to the layout
-      void add_widget(const ::scoped_string & label, Widget * pwidget) {
+      /// Add an arbitrary (optionally labeled) widget to the layout
+      void add_widget(const ::scoped_string & label, Widget * pwidget)
+      {
          m_playout->append_row(0);
          if (label == "") {
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
          }
          else {
-            Label * label_w = memory_new Label(m_window, label, m_label_font_name, m_label_font_size);
-            m_playout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
+            Label * plabel_w = memory_new Label(m_pwindow, label, m_label_font_name, m_label_font_size);
+            m_playout->set_anchor(plabel_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_playout->row_count() - 1));
          }
       }
@@ -222,22 +231,23 @@ NAMESPACE_END(detail)
       }
 
       /// Access the currently active \::pointer Window instance
-      Window * window() { return m_window; }
+      Window * window() { return m_pwindow; }
 
       /// Set the active \::pointer Window instance.
-      void set_window(Window * window) {
-         m_window = window;
-         m_playout = dynamic_cast<AdvancedGridLayout *>(window->layout());
+      void set_window(Window * pwindow)
+      {
+         m_pwindow = pwindow;
+         m_playout = dynamic_cast<AdvancedGridLayout *>(pwindow->layout());
          if (m_playout == nullptr)
             throw std::runtime_error(
                "Internal error: window has an incompatible layout!");
       }
 
       /// Specify a fixed size for newly added widgets
-      void set_fixed_size(const sequence2_i32 & fw) { m_fixed_size = fw; }
+      void set_fixed_size(const ::size_i32 & fw) { m_fixed_size = fw; }
 
       /// The current fixed size being used for newly added widgets.
-      sequence2_i32 fixed_size() { return m_fixed_size; }
+      ::size_i32 fixed_size() { return m_fixed_size; }
 
       /// The font name being used for group headers.
       ::string group_font_name() const { return m_group_font_name; }
@@ -271,9 +281,9 @@ NAMESPACE_END(detail)
 
    protected:
       /// A reference to the \::pointer nanoui::Screen this FormHelper is assisting.
-      ::pointer<Screen> m_screen;
+      ::pointer<Screen> m_pscreen;
       /// A reference to the \::pointer nanoui::Window this FormHelper is controlling.
-      ::pointer<Window> m_window;
+      ::pointer<Window> m_pwindow;
       /// A reference to the \::pointer nanoui::AdvancedGridLayout this FormHelper is using.
       ::pointer<AdvancedGridLayout> m_playout;
       /// The callbacks associated with all widgets this FormHelper is managing.
@@ -283,7 +293,7 @@ NAMESPACE_END(detail)
       /// The label font name.
       ::string m_label_font_name = "sans";
       /// The fixed size for newly added widgets.
-      sequence2_i32 m_fixed_size = sequence2_i32(0, 20);
+      ::size_i32 m_fixed_size = size_i32(0, 20);
       /// The font size for group headers.
       int m_group_font_size = 20;
       /// The font size for labels.
@@ -325,7 +335,9 @@ NAMESPACE_BEGIN(detail)
  * \tparam T
  *     The type being used inside the ComboBox.
  */
-template <typename T> class FormWidget<T, typename std::is_enum<T>::type> : public ComboBox {
+template <typename T> class FormWidget<T, typename std::is_enum<T>::type> :
+   public ComboBox
+{
 public:
    /// Creates a memory_new FormWidget with underlying type ComboBox.
    FormWidget(Widget * p) : ComboBox(p) { }
@@ -334,7 +346,14 @@ public:
    T value() const { return (T)selected_index(); }
 
    /// Pass-through function for \::pointer nanoui::ComboBox::set_selected_index.
-   void set_value(T value) { set_selected_index((int)value); m_iSelectedIndex = (int)value; }
+   void set_value(T value, const ::action_context & actioncontext)
+   {
+      
+      set_selected_index((::index)value, actioncontext);
+      
+      m_iSelectedIndex = (::index)value;
+      
+   }
 
    /// Pass-through function for \::pointer nanoui::ComboBox::set_callback.
    void set_callback(const std::function<void(const T &)> & cb) {
@@ -392,7 +411,7 @@ public:
    FormWidget(Widget * p) : ColorPicker(p) { }
 
    /// Pass-through function for \::pointer nanoui::ColorPicker::set_color.
-   void set_value(const ::color::color & pwidgetChild) { set_color(pwidgetChild); }
+   void set_value(const ::color::color & pwidgetChild, const ::action_context & actioncontext) { set_color(pwidgetChild); }
 
    /// Pass-through function for \::pointer nanoui::Widget::set_enabled.
    void set_editable(bool e) { set_enabled(e); }

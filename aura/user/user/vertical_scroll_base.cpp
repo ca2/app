@@ -239,12 +239,12 @@ namespace user
 
       ::pointer<::message::mouse_wheel>pmousewheel(pmessage);
 
-      auto Δ = pmousewheel->m_Δ;
+      auto greekdelta = pmousewheel->m_greekdelta;
 
-      if (Δ > 0)
+      if (greekdelta > 0)
       {
 
-         for (; Δ > 0; Δ -= 120)
+         for (; greekdelta > 0; greekdelta -= 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_up);
@@ -255,7 +255,7 @@ namespace user
       else
       {
 
-         for (; Δ < 0; Δ += 120)
+         for (; greekdelta < 0; greekdelta += 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_down);

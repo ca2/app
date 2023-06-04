@@ -145,6 +145,7 @@ public:
    inline void set(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
 
    inline UNIT_TYPE minimum() const {return sequence_type <UNIT_TYPE, 2>::minimum();}
+   inline UNIT_TYPE maximum() const {return sequence_type <UNIT_TYPE, 2>::maximum();}
    inline size_type minimum(const size_type & s)const noexcept { return size_type(::minimum(this->cx(), s.cx()), ::minimum(this->cy(), s.cy())); }
    inline size_type maximum(const size_type& s)const noexcept { return size_type(::maximum(this->cx(), s.cx()), ::maximum(this->cy(), s.cy())); }
 

@@ -87,7 +87,7 @@ namespace nanoui
       void set_spinnable(bool spinnable) { m_bSpinnable = spinnable; }
 
       ::string value() const { return m_strValue; }
-      void set_value(const ::scoped_string& value);
+      void set_value(const ::scoped_string& value, const ::action_context & actioncontext);
 
       ::string default_value() const { return m_strDefaultValue; }
       void set_default_value(const ::scoped_string& default_value) { m_strDefaultValue = default_value; }

@@ -19184,7 +19184,7 @@ namespace user
 
       ::pointer<::message::mouse_wheel>pwheel = pmessage;
 
-      double y = pwheel->m_Δ / 120.0;
+      double y = pwheel->m_greekdelta / 120.0;
 
       auto pappearance = get_appearance();
 

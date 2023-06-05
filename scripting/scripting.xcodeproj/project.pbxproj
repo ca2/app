@@ -47,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A54A1452A2D57BE0052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A54A1472A2D57BE0052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A7EDBF72670E3A700BC7094 /* libscripting.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libscripting.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7EDC122670E3DD00BC7094 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A7EDC142670E3DD00BC7094 /* _scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _scripting.h; sourceTree = "<group>"; };
@@ -97,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				9A7EDD0E2671005500BC7094 /* javascript */,
+				9A54A1472A2D57BE0052BAB6 /* _____debug.xcconfig */,
+				9A54A1452A2D57BE0052BAB6 /* _____release.xcconfig */,
 				9A7EDC152670E3DD00BC7094 /* _.cpp */,
 				9A7EDC262670E3DE00BC7094 /* _.h */,
 				9A7EDC142670E3DD00BC7094 /* _scripting.h */,
@@ -110,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				9A7EDC3A2670E41B00BC7094 /* libacme.dylib */,
-				9A7EDC3C2670E41B00BC7094 /* libios_acme.a */,
+				9A7EDC3C2670E41B00BC7094 /* libstatic_acme.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,10 +223,10 @@
 			remoteRef = 9A7EDC392670E41B00BC7094 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A7EDC3C2670E41B00BC7094 /* libios_acme.a */ = {
+		9A7EDC3C2670E41B00BC7094 /* libstatic_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_acme.a;
+			path = libstatic_acme.a;
 			remoteRef = 9A7EDC3B2670E41B00BC7094 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -254,6 +258,7 @@
 /* Begin XCBuildConfiguration section */
 		9A7EDBFE2670E3A700BC7094 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A54A1472A2D57BE0052BAB6 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -308,7 +313,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -350,6 +354,7 @@
 		};
 		9A7EDBFF2670E3A700BC7094 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A54A1452A2D57BE0052BAB6 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

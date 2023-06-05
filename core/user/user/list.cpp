@@ -290,16 +290,16 @@ namespace user
 
                if (i == 0)
                {
-                  w = sizea[0].cx() - x;
-                  x = sizea[0].cx();
+                  w = (::index) (sizea[0].cx() - x);
+                  x = (::index) (sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
 
                }
                else
                {
-                  w = sizea[i - 1].cx() - x;
-                  x = sizea[i - 1].cx();
+                  w = (::index) (sizea[i - 1].cx() - x);
+                  x = (::index) (sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
@@ -5660,13 +5660,13 @@ namespace user
          {
             if (i == 0)
             {
-               x = sizea[0].cx();
-               y += sizea[0].cy();
+               x = (::index) (sizea[0].cx());
+               y += (::index) (sizea[0].cy());
             }
             else
             {
-               x = sizea[i - 1].cx();
-               y += sizea[i - 1].cy();
+               x = (::index) (sizea[i - 1].cx());
+               y += (::index) (sizea[i - 1].cy());
             }
          }
       }
@@ -5822,7 +5822,7 @@ namespace user
 
          m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
-         cx += size.cx();
+         cx += (::index) (size.cx());
 
       }
 

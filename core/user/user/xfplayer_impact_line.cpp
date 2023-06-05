@@ -852,18 +852,18 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
                                                 m_strPrefix(0, i),
                                                 size);
 
-         m_iaPosition.add(size.cx());
+         m_iaPosition.add((int) size.cx());
 
       }
       
-      int iSize = size.cx();
+      int iSize = (int) size.cx();
       
       m_pgraphicsextension->get_text_extent(
                                             pgraphics,
                                             " ",
                                             size);
 
-      m_iaPosition.add(iSize + size.cx());
+      m_iaPosition.add((int) (iSize + size.cx()));
       
       pgraphics->set(m_pfont);
 
@@ -875,7 +875,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
          m_strRoot(0, i),
          size);
 
-         m_iaPosition.add(iSize + size.cx());
+         m_iaPosition.add((int) (iSize + size.cx()));
 
       }
 
@@ -895,7 +895,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
          m_str(0, i),
          size);
 
-         m_iaPosition[i] = size.cx();
+         m_iaPosition[i] = (int) (size.cx());
 
       }
 

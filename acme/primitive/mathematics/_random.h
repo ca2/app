@@ -14,6 +14,16 @@ template<typename TYPE>
 inline TYPE random();
 
 
+template < typename UNIT_TYPE >
+inline UNIT_TYPE linear_random(const UNIT_TYPE & t1, const UNIT_TYPE & t2)
+{
+   if (t2 == t1)
+      return t1;
+   return (UNIT_TYPE)(((double)(t2 - t1) * (double)rand() / (double)RAND_MAX) + (double)t1);
+
+}
+
+
 template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
 inline ::largest_type < FLOATING1, FLOATING2 > random(const FLOATING1 & f1, const FLOATING2 & f2)
 {

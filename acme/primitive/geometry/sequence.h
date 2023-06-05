@@ -6,7 +6,7 @@
     All rights reserved. Use of this source code is governed by a
     BSD-style license that can be found in the LICENSE.txt file.
 */
-// Merge with estamira/particle/vec4:linear_rand
+// Merge with estamira/particle/vec4:linear_random
 #pragma once
 
 
@@ -18,14 +18,7 @@
 //#include <string.h> // memset
 
 
-template < typename UNIT_TYPE >
-inline UNIT_TYPE linear_rand(const UNIT_TYPE & t1, const UNIT_TYPE & t2)
-{
-   if (t2 == t1)
-      return t1;
-   return ((t2 - t1) * rand()/ RAND_MAX) + t1;
 
-}
 
 
 
@@ -265,14 +258,14 @@ struct sequence_type
 
 
 
-   inline sequence_type linear_rand(const sequence_type &sequence) const
+   inline sequence_type linear_random(const sequence_type &sequence) const
    {
 
       return sequence_type(
-             linear_rand(this->a(), sequence.a()),
-             linear_rand(this->b(), sequence.b()),
-             linear_rand(this->c(), sequence.c()),
-             linear_rand(this->d(), sequence.d()));
+             linear_random(this->a(), sequence.a()),
+             linear_random(this->b(), sequence.b()),
+             linear_random(this->c(), sequence.c()),
+             linear_random(this->d(), sequence.d()));
 
    }
 

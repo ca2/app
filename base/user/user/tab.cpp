@@ -1412,7 +1412,7 @@ namespace user
 
             }
 
-            cx = size.cx() + 2;
+            cx = (::i32) (size.cx() + 2.0);
 
             if(!ppane->m_bPermanent)
             {
@@ -1428,7 +1428,7 @@ namespace user
 
             }
 
-            cy = size.cy() + 2;
+            cy = (::i32) (size.cy() + 2.0);
 
             if(cy > iTabHeight)
             {
@@ -1519,7 +1519,7 @@ namespace user
 
             }
 
-            cy = size.cy() + 2;
+            cy = (::i32) (size.cy() + 2.0);
 
             if(cy > iTabHeight)
             {
@@ -1548,10 +1548,10 @@ namespace user
 
             }
 
-            ppane->m_size.cx() = size.cx() + ixAdd
+            ppane->m_size.cx() = (::i32) (size.cx() + ixAdd
                                  + get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right
                                  + get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right
-                                 + get_data()->m_rectangleTextMargin.left + get_data()->m_rectangleTextMargin.right;
+                                 + get_data()->m_rectangleTextMargin.left + get_data()->m_rectangleTextMargin.right);
 
             x += ppane->m_size.cx();
          }
@@ -2451,9 +2451,9 @@ namespace user
                   for(int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                   {
 
-                     rectangleText.left += ppane->m_sizeaText[iTitle].cx();
+                     rectangleText.left += (::i32) (ppane->m_sizeaText[iTitle].cx());
 
-                     rectangleText.right = rectangleText.left + get_data()->m_sizeSep.cx();
+                     rectangleText.right = (::i32) (rectangleText.left + get_data()->m_sizeSep.cx());
 
                      if(rectangleText.contains(point))
                      {
@@ -2462,7 +2462,7 @@ namespace user
 
                      }
 
-                     rectangleText.left += get_data()->m_sizeSep.cx();
+                     rectangleText.left += (::i32) (get_data()->m_sizeSep.cx());
 
                   }
 

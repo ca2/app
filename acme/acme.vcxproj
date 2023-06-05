@@ -1043,6 +1043,7 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\region.cpp" />
     <ClCompile Include="primitive\geometry2d\item.cpp" />
+    <ClCompile Include="primitive\geometry2d\size.cpp" />
     <ClCompile Include="primitive\geometry2d\_aaa_shape.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>

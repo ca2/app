@@ -461,11 +461,16 @@ using largest_type = typename largest_type_struct<T1, T2>::type;
 
 template < typename T1, typename T2 >
 struct largest_number_struct {
-   using type = if_else< (sizeof(T1) > sizeof(T2)
-                          || (sizeof(T1) == sizeof(T2)
-                              && std::is_floating_point < T1 >::value
-                              && !std::is_floating_point < T2 >::value))
-   , T1, T2>;
+   using type = if_else < 
+      ((::std::is_floating_point_v < T1 > && sizeof(T1) < sizeof(T2))
+      || (::std::is_floating_point_v < T2 > && sizeof(T2) < sizeof(T1))),
+      double,
+      if_else < ((::std::is_floating_point_v < T1 >
+      && ::std::is_floating_point_v < T2 > &&
+      sizeof(T1) > sizeof(T2)) 
+      || (sizeof(T1) == sizeof(T2) &&
+         ::std::is_floating_point_v < T1 >)
+      || (sizeof(T1) > sizeof(T2))), T1, T2 > >;
 };
 
 

@@ -378,7 +378,7 @@ namespace nanoui
 
       auto center = m_pos + m_size * 0.5f;
       
-      auto text_pos = center - ::size_i32(text_width * 0.5f, 1.f);
+      auto text_pos = center - ::size_f32(text_width * 0.5f, 1.f);
 
       ::color::color text_color =
          m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;

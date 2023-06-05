@@ -223,7 +223,7 @@ public:
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(const sequence_type <NUMBER1, 2> & sequence) const { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx() / sequence.a()), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy() / sequence.b())); }
 
    template < primitive_number NUMBER1 >
-   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 d) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >(( largest_type < UNIT_TYPE, NUMBER1 >)(this->cx() * d), ( largest_type < UNIT_TYPE, NUMBER1 >)(this->cy() * d)); }
+   inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 d) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx() * d), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy() * d)); }
 
    //inline size_type operator +(int i) const noexcept { return size_type(this->cx() + i, this->cy() + i); }
    template < primitive_number NUMBER1 >

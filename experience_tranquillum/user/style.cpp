@@ -701,7 +701,8 @@ namespace experience_tranquillum
                size.cx() += pane.m_pimage->width() + 2;
                size.cy() = maximum(size.cy(), pane.m_pimage->height());
             }
-            cx = size.cx() + 2;
+
+            cx = (::i32) (size.cx() + 2.0);
 
             if (!pane.m_bPermanent)
             {
@@ -712,7 +713,7 @@ namespace experience_tranquillum
             {
                iTabWidth = cx;
             }
-            cy = size.cy() + 2;
+            cy = (::i32) (size.cy() + 2.0);
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -802,7 +803,7 @@ namespace experience_tranquillum
 
             }
 
-            cy = size.cy() + 2;
+            cy = (::i32) (size.cy() + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -833,12 +834,12 @@ namespace experience_tranquillum
 
 
 
-            pane.m_size.cx() = size.cx() + ixAdd
+            pane.m_size.cx() = (::i32) (size.cx() + ixAdd
                + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
-               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
+               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right);
 
-            x += pane.m_size.cx();
+            x += (::i32) (pane.m_size.cx());
 
          }
 

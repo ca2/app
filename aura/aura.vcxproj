@@ -644,6 +644,8 @@
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
+    <ClCompile Include="graphics\draw2d\holdee.cpp" />
+    <ClCompile Include="graphics\draw2d\holder.cpp" />
     <ClCompile Include="graphics\draw2d\host.cpp" />
     <ClCompile Include="graphics\draw2d\item.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
@@ -870,6 +872,8 @@
     <ClInclude Include="graphics\draw2d\graphics.h" />
     <ClInclude Include="graphics\draw2d\graphics_call.h" />
     <ClInclude Include="graphics\draw2d\graphics_extension.h" />
+    <ClInclude Include="graphics\draw2d\holdee.h" />
+    <ClInclude Include="graphics\draw2d\holder.h" />
     <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\item.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />

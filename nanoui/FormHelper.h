@@ -163,7 +163,7 @@ NAMESPACE_END(detail)
          auto refresh = [pwidget, getter] {
             Type value = getter(), current = pwidget->value();
             if (value != current)
-               pwidget->set_value(value);
+               pwidget->set_value(value, ::e_source_sync);
          };
          refresh();
          pwidget->set_callback(setter);

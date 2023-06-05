@@ -675,6 +675,12 @@
     <ClCompile Include="graphics\image\drawing.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\holdee.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holder.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1687,6 +1693,12 @@
     </ClInclude>
     <ClInclude Include="user\user\interaction_listener.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\holdee.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\holder.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

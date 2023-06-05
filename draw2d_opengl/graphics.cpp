@@ -2348,7 +2348,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, ::angle fStartAngle, ::angle fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::AngleArc(m_hdc, x, y, nRadius, fStartAngle, fSweepAngle) != false;
@@ -5747,7 +5747,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
    {
 
 

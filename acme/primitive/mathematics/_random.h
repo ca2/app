@@ -1,4 +1,4 @@
-﻿// from acme/include/_.h by camilo on 2022-11-08 00:52 <3ThomasBorregaardSørensen!!
+// from acme/include/_.h by camilo on 2022-11-08 00:52 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -14,12 +14,20 @@ template<typename TYPE>
 inline TYPE random();
 
 
-template < typename UNIT_TYPE >
-inline UNIT_TYPE linear_random(const UNIT_TYPE & t1, const UNIT_TYPE & t2)
+template < typename UNIT_TYPE, primitive_number NUMBER >
+inline UNIT_TYPE linear_rate(const UNIT_TYPE & t1, const UNIT_TYPE & t2, NUMBER numerator, NUMBER denominator)
 {
    if (t2 == t1)
       return t1;
-   return (UNIT_TYPE)(((double)(t2 - t1) * (double)rand() / (double)RAND_MAX) + (double)t1);
+   return (UNIT_TYPE)(((double)(t2 - t1) * (double)numerator / (double)denominator) + (double)t1);
+
+}
+
+
+template < typename UNIT_TYPE >
+inline UNIT_TYPE minimum_maximum_rand(const UNIT_TYPE & t1, const UNIT_TYPE & t2)
+{
+   return linear_rate(t1, t2, ::rand() / RAND_MAX);
 
 }
 

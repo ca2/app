@@ -4051,6 +4051,7 @@
 		9AEA1BAB26794D59006F4A68 /* _system_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _system_color.h; sourceTree = "<group>"; };
 		9AEA1BAD26794D5A006F4A68 /* color32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color32.h; sourceTree = "<group>"; };
 		9AEA1BAE26794D5A006F4A68 /* opacity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opacity.h; sourceTree = "<group>"; };
+		9AF174C32A2D90D900F2AEFA /* _random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _random.h; sourceTree = "<group>"; };
 		9AF2844F27FBCA0D00D4C1A8 /* app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
 		9AF2845127FBCA0D00D4C1A8 /* app.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = app.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4343,6 +4344,7 @@
 		9A5498692A2C162D0052BAB6 /* geometry4d */ = {
 			isa = PBXGroup;
 			children = (
+				9AF174C32A2D90D900F2AEFA /* _random.h */,
 				9A54986A2A2C162D0052BAB6 /* quadruple.h */,
 				9A5498702A2C33380052BAB6 /* color.h */,
 			);

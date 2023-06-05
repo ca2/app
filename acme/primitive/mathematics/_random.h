@@ -27,7 +27,7 @@ inline UNIT_TYPE linear_rate(const UNIT_TYPE & t1, const UNIT_TYPE & t2, NUMBER 
 template < typename UNIT_TYPE >
 inline UNIT_TYPE minimum_maximum_rand(const UNIT_TYPE & t1, const UNIT_TYPE & t2)
 {
-   return linear_rate(t1, t2, ::rand() / RAND_MAX);
+   return linear_rate(t1, t2, ::rand(), RAND_MAX);
 
 }
 

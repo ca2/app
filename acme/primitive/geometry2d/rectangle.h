@@ -300,6 +300,19 @@ public:
    rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }
 
+   
+   rectangle_type & operator*=(UNIT_TYPE n) noexcept
+   {
+      
+      this->left *= n;
+      this->top *= n;
+      this->right *= n;
+      this->bottom *= n;
+
+      return *this;
+      
+   }
+
 
 //   inline rectangle_type & operator+=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.greekdeltax); this->top = (UNIT_TYPE)(this->top + shift.greekdeltay); this->right = (UNIT_TYPE)(this->right + shift.greekdeltax); this->bottom = (UNIT_TYPE)(this->bottom + shift.greekdeltay); return *this; }
 //   inline rectangle_type & operator-=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left - shift.greekdeltax); this->top = (UNIT_TYPE)(this->top - shift.greekdeltay); this->right = (UNIT_TYPE)(this->right + shift.greekdeltax); this->bottom = (UNIT_TYPE)(this->bottom + shift.greekdeltay); return *this; }

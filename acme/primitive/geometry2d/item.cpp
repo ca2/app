@@ -67,7 +67,15 @@ namespace geometry2d
    }
 
 
-   //
+   ::draw2d::enum_item intersect_clip_item::type() const
+   {
+
+      return ::draw2d::e_item_intersect_clip;
+
+   }
+
+
+//
    //void item::expand_bounding_box(::rectangle_f64 & rectangle)
    //{
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -31,7 +31,9 @@ namespace nanoui
  *     which affects all subclasses of this Widget.  Subclasses must explicitly
  *     set a different value if needed (e.g., in their constructor).
  */
-   class CLASS_DECL_NANOUI CheckBox : public Widget {
+   class CLASS_DECL_NANOUI CheckBox :
+      public Widget
+   {
    public:
 
       /// The caption text of this CheckBox.

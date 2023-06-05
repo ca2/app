@@ -41,7 +41,7 @@ namespace nanoui
       Slider(Widget * parent);
 
       float value() const { return m_value; }
-      void set_value(float value) { m_value = value; }
+      void set_value(float value, const ::action_context & actioncontext) { m_value = value; }
 
       const ::color::color & highlight_color() const { return m_highlight_color; }
       void set_highlight_color(const ::color::color & highlight_color) { m_highlight_color = highlight_color; }

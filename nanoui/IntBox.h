@@ -33,7 +33,7 @@ namespace nanoui
          set_format(::std::is_signed<Scalar>::value ? "[-]?[0-9]*" : "[0-9]*");
          set_value_increment(1);
          set_minimum_maximum_values(::std::numeric_limits<Scalar>::lowest(), ::std::numeric_limits<Scalar>::max());
-         set_value(value);
+         set_value(value, e_source_initialize);
          set_spinnable(false);
       }
 
@@ -43,9 +43,9 @@ namespace nanoui
          return value;
       }
 
-      void set_value(Scalar value) {
+      void set_value(Scalar value, const ::action_context & actioncontext) {
          Scalar clamped_value = ::minimum(::maximum(value, m_iMinimumValue), m_iMaximumValue);
-         TextBox::set_value(::as_string(clamped_value));
+         TextBox::set_value(::as_string(clamped_value), actioncontext);
       }
 
       void set_callback(const ::function<void(Scalar)>& cb) {
@@ -53,7 +53,7 @@ namespace nanoui
             [cb, this](const ::scoped_string& str) {
                Scalar value = 0;
                from_string(value, str);
-               set_value(value);
+               set_value(value, e_source_sync);
                cb(value);
                return true;
             }
@@ -100,7 +100,7 @@ namespace nanoui
             if (area == SpinArea::Top) 
             {
             
-               set_value(value() + m_iIncrementValue);
+               set_value(value() + m_iIncrementValue, e_source_user);
 
                if (m_callback)
                {
@@ -113,7 +113,7 @@ namespace nanoui
             else if (area == SpinArea::Bottom) 
             {
             
-               set_value(value() - m_iIncrementValue);
+               set_value(value() - m_iIncrementValue, e_source_user);
 
                if (m_callback)
                {
@@ -148,7 +148,7 @@ namespace nanoui
 
             int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
 
-            set_value(m_iMouseDownValue + value_delta * m_iIncrementValue);
+            set_value(m_iMouseDownValue + value_delta * m_iIncrementValue, e_source_user);
 
             if (m_callback)
             {
@@ -181,7 +181,7 @@ namespace nanoui
 
             int value_delta = (rel.cy() > 0) ? 1 : -1;
 
-            set_value(value() + value_delta * m_iIncrementValue);
+            set_value(value() + value_delta * m_iIncrementValue, e_source_user);
 
             if (m_callback)
             {

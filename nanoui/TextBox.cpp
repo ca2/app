@@ -66,7 +66,7 @@ namespace nanoui
    }
 
 
-   void TextBox::set_value(const ::scoped_string& value) 
+   void TextBox::set_value(const ::scoped_string& value, const ::action_context & actioncontext) 
    {
 
       m_strValue = value;
@@ -1101,7 +1101,7 @@ namespace nanoui
    }
 
 
-   TextBox::SpinArea TextBox::spin_area(const point_i32& pos) 
+   TextBox::SpinArea TextBox::spin_area(const point_i32& pos)
    {
 
       if (0 <= pos.x() - m_pos.x() && pos.x() - m_pos.x() < 14.f) { /* on scrolling arrows */

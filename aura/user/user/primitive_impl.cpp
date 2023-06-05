@@ -833,7 +833,7 @@ namespace user
 //
 //         }
 
-         pmessage->m_point = ::point_i32(lparam);
+         pmessage->m_point = lparam.point();
 
          _raw_client_to_screen(pmessage->m_point);
 
@@ -862,9 +862,9 @@ namespace user
 
          pmessage->m_ebuttonstate = (::user::enum_button_state) first_u16(wparam);
 
-         pmessage->m_point = ::point_i32(lparam);
+         pmessage->m_point = lparam.point();
 
-         pmessage->m_Δ = second_i16(wparam);
+         pmessage->m_greekdelta = second_i16(wparam);
 
          _raw_client_to_screen(pmessage->m_point);
 

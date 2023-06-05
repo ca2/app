@@ -37,15 +37,3 @@ using location_f64 = LOCATION_F64;
 //
 //};
 
-
-
-
-
-
-
-
-
-
-
-
-

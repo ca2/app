@@ -16,7 +16,7 @@ template < primitive_number NUMBER >
 inline quadruple_type < NUMBER > minimum_maximum_rand(const quadruple_type < NUMBER > & quadruple1, const quadruple_type < NUMBER > & quadruple2)
 {
 
-   return sequence_type(
+   return quadruple_type < NUMBER >(
           minimum_maximum_rand(quadruple1.a(), quadruple2.a()),
           minimum_maximum_rand(quadruple1.b(), quadruple2.b()),
           minimum_maximum_rand(quadruple1.c(), quadruple2.c()),
@@ -31,7 +31,7 @@ inline quadruple_type < NUMBER > homogeneous_minimum_maximum_rand(const quadrupl
    
    auto iRand = ::rand();
 
-   return sequence_type(
+   return quadruple_type < NUMBER >(
           linear_rate(quadruple1.a(), quadruple2.a(), iRand, RAND_MAX),
           linear_rate(quadruple1.b(), quadruple2.b(), iRand, RAND_MAX),
           linear_rate(quadruple1.c(), quadruple2.c(), iRand, RAND_MAX),

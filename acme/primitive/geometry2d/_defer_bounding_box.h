@@ -262,14 +262,14 @@ void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::ellip
 
 
 
-template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
-inline void expand_bounding_box(RECTANGLE & rectangleBounding, const ::line_type < NUMBER > & line)
-{
-
-   expand_bounding_box(rectangleBounding, line.m_p1);
-   expand_bounding_box(rectangleBounding, line.m_p2);
-
-}
+//template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
+//inline void expand_bounding_box(RECTANGLE & rectangleBounding, const ::line_type < NUMBER > & line)
+//{
+//
+//   expand_bounding_box(rectangleBounding, line.m_p1);
+//   expand_bounding_box(rectangleBounding, line.m_p2);
+//
+//}
 
 
 

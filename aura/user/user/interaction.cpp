@@ -4305,11 +4305,11 @@ namespace user
 
             client_rectangle(rectangleDraw);
             
-#if 0
+//#if 0
 
             copy(pgraphics->m_rectangleDraw, rectangleDraw);
             
-#endif
+//#endif
             
             _001OnDraw(pgraphics);
 

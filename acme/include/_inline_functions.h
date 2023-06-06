@@ -686,25 +686,75 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float)
 
 
 /// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
-template < primitive_number NUMBER >
-constexpr void expand_minimum_maximum(NUMBER & minimum, NUMBER & maximum, NUMBER n)
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+constexpr void _expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
 {
 
    if (n < minimum)
    {
 
-      minimum = n;
+      minimum = (NUMBER1) n;
 
    }
    else if (n > maximum)
    {
 
-      maximum = n;
+      maximum = (NUMBER1) n;
 
    }
 
 }
 
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   _expand_minimum_maximum(minimum, maximum, n);
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   _expand_minimum_maximum(minimum, maximum, n);
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   _expand_minimum_maximum(minimum, maximum, n);
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   if (n < minimum)
+   {
+
+      minimum = (NUMBER1) floor(n);
+
+   }
+   else if (n > maximum)
+   {
+
+      maximum = (NUMBER1) ceil(n);
+
+   }
+
+}
 
 
 

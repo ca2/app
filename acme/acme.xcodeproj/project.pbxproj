@@ -1709,8 +1709,8 @@
 		9A9AB0992A2A71E20075A73B /* _defer_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0832A2A71E00075A73B /* _defer_item.h */; };
 		9A9AB09A2A2A71E20075A73B /* _collection_bounding_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0842A2A71E00075A73B /* _collection_bounding_box.h */; };
 		9A9AB09B2A2A71E20075A73B /* _collection_bounding_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0842A2A71E00075A73B /* _collection_bounding_box.h */; };
-		9A9AB09E2A2A71E20075A73B /* bounding_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0862A2A71E10075A73B /* bounding_box.h */; };
-		9A9AB09F2A2A71E20075A73B /* bounding_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0862A2A71E10075A73B /* bounding_box.h */; };
+		9A9AB09E2A2A71E20075A73B /* _defer_bounding_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0862A2A71E10075A73B /* _defer_bounding_box.h */; };
+		9A9AB09F2A2A71E20075A73B /* _defer_bounding_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0862A2A71E10075A73B /* _defer_bounding_box.h */; };
 		9A9AB0A02A2A71E20075A73B /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0872A2A71E20075A73B /* item.h */; };
 		9A9AB0A12A2A71E20075A73B /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9AB0872A2A71E20075A73B /* item.h */; };
 		9AA14D44282A077F00B1621E /* conversation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14D43282A077F00B1621E /* conversation.cpp */; };
@@ -3738,7 +3738,7 @@
 		9A9AB0802A2A71DE0075A73B /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
 		9A9AB0832A2A71E00075A73B /* _defer_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer_item.h; sourceTree = "<group>"; };
 		9A9AB0842A2A71E00075A73B /* _collection_bounding_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _collection_bounding_box.h; sourceTree = "<group>"; };
-		9A9AB0862A2A71E10075A73B /* bounding_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bounding_box.h; sourceTree = "<group>"; };
+		9A9AB0862A2A71E10075A73B /* _defer_bounding_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer_bounding_box.h; sourceTree = "<group>"; };
 		9A9AB0872A2A71E20075A73B /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
 		9AA14D43282A077F00B1621E /* conversation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = conversation.cpp; sourceTree = "<group>"; };
 		9AA8037227BAC793008FF9AA /* library_not_loaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library_not_loaded.h; sourceTree = "<group>"; };
@@ -4897,7 +4897,7 @@
 				9A8F431E2A23022200097EE1 /* _text_stream.h */,
 				9A8F43242A23022300097EE1 /* angle.h */,
 				9A8F432C2A23022500097EE1 /* arc.h */,
-				9A9AB0862A2A71E10075A73B /* bounding_box.h */,
+				9A9AB0862A2A71E10075A73B /* _defer_bounding_box.h */,
 				9A8F43262A23022400097EE1 /* collection.h */,
 				9A8F431F2A23022200097EE1 /* contains.h */,
 				9A8F432A2A23022500097EE1 /* ellipse.h */,
@@ -6995,7 +6995,7 @@
 				9A68ADDC25114434008DABD2 /* string_map.h in Headers */,
 				9A750DA4282B367600C4861B /* user_text.h in Headers */,
 				9A787B73264BB118003DF8A0 /* context.h in Headers */,
-				9A9AB09E2A2A71E20075A73B /* bounding_box.h in Headers */,
+				9A9AB09E2A2A71E20075A73B /* _defer_bounding_box.h in Headers */,
 				9A15A565264B0ECB0080670E /* result.h in Headers */,
 				9AA8FFE927BA72A0008FF9AA /* serial.h in Headers */,
 				9A0841F92935DD5D009F7FF4 /* ansi.h in Headers */,
@@ -7665,7 +7665,7 @@
 				9A786239264B90B5003DF8A0 /* filestream.h in Headers */,
 				9AC018DD274888C8006BEBCC /* compress.h in Headers */,
 				9A8F43A52A23022C00097EE1 /* _random.h in Headers */,
-				9A9AB09F2A2A71E20075A73B /* bounding_box.h in Headers */,
+				9A9AB09F2A2A71E20075A73B /* _defer_bounding_box.h in Headers */,
 				9A786223264B90B5003DF8A0 /* number_limits.h in Headers */,
 				9A3BFBC729C83393005DE2BF /* _impl_write_text_stream.h in Headers */,
 				9A9A9DF129A43882009B6D92 /* scoped_string_base.h in Headers */,

@@ -317,7 +317,8 @@ public:
    }
    
    
-   void expand_bounding_box(point_type & top_left, point_type & bottom_right)
+   template < primitive_point POINT >
+   void expand_bounding_box(POINT & top_left, POINT & bottom_right) const
    {
       
       expand_minimum_maximum(top_left.x(), bottom_right.x(), this->x());
@@ -327,15 +328,18 @@ public:
    }
    
    
-   static void expand_bounding_box(point_type & top_left, point_type & bottom_right, const point_type * ppoint, ::count count)
+   template < primitive_point POINT >
+   static void expand_bounding_box(POINT & top_left, POINT & bottom_right, const point_type * ppoint, ::count count)
    {
 
-      for (::index i = 0; i < count; i++)
+      while(count > 0)
       {
          
-         expand_minimum_maximum(top_left.x(), top_left.x(), ppoint->x());
+         ppoint->expand_bounding_box(top_left, bottom_right);
          
-         expand_minimum_maximum(top_left.y(), top_left.y(), ppoint->y());
+         count--;
+         
+         ppoint++;
 
       }
 
@@ -368,10 +372,6 @@ inline auto __point_f64(const ::u32 u) noexcept { return ::point_f64((double)__u
 inline auto __point_f64(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
 
 
-
-
-
-
 inline bool is_same(const ::point_f64& p1, const ::point_f64& p2, double dTolerance)
 {
 
@@ -386,10 +386,6 @@ inline bool is_different(const ::point_f64& p1, const ::point_f64& p2, double dT
    return !is_same(p1, p2, dTolerance);
 
 }
-
-
-
-
 
 
 template < primitive_number NUMBER1, primitive_number NUMBER2 >

@@ -1,4 +1,4 @@
-﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 // From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 21:12 BRT
 #pragma once
@@ -390,7 +390,7 @@ public:
 
    bool is_item_set() const { return m_atom.is_set() || m_eelement != ::e_element_none; }
 
-   operator bool() const { return is_item_set(); }
+   explicit operator bool() const { return is_item_set(); }
 
    operator enum_element() const { return m_eelement; }
 

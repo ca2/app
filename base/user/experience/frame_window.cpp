@@ -285,7 +285,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     good_move(m_windowrectangle.m_rectangleNormal);
+                     good_move(&m_windowrectangle.m_rectangleNormal);
 
                      display(e_display_normal);
 

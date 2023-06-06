@@ -2,6 +2,15 @@
 #pragma once
 
 
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+void copy(NUMBER1 & n1, const NUMBER1 & n2)
+{
+   
+   n1 = (NUMBER1) n2;
+   
+}
+
+
 template < typename A, typename B >
 inline void swap(A & a, B & b)
 {
@@ -843,14 +852,14 @@ inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 }
 
 
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-void copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
+template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rect1.left = (decltype(RECT_TYPE1::left))rect2.left;
-   rect1.top = (decltype(RECT_TYPE1::top))rect2.top;
-   rect1.right = (decltype(RECT_TYPE1::right))rect2.right;
-   rect1.bottom = (decltype(RECT_TYPE1::bottom))rect2.bottom;
+   copy(rectangle1.left    , rectangle2.left    );
+   copy(rectangle1.top     , rectangle2.top     );
+   copy(rectangle1.right   , rectangle2.right   );
+   copy(rectangle1.bottom  , rectangle2.bottom  );
 
 }
 

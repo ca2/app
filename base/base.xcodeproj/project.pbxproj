@@ -400,6 +400,7 @@
 		9A5ECD2328CCC1620084D354 /* tab_drop_target_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_drop_target_window.cpp; sourceTree = "<group>"; };
 		9A615C3928B1C5BD00377F68 /* tab_document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab_document.h; sourceTree = "<group>"; };
 		9A615C3A28B1C5BD00377F68 /* tab_document.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_document.cpp; sourceTree = "<group>"; };
+		9A6D3F132A2E2A360081052F /* tab_graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_graphics.cpp; sourceTree = "<group>"; };
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
 		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -650,6 +651,7 @@
 				9A1D5DD12751A98C003D9B5F /* tab_pane.h */,
 				9A1D5DFE2751A98C003D9B5F /* tab.cpp */,
 				9A1D5E152751A98C003D9B5F /* tab.h */,
+				9A6D3F132A2E2A360081052F /* tab_graphics.cpp */,
 				9A1D5DFA2751A98C003D9B5F /* toolbar.cpp */,
 				9A1D5E032751A98C003D9B5F /* toolbar.h */,
 				9A1D5DFC2751A98C003D9B5F /* user.cpp */,

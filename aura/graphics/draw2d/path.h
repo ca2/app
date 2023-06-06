@@ -2,19 +2,27 @@
 
 
 #include "object.h"
-#include "acme/primitive/geometry2d/_collection.h"
+#include "path_optimization.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_collection.h"
 //#include "acme/primitive/geometry2d/ellipse.h"
 //#include "acme/primitive/geometry2d/rectangle.h"
 
 
-template < typename HOLDEE >
-class shape_array;
-template < typename HOLDEE >
-class ___shape;
+
+//
+//template < typename HOLDEE >
+//class shape_array;
+//template < typename HOLDEE >
+//class ___shape;
 
 
 namespace draw2d
 {
+
+
+   class path_optimization;
+
 
    class CLASS_DECL_AURA path :
       virtual public ::draw2d::object
@@ -30,8 +38,8 @@ namespace draw2d
       point_f64                              m_pointEnd;
       ::draw2d::enum_fill_mode               m_efillmode;
       point_f64                              m_pointOffset;
-      ::pointer<path_optimization>           m_ppathoptimization;
-      bool                                   m_bUseGeometryRealization;
+      ::pointer < ::draw2d::path_optimization > m_ppathoptimization;
+      bool                                      m_bUseGeometryRealization;
 
 
       path();

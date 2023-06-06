@@ -8285,7 +8285,7 @@ void image::set_rgb(color32_t cr)
 
    ::rectangle_i32 r(rect);
 
-   if (!r.intersect(this->rectangle()))
+   if (r.intersect(this->rectangle()).is_empty())
    {
 
       return 0;
@@ -8354,7 +8354,7 @@ void image::set_rgb(color32_t cr)
 
    ::rectangle_i32 rTotal(this->rectangle());
 
-   if (!r.intersect(rTotal))
+   if (r.intersect(rTotal).is_empty())
    {
 
       return 0;

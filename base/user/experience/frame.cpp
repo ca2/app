@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "frame_window.h"
 #include "control_box.h"
@@ -1073,7 +1073,7 @@ namespace experience
 
       m_pframewindow->::user::interaction::client_rectangle(rectangleClient);
 
-      if (!calculate_window_client_rect(rectangleClient))
+      if (!calculate_window_client_rect(&rectangleClient))
       {
 
          return false;
@@ -1116,7 +1116,7 @@ namespace experience
 
       ::rectangle_i32 rectangleInner(rectangle);
 
-      calculate_window_client_rect(rectangleInner);
+      calculate_window_client_rect(&rectangleInner);
 
       ::rectangle_i32 rectangleBorders[4];
 

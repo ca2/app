@@ -103,6 +103,7 @@ simple_toolbar::~simple_toolbar()
 
 }
 
+#if 0
 
 void simple_toolbar::install_message_routing(::channel * pchannel)
 {
@@ -2732,5 +2733,9 @@ int simple_toolbar::get_image_spacing()
    return i;
 
 }
+
+
+#endif
+
 
 

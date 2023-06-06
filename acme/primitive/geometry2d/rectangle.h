@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "_function_impl.h"
+#include "_function.h"
 #include "acme/primitive/mathematics/numeric_info.h"
 
 
@@ -150,10 +150,10 @@ public:
    POINT_TYPE & bottom_right() noexcept { return *((POINT_TYPE *)this + 1); }
    void swap_left_right() noexcept { ::swap_left_right(*this); }
 
-   operator rectangle_type * () noexcept { return this; }
-   operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
-
-   operator bool() const noexcept { return is_set(); }
+//   operator rectangle_type * () noexcept { return this; }
+//   operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
+//
+//   operator bool() const noexcept { return is_set(); }
 
    rectangle_type & set(UNIT_TYPE i) noexcept { return ::assign(*this, i, i, i, i); }
    rectangle_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::assign(*this, x, y, x, y); }
@@ -255,7 +255,14 @@ public:
    bool null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::null_intersect(*this, rect1, rect2); }
    bool top_left_null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::top_left_null_intersect(*this, rect1, rect2); }
 
-   bool unite(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::unite(*this, rect1, rect2); }
+   rectangle_type & unite(const rectangle_type & rect1, const rectangle_type & rect2) noexcept
+   {
+      
+      return ::unite(*this, rect1, rect2);
+      
+   }
+   
+   
    rectangle_type & unite(const rectangle_type & rectangle) noexcept { return ::unite(*this, *this, rectangle); }
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 

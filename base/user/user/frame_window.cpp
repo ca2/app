@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
@@ -86,10 +86,13 @@ namespace user
 
    frame_window::~frame_window()
    {
+      
       RemoveFrameWnd();
 
-
    }
+
+
+#if 0
 
 
    bool frame_window::_001IsFrameWnd()
@@ -2881,6 +2884,9 @@ namespace user
       return false;
 
    }
+
+
+#endif
 
 
 } // namespace user

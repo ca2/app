@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -551,6 +551,7 @@ namespace windowing
       return m_monitora[iMonitor];
 
    }
+
 
 
    void display::get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const rectangle_i32 & rectangleParam)
@@ -1108,7 +1109,7 @@ namespace windowing
          rectangleIntersect.intersect(rectangleMonitor, rectangleParam);
 
       }
-
+      
       auto sizeMax = rectangleMonitor.size() * 0.9;
 
       if (rectangleIntersect.width() < sizeMin.cx() || rectangleIntersect.height() < sizeMin.cy()
@@ -1169,6 +1170,7 @@ namespace windowing
       }
 
    }
+
 
 
    index display::get_good_restore(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
@@ -1426,8 +1428,6 @@ namespace windowing
 
 
 
-
-
    index display::get_ui_workspace(::user::interaction * pinteraction)
    {
 
@@ -1449,6 +1449,8 @@ namespace windowing
       }
 
    }
+
+
 
    string_array display::get_wallpaper()
    {
@@ -1492,6 +1494,8 @@ namespace windowing
    }
 
 
+
+
    void display::set_wallpaper(const string_array & straWallpaper)
    {
 
@@ -1529,6 +1533,7 @@ namespace windowing
 #endif
 
    }
+
 
    
    string display::get_wallpaper(::index iScreen)
@@ -1601,7 +1606,7 @@ namespace windowing
 
    }
 
-   
+  
    bool display::would_be_docked(const ::rectangle_i32 & rectangleWouldBeSnapped)
    {
 
@@ -1772,6 +1777,8 @@ namespace windowing
       return false;
 
    }
+
+
 
 
    bool display::would_be_restored(const ::rectangle_i32 & rectangleWouldBeRestored)

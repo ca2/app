@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <math.h>
 #include "font_list.h"
 #include "acme/constant/id.h"
@@ -791,7 +791,7 @@ namespace write_text
 
          }
 
-         if (m_efontlist != e_font_list_single_column && !m_rectangleClient)
+         if (m_efontlist != e_font_list_single_column && m_rectangleClient.is_empty())
          {
 
             return;

@@ -1,19 +1,20 @@
 #pragma once
 
 
-#include "acme/constant/character_set.h"
-
-
 #include "aura/graphics/draw2d/object.h"
+
+
+#include "_constant.h"
 
 
 #include "text_metric.h"
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
-#include "acme/constant/character_set.h"
+
+//#include "acme/constant/character_set.h"
 
 
 //#include "acme/primitive/collection/comparable_eq_array.h"
@@ -29,7 +30,6 @@
 #include "font_descriptor.h"
 
 
-#include "_constant.h"
 
 
 namespace write_text

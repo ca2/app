@@ -31,6 +31,8 @@ namespace experience
    }
 
 
+#if 0
+
    void size_manager::initialize_size_manager(::experience::frame_window* pframewindow)
    {
 
@@ -818,6 +820,9 @@ namespace experience
       return true;
 
    }
+
+
+#endif
 
 
 } // namespace experience

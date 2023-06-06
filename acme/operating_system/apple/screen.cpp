@@ -41,26 +41,26 @@ void screen_coordinates_aware_copy(::rectangle_i32 & rectTarget, const CGRect & 
 }
 
 
-void copy(CGRect & rectTarget, const ::rectangle_i32 & rectSource)
-{
+// void copy(CGRect & rectTarget, const ::rectangle_i32 & rectSource)
+// {
 
-   rectTarget.origin.x       = rectSource.left;
-   rectTarget.origin.y       = rectSource.top;
-   rectTarget.size.width     = rectSource.right - rectSource.left;
-   rectTarget.size.height    = rectSource.bottom - rectSource.top;
+//    rectTarget.origin.x       = rectSource.left;
+//    rectTarget.origin.y       = rectSource.top;
+//    rectTarget.size.width     = rectSource.right - rectSource.left;
+//    rectTarget.size.height    = rectSource.bottom - rectSource.top;
 
-}
+// }
 
 
-void copy(::rectangle_i32 & rectTarget, const CGRect & rectSource)
-{
+// void copy(::rectangle_i32 & rectTarget, const CGRect & rectSource)
+// {
 
-   rectTarget.left        = rectSource.origin.x;
-   rectTarget.top         = rectSource.origin.y;
-   rectTarget.right       = rectTarget.left + rectSource.size.width;
-   rectTarget.bottom      = rectTarget.top + rectSource.size.height;
+//    rectTarget.left        = rectSource.origin.x;
+//    rectTarget.top         = rectSource.origin.y;
+//    rectTarget.right       = rectTarget.left + rectSource.size.width;
+//    rectTarget.bottom      = rectTarget.top + rectSource.size.height;
 
-}
+// }
 
 
 

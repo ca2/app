@@ -357,6 +357,20 @@ public:
    }
    
 
+   template < primitive_origin_size ORIGIN_SIZE >
+   rectangle_type & operator =(const ORIGIN_SIZE & originsize) noexcept
+   {
+      
+      this->left = (UNIT_TYPE) originsize.origin.x;
+      this->top = (UNIT_TYPE) originsize.origin.y;
+      this->right = (UNIT_TYPE) originsize.origin.x + originsize.size.width;
+      this->bottom = (UNIT_TYPE) originsize.origin.y + originsize.size.height;
+      
+      return *this;
+      
+   }
+
+
    bool operator==(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
 //   bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 

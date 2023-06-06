@@ -31,8 +31,6 @@ namespace experience
    }
 
 
-#if 0
-
    void size_manager::initialize_size_manager(::experience::frame_window* pframewindow)
    {
 
@@ -822,11 +820,7 @@ namespace experience
    }
 
 
-#endif
-
-
 } // namespace experience
-
 
 
 CLASS_DECL_BASE::count get_top_left_oriented_damaged_areas_by_resizing(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld)

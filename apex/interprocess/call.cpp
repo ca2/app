@@ -160,7 +160,7 @@ namespace interprocess
 
       synchronous_lock synchronouslock(psynca);
 
-      return synchronouslock.wait(timeWait);
+      return synchronouslock.wait(timeWait).ok();
 
    }
 

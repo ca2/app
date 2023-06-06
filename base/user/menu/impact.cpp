@@ -48,9 +48,6 @@ namespace user
    }
 
 
-#if 0
-
-
 //   void menu_impact::assert_ok() const
 //   {
 //
@@ -930,9 +927,6 @@ namespace user
       pgraphics->set_current_point(point1);
       pgraphics->line_to(point2);
    }
-
-
-#endif
 
 
 } // namespace user

@@ -43,9 +43,6 @@ namespace user
    }
 
 
-#if 0
-
-
    void image_list::update_data(bool bSaveAndValidate)
    {
 
@@ -877,9 +874,6 @@ namespace user
       }
 
    }
-
-
-#endif
 
 
 } // namespace user

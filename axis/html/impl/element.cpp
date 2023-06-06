@@ -46,9 +46,6 @@ namespace html
       }
 
    
-#if 0
-   
-
       void element::initialize_html_impl_elemental(::html_data* pdata)
       {
 
@@ -1386,9 +1383,6 @@ namespace html
             + m_margin.bottom;
 
       }
-
-   
-#endif
    
 
    } // namespace impl

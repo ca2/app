@@ -92,9 +92,6 @@ namespace user
    }
 
 
-#if 0
-
-
    bool frame_window::_001IsFrameWnd()
    {
 
@@ -2884,9 +2881,6 @@ namespace user
       return false;
 
    }
-
-
-#endif
 
 
 } // namespace user

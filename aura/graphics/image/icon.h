@@ -27,7 +27,7 @@ namespace draw2d
 
       ::pointer<::windowing::icon>             m_pwindowingicon;
       ::pointer<size_image>                    m_pimagemap;
-      array < ::size_i32 >                      m_sizea;
+      ::size_i32_array                         m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
       bool                                      m_bAutoDelete;
       string                                    m_strAppTrayIcon;

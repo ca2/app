@@ -23,31 +23,31 @@ namespace draw2d_cairo
       return 0;
    }
 
-   bool object::CreateStockObject(i32 nIndex)
-   {
-      //return (set_handle(::GetStockObject(nIndex))) != nullptr;
-      return 0;
-   }
-   bool object::UnrealizeObject()
-   {
-      //ASSERT(get_handle() != nullptr); return ::UnrealizeObject(get_handle());
-      return 0;
-   }
-   ::u32 object::GetObjectType() const
-   {
-      //return (::u32)::GetObjectType(get_handle());
-      return 0;
-   }
-   bool object::operator==(const object& obj) const
-   {
-      //return ((HGDIOBJ) obj.get_os_data()) == get_handle();
-      return false;
-   }
-   bool object::operator!=(const object& obj) const
-   {
-      //return ((HGDIOBJ) obj.get_os_data()) != get_handle();
-      return true;
-   }
+//   bool object::CreateStockObject(i32 nIndex)
+//   {
+//      //return (set_handle(::GetStockObject(nIndex))) != nullptr;
+//      return 0;
+//   }
+//   bool object::UnrealizeObject()
+//   {
+//      //ASSERT(get_handle() != nullptr); return ::UnrealizeObject(get_handle());
+//      return 0;
+//   }
+//   ::u32 object::GetObjectType() const
+//   {
+//      //return (::u32)::GetObjectType(get_handle());
+//      return 0;
+//   }
+//   bool object::operator==(const object& obj) const
+//   {
+//      //return ((HGDIOBJ) obj.get_os_data()) == get_handle();
+//      return false;
+//   }
+//   bool object::operator!=(const object& obj) const
+//   {
+//      //return ((HGDIOBJ) obj.get_os_data()) != get_handle();
+//      return true;
+//   }
 
 
 #ifdef WINDOWS_DESKTOP

@@ -101,7 +101,7 @@ public:
    constexpr bool operator !() const { return this->is_null(); }
    
 
-   SAFE_BOOL_OPERATOR(frequency);
+   explicit operator bool() const noexcept { return this->is_set(); }
 
 
    bool operator == (const ::frequency frequency) const

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
 #include "color_impact.h"
@@ -545,7 +545,9 @@ namespace userex
    ::user::tab_pane * pane_tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
-      ::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleTabClient);
+      //::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleTabClient);
+
+      ::user::impact_data * pimpactdata = get_impact_data(atom, true);
 
       if(pimpactdata == nullptr)
       {

@@ -150,10 +150,11 @@ public:
    POINT_TYPE & bottom_right() noexcept { return *((POINT_TYPE *)this + 1); }
    void swap_left_right() noexcept { ::swap_left_right(*this); }
 
-//   operator rectangle_type * () noexcept { return this; }
-//   operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
-//
-//   operator bool() const noexcept { return is_set(); }
+   operator rectangle_type * () noexcept { return this; }
+   operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
+
+   explicit operator bool() const noexcept { return is_set(); }
+   bool operator !() const noexcept { return is_empty(); }
 
    rectangle_type & set(UNIT_TYPE i) noexcept { return ::assign(*this, i, i, i, i); }
    rectangle_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::assign(*this, x, y, x, y); }

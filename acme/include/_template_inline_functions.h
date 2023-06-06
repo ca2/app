@@ -852,16 +852,16 @@ inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 }
 
 
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
-{
-
-   copy_cast_number(rectangle1.left    , rectangle2.left    );
-   copy_cast_number(rectangle1.top     , rectangle2.top     );
-   copy_cast_number(rectangle1.right   , rectangle2.right   );
-   copy_cast_number(rectangle1.bottom  , rectangle2.bottom  );
-
-}
+//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+//{
+//
+//   copy_cast_number(rectangle1.left    , rectangle2.left    );
+//   copy_cast_number(rectangle1.top     , rectangle2.top     );
+//   copy_cast_number(rectangle1.right   , rectangle2.right   );
+//   copy_cast_number(rectangle1.bottom  , rectangle2.bottom  );
+//
+//}
 
 
 template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
@@ -888,16 +888,16 @@ void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
 }
 
 
-template < primitive_origin_size RECTANGLE1, primitive_rectangle RECTANGLE2 >
-void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
-{
-
-   copy_cast_number(rectangle1.origin.x      , rectangle2.left);
-   copy_cast_number(rectangle1.origin.y      , rectangle2.top);
-   copy_cast_number(rectangle1.size.width    , rectangle2.right - rectangle2.left);
-   copy_cast_number(rectangle1.size.height   , rectangle2.bottom - rectangle2.top);
-
-}
+//template < primitive_origin_size RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+//{
+//
+//   copy_cast_number(rectangle1.origin.x      , rectangle2.left);
+//   copy_cast_number(rectangle1.origin.y      , rectangle2.top);
+//   copy_cast_number(rectangle1.size.width    , rectangle2.right - rectangle2.left);
+//   copy_cast_number(rectangle1.size.height   , rectangle2.bottom - rectangle2.top);
+//
+//}
 
 
 template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >

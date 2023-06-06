@@ -316,6 +316,9 @@
 		9A75C6AA283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
 		9A75C6AB283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
 		9A78F32428E75E9D007F62C0 /* plain_text_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F32328E75E9D007F62C0 /* plain_text_tree.cpp */; };
+		9A85D3852A2FEAD900116726 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85D3832A2FEAD800116726 /* _.h */; };
+		9A85D3862A2FEAD900116726 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85D3842A2FEAD800116726 /* _constant.h */; };
+		9A85D3882A2FEBF900116726 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85D3872A2FEBF900116726 /* _.h */; };
 		9A865FC329661CC5000C82F0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A865FC229661CC5000C82F0 /* _.cpp */; };
 		9A8660702966888E000C82F0 /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86606D2966888D000C82F0 /* object.cpp */; };
 		9A8660712966888E000C82F0 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86606E2966888D000C82F0 /* object.h */; };
@@ -756,6 +759,10 @@
 		9A75C6A4283D6E6400EC37F2 /* devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = devices.cpp; sourceTree = "<group>"; };
 		9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_listener.cpp; sourceTree = "<group>"; };
 		9A78F32328E75E9D007F62C0 /* plain_text_tree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plain_text_tree.cpp; sourceTree = "<group>"; };
+		9A85D3832A2FEAD800116726 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A85D3842A2FEAD800116726 /* _constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
+		9A85D3872A2FEBF900116726 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A85D3892A2FEEED00116726 /* size_parent_layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = size_parent_layout.h; sourceTree = "<group>"; };
 		9A865FC229661CC5000C82F0 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A86606D2966888D000C82F0 /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
 		9A86606E2966888D000C82F0 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
@@ -1357,6 +1364,8 @@
 		9A75C6A1283D6E6400EC37F2 /* hardware */ = {
 			isa = PBXGroup;
 			children = (
+				9A85D3832A2FEAD800116726 /* _.h */,
+				9A85D3842A2FEAD800116726 /* _constant.h */,
 				9A75C6A2283D6E6400EC37F2 /* devices.h */,
 				9A75C6A3283D6E6400EC37F2 /* device_listener.h */,
 				9A75C6A4283D6E6400EC37F2 /* devices.cpp */,
@@ -1369,6 +1378,7 @@
 			isa = PBXGroup;
 			children = (
 				9A8B635324CBCD3C00A93185 /* gpu */,
+				9A85D3872A2FEBF900116726 /* _.h */,
 			);
 			path = gpu;
 			sourceTree = "<group>";
@@ -1376,6 +1386,7 @@
 		9A8B635324CBCD3C00A93185 /* gpu */ = {
 			isa = PBXGroup;
 			children = (
+				9A8B635E24CBCD3C00A93185 /* _.h */,
 				9A86606F2966888D000C82F0 /* _constant.h */,
 				9A86606D2966888D000C82F0 /* object.cpp */,
 				9A86606E2966888D000C82F0 /* object.h */,
@@ -1389,7 +1400,6 @@
 				9A8B635B24CBCD3C00A93185 /* approach.cpp */,
 				9A8B635C24CBCD3C00A93185 /* program.h */,
 				9A8B635D24CBCD3C00A93185 /* approach.h */,
-				9A8B635E24CBCD3C00A93185 /* _.h */,
 			);
 			path = gpu;
 			sourceTree = "<group>";
@@ -1541,6 +1551,7 @@
 				9A92300A27EACA3A00B5A78D /* scroll.h */,
 				9A92305B27EACA3B00B5A78D /* shell.cpp */,
 				9A92300427EACA3A00B5A78D /* shell.h */,
+				9A85D3892A2FEEED00116726 /* size_parent_layout.h */,
 				9A92303327EACA3B00B5A78D /* still.cpp */,
 				9A92301F27EACA3A00B5A78D /* still.h */,
 				9A92303F27EACA3B00B5A78D /* style_base.cpp */,
@@ -1764,9 +1775,9 @@
 				9A247FE92452C48100F23D28 /* platform */,
 				9AE7233517E83B69003E47F9 /* user */,
 				9AC2CEA22653455600CC8096 /* windowing */,
-				9A2489742452D59400F23D28 /* _.h */,
 				9A03B7BB2A25B8D700A0E33E /* _____debug.xcconfig */,
 				9A03B7BA2A25B8D700A0E33E /* _____release.xcconfig */,
+				9A2489742452D59400F23D28 /* _.h */,
 				9A24892D2452CE7900F23D28 /* framework.h */,
 				9A16414919C4A4CE00966C5E /* aura_iosTests */,
 				9A4E846F1D1FD3A7008A419B /* Products */,
@@ -1786,6 +1797,7 @@
 				9A1E1D7922F0AF69004243B8 /* image_console.h in Headers */,
 				9A750F6D282B90B600C4861B /* notify_icon_listener.h in Headers */,
 				9A92312D27EACF2100B5A78D /* array.h in Headers */,
+				9A85D3882A2FEBF900116726 /* _.h in Headers */,
 				9AC2CEE42653455600CC8096 /* menu.h in Headers */,
 				9AC2CED02653455600CC8096 /* icon.h in Headers */,
 				9A2273BF27CF053B0042BAC2 /* text_metric.h in Headers */,
@@ -1797,6 +1809,7 @@
 				9A3764BF2409BF0C002D15D3 /* color_matrix.h in Headers */,
 				9A750F73282B90B600C4861B /* graphics_call.h in Headers */,
 				9AC2CE4426533BFC00CC8096 /* user_parent.h in Headers */,
+				9A85D3852A2FEAD900116726 /* _.h in Headers */,
 				9AB3DCC7278360390025099F /* item.h in Headers */,
 				9A2273BE27CF053B0042BAC2 /* true_type_font_utilities.h in Headers */,
 				9A92312F27EACF2100B5A78D /* extension.h in Headers */,
@@ -1995,6 +2008,7 @@
 				9A75C6A7283D6E6400EC37F2 /* device_listener.h in Headers */,
 				9A750F9F282B90B700C4861B /* scroll.h in Headers */,
 				9A979D7328C82ACE0013DC54 /* interaction_style.h in Headers */,
+				9A85D3862A2FEAD900116726 /* _constant.h in Headers */,
 				9A8FCD922651AFAB00C0D8A1 /* font_list.h in Headers */,
 				9AC2CCC726533BB700CC8096 /* node.h in Headers */,
 				9A3764842409BF0C002D15D3 /* palette.h in Headers */,

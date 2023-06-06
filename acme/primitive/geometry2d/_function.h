@@ -114,8 +114,8 @@ bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, 
 template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
 bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
+//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
 
 template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
@@ -360,45 +360,45 @@ inline auto get_normal_dimension2(enum_orientation eorientation, X x, Y y)
 
 
 
-template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-RECTANGLE & unite(RECTANGLE1 & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
-{
-
-   if (is_empty(rectangle1))
-   {
-
-      if (is_empty(rectangle2))
-      {
-
-         null(rectangle);
-
-      }
-      else
-      {
-
-         copy(rectangle, rectangle2);
-
-      }
-
-   }
-   else if (is_empty(rectangle2))
-   {
-
-      copy(rectangle, rectangle1);
-
-   }
-   else
-   {
-
-      copy(rectangle, rectangle1);
-      
-      rectangle2.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
-
-   }
-
-   return rectangle;
-
-}
+//template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//RECTANGLE & unite(RECTANGLE1 & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+//{
+//
+//   if (is_empty(rectangle1))
+//   {
+//
+//      if (is_empty(rectangle2))
+//      {
+//
+//         null(rectangle);
+//
+//      }
+//      else
+//      {
+//
+//         copy(rectangle, rectangle2);
+//
+//      }
+//
+//   }
+//   else if (is_empty(rectangle2))
+//   {
+//
+//      copy(rectangle, rectangle1);
+//
+//   }
+//   else
+//   {
+//
+//      copy(rectangle, rectangle1);
+//      
+//      rectangle2.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
+//
+//   }
+//
+//   return rectangle;
+//
+//}
 
 
 template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >

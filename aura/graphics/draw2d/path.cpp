@@ -73,9 +73,6 @@ namespace draw2d
    }
 
 
-#if 0
-
-
    void path::set_fill_mode(::draw2d::enum_fill_mode efillmode)
    {
 
@@ -130,7 +127,7 @@ namespace draw2d
 
       //}
 
-      copy(rectangle, r);
+      rectangle = r;
 
       return true;
 
@@ -1929,9 +1926,6 @@ namespace draw2d
 
       return *this;
    }
-
-
-#endif
 
 
 } // namespace draw2d

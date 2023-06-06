@@ -4305,11 +4305,7 @@ namespace user
 
             client_rectangle(rectangleDraw);
             
-//#if 0
-
-            copy(pgraphics->m_rectangleDraw, rectangleDraw);
-            
-//#endif
+            pgraphics->m_rectangleDraw = rectangleDraw;
             
             _001OnDraw(pgraphics);
 
@@ -4378,9 +4374,6 @@ namespace user
       pgraphics->offset_origin(pointScroll.x(), pointScroll.y());
 
    }
-
-
-#if 0
 
 
    void interaction::_008CallOnDraw(::draw2d::graphics_pointer& pgraphics)
@@ -9044,7 +9037,7 @@ namespace user
          if (bStretch)
          {
 
-            ::copy(*prectParam, sizeparentlayout.m_rectangle);
+            *prectParam = sizeparentlayout.m_rectangle;
 
          }
          else
@@ -15155,7 +15148,7 @@ namespace user
 
       }
 
-      if (rectangleParam)
+      if (rectangleParam.is_set())
       {
 
          *prectangle = rectangleParam;
@@ -15301,7 +15294,7 @@ namespace user
 
       }
 
-      copy(rectangleWindow, rectangleRate);
+      rectangleWindow = rectangleRate;
 
       rectangleWindow += rectangleMainMonitor.top_left();
 
@@ -21768,9 +21761,6 @@ namespace user
       return pimpl ? pimpl->m_puserinteraction : nullptr;
 
    }
-
-
-#endif
 
 
 } // namespace user

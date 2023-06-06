@@ -51,10 +51,6 @@ namespace draw2d
 
    }
 
-
-#if 0
-
-
    //bool region::create_rectangle(const ::rectangle_i32 & rectangle)
    //{
 
@@ -400,7 +396,7 @@ namespace draw2d
 
       expand_bounding_box(rectangleMaxBounding);
 
-      copy(rectangle, rectangleMaxBounding);
+      rectangle = rectangleMaxBounding;
 
    }
 
@@ -840,9 +836,6 @@ namespace draw2d
    //   return internal_combine_contains(point_f64(point));
 
    //}
-
-
-#endif
 
 
 } // namespace draw2d

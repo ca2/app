@@ -255,15 +255,77 @@ public:
    bool null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::null_intersect(*this, rect1, rect2); }
    bool top_left_null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::top_left_null_intersect(*this, rect1, rect2); }
 
-   rectangle_type & unite(const rectangle_type & rect1, const rectangle_type & rect2) noexcept
+   rectangle_type & unite(const rectangle_type & rectangle1, const rectangle_type & rectangle2) noexcept
    {
       
-      return ::unite(*this, rect1, rect2);
+      if (rectangle1.is_empty())
+      {
+
+         if (rectangle2.is_empty())
+         {
+
+            this->Null();
+
+         }
+         else
+         {
+
+            this->operator=(rectangle2);
+
+         }
+
+      }
+      else if (rectangle2.is_empty())
+      {
+
+         this->operator= (rectangle1);
+
+      }
+      else
+      {
+
+         this->operator = (rectangle1);
+         
+         rectangle2.expand_bounding_box(this->top_left(), this->bottom_right());
+
+      }
+
+      return *this;
       
    }
    
    
-   rectangle_type & unite(const rectangle_type & rectangle) noexcept { return ::unite(*this, *this, rectangle); }
+   rectangle_type & unite(const rectangle_type & rectangle) noexcept
+   {
+      
+      if (this->is_empty())
+      {
+
+         if (rectangle.is_empty())
+         {
+
+            this->Null();
+
+         }
+         else
+         {
+
+            this->operator=(rectangle);
+
+         }
+
+      }
+      else if (rectangle.is_set())
+      {
+
+         rectangle.expand_bounding_box(this->top_left(), this->bottom_right());
+
+      }
+
+      return *this;
+      
+   }
+
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
    rectangle_type left_difference(const rectangle_type& rectangle) const { return { this->left, ::maximum(this->top, rectangle.top), rectangle.left, ::minimum(this->bottom, rectangle.bottom) }; }

@@ -3717,6 +3717,7 @@ namespace user
    }
 
 
+
    bool interaction::is_frame_window()
    {
 
@@ -3842,6 +3843,7 @@ namespace user
       return nullptr;
 
    }
+
 
 
    void interaction::set_context_org(::draw2d::graphics_pointer & pgraphics)
@@ -4063,6 +4065,8 @@ namespace user
    }
 
 
+
+
    void interaction::_001DrawThis(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -4248,6 +4252,7 @@ namespace user
    }
 
 
+
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -4299,9 +4304,13 @@ namespace user
             ::rectangle_i32 rectangleDraw;
 
             client_rectangle(rectangleDraw);
+            
+//#if 0
 
             copy(pgraphics->m_rectangleDraw, rectangleDraw);
-
+            
+//#endif
+            
             _001OnDraw(pgraphics);
 
 #ifdef __DEBUG
@@ -4369,6 +4378,9 @@ namespace user
       pgraphics->offset_origin(pointScroll.x(), pointScroll.y());
 
    }
+
+
+#if 0
 
 
    void interaction::_008CallOnDraw(::draw2d::graphics_pointer& pgraphics)
@@ -4457,6 +4469,7 @@ namespace user
       return pgraphics->synchronization();
 
    }
+
 
 
    void interaction::_001DrawChildren(::draw2d::graphics_pointer& pgraphics)
@@ -5134,6 +5147,7 @@ namespace user
       }
 
    }
+
 
 
    void interaction::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
@@ -21754,6 +21768,9 @@ namespace user
       return pimpl ? pimpl->m_puserinteraction : nullptr;
 
    }
+
+
+#endif
 
 
 } // namespace user

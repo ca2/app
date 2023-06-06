@@ -649,11 +649,38 @@ constexpr ::std::strong_ordering negation(const ::std::strong_ordering & orderin
 }
 
 
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
+template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
 bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 {
 
-   return fabs(n1 - n2) < epsilon;
+   return ::std::abs(n1 - n2) < epsilon;
+
+}
+
+
+template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+{
+
+   return ::std::abs(n1 - n2) < epsilon;
+
+}
+
+
+template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+{
+
+   return ::std::abs(n1 - n2) < epsilon;
+
+}
+
+
+template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float)
+{
+
+   return n1 == n2;
 
 }
 

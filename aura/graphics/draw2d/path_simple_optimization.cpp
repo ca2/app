@@ -16,6 +16,11 @@ namespace draw2d
 
    path_simple_optimization::path_simple_optimization(::draw2d::path * ppath)
    {
+      
+      m_iTopic = 0;
+      m_iTopicLines = 0;
+      m_iClose = 0;
+
 
       for (auto & pitem : ppath->m_itema)
       {

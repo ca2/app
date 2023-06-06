@@ -4417,7 +4417,7 @@ namespace draw2d_cairo
 
             g_object_unref(playout);                         // free the layout
 
-            return {(double) pos.x() / (double) PANGO_SCALE, (double) height};
+            return {(double) pos.x / (double) PANGO_SCALE, (double) height};
 
          }
          else

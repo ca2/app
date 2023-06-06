@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -517,10 +517,12 @@ namespace user
 
       auto ptabdata = get_data();
 
-      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+      //::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
 
-      ::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
+      //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
 
+      ::user::impact_data * pimpactdata = get_impact_data(atom, true);
+      
       if (pimpactdata == nullptr)
       {
 
@@ -831,7 +833,8 @@ namespace user
    ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
-      if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      //if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      if (get_impact_data(atom, true) == nullptr)
       {
 
          return nullptr;

@@ -537,7 +537,7 @@ namespace geometry2d
    void round_rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle)
    {
 
-      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      m_rectangle.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
 
    }
 

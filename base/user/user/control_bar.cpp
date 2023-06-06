@@ -64,6 +64,9 @@ namespace user
    }
 
 
+#if 0
+
+
    void control_bar::SetBorders(i32 cxLeft, i32 cyTop, i32 cxRight, i32 cyBottom)
    {
       ASSERT(cxLeft >= 0);
@@ -1258,6 +1261,8 @@ namespace user
 
    }
 
+
+#endif
 
 
 } // namespace user

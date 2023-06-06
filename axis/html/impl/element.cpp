@@ -45,6 +45,9 @@ namespace html
 
       }
 
+   
+#if 0
+   
 
       void element::initialize_html_impl_elemental(::html_data* pdata)
       {
@@ -1384,6 +1387,9 @@ namespace html
 
       }
 
+   
+#endif
+   
 
    } // namespace impl
 

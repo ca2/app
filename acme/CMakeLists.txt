@@ -481,45 +481,46 @@ list(APPEND library_source
         primitive/time/time.cpp
         primitive/time/time.h
         #primitive/time/time_operator.h
+        primitive/geometry/sequence.h
         primitive/geometry2d/_.cpp
         primitive/geometry2d/_.h
         primitive/geometry2d/_collection.h
-        primitive/geometry2d/_collection_bounding_rect.h
-        primitive/geometry2d/_collection_contains.h
-        primitive/geometry2d/_collection_enhanced.h
+        #primitive/geometry2d/_collection_bounding_rect.h
+        #primitive/geometry2d/_collection_contains.h
+        #primitive/geometry2d/_collection_enhanced.h
         #primitive/geometry2d/_concept.h
-        primitive/geometry2d/_enhanced.h
+        #primitive/geometry2d/_enhanced.h
         primitive/geometry2d/_defer.h
         primitive/geometry2d/_geometry2d.h
         #primitive/geometry2d/_impl.h
         #primitive/geometry2d/_rect_impl.h
-        primitive/geometry2d/_shape.cpp
-        primitive/geometry2d/_shape.h
+        #primitive/geometry2d/_shape.cpp
+        #primitive/geometry2d/_shape.h
         #primitive/geometry2d/_size_impl.h
         primitive/geometry2d/_struct.h
         #primitive/geometry2d/align.h
-        primitive/geometry2d/_angle.h
-        primitive/geometry2d/_arc.h
-        primitive/geometry2d/bounding_rect.h
+        primitive/geometry2d/angle.h
+        primitive/geometry2d/arc.h
+        #primitive/geometry2d/bounding_rect.h
         primitive/geometry2d/collection.h
         primitive/geometry2d/contains.h
-        primitive/geometry2d/_ellipse.h
+        primitive/geometry2d/ellipse.h
         primitive/geometry2d/geometry.cpp
         primitive/geometry2d/geometry.h
-        primitive/geometry2d/_line.h
-        primitive/geometry2d/_lines.h
+        primitive/geometry2d/line.h
+        primitive/geometry2d/lines.h
         #primitive/geometry2d/point.cpp
-        primitive/geometry2d/_point.h
+        primitive/geometry2d/point.h
         primitive/geometry2d/point_array.h
-        primitive/geometry2d/_polygon.h
+        primitive/geometry2d/polygon.h
         primitive/geometry2d/rectangle.cpp
-        primitive/geometry2d/_rectangle.h
+        primitive/geometry2d/rectangle.h
         primitive/geometry2d/rectangle_array.h
-        primitive/geometry2d/shape.cpp
-        primitive/geometry2d/shape.h
-        primitive/geometry2d/shape_array.h
+        #primitive/geometry2d/shape.cpp
+        #primitive/geometry2d/shape.h
+        #primitive/geometry2d/shape_array.h
         #primitive/geometry2d/size.cpp
-        primitive/geometry2d/_size.h
+        primitive/geometry2d/size.h
         primitive/geometry2d/size_array.h
         #primitive/geometry2d/types.cpp
         primitive/geometry2d/types.h
@@ -530,6 +531,8 @@ list(APPEND library_source
         primitive/geometry3d/location.cpp
         primitive/geometry3d/location.h
         primitive/geometry3d/quaternions.h
+        primitive/geometry4d/color.h
+        primitive/geometry4d/quadruple.h
         primitive/mathematics/_.cpp
         primitive/mathematics/_.h
         primitive/mathematics/_impl.h

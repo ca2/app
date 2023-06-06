@@ -459,8 +459,8 @@ list(APPEND library_source
         user/userex/menu_document.h
         user/userex/menu_frame.cpp
         user/userex/menu_frame.h
-        user/userex/menu_impact.cpp
-        user/userex/menu_impact.h
+        #user/userex/menu_impact.cpp
+        #user/userex/menu_impact.h
         user/userex/message_box.cpp
         user/userex/message_box.h
         user/userex/mini_dock_frame_window.h

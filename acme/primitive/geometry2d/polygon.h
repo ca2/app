@@ -394,7 +394,7 @@ const ::rectangle_type < NUMBER > & polygon_type < NUMBER >::bounding_rect() con
       
       ((polygon_type *)this)->m_rectangleBounding.maximum_minimum();
       
-      ((polygon_type *)this)->expand_bounding_box(((polygon_type *)this)->top_left(), ((polygon_type *)this)->bottom_right());
+      ((polygon_type *)this)->expand_bounding_box(((polygon_type *)this)->m_rectangleBounding.top_left(), ((polygon_type *)this)->m_rectangleBounding.bottom_right());
 
 //      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x();
 //      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y();

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "font.h"
 #include "acme/exception/interface_only.h"
+#include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
@@ -242,14 +243,14 @@ namespace write_text
    string font::get_sample_text(::draw2d::graphics * pgraphics)
    {
 
-      auto ecs = get_character_set(pgraphics);
+      auto echaracterset = get_character_set(pgraphics);
 
-      string str = get_sample_text(ecs);
+      string strSampleText = acmenode()->get_character_set_default_sample_text(echaracterset);
 
-      if (str.has_char())
+      if (strSampleText.has_char())
       {
 
-         return str;
+         return strSampleText;
 
       }
 

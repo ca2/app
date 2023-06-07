@@ -1325,7 +1325,7 @@ namespace xml
 
                }
                else if (rangeXml.has_char() && *rangeXml.m_begin)  // Alone child Tag Loaded
-                  // else 해야하는지 말아야하는지 의심간다.
+                  // else "I wonder if I should or shouldn't"(TranslatedFromKorean).
                {
 
                   //if( xml && this->m_strValue.is_empty() && *xml !='<' )

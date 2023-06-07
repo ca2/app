@@ -513,9 +513,6 @@
     <ClCompile Include="graphics\write_text\font_list.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
-      <Filter>Source Files\graphics\write_text</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\write_text\fonts.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>

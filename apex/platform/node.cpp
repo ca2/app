@@ -3,10 +3,12 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "acme/constant/character_set.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/exception/interface_only.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/filesystem/link.h"
 #include "apex/platform/application.h"
 #include "apex/platform/os_context.h"
@@ -489,6 +491,48 @@ namespace apex
    {
 
       return {};
+
+   }
+
+
+   void node::load_character_set_default_sample_text()
+   {
+
+      if (m_mapCharacterSetEnum.is_empty())
+      {
+
+         for (int i = 0; i < e_character_set_count; i++)
+         {
+
+            auto echaracterset = (enum_character_set)i;
+
+            m_mapCharacterSetEnum[enum_character_set_text(echaracterset)] = echaracterset;
+
+         }
+
+      }
+
+      auto lines = file()->lines("matter://character_set_default_sample_text.txt");
+
+      for (auto line : lines)
+      {
+
+         ::string_array stra;
+
+         stra.explode("=", line);
+
+         if (stra.size() == 2)
+         {
+
+            ::string strEnum = stra[0].trimmed();
+
+            ::string strSampleText = stra[1].trimmed();
+            
+            m_mapCharacterSetDefaultSampleText[m_mapCharacterSetEnum[strEnum]] = strSampleText;
+
+         }
+
+      }
 
    }
 

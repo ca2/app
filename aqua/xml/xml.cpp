@@ -117,8 +117,8 @@ namespace xml
       string str(scopedstr);
 
       str.replace_with("&amp;", "&");
-      str.replace_with("&quot;", "\"");      // quando ENT_NOQUOTES n縊 est・definida.
-      str.replace_with("&#039;", "'");       // apenas quando ENT_QUOTES est・definida.
+      str.replace_with("&quot;", "\"");      // when ENT_NOQUOTES is not defined
+      str.replace_with("&#039;", "'");       // just when ENT_QUOTES is defined
       str.replace_with("&lt;", "<");
       str.replace_with("&gt;", ">");
 

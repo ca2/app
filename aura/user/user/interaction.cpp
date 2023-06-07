@@ -10,6 +10,7 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
+#include "size_parent_layout.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/message_prototype.h"

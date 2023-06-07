@@ -4323,6 +4323,9 @@
     <None Include="primitive\mathematics\int_to_string_bases_table.dynamically_generated">
       <Filter>Source Files\primitive\mathematics</Filter>
     </None>
+    <None Include="constant\character_set.enum">
+      <Filter>Header Files\constant</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

@@ -3083,6 +3083,29 @@ return false;
    }
 
 
+   ::string node::get_character_set_default_sample_text(enum_character_set echaracterset)
+   {
+
+      if (m_mapCharacterSetDefaultSampleText.is_empty())
+      {
+
+         load_character_set_default_sample_text();
+
+      }
+
+      return m_mapCharacterSetDefaultSampleText[echaracterset];
+
+    
+   }
+
+
+   void node::load_character_set_default_sample_text()
+   {
+
+      throw interface_only();
+
+   }
+
 
 } // namespace acme
 

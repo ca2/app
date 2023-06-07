@@ -2,6 +2,7 @@
 
 
 #include "_function.h"
+#include "size.h"
 #include "acme/primitive/mathematics/numeric_info.h"
 
 

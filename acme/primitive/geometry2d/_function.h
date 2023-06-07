@@ -525,9 +525,9 @@ template < primitive_rectangle RECTANGLE_TYPE, typename X >
 inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
 {
 
-   rectangle.left = (decltype(RECTANGLE_TYPE::left))(rectangle.left - x);
+   rectangle.left = (decltype(rectangle.left))(rectangle.left - x);
 
-   rectangle.right = (decltype(RECTANGLE_TYPE::right))(rectangle.right - x);
+   rectangle.right = (decltype(rectangle.right))(rectangle.right - x);
 
    return rectangle;
 

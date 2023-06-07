@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline ::ansi_character * ansi_dup(const ::ansi_character * psz);

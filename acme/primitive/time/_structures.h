@@ -1,4 +1,4 @@
-﻿// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardSørensen!!
+// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

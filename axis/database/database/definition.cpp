@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "exception.h"
 #include "parameter_list.h"
 #include "field.h"

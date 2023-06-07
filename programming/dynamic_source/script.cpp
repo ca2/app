@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "script.h"
 #include "script_instance.h"
 #include "ds_script.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "read_only_memory.h"
 
 

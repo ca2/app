@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "font.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"

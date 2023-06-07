@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/01/2022 16:06 <3ThomasBorregaardSørensen!!
+// Created by camilo on 31/01/2022 16:06 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "brush.h"

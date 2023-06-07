@@ -1,4 +1,4 @@
-// Created by camilo from gz on 2021-11-10 10:0743 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo from gz on 2021-11-10 10:0743 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "compress.h"
 #include "acme/exception/interface_only.h"

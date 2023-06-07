@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "operation_thread.h"
 #include "operation.h"
 #include "operation_impact.h"

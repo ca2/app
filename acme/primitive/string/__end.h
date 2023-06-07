@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "c/_impl.h"

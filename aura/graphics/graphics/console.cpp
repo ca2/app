@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "console.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/operating_system/_const_console.h"

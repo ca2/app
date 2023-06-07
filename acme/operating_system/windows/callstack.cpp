@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/platform/_synchronization.h"

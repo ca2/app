@@ -1,4 +1,4 @@
-﻿//
+//
 //  conversation_message.cpp
 //  acme
 //

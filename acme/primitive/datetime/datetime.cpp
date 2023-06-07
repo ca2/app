@@ -1,4 +1,4 @@
-﻿// From datetime to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSørensen!!
+// From datetime to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSorensen!!
 #include "framework.h" // from "base/apex/.h"
 #include "datetime.h"
 ////#include "acme/exception/exception.h"

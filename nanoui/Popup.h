@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/popup.h -- Simple popup pwidget which is attached to another given
     window (can be nested)
 

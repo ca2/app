@@ -1,5 +1,5 @@
 // From aura/graphics/draw2d/region_item by camilo on 2023-05-26 14:21 <3ThomasBorregaardSorensen!!
-// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "item.h"
 #include "region.h"

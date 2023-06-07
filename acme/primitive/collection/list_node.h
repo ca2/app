@@ -1,4 +1,4 @@
-﻿// From list by camilo on 2022-09-12 20:10 <3ThomasBorregaardSørensen!!
+// From list by camilo on 2022-09-12 20:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

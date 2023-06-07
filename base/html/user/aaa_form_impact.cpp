@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form_impact.h"
 #include "document.h"
 #include "acme/constant/happening.h"

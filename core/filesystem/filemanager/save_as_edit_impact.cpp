@@ -1,4 +1,4 @@
-﻿// From save_as_name_impact by camilo on 2023-05-05 19:15 <3ThomasBorregaardSorensen!!
+// From save_as_name_impact by camilo on 2023-05-05 19:15 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "save_as_edit_impact.h"
 #include "data.h"

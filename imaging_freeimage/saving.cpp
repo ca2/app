@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context_image.h"
 ////#include "acme/exception/exception.h"
 #include "aura/graphics/image/image.h"

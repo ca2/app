@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "copydesk.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "edit.h"
 #include "edit_impl.h"
 #include "format_tool.h"

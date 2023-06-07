@@ -1,4 +1,4 @@
-﻿// From string/_.h by camilo on 2022-10-11 12:21 <3ThomasBorregaardSørensen!!
+// From string/_.h by camilo on 2022-10-11 12:21 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

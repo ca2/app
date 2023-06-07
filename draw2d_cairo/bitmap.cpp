@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"

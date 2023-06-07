@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "wait_message_dialog.h"

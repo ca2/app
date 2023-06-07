@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context_image.h"
 #include "icon.h"
 #include "frame_array.h"

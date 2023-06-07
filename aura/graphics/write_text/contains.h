@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline bool shape_contains(const ::write_text::text_out & textout, const ::point_i32 & point)

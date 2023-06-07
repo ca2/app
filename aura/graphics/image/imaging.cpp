@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "imaging.h"
 #include "list.h"
 #include "fastblur.h"

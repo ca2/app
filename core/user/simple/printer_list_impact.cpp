@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/data/listener.h"

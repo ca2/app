@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.

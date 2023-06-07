@@ -1,4 +1,4 @@
-﻿// From layout_state.h by camilo on 2022-08-27 02:08 <3ThomasBorregaardSorense!! *8*8infinitywithThommy*8*8!!
+// From layout_state.h by camilo on 2022-08-27 02:08 <3ThomasBorregaardSorense!! *8*8infinitywithThommy*8*8!!
 #pragma once
 
 

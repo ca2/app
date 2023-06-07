@@ -4123,9 +4123,6 @@
     <ClCompile Include="primitive\mathematics\scalar.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\url.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>

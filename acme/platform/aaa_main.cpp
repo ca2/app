@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme.h"
 #include "system.h"
 //#include "sequencer.h"

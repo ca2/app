@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "buffer.h"
 #include "aura/graphics/image/image.h"
 //#include "_.h"

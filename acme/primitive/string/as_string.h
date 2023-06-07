@@ -1,4 +1,4 @@
-﻿// From _conv_ansi.h on 2022-04-24 05:01 <3ThomasBorregaardSørensen!!
+// From _conv_ansi.h on 2022-04-24 05:01 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

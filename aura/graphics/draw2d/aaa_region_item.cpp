@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "region.h"
 #include "region_shape.h"

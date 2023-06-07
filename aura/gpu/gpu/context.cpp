@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "buffer.h"
 //#include "_.h"

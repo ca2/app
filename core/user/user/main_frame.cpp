@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-10-09 18:43 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-10-09 18:43 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/simple/_component.h"

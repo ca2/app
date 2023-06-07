@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "main_window.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"

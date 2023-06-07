@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "scroll_base.h"

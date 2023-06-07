@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #undef ERROR
 #include <WinSock2.h>
 //#include "acme/operating_system.h"

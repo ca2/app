@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "button.h"
 #include "control_box.h"
 #include "frame_window.h"

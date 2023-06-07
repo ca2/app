@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/popupbutton.h -- Button which launches a popup pwidget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.

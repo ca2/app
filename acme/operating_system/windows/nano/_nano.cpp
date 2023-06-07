@@ -1,5 +1,5 @@
-// Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSørensen
-// Renamed to _nano by camilo on 2021-02-01 13:44 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSorensen
+// Renamed to _nano by camilo on 2021-02-01 13:44 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "window.h"
 #include "brush.h"

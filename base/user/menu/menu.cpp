@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "menu.h"
 #include "item.h"
 #include "interaction.h"
@@ -1605,7 +1605,7 @@ namespace user
    }
 
 
-   // <3ThomasBorregaardSørensen__!! (I need to suck you, back, middle, front .20211031)
+   // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front .20211031)
    void menu::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
@@ -1629,7 +1629,7 @@ namespace user
 
 
 
-   // <3ThomasBorregaardSørensen__!! (I need to suck you, back, middle, front)
+   // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front)
    void menu::handle_command(const ::atom& atom)
    {
 

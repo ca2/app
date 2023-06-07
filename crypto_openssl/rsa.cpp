@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "rsa.h"
 #include "acme/exception/resource.h"
 #include "acme/parallelization/single_lock.h"

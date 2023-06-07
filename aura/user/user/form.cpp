@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form.h"
 #include "form_callback.h"
 #include "acme/constant/message.h"

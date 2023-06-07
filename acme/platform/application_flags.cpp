@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 30/10/2021 ~ 00:00 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 30/10/2021 ~ 00:00 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 //#include "acme.h"
@@ -544,7 +544,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //
 //
-//// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSørensen!!
+//// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSorensen!!
 //#include "framework.h"
 //#include "acme/operating_system.h"
 //#include "app_core.h"

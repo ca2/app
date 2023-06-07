@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form_list_impact.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"

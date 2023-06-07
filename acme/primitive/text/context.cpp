@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
 #include "acme/filesystem/file/file.h"

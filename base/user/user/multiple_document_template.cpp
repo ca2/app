@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "multiple_document_template.h"
 #include "document.h"
 #include "frame_window.h"

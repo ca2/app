@@ -1085,7 +1085,6 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />

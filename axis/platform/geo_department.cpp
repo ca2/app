@@ -1,4 +1,4 @@
-﻿// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
+// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "system.h"
 #include "_binary_stream.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context_menu.h"
 #include "data.h"
 #include "document.h"

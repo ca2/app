@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "udp_socket.h"
 ////#include "acme/exception/exception.h"
 #include "networking_bsd/address.h"

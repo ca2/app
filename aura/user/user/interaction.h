@@ -1762,7 +1762,7 @@ namespace user
       }
 #endif
 
-      //// <3ThomasBorregaardSørensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
+      //// <3ThomasBorregaardSorensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
       void handle_command(const ::atom& atom) override;
 
       virtual bool has_command_handler(::message::command* pcommand) override;

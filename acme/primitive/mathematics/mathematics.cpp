@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
 #include <time.h>

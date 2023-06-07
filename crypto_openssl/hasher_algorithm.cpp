@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "hasher_algorithm.h"
 #include "hasher.h"
 ////#include "acme/exception/exception.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "component.h"
 #include "fs_simple_tree.h"
 #include "form.h"

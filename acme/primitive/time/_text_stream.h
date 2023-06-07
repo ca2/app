@@ -1,4 +1,4 @@
-﻿//
+//
 //  _text_stream.h
 //  acme
 //

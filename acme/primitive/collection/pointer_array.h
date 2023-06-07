@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "pointer_array_process.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/user/user/interaction.h"
 #include "base/user/form/document.h"
 #include "base/user/form/impact.h"

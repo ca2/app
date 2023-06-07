@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "control_box.h"
 #include "acme/constant/message.h"
 #include "aura/user/user/frame.h"

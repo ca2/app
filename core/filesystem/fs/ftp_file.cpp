@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "ftp_file.h"
 #include "ftpfs.h"
 #include "acme/platform/system.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "render.h"
 #include "application.h"
 #include <math.h>

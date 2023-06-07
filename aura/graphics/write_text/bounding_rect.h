@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 //
 //
 //inline bool get_bounding_box(::rectangle_i32 & rectangleBounding, const ::write_text::text_out & textout)

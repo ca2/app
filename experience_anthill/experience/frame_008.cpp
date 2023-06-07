@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_008.h"
 #include "control_box.h"
 #include "aura/graphics/draw2d/graphics.h"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline ::wd32_character wd32_char_tolower(i32 i) { return __wd32tolower(i); }

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSørensen
+// Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "window.h"
 #include "device.h"

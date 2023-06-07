@@ -1,5 +1,5 @@
 //
-// from _.h in same folder by camilo on 11/04-April/2022. 10:50 <3ThomasBorregaardSørensen!!
+// from _.h in same folder by camilo on 11/04-April/2022. 10:50 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 

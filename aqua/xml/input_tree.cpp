@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_tree.h"
 #include "document.h"
 ////#include "acme/exception/exception.h"

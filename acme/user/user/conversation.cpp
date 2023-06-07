@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-08 19:00:00 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-05-08 19:00:00 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "conversation.h"
 

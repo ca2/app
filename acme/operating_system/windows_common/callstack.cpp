@@ -1,4 +1,4 @@
-﻿// With get_callstatck from windows to windows_common by camilo on 2022-03-11 13:59 <3ThomasBorregaardS�rensen!!
+// With get_callstatck from windows to windows_common by camilo on 2022-03-11 13:59 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 //#include <dbghelp.h>

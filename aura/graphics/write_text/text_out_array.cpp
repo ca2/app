@@ -1,4 +1,4 @@
-// Created by camilo on 2021-06-08 02:50 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:50 BRT <3ThomasBorregaardSorensen__!!
 #include "framework.h"
 #include "text_out_array.h"
 #include "text_out.h"

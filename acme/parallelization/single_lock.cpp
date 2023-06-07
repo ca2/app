@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "single_lock.h"
 ////#include "acme/exception/exception.h"
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"

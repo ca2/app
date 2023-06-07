@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "window.h"
 #include "acme/operating_system/universal_windows/_winrt_foundation.h"
 #include "acme/user/nano/button.h"

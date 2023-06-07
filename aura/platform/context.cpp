@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "acme/platform/application.h"
 #include "apex/platform/system.h"

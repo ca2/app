@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "request.h"
 //#include "apex/id.h"
 #include "acme/filesystem/file/memory_file.h"

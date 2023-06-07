@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "zonetime.h"
 #if defined(LINUX)
 #include <time.h>

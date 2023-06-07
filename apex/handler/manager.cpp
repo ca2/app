@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "manager.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"

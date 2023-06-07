@@ -1,4 +1,4 @@
-﻿#ifndef __GNUC__
+#ifndef __GNUC__
 #pragma once
 #endif
 

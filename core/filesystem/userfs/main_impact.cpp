@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "main_impact.h"
 #include "list.h"
 #include "tree.h"

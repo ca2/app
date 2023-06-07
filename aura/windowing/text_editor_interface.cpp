@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-04 01:36 AM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-05-04 01:36 AM <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "text_editor_interface.h"
 

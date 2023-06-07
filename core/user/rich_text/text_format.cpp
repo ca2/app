@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "text_format.h"
 ////#include "acme/exception/exception.h"
 

@@ -1,4 +1,4 @@
-﻿// From impact.h by camilo on 2021-01-15 18:13 <3ThomasBorregaardSørensen!!
+// From impact.h by camilo on 2021-01-15 18:13 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

@@ -1,4 +1,4 @@
-// From string_range.h by camilo on 2023-02-20 20:24 <3ThomasBorregaardSørensen!!
+// From string_range.h by camilo on 2023-02-20 20:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

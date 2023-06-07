@@ -1,4 +1,4 @@
-﻿/** \file httpd_socket.cpp
+/** \file httpd_socket.cpp
 */
 /*
 Copyright (C) 2001-2007  Anders Hedstrom (grymse@alhem.net)

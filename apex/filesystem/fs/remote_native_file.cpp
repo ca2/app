@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "remote_native_file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/listing.h"

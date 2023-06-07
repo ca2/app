@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form_list.h"
 #include "list_column.h"
 #include "list_column_array.h"

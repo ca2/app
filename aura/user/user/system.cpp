@@ -1,4 +1,4 @@
-﻿//
+//
 //  user_create_struct.cpp
 //  aura
 //

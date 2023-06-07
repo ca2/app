@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "sync_socket_handler.h"
 #include "socket.h"
 #include "acme/filesystem/file/memory_file.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "interaction_impl.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "parallelization_pthread.h"
 #include "acme/operating_system/ansi/_ansi.h"
 #include "acme/parallelization/message_queue.h"

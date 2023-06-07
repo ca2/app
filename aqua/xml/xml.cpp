@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "xml.h"
 #include "edit.h"
 #include "entity.h"

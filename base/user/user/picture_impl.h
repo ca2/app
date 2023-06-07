@@ -1,4 +1,4 @@
-﻿// From picture.cpp by camilo on 2022-09-04 01:23 <3ThomasBorregaardSørensen!!
+// From picture.cpp by camilo on 2022-09-04 01:23 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

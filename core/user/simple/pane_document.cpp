@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "pane_document.h"
 #include "base/user/user/impact.h"
 

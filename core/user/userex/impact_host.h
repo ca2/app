@@ -1,4 +1,4 @@
-﻿//
+//
 //  userex_impact_container.hpp
 //  app_veriwell_musical_player
 //

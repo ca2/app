@@ -42,7 +42,7 @@
     }
 //////////////////////////////////////////////////////////////////////////////
 */
-// Refactor by camilo from gz on 2021-11-10 10:32 BRT <3ThomasBorregaardSørensen!!
+// Refactor by camilo from gz on 2021-11-10 10:32 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

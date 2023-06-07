@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base_socket.h"
 #include "apex/constant/idpool.h"
 //#include "apex/networking/sockets/_sockets.h"

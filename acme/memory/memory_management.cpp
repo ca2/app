@@ -1,4 +1,4 @@
-//Created by camilo on 2021-07-29 18:23 BRT <3ThomasBorregaardSørensen!!
+//Created by camilo on 2021-07-29 18:23 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "memory_management.h"
 #include "memory_allocate.h"

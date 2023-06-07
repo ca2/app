@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "userfs.h"
 #include "tree.h"
 #include "list.h"

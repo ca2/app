@@ -1,4 +1,4 @@
-// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSørensen!!
+// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/operating_system.h"
 

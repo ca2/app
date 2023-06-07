@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr);

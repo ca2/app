@@ -1,4 +1,4 @@
-// From _collection.h by camilo on 2022-10-23 23:33 <3ThomasBorregaardSørensen!!
+// From _collection.h by camilo on 2022-10-23 23:33 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

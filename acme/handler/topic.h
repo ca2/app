@@ -1,7 +1,7 @@
 // Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 // Merge with control_"topic" by camilo on day after ThomasBirthday2021 10:14
-// Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSørensen!!
-// Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
+// Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

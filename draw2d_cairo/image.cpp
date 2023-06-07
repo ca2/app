@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "image.h"
 #include "bitmap.h"
 #include "graphics.h"

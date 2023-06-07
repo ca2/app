@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application_container.h"
 #include "node.h"
 #include "application.h"

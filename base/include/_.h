@@ -12,24 +12,11 @@
 //
 //  c(s)t(s)<tb(s)!!
 //
-
-
 #pragma once
 
 
 #undef LAYER_NAMESPACE
 #define LAYER_NAMESPACE base
-
-
-
-//#undef System
-//#undef Sess
-//#undef App
-//
-//
-//#define System (psystem->m_pbasesystem)
-//#define Sess(pcontextsession) (pcontextsession->m_pbasesession)
-//#define App(pparticle) (*pparticle->get_app()->m_pbaseapplication)
 
 
 #define __spin_namespace base // back bone / four-letter "spin*" namespace name
@@ -49,21 +36,6 @@ namespace base
 
 
 #include "base/user/_.h"
-
-
-
-//#include "base/platform/application.h"
-//#include "base/platform/session.h"
-//#include "base/platform/system.h"
-
-
-//#include "base/user/_.h"
-
-
-//#include "base/platform/_impl.h"
-
-
-
 
 
 

@@ -7,13 +7,22 @@
 //
 #include "framework.h"
 #include "tab.h"
+#include "tab_data.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"
+#include "base/user/user/style.h"
+
+
+#define MAGIC_PALACE_TAB_SPLT "->:<-"
+#define MAGIC_PALACE_TAB_SIZE "-/-"
+#define MAGIC_PALACE_TAB_TEXT "/"
 
 
 namespace user

@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/get_memory.h"
+#include "acme/primitive/primitive/get_memory.h"
 ////#include "acme/primitive/primitive/object.h"
 
 

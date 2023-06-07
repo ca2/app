@@ -1,4 +1,4 @@
-﻿///TBS__<3tbs
+///TBS__<3tbs
 #pragma once
 
 
@@ -29,16 +29,6 @@ namespace aura
 
 
 } // namespace aura
-
-
-#undef SYSTEM_TYPE
-#define SYSTEM_TYPE ::aura::system
-
-#undef SESSION_TYPE
-#define SESSION_TYPE ::aura::session
-
-#undef APP_TYPE
-#define APP_TYPE ::aura::application
 
 
 #endif

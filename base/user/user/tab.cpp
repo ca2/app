@@ -14,6 +14,7 @@
 #include "aura/graphics/image/context_image.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/platform/timer.h"
+#include "aura/graphics/image/list.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/window_util.h"
@@ -118,8 +119,7 @@ namespace user
 
    }
 
-#if 0
-   
+
    /*bool tab::add_tab(::u32 uIdTitle, i32 iId)
    {
       get_pane get_pane;
@@ -3287,7 +3287,6 @@ namespace user
 
    }
 
-#endif
 
 } // namespace base
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "toolbar.h"
-//#include "acme/constant/message.h"
+#include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
 ////#include "acme/exception/exception.h"
@@ -73,9 +73,6 @@ namespace user
 
             //m_nCount = 0;
    }
-
-
-#if 0
 
 
    void toolbar::install_message_routing(::channel * pchannel)
@@ -2081,11 +2078,8 @@ namespace user
 
    }
 
-#endif
-
 
 } // namespace user
-
 
 
 user_toolbar_command::user_toolbar_command(::particle * pparticle)

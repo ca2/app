@@ -18,7 +18,8 @@
 enum enum_font_awesome : ::i32;
 
 
-enum enum_character_set;
+enum enum_character_set : ::i32;
+
 
 enum enum_zero_initialize
 {

@@ -1817,6 +1817,18 @@ class polygon_type;
 template < primitive_number NUMBER >
 class poly_polygon_type;
 
+template < primitive_number NUMBER >
+class point_array_base;
+
+template < primitive_number NUMBER >
+class size_array_base;
+
+template < primitive_number NUMBER >
+class rectangle_array_base;
+
+template < primitive_number NUMBER >
+class lines_base;
+
 
 using point_i32 = point_type < ::i32 >;
 using point_i64 = point_type < ::i64 >;
@@ -1870,6 +1882,30 @@ using poly_polygon_i32 = poly_polygon_type < ::i32 >;
 using poly_polygon_i64 = poly_polygon_type < ::i64 >;
 using poly_polygon_f32 = poly_polygon_type < ::f32 >;
 using poly_polygon_f64 = poly_polygon_type < ::f64 >;
+
+
+using point_i32_array = point_array_base < ::i32 >;
+using point_i64_array = point_array_base < ::i64 >;
+using point_f32_array = point_array_base < ::f32 >;
+using point_f64_array = point_array_base < ::f64 >;
+
+
+using size_i32_array = size_array_base < ::i32 >;
+using size_i64_array = size_array_base < ::i64 >;
+using size_f32_array = size_array_base < ::f32 >;
+using size_f64_array = size_array_base < ::f64 >;
+
+
+using rectangle_i32_array = rectangle_array_base < ::i32 >;
+using rectangle_i64_array = rectangle_array_base < ::i64 >;
+using rectangle_f32_array = rectangle_array_base < ::f32 >;
+using rectangle_f64_array = rectangle_array_base < ::f64 >;
+
+
+using lines_i32 = lines_base < ::i32 >;
+using lines_i64 = lines_base < ::i64 >;
+using lines_f32 = lines_base < ::f32 >;
+using lines_f64 = lines_base < ::f64 >;
 
 
 

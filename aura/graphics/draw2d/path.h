@@ -3,8 +3,8 @@
 
 #include "object.h"
 #include "path_optimization.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
-//#include "acme/primitive/geometry2d/_collection.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/lines.h"
 //#include "acme/primitive/geometry2d/ellipse.h"
 //#include "acme/primitive/geometry2d/rectangle.h"
 

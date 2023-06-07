@@ -692,7 +692,7 @@ list(APPEND library_source
         #primitive/primitive/simple_object.h
         primitive/primitive/stick.h
         #primitive/primitive/str.h
-        primitive/primitive/top_level_domain_list.cpp
+        #primitive/primitive/top_level_domain_list.cpp
         #primitive/primitive/tracer.cpp
         #primitive/primitive/tracer.h
         #primitive/primitive/trait.h

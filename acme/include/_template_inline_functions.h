@@ -888,16 +888,16 @@ void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
 }
 
 
-//template < primitive_origin_size RECTANGLE1, primitive_rectangle RECTANGLE2 >
-//void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
-//{
-//
-//   copy_cast_number(rectangle1.origin.x      , rectangle2.left);
-//   copy_cast_number(rectangle1.origin.y      , rectangle2.top);
-//   copy_cast_number(rectangle1.size.width    , rectangle2.right - rectangle2.left);
-//   copy_cast_number(rectangle1.size.height   , rectangle2.bottom - rectangle2.top);
-//
-//}
+template < primitive_origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
+void copy(ORIGIN_SIZE & originsize, const RECTANGLE & rectangle)
+{
+
+   copy_cast_number(originsize.origin.x      , rectangle.left);
+   copy_cast_number(originsize.origin.y      , rectangle.top);
+   copy_cast_number(originsize.size.width    , rectangle.right - rectangle.left);
+   copy_cast_number(originsize.size.height   , rectangle.bottom - rectangle.top);
+
+}
 
 
 template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >

@@ -461,7 +461,8 @@ public:
    }
    rectangle_type operator|(const rectangle_type & rectangleOr) const noexcept
    {
-      rectangle_type rectangle; ::unite(rectangle, *this, rectangleOr);
+      rectangle_type rectangle; 
+      rectangle.unite(*this, rectangleOr);
       return rectangle;
    }
 

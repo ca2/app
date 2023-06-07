@@ -1999,7 +1999,7 @@ namespace draw2d_cairo
 
          playout = pango_cairo_create_layout(m_pdc);                 // init pango layout ready for use
 
-         pango_layout_set_text(playout, unitext("ÁÚMGgçy"),
+         pango_layout_set_text(playout, unitext("IAUMGpqg"),
                                -1);          // sets the text to be associated with the layout (final arg is length, -1
          // to calculate automatically when passing a nul-terminated string)
          pango_layout_set_font_description(playout,
@@ -3926,7 +3926,7 @@ namespace draw2d_cairo
 
       rectangle_f64 rectangle;
 
-      copy(rectangle, rectangleParam);
+      rectangle = rectangleParam;
 
       internal_draw_text(strParam, rectangle, ealign, edrawtext);
 
@@ -4559,12 +4559,7 @@ namespace draw2d_cairo
 
          cairo_font_extents_t e;
 
-         if (string_begins(str, unitext("バーチャルマシン")))
-         {
 
-            TRACE("Likely to fail in certain circumstances");
-
-         }
 
          cairo_font_extents(m_pdc, &e);
 

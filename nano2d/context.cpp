@@ -1973,7 +1973,7 @@ void TransformSkewX(float* t, float a)
 		//a = context::__acosf)(dx0 * dx1 + dy0 * dy1);
 		//d = radius / context::__tanf)(a / 2.0f);
 
-		////	printf("a=%f� d=%f\n", a/::nano2d::f_pi*180.0f, d);
+		////	printf("a=%fMATH_PI d=%f\n", a/::nano2d::f_pi*180.0f, d);
 
 		//if (d > 10000.0f) {
 		//	context::LineTo)(ctx, x1, y1);
@@ -1986,7 +1986,7 @@ void TransformSkewX(float* t, float a)
 		//	a0 = context::__atan2f)(dx0, -dy0);
 		//	a1 = context::__atan2f)(-dx1, dy1);
 		//	dir = ::nano2d::e_winding_cw;
-		//	//		printf("CW c=(%f, %f) a0=%f� a1=%f�\n", cx, cy, a0/::nano2d::f_pi*180.0f, a1/::nano2d::f_pi*180.0f);
+		//	//		printf("CW c=(%f, %f) a0=%fMATH_PI a1=%fMATH_PI\n", cx, cy, a0/::nano2d::f_pi*180.0f, a1/::nano2d::f_pi*180.0f);
 		//}
 		//else {
 		//	cx = x1 + dx0 * d + -dy0 * radius;
@@ -1994,7 +1994,7 @@ void TransformSkewX(float* t, float a)
 		//	a0 = context::__atan2f)(-dx0, dy0);
 		//	a1 = context::__atan2f)(dx1, -dy1);
 		//	dir = ::nano2d::e_winding_ccw;
-		//	//		printf("CCW c=(%f, %f) a0=%f� a1=%f�\n", cx, cy, a0/::nano2d::f_pi*180.0f, a1/::nano2d::f_pi*180.0f);
+		//	//		printf("CCW c=(%f, %f) a0=%fMATH_PI a1=%fMATH_PI\n", cx, cy, a0/::nano2d::f_pi*180.0f, a1/::nano2d::f_pi*180.0f);
 		//}
 
 		//context::Arc)(ctx, cx, cy, radius, a0, a1, dir);

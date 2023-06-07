@@ -170,8 +170,16 @@ namespace windows
 } // namespace windows
 
 
+template < primitive_rectangle RECTANGLE >
+inline void copy(RECT & rect, const RECTANGLE & rectangle)
+{
 
+   rect.left = (LONG)rectangle.left;
+   rect.top = (LONG)rectangle.top;
+   rect.right = (LONG)rectangle.right;
+   rect.bottom = (LONG)rectangle.bottom;
 
+}
 
 
 

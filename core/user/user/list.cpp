@@ -3494,7 +3494,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            bool bShouldStartDrag = d_distance(point, m_pointLButtonDown1) > m_dItemHeight;
+            bool bShouldStartDrag = f64_distance(point, m_pointLButtonDown1) > m_dItemHeight;
 
             if (bShouldStartDrag)
             {

@@ -237,7 +237,7 @@
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
-double double_distance(const POINT1 & point1, const POINT2 & point2)
+::f64 f64_distance(const POINT1 & point1, const POINT2 & point2)
 {
 
    return sqrt((point2.x() - point1.x()) * (point2.x() - point1.x()) + (point2.y() - point1.y()) * (point2.y() - point1.y()));

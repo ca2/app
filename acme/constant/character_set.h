@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_character_set
+enum enum_character_set : ::i32
 {
 
 

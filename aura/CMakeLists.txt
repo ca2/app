@@ -155,7 +155,7 @@ list(APPEND library_source
         graphics/image/array.h
         graphics/image/drawer.cpp
         graphics/image/drawer.h
-        #graphics/image/drawing.cpp
+        graphics/image/drawing.cpp
         graphics/image/drawing.h
         graphics/image/dynamic.cpp
         graphics/image/dynamic.h
@@ -208,7 +208,7 @@ list(APPEND library_source
         graphics/write_text/font_enumeration_item.h
         graphics/write_text/font_list.cpp
         graphics/write_text/font_list.h
-        graphics/write_text/font_utf8.cpp
+        #graphics/write_text/font_utf8.cpp
         graphics/write_text/glyph.cpp
         graphics/write_text/glyph.h
         graphics/write_text/glyph_set.cpp

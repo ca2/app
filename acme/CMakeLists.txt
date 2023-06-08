@@ -516,6 +516,8 @@ list(APPEND library_source
         primitive/geometry2d/rectangle.cpp
         primitive/geometry2d/rectangle.h
         primitive/geometry2d/rectangle_array.h
+        primitive/geometry2d/region.cpp
+        primitive/geometry2d/region.h
         #primitive/geometry2d/shape.cpp
         #primitive/geometry2d/shape.h
         #primitive/geometry2d/shape_array.h

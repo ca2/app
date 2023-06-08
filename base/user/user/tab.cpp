@@ -620,10 +620,9 @@ namespace user
 
       GetTabClientRect(rectangleTabClient);
 
-      copy(rectangle, rectangleTabClient);
+      rectangle = rectangleTabClient;
 
    }
-
 
 
    void tab::layout_pane(index iIndex, bool bDisplay)

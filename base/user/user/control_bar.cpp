@@ -1,14 +1,15 @@
 #include "framework.h"
+#include "control_bar.h"
+#include "frame_window.h"
 //#include "acme/operating_system.h"
 //#include "aura/operating_system/_user.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "control_bar.h"
-#include "frame_window.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
+#include "aura/user/user/size_parent_layout.h"
 
 
 namespace user
@@ -763,7 +764,7 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         ::copy(rectangle, playout->m_rectangle);
+         rectangle = playout->m_rectangle;
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 

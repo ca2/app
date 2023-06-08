@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
@@ -2342,7 +2342,7 @@ namespace user
          {
 
             // the rects are different -- recalc needed
-            ::copy(m_rectangleBorder, *pRectBorder);
+            m_rectangleBorder = *pRectBorder;
 
             return true;
 

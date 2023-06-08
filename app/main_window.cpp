@@ -1,4 +1,5 @@
 #include "framework.h"
+#if 0
 #include "main_window.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
@@ -305,3 +306,4 @@ namespace app_app
 
 
 
+#endif

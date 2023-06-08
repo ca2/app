@@ -6,7 +6,9 @@
 //#include "aura/graphics/draw2d/region.h"
 //#include "aura/graphics/image/fastblur.h"
 //#include "aura/user/user/drawable.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/polygon.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace user

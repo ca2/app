@@ -236,6 +236,15 @@
 //CLASS_DECL_ACME double d_distance(const point_i32& point1, const point_i32& point2);
 
 
+template < primitive_point POINT1, primitive_point POINT2 >
+::f64 f64_distance(const POINT1 & point1, const POINT2 & point2)
+{
+
+   return sqrt((point2.x() - point1.x()) * (point2.x() - point1.x()) + (point2.y() - point1.y()) * (point2.y() - point1.y()));
+
+}
+
+
 template < typename X, typename Y >
 inline auto get_dimension(enum_orientation eorientation, X x, Y y)
 {
@@ -599,6 +608,20 @@ inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangl
    rectangle.top = (decltype(rectangle.top))(rectangle.top - rectangle2.top);
    rectangle.right = (decltype(rectangle.right))(rectangle.right - rectangle2.right);
    rectangle.bottom = (decltype(rectangle.bottom))(rectangle.bottom - rectangle2.bottom);
+
+   return rectangle;
+
+}
+
+
+template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+{
+
+   rectangle.left = (decltype(rectangle.left))(rectangle1.left - rectangle2.left);
+   rectangle.top = (decltype(rectangle.top))(rectangle1.top - rectangle2.top);
+   rectangle.right = (decltype(rectangle.right))(rectangle1.right - rectangle2.right);
+   rectangle.bottom = (decltype(rectangle.bottom))(rectangle1.bottom - rectangle2.bottom);
 
    return rectangle;
 

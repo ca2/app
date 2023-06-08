@@ -6,6 +6,7 @@
 #include "window_implementation.h"
 #include "device.h"
 #include "child.h"
+#if 0
 #include "button.h"
 #include "nano.h"
 #include "acme/handler/topic.h"
@@ -19,6 +20,7 @@
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/exception/interface_only.h"
+
 
 
 nano_window::nano_window()
@@ -49,8 +51,6 @@ nano_window::~nano_window()
    acmesystem()->m_pnano->m_nanowindowa.erase_item(this);
 
 }
-
-
 
 
 void nano_window::on_initialize_particle()
@@ -800,3 +800,4 @@ void nano_window::do_asynchronously()
 
 
 
+#endif

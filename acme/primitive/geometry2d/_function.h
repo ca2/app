@@ -605,6 +605,20 @@ inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangl
 }
 
 
+template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+{
+
+   rectangle.left = (decltype(rectangle.left))(rectangle1.left - rectangle2.left);
+   rectangle.top = (decltype(rectangle.top))(rectangle1.top - rectangle2.top);
+   rectangle.right = (decltype(rectangle.right))(rectangle1.right - rectangle2.right);
+   rectangle.bottom = (decltype(rectangle.bottom))(rectangle1.bottom - rectangle2.bottom);
+
+   return rectangle;
+
+}
+
+
 //template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT >
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
 

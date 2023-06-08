@@ -763,7 +763,7 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         ::copy(rectangle, playout->m_rectangle);
+         rectangle = playout->m_rectangle;
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 

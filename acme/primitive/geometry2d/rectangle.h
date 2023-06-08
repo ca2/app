@@ -151,8 +151,8 @@ public:
    POINT_TYPE & bottom_right() noexcept { return *((POINT_TYPE *)this + 1); }
    void swap_left_right() noexcept { ::swap_left_right(*this); }
 
-   operator rectangle_type * () noexcept { return this; }
-   operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
+   //operator rectangle_type * () noexcept { return this; }
+   //operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
 
    explicit operator bool() const noexcept { return is_set(); }
    bool operator !() const noexcept { return is_empty(); }
@@ -373,7 +373,12 @@ public:
    }
 
 
-   bool operator==(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
+   bool operator==(const rectangle_type & rectangle) const noexcept 
+   { 
+      
+      return ::is_equal(*this, rectangle); 
+   
+   }
 //   bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
 //   template < primitive_point POINT >
@@ -466,9 +471,12 @@ public:
       return rectangle;
    }
 
-   bool subtract(const rectangle_type & rectangleSrc1, const rectangle_type & rectangleSrc2) noexcept
+   
+   rectangle_type & subtract(const rectangle_type & rectangleSrc1, const rectangle_type & rectangleSrc2) noexcept
    {
+      
       return ::subtract(*this, rectangleSrc1, rectangleSrc2);
+
    }
 
    void normalize() noexcept;

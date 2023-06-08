@@ -809,7 +809,7 @@ namespace html
             else
             {
 
-               copy(rectangle, m_box);
+               rectangle = m_box;
 
             }
 

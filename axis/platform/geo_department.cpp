@@ -21,6 +21,7 @@
 #include "apex/networking/open_weather_city.h"
 #include "apex/networking/http/context.h"
 
+#include <unac.h>
 
 namespace geo
 {
@@ -480,23 +481,28 @@ namespace geo
       strTry = strQueryLo;
 
       strTry.replace_with("saint", "st.");
-      strTry.replace_with("sao", unitext("são"));
-      strTry.replace_with("z", unitext("ž"));
-      strTry.replace_with("a", unitext("á"));
-      strTry.replace_with("a", unitext("à"));
-      strTry.replace_with("a", unitext("ä"));
-      strTry.replace_with("e", unitext("é"));
-      strTry.replace_with("e", unitext("è"));
-      strTry.replace_with("e", unitext("ë"));
-      strTry.replace_with("i", unitext("í"));
-      strTry.replace_with("i", unitext("ì"));
-      strTry.replace_with("i", unitext("ï"));
-      strTry.replace_with("o", unitext("ó"));
-      strTry.replace_with("o", unitext("ò"));
-      strTry.replace_with("o", unitext("ö"));
-      strTry.replace_with("u", unitext("ú"));
-      strTry.replace_with("u", unitext("ù"));
-      strTry.replace_with("u", unitext("ü"));
+
+      {
+
+         char * out = nullptr;
+         size_t out_length = 0;
+
+         int iError = unac_string("UTF8", strTry.begin(), strTry.size(), &out, &out_length);
+
+         if (iError != 0)
+         {
+
+
+            throw ::exception(error_wrong_state, "unac_string returned error");
+            //throw_errno_exception();
+
+         }
+
+         strTry.assign(out, out_length);
+
+         ::free(out);
+
+      }
 
       if (bPrefix)
       {
@@ -1083,7 +1089,7 @@ namespace geo
       str.make_lower();
       strCountryCode.make_lower();
       double dTimeZoneOffset = 0.0;
-      //Московское время (UTC+3)
+      //"Moscow Time"(TranslateFromRussian) (UTC+3)
       if (str == "msk")
       {
 

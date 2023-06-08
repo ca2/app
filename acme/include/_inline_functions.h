@@ -5,6 +5,33 @@
 #include <math.h>
 
 
+template < typename T >
+T default_epsilon()
+{
+
+   return {};
+
+}
+
+
+template < primitive_integral INTEGRAL >
+constexpr INTEGRAL default_epsilon()
+{
+
+   return 0;
+
+}
+
+
+template < primitive_floating FLOATING >
+constexpr FLOATING default_epsilon()
+{
+
+   return ::std::numeric_limits<FLOATING>::epsilon();
+
+}
+
+
 //template < typename A, typename B >
 //inline void swap(A & a, B & b)
 //{
@@ -650,7 +677,7 @@ constexpr ::std::strong_ordering negation(const ::std::strong_ordering & orderin
 
 
 template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
    return ::std::abs(n1 - n2) < epsilon;
@@ -659,7 +686,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 
 
 template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
    return ::std::abs(n1 - n2) < epsilon;
@@ -668,7 +695,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 
 
 template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
    return ::std::abs(n1 - n2) < epsilon;
@@ -677,7 +704,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 
 
 template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = 0)
 {
 
    return n1 == n2;

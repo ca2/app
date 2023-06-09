@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -101,7 +101,7 @@ public:
    constexpr bool operator !() const { return this->is_null(); }
    
 
-   SAFE_BOOL_OPERATOR(frequency);
+   explicit operator bool() const noexcept { return this->is_set(); }
 
 
    bool operator == (const ::frequency frequency) const

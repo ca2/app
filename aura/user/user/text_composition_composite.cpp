@@ -1,4 +1,4 @@
-// From text_composition.cpp by camilo on 2022-08-27 19:31 <3ThomasBorregaardSørensen!!
+// From text_composition.cpp by camilo on 2022-08-27 19:31 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "text_composition_composite.h"
 #include "text_composition_client.h"

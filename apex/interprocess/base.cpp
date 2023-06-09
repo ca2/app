@@ -1,4 +1,4 @@
-﻿// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:19 <3ThomasBorregaardSørensen!!
+// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:19 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "base.h"
 

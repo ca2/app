@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "response.h"
 //#include "apex/networking/sockets/_.h"
 #include "acme/filesystem/file/memory_file.h"

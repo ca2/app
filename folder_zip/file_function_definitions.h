@@ -1,4 +1,4 @@
-// From zip::file(or zip::infile) by camilo on 2021-11-10 15:47 BRT <3ThomasBorregaardSørensen!!
+// From zip::file(or zip::infile) by camilo on 2021-11-10 15:47 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

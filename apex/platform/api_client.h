@@ -1,5 +1,5 @@
-﻿// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
-// Now rebased on api_client_base by camilo on 2023-02-01 09:24 PM <3ThomasBorregaardSørensen!! & Mummi!!
+// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSorensen!! & Mummi!!
+// Now rebased on api_client_base by camilo on 2023-02-01 09:24 PM <3ThomasBorregaardSorensen!! & Mummi!!
 #pragma once
 
 

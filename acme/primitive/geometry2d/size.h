@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "_function.h"
 #include "acme/primitive/geometry/sequence.h"
 
 
@@ -17,8 +18,8 @@ public:
 
    //using SIZE_BASE_TYPE = BASE_TYPE;
    using UNIT_TYPE = NUMBER;
-   using POINT_TYPE = point_type < NUMBER >;
-   using RECTANGLE_TYPE = rectangle_type < NUMBER >;
+   //using POINT_TYPE = point_type < NUMBER >;
+   //using RECTANGLE_TYPE = rectangle_type < NUMBER >;
 
    
    
@@ -106,12 +107,13 @@ public:
 
    size_type& Null() { this->cx() = (UNIT_TYPE)0; this->cy() = (UNIT_TYPE)0; return *this; }
 
-   POINT_TYPE operator+(const POINT_TYPE& point1) const noexcept { POINT_TYPE point(point1); ::offset(point, this->cx(), this->cy()); return point; }
    template < primitive_point POINT >
-   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx(), this->cy()); ::offset(point, -point1.x(), -point1.y()); return point;   }
+   POINT operator+(const POINT& point1) const noexcept { POINT point(point1); ::offset(point, this->cx(), this->cy()); return point; }
+   template < primitive_point POINT >
+   POINT operator-(const POINT & point1) const noexcept { POINT point(this->cx(), this->cy()); ::offset(point, -point1.x(), -point1.y()); return point;   }
 
-   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, this->cx(), this->cy()); return rectangle; }
-   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, -this->cx(), -this->cy()); return rectangle; }
+//   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, this->cx(), this->cy()); return rectangle; }
+//   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, -this->cx(), -this->cy()); return rectangle; }
 
    UNIT_TYPE area() const noexcept { return ::area(this->cx(), this->cy()); }
    inline bool is_empty() const noexcept { return this->cx() <= 0 || this->cy() <= 0; }
@@ -237,13 +239,13 @@ public:
    template < primitive_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > half_away(const size_type < NUMBER1 >& size) { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((this->cx() - size.cx()) / (largest_number < UNIT_TYPE, NUMBER1 >) 2, (this->cy() - size.cy()) / (largest_number < UNIT_TYPE, NUMBER1 >) 2); }
 
-   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(this); }
-//   inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
+//   inline bool operator ==(::std::nullptr_t) const noexcept { return ::is_null(this); }
+//   inline bool operator !=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    inline bool operator == (const size_type & size) const noexcept { return this->cx() == size.cx() && this->cy() == size.cy(); }
 //   inline bool operator != (const size_type & size) const noexcept { return !operator ==(size); }
 
-   inline bool operator == (const RECTANGLE_TYPE & rectangle) const noexcept { return this->cx() == rectangle.width() && this->cy() == rectangle.height(); }
+//   inline bool operator == (const RECTANGLE_TYPE & rectangle) const noexcept { return this->cx() == rectangle.width() && this->cy() == rectangle.height(); }
    //inline bool operator != (const RECTANGLE_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }
 
    inline ::std::strong_ordering operator <=> (const size_type & size) const noexcept 
@@ -262,7 +264,7 @@ public:
 
    }
 
-   inline ::std::strong_ordering operator <=> (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <=> (rectangle.size()); }
+//   inline ::std::strong_ordering operator <=> (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <=> (rectangle.size()); }
    //inline bool operator >= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator >= (rectangle.size()); }
    //inline bool operator < (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator < (rectangle.size()); }
    //inline bool operator <= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <= (rectangle.size()); }
@@ -272,10 +274,10 @@ public:
    inline bool any_lt (const size_type & size) const noexcept { return this->cx() < size.cx() || this->cy() < size.cy(); }
    inline bool any_le (const size_type & size) const noexcept { return this->cx() <= size.cx() || this->cy() <= size.cy(); }
 
-   inline bool any_gt (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_gt(rectangle.size()); }
-   inline bool any_ge (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_ge(rectangle.size()); }
-   inline bool any_lt (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_lt(rectangle.size()); }
-   inline bool any_le (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
+//   inline bool any_gt (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_gt(rectangle.size()); }
+//   inline bool any_ge (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_ge(rectangle.size()); }
+//   inline bool any_lt (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_lt(rectangle.size()); }
+//   inline bool any_le (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
 
 
    constexpr operator u32hash() const

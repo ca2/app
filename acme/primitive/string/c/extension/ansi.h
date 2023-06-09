@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline ::ansi_character               ansi_char_tolower(i32 i);

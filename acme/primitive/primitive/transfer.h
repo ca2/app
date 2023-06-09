@@ -1,4 +1,4 @@
-﻿//
+//
 //  transfer.h
 //  acme
 //

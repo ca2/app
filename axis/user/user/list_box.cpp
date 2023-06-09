@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list_box.h"
 #include "combo_box.h"
 #include "acme/handler/item.h"

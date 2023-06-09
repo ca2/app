@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "request.h"
 #include "acme/user/user/element.h"
 #include "acme/exception/interface_only.h"

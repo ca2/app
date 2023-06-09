@@ -5162,15 +5162,15 @@ string get_bundle_app_library_name();
    // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
 
 
-   void system::get_public_internet_domain_extension_list(string_array& stra)
-   {
+   //void system::get_public_internet_domain_extension_list(string_array& stra)
+   //{
 
-      //auto estatus = 
-      ::acme::system::get_public_internet_domain_extension_list(stra);
+   //   //auto estatus = 
+   //   ::acme::system::get_public_internet_domain_extension_list(stra);
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
    void system::system_main()
@@ -5241,7 +5241,23 @@ string get_bundle_app_library_name();
    }
 
 
+   ::string system::fetch_public_internet_domain_extension_list_text()
+   {
+
+      throw interface_only();
+
+      ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
+
+      ::string str = file()->as_string(pathPublicDomainExtensionList);
+
+      return str;
+
+   }
+
+
+
 } // namespace apex
+
 
 
 

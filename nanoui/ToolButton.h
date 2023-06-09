@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/toolbutton.h -- Simple radio+toggle button with an icon
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.

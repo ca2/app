@@ -1,4 +1,4 @@
-// from console.h by camilo on 2022-09-04 09:03 <3ThomasBorregaardSørensen!!
+// from console.h by camilo on 2022-09-04 09:03 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

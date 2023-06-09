@@ -1,4 +1,4 @@
-﻿// Created int_to_string_bases_table.dynamically_generated generator by camilo on 2023-02-02 14:38 <3ThomasBorregaardSorensen!!
+// Created int_to_string_bases_table.dynamically_generated generator by camilo on 2023-02-02 14:38 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include <math.h>
 

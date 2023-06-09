@@ -2082,7 +2082,6 @@ namespace user
 } // namespace user
 
 
-
 user_toolbar_command::user_toolbar_command(::particle * pparticle)
 {
 

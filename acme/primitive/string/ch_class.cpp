@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "str.h"
 //#include "string.h"
 #include "ch_class.h"

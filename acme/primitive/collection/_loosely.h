@@ -1,4 +1,4 @@
-﻿// From ::papaya::weak to ::loosely by camilo on 2022-11-18 07:47 <3ThomasBorregaardSørensen!!
+// From ::papaya::weak to ::loosely by camilo on 2022-11-18 07:47 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

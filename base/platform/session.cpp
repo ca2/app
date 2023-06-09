@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "session.h"
 #include "apex/platform/application.h"
 ////#include "base/user/experience/_component.h"

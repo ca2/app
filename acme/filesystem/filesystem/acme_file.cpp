@@ -1,6 +1,6 @@
 // From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
-// 04:38 BRT <3ThomasBorregaardSørensen
+// 04:38 BRT <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "acme_file.h"
 #include "acme_directory.h"
@@ -1198,20 +1198,6 @@ void acme_file::put_contents(const ::file::path & path, const ::scoped_string & 
 }
 
 
-void acme_file::put_lines(const ::file::path& path, const ::string_array& straLines)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   put_block(path, straLines.implode("\r\n") + "\r\n");
-
-#else
-
-   put_block(path, straLines.implode("\n") + "\n");
-
-#endif
-
-}
 
 
 void acme_file::put_block(const ::file::path & path, const block & block)

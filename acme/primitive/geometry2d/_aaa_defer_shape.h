@@ -1,4 +1,4 @@
-﻿// From _defer.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSørensen!! (Mummi and bilbo in ca2HQ)
+// From _defer.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSorensen!! (Mummi and bilbo in ca2HQ)
 #pragma once
 
 

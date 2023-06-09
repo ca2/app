@@ -3,11 +3,14 @@
 
 #include "aura/graphics/image/source.h"
 #include "acme/primitive/collection/int_map.h"
+#include "acme/primitive/geometry2d/_collection.h"
 
 
 using hicon = void *;
 
+
 class size_image;
+
 
 namespace draw2d
 {
@@ -25,9 +28,9 @@ namespace draw2d
       friend class ::windowing::icon;
 
 
-      ::pointer<::windowing::icon>             m_pwindowingicon;
-      ::pointer<size_image>                    m_pimagemap;
-      array < ::size_i32 >                      m_sizea;
+      ::pointer<::windowing::icon>              m_pwindowingicon;
+      ::pointer<size_image>                     m_pimagemap;
+      ::size_i32_array                          m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
       bool                                      m_bAutoDelete;
       string                                    m_strAppTrayIcon;

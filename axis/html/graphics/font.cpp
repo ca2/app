@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "font.h"
 #include "acme/primitive/string/str.h"
 #include "aura/graphics/write_text/font.h"

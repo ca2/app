@@ -1,4 +1,4 @@
-﻿//
+//
 //  account_network_credentials.cpp
 //  aura
 //

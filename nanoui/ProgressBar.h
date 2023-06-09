@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/progressbar.h -- Standard pwidget for visualizing progress
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.

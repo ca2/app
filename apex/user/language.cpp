@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "language.h"
 #include "acme/exception/parsing.h"
 //#include "acme/operating_system.h"

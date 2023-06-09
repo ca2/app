@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list_data.h"
 #include "list_item_array.h"
 #include "list_item.h"

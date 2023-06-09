@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "statusbar.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"

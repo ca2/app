@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "memory_map.h"
 #include "acme/exception/interface_only.h"
 

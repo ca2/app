@@ -1,4 +1,4 @@
-﻿// From apex (create -> request) by camilo on 2022-12-01 00:59 <3ThomasBorregaardSørensen!!
+// From apex (create -> request) by camilo on 2022-12-01 00:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

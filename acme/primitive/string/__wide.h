@@ -1,4 +1,4 @@
-﻿// From acme_windows by camilo on 2023-02-05 20:56 BRT <3ThomasBorregaardSorensen!!
+// From acme_windows by camilo on 2023-02-05 20:56 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

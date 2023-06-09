@@ -1,4 +1,4 @@
-//Created by camilo on 2021-07-24 14:00 BRT <3ThomasBorregaardSørensen!!
+//Created by camilo on 2021-07-24 14:00 BRT <3ThomasBorregaardSorensen!!
 
 
 #include "memory_management.h"

@@ -242,7 +242,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    ::rectangle_i32 rectangleTextOut;
 
-   GetPlacement(rectangleTextOut);
+   GetPlacement(&rectangleTextOut);
 
    switch (m_iAnimateType)
    {
@@ -310,8 +310,11 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
             }
             if (iStart < iEnd)
             {
+               
                ::rectangle_i32 rectanglePlacement;
-               GetPlacement(rectanglePlacement);
+               
+               GetPlacement(&rectanglePlacement);
+               
                ::rectangle_i32 rectangle = rectanglePlacement;
                size_i32 size1 = pgraphics->get_text_extent(strFinal.left(iStart));
                size_i32 size2 = pgraphics->get_text_extent(strFinal.left(iEnd + 1));
@@ -392,19 +395,27 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
       string strFinal(m_str);
       string strLeft = strFinal.right(strFinal.length() - i);
+      
       i32 iLeftOffset;
+      
       iLeftOffset = iLastLeftDiff - (i32)m_dAnimateProgress;
+      
       ::rectangle_i32 rectangleTextOut;
-      GetPlacement(rectangleTextOut);
+      
+      GetPlacement(&rectangleTextOut);
+      
       rectangleTextOut.left += iLeftOffset;
+      
       if (bDraw)
       {
+         
          embossed_text_out(pgraphics, strLeft, rectangleTextOut.left, rectangleTextOut.top,
                          0,
                          m_cr,
                          m_colorOutline,
                          strFinal.length(),
                          dBlend);
+         
       }
       i32 iMaxCounter = maximum((i32)m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right - m_rectangle.left);
       i32 iRight = iMaxCounter - (i32)m_dAnimateProgress;
@@ -453,7 +464,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    ::rectangle_i32 rectanglePlacement;
 
-   GetPlacement(rectanglePlacement);
+   GetPlacement(&rectanglePlacement);
 
    pgraphics->set(m_pfont);
 
@@ -509,14 +520,19 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       //pgraphics->set_text_color(crColor);
 
       ::rectangle_i32 rectangleTextOut;
-      GetPlacement(rectangleTextOut);
+      
+      GetPlacement(&rectangleTextOut);
+      
       if (bDraw)
       {
+         
          pgraphics->_DrawText(
          strFinal,
          rectangleTextOut,
          e_align_bottom_left);
+         
       }
+      
    }
    break;
    case AnimateRHL:
@@ -550,8 +566,11 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       pgraphics->set(pbrushText);
 
       pgraphics->set(m_pfont);
+      
       ::rectangle_i32 rectangleTextOut;
-      GetPlacement(rectangleTextOut);
+      
+      GetPlacement(&rectangleTextOut);
+      
       rectangleTextOut.left += iLeftOffset;
       if (bDraw)
       {
@@ -775,7 +794,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    
    ::rectangle_i32 rectanglePlacement;
    
-   GetPlacement(rectanglePlacement);
+   GetPlacement(&rectanglePlacement);
 
    string strMain = m_str;
 
@@ -1151,10 +1170,15 @@ void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics,
          {
             if ((i32)m_dAnimateProgress > maximum(m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right - m_rectangle.left))
                m_dAnimateProgress = 0.0;
+            
             ::rectangle_i32 rectangle;
-            GetPlacement(rectangle);
+            
+            GetPlacement(&rectangle);
+            
             Invalidate();
+            
             rectaModified.add(rectangle);
+            
             /*to(
                 pdcForeground,
                 false,
@@ -1302,7 +1326,7 @@ void xfplayer_impact_line::Invalidate(const rectangle_i32 & rectangleParam)
 
    ::rectangle_i32 rectanglePlacement;
 
-   GetPlacement(rectanglePlacement);
+   GetPlacement(&rectanglePlacement);
 
    ::rectangle_i32 rectangleInvalidate;
 
@@ -1333,7 +1357,7 @@ void xfplayer_impact_line::Validate(const rectangle_i32 & rectangleParam)
 
    ::rectangle_i32 rectanglePlacement;
 
-   GetPlacement(rectanglePlacement);
+   GetPlacement(&rectanglePlacement);
 
    ::rectangle_i32 rectangleValidate;
 
@@ -1739,36 +1763,56 @@ index xfplayer_impact_line::GetCharLink(strsize iChar)
    single_lock synchronouslock(m_pContainer->synchronization());
 
    bool bInside;
+   
    const ::point_i32 & pointCursor = pointCursorParam;
+   
    ::rectangle_i32 rectanglePlacement;
-   GetPlacement(rectanglePlacement);
+   
+   GetPlacement(&rectanglePlacement);
+   
    bInside = rectanglePlacement.contains(pointCursor) != 0;
+   
    if (!bInside)
    {
+      
       iChar = -1;
+      
       return ::user::e_line_hit_none;
+      
    }
    else
    {
+      
       if (CalcChar(pointCursor, iChar))
       {
+         
          if (CharHasLink(iChar))
          {
+            
             return ::user::e_line_hit_link;
+            
          }
          else
          {
+            
             return ::user::e_line_hit_normal;
+            
          }
+         
       }
       else
       {
+         
          iChar = -1;
+         
          return ::user::e_line_hit_none;
+         
       }
+      
    }
 
 }
+
 
 bool xfplayer_impact_line::CalcChar(const ::point_i32 & point, strsize &iChar)
 {
@@ -1776,10 +1820,17 @@ bool xfplayer_impact_line::CalcChar(const ::point_i32 & point, strsize &iChar)
    single_lock synchronouslock(m_pContainer->synchronization());
 
    ::rectangle_i32 rectanglePlacement;
-   GetPlacement(rectanglePlacement);
+   
+   GetPlacement(&rectanglePlacement);
+   
    bool bInside = rectanglePlacement.contains(point) != 0;
+   
    if (!bInside)
+   {
+      
       return false;
+      
+   }
 
    int x = point.x() - rectanglePlacement.left;
 
@@ -2064,7 +2115,7 @@ void xfplayer_impact_line::update_hover(point_i32 &pointCursor)
 
          ::rectangle_i32 rectangle;
 
-         GetPlacement(rectangle);
+         GetPlacement(&rectangle);
 
          get_interaction()->set_need_redraw();
 
@@ -2081,7 +2132,7 @@ void xfplayer_impact_line::update_hover(point_i32 &pointCursor)
 
          ::rectangle_i32 rectangle;
 
-         GetPlacement(rectangle);
+         GetPlacement(&rectangle);
 
          get_interaction()->set_need_redraw();
 

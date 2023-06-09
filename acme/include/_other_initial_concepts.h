@@ -1,4 +1,4 @@
-// From _initial_concepts.h by camilo on 2023-05-23 <3ThomasBorregaardSørensen!!
+// From _initial_concepts.h by camilo on 2023-05-23 <3ThomasBorregaardSorensen!!
 //
 //  _numeric_concepts.h
 //  acme
@@ -96,8 +96,8 @@ concept primitive_XYDim = requires(RECTANGLE rectangle)
 template < typename RECTANGLE >
 concept primitive_xydim = requires(RECTANGLE rectangle)
 {
-   rectangle.x();
-   rectangle.y();
+   rectangle.x;
+   rectangle.y;
    rectangle.width;
    rectangle.height;
 };

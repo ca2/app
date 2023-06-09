@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "file_context.h"
 #include "file_system.h"
 #include "dir_context.h"

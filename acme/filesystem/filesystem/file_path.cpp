@@ -1,6 +1,6 @@
 // From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
-// 04:38 BRT <3ThomasBorregaardSørensen
+// 04:38 BRT <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "acme_file.h"
 //#include "acme/networking/as_string.h"

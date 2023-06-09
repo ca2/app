@@ -2,7 +2,7 @@
 //  apple_apple.h
 //  acme
 //
-//  Created by Camilo Sasuke on 2021-12-29 15:00 BRT <3ThomasBorregaardSørensen!!
+//  Created by Camilo Sasuke on 2021-12-29 15:00 BRT <3ThomasBorregaardSorensen!!
 //
 
 // C++ include

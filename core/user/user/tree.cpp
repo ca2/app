@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree.h"
 #include "tree_data.h"
 #include "acme/constant/message.h"
@@ -449,7 +449,7 @@ namespace user
          if (ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::e_tree_item_state_expandable)
          {
 
-            _001GetItemElementRect(rectangle, data, e_tree_element_expand_box);
+            _001GetItemElementRect(&rectangle, data, e_tree_element_expand_box);
 
             i32 iImage;
 
@@ -542,7 +542,7 @@ namespace user
          if (iImage >= 0 && pimagelistItem && pimagelistItem->m_pimage.ok())
          {
 
-            if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
+            if (_001GetItemElementRect(&rectangle, data, e_tree_element_image))
             {
 
                pimagelistItem->draw(data.m_pdc, iImage, rectangle.top_left(), 0);
@@ -557,7 +557,7 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if (strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
+      if (strItem.has_char() && _001GetItemElementRect(&rectangle, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer pbrushText;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "box.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"

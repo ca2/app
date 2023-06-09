@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
 #include "acme/constant/message.h"
@@ -118,7 +118,7 @@ namespace user
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      GetToolRect(iTool, rectangle);
+      GetToolRect(iTool, &rectangle);
 
       m_ealign = m_ealignDefault;
 
@@ -153,10 +153,14 @@ namespace user
             m_pointOffset.x() = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
             m_pointOffset.y() = - (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
+         
          ::rectangle_i32 rectangleToolScreen;
-         ptool->BaseToolTipGetRect(rectangleToolScreen);
+         
+         ptool->BaseToolTipGetRect(&rectangleToolScreen);
+         
          ptool->BaseToolTipGetWnd()->client_to_screen()(rectangleToolScreen);
-         CalcRect(pgraphics, rectangle, rectangleToolScreen, m_strTip);
+         
+         CalcRect(pgraphics, &rectangle, rectangleToolScreen, m_strTip);
 
          ::rectangle_i32 rectangleScreen;
 

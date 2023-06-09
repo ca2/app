@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "item.h"
 #include "tree.h"
 #include "acme/constant/message.h"

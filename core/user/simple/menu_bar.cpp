@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/simple/toolbar.h"
 #include "menu_bar.h"
 #include "acme/constant/message.h"

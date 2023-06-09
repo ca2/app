@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "horizontal_scroll_base.h"

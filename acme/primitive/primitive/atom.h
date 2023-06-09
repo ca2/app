@@ -1,4 +1,4 @@
-// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSorensen
 #pragma once
 
 

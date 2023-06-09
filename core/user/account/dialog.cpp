@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "login.h"
 #include "dialog.h"
 #include "acme/constant/message.h"

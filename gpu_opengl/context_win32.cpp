@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context_win32.h"
 #include "opengl.h"
 #include "buffer.h"

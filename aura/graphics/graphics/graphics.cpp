@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "graphics.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/mutex.h"

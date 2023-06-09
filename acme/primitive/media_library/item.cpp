@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-28 02:32 <3ThomasBorregaardS�rensen
+// Created by camilo on 2022-05-28 02:32 <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "item.h"
 // #include "acme/primitive/string/string.h"

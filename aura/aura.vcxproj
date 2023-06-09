@@ -673,6 +673,7 @@
     <ClCompile Include="graphics\draw2d\object.cpp" />
     <ClCompile Include="graphics\draw2d\palette.cpp" />
     <ClCompile Include="graphics\draw2d\path.cpp" />
+    <ClCompile Include="graphics\draw2d\path_optimization.cpp" />
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp" />
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />
@@ -719,7 +720,6 @@
     <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp" />
     <ClCompile Include="graphics\write_text\font_list.cpp" />
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp" />
     <ClCompile Include="graphics\write_text\glyph.cpp" />
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />

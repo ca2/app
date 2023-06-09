@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-03 17:24 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-03 17:24 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "last_error_exception.h"
 

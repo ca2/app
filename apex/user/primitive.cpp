@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "primitive.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"

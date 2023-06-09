@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "GLOBAL_ID.h"
@@ -858,7 +858,7 @@ enum enum_extract
 
 
 
-// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

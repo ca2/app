@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/01/2022 15:37 <3ThomasBorregaardSørensen!!
+// Created by camilo on 31/01/2022 15:37 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "window.h"
@@ -437,13 +437,13 @@ namespace x11
       if (event_type == ConfigureNotify)
       {
 
-         m_pinterface->m_rectangle.left = pevent->xconfigure.x();
+         m_pinterface->m_rectangle.left = pevent->xconfigure.x;
 
-         m_pinterface->m_rectangle.top = pevent->xconfigure.y();
+         m_pinterface->m_rectangle.top = pevent->xconfigure.y;
 
-         m_pinterface->m_rectangle.right = pevent->xconfigure.x() + pevent->xconfigure.width;
+         m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
 
-         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y() + pevent->xconfigure.height;
+         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
 
          if (m_psurface)
          {

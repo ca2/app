@@ -1,4 +1,4 @@
-// from console.cpp by camilo on 2022-09-04 09:07 <3ThomasBorregaardSørensen!!
+// from console.cpp by camilo on 2022-09-04 09:07 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "console_client.h"
 

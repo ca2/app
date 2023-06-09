@@ -513,9 +513,6 @@
     <ClCompile Include="graphics\write_text\font_list.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
-      <Filter>Source Files\graphics\write_text</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\write_text\fonts.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
@@ -679,6 +676,9 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\holder.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\path_optimization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>

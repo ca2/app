@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 12/04-April/2022. 22:11 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 12/04-April/2022. 22:11 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "display.h"

@@ -1,0 +1,13 @@
+e_character_set_chinesebig5=示例文本
+e_character_set_gb2312=示例文本
+e_character_set_shiftjis=サンプルテキスト
+e_character_set_hebrew=טקסט לדוגמה
+e_character_set_arabic=نص بسيط
+e_character_set_greek=greekdeltaείγμα κειμένου
+e_character_set_turkish=Örnek yazı
+e_character_set_vietnamese=văn bản mẫu
+e_character_set_thai=ตัวอย่างข้อความ
+e_character_set_easteurope=Sample Text
+e_character_set_russian=Образец текста
+e_character_set_johab=샘플 텍스트
+e_character_set_hangul=샘플 텍스트

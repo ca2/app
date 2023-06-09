@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "experience.h"
 #include "acme/platform/system.h"
 #include "base/platform/session.h"

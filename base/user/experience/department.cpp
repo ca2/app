@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "department.h"
 #include "experience.h"
 #include "frame.h"

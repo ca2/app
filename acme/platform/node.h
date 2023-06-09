@@ -98,6 +98,9 @@ namespace acme
       string                                                m_strTheme;
       string                                                m_strIconTheme;
 
+      map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
+      string_map < enum_character_set >                     m_mapCharacterSetEnum;
+
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
@@ -756,6 +759,11 @@ namespace acme
       virtual ::pointer < ::operating_system::application > process_identifier_application(::process_identifier processidentifier);
 
       virtual ::pointer < ::operating_system::application > application_predicate(const ::function < bool(::operating_system::application * papplication) > & function);
+
+
+      virtual ::string get_character_set_default_sample_text(enum_character_set echaracterset);
+      virtual void load_character_set_default_sample_text();
+
 
    };
 

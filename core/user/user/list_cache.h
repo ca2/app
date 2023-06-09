@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "mesh_cache_interface.h"

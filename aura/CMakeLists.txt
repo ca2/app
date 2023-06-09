@@ -99,8 +99,8 @@ list(APPEND library_source
         graphics/draw2d/printer.h
         graphics/draw2d/region.cpp
         graphics/draw2d/region.h
-        graphics/draw2d/region_item.cpp
-        graphics/draw2d/region_shape.h
+        #graphics/draw2d/region_item.cpp
+        #graphics/draw2d/region_shape.h
         graphics/draw2d/task_tool.cpp
         graphics/draw2d/task_tool.h
         #graphics/draw2d/ttf_util.cpp
@@ -155,7 +155,7 @@ list(APPEND library_source
         graphics/image/array.h
         graphics/image/drawer.cpp
         graphics/image/drawer.h
-        #graphics/image/drawing.cpp
+        graphics/image/drawing.cpp
         graphics/image/drawing.h
         graphics/image/dynamic.cpp
         graphics/image/dynamic.h
@@ -190,8 +190,8 @@ list(APPEND library_source
         graphics/user/control_box_icon.cpp
         graphics/user/control_box_icon.h
         graphics/write_text/_.h
-        graphics/write_text/_shape.h
-        graphics/write_text/_shape.cpp
+        #graphics/write_text/_shape.h
+        #graphics/write_text/_shape.cpp
         graphics/write_text/bounding_rect.h
         graphics/write_text/contains.h
         graphics/write_text/drawer.cpp
@@ -208,7 +208,7 @@ list(APPEND library_source
         graphics/write_text/font_enumeration_item.h
         graphics/write_text/font_list.cpp
         graphics/write_text/font_list.h
-        graphics/write_text/font_utf8.cpp
+        #graphics/write_text/font_utf8.cpp
         graphics/write_text/glyph.cpp
         graphics/write_text/glyph.h
         graphics/write_text/glyph_set.cpp

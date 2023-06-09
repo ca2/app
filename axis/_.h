@@ -1,4 +1,4 @@
-﻿///TBS__<3tbs
+///TBS__<3tbs
 #pragma once
 
 #undef __spin_namespace

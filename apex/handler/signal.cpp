@@ -1,4 +1,4 @@
-﻿// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:30!!
+// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:30!!
 #include "framework.h"
 #include "signal.h"
 #include "manager.h"

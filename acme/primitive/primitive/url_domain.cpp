@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "url_domain.h"
 #include "url.h"
 #include "acme/primitive/string/str.h"

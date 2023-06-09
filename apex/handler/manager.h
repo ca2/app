@@ -1,4 +1,4 @@
-﻿// Created by camilo on day after ThomasBirthday2021 21:07
+// Created by camilo on day after ThomasBirthday2021 21:07
 #pragma once
 
 
@@ -39,7 +39,7 @@ public:
    virtual class ::signal * get_signal(const ::atom& atom, const ::action_context& actioncontext = ::action_context());
 
 
-   // <3ThomasBorregaardSørensen handle...!!
+   // <3ThomasBorregaardSorensen handle...!!
    virtual void signal(const ::atom & atom, const ::action_context & actioncontext = ::action_context());
 
 

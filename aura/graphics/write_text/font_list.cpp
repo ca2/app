@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <math.h>
 #include "font_list.h"
 #include "acme/constant/id.h"
@@ -511,7 +511,7 @@ namespace write_text
                   && pbox->m_pfont->get_character_set(pgraphics) != ::e_character_set_default))
             {
 
-               strText = ::write_text::font::get_sample_text(pbox->m_pfont->m_echaracterset);
+               strText = acmenode()->get_character_set_default_sample_text(pbox->m_pfont->m_echaracterset);
 
                if (strText.is_empty())
                {
@@ -791,7 +791,7 @@ namespace write_text
 
          }
 
-         if (m_efontlist != e_font_list_single_column && !m_rectangleClient)
+         if (m_efontlist != e_font_list_single_column && m_rectangleClient.is_empty())
          {
 
             return;

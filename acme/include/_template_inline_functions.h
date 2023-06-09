@@ -1,5 +1,14 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+void copy_cast_number(NUMBER1 & n1, NUMBER2 n2)
+{
+   
+   n1 = (NUMBER1) n2;
+   
+}
 
 
 template < typename A, typename B >
@@ -65,7 +74,7 @@ constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CH
 
 
 /// initially for __utosz_internal and __utosz
-/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSørensen!!
+/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
 template < typename TYPE >
 void reverse(TYPE * begin, TYPE * end)
 {
@@ -843,50 +852,50 @@ inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 }
 
 
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-void copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   rect1.left = (decltype(RECT_TYPE1::left))rect2.left;
-   rect1.top = (decltype(RECT_TYPE1::top))rect2.top;
-   rect1.right = (decltype(RECT_TYPE1::right))rect2.right;
-   rect1.bottom = (decltype(RECT_TYPE1::bottom))rect2.bottom;
-
-}
+//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+//{
+//
+//   copy_cast_number(rectangle1.left    , rectangle2.left    );
+//   copy_cast_number(rectangle1.top     , rectangle2.top     );
+//   copy_cast_number(rectangle1.right   , rectangle2.right   );
+//   copy_cast_number(rectangle1.bottom  , rectangle2.bottom  );
+//
+//}
 
 
 template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
 void copy(RECTANGLE & rectangle, const XYDim & xydim)
 {
 
-   rectangle.left = (decltype(RECTANGLE::left))xydim.X;
-   rectangle.top = (decltype(RECTANGLE::top))xydim.Y;
-   rectangle.right = (decltype(RECTANGLE::right))(xydim.X + xydim.Width);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(xydim.Y + xydim.Height);
+   copy_cast_number(rectangle.left     , xydim.X);
+   copy_cast_number(rectangle.top      , xydim.Y);
+   copy_cast_number(rectangle.right    , xydim.X + xydim.Width);
+   copy_cast_number(rectangle.bottom   , xydim.Y + xydim.Height);
 
 }
 
 
 template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
-void copy(RECTANGLE & rect1, const XYDIM  & xydim)
+void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
 {
 
-   rect1.left = (decltype(RECTANGLE::left))xydim.x();
-   rect1.top = (decltype(RECTANGLE::top))xydim.y();
-   rect1.right = (decltype(RECTANGLE::right))(xydim.x() + xydim.width);
-   rect1.bottom = (decltype(RECTANGLE::bottom))(xydim.y() + xydim.height);
+   copy_cast_number(rectangle.left     , xydim.x);
+   copy_cast_number(rectangle.top      , xydim.y);
+   copy_cast_number(rectangle.right    , xydim.x + xydim.width);
+   copy_cast_number(rectangle.bottom   , xydim.y + xydim.height);
 
 }
 
 
-template < primitive_origin_size RECTANGLE1, primitive_rectangle RECTANGLE2 >
-void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+template < primitive_origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
+void copy(ORIGIN_SIZE & originsize, const RECTANGLE & rectangle)
 {
 
-   rectangle1.origin.x = (const ::std::decay_t < decltype(rectangle1.origin.x) > &)rectangle2.left;
-   rectangle1.origin.y = (const ::std::decay_t < decltype(rectangle1.origin.y) > &)rectangle2.top;
-   rectangle1.size.width = (const ::std::decay_t < decltype(rectangle1.size.width) > &)(rectangle2.right - rectangle2.left);
-   rectangle1.size.height = (const ::std::decay_t < decltype(rectangle1.size.height) > &)(rectangle2.bottom - rectangle2.top);
+   copy_cast_number(originsize.origin.x      , rectangle.left);
+   copy_cast_number(originsize.origin.y      , rectangle.top);
+   copy_cast_number(originsize.size.width    , rectangle.right - rectangle.left);
+   copy_cast_number(originsize.size.height   , rectangle.bottom - rectangle.top);
 
 }
 
@@ -895,10 +904,10 @@ template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle1.left = (decltype(RECTANGLE1::left))rectangle2.origin.x;
-   rectangle1.top = (decltype(RECTANGLE1::top))rectangle2.origin.y;
-   rectangle1.right = (decltype(RECTANGLE1::right))(rectangle2.origin.x - rectangle2.size.width);
-   rectangle1.bottom = (decltype(RECTANGLE1::bottom))(rectangle2.origin.y - rectangle2.size.height);
+   copy_cast_number(rectangle1.left    , rectangle2.origin.x);
+   copy_cast_number(rectangle1.top     , rectangle2.origin.y);
+   copy_cast_number(rectangle1.right   , rectangle2.origin.x - rectangle2.size.width);
+   copy_cast_number(rectangle1.bottom  , rectangle2.origin.y - rectangle2.size.height);
 
 }
 

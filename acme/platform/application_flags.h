@@ -1,7 +1,7 @@
-﻿// Split into application_flags.h by camilo on 2022-11-29 23:06 <3ThomasBorregaardSørensen!!
-// ReCreated/Merged (from acme_main_data) on 2021-11-01 12:24 BRT <3ThomasBorregaardSørensen!!
+// Split into application_flags.h by camilo on 2022-11-29 23:06 <3ThomasBorregaardSorensen!!
+// ReCreated/Merged (from acme_main_data) on 2021-11-01 12:24 BRT <3ThomasBorregaardSorensen!!
 // Created by camilo 2021-03-12 12:08 BRT <3_ThomasBS, Mummi and bilbo!!
-// ReCreated/Merged (from acme_main_data and apex_main_data) on 2022-09-25 01:35 BRT <3ThomasBorregaardSørensen!!
+// ReCreated/Merged (from acme_main_data and apex_main_data) on 2022-09-25 01:35 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

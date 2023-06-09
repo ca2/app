@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "database.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/base64.h"

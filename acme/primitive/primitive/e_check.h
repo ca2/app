@@ -1,4 +1,4 @@
-﻿// From echeck.h by camilo on 2022-10-08 18:34 <3ThomasBorregaardSørensen!!
+// From echeck.h by camilo on 2022-10-08 18:34 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

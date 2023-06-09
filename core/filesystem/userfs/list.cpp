@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list.h"
 #include "document.h"
 #include "list_data.h"

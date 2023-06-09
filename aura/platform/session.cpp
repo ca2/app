@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "acme/exception/extended_status.h"
 #include "acme/filesystem/file/item_array.h"

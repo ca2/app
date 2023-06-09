@@ -1,4 +1,4 @@
-﻿//
+//
 //  font_enumeration_item.h
 //  aura
 //

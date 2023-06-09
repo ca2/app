@@ -822,6 +822,7 @@
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
+    <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>
@@ -1085,7 +1086,6 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />

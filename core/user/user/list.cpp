@@ -1009,7 +1009,7 @@ namespace user
 
       auto rect1 = client_rectangle();
 
-      if (!rect1)
+      if (rect1.is_empty())
       {
 
          return;
@@ -2188,7 +2188,7 @@ namespace user
 
       ::rectangle_i32 rectangleMargin;
 
-      get_margin_rect(rectangleMargin);
+      get_margin_rect(&rectangleMargin);
 
       auto iLeft = (index)-pointOffset.x() - (rectangleMargin.left * 2);
 
@@ -3494,7 +3494,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            bool bShouldStartDrag = d_distance(point, m_pointLButtonDown1) > m_dItemHeight;
+            bool bShouldStartDrag = f64_distance(point, m_pointLButtonDown1) > m_dItemHeight;
 
             if (bShouldStartDrag)
             {
@@ -4030,7 +4030,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            bool bShouldStartDrag = d_distance(point, m_pointLButtonDown1) > m_dItemHeight;
+            bool bShouldStartDrag = f64_distance(point, m_pointLButtonDown1) > m_dItemHeight;
 
             if (bShouldStartDrag)
             {

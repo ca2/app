@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 // #include "acme/primitive/string/string.h"
 
 //CLASS_DECL_ACME string __get_text(const string & str);

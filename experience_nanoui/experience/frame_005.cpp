@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_005.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/brush.h"

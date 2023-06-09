@@ -99,7 +99,7 @@ namespace windowing
    }
 
 
-   void icon::get_sizes(array < ::size_i32 > & a)
+   void icon::get_sizes(::size_i32_array & a)
    {
 
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system/parallelization.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/debug.h"

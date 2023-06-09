@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_text.h"
 #include "aura/user/user/check_box.h"
 #include "axis/html/element/element.h"

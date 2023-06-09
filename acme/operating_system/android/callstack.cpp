@@ -1,4 +1,4 @@
-﻿// From stackoflw by camilo on 2022-04-30 00:02 <3ThomasBorregaardS�rensen!!
+// From stackoflw by camilo on 2022-04-30 00:02 <3ThomasBorregaardSorensen!!
 // https://stackoverflow.com/questions/8115192/android-ndk-getting-the-backtrace
 #include "framework.h"
 #include "acme/platform/node.h"

@@ -45,7 +45,7 @@ namespace html
 
       }
 
-
+   
       void element::initialize_html_impl_elemental(::html_data* pdata)
       {
 
@@ -809,7 +809,7 @@ namespace html
             else
             {
 
-               copy(rectangle, m_box);
+               rectangle = m_box;
 
             }
 
@@ -1383,7 +1383,7 @@ namespace html
             + m_margin.bottom;
 
       }
-
+   
 
    } // namespace impl
 

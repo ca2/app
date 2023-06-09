@@ -1325,7 +1325,7 @@ namespace xml
 
                }
                else if (rangeXml.has_char() && *rangeXml.m_begin)  // Alone child Tag Loaded
-                  // else 해야하는지 말아야하는지 의심간다.
+                  // else "I wonder if I should or shouldn't"(TranslatedFromKorean).
                {
 
                   //if( xml && this->m_strValue.is_empty() && *xml !='<' )
@@ -1660,15 +1660,16 @@ namespace xml
    }
 
 
-   //========================================================
-   // 함수명 : GetText
-   // 설  명 : 노드 하나를 텍스트 문자열로 반환
-   // 인  자 :
-   // 리턴값 : 변환된 문자열
-   //--------------------------------------------------------
-   // 작성자   작성일                 작성이유
-   // 조경민   2004-06-15
-   //========================================================
+   //==Translated from Korean
+   //================================================= ========
+   // function name: GetText
+   // Description: Returns one node as a text string
+   // factor :
+   // return value: converted string
+   //------------------------------------------------ --------
+   // Author Date of creation Reason for creation
+   // Cho Gyeong-min 2004-06-15
+   //================================================= ========
    string node::get_text( disp_option * opt /*= &optDefault*/ ) const
    {
 

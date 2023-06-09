@@ -127,7 +127,7 @@ namespace draw2d
 
       //}
 
-      copy(rectangle, r);
+      rectangle = r;
 
       return true;
 

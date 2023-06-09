@@ -51,7 +51,6 @@ namespace draw2d
 
    }
 
-
    //bool region::create_rectangle(const ::rectangle_i32 & rectangle)
    //{
 
@@ -397,7 +396,7 @@ namespace draw2d
 
       expand_bounding_box(rectangleMaxBounding);
 
-      copy(rectangle, rectangleMaxBounding);
+      rectangle = rectangleMaxBounding;
 
    }
 

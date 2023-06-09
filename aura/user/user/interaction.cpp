@@ -10,6 +10,7 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
+#include "size_parent_layout.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/message_prototype.h"
@@ -3717,6 +3718,7 @@ namespace user
    }
 
 
+
    bool interaction::is_frame_window()
    {
 
@@ -3842,6 +3844,7 @@ namespace user
       return nullptr;
 
    }
+
 
 
    void interaction::set_context_org(::draw2d::graphics_pointer & pgraphics)
@@ -4063,6 +4066,8 @@ namespace user
    }
 
 
+
+
    void interaction::_001DrawThis(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -4248,6 +4253,7 @@ namespace user
    }
 
 
+
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -4299,9 +4305,9 @@ namespace user
             ::rectangle_i32 rectangleDraw;
 
             client_rectangle(rectangleDraw);
-
-            copy(pgraphics->m_rectangleDraw, rectangleDraw);
-
+            
+            pgraphics->m_rectangleDraw = rectangleDraw;
+            
             _001OnDraw(pgraphics);
 
 #ifdef __DEBUG
@@ -4457,6 +4463,7 @@ namespace user
       return pgraphics->synchronization();
 
    }
+
 
 
    void interaction::_001DrawChildren(::draw2d::graphics_pointer& pgraphics)
@@ -5134,6 +5141,7 @@ namespace user
       }
 
    }
+
 
 
    void interaction::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
@@ -9030,7 +9038,7 @@ namespace user
          if (bStretch)
          {
 
-            ::copy(*prectParam, sizeparentlayout.m_rectangle);
+            *prectParam = sizeparentlayout.m_rectangle;
 
          }
          else
@@ -14073,7 +14081,7 @@ namespace user
    }
 
 
-   //// <3ThomasBorregaardSørensen__!!
+   //// <3ThomasBorregaardSorensen__!!
    void interaction::handle_command(const ::atom& atom)
    {
 
@@ -15141,7 +15149,7 @@ namespace user
 
       }
 
-      if (rectangleParam)
+      if (rectangleParam.is_set())
       {
 
          *prectangle = rectangleParam;
@@ -15287,7 +15295,7 @@ namespace user
 
       }
 
-      copy(rectangleWindow, rectangleRate);
+      rectangleWindow = rectangleRate;
 
       rectangleWindow += rectangleMainMonitor.top_left();
 

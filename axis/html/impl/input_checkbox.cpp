@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_checkbox.h"
 #include "acme/constant/id.h"
 #include "acme/primitive/data/listener.h"

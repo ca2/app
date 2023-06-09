@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, i8 & i) { s.default_exchange(atom, i); }

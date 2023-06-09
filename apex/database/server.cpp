@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "server.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/memory_file.h"

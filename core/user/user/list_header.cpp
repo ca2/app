@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list.h"
 #include "list_header.h"
 #include "list_column.h"
@@ -265,23 +265,23 @@ namespace user
 
             ::rectangle_i32 rectangleA;
 
-            if(!GetItemRect(rectangleA, element_item_Box, iItem - 1))
+            if(!GetItemRect(&rectangleA, element_item_Box, iItem - 1))
             {
 
-               GetItemRect(rectangleA, element_item_Box, iItem);
+               GetItemRect(&rectangleA, element_item_Box, iItem);
 
             }
 
             ::rectangle_i32 rectangle;
 
-            GetItemRect(rectangle, element_item_Box, iItem);
+            GetItemRect(&rectangle, element_item_Box, iItem);
 
             ::rectangle_i32 rectangleB;
 
-            if(!GetItemRect(rectangleA, element_item_Box, iItem + 1))
+            if(!GetItemRect(&rectangleA, element_item_Box, iItem + 1))
             {
 
-               GetItemRect(rectangleA, element_item_Box, iItem);
+               GetItemRect(&rectangleA, element_item_Box, iItem);
 
             }
 
@@ -299,16 +299,16 @@ namespace user
             
             ::rectangle_i32 rectangleA;
 
-            if(!GetItemRect(rectangleA, element_item_Box, iItem - 1))
+            if(!GetItemRect(&rectangleA, element_item_Box, iItem - 1))
             {
 
-               GetItemRect(rectangleA, element_item_Box, iItem);
+               GetItemRect(&rectangleA, element_item_Box, iItem);
 
             }
 
             ::rectangle_i32 rectangle;
 
-            GetItemRect(rectangle, element_item_Box, iItem);
+            GetItemRect(&rectangle, element_item_Box, iItem);
 
             rectangle.left = rectangleA.left + rectangleA.width() / 2;
 
@@ -324,16 +324,16 @@ namespace user
             
             ::rectangle_i32 rectangleB;
 
-            if(!GetItemRect(rectangleB, element_item_Box, iItem + 1))
+            if(!GetItemRect(&rectangleB, element_item_Box, iItem + 1))
             {
 
-               GetItemRect(rectangleB, element_item_Box, iItem);
+               GetItemRect(&rectangleB, element_item_Box, iItem);
 
             }
 
             ::rectangle_i32 rectangle;
 
-            GetItemRect(rectangle, element_item_Box, iItem);
+            GetItemRect(&rectangle, element_item_Box, iItem);
 
             rectangle.left = rectangle.left + rectangle.width() / 2;
 
@@ -363,7 +363,7 @@ namespace user
       ::rectangle_i32 rectangle;
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
-         if(GetItemRect(rectangle, element_item_Box, iItem))
+         if(GetItemRect(&rectangle, element_item_Box, iItem))
          {
             if(rectangle.contains(point))
             {
@@ -372,7 +372,7 @@ namespace user
                return true;
             }
          }
-         if(GetItemRect(rectangle, ElementDivider, iItem))
+         if(GetItemRect(&rectangle, ElementDivider, iItem))
          {
             if(rectangle.contains(point))
             {
@@ -391,7 +391,7 @@ namespace user
       ::rectangle_i32 rectangle;
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
-         if(GetItemRect(rectangle, eelementLButtonDown, iItemLButtonDown, element_item_Box, iItem))
+         if(GetItemRect(&rectangle, eelementLButtonDown, iItemLButtonDown, element_item_Box, iItem))
          {
             if(rectangle.contains(point))
             {
@@ -400,7 +400,7 @@ namespace user
                return true;
             }
          }
-         if(GetItemRect(rectangle, ElementDivider, iItem))
+         if(GetItemRect(&rectangle, ElementDivider, iItem))
          {
             if(rectangle.contains(point))
             {
@@ -579,16 +579,25 @@ namespace user
             }
             else if(m_eelementLButtonDown == ElementDivider)
             {
+               
                ::rectangle_i32 rectangle;
-               GetItemRect(rectangle, e_element_item, m_iItemLButtonDown);
+               
+               GetItemRect(&rectangle, e_element_item, m_iItemLButtonDown);
+               
                rectangle.right = pointCursor.x();
+               
                i32 iNewWidth = rectangle.width();
+               
                plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
+               
                plist->set_need_redraw();
+               
                set_need_redraw();
+               
             }
 
          }
+         
       }
 
       pmouse->m_bRet = false;
@@ -644,16 +653,26 @@ namespace user
 
       if(m_bLButtonDown)
       {
+         
          if(m_eelementLButtonDown == ElementDivider)
          {
+            
             ::rectangle_i32 rectangle;
-            GetItemRect(rectangle, e_element_item, m_iItemLButtonDown);
+            
+            GetItemRect(&rectangle, e_element_item, m_iItemLButtonDown);
+            
             rectangle.right = pointCursor.x();
+            
             i32 iNewWidth = rectangle.width();
+            
             plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
+            
             plist->set_need_redraw();
+            
             set_need_redraw();
+            
          }
+         
       }
 
       auto pwindowing = windowing();
@@ -929,7 +948,7 @@ namespace user
 
          DrawItem(&drawitem);
 
-         GetItemRect(rectangleDivider, ElementDivider, iItem);
+         GetItemRect(&rectangleDivider, ElementDivider, iItem);
 
          pgraphics->set(ppen);
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list_cache.h"
 #include "mesh.h"
 #include "mesh_item.h"

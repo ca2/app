@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "nanosecond_timer.h"
 #include "acme/_operating_system.h"
 

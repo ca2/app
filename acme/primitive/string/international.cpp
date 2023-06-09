@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "international.h"
 //#include "string.h"
 //#include "international2.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "windowing/window.h"
 #include "message.h"
 #include "interaction_impl.h"

@@ -1,6 +1,6 @@
-// acme/platform/apex_main_struct.h Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSørensen!!
+// acme/platform/apex_main_struct.h Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSorensen!!
 // acme/platform/acme_main_struct.h Created by camilo 2021-03-12 12:08 BRT <3_ThomasBS, Mummi and bilbo!!
-// acme/platform/acme_main_struct.h Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSørensen!!
+// acme/platform/acme_main_struct.h Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

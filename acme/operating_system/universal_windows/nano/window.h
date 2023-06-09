@@ -1,5 +1,5 @@
-﻿//
-// From acme/user/nano/window by camilo on 2022-03-11 14:42 <3ThomasBorregaardS�rensen!!
+//
+// From acme/user/nano/window by camilo on 2022-03-11 14:42 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 

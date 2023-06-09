@@ -1,4 +1,4 @@
-﻿// created by Camilo 2021-02-02 06:50 BRT <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo 2021-02-02 06:50 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #pragma once
 #ifdef __clang__
 #pragma clang diagnostic push

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"

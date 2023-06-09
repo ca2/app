@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "cell.h"
 #include "table_row.h"
 #include "table.h"

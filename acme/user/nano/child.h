@@ -1,9 +1,11 @@
-// Created by camilo on 2022-01-21 05:10 PM <3ThomasBorregaardSørensen
+// Created by camilo on 2022-01-21 05:10 PM <3ThomasBorregaardSorensen
 #pragma once
 
 
 ////#include "acme/primitive/primitive/object.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/point.h"
+//#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 class nano_window;

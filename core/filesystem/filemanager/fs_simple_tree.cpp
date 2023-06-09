@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "fs_simple_tree.h"
 #include "fs_simple_impact.h"
 #include "acme/primitive/data/listener.h"

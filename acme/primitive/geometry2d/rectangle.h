@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "_function_impl.h"
+#include "_function.h"
+#include "size.h"
 #include "acme/primitive/mathematics/numeric_info.h"
 
 
@@ -150,10 +151,11 @@ public:
    POINT_TYPE & bottom_right() noexcept { return *((POINT_TYPE *)this + 1); }
    void swap_left_right() noexcept { ::swap_left_right(*this); }
 
-   operator rectangle_type * () noexcept { return this; }
-   operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
+   //operator rectangle_type * () noexcept { return this; }
+   //operator const rectangle_type * () const noexcept { return (const rectangle_type *)this; }
 
-   operator bool() const noexcept { return is_set(); }
+   explicit operator bool() const noexcept { return is_set(); }
+   bool operator !() const noexcept { return is_empty(); }
 
    rectangle_type & set(UNIT_TYPE i) noexcept { return ::assign(*this, i, i, i, i); }
    rectangle_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::assign(*this, x, y, x, y); }
@@ -255,8 +257,77 @@ public:
    bool null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::null_intersect(*this, rect1, rect2); }
    bool top_left_null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::top_left_null_intersect(*this, rect1, rect2); }
 
-   bool unite(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::unite(*this, rect1, rect2); }
-   rectangle_type & unite(const rectangle_type & rectangle) noexcept { return ::unite(*this, *this, rectangle); }
+   rectangle_type & unite(const rectangle_type & rectangle1, const rectangle_type & rectangle2) noexcept
+   {
+      
+      if (rectangle1.is_empty())
+      {
+
+         if (rectangle2.is_empty())
+         {
+
+            this->Null();
+
+         }
+         else
+         {
+
+            this->operator=(rectangle2);
+
+         }
+
+      }
+      else if (rectangle2.is_empty())
+      {
+
+         this->operator= (rectangle1);
+
+      }
+      else
+      {
+
+         this->operator = (rectangle1);
+         
+         rectangle2.expand_bounding_box(this->top_left(), this->bottom_right());
+
+      }
+
+      return *this;
+      
+   }
+   
+   
+   rectangle_type & unite(const rectangle_type & rectangle) noexcept
+   {
+      
+      if (this->is_empty())
+      {
+
+         if (rectangle.is_empty())
+         {
+
+            this->Null();
+
+         }
+         else
+         {
+
+            this->operator=(rectangle);
+
+         }
+
+      }
+      else if (rectangle.is_set())
+      {
+
+         rectangle.expand_bounding_box(this->top_left(), this->bottom_right());
+
+      }
+
+      return *this;
+      
+   }
+
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
    rectangle_type left_difference(const rectangle_type& rectangle) const { return { this->left, ::maximum(this->top, rectangle.top), rectangle.left, ::minimum(this->bottom, rectangle.bottom) }; }
@@ -288,7 +359,26 @@ public:
    }
    
 
-   bool operator==(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
+   template < primitive_origin_size ORIGIN_SIZE >
+   rectangle_type & operator =(const ORIGIN_SIZE & originsize) noexcept
+   {
+      
+      this->left = (UNIT_TYPE) originsize.origin.x;
+      this->top = (UNIT_TYPE) originsize.origin.y;
+      this->right = (UNIT_TYPE) originsize.origin.x + originsize.size.width;
+      this->bottom = (UNIT_TYPE) originsize.origin.y + originsize.size.height;
+      
+      return *this;
+      
+   }
+
+
+   bool operator==(const rectangle_type & rectangle) const noexcept 
+   { 
+      
+      return ::is_equal(*this, rectangle); 
+   
+   }
 //   bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
 //   template < primitive_point POINT >
@@ -376,13 +466,17 @@ public:
    }
    rectangle_type operator|(const rectangle_type & rectangleOr) const noexcept
    {
-      rectangle_type rectangle; ::unite(rectangle, *this, rectangleOr);
+      rectangle_type rectangle; 
+      rectangle.unite(*this, rectangleOr);
       return rectangle;
    }
 
-   bool subtract(const rectangle_type & rectangleSrc1, const rectangle_type & rectangleSrc2) noexcept
+   
+   rectangle_type & subtract(const rectangle_type & rectangleSrc1, const rectangle_type & rectangleSrc2) noexcept
    {
+      
       return ::subtract(*this, rectangleSrc1, rectangleSrc2);
+
    }
 
    void normalize() noexcept;
@@ -1283,7 +1377,7 @@ public:
 
 
 
-// Split to _defer_shape.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSørensen!! (Mummi and bilbo in ca2HQ)
+// Split to _defer_shape.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSorensen!! (Mummi and bilbo in ca2HQ)
 
 
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "step_slider.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"

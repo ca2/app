@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "notify_icon.h"
 #include "acme/exception/interface_only.h"
 

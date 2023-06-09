@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list_impact.h"
 #include "acme/constant/timer.h"
 

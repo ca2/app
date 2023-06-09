@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //inline stream & operator <<(stream & s, const ::data::tree & tree)

@@ -1,5 +1,5 @@
 // From aura/graphics/draw2d/region_item by camilo on 2023-05-26 14:21 <3ThomasBorregaardSorensen!!
-// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "item.h"
 #include "region.h"
@@ -537,7 +537,7 @@ namespace geometry2d
    void round_rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle)
    {
 
-      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      m_rectangle.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
 
    }
 

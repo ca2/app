@@ -710,6 +710,7 @@
     <ClCompile Include="user\user\split_pane.cpp" />
     <ClCompile Include="user\user\split_impact.cpp" />
     <ClCompile Include="user\user\statusbar.cpp" />
+    <ClCompile Include="user\user\tab_graphics.cpp" />
     <ClCompile Include="user\user\_aaa_static_control.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
     <ClCompile Include="user\user\tab_callback.cpp" />

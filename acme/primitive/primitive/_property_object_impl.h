@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //inline property_object::property_object(const property_object & propertyobject) :

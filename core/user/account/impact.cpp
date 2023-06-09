@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "impact.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"

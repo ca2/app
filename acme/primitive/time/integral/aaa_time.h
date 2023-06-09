@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //
 //template < typename INTEGRAL_TIME_TYPE >

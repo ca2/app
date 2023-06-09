@@ -20,8 +20,8 @@ public:
    ::rectangle_i32                  m_rectangleB;
    point_f64                        m_pointaA[4]; // pontos da primeira seta
    point_f64                        m_pointaB[4]; // pontos da segunda seta
-   ::draw2d::region_pointer         m_pregionA; // região da primeira seta
-   ::draw2d::region_pointer         m_pregionB; // região da segunda seta
+   ::draw2d::region_pointer         m_pregionA; // regiao da primeira seta
+   ::draw2d::region_pointer         m_pregionB; // regiao da segunda seta
    ::u32                            m_uiTimer;
 
 

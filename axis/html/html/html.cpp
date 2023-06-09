@@ -265,7 +265,7 @@ namespace html
          }
          else if (iChar == '\'')
          {
-            str += "&#039;"; // apenas quando ENT_QUOTES est・definida.
+            str += "&#039;"; // only when ENT_QUOTES is defined.
          }
          else if (iChar == '<')
          {
@@ -317,7 +317,7 @@ namespace html
          }
          else if (iChar == '\'')
          {
-            str += "&#039;"; // apenas quando ENT_QUOTES est・definida.
+            str += "&#039;"; // only when ENT_QUOTES is defined.
          }
          else if (iChar == '<')
          {

@@ -802,7 +802,7 @@ namespace html
          strsize iSelStart;
          strsize iSelEnd;
          ::size_f32 size3;
-         draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIﾍ"), size3);
+         draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIp"), size3);
          i32 maxcy = size3.cy();
 
          _001GetImpactSel(iSelStart, iSelEnd);

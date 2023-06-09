@@ -99,7 +99,7 @@ namespace calculator
       }
       else if(emode == mode_polar_degree)
       {
-         str.format(unitext("%f arg(%f°)"), mod(), arg() * 180.0 / pi());
+         str.format(unitext("%f arg(%fdegrees)"), mod(), arg() * 180.0 / pi());
          return str;
       }
       return "";

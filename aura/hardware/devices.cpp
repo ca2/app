@@ -1,5 +1,5 @@
-// Created by camilo on 2022-02-20 12:22 <3ThomasBorregaardSørensen!!
-// From windowing_win32::devices by camilo on 2022-05-15 17:08 <3ThomasBorregaardSørensen!! and Mummi!!
+// Created by camilo on 2022-02-20 12:22 <3ThomasBorregaardSoerensen!!
+// From windowing_win32::devices by camilo on 2022-05-15 17:08 <3ThomasBorregaardSoerensen!! and Mummi!!
 #include "framework.h"
 #include "devices.h"
 

@@ -7,11 +7,11 @@
 #include "acme/primitive/string/str.h"
 ////#include "acme/exception/exception.h"
 
-/* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora científica, financeira e com pilha
-mais típico de calculadora no "command" */
+/* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora cientifica, financeira e com pilha
+mais tipico de calculadora no "command" */
 
-/* o LeoFischer falouu sobre participar do clã(modinha de jogos de conquista de terra na internet) -
-para mim sugestão na minha linguagem - para "criar um clã" */
+/* o LeoFischer falouu sobre participar do cla(modinha de jogos de conquista de terra na internet) -
+para mim sugestao na minha linguagem - para "criar um cla" */
 
 namespace calculator
 {

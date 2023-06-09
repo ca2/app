@@ -264,19 +264,19 @@ namespace prompt
          strWeekDay = "segunda-feira";
          break;
       case 3:
-         strWeekDay = "terça-feira";
+         strWeekDay = "terca-feira";
          break;
       case 4:
          strWeekDay = "quarta-feira";
          break;
       case 5:
-         strWeekDay = "q::u32a-feira";
+         strWeekDay = "quinta-feira";
          break;
       case 6:
          strWeekDay = "sexta-feira";
          break;
       case 7:
-         strWeekDay = "sábado";
+         strWeekDay = "sabado";
          break;
       }
       strTime.format("%02d:%02d:%02d",

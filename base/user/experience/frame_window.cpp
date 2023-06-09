@@ -1155,8 +1155,8 @@ namespace experience
    //}
 
 
-   //  define System flags que serão usados para posicionar ou
-   //  dimensionar pelo uso da função set_window_position
+   //  define System flags que serao usados para posicionar ou
+   //  dimensionar pelo uso da funcao set_window_position
 
    void frame_window::SetSWPFlags(::u32 uFlags)
    {

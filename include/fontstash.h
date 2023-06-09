@@ -529,7 +529,7 @@ static unsigned int fons__decutf8(unsigned int * state, unsigned int * codep, un
 	return *state;
 }
 
-// Atlas based on Skyline Bin Packer by Jukka Jyl�nki
+// Atlas based on Skyline Bin Packer by Jukka Jylohnki
 
 static void fons__deleteAtlas(FONSatlas * atlas)
 {

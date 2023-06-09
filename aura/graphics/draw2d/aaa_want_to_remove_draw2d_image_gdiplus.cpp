@@ -144,7 +144,9 @@ bool imaging::load_image(::particle * pparticle, ::image * pimage, const ::memor
 
       comptr < IWICBitmapDecoder > piDecoder;
 
-      hr = piFactory->CreateDecoderFromStream(piStream, 0, WICDecodeMetadataCacheOnLoad, &piDecoder); // jpeg,png:OK, bmp:88982f50のエラーになる, iconもエラー
+      // jpeg,png:OK, 
+      //bmp:88982f50のエラーになる, iconもエラー
+      hr = piFactory->CreateDecoderFromStream(piStream, 0, WICDecodeMetadataCacheOnLoad, &piDecoder);
 
       if (FAILED(hr))
       {

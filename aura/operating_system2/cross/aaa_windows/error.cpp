@@ -3,7 +3,7 @@
  *
  * Copyright 2000 Alexandre Julliard
  * Copyright 2002 Andriy Palamarchuk
- * Copyright 2010 André Hentschel
+ * Copyright 2010 Andreh Hentschel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

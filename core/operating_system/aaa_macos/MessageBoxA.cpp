@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 13/09/14.
 //  from http://blog.jorgearimany.com/2010/05/messagebox-from-windows-to-mac.html
-//  El blog de Jorge Arimany Españaque
+//  El blog de Jorge Arimany Espanhaque
 
 #include "framework.h"
 

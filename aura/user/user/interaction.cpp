@@ -13032,7 +13032,7 @@ namespace user
 
       ::size_f64 size;
 
-      size = pgraphics->get_text_extent(unitext("Ág"));
+      size = pgraphics->get_text_extent(unitext("Ap"));
 
       return size.cy();
 

@@ -1033,8 +1033,8 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
 
    m_ppenDraw.create(this);
    m_pbrushDraw.create(this);
-   m_pregionA.create(this); // região da primeira seta
-   m_pregionB.create(this); // região da segunda seta
+   m_pregionA.create(this); // regiao da primeira seta
+   m_pregionB.create(this); // regiao da segunda seta
 
 
 

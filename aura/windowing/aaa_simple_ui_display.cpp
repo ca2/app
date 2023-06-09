@@ -616,7 +616,7 @@ namespace windowing
 //
 //      string strMeasure;
 //
-//      strMeasure = "Áj";
+//      strMeasure = "Aj";
 //
 //      XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &infoDummy);
 //
@@ -625,7 +625,7 @@ namespace windowing
 //      for (auto &str : m_stra)
 //      {
 //
-//         strMeasure = "Áj" + str;
+//         strMeasure = "Aj" + str;
 //
 //         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &info);
 //
@@ -651,7 +651,7 @@ namespace windowing
 //
 //            pbutton->m_bTextRect = true;
 //
-//            string strMeasure = "Áj" + pbutton->m_strLabel;
+//            string strMeasure = "Aj" + pbutton->m_strLabel;
 //
 //            XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &infoText);
 //

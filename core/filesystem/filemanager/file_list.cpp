@@ -1199,7 +1199,7 @@ namespace filemanager
          {
             /*   // primeiro, todos System arquivos que foram removidos
             // ou seja, que existem no array antigo,
-            // mas não existe no novo.
+            // mas nao existe no novo.
             for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
             {
             string str = straStrictOrder[strictOld];
@@ -1222,7 +1222,7 @@ namespace filemanager
                   iaDisplayToStrictNew.set(iDisplay, strictNew);
                }
             }
-            // terceiro, adiciona System novos arquivos nos primeiros espaços
+            // terceiro, adiciona System novos arquivos nos primeiros espacos
             // vazios
             for (index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
             {

@@ -187,7 +187,7 @@ namespace datetime
       {
          return strCandidate;
       }
-      else if(strCandidate == unitext("março"))
+      else if(strCandidate == unitext("marco"))
       {
          return strCandidate;
       }
@@ -294,7 +294,7 @@ namespace datetime
       {
          return strCandidate;
       }
-      else if(strCandidate == unitext("amanhã"))
+      else if(strCandidate == unitext("amanha"))
       {
          return strCandidate;
       }
@@ -335,7 +335,7 @@ namespace datetime
       {
          return strCandidate;
       }
-      else if(strCandidate == unitext("atrás"))
+      else if(strCandidate == unitext("atras"))
       {
          return strCandidate;
       }

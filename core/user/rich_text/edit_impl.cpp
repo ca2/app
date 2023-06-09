@@ -896,7 +896,7 @@ namespace user
 
             get_parent()->screen_to_client()(rectangleWindow);
 
-            copy(rectangleWindow, rectangleWindow);
+            rectangleWindow = rectangleWindow;
 
             point += rectangleWindow.top_left();
 

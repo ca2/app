@@ -229,8 +229,8 @@ namespace html
    {
       string str(psz);
       str.replace_with("&amp;"     , "&"     );
-      str.replace_with( "&quot;"   , "\""    ); // quando ENT_NOQUOTES n縊 est・definida.
-      str.replace_with("&#039;"    , "'"     ); // apenas quando ENT_QUOTES est・definida.
+      str.replace_with( "&quot;"   , "\""    ); // when ENT_NOQUOTES isn't defined
+      str.replace_with("&#039;"    , "'"     ); // only when ENT_QUOTES is defined
       str.replace_with("&lt;"      , "<"     );
       str.replace_with("&gt;"     ,  ">"     );
       return str;

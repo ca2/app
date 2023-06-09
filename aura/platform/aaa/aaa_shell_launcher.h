@@ -24,7 +24,7 @@ namespace aura
       string            m_strParameters;
       string            m_strDirectory;
       ::e_display        m_edisplay;
-      ::e_activation     m_eactivation;
+      ::e_activation     XXXXm_eactivation;
       duration          m_durationTimeout;
 
 #ifdef WINDOWS

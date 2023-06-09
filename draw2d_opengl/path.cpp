@@ -203,7 +203,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::arc& parc)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::arc_f64& parc)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -213,7 +213,7 @@ namespace draw2d_opengl
    }
 
         
-   bool path::_set(::draw2d::graphics* pgraphics, const ::line& pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::line_f64& pline)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -233,7 +233,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::lines& pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::lines_f64& pline)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -253,7 +253,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle & prectangle)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64 & prectangle)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -273,7 +273,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon& ppolygon)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygon)
    {
 
       throw ::exception(todo, "::opengl::path");

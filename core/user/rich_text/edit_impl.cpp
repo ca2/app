@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "edit_impl.h"
 #include "format_tool.h"
 #include "document.h"
@@ -2087,7 +2087,7 @@ namespace user
 
       //   place(rectangleWindow);
 
-      //   display(e_display_restored);
+      //   display(e_display_normal);
 
       //   set_need_layout();
 

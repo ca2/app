@@ -1,5 +1,5 @@
 //
-// From synchronized_predicate?... by camilo on 2022-10-25 <3ThomasBorregaardSørensen!!
+// From synchronized_predicate?... by camilo on 2022-10-25 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 

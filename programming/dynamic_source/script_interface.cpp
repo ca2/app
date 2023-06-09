@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "script_interface.h"
 #include "script_main.h"
 #include "httpd_socket.h"

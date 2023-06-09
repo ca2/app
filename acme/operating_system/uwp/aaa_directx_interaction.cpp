@@ -34,7 +34,7 @@ namespace universal_windows
 
       return ::user::interaction::_001DrawChildren(pgraphics);
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       // while drawing layout can occur and change z-order.
       // keep this past z-order

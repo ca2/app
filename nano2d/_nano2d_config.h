@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#define __NANO2D_API(api) nano2d ## api

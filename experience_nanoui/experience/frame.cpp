@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -19,9 +19,9 @@ namespace experience_nanoui
 
       m_pointWindowIcon.x() = 5;
 
-      m_sizeIcon.cx = 32;
+      m_sizeIcon.cx() = 32;
 
-      m_sizeIcon.cy = 32;
+      m_sizeIcon.cy() = 32;
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
@@ -311,11 +311,11 @@ namespace experience_nanoui
 
          rect.left = m_pointWindowIcon.x();
          rect.top = m_pointWindowIcon.y();
-         rect.right = rect.left + m_sizeIcon.cx;
-         rect.bottom = rect.top + m_sizeIcon.cy;
+         rect.right = rect.left + m_sizeIcon.cx();
+         rect.bottom = rect.top + m_sizeIcon.cy();
 
-         //lprect->right = lprect->left + pdrawicon->get_size().cx;
-         //lprect->bottom = lprect->top + pdrawicon->get_size().cy;
+         //lprect->right = lprect->left + pdrawicon->get_size().cx();
+         //lprect->bottom = lprect->top + pdrawicon->get_size().cy();
 
          return true;
 
@@ -461,7 +461,7 @@ namespace experience_nanoui
 
       m_minSize = size_i32(144, 48);
 
-      m_minSize.cy = 48;
+      m_minSize.cy() = 48;
 
       if (pcontrolbox)
       {

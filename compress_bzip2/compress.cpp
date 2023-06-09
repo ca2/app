@@ -1,4 +1,4 @@
-﻿// Refactor by camilo from bz on 2021-11-10 10:22 BRT <3ThomasBorregaardSørensen!!
+// Refactor by camilo from bz on 2021-11-10 10:22 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "compress.h"
 ////#include "acme/exception/exception.h"

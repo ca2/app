@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "data.h"
 #include "main_impact.h"
 #include "left_impact.h"
@@ -212,7 +212,7 @@ namespace filemanager
 
             OnActivateFrame(e_activate_inactive, parent_frame());
 
-            parent_frame()->ActivateFrame(e_display_restored);
+            parent_frame()->ActivateFrame(e_display_normal);
 
             OnActivateImpact(true, this, this);
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "group_image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -21,8 +21,8 @@ namespace userex
    group_image_list_impact::group_image_list_impact()
    {
 
-      m_size.cx = 7;
-      m_size.cy = 5;
+      m_size.cx() = 7;
+      m_size.cy() = 5;
 
 
    }

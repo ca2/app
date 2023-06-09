@@ -65,9 +65,9 @@ lineto (int x, int y)
 //----------------------------------------------------------------------------
 
 void
-linerel (int Δx, int Δy)
+linerel (int greekdeltax, int greekdeltay)
 {
-  lineto (Tcx + Δx, Tcy + Δy);
+  lineto (Tcx + greekdeltax, Tcy + greekdeltay);
 }
 
 //----------------------------------------------------------------------------
@@ -82,10 +82,10 @@ moveto (int x, int y)
 //----------------------------------------------------------------------------
 
 void
-moverel (int Δx, int Δy)
+moverel (int greekdeltax, int greekdeltay)
 {
-  Tcx += Δx;
-  Tcy += Δy;
+  Tcx += greekdeltax;
+  Tcy += greekdeltay;
 }
 
 //----------------------------------------------------------------------------

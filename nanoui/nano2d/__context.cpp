@@ -1,4 +1,4 @@
-// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "context.h"
 
@@ -289,7 +289,7 @@ namespace nano2d
    }
 
 
-   void context::ellipse(float cx, float cy, float rx, float ry)
+   void context::ellipse_f64(float cx, float cy, float rx, float ry)
    {
 
 

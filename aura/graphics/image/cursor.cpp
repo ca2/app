@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "cursor.h"
 #include "image.h"
 
@@ -67,9 +67,9 @@ namespace draw2d
 
       __construct(pparticle, pcursor);
 
-      pcursor->m_szHotspotOffset.cx = xHotspot;
+      pcursor->m_szHotspotOffset.cx() = xHotspot;
 
-      pcursor->m_szHotspotOffset.cy = yHotspot;
+      pcursor->m_szHotspotOffset.cy() = yHotspot;
 
    }
 

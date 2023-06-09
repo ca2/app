@@ -4,8 +4,8 @@
 #pragma once
 
 
-//#include "aura/graphics/draw2d/color_filter.h"
-//#include "source.h"
+#include "aura/graphics/draw2d/color_filter.h"
+#include "source.h"
 //#include "image.h"
 
 
@@ -36,7 +36,7 @@ public:
    bool                    m_bIntegerPlacement = false;
 
 
-   image_drawing_options()
+   image_drawing_options();
    image_drawing_options(const image_drawing_options & imagedrawingoptions);
    
    explicit image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.), enum_image_selection eimageselection = e_image_selection_default);

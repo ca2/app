@@ -1,4 +1,4 @@
-﻿// Created by Camilo 2021-01-08 <3TBS!!
+// Created by Camilo 2021-01-08 <3TBS!!
 #include "framework.h"
 #include "tab.h"
 #include "tab_pane.h"
@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   void tab_pane::do_split_layout(::draw2d::graphics_extension * pdc, ::draw2d::graphics_pointer & pgraphics)
+   void tab_pane::do_split_layout(::draw2d::graphics_extension * pgraphicsextension, ::draw2d::graphics_pointer & pgraphics)
    {
 
       string_array straTitle = m_straTitle.c_stra();
@@ -131,7 +131,7 @@ namespace user
       for (int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
       {
 
-         pdc->get_text_extent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
+         pgraphicsextension->get_text_extent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
 
       }
 

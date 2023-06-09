@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "session.h"
 #include "script_manager.h"
 #include "acme/primitive/text/international_locale_schema.h"

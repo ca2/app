@@ -142,8 +142,8 @@ void image_frame_array::update(::image * pimageHost, const ::image_drawing & ima
 
    //::size_i32 size;
 
-   //size.cx = pframes->m_size.cx * dx;
-   //size.cy = pframes->m_size.cy * dx;
+   //size.cx() = pframes->m_size.cx() * dx;
+   //size.cy() = pframes->m_size.cy() * dx;
 
    //m_size = size;
 

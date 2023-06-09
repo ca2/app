@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "type.h"
 #include "factory.h"

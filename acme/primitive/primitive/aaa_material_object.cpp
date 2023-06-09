@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "material_object.h"
 ////#include "acme/primitive/primitive/function.h"
 //#include "acme/parallelization/asynchronous.h"

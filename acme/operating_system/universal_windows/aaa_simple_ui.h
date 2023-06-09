@@ -16,7 +16,7 @@ namespace os
 
       int                        m_w;
       int                        m_h;
-      SIZE_I32                       m_size;
+      ::size_i32                       m_size;
       ::point_i32                      m_point;
       bool                       m_bLButtonDown;
       ::point_i32                      m_pointLButtonDown;

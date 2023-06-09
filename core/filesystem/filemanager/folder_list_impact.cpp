@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "folder_list_impact.h"
 #include "folder_list_data.h"
 #include "data.h"

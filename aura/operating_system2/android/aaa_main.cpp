@@ -49,7 +49,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //         pinitmaindata->m_strCommandLine     += "\"";
 //      }
 //   }
-//   pinitmaindata->m_nCmdShow              = e_display_restored;
+//   pinitmaindata->m_nCmdShow              = e_display_normal;
 //
 //
 //   psystem->init_main_data(pinitmaindata);

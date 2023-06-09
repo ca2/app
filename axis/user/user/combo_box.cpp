@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "combo_box.h"
 #include "list_box.h"
 #include "acme/constant/id.h"
@@ -779,7 +779,7 @@ namespace user
 
          auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-         m_plistbox->query_full_size(pgraphics, m_sizeFull);
+         m_plistbox->query_full_size(pgraphics, &m_sizeFull);
 
          ::rectangle_i32 rectangleWindow;
 

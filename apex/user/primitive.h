@@ -1,4 +1,4 @@
-﻿// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 #pragma once
 
 
@@ -182,7 +182,7 @@ namespace user
       virtual void design_window_minimize(::e_activation eactivation);
       virtual void design_window_maximize();
       virtual void design_window_full_screen(const ::rectangle_i32 & rectangleHint = nullptr);
-      virtual void design_window_restore(e_display edisplay);
+      virtual void design_window_normal(e_display edisplay);
       virtual void design_window_dock(e_display edisplayDock);
 
 
@@ -260,9 +260,9 @@ namespace user
       virtual lresult send(::message::message * pmessage);
       virtual void post(::message::message * pmessage);
 
-      lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
 
-      lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
 
@@ -417,7 +417,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      //bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
+      //bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = {},lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -490,10 +490,10 @@ namespace user
 
 
 
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = nullptr);
+      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = {});
       //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
       //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
-      //virtual ::pointer<::user::menu>track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
+      //virtual ::pointer<::user::menu>track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = {}, const ::size_i32 & sizeMinimum = size_i32(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
       //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);

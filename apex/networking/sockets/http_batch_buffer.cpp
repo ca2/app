@@ -1,4 +1,4 @@
-﻿#include "framework.h" 
+#include "framework.h" 
 #include "http_batch_buffer.h"
 
 

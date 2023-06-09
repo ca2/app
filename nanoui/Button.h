@@ -55,9 +55,9 @@ namespace nanoui
       /// The caption of this Button.
       ::string m_strCaption;
 
-      float m_tw;
-      float m_iw;
-      float m_ih;
+      float m_fTextWidth;
+      ::size_f32 m_sizeImage;
+      //float m_ih;
 
       /**
        * \brief The icon of this Button (``0`` means no icon).
@@ -66,11 +66,11 @@ namespace nanoui
        * The icon to display with this Button.  If not ``0``, may either be a
        * picture icon, or one of the icons enumerated in
        * :::pointer:`file_nanoui_entypo.h`.  The kind of icon (image or Entypo)
-       * is determined by the functions :func:`nanoui::::nano2d::IsImageIcon` and its
-       * reciprocal counterpart :func:`nanoui::::nano2d::IsFontIcon`.
+       * is determined by the functions :func:`nanoui::nano2d::IsImageIcon` and its
+       * reciprocal counterpart :func:`nanoui::nano2d::IsFontIcon`.
        * \endrst
        */
-      int m_icon;
+      int m_iIcon;
 
       /// The position to draw the icon at.
       IconPosition m_icon_position;
@@ -130,9 +130,9 @@ namespace nanoui
    
    
       /// Returns the icon of this Button.  See \::pointer nanoui::Button::m_icon.
-      int icon() const { return m_icon; }
+      int icon() const { return m_iIcon; }
       /// Sets the icon of this Button.  See \::pointer nanoui::Button::m_icon.
-      void set_icon(int icon) { m_icon = icon; }
+      void set_icon(int iIcon) { m_iIcon = iIcon; }
 
       /// The current flags of this Button (see \::pointer nanoui::Button::Flags for options).
       int flags() const { return m_flags; }
@@ -166,10 +166,10 @@ namespace nanoui
       void set_button_group(const ::array<Button *> & button_group) { m_button_group = button_group; }
 
       /// The preferred size of this Button.
-      virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual size_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       /// The callback that is called when any type of mouse button event is issued to this Button.
-      virtual bool mouse_enter_event(const vector2_i32 & p, bool enter, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_enter_event(const point_i32 & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const point_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
       /// Responsible for drawing the Button.
       virtual void draw(::nano2d::context * pcontext) override;
 

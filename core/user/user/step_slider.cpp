@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "step_slider.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
@@ -131,7 +131,7 @@ namespace user
       ::rectangle_i32 rectangle;
       for(i64 i = iMin; i <= iMax; i++)
       {
-         GetStepRect(rectangle, i, iMin, iMax, rectangleClient);
+         GetStepRect(&rectangle, i, iMin, iMax, rectangleClient);
          if(i == iVal)
          {
             

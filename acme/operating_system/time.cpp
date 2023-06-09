@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "time.h"
 ////#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/datetime/system_time.h"

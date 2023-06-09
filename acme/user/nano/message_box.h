@@ -1,6 +1,6 @@
 //
-// Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
-// Generalized by camilo on 31/01/2022 14:28 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
+// Generalized by camilo on 31/01/2022 14:28 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 

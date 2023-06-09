@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/imagepanel.h -- Image panel pwidget which shows a number of
     square-shaped icons
 
@@ -38,7 +38,7 @@ namespace nanoui
       int m_iThumbSize;
       int m_iSpacing;
       int m_iMargin;
-      int m_iMouseIndex;
+      ::index m_iMouseIndex;
 
 
       ImagePanel(Widget* parent);
@@ -53,19 +53,22 @@ namespace nanoui
       ::function<void(::index)> callback() const { return m_callback; }
       void set_callback(const ::function<void(::index)>& callback) { m_callback = callback; }
 
-      bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      vector2_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      bool mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context* pcontext) override;
 
       void _defer_load_image_directory(::nano2d::context* pcontext);
 
-      vector2_i32 grid_size() const;
-      int index_for_position(const vector2_i32& p) const;
+      size_i32 grid_size() const;
+      
+      int index_for_position(const point_i32& p) const;
+      
+      
    };
 
 
-
 } // namespace nanoui
+
 
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -930,34 +930,34 @@
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, SIZE_I32 & size)
+//inline void __exchange(::binary_stream < FILE > & s, ::size_i32 & size)
 //{
-//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
+//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 //}
 //
 //
 ////
 ////inline void __exchange(::binary_stream < FILE > & s, SIZEL & size)
 ////{
-////   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
+////   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 ////}
 ////
 ////
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, SIZE_F32 & size)
+//inline void __exchange(::binary_stream < FILE > & s, ::size_f32 & size)
 //{
 //
-//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
+//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 //
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream < FILE > & s, SIZE_F64 & size)
+//inline void __exchange(::binary_stream < FILE > & s, ::size_f64 & size)
 //{
-//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
+//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 //}
 //
 //

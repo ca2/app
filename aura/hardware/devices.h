@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-15 12:21 <3ThomasBorregaardS�rensen!! and Mummi!!
+// Created by camilo on 2022-05-15 12:21 <3ThomasBorregaardSorensen!! and Mummi!!
 #pragma once
 
 

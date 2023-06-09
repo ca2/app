@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
@@ -185,7 +185,7 @@ namespace user
 
       auto echeck = this->echeck();
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
@@ -347,7 +347,7 @@ namespace user
 
       //::enum_check echeck = _001GetCheck();
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       if (w > h * 2)
       {
@@ -380,7 +380,7 @@ namespace user
 
       ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.bottom);
 
-      ppath->add_arc(rectangleR, 90.0, -180.0);
+      ppath->add_arc(rectangleR, 90_degree, -180_degree);
 
       ppath->add_line((rectangleR.left + rectangleR.right) / 2, rectangleR.top);
 

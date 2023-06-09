@@ -60,6 +60,16 @@ struct const_of_struct< TYPE const && >
 };
 
 
+template <typename T>
+struct decay_struct {
+   template <typename U> static U impl(U);
+   using type = decltype(impl(std::declval<T>()));
+};
+
+template <typename T>
+using decay = typename decay_struct<T>::type;
+
+
 //template < typename FUNCTION  >
 //struct const_of_struct < void(*FUNCTION) >
 //{
@@ -296,6 +306,9 @@ class pointer_array;
 using image_pointer = ::pointer<::image>;
 
 
+using mutex_pointer = ::pointer<::mutex>;
+
+
 namespace write_text
 {
 
@@ -305,72 +318,6 @@ namespace write_text
 
 } // namespace write_text
 
-
-
-
-
-
-
-
-template < typename POINT >
-concept primitive_XY = requires(POINT point)
-{
-   point.X;
-   point.Y;
-};
-
-
-template < typename SIZE >
-concept primitive_size = requires(SIZE size)
-{
-   size.cx;
-   size.cy;
-};
-
-
-template < typename SIZE >
-concept primitive_Dim = requires(SIZE size)
-{
-   size.Width;
-   size.Height;
-};
-
-template < typename SIZE >
-concept primitive_dim = requires(SIZE size)
-{
-   size.width;
-   size.height;
-};
-
-
-template < typename RECTANGLE >
-concept primitive_rectangle = requires(RECTANGLE rectangle)
-{
-   rectangle.left;
-   rectangle.top;
-   rectangle.right;
-   rectangle.bottom;
-};
-
-
-template < typename RECTANGLE >
-concept primitive_XYDim = requires(RECTANGLE rectangle)
-{
-   rectangle.X;
-   rectangle.Y;
-   rectangle.Width;
-   rectangle.Height;
-};
-
-
-template < typename RECTANGLE >
-concept primitive_xydim = requires(RECTANGLE rectangle)
-{
-   rectangle.x();
-   rectangle.y();
-   rectangle.width;
-   rectangle.height;
-};
 
 
 
@@ -504,12 +451,32 @@ template <class... Types> struct inherits : Types... {};
 
 template < typename T1, typename T2 >
 struct largest_type_struct {
-   using type = if_else< (sizeof(T1) >= sizeof(T2)), T1, T2>;
+   using type = if_else< (sizeof(T1) >= sizeof(T2) ), T1, T2>;
 };
 
 
 template < typename T1, typename T2 >
 using largest_type = typename largest_type_struct<T1, T2>::type;
+
+
+template < typename T1, typename T2 >
+struct largest_number_struct {
+   using type = if_else < 
+      ((::std::is_floating_point_v < T1 > && sizeof(T1) < sizeof(T2))
+      || (::std::is_floating_point_v < T2 > && sizeof(T2) < sizeof(T1))),
+      double,
+      if_else < ((::std::is_floating_point_v < T1 >
+      && ::std::is_floating_point_v < T2 > &&
+      sizeof(T1) > sizeof(T2)) 
+      || (sizeof(T1) == sizeof(T2) &&
+         ::std::is_floating_point_v < T1 >)
+      || (sizeof(T1) > sizeof(T2))), T1, T2 > >;
+};
+
+
+template < typename T1, typename T2 >
+using largest_number = typename largest_number_struct<T1, T2>::type;
+
 
 
 template < typename T1, typename T2 >
@@ -914,56 +881,6 @@ void __swap(A & a, B & b)
 
 
 typedef pointer_array < ::particle > particle_array;
-
-
-template < primitive_XYDim XYDim, typename X, typename Y, typename W, typename H >
-inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
-{
-
-   rectTarget.X = (decltype(rectTarget.X))x;
-   rectTarget.Y = (decltype(rectTarget.Y))y;
-   rectTarget.Width = (decltype(rectTarget.Width))w;
-   rectTarget.Height = (decltype(rectTarget.Height))h;
-
-   return rectTarget;
-
-}
-
-
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-void copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   rect1.left = (decltype(RECT_TYPE1::left))rect2.left;
-   rect1.top = (decltype(RECT_TYPE1::top))rect2.top;
-   rect1.right = (decltype(RECT_TYPE1::right))rect2.right;
-   rect1.bottom = (decltype(RECT_TYPE1::bottom))rect2.bottom;
-
-}
-
-
-template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
-void copy(RECTANGLE & rectangle, const XYDim & xydim)
-{
-
-   rectangle.left = (decltype(RECTANGLE::left))xydim.X;
-   rectangle.top = (decltype(RECTANGLE::top))xydim.Y;
-   rectangle.right = (decltype(RECTANGLE::right))(xydim.X + xydim.Width);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(xydim.Y + xydim.Height);
-
-}
-
-
-template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
-void copy(RECTANGLE & rect1, const XYDIM  & xydim)
-{
-
-   rect1.left = (decltype(RECTANGLE::left))xydim.x();
-   rect1.top = (decltype(RECTANGLE::top))xydim.y();
-   rect1.right = (decltype(RECTANGLE::right))(xydim.x() + xydim.width);
-   rect1.bottom = (decltype(RECTANGLE::bottom))(xydim.y() + xydim.height);
-
-}
 
 
 

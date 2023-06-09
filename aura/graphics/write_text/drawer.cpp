@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSorensen__!!
 #include "framework.h"
 #include "drawer.h"
 #include "text_out.h"
@@ -240,7 +240,7 @@ namespace write_text
 
          string strNow = string(pszStart, pszEnd - pszStart);
 
-         auto extent = get_text_extent(strNow).cx;
+         auto extent = get_text_extent(strNow).cx();
 
          if (extent > w || is_empty(pszEnd))
          {
@@ -338,7 +338,7 @@ namespace write_text
 
          string strNow = string(pszStart, pszEnd - pszStart);
          
-         auto extentx = get_text_extent(strNow).cx;
+         auto extentx = get_text_extent(strNow).cx();
 
          if (extentx > w || *pszEnd == '\0')
          {
@@ -440,7 +440,7 @@ namespace write_text
 
             textouta.add_text_out(ptextout);
 
-            cx = maximum(cx, ptextout->m_size.cx);
+            cx = maximum(cx, ptextout->m_size.cx());
 
          }
 
@@ -471,7 +471,7 @@ namespace write_text
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.x() = (w - ptextout->m_size.cx) * dRate;
+            ptextout->m_point.x() = (w - ptextout->m_size.cx()) * dRate;
 
          }
 
@@ -480,19 +480,19 @@ namespace write_text
       if (ealign & (e_align_vertical_center | e_align_bottom))
       {
 
-         double Δy = (h - cy);
+         double greekdeltay = (h - cy);
 
          if (ealign & e_align_vertical_center)
          {
 
-            Δy /= 2.0;
+            greekdeltay /= 2.0;
 
          }
 
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.y() += Δy;
+            ptextout->m_point.y() += greekdeltay;
 
          }
 

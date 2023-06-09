@@ -144,11 +144,11 @@ typedef int wxCoord;
 //      if(sz.x() < x) x = sz.x(); if(sz.y() < y) y = sz.y();
 //   }
 //   
-//   void IncBy(int Δx,int Δy) { x += Δx; y += Δy; }
+//   void IncBy(int greekdeltax,int greekdeltay) { x += greekdeltax; y += greekdeltay; }
 //   void IncBy(const wxSize& sz) { IncBy(sz.x(),sz.y()); }
 //   void IncBy(int d) { IncBy(d,d); }
 //   
-//   void DecBy(int Δx,int Δy) { IncBy(-Δx,-Δy); }
+//   void DecBy(int greekdeltax,int greekdeltay) { IncBy(-greekdeltax,-greekdeltay); }
 //   void DecBy(const wxSize& sz) { DecBy(sz.x(),sz.y()); }
 //   void DecBy(int d) { DecBy(d,d); }
 //   
@@ -173,9 +173,9 @@ typedef int wxCoord;
 //   void SetDefaults(const wxSize& size)
 //   {
 //      if(x == wxDefaultCoord)
-//         x = size.x();
+//         x = size.cx();
 //      if(y == wxDefaultCoord)
-//         y = size.y();
+//         y = size.cy();
 //   }
 //   
 //   // compatibility

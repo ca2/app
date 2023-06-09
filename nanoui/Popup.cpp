@@ -19,7 +19,7 @@ namespace nanoui
 
 
 Popup::Popup(Widget * parent, Window * parent_window)
-   : Window(parent, ""), m_parent_window(parent_window), m_anchor_pos(vector2_i32(0)),
+   : Window(parent, ""), m_parent_window(parent_window),
    m_anchor_offset(30), m_anchor_size(15), m_side(Side::Right) { }
 
 void Popup::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
@@ -27,7 +27,7 @@ void Popup::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
       Widget::perform_layout(pcontext, bRecalcTextSize);
    }
    else {
-      m_children[0]->set_position(vector2_i32(0));
+      m_children[0]->set_position({});
       m_children[0]->set_size(m_size);
       m_children[0]->perform_layout(pcontext, bRecalcTextSize);
    }
@@ -40,7 +40,7 @@ void Popup::refresh_relative_placement() {
       return;
    m_parent_window->refresh_relative_placement();
    m_bVisible &= m_parent_window->visible_recursive();
-   m_pos = m_parent_window->position() + m_anchor_pos - vector2_i32(0, m_anchor_offset);
+   m_pos = m_parent_window->position() + m_anchor_pos - sequence2_i32(0, m_anchor_offset);
 }
 
 void Popup::draw(::nano2d::context * pcontext) 
@@ -54,38 +54,42 @@ void Popup::draw(::nano2d::context * pcontext)
    int ds = m_ptheme->m_iWindowDropShadowSize;
    int cr = m_ptheme->m_iWindowCorderRadius;
 
-   pcontext->save();
-   pcontext->reset_scissor();
+   {
+      ::nano2d::guard guard(pcontext);
+      //pcontext->save();
+      pcontext->reset_scissor();
 
-   /* Draw a drop shadow */
-   ::nano2d::paint shadow_paint = pcontext->box_gradient((float) m_pos.x()(), (float)m_pos.y()(), (float)m_size.x()(), (float)m_size.y()(), cr * 2.f, ds * 2.f,
-      m_ptheme->m_colorDropShadow, m_ptheme->m_colorTransparent);
+      /* Draw a drop shadow */
+      ::nano2d::paint shadow_paint = pcontext->box_gradient((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), cr * 2.f, ds * 2.f,
+         m_ptheme->m_colorDropShadow, m_ptheme->m_colorTransparent);
 
-   pcontext->begin_path();
-   pcontext->rectangle((float)m_pos.x()() - ds, (float)m_pos.y()() - ds, (float)m_size.x()() + 2.f * ds, (float)m_size.y()() + 2.f *ds);
-   pcontext->rounded_rectangle((float)m_pos.x()(), (float)m_pos.y()(), (float)m_size.x()(), (float)m_size.y()(), (float)cr);
-   pcontext->path_winding(::nano2d::e_solidity_hole);
-   pcontext->fill_paint(shadow_paint);
-   pcontext->fill();
+      pcontext->begin_path();
+      pcontext->rectangle((float)m_pos.x() - ds, (float)m_pos.y() - ds, (float)m_size.cx() + 2.f * ds, (float)m_size.cy() + 2.f * ds);
+      pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), (float)cr);
+      pcontext->path_winding(::nano2d::e_solidity_hole);
+      pcontext->fill_paint(shadow_paint);
+      pcontext->fill();
 
-   /* Draw window */
-   pcontext->begin_path();
-   pcontext->rounded_rectangle((float)m_pos.x()(), (float)m_pos.y()(), (float)m_size.x()(), (float)m_size.y()(), (float)cr);
+      /* Draw window */
+      pcontext->begin_path();
+      pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), (float)cr);
 
-   vector2_i32 base = m_pos + vector2_i32(0, m_anchor_offset);
-   int sign = -1;
-   if (m_side == Side::Left) {
-      base.x()() += m_size.x()();
-      sign = 1;
+      auto base = m_pos + sequence2_i32(0, m_anchor_offset);
+      int sign = -1;
+      if (m_side == Side::Left) {
+         base.x() += m_size.cx();
+         sign = 1;
+      }
+
+      pcontext->move_to((float)base.x() + m_anchor_size * sign, (float)base.y());
+      pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() - m_anchor_size);
+      pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() + m_anchor_size);
+
+      pcontext->fill_color(m_ptheme->m_colorWindowPopup);
+      pcontext->fill();
+      //pcontext->restore();
+
    }
-
-   pcontext->move_to((float)base.x()() + m_anchor_size * sign, (float)base.y()());
-   pcontext->line_to((float)base.x()() - 1.f * sign, (float)base.y()() - m_anchor_size);
-   pcontext->line_to((float)base.x()() - 1.f * sign, (float)base.y()() + m_anchor_size);
-
-   pcontext->fill_color(m_ptheme->m_colorWindowPopup);
-   pcontext->fill();
-   pcontext->restore();
 
    Widget::draw(pcontext);
 

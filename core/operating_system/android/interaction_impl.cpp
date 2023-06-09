@@ -466,8 +466,8 @@ namespace android
       pusersystem->m_createstruct.style = dwStyle | WS_CHILD;
       pusersystem->m_createstruct.x() = rectangle.left;
       pusersystem->m_createstruct.y() = rectangle.top;
-      pusersystem->m_createstruct.cx = width(rectangle);
-      pusersystem->m_createstruct.cy = height(rectangle);
+      pusersystem->m_createstruct.cx() = width(rectangle);
+      pusersystem->m_createstruct.cy() = height(rectangle);
       pusersystem->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
       pusersystem->m_createstruct.lpCreateParams = (LPVOID)pcreate;
 
@@ -861,7 +861,7 @@ namespace android
    //   return ::SetLayeredWindowAttributes(get_handle(),crKey,bAlpha,dwFlags) != false;
    //}
 
-   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,SIZE_I32 *psize,
+   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,::size_i32 *psize,
    //   ::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
@@ -1383,7 +1383,7 @@ namespace android
       {
          // clicking on floating frame when it does not have
          // focus itself -- activate the toplevel frame instead.
-         EnsureTopLevel()->SetForegroundWindow();
+         EnsureTopLevel()->set_foreground_window();
       }
    }
 
@@ -1525,7 +1525,7 @@ namespace android
    //   case SC_NEXTWINDOW:
    //   if (LOWORD(lparam) == VK_F6 && pParent != nullptr)
    //   {
-   //   pParent->SetFocus();
+   //   pParent->XXXSetFocus();
    //   return true;
    //   }
    //   break;
@@ -1546,14 +1546,14 @@ namespace android
    //   // and focus after sending it.
    //   oswindow hWndSave = get_handle();
    //   oswindow hWndFocus = ::GetFocus();
-   //   pParent->SetActiveWindow();
+   //   pParent->set_active_window();
    //   pParent->send_message(WM_SYSCOMMAND, nID, lparam);
 
    //   // be very careful here...
    //   if (::is_window(hWndSave))
-   //   ::SetActiveWindow(hWndSave);
+   //   ::XXXSetActiveWindow(hWndSave);
    //   if (::is_window(hWndFocus))
-   //   ::SetFocus(hWndFocus);
+   //   ::XXXSetFocus(hWndFocus);
    //   }
    //   }
    //   return true;
@@ -1993,8 +1993,8 @@ namespace android
       //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
-      //      rectx.right = size.cx;
-      //      rectx.bottom = size.cy;
+      //      rectx.right = size.cx();
+      //      rectx.bottom = size.cy();
       //      try
       //      {
       //         ::rectangle_i32 rectangleWindow;
@@ -2452,7 +2452,7 @@ namespace android
 //
 //            /*XMapWindow(m_oswindow->display(), m_oswindow->window());*/
 //
-//            ::show_window(get_handle(), e_display_restored);
+//            ::show_window(get_handle(), e_display_normal);
 //
 //         }
 //
@@ -2729,7 +2729,7 @@ namespace android
    //   if (m_puserinteraction != nullptr)
    //   {
 
-   //      m_puserinteraction->m_edisplay = ::e_display_restored;
+   //      m_puserinteraction->m_edisplay = ::e_display_normal;
 
    //   }
 
@@ -3426,7 +3426,7 @@ namespace android
 
    }
 
-   ::user::interaction * interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::set_active_window()
    {
 
       return ::android::interaction_impl::ui_from_handle(::set_active_window(get_handle()));
@@ -3458,7 +3458,7 @@ namespace android
    }
 
 
-   bool interaction_impl::SetFocus()
+   bool interaction_impl::set_keyboard_focus()
    {
 
       ASSERT(::is_window((oswindow)get_handle()));
@@ -3654,12 +3654,12 @@ namespace android
 
    }
 
-   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const ::rectangle_i32 * lpRectScroll, const ::rectangle_i32 * lpRectClip, ::draw2d::region * prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
+   i32 interaction_impl::ScrollWindowEx(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 * lpRectScroll, const ::rectangle_i32 * lpRectClip, ::draw2d::region * prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
    {
 
       throw ::not_implemented();
       //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::ScrollWindowEx(get_handle(), Δx, Δy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
+      //      return ::ScrollWindowEx(get_handle(), greekdeltax, greekdeltay, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 
    }
 
@@ -3844,11 +3844,11 @@ namespace android
 
    //}
 
-   bool interaction_impl::SetForegroundWindow()
+   bool interaction_impl::set_foreground_window()
    {
 
       //    throw ::not_implemented();
-      //      return ::SetForegroundWindow(get_handle()) != false;
+      //      return ::XXXSetForegroundWindow(get_handle()) != false;
 
       return false;
 
@@ -4661,7 +4661,7 @@ namespace android
 
       ::size_i32 size = m_puserinteraction->get_client_size();
 
-      int iSoftwareKeyboardTop = size.cy / 2;
+      int iSoftwareKeyboardTop = size.cy() / 2;
 
       if (r1.top > iSoftwareKeyboardTop)
       {

@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-12-01 08:42 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-12-01 08:42 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "application_base.h"
@@ -21,9 +21,9 @@ namespace acme
    application_base::~application_base()
    {
 
-      //::acme::acme::g_p->acme_finalize();
+      //::acme::acme::g_pacme->acme_finalize();
 
-      //::acme::acme::g_p->~acme();
+      //::acme::acme::g_pacme->~acme();
 
    }
 

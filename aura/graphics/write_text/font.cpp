@@ -1,6 +1,7 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "font.h"
 #include "acme/exception/interface_only.h"
+#include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
@@ -242,14 +243,14 @@ namespace write_text
    string font::get_sample_text(::draw2d::graphics * pgraphics)
    {
 
-      auto ecs = get_character_set(pgraphics);
+      auto echaracterset = get_character_set(pgraphics);
 
-      string str = get_sample_text(ecs);
+      string strSampleText = acmenode()->get_character_set_default_sample_text(echaracterset);
 
-      if (str.has_char())
+      if (strSampleText.has_char())
       {
 
-         return str;
+         return strSampleText;
 
       }
 
@@ -312,7 +313,7 @@ namespace write_text
 //   }
 //
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str)
 //   {
 //
 //
@@ -325,7 +326,7 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      ::rectangle rectangleOffset(rectangle);
+//      //      ::rectangle_f64 rectangleOffset(rectangle);
 //      //      const ::point_i32 & pointOffset(rectangleOffset.top_left());
 //      //
 //      //      glyph * pglyph;
@@ -338,7 +339,7 @@ namespace write_text
 //      //         if(pglyph != nullptr)
 
 //      //         {
-//      //            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx);
+//      //            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx());
 //      //            pglyph->DrawGlyph(
 
 //      //               pgraphics,
@@ -367,7 +368,7 @@ namespace write_text
 //
 //   }
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
 
 //   {
 //
@@ -381,7 +382,7 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      const ::rectangle rectangleOffset(rectangle);
+//      //      const ::rectangle_f64 rectangleOffset(rectangle);
 //      //      ::point_i32 pointOffset;
 //      //
 //      //

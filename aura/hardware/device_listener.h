@@ -1,4 +1,4 @@
-// Created by camilo on 2022-02-20 12:05 <3ThomasBorregaardS�rensen!! (Thomas Likes number 5)!
+// Created by camilo on 2022-02-20 12:05 <3ThomasBorregaardSorensen!! (Thomas Likes number 5)!
 // From windows::device_listener by camilo on 2022-05-15 16:29 <3ThomasBorregaardSorenesen!! and Mummi!!
 #pragma once
 

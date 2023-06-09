@@ -538,8 +538,8 @@ namespace ios
 ////            lpiextractimage)))
 ////         {
 ////            SIZE32 s;
-////            s.cx = 48;
-////            s.cy = 48;
+////            s.cx() = 48;
+////            s.cy() = 48;
 ////            ::u32 dwDepth = 32;
 ////            ::u32 dwFlags = 0;
 ////            if (SUCCEEDED(hrIconLocation = lpiextractpimage->GetLocation(
@@ -1904,7 +1904,7 @@ pacmedirectory->is(strPath))
 //            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //            pimage->get_graphics()->draw(::point_i32(), d.size(), d.get_graphics());
-//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx(), d.size().cy(), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //            m_pimagelist[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

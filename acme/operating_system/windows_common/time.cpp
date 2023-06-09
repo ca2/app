@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "acme/operating_system/ansi/datetime_c.h"
 //#include "acme/operating_system/time.h"

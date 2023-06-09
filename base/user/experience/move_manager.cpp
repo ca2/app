@@ -89,7 +89,7 @@ namespace experience
          if (edisplaySketch == e_display_none)
          {
 
-            edisplaySketch = e_display_restored;
+            edisplaySketch = e_display_normal;
 
          }
 
@@ -138,7 +138,7 @@ namespace experience
       if (pframewindow->get_parent() != nullptr)
       {
 
-         pointMove+=pframewindow->screen_to_client();
+         pframewindow->screen_to_client()(pointMove);
 
       }
 
@@ -249,7 +249,7 @@ namespace experience
          //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
 
          //index iMatchingMonitor =
-         m_pframewindow->good_move(rectangleRequest);
+         m_pframewindow->good_move(&rectangleRequest);
 
          //if (iMatchingMonitor >= 0)
          //{

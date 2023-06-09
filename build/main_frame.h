@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "base/user/simple/main_frame.h"

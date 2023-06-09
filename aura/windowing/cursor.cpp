@@ -51,9 +51,9 @@ namespace windowing
 
       m_pimage = pimage;
 
-      m_szHotspotOffset.cx = xHotspot;
+      m_szHotspotOffset.cx() = xHotspot;
 
-      m_szHotspotOffset.cy = yHotspot;
+      m_szHotspotOffset.cy() = yHotspot;
       
       //return ::success;
 

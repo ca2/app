@@ -19,7 +19,7 @@ namespace xlib
       //memory                        m_mem;
       //XImage *                      m_pimage;
       //bool                          m_bMapped;
-      ::rectangle                        m_rectangleLast;
+      ::rectangle_f64                        m_rectangleLast;
       //::image_pointer                         m_pimage;
 
 

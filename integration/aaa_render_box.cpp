@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "render.h"
 #include <math.h>
 #include "aura/graphics/draw2d/graphics.h"
@@ -23,11 +23,11 @@ namespace app_integration
 
       ::rectangle_f64 r(100, 100, 900, 500);
 
-      double Δx = m_rectangle.width() / 1000.0;
+      double greekdeltax = m_rectangle.width() / 1000.0;
 
-      double Δy = m_rectangle.height() / 600.0;
+      double greekdeltay = m_rectangle.height() / 600.0;
 
-      double d = minimum(Δx, Δy);
+      double d = minimum(greekdeltax, greekdeltay);
 
       r *= d;
 

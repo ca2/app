@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 ////#include "acme/exception/exception.h"
 //#include "acme/platform/acme.h"
 #include "acme/platform/simple_log.h"
@@ -41,7 +41,7 @@ namespace factory
 //    CLASS_DECL_ACME critical_section * ::factory_critical_section()
 //    {
 //
-//       return &::acme::acme::g_p->factory_;
+//       return &::acme::acme::g_pacme->factory_;
 //
 //    }
 

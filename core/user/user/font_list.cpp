@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "font_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -277,6 +277,15 @@ namespace user
    }
 
 
+
+   void font_list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      //::user::list_box::_001OnClip(pgraphics);
+
+   }
+
+
    void font_list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -288,9 +297,10 @@ namespace user
    void font_list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::list_box::_001OnClip(pgraphics);
+      //::user::list_box::_001OnClip(pgraphics);
 
    }
+
 
 
    void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -344,7 +354,7 @@ namespace user
    }
 
 
-   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, ::SIZE_I32 * psize)
+   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, ::size_i32 * psize)
    {
 
       *psize = m_pfontlist->m_size;
@@ -367,7 +377,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      if (m_pfontlist->get_box_rect(rectangle, iSel) && rectangle.area() > 0)
+      if (m_pfontlist->get_box_rect(&rectangle, iSel) && rectangle.area() > 0)
       {
 
          ::rectangle_i32 rectangleImpact;

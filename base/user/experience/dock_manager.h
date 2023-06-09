@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/collection/int_map.h"
@@ -20,6 +20,7 @@ namespace experience
       e_border                            m_eborder;
       e_dock                              m_edock;
       point_i32                           m_pointCursorDockOrigin;
+      size_i32                            m_sizeDockRightOrigin;
       point_i32                           m_pointWindowOrigin;
       bool                                m_bDocking;
       ::e_display                         m_edisplayOrigin;
@@ -62,7 +63,7 @@ namespace experience
       //void defer_cursor_pos();
 
       ::user::button * dock_button();
-      ::point_i32 dock_origin();
+      ::size_i32 dock_button_right_origin();
 
 
    };

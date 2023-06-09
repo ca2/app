@@ -1,4 +1,4 @@
-// Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "integration_context.h"
 #include "acme/filesystem/file/file.h"
@@ -212,7 +212,8 @@ namespace integration
 //
 //      };
 //
-      auto iExitCode = acmenode()->command_system(scopedstrCommand, ::std_inline_log());
+      //auto iExitCode = acmenode()->command_system(scopedstrCommand, ::std_inline_log());
+      auto iExitCode = acmenode()->command_system(scopedstrCommand, 12_h);
 
       return iExitCode;
 
@@ -324,8 +325,9 @@ namespace integration
 
    void context::git_clone()
    {
+      //preempt(15_s);
 
-      command_system("git clone " + m_pathDownloadURL + " .");
+      bash("git clone " + m_pathDownloadURL + " .");
 
    }
 

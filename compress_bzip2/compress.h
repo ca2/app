@@ -42,7 +42,7 @@ i32  aLen=plain.Length;    // Length is length of unzipped data.
 }
 //////////////////////////////////////////////////////////////////////////////
 */
-// Refactor by camilo from bz on 2021-11-10 10:22 BRT <3ThomasBorregaardSørensen!!
+// Refactor by camilo from bz on 2021-11-10 10:22 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

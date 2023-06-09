@@ -14,8 +14,8 @@ namespace console
       m_iNewChar        = 0;
 
       m_iCursor = 0;
-      m_sizeChar.cx = 32;
-      m_sizeChar.cy = 32;
+      m_sizeChar.cx() = 32;
+      m_sizeChar.cy() = 32;
       m_iCursor = 0;
       m_bOk = true;
 
@@ -124,7 +124,7 @@ namespace console
 
          get_typed_parent < prompt_frame > ()->hide();
 
-         papp->m_puiMain->m_puiThis->SetActiveWindow();
+         papp->m_puiMain->m_puiThis->set_active_window();
 
          clear();
 
@@ -338,7 +338,7 @@ namespace console
       for( i = 0; i < m_strCommand.length(); i++)
       {
 
-         pgraphics->text_out(iLeftMargin +m_sizeChar.cx *i,0,m_strCommand.substr(i,1));
+         pgraphics->text_out(iLeftMargin +m_sizeChar.cx() *i,0,m_strCommand.substr(i,1));
 
       }
 
@@ -347,10 +347,10 @@ namespace console
 
          ::rectangle_i32 rectangleCaret;
 
-         rectangleCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
-         rectangleCaret.right = rectangleCaret.left + m_sizeChar.cx;
-         rectangleCaret.top = m_sizeChar.cy - 3;
-         rectangleCaret.bottom = m_sizeChar.cy;
+         rectangleCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
+         rectangleCaret.right = rectangleCaret.left + m_sizeChar.cx();
+         rectangleCaret.top = m_sizeChar.cy() - 3;
+         rectangleCaret.bottom = m_sizeChar.cy();
 
 
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "string_buffer.h"
@@ -379,12 +379,12 @@ public:
 //}
 //
 //
-//text_stream & text_stream < FILE >::operator <<(const SIZE_I32 * psize)
+//text_stream & text_stream < FILE >::operator <<(const ::size_i32 * psize)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
 //
-//   *this << psize->cx << psize->cy;
+//   *this << psize->cx() << psize->cy();
 //
 //}
 //
@@ -611,10 +611,10 @@ public:
 ////   
 ////}
 ////
-////text_stream & text_stream < FILE >::operator >>(SIZE_I32 * psize)
+////text_stream & text_stream < FILE >::operator >>(::size_i32 * psize)
 ////{
-////   m_pfile->read(&psize->cx, sizeof(psize->cx));
-////   m_pfile->read(&psize->cy, sizeof(psize->cy));
+////   m_pfile->read(&psize->cx(), sizeof(psize->cx()));
+////   m_pfile->read(&psize->cy(), sizeof(psize->cy()));
 ////}
 ////
 ////text_stream & text_stream < FILE >::operator >>(::point_i32 * ppoint)

@@ -1,32 +1,35 @@
+// Refactored to generate text from enum by camilo on 2023-06-07 04:17 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-
-enum enum_character_set
+enum enum_character_set : ::i32
 {
 
-   e_character_set_none,
-   e_character_set_ansi,
-   e_character_set_default,
-   e_character_set_symbol,
-   e_character_set_shiftjis,
-   e_character_set_hangeul,
-   e_character_set_hangul,
-   e_character_set_gb2312,
-   e_character_set_chinesebig5,
-   e_character_set_johab,
-   e_character_set_hebrew,
-   e_character_set_arabic,
-   e_character_set_greek,
-   e_character_set_turkish,
-   e_character_set_vietnamese,
-   e_character_set_thai,
-   e_character_set_easteurope,
-   e_character_set_russian,
-   e_character_set_mac,
-   e_character_set_baltic,
-   e_character_set_count
+
+#define DO_ENUM(e) e,
+#include "character_set.enum"
+#undef DO_ENUM
+
 
 };
+
+
+inline const char * enum_character_set_text(enum_character_set echaracterset)
+{
+
+   switch (echaracterset)
+   {
+
+#define DO_ENUM(e) case e: return #e;
+#include "character_set.enum"
+#undef DO_ENUM
+
+   default: 
+      return nullptr;
+
+   }
+
+}
+
 
 

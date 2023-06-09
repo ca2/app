@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "user.h"
 #include "acme/platform/system.h"

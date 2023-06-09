@@ -149,7 +149,7 @@ namespace console
       ::u32 nShow;
       if(bShow)
       {
-         nShow = e_display_restored;
+         nShow = e_display_normal;
       }
       else
       {
@@ -500,7 +500,7 @@ namespace console
 
       psystem->get_monitor_rectangle(0,rectangle_i32);
 
-      int iHeight = m_pframe->calc_caption_height(::e_display_restored) + m_pframe->m_rectangleMarginNormal.top;
+      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectangleMarginNormal.top;
 
       rectangle.left += 100;
 
@@ -514,9 +514,9 @@ namespace console
 
       set_window_position(e_zorder_top,rectangle,SWP_SHOWWINDOW);
 
-      display(e_display_restored);
+      display(e_display_normal);
 
-      SetActiveWindow();
+      set_active_window();
 
       m_pframe->title_bar_layout();
 

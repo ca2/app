@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/geometry2d/_collection.h"
@@ -31,8 +31,8 @@ namespace draw2d_cairo
    public:
 
 
-      int                        m_iSaveDC;
-      int                        m_iSaveDCPositiveClip;
+      int                        m_iSaveContext;
+      int                        m_iSaveContextPositiveClip;
       cairo_t *                  m_pdc;
       i32                        m_iType;
       bool                       m_bPrinting;
@@ -84,8 +84,8 @@ namespace draw2d_cairo
       void DeleteDC() override;
 
       // Device-Context Functions
-      i32 SaveDC() override;
-      void RestoreDC(i32 nSavedDC) override;
+      i32 save_graphics_context() override;
+      void restore_graphics_context(i32 iSavedContext) override;
       i32 GetDevicecaps(i32 nIndex);
       ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags) override;
       ::u32 GetBoundsRect(::rectangle_f64 * rectangleBounds, ::u32 flags) override;
@@ -228,15 +228,15 @@ namespace draw2d_cairo
       // "inline" paths.
       void _intersect_clip() override;
       //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-      void _add_clipping_shape(const ::rectangle & rectangle_f64, ___shape < ::draw2d::region > & shape) override;
-      //virtual void _add_shape(const ::ellipse & ellipse) override;
-      void _add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::rectangle_f64 & rectangle_f64, ::draw2d::region * pregion) override;
+      //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;
+      void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion) override;
       //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
-      void _add_clipping_shape(const ::polygon & polygon_i32, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::polygon_f64 & polygon_i32, ::draw2d::region * pregion) override;
 
       void _add_shape(const ::rectangle_f64 & rectangle_f64);
-      //virtual void _add_shape(const ::ellipse & ellipse) override;
-      void _add_shape(const ::ellipse & ellipse);
+      //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;
+      void _add_shape(const ::ellipse_f64 & ellipse);
       //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
       void _add_shape(const ::polygon_f64 & polygon_i32);
 
@@ -249,11 +249,11 @@ namespace draw2d_cairo
       //  bool LineTo(const ::point_f64 & point_f64) override;
       void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) override;
       void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
-      void arc(double x, double y, double w, double h, angle start, angle extends) override;
+      void arc(double x, double y, double w, double h, ::angle_f64 start, ::angle_f64 extends) override;
       void arc(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
       void polyline(const ::point_f64 * lpPoints, count nCount) override;
 
-      void angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle) override;
+      void angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle) override;
       //bool ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       void arc_to(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
       //i32 GetArcDirection() override;
@@ -421,7 +421,7 @@ namespace draw2d_cairo
 //      bool DrawFrameControl(const ::rectangle_f64 & rectangle_f64, ::u32 nType, ::u32 nState) override;
 
 //      // Scrolling Functions
-//      bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
+//      bool ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
 //                    ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate) override;
 
 //      // font Functions
@@ -548,37 +548,40 @@ namespace draw2d_cairo
       bool _set(const ::point_i32_array & pointa);
       bool _set(const ::point_f64_array & pointa);
 
-      bool _set(___shape<::draw2d::region> * pshape);
-      bool _set(___shape<::draw2d::path> * pshape);
-      bool _set(const enum_shape & eshape);
+      //bool _set(___shape<::draw2d::region> * pshape);
+      //bool _set(___shape<::draw2d::path> * pshape);
+      bool _set(::geometry2d::item * pitem);
+      bool _set(::draw2d::region * pregion);
+      //bool _set(::draw2d::path * ppath);
+      bool _set(const ::draw2d::enum_item & eitem);
 
 
-      bool _set(const ::arc & arc, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::arc_f64 & arc, const ::pointer<::draw2d::region>& pregion);
       //bool _set(const ::line & line);
       //bool _set(const ::lines & lines);
-      bool _set(const ::rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::polygon & polygon, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::rectangle_f64 & rectangle, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::ellipse_f64 & ellipse, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::polygon_f64 & polygon, const ::pointer<::draw2d::region>& pregion);
       bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
 
 
-      bool _set(const ::arc & arc, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::line & line, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::lines & lines, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::polygon & polygon, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::arc_f64 & arc, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::line_f64 & line, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::lines_f64 & lines, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::rectangle_f64 & rectangle, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::ellipse_f64 & ellipse, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::polygon_f64 & polygon, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
 
 
-      bool _set(const ::arc & arc);
-      bool _set(const ::line & line);
-      bool _set(const ::lines & lines);
-      bool _set(const ::rectangle & rectangle);
-      bool _set(const ::ellipse & ellipse);
-      bool _set(const ::polygon & polygon);
+      bool _set(const ::arc_f64 & arc);
+      bool _set(const ::line_f64 & line);
+      bool _set(const ::lines_f64 & lines);
+      bool _set(const ::rectangle_f64 & rectangle);
+      bool _set(const ::ellipse_f64 & ellipse);
+      bool _set(const ::polygon_f64 & polygon);
       bool _set(const ::write_text::text_out & textout);
       bool _set(const ::write_text::draw_text & drawtext);
 

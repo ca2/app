@@ -408,14 +408,14 @@ oswindow set_focus(oswindow window)
 
    }
 
-   windowing_output_debug_string("\noswindow_data::SetFocus 1");
+   windowing_output_debug_string("\nwindow(linux)::set_keyboard_focus 1");
 
    xdisplay d(window->display());
 
    if(!is_window(window))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+      windowing_output_debug_string("\nwindow(linux)::set_keyboard_focus 1.1");
 
       return nullptr;
 
@@ -426,7 +426,7 @@ oswindow set_focus(oswindow window)
    if(!IsWindowVisibleRaw(window))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.2");
+      windowing_output_debug_string("\nwindow(linux)::set_keyboard_focus 1.2");
 
       return nullptr;
 
@@ -435,13 +435,13 @@ oswindow set_focus(oswindow window)
    if(!XSetInputFocus(d, window->window(), RevertToNone, CurrentTime))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+      windowing_output_debug_string("\nwindow(linux)::set_keyboard_focus 1.3");
 
       return nullptr;
 
    }
 
-   windowing_output_debug_string("\noswindow_data::SetFocus 2");
+   windowing_output_debug_string("\nwindow(linux)::set_keyboard_focus 2");
 
    return windowOld;
 
@@ -657,7 +657,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
    }
 
-   ::rectangle rectangle;
+   ::rectangle_f64 rectangle;
 
    x11_get_window_rect(display, oswindow->window(), rectangle);
 
@@ -665,14 +665,14 @@ int_bool is_window_occluded(oswindow oswindow)
 
    string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rectangle rectangleTest;
+   ::rectangle_f64 rectangleTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rectangle rectangleHigher;
+      ::rectangle_f64 rectangleHigher;
 
       if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
       {
@@ -1330,7 +1330,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    synchronous_lock synchronouslock(g_pmutexX);
 
-   pgraphics->fill_rectangle(::rectangle(*psize), rgb(84, 90, 80));
+   pgraphics->fill_rectangle(::rectangle_f64(*psize), rgb(84, 90, 80));
 
    draw2d::brush_pointer pen(e_create_new, pgraphics);
 
@@ -2490,7 +2490,7 @@ bool x11_process_message(Display * pdisplay)
                (pinteraction->m_pointMouseMoveSkip.y() - pinteraction.m_pointMouseMove.y()));
 
                if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
-               && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
+               && sizeDistance.cx() * sizeDistance.cx() + sizeDistance.cy() * sizeDistance.cy() < pinteraction->m_iMouseMoveSkipSquareDistance)
                {
 
                   pinteraction->m_iMouseMoveSkipCount++;
@@ -2620,7 +2620,7 @@ bool x11_process_message(Display * pdisplay)
                      if(pinteraction->m_windowrectangle.m_edisplayPrevious == ::e_display_iconic)
                      {
 
-                        pinteraction->_001OnDeiconify(::e_display_restored);
+                        pinteraction->_001OnDeiconify(::e_display_normal);
 
                      }
                      else
@@ -3443,7 +3443,7 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
 
 
 
-void wm_full_screen(oswindow w, const ::rectangle & rectangle)
+void wm_full_screen(oswindow w, const ::rectangle_f64 & rectangle)
 
 {
 

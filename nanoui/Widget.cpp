@@ -32,7 +32,7 @@ namespace nanoui
 
    Widget::Widget(Widget* parent)
       : m_pwidgetParent(nullptr), m_ptheme(nullptr), m_playout(nullptr),
-      m_pos(0), m_size(0), m_fixed_size(0), m_bVisible(true), m_bEnabled(true),
+      m_bVisible(true), m_bEnabled(true),
       m_bMouseHover(false), m_tooltip(""), m_font_size(-1)
       , m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/
    {
@@ -153,7 +153,7 @@ namespace nanoui
    }
 
 
-   void Widget::set_size(const vector2_i32& size)
+   void Widget::set_size(const size_i32& size)
    {
 
       m_size = size;
@@ -178,7 +178,7 @@ namespace nanoui
    }
 
 
-   vector2_i32 Widget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   size_i32 Widget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       if (m_playout)
@@ -202,25 +202,33 @@ namespace nanoui
 
       m_bNeedLayout = true;
 
-      auto pparent = m_pwidgetParent;
-
-      while (pparent)
+      m_callbackLayout = [this](::nano2d::context* pcontext)
       {
 
-         pparent->set_need_layout();
+         parent()->perform_layout(pcontext);
+         perform_layout(pcontext);
 
-         ::pointer < Window > pwindow = pparent;
+      };
 
-         if (pwindow)
-         {
+      //auto pparent = m_pwidgetParent;
 
-            break;
+      //while (pparent)
+      //{
 
-         }
+      //   pparent->set_need_layout();
 
-         pparent = pparent->m_pwidgetParent;
+      //   ::pointer < Window > pwindow = pparent;
 
-      }
+      //   if (pwindow)
+      //   {
+
+      //      break;
+
+      //   }
+
+      //   pparent = pparent->m_pwidgetParent;
+
+      //}
 
    }
 
@@ -251,12 +259,12 @@ namespace nanoui
          for (auto pchild : m_children)
          {
 
-            vector2_i32 pref = pchild->preferred_size(pcontext, bRecalcTextSize), fix = pchild->fixed_size();
+            auto pref = pchild->preferred_size(pcontext, bRecalcTextSize), fix = pchild->fixed_size();
 
-            pchild->set_size(vector2_i32(
+            pchild->set_size({
                fix[0] ? fix[0] : pref[0],
                fix[1] ? fix[1] : pref[1]
-            ));
+            });
 
             pchild->perform_layout(pcontext);
 
@@ -267,7 +275,7 @@ namespace nanoui
    }
 
 
-   Widget* Widget::find_widget(const vector2_i32& p)
+   Widget* Widget::find_widget(const point_i32& p)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -275,12 +283,16 @@ namespace nanoui
 
          Widget* pchild = m_children[it];
 
-         auto pointClientCursor = p - pchild->m_pos;
+         auto posChild = pchild->m_pos;
 
-         if (pchild->visible() && pchild->contains(pointClientCursor))
+         auto offsetScroll = get_scroll_offset();
+
+         auto pointChildClient = p - posChild - offsetScroll;
+
+         if (pchild->visible() && pchild->contains(pointChildClient))
          {
 
-            return pchild->find_widget(pointClientCursor);
+            return pchild->find_widget(pointChildClient);
 
          }
 
@@ -291,7 +303,7 @@ namespace nanoui
    }
 
 
-   const Widget* Widget::find_widget(const vector2_i32& p) const
+   const Widget* Widget::find_widget(const point_i32& p) const
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -313,7 +325,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -324,12 +336,16 @@ namespace nanoui
          if (pchild->visible())
          {
 
-            auto pointClient = p - pchild->m_pos;
+            auto posChild = pchild->m_pos;
 
-            if (pchild->contains(pointClient))
+            auto offsetScroll = get_scroll_offset();
+
+            auto pointChildClient = p - posChild - offsetScroll;
+
+            if (pchild->contains(pointChildClient))
             {
 
-               if (pchild->mouse_button_event(pointClient, emouse, down, bDoubleClick, ekeyModifiers))
+               if (pchild->mouse_button_event(pointChildClient, emouse, down, bDoubleClick, ekeyModifiers))
                {
 
                   bool bChildFocused = pchild->focused();
@@ -356,7 +372,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       bool bHandled = false;
@@ -376,10 +392,12 @@ namespace nanoui
 
       //}
 
+      auto children = m_children;
+
       for (auto i = iStart; i <= iEnd; i++)
       {
 
-         Widget* pchild = m_children[i];
+         Widget* pchild = children[i];
 
          if (!pchild->visible())
          {
@@ -421,7 +439,7 @@ namespace nanoui
    }
 
    
-   bool Widget::scroll_event(const vector2_i32& p, const vector2_f32& rel)
+   bool Widget::scroll_event(const point_i32& p, const size_f32& rel)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -452,7 +470,7 @@ namespace nanoui
    }
 
 
-   //bool Widget::mouse_drag_event(const vector2_i32&, const vector2_i32&, const ::user::e_key&)
+   //bool Widget::mouse_drag_event(const sequence2_i32&, const sequence2_i32&, const ::user::e_key&)
    //{
 
    //   return false;
@@ -460,10 +478,10 @@ namespace nanoui
    //}
 
 
-   bool Widget::mouse_enter_event(const vector2_i32&, bool enter, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_enter_event(const point_i32&, bool bEnter, const ::user::e_key& ekeyModifiers)
    {
 
-      m_bMouseHover = enter;
+      m_bMouseHover = bEnter;
 
       return false;
 
@@ -799,7 +817,7 @@ namespace nanoui
 //
 //      pcontext->begin_path(ctx);
 //
-//      pcontext->rectangle(ctx, m_pos.x()() - 0.5f, m_pos.y()() - 0.5f, m_size.x()() + 1, m_size.y()() + 1);
+//      pcontext->rectangle(ctx, m_pos.x() - 0.5f, m_pos.y() - 0.5f, m_size.cx() + 1, m_size.cy() + 1);
 //
 //      pcontext->stroke_color(ctx, ::color::RGBA_color(255, 0, 0, 255));
 //
@@ -827,13 +845,13 @@ namespace nanoui
 
       ////   yOffset = pscrollPanel->get_y_offset();
 
-      ////   rectangleThis = ::rectangle_i32_dimension(0, m_pos.y()() - yOffset, m_size.x()(), m_size.y()());
+      ////   rectangleThis = ::rectangle_i32_dimension(0, m_pos.y() - yOffset, m_size.cx(), m_size.cy());
 
       ////}
       ////else
       ////{
 
-      //rectangleThis = ::rectangle_i32_dimension(0, 0, m_size.x()(), m_size.y()());
+      //rectangleThis = ::rectangle_i32_dimension(0, 0, m_size.cx(), m_size.cy());
 
       //}
 
@@ -859,7 +877,7 @@ namespace nanoui
 
       ::rectangle_i32 rectangleThis;
 
-      vector2_i32 offsetScroll;
+      ::size_i32 offsetScroll;
 
       auto pparent = m_pwidgetParent;
 
@@ -870,9 +888,9 @@ namespace nanoui
 
       }
 
-      rectangleThis = ::rectangle_i32_dimension(0, -offsetScroll, m_size.x()(), m_size.y()());
+      rectangleThis = ::rectangle_i32_dimension(-offsetScroll.cx(), -offsetScroll.cy(), m_size.cx(), m_size.cy());
 
-      pcontext->translate((float)m_pos.x()(), (float)m_pos.y()());
+      pcontext->translate((float)m_pos.x(), (float)m_pos.y());
 
       for (::index i = 0; i < m_children.size(); i++)
       {
@@ -888,13 +906,13 @@ namespace nanoui
 
          pchild->on_begin_draw(pcontext);
 
-         auto childX = pchild->m_pos.x()();
+         auto childX = pchild->m_pos.x();
 
-         auto childY = pchild->m_pos.y()();
+         auto childY = pchild->m_pos.y();
 
-         auto childW = pchild->m_size.x()();
+         auto childW = pchild->m_size.cx();
 
-         auto childH = pchild->m_size.y()();
+         auto childH = pchild->m_size.cy();
 
          auto rectangleChild = ::rectangle_i32_dimension(childX, childY, childW, childH);
 
@@ -924,8 +942,8 @@ namespace nanoui
    //         
    //         pcontext->save();
    //
-   //         pcontext->intersect_scissor((float)pchild->m_pos.x()(), (float)pchild->m_pos.y()(),
-   //            (float)pchild->m_size.x()(), (float)pchild->m_size.y()());
+   //         pcontext->intersect_scissor((float)pchild->m_pos.x(), (float)pchild->m_pos.y(),
+   //            (float)pchild->m_size.cx(), (float)pchild->m_size.cy());
    //
    //#endif
 
@@ -947,7 +965,7 @@ namespace nanoui
 
       }
 
-      pcontext->translate((float)-m_pos.x()(), (float)-m_pos.y()());
+      pcontext->translate((float)-m_pos.x(), (float)-m_pos.y());
 
    }
 
@@ -976,14 +994,14 @@ namespace nanoui
    //}
 
 
-   vector2_i32 Widget::screen_position() const 
+   point_i32 Widget::screen_position() const
    {
    
       auto absolutePosition = absolute_position();
 
       auto pointScreenMainWindow = screen()->m_puserinteraction->position();
 
-      auto pointScreen = vector2_i32(pointScreenMainWindow.x(), pointScreenMainWindow.y());
+      auto pointScreen = pointScreenMainWindow;
 
       pointScreen += absolutePosition;
 
@@ -992,7 +1010,7 @@ namespace nanoui
    }
 
 
-   vector2_i32 Widget::get_scroll_offset() const
+   size_i32 Widget::get_scroll_offset() const
    {
 
       return {};
@@ -1000,7 +1018,7 @@ namespace nanoui
    }
 
 
-   vector2_i32 Widget::get_accumulated_scroll_offset() const
+   size_i32 Widget::get_accumulated_scroll_offset() const
    {
 
       auto offsetScroll = get_scroll_offset();
@@ -1024,10 +1042,10 @@ namespace nanoui
 
       auto absolutionPosition = absolute_position();
 
-      rectangle.left = absolutionPosition.x()();
-      rectangle.top = absolutionPosition.y()();
-      rectangle.right = rectangle.left + m_size.x()();
-      rectangle.bottom = rectangle.top + m_size.y()();
+      rectangle.left = absolutionPosition.x();
+      rectangle.top = absolutionPosition.y();
+      rectangle.right = rectangle.left + m_size.cx();
+      rectangle.bottom = rectangle.top + m_size.cy();
 
       return rectangle;
 
@@ -1050,9 +1068,21 @@ namespace nanoui
 
          auto absolutePosition = absolute_position();
 
-         rectangleInteraction.offset(absolutePosition.x()(), absolutePosition.y()());
+         rectangleInteraction.offset(absolutePosition.x(), absolutePosition.y());
 
       }
+      
+      auto pparent = m_pwidgetParent;
+
+      if (pparent)
+      {
+
+         auto offsetScroll = pparent->get_accumulated_scroll_offset();
+
+         rectangleInteraction += offsetScroll;
+
+      }
+
 
       screen()->m_puserinteraction->set_need_redraw(rectangleInteraction);
 
@@ -1070,9 +1100,9 @@ namespace nanoui
    void Widget::fixed_placement(const ::rectangle_i32& rectangle)
    {
 
-      set_position(::vector2_i32(::vector2_i32(rectangle.left, rectangle.top)));
+      set_position(rectangle.top_left());
 
-      set_fixed_size(::vector2_i32(rectangle.width(), rectangle.height()));
+      set_fixed_size(rectangle.size());
 
    }
 
@@ -1084,11 +1114,11 @@ namespace nanoui
 
       auto rectangleOld = interaction_rectangle();
 
-      auto positionNew = ::vector2_i32(::vector2_i32(rectangle.left, rectangle.top));
+      auto positionNew = rectangle.top_left();
 
       set_position(positionNew);
 
-      auto sizeNew = ::vector2_i32(rectangle.width(), rectangle.height());
+      auto sizeNew = rectangle.size();
 
       set_fixed_size(sizeNew);
 
@@ -1156,7 +1186,7 @@ namespace nanoui
    }
 
 
-   bool Widget::contains(const vector2_i32& p) const 
+   bool Widget::contains(const point_i32& p) const 
    {
 
       ::pointer < Button > pbutton = this;
@@ -1168,8 +1198,8 @@ namespace nanoui
 
       }
 
-      //vector2_i32 d = p - m_pos;
-      return p.x()() >= 0 && p.y()() >= 0 && p.x()() < m_size.x()() && p.y()() < m_size.y()();
+      //sequence2_i32 d = p - m_pos;
+      return p.x() >= 0 && p.y() >= 0 && p.x() < m_size.cx() && p.y() < m_size.cy();
 
    }
 

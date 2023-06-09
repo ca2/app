@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "acme/platform/application.h"
 #include "apex/platform/system.h"
@@ -1041,7 +1041,7 @@ namespace aura
 
          pimage->map();
 
-         copy_colorref(pimage->data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
+         copy_colorref(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
 
       }
 

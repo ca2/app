@@ -513,9 +513,6 @@
     <ClCompile Include="graphics\write_text\font_list.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
-      <Filter>Source Files\graphics\write_text</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\write_text\fonts.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
@@ -612,15 +609,6 @@
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\region_item.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\holdee.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\holder.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\desktop_environment.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
@@ -680,6 +668,18 @@
     </ClCompile>
     <ClCompile Include="user\user\interaction_listener.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\drawing.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holdee.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holder.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\path_optimization.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1322,7 +1322,7 @@
     <ClInclude Include="graphics\write_text\bounding_rect.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\write_text\_shape.h">
+    <ClInclude Include="graphics\write_text\_defer_geometry2d_item.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
     <ClInclude Include="graphics\write_text\_.h">
@@ -1693,6 +1693,12 @@
     </ClInclude>
     <ClInclude Include="user\user\interaction_listener.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\holdee.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\holder.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

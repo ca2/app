@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "data.h"
 #include "document.h"
 #include "folder_list.h"
@@ -116,8 +116,8 @@ namespace filemanager
       pcolumn->m_iWidth = 200;
       pcolumn->m_iSubItem = 1;
       pcolumn->m_bIcon = true;
-      pcolumn->m_sizeIcon.cx = 16;
-      pcolumn->m_sizeIcon.cy = 16;
+      pcolumn->m_sizeIcon.cx() = 16;
+      pcolumn->m_sizeIcon.cy() = 16;
 
 
    }

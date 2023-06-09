@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "frame_window.h"
 #include "control_box.h"
@@ -12,6 +12,64 @@
 #include "aura/message/user.h"
 #include "aura/user/user/style.h"
 #include "base/platform/session.h"
+
+
+CLASS_DECL_BASE ::count get_borders(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleOuter, const ::rectangle_i32 & rectangleInner)
+{
+
+   ::count c = 0;
+
+   // Top
+   rectanglea[c] = rectangleOuter;
+   rectanglea[c].bottom = rectangleInner.top + 1;
+
+   if (rectanglea[c].is_set())
+   {
+
+      c++;
+
+   }
+
+   // Bottom
+   rectanglea[c] = rectangleOuter;
+   rectanglea[c].top = rectangleInner.bottom - 1;
+   
+   if (rectanglea[c].is_set())
+   {
+
+      c++;
+
+   }
+
+   // Left
+   rectanglea[c] = rectangleOuter;
+   rectanglea[c].top = rectangleInner.top;
+   rectanglea[c].bottom = rectangleInner.bottom;
+   rectanglea[c].right = rectangleInner.left + 1;
+
+   if (rectanglea[c].is_set())
+   {
+
+      c++;
+
+   }
+
+   // Right
+   rectanglea[c] = rectangleOuter;
+   rectanglea[c].top = rectangleInner.top;
+   rectanglea[c].bottom = rectangleInner.bottom;
+   rectanglea[c].left = rectangleInner.right - 1;
+
+   if (rectanglea[c].is_set())
+   {
+
+      c++;
+
+   }
+
+   return c;
+
+}
 
 
 namespace experience
@@ -177,17 +235,6 @@ namespace experience
 
       synchronous_lock synchronouslock(pframewindow->synchronization());
 
-      ::rectangle_i32 rectangleClient;
-
-      pframewindow->::user::interaction::client_rectangle(rectangleClient);
-
-      if (rectangleClient.is_empty())
-      {
-
-         return;
-
-      }
-
       if (m_pcontrolbox.is_set())
       {
 
@@ -195,15 +242,15 @@ namespace experience
 
       }
 
-      m_iCaptionHeight = calc_caption_height(pgraphics);
+      calculate_caption_height(pgraphics);
 
       title_bar_layout(pgraphics);
 
       update_window_client_rect();
 
-      pframewindow->client_rectangle(rectangleClient);
+      ::rectangle_i32 rectangleClient;
 
-      get_window_client_rect(rectangleClient);
+      get_window_client_rect(&rectangleClient);
 
       if (pframewindow != nullptr)
       {
@@ -214,12 +261,12 @@ namespace experience
             ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
-                                 rectangle, rectangle, false);
+                                 &rectangle, rectangle, false);
             rectangle.offset(rectangleClient.top_left());
             ::rectangle_i32 rectangleBorder;
-            pframewindow->GetBorderRect(rectangleBorder);
+            pframewindow->GetBorderRect(&rectangleBorder);
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
-                                 rectangleBorder, rectangle, true);
+                                 &rectangleBorder, rectangle, true);
             pframewindow->SetBorderRect(rectangleBorder);
             //pframewindow->CalcWindowRect(&rectangle);
             OnNcCalcSize(&rectangle);
@@ -237,9 +284,9 @@ namespace experience
 
             ::rectangle_i32 rectangleBorder;
 
-            pframewindow->GetBorderRect(rectangleBorder);
+            pframewindow->GetBorderRect(&rectangleBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, rectangleBorder, rectangleClient);
+            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleClient);
 
             pframewindow->SetBorderRect(rectangleBorder);
 
@@ -339,7 +386,7 @@ namespace experience
          if (m_pframewindow->layout().is_zoomed())
          {
 
-            m_pframewindow->display(::e_display_restore);
+            m_pframewindow->display(::e_display_normal);
 
          }
          else
@@ -712,7 +759,7 @@ namespace experience
    }
 
 
-   i32 frame::calc_caption_height(::draw2d::graphics_pointer & pgraphics)
+   void frame::calculate_caption_height(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectangle = get_control_box()->get_button_margin(e_button_close);
@@ -721,7 +768,7 @@ namespace experience
 
       auto iCaptionHeight = rectangle.top + iButtonSize + rectangle.bottom;
 
-      return iCaptionHeight;
+      m_iCaptionHeight = iCaptionHeight;
 
    }
 
@@ -785,15 +832,15 @@ namespace experience
 
       i32 iControlBoxWidth = m_pcontrolbox->calc_control_box_width(pgraphics);
 
-      i32 iCaptionTextHeight = calc_caption_height(pgraphics);
+      calculate_caption_height(pgraphics);
 
 
-      i32 iCaptionHeight = iCaptionTextHeight;
+      //i32 iCaptionHeight = m_iCap;
 
       m_rectangleCaption.left = rectangleClient.left + rectangleMargin.left;
       m_rectangleCaption.top = rectangleClient.top + rectangleMargin.top;
       m_rectangleCaption.right = rectangleClient.right - rectangleMargin.right;
-      m_rectangleCaption.bottom = m_rectangleCaption.top + iCaptionHeight;
+      m_rectangleCaption.bottom = m_rectangleCaption.top + m_iCaptionHeight;
 
       m_iTitleBottom = m_rectangleCaption.bottom;
 
@@ -809,7 +856,7 @@ namespace experience
 
       }
 
-      m_rectangleClient = rectangleClient;
+      ///m_rectangleClient = rectangleClient;
 
       m_iControlBoxPosition = rectangleClient.right;
 
@@ -846,7 +893,7 @@ namespace experience
 
       bool bIcon = get_element_rect(rectangleIcon, ::e_element_top_left_icon);
 
-      m_pointWindowIcon.y() = rectangleMargin.top + ((iCaptionHeight - rectangleIcon.height()) / 2);
+      m_pointWindowIcon.y() = rectangleMargin.top + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
 
       if (bIcon)
       {
@@ -978,6 +1025,39 @@ namespace experience
    }
 
 
+   bool frame::calculate_window_client_rect(::rectangle_i32 * prectangle)
+   {
+
+      ::rectangle_i32 rectangleClient(*prectangle);
+
+      auto eappearance = m_pframewindow->const_layout().design().appearance();
+
+      if (!m_pframewindow->layout().is_full_screen() &&
+         !(eappearance & ::e_appearance_transparent_frame))
+      {
+
+         rectangleClient.top += m_iCaptionHeight;
+
+      }
+
+      rectangle_i32 rectangleMargin = get_margin_rect();
+
+      rectangleClient.deflate(rectangleMargin);
+
+      if (rectangleClient.is_empty())
+      {
+
+         return false;
+
+      }
+
+      *prectangle = rectangleClient;
+
+      return true;
+
+   }
+
+
    bool frame::get_window_client_rect(::rectangle_i32 * prectangle)
    {
 
@@ -989,7 +1069,18 @@ namespace experience
 
       }
 
-      *prectangle = m_rectangleClient;
+      ::rectangle_i32 rectangleClient;
+
+      m_pframewindow->::user::interaction::client_rectangle(rectangleClient);
+
+      if (!calculate_window_client_rect(&rectangleClient))
+      {
+
+         return false;
+
+      }
+
+      *prectangle = rectangleClient;
 
       return true;
 
@@ -1001,7 +1092,7 @@ namespace experience
 
       ::rectangle_i32 rectangle;
 
-      if (!get_window_client_rect(rectangle))
+      if (!get_window_client_rect(&rectangle))
       {
 
          return false;
@@ -1014,6 +1105,30 @@ namespace experience
 
 
       return true;
+
+   }
+
+
+   void frame::set_need_redraw_frame(::user::enum_layout elayout)
+   {
+
+      auto rectangle = m_pframewindow->::user::interaction::client_rectangle(elayout);
+
+      ::rectangle_i32 rectangleInner(rectangle);
+
+      calculate_window_client_rect(&rectangleInner);
+
+      ::rectangle_i32 rectangleBorders[4];
+
+      auto count = get_borders(rectangleBorders, rectangle, rectangleInner);
+
+      for (::index i = 0; i < count; i++)
+      {
+       
+         m_pframewindow->set_need_redraw(rectangleBorders[i]);
+
+      }
+
 
    }
 
@@ -1232,7 +1347,7 @@ namespace experience
 
          }
 
-         if (edisplay == e_display_restored)
+         if (edisplay == e_display_normal)
          {
 
             if (m_pframewindow->move_manager()->window_is_moving())
@@ -1275,7 +1390,7 @@ namespace experience
          if (m_pframewindow->size_manager()->window_is_sizing())
          {
 
-            m_pframewindow->m_windowrectangle.m_rectangleRestored = rectangle;
+            //m_pframewindow->m_windowrectangle.XXXm_rectangleNormal = rectangle;
 
             m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
 

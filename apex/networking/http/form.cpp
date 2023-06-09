@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form.h"
 //#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/file/file.h"

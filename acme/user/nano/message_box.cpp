@@ -1,6 +1,6 @@
-﻿//
-// Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
-// Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
+// Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "message_box.h"
 #include "device.h"
@@ -117,9 +117,9 @@ void nano_message_box::calculate_size()
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
-   auto wScreen = sizeScreen.cx;
+   auto wScreen = sizeScreen.cx();
 
-   auto hScreen = sizeScreen.cy;
+   auto hScreen = sizeScreen.cy();
 
    //printf("nano_message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 

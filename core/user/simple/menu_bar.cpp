@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/simple/toolbar.h"
 #include "menu_bar.h"
 #include "acme/constant/message.h"
@@ -169,9 +169,8 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_iTracking = iItem;
    m_pitemPressed = __new(::item(::e_element_item, iItem));
    set_need_redraw();
-   ::rectangle_i32 rectangle;
-   index_element_rectangle(iItem, rectangle, ::e_element_item, ::user::e_state_none);
-   client_to_screen()(rectangle);
+   auto statusrectangle = index_element_rectangle(iItem, ::e_element_item, ::user::e_state_none);
+   client_to_screen()(statusrectangle);
 
    /*#ifdef WINDOWS_DESKTOP
        TPMPARAMS tpm;
@@ -635,10 +634,10 @@ index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
          m_buttona[iItem].m_wstr.get_length(),
          &size);
       m_buttona[iItem].m_rectangle.left  = ix ;
-      ix += size.cx + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
+      ix += size.cx() + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
       m_buttona[iItem].m_rectangle.right = ix;
       m_buttona[iItem].m_rectangle.top   = 0;
-      iy = maximum(iy, size.cy);
+      iy = maximum(iy, size.cy());
    }
    for(iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
@@ -730,13 +729,13 @@ size_i32 simple_menu_bar::CalcLayout(u32 dwMode, index nLength)
 {
    _001Layout();
    size_i32 sizeResult;
-   sizeResult.cx = 0;
-   sizeResult.cy = 0;
+   sizeResult.cx() = 0;
+   sizeResult.cy() = 0;
 
    if(m_buttona.get_size() > 0)
    {
-      sizeResult.cx = m_buttona[m_buttona.get_size() - 1].m_rectangle.right + ITEMCHECKEDPADRIGHT;
-      sizeResult.cy = m_buttona[m_buttona.get_size() - 1].m_rectangle.bottom;
+      sizeResult.cx() = m_buttona[m_buttona.get_size() - 1].m_rectangle.right + ITEMCHECKEDPADRIGHT;
+      sizeResult.cy() = m_buttona[m_buttona.get_size() - 1].m_rectangle.bottom;
    }
 
    return sizeResult;

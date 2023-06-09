@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-15 04:49 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-15 04:49 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -166,7 +166,7 @@ template < typename FILE >
 
    editimpl.place(rectangleWindow);
 
-   editimpl.display(e_display_restored);
+   editimpl.display(e_display_normal);
 
    editimpl.set_need_layout();
 

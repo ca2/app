@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "still.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/drawing.h"
 
@@ -59,8 +60,12 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
          image_source imagesource(picon);
+         
+         auto minimum_dimension = this->get_client_size().minimum();
+         
+         ::size_f64 size(minimum_dimension);
 
-         rectangle_f64 rectangle(::point_i32(), ::size_i32(this->get_client_size().get_minimum_dimension()));
+         rectangle_f64 rectangle(::point_f64(), size);
 
          image_drawing_options imagedrawingoptions(rectangle);
 

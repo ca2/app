@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "base/user/experience/frame_window.h"
@@ -98,7 +98,7 @@ public:
    void _001OnAfterExitFullScreen() override;
 
 
-   virtual void show_control_bars(const ::e_display & edisplay = e_display_restored, bool bLeaveFullScreenBarsOnHide = false);
+   virtual void show_control_bars(const ::e_display & edisplay = e_display_normal, bool bLeaveFullScreenBarsOnHide = false);
 
    bool _001OnBeforeEnterAppearance() override;
    void initialize_frame_window_experience() override;

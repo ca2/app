@@ -15,6 +15,9 @@
 #import <Foundation/Foundation.h>
 
 
+#include "acme/primitive/geometry2d/_geometry2d.h"
+
+
 CGRect g_rectScreen;
 
 
@@ -36,13 +39,16 @@ CGRect mm_get_screen_cgrect()
 }
 
 
-RECTANGLE_I32 get_main_screen_rectangle()
+::rectangle_i32 get_main_screen_rectangle()
 {
    
-   RECTANGLE_I32 rectangle{};
+   ::rectangle_i32 rectangle{};
    
    screen_coordinates_aware_copy(rectangle, g_rectScreen);
    
    return rectangle;
    
 }
+
+
+

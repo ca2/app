@@ -218,7 +218,7 @@ void simple_ui_display::on_expose()
 
    XSetForeground(d, gc, crBk);
 
-   XFillRectangle(d, m_window, gc, 0, 0, m_size.cx, m_size.cy);
+   XFillRectangle(d, m_window, gc, 0, 0, m_size.cx(), m_size.cy());
 
    int iFontHeight;
 
@@ -351,9 +351,9 @@ int simple_ui_display::show()
 
    }
 
-   xWindow += (cxScreen - m_size.cx) / 2;
+   xWindow += (cxScreen - m_size.cx()) / 2;
 
-   yWindow += (cyScreen - m_size.cy) / 3;
+   yWindow += (cyScreen - m_size.cy()) / 3;
 
    attr.colormap = colormap;
    attr.border_pixel = 0;
@@ -376,7 +376,7 @@ int simple_ui_display::show()
    m_window =
       XCreateWindow(
          d, windowRoot,
-         xWindow, yWindow, m_size.cx, m_size.cy, 0,
+         xWindow, yWindow, m_size.cx(), m_size.cy(), 0,
          32,
          InputOutput,
          pvisual,

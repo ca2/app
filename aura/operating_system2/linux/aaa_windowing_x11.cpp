@@ -606,14 +606,14 @@ oswindow set_focus(oswindow window)
 
    }
 
-   windowing_output_debug_string("\noswindow_data::SetFocus 1");
+   windowing_output_debug_string("\nwindow(x11)::set_keyboard_focus 1");
 
    xdisplay d(window->display());
 
    if(!is_window(window))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+      windowing_output_debug_string("\nwindow(x11)::set_keyboard_focus 1.1");
 
       return nullptr;
 
@@ -624,7 +624,7 @@ oswindow set_focus(oswindow window)
    if(!IsWindowVisibleRaw(window))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.2");
+      windowing_output_debug_string("\nwindow(x11)::set_keyboard_focus 1.2");
 
       return nullptr;
 
@@ -633,13 +633,13 @@ oswindow set_focus(oswindow window)
    if(!XSetInputFocus(d, window->window(), RevertToNone, CurrentTime))
    {
 
-      windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+      windowing_output_debug_string("\nwindow(x11)::set_keyboard_focus 1.3");
 
       return nullptr;
 
    }
 
-   windowing_output_debug_string("\noswindow_data::SetFocus 2");
+   windowing_output_debug_string("\nwindow(x11)::set_keyboard_focus 2");
 
    return windowOld;
 
@@ -1675,7 +1675,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE_I32 * psize)
+//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,::size_i32 * psize)
 //{
 //
 //   synchronous_lock synchronouslock(x11_mutex());
@@ -3551,7 +3551,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                         (pinteraction->m_pointMouseMoveSkip.y() - pinteraction->m_pointMouseMove.y()));
 
                      if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
-                        && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
+                        && sizeDistance.cx() * sizeDistance.cx() + sizeDistance.cy() * sizeDistance.cy() < pinteraction->m_iMouseMoveSkipSquareDistance)
                      {
 
                         pinteraction->m_iMouseMoveSkipCount++;
@@ -3732,7 +3732,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                            if(edisplayPrevious == ::e_display_iconic)
                            {
 
-                              pinteraction->_001OnDeiconify(::e_display_restored);
+                              pinteraction->_001OnDeiconify(::e_display_normal);
 
                            }
                            else
@@ -3827,7 +3827,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(edisplayPrevious == ::e_display_iconic)
                      {
 
-                        pinteraction->_001OnDeiconify(::e_display_restored);
+                        pinteraction->_001OnDeiconify(::e_display_normal);
 
                      }
                      else
@@ -4085,8 +4085,8 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
 //      int l = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.x();
 //      int t = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_point.y();
-//      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx;
-//      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy;
+//      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx();
+//      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy();
 //
 //      ::rectangle_i32 r;
 //

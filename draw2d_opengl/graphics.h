@@ -104,7 +104,7 @@ namespace draw2d_opengl
                     const char * lpszOutput, const void * lpInitData);
       bool CreateIC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
                     const char * lpszOutput, const void * lpInitData);
-      void create_memory_graphics(const ::size_i32 & size = nullptr) override;
+      void create_memory_graphics(const ::size_i32 & size = {}) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       virtual bool opengl_create_offscreen_buffer(const ::size_i32 & size);
@@ -113,8 +113,8 @@ namespace draw2d_opengl
       void DeleteDC() override;
 
       // Device-Context Functions
-      i32 SaveDC()override;
-      void RestoreDC(i32 nSavedDC)override;
+      i32 save_graphics_context()override;
+      void restore_graphics_context(i32 iSavedContext)override;
       //i32 GetDeviceCaps(i32 nIndex) override;
       ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags) override;
       ::u32 GetBoundsRect(rectangle_f64 * rectangleBounds, ::u32 flags) override;
@@ -265,7 +265,7 @@ namespace draw2d_opengl
       //bool Arc(i32 x1,i32 y1,i32 x2,i32 y2,double start, double extends);
       void arc(double x1,double y1,double x2,double y2,double start, double extends);
 
-      void angle_arc(double x, double y, double nRadius,::angle fStartAngle, ::angle fSweepAngle);
+      void angle_arc(double x, double y, double nRadius,::angle_f64 fStartAngle, ::angle_f64 fSweepAngle);
       void arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       void arc_to(const ::rectangle_i32 & rectangle, const ::point_i32 & pointStart, const ::point_i32 & pointEnd);
       //i32 GetArcDirection() const;
@@ -435,7 +435,7 @@ namespace draw2d_opengl
 //      bool DrawFrameControl(const ::rectangle_i32 & rectangle,::u32 nType,::u32 nState);
 
       // Scrolling Functions
-      //bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_i32 & lpRectScroll, const ::rectangle_i32 & lpRectClip,
+      //bool ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 & lpRectScroll, const ::rectangle_i32 & lpRectClip,
         //            ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate);
 
       // font Functions
@@ -582,7 +582,7 @@ namespace draw2d_opengl
       void is_valid_update_window_thread() override;
 
 
-      void _add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape) override;
+      void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion) override;
 
 
       void on_begin_draw() override;

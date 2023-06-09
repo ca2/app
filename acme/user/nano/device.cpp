@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/01/2022 21:27 <3ThomasBorregaardSørensen!!
+// Created by camilo on 31/01/2022 21:27 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "device.h"
@@ -59,7 +59,7 @@ void nano_device::draw_text123(const ::string & str, const ::rectangle_i32 & rec
 
          auto size = get_text_extents(strLine, pnanofont);
 
-         r.top += size.cy;
+         r.top += size.cy();
 
          if (r.top > rectangleText.bottom)
          {

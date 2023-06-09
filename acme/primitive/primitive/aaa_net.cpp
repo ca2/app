@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "net.h"
 #include "as_string.h"
 #include "acme/exception/parsing.h"

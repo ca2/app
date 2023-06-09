@@ -527,7 +527,7 @@ namespace html
       if (m_etag == tag_html || m_etag == tag_body || m_etag == tag_head || m_pparent == nullptr)
       {
 
-         m_pimpl->move_bound_to(phtmldata, nullptr);
+         m_pimpl->move_bound_to(phtmldata, {});
 
          m_pimpl->set_bound_size(phtmldata, phtmldata->m_pcoredata->m_box.size());
 
@@ -667,14 +667,14 @@ namespace html
 
       }
 
-      /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx)
+      /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx())
             {
 
-            m_pimpl->set_bound_size(phtmldata, ::size_f32(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
+            m_pimpl->set_bound_size(phtmldata, ::size_f32(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx()));
 
             }
 
-            m_pimpl->set_x(phtmldata, maximum(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));*/
+            m_pimpl->set_x(phtmldata, maximum(m_pimpl->get_bound_size().cx(), m_pimpl->get_x()));*/
 
 
    }

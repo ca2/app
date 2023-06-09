@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
@@ -86,7 +86,7 @@ namespace experience_core
 
       //return true;
       
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
       
 //      if (pdata->m_bVertical)
 //      {
@@ -895,16 +895,16 @@ namespace experience_core
 
             size_i32 s = pane.m_sizeaText[i];
 
-            rectangleText.right = rectangleText.left + s.cx;
+            rectangleText.right = rectangleText.left + s.cx();
 
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
-            rectangleText.left += s.cx;
+            rectangleText.left += s.cx();
 
             if (i < straTitle.get_upper_bound())
             {
 
-               rectangleText.right = rectangleText.left + sSep.cx;
+               rectangleText.right = rectangleText.left + sSep.cx();
 
                rectangleEmp = rectangleText;
 
@@ -943,7 +943,7 @@ namespace experience_core
 
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
 
-               rectangleText.left += sSep.cx;
+               rectangleText.left += sSep.cx();
 
             }
 
@@ -1003,7 +1003,7 @@ namespace experience_core
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, pdata->m_sizeSep);
 
       if (pdata->m_bVertical)
       {
@@ -1021,42 +1021,56 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
-
-
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if (ppane->m_pimage->is_set())
             {
-               size.cx += ppane->m_pimage->width() + 2;
-               size.cy = maximum(size.cy, ppane->m_pimage->height());
+
+               size.cx() += ppane->m_pimage->width() + 2;
+
+               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
+
             }
-            cx = size.cx + 2;
+
+            cx = (::i32) (size.cx() + 2);
 
             if (!ppane->m_bPermanent)
             {
+               
                cx += 2 + 16 + 2;
+
             }
 
             if (cx > iTabWidth)
             {
+               
                iTabWidth = cx;
+
             }
-            cy = size.cy + 2;
+
+            cy = (::i32) ( size.cy() + 2);
+
             if (cy > iTabHeight)
             {
+
                iTabHeight = cy;
+
             }
+
          }
 
          // close tab button
          cy = 2 + 16 + 2;
+
          if (cy > iTabHeight)
          {
+
             iTabHeight = cy;
+
          }
 
          iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
@@ -1120,20 +1134,20 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            size_i32 size;
+            size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if (ppane->m_pimage.ok())
             {
 
-               size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
+               size.cy() = maximum(size.cy(), ppane->m_pimage->size().cy());
 
             }
 
-            cy = size.cy + 2;
+            cy = (::i32)(size.cy() + 2);
 
             if (cy > iTabHeight)
             {
@@ -1164,12 +1178,12 @@ namespace experience_core
 
 
 
-            ppane->m_size.cx = size.cx + ixAdd
+            ppane->m_size.cx() = (::i32) (size.cx() + ixAdd
                + pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right
                + pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right
-               + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right;
+               + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right);
 
-            x += ppane->m_size.cx;
+            x += ppane->m_size.cx();
          }
 
          // close tab button
@@ -1189,7 +1203,7 @@ namespace experience_core
 
             auto ppane = pdata->m_tabpanecompositea[iPane].get();
 
-            ppane->m_size.cy = iTabHeight;
+            ppane->m_size.cy() = iTabHeight;
 
          }
 
@@ -1246,21 +1260,21 @@ namespace experience_core
 
          ptab->m_iTabSize = (int)(pdata->m_tabpanecompositea.get_count() * pdata->m_iTabHeight);
 
-//         ptab->m_pointDragScrollMax.y() = ptab->m_sizeDragScroll.cy - rcClient.height();
+//         ptab->m_pointDragScrollMax.y() = ptab->m_sizeDragScroll.cy() - rcClient.height();
 
-         ptab->m_sizeBarDragScroll.cy = (int)ptab->m_pdata->m_tabpanecompositea.get_count() * ptab->m_pdata->m_iTabHeight;
+         ptab->m_sizeBarDragScroll.cy() = (int)ptab->m_pdata->m_tabpanecompositea.get_count() * ptab->m_pdata->m_iTabHeight;
 
       }
       else
       {
 
          ptab->m_iTabSize = pdata->m_tabpanecompositea.last()->m_point.x() +
-            pdata->m_tabpanecompositea.last()->m_size.cx;
+            pdata->m_tabpanecompositea.last()->m_size.cx();
 
-         //ptab->m_pointDragScrollMax.x() = ptab->m_sizeDragScroll.cx - rcClient.width();
+         //ptab->m_pointDragScrollMax.x() = ptab->m_sizeDragScroll.cx() - rcClient.width();
 
-         ptab->m_sizeBarDragScroll.cx = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x() +
-            ptab->m_pdata->m_tabpanecompositea.last()->m_size.cx;
+         ptab->m_sizeBarDragScroll.cx() = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x() +
+            ptab->m_pdata->m_tabpanecompositea.last()->m_size.cx();
 
          //if (m_pdata->m_bVertical)
          //{
@@ -1878,9 +1892,7 @@ namespace experience_core
 
       }
 
-      ::rectangle_i32 rectangleTrack;
-
-      pscrollbar->GetTrackRect(rectangleTrack, pgraphics);
+      auto statusrectangleTrack = pscrollbar->get_track_rectangle(pgraphics);
 
       ::rectangle_i32 rectangleWindow;
 
@@ -1904,7 +1916,7 @@ namespace experience_core
 
       pgraphics->set(pbrushDraw);
 
-      pgraphics->rectangle(rectangleTrack);
+      pgraphics->rectangle(statusrectangleTrack);
 
       if (pbar->m_bTracking || pbar->is_true("tracking_on"))
       {
@@ -1944,7 +1956,7 @@ namespace experience_core
 
          }
 
-         ::point_i32 point1 = rectangleTrack.top_left() + pbar->m_sizeTrackOffset;
+         ::point_i32 point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
          pbar->client_to_screen()(point1);
 
@@ -2020,39 +2032,39 @@ namespace experience_core
          if (bSimple)
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
+            int iSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
 
-            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
             rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
             ::rectangle_i32 rectangleIntersect;
 
-            rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
+            rectangleIntersect.intersect(rectangleMachineThumb, statusrectangleTrack);
 
             i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
 
             rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
-            pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
 
          }
          else
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation);
+            int iSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
-            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
             rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
-            rectangleMachineThumb.assign_normal(rectangleTrack, pbar->m_eorientation);
+            rectangleMachineThumb.assign_normal(statusrectangleTrack, pbar->m_eorientation);
 
-            rectangleMachineThumb._007Constrain(rectangleTrack);
+            rectangleMachineThumb._007Constrain(statusrectangleTrack);
 
             rectangleMachineThumb.deflate(1, 1);
 
-            pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+            pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, statusrectangleTrack, uchAlpha);
 
          }
 
@@ -2066,7 +2078,7 @@ namespace experience_core
 
       pgraphics->set(ppenGrip);
 
-      ::point_i32 pointCenter = rectangleTrack.center();
+      ::point_i32 pointCenter = statusrectangleTrack.center();
 
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
@@ -2113,32 +2125,30 @@ namespace experience_core
 
       pgraphics->rectangle(pbar->m_rectangleB);
 
-      ::rectangle_i32 rectangle;
-
       if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
-         pbar->GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+         auto statusrectanglePageA = pbar->get_pageA_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
          pgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->fill_rectangle(rectangle);
+         pgraphics->fill_rectangle(statusrectanglePageA);
 
       }
       else if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageB)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 
-         pbar->GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+         auto statusrectanglePageB = pbar->get_pageB_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
          pgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->fill_rectangle(rectangle);
+         pgraphics->fill_rectangle(statusrectanglePageB);
 
       }
 

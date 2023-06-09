@@ -53,17 +53,17 @@ bool image_array::explode(::particle * pparticle, const ::size_i32 & sizeParam, 
 
    ::size_i32 sizeSource(pimageSource->width() / cols, pimageSource->height() / rows);
 
-   if (size.cx < 0)
+   if (size.cx() < 0)
    {
 
-      size.cx = sizeSource.cx;
+      size.cx() = sizeSource.cx();
 
    }
 
-   if (size.cy < 0)
+   if (size.cy() < 0)
    {
 
-      size.cy = sizeSource.cy;
+      size.cy() = sizeSource.cy();
 
    }
 
@@ -77,7 +77,7 @@ bool image_array::explode(::particle * pparticle, const ::size_i32 & sizeParam, 
 
          auto rectangleTarget = pimage->rectangle();
 
-         auto rectangleSource = ::rectangle_i32_dimension(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
+         auto rectangleSource = ::rectangle_i32_dimension(sizeSource.cx() * col, sizeSource.cy() * row, sizeSource.cx(), sizeSource.cy());
 
          image_source imagesource(pimageSource, rectangleSource);
 

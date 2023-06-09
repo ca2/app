@@ -26,11 +26,11 @@ namespace user
       };
 
 
-      ::pointer<::write_text::font_list>  m_pfontlist;
-      ::rectangle_i32                           m_rectangleMargin;
-      bool                             m_bEnsureVisible;
-      bool                             m_bFirstShown;
-      ::i32                            m_iLayoutSerial;
+      ::pointer<::write_text::font_list>     m_pfontlist;
+      ::rectangle_i32                        m_rectangleMargin;
+      bool                                   m_bEnsureVisible;
+      bool                                   m_bFirstShown;
+      ::i32                                  m_iLayoutSerial;
 
 
       font_list();
@@ -55,12 +55,15 @@ namespace user
 
       //virtual bool get_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction) override;
 
-
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
+
+
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
@@ -104,7 +107,7 @@ namespace user
 
       virtual void __on_draw_ensure_sel_visible();
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::SIZE_I32 * psize) override;
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32 * psize) override;
 
 
       virtual void update_data(bool bSaveAndValidate) override;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_text.h"
 #include "aura/user/user/check_box.h"
 #include "axis/html/element/element.h"
@@ -156,7 +156,7 @@ namespace html
 
          m_pedit->place(m_box);
 
-         m_pedit->display(::e_display_restored);
+         m_pedit->display(::e_display_normal);
 
          //m_pedit->m_pointRequest.offset(500, 100);
 
@@ -175,7 +175,7 @@ namespace html
 
          //m_pedit->get_wnd()->screen_to_client(rectangleWindow);
 
-         //::draw2d::savedc savedc(pgraphics);
+         //::draw2d::save_context savecontext(pgraphics);
 
          //pgraphics->set_origin(rectangleWindow.top_left());
 

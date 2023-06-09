@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/get_memory.h"
@@ -114,7 +114,6 @@ namespace database
 
       virtual void set_id_blob(string strKey, ::block block);
       virtual bool get_id_blob(string strKey, ::get_memory getmemory);
-
 
 
    };

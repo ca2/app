@@ -574,8 +574,6 @@
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
-    <ClCompile Include="operating_system\android\_.cpp" />
-    <ClCompile Include="operating_system\android\_factory.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\message_queue.cpp" />
     <ClCompile Include="platform\context.cpp" />
@@ -614,7 +612,6 @@
     <ClCompile Include="user\user\keyboard.cpp" />
     <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />
-    <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\notify_icon.cpp" />
     <ClCompile Include="user\user\notify_icon_listener.cpp" />

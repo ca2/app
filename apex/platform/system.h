@@ -438,7 +438,10 @@ namespace apex
       virtual int console_end(::e_status estatus);
 
 
-      virtual void get_public_internet_domain_extension_list(string_array& stra) override;
+      //virtual void get_public_internet_domain_extension_list(string_array& stra) override;
+
+
+      ::string fetch_public_internet_domain_extension_list_text() override;
 
       
    };

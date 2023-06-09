@@ -470,8 +470,8 @@ namespace browser
 
       size = pgraphics->get_text_extent(strHelloBrowser);
 
-      int iCx = int(size.cx * 1.2);
-      int iCy = int(size.cy * 1.2);
+      int iCx = int(size.cx() * 1.2);
+      int iCy = int(size.cy() * 1.2);
 
       if (iCx != m_cxTarget || iCy != m_cyTarget)
       {
@@ -520,7 +520,7 @@ namespace browser
 
 /*                  m_pimage->g()->SelectObject(pbrushText);
 
-/*                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2, (m_cyCache1 - size_i32->cy) / 2, strHelloBrowser);
+/*                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx()) / 2, (m_cyCache1 - size_i32->cy()) / 2, strHelloBrowser);
 
 /*                  m_pimage->map();
 
@@ -642,7 +642,7 @@ namespace browser
       //if(!m_bAlternate)
       {
 
-         pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
+         pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser);
 
       }
       //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
@@ -773,9 +773,9 @@ namespace browser
 
       ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
 
-      m_cxTarget = int(size.cx * 1.2);
+      m_cxTarget = int(size.cx() * 1.2);
 
-      m_cyTarget = int(size.cy * 1.2);
+      m_cyTarget = int(size.cy() * 1.2);
 
       {
 
@@ -809,7 +809,7 @@ namespace browser
 
 /*            m_pimage->g()->set_font(m_pfont);
 
-/*            m_pimage->g()->text_out((m_cx - size_i32->cx) / 2, (m_cy - size_i32->cy) / 2, strHelloBrowser);
+/*            m_pimage->g()->text_out((m_cx - size_i32->cx()) / 2, (m_cy - size_i32->cy()) / 2, strHelloBrowser);
 
             if (m_dMinRadius > 3.0)
             {
@@ -869,7 +869,7 @@ namespace browser
 
       pgraphics->SelectObject(pbrushText);
 
-      pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
+      pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser);
 
       byte a, R, g, b;
 
@@ -1087,9 +1087,9 @@ namespace browser
 
                ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
 
-               double ratey = fHeight * 0.84 / size.cy;
+               double ratey = fHeight * 0.84 / size.cy();
 
-               pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy() * ratey / size.cx()), e_font_weight_bold);
 
                m_pfont = font;
 
@@ -1117,7 +1117,7 @@ namespace browser
 
             ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
 
-            pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
+            pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser);
 
             return;
 
@@ -1323,7 +1323,7 @@ namespace browser
       ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 
 
-      bool bNewSize = m_pimageFast->width() != sizeNew->cx || m_pimageFast->height() != sizeNew->cy;
+      bool bNewSize = m_pimageFast->width() != sizeNew->cx() || m_pimageFast->height() != sizeNew->cy();
 
 /*      m_pimageFast = create_image(sizeNew);
 
@@ -1343,11 +1343,11 @@ namespace browser
 
       ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
 
-      double ratey = fHeight * 0.84 / size.cy;
+      double ratey = fHeight * 0.84 / size.cy();
 
-      pfont->create_pixel_font(m_pimpact->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+      pfont->create_pixel_font(m_pimpact->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy() * ratey / size.cx()), e_font_weight_bold);
 
-      m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
+      m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy() * ratey / size.cx()) / 46.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
@@ -1361,7 +1361,7 @@ namespace browser
 
       ppath->m_bFill = false;
 
-      ppath->add_string((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser, m_pfont);
+      ppath->add_string((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser, m_pfont);
 
       auto ppen = __create < ::draw2d::pen > ();
 

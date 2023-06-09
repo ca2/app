@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list_box.h"
 #include "combo_box.h"
 #include "acme/handler/item.h"
@@ -372,7 +372,7 @@ namespace user
    void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       ::rectangle_f64 rectangleClipBox;
 
@@ -427,7 +427,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      pointCursor+=screen_to_client(::user::e_layout_design);
+      screen_to_client(::user::e_layout_design)(pointCursor);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -546,7 +546,7 @@ namespace user
    }
 
 
-   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32 * psize)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -559,7 +559,7 @@ namespace user
 
       ::size_f64 size;
 
-      psize->cx = 0;
+      psize->cx() = 0;
 
       m_dItemHeight = 0.;
 
@@ -572,21 +572,21 @@ namespace user
 
          size = pgraphics->get_text_extent(strItem);
 
-         size.cx += m_iPadding * 2;
+         size.cx() += m_iPadding * 2;
 
-         if (size.cx > psize->cx)
+         if (size.cx() > psize->cx())
          {
 
-            psize->cx = (::i32)size.cx;
+            psize->cx() = (::i32)size.cx();
 
          }
 
-         if (size.cy > m_dItemHeight)
+         if (size.cy() > m_dItemHeight)
          {
 
-            m_dItemHeight = (::i32)size.cy;
+            m_dItemHeight = (::i32)size.cy();
 
-            if (size.cy != 18)
+            if (size.cy() != 18)
             {
 
                //output_debug_string("\nCOMBO LIST ITEM HEIGHT != 18\n");
@@ -622,14 +622,14 @@ namespace user
 
       }
 
-      psize->cy = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
+      psize->cy() = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
-      psize->cx += m_iBorder * 2;
+      psize->cx() += m_iBorder * 2;
 
       //auto rectangleComboClient = client_rectangle();
 
-      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
-      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
+      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
+      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
 
    }
 
@@ -701,7 +701,7 @@ namespace user
    void list_box::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
-      query_full_size(pgraphics, m_sizeFull);
+      query_full_size(pgraphics, &m_sizeFull);
 
    }
 
@@ -813,7 +813,7 @@ namespace user
 
             //      m_pcombo->keyboard_set_focus();
 
-            //      m_pcombo->get_wnd()->SetActiveWindow();
+            //      m_pcombo->get_wnd()->set_active_window();
 
             //   }
             //   else
@@ -864,7 +864,7 @@ namespace user
 
          auto pointCursor = get_cursor_position();
 
-         pointCursor+=m_pcombo->screen_to_client(::user::e_layout_sketch);
+         m_pcombo->screen_to_client(::user::e_layout_sketch)(pointCursor);
 
       }
       else
@@ -966,7 +966,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      point+=screen_to_client(e_layout_sketch);
+      screen_to_client(e_layout_sketch)(point);
 
       auto rectangleClient = client_rectangle();
 
@@ -993,7 +993,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      point+=screen_to_client(e_layout_sketch);
+      screen_to_client(e_layout_sketch)(point);
 
       auto rectangleClient = client_rectangle();
 
@@ -1134,14 +1134,14 @@ namespace user
 
          ::rectangle_i32 rectangleMonitor;
 
-         ::index i = get_best_monitor(rectangleMonitor, rectangleWindow);
+         ::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
          ::rectangle_i32 rectangleList;
 
          rectangleList.left = rectangleWindow.left;
-         rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx);
+         rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx());
          rectangleList.top = rectangleWindow.bottom;
-         rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy;
+         rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy();
 
          if (i < 0)
          {
@@ -1160,7 +1160,7 @@ namespace user
             rectangleListOver.left = rectangleList.left;
             rectangleListOver.right = rectangleList.right;
             rectangleListOver.bottom = rectangleWindow.top;
-            rectangleListOver.top = rectangleWindow.top - sizeFull.cy;
+            rectangleListOver.top = rectangleWindow.top - sizeFull.cy();
 
             if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
             {
@@ -1201,7 +1201,7 @@ namespace user
          if (i < 0)
          {
 
-            rectangleList+=m_pcombo->get_parent()->screen_to_client();
+            m_pcombo->get_parent()->screen_to_client()(rectangleList);
 
          }
 
@@ -1242,7 +1242,7 @@ namespace user
 
          order_top_most();
 
-         display(e_display_restored);
+         display(e_display_normal);
 
          auto & window_state = const_layout().sketch();
 

@@ -29,7 +29,7 @@ namespace account
       spa_login            m_login;
       simple_graphics      m_graphics;
       simple_bitmap        m_bitmap;
-      SIZE_I32                 m_size;
+      ::size_i32                 m_size;
       ::point_i32                m_point;
       bool                 m_bLButtonDown;
       ::point_i32                m_pointLButtonDown;
@@ -481,7 +481,7 @@ namespace account
 
 //      SetTimer(m_oswindow, 123, 23, nullptr);
 
-      ShowWindow(m_oswindow, e_display_restored);
+      XXXShowWindow(m_oswindow, e_display_normal);
 
 
 
@@ -749,13 +749,13 @@ namespace account
       {
 
 
-         ::ShowWindow(m_oswindow, SW_HIDE);
+         ::XXXShowWindow(m_oswindow, SW_HIDE);
 
          m_login.login_result(m_login.login());
 
          if (m_eresult == ::spa_login::result_fail)
          {
-            ::ShowWindow(m_oswindow, e_display_restored);
+            ::XXXShowWindow(m_oswindow, e_display_normal);
          }
          else
          {

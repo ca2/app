@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_.h"
 #include "output_stream.h"
 #include "acme/primitive/primitive/memory.h"

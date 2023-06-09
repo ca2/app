@@ -1,4 +1,4 @@
-﻿// https://avatars.githubusercontent.com/u/5128963?v=4
+// https://avatars.githubusercontent.com/u/5128963?v=4
 #pragma once
 
 //#error "test"

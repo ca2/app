@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "acme/constant/message.h"
@@ -32,6 +32,12 @@ namespace windowing
 
       m_bMessageOnlyWindow = false;
 
+      m_bUpdateScreenSynchronously = true;
+      
+      m_bActiveWindow = false;
+      
+      m_bKeyboardFocus = false;
+
    }
 
 
@@ -53,6 +59,39 @@ namespace windowing
       puser->on_initialize_window_object();
 
    }
+
+
+   void window::window_on_activate()
+   {
+   
+      m_bActiveWindow = true;
+   
+   }
+
+
+   void window::window_on_deactivate()
+   {
+      
+      m_bActiveWindow = false;
+      
+   }
+
+
+   void window::window_on_set_keyboard_focus()
+   {
+      
+      m_bKeyboardFocus = true;
+      
+   }
+   
+
+   void window::window_on_kill_keyboard_focus()
+   {
+      
+      m_bKeyboardFocus = false;
+      
+   }
+
 
 
 //   void window::assert_ok() const
@@ -170,7 +209,7 @@ namespace windowing
    bool window::has_keyboard_focus() const
    {
 
-      return false;
+      return m_bKeyboardFocus;
 
    }
 
@@ -563,7 +602,7 @@ namespace windowing
 
 
    // the active interaction_impl applies only to top-level (frame windows)
-   ::user::interaction * window::GetActiveWindow()
+   ::user::interaction * window::get_active_window()
    {
 
       throw ::interface_only();
@@ -573,12 +612,12 @@ namespace windowing
    }
 
 
-   ::user::interaction * window::SetActiveWindow()
+   void window::set_active_window()
    {
 
       throw ::interface_only();
 
-      return nullptr;
+      //return nullptr;
 
    }
 
@@ -604,15 +643,17 @@ namespace windowing
 
    bool window::is_active_window() const
    {
+      
+      return m_bActiveWindow;
 
-      if(m_pwindowing->get_active_window(m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction) != this)
-      {
-
-         return false;
-
-      }
-
-      return true;
+//      if(m_pwindowing->get_active_window(m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction) != this)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
 
    }
 
@@ -728,7 +769,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      return nullptr;
+      return {};
 
    }
 
@@ -1011,12 +1052,12 @@ namespace windowing
    }
 
 
-   void window::set_active_window()
+   /*void window::set_active_window()
    {
 
       throw ::interface_only();
 
-   }
+   }*/
 
 
    void window::bring_to_front()

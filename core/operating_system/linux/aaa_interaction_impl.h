@@ -117,7 +117,7 @@ namespace linux
 //      const ::scoped_string & scopedstrWindowName,
 
 //      ::u32 dwStyle,
-//      const ::rectangle & rectangle,
+//      const ::rectangle_f64 & rectangle,
 //      ::user::interaction * pParentWnd,
 //      atom atom,
 //      ::create * pContext = nullptr) override;
@@ -204,7 +204,7 @@ namespace linux
       //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
         //              bool bRepaint = true);
-      //void MoveWindow(const ::rectangle & rectangle, bool bRepaint = true);
+      //void MoveWindow(const ::rectangle_f64 & rectangle, bool bRepaint = true);
 
 //      i32 SetWindowRgn(HRGN hRgn, bool bRedraw);
 //      i32 GetWindowRgn(HRGN hRgn);
@@ -275,10 +275,10 @@ namespace linux
 //
 //      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
 //      virtual void Invalidate(bool bErase = true);
-//      virtual void InvalidateRect(const ::rectangle & rectangle, bool bErase = true);
+//      virtual void InvalidateRect(const ::rectangle_f64 & rectangle, bool bErase = true);
 //
 //      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-//      virtual void ValidateRect(const ::rectangle & rectangle);
+//      virtual void ValidateRect(const ::rectangle_f64 & rectangle);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual bool display(::e_display edisplay) override;
@@ -302,7 +302,7 @@ namespace linux
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::rectangle& rectangleUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle_f64& rectangleUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
@@ -353,11 +353,11 @@ namespace linux
       virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow() override;
-      virtual ::user::interaction * SetActiveWindow() override;
+      virtual ::user::interaction * get_active_window() override;
+      virtual ::user::interaction * set_active_window() override;
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
-      virtual bool SetForegroundWindow() override;
+      virtual bool set_foreground_window() override;
       //static::user::interaction * PASCAL GetForegroundWindow();
 //
 //      virtual atom SetDlgCtrlId(atom atom);
@@ -418,8 +418,8 @@ namespace linux
 //      virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
 //
 //      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-//                                const ::rectangle & rectangleClient = nullptr,
-//                                const ::rectangle & rectangleClip = nullptr);
+//                                const ::rectangle_f64 & rectangleClient = nullptr,
+//                                const ::rectangle_f64 & rectangleClip = nullptr);
 //
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);
 //      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
@@ -429,7 +429,7 @@ namespace linux
 //      //      virtual CScrollBar* GetScrollBarCtrl(i32 nBar) const;
 //      // return sibling scrollbar control (or nullptr if none)
 //
-//      virtual i32 ScrollWindowEx(i32 Δx, i32 Δy,
+//      virtual i32 ScrollWindowEx(i32 greekdeltax, i32 greekdeltay,
 //                                 const rectangle & pRectScroll, const rectangle & lpRectClip,
 //
 //                                 ::draw2d::region* prgnUpdate, RECT32 * pRectUpdate, ::u32 flags);

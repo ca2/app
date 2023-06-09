@@ -1598,8 +1598,8 @@ static void stbtt_setvertex(stbtt_vertex * v, stbtt_uint8 type, stbtt_int32 x, s
    v->type = type;
    v->x = (stbtt_int16)x;
    v->y = (stbtt_int16)y;
-   v->cx = (stbtt_int16)cx;
-   v->cy = (stbtt_int16)cy;
+   v->cx() = (stbtt_int16)cx;
+   v->cy() = (stbtt_int16)cy;
 }
 
 static int stbtt__GetGlyfOffset(const stbtt_fontinfo * info, int glyph_index)
@@ -1734,8 +1734,8 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
       for (i = 0; i < n; ++i) {
          flags = vertices[off + i].type;
          if (flags & 2) {
-            stbtt_int16 Δx = *points++;
-            x += (flags & 16) ? Δx : -Δx; // ???
+            stbtt_int16 greekdeltax = *points++;
+            x += (flags & 16) ? greekdeltax : -greekdeltax; // ???
          }
          else {
             if (!(flags & 16)) {
@@ -1751,8 +1751,8 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
       for (i = 0; i < n; ++i) {
          flags = vertices[off + i].type;
          if (flags & 4) {
-            stbtt_int16 Δy = *points++;
-            y += (flags & 32) ? Δy : -Δy; // ???
+            stbtt_int16 greekdeltay = *points++;
+            y += (flags & 32) ? greekdeltay : -greekdeltay; // ???
          }
          else {
             if (!(flags & 32)) {
@@ -1881,9 +1881,9 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
                x = v->x; y = v->y;
                v->x = (stbtt_vertex_type)(m * (mtx[0] * x + mtx[2] * y + mtx[4]));
                v->y = (stbtt_vertex_type)(n * (mtx[1] * x + mtx[3] * y + mtx[5]));
-               x = v->cx; y = v->cy;
-               v->cx = (stbtt_vertex_type)(m * (mtx[0] * x + mtx[2] * y + mtx[4]));
-               v->cy = (stbtt_vertex_type)(n * (mtx[1] * x + mtx[3] * y + mtx[5]));
+               x = v->cx(); y = v->cy();
+               v->cx() = (stbtt_vertex_type)(m * (mtx[0] * x + mtx[2] * y + mtx[4]));
+               v->cy() = (stbtt_vertex_type)(n * (mtx[1] * x + mtx[3] * y + mtx[5]));
             }
             // Append vertices.
             tmp = (stbtt_vertex *)STBTT_malloc((num_vertices + comp_num_verts) * sizeof(stbtt_vertex), info->userdata);
@@ -1957,18 +1957,18 @@ static void stbtt__csctx_close_shape(stbtt__csctx * ctx)
       stbtt__csctx_v(ctx, STBTT_vline, (int)ctx->first_x, (int)ctx->first_y, 0, 0, 0, 0);
 }
 
-static void stbtt__csctx_rmove_to(stbtt__csctx * ctx, float Δx, float Δy)
+static void stbtt__csctx_rmove_to(stbtt__csctx * ctx, float greekdeltax, float greekdeltay)
 {
    stbtt__csctx_close_shape(ctx);
-   ctx->first_x = ctx->x = ctx->x + Δx;
-   ctx->first_y = ctx->y = ctx->y + Δy;
+   ctx->first_x = ctx->x = ctx->x + greekdeltax;
+   ctx->first_y = ctx->y = ctx->y + greekdeltay;
    stbtt__csctx_v(ctx, STBTT_vmove, (int)ctx->x, (int)ctx->y, 0, 0, 0, 0);
 }
 
-static void stbtt__csctx_rline_to(stbtt__csctx * ctx, float Δx, float Δy)
+static void stbtt__csctx_rline_to(stbtt__csctx * ctx, float greekdeltax, float greekdeltay)
 {
-   ctx->x += Δx;
-   ctx->y += Δy;
+   ctx->x += greekdeltax;
+   ctx->y += greekdeltay;
    stbtt__csctx_v(ctx, STBTT_vline, (int)ctx->x, (int)ctx->y, 0, 0, 0, 0);
 }
 
@@ -2182,7 +2182,7 @@ static int stbtt__run_charstring(const stbtt_fontinfo * info, int glyph_index, s
 
       case 0x0C: { // two-byte escape
          float dx1, dx2, dx3, dx4, dx5, dx6, dy1, dy2, dy3, dy4, dy5, dy6;
-         float Δx, Δy;
+         float greekdeltax, greekdeltay;
          int b1 = stbtt__buf_get8(&b);
          switch (b1) {
             // @TODO These "flex" implementations ignore the flex-depth and resolution,
@@ -2247,12 +2247,12 @@ static int stbtt__run_charstring(const stbtt_fontinfo * info, int glyph_index, s
             dx5 = s[8];
             dy5 = s[9];
             dx6 = dy6 = s[10];
-            Δx = dx1 + dx2 + dx3 + dx4 + dx5;
-            Δy = dy1 + dy2 + dy3 + dy4 + dy5;
-            if (STBTT_fabs(Δx) > STBTT_fabs(Δy))
-               dy6 = -Δy;
+            greekdeltax = dx1 + dx2 + dx3 + dx4 + dx5;
+            greekdeltay = dy1 + dy2 + dy3 + dy4 + dy5;
+            if (STBTT_fabs(greekdeltax) > STBTT_fabs(greekdeltay))
+               dy6 = -greekdeltay;
             else
-               dx6 = -Δx;
+               dx6 = -greekdeltax;
             stbtt__csctx_rccurve_to(c, dx1, dy1, dx2, dy2, dx3, dy3);
             stbtt__csctx_rccurve_to(c, dx4, dy4, dx5, dy5, dx6, dy6);
             break;
@@ -2856,7 +2856,7 @@ typedef struct stbtt__active_edge
 {
    struct stbtt__active_edge * next;
 #if STBTT_RASTERIZER_VERSION==1
-   int x, Δx;
+   int x, greekdeltax;
    float ey;
    int direction;
 #elif STBTT_RASTERIZER_VERSION==2
@@ -2881,13 +2881,13 @@ static stbtt__active_edge * stbtt__new_active(stbtt__hheap * hh, stbtt__edge * e
    STBTT_assert(z != NULL);
    if (!z) return z;
 
-   // round Δx down to avoid overshooting
+   // round greekdeltax down to avoid overshooting
    if (dxdy < 0)
-      z->Δx = -STBTT_ifloor(STBTT_FIX * -dxdy);
+      z->greekdeltax = -STBTT_ifloor(STBTT_FIX * -dxdy);
    else
-      z->Δx = STBTT_ifloor(STBTT_FIX * dxdy);
+      z->greekdeltax = STBTT_ifloor(STBTT_FIX * dxdy);
 
-   z->x = STBTT_ifloor(STBTT_FIX * e->x0 + z->Δx * (start_point - e->y0)); // use z->Δx so when we offset later it's by the same amount
+   z->x = STBTT_ifloor(STBTT_FIX * e->x0 + z->greekdeltax * (start_point - e->y0)); // use z->greekdeltax so when we offset later it's by the same amount
    z->x -= off_x * STBTT_FIX;
 
    z->ey = e->y1;
@@ -3000,7 +3000,7 @@ static void stbtt__rasterize_sorted_edges(stbtt__bitmap * result, stbtt__edge * 
                stbtt__hheap_free(&hh, z);
             }
             else {
-               z->x += z->Δx; // advance to position for current scanline
+               z->x += z->greekdeltax; // advance to position for current scanline
                step = &((*step)->next); // advance through list
             }
          }
@@ -3132,18 +3132,18 @@ static void stbtt__fill_active_edges_new(float * scanline, float * scanline_fill
       }
       else {
          float x0 = e->fx;
-         float Δx = e->fdx;
-         float xb = x0 + Δx;
+         float greekdeltax = e->fdx;
+         float xb = x0 + greekdeltax;
          float x_top, x_bottom;
          float sy0, sy1;
-         float Δy = e->fdy;
+         float greekdeltay = e->fdy;
          STBTT_assert(e->sy <= y_bottom && e->ey >= y_top);
 
          // compute endpoints of line segment clipped to this scanline (if the
          // line segment starts on this scanline. x0 is the intersection of the
          // line with y_top, but that may be off the line segment.
          if (e->sy > y_top) {
-            x_top = x0 + Δx * (e->sy - y_top);
+            x_top = x0 + greekdeltax * (e->sy - y_top);
             sy0 = e->sy;
          }
          else {
@@ -3151,7 +3151,7 @@ static void stbtt__fill_active_edges_new(float * scanline, float * scanline_fill
             sy0 = y_top;
          }
          if (e->ey < y_bottom) {
-            x_bottom = x0 + Δx * (e->ey - y_top);
+            x_bottom = x0 + greekdeltax * (e->ey - y_top);
             sy1 = e->ey;
          }
          else {
@@ -3182,15 +3182,15 @@ static void stbtt__fill_active_edges_new(float * scanline, float * scanline_fill
                   sy1 = y_bottom - (sy1 - y_top);
                   t = sy0, sy0 = sy1, sy1 = t;
                   t = x_bottom, x_bottom = x_top, x_top = t;
-                  Δx = -Δx;
-                  Δy = -Δy;
+                  greekdeltax = -greekdeltax;
+                  greekdeltay = -greekdeltay;
                   t = x0, x0 = xb, xb = t;
                }
 
                x1 = (int)x_top;
                x2 = (int)x_bottom;
                // compute intersection with y axis at x1+1
-               y_crossing = (x1 + 1 - x0) * Δy + y_top;
+               y_crossing = (x1 + 1 - x0) * greekdeltay + y_top;
 
                sign = e->direction;
                // area of the rectangle covered from y0..y_crossing
@@ -3198,12 +3198,12 @@ static void stbtt__fill_active_edges_new(float * scanline, float * scanline_fill
                // area of the triangle (x_top,y0), (x+1,y0), (x+1,y_crossing)
                scanline[x1] += area * (1 - ((x_top - x1) + (x1 + 1 - x1)) / 2);
 
-               step = sign * Δy;
+               step = sign * greekdeltay;
                for (x = x1 + 1; x < x2; ++x) {
                   scanline[x] += area + step / 2;
                   area += step;
                }
-               y_crossing += Δy * (x2 - (x1 + 1));
+               y_crossing += greekdeltay * (x2 - (x1 + 1));
 
                STBTT_assert(STBTT_fabs(area) <= 1.01f);
 
@@ -3239,11 +3239,11 @@ static void stbtt__fill_active_edges_new(float * scanline, float * scanline_fill
                float x3 = xb;
                float y3 = y_bottom;
 
-               // x = e->x + e->Δx * (y-y_top)
-               // (y-y_top) = (x - e->x) / e->Δx
-               // y = (x - e->x) / e->Δx + y_top
-               float y1 = (x - x0) / Δx + y_top;
-               float y2 = (x + 1 - x0) / Δx + y_top;
+               // x = e->x + e->greekdeltax * (y-y_top)
+               // (y-y_top) = (x - e->x) / e->greekdeltax
+               // y = (x - e->x) / e->greekdeltax + y_top
+               float y1 = (x - x0) / greekdeltax + y_top;
+               float y2 = (x + 1 - x0) / greekdeltax + y_top;
 
                if (x0 < x1 && x3 > x2) {         // three segments descending down-right
                   stbtt__handle_clipped_edge(scanline, x, e, x0, y0, x1, y1);
@@ -3548,11 +3548,11 @@ static int stbtt__tesselate_curve(stbtt__point * points, int * num_points, float
    float mx = (x0 + 2 * x1 + x2) / 4;
    float my = (y0 + 2 * y1 + y2) / 4;
    // versus directly drawn line
-   float Δx = (x0 + x2) / 2 - mx;
-   float Δy = (y0 + y2) / 2 - my;
+   float greekdeltax = (x0 + x2) / 2 - mx;
+   float greekdeltay = (y0 + y2) / 2 - my;
    if (n > 16) // 65536 segments on one curve better be enough!
       return 1;
-   if (Δx * Δx + Δy * Δy > objspace_flatness_squared) { // half-pixel error allowed... need to be smaller if AA
+   if (greekdeltax * greekdeltax + greekdeltay * greekdeltay > objspace_flatness_squared) { // half-pixel error allowed... need to be smaller if AA
       stbtt__tesselate_curve(points, num_points, x0, y0, (x0 + x1) / 2.0f, (y0 + y1) / 2.0f, mx, my, objspace_flatness_squared, n + 1);
       stbtt__tesselate_curve(points, num_points, mx, my, (x1 + x2) / 2.0f, (y1 + y2) / 2.0f, x2, y2, objspace_flatness_squared, n + 1);
    }
@@ -3572,10 +3572,10 @@ static void stbtt__tesselate_cubic(stbtt__point * points, int * num_points, floa
    float dy1 = y2 - y1;
    float dx2 = x3 - x2;
    float dy2 = y3 - y2;
-   float Δx = x3 - x0;
-   float Δy = y3 - y0;
+   float greekdeltax = x3 - x0;
+   float greekdeltay = y3 - y0;
    float longlen = (float)(STBTT_sqrt(dx0 * dx0 + dy0 * dy0) + STBTT_sqrt(dx1 * dx1 + dy1 * dy1) + STBTT_sqrt(dx2 * dx2 + dy2 * dy2));
-   float shortlen = (float)STBTT_sqrt(Δx * Δx + Δy * Δy);
+   float shortlen = (float)STBTT_sqrt(greekdeltax * greekdeltax + greekdeltay * greekdeltay);
    float flatness_squared = longlen * longlen - shortlen * shortlen;
 
    if (n > 16) // 65536 segments on one curve better be enough!
@@ -3657,14 +3657,14 @@ static stbtt__point * stbtt_FlattenCurves(stbtt_vertex * vertices, int num_verts
             break;
          case STBTT_vcurve:
             stbtt__tesselate_curve(points, &num_points, x, y,
-               vertices[i].cx, vertices[i].cy,
+               vertices[i].cx(), vertices[i].cy(),
                vertices[i].x(), vertices[i].y(),
                objspace_flatness_squared, 0);
             x = vertices[i].x(), y = vertices[i].y();
             break;
          case STBTT_vcubic:
             stbtt__tesselate_cubic(points, &num_points, x, y,
-               vertices[i].cx, vertices[i].cy,
+               vertices[i].cx(), vertices[i].cy(),
                vertices[i].cx1, vertices[i].cy1,
                vertices[i].x(), vertices[i].y(),
                objspace_flatness_squared, 0);
@@ -4494,7 +4494,7 @@ static int stbtt__compute_crossings_x(float x, float y, int nverts, stbtt_vertex
       }
       if (verts[i].type == STBTT_vcurve) {
          int x0 = (int)verts[i - 1].x(), y0 = (int)verts[i - 1].y();
-         int x1 = (int)verts[i].cx, y1 = (int)verts[i].cy;
+         int x1 = (int)verts[i].cx(), y1 = (int)verts[i].cy();
          int x2 = (int)verts[i].x(), y2 = (int)verts[i].y();
          int ax = STBTT_min(x0, STBTT_min(x1, x2)), ay = STBTT_min(y0, STBTT_min(y1, y2));
          int by = STBTT_max(y0, STBTT_max(y1, y2));
@@ -4622,7 +4622,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
          }
          else if (verts[i].type == STBTT_vcurve) {
             float x2 = verts[j].x() * scale_x, y2 = verts[j].y() * scale_y;
-            float x1 = verts[i].cx * scale_x, y1 = verts[i].cy * scale_y;
+            float x1 = verts[i].cx() * scale_x, y1 = verts[i].cy() * scale_y;
             float x0 = verts[i].x() * scale_x, y0 = verts[i].y() * scale_y;
             float bx = x0 - 2 * x1 + x2, by = y0 - 2 * y1 + y2;
             float len2 = bx * bx + by * by;
@@ -4666,18 +4666,18 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
                      // check position along line
                      // x' = x0 + t*(x1-x0), y' = y0 + t*(y1-y0)
                      // minimize (x'-sx)*(x'-sx)+(y'-sy)*(y'-sy)
-                     float Δx = x1 - x0, Δy = y1 - y0;
+                     float greekdeltax = x1 - x0, greekdeltay = y1 - y0;
                      float px = x0 - sx, py = y0 - sy;
-                     // minimize (px+t*Δx)^2 + (py+t*Δy)^2 = px*px + 2*px*Δx*t + t^2*Δx*Δx + py*py + 2*py*Δy*t + t^2*Δy*Δy
-                     // derivative: 2*px*Δx + 2*py*Δy + (2*Δx*Δx+2*Δy*Δy)*t, set to 0 and solve
-                     float t = -(px * Δx + py * Δy) / (Δx * Δx + Δy * Δy);
+                     // minimize (px+t*greekdeltax)^2 + (py+t*greekdeltay)^2 = px*px + 2*px*greekdeltax*t + t^2*greekdeltax*greekdeltax + py*py + 2*py*greekdeltay*t + t^2*greekdeltay*greekdeltay
+                     // derivative: 2*px*greekdeltax + 2*py*greekdeltay + (2*greekdeltax*greekdeltax+2*greekdeltay*greekdeltay)*t, set to 0 and solve
+                     float t = -(px * greekdeltax + py * greekdeltay) / (greekdeltax * greekdeltax + greekdeltay * greekdeltay);
                      if (t >= 0.0f && t <= 1.0f)
                         min_dist = dist;
                   }
                }
                else if (verts[i].type == STBTT_vcurve) {
                   float x2 = verts[i - 1].x() * scale_x, y2 = verts[i - 1].y() * scale_y;
-                  float x1 = verts[i].cx * scale_x, y1 = verts[i].cy * scale_y;
+                  float x1 = verts[i].cx() * scale_x, y1 = verts[i].cy() * scale_y;
                   float box_x0 = STBTT_min(STBTT_min(x0, x1), x2);
                   float box_y0 = STBTT_min(STBTT_min(y0, y1), y2);
                   float box_x1 = STBTT_max(STBTT_max(x0, x1), x2);

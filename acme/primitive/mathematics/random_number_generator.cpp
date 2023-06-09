@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <time.h>
 #include "random_number_generator.h"
 

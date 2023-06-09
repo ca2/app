@@ -1,4 +1,4 @@
-﻿// From linux/time.cpp by camilo on 2022-04-30 03:08 <3ThomasBorregaardSørensen!!
+// From linux/time.cpp by camilo on 2022-04-30 03:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include <sys/time.h>
 #include <time.h>

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "decoder_plugin.h"
 #include "decoder.h"
 #include "acme/parallelization/event.h"

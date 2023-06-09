@@ -272,6 +272,7 @@ namespace acme
 
       //return estatus;
 
+
    }
 
 
@@ -2753,15 +2754,25 @@ return false;
 //   }
 
 
-   int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
+   int node::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut)
    {
 
-      return command_system(scopedstr, {}, tracefunction);
+      throw interface_only();
+
+      return -1;
 
    }
 
 
-   int node::command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction)
+//   int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
+//   {
+//
+//      return command_system(scopedstr, tracefunction);
+//
+//   }
+
+
+   int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
    {
 
       throw interface_only();
@@ -3071,6 +3082,29 @@ return false;
 
    }
 
+
+   ::string node::get_character_set_default_sample_text(enum_character_set echaracterset)
+   {
+
+      if (m_mapCharacterSetDefaultSampleText.is_empty())
+      {
+
+         load_character_set_default_sample_text();
+
+      }
+
+      return m_mapCharacterSetDefaultSampleText[echaracterset];
+
+    
+   }
+
+
+   void node::load_character_set_default_sample_text()
+   {
+
+      throw interface_only();
+
+   }
 
 
 } // namespace acme

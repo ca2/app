@@ -222,7 +222,7 @@ namespace user
 
    //   sizeparentparams.bStretch = bStretch;
 
-   //   sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
+   //   sizeparentparams.sizeTotal.cx() = sizeparentparams.sizeTotal.cy() = 0;
 
    //   if (rectangleClient != nullptr)
    //   {
@@ -282,9 +282,9 @@ namespace user
 
    //         prectParam->left = prectParam->top = 0;
 
-   //         prectParam->right = sizeparentparams.sizeTotal.cx;
+   //         prectParam->right = sizeparentparams.sizeTotal.cx();
 
-   //         prectParam->bottom = sizeparentparams.sizeTotal.cy;
+   //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
 
 
    //      }
@@ -770,7 +770,7 @@ namespace user
       case ::message::e_prototype_move:
       {
          _NEW_MESSAGE(::message::reposition);
-         pmessage->m_point = ::point_i32(lparam);
+         pmessage->m_point = lparam.point();
       }
       break;
       case ::message::e_prototype_erase_background:
@@ -833,7 +833,7 @@ namespace user
 //
 //         }
 
-         pmessage->m_point = ::point_i32(lparam);
+         pmessage->m_point = lparam.point();
 
          _raw_client_to_screen(pmessage->m_point);
 
@@ -862,9 +862,9 @@ namespace user
 
          pmessage->m_ebuttonstate = (::user::enum_button_state) first_u16(wparam);
 
-         pmessage->m_point = ::point_i32(lparam);
+         pmessage->m_point = lparam.point();
 
-         pmessage->m_Δ = second_i16(wparam);
+         pmessage->m_greekdelta = second_i16(wparam);
 
          _raw_client_to_screen(pmessage->m_point);
 
@@ -2717,7 +2717,7 @@ namespace user
    }
 
 
-   void primitive_impl::InvalidateRect(class ::rectangle_i32 const &,bool)
+   void primitive_impl::InvalidateRect(::rectangle_i32 const &,bool)
    {
 
 
@@ -2731,7 +2731,7 @@ namespace user
    }
 
 
-   void primitive_impl::ValidateRect(class ::rectangle_i32 const &)
+   void primitive_impl::ValidateRect(::rectangle_i32 const &)
    {
 
 

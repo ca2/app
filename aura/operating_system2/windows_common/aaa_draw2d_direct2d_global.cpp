@@ -193,33 +193,33 @@ namespace draw2d_direct2d
                    &context                    // Returns the device immediate context.
                    );
 
-      ::Δx::throw_if_failed(hr);
+      ::greekdeltax::throw_if_failed(hr);
 
 
       // Get the Direct3D 11.1 API device and context interfaces.
-      ::Δx::throw_if_failed(
+      ::greekdeltax::throw_if_failed(
       device.As(&m_pd3device)
       );
 
-      ::Δx::throw_if_failed(
+      ::greekdeltax::throw_if_failed(
       device.As(&m_pd3device1)
       );
 
-      ::Δx::throw_if_failed(
+      ::greekdeltax::throw_if_failed(
       context.As(&m_pd3devicecontext)
       );
 
-      ::Δx::throw_if_failed(
+      ::greekdeltax::throw_if_failed(
       context.As(&m_pd3devicecontext1)
       );
 
       // Get the underlying DXGI device of the Direct3D device.
-      ::Δx::throw_if_failed(
+      ::greekdeltax::throw_if_failed(
       device.As(&m_pdxgidevice)
       );
 
       // Create the Direct2D device object and a corresponding context.
-      ::Δx::throw_if_failed(
+      ::greekdeltax::throw_if_failed(
       d2d1_factory1()->CreateDevice(m_pdxgidevice.Get(), &m_pd2device)
       );
 

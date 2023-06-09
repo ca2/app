@@ -1,4 +1,4 @@
-﻿// Created by camilo 2020-12-18 05:48 BRT <3TBS, Mummi and bilbo!!
+// Created by camilo 2020-12-18 05:48 BRT <3TBS, Mummi and bilbo!!
 #include "framework.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/acme.h"
@@ -65,7 +65,7 @@ void main_asynchronous(const ::procedure & procedure)
 
    };
 
-   auto psystem = ::acme::acme::g_p->m_psubsystem->acmesystem();
+   auto psystem = ::acme::acme::g_pacme->m_psubsystem->acmesystem();
 
    psystem->windowing_post(predicate);
 

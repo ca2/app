@@ -41,7 +41,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 //static ::acme::system * g_psystem = nullptr;
 
 
-extern const char * g_pszTopLevelDomainList[];
+//extern const char * g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
@@ -555,7 +555,7 @@ void system::TermSystem()
    //try
    //{
    
-   //   ::acme::acme::g_p->factory_close();
+   //   ::acme::acme::g_pacme->factory_close();
    
    //}
    //catch (...)
@@ -1388,16 +1388,28 @@ void system::check_exit()
 //   }
 
 
+::string system::fetch_public_internet_domain_extension_list_text()
+{
+
+   throw interface_only();
+
+   return {};
+
+}
+
+
 void system::get_public_internet_domain_extension_list(string_array & stra)
 {
    
-   //         ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
+   //::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
+
+   //file()->load_lines(stra, pathPublicDomainExtensionList);
+
+   string str = fetch_public_internet_domain_extension_list_text();
+
+   auto psz = str.c_str();
    
-   //    file()->load_lines(stra, pathPublicDomainExtensionList);
-   
-   auto psz = g_pszTopLevelDomainList;
-   
-   while (*psz != nullptr)
+   while (*psz != '\0')
    {
       
       string str(*psz);

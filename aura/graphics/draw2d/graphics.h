@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/constant/element.h"
@@ -91,7 +91,7 @@ namespace draw2d
       ::pointer<::task>                     m_ptask;
       bool                                   m_bDraw;
 
-      image *                                m_pimage;
+      image_pointer                          m_pimage;
       ::draw2d::bitmap_pointer               m_pbitmap;
       ::draw2d::pen_pointer                  m_ppen;
       ::draw2d::brush_pointer                m_pbrush;
@@ -119,17 +119,13 @@ namespace draw2d
       bool                                   m_bPrinting;
       void *                                 m_osdata[8];
       ::user::style_pointer                  m_puserstyle;
-      ::point_f64                            m_pointAddShapeTranslate;
+      //::point_f64                            m_pointAddShapeTranslate;
       bool                                   m_bUseImageMipMapsOrResizedImages;
 
       //::e_status                             m_estatus;
       //::e_status                             m_estatusLast;
 
       ::rectangle_i32_array                  m_rectangleaNeedRedraw;
-
-
-
-
 
       graphics();
       ~graphics() override;
@@ -288,7 +284,7 @@ namespace draw2d
 
       virtual void create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
-      virtual void create_memory_graphics(const ::size_i32 & size = nullptr);
+      virtual void create_memory_graphics(const ::size_i32 & size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics * pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 
@@ -467,14 +463,18 @@ namespace draw2d
       
 
       
-      virtual void add_clipping_shapes(const shape_array < ::draw2d::region > & shapea);
+      virtual void add_clipping_shapes(const pointer_array < ::draw2d::region > & regiona);
       virtual void reset_clip();
 
       virtual void set_clipping(::draw2d::region * pregion);
       
-      virtual void intersect_clip(const ::rectangle & rectangle);
-      virtual void intersect_clip(const ::ellipse & ellipse);
-      virtual void intersect_clip(const ::polygon & polygon);
+      virtual void intersect_clip(const ::rectangle_f64 & rectangle_f64);
+      virtual void intersect_clip(const ::ellipse_f64 & ellipse);
+      virtual void intersect_clip(const ::polygon_f64 & polygon);
+      
+
+      virtual ::draw2d::region * defer_get_os_data(::pointer < ::geometry2d::region > & pregion);
+
 
       // Maybe used by some 2d Graphics backends as group of helper
       // methods working together for some purpose
@@ -482,10 +482,11 @@ namespace draw2d
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
       virtual void _intersect_clip();
-      virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
-      virtual void _add_clipping_shape(const ::rectangle & rectangle, ___shape < ::draw2d::region > & shape);
-      virtual void _add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape);
-      virtual void _add_clipping_shape(const ::polygon & polygon, ___shape < ::draw2d::region > & shape);
+      //virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
+      virtual void _add_clipping_shape(::draw2d::region * pregion);
+      virtual void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion);
+      virtual void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion);
+      virtual void _add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);
@@ -557,8 +558,8 @@ namespace draw2d
 
       virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       virtual void arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
-      virtual void arc(double x1, double y1, double x2, double y2, angle start, angle extends);
-      virtual void arc(const ::rectangle_f64 & rectangle, angle start, angle extends);
+      virtual void arc(double x1, double y1, double x2, double y2, ::angle_f64 start, ::angle_f64 extends);
+      virtual void arc(const ::rectangle_f64 & rectangle, ::angle_f64 start, ::angle_f64 extends);
       
       
       virtual void polyline(const ::point_f64 * ppoints,count nCount);
@@ -571,7 +572,7 @@ namespace draw2d
 //      virtual void arc(const rectangle_f64 & rectangle_f64, angle start, angle extends);
 
 
-      virtual void angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle);
+      virtual void angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle);
       virtual void arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       virtual void arc_to(const ::rectangle_f64 & rectangle,const ::point_f64 & pointStart,const ::point_f64 & pointEnd);
       //virtual i32 GetArcDirectdion();
@@ -957,7 +958,7 @@ namespace draw2d
 //*/
 
       //// Scolorolling Functions
-      //virtual void ScrollDC(i32 Δx, i32 Δy, const ::rectangle_f64 &  pRectScoloroll, const ::rectangle_f64 &  lpRectClip,
+      //virtual void ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_f64 &  pRectScoloroll, const ::rectangle_f64 &  lpRectClip,
 
       //                      ::draw2d::region* pregionUpdate, ::rectangle_f64 * pRectUpdate);
 
@@ -1249,16 +1250,16 @@ namespace draw2d
       //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
 
       
-   protected:
+   //protected:
 
-      friend class savedc;
-      virtual i32 SaveDC();
-      virtual void RestoreDC(i32 nSavedDC);
+     // friend class savedc;
+      virtual i32 save_graphics_context();
+      virtual void restore_graphics_context(i32 nSavedContext);
 
    };
 
 
-   class CLASS_DECL_AURA savedc
+   class CLASS_DECL_AURA save_context
    {
    public:
 
@@ -1270,8 +1271,8 @@ namespace draw2d
       ::point_f64    m_pointOrigin;
       matrix         m_matrix;
 
-      savedc(graphics * graphics);
-      ~savedc();
+      save_context(graphics * graphics);
+      ~save_context();
 
 
    };

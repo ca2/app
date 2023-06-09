@@ -1,11 +1,24 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "graphics.h"
 #include "acme/exception/interface_only.h"
+#include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/image.h"
+
+
+// multiple buffers implies prodevian mode
+//
+// What does it mean?
+//
+// With multiple buffers (including double buffering)
+// every pixel of the buffer should be set again.
+// This mean also that damaged areas (m_rectangleaNeedRedraw)
+// wouldn't make sense with multiple buffers, as
+// entire buffer is always damaged.
 
 
 namespace graphics
@@ -79,6 +92,14 @@ namespace graphics
    }
 
 
+   bool graphics::is_single_buffer_mode() const
+   {
+
+      return true;
+
+   }
+
+
    void graphics::on_after_graphical_update()
    {
 
@@ -86,26 +107,32 @@ namespace graphics
    }
 
 
-   ::size_i32 graphics::window_size()
+   void graphics::buffer_size_and_position(buffer_item * pitem)
    {
 
       if (::is_null(m_pimpl))
       {
 
-         return nullptr;
+         return;
 
       }
 
       if (!m_pimpl->m_puserinteraction)
       {
 
-         return nullptr;
+         return;
 
       }
 
-      auto & d = m_pimpl->m_puserinteraction->const_layout().design();
 
-//      if(d.m_size.cx == 1)
+
+      //buffer_item * pitem = get_buffer_item();
+
+      pitem->m_point = m_pimpl->m_puserinteraction->const_layout().design().origin();
+
+      pitem->m_size = m_pimpl->m_puserinteraction->const_layout().design().size();
+
+//      if(d.m_size.cx() == 1)
 //      {
 //
 //         printf("cx=1");
@@ -117,7 +144,7 @@ namespace graphics
 //
 //      }
 
-      return d.m_size;
+      //return d.m_size;
 
    }
 
@@ -130,15 +157,15 @@ namespace graphics
    }
 
 
-   ::particle * graphics::get_draw_lock()
-   {
+   //::particle * graphics::get_draw_lock()
+   //{
 
-      return synchronization();
+   //   return synchronization();
 
-   }
+   //}
 
 
-   ::draw2d::graphics * graphics::on_begin_draw()
+   buffer_item * graphics::on_begin_draw()
    {
 
       return nullptr;
@@ -162,8 +189,10 @@ namespace graphics
    }
 
 
-   bool graphics::update_screen(::image * pimage)
+   bool graphics::on_update_screen(buffer_item * pitem)
    {
+
+      //UNREFERENCED_PARAMETER(pitem);
 
 
       return true;
@@ -171,7 +200,7 @@ namespace graphics
    }
 
 
-   bool graphics::update_buffer(const ::size_i32 & size, int iStrideParam)
+   bool graphics::update_buffer(buffer_item * pitem)
    {
 
       return true;
@@ -211,38 +240,36 @@ namespace graphics
    }
 
 
-   ::image_pointer & graphics::get_buffer_image()
+   buffer_item * graphics::get_buffer_item()
    {
 
-      image_pointer * pimage = nullptr;
-
-      return *pimage;
+      return nullptr;
 
    }
 
 
-   ::particle * graphics::get_buffer_sync()
+   //::image_pointer & graphics::get_buffer_image()
+   //{
+
+   //   image_pointer * pimage = nullptr;
+
+   //   return *pimage;
+
+   //}
+
+
+   //::particle * graphics::get_buffer_sync()
+   //{
+
+   //   return synchronization();
+
+   //}
+
+
+   buffer_item * graphics::get_screen_item()
    {
 
-      return synchronization();
-
-   }
-
-
-   ::image_pointer & graphics::get_screen_image()
-   {
-
-      image_pointer * pimage = nullptr;
-
-      return *pimage;
-
-   }
-
-
-   ::particle * graphics::get_screen_sync()
-   {
-
-      return synchronization();
+      return nullptr;
 
    }
 
@@ -250,11 +277,11 @@ namespace graphics
    i64 graphics::_001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect)
    {
 
-      synchronous_lock synchronouslock(get_screen_sync());
+      _synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
 
       ::color::color colorTransparent(0);
 
-      return get_screen_image()->_001GetTopLeftWeightedOpaqueArea(colorTransparent, rect);
+      return get_screen_item()->m_pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent, rect);
 
    }
 

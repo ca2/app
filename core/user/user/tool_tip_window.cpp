@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
 #include "acme/constant/message.h"
@@ -118,7 +118,7 @@ namespace user
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      GetToolRect(iTool, rectangle);
+      GetToolRect(iTool, &rectangle);
 
       m_ealign = m_ealignDefault;
 
@@ -132,9 +132,9 @@ namespace user
       while(true)
       {
          
-         m_sizeArrow.cx = 12;
+         m_sizeArrow.cx() = 12;
          
-         m_sizeArrow.cy = 12;
+         m_sizeArrow.cy() = 12;
 
          if(((m_ealign & AlignLeft) == AlignLeft) &&
                ((m_ealign & AlignTop) == AlignTop))
@@ -153,10 +153,14 @@ namespace user
             m_pointOffset.x() = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
             m_pointOffset.y() = - (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
+         
          ::rectangle_i32 rectangleToolScreen;
-         ptool->BaseToolTipGetRect(rectangleToolScreen);
+         
+         ptool->BaseToolTipGetRect(&rectangleToolScreen);
+         
          ptool->BaseToolTipGetWnd()->client_to_screen()(rectangleToolScreen);
-         CalcRect(pgraphics, rectangle, rectangleToolScreen, m_strTip);
+         
+         CalcRect(pgraphics, &rectangle, rectangleToolScreen, m_strTip);
 
          ::rectangle_i32 rectangleScreen;
 
@@ -170,7 +174,7 @@ namespace user
 
          sizeScreen = rectangleScreen.size();
 
-         if(rectangle.right > sizeScreen.cx && !bHRetry)
+         if(rectangle.right > sizeScreen.cx() && !bHRetry)
          {
             bHRetry = true;
             if(m_ealign & AlignRight)
@@ -180,7 +184,7 @@ namespace user
                continue;
             }
          }
-         if(rectangle.bottom > sizeScreen.cy && !bVRetry)
+         if(rectangle.bottom > sizeScreen.cy() && !bVRetry)
          {
             bVRetry = true;
             if(m_ealign & AlignBottom)
@@ -202,7 +206,7 @@ namespace user
 
       update_drawing_objects();
 
-      display(e_display_restored, e_activation_no_activate);
+      display(e_display_normal, e_activation_no_activate);
    }
 
    ///////////////////////////////////////////////////////////
@@ -229,11 +233,11 @@ namespace user
       {
          prectangle->right = m_point.x() - (m_point.x() - rectangleTool.left) / 2;
 
-         prectangle->left = (::i32) (prectangle->right - size.cx - m_sizeArrow.cx - 4);
+         prectangle->left = (::i32) (prectangle->right - size.cx() - m_sizeArrow.cx() - 4);
 
          prectangle->bottom = m_point.y() - (m_point.y() - rectangleTool.top) / 2;
 
-         prectangle->top = (::i32) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
+         prectangle->top = (::i32) (prectangle->bottom - size.cy() - m_sizeArrow.cy() - 4);
 
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
@@ -243,9 +247,9 @@ namespace user
 
          prectangle->bottom = m_point.y() - (m_point.y() - rectangleTool.top) / 2;
 
-         prectangle->right = (::i32) (prectangle->left + size.cx + m_sizeArrow.cx + 4);
+         prectangle->right = (::i32) (prectangle->left + size.cx() + m_sizeArrow.cx() + 4);
 
-         prectangle->top = (::i32) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
+         prectangle->top = (::i32) (prectangle->bottom - size.cy() - m_sizeArrow.cy() - 4);
 
       }
       else
@@ -254,9 +258,9 @@ namespace user
 
          prectangle->top = prectangle->bottom + m_pointOffset.y();
 
-         prectangle->right = (::i32)(prectangle->left + size.cx + m_sizeArrow.cx + 4);
+         prectangle->right = (::i32)(prectangle->left + size.cx() + m_sizeArrow.cx() + 4);
 
-         prectangle->bottom = (::i32) (prectangle->top + size.cy + m_sizeArrow.cy + 4);
+         prectangle->bottom = (::i32) (prectangle->top + size.cy() + m_sizeArrow.cy() + 4);
 
       }
       return true;
@@ -287,9 +291,9 @@ namespace user
       if(((m_ealign & AlignLeft) == AlignLeft) &&
         ((m_ealign & AlignTop) == AlignTop))
       {
-        ::rectangle_i32 rectangleArrow(rectangleClient.right - m_sizeArrow.cx * 2, rectangleClient.bottom - m_sizeArrow.cy * 2, rectangleClient.right, rectangleClient.bottom);
-        rectangleClient.right -= m_sizeArrow.cx;
-        rectangleClient.bottom -= m_sizeArrow.cy;
+        ::rectangle_i32 rectangleArrow(rectangleClient.right - m_sizeArrow.cx() * 2, rectangleClient.bottom - m_sizeArrow.cy() * 2, rectangleClient.right, rectangleClient.bottom);
+        rectangleClient.right -= m_sizeArrow.cx();
+        rectangleClient.bottom -= m_sizeArrow.cy();
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
         pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
@@ -301,9 +305,9 @@ namespace user
       else if(((m_ealign & AlignRight) == AlignRight) &&
         ((m_ealign & AlignTop) == AlignTop))
       {
-        ::rectangle_i32 rectangleArrow(0, rectangleClient.bottom - m_sizeArrow.cy * 2, m_sizeArrow.cx * 2, rectangleClient.bottom);
-        rectangleClient.left = m_sizeArrow.cx;
-        rectangleClient.bottom -= m_sizeArrow.cy;
+        ::rectangle_i32 rectangleArrow(0, rectangleClient.bottom - m_sizeArrow.cy() * 2, m_sizeArrow.cx() * 2, rectangleClient.bottom);
+        rectangleClient.left = m_sizeArrow.cx();
+        rectangleClient.bottom -= m_sizeArrow.cy();
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
         pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
@@ -314,9 +318,9 @@ namespace user
       }
       else
       {
-        ::rectangle_i32 rectangleArrow(0, 0, m_sizeArrow.cx * 2, m_sizeArrow.cy * 2);
-        rectangleClient.left = m_sizeArrow.cx;
-        rectangleClient.top = m_sizeArrow.cy;
+        ::rectangle_i32 rectangleArrow(0, 0, m_sizeArrow.cx() * 2, m_sizeArrow.cy() * 2);
+        rectangleClient.left = m_sizeArrow.cx();
+        rectangleClient.top = m_sizeArrow.cy();
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
         pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
@@ -521,49 +525,49 @@ namespace user
       {
          pointa[0].x() = rectangleClient.left;
          pointa[0].y() = rectangleClient.top;
-         pointa[1].x() = rectangleClient.right - m_sizeArrow.cx;
+         pointa[1].x() = rectangleClient.right - m_sizeArrow.cx();
          pointa[1].y() = rectangleClient.top;
-         pointa[2].x() = rectangleClient.right - m_sizeArrow.cx;
-         pointa[2].y() = rectangleClient.bottom - m_sizeArrow.cy * 2;
+         pointa[2].x() = rectangleClient.right - m_sizeArrow.cx();
+         pointa[2].y() = rectangleClient.bottom - m_sizeArrow.cy() * 2;
          pointa[3].x() = rectangleClient.right;
          pointa[3].y() = rectangleClient.bottom;
-         pointa[4].x() = rectangleClient.right - m_sizeArrow.cx * 2;
-         pointa[4].y() = rectangleClient.bottom - m_sizeArrow.cy;
+         pointa[4].x() = rectangleClient.right - m_sizeArrow.cx() * 2;
+         pointa[4].y() = rectangleClient.bottom - m_sizeArrow.cy();
          pointa[5].x() = rectangleClient.left;
-         pointa[5].y() = rectangleClient.bottom - m_sizeArrow.cy;
+         pointa[5].y() = rectangleClient.bottom - m_sizeArrow.cy();
 
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
          ((m_ealign & AlignTop) == AlignTop))
       {
-         pointa[0].x() = rectangleClient.left + m_sizeArrow.cx;
+         pointa[0].x() = rectangleClient.left + m_sizeArrow.cx();
          pointa[0].y() = rectangleClient.top;
          pointa[1].x() = rectangleClient.right;
          pointa[1].y() = rectangleClient.top;
          pointa[2].x() = rectangleClient.right;
-         pointa[2].y() = rectangleClient.bottom - m_sizeArrow.cy;
-         pointa[3].x() = rectangleClient.left + m_sizeArrow.cx * 2;
-         pointa[3].y() = rectangleClient.bottom - m_sizeArrow.cy;
+         pointa[2].y() = rectangleClient.bottom - m_sizeArrow.cy();
+         pointa[3].x() = rectangleClient.left + m_sizeArrow.cx() * 2;
+         pointa[3].y() = rectangleClient.bottom - m_sizeArrow.cy();
          pointa[4].x() = rectangleClient.left;
          pointa[4].y() = rectangleClient.bottom;
-         pointa[5].x() = rectangleClient.left + m_sizeArrow.cx;
-         pointa[5].y() = rectangleClient.bottom - m_sizeArrow.cy * 2;
+         pointa[5].x() = rectangleClient.left + m_sizeArrow.cx();
+         pointa[5].y() = rectangleClient.bottom - m_sizeArrow.cy() * 2;
 
       }
       else
       {
          pointa[0].x() = rectangleClient.left;
          pointa[0].y() = rectangleClient.top;
-         pointa[1].x() = rectangleClient.left + m_sizeArrow.cx * 2;
-         pointa[1].y() = rectangleClient.top + m_sizeArrow.cy;
+         pointa[1].x() = rectangleClient.left + m_sizeArrow.cx() * 2;
+         pointa[1].y() = rectangleClient.top + m_sizeArrow.cy();
          pointa[2].x() = rectangleClient.right;
          pointa[2].y() = pointa[1].y();
          pointa[3].x() = pointa[2].x();
          pointa[3].y() = rectangleClient.bottom;
-         pointa[4].x() = rectangleClient.left + m_sizeArrow.cx;
+         pointa[4].x() = rectangleClient.left + m_sizeArrow.cx();
          pointa[4].y() = pointa[3].y();
          pointa[5].x() = pointa[4].x();
-         pointa[5].y() = rectangleClient.top + m_sizeArrow.cy * 2;
+         pointa[5].y() = rectangleClient.top + m_sizeArrow.cy() * 2;
       }*/
 
       // rgn.CreatePolygonRgn(pointa, 6, ALTERNATE);

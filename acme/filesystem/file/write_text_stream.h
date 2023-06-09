@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 23/12/2022. <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 23/12/2022. <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
@@ -426,7 +426,7 @@ public:
 //
 
     // void write(const ::point_i32 & point) ;
-    // void write(const SIZE_I32 & size) ;
+    // void write(const ::size_i32 & size) ;
     // void write(const ::rectangle_i32 &rectangle) ;
 
     write_text_stream& operator <<(const ::ansi_character * psz);

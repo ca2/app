@@ -1459,7 +1459,7 @@ namespace ios
       {
          // clicking on floating frame when it does not have
          // focus itself -- activate the toplevel frame instead.
-         EnsureTopLevel()->SetForegroundWindow();
+         EnsureTopLevel()->set_foreground_window();
       }
    }
 
@@ -1638,7 +1638,7 @@ namespace ios
        case SC_NEXTWINDOW:
        if (LOWORD(lparam) == VK_F6 && pParent != nullptr)
        {
-       pParent->SetFocus();
+       pParent->XXXSetFocus();
        return true;
        }
        break;
@@ -1659,14 +1659,14 @@ namespace ios
        // and focus after sending it.
        oswindow hWndSave = get_handle();
        oswindow hWndFocus = ::GetFocus();
-       pParent->SetActiveWindow();
+       pParent->set_active_window();
        pParent->send_message(WM_SYSCOMMAND, nID, lparam);
 
        // be very careful here...
        if (::is_window(hWndSave))
-       ::set_active_window(hWndSave);
+       ::XXXset_active_window(hWndSave);
        if (::is_window(hWndFocus))
-       ::SetFocus(hWndFocus);
+       ::XXSetFocus(hWndFocus);
        }
        }
        return true;
@@ -2332,8 +2332,8 @@ namespace ios
       //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
-      //      rectx.right = size.cx;
-      //      rectx.bottom = size.cy;
+      //      rectx.right = size.cx();
+      //      rectx.bottom = size.cy();
       //      try
       //      {
       //         ::rectangle_i32 rectangleWindow;
@@ -2878,9 +2878,9 @@ namespace ios
 
 //   void interaction_impl::_001WindowRestore()
 //   {
-//      m_puserinteraction->m_edisplay = user::e_display_restored;
+//      m_puserinteraction->m_edisplay = user::e_display_normal;
 //      if(m_puserinteraction != nullptr)
-//         m_puserinteraction->m_edisplay = user::e_display_restored;
+//         m_puserinteraction->m_edisplay = user::e_display_normal;
 //      //      ::ShowWindow(get_handle(), SW_RESTORE);
 //   }
 
@@ -3604,7 +3604,8 @@ namespace ios
 
    }
 
-   ::user::interaction *  interaction_impl::SetActiveWindow()
+
+   ::user::interaction * interaction_impl::set_active_window()
    {
 
       ASSERT(::is_window(get_handle()));
@@ -3661,7 +3662,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::SetFocus()
+   bool interaction_impl::XXXSetFocus()
    {
 
       if(!::is_window(get_handle()))
@@ -3846,12 +3847,12 @@ namespace ios
 
    }
 
-//   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
 //   {
 //
 //      throw ::not_implemented();
 //      //      ASSERT(::is_window(get_handle()));
-//      //      return ::ScrollWindowEx(get_handle(), Δx, Δy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
+//      //      return ::ScrollWindowEx(get_handle(), greekdeltax, greekdeltay, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 //
 //   }
 
@@ -4033,10 +4034,10 @@ namespace ios
 
    }
 
-   bool interaction_impl::SetForegroundWindow()
+   bool interaction_impl::set_foreground_window()
    {
 
-      bool b = ::SetForegroundWindow(get_handle()) != false;
+      bool b = ::XXXSetForegroundWindow(get_handle()) != false;
 
       //      round_window_show();
 
@@ -4878,7 +4879,7 @@ namespace ios
       
       ::size_i32 size = m_puserinteraction->get_client_size();
       
-      int iSoftwareKeyboardTop = size.cy / 2;
+      int iSoftwareKeyboardTop = size.cy() / 2;
       
       if(r1.top > iSoftwareKeyboardTop)
       {

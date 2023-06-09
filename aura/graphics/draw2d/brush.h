@@ -44,7 +44,7 @@ namespace draw2d
       virtual bool CreateHatchBrush(i32 nIndex, ::color::color color);
       //virtual bool CreateBrushIndirect(const LOGBRUSH* pLogBrush);
 
-      virtual bool CreatePatternBrush(::image * pimage, const ::size_f64 & size = nullptr);
+      virtual bool CreatePatternBrush(::image * pimage, const ::size_f64 & size = {});
 //#ifdef WINDOWS
 //      virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage);
 //#endif

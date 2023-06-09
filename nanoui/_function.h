@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 2022-09-08 22:16 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 2022-09-08 22:16 <3ThomasBorregaardSorensen!!
 //
 
 //**
@@ -24,7 +24,7 @@ inline bool nano2d_is_image_icon(int value) { return value < 1024; }
  * \brief Determine whether an icon ID is a font-based icon (e.g. from ``entypo.ttf``).
  *
  * \rst
- * See :func:`nanoui::::nano2d::_is_image_icon` for details.
+ * See :func:`nanoui::nano2d::_is_image_icon` for details.
  * \endrst
  *
  * \param value

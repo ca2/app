@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 // transposed 2011-04-08
 // originally from C++ sockets library tcp_socket::circular_file
 

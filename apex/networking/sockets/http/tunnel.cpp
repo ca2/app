@@ -1,4 +1,4 @@
-﻿#include "framework.h" 
+#include "framework.h" 
 #include "tunnel.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/constant/idpool.h"

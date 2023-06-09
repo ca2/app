@@ -545,7 +545,7 @@ namespace android
                      {
                         string strCommand(str2);
                         strCommand.replace("%1", lpcsz);
-                        WinExec(strCommand,e_display_restored);
+                        WinExec(strCommand,e_display_normal);
                      }
                   }
                   else
@@ -559,7 +559,7 @@ namespace android
                            {
                               string strCommand(str2);
                               strCommand.replace("%1", lpcsz);
-                              WinExec(strCommand,e_display_restored);
+                              WinExec(strCommand,e_display_normal);
                            }
                         }
                      }

@@ -295,8 +295,6 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -304,8 +302,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -313,8 +309,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -322,7 +316,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">
     <GenerateManifest>false</GenerateManifest>
@@ -330,8 +323,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -339,7 +330,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">
     <GenerateManifest>false</GenerateManifest>
@@ -347,8 +337,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -356,8 +344,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -366,28 +352,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -404,24 +380,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -436,26 +406,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|arm'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -471,25 +433,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -505,24 +460,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|arm'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -537,24 +486,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -569,26 +512,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -604,24 +539,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
       <AdditionalOptions>/await /bigobj </AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

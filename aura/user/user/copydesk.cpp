@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "copydesk.h"
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
@@ -466,7 +466,7 @@ namespace user
                         //if(estatus.succeeded())
                         {
 
-                           pimage->create({ (int)ceil(s.cx), (int)ceil(s.cy) });
+                           pimage->create({ (int)ceil(s.cx()), (int)ceil(s.cy()) });
 
                            //if (is_status_ok())
                            //{

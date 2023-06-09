@@ -33,7 +33,7 @@ namespace windowing
       virtual void set_tray_icon_name(const ::string & strTrayIconName);
 
 
-      virtual void get_sizes(array < ::size_i32 > & a);
+      virtual void get_sizes(::size_i32_array & a);
 
 
       virtual void * get_os_data(const ::size_i32 & size) const;

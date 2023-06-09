@@ -100,10 +100,10 @@ namespace universal_windows
                   //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
 
                   m_impact = ::winrt::Windows::ApplicationModel::Core::CoreApplication::CreateNewImpact();
-                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0)
                   {
 
-                     m_applicationview->SetPreferredMinSize({ (float)pusersystem->m_createstruct.cx, (float)pusersystem->m_createstruct.cy });
+                     m_applicationview->SetPreferredMinSize({ (float)pusersystem->m_createstruct.cx(), (float)pusersystem->m_createstruct.cy() });
 
                   }
 
@@ -123,13 +123,13 @@ namespace universal_windows
                      Id1,
                      ::winrt::Windows::UI::ViewManagement::ViewSizePreference::UseMore);
 
-                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0)
                   {
 
                      m_rectangle.left = pusersystem->m_createstruct.x();
                      m_rectangle.top = pusersystem->m_createstruct.y();
-                     m_rectangle.right = pusersystem->m_createstruct.cx;
-                     m_rectangle.bottom = pusersystem->m_createstruct.cy;
+                     m_rectangle.right = pusersystem->m_createstruct.cx();
+                     m_rectangle.bottom = pusersystem->m_createstruct.cy();
 
                   }
                   else
@@ -150,10 +150,10 @@ namespace universal_windows
                   //   Id2,
                   //   ::winrt::Windows::UI::ViewManagement::ViewSizePreference::Default));
 
-                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0)
                   {
 
-                     m_applicationview->TryResizeImpact(::winrt::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx,(float)pusersystem->m_createstruct.cy }));
+                     m_applicationview->TryResizeImpact(::winrt::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx(),(float)pusersystem->m_createstruct.cy() }));
 
                   }
 
@@ -173,13 +173,13 @@ namespace universal_windows
       else
       {
 
-         if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0 && m_rectangle.is_empty())
+         if (pusersystem->m_createstruct.cx() > 0 && pusersystem->m_createstruct.cy() > 0 && m_rectangle.is_empty())
          {
 
             m_rectangle.left = pusersystem->m_createstruct.x();
             m_rectangle.top = pusersystem->m_createstruct.y();
-            m_rectangle.right = pusersystem->m_createstruct.cx;
-            m_rectangle.bottom = pusersystem->m_createstruct.cy;
+            m_rectangle.right = pusersystem->m_createstruct.cx();
+            m_rectangle.bottom = pusersystem->m_createstruct.cy();
 
          }
 
@@ -204,7 +204,7 @@ namespace universal_windows
 
       send_message(e_message_create, 0, (LPARAM)&pusersystem->m_createstruct);
 
-      //send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy));
+      //send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
 
       //::size_i32 sizeDrawn;
 
@@ -796,7 +796,7 @@ namespace universal_windows
    //   //return ::SetLayeredWindowAttributes((oswindow)get_os_data(), crKey, bAlpha, dwFlags) != false;
    //}
 
-   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,SIZE_I32 *psize,
+   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,::size_i32 *psize,
    //      ::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    //{
    //   throw ::exception(todo);
@@ -1773,7 +1773,7 @@ return true;
       //{
       //   // clicking on floating frame when it does not have
       //   // focus itself -- activate the toplevel frame instead.
-      //   EnsureTopLevelParent()->SetForegroundWindow();
+      //   EnsureTopLevelParent()->set_foreground_window();
       //}
    }
 
@@ -1964,7 +1964,7 @@ return true;
       //case SC_NEXTWINDOW:
       //   if (LOWORD(lParam) == VK_F6 && pParent != nullptr)
       //   {
-      //      pParent->SetFocus();
+      //      pParent->XXXSetFocus();
       //      return true;
       //   }
       //   break;
@@ -1985,14 +1985,14 @@ return true;
       //         // and focus after sending it.
       //         oswindow hWndSave = get_handle();
       //         oswindow hWndFocus = ::GetFocus();
-      //         pParent->SetActiveWindow();
+      //         pParent->set_active_window();
       //         pParent->send_message(WM_SYSCOMMAND, nID, lParam);
 
       //         // be very careful here...
       //         if (::is_window(hWndSave))
-      //            ::SetActiveWindow(hWndSave);
+      //            ::XXXSetActiveWindow(hWndSave);
       //         if (::is_window(hWndFocus))
-      //            ::SetFocus(hWndFocus);
+      //            ::XXXSetFocus(hWndFocus);
       //      }
       //   }
       //   return true;
@@ -2432,8 +2432,8 @@ return true;
       //::size_i32 size = pbitmap->get_size();
       //rectx.left = 0;
       //rectx.top = 0;
-      //rectx.right = size.cx;
-      //rectx.bottom = size.cy;
+      //rectx.right = size.cx();
+      //rectx.bottom = size.cy();
       //try
       //{
       //   ::rectangle_i32 rectangleWindow;
@@ -3376,9 +3376,9 @@ return true;
 
       throw ::exception(todo);
 
-      /*      m_edisplay = e_display_restored;
+      /*      m_edisplay = e_display_normal;
             if(m_puserinteraction != nullptr)
-            m_puserinteraction->m_edisplay = e_display_restored;
+            m_puserinteraction->m_edisplay = e_display_normal;
             ::ShowWindow(get_handle(), SW_RESTORE);*/
    }
 
@@ -4058,7 +4058,7 @@ return true;
    }
 
 
-   ::user::interaction *  interaction_impl::GetActiveWindow()
+   ::user::interaction * interaction_impl::get_active_window()
    {
 
       oswindow window = ::get_active_window();
@@ -4068,7 +4068,7 @@ return true;
    }
 
 
-   ::user::interaction *  interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::set_active_window()
    {
 
       oswindow window = ::set_active_window(get_handle());
@@ -4086,7 +4086,7 @@ return true;
    }
 
 
-   bool interaction_impl::SetFocus()
+   bool interaction_impl::set_keyboard_focus()
    {
 
       ::set_focus(m_puserinteraction->get_handle());
@@ -4282,14 +4282,14 @@ return true;
    }
 
 
-   //int interaction_impl::ScrollWindowEx(int Δx,int Δy,const ::rectangle_i32 & rectangleScroll,const ::rectangle_i32 & rectangleClip,::draw2d::region* prgnUpdate,::rectangle_i32 * lpRectUpdate,::u32 flags)
+   //int interaction_impl::ScrollWindowEx(int greekdeltax,int greekdeltay,const ::rectangle_i32 & rectangleScroll,const ::rectangle_i32 & rectangleClip,::draw2d::region* prgnUpdate,::rectangle_i32 * lpRectUpdate,::u32 flags)
    //{
 
    //   throw ::exception(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //
-   //   //return ::ScrollWindowEx(get_handle(), Δx, Δy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_os_data(), lpRectUpdate, flags);
+   //   //return ::ScrollWindowEx(get_handle(), greekdeltax, greekdeltay, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_os_data(), lpRectUpdate, flags);
 
    //}
 
@@ -4493,12 +4493,12 @@ return true;
    }
 
 
-   bool interaction_impl::SetForegroundWindow()
+   bool interaction_impl::set_foreground_window()
    {
 
       throw ::exception(todo);
 
-      //return ::SetForegroundWindow(get_handle()) != false;
+      //return ::XXXSetForegroundWindow(get_handle()) != false;
 
    }
 
@@ -5671,7 +5671,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, ::u32 nHitTest, ::u32 nMsg)
             pLastActive != ::universal_windows::interaction_impl::GetForegroundWindow() &&
             pLastActive->IsWindowEnabled())
       {
-         pLastActive->SetForegroundWindow();
+         pLastActive->set_foreground_window();
          return true;
       }
    }
@@ -6130,13 +6130,13 @@ namespace universal_windows
 
          //      point_f64 pointNow(pmouse->m_point);
 
-         //      double Δx = pointNow.x() - m_pointLastMouseMove.x();
+         //      double greekdeltax = pointNow.x() - m_pointLastMouseMove.x();
 
-         //      double Δy = pointNow.y() - m_pointLastMouseMove.y();
+         //      double greekdeltay = pointNow.y() - m_pointLastMouseMove.y();
 
          //      m_pointLastMouseMove = pointNow;
 
-         //      double dDistanceFromLast = sqrt(Δx * Δx + Δy * Δy);
+         //      double dDistanceFromLast = sqrt(greekdeltax * greekdeltax + greekdeltay * greekdeltay);
 
          //      m_dAccumulatedMouseMoveDistance += dDistanceFromLast;
 

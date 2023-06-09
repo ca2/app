@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict/>
-	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9A68A445251143F8008DABD2</key>
+		<key>apex.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>orderHint</key>
+			<integer>25</integer>
 		</dict>
-		<key>9AD692B7251A754800C0EBD7</key>
+		<key>ios_apex.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_window.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
@@ -1512,7 +1512,7 @@ void simple_frame_window::ToggleFullScreen()
    if (layout().is_full_screen())
    {
 
-      display(e_display_restored);
+      display(e_display_normal);
 
    }
    else
@@ -1940,7 +1940,7 @@ void simple_frame_window::_001OnActivateApp(::message::message* pmessage)
    //   //   if (layout().is_iconic())
    //   //   {
 
-   //   //      display(e_display_restored);
+   //   //      display(e_display_normal);
 
    //   //   }
    //   //   
@@ -2218,7 +2218,7 @@ void simple_frame_window::on_frame_position()
       if (const_layout().design().display() == ::e_display_iconic)
       {
 
-         display(e_display_restored);
+         display(e_display_normal);
 
       }
 
@@ -2429,7 +2429,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
    //}
 
-   auto pstyle = get_style(pgraphicsParam);
+   //auto pstyle = get_style(pgraphicsParam);
 
    windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 
@@ -2702,8 +2702,10 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
                m_pimageBlur->g()->draw(imagedrawing);
 
             }
+            
+            m_pfastblur->initialize(m_pimageBlur->size(), 2);
 
-            m_pfastblur->blur(m_pimageBlur, 2);
+            m_pfastblur->blur(m_pimageBlur);
 
             {
 
@@ -2994,7 +2996,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 //{
 //
-//   SetActiveWindow();      // activate us first !
+//   set_active_window();      // activate us first !
 //   ::u32 nFiles = ::DragQueryFile(hDropInfo, (::u32)-1, nullptr, 0);
 //
 //   ::file::path_array patha;
@@ -3412,7 +3414,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (puserinteractionpointeraChild)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
       //if (0)
@@ -3507,7 +3509,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       //on_context_offset(pgraphics);
 
@@ -3728,7 +3730,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer& pgraphics)
 //   {
 //      if (layout().is_full_screen())
 //      {
-//         display(e_display_restored);
+//         display(e_display_normal);
 //         return true;
 //      }
 //      ::pointer<::user::interaction>puserinteractionParentFrame = get_parent_frame();

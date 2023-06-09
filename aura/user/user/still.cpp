@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "still.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -440,9 +440,9 @@ namespace user
 
       ::size_f64 sizeTotal;
 
-      sizeTotal.cx = size.cx;
+      sizeTotal.cx() = size.cx();
 
-      sizeTotal.cy = tm.get_line_spacing();
+      sizeTotal.cy() = tm.get_line_spacing();
 
       return sizeTotal;
 
@@ -465,8 +465,8 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 0, 0);
 
-         rectangle.right = ::i32(size.cx * 1.6);
-         rectangle.bottom = ::i32(size.cy * 1.4);
+         rectangle.right = ::i32(size.cx() * 1.6);
+         rectangle.bottom = ::i32(size.cy() * 1.4);
 
          const_layout().sketch().size() = rectangle.size();
 
@@ -623,13 +623,13 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      rectangle.left = (::i32) (rectangleClient.left + (rectangleClient.width() - sizeText.cx) / 2);
+      rectangle.left = (::i32) (rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
 
-      rectangle.top = (::i32) (rectangleClient.top + (rectangleClient.height() - sizeText.cy) / 2);
+      rectangle.top = (::i32) (rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
 
-      rectangle.right = (::i32) (rectangle.left + sizeText.cx);
+      rectangle.right = (::i32) (rectangle.left + sizeText.cx());
 
-      rectangle.bottom = (::i32) (rectangle.top + sizeText.cy);
+      rectangle.bottom = (::i32) (rectangle.top + sizeText.cy());
 
       m_rectangleText = rectangle;
 

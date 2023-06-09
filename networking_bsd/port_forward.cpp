@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "port_forward.h"
 #include "acme/platform/system.h"
 

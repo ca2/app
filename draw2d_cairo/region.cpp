@@ -3,6 +3,8 @@
 #include "keep.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/item.h"
+#include "acme/primitive/geometry2d/_defer_item.h"
 #include <math.h>
 
 
@@ -31,29 +33,31 @@ namespace draw2d_cairo
    bool region::is_simple_positive_region()
    {
 
-      switch(m_eregion)
+      auto eitem = m_pitem->type();
+
+      switch(eitem)
       {
-      case ::draw2d::e_region_none:
+      case ::draw2d::e_item_none:
 
          return true;
 
-      case ::draw2d::e_region_rect:
+      case ::draw2d::e_item_rectangle:
 
          return true;
 
-      case ::draw2d::e_region_ellipse:
+      case ::draw2d::e_item_ellipse:
 
          return true;
 
-      case ::draw2d::e_region_polygon:
+      case ::draw2d::e_item_polygon:
 
          return true;
 
-      case ::draw2d::e_region_poly_polygon:
+      case ::draw2d::e_item_poly_polygon:
 
          return false;
 
-      case ::draw2d::e_region_combine:
+      case ::draw2d::e_item_combine:
 
          return false;
 
@@ -71,32 +75,34 @@ namespace draw2d_cairo
    bool region::is_rectangular_shapes_only_region()
    {
 
-      switch(m_eregion)
+      auto eitem = m_pitem->type();
+
+      switch(eitem)
       {
-         case ::draw2d::e_region_none:
+         case ::draw2d::e_item_none:
 
             return true;
 
-         case ::draw2d::e_region_rect:
+         case ::draw2d::e_item_rectangle:
 
             return true;
 
-         case ::draw2d::e_region_ellipse:
+         case ::draw2d::e_item_ellipse:
 
             return false;
 
-         case ::draw2d::e_region_polygon:
+         case ::draw2d::e_item_polygon:
 
             return false;
 
-         case ::draw2d::e_region_poly_polygon:
+         case ::draw2d::e_item_poly_polygon:
 
             return false;
 
-         case ::draw2d::e_region_combine:
+         case ::draw2d::e_item_combine:
          {
 
-            ::pointer < combine_item > pcombineitem = m_pitem;
+            ::pointer < ::geometry2d::combine_item > pcombineitem = m_pitem;
 
             ::pointer < region > pregion1 = pcombineitem->m_pregion1;
 
@@ -155,7 +161,7 @@ namespace draw2d_cairo
 
       m_rectangleBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
 
-      max_bounding_box(m_rectangleBoundingBoxInternal);
+      expand_bounding_box(m_rectangleBoundingBoxInternal);
 
       m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
@@ -214,13 +220,15 @@ namespace draw2d_cairo
    bool region::_fill(cairo_t * pgraphics)
    {
 
-      switch(m_eregion)
+      auto eitem = this->m_pitem->type();
+
+      switch(eitem)
       {
-      case ::draw2d::e_region_none:
+      case ::draw2d::e_item_none:
 
          break;
 
-      case ::draw2d::e_region_rect:
+      case ::draw2d::e_item_rectangle:
 
          _rect(pgraphics);
 
@@ -230,9 +238,9 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_ellipse:
+      case ::draw2d::e_item_ellipse:
 
-         _oval(pgraphics);
+         _ellipse(pgraphics);
 
          cairo_set_source_rgba(pgraphics, 0.0, 0.0, 0.0, 1.0);
 
@@ -240,7 +248,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_polygon:
+      case ::draw2d::e_item_polygon:
 
          _polygon(pgraphics);
 
@@ -250,7 +258,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_poly_polygon:
+      case ::draw2d::e_item_poly_polygon:
 
          _polygon(pgraphics);
 
@@ -260,7 +268,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_combine:
+      case ::draw2d::e_item_combine:
 
          _mask_combine(pgraphics);
 
@@ -285,37 +293,39 @@ namespace draw2d_cairo
    bool region::_path(cairo_t * pgraphics)
    {
 
-      switch(m_eregion)
+      auto eitem = this->m_pitem->type();
+
+      switch(eitem)
       {
-         case ::draw2d::e_region_none:
+         case ::draw2d::e_item_none:
 
             break;
 
-         case ::draw2d::e_region_rect:
+         case ::draw2d::e_item_rectangle:
 
             _rect(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_ellipse:
+         case ::draw2d::e_item_ellipse:
 
-            _oval(pgraphics);
+            _ellipse(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_polygon:
+         case ::draw2d::e_item_polygon:
 
             _polygon(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_poly_polygon:
+         case ::draw2d::e_item_poly_polygon:
 
             _polygon(pgraphics);
 
             break;
 
-         case ::draw2d::e_region_combine:
+         case ::draw2d::e_item_combine:
 
             _combine(pgraphics);
 
@@ -361,38 +371,38 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      ::pointer<rectangle_item>pitem = m_pitem;
+      ::pointer<::geometry2d::rectangle_item>pitem = m_pitem;
 
       cairo_rectangle(
          pgraphics, 
-         pitem->m_rectangle.left,
-         pitem->m_rectangle.top, 
-         pitem->m_rectangle.width(), 
-         pitem->m_rectangle.height());
+         pitem->m_item.left,
+         pitem->m_item.top,
+         pitem->m_item.width(),
+         pitem->m_item.height());
 
       return true;
 
    }
 
 
-   bool region::_oval(cairo_t * pgraphics)
+   bool region::_ellipse(cairo_t * pgraphics)
    {
 
       synchronous_lock ml(cairo_mutex());
 
-      ::pointer<ellipse_item>pitem = m_pitem;
+      ::pointer<::geometry2d::ellipse_item>pitem = m_pitem;
 
-      auto center = pitem->m_rectangle.center();
+      auto center = pitem->m_item.center();
 
-      auto size = pitem->m_rectangle.size();
+      auto size = pitem->m_item.size();
 
       double centerx    = center.x();
 
       double centery    = center.y();
 
-      double radiusx    = fabs(size.cx) / 2.0;
+      double radiusx    = fabs(size.cx()) / 2.0;
 
-      double radiusy    = fabs(size.cy) / 2.0;
+      double radiusy    = fabs(size.cy()) / 2.0;
 
       if(radiusx == 0.0 || radiusy == 0.0)
       {
@@ -419,7 +429,7 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      ::pointer<polygon_item>pitem = m_pitem;
+      ::pointer<::geometry2d::polygon_item>pitem = m_pitem;
 
       if(pitem->m_polygon.is_empty())
       {
@@ -447,9 +457,9 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      ::pointer<poly_polygon_item>pitem = m_pitem;
+      ::pointer<::geometry2d::poly_polygon_item>pitem = m_pitem;
 
-      if (pitem->m_polygona.is_empty())
+      if (pitem->m_polypolygon.is_empty())
       {
 
          return true;
@@ -458,10 +468,10 @@ namespace draw2d_cairo
 
       i32 n = 0;
 
-      for(i32 i = 0; i < pitem->m_polygona.size(); i++)
+      for(i32 i = 0; i < pitem->m_polypolygon.size(); i++)
       {
 
-         auto ppolygon = pitem->m_polygona[i];
+         auto ppolygon = pitem->m_polypolygon[i];
 
          if(ppolygon && ppolygon->has_element())
          {
@@ -497,7 +507,7 @@ namespace draw2d_cairo
 
       cairo_push_group(pgraphics);
 
-      ::pointer<combine_item>pitem = m_pitem;
+      ::pointer<::geometry2d::combine_item>pitem = m_pitem;
 
       pitem->m_pregion1.cast < ::draw2d_cairo::region >()->_fill(pgraphics);
 
@@ -538,7 +548,7 @@ namespace draw2d_cairo
    bool region::_combine(cairo_t * pgraphics)
    {
 
-      ::pointer<combine_item>pitem = m_pitem;
+      ::pointer<::geometry2d::combine_item>pitem = m_pitem;
 
       pitem->m_pregion1.cast < ::draw2d_cairo::region >()->_path(pgraphics);
 
@@ -577,54 +587,56 @@ namespace draw2d_cairo
    cairo_region_t * region::create_cairo_region()
    {
 
-      switch(m_eregion)
+      auto eitem = m_pitem->type();
+
+      switch(eitem)
       {
-         case ::draw2d::e_region_none:
+         case ::draw2d::e_item_none:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
-         case ::draw2d::e_region_rect:
+         case ::draw2d::e_item_rectangle:
          {
             cairo_rectangle_int_t cairorectangleint;
 
-            ::pointer<rectangle_item> prectangleitem = m_pitem;
+            ::pointer<::geometry2d::rectangle_item> prectangleitem = m_pitem;
 
-            cairorectangleint.x() = prectangleitem->m_rectangle.left;
-            cairorectangleint.y() = prectangleitem->m_rectangle.top;
-            cairorectangleint.width = prectangleitem->m_rectangle.width();
-            cairorectangleint.height = prectangleitem->m_rectangle.height();
+            cairorectangleint.x =(int) prectangleitem->m_item.left;
+            cairorectangleint.y = (int)prectangleitem->m_item.top;
+            cairorectangleint.width = (int) prectangleitem->m_item.width();
+            cairorectangleint.height = (int) prectangleitem->m_item.height();
 
             return cairo_region_create_rectangle(&cairorectangleint);
 
       }
 
-         case ::draw2d::e_region_ellipse:
+         case ::draw2d::e_item_ellipse:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
 
-         case ::draw2d::e_region_polygon:
+         case ::draw2d::e_item_polygon:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
 
-         case ::draw2d::e_region_poly_polygon:
+         case ::draw2d::e_item_poly_polygon:
 
             throw ::exception(error_not_expected, "expected rectangular shaped region");
 
             return nullptr;
 
 
-         case ::draw2d::e_region_combine:
+         case ::draw2d::e_item_combine:
          {
 
-            ::pointer<combine_item> pcombineitem = m_pitem;
+            ::pointer<::geometry2d::combine_item> pcombineitem = m_pitem;
 
             ::pointer<region> pregion1 = pcombineitem->m_pregion1;
 
@@ -710,7 +722,7 @@ namespace draw2d_cairo
 
       m_rectangleBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
 
-      max_bounding_box(m_rectangleBoundingBoxInternal);
+      expand_bounding_box(m_rectangleBoundingBoxInternal);
 
       m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 

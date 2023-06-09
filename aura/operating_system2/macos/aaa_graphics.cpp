@@ -122,7 +122,7 @@
 //{
 //   return false;
 //}
-//int_bool GetTextExtentPoint(HDC hdc, const ::string & pszText, int iSize, SIZE_I32 * psize)
+//int_bool GetTextExtentPoint(HDC hdc, const ::string & pszText, int iSize, ::size_i32 * psize)
 //{
 //   return false;
 //}
@@ -880,7 +880,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //     return false;
 // }
-// int_bool GetTextExtentPoint(HDC hdc, const ::string & pszText, int iSize, SIZE_I32 * psize)
+// int_bool GetTextExtentPoint(HDC hdc, const ::string & pszText, int iSize, ::size_i32 * psize)
 // {
 //     return false;
 // }

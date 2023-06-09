@@ -1,4 +1,4 @@
-﻿////TBS__<3tbs
+////TBS__<3tbs
 //  _start.h
 //  acme
 //
@@ -47,7 +47,7 @@
 #endif
 
 
-// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSørensen!!
+// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
 #ifdef DEBUG
 #ifndef _DEBUG
 #define _DEBUG 1
@@ -62,7 +62,7 @@
 #endif
 
 
-// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSørensen!!
+// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
 #ifdef _DEBUG
 #ifndef __DEBUG
 #define __DEBUG

@@ -54,7 +54,7 @@ namespace opengl
          
          auto errString = opengl_error_string(eerror);
 
-         FORMATTED_TRACE("error %d \"%s\"", eerror);
+         FORMATTED_TRACE("error %d \"%s\"", eerror, errString);
 
          return ::error_failed;
 

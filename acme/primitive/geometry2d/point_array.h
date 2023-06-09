@@ -1,4 +1,8 @@
-﻿#pragma once
+#pragma once
+
+
+#include "_function.h"
+//#include "bounding_box.h"
 
 
 //#include "_concept.h"
@@ -15,46 +19,49 @@ inline bool tolerance_is_equal(double tolerance, double d1, double d2)
 }
 
 
-template < typename POINT_TYPE >
+template < primitive_number NUMBER >
 class point_array_base :
-   virtual public comparable_array < POINT_TYPE >
+   virtual public ::array < ::point_type < NUMBER > >
 {
 public:
 
 
-   using POINT_BASE_TYPE = typename POINT_TYPE;
-   using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
-   using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
-   using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
+   //using POINT_BASE_TYPE = POINT_TYPE;
+   using UNIT_TYPE = NUMBER;
+   //using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
+   //using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
    //using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
-   inline point_array_base() : comparable_array < POINT_TYPE >() {}
+   inline point_array_base() : ::array < ::point_type < NUMBER > >() {}
    template < std::size_t n >
-   inline point_array_base(const POINT_TYPE p[n]) : comparable_array < POINT_TYPE >(p, n){ }
-   inline point_array_base(point_array_base && pointset) : comparable_array < POINT_TYPE >(::transfer(pointset)) { }
+   inline point_array_base(const ::point_type < NUMBER > p[n]) : ::array < ::point_type < NUMBER > >(p, n){ }
+   inline point_array_base(point_array_base && pointset) : ::array < ::point_type < NUMBER > >(::transfer(pointset)) { }
    inline point_array_base(const point_array_base & pointset) { operator=(pointset); }
-   virtual ~point_array_base() { }
+   ~point_array_base() override { }
 
 
-   operator POINT_BASE_TYPE * () { return this->get_data(); }
+   operator ::point_type < UNIT_TYPE > * () { return this->get_data(); }
 
    void offset(UNIT_TYPE x, UNIT_TYPE y);
-   void offset(POINT_TYPE point) { offset(point.x(), point.y()); }
+   void offset(::point_type < UNIT_TYPE > point) { offset(point.x(), point.y()); }
 
    void rotate(double dAngle);
 
-   void rotate(double dAngle, POINT_TYPE pointCenter);
+   void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter);
 
-   //void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const;
+   void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const;
 
-   bool polygon_contains(const POINT_TYPE & point) const;
+   bool get_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const;
 
-   inline index add(UNIT_TYPE x, UNIT_TYPE y) { return comparable_array < POINT_TYPE >::add(POINT_TYPE(x, y)); }
-   inline index add(const POINT_TYPE & point) { return comparable_array < POINT_TYPE >::add(POINT_TYPE(point)); }
+   bool polygon_contains_winding(const ::point_type < UNIT_TYPE > & point) const;
+   bool polygon_contains_alternate(const ::point_type < UNIT_TYPE > & point) const;
+
+   inline index add(UNIT_TYPE x, UNIT_TYPE y) { return ::array < ::point_type < NUMBER > >::add({x, y}); }
+   inline index add(const ::point_type < NUMBER > & point) { return ::array < ::point_type < NUMBER > >::add(point); }
    inline point_array_base & operator =(const point_array_base & pointset) { this->copy(pointset); return *this; }
 
-   inline index tolerance_add_unique(UNIT_TYPE tolerance, const POINT_TYPE & pointAdd)
+   inline index tolerance_add_unique(UNIT_TYPE tolerance, const ::point_type < NUMBER > & pointAdd)
    {
 
       for (auto & point : *this)
@@ -72,7 +79,7 @@ public:
 
       }
 
-      return comparable_array < POINT_TYPE >::add(pointAdd);
+      return ::array < ::point_type < NUMBER > >::add(pointAdd);
 
    }
 
@@ -80,7 +87,7 @@ public:
    //virtual void xml_export(::xml::output_tree & xmlof);
 
 
-   ::count add_unique_range(const POINT_TYPE & pBeg, const POINT_TYPE & pointEnd, const SIZE_TYPE & s = e_unit_size);
+   ::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
    //https://www.geeksforgeeks.org/area-of-a-polygon_i32-with-given-n-ordered-vertices/
       // (X[i], Y[i]) are coordinates of i'th point.
 
@@ -111,10 +118,8 @@ public:
 };
 
 
-
-
-template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::offset(UNIT_TYPE x, UNIT_TYPE y)
+template < primitive_number NUMBER >
+void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 {
    for (i32 i = 0; i < this->get_size(); i++)
    {
@@ -124,8 +129,8 @@ void point_array_base < POINT_TYPE >::offset(UNIT_TYPE x, UNIT_TYPE y)
 }
 
 
-template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::rotate(double dAngle)
+template < primitive_number NUMBER >
+void point_array_base < NUMBER >::rotate(double dAngle)
 {
 
    UNIT_TYPE x;
@@ -148,17 +153,17 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle)
 
 //
 //template < typename POINT_TYPE >
-//void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const
+//void point_array_base < POINT_TYPE >::get_bounding_box(RECTANGLE_BASE_TYPE & rectangle) const
 //{
 //
-//   ::get_bounding_rectangle(rectangle, this->get_data(), this->get_count());
+//   ::get_bounding_box(rectangle, this->get_data(), this->get_count());
 //
 //}
 
 
 
-template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::rotate(double dAngle, POINT_TYPE pointCenter)
+template < primitive_number NUMBER >
+void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > pointCenter)
 {
 
    UNIT_TYPE x;
@@ -212,26 +217,35 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //   return c;
 //}
 
-template < typename POINT_TYPE >
-bool point_array_base < POINT_TYPE >::polygon_contains(const POINT_TYPE & point) const
+template < primitive_number NUMBER >
+bool point_array_base < NUMBER >::polygon_contains_winding(const ::point_type < NUMBER > & point) const
 {
 
-   return ::polygon_contains( this->data(), (int)this->size(), point);
+   return ::polygon_contains_winding( this->data(), (int)this->size(), point);
 
 }
 
 
-template < typename POINT_TYPE >
-::count point_array_base < POINT_TYPE >::add_unique_range(const POINT_TYPE & pointBeg, const POINT_TYPE & pointEnd, const SIZE_TYPE & size)
+template < primitive_number NUMBER >
+bool point_array_base < NUMBER >::polygon_contains_alternate(const ::point_type < NUMBER > & point) const
 {
 
-   typename POINT_TYPE::TYPE x1 = pointBeg.x();
+   return ::polygon_contains_alternate(this->data(), (int)this->size(), point, true);
 
-   typename POINT_TYPE::TYPE x2 = pointEnd.x();
+}
 
-   typename POINT_TYPE::TYPE y1 = pointBeg.y();
 
-   typename POINT_TYPE::TYPE y2 = pointEnd.y();
+template < primitive_number NUMBER >
+::count point_array_base < NUMBER >::add_unique_range(const ::point_type < NUMBER > & pointBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & size)
+{
+
+   auto x1 = pointBeg.x();
+
+   auto x2 = pointEnd.x();
+
+   auto y1 = pointBeg.y();
+
+   auto y2 = pointEnd.y();
 
    __sort(x1, x2);
 
@@ -239,10 +253,10 @@ template < typename POINT_TYPE >
 
    ::count c = 0;
 
-   for (typename POINT_TYPE::TYPE x = x1; x <= x2; x += size.cx)
+   for (auto x = x1; x <= x2; x += size.cx())
    {
 
-      for (typename POINT_TYPE::TYPE y = y1; y <= y2; y += size.cy)
+      for (auto y = y1; y <= y2; y += size.cy())
       {
 
          if (this->add_unique(POINT_TYPE(x, y)))
@@ -261,6 +275,35 @@ template < typename POINT_TYPE >
 }
 
 
+template < primitive_number NUMBER >
+void point_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
+{
+
+   ::point_type < NUMBER > ::expand_bounding_box(top_left, bottom_right, this->data(), this->size());
+   
+}
+
+
+template < primitive_number NUMBER >
+bool point_array_base < NUMBER >::get_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
+{
+   
+   if(this->is_empty())
+   {
+      
+      return false;
+      
+   }
+   
+   top_left = this->first();
+   
+   bottom_right = this->first();
+   
+   this->expand_bounding_box(top_left, bottom_right, this->element_at[1], this->count() - 1);
+   
+   return true;
+   
+}
 
 
 
@@ -269,10 +312,6 @@ template < typename POINT_TYPE >
 
 
 
-
-using point_i32_array = point_array_base < point_i32 >;
-using point_i64_array = point_array_base < point_i64 >;
-using point_f64_array = point_array_base < point_f64 >;
 
 
 

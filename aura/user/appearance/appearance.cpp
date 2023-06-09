@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-18 19:55 <3ThomasBorregaardS�rensen!! (Thomas likes number 5!!)!!
+// Created by camilo on 2022-03-18 19:55 <3ThomasBorregaardSorensen!! (Thomas likes number 5!!)!!
 #include "framework.h"
 
 #include "appearance.h"

@@ -1,9 +1,10 @@
-﻿// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSørensen!! 
+// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
 #endif
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/image.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -254,8 +255,10 @@ namespace user
                   {
 
                      m_pitem->m_pmesh->m_plist->__defer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIcon);
+                     
+                     m_pitem->m_pmesh->m_plist->m_pfastblurIcon->initialize(pimage->size(), m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
 
-                     m_pitem->m_pmesh->m_plist->m_pfastblurIcon->blur(pimage, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
+                     m_pitem->m_pmesh->m_plist->m_pfastblurIcon->blur(pimage);
 
                   }
 

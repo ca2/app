@@ -33,12 +33,12 @@ namespace experience_lite
    bool user_style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
    {
 
-      ::rectangle rectangle;
-      ::rectangle rectangleBorder;
-      ::rectangle rectangleText;
-      ::rectangle rectangleClient;
-      ::rectangle rectangleIcon;
-      ::rectangle rectangleClose;
+      ::rectangle_f64 rectangle;
+      ::rectangle_f64 rectangleBorder;
+      ::rectangle_f64 rectangleText;
+      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleIcon;
+      ::rectangle_f64 rectangleClose;
 
       ptab->get_data()->m_ppen->create_solid(1,rgb(32,32,32));
 
@@ -337,22 +337,22 @@ namespace experience_lite
       else
       {
 
-         ::rectangle rectangleText(lpcrect);
+         ::rectangle_f64 rectangleText(lpcrect);
 
          ::write_text::font_pointer pfont;
          font = pgraphics->get_current_font();
          size sSep = ptab->get_data()->m_sizeSep;
-         ::rectangle rectangleEmp;
+         ::rectangle_f64 rectangleEmp;
          for(index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
             size s = pane.m_sizeaText[i];
-            rectangleText.right =rectangleText.left + s.cx;
+            rectangleText.right =rectangleText.left + s.cx();
             pgraphics->_DrawText(str,rectangleText,e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left += s.cx;
+            rectangleText.left += s.cx();
             if(i < straTitle.get_upper_bound())
             {
-               rectangleText.right = rectangleText.left + sSep.cx;
+               rectangleText.right = rectangleText.left + sSep.cx();
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
@@ -370,7 +370,7 @@ namespace experience_lite
                pgraphics->set_font(ptab->get_data()->m_pfontBigBold);
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectangleText, e align_center, e_draw_text_no_prefix);
-               rectangleText.left += sSep.cx;
+               rectangleText.left += sSep.cx();
                pgraphics->selectFont(font);
                pgraphics->SelectObject(pbrushText);
             }
@@ -431,10 +431,10 @@ namespace experience_lite
 
 /*            if(tab_pane.m_pimage->is_set())
             {
-/*               size.cx += tab_pane.m_pimage->width() + 2;
-/*               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
+/*               size.cx() += tab_pane.m_pimage->width() + 2;
+/*               size.cy() = maximum(size.cy(),tab_pane.m_pimage->height());
             }
-            cx = size.cx + 2;
+            cx = size.cx() + 2;
 
             if(!tab_pane.m_bPermanent)
             {
@@ -445,7 +445,7 @@ namespace experience_lite
             {
                iTabWidth = cx;
             }
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
             if(cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -471,7 +471,7 @@ namespace experience_lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle rectangleClient;
+         ::rectangle_f64 rectangleClient;
          ptab->GetClientRect(rectangleClient);
 
          ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
@@ -502,7 +502,7 @@ namespace experience_lite
          ::draw2d::graphics_pointer & pgraphics = graphics;
          pgraphics->SelectObject(ptab->get_data()->m_pfontBold);
 
-         ::rectangle rectangleClient;
+         ::rectangle_f64 rectangleClient;
          ptab->GetClientRect(rectangleClient);
          int x = rectangleClient.left;
 
@@ -525,9 +525,9 @@ namespace experience_lite
 
 /*            if(tab_pane.m_pimage->m_p != NULL)
             {
-/*               size.cy = maximum(size.cy,tab_pane.m_pimage->size()->cy);
+/*               size.cy() = maximum(size.cy(),tab_pane.m_pimage->size()->cy());
             }
-            cy = size.cy + 2;
+            cy = size.cy() + 2;
 
             if(cy > iTabHeight)
             {
@@ -558,12 +558,12 @@ namespace experience_lite
 
 
 
-            tab_pane.m_size.cx = size.cx + ixAdd
+            tab_pane.m_size.cx() = size.cx() + ixAdd
                                  + ptab->get_data()->m_rectangleBorder.left + ptab->get_data().m_rectangleBorder.right
                                  + ptab->get_data()->m_rectangleMargin.left + ptab->get_data().m_rectangleMargin.right
                                  + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data().m_rectangleTextMargin.right;
 
-            x += tab_pane.m_size.cx;
+            x += tab_pane.m_size.cx();
          }
 
          // close tab button
@@ -583,7 +583,7 @@ namespace experience_lite
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
 
-            tab_pane.m_size.cy = iTabHeight;
+            tab_pane.m_size.cy() = iTabHeight;
 
          }
 
@@ -639,7 +639,7 @@ namespace experience_lite
 
       pbar->get_color(crBackground, ::user::color_scrollbar_background);
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       pbar->GetClientRect(rectangleClient);
 
@@ -663,11 +663,11 @@ namespace experience_lite
 
       }
 
-      ::rectangle rectangleTrack;
+      ::rectangle_f64 rectangleTrack;
 
       pbar->GetTrackRect(rectangleTrack);
 
-      ::rectangle rectangleWindow;
+      ::rectangle_f64 rectangleWindow;
 
       pbar->GetWindowRect(rectangleWindow);
 
@@ -763,7 +763,7 @@ namespace experience_lite
             uchAlpha = 255;
          }
 
-         ::rectangle rectangleMachineThumb;
+         ::rectangle_f64 rectangleMachineThumb;
 
          bool bSimple = (bool)pbar->prop("tracking_simple");
 
@@ -776,7 +776,7 @@ namespace experience_lite
 
             rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + size(iSize, iSize);
 
-            ::rectangle rectangleIntersect;
+            ::rectangle_f64 rectangleIntersect;
 
             rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
@@ -867,7 +867,7 @@ namespace experience_lite
 
       pgraphics->Rectangle(pbar->m_rectangleB);
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
 
       if (pbar->m_eelement == ::e_element_scrollbar_pageA || pbar->m_eelementHover == ::e_element_scrollbar_pageA)
       {

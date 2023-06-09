@@ -57,7 +57,7 @@ namespace draw2d
       static matrix rotation(double dAngleRadians);
       static matrix scaling(double dRateX, double dRateY);
       static matrix scaling(point_f64 point) { return scaling(point.x(), point.y()); }
-      static matrix scaling(size_f64 size) { return scaling(size.cx, size.cy); }
+      static matrix scaling(size_f64 size) { return scaling(size.cx(), size.cy()); }
 
 
       matrix & translate(point_f64 point, e_mode emode = mode_append) { return translate(point.x(), point.y(), emode); }

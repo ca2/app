@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/label.cpp -- Text label with an arbitrary font, color, and size
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -34,13 +34,17 @@ void Label::set_theme(Theme * theme) {
    }
 }
 
-vector2_i32 Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+
+size_i32 Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
 {
+   
    if (bRecalcTextSize)
    {
+      
       if (m_strCaption == "")
       {
-         m_sizePreferred = vector2_i32(0);
+         
+         m_sizePreferred.Null();
 
       }
       else
@@ -48,16 +52,16 @@ vector2_i32 Label::preferred_size(::nano2d::context * pcontext, bool bRecalcText
          pcontext->font_face(m_font.c_str());
          pcontext->font_size(font_size());
          float bounds[4];
-         if (m_fixed_size.x()() > 0) {
+         if (m_fixed_size.cx() > 0) {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-            pcontext->text_box_bounds((float)m_pos.x()(), (float)m_pos.y()(), (float)m_fixed_size.x()(), m_strCaption, bounds);
-            m_sizePreferred = vector2_i32(m_fixed_size.x()(), (int)(bounds[3] - bounds[1]));
+            pcontext->text_box_bounds((float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.cx(), m_strCaption, bounds);
+            m_sizePreferred = size_i32(m_fixed_size.cx(), (int)(bounds[3] - bounds[1]));
          }
          else {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
             int iSize = (int) pcontext->text_bounds(0.f, 0.f, m_strCaption, bounds);
-            m_sizePreferred = vector2_i32(
-                iSize +2 ,
+            m_sizePreferred = size_i32 (
+               iSize +2 ,
                (int)(int)(bounds[3] - bounds[1])
             );
          }
@@ -71,13 +75,13 @@ void Label::draw(::nano2d::context * pcontext) {
    pcontext->font_face(m_font.c_str());
    pcontext->font_size(font_size());
    pcontext->fill_color(m_color);
-   if (m_fixed_size.x()() > 0) {
+   if (m_fixed_size.cx() > 0) {
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-      pcontext->text_box((float)m_pos.x()(), (float)m_pos.y()(), (float)m_fixed_size.x()(), m_strCaption);
+      pcontext->text_box((float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.cx(), m_strCaption);
    }
    else {
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-      pcontext->text((float)m_pos.x()(), (float)m_pos.y()() + m_size.y()() * 0.5f, m_strCaption);
+      pcontext->text((float)m_pos.x(), (float)m_pos.y() + m_size.cy() * 0.5f, m_strCaption);
    }
 }
 

@@ -24,7 +24,7 @@ namespace experience_tranquillum
 
       m_colorCaptionText = argb(255, 255, 255, 255);
 
-      m_rectangleClient = nullptr;
+      //m_rectangleClient = nullptr;
 
    }
 
@@ -334,7 +334,7 @@ namespace experience_tranquillum
 
 
       m_minSize = size_i32(144, 48);
-      m_minSize.cy = 48;
+      m_minSize.cy() = 48;
       if (pcontrolbox)
       {
          pcontrolbox->set_button_color_system_default_001();

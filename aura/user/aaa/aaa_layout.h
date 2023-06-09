@@ -45,8 +45,8 @@ namespace user
       bool                                      m_bUpdatingVisual;
       bool                                      m_bUpdateVisual;
       bool                                      m_bFillParent;
-      ::rectangle                                    m_rectangleHint;
-      ::rectangle                                    m_rectanglePadding;
+      ::rectangle_f64                                    m_rectangleHint;
+      ::rectangle_f64                                    m_rectanglePadding;
       int                                       m_iCellPadding;
       ::size                                    m_sizeSpan;
       ::size_f64                                   m_sizeWeight;
@@ -136,10 +136,10 @@ namespace user
       //inline void client_rectangle(RECT32* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
       //inline void window_rectangle(RECT32* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
 
-      //inline auto client_rectangle() { ::rectangle rectangle; client_rectangle(rectangle); return rectangle; }
-      //inline auto window_rectangle() { ::rectangle rectangle; window_rectangle(rectangle); return rectangle; }
+      //inline auto client_rectangle() { ::rectangle_f64 rectangle; client_rectangle(rectangle); return rectangle; }
+      //inline auto window_rectangle() { ::rectangle_f64 rectangle; window_rectangle(rectangle); return rectangle; }
 
-      virtual void set_placement(const ::rectangle & rectangle);
+      virtual void set_placement(const ::rectangle_f64 & rectangle);
 
 
       virtual bool window_is_full_screen_enabled();
@@ -219,9 +219,9 @@ namespace user
       inline void move_to(i32 x, i32 y) { request_state().m_point.set(x, y); m_bRequestReady = false; }
       inline void set_size(i32 cx, i32 cy) { request_state().m_size.set(cx, cy); m_bRequestReady = false; }
       inline void set_dim(const ::point_i32 & point, const ::size & size) { request_state().m_point = point; request_state().m_size = size; m_bRequestReady = false; }
-      inline void place(const ::rectangle & rectangle) { set_dim(rectangle.origin(), rectangle.size()); }
+      inline void place(const ::rectangle_f64 & rectangle) { set_dim(rectangle.origin(), rectangle.size()); }
       inline void set_dim(i32 x, i32 y, i32 cx, i32 cy) { set_dim(::point_i32(x, y), ::size(cx, cy)); }
-      inline layout & operator =(const ::rectangle& rectangle) { place(rectangle); return *this; }
+      inline layout & operator =(const ::rectangle_f64& rectangle) { place(rectangle); return *this; }
 
 
 
@@ -281,7 +281,7 @@ namespace user
       }
       inline bool set_window_position(::zorder zorder, const ::point_i32 & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return set_window_position(zorder, point.x(), point.y(), size.cx, size.cy, edisplay, eactivation);
+         return set_window_position(zorder, point.x(), point.y(), size.cx(), size.cy(), edisplay, eactivation);
       }
       inline bool window_move(const ::point_i32 & point)
       {
@@ -289,27 +289,27 @@ namespace user
       }
       inline bool window_size(const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return window_size(size.cx, size.cy, edisplay, eactivation);
+         return window_size(size.cx(), size.cy(), edisplay, eactivation);
       }
       inline bool window_place(const ::point_i32 & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return window_place(point.x(), point.y(), size.cx, size.cy, edisplay, eactivation);
+         return window_place(point.x(), point.y(), size.cx(), size.cy(), edisplay, eactivation);
       }
-      inline bool set_window_position(::zorder zorder, const ::rectangle & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool set_window_position(::zorder zorder, const ::rectangle_f64 & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return set_window_position(zorder, rectangle.origin(), rectangle.size(), edisplay, eactivation);
       }
-      inline bool window_place(const ::rectangle & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_place(const ::rectangle_f64 & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return window_place(rectangle.origin(), rectangle.size(), edisplay, eactivation);
       }
 
 
 
-      //virtual void set_placement(const ::rectangle & rectangle);
+      //virtual void set_placement(const ::rectangle_f64 & rectangle);
 
 
-      //virtual bool place(const ::rectangle & rectangle);
+      //virtual bool place(const ::rectangle_f64 & rectangle);
 
       virtual ::point_i32 get_parent_accumulated_scroll() const;
 
@@ -390,10 +390,10 @@ namespace user
       inline void window_request_rect(RECT32 * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
       inline void parent_client_rectangle(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }
 
-      inline auto client_rectangle() const { ::rectangle rectangle; client_rectangle(rectangle); return rectangle; }
-      inline auto window_rectangle() const { ::rectangle rectangle; window_rectangle(rectangle); return rectangle; }
-      inline auto window_request_rect() const { ::rectangle rectangle; window_request_rect(rectangle); return rectangle; }
-      inline auto parent_client_rectangle() const { ::rectangle rectangle; parent_client_rectangle(rectangle); return rectangle; }
+      inline auto client_rectangle() const { ::rectangle_f64 rectangle; client_rectangle(rectangle); return rectangle; }
+      inline auto window_rectangle() const { ::rectangle_f64 rectangle; window_rectangle(rectangle); return rectangle; }
+      inline auto window_request_rect() const { ::rectangle_f64 rectangle; window_request_rect(rectangle); return rectangle; }
+      inline auto parent_client_rectangle() const { ::rectangle_f64 rectangle; parent_client_rectangle(rectangle); return rectangle; }
 
 
       //virtual void _on_display(bool bKickIdle = true);

@@ -73,7 +73,7 @@ namespace prompt
       {
          pframe->m_bAutoHideOnOutClick = false;
          
-         //pframe->ShowWindow(SW_MAXIMIZE);
+         //pframe->show_window(SW_MAXIMIZE);
          
          pframe->display();
          

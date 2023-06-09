@@ -1,39 +1,38 @@
 #pragma once
 
 
-template < typename _SIZE_TYPE >
+template < primitive_number NUMBER >
 class size_array_base :
-   public array < _SIZE_TYPE >
+public ::array < ::size_type < NUMBER > >
 {
 public:
 
-   using SIZE_TYPE = _SIZE_TYPE;
-   using SIZE_BASE_TYPE = typename SIZE_TYPE::SIZE_BASE_TYPE;
-   using UNIT_TYPE = typename SIZE_TYPE::UNIT_TYPE;
-   using POINT_TYPE = typename SIZE_TYPE::POINT_TYPE;
+   //using SIZE_TYPE = _SIZE_TYPE;
+   //using SIZE_BASE_TYPE = SIZE_TYPE;
+   using UNIT_TYPE = NUMBER;
+   //using POINT_TYPE = typename SIZE_TYPE::POINT_TYPE;
 
 
    size_array_base() { }
-   virtual ~size_array_base() { }
+   ~size_array_base() override { }
 
 
-   using array < SIZE_TYPE >::add;
+   using array < ::size_type < NUMBER > >::add;
    void add(UNIT_TYPE cx, UNIT_TYPE cy) { add(SIZE_TYPE(cx, cy)); }
    //void add(const POINT_TYPE & point) { add(SIZE_TYPE(point.x(), point.y())); }
 
 
-   void offset(const SIZE_TYPE & point) { for (auto & size : *this) size.offset(point); }
-   void offset(UNIT_TYPE cx, UNIT_TYPE cy) { offset(SIZE_TYPE(cx, cy)); }
+   void offset(const ::size_type < NUMBER > & size) { for (auto & sizeItem : *this) sizeItem.offset(size); }
+   void offset(UNIT_TYPE cx, UNIT_TYPE cy) { offset(::size_type < NUMBER >(cx, cy)); }
 
 
 };
 
 
-using size_array = size_array_base < size_i32 >;
-using size64_array = size_array_base < size_i64 >;
-using sized_array = size_array_base < size_f64 >;
-
-
+using size_i32_array = size_array_base < ::i32 >;
+using size_i64_array = size_array_base < ::i64 >;
+using size_f32_array = size_array_base < ::f32 >;
+using size_f64_array = size_array_base < ::f64 >;
 
 
 

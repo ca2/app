@@ -20,7 +20,7 @@ namespace os
       int                        m_w;
       int                        m_h;
 /*      ::image_pointer           m_pimage;
-      SIZE_I32                       m_size;
+      ::size_i32                       m_size;
       ::point_i32                      m_point;
       window_xlib                m_xlib;
 

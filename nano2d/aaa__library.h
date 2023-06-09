@@ -1,4 +1,4 @@
-// Created by camilo on 2022/03/18 2:00 AM <3ThomasBorregaardS�rensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 2:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #pragma once
 
 
@@ -30,7 +30,7 @@
  * \brief Determine whether an icon ID is a font-based icon (e.g. from ``entypo.ttf``).
  *
  * \rst
- * See :func:`nanoui::::nano2d::_is_image_icon` for details.
+ * See :func:`nanoui::nano2d::_is_image_icon` for details.
  * \endrst
  *
  * \param value

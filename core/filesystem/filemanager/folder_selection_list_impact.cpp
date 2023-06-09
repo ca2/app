@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "folder_selection_list_impact.h"
 #include "document.h"
 #include "folder_list_impact.h"

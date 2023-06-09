@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "meta.h"
@@ -114,8 +114,8 @@ public:
    ::size_i32 image_source_size() const override;
    using image_meta::size;
    
-   //inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr);
-   //inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) const;
+   //inline ::rectangle_i32 rectangle(const ::point_i32 & point = {});
+   //inline ::rectangle_i32 rectangle(const ::point_i32 & point = {}) const;
 
 
    //inline ::u64 area() const;
@@ -193,9 +193,9 @@ public:
 
    //virtual void rotated(const angle & angle);
    //virtual image_pointer rotated(const angle& angle);
-   virtual void rotate(const ::angle& angle, double dScale = 1.0);
-   virtual void rotate(::image * pimage, const ::angle& angle, double dScale = 1.0);
-   virtual image_pointer rotated(const ::angle& angle, double dScale = 1.0);
+   virtual void rotate(const ::angle_f64 & angle, double dScale = 1.0);
+   virtual void rotate(::image * pimage, const ::angle_f64 & angle, double dScale = 1.0);
+   virtual image_pointer rotated(const ::angle_f64 & angle, double dScale = 1.0);
 
    //virtual void rotate(::image * pimage, double dAngle, double dScale);
    //virtual void rotate(::image * pimage, double dAngle);
@@ -369,9 +369,11 @@ public:
 
    virtual void lighten(double dRate);
 
+   virtual void copy_from_no_create(::image * pimage, const ::point_i32 & point);
+   virtual void copy_from_no_create(::image * pimage);
    virtual void copy_from(::image * pimage, const ::point_i32 & point, enum_flag eflagCreate = e_flag_success);
    virtual void copy_from(::image * pimage, enum_flag eflagCreate = e_flag_success);
-   //virtual void copy_to(::image * pimage, const ::point_i32 & point = nullptr);
+   //virtual void copy_to(::image * pimage, const ::point_i32 & point = {});
 
    virtual void fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32);
 
@@ -425,7 +427,7 @@ public:
    //static void static_initialize();
 
    inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::color32_t); }
-   inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
+   inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy(); }
 
 
 
@@ -541,7 +543,7 @@ public:
 
       }
 
-      return m_size.cx;
+      return m_size.cx();
 
    }
 
@@ -556,7 +558,7 @@ public:
 
       }
 
-      return m_size.cy;
+      return m_size.cy();
 
    }
 
@@ -827,7 +829,7 @@ public:
 //}
 
 
-   inline ::rectangle_i32 rectangle(const ::point_i32& point = nullptr)
+   inline ::rectangle_i32 rectangle(const ::point_i32 & point = {})
    {
 
       return ::rectangle_i32(point, get_size() - point);
@@ -835,7 +837,7 @@ public:
    }
 
 
-   inline ::rectangle_i32 rectangle(const ::point_i32& point = nullptr) const
+   inline ::rectangle_i32 rectangle(const ::point_i32 & point = {}) const
    {
 
       return ::rectangle_i32(point, get_size() - point);
@@ -846,7 +848,7 @@ public:
    inline ::color::color pixel(int x, int y) const
    {
 
-      if (::is_null(this) || ::is_null(colorref()) || x < 0 || y < 0 || x>= m_size.cx || y >= m_size.cy)
+      if (::is_null(this) || ::is_null(colorref()) || x < 0 || y < 0 || x>= m_size.cx() || y >= m_size.cy())
       {
 
          return 0;

@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/nanoui.cpp -- Basic initialization and utility routines
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.

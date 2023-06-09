@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "frame_array.h"
 #include "image.h"
@@ -102,7 +102,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
          //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //pimageCompose->g()->draw(pimageFrame);
-         pimageCompose->precision_blend(point, pimageFrame, nullptr, size);
+         pimageCompose->precision_blend(point, pimageFrame, {}, size);
 
 
       }

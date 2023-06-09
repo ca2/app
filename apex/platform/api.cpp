@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "api.h"
 #include "acme/exception/interface_only.h"

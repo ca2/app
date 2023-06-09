@@ -1,4 +1,4 @@
-﻿//
+//
 //  memory_new.cpp
 //  acme
 //

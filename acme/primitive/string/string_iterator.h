@@ -1,4 +1,4 @@
-﻿//
+//
 //  string_iterator.h
 //  acme
 //

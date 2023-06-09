@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSørensen
+// Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "window.h"
 #include "device.h"
@@ -644,7 +644,7 @@ namespace windows
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = point;
+            pmouse->m_point = { point.x, point.y };
 
             on_mouse_move(pmouse);
 
@@ -659,7 +659,7 @@ namespace windows
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = point;
+            pmouse->m_point = { point.x, point.y };
 
             on_left_button_up(pmouse);
 
@@ -674,7 +674,7 @@ namespace windows
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = point;
+            pmouse->m_point = { point.x, point.y };
 
             on_right_button_down(pmouse);
 
@@ -689,7 +689,7 @@ namespace windows
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = point;
+            pmouse->m_point = { point.x, point.y };
 
             on_right_button_up(pmouse);
 

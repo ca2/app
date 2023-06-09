@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "buffered_graphics.h"
 #include "aura/graphics/draw2d/graphics.h"
 //#include "_defer.h"

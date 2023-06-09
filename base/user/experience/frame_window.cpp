@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_window.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
@@ -285,9 +285,9 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     defer_restore(m_windowrectangle.m_rectangleRestored);
+                     good_move(&m_windowrectangle.m_rectangleNormal);
 
-                     display(e_display_restore);
+                     display(e_display_normal);
 
                      set_reposition();
 
@@ -314,9 +314,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     defer_restore(m_windowrectangle.m_rectangleRestored);
-
-                     display(e_display_restore);
+                     display_previous();
 
                      set_reposition();
 
@@ -1111,7 +1109,7 @@ namespace experience
       else
       {
 
-         return display(e_display_restore);
+         return display(e_display_normal);
 
       }
 
@@ -1181,6 +1179,13 @@ namespace experience
          //FORMATTED_TRACE("frame_window::SetActiveFlag %d\n", fActive);
 
          m_fActive = fActive;
+
+         if (!fActive)
+         {
+
+            FORMATTED_TRACE("frame_window::SetActiveFlag Not Active");
+
+         }
 
          if (m_pframe != nullptr)
          {
@@ -1408,7 +1413,9 @@ namespace experience
                return __new(::item(e_element_resize_bottom_left));
             case e_frame_sizing_bottom_right:
                return __new(::item(e_element_resize_bottom_right));
-
+               default:
+                  
+                  return nullptr;
 
             }
 
@@ -1954,6 +1961,23 @@ namespace experience
    }
 
 
+   void frame_window::display_docked(::e_display edisplay, ::e_activation eactivation)
+   {
+
+      if (!is_docking_appearance(edisplay))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      set_display(edisplay);
+
+      set_activation(eactivation);
+
+   }
+
+
 #define ZONEING_COMPARE ::comparison
 
 
@@ -1990,19 +2014,19 @@ namespace experience
 
       auto sizeMinimum = get_window_minimum_size();
 
-      if (rectangle.height() < sizeMinimum.cy)
+      if (rectangle.height() < sizeMinimum.cy())
       {
 
-         rectangle.set_height(sizeMinimum.cy);
+         rectangle.set_height(sizeMinimum.cy());
 
          rectangle._001ConstrainY(rectangleWorkspace);
 
       }
 
-      if (rectangle.width() < sizeMinimum.cx)
+      if (rectangle.width() < sizeMinimum.cx())
       {
 
-         rectangle.set_width(sizeMinimum.cx);
+         rectangle.set_width(sizeMinimum.cx());
 
          rectangle._001ConstrainX(rectangleWorkspace);
 
@@ -2011,13 +2035,13 @@ namespace experience
       if (iBestWorkspace >= 0)
       {
 
-         ::rectangle rectangleOld(rectangle);
+         ::rectangle_i32 rectangleOld(rectangle);
 
          auto pwindowing = windowing();
 
          auto pdisplay = pwindowing->display();
 
-         pdisplay->get_good_move(rectangle, rectangleOld, this);
+         pdisplay->get_good_move(&rectangle, rectangleOld, this);
 
       }
 
@@ -2246,7 +2270,7 @@ namespace experience
       if (edisplay == e_display_none)
       {
 
-         edisplay = e_display_restored;
+         edisplay = e_display_normal;
 
       }
 
@@ -2423,43 +2447,75 @@ namespace experience
 
       calculate_broad_and_compact_restore();
 
-      auto rectangleRequest = screen_rect();
+      //auto rectangleCurrent = screen_rect();
 
       ::e_display edisplay = const_layout().sketch().display();
 
-      if (!::is_equivalent(edisplay, e_display_restored))
+      if (equivalence_sink(edisplay) != e_display_normal)
       {
 
-         defer_restore(m_windowrectangle.m_rectangleRestored);
-
-      }
-      else if (rectangleRequest.size() == m_sizeRestoreBroad)
-      {
-
-         if (m_windowrectangle.m_rectangleRestored.size() == m_sizeRestoreBroad)
+         if (equivalence_sink(m_windowrectangle.m_edisplayPrevious) == e_display_normal)
          {
 
-            display(e_display_compact);
+            display_normal(m_windowrectangle.m_edisplayPrevious, e_activation_default);
 
          }
          else
          {
 
-            defer_restore(m_windowrectangle.m_rectangleRestored);
+            display_normal(m_windowrectangle.m_edisplayLastNormal, e_activation_default);
 
          }
 
       }
-      else if (rectangleRequest.size() == m_sizeRestoreCompact)
+      else if(edisplay == e_display_broad)
       {
 
-         display(e_display_broad);
+         //if (m_windowrectangle.m_rectangleRestored.size() == m_sizeRestore)
+         //{
+
+         //good_restore(nullptr, m_windowrectangle.m_rectangleCompact, true, e_activation_default, e_zorder_top, e_display_compact);
+
+         display_normal(e_display_compact, e_activation_default);
+
+         //}
+//         else
+  //       {
+
+      //      good_move(m_windowrectangle.m_rectangleRestored);
+
+    //     }
+
+      }
+      else if (edisplay == e_display_compact)
+      {
+
+         auto sizeRectangleNormal = m_windowrectangle.m_rectangleNormal;
+
+         if (sizeRectangleNormal == m_sizeRestoreCompact)
+         {
+
+            display_normal(e_display_broad, e_activation_default);
+
+            //good_restore(nullptr, m_windowrectangle.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
+
+         }
+         else
+         {
+
+            //good_restore(nullptr, m_windowrectangle.m_rectangleNormal, true, e_activation_default, e_zorder_top, e_display_normal);
+
+            display_normal(e_display_normal, e_activation_default);
+
+         }
 
       }
       else
       {
 
-         display(e_display_compact);
+         //good_restore(nullptr, m_windowrectangle.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
+
+         display_normal(e_display_broad, e_activation_default);
 
       }
 

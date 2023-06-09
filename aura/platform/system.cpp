@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "system.h"
 #include "session.h"
 #include "application.h"
@@ -2537,7 +2537,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //            
-//            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_restored);
+//            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2573,7 +2573,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr,dir()->module()/strApp,nullptr,nullptr, e_display_restored);
+//            plauncher->setup(nullptr,nullptr,dir()->module()/strApp,nullptr,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2615,7 +2615,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, dir()->ca2module() / strApp,strParameters,nullptr, e_display_restored);
+//            plauncher->setup(nullptr,nullptr, dir()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2651,7 +2651,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, dir()->ca2module() / strApp,strParameters,nullptr, e_display_restored);
+//            plauncher->setup(nullptr,nullptr, dir()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -4434,7 +4434,7 @@ namespace aura
 //      if (!bFound)
 //      {
 //
-//         call_async(strBrowserPath, strParam, strBrowserDir, e_display_restored, false);
+//         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
 //
 //         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 //

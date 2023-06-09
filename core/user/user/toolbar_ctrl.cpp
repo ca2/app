@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "toolbar_control.h"
 
 
@@ -584,7 +584,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
+//   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx(), size.cy())) != false;
 //
 //#else
 //
@@ -600,7 +600,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
+//   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx(), size.cy())) != false;
 //
 //#else
 //
@@ -1271,7 +1271,7 @@ namespace user
 //#endif
 
 
-   bool toolbar_control::GetMaxSize(::SIZE_I32 * pSize)
+   bool toolbar_control::GetMaxSize(::size_i32 * pSize)
    {
 //#ifdef WINDOWS_DESKTOP
 //

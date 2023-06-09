@@ -275,7 +275,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectangleClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, &rectangle, eside);
 
 
 
@@ -383,7 +383,7 @@ SizingNone:;
 
                ::rectangle_i32 rectangleSmall;
 
-               get_window_client_rect(rectangleSmall);
+               get_window_client_rect(&rectangleSmall);
 
                ::rectangle_i32 rectangle;
 

@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+#include "framework.h"
+#
 #include "aura/graphics/draw2d/graphics.h"
 #include "frame_001.h"
 #include "base/user/experience/frame_window.h"
@@ -236,7 +237,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, colorMoveableBorder & 127_opacity);
 
@@ -246,7 +247,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
 
 
@@ -277,7 +278,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
 
@@ -389,7 +390,7 @@ SizingNone:;
 
       ::rectangle_i32 rectangleSmall;
 
-      get_window_client_rect(rectangleSmall);
+      get_window_client_rect(&rectangleSmall);
 
       ::rectangle_i32 rectangle;
 

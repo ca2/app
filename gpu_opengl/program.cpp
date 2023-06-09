@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "program.h"
 #include "aura/gpu/gpu/shader.h"
 

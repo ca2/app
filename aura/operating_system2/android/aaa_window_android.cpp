@@ -72,7 +72,7 @@ void window_android::destroy_buffer()
 bool window_android::update_screen(::image * pimage)
 {
 
-   ::copy_colorref((color32_t *)m_mem.get_data(), pimage->get_size(), m_size.cx, pimage->get_data(), pimage->scan_size());
+   ::copy_colorref((color32_t *)m_mem.get_data(), pimage->get_size(), m_size.cx(), pimage->get_data(), pimage->scan_size());
 
    return true;
 

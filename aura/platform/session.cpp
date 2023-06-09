@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "acme/exception/extended_status.h"
 #include "acme/filesystem/file/item_array.h"
@@ -1954,7 +1954,7 @@ namespace aura
 //
 ////      puserinteraction->place(rectangleScreen);
 ////
-////      puserinteraction->display(e_display_restored);
+////      puserinteraction->display(e_display_normal);
 ////
 ////      puserinteraction->set_need_layout();
 ////

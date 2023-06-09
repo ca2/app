@@ -1,8 +1,8 @@
-﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
+// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 // Merge with control_"topic" by camilo on day after ThomasBirthday2021 10:14
-// Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSørensen!!
-// Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSørensen!!
-// From handler: on 2022-10-30 08:15 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
+// Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
+// From handler: on 2022-10-30 08:15 <3ThomasBorregaardSorensen!!
 //    From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
 //    From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 //    From aura by camilo on ThomasBirthday2021 20:00 BRT
@@ -69,7 +69,7 @@ struct PARTICLE :
 
 
 
-// ThomasBorregaardSørensen!! Like handlers : now particle with handle::handlers*
+// ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
    virtual public PARTICLE
 {
@@ -185,6 +185,10 @@ public:
 
    //virtual void initialize_matter(::matter * pmatter);
    virtual void call_run();
+
+
+   template < typename TYPE >
+   TYPE * cast() { return dynamic_cast <TYPE *>(this); }
 
 
    virtual void run();
@@ -317,13 +321,13 @@ public:
    virtual ::particle * clone() const;
 
 
-   // ThomasBorregaardSørensen!! Like handlers
+   // ThomasBorregaardSorensen!! Like handlers
    //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
    //virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
    virtual void call(const ::atom & atom, i64 wParam = 0, i64 lParam = 0, ::particle * pparticle = nullptr);
 
 
-   // ThomasBorregaardSørensen!! Like handlers
+   // ThomasBorregaardSorensen!! Like handlers
    virtual void handle(::topic * ptopic, ::context * pcontext);
    virtual void handle(::message::message * pmessage);
 
@@ -331,7 +335,7 @@ public:
    virtual bool _handle_uri(const ::string & strUri);
    virtual bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
 
-   // <3ThomasBorregaardSørensen__!! likes handler concept...
+   // <3ThomasBorregaardSorensen__!! likes handler concept...
    //void route(::signal * psignal) override;
    //void signal(::signal * psignal) override;
    //void route(::topic * ptopic, ::context * pcontext) override;

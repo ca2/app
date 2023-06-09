@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/user/user/interaction.h"
 #include "base/user/form/document.h"
 #include "base/user/form/impact.h"
@@ -182,7 +182,7 @@ void dialog::on_position_parent_frame()
 
    ::rectangle_i32 rectangleOpen;
 
-   m_pframe->best_monitor(rectangleOpen);
+   m_pframe->best_monitor(&rectangleOpen);
 
    i32 iWidth = rectangleOpen.width();
 

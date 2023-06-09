@@ -1,4 +1,4 @@
-﻿// From simple_ui.cpp by camilo on 2022-08-28 11:46 <3ThomasBorregaardSørensen!!
+// From simple_ui.cpp by camilo on 2022-08-28 11:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
@@ -308,7 +308,7 @@ namespace account
 
       //BringWindowToTop();
 
-      display(e_display_restored);
+      display(e_display_normal);
 
       SetTimer(2000, 300_ms, nullptr);
 

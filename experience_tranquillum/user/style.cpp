@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+#include "framework.h"
+#if 0
 #include "acme/handler/item.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
@@ -620,7 +621,7 @@ namespace experience_tranquillum
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer& pgraphics, ::user::frame* pframe)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       pgraphics->m_pdraw2dhost = pframe;
 
@@ -668,7 +669,7 @@ namespace experience_tranquillum
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -690,20 +691,19 @@ namespace experience_tranquillum
 
             string str = pane.get_title();
 
-            pane.do_split_layout(ptab->m_pdcextension, pgraphics);
+            pane.do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
-
-
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if (pane.m_pimage->is_set())
             {
-               size.cx += pane.m_pimage->width() + 2;
-               size.cy = maximum(size.cy, pane.m_pimage->height());
+               size.cx() += pane.m_pimage->width() + 2;
+               size.cy() = maximum(size.cy(), pane.m_pimage->height());
             }
-            cx = size.cx + 2;
+
+            cx = (::i32) (size.cx() + 2.0);
 
             if (!pane.m_bPermanent)
             {
@@ -714,7 +714,7 @@ namespace experience_tranquillum
             {
                iTabWidth = cx;
             }
-            cy = size.cy + 2;
+            cy = (::i32) (size.cy() + 2.0);
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -787,11 +787,11 @@ namespace experience_tranquillum
 
             string str = pane.get_title();
 
-            pane.do_split_layout(ptab->m_pdcextension, pgraphics);
+            pane.do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             ::write_text::text_metric metric;
 
@@ -800,11 +800,11 @@ namespace experience_tranquillum
             if (pane.m_pimage->is_set())
             {
 
-               size.cy = (::i32)maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_spacing());
+               size.cy() = (::i32)maximum(maximum(size.cy(), pane.m_pimage->size().cy()), metric.get_line_spacing());
 
             }
 
-            cy = size.cy + 2;
+            cy = (::i32) (size.cy() + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -835,12 +835,12 @@ namespace experience_tranquillum
 
 
 
-            pane.m_size.cx = size.cx + ixAdd
+            pane.m_size.cx() = (::i32) (size.cx() + ixAdd
                + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
-               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
+               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right);
 
-            x += pane.m_size.cx;
+            x += (::i32) (pane.m_size.cx());
 
          }
 
@@ -861,7 +861,7 @@ namespace experience_tranquillum
 
             auto& pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
-            pane.m_size.cy = iTabHeight;
+            pane.m_size.cy() = iTabHeight;
 
          }
 
@@ -1405,12 +1405,12 @@ namespace experience_tranquillum
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
-            rectangleText.right = rectangleText.left + s.cx;
+            rectangleText.right = rectangleText.left + s.cx();
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left += s.cx;
+            rectangleText.left += s.cx();
             if (i < straTitle.get_upper_bound())
             {
-               rectangleText.right = rectangleText.left + sSep.cx;
+               rectangleText.right = rectangleText.left + sSep.cx();
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
@@ -1437,7 +1437,7 @@ namespace experience_tranquillum
                pgraphics->set_font(ptab, ::e_element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
-               rectangleText.left += sSep.cx;
+               rectangleText.left += sSep.cx();
 
             }
 
@@ -2144,3 +2144,4 @@ namespace experience_tranquillum
 
 
 
+#endif

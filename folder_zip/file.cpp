@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "file.h"
 #include "folder.h"
 ////#include "acme/exception/exception.h"

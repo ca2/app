@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "format.h"
 #include "acme/platform/flags.h"
 #include "aura/graphics/draw2d/graphics.h"

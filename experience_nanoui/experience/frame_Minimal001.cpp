@@ -253,7 +253,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
          //auto psystem = acmesystem()->m_paurasystem;
 
@@ -265,7 +265,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
 
 
@@ -293,7 +293,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle( rectangle, ::color::color(crMoveableBorder, 127));
 
@@ -393,7 +393,7 @@ SizingNone:;
 
       ::rectangle_i32 rectangleSmall;
 
-      get_window_client_rect(rectangleSmall);
+      get_window_client_rect(&rectangleSmall);
 
       ::rectangle_i32 rectangle;
 
@@ -1451,7 +1451,7 @@ SizingNone:;
 //
 //         ::rectangle_i32 rectangle;
 //
-//         GetBorderRect(rectangleClient, rectangle, eside);
+//         GetBorderRect(rectangleClient, &rectangle, eside);
 //
 //         auto psystem = acmesystem()->m_paurasystem;
 //
@@ -1463,7 +1463,7 @@ SizingNone:;
 //
 //         ::rectangle_i32 rectangle;
 //
-//         GetBorderRect(rectangleClient, rectangle, eside);
+//         GetBorderRect(rectangleClient, &rectangle, eside);
 //
 //
 //
@@ -1491,7 +1491,7 @@ SizingNone:;
 //
 //         ::rectangle_i32 rectangle;
 //
-//         GetBorderRect(rectangleClient, rectangle, eside);
+//         GetBorderRect(rectangleClient, &rectangle, eside);
 //
 //         pgraphics->fill_rectangle( rectangle, ::color::color(crMoveableBorder, 127));
 //
@@ -1591,7 +1591,7 @@ SizingNone:;
 //
 //      ::rectangle_i32 rectangleSmall;
 //
-//      get_window_client_rect(rectangleSmall);
+//      get_window_client_rect(&rectangleSmall);
 //
 //      ::rectangle_i32 rectangle;
 //

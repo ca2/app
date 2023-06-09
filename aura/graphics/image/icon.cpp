@@ -108,11 +108,11 @@ namespace draw2d
 //#else
 
       // building icon not supported (size > 512 :-)
-  //    if (m_size.cx <= 0 || m_size.cy <= 0 || m_size.cx >= 512 || m_size.cy >= 512)
+  //    if (m_size.cx() <= 0 || m_size.cy() <= 0 || m_size.cx() >= 512 || m_size.cy() >= 512)
   //    {
 
-  //       m_size.cx = 22;
-  //       m_size.cy = 22;
+  //       m_size.cx() = 22;
+  //       m_size.cy() = 22;
 
   //    }
 
@@ -121,7 +121,7 @@ namespace draw2d
       m_sizea.predicate_sort([](auto & size1, auto & size2)
          {
 
-            return size1.cx < size2.cx;
+            return size1.cx() < size2.cx();
 
          });
 
@@ -134,7 +134,7 @@ namespace draw2d
       if (m_sizea.is_empty())
       {
 
-         return nullptr;
+         return {};
 
       }
 
@@ -191,7 +191,7 @@ namespace draw2d
       if (m_sizea.is_empty())
       {
 
-         return nullptr;
+         return {};
 
       }
 
@@ -200,7 +200,7 @@ namespace draw2d
       for (::index i = 0; i < m_sizea.get_size(); i++)
       {
 
-         if (size.cx < m_sizea[i].cx)
+         if (size.cx() < m_sizea[i].cx())
          {
 
             iFound = i;
@@ -218,7 +218,7 @@ namespace draw2d
       if (iFound < 0)
       {
 
-         return nullptr;
+         return {};
 
       }
 
@@ -250,7 +250,7 @@ namespace draw2d
       for (::index i = 0; i < m_sizea.get_size(); i++)
       {
 
-         if (sizeDst.cy == m_sizea[i].cy)
+         if (sizeDst.cy() == m_sizea[i].cy())
          {
 
             return m_sizea[i];
@@ -277,7 +277,7 @@ namespace draw2d
          for (::index i = m_sizea.get_upper_bound(); i >= 0; i--)
          {
 
-            if (m_sizea[i].cy < dRateSmaller * sizeDst.cy)
+            if (m_sizea[i].cy() < dRateSmaller * sizeDst.cy())
             {
 
                iFound = i;
@@ -297,7 +297,7 @@ namespace draw2d
          for (::index i = 0; i < m_sizea.get_size(); i++)
          {
 
-            if (m_sizea[i].cy > sizeDst.cy)
+            if (m_sizea[i].cy() > sizeDst.cy())
             {
 
                iFound = i;

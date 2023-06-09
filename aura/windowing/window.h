@@ -1,11 +1,12 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #pragma once
 
 
 #include "apex/message/channel.h"
 #include "acme/primitive/collection/osdata_array.h"
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 namespace windowing
@@ -38,6 +39,10 @@ namespace windowing
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::point_i32                               m_pointCursor;
       ::oswindow                                m_oswindow;
+      bool                                      m_bUpdateScreenSynchronously;
+      
+      bool                                      m_bActiveWindow;
+      bool                                      m_bKeyboardFocus;
 
 
       window();
@@ -49,6 +54,11 @@ namespace windowing
 
       void on_initialize_particle() override;
 
+      
+      virtual void window_on_activate();
+      virtual void window_on_deactivate();
+      virtual void window_on_set_keyboard_focus();
+      virtual void window_on_kill_keyboard_focus();
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
@@ -111,7 +121,7 @@ namespace windowing
 
       virtual void exit_iconify();
 
-      virtual void full_screen(const::rectangle_i32 & rectangle = nullptr);
+      virtual void full_screen(const::rectangle_i32 & rectangle = {});
 
       virtual void exit_full_screen();
 
@@ -223,8 +233,8 @@ namespace windowing
       virtual bool enable_window(bool bEnable = true);
 
       // the active interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow();
-      virtual ::user::interaction * SetActiveWindow();
+      virtual ::user::interaction * get_active_window();
+      //void set_active_window() override;
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
       virtual void set_foreground_window();

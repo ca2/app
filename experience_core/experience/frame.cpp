@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -20,13 +20,13 @@ namespace experience_core
 
       m_pointWindowIcon.x() = 5;
 
-      m_sizeIcon.cx = 32;
+      m_sizeIcon.cx() = 32;
 
-      m_sizeIcon.cy = 32;
+      m_sizeIcon.cy() = 32;
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
-      m_rectangleClient.set(0, 0, 0, 0);
+      //m_rectangleClient.set(0, 0, 0, 0);
 
    }
 
@@ -99,7 +99,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleScreen;
 
-      pframewindow->best_monitor(rectangleScreen);
+      pframewindow->best_monitor(&rectangleScreen);
 
       ::image_pointer pimage1;
 
@@ -111,7 +111,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleWindow = rectangleClient;
 
-      rectangleWindow(pframewindow->client_to_screen());
+      pframewindow->client_to_screen()(rectangleWindow);
 
       ::point_i32 pointInflate(iInflate, iInflate);
 
@@ -308,11 +308,11 @@ namespace experience_core
 
          rectangle.left = m_pointWindowIcon.x();
          rectangle.top = m_pointWindowIcon.y();
-         rectangle.right = rectangle.left + m_sizeIcon.cx;
-         rectangle.bottom = rectangle.top + m_sizeIcon.cy;
+         rectangle.right = rectangle.left + m_sizeIcon.cx();
+         rectangle.bottom = rectangle.top + m_sizeIcon.cy();
 
-         //rectangle.right = rectangle.left + pdrawicon->get_size().cx;
-         //rectangle.bottom = rectangle.top + pdrawicon->get_size().cy;
+         //rectangle.right = rectangle.left + pdrawicon->get_size().cx();
+         //rectangle.bottom = rectangle.top + pdrawicon->get_size().cy();
 
          return true;
 
@@ -459,7 +459,7 @@ namespace experience_core
 
       m_minSize = size_i32(144, 48);
 
-      m_minSize.cy = 48;
+      m_minSize.cy() = 48;
 
       if (pcontrolbox)
       {

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "crypto.h"
 #include "hasher_algorithm.h"
 #include "initializer.h"

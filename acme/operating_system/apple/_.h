@@ -14,16 +14,16 @@
 #include "_apple_no_templates.h"
 
 
-string apple_app_module_path();
+//string apple_app_module_path();
 
 
 
 #include "_c.h"
-
-#include <CoreGraphics/CoreGraphics.h>
-
-
-#include "_apple_no_templates.h"
+//
+//#include <CoreGraphics/CoreGraphics.h>
+//
+//
+//#include "_apple_no_templates.h"
 
 
 

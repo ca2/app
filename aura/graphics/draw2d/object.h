@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -18,7 +18,7 @@ namespace draw2d
 
 
       void *         m_pthis;
-      void *         m_powner = nullptr; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
+      //void *         m_powner = nullptr; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
       void *         m_osdata[8] = {};
       bool           m_baCalculated[8] = {};
       point_f64      m_pointUserOffset;
@@ -114,11 +114,11 @@ namespace draw2d
 
 
 
-      virtual ::u32 GetObjectType() const;
-      virtual bool CreateStockObject(i32 nIndex);
-      virtual bool UnrealizeObject();
-      virtual bool operator==(const ::draw2d::object & obj) const;
-      virtual bool operator!=(const ::draw2d::object & obj) const;
+      //virtual ::u32 GetObjectType() const;
+      //virtual bool CreateStockObject(i32 nIndex);
+      ///virtual bool UnrealizeObject();
+      //virtual bool operator==(const ::draw2d::object & obj) const;
+      //virtual bool operator!=(const ::draw2d::object & obj) const;
 
 
    };

@@ -48,8 +48,8 @@ int size_nswindow(oswindow hwnd, int cx, int cy)
    
    CGSize size;
    
-   size.cx = cx;
-   size.cy = cy;
+   size.cx() = cx;
+   size.cy() = cy;
    
    //[hwnd->window() : point];
    

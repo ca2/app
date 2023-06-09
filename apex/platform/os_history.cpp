@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "os_history.h"
 #include "shell_launcher.h"
 
@@ -26,7 +26,7 @@ bool os_history::hist(const ::scoped_string & scopedstr)
 
    }
    
-    plauncher->setup((oswindow) nullptr, "open", scopedstr, "", "", e_display_restored);
+    plauncher->setup((oswindow) nullptr, "open", scopedstr, "", "", e_display_normal);
 
    //if (!estatus)
    //{

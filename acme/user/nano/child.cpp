@@ -1,4 +1,4 @@
-// Created by camilo on 2022-01-21 05:10 PM <3ThomasBorregaardSørensen
+// Created by camilo on 2022-01-21 05:10 PM <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "child.h"
 #include "window.h"
@@ -79,9 +79,9 @@ void nano_child::resize_to_fit()
 
    auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
 
-   m_rectangle.right = m_rectangle.left + size.cx;
+   m_rectangle.right = m_rectangle.left + size.cx();
 
-   m_rectangle.bottom = m_rectangle.top + size.cy;
+   m_rectangle.bottom = m_rectangle.top + size.cy();
 
 }
 

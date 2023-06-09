@@ -79,13 +79,13 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_restored);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
       //}
 
-      //::rectangle rectangleClient;
+      //::rectangle_f64 rectangleClient;
 
       //for (i = 0; i < get_pane_count(); i++)
       //{
@@ -123,7 +123,7 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_restored);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
@@ -237,7 +237,7 @@ namespace user
       if(!m_bInitialized)
          return;
 
-      ::rectangle splitRect;
+      ::rectangle_f64 splitRect;
       CalcSplitBarRect(iIndex, &splitRect);
       ::point_i32 pointCursor = pMsg->pt;
 
@@ -367,7 +367,7 @@ namespace user
    i32 split_layout::GetMinPos()
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -390,7 +390,7 @@ namespace user
    i32 split_layout::GetMaxPos()
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -479,7 +479,7 @@ namespace user
 
       }
 
-      ::rectangle rectangleBar;
+      ::rectangle_f64 rectangleBar;
 
       i32 i;
 
@@ -528,9 +528,9 @@ namespace user
       for(i = 0; i < get_pane_count(); i++)
       {
 
-         ::rectangle & rectanglePane = m_panea[i]->m_rect;
+         ::rectangle_f64 & rectanglePane = m_panea[i]->m_rect;
 
-         ::rectangle & rectangleClient = m_panea[i]->m_rectangleClient;
+         ::rectangle_f64 & rectangleClient = m_panea[i]->m_rectangleClient;
 
          CalcPaneRect(i,&rectanglePane);
 
@@ -771,7 +771,7 @@ namespace user
    i32 split_layout::get_normal_dimension()
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -794,7 +794,7 @@ namespace user
    i32 split_layout::get_ortogonal_dimension()
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -1021,7 +1021,7 @@ namespace user
       else
       {
 
-         ::rectangle rectanglePane;
+         ::rectangle_f64 rectanglePane;
 
          pcomponent->m_pholder->client_rectangle(rectanglePane);
 
@@ -1072,7 +1072,7 @@ namespace user
       else
       {
 
-         ::rectangle rectangle;
+         ::rectangle_f64 rectangle;
 
          CalcSplitBarRect(iPane - 1, rectangle);
 
@@ -1105,7 +1105,7 @@ namespace user
       else
       {
 
-         ::rectangle rectangle;
+         ::rectangle_f64 rectangle;
 
          CalcSplitBarRect(iPane, rectangle);
 
@@ -1142,7 +1142,7 @@ namespace user
       if(!m_bInitialized)
          return;
 
-      ::rectangle splitRect;
+      ::rectangle_f64 splitRect;
 
       CalcSplitBarRect(iSplitBar, &splitRect);
 
@@ -1358,7 +1358,7 @@ namespace user
       if (colorBackground.m_iA > 0)
       {
 
-         ::rectangle rectangleClient;
+         ::rectangle_f64 rectangleClient;
 
          client_rectangle(rectangleClient);
 

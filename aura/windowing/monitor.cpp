@@ -1,4 +1,4 @@
-﻿// created by Camilo 2021-01-31 05:16 BRT <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo 2021-01-31 05:16 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #include "framework.h"
 #include "acme/platform/system.h"
 #include "aura/graphics/image/image.h"

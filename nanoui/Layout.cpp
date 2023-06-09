@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/layout.cpp -- A collection of useful layout managers
 
     The grid layout was contributed by Christian Schueller.
@@ -27,10 +27,10 @@ namespace nanoui
    }
 
 
-   vector2_i32 BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   size_i32 BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      vector2_i32 size(2 * m_iMargin);
+      size_i32 size(2 * m_iMargin, 2 * m_iMargin);
 
       int y_offset = 0;
 
@@ -58,7 +58,7 @@ namespace nanoui
 
       auto iAxisIndex1 = index_of(m_eorientation);
 
-      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = orthogonal2_index_of(m_eorientation);
 
       for (auto pwidgetChild : pwidget->children())
       {
@@ -85,7 +85,7 @@ namespace nanoui
 
          auto sizeFixed = pwidgetChild->fixed_size();
 
-         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+         size_i32 sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
             [pwidgetChild, pcontext, bRecalcTextSize]()
             {
 
@@ -102,20 +102,22 @@ namespace nanoui
       }
 
       size[iAxisIndex1] += m_iSpacing;
-      return size + vector2_i32(0, y_offset);
+      
+      return size + size_i32(0, y_offset);
+      
    }
 
 
    void BoxLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      vector2_i32 sizeFixed = pwidget->fixed_size();
+      size_i32 sizeFixed = pwidget->fixed_size();
 
       auto container_size = sizeFixed.prefer_self_coordinate_if_positive(pwidget->size());
 
       auto iAxisIndex1 = index_of(m_eorientation);
 
-      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = orthogonal2_index_of(m_eorientation);
 
       int position = m_iMargin;
 
@@ -170,7 +172,7 @@ namespace nanoui
 
          auto sizeFixed = pwidgetChild->fixed_size();
 
-         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+         size_i32 sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
             [pwidgetChild, pcontext, bRecalcTextSize]()
             {
 
@@ -179,7 +181,7 @@ namespace nanoui
             });
 
 
-         vector2_i32 pos(0, y_offset);
+         size_i32 pos(0, y_offset);
 
          pos[iAxisIndex1] = position;
 
@@ -213,7 +215,7 @@ namespace nanoui
    }
 
 
-   vector2_i32 GroupLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   size_i32 GroupLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int height = m_iMargin, width = 2 * m_iMargin;
@@ -247,7 +249,7 @@ namespace nanoui
 
          auto sizeFixed = pwidgetChild->fixed_size();
 
-         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+         ::size_i32 sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
             [pwidgetChild, pcontext, bRecalcTextSize]()
             {
 
@@ -258,9 +260,9 @@ namespace nanoui
 
          bool indent_cur = indent && !plabel;
 
-         height += sizeTarget.y()();
+         height += sizeTarget.cy();
 
-         width = ::maximum(width, sizeTarget.x()() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
+         width = ::maximum(width, sizeTarget.cx() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
 
          if (plabel)
          {
@@ -273,7 +275,7 @@ namespace nanoui
 
       height += m_iMargin;
 
-      return vector2_i32(width, height);
+      return size_i32(width, height);
 
    }
 
@@ -323,22 +325,22 @@ namespace nanoui
 
          auto sizeFixed = pwidgetChild->fixed_size();
 
-         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+         size_i32 sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
             [&]()
             {
 
-               return vector2_i32(available_width - (indent_cur ? m_group_indent : 0),
-               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).y()());
+               return size_i32(available_width - (indent_cur ? m_group_indent : 0),
+               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).cy());
 
             });
 
-         pwidgetChild->set_position(vector2_i32(m_iMargin + (indent_cur ? m_group_indent : 0), height));
+         pwidgetChild->set_position(point_i32(m_iMargin + (indent_cur ? m_group_indent : 0), height));
 
          pwidgetChild->set_size(sizeTarget);
 
          pwidgetChild->perform_layout(pcontext);
 
-         height += sizeTarget.y()();
+         height += sizeTarget.cy();
 
          if (plabel)
          {
@@ -352,7 +354,7 @@ namespace nanoui
    }
 
 
-   vector2_i32 GridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize) 
+   size_i32 GridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       /* Compute minimum row / column sizes */
@@ -360,11 +362,11 @@ namespace nanoui
 
       compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
 
-      vector2_i32 size(
+      sequence2_i32 size(
          2 * m_iMargin + grid[0].get_sum()
-         + ::maximum((::i32) grid[0].size() - 1, 0) * m_iSpacing[0],
+         + ::maximum((::i32) grid[0].size() - 1, 0) * m_sizeSpacing[0],
          2 * m_iMargin + grid[1].get_sum()
-         + ::maximum((::i32)grid[1].size() - 1, 0) * m_iSpacing[1]
+         + ::maximum((::i32) grid[1].size() - 1, 0) * m_sizeSpacing[1]
       );
 
       const Window* window = dynamic_cast<const Window*>(pwidget);
@@ -386,7 +388,7 @@ namespace nanoui
 
       auto iAxisIndex1 = index_of(m_eorientation);
 
-      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = orthogonal2_index_of(m_eorientation);
 
       auto iChildrenCount = pwidget->children().size();
 
@@ -399,7 +401,7 @@ namespace nanoui
 
       }
 
-      vector2_i32 dim;
+      sequence2_i32 dim;
 
       dim[iAxisIndex1] = m_resolution;
 
@@ -433,7 +435,7 @@ namespace nanoui
 
             } while (!pwidgetChild->visible());
 
-            vector2_i32 sizeTarget;
+            sequence2_i32 sizeTarget;
 
             auto sizeFixed = pwidgetChild->fixed_size();
 
@@ -477,20 +479,20 @@ namespace nanoui
 
       int dim[2] = { (int)grid[0].size(), (int)grid[1].size() };
 
-      vector2_i32 extra(0);
+      size_i32 sizeExtra;
 
       const Window* window = dynamic_cast<const Window*>(pwidget);
 
       if (window && window->title().has_char())
-         extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+         sizeExtra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
       /* Strech to size provided by \pwidgetChild pwidget */
       for (int i = 0; i < 2; i++) {
-         int grid_size = 2 * m_iMargin + extra[i];
+         int grid_size = 2 * m_iMargin + sizeExtra[i];
          for (int s : grid[i]) {
             grid_size += s;
             if (i + 1 < dim[i])
-               grid_size += m_iSpacing[i];
+               grid_size += m_sizeSpacing[i];
          }
 
          if (grid_size < container_size[i]) {
@@ -507,15 +509,15 @@ namespace nanoui
 
       auto iAxisIndex1 = ::index_of(m_eorientation);
 
-      auto iAxisIndex2 = ::orthogonal_index_of(m_eorientation);
+      auto iAxisIndex2 = ::orthogonal2_index_of(m_eorientation);
 
-      vector2_i32 start = m_iMargin + extra;
+      point_i32 start = sizeExtra + ::size_i32(m_iMargin, m_iMargin);
 
       auto iChildrenCount = pwidget->children().size();
 
       ::index iChildIndex = 0;
 
-      vector2_i32 pos = start;
+      sequence2_i32 pos = start;
 
       for (int i2 = 0; i2 < dim[iAxisIndex2]; i2++)
       {
@@ -543,7 +545,7 @@ namespace nanoui
 
             auto sizeFixed = pwidgetChild->fixed_size();
 
-            auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+            size_i32 sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
                [pwidgetChild, pcontext, bRecalcTextSize]()
                {
 
@@ -552,7 +554,7 @@ namespace nanoui
                });
 
 
-            vector2_i32 item_pos(pos);
+            sequence2_i32 item_pos(pos);
             for (int j = 0; j < 2; j++) {
                int iAxisIndex = (iAxisIndex1 + j) % 2;
                int item = j == 0 ? i1 : i2;
@@ -575,9 +577,9 @@ namespace nanoui
             pwidgetChild->set_position(item_pos);
             pwidgetChild->set_size(sizeTarget);
             pwidgetChild->perform_layout(pcontext, bRecalcTextSize);
-            pos[iAxisIndex1] += grid[iAxisIndex1][i1] + m_iSpacing[iAxisIndex1];
+            pos[iAxisIndex1] += grid[iAxisIndex1][i1] + m_sizeSpacing[iAxisIndex1];
          }
-         pos[iAxisIndex2] += grid[iAxisIndex2][i2] + m_iSpacing[iAxisIndex2];
+         pos[iAxisIndex2] += grid[iAxisIndex2][i2] + m_sizeSpacing[iAxisIndex2];
       }
    }
 
@@ -588,7 +590,7 @@ namespace nanoui
    }
 
    
-   vector2_i32 AdvancedGridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   size_i32 AdvancedGridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       /* Compute minimum row / column sizes */
@@ -596,20 +598,20 @@ namespace nanoui
 
       compute_layout(pcontext, pwidget, grid);
 
-      vector2_i32 size(grid[0].get_sum(), grid[1].get_sum());
+      size_i32 size(grid[0].get_sum(), grid[1].get_sum());
 
-      vector2_i32 extra(2 * m_iMargin);
+      size_i32 sizeExtra(2 * m_iMargin, 2 * m_iMargin);
 
       const Window* window = dynamic_cast<const Window*>(pwidget);
 
       if (window && window->title().has_char())
       {
 
-         extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+         sizeExtra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
       }
 
-      return size + extra;
+      return size + sizeExtra;
 
    }
 
@@ -708,13 +710,13 @@ namespace nanoui
    void AdvancedGridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::i32_array* _grid)
    {
 
-      vector2_i32 fs_w = pwidget->fixed_size();
-      vector2_i32 container_size(
+      sequence2_i32 fs_w = pwidget->fixed_size();
+      sequence2_i32 container_size(
          fs_w[0] ? fs_w[0] : pwidget->width(),
          fs_w[1] ? fs_w[1] : pwidget->height()
       );
 
-      vector2_i32 extra(2 * m_iMargin);
+      size_i32 extra(2 * m_iMargin, 2 * m_iMargin);
       Window* window = dynamic_cast<Window*>(pwidget);
       if (window && window->title().has_char())
          extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
@@ -776,7 +778,7 @@ namespace nanoui
                float amt = (sizeTarget - current_size) / total_stretch;
                for (int i = anchor.pos[iAxisIndex];
                   i < anchor.pos[iAxisIndex] + anchor.size[iAxisIndex]; ++i)
-                  grid[i] += (int)std::round(amt * stretch[i]);
+                  grid[i] += (int)::round(amt * stretch[i]);
             }
          }
 
@@ -796,7 +798,7 @@ namespace nanoui
          for (::index i = 0; i < grid.size(); ++i)
          {
 
-            grid[i] += (int)std::round(amt * stretch[i]);
+            grid[i] += (int)::round(amt * stretch[i]);
 
          }
 

@@ -175,6 +175,13 @@
 			remoteGlobalIDString = 9AC019332748A002006BEBCC;
 			remoteInfo = crypto_openssl;
 		};
+		9A8F4D7D2A26D57C00097EE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96A3278537A900B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
+			remoteInfo = static_folder_zip;
+		};
 		9AC01D712748C477006BEBCC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC01D6D2748C477006BEBCC /* crypto_openssl.xcodeproj */;
@@ -272,6 +279,8 @@
 		9A8C5ECA2783E821000C8587 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8C5ECC2783E821000C8587 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A8C816E2783F891000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
+		9A8F4D782A26D57C00097EE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A8F4D822A26D57C00097EE1 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9AB15BE329A87A0B00DFDF90 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BE429A87A0B00DFDF90 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BE529A87A0B00DFDF90 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,6 +376,7 @@
 			children = (
 				9A4E96AA278537A900B74C76 /* libfolder_zip.dylib */,
 				9A1FB54A28713D350042849A /* libios_folder_zip.a */,
+				9A8F4D7E2A26D57C00097EE1 /* libstatic_folder_zip.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -393,6 +403,8 @@
 		9A8C5BD62783E7A9000C8587 /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				9A8F4D782A26D57C00097EE1 /* _____debug.xcconfig */,
+				9A8F4D822A26D57C00097EE1 /* _____release.xcconfig */,
 				9A86606729668701000C82F0 /* application.cpp */,
 				9A8C816E2783F891000C8587 /* _matter.zip */,
 				9A8C5EC72783E821000C8587 /* macos */,
@@ -657,6 +669,13 @@
 			remoteRef = 9A8C4DF82783BEEC000C8587 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9A8F4D7E2A26D57C00097EE1 /* libstatic_folder_zip.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_folder_zip.a;
+			remoteRef = 9A8F4D7D2A26D57C00097EE1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AC01D722748C477006BEBCC /* libcrypto_openssl.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -783,6 +802,7 @@
 /* Begin XCBuildConfiguration section */
 		070B8F051B6E53FA00D26137 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A8F4D782A26D57C00097EE1 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -835,7 +855,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PLATFORM_MODIFIER = macos;
@@ -850,6 +869,7 @@
 		};
 		070B8F061B6E53FA00D26137 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A8F4D822A26D57C00097EE1 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -897,7 +917,6 @@
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/operating_system",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -922,7 +941,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = shader;
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
 				PRODUCT_NAME = _app_shader;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -942,7 +960,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = shader;
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
 				PRODUCT_NAME = _app_shader;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -965,7 +982,6 @@
 				);
 				INFOPLIST_FILE = "Hello Multiverse!!Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app/Contents/MacOS/Hello Multiverse!!";
@@ -984,7 +1000,6 @@
 				);
 				INFOPLIST_FILE = "Hello Multiverse!!Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app/Contents/MacOS/Hello Multiverse!!";

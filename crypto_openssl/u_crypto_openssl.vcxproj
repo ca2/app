@@ -345,17 +345,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -371,15 +369,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -394,17 +392,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -420,8 +416,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
   </ItemDefinitionGroup>
@@ -441,15 +438,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -465,6 +462,8 @@
     <ClCompile>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
   </ItemDefinitionGroup>
@@ -485,9 +484,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
     <Link />
@@ -497,8 +496,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -514,8 +511,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
+    <Link />
+    <Link />
     <Link />
     <Link />
     <Link />
@@ -524,7 +522,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

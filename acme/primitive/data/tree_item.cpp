@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree_item.h"
 #include "item.h"
 #include "listener.h"

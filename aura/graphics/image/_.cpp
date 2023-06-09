@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-10-22 14:26 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-22 14:26 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "pixmap.h"
@@ -11,7 +11,7 @@ CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32
 
    byte * pDst = (byte *)pcolorrefDst;
 
-   return copy_colorref((::color32_t *)pDst + point.x() * sizeof(::color32_t) + point.y() * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+   return copy_colorref((::color32_t *)pDst + point.x() * sizeof(::color32_t) + point.y() * iStrideDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
 
 }
 

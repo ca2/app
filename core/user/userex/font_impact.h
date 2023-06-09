@@ -20,10 +20,11 @@ namespace userex
 
 
       font_impact();
-      virtual ~font_impact();
+      ~font_impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;
+
 
       // void assert_ok() const override;
 

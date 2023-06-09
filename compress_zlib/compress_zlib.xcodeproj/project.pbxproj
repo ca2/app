@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9A1EAA8C284B05B0000F05A8 /* uncompress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EB275010A4003F38EC /* uncompress.h */; };
-		9A1EAA8D284B05B0000F05A8 /* _compress_zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4C1275010A4003F38EC /* _compress_zlib.h */; };
 		9A1EAA8E284B05B0000F05A8 /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EA275010A4003F38EC /* compress.h */; };
 		9A1EAA8F284B05B0000F05A8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
 		9A1EAA90284B05B0000F05A8 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EC275010A4003F38EC /* framework.h */; };
@@ -17,7 +16,6 @@
 		9A1EAA94284B05B0000F05A8 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
 		9A1EAA95284B05B0000F05A8 /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
 		9A1EAA96284B05B0000F05A8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
-		9A81F512275010A6003F38EC /* _compress_zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4C1275010A4003F38EC /* _compress_zlib.h */; };
 		9A81F513275010A6003F38EC /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
 		9A81F514275010A6003F38EC /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
 		9A81F527275010A6003F38EC /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
@@ -27,7 +25,7 @@
 		9A81F534275010A6003F38EC /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F502275010A5003F38EC /* _factory.cpp */; };
 		9A81F535275010A6003F38EC /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F503275010A5003F38EC /* compress.cpp */; };
 		9A81F536275010A6003F38EC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
-		9A81F547275012E9003F38EC /* acme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F53D275010ED003F38EC /* acme.dylib */; };
+		9A81F547275012E9003F38EC /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F53D275010ED003F38EC /* libacme.dylib */; };
 		9A81F5492750142E003F38EC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5482750142E003F38EC /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -57,8 +55,9 @@
 
 /* Begin PBXFileReference section */
 		9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_compress_zlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A54A6322A2D66460052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A54A6332A2D66460052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A81F4B227501077003F38EC /* libcompress_zlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcompress_zlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A81F4C1275010A4003F38EC /* _compress_zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _compress_zlib.h; sourceTree = "<group>"; };
 		9A81F4C5275010A4003F38EC /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A81F4C6275010A4003F38EC /* uncompress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uncompress.cpp; sourceTree = "<group>"; };
 		9A81F4E4275010A4003F38EC /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -78,7 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A81F5492750142E003F38EC /* libz.tbd in Frameworks */,
-				9A81F547275012E9003F38EC /* acme.dylib in Frameworks */,
+				9A81F547275012E9003F38EC /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,9 +106,10 @@
 		9A81F4BF275010A4003F38EC /* compress_zlib */ = {
 			isa = PBXGroup;
 			children = (
+				9A54A6322A2D66460052BAB6 /* _____debug.xcconfig */,
+				9A54A6332A2D66460052BAB6 /* _____release.xcconfig */,
 				9A81F4E4275010A4003F38EC /* _.cpp */,
 				9A81F508275010A6003F38EC /* _.h */,
-				9A81F4C1275010A4003F38EC /* _compress_zlib.h */,
 				9A81F502275010A5003F38EC /* _factory.cpp */,
 				9A81F503275010A5003F38EC /* compress.cpp */,
 				9A81F4EA275010A4003F38EC /* compress.h */,
@@ -124,8 +124,8 @@
 		9A81F538275010ED003F38EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A81F53D275010ED003F38EC /* acme.dylib */,
-				9A81F53F275010ED003F38EC /* libios_acme.a */,
+				9A81F53D275010ED003F38EC /* libacme.dylib */,
+				9A81F53F275010ED003F38EC /* libstatic_acme.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,7 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A1EAA8C284B05B0000F05A8 /* uncompress.h in Headers */,
-				9A1EAA8D284B05B0000F05A8 /* _compress_zlib.h in Headers */,
 				9A1EAA8E284B05B0000F05A8 /* compress.h in Headers */,
 				9A1EAA8F284B05B0000F05A8 /* _.h in Headers */,
 				9A1EAA90284B05B0000F05A8 /* framework.h in Headers */,
@@ -158,7 +157,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A81F529275010A6003F38EC /* uncompress.h in Headers */,
-				9A81F512275010A6003F38EC /* _compress_zlib.h in Headers */,
 				9A81F528275010A6003F38EC /* compress.h in Headers */,
 				9A81F536275010A6003F38EC /* _.h in Headers */,
 				9A81F52A275010A6003F38EC /* framework.h in Headers */,
@@ -242,19 +240,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A81F53D275010ED003F38EC /* acme.dylib */ = {
+		9A81F53D275010ED003F38EC /* libacme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = acme.dylib;
 			path = libacme.dylib;
 			remoteRef = 9A81F53C275010ED003F38EC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A81F53F275010ED003F38EC /* libios_acme.a */ = {
+		9A81F53F275010ED003F38EC /* libstatic_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = ios_acme.a;
-			path = libios_acme.a;
+			path = libstatic_acme.a;
 			remoteRef = 9A81F53E275010ED003F38EC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -334,6 +330,7 @@
 		};
 		9A81F4B427501077003F38EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A54A6322A2D66460052BAB6 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -393,7 +390,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -431,6 +427,7 @@
 		};
 		9A81F4B527501077003F38EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A54A6332A2D66460052BAB6 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -485,7 +482,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

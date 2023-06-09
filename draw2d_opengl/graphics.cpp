@@ -200,8 +200,8 @@ namespace draw2d_opengl
       dwStyle &= ~WS_BORDER;
       int x = 0;
       int y = 0;
-      int nWidth = size.cx;
-      int nHeight = size.cy;
+      int nWidth = size.cx();
+      int nHeight = size.cy();
       HWND hWndParent = nullptr;
       HMENU hMenu = nullptr;
       ///HINSTANCE hInstance = psystem->m_hinstance;
@@ -594,7 +594,7 @@ namespace draw2d_opengl
 
    //size_i32 graphics::set_context_extents(const ::size_i32 & size)
    //{
-   //   return set_context_extents(size.cx, size.cy);
+   //   return set_context_extents(size.cx(), size.cy());
    //}
 
    point_i32 graphics::SetWindowOrg(const ::point_i32 & point)
@@ -604,7 +604,7 @@ namespace draw2d_opengl
 
    size_i32 graphics::set_window_ext(const ::size_i32 & size)
    {
-      return set_window_ext(size.cx, size.cy);
+      return set_window_ext(size.cx(), size.cy());
    }
 
    void graphics::DPtoLP(::point_f64 * lpPoints, ::count nCount)
@@ -1022,7 +1022,7 @@ namespace draw2d_opengl
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x(), point.y(), size.cx, size.cy, nFlags|DST_BITMAP) != false;
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
 //      return false;
 //
 //   }
@@ -1031,7 +1031,7 @@ namespace draw2d_opengl
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x(), point.y(), size.cx, size.cy, nFlags|DST_BITMAP) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
 //
 //      return false;
 //
@@ -1041,7 +1041,7 @@ namespace draw2d_opengl
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x(), point.y(), size.cx, size.cy, nFlags|DST_ICON) != false;
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_ICON) != false;
 //
 //      return false;
 //
@@ -1052,7 +1052,7 @@ namespace draw2d_opengl
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x(), point.y(), size.cx, size.cy, nFlags|DST_ICON) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_ICON) != false;
 //      return false;
 //
 //   }
@@ -1062,7 +1062,7 @@ namespace draw2d_opengl
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x(), point.y(), size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
+//      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x(), point.y(), size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
 //      return false;
 //
 //   }
@@ -1072,7 +1072,7 @@ namespace draw2d_opengl
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x(), point.y(), size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x(), point.y(), size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
 //      return false;
 //
 //   }
@@ -1082,7 +1082,7 @@ namespace draw2d_opengl
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, hBrush,
-//          //               lpDrawProc, lData, 0, point.x(), point.y(), size.cx, size.cy, nFlags|DST_COMPLEX) != false;
+//          //               lpDrawProc, lData, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
 //      return false;
 //
 //   }
@@ -1092,7 +1092,7 @@ namespace draw2d_opengl
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(),
-//        //                 lpDrawProc, lData, 0, point.x(), point.y(), size.cx, size.cy, nFlags|DST_COMPLEX) != false;
+//        //                 lpDrawProc, lData, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
 //      return false;
 //
 //   }
@@ -1513,7 +1513,7 @@ namespace draw2d_opengl
    }
 
 
-   //bool graphics::rectangle(double x1, double y1, double x2, double y2)
+   //bool graphics::rectangle_f64(double x1, double y1, double x2, double y2)
    //{
 
    //   //plusplus::rectF rectangle_f32((plusplus::REAL) x1, (plusplus::REAL) y1, (plusplus::REAL) (x2 - x1), (plusplus::REAL) (y2 - y1));
@@ -2096,13 +2096,13 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::ScrollDC(double Δx, double Δy,
+   //bool graphics::ScrollDC(double greekdeltax, double greekdeltay,
    //                        const ::rectangle_f64 & lpRectScroll,const ::rectangle_f64 & rectangleClip,
    //                        ::draw2d::region* pRgnUpdate, ::rectangle_f64 * lpRectUpdate)
    //{
    //   
    //   // ASSERT(m_hdc != nullptr);
-   //   //return ::ScrollDC(m_hdc,Δx,Δy,&rectangleClip,
+   //   //return ::ScrollDC(m_hdc,greekdeltax,greekdeltay,&rectangleClip,
    //     //                &rectangleClip, (HRGN)pRgnUpdate->get_os_data(), lpRectUpdate) != false;
    //   return 0;
 
@@ -2348,7 +2348,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, ::angle fStartAngle, ::angle fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::AngleArc(m_hdc, x, y, nRadius, fStartAngle, fSweepAngle) != false;
@@ -2834,7 +2834,7 @@ namespace draw2d_opengl
 ////         keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 ////
 ////
-////         return BitBlt(ptDest.x(), ptDest.y(), size.cx, size.cy, imageWork.get_graphics(), pointSrc.x(), pointSrc.y());
+////         return BitBlt(ptDest.x(), ptDest.y(), size.cx(), size.cy(), imageWork.get_graphics(), pointSrc.x(), pointSrc.y());
 ////
 ////
 ////      }
@@ -3085,7 +3085,7 @@ namespace draw2d_opengl
 
    void graphics::DPtoHIMETRIC(::size_f64 * psize)
    {
-//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 //
 //      double nMapMode;
 //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3112,15 +3112,15 @@ namespace draw2d_opengl
 
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-//         LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
-//         LPSIZE32->cy = MulDiv(LPSIZE32->cy, HIMETRIC_INCH, cyPerInch);
+//         LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), HIMETRIC_INCH, cxPerInch);
+//         LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), HIMETRIC_INCH, cyPerInch);
 //      }
    }
 
 
    void graphics::HIMETRICtoDP(::size_f64 * psize)
    {
-//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+//      ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 //
 //      double nMapMode;
 //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
@@ -3147,15 +3147,15 @@ namespace draw2d_opengl
 
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-//         LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
-//         LPSIZE32->cy = MulDiv(LPSIZE32->cy, cyPerInch, HIMETRIC_INCH);
+//         LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), cxPerInch, HIMETRIC_INCH);
+//         LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), cyPerInch, HIMETRIC_INCH);
 //      }
    }
 
 
    void graphics::LPtoHIMETRIC(::size_f64 * psize)
    {
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //LPtoDP(LPSIZE32);
       //DPtoHIMETRIC(LPSIZE32);
@@ -3164,7 +3164,7 @@ namespace draw2d_opengl
 
    void graphics::HIMETRICtoLP(::size_f64 * psize)
    {
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //HIMETRICtoDP(LPSIZE32);
       //DPtoLP(LPSIZE32);
@@ -3214,7 +3214,7 @@ namespace draw2d_opengl
    //         ::draw2d::region rgnOutside, rgnInside;
    //         rgnOutside.create_rect(rectangle);
    //         const ::rectangle_f64 & rectangle = *rectangle;
-   //         rectangle.inflate(-size.cx, -size.cy);
+   //         rectangle.inflate(-size.cx(), -size.cy());
    //         rectangle.intersect(rectangle, rectangle);
    //         rgnInside.create_rect(rectangle);
    //         rgnNew.create_rect(0, 0, 0, 0);
@@ -3240,7 +3240,7 @@ namespace draw2d_opengl
    //            rgnLast.create_rect(0, 0, 0, 0);
    //            rgnOutside.SetRectRgn(lpRectLast);
    //            rectangle = *lpRectLast;
-   //            rectangle.inflate(-sizeLast.cx, -sizeLast.cy);
+   //            rectangle.inflate(-sizeLast.cx(), -sizeLast.cy());
    //            rectangle.intersect(rectangle, lpRectLast);
    //            rgnInside.SetRectRgn(rectangle);
    //            rgnLast.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
@@ -3613,14 +3613,15 @@ namespace draw2d_opengl
    }
 
    
-   ::i32 graphics::SaveDC()
+   ::i32 graphics::save_graphics_context()
    {
 //      return m_pgraphics->Save();
       return 0;
+
    }
 
    
-   void graphics::RestoreDC(::i32 nSavedDC)
+   void graphics::restore_graphics_context(::i32 iSavedContext)
    {
 
       //return m_pgraphics->Restore(nSavedDC) != false;
@@ -4168,9 +4169,9 @@ namespace draw2d_opengl
       int nRetVal =0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
-      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx, size.cy);
+      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx(), size.cy());
       //if(m_hdc != nullptr)
-      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx, size.cy);
+      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx(), size.cy());
 
       return nRetVal;
 
@@ -4609,12 +4610,12 @@ namespace draw2d_opengl
    void graphics::LPtoDP(::size_f64 *LPSIZE32) 
    {
 
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //size_i32 sizeWinExt = GetWindowExt();
       //size_i32 sizeVpExt = get_context_extents();
-      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
-      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
+      //LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), abs(sizeVpExt.cx()), abs(sizeWinExt.cx()));
+      //LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), abs(sizeVpExt.cy()), abs(sizeWinExt.cy()));
 
    }
 
@@ -4622,12 +4623,12 @@ namespace draw2d_opengl
    void graphics::DPtoLP(::size_f64  * psize)
    {
 
-      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(SIZE_I32)));
+      //ASSERT(is_memory_segment_ok(LPSIZE32, sizeof(::size_i32)));
 
       //size_i32 sizeWinExt = GetWindowExt();
       //size_i32 sizeVpExt = get_context_extents();
-      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
-      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
+      //LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), abs(sizeWinExt.cx()), abs(sizeVpExt.cx()));
+      //LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), abs(sizeWinExt.cy()), abs(sizeVpExt.cy()));
 
    }
 
@@ -4819,7 +4820,7 @@ namespace draw2d_opengl
 
       //::pointer<font>pfont = m_pfont;
 
-      //SIZE_I32 s = { 0 };
+      //::size_i32 s = { 0 };
 
       //::GetTextExtentPointW(pfont->m_hdcFont, wstr, wstr.get_length(), &s);
 
@@ -4836,7 +4837,7 @@ namespace draw2d_opengl
    //   if (!get_text_extent(size, lpszString, nCount, 0))
    //      return ::size_i32(0, 0);
 
-   //   return ::size_i32(size.cx, size.cy);
+   //   return ::size_i32(size.cx(), size.cy());
 
    //}
 
@@ -4849,7 +4850,7 @@ namespace draw2d_opengl
       if(!get_text_extent(size, str, (double) str.length(), 0))
          return ::size_i32(0, 0);
 
-      return ::size_i32((long) size.cx, (long) size.cy);
+      return ::size_i32((long) size.cx(), (long) size.cy());
 
    }*/
 
@@ -4958,9 +4959,9 @@ namespace draw2d_opengl
 //      //FT_Done_Face(face);
 //      //FT_Done_FreeType(ft);
 //
-//      size.cx = s.cx;
+//      size.cx() = s.cx();
 //
-//      size.cy = s.cy;
+//      size.cy() = s.cy();
 //
 //      return true;
 //
@@ -4983,9 +4984,9 @@ namespace draw2d_opengl
 //      //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (double)wstr.get_length(), &s))
 //        // return false;
 //
-//      size.cx = s.cx;
+//      size.cx() = s.cx();
 //
-//      size.cy = s.cy;
+//      size.cy() = s.cy();
 //
 //      return true;
 //
@@ -5008,9 +5009,9 @@ namespace draw2d_opengl
 //      //if (::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (double)wstr.get_length(), &s))
 //        // return false;
 //
-//      size.cx = s.cx;
+//      size.cx() = s.cx();
 //
-//      size.cy = s.cy;
+//      size.cy() = s.cy();
 //
 //      return true;
 //
@@ -5746,7 +5747,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
    {
 
 
@@ -5867,18 +5868,18 @@ namespace opengl
 
       //double d = 1.0;
 
-      //glViewport(0, 0, size.cx * d, size.cy * d);
+      //glViewport(0, 0, size.cx() * d, size.cy() * d);
 
-      glViewport(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx(), size.cy());
 
       glMatrixMode(GL_PROJECTION);
       glLoadIdentity();
-      //glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
-      //glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
-      //glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
-      //glOrtho(0.f, size.cx, 0.f, size.cy, -1.0f, 1.0f);
-      gluOrtho2D(0.f, size.cx, 0.f, size.cy);
+      //glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
+      //glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
+      ////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
+      //glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
+      //glOrtho(0.f, size.cx(), 0.f, size.cy(), -1.0f, 1.0f);
+      gluOrtho2D(0.f, size.cx(), 0.f, size.cy());
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();
 

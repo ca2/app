@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/parallelization/manual_reset_event.h"
@@ -58,13 +58,10 @@ namespace user
       
 
       bool                                      m_bRedraw;
-      bool                                      m_bUpdateBuffer; // internal offscreen buffer
-      bool                                      m_bUpdateScreen; // screen buffer
-      bool                                      m_bUpdateWindow; // window frame
 
 
       bool                                      m_bExclusiveMode;
-      bool                                      m_bVisualUpdated;
+      //bool                                      m_bVisualUpdated;
 
       bool                                      m_bUpdatingScreen;
 
@@ -95,7 +92,8 @@ namespace user
       bool prodevian_iteration();
       bool prodevian_update_buffer(bool bRedraw);
       bool prodevian_update_screen();
-      void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
+      //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
+      void update_buffer();
       bool update_screen();
 
       

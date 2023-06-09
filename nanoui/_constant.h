@@ -1,5 +1,5 @@
-﻿//
-// enum_alignment and enum_orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSørensen!!
+//
+// enum_alignment and enum_orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 

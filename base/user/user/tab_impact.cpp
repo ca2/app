@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -448,7 +448,9 @@ namespace user
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
-      auto rectangle = pchannel->get_data()->m_rectangleTabClient+pchannel->client_to_screen();
+      auto rectangle = pchannel->get_data()->m_rectangleTabClient;
+
+      pchannel->client_to_screen()(rectangle);
 
       m_pdroptargetwindow->m_bTransparent = true;
 
@@ -458,7 +460,7 @@ namespace user
 
       m_pdroptargetwindow->place(rectangle);
 
-      m_pdroptargetwindow->display(e_display_restored);
+      m_pdroptargetwindow->display(e_display_normal);
 
       m_pdroptargetwindow->set_mouse_capture();
 
@@ -515,10 +517,12 @@ namespace user
 
       auto ptabdata = get_data();
 
-      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+      //::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
 
-      ::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
+      //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
 
+      ::user::impact_data * pimpactdata = get_impact_data(atom, true);
+      
       if (pimpactdata == nullptr)
       {
 
@@ -829,7 +833,8 @@ namespace user
    ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
-      if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      //if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      if (get_impact_data(atom, true) == nullptr)
       {
 
          return nullptr;

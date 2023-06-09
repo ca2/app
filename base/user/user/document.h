@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/primitive/collection/pointer_array.h"
@@ -247,7 +247,7 @@ namespace user
 
       virtual ::pointer<::user::impact>get_typed_impact_with_id(::type info,atom atom);
 
-      virtual void show_all_frames(const ::e_display & edisplay = e_display_restored);
+      virtual void show_all_frames(const ::e_display & edisplay = e_display_normal);
 
 
       //class update

@@ -1,14 +1,15 @@
-﻿#include "framework.h"
+#include "framework.h"
+#include "control_bar.h"
+#include "frame_window.h"
 //#include "acme/operating_system.h"
 //#include "aura/operating_system/_user.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "control_bar.h"
-#include "frame_window.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
+#include "aura/user/user/size_parent_layout.h"
 
 
 namespace user
@@ -219,8 +220,8 @@ namespace user
    size_i32 control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
    {
       ::size_i32 size;
-      size.cx = (bStretch && bHorz ? 32767 : 0);
-      size.cy = (bStretch && !bHorz ? 32767 : 0);
+      size.cx() = (bStretch && bHorz ? 32767 : 0);
+      size.cy() = (bStretch && !bHorz ? 32767 : 0);
       return size;
    }
 
@@ -560,7 +561,7 @@ namespace user
       client_rectangle(rectangleClient);
       ::rectangle_i32 rectangleWindow;
       window_rectangle(rectangleWindow);
-      rectangleWindow+=screen_to_client();
+      screen_to_client()(rectangleWindow);
       rectangleClient.offset(-rectangleWindow.left, -rectangleWindow.top);
       
       //pgraphics->exclude_clip();
@@ -732,7 +733,7 @@ namespace user
 //            else if (swpFlags & SWP_SHOWWINDOW)
 //            {
 //
-//               display(e_display_restored, e_activation_no_activate);
+//               display(e_display_normal, e_activation_no_activate);
 //
 //            }
 //
@@ -751,7 +752,7 @@ namespace user
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
-      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pmessage->m_lparam.m_lparam;
+      size_parent_layout * playout = (size_parent_layout *) pmessage->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
 
@@ -763,12 +764,12 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         ::copy(rectangle, playout->rectangle);
+         rectangle = playout->m_rectangle;
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 
          // get maximum requested size_i32
-         u32 dwMode = playout->bStretch ? LM_STRETCH : 0;
+         u32 dwMode = playout->m_bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
          {
@@ -799,48 +800,65 @@ namespace user
 
          ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
-         size.cx = minimum(size.cx, sizeAvail.cx);
-         size.cy = minimum(size.cy, sizeAvail.cy);
+         size.cx() = minimum(size.cx(), sizeAvail.cx());
+         size.cy() = minimum(size.cy(), sizeAvail.cy());
 
          if (uStyle & CBRS_ORIENT_HORZ)
          {
-            playout->sizeTotal.cy += size.cy;
 
-            playout->sizeTotal.cx = maximum(playout->sizeTotal.cx, size.cx);
+            playout->m_sizeTotal.cy() += size.cy();
+
+            playout->m_sizeTotal.cx() = maximum(playout->m_sizeTotal.cx(), size.cx());
 
             if (uStyle & CBRS_ALIGN_TOP)
-               playout->rectangle.top += size.cy;
-
-            else if (uStyle & CBRS_ALIGN_BOTTOM)
             {
-               rectangle.top = rectangle.bottom - size.cy;
-               playout->rectangle.bottom -= size.cy;
+
+               playout->m_rectangle.top += size.cy();
 
             }
+            else if (uStyle & CBRS_ALIGN_BOTTOM)
+            {
+
+               rectangle.top = rectangle.bottom - size.cy();
+
+               playout->m_rectangle.bottom -= size.cy();
+
+            }
+
          }
          else if (uStyle & CBRS_ORIENT_VERT)
          {
-            playout->sizeTotal.cx += size.cx;
 
-            playout->sizeTotal.cy = maximum(playout->sizeTotal.cy, size.cy);
+            playout->m_sizeTotal.cx() += size.cx();
+
+            playout->m_sizeTotal.cy() = maximum(playout->m_sizeTotal.cy(), size.cy());
 
             if (uStyle & CBRS_ALIGN_LEFT)
-               playout->rectangle.left += size.cx;
-
-            else if (uStyle & CBRS_ALIGN_RIGHT)
             {
-               rectangle.left = rectangle.right - size.cx;
-               playout->rectangle.right -= size.cx;
+
+               playout->m_rectangle.left += size.cx();
 
             }
+            else if (uStyle & CBRS_ALIGN_RIGHT)
+            {
+
+               rectangle.left = rectangle.right - size.cx();
+
+               playout->m_rectangle.right -= size.cx();
+
+            }
+
          }
          else
          {
+
             ASSERT(false);      // can never happen
+
          }
 
-         rectangle.right = rectangle.left + size.cx;
-         rectangle.bottom = rectangle.top + size.cy;
+         rectangle.right = rectangle.left + size.cx();
+
+         rectangle.bottom = rectangle.top + size.cy();
 
          // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
          //if (playout->hDWP != nullptr)
@@ -857,11 +875,11 @@ namespace user
 
          window_rectangle(rectangleOld);
 
-         rectangleOld += puiParent->screen_to_client();
+         puiParent->screen_to_client()(rectangleOld);
 
          place(rectangle);
 
-         display(e_display_restored, e_activation_no_activate);
+         display(e_display_normal, e_activation_no_activate);
 
       }
 
@@ -1090,19 +1108,19 @@ namespace user
             //   rectangle.top+m_rectangleBorder.top,
             //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top-m_rectangleBorder.bottom,
             //   ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
-            i32 Δx = CX_GRIPPER / 2;
-            i32 Δy = CY_GRIPPER / 2;
+            i32 greekdeltax = CX_GRIPPER / 2;
+            i32 greekdeltay = CY_GRIPPER / 2;
             i32 ix = rectangle.left + CX_BORDER_GRIPPER;
-            i32 iy = rectangle.top + m_rectangleBorder.top + Δy / 2;
-            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - Δy * 3;
+            i32 iy = rectangle.top + m_rectangleBorder.top + greekdeltay / 2;
+            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - greekdeltay * 3;
 
-            for(; iy < cy; iy += Δy)
+            for(; iy < cy; iy += greekdeltay)
             {
-               DrawGripperElement001(pgraphics, ix + Δx, iy);
-               iy += Δy;
+               DrawGripperElement001(pgraphics, ix + greekdeltax, iy);
+               iy += greekdeltay;
                DrawGripperElement001(pgraphics, ix,      iy);
             }
-            DrawGripperElement001(pgraphics, ix + Δx, iy);
+            DrawGripperElement001(pgraphics, ix + greekdeltax, iy);
          }
          else
          {
@@ -1110,19 +1128,19 @@ namespace user
             //            rectangle.top+CY_BORDER_GRIPPER,
             //            rectangle.width()-m_rectangleBorder.top-m_rectangleBorder.bottom, CY_GRIPPER,
             //            ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
-            i32 Δx = CX_GRIPPER / 2;
-            i32 Δy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left + m_rectangleBorder.top + Δx / 2;
+            i32 greekdeltax = CX_GRIPPER / 2;
+            i32 greekdeltay = CY_GRIPPER / 2;
+            i32 ix = rectangle.left + m_rectangleBorder.top + greekdeltax / 2;
             i32 iy = rectangle.top + CY_BORDER_GRIPPER;
-            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - Δx * 3;
+            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - greekdeltax * 3;
 
-            for(; ix < cx; ix += Δx)
+            for(; ix < cx; ix += greekdeltax)
             {
-               DrawGripperElement001(pgraphics, ix, iy + Δy);
-               ix += Δx;
+               DrawGripperElement001(pgraphics, ix, iy + greekdeltay);
+               ix += greekdeltax;
                DrawGripperElement001(pgraphics, ix, iy);
             }
-            DrawGripperElement001(pgraphics, ix, iy + Δy);
+            DrawGripperElement001(pgraphics, ix, iy + greekdeltay);
          }
       }
    }
@@ -1240,7 +1258,6 @@ namespace user
       return m_rectangleBorder;
 
    }
-
 
 
 } // namespace user

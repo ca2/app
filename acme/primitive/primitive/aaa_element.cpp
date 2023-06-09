@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-08-01 23:42 Thomas Month!! <3ThomasBS__!!
+// Created by camilo on 2021-08-01 23:42 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
 #include "element.h"
 #include "acme/exception/interface_only.h"

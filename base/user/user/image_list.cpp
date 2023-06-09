@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -25,8 +25,8 @@ namespace user
 
       m_iTextHeight = 30;
       m_bMultiSel = true;
-      m_size.cx = 128;
-      m_size.cy = 128;
+      m_size.cx() = 128;
+      m_size.cy() = 128;
 
       m_bNoName = false;
       m_iPad = 10;
@@ -230,9 +230,9 @@ namespace user
 
    //      int cx = rectangleClient.width();
 
-   //      int w = m_size.cx;
+   //      int w = m_size.cx();
 
-   //      int h = m_size.cy;
+   //      int h = m_size.cy();
 
    //      int iColCount = (cx - xpad) / (w + xpad);
 
@@ -337,7 +337,7 @@ namespace user
 
    //      }
 
-   //      item.m_rectangle.top += m_size.cy;
+   //      item.m_rectangle.top += m_size.cy();
 
    //      return true;
 
@@ -684,19 +684,19 @@ namespace user
 
          }
 
-         if (x > left && x + m_size.cx + m_iPad >= rectangleClient.width())
+         if (x > left && x + m_size.cx() + m_iPad >= rectangleClient.width())
          {
 
             x = left;
 
-            y += m_size.cy + m_iPad;
+            y += m_size.cy() + m_iPad;
 
          }
 
          pitem->m_rectangle.left = x;
-         pitem->m_rectangle.right = x + m_size.cx;
+         pitem->m_rectangle.right = x + m_size.cx();
          pitem->m_rectangle.top = y;
-         pitem->m_rectangle.bottom = y + m_size.cy;
+         pitem->m_rectangle.bottom = y + m_size.cy();
 
          x = pitem->m_rectangle.right + m_iPad;
 
@@ -709,7 +709,7 @@ namespace user
 
       //   m_sizeImage = sizeImage;
 
-      //   //m_iWheelDeltaScroll = (i16) (sizeImage.cy / 3);
+      //   //m_iWheelDeltaScroll = (i16) (sizeImage.cy() / 3);
 
       //   m_pimageaThumb->m_imagea.erase_all();
 

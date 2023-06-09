@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_child.h"
 #include "interaction.h"
 #include "acme/constant/message.h"

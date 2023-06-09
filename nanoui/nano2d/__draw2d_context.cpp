@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "draw2d_context.h"
 #include "acme/platform/context.h"
@@ -284,7 +284,7 @@ namespace nano2d
          else if (paintimage.m_pimage)
          {
 
-            ::draw2d::savedc save(m_pgraphics);
+            ::draw2d::save_context savecontext(m_pgraphics);
 
             m_pgraphics->intersect_clip(m_pstate->m_ppath);
 
@@ -576,7 +576,7 @@ namespace nano2d
       //else if (paintimage.m_pimage)
       //{
 
-      //   ::draw2d::savedc save(m_pgraphics);
+      //   ::draw2d::save_context savecontext(m_pgraphics);
 
       //   m_pgraphics->intersect_clip(m_pstate->m_ppath);
 
@@ -708,32 +708,32 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
       
       m_pgraphics->text_out({ (double)x + offsetx, (double)y + offsety }, strText);
 
-      return (float) (x + offsetx + size.cx);
+      return (float) (x + offsetx + size.cx());
 
    }
 
@@ -756,26 +756,26 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
 
@@ -830,26 +830,26 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
 
@@ -858,12 +858,12 @@ namespace nano2d
 
          bounds[0] = (float) (x + offsetx);
          bounds[1] = (float) (y + offsety);
-         bounds[2] = (float) (x + offsetx + size.cx);
-         bounds[3] = (float) (y + offsety + size.cy);
+         bounds[2] = (float) (x + offsetx + size.cx());
+         bounds[3] = (float) (y + offsety + size.cy());
 
       }
 
-      return (float) (x + offsetx + size.cx);
+      return (float) (x + offsetx + size.cx());
 
    }
 
@@ -925,7 +925,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::ellipse(float cx, float cy, float rx, float ry)
+   void draw2d_context::ellipse_f64(float cx, float cy, float rx, float ry)
    {
 
       if (m_pstate->m_ppath)

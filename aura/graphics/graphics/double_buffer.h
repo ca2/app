@@ -15,9 +15,9 @@ namespace graphics
 
 
       int                           m_iGoodStride;
-      ::image_pointer               m_imageaBuffer[2];
-      ::pointer_array < ::mutex >   m_mutexa;
-      bool                          m_bSingleBufferMode;
+      //::image_pointer               m_imageaBuffer[2];
+      //::pointer_array < ::mutex >   m_mutexa;
+      //bool                          m_bSingleBufferMode;
 
 
       bool                          m_bDibIsHostingBuffer;
@@ -33,15 +33,21 @@ namespace graphics
       void initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
 
 
+      bool is_single_buffer_mode() const override;
+
+
       bool buffer_lock_round_swap_key_buffers() override;
 
       // synchronous_lock buffer synchronization first...
-      ::particle * get_buffer_sync() override;
-      ::image_pointer & get_buffer_image() override;
+      buffer_item * get_buffer_item() override;
+      //::particle * get_buffer_sync() override;
+      //::image_pointer & get_buffer_image() override;
 
       // synchronous_lock screen synchronization first...
-      virtual ::particle * get_screen_sync() override;
-      virtual ::image_pointer & get_screen_image() override;
+      buffer_item * get_screen_item() override;
+      //virtual ::particle * get_screen_sync() override;
+      //virtual ::image_pointer & get_screen_image() override;
+
 
       ::index get_buffer_index() const;
       ::index get_screen_index() const;
@@ -49,8 +55,8 @@ namespace graphics
       using graphics::update_screen;
       bool update_screen() override;
 
-      ::particle * get_draw_lock() override;
-      ::draw2d::graphics * on_begin_draw() override;
+      //::particle * get_draw_lock() override;
+      buffer_item * on_begin_draw() override;
 
 
       void destroy_buffer() override;

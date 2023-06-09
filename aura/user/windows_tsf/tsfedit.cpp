@@ -567,7 +567,7 @@ LRESULT edit_window::_OnDestroy(VOID)
 //{
 //    OutputDebugString(TEXT("edit_window::_OnSetFocus\n"));
 //    
-//    SetFocus(m_hwndEdit);
+//    XXXSetFocus(m_hwndEdit);
 //
 //    return 0;
 //}
@@ -586,7 +586,7 @@ void edit_window::on_edit_set_focus(::user::interaction * pinteraction)
     OutputDebugString(TEXT("edit_window::_OnEditSetFocus\n"));
     
 #ifndef USE_ASSOC_FOCUS
-    m_pThreadMgr->SetFocus(m_pDocMgr);
+    m_pThreadMgr->XXXSetFocus(m_pDocMgr);
 #endif
 
     //return 0;
@@ -855,7 +855,7 @@ void edit_window::_UpdateStatusBar(void)
     int     nParts[2];
     HDC     hdc;
     //HFONT   hFont;
-    SIZE_I32    size;
+    ::size_i32    size;
     TCHAR   szComposition[MAX_PATH];
 
     //hdc = GetDC(m_hwndStatus);
@@ -872,7 +872,7 @@ void edit_window::_UpdateStatusBar(void)
     //}
 
     //GetTextExtentPoint32(hdc, szComposition, lstrlen(szComposition), &size);
-    //nParts[0] = size.cx + (GetSystemMetrics(SM_CXEDGE) * 4);
+    //nParts[0] = size.cx() + (GetSystemMetrics(SM_CXEDGE) * 4);
 
     //nParts[1] = -1;
     

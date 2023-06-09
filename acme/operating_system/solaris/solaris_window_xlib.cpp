@@ -34,14 +34,14 @@ void window_xlib::create(oswindow window, i64 cxParam, i64 cyParam, int iStrideP
 
    m_window = window;
 
-   m_size.cx = cxParam;
+   m_size.cx() = cxParam;
 
-   m_size.cy = cyParam;
+   m_size.cy() = cyParam;
 
-   //if(iStrideParam < 0 || iStrideParam < (m_size.cx * sizeof(color32_t)))
+   //if(iStrideParam < 0 || iStrideParam < (m_size.cx() * sizeof(color32_t)))
    {
 
-      m_iScan = m_size.cx * sizeof(color32_t);
+      m_iScan = m_size.cx() * sizeof(color32_t);
 
    }
    /*else
@@ -100,7 +100,7 @@ void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, cons
       return;
 
 
-   //memory_set(pOsBitmapData, 0x44, minimum(iStride * 16, iStride * m_size.cy));
+   //memory_set(pOsBitmapData, 0x44, minimum(iStride * 16, iStride * m_size.cy()));
 
    copy_colorref((color32_t *) m_mem.get_data(), pOsBitmapData, iStride);
 
@@ -109,7 +109,7 @@ void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, cons
    try
    {
 
-/*      XPutImage(m_window->display(), m_window->window(), m_pdc->m_gc, m_pimage, 0, 0, 0, 0, m_size.cx, m_size.cy);
+/*      XPutImage(m_window->display(), m_window->window(), m_pdc->m_gc, m_pimage, 0, 0, 0, 0, m_size.cx(), m_size.cy());
 
    }
    catch(...)

@@ -1,4 +1,4 @@
-﻿#define NO_TEMPLATE
+#define NO_TEMPLATE
 
 struct TIME;
 

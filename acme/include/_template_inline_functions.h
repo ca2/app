@@ -1,5 +1,14 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+void copy_cast_number(NUMBER1 & n1, NUMBER2 n2)
+{
+   
+   n1 = (NUMBER1) n2;
+   
+}
 
 
 template < typename A, typename B >
@@ -65,7 +74,7 @@ constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CH
 
 
 /// initially for __utosz_internal and __utosz
-/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSørensen!!
+/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
 template < typename TYPE >
 void reverse(TYPE * begin, TYPE * end)
 {
@@ -112,7 +121,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
    return ::make_pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
-//::::pair<int, int> ia;
+//::pair<int, int> ia;
 //inline ::u64 make64_from32(::u32 l, ::u32 h)
 //{
 //
@@ -826,6 +835,105 @@ inline void set_if_different(BOOLEAN& bSetIfChanged, ASSIGNED& left, const ASSIG
    }
 
 }
+
+
+
+template < primitive_XYDim XYDim, typename X, typename Y, typename W, typename H >
+inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
+{
+
+   rectTarget.X = (decltype(rectTarget.X))x;
+   rectTarget.Y = (decltype(rectTarget.Y))y;
+   rectTarget.Width = (decltype(rectTarget.Width))w;
+   rectTarget.Height = (decltype(rectTarget.Height))h;
+
+   return rectTarget;
+
+}
+
+
+//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+//{
+//
+//   copy_cast_number(rectangle1.left    , rectangle2.left    );
+//   copy_cast_number(rectangle1.top     , rectangle2.top     );
+//   copy_cast_number(rectangle1.right   , rectangle2.right   );
+//   copy_cast_number(rectangle1.bottom  , rectangle2.bottom  );
+//
+//}
+
+
+template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+void copy(RECTANGLE & rectangle, const XYDim & xydim)
+{
+
+   copy_cast_number(rectangle.left     , xydim.X);
+   copy_cast_number(rectangle.top      , xydim.Y);
+   copy_cast_number(rectangle.right    , xydim.X + xydim.Width);
+   copy_cast_number(rectangle.bottom   , xydim.Y + xydim.Height);
+
+}
+
+
+template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
+void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
+{
+
+   copy_cast_number(rectangle.left     , xydim.x);
+   copy_cast_number(rectangle.top      , xydim.y);
+   copy_cast_number(rectangle.right    , xydim.x + xydim.width);
+   copy_cast_number(rectangle.bottom   , xydim.y + xydim.height);
+
+}
+
+
+template < primitive_origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
+void copy(ORIGIN_SIZE & originsize, const RECTANGLE & rectangle)
+{
+
+   copy_cast_number(originsize.origin.x      , rectangle.left);
+   copy_cast_number(originsize.origin.y      , rectangle.top);
+   copy_cast_number(originsize.size.width    , rectangle.right - rectangle.left);
+   copy_cast_number(originsize.size.height   , rectangle.bottom - rectangle.top);
+
+}
+
+
+template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >
+void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+{
+
+   copy_cast_number(rectangle1.left    , rectangle2.origin.x);
+   copy_cast_number(rectangle1.top     , rectangle2.origin.y);
+   copy_cast_number(rectangle1.right   , rectangle2.origin.x - rectangle2.size.width);
+   copy_cast_number(rectangle1.bottom  , rectangle2.origin.y - rectangle2.size.height);
+
+}
+
+
+// template < primitive_rectangle RECTANGLE, origin_size ORIGIN_SIZE >
+// constexpr void copy(RECTANGLE& rectangle, const ORIGIN_SIZE& origin_size)
+// {
+
+//    rectangle.left = (decltype(rectangle.left))origin_size.origin.x();
+//    rectangle.top = (decltype(rectangle.top))origin_size.origin.y();
+//    rectangle.right = (decltype(rectangle.right))(origin_size.origin.x() + origin_size.size.width);
+//    rectangle.bottom = (decltype(rectangle.bottom))(origin_size.origin.y() + origin_size.size.height);
+
+// }
+
+
+// template < origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
+// constexpr void copy(ORIGIN_SIZE& origin_size, const RECTANGLE& rectangle)
+// {
+
+//    origin_size.origin.x() = (decltype(origin_size.origin.x()))rectangle.left;
+//    origin_size.origin.y() = (decltype(origin_size.origin.y()))rectangle.top;
+//    origin_size.size.width = (decltype(origin_size.size.width))(rectangle.right - rectangle.left);
+//    origin_size.size.height = (decltype(origin_size.size.height))(rectangle.bottom - rectangle.top);
+
+// }
 
 
 

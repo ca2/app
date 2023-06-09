@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 2022-10-22 18:39 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 2022-10-22 18:39 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 

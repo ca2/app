@@ -174,6 +174,8 @@
 		9A4B40662524363200F476B3 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B40682524363C00F476B3 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B406B2524376800F476B3 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8C03522A281A370049B167 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A8C03532A281A380049B167 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9AE64252284AA6570079EBA0 /* libios_bred.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_bred.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -220,6 +222,8 @@
 				9A281A7725243402009FA9CB /* include */,
 				9A281A8225243402009FA9CB /* inline */,
 				9A281A7925243402009FA9CB /* platform */,
+				9A8C03522A281A370049B167 /* _____debug.xcconfig */,
+				9A8C03532A281A380049B167 /* _____release.xcconfig */,
 				9A281AA425243402009FA9CB /* _.cpp */,
 				9A281AAA25243402009FA9CB /* _.h */,
 				9A281A7425243402009FA9CB /* _defer.h */,
@@ -553,6 +557,7 @@
 /* Begin XCBuildConfiguration section */
 		9A281A64252432B5009FA9CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A8C03522A281A370049B167 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -617,7 +622,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -660,6 +664,7 @@
 		};
 		9A281A65252432B5009FA9CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A8C03532A281A380049B167 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -720,7 +725,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -796,7 +800,6 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -810,7 +813,6 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "semaphore.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

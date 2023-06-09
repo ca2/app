@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "color_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -22,19 +22,19 @@ namespace app_core_flag
 
       ::color::color crDenmarkRoed = argb(255, 200, 16, 46);
 
-      double Δx = w / 90.0;
+      double greekdeltax = w / 90.0;
 
-      double Δy = h / 70.0;
+      double greekdeltay = h / 70.0;
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * greekdeltax, 70.0 * greekdeltay), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * greekdeltax, 30.0 * greekdeltay), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * greekdeltax, y, 50 * greekdeltax, 30 * greekdeltay), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * greekdeltay, 30.0 * greekdeltax, 30.0 * greekdeltay), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * greekdeltax, y + 40.0 * greekdeltay, 50.0 * greekdeltax, 30.0 * greekdeltay), crDenmarkRoed);
 
    }
 
@@ -635,11 +635,11 @@ namespace userex
 
       size_f64 sizeBeam(dSize,dSize);
 
-      rectangle_f64 rectangleOuter(point.x() - sizeBeam.cx / 2.0, point.y() - sizeBeam.cy / 2.0, point.x() + sizeBeam.cx / 2.0, point.y() + sizeBeam.cy / 2.0);
+      rectangle_f64 rectangleOuter(point.x() - sizeBeam.cx() / 2.0, point.y() - sizeBeam.cy() / 2.0, point.x() + sizeBeam.cx() / 2.0, point.y() + sizeBeam.cy() / 2.0);
 
       rectangle_f64 rectangleInner(rectangleOuter);
 
-      rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
+      rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -827,7 +827,7 @@ namespace userex
 
       }
 
-      rTarget.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+      rTarget.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx() - 1, 0);
 
       rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 

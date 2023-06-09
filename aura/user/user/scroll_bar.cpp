@@ -86,10 +86,10 @@ namespace user
    point_i32 scroll_bar::get_ascendant_context_offset()
    {
 
-      if (get_parent() == nullptr)
+      if (::is_null(get_parent()))
       {
 
-         return nullptr;
+         return {};
 
       }
 
@@ -101,15 +101,15 @@ namespace user
    point_i32 scroll_bar::get_parent_context_offset()
    {
 
-      return nullptr;
+      return {};
 
    }
 
 
-   bool scroll_bar::GetTrackRect(::rectangle_i32* prectangle, ::draw2d::graphics_pointer & pgraphics)
+   ::status < ::rectangle_i32 > scroll_bar::get_track_rectangle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return false;
+      return error_interface_only;
 
    }
 

@@ -78,7 +78,7 @@ BOOL wf_set_rop2(HDC hdc, int rop2)
 wfBitmap* wf_glyph_new(wfContext* wfc, GLYPH_DATA* glyph)
 {
 	wfBitmap* glyph_bmp;
-	glyph_bmp = wf_image_new(wfc, glyph->cx, glyph->cy, 1, glyph->aj);
+	glyph_bmp = wf_image_new(wfc, glyph->cx(), glyph->cy(), 1, glyph->aj);
 	return glyph_bmp;
 }
 
@@ -332,7 +332,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 
 	SetParent(wfc->hwnd, wfc->fullscreen ? nullptr : wfc->hWndParent);
 	wf_resize_window(wfc);
-	ShowWindow(wfc->hwnd, e_display_restored);
+	ShowWindow(wfc->hwnd, e_display_normal);
 	SetForegroundWindow(wfc->hwnd);
 
 	if (!wfc->fullscreen)
@@ -812,17 +812,17 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //void wf_update_canvas_diff(wfContext* wfc)
 //{
 //	::rectangle_i32 rc_client, rc_wnd;
-//	int Δx, Δy;
+//	int greekdeltax, greekdeltay;
 //
 //	client_rectangle(wfc->hwnd, &rc_client);
 //	window_rectangle(wfc->hwnd, &rc_wnd);
 //	
-//	Δx = (rc_wnd.right - rc_wnd.left) - rc_client.right;
-//	Δy = (rc_wnd.bottom - rc_wnd.top) - rc_client.bottom;
+//	greekdeltax = (rc_wnd.right - rc_wnd.left) - rc_client.right;
+//	greekdeltay = (rc_wnd.bottom - rc_wnd.top) - rc_client.bottom;
 //
 //	if (!wfc->disablewindowtracking)
 //	{
-//		wfc->diff.x() = Δx;
-//		wfc->diff.y() = Δy;
+//		wfc->diff.x() = greekdeltax;
+//		wfc->diff.y() = greekdeltay;
 //	}
 //}

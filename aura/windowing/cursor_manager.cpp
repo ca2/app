@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -241,9 +241,9 @@ namespace windowing
                if (pcursor.is_set())
                {
 
-                  pcursor->m_szHotspotOffset.cx = atoi(straComma[0].trimmed());
+                  pcursor->m_szHotspotOffset.cx() = atoi(straComma[0].trimmed());
 
-                  pcursor->m_szHotspotOffset.cy = atoi(straComma[1].trimmed());
+                  pcursor->m_szHotspotOffset.cy() = atoi(straComma[1].trimmed());
 
                }
 

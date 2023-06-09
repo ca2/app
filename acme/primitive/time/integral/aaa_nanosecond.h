@@ -1,6 +1,6 @@
-﻿//
-// Recreated by camilo on 2021-10-05 13:01 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
-// Refactored/Merged by camilo on 2021-10-04 06:45 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
+//
+// Recreated by camilo on 2021-10-05 13:01 BRT <3ThomasBorregaardSorensen!![ THE ONE GOD ]
+// Refactored/Merged by camilo on 2021-10-04 06:45 BRT <3ThomasBorregaardSorensen!![ THE ONE GOD ]
 // Created by camilo on 2020-11-16. <3ThomasBS_ [ THE ONE GOD ]
 //
 

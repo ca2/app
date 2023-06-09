@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "user.h"
 #include "shell.h"
 #include "style.h"
@@ -1034,7 +1034,7 @@ namespace aura
 //         //::pointer<::simple_frame_window>pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
-//         //   pframe->display(e_display_restored);
+//         //   pframe->display(e_display_normal);
 //         //}
 //      }
 //      else
@@ -1044,7 +1044,7 @@ namespace aura
 //         //   ::pointer<::simple_frame_window>pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
-//         //      pframe->display(e_display_restored);
+//         //      pframe->display(e_display_normal);
 //         //      if(pframe->get_typed_parent < ::plugin::host_interaction > () != nullptr)
 //         //      {
 //         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pgraphics);

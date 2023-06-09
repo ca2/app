@@ -1,4 +1,4 @@
-﻿// From impact.cpp on 2023-01-15 09:46 <3ThomasBorregaardSørensen!!
+// From impact.cpp on 2023-01-15 09:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "impact.h"
 #include "application.h"

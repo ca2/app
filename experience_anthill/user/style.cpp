@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -7,6 +7,7 @@
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/frame.h"
 #include "base/user/menu/central.h"
@@ -1441,7 +1442,7 @@ namespace experience_anthill
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
-            rectangleText.right = rectangleText.left + s.cx;
+            rectangleText.right = rectangleText.left + s.cx();
 
             if (estate & ::user::e_state_selected)
             {
@@ -1459,10 +1460,10 @@ namespace experience_anthill
             pfont->set_modified();
 
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left += s.cx;
+            rectangleText.left += s.cx();
             if (i < straTitle.get_upper_bound())
             {
-               rectangleText.right = rectangleText.left + sSep.cx;
+               rectangleText.right = rectangleText.left + sSep.cx();
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
@@ -1492,7 +1493,7 @@ namespace experience_anthill
 
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
 
-               rectangleText.left += sSep.cx;
+               rectangleText.left += sSep.cx();
 
             }
 
@@ -1554,7 +1555,7 @@ namespace experience_anthill
 
       }
 
-      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -1578,21 +1579,21 @@ namespace experience_anthill
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if (ppane->m_pimage->is_set())
             {
-               size.cx += ppane->m_pimage->width() + 2;
-               size.cy = maximum(size.cy, ppane->m_pimage->height());
+               size.cx() += ppane->m_pimage->width() + 2;
+               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
             }
 
             int iTextLeftMargin = 4;
 
-            cx = size.cx + 2 + iTextLeftMargin;
+            cx = (::i32) ( size.cx() + 2 + iTextLeftMargin);
 
             if (!ppane->m_bPermanent)
             {
@@ -1608,7 +1609,7 @@ namespace experience_anthill
 
             }
 
-            cy = size.cy + 2;
+            cy = (::i32) (size.cy() + 2);
 
             if (cy > iTabHeight)
             {
@@ -1689,20 +1690,20 @@ namespace experience_anthill
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            size_i32 size;
+            size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if (ppane->m_pimage)
             {
 
-               size.cy = maximum(size.cy, ppane->m_pimage->height());
+               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
 
             }
 
-            cy = size.cy + 2;
+            cy = (::i32) (size.cy() + 2);
 
             if (cy > iTabHeight)
             {
@@ -1736,12 +1737,12 @@ namespace experience_anthill
 
             }
 
-            ppane->m_size.cx = size.cx + ixAdd
+            ppane->m_size.cx() = (::i32) (size.cx() + ixAdd
                + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
-               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
+               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right);
 
-            x += ppane->m_size.cx;
+            x += ppane->m_size.cx();
 
          }
 
@@ -1768,7 +1769,7 @@ namespace experience_anthill
 
             auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-            ppane->m_size.cy = iTabHeight;
+            ppane->m_size.cy() = iTabHeight;
 
          }
 
@@ -1920,9 +1921,9 @@ namespace experience_anthill
             //int iOffsetX = 0;
             //int iOffsetY = 0;
 
-      ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
+      rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
-      ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
+      rectangleImage = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
       if ((estyle & e_tool_item_style_separator) != 0)
       {
@@ -1944,9 +1945,9 @@ namespace experience_anthill
             if (estate & ::user::e_state_checked)
             {
 
-               ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
+               rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
-               ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
+               rectangleImage = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1981,9 +1982,7 @@ namespace experience_anthill
             else
             {
 
-               ::rectangle_i32 rectangleShadow;
-
-               ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::e_element_item, estate);
+               //auto rectangleShadow = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -2003,9 +2002,7 @@ namespace experience_anthill
                if (ptoolitem->m_pimage->is_set())
                {
 
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
+                  auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_hover);
 
                   image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -2021,9 +2018,7 @@ namespace experience_anthill
                else if (uImage != 0xffffffffu)
                {
 
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
+                  auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -2054,9 +2049,7 @@ namespace experience_anthill
             if (ptoolitem->m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
+               auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_pressed);
 
                image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -2081,7 +2074,7 @@ namespace experience_anthill
             if (!(estate & ::user::e_state_disabled))
             {
 
-               ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
+               rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, ::user::e_state_none);
 
                pgraphics->fill_rectangle(rectangleItem, argb(190, 255, 255, 255));
 
@@ -2097,9 +2090,7 @@ namespace experience_anthill
             if (ptoolitem->m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_none);
+               auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_none);
 
                image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -2139,7 +2130,7 @@ namespace experience_anthill
 
          pgraphics->set_font(ptoolbar, ::e_element_none);
 
-         ::rectangle_i32 rectangleText;
+         ::status < ::rectangle_i32 > rectangleText;
 
          auto pbrushText = __create < ::draw2d::brush >();
 
@@ -2158,7 +2149,9 @@ namespace experience_anthill
 
          pgraphics->set(pbrushText);
 
-         if (ptoolbar->index_element_rectangle(iItem, rectangleText, ::e_element_text, ::user::e_state_none) && rectangleText.right > 0)
+         rectangleText = ptoolbar->index_element_rectangle(iItem, ::e_element_text, ::user::e_state_none);
+
+         if (rectangleText.ok() && rectangleText.right > 0)
          {
 
             pgraphics->_DrawText(ptoolitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -2196,9 +2189,9 @@ namespace experience_anthill
 
       ::user::enum_state estate = ptoolbar->tool_item_user_state(iItem);
 
-      ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
+      rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
-      ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
+      rectangleImage = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
       if (ptoolitem->m_atom.case_insensitive_order("separator") == 0)
       {
@@ -2218,9 +2211,9 @@ namespace experience_anthill
             if (estate & ::user::e_state_checked)
             {
 
-               ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
+               rectangleItem = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
-               ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
+               rectangleImage = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -2255,9 +2248,7 @@ namespace experience_anthill
             else
             {
 
-               ::rectangle_i32 rectangleShadow;
-
-               ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::e_element_item, estate);
+               //auto rectangleShadow = ptoolbar->index_element_rectangle(iItem, ::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -2277,9 +2268,7 @@ namespace experience_anthill
                if (ptoolitem->m_pimage->is_set())
                {
 
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
+                  auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_hover);
 
                   image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -2295,13 +2284,12 @@ namespace experience_anthill
                else if (uImage != 0xffffffffu)
                {
 
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
+                  auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
                   pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+
                }
 
             }
@@ -2328,9 +2316,7 @@ namespace experience_anthill
             if (ptoolitem->m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
+               auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_pressed);
 
                image_source imagesource(ptoolitem->m_pimage);
 
@@ -2386,9 +2372,7 @@ namespace experience_anthill
             if (ptoolitem->m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, estate);
+               auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
                image_source imagesource(ptoolitem->m_pimage);
 
@@ -2428,7 +2412,7 @@ namespace experience_anthill
 
          pgraphics->set_font(ptoolbar, ::e_element_none);
 
-         ::rectangle_i32 rectangleText;
+         ::status < ::rectangle_i32 > rectangleText;
 
          auto pbrushText = __create < ::draw2d::brush >();
 
@@ -2451,7 +2435,9 @@ namespace experience_anthill
 
          }
 
-         if (ptoolbar->index_element_rectangle(iItem, rectangleText, ::e_element_text, estate) && rectangleText.right > 0)
+         rectangleText = ptoolbar->index_element_rectangle(iItem, ::e_element_text, estate);
+
+         if (rectangleText.ok() && rectangleText.right > 0)
          {
 
             pgraphics->set(pbrushText);

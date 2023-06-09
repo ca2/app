@@ -33,7 +33,7 @@ namespace nanoui
          set_format(::std::is_signed<Scalar>::value ? "[-]?[0-9]*" : "[0-9]*");
          set_value_increment(1);
          set_minimum_maximum_values(::std::numeric_limits<Scalar>::lowest(), ::std::numeric_limits<Scalar>::max());
-         set_value(value);
+         set_value(value, e_source_initialize);
          set_spinnable(false);
       }
 
@@ -43,9 +43,9 @@ namespace nanoui
          return value;
       }
 
-      void set_value(Scalar value) {
+      void set_value(Scalar value, const ::action_context & actioncontext) {
          Scalar clamped_value = ::minimum(::maximum(value, m_iMinimumValue), m_iMaximumValue);
-         TextBox::set_value(::as_string(clamped_value));
+         TextBox::set_value(::as_string(clamped_value), actioncontext);
       }
 
       void set_callback(const ::function<void(Scalar)>& cb) {
@@ -53,7 +53,7 @@ namespace nanoui
             [cb, this](const ::scoped_string& str) {
                Scalar value = 0;
                from_string(value, str);
-               set_value(value);
+               set_value(value, e_source_sync);
                cb(value);
                return true;
             }
@@ -82,7 +82,7 @@ namespace nanoui
       }
 
 
-      virtual bool mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      virtual bool mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
       {
 
          if ((m_bEditable || m_bSpinnable) && down)
@@ -100,7 +100,7 @@ namespace nanoui
             if (area == SpinArea::Top) 
             {
             
-               set_value(value() + m_iIncrementValue);
+               set_value(value() + m_iIncrementValue, e_source_user);
 
                if (m_callback)
                {
@@ -113,7 +113,7 @@ namespace nanoui
             else if (area == SpinArea::Bottom) 
             {
             
-               set_value(value() - m_iIncrementValue);
+               set_value(value() - m_iIncrementValue, e_source_user);
 
                if (m_callback)
                {
@@ -133,7 +133,7 @@ namespace nanoui
       }
 
 
-      virtual bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
+      virtual bool mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
       {
 
          if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
@@ -146,9 +146,9 @@ namespace nanoui
          if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
          {
 
-            int value_delta = static_cast<int>((p.x()() - m_pointMouseDown.x()()) / float(10));
+            int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
 
-            set_value(m_iMouseDownValue + value_delta * m_iIncrementValue);
+            set_value(m_iMouseDownValue + value_delta * m_iIncrementValue, e_source_user);
 
             if (m_callback)
             {
@@ -166,7 +166,7 @@ namespace nanoui
       }
 
 
-      virtual bool scroll_event(const vector2_i32& p, const vector2_f32& rel) override
+      virtual bool scroll_event(const point_i32& p, const size_f32& rel) override
       {
 
          if (Widget::scroll_event(p, rel))
@@ -179,9 +179,9 @@ namespace nanoui
          if (m_bSpinnable && !focused())
          {
 
-            int value_delta = (rel.y()() > 0) ? 1 : -1;
+            int value_delta = (rel.cy() > 0) ? 1 : -1;
 
-            set_value(value() + value_delta * m_iIncrementValue);
+            set_value(value() + value_delta * m_iIncrementValue, e_source_user);
 
             if (m_callback)
             {

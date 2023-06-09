@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-03-13 02:57 PM <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-03-13 02:57 PM <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "bad_file_format.h"
 

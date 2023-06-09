@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "child_frame.h"
 #include "file_list.h"
 #include "document.h"

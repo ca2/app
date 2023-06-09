@@ -1,17 +1,21 @@
-﻿#pragma once
+#pragma once
 
 
+namespace geometry2d
+{
+
+
+   class region;
+   class item;
+
+
+} // namespace geometry2d
 
 
 DECLARE_ENUMERATION(e_align, enum_align);
 
 
 #include "_struct.h"
-
-
-
-
-
 
 
 #include "_i32.h"
@@ -636,8 +640,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //POINT & copy(POINT & point, const SIZE & size)
 //{
 //
-//   point.x() = (decltype(POINT::x))size.cx;
-//   point.y() = (decltype(POINT::y))size.cy;
+//   point.x() = (decltype(POINT::x))size.cx();
+//   point.y() = (decltype(POINT::y))size.cy();
 //
 //   return point;
 //
@@ -648,8 +652,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //SIZE_TYPE1 & copy_size(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 //{
 //
-//   size1.cx = (decltype(SIZE_TYPE1::cx))size2.cx;
-//   size1.cy = (decltype(SIZE_TYPE1::cy))size2.cy;
+//   size1.cx() = (decltype(SIZE_TYPE1::cx))size2.cx();
+//   size1.cy() = (decltype(SIZE_TYPE1::cy))size2.cy();
 //
 //   return size1;
 //
@@ -687,7 +691,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 //{
 //
-//   return size1.cx == size2.cx && size1.cy == size2.cy;
+//   return size1.cx() == size2.cx() && size1.cy() == size2.cy();
 //
 //}
 //
@@ -733,8 +737,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 //{
 //
-//   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx);
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy);
+//   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx());
+//   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy());
 //
 //   return rectangle;
 //
@@ -747,8 +751,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //   rectangle.left = (decltype(RECTANGLE::left))point.x();
 //   rectangle.top = (decltype(RECTANGLE::top))point.y();
-//   rectangle.right = (decltype(RECTANGLE::right))(point.x() + size.cx);
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y() + size.cy);
+//   rectangle.right = (decltype(RECTANGLE::right))(point.x() + size.cx());
+//   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y() + size.cy());
 //
 //   return rectangle;
 //
@@ -800,8 +804,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool is_null(const SIZE_TYPE & size)
 //{
 //
-//   return size.cx == (decltype(SIZE_TYPE::cx))0
-//      && size.cy == (decltype(SIZE_TYPE::cy))0;
+//   return size.cx() == (decltype(SIZE_TYPE::cx))0
+//      && size.cy() == (decltype(SIZE_TYPE::cy))0;
 //
 //}
 //
@@ -1025,7 +1029,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-//struct SIZE_I64;
+//struct ::size_i64;
 //struct ::point_i64;
 //struct ::rectangle_i64;
 ////::size_i32;
@@ -1034,37 +1038,37 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////::point_i32;
 ////class point_i64;
 ////class point_f64;
-////::rectangle;
+////::rectangle_f64;
 ////::rectangle_i64;
 ////::rectangle_f64;
 //
 //typedef uchar      byte;
 //
 //struct ::point_i64;
-//struct SIZE_I64;
+//struct ::size_i64;
 //struct ::rectangle_i64;
 //struct ::point_f64;
-//struct SIZE_F64;
+//struct ::size_f64;
 //struct ::rectangle_f64;
 //
 //
 //
-//using point_i32 = point_type < ::point_i32, SIZE_I32, ::rectangle_i32 >;
-//using point_i64 = point_type < ::point_i64, SIZE_I64, ::rectangle_i64 >;
-//using point_f32 = point_type < ::point_f32, SIZE_F32, ::rectangle_f32 >;
-//using point_f64 = point_type < ::point_f64, SIZE_F64, ::rectangle_f64 >;
+//using point_i32 = point_type < ::point_i32, ::size_i32, ::rectangle_i32 >;
+//using point_i64 = point_type < ::point_i64, ::size_i64, ::rectangle_i64 >;
+//using point_f32 = point_type < ::point_f32, ::size_f32, ::rectangle_f32 >;
+//using point_f64 = point_type < ::point_f64, ::size_f64, ::rectangle_f64 >;
 //
 //
-//using size_i32 = size_type < SIZE_I32, ::point_i32, ::rectangle_i32 >;
-//using size_i64 = size_type < SIZE_I64, ::point_i64, ::rectangle_i64 >;
-//using size_f32 = size_type < SIZE_F32, ::point_f32, ::rectangle_f32 >;
-//using size_f64 = size_type < SIZE_F64, ::point_f64, ::rectangle_f64 >;
+//using size_i32 = size_type < ::size_i32, ::point_i32, ::rectangle_i32 >;
+//using size_i64 = size_type < ::size_i64, ::point_i64, ::rectangle_i64 >;
+//using size_f32 = size_type < ::size_f32, ::point_f32, ::rectangle_f32 >;
+//using size_f64 = size_type < ::size_f64, ::point_f64, ::rectangle_f64 >;
 //
 //
-//using rectangle_i32 = rectangle_type < ::rectangle_i32, ::point_i32, SIZE_I32 >;
-//using rectangle_i64 = rectangle_type < ::rectangle_i64, ::point_i64, SIZE_I64 >;
-//using rectangle_f32 = rectangle_type < ::rectangle_f32, ::point_f32, SIZE_F32 >;
-//using rectangle_f64 = rectangle_type < ::rectangle_f64, ::point_f64, SIZE_F64 >;
+//using rectangle_i32 = rectangle_type < ::rectangle_i32, ::point_i32, ::size_i32 >;
+//using rectangle_i64 = rectangle_type < ::rectangle_i64, ::point_i64, ::size_i64 >;
+//using rectangle_f32 = rectangle_type < ::rectangle_f32, ::point_f32, ::size_f32 >;
+//using rectangle_f64 = rectangle_type < ::rectangle_f64, ::point_f64, ::size_f64 >;
 //
 //
 //using point_i32_array = point_array_base < point_i32 >;
@@ -1171,10 +1175,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool is_empty(SIZE_I32 & size) { return size.cx <= 0 || size.cy <= 0; }
-////inline bool is_empty(SIZE_I64 & size) { return size.cx <= 0 || size.cy <= 0; }
-////inline bool is_empty(SIZE_F32 & size) { return size.cx <= 0.f || size.cy <= 0.f; }
-////inline bool is_empty(SIZE_F64 & size) { return size.cx <= 0. || size.cy <= 0.; }
+////inline bool is_empty(::size_i32 & size) { return size.cx() <= 0 || size.cy() <= 0; }
+////inline bool is_empty(::size_i64 & size) { return size.cx() <= 0 || size.cy() <= 0; }
+////inline bool is_empty(::size_f32 & size) { return size.cx() <= 0.f || size.cy() <= 0.f; }
+////inline bool is_empty(::size_f64 & size) { return size.cx() <= 0. || size.cy() <= 0.; }
 //
 //
 //
@@ -1297,7 +1301,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 ////template < typename RECTANGLE_BASE_TYPE, typename POINT_BASE_TYPE >
-////void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * lppoint, ::count count)
+////void get_bounding_box(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * lppoint, ::count count)
 ////{
 ////
 ////   if (count <= 0)
@@ -1333,7 +1337,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 //
 //
-////inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const ::rectangle_i32 &rectangle)
+////inline bool get_bounding_box(::rectangle_i32 & rectangleBounding, const ::rectangle_i32 &rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1343,7 +1347,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 //
 //
-////inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const ::rectangle_i32 &rectangle)
+////inline bool get_bounding_box(::rectangle_f64 & rectangleBounding, const ::rectangle_i32 &rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1353,7 +1357,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 ////
 ////
-////inline bool get_bounding_rectangle(::rectangle_i32 & rectangleBounding, const ::rectangle_f64 & rectangle)
+////inline bool get_bounding_box(::rectangle_i32 & rectangleBounding, const ::rectangle_f64 & rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1363,7 +1367,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 ////
 ////
-////inline bool get_bounding_rectangle(::rectangle_f64 & rectangleBounding, const ::rectangle_f64 & rectangle)
+////inline bool get_bounding_box(::rectangle_f64 & rectangleBounding, const ::rectangle_f64 & rectangle)
 ////{
 ////
 ////   copy(rectangleBounding, rectangle);
@@ -1374,10 +1378,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-////void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+////void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count)
 ////{
 ////
-////   ::get_bounding_rectangle(*this, ppoint, count);
+////   ::get_bounding_box(*this, ppoint, count);
 ////
 ////}
 ////
@@ -1445,27 +1449,27 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////#endif
 //
 //
-////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x()(), lparam.y()()); }
+////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
 ////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
 ////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
-////inline auto ::point_i32(const ::size_i32 & size) noexcept { return ::point_i32(size.cx, size.cy); }
+////inline auto ::point_i32(const ::size_i32 & size) noexcept { return ::point_i32(size.cx(), size.cy()); }
 ////
-////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x()(), lparam.y()()); }
+////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
 ////inline auto __point64(const ::u32 u) noexcept { return ::point_i64((i64)__u32x(u), (i64)__u32y(u)); }
 ////inline auto __point64(const ::u64 u) noexcept { return ::point_i64((i64)__u64x(u), (i64)__u64y(u)); }
-////inline auto __point64(const ::size_i64 & size) noexcept { return ::point_i64(size.cx, size.cy); }
+////inline auto __point64(const ::size_i64 & size) noexcept { return ::point_i64(size.cx(), size.cy()); }
 ////
 ////
-////inline auto __pointf(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x()(), (float)lparam.y()()); }
+////inline auto __pointf(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
 ////inline auto __pointf(const ::u32 u) noexcept { return ::point_f32((float)__u32x(u), (float)__u32y(u)); }
 ////inline auto __pointf(const ::u64 u) noexcept { return ::point_f32((float)__u64x(u), (float)__u64y(u)); }
-////inline auto __pointf(const ::size_f32 & size) noexcept { return ::point_f32(size.cx, size.cy); }
+////inline auto __pointf(const ::size_f32 & size) noexcept { return ::point_f32(size.cx(), size.cy()); }
 ////
 ////
-////inline auto __pointd(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x()(), lparam.y()()); }
+////inline auto __pointd(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
 ////inline auto __pointd(const ::u32 u) noexcept { return ::point_f64((double)__u32x(u), (double)__u32y(u)); }
 ////inline auto __pointd(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
-////inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size.cx, size.cy); }
+////inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size.cx(), size.cy()); }
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
@@ -1546,9 +1550,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////template < primitive_point POINT >
 ////inline constexpr auto __vert(const POINT & point) { return point.y(); }
 ////template < primitive_size SIZE >
-////inline constexpr auto __horz(const SIZE & size) { return size.cx; }
+////inline constexpr auto __horz(const SIZE & size) { return size.cx(); }
 ////template < primitive_size SIZE >
-////inline constexpr auto __vert(const SIZE & size) { return size.cy; }
+////inline constexpr auto __vert(const SIZE & size) { return size.cy(); }
 ////
 ////inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle; }
 ////inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle.right; }
@@ -1757,7 +1761,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline ::string as_string(const SIZE & size)
 ////{
 ////
-////   return as_string(size.cx) + ", " + as_string(size.cy);
+////   return as_string(size.cx()) + ", " + as_string(size.cy());
 ////
 ////}
 ////
@@ -1786,9 +1790,122 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 
 
+template < primitive_number NUMBER >
+class point_type;
+
+template < primitive_number NUMBER >
+class size_type;
+
+template < primitive_number NUMBER >
+class line_type;
+
+template < primitive_number NUMBER >
+class rectangle_type;
+
+template < primitive_number NUMBER >
+class ellipse_type;
+
+template < primitive_number NUMBER >
+class arc_type;
+
+template < primitive_number NUMBER >
+class point_array_base;
+
+template < primitive_number NUMBER >
+class polygon_type;
+
+template < primitive_number NUMBER >
+class poly_polygon_type;
+
+template < primitive_number NUMBER >
+class point_array_base;
+
+template < primitive_number NUMBER >
+class size_array_base;
+
+template < primitive_number NUMBER >
+class rectangle_array_base;
+
+template < primitive_number NUMBER >
+class lines_base;
 
 
+using point_i32 = point_type < ::i32 >;
+using point_i64 = point_type < ::i64 >;
+using point_f32 = point_type < ::f32 >;
+using point_f64 = point_type < ::f64 >;
 
+
+using size_i32 = size_type < ::i32 >;
+using size_i64 = size_type < ::i64 >;
+using size_f32 = size_type < ::f32 >;
+using size_f64 = size_type < ::f64 >;
+
+
+using rectangle_i32 = rectangle_type < ::i32 >;
+using rectangle_i64 = rectangle_type < ::i64 >;
+using rectangle_f32 = rectangle_type < ::f32 >;
+using rectangle_f64 = rectangle_type < ::f64 >;
+
+
+using ellipse_i32 = ellipse_type < ::i32 >;
+using ellipse_i64 = ellipse_type < ::i64 >;
+using ellipse_f32 = ellipse_type < ::f32 >;
+using ellipse_f64 = ellipse_type < ::f64 >;
+
+
+using line_i32 = line_type < ::i32 >;
+using line_i64 = line_type < ::i64 >;
+using line_f32 = line_type < ::f32 >;
+using line_f64 = line_type < ::f64 >;
+
+
+using arc_i32 = arc_type < ::i32 >;
+using arc_i64 = arc_type < ::i64 >;
+using arc_f32 = arc_type < ::f32 >;
+using arc_f64 = arc_type < ::f64 >;
+
+
+using point_i32_array = point_array_base < ::i32 >;
+using point_i64_array = point_array_base < ::i64 >;
+using point_f32_array = point_array_base < ::f32 >;
+using point_f64_array = point_array_base < ::f64 >;
+
+
+using polygon_i32 = polygon_type < ::i32 >;
+using polygon_i64 = polygon_type < ::i64 >;
+using polygon_f32 = polygon_type < ::f32 >;
+using polygon_f64 = polygon_type < ::f64 >;
+
+
+using poly_polygon_i32 = poly_polygon_type < ::i32 >;
+using poly_polygon_i64 = poly_polygon_type < ::i64 >;
+using poly_polygon_f32 = poly_polygon_type < ::f32 >;
+using poly_polygon_f64 = poly_polygon_type < ::f64 >;
+
+
+using point_i32_array = point_array_base < ::i32 >;
+using point_i64_array = point_array_base < ::i64 >;
+using point_f32_array = point_array_base < ::f32 >;
+using point_f64_array = point_array_base < ::f64 >;
+
+
+using size_i32_array = size_array_base < ::i32 >;
+using size_i64_array = size_array_base < ::i64 >;
+using size_f32_array = size_array_base < ::f32 >;
+using size_f64_array = size_array_base < ::f64 >;
+
+
+using rectangle_i32_array = rectangle_array_base < ::i32 >;
+using rectangle_i64_array = rectangle_array_base < ::i64 >;
+using rectangle_f32_array = rectangle_array_base < ::f32 >;
+using rectangle_f64_array = rectangle_array_base < ::f64 >;
+
+
+using lines_i32 = lines_base < ::i32 >;
+using lines_i64 = lines_base < ::i64 >;
+using lines_f32 = lines_base < ::f32 >;
+using lines_f64 = lines_base < ::f64 >;
 
 
 

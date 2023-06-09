@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_008.h"
 #include "control_box.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -397,7 +397,7 @@ namespace experience_anthill
          //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
          //   ::rectangle_i32 rectangle;
-         //   GetBorderRect(rectangleClient,rectangle,eside);
+         //   GetBorderRect(rectangleClient, &rectangle, eside);
          //   class imaging & imaging = psystem->imaging();
          //   imaging.fill_rectangle(pgraphics,
          //      rectangle,
@@ -412,7 +412,7 @@ namespace experience_anthill
          || estyle == ::user::StyleTranslucidLightGreen)
       {
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(
             rectangle,
@@ -422,7 +422,7 @@ namespace experience_anthill
       else
       {
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, rectangle, eside);
+         GetBorderRect(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(
             rectangle,
@@ -625,7 +625,7 @@ namespace experience_anthill
    {
       ::rectangle_i32 rectangleBig(rectangleClient);
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rect(rectangleSmall);
+      get_window_client_rect(&rectangleSmall);
       ::rectangle_i32 rectangle;
       if (eside == e_border_top)
       {

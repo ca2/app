@@ -1,4 +1,4 @@
-// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardSørensen!!
+// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -105,10 +105,10 @@
 //#include <gl/gl.h>
 #define GLAD_GLAPI_EXPORT
 #include <glad.h>
-CLASS_DECL_GPU_OPENGL const char * opengl_error_string(int iError);
 
 
 #endif
 
+CLASS_DECL_GPU_OPENGL const char * opengl_error_string(int iError);
 
 

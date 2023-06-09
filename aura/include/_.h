@@ -1,4 +1,4 @@
-﻿/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 //
 //  ca2
 //
@@ -1642,7 +1642,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 ////class size_type;
 ////
-////using size = size_type < SIZE_I32, ::point_i32, ::rectangle_i32 >;
+////using size = size_type < ::size_i32, ::point_i32, ::rectangle_i32 >;
 ////
 ////
 ////#include "aura/primitive/math/cast.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "xfplayer_impact_line_selection.h"
 #include "xfplayer_impact_line.h"
 #include "acme/constant/message.h"
@@ -48,11 +48,11 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       
       bool bInside;
       
-      auto pointCursor = ::point_i32(pusermessage->m_lparam);
+      auto pointCursor = pusermessage->m_lparam.point();
 
       ::rectangle_i32 rectanglePlacement;
       
-      viewline.GetPlacement(rectanglePlacement);
+      viewline.GetPlacement(&rectanglePlacement);
       
       bInside = rectanglePlacement.contains(pointCursor) != 0;
       
@@ -465,7 +465,7 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
    index iLine;
    strsize iChar;
    ::rectangle_i32 rectanglePlacement;
-   viewline.GetPlacement(rectanglePlacement);
+   viewline.GetPlacement(&rectanglePlacement);
    bInside = rectanglePlacement.contains(point1) != 0;
    if(!bInside && GetState() == e_state_tracking)
    {
@@ -522,7 +522,7 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
 
    ::rectangle_i32 rectanglePlacement;
 
-   viewline.GetPlacement(rectanglePlacement);
+   viewline.GetPlacement(&rectanglePlacement);
 
    bInside = rectanglePlacement.contains(point1) != 0;
 
@@ -607,8 +607,11 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
    strsize iChar;
 
    ::rectangle_i32 rectanglePlacement;
-   viewline.GetPlacement(rectanglePlacement);
+   
+   viewline.GetPlacement(&rectanglePlacement);
+   
    bInside = rectanglePlacement.contains(point1) != 0;
+   
    if(!bInside && GetState() == e_state_tracking)
    {
       if(point1.y() < rectanglePlacement.top
@@ -693,14 +696,23 @@ bool xfplayer_impact_line_selection::OnTimer(xfplayer_impact_line & viewline, ::
 
          if(!viewline.is_hover())
          {
+            
             ::rectangle_i32 rectanglePlacement;
-            viewline.GetPlacement(rectanglePlacement);
+            
+            viewline.GetPlacement(&rectanglePlacement);
+            
             viewline.get_interaction()->set_need_redraw();
+            
          }
+         
       }
+      
    }
+   
    return false;
+   
 }
+
 
 void xfplayer_impact_line_selection_item::NormalizeSel()
 {

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "slider.h"
 #include "acme/constant/message.h"
 #include "aura/message/user.h"
@@ -142,7 +142,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      pointCursor += screen_to_client(e_layout_design);
+      screen_to_client(e_layout_design)(pointCursor);
 
       ::rectangle_i32 rectangle;
 

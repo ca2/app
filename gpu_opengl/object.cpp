@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "object.h"
 #include <math.h>

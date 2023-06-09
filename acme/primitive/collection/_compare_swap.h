@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2023-01-20 22:37 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2023-01-20 22:37 <3ThomasBorregaardSorensen!!
 // 2023-01-20 22:37 - Mummi, Lucinho, Bilbo, Blue, Carol e Zibia contribution through ca2 HQ!!
 // 2023-01-20 22:37 - lowluds, shegotmad, mrsteinbergplease and octaelliptical contribution through Twitch.TV!!
 #pragma once

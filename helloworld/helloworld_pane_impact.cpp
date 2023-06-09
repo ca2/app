@@ -106,7 +106,7 @@ namespace helloworld
       if (ptabpaneMenu->m_pholder != nullptr)
       {
 
-         ptabpaneMenu->m_pholder->ShowWindow(SW_HIDE);
+         ptabpaneMenu->m_pholder->show_window(SW_HIDE);
 
       }
 
@@ -121,14 +121,14 @@ namespace helloworld
          if(ptabpaneFileManager != nullptr && ptabpaneFileManager->m_pholder != nullptr)
          {
 
-            ptabpaneFileManager->m_pholder->ShowWindow(SW_HIDE);
+            ptabpaneFileManager->m_pholder->show_window(SW_HIDE);
 
          }
 
          if (ptabpaneFontSel != nullptr && ptabpaneFontSel->m_pholder != nullptr)
          {
 
-            ptabpaneFontSel->m_pholder->ShowWindow(SW_HIDE);
+            ptabpaneFontSel->m_pholder->show_window(SW_HIDE);
 
          }
 
@@ -172,7 +172,7 @@ namespace helloworld
          if (m_pimpactdata->m_puserinteraction != nullptr)
          {
 
-            m_pimpactdata->m_puserinteraction->ShowWindow(SW_HIDE);
+            m_pimpactdata->m_puserinteraction->show_window(SW_HIDE);
 
          }
 

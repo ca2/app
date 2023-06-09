@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+#include "framework.h"
+#if 0
 #include "main_window.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
@@ -228,7 +229,7 @@ namespace app_app
 
             pmouse->m_point = pointCursor;
 
-            update_hover(pmouse);
+            update_hover(pmouse, ::user::e_zorder_any);
 
             if (::is_set(pitemZoom))
             {
@@ -305,3 +306,4 @@ namespace app_app
 
 
 
+#endif

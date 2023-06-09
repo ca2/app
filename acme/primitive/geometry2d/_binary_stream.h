@@ -1,4 +1,4 @@
-﻿// First compilation from other files by camilo on 2022-10-07 23:15 <3ThomasBorregaardSørensen!!
+// First compilation from other files by camilo on 2022-10-07 23:15 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -30,8 +30,8 @@ template < typename FILE, primitive_size SIZE >
 inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const SIZE & size)
 {
 
-   s << size.cx;
-   s << size.cy;
+   s << size.cx();
+   s << size.cy();
 
    return s;
 
@@ -42,8 +42,8 @@ template < typename FILE, primitive_size SIZE >
 inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, SIZE & size)
 {
 
-   s >> size.cx;
-   s >> size.cy;
+   s >> size.cx();
+   s >> size.cy();
 
    return s;
 

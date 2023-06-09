@@ -64,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A54985F2A2BCEB80052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A5498622A2BCEB90052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A9E560829F8556C001559E9 /* libnano2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9E562C29F85655001559E9 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A9E563E29F8576C001559E9 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,8 @@
 		9A9E564529F85AF7001559E9 /* nano2d */ = {
 			isa = PBXGroup;
 			children = (
+				9A54985F2A2BCEB80052BAB6 /* _____debug.xcconfig */,
+				9A5498622A2BCEB90052BAB6 /* _____release.xcconfig */,
 				9A9E578C29F85EB9001559E9 /* _function.h */,
 				9A9E578B29F85EB9001559E9 /* _factory.cpp */,
 				9A9E578329F85B9D001559E9 /* common.h */,
@@ -306,6 +310,7 @@
 /* Begin XCBuildConfiguration section */
 		9A9E560F29F8556C001559E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A54985F2A2BCEB80052BAB6 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -377,7 +382,6 @@
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -423,6 +427,7 @@
 		};
 		9A9E561029F8556C001559E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A5498622A2BCEB90052BAB6 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -487,7 +492,6 @@
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

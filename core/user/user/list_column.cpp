@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/user/user/interaction.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "list_column.h"
@@ -24,8 +24,8 @@ namespace user
       m_bIcon = false;
       m_pimagelist = nullptr;
       m_pimagelistHover = nullptr;
-      m_sizeIcon.cx = 0;
-      m_sizeIcon.cy = 0;
+      m_sizeIcon.cx() = 0;
+      m_sizeIcon.cy() = 0;
       m_pdrawlistcolumn = __new(draw_list_column);
 
    }

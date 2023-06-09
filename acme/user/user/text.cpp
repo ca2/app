@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "text.h"
 //#include "acme/primitive/collection/sort.h"
 

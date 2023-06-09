@@ -1,4 +1,4 @@
-// From font.h by camilo on 2022-08-28 18:01 <3ThomasBorregaardS�rensen!! s�ndag
+// From font.h by camilo on 2022-08-28 18:01 <3ThomasBorregaardSorensen!! sondag
 #pragma once
 
 

@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 23/12/22.
 //
 #pragma once
@@ -971,30 +971,30 @@ namespace file
 
        //}
 
-   inline path path::operator * (const path & path) const
-   {
+//   inline path path::operator * (const path & path) const
+//   {
+//
+//      return sibling(path);
+//
+//   }
 
-      return sibling(path);
-
-   }
-
-   inline path path::operator * (const ::ansi_string & str) const { return operator * (::file::path(str)); }
-
-   inline path & path::operator *= (const path & path)
-   {
-
-      if (this != &path)
-      {
-
-         *this = sibling(path);
-
-      }
-
-      return *this;
-
-   }
-
-   inline path & path::operator *= (const ::ansi_string & str) { return operator *= (::file::path(str)); }
+//   inline path path::operator * (const ::ansi_string & str) const { return operator * (::file::path(str)); }
+//
+//   inline path & path::operator *= (const path & path)
+//   {
+//
+//      if (this != &path)
+//      {
+//
+//         *this = sibling(path);
+//
+//      }
+//
+//      return *this;
+//
+//   }
+//
+//   inline path & path::operator *= (const ::ansi_string & str) { return operator *= (::file::path(str)); }
 
 
    inline ::const_ansi_range path::title() const

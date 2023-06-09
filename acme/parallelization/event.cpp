@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "event.h"
 // #include "acme/primitive/string/string.h"
 ////#include "acme/exception/exception.h"

@@ -1,4 +1,4 @@
-﻿//
+//
 //  base_static_start.h
 //  acme
 //

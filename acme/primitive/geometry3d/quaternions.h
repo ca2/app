@@ -16,7 +16,7 @@ struct Q4
 
 template < primitive_number NUMBER >
 class q4 :
-   public vector_type < NUMBER, 4 >
+   public sequence_type < NUMBER, 4 >
 {
 public:
 

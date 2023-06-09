@@ -29,14 +29,14 @@
 //
 //   inline ::size_f32::size_f32(const ::size_f32 & size)
 //   {
-//      cx = (float) ::size_f32.cx;
-//      cy = (float) ::size_f32.cy;
+//      cx = (float) ::size_f32.cx();
+//      cy = (float) ::size_f32.cy();
 //   }
 //
 //   inline ::size_f32::size_f32(float cx, float cy)
 //   {
-//      this->cx = cx;
-//      this->cy = cy;
+//      this->cx() = cx;
+//      this->cy() = cy;
 //   }
 //
 //

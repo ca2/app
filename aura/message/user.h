@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/user/user/mouse.h"
@@ -174,7 +174,7 @@ namespace message
    {
    public:
 
-      i16 m_Δ;
+      i16 m_greekdelta;
 
       mouse_wheel();
 

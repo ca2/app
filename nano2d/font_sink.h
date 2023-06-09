@@ -1,4 +1,4 @@
-﻿//
+//
 //  font_sink.hpp
 //  nanoui
 //

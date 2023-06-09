@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline bool shape_contains(const ::write_text::text_out & textout, const ::point_i32 & point)
@@ -8,7 +8,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const ::point
 
    ::rectangle_i32 rectangleBounding;
 
-   if (!::get_bounding_rectangle(rectangleBounding, textout))
+   if (!::get_bounding_box(rectangleBounding, textout))
    {
 
       return false;
@@ -27,7 +27,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const ::point
 
    ::rectangle_f64 rectangleBounding;
 
-   if (!::get_bounding_rectangle(rectangleBounding, textout))
+   if (!::get_bounding_box(rectangleBounding, textout))
    {
 
       return false;
@@ -46,7 +46,7 @@ inline bool shape_contains(const ::write_text::draw_text & textout, const ::poin
 
    ::rectangle_i32 rectangleBounding;
 
-   if (!::get_bounding_rectangle(rectangleBounding, textout))
+   if (!::get_bounding_box(rectangleBounding, textout))
    {
 
       return false;
@@ -65,7 +65,7 @@ inline bool shape_contains(const ::write_text::draw_text & textout, const ::poin
 
    ::rectangle_f64 rectangleBounding;
 
-   if (!::get_bounding_rectangle(rectangleBounding, textout))
+   if (!::get_bounding_box(rectangleBounding, textout))
    {
 
       return false;

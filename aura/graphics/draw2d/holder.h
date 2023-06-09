@@ -1,4 +1,4 @@
-// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-06-23 20:13 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -9,20 +9,20 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA holder :
-      virtual public ::particle
-   {
-   public:
+  class CLASS_DECL_AURA holder :
+     virtual public ::particle
+  {
+  public:
 
 
-      holdee      m_holdee;
+     holdee      m_holdee;
 
 
-      holder();
-      ~holder() override;
+     holder();
+     ~holder() override;
 
 
-   };
+  };
 
 
 } // namespace draw2d

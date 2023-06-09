@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 2022-10-22 22:21 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 2022-10-22 22:21 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "international2.h"

@@ -700,10 +700,10 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE_I32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,::size_i32 * psize)
 {
 
-   pgraphics->FillSolidRect(0, 0, psizecx, psize->cy, rgb(84, 90, 80));
+   pgraphics->FillSolidRect(0, 0, psizecx, psize->cy(), rgb(84, 90, 80));
 
    draw2d::brush_pointer pen(pgraphics->create_new, this);
 
@@ -777,8 +777,8 @@ public:
 
       size_i32 sz;
 
-      sz.cx = 0;
-      sz.cy = 0;
+      sz.cx() = 0;
+      sz.cy() = 0;
 
       for(index i = 0; i < stra.get_count(); i++)
       {
@@ -794,22 +794,22 @@ public:
          if(bEmpty)
             str = "L";
 
-         SIZE_I32 sizeItem = g->get_text_extent(str);
+         ::size_i32 sizeItem = g->get_text_extent(str);
 
          int x = bTab ? 25 : 0;
 
-         if(sizeItem.cx + x > sz.cx)
+         if(sizeItem.cx() + x > sz.cx())
          {
 
-            sz.cx = sizeItem.cx + x;
+            sz.cx() = sizeItem.cx() + x;
 
          }
 
          baTab.add(bTab);
 
-         ya.add( sz.cy);
+         ya.add( sz.cy());
 
-         sz.cy += sizeItem.cy;
+         sz.cy() += sizeItem.cy();
 
          if(bEmpty)
          {
@@ -836,19 +836,19 @@ public:
          label.m_bVisible = true;
 
          label.m_rectangle.left = 10;
-         label.m_rectangle.top = 10 + (sz.cy / stra.get_count()) * i;
-         label.m_rectangle.right = label.m_rectangle.left+sz.cx - 20;
-         label.m_rectangle.bottom = label.m_rectangle.top+ (sz.cy / stra.get_count());
+         label.m_rectangle.top = 10 + (sz.cy() / stra.get_count()) * i;
+         label.m_rectangle.right = label.m_rectangle.left+sz.cx() - 20;
+         label.m_rectangle.bottom = label.m_rectangle.top+ (sz.cy() / stra.get_count());
 
       }
 
-      sz.cx += 20;
-      sz.cy += 20;
+      sz.cx() += 20;
+      sz.cy() += 20;
 
-      rectangle.left = m_rectangleDesktop.left + ((m_rectangleDesktop.width() - sz.cx) / 2);
-      rectangle.top = m_rectangleDesktop.top + ((m_rectangleDesktop.height() - sz.cy) / 4);
-      rectangle.right = rectangle.left + sz.cx;
-      rectangle.bottom = rectangle.top + sz.cy;
+      rectangle.left = m_rectangleDesktop.left + ((m_rectangleDesktop.width() - sz.cx()) / 2);
+      rectangle.top = m_rectangleDesktop.top + ((m_rectangleDesktop.height() - sz.cy()) / 4);
+      rectangle.right = rectangle.left + sz.cx();
+      rectangle.bottom = rectangle.top + sz.cy();
 
 
       if(!prepare_window(rectangle))
@@ -979,7 +979,7 @@ int_bool ReleaseCapture()
 }
 
 
-oswindow SetFocus(oswindow window)
+oswindow solaris_set_focus(oswindow window)
 {
 
    single_lock synchronouslock(&user_synchronization(), true);
@@ -1029,7 +1029,7 @@ oswindow GetFocus()
 }
 
 
-oswindow GetActiveWindow()
+oswindow solaris_get_active_window()
 {
 
    return GetFocus();
@@ -1037,10 +1037,10 @@ oswindow GetActiveWindow()
 }
 
 
-oswindow SetActiveWindow(oswindow window)
+oswindow solaris_set_active_window(oswindow window)
 {
 
-   return SetFocus(window);
+   return solaris_set_focus(window);
 
 }
 

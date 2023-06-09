@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree.h"
 #include "document.h"
 #include "item.h"
@@ -329,8 +329,8 @@ namespace userfs
       pcolumn->m_iWidth               = 500;
       pcolumn->m_iSubItem             = 1;
       pcolumn->m_bIcon                = true;
-      pcolumn->m_sizeIcon.cx          = 16;
-      pcolumn->m_sizeIcon.cy          = 16;
+      pcolumn->m_sizeIcon.cx()          = 16;
+      pcolumn->m_sizeIcon.cy()          = 16;
       pcolumn->m_iControl             = iControl;
       pcolumn->m_iConfigId            = FILE_MANAGER_ID_FILE_NAME;
       pcolumn->m_bEditOnSecondClick   = true;

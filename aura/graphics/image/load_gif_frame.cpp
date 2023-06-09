@@ -120,9 +120,9 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      size_i32 s = pframe->m_pimage->get_size();
 //
-//   //      int cx = s.cx;
+//   //      int cx = s.cx();
 //
-//   //      int cy = s.cy;
+//   //      int cy = s.cy();
 //
 //   //      if (pframe->m_rectangle.size() == pframea.m_size)
 //   //      {

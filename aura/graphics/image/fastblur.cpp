@@ -1,4 +1,4 @@
-﻿// Super Fast Blur v1.1
+// Super Fast Blur v1.1
 // by Mario Klingemann <http://incubator.quasimondo.com>
 //
 // Tip: Multiple invovations of this filter with a small
@@ -111,8 +111,8 @@ namespace draw2d
    {
 
       m_iRadius = 0;
-      m_size.cx = 0;
-      m_size.cy = 0;
+      m_size.cx() = 0;
+      m_size.cy() = 0;
 
 #if VECTOR3_SSE
 
@@ -276,8 +276,8 @@ namespace draw2d
       m_uchaDiv.allocate(256 * div);
       u8 * dv         = m_uchaDiv.get_data();
 
-      m_size.cx         = cx;
-      m_size.cy         = cy;
+      m_size.cx()         = cx;
+      m_size.cy()         = cy;
 
       for(i32 i = 0; i < m_uchaDiv.get_count(); i++)
       {
@@ -298,7 +298,7 @@ namespace draw2d
    void fastblur::initialize(size_i32 sz,i32 iRadius)
    {
 
-      return initialize(sz.cx,sz.cy,iRadius);
+      return initialize(sz.cx(),sz.cy(),iRadius);
 
    }
 
@@ -359,8 +359,8 @@ namespace draw2d
       u8 * point_i32;
       vector4 * t = timage;
 
-      int w = m_size.cx;
-      int h = m_size.cy;
+      int w = m_size.cx();
+      int h = m_size.cy();
 
       int s = m_p->m_iScan / 4;
 
@@ -453,8 +453,8 @@ auto tickC1 = ::time::now();
 
       vector4 * t = timage;
 
-      int w = m_size.cx;
-      int h = m_size.cy;
+      int w = m_size.cx();
+      int h = m_size.cy();
       int wj = w; // w job
       int hj = h; // h job
 
@@ -601,8 +601,8 @@ auto tickC1 = ::time::now();
 
             do_fastblur(
                 (u32*)pimage->colorref(),
-                m_size.cx,
-                m_size.cy,
+                m_size.cx(),
+                m_size.cy(),
                 m_uia.get_data(),
                 m_uchaDiv.get_data(),
                 pimage->scan_size(),
@@ -620,7 +620,7 @@ auto tickC1 = ::time::now();
 auto tick2 = ::time::now();
       ::u32 dw3 = dw2 - dw1;
       string str1;
-      str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);
+      str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx(),m_size.cy(),m_iRadius);
       string str2;
       str2.format("| time for calculating fast blur : %d\b",dw3);
 
@@ -652,10 +652,10 @@ auto tick2 = ::time::now();
 
 
    inline void boxBlurNEON(u32* sourcePixel,u32* destinationPixel,
-                           unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                           unsigned greekdeltax,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      float32x4_t deltaX = vdupq_n_f32(1.0 / Δx);
+      float32x4_t deltaX = vdupq_n_f32(1.0 / greekdeltax);
 
       int pixelLine = strideLine / 4;
 
@@ -882,10 +882,10 @@ auto tick2 = ::time::now();
 #if VECTOR3_SSE
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
-                          unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                          unsigned greekdeltax,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      vector4 deltaX = vector4(1.0f / Δx,1.0f / Δx,1.0f / Δx,1.0f / Δx);
+      vector4 deltaX = vector4(1.0f / greekdeltax,1.0f / greekdeltax,1.0f / greekdeltax,1.0f / greekdeltax);
 
       int pixelLine = strideLine / 4;
 

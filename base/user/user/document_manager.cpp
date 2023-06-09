@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "document_manager.h"
 #include "document.h"
 #include "impact.h"
@@ -570,11 +570,11 @@ namespace user
        trans         if (pMainWnd->is_iconic())
       nCmdShow = SW_RESTORE;
       else
-      nCmdShow = e_display_restored;
+      nCmdShow = e_display_normal;
       //}
       pMainWnd->display(nCmdShow);
        trans      if (nCmdShow != SW_MINIMIZE)
-      pMainWnd->SetForegroundWindow();
+      pMainWnd->set_foreground_window();
 
       // then open the document
       psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);

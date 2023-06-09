@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "table.h"
 #include "table_row.h"
 #include "acme/primitive/data/listener.h"

@@ -1,5 +1,5 @@
 //
-// Created by camilo on 06/02/2022 12:17 <3ThomasBorregaardSørensen!!
+// Created by camilo on 06/02/2022 12:17 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "details_window.h"
@@ -39,9 +39,9 @@ void nano_details_window::calculate_size()
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
-   auto wScreen = sizeScreen.cx;
+   auto wScreen = sizeScreen.cx();
 
-   auto hScreen = sizeScreen.cy;
+   auto hScreen = sizeScreen.cy();
 
    int w = wScreen / 2;
    int h = (w /8) * 5;

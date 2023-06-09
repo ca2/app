@@ -791,7 +791,6 @@
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = math;
 				SDKROOT = macosx;
@@ -833,7 +832,6 @@
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = math;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/port/_ $(WorkspaceDir)/port/include $(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include . .. $(WorkspaceDir)  $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include";

@@ -749,7 +749,7 @@ namespace draw2d
    }
 
 
-   void graphics::rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::rectangle_f64(const ::rectangle_f64 & rectangle)
    {
 
       //if (fill_rectangle(rectangle))
@@ -912,7 +912,7 @@ namespace draw2d
    }
 
 
-   void graphics::ellipse(const ::rectangle_f64 & rectangle)
+   void graphics::ellipse_f64(const ::rectangle_f64 & rectangle)
    {
 
       //auto ealphamode = m_ealphamode;
@@ -930,7 +930,7 @@ namespace draw2d
    }
 
 
-   void graphics::ellipse(double x1, double y1, double x2, double y2)
+   void graphics::ellipse_f64(double x1, double y1, double x2, double y2)
    {
 
       fill_ellipse(x1, y1, x2, y2);
@@ -2871,7 +2871,7 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
 //   {
 //
-//      return OffsetClipRgn(size.cx, size.cy);
+//      return OffsetClipRgn(size.cx(), size.cy());
 //
 //   }
 
@@ -2891,9 +2891,9 @@ namespace draw2d
 //      /*
 //       i32 nRetVal = ERROR;
 //       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
+//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx(), size.cy());
 //       if(get_handle2() != nullptr)
-//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
+//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx(), size.cy());
 //       return nRetVal;
 //       */
 //   }
@@ -3067,10 +3067,10 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_shape_rectangle:
-         _add_shape(pshape->shape < ::rectangle >());
+         _add_shape(pshape->shape < ::rectangle_f64 >());
          break;
       case e_shape_ellipse:
-         _add_shape(pshape->shape < ::ellipse >());
+         _add_shape(pshape->shape < ::ellipse_f64 >());
          break;
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
@@ -3115,7 +3115,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::_add_shape(const ::ellipse & ellipse)
+   //void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    //{
    //
    //   throw ::interface_only();
@@ -3125,7 +3125,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::ellipse & ellipse)
+   void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    {
    
       throw ::interface_only();
@@ -3209,7 +3209,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::intersect_clip(const ::ellipse & ellipse)
+   //void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    //{
    //
    //   auto estatus = _add_shape(ellipse);
@@ -3235,7 +3235,7 @@ namespace draw2d
    //}
 
 
-   void graphics::intersect_clip(const ::ellipse & ellipse)
+   void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    {
    
       //auto estatus =
@@ -3462,7 +3462,7 @@ namespace draw2d
 
          daLeft.add(dLeft);
 
-         dLeft = get_text_extent(str, iAsciiCharCount).cx;
+         dLeft = get_text_extent(str, iAsciiCharCount).cx();
 
          daRight.add(dLeft);
 
@@ -3525,8 +3525,8 @@ namespace draw2d
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
 
-      size.cx = sz.cx;
-      size.cy = sz.cy;
+      size.cx() = sz.cx();
+      size.cy() = sz.cy();
 
       //return true;
 
@@ -3538,8 +3538,8 @@ namespace draw2d
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount);
 
-      size.cx = sz.cx;
-      size.cy = sz.cy;
+      size.cx() = sz.cx();
+      size.cy() = sz.cy();
 
       //return true;
 
@@ -3551,8 +3551,8 @@ namespace draw2d
 
       ::size_f64 sz = get_text_extent(str);
 
-      size.cx = sz.cx;
-      size.cy = sz.cy;
+      size.cx() = sz.cx();
+      size.cy() = sz.cy();
 
       //return true;
 
@@ -3607,45 +3607,45 @@ namespace draw2d
 
       size_f64 size = get_text_extent(str);
 
-      double Δx;
+      double greekdeltax;
 
-      double Δy;
+      double greekdeltay;
 
       if(ealign & e_align_right)
       {
 
-         Δx = rectangleParam.right - rectangleParam.left - size.cx;
+         greekdeltax = rectangleParam.right - rectangleParam.left - size.cx();
 
       }
       else if(ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx)) / 2.0;
+         greekdeltax = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
 
       }
       else
       {
 
-         Δx = 0.;
+         greekdeltax = 0.;
 
       }
 
       if(ealign & e_align_bottom)
       {
 
-         Δy = rectangleParam.bottom - rectangleParam.top - size.cy;
+         greekdeltay = rectangleParam.bottom - rectangleParam.top - size.cy();
 
       }
       else if(ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy)) / 2.0;
+         greekdeltay = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
 
       }
       else
       {
 
-         Δy = 0.;
+         greekdeltay = 0.;
 
       }
 
@@ -3669,7 +3669,7 @@ namespace draw2d
 
          str.replace_with("", "\n");
 
-         text_out(rectangleParam.left + Δx, rectangleParam.top + Δy, str);
+         text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay, str);
 
       }
       else
@@ -3688,9 +3688,9 @@ namespace draw2d
 
             auto size1 = get_text_extent(str);
 
-            text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
+            text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay + offsety, str);
 
-            offsety += (i32) size1.cy;
+            offsety += (i32) size1.cy();
 
          }
 
@@ -4226,9 +4226,9 @@ namespace draw2d
 
       size_f64 sz;
 
-      sz.cx = 0;
+      sz.cx() = 0;
 
-      sz.cy = 0;
+      sz.cy() = 0;
 
       strsize iUnderline = -1;
 
@@ -4256,7 +4256,7 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent(str, (i32)iLen);
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             const ::scoped_string & scopedstrStart = str;
@@ -4276,7 +4276,7 @@ namespace draw2d
 
                sz = pgraphics->get_text_extent(strSample);
 
-               if (sz.cx > rectangleClip.width())
+               if (sz.cx() > rectangleClip.width())
                {
 
                   str = strLastSample;
@@ -4297,7 +4297,7 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent(str);
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             strsize i = iLen;
@@ -4316,7 +4316,7 @@ namespace draw2d
 
                sz = pgraphics->get_text_extent(str, (i32)i);
 
-               if ((int) sz.cx > rectangleClip.width())
+               if ((int) sz.cx() > rectangleClip.width())
                {
 
                   i = ::str::uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
@@ -4374,7 +4374,7 @@ namespace draw2d
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right = (::i32) sz.cx;
+      rectangle.right = (::i32) sz.cx();
       rectangle.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
@@ -4441,11 +4441,11 @@ namespace draw2d
             char wch = str[iUnderline];
             /*::TextOutU(
             (HDC)pgraphics->get_os_data(),
-            rectangle.left + sz.cx,
+            rectangle.left + sz.cx(),
             rectangle.top,
             &wch,
             1);*/
-            pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
+            pgraphics->text_out(rectangle.left + sz.cx(), (double)rectangle.top, { &wch, 1 });
             if (iUnderline + 1 <= str.length())
             {
                sz = pgraphics->get_text_extent(str, (i32)(iUnderline + 1));
@@ -4455,10 +4455,10 @@ namespace draw2d
                iUnderline + 1,
                &sz);*/
                strsize iCount = str.length() - iUnderline - 1;
-               pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.right(iCount).c_str(), (i32)iCount });
+               pgraphics->text_out(rectangle.left + sz.cx(), (double)rectangle.top, { str.right(iCount).c_str(), (i32)iCount });
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
-               rectangle.left + sz.cx,
+               rectangle.left + sz.cx(),
                rectangle.top,
                str.right(iCount),
                iCount);*/
@@ -4530,9 +4530,9 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent(pszSource, psz - pszSource);
 
-         dNewY = y + sz.cy;
+         dNewY = y + sz.cy();
 
-         if(dNewY + sz.cy > rectangle.bottom)
+         if(dNewY + sz.cy() > rectangle.bottom)
          {
 
             bLastLine = true;
@@ -4545,7 +4545,7 @@ namespace draw2d
             sz = pgraphics->get_text_extent(str,(i32)iLen);
 
 
-            if(sz.cx > rectangleClip.width())
+            if(sz.cx() > rectangleClip.width())
             {
 
                strsize iSampleLen = strSource.length();
@@ -4559,7 +4559,7 @@ namespace draw2d
 
                   sz = pgraphics->get_text_extent(str);
 
-                  if(sz.cx < rectangleClip.width())
+                  if(sz.cx() < rectangleClip.width())
                   {
 
                      break;
@@ -4605,7 +4605,7 @@ namespace draw2d
 
          }
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             if(psz == pszStart)
@@ -4969,27 +4969,27 @@ namespace draw2d
 
          auto wscan = scan / sizeof(::color32_t);
 
-         for (double Δx = 0; Δx < w; Δx += dStep)
+         for (double greekdeltax = 0; greekdeltax < w; greekdeltax += dStep)
          {
-            dCircleX = fmod(Δx, (double)(dPeriod));
+            dCircleX = fmod(greekdeltax, (double)(dPeriod));
             double dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
             dCircleX -= dPeriod / 2.0;
             dTint = dBaseTint * 0.51;
             dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                ;
-               Δy = (Δy * dHalfH + dH - dHSpan);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               greekdeltay = (greekdeltay * dHalfH + dH - dHSpan);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -4997,18 +4997,18 @@ namespace draw2d
             }
             dTint = dBaseTint * 0.51;
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH + dHSpan);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               greekdeltay = (greekdeltay * dHalfH + dH + dHSpan);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5019,18 +5019,18 @@ namespace draw2d
             dTint = dBaseTint * 2.3;
 
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               greekdeltay = (greekdeltay * dHalfH + dH);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5348,19 +5348,19 @@ namespace draw2d
    float graphics::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
    {
 
-      float pqx, pqy, Δx, Δy, d, t;
+      float pqx, pqy, greekdeltax, greekdeltay, d, t;
       pqx = qx - px;
       pqy = qy - py;
-      Δx = x - px;
-      Δy = y - py;
+      greekdeltax = x - px;
+      greekdeltay = y - py;
       d = pqx*pqx + pqy*pqy;
-      t = pqx*Δx + pqy*Δy;
+      t = pqx*greekdeltax + pqy*greekdeltay;
       if (d > 0) t /= d;
       if (t < 0) t = 0;
       else if (t > 1) t = 1;
-      Δx = px + t*pqx - x;
-      Δy = py + t*pqy - y;
-      return Δx*Δx + Δy*Δy;
+      greekdeltax = px + t*pqx - x;
+      greekdeltay = py + t*pqy - y;
+      return greekdeltax*greekdeltax + greekdeltay*greekdeltay;
 
    }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "hi5_twitter_authorization.h"
 #include "acme/constant/id.h"
 #include "acme/handler/request.h"
@@ -245,7 +245,7 @@ namespace hi5
 
          m_pviewAuth->parent_frame()->set_foreground_window();
 
-         m_ptabimpact->top_level_frame()->display(e_display_restored, e_activation_set_foreground);
+         m_ptabimpact->top_level_frame()->display(e_display_normal, e_activation_set_foreground);
 
       }
 

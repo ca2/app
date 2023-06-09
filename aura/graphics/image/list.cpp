@@ -27,8 +27,8 @@ image_list::image_list()
    //defer_create_synchronization();
    m_iSize = 0;
    m_iGrow = 16;
-   m_size.cx = 0;
-   m_size.cy = 0;
+   m_size.cx() = 0;
+   m_size.cy() = 0;
 
 }
 
@@ -39,8 +39,8 @@ image_list::image_list(const image_list & imagelist)
    defer_create_synchronization();
    m_iSize = 0;
    m_iGrow = imagelist.m_iGrow;
-   m_size.cx = 0;
-   m_size.cy = 0;
+   m_size.cx() = 0;
+   m_size.cy() = 0;
 
    operator = (imagelist);
 
@@ -85,15 +85,15 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
    m_iSize = 0;
    m_iGrow = nGrow;
 
-   m_size.cx = cx;
-   m_size.cy = cy;
+   m_size.cx() = cx;
+   m_size.cy() = cy;
 
    __defer_construct(m_pimage);
 
    if (m_iSize > 0)
    {
 
-      m_pimage->create(::size_i32(m_size.cx * m_iSize, m_size.cy));
+      m_pimage->create(::size_i32(m_size.cx() * m_iSize, m_size.cy()));
 
    }
 
@@ -144,7 +144,7 @@ void image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 
    __UNREFERENCED_PARAMETER(iFlag);
 
-   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
+   point_f64 pointSource((double)(iImage * m_size.cx()), 0.);
 
    rectangle_f64 rectangleSource(pointSource, m_size);
 
@@ -182,7 +182,7 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
+   point_f64 pointSource((double)(iImage * m_size.cx()), 0.);
 
    rectangle_f64 rectangleSource(pointSource, m_size);
 
@@ -247,12 +247,12 @@ void image_list::_draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point
 
    __UNREFERENCED_PARAMETER(iFlag);
 
-   pointOffset.x() = minimum(m_size.cx, pointOffset.x());
-   pointOffset.y() = minimum(m_size.cy, pointOffset.y());
-   sz.cx = maximum(0, minimum(m_size.cx-pointOffset.x(), sz.cx));
-   sz.cy = maximum(0, minimum(m_size.cy-pointOffset.y(), sz.cy));
+   pointOffset.x() = minimum(m_size.cx(), pointOffset.x());
+   pointOffset.y() = minimum(m_size.cy(), pointOffset.y());
+   sz.cx() = maximum(0, minimum(m_size.cx()-pointOffset.x(), sz.cx()));
+   sz.cy() = maximum(0, minimum(m_size.cy()-pointOffset.y(), sz.cy()));
 
-   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
+   point_f64 pointSource((double)(iImage * m_size.cx()), 0.);
 
    rectangle_f64 rectangleSource(pointSource, sz);
 
@@ -326,7 +326,7 @@ i32 image_list::reserve_image(int iItem)
 //
 //   iItem = reserve_image(iItem);
 //
-//   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+//   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
 //   
 //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
@@ -335,11 +335,11 @@ i32 image_list::reserve_image(int iItem)
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////   m_pimage->get_graphics()->draw(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, nullptr, 0);
+////   m_pimage->get_graphics()->draw(iItem * m_size.cx(), 0, picon, m_size.cx(), m_size.cy(), 0, nullptr, 0);
 ////
 ////#else
 //
-//   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
+//   auto pointDst = ::point_f64((iItem * m_size.cx()), 0.);
 //
 //   auto sizeDst = m_size;
 //
@@ -368,13 +368,13 @@ i32 image_list::reserve_image(int iItem)
 //
 //   iItem = reserve_image(iItem);
 //
-//   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+//   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
 //
 //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //   m_pimage->g()->fill_rectangle(rectangle, 0);
 //
-//   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
+//   auto pointDst = ::point_f64((iItem * m_size.cx()), 0.);
 //
 //   auto sizeDst = m_size;
 //
@@ -412,7 +412,7 @@ i32 image_list::reserve_image(int iItem)
 //
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   i32 iSize = minimum(m_size.cx, m_size.cy);
+////   i32 iSize = minimum(m_size.cx(), m_size.cy());
 ////
 ////   ::file::path path = payloadFile.get_file_path();
 ////
@@ -474,7 +474,7 @@ i32 image_list::reserve_image(int iItem)
 //         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //         m_pimage->draw(
-//            ::rectangle_f64(::point_i32(iItem * m_size.cx, 0),  m_size ),
+//            ::rectangle_f64(::point_i32(iItem * m_size.cx(), 0),  m_size ),
 //            pimage);
 //
 //      });
@@ -504,7 +504,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 
    ::image_drawing imagedrawingTarget(imagedrawing);
 
-   imagedrawingTarget.m_rectangleTarget.set(::point_f64(iItem * m_size.cx, 0), m_size);
+   imagedrawingTarget.m_rectangleTarget.set(::point_f64(iItem * m_size.cx(), 0), m_size);
 
    m_pimage->get_graphics()->draw(imagedrawingTarget);
 
@@ -595,7 +595,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 //
 //   synchronous_lock synchronouslock(pil->synchronization());
 //
-//   return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
+//   return add_image(pil->m_pimage, iImage * pil->m_size.cx(), 0, iItem);
 //
 //}
 
@@ -612,7 +612,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 
    }
 
-   draw(pimage->get_graphics(), iImage, nullptr, 0);
+   draw(pimage->get_graphics(), iImage, {}, 0);
 
    return pimage;
 
@@ -632,14 +632,14 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 i32 image_list::_get_alloc_count()
 {
 
-   if(m_size.cx <= 0)
+   if(m_size.cx() <= 0)
    {
 
       return 0;
 
    }
 
-   return m_pimage->width() / m_size.cx;
+   return m_pimage->width() / m_size.cx();
 
 }
 
@@ -649,9 +649,9 @@ bool image_list::_grow(int iAddUpHint)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   i32 cx = m_size.cx;
+   i32 cx = m_size.cx();
 
-   i32 cy = m_size.cy;
+   i32 cy = m_size.cy();
 
    int iGrow = m_iGrow;
 
@@ -709,10 +709,10 @@ void image_list::get_image_info(i32 nImage, info * pinfo) const
 
    }
 
-   pinfo->m_rectangle.left       = nImage * m_size.cx;
-   pinfo->m_rectangle.right      = pinfo->m_rectangle.left + m_size.cx;
+   pinfo->m_rectangle.left       = nImage * m_size.cx();
+   pinfo->m_rectangle.right      = pinfo->m_rectangle.left + m_size.cx();
    pinfo->m_rectangle.top        = 0;
-   pinfo->m_rectangle.bottom     = m_size.cy;
+   pinfo->m_rectangle.bottom     = m_size.cy();
 
    pinfo->m_pimage               = m_pimage;
 

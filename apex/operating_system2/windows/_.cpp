@@ -20,7 +20,7 @@ void __term_windowing();
 CLASS_DECL_ACME bool is_verbose();
 
 
-::apex::system* app_common_prelude(int& iError, ::create*& pmaininitdata, app_core& appcore, HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const ::scoped_string & scopedstrCmdLine = nullptr, int nShowCmd = e_display_restored);
+::apex::system* app_common_prelude(int& iError, ::create*& pmaininitdata, app_core& appcore, HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const ::scoped_string & scopedstrCmdLine = nullptr, int nShowCmd = e_display_normal);
 int app_common_term(int iError, ::apex::system* psystem, app_core& appcore);
 
 

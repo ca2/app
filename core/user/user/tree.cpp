@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree.h"
 #include "tree_data.h"
 #include "acme/constant/message.h"
@@ -88,8 +88,8 @@ namespace user
       m_evOpen.m_eflagElement += e_flag_alertable_wait;
       m_evExpand.m_eflagElement += e_flag_alertable_wait;
 
-      m_sizeItemMaximum.cx = 16;
-      m_sizeItemMaximum.cy = 16;
+      m_sizeItemMaximum.cx() = 16;
+      m_sizeItemMaximum.cy() = 16;
 
    }
 
@@ -449,7 +449,7 @@ namespace user
          if (ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::e_tree_item_state_expandable)
          {
 
-            _001GetItemElementRect(rectangle, data, e_tree_element_expand_box);
+            _001GetItemElementRect(&rectangle, data, e_tree_element_expand_box);
 
             i32 iImage;
 
@@ -542,7 +542,7 @@ namespace user
          if (iImage >= 0 && pimagelistItem && pimagelistItem->m_pimage.ok())
          {
 
-            if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
+            if (_001GetItemElementRect(&rectangle, data, e_tree_element_image))
             {
 
                pimagelistItem->draw(data.m_pdc, iImage, rectangle.top_left(), 0);
@@ -557,7 +557,7 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if (strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
+      if (strItem.has_char() && _001GetItemElementRect(&rectangle, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer pbrushText;
@@ -957,9 +957,9 @@ namespace user
 
       ::size_f64 sizeTotal;
 
-      sizeTotal.cx = m_iCurrentImpactWidth;
+      sizeTotal.cx() = m_iCurrentImpactWidth;
 
-      sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
+      sizeTotal.cy() = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
       m_pscrolldataVertical->m_iLine = (::i32)m_dItemHeight;
 
@@ -1001,7 +1001,7 @@ namespace user
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = (::i32)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy);
+            iHDiff = (::i32)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy());
 
          }
 
@@ -1308,9 +1308,9 @@ namespace user
 
       size_f64 sizeTotal;
 
-      sizeTotal.cx = m_iCurrentImpactWidth;
+      sizeTotal.cx() = m_iCurrentImpactWidth;
 
-      sizeTotal.cy = _001CalcTotalImpactHeight();
+      sizeTotal.cy() = _001CalcTotalImpactHeight();
 
       set_total_size(sizeTotal);
 
@@ -1656,7 +1656,7 @@ namespace user
 
          size_f64 s = pgraphics->get_text_extent(strText);
 
-         iWidth = (i32)(48 + s.cx + iIndent * (iLevel + 1));
+         iWidth = (i32)(48 + s.cx() + iIndent * (iLevel + 1));
 
          if (iWidth > iMaxWidth)
          {

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "parse_info.h"
 #include "entity.h"
 

@@ -151,7 +151,7 @@ strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 //Top Network Posts
 //
 //5Is it possible for a genin to become a jonin?
-//Impact more network posts →
+//Impact more network posts ...>
 
 
 

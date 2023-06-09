@@ -47,7 +47,7 @@ int GetWorkspaceRect(::rectangle_i32 * prectangle, int iMonitor);
 int GetWorkspaceCount();
 
 
-int_bool SetForegroundWindow(oswindow window);
+int_bool set_foreground_window(oswindow window);
 int_bool BringWindowToTop(oswindow window);
 
 void ns_redraw_window(oswindow window);

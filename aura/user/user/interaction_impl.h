@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "primitive_impl.h"
@@ -113,7 +113,7 @@ namespace user
       ::frequency                                    m_frequencyNominalFramesPerSecond;
       ::frequency                                    m_frequencyOutputFramesPerSecond;
       point_i32                                 m_pointMouseMove;
-      ::size_i32                                m_sizeDrawn;
+      //::size_i32                                m_sizeDrawnAAA;
       ::size_i32                                m_sizeSetWindowSizeRequest;
       particle_array                            m_particleaRedraw;
 
@@ -133,7 +133,8 @@ namespace user
 
       //native_window *                         m_pwindow;
 
-      ::pointer<::graphics::graphics>        m_pgraphics;
+      ::pointer<::graphics::graphics>           m_pgraphics;
+      ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
 
       ::pointer < ::mutex >                     m_pmutexDraw;
       ::pointer < ::mutex >                     m_pmutexRedraw;
@@ -168,6 +169,13 @@ namespace user
       ::pointer < ::user::interaction >                     m_puiLastLButtonDown;
       ::pointer < ::item >                                  m_pitemLButtonDown;
 
+
+      bool                                      m_bUpdateBuffer; // internal offscreen buffer
+      bool                                      m_bUpdateScreen; // screen buffer
+      bool                                      m_bUpdateWindow; // window frame
+
+
+      ::size_i32                                m_sizeLastBuffer;
 
 
       interaction_impl();
@@ -401,7 +409,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = nullptr) override;
+      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = {}) override;
 
 
 //#ifdef LINUX
@@ -532,7 +540,7 @@ namespace user
 //#if(_WIN32_WINNT >= 0x0500)
 //
 //      virtual bool SetLayeredWindowAttributes(::color::color crKey,byte bAlpha,u32 dwFlags);
-//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,SIZE_I32 *psize,::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,u32 dwFlags);
+//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,::size_i32 *psize,::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,u32 dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
@@ -590,7 +598,7 @@ namespace user
       //virtual void ShowScrollBar(::u32 nBar,bool bShow = true);
       //virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = true);
 
-      //virtual i32 ScrollWindowEx(i32 Δx,i32 Δy, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
+      //virtual i32 ScrollWindowEx(i32 greekdeltax,i32 greekdeltay, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -731,7 +739,7 @@ namespace user
 
       virtual void start_window_visual() override;
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
-      virtual void do_graphics(bool bDraw);
+      virtual void do_graphics();
       virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
 

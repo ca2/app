@@ -1,10 +1,10 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "text.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/text_metric.h"
-#include "acme/primitive/geometry2d/_enhanced.h"
+//#include "acme/primitive/geometry2d/_enhanced.h"
 #include "aura/user/user/plain_edit.h"
 #include "axis/html/html/data.h"
 #include "axis/html/graphics/base.h"
@@ -193,7 +193,7 @@ namespace html
 
          ::size_f32 size = pgraphics->get_text_extent(strMax);
 
-         m_cxMax = (float) size.cx;
+         m_cxMax = (float) size.cx();
 
          strsize iLastSpace = 0;
 
@@ -284,10 +284,10 @@ namespace html
 
                size = pgraphics->get_text_extent(m_straWordSpace[i]);
 
-               if (size.cx > m_cxMin)
+               if (size.cx() > m_cxMin)
                {
 
-                  m_cxMin = (float)size.cx;
+                  m_cxMin = (float)size.cx();
 
                }
 
@@ -401,9 +401,9 @@ namespace html
 
          ::size_f32 sizeContent = ::size_f32(get_bound_size());
 
-         sizeContent.cx = maximum(0.f, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         sizeContent.cx() = maximum(0.f, sizeContent.cx() - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
 
-         sizeContent.cy = maximum(0.f, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+         sizeContent.cy() = maximum(0.f, sizeContent.cy() - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          for (i32 i = 0; i < str.length();)
          {
@@ -456,7 +456,7 @@ namespace html
 
             sizeText = pgraphics->get_text_extent(strLine);
 
-            if ((x + sizeText.cx) > pointBound.x() + sizeContent.cx)
+            if ((x + sizeText.cx()) > pointBound.x() + sizeContent.cx())
             {
 
                if (x > pointBound.x() && iLastSpace == 0)
@@ -464,7 +464,7 @@ namespace html
 
                   m_straLines.add("");
 
-                  sizeText.cx = 0;
+                  sizeText.cx() = 0;
 
                }
                else if (iLastSpace > 0)
@@ -476,7 +476,7 @@ namespace html
 
                   pgraphics->get_text_metrics(&textmetric);
 
-                  sizeText.cy = (float) textmetric.get_line_spacing();
+                  sizeText.cy() = (float) textmetric.get_line_spacing();
 
                   m_straLines.add(strLine.left(iLastSpace));
 
@@ -511,7 +511,7 @@ namespace html
 
             pgraphics->get_text_metrics(&textmetric);
 
-            sizeText.cy = (float) textmetric.get_line_spacing();
+            sizeText.cy() = (float) textmetric.get_line_spacing();
 
             m_straLines.add(strLine);
 
@@ -537,13 +537,13 @@ namespace html
             if (m_straLines.get_size() > 1)
             {
 
-               cx = m_sizea.last().cx;
+               cx = m_sizea.last().cx();
 
             }
             else if (m_straLines.get_size() > 0)
             {
 
-               cx = m_sizea[0].cx;
+               cx = m_sizea[0].cx();
 
             }
 
@@ -558,7 +558,7 @@ namespace html
          for (i = 0; i < m_sizea.get_size(); i++)
          {
 
-            cy += m_sizea[i].cy;
+            cy += m_sizea[i].cy();
 
          }
 
@@ -803,7 +803,7 @@ namespace html
          strsize iSelEnd;
          ::size_f32 size3;
          draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIﾍ"), size3);
-         i32 maxcy = size3.cy;
+         i32 maxcy = size3.cy();
 
          _001GetImpactSel(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
@@ -888,31 +888,31 @@ namespace html
                   //pgraphics->SetBkMode(OPAQUE);
                   pgraphics->set(pbrushBackground);
                   ::size_f32 size2 = pgraphics->get_text_extent(strExtent2);
-                  pgraphics->fill_solid_rect_dim((i32)(left + size1.cx),(i32)y,size2.cx,size2.cy,crBkSel);
+                  pgraphics->fill_solid_rect_dim((i32)(left + size1.cx()),(i32)y,size2.cx(),size2.cy(),crBkSel);
 
                   //pgraphics->set_text_color(crSel);
                   pbrushText->create_solid(crSel);
                   pgraphics->set(pbrushText);
-                  pgraphics->text_out(left + size1.cx,y,strExtent2);
+                  pgraphics->text_out(left + size1.cx(),y,strExtent2);
 
                   //            pgraphics->set_text_color(color32);
                   pbrushText->create_solid(color32);
                   pgraphics->set(pbrushText);
                   //pgraphics->SetBkColor(rgb(120, 240, 180));
                   //          pgraphics->SetBkMode(TRANSPARENT);
-                  pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
+                  pgraphics->text_out(left + size1.cx() + size2.cx(),y,strExtent3);
 
-                  maxcy = maximum(size1.cy,size2.cy);
-                  maxcy = maximum(maxcy,size3.cy);
+                  maxcy = maximum(size1.cy(),size2.cy());
+                  maxcy = maximum(maxcy,size3.cy());
                   if(m_bFocus && bCaretOn && i3 == str1.length())
                   {
-                     pgraphics->set_current_point(left + size1.cx,y);
-                     pgraphics->line_to(left + size1.cx,y + maxcy);
+                     pgraphics->set_current_point(left + size1.cx(),y);
+                     pgraphics->line_to(left + size1.cx(),y + maxcy);
                   }
                   if(m_bFocus && bCaretOn && i3 == (str1.length() + str2.length()))
                   {
-                     pgraphics->set_current_point(left + size1.cx + size2.cx,y);
-                     pgraphics->line_to(left + size1.cx + size2.cx,y + maxcy);
+                     pgraphics->set_current_point(left + size1.cx() + size2.cx(),y);
+                     pgraphics->line_to(left + size1.cx() + size2.cx(),y + maxcy);
                   }
 
                }
@@ -922,7 +922,7 @@ namespace html
                   //pgraphics->fill_rectangle(left,top,50,50,argb(255,0,255,0));
                }
 
-               cy += m_sizea[i].cy;
+               cy += m_sizea[i].cy();
                lim += strLine.length();
             }
          }
@@ -939,7 +939,7 @@ namespace html
          if(m_sizea.get_size() > 0)
          {
 
-            return m_sizea[0].cy;
+            return m_sizea[0].cy();
 
          }
          else
@@ -958,7 +958,7 @@ namespace html
          if(m_sizea.get_size() > 0)
          {
 
-            return m_sizea[m_sizea.get_upper_bound()].cy;
+            return m_sizea[m_sizea.get_upper_bound()].cy();
 
          }
          else if(m_pelemental->m_phtmlbase->get_type() == ::html::base::type_tag)
@@ -1062,12 +1062,12 @@ namespace html
 
             x1 = i == 0 ? x : m_bound.left;
 
-            x2 = x1 + m_sizea[i].cx;
+            x2 = x1 + m_sizea[i].cx();
 
             if(point.x() > x1 && point.x() < x2)
             {
 
-               if(point.y() > m_box.top + cy  && point.y() < m_box.top + cy + m_sizea[i].cy)
+               if(point.y() > m_box.top + cy  && point.y() < m_box.top + cy + m_sizea[i].cy())
                {
 
                   return 1;
@@ -1076,7 +1076,7 @@ namespace html
 
             }
 
-            cy += m_sizea[i].cy;
+            cy += m_sizea[i].cy();
 
          }
 
@@ -1201,7 +1201,7 @@ namespace html
 
             float cur_x = i == 0 ? x : m_bound.left;
 //            i32 cur_y = y + cy;
-            if(py >= (y + cy) && py < (y + m_sizea[i].cy))
+            if(py >= (y + cy) && py < (y + m_sizea[i].cy()))
             {
 
                ::size_f32 size;
@@ -1211,7 +1211,7 @@ namespace html
                while(true)
                {
 
-                  if(px < cur_x + size.cx)
+                  if(px < cur_x + size.cx())
                   {
 
                      return iLen + iChar;
@@ -1242,7 +1242,7 @@ namespace html
 
             }
 
-            cy += m_sizea[i].cy;
+            cy += m_sizea[i].cy();
 
          }
 

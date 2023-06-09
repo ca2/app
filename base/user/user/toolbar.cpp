@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "toolbar.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
@@ -50,12 +50,12 @@ namespace user
       m_bDelayedButtonLayout = true;
 
       // default image sizes
-      m_sizeImage.cx = 16;
-      m_sizeImage.cy = 15;
+      m_sizeImage.cx() = 16;
+      m_sizeImage.cy() = 15;
 
       // default button sizes
-      m_sizeButton.cx = 23;
-      m_sizeButton.cy = 22;
+      m_sizeButton.cx() = 23;
+      m_sizeButton.cy() = 22;
 
       // top and bottom borders are 1 larger than default for ease of grabbing
       m_rectangleBorder.top = 3;
@@ -251,21 +251,21 @@ namespace user
       ASSERT_VALID(this);
 
       // sizes must be non-zero and positive
-      ASSERT(sizeButton.cx > 0 && sizeButton.cy > 0);
-      ASSERT(sizeImage.cx > 0 && sizeImage.cy > 0);
+      ASSERT(sizeButton.cx() > 0 && sizeButton.cy() > 0);
+      ASSERT(sizeImage.cx() > 0 && sizeImage.cy() > 0);
 
       // button must be big enough to hold image
       //   + 7 pixels on x
       //   + 6 pixels on y
-      ASSERT(sizeButton.cx >= sizeImage.cx + 7);
-      ASSERT(sizeButton.cy >= sizeImage.cy + 6);
+      ASSERT(sizeButton.cx() >= sizeImage.cx() + 7);
+      ASSERT(sizeButton.cy() >= sizeImage.cy() + 6);
 
       //if (is_window())
       {
          // set the sizes via TB_SETBITMAPSIZE and TB_SETBUTTONSIZE
 //#ifdef WINDOWS_DESKTOP
-//         //VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
-//         //VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
+//         //VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx(), sizeImage.cy())));
+//         //VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx(), sizeButton.cy())));
 //#else
 //         //throw ::exception(todo);
 //#endif
@@ -293,9 +293,9 @@ namespace user
          //cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
 
-      m_rectangleBorder.bottom = (::i32)((cyHeight - m_sizeButton.cy) / 2);
+      m_rectangleBorder.bottom = (::i32)((cyHeight - m_sizeButton.cy()) / 2);
       // if there is an extra pixel, m_rectangleBorder.top will get it
-      m_rectangleBorder.top = (::i32)(cyHeight - m_sizeButton.cy - m_rectangleBorder.bottom);
+      m_rectangleBorder.top = (::i32)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom);
       if (m_rectangleBorder.top < 0)
       {
          FORMATTED_TRACE("Warning: toolbar::SetHeight(%d) is smaller than button.",
@@ -341,7 +341,7 @@ namespace user
    //               addBitmap.hInst = nullptr; // makes TBADDBITMAP::nID behave a HBITMAP
    //               addBitmap.nID = (::u32)hbmImageWell;
    //               bResult =  default_window_procedure(TB_ADDBITMAP,
-   //                  bitmap.bmWidth / m_sizeImage.cx, (LPARAM)&addBitmap) == 0;
+   //                  bitmap.bmWidth / m_sizeImage.cx(), (LPARAM)&addBitmap) == 0;
    //            }
    //            else
    //            {
@@ -350,7 +350,7 @@ namespace user
    //               replaceBitmap.nIDOld = (::u32)m_hbmImageWell;
    //               replaceBitmap.hInstNew = nullptr;
    //               replaceBitmap.nIDNew = (::u32)hbmImageWell;
-   //               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
+   //               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx();
    //               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
    //            }
    //            // erase old bitmap, if present
@@ -738,14 +738,14 @@ namespace user
    //      //   if (pData[i].fsState & e_toolbar_button_hidden)
    //      //      continue;
    //
-   //      //   index cx = m_sizeButton.cx;
+   //      //   index cx = m_sizeButton.cx();
    //      //   if (pData[i].fsStyle & TBSTYLE_SEP)
    //      //   {
    //      //      // a separator represents either a height or width
    //      //      if (pData[i].fsState & TBSTATE_WRAP)
-   //      //         sizeResult.cy = (::i32) maximum(cur.y() + m_sizeButton.cy + cySep, sizeResult.cy);
+   //      //         sizeResult.cy() = (::i32) maximum(cur.y() + m_sizeButton.cy() + cySep, sizeResult.cy());
    //      //      else
-   //      //         sizeResult.cx = maximum(cur.x() + pData[i].iBitmap, sizeResult.cx);
+   //      //         sizeResult.cx() = maximum(cur.x() + pData[i].iBitmap, sizeResult.cx());
    //      //   }
    //      //   else
    //      //   {
@@ -756,8 +756,8 @@ namespace user
    //      //         // add size_i32 of drop down
    //      //         cx += 2;
    //      //      }
-   //      //      sizeResult.cx = maximum(cur.x() + cx, sizeResult.cx);
-   //      //      sizeResult.cy = maximum(cur.y() + m_sizeButton.cy, sizeResult.cy);
+   //      //      sizeResult.cx() = maximum(cur.x() + cx, sizeResult.cx());
+   //      //      sizeResult.cy() = maximum(cur.y() + m_sizeButton.cy(), sizeResult.cy());
    //      //   }
    //
    //      //   if (pData[i].fsStyle & TBSTYLE_SEP)
@@ -768,7 +768,7 @@ namespace user
    //      //   if (pData[i].fsState & TBSTATE_WRAP)
    //      //   {
    //      //      cur.x() = 0;
-   //      //      cur.y() += m_sizeButton.cy;
+   //      //      cur.y() += m_sizeButton.cy();
    //      //      if (pData[i].fsStyle & TBSTYLE_SEP)
    //      //         cur.y() += cySep;
    //      //   }
@@ -794,15 +794,15 @@ namespace user
    //   //      if (pData[i].fsState & e_toolbar_button_hidden)
    //   //         continue;
    //   //      GetButtonText(i, str);
-   //   //      index Δx, dxNext;
+   //   //      index greekdeltax, dxNext;
    //   //      if (pData[i].fsStyle & TBSTYLE_SEP)
    //   //      {
-   //   //         Δx = pData[i].iBitmap;
-   //   //         dxNext = Δx;
+   //   //         greekdeltax = pData[i].iBitmap;
+   //   //         dxNext = greekdeltax;
    //   //      }
    //   //      else if (!str.is_empty())
    //   //      {
-   //   //         Δx = m_sizeButton.cx;
+   //   //         greekdeltax = m_sizeButton.cx();
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
    //   //         //         str = (const unichar *) pData[i].iString;
@@ -812,16 +812,16 @@ namespace user
    //   //         str,
    //   //         (index) str.length(),
    //   //         &size);
-   //   //         Δx += size.cx;
-   //   //         dxNext = Δx - CX_OVERLAP;
+   //   //         greekdeltax += size.cx();
+   //   //         dxNext = greekdeltax - CX_OVERLAP;
    //   //      }
    //   //      else
    //   //      {
-   //   //         Δx = m_sizeButton.cx;
-   //   //         dxNext = Δx - CX_OVERLAP;
+   //   //         greekdeltax = m_sizeButton.cx();
+   //   //         dxNext = greekdeltax - CX_OVERLAP;
    //   //      }
    //
-   //   //      if (x + Δx > nWidth)
+   //   //      if (x + greekdeltax > nWidth)
    //   //      {
    //   //         bool bFound = false;
    //   //         for (index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
@@ -904,7 +904,7 @@ namespace user
    //   //         }
    //   //      }
    //   //      const ::size_i32 & size = CalcSize(pData, nCount);
-   //   //      WrapToolBar(pData, nCount, size.cx);
+   //   //      WrapToolBar(pData, nCount, size.cx());
    //   //   }
    //   //   else
    //   //   {
@@ -923,22 +923,22 @@ namespace user
    //   //      WrapToolBar(pData, nCount, 32767);
    //   //      sizeMax = CalcSize(pData, nCount);
    //
-   //   //      while (sizeMin.cx < sizeMax.cx)
+   //   //      while (sizeMin.cx() < sizeMax.cx())
    //   //      {
-   //   //         sizeMid.cx = (sizeMin.cx + sizeMax.cx) / 2;
-   //   //         WrapToolBar(pData, nCount, sizeMid.cx);
+   //   //         sizeMid.cx() = (sizeMin.cx() + sizeMax.cx()) / 2;
+   //   //         WrapToolBar(pData, nCount, sizeMid.cx());
    //   //         sizeMid = CalcSize(pData, nCount);
    //
-   //   //         if (nLength < sizeMid.cy)
+   //   //         if (nLength < sizeMid.cy())
    //   //         {
    //   //            if (sizeMin == sizeMid)
    //   //            {
-   //   //               WrapToolBar(pData, nCount, sizeMax.cx);
+   //   //               WrapToolBar(pData, nCount, sizeMax.cx());
    //   //               return;
    //   //            }
    //   //            sizeMin = sizeMid;
    //   //         }
-   //   //         else if (nLength > sizeMid.cy)
+   //   //         else if (nLength > sizeMid.cy())
    //   //            sizeMax = sizeMid;
    //   //         else
    //   //            return;
@@ -1097,7 +1097,7 @@ namespace user
       //            if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
       //            {
       //
-      //               m_nMRUWidth = sizeResult.cx;
+      //               m_nMRUWidth = sizeResult.cx();
       //
       //            }
       //
@@ -1127,7 +1127,7 @@ namespace user
       //
       //               FORMATTED_TRACE("BUTTON.fsStyle = %d\n", buttona.fsStyle);
       //
-      //               FORMATTED_TRACE("BUTTON.cx = %d\n", buttona.cx );
+      //               FORMATTED_TRACE("BUTTON.cx() = %d\n", buttona.cx() );
       //
       //            }
       //
@@ -1170,12 +1170,12 @@ namespace user
       //         ::rectangle_i32 rectangle;
       //
       //         CalcInsideRect(rectangle, (dwMode & LM_HORZ) != 0);
-      //         sizeResult.cy -= rectangle.height();
-      //         sizeResult.cx -= rectangle.width();
+      //         sizeResult.cy() -= rectangle.height();
+      //         sizeResult.cx() -= rectangle.width();
       //
       //         const ::size_i32 & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
-      //         sizeResult.cx = maximum(sizeResult.cx, size.cx);
-      //         sizeResult.cy = maximum(sizeResult.cy, size.cy);
+      //         sizeResult.cx() = maximum(sizeResult.cx(), size.cx());
+      //         sizeResult.cy() = maximum(sizeResult.cy(), size.cy());
       //      }
       //      return sizeResult;
       //#else
@@ -1796,7 +1796,7 @@ namespace user
       //
       //      if(GetStyle() & TBSTYLE_FLAT)
       //      {
-      //         sizeResult.cy += 2;
+      //         sizeResult.cy() += 2;
       //      }
       //
       //#else
@@ -1820,7 +1820,7 @@ namespace user
       /*set_window_position(
       e_zorder_top,
       0, 0,
-      size.cx, size.cy,
+      size.cx(), size.cy(),
       SWP_SHOWWINDOW
       | SWP_NOMOVE);*/
       return size;
@@ -1845,27 +1845,29 @@ namespace user
    }
 
 
-   bool toolbar::index_item_rectangle(index iItem, ::rectangle_i32 * prectangle)
+   ::status < ::rectangle_i32 > toolbar::index_item_rectangle(index iItem)
    {
 
       if (!m_pitema->is_index_ok(iItem))
       {
 
-         return false;
+         return error_failed;
 
       }
 
-      *prectangle = m_pitema->element_at(iItem)->m_rectangle;
+      ::status < ::rectangle_i32 > statusrectangle = m_pitema->element_at(iItem)->m_rectangle;
 
-      return true;
+      statusrectangle.m_estatus = ::success;
+
+      return statusrectangle;
 
    }
 
 
-   bool toolbar::index_element_rectangle(index iItem, ::rectangle_i32 * prectangle, enum_element eelement, ::user::enum_state estate)
+   ::status < ::rectangle_i32 >  toolbar::index_element_rectangle(index iItem, enum_element eelement, ::user::enum_state estate)
    {
 
-      return false;
+      return error_failed;
 
    }
 
@@ -2078,7 +2080,6 @@ namespace user
 
 
 } // namespace user
-
 
 
 user_toolbar_command::user_toolbar_command(::particle * pparticle)

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/handler/item.h"
 #include "aura/platform/context.h"
 #include <math.h>
@@ -417,9 +417,9 @@ namespace user
 
       auto size = get_size();
 
-      m_ppictureimpl->m_pointDrag2.x() = point.x() * size.cx/m_ppictureimpl->m_rectangle.width();
+      m_ppictureimpl->m_pointDrag2.x() = point.x() * size.cx()/m_ppictureimpl->m_rectangle.width();
 
-      m_ppictureimpl->m_pointDrag2.y() = point.y() * size.cy / m_ppictureimpl->m_rectangle.height();
+      m_ppictureimpl->m_pointDrag2.y() = point.y() * size.cy() / m_ppictureimpl->m_rectangle.height();
 
    }
 
@@ -430,9 +430,9 @@ namespace user
 
       auto size = get_size();
 
-      point.x() = m_ppictureimpl->m_pointDrag2.x() *m_ppictureimpl->m_rectangle.width() / size.cx;
+      point.x() = m_ppictureimpl->m_pointDrag2.x() *m_ppictureimpl->m_rectangle.width() / size.cx();
 
-      point.y() = m_ppictureimpl->m_pointDrag2.y() *m_ppictureimpl->m_rectangle.height() / size.cy;
+      point.y() = m_ppictureimpl->m_pointDrag2.y() *m_ppictureimpl->m_rectangle.height() / size.cy();
 
       return point;
 
@@ -484,10 +484,10 @@ namespace user
       else
       {
 
-         m_ppictureimpl->m_rectangleDrawing.left = m_ppictureimpl->m_rectangle.left * sizePage.cx / sizeClient.cx;
-         m_ppictureimpl->m_rectangleDrawing.right = m_ppictureimpl->m_rectangle.right * sizePage.cx / sizeClient.cx;
-         m_ppictureimpl->m_rectangleDrawing.top = m_ppictureimpl->m_rectangle.top * sizePage.cy / sizeClient.cy;
-         m_ppictureimpl->m_rectangleDrawing.bottom = m_ppictureimpl->m_rectangle.bottom * sizePage.cy / sizeClient.cy;
+         m_ppictureimpl->m_rectangleDrawing.left = m_ppictureimpl->m_rectangle.left * sizePage.cx() / sizeClient.cx();
+         m_ppictureimpl->m_rectangleDrawing.right = m_ppictureimpl->m_rectangle.right * sizePage.cx() / sizeClient.cx();
+         m_ppictureimpl->m_rectangleDrawing.top = m_ppictureimpl->m_rectangle.top * sizePage.cy() / sizeClient.cy();
+         m_ppictureimpl->m_rectangleDrawing.bottom = m_ppictureimpl->m_rectangle.bottom * sizePage.cy() / sizeClient.cy();
 
       }
 
@@ -508,10 +508,10 @@ namespace user
       else
       {
 
-         m_ppictureimpl->m_rectangle.left = m_ppictureimpl->m_rectangleDrawing.left * sizeClient.cx / sizePage.cx;
-         m_ppictureimpl->m_rectangle.right = m_ppictureimpl->m_rectangleDrawing.right * sizeClient.cx / sizePage.cx;
-         m_ppictureimpl->m_rectangle.top = m_ppictureimpl->m_rectangleDrawing.top * sizeClient.cy / sizePage.cy;
-         m_ppictureimpl->m_rectangle.bottom = m_ppictureimpl->m_rectangleDrawing.bottom * sizeClient.cy / sizePage.cy;
+         m_ppictureimpl->m_rectangle.left = m_ppictureimpl->m_rectangleDrawing.left * sizeClient.cx() / sizePage.cx();
+         m_ppictureimpl->m_rectangle.right = m_ppictureimpl->m_rectangleDrawing.right * sizeClient.cx() / sizePage.cx();
+         m_ppictureimpl->m_rectangle.top = m_ppictureimpl->m_rectangleDrawing.top * sizeClient.cy() / sizePage.cy();
+         m_ppictureimpl->m_rectangle.bottom = m_ppictureimpl->m_rectangleDrawing.bottom * sizeClient.cy() / sizePage.cy();
 
       }
 
@@ -857,8 +857,10 @@ namespace user
             pimageDropShadow->g()->draw(imagedrawing);
 
             pimageDropShadow->paint_rgb(m_ppictureimpl->m_hlsGlowDropShadow);
+            
+            blurDropShadow.initialize(pimageDropShadow->size(), iBlur);
 
-            blurDropShadow.blur(pimageDropShadow, iBlur);
+            blurDropShadow.blur(pimageDropShadow);
 
          }
 
@@ -940,7 +942,7 @@ namespace user
 
       }
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       ::draw2d::matrix mRot;
 

@@ -1,9 +1,12 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "graphics.h"
 #include "brush.h"
 #include "pen.h"
 #include "path.h"
 #include "draw2d.h"
+#include "acme/exception/interface_only.h"
+#include "acme/primitive/geometry2d/item.h"
+#include "acme/primitive/geometry2d/_defer_item.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -12,9 +15,9 @@
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "acme/parallelization/single_lock.h"
-#include "acme/primitive/geometry2d/_enhanced.h"
-#include "acme/primitive/geometry2d/_collection_enhanced.h"
-#include "acme/primitive/geometry2d/_defer_shape.h"
+//#include "acme/primitive/geometry2d/_enhanced.h"
+//#include "acme/primitive/geometry2d/_collection_enhanced.h"
+//#include "acme/primitive/geometry2d/_defer_shape.h"
 #include "acme/primitive/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg.h"
@@ -42,8 +45,8 @@ namespace draw2d
 
       m_pointOrigin.x() = 0;
       m_pointOrigin.y() = 0;
-      m_sizeScaling.cx = 1.0;
-      m_sizeScaling.cy = 1.0;
+      m_sizeScaling.cx() = 1.0;
+      m_sizeScaling.cy() = 1.0;
       //m_estatus = success;
       //m_estatusLast = success;
 
@@ -391,7 +394,7 @@ namespace draw2d
    point_f64 graphics::GetBrushOrg()
    {
 
-      return nullptr;
+      return {};
 
    }
 
@@ -435,7 +438,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(x);
       __UNREFERENCED_PARAMETER(y);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -445,7 +448,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(point);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -597,7 +600,7 @@ namespace draw2d
    size_f64 graphics::get_extents()
    {
 
-      return ::size_f64(0, 0);
+      return {};
 
    }
 
@@ -605,7 +608,7 @@ namespace draw2d
    point_f64 graphics::GetWindowOrg()
    {
 
-      return nullptr;
+      return {};
 
    }
 
@@ -613,7 +616,7 @@ namespace draw2d
    size_f64 graphics::GetWindowExt()
    {
 
-      return ::size_f64(0, 0);
+      return {};
 
    }
 
@@ -641,7 +644,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(point);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -843,7 +846,7 @@ namespace draw2d
 
       double y = (y1 + y2) / 2.0;
 
-      arc(x1, y1, x2 - x1, y2 - y1, atan2(x3 - x, y3 - y), atan2(x4 - x, y4 - y));
+      arc(x1, y1, x2 - x1, y2 - y1, radians(atan2(x3 - x, y3 - y)), radians(atan2(x4 - x, y4 - y)));
 
    }
 
@@ -856,7 +859,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
+   void graphics::arc(double x, double y, double w, double h, ::angle_f64 start, ::angle_f64 extends)
    {
 
       arc(rectangle_f64_dimension(x, y, w, h), start, extends);
@@ -864,7 +867,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc(const ::rectangle_f64 & rectangle, angle start, angle extends)
+   void graphics::arc(const ::rectangle_f64 & rectangle, ::angle_f64 start, ::angle_f64 extends)
    {
 
       arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
@@ -1682,9 +1685,9 @@ namespace draw2d
 
          const ::size_f64 & size = ::size_f64(get_text_extent(scopedstr));
 
-         //size.cx = size.cx * 110 / 100;
+         //size.cx() = size.cx() * 110 / 100;
 
-         //size.cy = size.cy * 110 / 100;
+         //size.cy() = size.cy() * 110 / 100;
 
          ::rectangle_i32 rectangleText(point_i32((::i32)x, (::i32)y), size);
 
@@ -2024,7 +2027,7 @@ namespace draw2d
    }
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -2656,14 +2659,14 @@ namespace draw2d
    //}
 
 
-   i32 graphics::SaveDC()
+   i32 graphics::save_graphics_context()
    {
 
       return -1;
    }
 
 
-   void graphics::RestoreDC(i32)
+   void graphics::restore_graphics_context(i32)
    {
 
       //return false;
@@ -2825,7 +2828,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(x);
       __UNREFERENCED_PARAMETER(y);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -2837,7 +2840,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(nHeight);
 
-      return nullptr;
+      return {};
 
    }
 
@@ -2987,7 +2990,7 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
 //   {
 //
-//      return OffsetClipRgn(size.cx, size.cy);
+//      return OffsetClipRgn(size.cx(), size.cy());
 //
 //   }
 
@@ -3007,9 +3010,9 @@ namespace draw2d
 //      /*
 //       i32 nRetVal = ERROR;
 //       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
+//       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx(), size.cy());
 //       if(get_handle2() != nullptr)
-//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
+//       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx(), size.cy());
 //       return nRetVal;
 //       */
 //   }
@@ -3157,13 +3160,36 @@ namespace draw2d
    }
 
 
-   void graphics::add_clipping_shapes(const shape_array < ::draw2d::region > & shapea)
+   ::draw2d::region * graphics::defer_get_os_data(::pointer < ::geometry2d::region > & pregion)
    {
+     
+      ::pointer < ::draw2d::region > pdraw2dregion = pregion;
       
-      for(auto & pshape : shapea)
+      if(!pdraw2dregion)
       {
          
-         _add_clipping_shape(*pshape);
+         __construct(pdraw2dregion);
+         
+         //pdraw2dregion->m_eregion = pregion->m_eregion;
+         
+         pdraw2dregion->m_pitem = pregion->m_pitem;
+         
+         pregion = pdraw2dregion;
+         
+      }
+
+      return pdraw2dregion;
+      
+   }
+
+
+   void graphics::add_clipping_shapes(const ::pointer_array < ::draw2d::region > & regiona)
+   {
+      
+      for(auto & pregion : regiona)
+      {
+         
+         _add_clipping_shape(pregion);
          
       }
 
@@ -3179,26 +3205,40 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(::draw2d::region * pregion)
    {
-   
-      switch(shape.eshape())
+
+      if (::is_null(pregion))
       {
-      case e_shape_none:
+
          return;
-      case e_shape_intersect_clip:
+
+      }
+
+      if (::is_null(pregion->m_pitem))
+      {
+
+         return;
+
+      }
+
+      switch(pregion->m_pitem->type())
+      {
+      case e_item_none:
+         return;
+      case e_item_intersect_clip:
          _intersect_clip();
          break;
-      case e_shape_rectangle:
-         _add_clipping_shape(shape.shape < ::rectangle >(), shape);
+      case e_item_rectangle:
+         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::rectangle_item >()->m_item, pregion);
          break;
-      case e_shape_ellipse:
-         _add_clipping_shape(shape.shape < ::ellipse >(), shape);
+      case e_item_ellipse:
+         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::ellipse_item >()->m_item, pregion);
          break;
 //      case e_shape_lines:
 //         return _add_shape(shape.shape < ::lines >());
-      case e_shape_polygon:
-         _add_clipping_shape(shape.shape < ::polygon >(), shape);
+      case e_item_polygon:
+         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::polygon_item >()->m_polygon, pregion);
          break;
       default:
          throw ::exception(error_not_implemented);
@@ -3218,7 +3258,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
    {
    
       throw ::interface_only();
@@ -3238,7 +3278,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::_add_shape(const ::ellipse & ellipse)
+   //void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    //{
    //
    //   throw ::interface_only();
@@ -3248,7 +3288,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion)
    {
    
       throw ::interface_only();
@@ -3268,7 +3308,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ___shape < ::draw2d::region > & shape)
+   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion)
    {
 
       throw ::interface_only();
@@ -3278,37 +3318,43 @@ namespace draw2d
    }
 
 
-   void graphics::intersect_clip(const ::rectangle & rectangle)
+   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
    {
       
-      _shape < ::rectangle, e_shape_rectangle, ::draw2d::region > regionshape;
+      //_shape < ::rectangle_f64, e_shape_rectangle, ::draw2d::region > regionshape;
+      
+      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(rectangle, regionshape);
+      _add_clipping_shape(rectangle, pregion);
 
    }
 
 
-   void graphics::intersect_clip(const ::ellipse & ellipse)
+   void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    {
    
-      _shape < ::ellipse, e_shape_ellipse, ::draw2d::region > regionshape;
+      //_shape < ::ellipse_f64, e_shape_ellipse, ::draw2d::region > regionshape;
+      
+      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(ellipse, regionshape);
+      _add_clipping_shape(ellipse, pregion);
    
    }
 
 
-   void graphics::intersect_clip(const ::polygon & polygon)
+   void graphics::intersect_clip(const ::polygon_f64 & polygon)
    {
 
-      _shape < ::polygon, e_shape_polygon, ::draw2d::region > regionshape;
+      //_shape < ::polygon_f64, e_shape_polygon, ::draw2d::region > regionshape;
+      
+      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(polygon, regionshape);
+      _add_clipping_shape(polygon, pregion);
 
    }
 
 
-//   void graphics::intersect_clip(const ::ellipse & ellipse)
+//   void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
 //   {
 //
 //      throw interface_only();
@@ -3540,7 +3586,7 @@ namespace draw2d
 
          daLeft.add(dLeft);
 
-         dLeft = get_text_extent({str.begin(), iAsciiCharCount}).cx;
+         dLeft = get_text_extent({str.begin(), iAsciiCharCount}).cx();
 
          daRight.add(dLeft);
 
@@ -3619,8 +3665,8 @@ namespace draw2d
 
    //   ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
 
-   //   size.cx = sz.cx;
-   //   size.cy = sz.cy;
+   //   size.cx() = sz.cx();
+   //   size.cy() = sz.cy();
 
    //   //return true;
 
@@ -3632,8 +3678,8 @@ namespace draw2d
 
    //   ::size_f64 sz = get_text_extent(string(pszString), nCount);
 
-   //   size.cx = sz.cx;
-   //   size.cy = sz.cy;
+   //   size.cx() = sz.cx();
+   //   size.cy() = sz.cy();
 
    //   //return true;
 
@@ -3645,9 +3691,9 @@ namespace draw2d
 
    //   ::size_f64 sz = get_text_extent(scopedstr);
 
-   //   size.cx = sz.cx;
+   //   size.cx() = sz.cx();
 
-   //   size.cy = sz.cy;
+   //   size.cy() = sz.cy();
 
    //}
 
@@ -3700,45 +3746,45 @@ namespace draw2d
 
       size_f64 size = get_text_extent(str);
 
-      double Δx;
+      double greekdeltax;
 
-      double Δy;
+      double greekdeltay;
 
       if(ealign & e_align_right)
       {
 
-         Δx = rectangleParam.right - rectangleParam.left - size.cx;
+         greekdeltax = rectangleParam.right - rectangleParam.left - size.cx();
 
       }
       else if(ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx)) / 2.0;
+         greekdeltax = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
 
       }
       else
       {
 
-         Δx = 0.;
+         greekdeltax = 0.;
 
       }
 
       if(ealign & e_align_bottom)
       {
 
-         Δy = rectangleParam.bottom - rectangleParam.top - size.cy;
+         greekdeltay = rectangleParam.bottom - rectangleParam.top - size.cy();
 
       }
       else if(ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy)) / 2.0;
+         greekdeltay = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
 
       }
       else
       {
 
-         Δy = 0.;
+         greekdeltay = 0.;
 
       }
 
@@ -3762,7 +3808,7 @@ namespace draw2d
 
          str.replace_with("", "\n");
 
-         text_out(rectangleParam.left + Δx, rectangleParam.top + Δy, str);
+         text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay, str);
 
       }
       else
@@ -3781,9 +3827,9 @@ namespace draw2d
 
             auto size1 = get_text_extent(str);
 
-            text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
+            text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay + offsety, str);
 
-            offsety += (i32) size1.cy;
+            offsety += (i32) size1.cy();
 
          }
 
@@ -4311,9 +4357,9 @@ namespace draw2d
 
       size_f64 sz;
 
-      sz.cx = 0;
+      sz.cx() = 0;
 
-      sz.cy = 0;
+      sz.cy() = 0;
 
       strsize iUnderline = -1;
 
@@ -4367,7 +4413,7 @@ namespace draw2d
 
          }
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             const ::ansi_character * pszStart = str;
@@ -4387,7 +4433,7 @@ namespace draw2d
 
                sz = get_text_extent(strSample);
 
-               if (sz.cx > rectangleClip.width())
+               if (sz.cx() > rectangleClip.width())
                {
 
                   str = strLastSample;
@@ -4421,7 +4467,7 @@ namespace draw2d
 
          }
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             strsize i = iLen;
@@ -4440,7 +4486,7 @@ namespace draw2d
 
                sz = get_text_extent(str(0, i));
 
-               if ((int) sz.cx > rectangleClip.width())
+               if ((int) sz.cx() > rectangleClip.width())
                {
 
                   i = unicode_prior_index(i, str);
@@ -4505,8 +4551,8 @@ namespace draw2d
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right =  sz.cx;
-      rectangle.bottom = sz.cy;
+      rectangle.right =  sz.cx();
+      rectangle.bottom = sz.cy();
       //rectangle.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
@@ -4575,12 +4621,12 @@ namespace draw2d
             char wch = str[iUnderline];
             /*::TextOutU(
             (HDC)pgraphics->get_os_data(),
-            rectangle.left + sz.cx,
+            rectangle.left + sz.cx(),
             rectangle.top,
             &wch,
             1);*/
             
-            text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
+            text_out(rectangle.left + sz.cx(), (double)rectangle.top, { &wch, 1 });
 
             if (iUnderline + 1 <= str.length())
             {
@@ -4594,11 +4640,11 @@ namespace draw2d
                
                strsize iCount = str.length() - iUnderline - 1;
 
-               text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.right(iCount).c_str(), (i32)iCount });
+               text_out(rectangle.left + sz.cx(), (double)rectangle.top, { str.right(iCount).c_str(), (i32)iCount });
 
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
-               rectangle.left + sz.cx,
+               rectangle.left + sz.cx(),
                rectangle.top,
                str.right(iCount),
                iCount);*/
@@ -4618,7 +4664,7 @@ namespace draw2d
       if (!bLastLine && str2.length() > 0)
       {
 
-         rectangleClip.top = rectangleClip.top+sz.cy;
+         rectangleClip.top = rectangleClip.top+sz.cy();
 
          _DrawText(str2, rectangleClip, ealign, edrawtext);
 
@@ -4671,9 +4717,9 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent({ pszSource, psz - pszSource });
 
-         dNewY = y + sz.cy;
+         dNewY = y + sz.cy();
 
-         if(dNewY + sz.cy > rectangle.bottom)
+         if(dNewY + sz.cy() > rectangle.bottom)
          {
 
             bLastLine = true;
@@ -4686,7 +4732,7 @@ namespace draw2d
             sz = pgraphics->get_text_extent(str(0, (i32)iLen));
 
 
-            if(sz.cx > rectangleClip.width())
+            if(sz.cx() > rectangleClip.width())
             {
 
                strsize iSampleLen = strSource.length();
@@ -4700,7 +4746,7 @@ namespace draw2d
 
                   sz = pgraphics->get_text_extent(str);
 
-                  if(sz.cx < rectangleClip.width())
+                  if(sz.cx() < rectangleClip.width())
                   {
 
                      break;
@@ -4746,7 +4792,7 @@ namespace draw2d
 
          }
 
-         if (sz.cx > rectangleClip.width())
+         if (sz.cx() > rectangleClip.width())
          {
 
             if(psz == pszStart)
@@ -5145,27 +5191,27 @@ namespace draw2d
 
          auto wscan = scan / sizeof(::color32_t);
 
-         for (double Δx = 0; Δx < w; Δx += dStep)
+         for (double greekdeltax = 0; greekdeltax < w; greekdeltax += dStep)
          {
-            dCircleX = fmod(Δx, (double)(dPeriod));
+            dCircleX = fmod(greekdeltax, (double)(dPeriod));
             double dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
             dCircleX -= dPeriod / 2.0;
             dTint = dBaseTint * 0.51;
             dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                ;
-               Δy = (Δy * dHalfH + dH - dHSpan);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               greekdeltay = (greekdeltay * dHalfH + dH - dHSpan);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5173,18 +5219,18 @@ namespace draw2d
             }
             dTint = dBaseTint * 0.51;
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH + dHSpan);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               greekdeltay = (greekdeltay * dHalfH + dH + dHSpan);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5195,18 +5241,18 @@ namespace draw2d
             dTint = dBaseTint * 2.3;
 
             {
-               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH);
-               int x = (int)round(Δx);
-               int y = (int)round(Δy);
+               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               greekdeltay = (greekdeltay * dHalfH + dH);
+               int x = (int)round(greekdeltax);
+               int y = (int)round(greekdeltay);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
+                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
+                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5528,19 +5574,19 @@ namespace draw2d
    float graphics::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
    {
 
-      float pqx, pqy, Δx, Δy, d, t;
+      float pqx, pqy, greekdeltax, greekdeltay, d, t;
       pqx = qx - px;
       pqy = qy - py;
-      Δx = x - px;
-      Δy = y - py;
+      greekdeltax = x - px;
+      greekdeltay = y - py;
       d = pqx*pqx + pqy*pqy;
-      t = pqx*Δx + pqy*Δy;
+      t = pqx*greekdeltax + pqy*greekdeltay;
       if (d > 0) t /= d;
       if (t < 0) t = 0;
       else if (t > 1) t = 1;
-      Δx = px + t*pqx - x;
-      Δy = py + t*pqy - y;
-      return Δx*Δx + Δy*Δy;
+      greekdeltax = px + t*pqx - x;
+      greekdeltay = py + t*pqy - y;
+      return greekdeltax*greekdeltax + greekdeltay*greekdeltay;
 
    }
 
@@ -5682,7 +5728,7 @@ namespace draw2d
 
       //glContext(0, 0, width, height);
 
-      int n=SaveDC();
+      save_context savecontext(this);
 
       offset_origin(x, y);
 
@@ -5759,7 +5805,7 @@ namespace draw2d
 
       //glfwSwapBuffers(window);
 
-      RestoreDC(n);
+      
 
    }
 
@@ -5810,7 +5856,7 @@ namespace draw2d
    }
 
    
-   savedc::savedc(graphics * pgraphics)
+   save_context::save_context(graphics * pgraphics)
    {
       
       m_pgraphics = pgraphics;
@@ -5821,7 +5867,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
             
-            m_iSavedDC = m_pgraphics->SaveDC();
+            m_iSavedDC = m_pgraphics->save_graphics_context();
             m_sizeScaling = pgraphics->m_sizeScaling;
             m_pointOrigin = pgraphics->m_pointOrigin;
             m_matrix = pgraphics->m_matrix;
@@ -5837,7 +5883,7 @@ namespace draw2d
    }
 
 
-   savedc::~savedc()
+   save_context::~save_context()
    {
 
       try
@@ -5846,7 +5892,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
 
-            m_pgraphics->RestoreDC(m_iSavedDC);
+            m_pgraphics->restore_graphics_context(m_iSavedDC);
             m_pgraphics->m_sizeScaling = m_sizeScaling;
             m_pgraphics->m_matrix = m_matrix;
             m_pgraphics->m_pointOrigin = m_pointOrigin;
@@ -5908,9 +5954,9 @@ namespace draw2d
 
       matrix matrixTranslate;
 
-      matrixScale.a1 = m_sizeScaling.cx;
+      matrixScale.a1 = m_sizeScaling.cx();
 
-      matrixScale.b2 = m_sizeScaling.cy;
+      matrixScale.b2 = m_sizeScaling.cy();
 
       matrixTranslate.c1 = m_pointOrigin.x();
 
@@ -6017,9 +6063,6 @@ namespace draw2d
       //return ::success_none;
 
    }
-
-
-
 
 
 

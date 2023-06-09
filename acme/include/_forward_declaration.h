@@ -9,7 +9,6 @@
 #pragma once
 
 
-
 namespace opengl
 {
 
@@ -198,8 +197,6 @@ namespace desktop_environment_gnome
 } // namespace desktop_environment_gnome
 
 
-
-
 namespace windowing
 {
 
@@ -297,12 +294,15 @@ class dir_system;
 class file_context;
 class file_system;
 
+
 enum enum_zero_init
 {
 
    e_zero_init
 
 };
+
+
 namespace networking
 {
 
@@ -549,9 +549,6 @@ namespace message
 
 
 } // namespace message
-
-
-
 
 
 class form_property_set;

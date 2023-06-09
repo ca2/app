@@ -1,4 +1,4 @@
-// From exception.h by camilo on 2022-11-09 04:39 <3ThomasBorregaardSørensen!!
+// From exception.h by camilo on 2022-11-09 04:39 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

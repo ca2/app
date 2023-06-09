@@ -286,17 +286,17 @@ namespace linux
 
             xdisplay d(display);
 
-            if(pusersystem->m_createstruct.cx <= 0)
+            if(pusersystem->m_createstruct.cx() <= 0)
             {
 
-               pusersystem->m_createstruct.cx = 1;
+               pusersystem->m_createstruct.cx() = 1;
 
             }
 
-            if(pusersystem->m_createstruct.cy <= 0)
+            if(pusersystem->m_createstruct.cy() <= 0)
             {
 
-               pusersystem->m_createstruct.cy = 1;
+               pusersystem->m_createstruct.cy() = 1;
 
             }
 
@@ -352,9 +352,9 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
-            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
+            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(),
             0,
             m_iDepth,
             InputOutput,
@@ -375,7 +375,7 @@ namespace linux
    //
    //            uistate.m_point.set(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
    //
-   //            uistate.m_size.set(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+   //            uistate.m_size.set(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
    //
    //            uistate.m_pointScreen = uistate.m_point;
    //
@@ -385,7 +385,7 @@ namespace linux
 
                m_puserinteraction->layout().sketch() = ::point_i32(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
 
-               m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+               m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
                m_puserinteraction->screen_origin() = ::point_i32(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y());
 
@@ -593,7 +593,7 @@ namespace linux
                      // initial (XCreateWindow) size and position maybe not be honored.
                      // so requesting the same change again in a effort to set the "docked/snapped" size and position.
 
-                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
 
                   }
 
@@ -606,7 +606,7 @@ namespace linux
             //if(pshowwindow->m_bShow)
             {
 
-               //::rectangle rect32;
+               //::rectangle_f64 rect32;
 
                //(::window_rectangle((oswindow) get_handle(), rect32))
                {
@@ -775,7 +775,7 @@ namespace linux
       if (bSize)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -900,7 +900,7 @@ namespace linux
             if(m_puserinteraction->window_previous_display() == ::e_display_iconic)
             {
 
-               m_puserinteraction->_001OnDeiconify(::e_display_restored);
+               m_puserinteraction->_001OnDeiconify(::e_display_normal);
 
             }
             else
@@ -1089,7 +1089,7 @@ namespace linux
 
       char szBuf [64];
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
       ((::user::interaction_impl *) this)->m_puserinteraction->window_rectangle(&rectangle);
       dumpcontext << "\nrect = " << rectangle;
       dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
@@ -1506,12 +1506,12 @@ namespace linux
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
             pmouse->m_bTranslated = true;
-            ::rectangle rectangleWindow;
+            ::rectangle_f64 rectangleWindow;
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
                INFORMATION("Screen Relative Mouse Message Position");
-               ::rectangle rectangleWindow32;
+               ::rectangle_f64 rectangleWindow32;
                ::window_rectangle((oswindow) get_handle(), &rectangleWindow32);
                ::copy(rectangleWindow, rectangleWindow32);
             }
@@ -1521,7 +1521,7 @@ namespace linux
             }
             if(::acmeacmesystem()->get_monitor_count() > 0)
             {
-               ::rectangle rcMonitor;
+               ::rectangle_f64 rcMonitor;
                ::acmeacmesystem()->get_monitor_rectangle(0, &rcMonitor);
                if(rectangleWindow.left >= rcMonitor.left)
                   pmouse->m_point.x() += (::i32) rectangleWindow.left;
@@ -1761,7 +1761,7 @@ namespace linux
 //      {
 //         // clicking on floating frame when it does not have
 //         // focus itself -- activate the toplevel frame instead.
-//         EnsureTopLevel()->SetForegroundWindow();
+//         EnsureTopLevel()->set_foreground_window();
 //      }
 //   }
 
@@ -1902,7 +1902,7 @@ namespace linux
 //   }
 //
 //   void interaction_impl::ScrollWindow(i32 xAmount, i32 yAmount,
-//                                       const ::rectangle & rectangle, const ::rectangle & lpClipRect)
+//                                       const ::rectangle_f64 & rectangle, const ::rectangle_f64 & lpClipRect)
 //
 //   {
 //      /*      ASSERT(::is_window((oswindow) get_handle()));
@@ -1926,7 +1926,7 @@ namespace linux
 //                  for (; hWndChild != nullptr;
 //                     hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
 //                  {
-//                     ::rectangle rectangle;
+//                     ::rectangle_f64 rectangle;
 //                     ::window_rectangle(hWndChild, &rectangle);
 //                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
@@ -1963,7 +1963,7 @@ namespace linux
 //               if (LOWORD(lparam) == VK_F6 && pParent != nullptr)
 //
 //               {
-//                  pParent->SetFocus();
+//                  pParent->XXXSetFocus();
 //                  return true;
 //               }
 //               break;
@@ -1986,15 +1986,15 @@ namespace linux
 //                     // and focus after sending it.
 //                     oswindow hWndSave = get_handle();
 //                     oswindow hWndFocus = ::GetFocus();
-//                     pParent->SetActiveWindow();
+//                     pParent->set_active_window();
 //                     pParent->send_message(WM_SYSCOMMAND, nID, lparam);
 //
 //
 //                     // be very careful here...
 //                     if (::is_window(hWndSave))
-//                        ::SetActiveWindow(hWndSave);
+//                        ::XXXSetActiveWindow(hWndSave);
 //                     if (::is_window(hWndFocus))
-//                        ::SetFocus(hWndFocus);
+//                        ::XXXSetFocus(hWndFocus);
 //                  }
 //               }
 //               return true;
@@ -2435,7 +2435,7 @@ namespace linux
 //   void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
 //   {
 //
-//      ::rectangle rectangleClient;
+//      ::rectangle_f64 rectangleClient;
 //
 //      m_puserinteraction->client_rectangle(rectangleClient);
 //
@@ -2443,10 +2443,10 @@ namespace linux
 //      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 //
 //      //return;
-//      ::rectangle rectangleUpdate;
+//      ::rectangle_f64 rectangleUpdate;
 //      m_puserinteraction->window_rectangle(rectangleUpdate);
 ////      SetContextOrgEx(hdc, 0, 0, nullptr);
-//      ::rectangle rectanglePaint;
+//      ::rectangle_f64 rectanglePaint;
 //      rectanglePaint = rectangleUpdate;
 //      m_puserinteraction->screen_to_client(rectanglePaint);
 //      user::oswindow_array wndaApp;
@@ -2668,7 +2668,7 @@ namespace linux
 
 //   {
 //
-//      ::rectangle rectangleWindow;
+//      ::rectangle_f64 rectangleWindow;
 //
 //      if(!window_rectangle(rectangleWindow))
 //      {
@@ -2832,7 +2832,7 @@ namespace linux
 //      // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
 //      //if(m_puserinteraction == nullptr || m_puserinteraction == this)
 //      {
-//         ::rectangle rect32;
+//         ::rectangle_f64 rect32;
 //
 //         if(!::window_rectangle((oswindow) get_handle(), rect32))
 //         {
@@ -2890,7 +2890,7 @@ namespace linux
 //      //if(m_puserinteraction == nullptr || m_puserinteraction == this)
 //      {
 //
-//         ::rectangle rect32;
+//         ::rectangle_f64 rect32;
 //
 //         //if(!::client_rectangle((oswindow) get_handle(), rect32))
 //         //{
@@ -2966,11 +2966,11 @@ namespace linux
 //      if(m_puserinteraction != nullptr)
 //      {
 //
-//         m_puserinteraction->dis = ::e_display_restored;
+//         m_puserinteraction->dis = ::e_display_normal;
 //
 //      }
 //
-//      ::show_window(m_oswindow, e_display_restored);
+//      ::show_window(m_oswindow, e_display_normal);
 //
 //   }
 
@@ -3278,7 +3278,7 @@ namespace linux
 //   */
 //
 //
-////   void interaction_impl::MoveWindow(const ::rectangle & rectangle, bool bRepaint)
+////   void interaction_impl::MoveWindow(const ::rectangle_f64 & rectangle, bool bRepaint)
 ////   {
 ////
 ////      MoveWindow(rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, bRepaint);
@@ -3380,7 +3380,7 @@ namespace linux
 //
 //      }
 //
-//      ::rectangle rectangleClient;
+//      ::rectangle_f64 rectangleClient;
 //
 //      //oswindow->client_rectangle(rectangleClient);
 //
@@ -3479,7 +3479,7 @@ namespace linux
 //      //::InvalidateRect(get_handle(), nullptr, bErase);
 //   }
 //
-//   void interaction_impl::InvalidateRect(const ::rectangle & rectangle, bool bErase)
+//   void interaction_impl::InvalidateRect(const ::rectangle_f64 & rectangle, bool bErase)
 //
 //   {
 //      throw ::not_implemented();
@@ -3495,7 +3495,7 @@ namespace linux
 //      //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
 //   }
 //
-//   void interaction_impl::ValidateRect(const ::rectangle & rectangle)
+//   void interaction_impl::ValidateRect(const ::rectangle_f64 & rectangle)
 //
 //   {
 //      throw ::not_implemented();
@@ -3622,7 +3622,7 @@ namespace linux
 //   }
 //
 
-//   bool interaction_impl::RedrawWindow(const ::rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+//   bool interaction_impl::RedrawWindow(const ::rectangle_f64& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
 //   {
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
@@ -3766,7 +3766,7 @@ namespace linux
    }
 
 
-   ::user::interaction * interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::set_active_window()
    {
 
       return nullptr;
@@ -3799,7 +3799,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::SetFocus()
+   bool interaction_impl::set_keyboard_focus()
    {
 
       oswindow w = ::set_focus(get_handle());
@@ -3988,13 +3988,13 @@ namespace linux
 //
 //   }
 //
-//   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const rectangle & pRectScroll, const rectangle & lpRectClip, ::draw2d::region * prgnUpdate, RECT32 * lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 greekdeltax, i32 greekdeltay, const rectangle & pRectScroll, const rectangle & lpRectClip, ::draw2d::region * prgnUpdate, RECT32 * lpRectUpdate, ::u32 flags)
 //
 //   {
 //
 //      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::ScrollWindowEx(get_handle(), Δx, Δy, pRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
+////      return ::ScrollWindowEx(get_handle(), greekdeltax, greekdeltay, pRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 //
 //
 //   }
@@ -4188,7 +4188,7 @@ namespace linux
 //
 
 
-   bool interaction_impl::SetForegroundWindow()
+   bool interaction_impl::set_foreground_window()
    {
 
       return ::set_foreground_window(get_handle()) != false;

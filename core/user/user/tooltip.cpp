@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
@@ -143,9 +143,9 @@ namespace user
 
       //rectangleText.top = 0;
 
-      //rectangleText.right = m_size.cx;
+      //rectangleText.right = m_size.cx();
 
-      //rectangleText.bottom = m_size.cy;
+      //rectangleText.bottom = m_size.cy();
 
       pgraphics->set(m_pfont);
 
@@ -177,14 +177,14 @@ namespace user
 
          sizeLine = g->get_text_extent(strLine);
 
-         size.cx = maximum(size.cx,sizeLine.cx);
+         size.cx() = maximum(size.cx(),sizeLine.cx());
 
-         size.cy += sizeLine.cy;
+         size.cy() += sizeLine.cy();
 
       }
 
-      size.cx += 16 + 16;
-      size.cy += 16 + 16;
+      size.cx() += 16 + 16;
+      size.cy() += 16 + 16;
 
 
       m_size = size;

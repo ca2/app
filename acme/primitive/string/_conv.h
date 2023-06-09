@@ -1,4 +1,4 @@
-﻿// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSørensen!!
+// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -105,7 +105,7 @@ constexpr void __tosz(INTEGRAL i, CHARACTER * & p, int base, enum_digit_case edi
 
 }
 
-//::::pair <int,int> ia;
+//::pair <int,int> ia;
 
 
 

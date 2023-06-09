@@ -310,7 +310,7 @@ iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
 //oswindow GetFocus();
 //
 //
-//oswindow SetFocus(oswindow window)
+//oswindow XXXSetFocus(oswindow window)
 //{
 //
 //   if(!is_window(window))

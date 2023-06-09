@@ -28,7 +28,6 @@
 		9A8EB4A724498E390056E362 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB48B24498E390056E362 /* _.h */; };
 		9A8F8948240C031B0097E249 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F890E240C031B0097E249 /* framework.cpp */; };
 		9A8F8958240C031B0097E249 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F8934240C031B0097E249 /* framework.h */; };
-		9ABA659B28B5BB420063B976 /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA659A28B5BB420063B976 /* _library.h */; };
 		9AE245DF27F1233F00B849D0 /* control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927DFC27F10FDE002BCA3C /* control_box_button.cpp */; };
 		9AE245E027F1233F00B849D0 /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927DF827F10FDE002BCA3C /* control_box.cpp */; };
 		9AE245E127F1233F00B849D0 /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927E0827F10FDE002BCA3C /* experience.cpp */; };
@@ -95,6 +94,8 @@
 		0793EA2E1CA4074C001374D8 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
 		9A4E5CB52519348700CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E5CB72519348700CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A54A6342A2D66880052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A54A6352A2D66880052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A5CDDA91D20FEC60093150A /* libios_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_core.dylib; path = "../../../../macos/app/aura/build/Debug-iphoneos/libios_core.dylib"; sourceTree = "<group>"; };
 		9A5CDDAB1D20FED10093150A /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
 		9A5CDDAD1D20FEE50093150A /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
@@ -136,7 +137,6 @@
 		9A927E0C27F10FDE002BCA3C /* style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
 		9A927E0D27F10FDE002BCA3C /* style.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
 		9A927E0E27F10FDE002BCA3C /* _user.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
-		9ABA659A28B5BB420063B976 /* _library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 		9AE24E5A1904CFE2001AEFFB /* libios_experience_anthill.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_experience_anthill.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E5C1904CFE2001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,9 +190,10 @@
 			children = (
 				9A927DF327F10FDE002BCA3C /* experience */,
 				9A927E0B27F10FDE002BCA3C /* user */,
+				9A54A6352A2D66880052BAB6 /* _____debug.xcconfig */,
+				9A54A6342A2D66880052BAB6 /* _____release.xcconfig */,
 				9A8EB48B24498E390056E362 /* _.h */,
 				9A8C7DE427D1449200025329 /* _factory.cpp */,
-				9ABA659A28B5BB420063B976 /* _library.h */,
 				9A8F890E240C031B0097E249 /* framework.cpp */,
 				9A8F8934240C031B0097E249 /* framework.h */,
 			);
@@ -296,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8EB4A724498E390056E362 /* _.h in Headers */,
-				9ABA659B28B5BB420063B976 /* _library.h in Headers */,
 				9A8F8958240C031B0097E249 /* framework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +582,7 @@
 		};
 		9AEB75F616F78EDC0085103B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A54A6352A2D66880052BAB6 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
@@ -642,7 +643,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -656,6 +656,7 @@
 		};
 		9AEB75F716F78EDC0085103B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A54A6342A2D66880052BAB6 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
@@ -710,7 +711,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

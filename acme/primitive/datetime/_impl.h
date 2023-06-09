@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //inline time& time::operator = (const class ::nanosecond & nanosecond)

@@ -213,7 +213,7 @@ string ca2_command_line()
 }
 
 
-void screen_coordinates_aware_copy(CGRect * prectTarget, const ::rectangle * prectSource)
+void screen_coordinates_aware_copy(CGRect * prectTarget, const ::rectangle_f64 * prectSource)
 {
 
    CGRect rectangleWorkspace = mm_get_workspace_rect();
@@ -380,6 +380,6 @@ int show_window(oswindow oswindow, int iShow)
       
    }
    
-   return oswindow->m_pimpl->ShowWindow(iShow);
+   return oswindow->m_pimpl->show_window(iShow);
    
 }

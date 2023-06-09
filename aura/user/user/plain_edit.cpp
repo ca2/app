@@ -2272,7 +2272,7 @@ namespace user
       //if (iLineUpdate < 0)
       //{
 
-      //   //m_sizeTotal.cx = 0;
+      //   //m_sizeTotal.cx() = 0;
 
       //}
 
@@ -2339,7 +2339,7 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //           daExtent [(::index)(psz - pszStart + j)] = size.cx;
+      //           daExtent [(::index)(psz - pszStart + j)] = size.cx();
 
       //         }
 
@@ -2355,17 +2355,17 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //            daExtent[(::index)(psz - pszStart)] = size.cx;
+      //            daExtent[(::index)(psz - pszStart)] = size.cx();
 
       //         }
 
       //      }
 
 
-      //      if (size.cx > m_sizeTotal.cx)
+      //      if (size.cx() > m_sizeTotal.cx())
       //      {
 
-      //         m_sizeTotal.cx = (i32)size.cx;
+      //         m_sizeTotal.cx() = (i32)size.cx();
 
       //      }
 
@@ -2377,16 +2377,16 @@ namespace user
       ////if (iLineUpdate < 0)
       ////{
 
-      ////   m_sizeTotal.cy = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+      ////   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 
       ////   const ::size_i32 & sizePage;
 
       ////   sizePage = rectangleClient.size();
 
-      ////   if (m_sizeTotal.cy < sizePage.cy)
+      ////   if (m_sizeTotal.cy() < sizePage.cy())
       ////   {
 
-      ////      sizePage.cy = m_sizeTotal.cy;
+      ////      sizePage.cy() = m_sizeTotal.cy();
 
       ////   }
 
@@ -2727,7 +2727,7 @@ namespace user
       //      if (iLineUpdate < 0)
       //      {
       //
-      //         //m_sizeTotal.cx = 0;
+      //         //m_sizeTotal.cx() = 0;
       //
       //      }
       //
@@ -2810,7 +2810,7 @@ namespace user
       //
       //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
       //
-      //               if (size.cx > rectangleClient.width() + 200)
+      //               if (size.cx() > rectangleClient.width() + 200)
       //               {
       //
       //                  while (*psz != '\0')
@@ -2825,12 +2825,12 @@ namespace user
       //
       //               }
       //
-      //               sizeLast.cx = (::i32) size.cx;
+      //               sizeLast.cx() = (::i32) size.cx();
       //
       //               for (int j = 0; j < iLen; j++)
       //               {
       //
-      //                  daExtent[(::index)(psz - pszStart + j)] = size.cx;
+      //                  daExtent[(::index)(psz - pszStart + j)] = size.cx();
       //
       //               }
       //
@@ -2843,14 +2843,14 @@ namespace user
       //
       //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
       //
-      //               daExtent[(::index)(psz - pszStart)] = size.cx;
+      //               daExtent[(::index)(psz - pszStart)] = size.cx();
       //
       //            }
       //
-      //            if (size.cx > m_sizeTotal.cx)
+      //            if (size.cx() > m_sizeTotal.cx())
       //            {
       //
-      //               m_sizeTotal.cx = (i32)size.cx;
+      //               m_sizeTotal.cx() = (i32)size.cx();
       //
       //            }
       //
@@ -2862,16 +2862,16 @@ namespace user
       //      if (iLineUpdate < 0)
       //      {
       //
-      //         m_sizeTotal.cy = (::i32) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
+      //         m_sizeTotal.cy() = (::i32) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
       //
       //         ::size_f64 sizePage;
       //
       //         sizePage = rectangleClient.size();
       //
-      //         if (m_sizeTotal.cy < sizePage.cy)
+      //         if (m_sizeTotal.cy() < sizePage.cy())
       //         {
       //
-      //            sizePage.cy = m_sizeTotal.cy;
+      //            sizePage.cy() = m_sizeTotal.cy();
       //
       //         }
       //
@@ -3135,7 +3135,7 @@ namespace user
       //if (iLineUpdate < 0)
       //{
 
-      //   //m_sizeTotal.cx = 0;
+      //   //m_sizeTotal.cx() = 0;
 
       //}
 
@@ -3202,7 +3202,7 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //           daExtent [(::index)(psz - pszStart + j)] = size.cx;
+      //           daExtent [(::index)(psz - pszStart + j)] = size.cx();
 
       //         }
 
@@ -3218,17 +3218,17 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //            daExtent[(::index)(psz - pszStart)] = size.cx;
+      //            daExtent[(::index)(psz - pszStart)] = size.cx();
 
       //         }
 
       //      }
 
 
-      //      if (size.cx > m_sizeTotal.cx)
+      //      if (size.cx() > m_sizeTotal.cx())
       //      {
 
-      //         m_sizeTotal.cx = (i32)size.cx;
+      //         m_sizeTotal.cx() = (i32)size.cx();
 
       //      }
 
@@ -3240,16 +3240,16 @@ namespace user
       ////if (iLineUpdate < 0)
       ////{
 
-      ////   m_sizeTotal.cy = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+      ////   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 
       ////   const ::size_i32 & sizePage;
 
       ////   sizePage = rectangleClient.size();
 
-      ////   if (m_sizeTotal.cy < sizePage.cy)
+      ////   if (m_sizeTotal.cy() < sizePage.cy())
       ////   {
 
-      ////      sizePage.cy = m_sizeTotal.cy;
+      ////      sizePage.cy() = m_sizeTotal.cy();
 
       ////   }
 
@@ -3501,7 +3501,7 @@ namespace user
 //if (iLineUpdate < 0)
 //{
 
-//   //m_sizeTotal.cx = 0;
+//   //m_sizeTotal.cx() = 0;
 
 //}
 
@@ -3568,7 +3568,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  daExtent[(::index)(psz - pszStart + j)] = size.cx;
+                  daExtent[(::index)(psz - pszStart + j)] = size.cx();
 
                }
 
@@ -3584,17 +3584,17 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  daExtent[(::index)(psz - pszStart)] = size.cx;
+                  daExtent[(::index)(psz - pszStart)] = size.cx();
 
                }
 
             }
 
 
-            if (size.cx > m_sizeTotal.cx)
+            if (size.cx() > m_sizeTotal.cx())
             {
 
-               m_sizeTotal.cx = (i32)size.cx;
+               m_sizeTotal.cx() = (i32)size.cx();
 
             }
 
@@ -3606,16 +3606,16 @@ namespace user
       //if (iLineUpdate < 0)
       //{
 
-      //   m_sizeTotal.cy = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+      //   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 
       //   const ::size_i32 & sizePage;
 
       //   sizePage = rectangleClient.size();
 
-      //   if (m_sizeTotal.cy < sizePage.cy)
+      //   if (m_sizeTotal.cy() < sizePage.cy())
       //   {
 
-      //      sizePage.cy = m_sizeTotal.cy;
+      //      sizePage.cy() = m_sizeTotal.cy();
 
       //   }
 
@@ -3786,7 +3786,7 @@ namespace user
 
       size_f64 size = pgraphics->get_text_extent(strLine, (i32)iChar);
 
-      return size.cx;
+      return size.cx();
 
 
    }
@@ -4038,7 +4038,7 @@ namespace user
 
       double dLineHeight;
 
-      double Δy = 0;
+      double greekdeltay = 0;
 
       bool bFound = false;
 
@@ -4053,7 +4053,7 @@ namespace user
       for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
       {
 
-         if (point.y() < Δy + dLineHeight)
+         if (point.y() < greekdeltay + dLineHeight)
          {
 
             bFound = true;
@@ -4062,7 +4062,7 @@ namespace user
 
          }
 
-         Δy += dLineHeight;
+         greekdeltay += dLineHeight;
 
          iOffset += m_iaLineLength[iLine];
 
@@ -4347,10 +4347,10 @@ namespace user
 
       m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
-      if (m_sizeTotal.cx <= 0)
+      if (m_sizeTotal.cx() <= 0)
       {
 
-         m_sizeTotal.cx = 200;
+         m_sizeTotal.cx() = 200;
 
       }
 
@@ -4515,10 +4515,10 @@ namespace user
 
       m_ptree->m_peditfile->seek(iOffset, ::e_seek_set);
 
-      if (m_sizeTotal.cx <= 0)
+      if (m_sizeTotal.cx() <= 0)
       {
 
-         m_sizeTotal.cx = 200;
+         m_sizeTotal.cx() = 200;
 
       }
 
@@ -7059,7 +7059,7 @@ namespace user
 
       ::index i = 0;
 
-      copy(pointOffset, get_context_offset());
+      //copy(pointOffset, get_context_offset());
 
       while (pointOffset.y() > dHeight && i < m_iaLineLength.get_size())
       {

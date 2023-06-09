@@ -1,5 +1,35 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+#include <math.h>
+
+
+template < typename T >
+T default_epsilon()
+{
+
+   return {};
+
+}
+
+
+template < primitive_integral INTEGRAL >
+constexpr INTEGRAL default_epsilon()
+{
+
+   return 0;
+
+}
+
+
+template < primitive_floating FLOATING >
+constexpr FLOATING default_epsilon()
+{
+
+   return ::std::numeric_limits<FLOATING>::epsilon();
+
+}
 
 
 //template < typename A, typename B >
@@ -640,6 +670,114 @@ constexpr ::std::strong_ordering negation(const ::std::strong_ordering & orderin
    {
 
       return ::std::strong_ordering::equal;
+
+   }
+
+}
+
+
+template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
+{
+
+   return ::std::abs(n1 - n2) < epsilon;
+
+}
+
+
+template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
+{
+
+   return ::std::abs(n1 - n2) < epsilon;
+
+}
+
+
+template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
+{
+
+   return ::std::abs(n1 - n2) < epsilon;
+
+}
+
+
+template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = 0)
+{
+
+   return n1 == n2;
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+constexpr void _expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   if (n < minimum)
+   {
+
+      minimum = (NUMBER1) n;
+
+   }
+   else if (n > maximum)
+   {
+
+      maximum = (NUMBER1) n;
+
+   }
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   _expand_minimum_maximum(minimum, maximum, n);
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   _expand_minimum_maximum(minimum, maximum, n);
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   _expand_minimum_maximum(minimum, maximum, n);
+
+}
+
+
+/// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
+template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
+constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
+{
+
+   if (n < minimum)
+   {
+
+      minimum = (NUMBER1) floor(n);
+
+   }
+   else if (n > maximum)
+   {
+
+      maximum = (NUMBER1) ceil(n);
 
    }
 

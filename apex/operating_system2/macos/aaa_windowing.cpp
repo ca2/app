@@ -669,7 +669,7 @@ rectangle_i32_array cg_get_window_rect_list_above(CGWindowID windowid)
    
    CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenAboveWindow, windowid);
 
-   ::rectangle rMainScreen;
+   ::rectangle_f64 rMainScreen;
 
    get_main_screen_rectangle(rMainScreen);
 
@@ -731,7 +731,7 @@ rectangle_i32_array cg_get_window_rect_list_above(CGWindowID windowid)
       if(rectangle.size.width > 0 && rectangle.size.height > 0)
       {
 
-         ::rectangle rectangleCopy;
+         ::rectangle_f64 rectangleCopy;
 
          rectangleCopy.left = rectangle.origin.x();
          rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
@@ -1006,7 +1006,7 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
                if(CGRectIntersectsRect(rect1, rectangle))
                {
 
-                  ::rectangle rectangleCopy;
+                  ::rectangle_f64 rectangleCopy;
 
                   rectangleCopy.left = rectangle.origin.x();
                   rectangleCopy.right = rectangle.origin.x() + rectangle.size.width;
@@ -1215,7 +1215,7 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
          
          CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
          
-         ::rectangle rectangleCopy;
+         ::rectangle_f64 rectangleCopy;
          
          //rectangleCopy.left = rectangle.origin.x();
          //rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
@@ -1290,11 +1290,11 @@ int_bool is_window_occluded(oswindow oswindow)
    
    return true;
 
-//   ::rectangle rectangle;
+//   ::rectangle_f64 rectangle;
 //
 //   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rectangle();
 //
-//   ::rectangle rectangleTest;
+//   ::rectangle_f64 rectangleTest;
 //
 //   for(int i = 0; i < recta.get_size(); i++)
 //   {
@@ -1328,7 +1328,7 @@ int_bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, 
    
    cg_get_window_rect_list(recta, windowida);
    
-   ::rectangle rectangleTest;
+   ::rectangle_f64 rectangleTest;
 
    for(index i = 0; i < recta.get_size(); i++)
    {
@@ -1344,7 +1344,7 @@ int_bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, 
 
       auto rectangle = recta[i];
 
-      ::rectangle rectangleHitTest;
+      ::rectangle_f64 rectangleHitTest;
       
       rectangleHitTest.set(rectangle.origin(), ::size());
       

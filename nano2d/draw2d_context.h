@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/matrix.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/primitive/collection/int_map.h"
 #include "context.h"
@@ -21,15 +22,14 @@ namespace nano2d
    public:
 
       
-      ::draw2d::graphics_pointer       m_pgraphics;
-      ::pointer<::nano2d::font_sink>  m_pfontsink;
-      int                              m_iPaint = -1;
+      ::draw2d::graphics_pointer          m_pgraphics;
+      ::pointer<::nano2d::font_sink>      m_pfontsink;
+      int                                 m_iPaint = -1;
 
 
 
       class state :
-         virtual public ::matter,
-         public ::draw2d::savedc
+         virtual public ::matter
       {
       public:
 
@@ -38,6 +38,8 @@ namespace nano2d
          ::draw2d::brush_pointer       m_pbrush;
 
          ::draw2d::path_pointer        m_ppath;
+
+         ::i32                         m_iSavedContext;
 
          string                        m_strFontFace;
          float                         m_fFontSize;
@@ -50,8 +52,7 @@ namespace nano2d
 
          bool                          m_bHasCurrentPoint;
 
-         state(::draw2d::graphics * pgraphics) :
-            savedc(pgraphics)
+         state(::draw2d::graphics * pgraphics)
          {
 
             m_fFontSize = 0.f;
@@ -73,8 +74,8 @@ namespace nano2d
       };
 
 
-      pointer_array < state >           m_statea;
-      ::pointer<state>                m_pstate;
+      pointer_array < state >          m_statea;
+      ::pointer<state>                 m_pstate;
       ::i32                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 
@@ -94,12 +95,12 @@ namespace nano2d
       virtual ::write_text::font_pointer _get_current_font();
 
 
-      virtual void _create_new_state();
+      virtual ::pointer < state > create_new_state();
       virtual paint_image & _create_new_paint_image();
 
 
-      void save() override;
-      void restore() override;
+      void save1() override;
+      void restore1() override;
 
 
       void begin_path() override;
@@ -154,7 +155,7 @@ namespace nano2d
 
       void rectangle(float x, float y, float w, float h) override;
       void ellipse(float cx, float cy, float rx, float ry) override;
-      void arc(float cx, float cy, float r, float a0, float a1, int dir) override;
+      void arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir) override;
 
 
       int create_image(const ::scoped_string & scopedstrFilename, int imageFlags) override;

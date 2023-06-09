@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "render.h"
 #include "application.h"
 #include "acme/parallelization/single_lock.h"
@@ -17,7 +17,7 @@
 #include "aura/platform/node.h"
 
 
-CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardS�rensen!!
+CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardSorensen!!
 
 
 void image_gl_set(image* pimage);

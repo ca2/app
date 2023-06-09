@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_checkbox.h"
 #include "acme/constant/id.h"
 #include "acme/primitive/data/listener.h"
@@ -170,7 +170,7 @@ namespace html
 
          m_pcheckbox->place(rect);
 
-         m_pcheckbox->display(::e_display_restored);
+         m_pcheckbox->display(::e_display_normal);
 
       }
 

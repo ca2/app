@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/user/user/interaction.h"
@@ -95,7 +95,7 @@ namespace user
 //      void GetInsertMark(TBINSERTMARK* ptbim);
 //      void SetInsertMark(TBINSERTMARK* ptbim);
 //#endif
-      bool GetMaxSize(SIZE_I32 * pSize);
+      bool GetMaxSize(::size_i32 * pSize);
 //#ifdef WINDOWS_DESKTOP
 //      bool InsertMarkHitTest(::point_i32 * ppt, LPTBINSERTMARK ptbim);
 //#endif

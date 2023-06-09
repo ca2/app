@@ -40,7 +40,7 @@ namespace account
       bool                 m_bShiftKey;
 
       bool                 m_bDrag;
-      ::rectangle               m_rectangleDesktop;
+      ::rectangle_f64               m_rectangleDesktop;
 
       manual_reset_event   m_eventReady;
 
@@ -113,7 +113,7 @@ namespace account
    void account::draw_auth_box(simple_graphics & g)
    {
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
 
       client_rectangle(rectangle);
 
@@ -314,7 +314,7 @@ namespace account
    void account::draw_pestana(simple_graphics & g)
    {
 
-      ::rectangle rectangleWindow;
+      ::rectangle_f64 rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -481,7 +481,7 @@ namespace account
 
 //      SetTimer(m_oswindow, 123, 23, nullptr);
 
-      ShowWindow(m_oswindow, e_display_restored);
+      ShowWindow(m_oswindow, e_display_normal);
 
 
 
@@ -571,7 +571,7 @@ namespace account
          return true;
 
 
-      ::rectangle rectangleLogin;
+      ::rectangle_f64 rectangleLogin;
 
       m_login.window_rectangle(rectangleLogin);
 
@@ -585,7 +585,7 @@ namespace account
 
 
             {
-      ::rectangle rectangleWindow;
+      ::rectangle_f64 rectangleWindow;
       m_login.window_rectangle(&rectangleWindow);
       POINT32 pointCursor;
       ::GetCursorPos(&pointCursor);
@@ -638,7 +638,7 @@ namespace account
    void account::draw_dark_glass(simple_graphics & g)
    {
 
-      ::rectangle rectangleWindow;
+      ::rectangle_f64 rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -663,7 +663,7 @@ namespace account
    void account::draw_fuzzy_color_spread(simple_graphics & g)
    {
 
-      ::rectangle rectangleWindow;
+      ::rectangle_f64 rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -755,7 +755,7 @@ namespace account
 
          if (m_eresult == ::spa_login::result_fail)
          {
-            ::ShowWindow(m_oswindow, e_display_restored);
+            ::ShowWindow(m_oswindow, e_display_normal);
          }
          else
          {

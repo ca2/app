@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-26 19:06 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-04-26 19:06 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -48,19 +48,28 @@ struct POLED
 
 template < primitive_number NUMBER >
 class pole_type :
-   public vector_type < NUMBER, 3 >
+   public sequence_type < NUMBER, 3 >
 {
 public:
 
 
    using SIZE_TYPE = size_type < NUMBER >;
    using POINT_TYPE = size_type < NUMBER >;
+   using UNIT_TYPE = NUMBER;
 
 
-   pole_type(nullptr_t = nullptr) : vector_type<NUMBER, 3>() {  }
+   pole_type(nullptr_t = nullptr) : sequence_type<NUMBER, 3>() {  }
    pole_type(enum_no_initialize) { }
    template < primitive_number X, primitive_number Y, primitive_number Z >
    pole_type(X xP, Y yP, Z zP) { this->x() = xP; this->y() = yP; this->z() = zP; }
+
+
+   const UNIT_TYPE& x() const { return this->a(); }
+   UNIT_TYPE& x() { return this->a(); }
+   const UNIT_TYPE& y() const { return this->b(); }
+   UNIT_TYPE& y() { return this->b(); }
+   const UNIT_TYPE& z() const { return this->c(); }
+   UNIT_TYPE& z() { return this->c(); }
 
 
    template < primitive_pole POLE >
@@ -117,8 +126,8 @@ public:
    }
 
 
-   template < primitive_number NUMBER >
-   pole_type& operator *= (NUMBER n)
+   template < primitive_number NUMBER_TYPE >
+   pole_type& operator *= (NUMBER_TYPE n)
    {
 
       this->x() *= n;
@@ -130,8 +139,8 @@ public:
    }
 
 
-   template < primitive_number NUMBER >
-   pole_type operator * (NUMBER n)
+   template < primitive_number NUMBER_TYPE >
+   pole_type operator * (NUMBER_TYPE n)
    {
 
       pole_type pole(*this);

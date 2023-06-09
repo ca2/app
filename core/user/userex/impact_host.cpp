@@ -1,4 +1,4 @@
-﻿//
+//
 //  userex_impact_container.cpp
 //  app_veriwell_musical_player
 //
@@ -33,8 +33,8 @@ namespace userex
    impact_host::impact_host()
    {
 
-      m_sizeTabbedFrame.cx = 800;
-      m_sizeTabbedFrame.cy = 300;
+      m_sizeTabbedFrame.cx() = 800;
+      m_sizeTabbedFrame.cy() = 300;
       m_ptemplateTab = nullptr;
 
    }

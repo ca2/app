@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"
@@ -90,7 +90,7 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_restored);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
@@ -134,7 +134,7 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_restored);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 

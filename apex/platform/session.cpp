@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "session.h"
 #include "system.h"
 #include "application.h"
@@ -1992,12 +1992,12 @@ namespace apex
    //      {
    //         string str = straTitle[i];
    //         size_i32 s = pane.m_sizeaText[i];
-   //         rectangleText.right = rectangleText.left + s.cx;
+   //         rectangleText.right = rectangleText.left + s.cx();
    //         pgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
-   //         rectangleText.left += s.cx;
+   //         rectangleText.left += s.cx();
    //         if (i < straTitle.get_upper_bound())
    //         {
-   //            rectangleText.right = rectangleText.left + sSep.cx;
+   //            rectangleText.right = rectangleText.left + sSep.cx();
    //            rectangleEmp = rectangleText;
    //            rectangleEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
@@ -2015,7 +2015,7 @@ namespace apex
    //            pgraphics->set(ptab->m_pfontTab);
    //            pgraphics->set_alpha_mode(emode);
    //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
-   //            rectangleText.left += sSep.cx;
+   //            rectangleText.left += sSep.cx();
    //            pgraphics->set(pfont);
    //            pgraphics->set(pbrushText);
    //         }

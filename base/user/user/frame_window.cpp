@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+#include "framework.h"
+#if 0
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
@@ -86,8 +87,8 @@ namespace user
 
    frame_window::~frame_window()
    {
+      
       RemoveFrameWnd();
-
 
    }
 
@@ -515,13 +516,15 @@ namespace user
 
                   pimage1 = m_pcontext->m_pauracontext->create_image(rectangle.size());
 
-                  auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
+                  //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
-                  ::draw2d::graphics_pointer pgraphics = pimpl->m_pgraphics->on_begin_draw();
+                  auto pbufferitem = pimpl->m_pgraphics->on_begin_draw();
 
-                  synchronous_lock synchronouslock(pparticleSynchronization);
+                  synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
                   auto rectangleTarget = ::rectangle_f64(rectangle.size());
+
+                  auto pgraphics = pbufferitem->m_pimage->g();
 
                   image_source imagesource(pgraphics);
 
@@ -556,7 +559,7 @@ namespace user
 
                   //estatus = 
                   
-                  pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
+                  pimage2->create({ 300, rectangle.size().cy() * 300 / rectangle.size().cx() });
 
                   //if (!estatus)
                   //{
@@ -848,7 +851,7 @@ namespace user
       //
       //#ifdef WINDOWS_DESKTOP
       //
-      //         ::SetFocus(nullptr);
+      //         ::XXXSetFocus(nullptr);
       //#else
       //
       //         throw ::exception(todo);
@@ -1270,7 +1273,9 @@ namespace user
 
          // finally, activate the frame
          // (send the default show command unless the main desktop interaction_impl)
-         ActivateFrame(e_display_default);
+         //ActivateFrame(e_display_default);
+         // Don't activate frame when preparing it, initial frame display should
+         // had handled activation.
 
          if (pimpact != nullptr)
          {
@@ -2278,15 +2283,15 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, rectangle, rectangle, false);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, &rectangle, rectangle, false);
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, m_rectangleBorder, rectangle, true);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder, rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
          set_size(rectangle.size());
 
-         display(e_display_restored, e_activation_no_activate);
+         display(e_display_normal, e_activation_no_activate);
 
       }
       else
@@ -2338,7 +2343,7 @@ namespace user
          {
 
             // the rects are different -- recalc needed
-            ::copy(m_rectangleBorder, *pRectBorder);
+            m_rectangleBorder = *pRectBorder;
 
             return true;
 
@@ -2432,13 +2437,13 @@ namespace user
          if (!::is_visible(const_layout().sketch().display()))
          {
 
-            edisplay = e_display_restored;
+            edisplay = e_display_normal;
 
          }
          else if (layout().is_iconic())
          {
 
-            edisplay = e_display_restore;
+            edisplay = e_display_normal;
 
          }
          else
@@ -2573,8 +2578,8 @@ namespace user
    void frame_window::common_construct()
    {
 
-      m_sizeMinimum.cx = 0;
-      m_sizeMinimum.cy = 0;
+      m_sizeMinimum.cx() = 0;
+      m_sizeMinimum.cy() = 0;
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
       m_nIDTracking = 0;
@@ -2883,3 +2888,4 @@ namespace user
 
 
 
+#endif

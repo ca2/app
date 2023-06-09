@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "folder_list_data.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_array_binary_stream.h"

@@ -147,17 +147,17 @@
 //{
 //   ::inflate(this, x, y);
 //}
-//TEMPLATE void rectangle_i64::inflate(SIZE_I64 size_i64) noexcept
+//TEMPLATE void rectangle_i64::inflate(::size_i64 size_i64) noexcept
 //{
-//   ::inflate(this, size_i64.cx, size_i64.cy);
+//   ::inflate(this, size_i64.cx(), size_i64.cy());
 //}
 //TEMPLATE void rectangle_i64::deflate(i64 x, i64 y) noexcept
 //{
 //   ::inflate(this, -x, -y);
 //}
-//TEMPLATE void rectangle_i64::deflate(SIZE_I64 size_i64) noexcept
+//TEMPLATE void rectangle_i64::deflate(::size_i64 size_i64) noexcept
 //{
-//   ::inflate(this, -size_i64.cx, -size_i64.cy);
+//   ::inflate(this, -size_i64.cx(), -size_i64.cy());
 //}
 //TEMPLATE void rectangle_i64::offset(i64 x, i64 y) noexcept
 //{
@@ -167,13 +167,13 @@
 //{
 //   ::offset(this, point_i64.x(), point_i64.y());
 //}
-//TEMPLATE void rectangle_i64::set_size(SIZE_I64 s) noexcept
+//TEMPLATE void rectangle_i64::set_size(::size_i64 s) noexcept
 //{
-//   this->set_size(s.cx, s.cy);
+//   this->set_size(s.cx(), s.cy());
 //}
-//TEMPLATE void rectangle_i64::rsize(SIZE_I64 s) noexcept
+//TEMPLATE void rectangle_i64::rsize(::size_i64 s) noexcept
 //{
-//   this->rsize(s.cx, s.cy);
+//   this->rsize(s.cx(), s.cy());
 //}
 //TEMPLATE void rectangle_i64::set_size(i64 cx, i64 cy) noexcept
 //{
@@ -183,9 +183,9 @@
 //{
 //   ::reverse_size(this, cx, cy);
 //}
-//TEMPLATE void rectangle_i64::offset(SIZE_I64 size_i64) noexcept
+//TEMPLATE void rectangle_i64::offset(::size_i64 size_i64) noexcept
 //{
-//   ::offset(this, size_i64.cx, size_i64.cy);
+//   ::offset(this, size_i64.cx(), size_i64.cy());
 //}
 //TEMPLATE void rectangle_i64::move_to_y(i64 y) noexcept
 //{
@@ -231,9 +231,9 @@
 //{
 //   ::offset(this, point_i64.x(), point_i64.y());
 //}
-//TEMPLATE void rectangle_i64::operator+=(SIZE_I64 size_i64) noexcept
+//TEMPLATE void rectangle_i64::operator+=(::size_i64 size_i64) noexcept
 //{
-//   ::offset(this, size_i64.cx, size_i64.cy);
+//   ::offset(this, size_i64.cx(), size_i64.cy());
 //}
 //TEMPLATE void rectangle_i64::operator+=(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
@@ -245,9 +245,9 @@
 //{
 //   ::offset(this, -point_i64.x(), -point_i64.y());
 //}
-//TEMPLATE void rectangle_i64::operator-=(SIZE_I64 size_i64) noexcept
+//TEMPLATE void rectangle_i64::operator-=(::size_i64 size_i64) noexcept
 //{
-//   ::offset(this, -size_i64.cx, -size_i64.cy);
+//   ::offset(this, -size_i64.cx(), -size_i64.cy());
 //}
 //TEMPLATE void rectangle_i64::operator-=(const ::rectangle_i64 * RECT_TEMPLATE) noexcept
 //
@@ -271,13 +271,13 @@
 //{
 //   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, -point.x(), -point.y()); return rectangle_i64;
 //}
-//rectangle_i64 rectangle_i64::operator+(SIZE_I64 size_i64) const noexcept
+//rectangle_i64 rectangle_i64::operator+(::size_i64 size_i64) const noexcept
 //{
-//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, size_i64.cx, size_i64.cy); return rectangle_i64;
+//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, size_i64.cx(), size_i64.cy()); return rectangle_i64;
 //}
-//rectangle_i64 rectangle_i64::operator-(SIZE_I64 size_i64) const noexcept
+//rectangle_i64 rectangle_i64::operator-(::size_i64 size_i64) const noexcept
 //{
-//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, -size_i64.cx, -size_i64.cy); return rectangle_i64;
+//   rectangle_i64 rectangle_i64(*this); ::offset(&rectangle_i64, -size_i64.cx(), -size_i64.cy()); return rectangle_i64;
 //}
 //rectangle_i64 rectangle_i64::operator+(const ::rectangle_i64 * RECT_TEMPLATE) const noexcept
 //
@@ -424,7 +424,7 @@
 //
 //
 //TEMPLATE void rectangle_f64::set_size(double cx, double cy) noexcept { right = left + cx;  bottom = top + cy; }
-//TEMPLATE void rectangle_f64::set_size(const size_f64 & size) noexcept { set_size(size.cx, size.cy); }
+//TEMPLATE void rectangle_f64::set_size(const size_f64 & size) noexcept { set_size(size.cx(), size.cy()); }
 //TEMPLATE point_f64& rectangle_f64::top_left() noexcept { return *((point_f64*)this); }
 //TEMPLATE point_f64& rectangle_f64::bottom_right() noexcept { return *((point_f64*)this + 1); }
 //TEMPLATE const point_f64& rectangle_f64::top_left() const noexcept { return *((const point_f64*)this); }
@@ -485,17 +485,17 @@
 //   {
 //      ::inflate(this, x, y);
 //   }
-//  TEMPLATE void rectangle_f64::inflate(SIZE_F64 size_i32) noexcept
+//  TEMPLATE void rectangle_f64::inflate(::size_f64 size_i32) noexcept
 //   {
-//      ::inflate(this, size.cx, size.cy);
+//      ::inflate(this, size.cx(), size.cy());
 //   }
 //  TEMPLATE void rectangle_f64::deflate(double x, double y) noexcept
 //   {
 //      ::inflate(this, -x, -y);
 //   }
-//  TEMPLATE void rectangle_f64::deflate(SIZE_F64 size_i32) noexcept
+//  TEMPLATE void rectangle_f64::deflate(::size_f64 size_i32) noexcept
 //   {
-//      ::inflate(this, -size.cx, -size.cy);
+//      ::inflate(this, -size.cx(), -size.cy());
 //   }
 //  TEMPLATE void rectangle_f64::offset(double x, double y) noexcept
 //   {
@@ -505,9 +505,9 @@
 //   {
 //      ::offset(this, point.x(), point.y());
 //   }
-//  TEMPLATE void rectangle_f64::offset(SIZE_F64 size_i32) noexcept
+//  TEMPLATE void rectangle_f64::offset(::size_f64 size_i32) noexcept
 //   {
-//      ::offset(this, size.cx, size.cy);
+//      ::offset(this, size.cx(), size.cy());
 //   }
 //  TEMPLATE void rectangle_f64::move_to_y(double y) noexcept
 //   {
@@ -573,9 +573,9 @@
 //   {
 //      ::offset(this, point.x(), point.y());
 //   }
-//  TEMPLATE void rectangle_f64::operator+=(SIZE_F64 size_i32) noexcept
+//  TEMPLATE void rectangle_f64::operator+=(::size_f64 size_i32) noexcept
 //   {
-//      ::offset(this, size.cx, size.cy);
+//      ::offset(this, size.cx(), size.cy());
 //   }
 //  TEMPLATE void rectangle_f64::operator+=(const rectangle_f64 & RECT_TEMPLATE) noexcept
 //
@@ -587,9 +587,9 @@
 //   {
 //      ::offset(this, -point.x(), -point.y());
 //   }
-//  TEMPLATE void rectangle_f64::operator-=(SIZE_F64 size_i32) noexcept
+//  TEMPLATE void rectangle_f64::operator-=(::size_f64 size_i32) noexcept
 //   {
-//      ::offset(this, -size.cx, -size.cy);
+//      ::offset(this, -size.cx(), -size.cy());
 //   }
 //  TEMPLATE void rectangle_f64::operator-=(const rectangle_f64 & RECT_TEMPLATE) noexcept
 //
@@ -613,13 +613,13 @@
 //   {
 //      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, -point.x(), -point.y()); return rectangle_f64;
 //   }
-//  TEMPLATE rectangle_f64 rectangle_f64::operator+(SIZE_F64 size_i32) const noexcept
+//  TEMPLATE rectangle_f64 rectangle_f64::operator+(::size_f64 size_i32) const noexcept
 //   {
-//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, size.cx, size.cy); return rectangle_f64;
+//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, size.cx(), size.cy()); return rectangle_f64;
 //   }
-//  TEMPLATE rectangle_f64 rectangle_f64::operator-(SIZE_F64 size_i32) const noexcept
+//  TEMPLATE rectangle_f64 rectangle_f64::operator-(::size_f64 size_i32) const noexcept
 //   {
-//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, -size.cx, -size.cy); return rectangle_f64;
+//      rectangle_f64 rectangle_f64(*this); ::offset(&rectangle_f64, -size.cx(), -size.cy()); return rectangle_f64;
 //   }
 //  TEMPLATE rectangle_f64 rectangle_f64::operator+(const rectangle_f64 & RECT_TEMPLATE) const noexcept
 //
@@ -711,19 +711,19 @@
 //   }
 //
 //
-//  TEMPLATE void rectangle_f64::get_bounding_rectangle(const ::point_f64 * ppoint, ::count count)
+//  TEMPLATE void rectangle_f64::get_bounding_box(const ::point_f64 * ppoint, ::count count)
 //
 //   {
 //
-//      point_f64_array::get_bounding_rectangle(this, ppoint, count);
+//      point_f64_array::get_bounding_box(this, ppoint, count);
 //
 //
 //   }
 //
-//  TEMPLATE void rectangle_f64::get_bounding_rectangle(const point_f64_array & pointa)
+//  TEMPLATE void rectangle_f64::get_bounding_box(const point_f64_array & pointa)
 //   {
 //
-//      pointa.get_bounding_rectangle(this);
+//      pointa.get_bounding_box(this);
 //
 //   }
 //
@@ -731,20 +731,20 @@
 //
 //
 //
-//  TEMPLATE void rectangle_f64::CenterOf(const rectangle_f64 & RECT_TEMPLATE, SIZE_F64 size_i32)
+//  TEMPLATE void rectangle_f64::CenterOf(const rectangle_f64 & RECT_TEMPLATE, ::size_f64 size_i32)
 //
 //   {
-//      double cx = size.cx;
-//      double cy = size.cy;
+//      double cx = size.cx();
+//      double cy = size.cy();
 //
-//      double Δx = ::width(RECT_TEMPLATE);
+//      double greekdeltax = ::width(RECT_TEMPLATE);
 //
-//      double Δy = ::height(RECT_TEMPLATE);
+//      double greekdeltay = ::height(RECT_TEMPLATE);
 //
 //
-//      left = RECT_TEMPLATE.left + (Δx - cx) / 2;
+//      left = RECT_TEMPLATE.left + (greekdeltax - cx) / 2;
 //
-//      top = RECT_TEMPLATE.top + (Δy - cy) / 2;
+//      top = RECT_TEMPLATE.top + (greekdeltay - cy) / 2;
 //
 //      right = left + cx;
 //      bottom = top + cy;
@@ -1020,10 +1020,10 @@
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count)
 {
 
-   ::get_bounding_rectangle(this, ppoint, count);
+   ::get_bounding_box(this, ppoint, count);
 
 }
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-06-25 09:59 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-06-25 09:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -7,7 +7,7 @@
 
 
 template < >
-inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::rectangle & rectangle, holdee < ::draw2d::region >)
+inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::rectangle_f64 & rectangle, holdee < ::draw2d::region >)
 {
 
    return __new(rectangle_shape<::draw2d::region>(rectangle));
@@ -16,7 +16,7 @@ inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::rectangle & 
 
 
 template < >
-inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::ellipse & ellipse, holdee < ::draw2d::region >)
+inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::ellipse_f64 & ellipse, holdee < ::draw2d::region >)
 {
 
    return __new(ellipse_shape <::draw2d::region>(ellipse));

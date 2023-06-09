@@ -271,7 +271,7 @@ namespace user
 
       bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(e_layout_sketch);
 
-      ::draw2d::savedc savedc(pgraphics);
+      ::draw2d::save_context savecontext(pgraphics);
 
       ::rectangle_i32 rectangleClient = pinteraction->::user::interaction::client_rectangle();
 

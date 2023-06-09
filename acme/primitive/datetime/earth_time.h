@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "earth_time_shift.h"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/user/user/interaction.h"
@@ -138,7 +138,7 @@ namespace user
 
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
 
-      //// <3ThomasBorregaardSørensen__!!
+      //// <3ThomasBorregaardSorensen__!!
       void handle_command(const ::atom& atom) override;
 
 

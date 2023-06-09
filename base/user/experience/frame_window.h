@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "base/user/user/frame_window.h"
@@ -77,6 +77,8 @@ namespace experience
 
       bool sketch_on_display() override;
 
+
+      void display_docked(::e_display edisplay, ::e_activation eactivation) override;
 
       void display_previous_restore() override;
 

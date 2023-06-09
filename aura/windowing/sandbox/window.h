@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20 <3TBS, Mummi and bilbo!!
 // Adapted by Camilo for android 2022-01-05 04:35 <3TBS (Thomas likes number 5), Mummi and bilbo!!
 // Adapted by Camilo for cached/simulation of mouse-capture/keyboard-focus state information and

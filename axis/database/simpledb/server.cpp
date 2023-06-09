@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "server.h"
 #include "storage.h"
 #include "simpledb.h"

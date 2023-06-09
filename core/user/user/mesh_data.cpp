@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "mesh_data.h"
 #include "acme/primitive/data/listener.h"
 

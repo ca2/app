@@ -15,7 +15,7 @@ public:
    ::image_pointer                  m_pimageDots;
    bool                             m_bTrackOffsetThumbAdjusted;
    point_i32                        m_pointTrack;
-   ::rectangle_i32                  m_rectangleTrack;
+   ::status < ::rectangle_i32 >     m_statusrectangleTrack;
    ::rectangle_i32                  m_rectangleA;
    ::rectangle_i32                  m_rectangleB;
    point_f64                        m_pointaA[4]; // pontos da primeira seta
@@ -41,9 +41,9 @@ public:
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-   bool GetPageARect(::rectangle_i32 * pRectClient, ::rectangle_i32 * lpRectTrack,  ::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
+   ::status < ::rectangle_i32 > get_pageA_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
 
-   bool GetPageBRect(::rectangle_i32 * pRectClient, ::rectangle_i32 * lpRectTrack,  ::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
+   ::status < ::rectangle_i32 > get_pageB_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
 
    void UpdateBitmaps();
    //void OnDisplayChange(i32 iBitsPerPixel, ::size_i32 sizeScreen);
@@ -59,7 +59,7 @@ public:
    i32 GetTrackSize(::size_i32 & size, ::draw2d::graphics_pointer & pgraphics);
    bool GetTrackClientRect(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
-   bool GetTrackRect(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics) override;
+   ::status < ::rectangle_i32 > get_track_rectangle(::draw2d::graphics_pointer & pgraphics) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

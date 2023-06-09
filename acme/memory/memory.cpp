@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include "_memory.h"
 

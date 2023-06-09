@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "file_properties_form.h"
 #include "acme/constant/id.h"
 #include "apex/filesystem/filesystem/dir_context.h"

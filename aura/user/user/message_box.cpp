@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
 //
 #include "framework.h"
@@ -145,7 +145,7 @@ namespace user
 
       set_tool_window();
 
-      display(::e_display_restored);
+      display(::e_display_normal);
 
       do_layout();
 

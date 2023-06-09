@@ -1,4 +1,4 @@
-﻿// From _initial_concepts.h by camilo on 2023-05-23 <3ThomasBorregaardSørensen!!
+// From _initial_concepts.h by camilo on 2023-05-23 <3ThomasBorregaardSorensen!!
 //
 //  _numeric_concepts.h
 //  acme
@@ -24,15 +24,12 @@ concept raw_primitive_point = requires(POINT point)
 };
 
 
-
-
 template < typename POINT >
 concept primitive_point = requires(POINT point)
 {
    {point.x()}->primitive_number;
    {point.y()}->primitive_number;
 };
-
 
 
 template < typename POLE >
@@ -44,16 +41,84 @@ concept primitive_pole = requires(POLE pole)
 };
 
 
-
-
-template < typename ORIGIN_SIZE >
-concept origin_size = requires(ORIGIN_SIZE origin_size)
+template < typename POINT >
+concept primitive_XY = requires(POINT point)
 {
-
-   { origin_size.origin } -> primitive_point;
-   { origin_size.size } -> primitive_dim;
-
+   point.X;
+   point.Y;
 };
+
+
+template < typename SIZE >
+concept primitive_size = requires(SIZE size)
+{
+   size.cx();
+   size.cy();
+};
+
+
+template < typename Dimension >
+concept primitive_Dimension = requires(Dimension dimension)
+{
+   dimension.Width;
+   dimension.Height;
+};
+
+
+template < typename DIMENSION >
+concept primitive_dimension = requires(DIMENSION dimension)
+{
+   dimension.width;
+   dimension.height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_XYDim = requires(RECTANGLE rectangle)
+{
+   rectangle.X;
+   rectangle.Y;
+   rectangle.Width;
+   rectangle.Height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_xydim = requires(RECTANGLE rectangle)
+{
+   rectangle.x;
+   rectangle.y;
+   rectangle.width;
+   rectangle.height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_origin_size = requires(RECTANGLE rectangle)
+{
+   {rectangle.origin}->raw_primitive_point;
+   {rectangle.size}->primitive_dimension;
+};
+
+
+//template < typename ORIGIN_SIZE >
+//concept origin_size = requires(ORIGIN_SIZE origin_size)
+//{
+//
+//   { origin_size.origin } -> primitive_point;
+//   { origin_size.size } -> primitive_dim;
+//
+//};
 
 
 
@@ -165,12 +230,31 @@ void copy(POINT1& point1, const POINT2& point2)
 }
 
 
+template < primitive_point POINT1, raw_primitive_point POINT2 >
+void copy(POINT1& point1, const POINT2& point2)
+{
+
+   point1.x() = (const ::std::decay_t <decltype(point1.x())>&)point2.x();
+   point1.y() = (const ::std::decay_t <decltype(point1.y())>&)point2.y();
+   
+}
+
+template < raw_primitive_point POINT1, primitive_point POINT2 >
+void copy(POINT1& point1, const POINT2& point2)
+{
+
+   point1.x = (const ::std::decay_t <decltype(point1.x)>&)point2.x();
+   point1.y = (const ::std::decay_t <decltype(point1.y)>&)point2.y();
+
+}
+
+
 template < primitive_point POINT, primitive_size SIZE >
 void copy(POINT& point, const SIZE& size)
 {
 
-   point.x() = (const ::std::decay_t <decltype(point.x())>&)size.cx;
-   point.y() = (const ::std::decay_t <decltype(point.y()) > &)size.cy;
+   point.x() = (const ::std::decay_t <decltype(point.x())>&)size.cx();
+   point.y() = (const ::std::decay_t <decltype(point.y()) > &)size.cy();
 
 }
 
@@ -179,35 +263,13 @@ template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
 void copy(SIZE_TYPE1& size1, const SIZE_TYPE2& size2)
 {
 
-   size1.cx = (decltype(SIZE_TYPE1::cx))size2.cx;
-   size1.cy = (decltype(SIZE_TYPE1::cy))size2.cy;
+   size1.cx() = (decltype(SIZE_TYPE1::cx))size2.cx();
+   size1.cy() = (decltype(SIZE_TYPE1::cy))size2.cy();
 
 }
 
 
 
 
-template < primitive_rectangle RECTANGLE, origin_size ORIGIN_SIZE >
-constexpr void copy(RECTANGLE& rectangle, const ORIGIN_SIZE& origin_size)
-{
-
-   rectangle.left = (decltype(rectangle.left))origin_size.origin.x();
-   rectangle.top = (decltype(rectangle.top))origin_size.origin.y();
-   rectangle.right = (decltype(rectangle.right))(origin_size.origin.x() + origin_size.size.width);
-   rectangle.bottom = (decltype(rectangle.bottom))(origin_size.origin.y() + origin_size.size.height);
-
-}
-
-
-template < origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
-constexpr void copy(ORIGIN_SIZE& origin_size, const RECTANGLE& rectangle)
-{
-
-   origin_size.origin.x() = (decltype(origin_size.origin.x()))rectangle.left;
-   origin_size.origin.y() = (decltype(origin_size.origin.y()))rectangle.top;
-   origin_size.size.width = (decltype(origin_size.size.width))(rectangle.right - rectangle.left);
-   origin_size.size.height = (decltype(origin_size.size.height))(rectangle.bottom - rectangle.top);
-
-}
 
 

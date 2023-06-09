@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/particle_flags.h"
@@ -74,10 +74,10 @@
  inline void __exchange(::binary_stream < FILE > & s, ::rectangle_f64 & rectangle);
 
 
- inline void __exchange(::binary_stream < FILE > & s, SIZE_I32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, SIZE_I64 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, SIZE_F32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, SIZE_F64 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::size_i32 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::size_i64 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::size_f32 & rectangle);
+ inline void __exchange(::binary_stream < FILE > & s, ::size_f64 & rectangle);
 
 
  inline void __exchange(::binary_stream < FILE > & s, ::point_i32 & rectangle);
@@ -534,7 +534,7 @@ public:
 //   virtual void write(float f) { raw_write(f); }
 //   virtual void write(double d) { raw_write(d); }
 //   //virtual void write(const ::point_i32 & point) { raw_write(point); }
-//   //virtual void write(const SIZE_I32 & size) { raw_write(size); }
+//   //virtual void write(const ::size_i32 & size) { raw_write(size); }
 //   //virtual void write(const ::rectangle_i32 &crect) { raw_write(crect); }
 //   virtual void write(const ::scoped_string & scopedstr);
 //#ifdef WINDOWS
@@ -582,7 +582,7 @@ public:
 //   virtual void read(float & f);
 //   virtual void read(double & d);
 //   //virtual void read(::point_i32 & point);
-//   //virtual void read(SIZE_I32 & size);
+//   //virtual void read(::size_i32 & size);
 //   //virtual void read(::rectangle_i32 & rectangle);
 //   virtual void read(atom & atom);
 //   virtual void read(::payload & payload);
@@ -620,10 +620,10 @@ public:
 //   virtual void exchange(const ::atom & atom, float & f) { stream_exchange(atom, f); }
 //   virtual void exchange(const ::atom & atom, double & d) { stream_exchange(atom, d); }
 //   virtual void exchange(const ::atom & atom, ::point_i32 & point) { stream_exchange(atom, point); }
-//   virtual void exchange(const ::atom & atom, SIZE_I32 & size) { stream_exchange(atom, size); }
+//   virtual void exchange(const ::atom & atom, ::size_i32 & size) { stream_exchange(atom, size); }
 //   virtual void exchange(const ::atom & atom, ::rectangle_i32 & crect) { stream_exchange(atom, crect); }
 //   virtual void exchange(const ::atom & atom, ::point_f64& point) { stream_exchange(atom, point); }
-//   virtual void exchange(const ::atom & atom, SIZE_F64& size) { stream_exchange(atom, size); }
+//   virtual void exchange(const ::atom & atom, ::size_f64& size) { stream_exchange(atom, size); }
 //   virtual void exchange(const ::atom & atom, ::rectangle_f64& crect) { stream_exchange(atom, crect); }
 //   virtual void exchange(const ::atom & atom, const ::scoped_string & scopedstr);
 //#ifdef WINDOWS
@@ -791,7 +791,7 @@ public:
 //
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::point_i32 & point) { s.read(point); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, SIZE_I32 & size) { s.read(size); return s; }
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::size_i32 & size) { s.read(size); return s; }
 //
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::rectangle_i32 & rectangle) { s.read(rectangle); return s; }
 //
@@ -888,7 +888,7 @@ public:
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::rectangle_i32 &rectangle) { s.write(rectangle); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const SIZE_I32 & size) { s.write(size); return s; }
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::size_i32 & size) { s.write(size); return s; }
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::scoped_string & scopedstr) { s.write(psz); return s; }
 //
@@ -996,8 +996,8 @@ public:
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
 //
-//   s << size.cx;
-//   s << size.cy;
+//   s << size.cx();
+//   s << size.cy();
 //
 //   return s;
 //
@@ -1008,8 +1008,8 @@ public:
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
-//   s >> size.cx;
-//   s >> size.cy;
+//   s >> size.cx();
+//   s >> size.cy();
 //   return s;
 //}
 //

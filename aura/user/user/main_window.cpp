@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "main_window.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
@@ -9,8 +9,7 @@
 inline bool is_custom_size(enum_display edisplay)
 {
 
-   return edisplay == e_display_restored
-         || edisplay == e_display_restore
+   return edisplay == e_display_normal
          || edisplay == e_display_compact
          || edisplay == e_display_broad
          || edisplay == e_display_minimal
@@ -127,7 +126,7 @@ namespace user
 
          place_rate_or_size(m_rectangleInitialRateOrSize);
 
-         display(e_display_restored);
+         display(e_display_normal);
 
       }
       else
@@ -150,14 +149,14 @@ namespace user
 
          auto sizeFrame = rectangleClient.size();
 
-         if(sizeFrame.cx < sizeMinimum.cx || sizeFrame.cy < sizeMinimum.cy)
+         if(sizeFrame.cx() < sizeMinimum.cx() || sizeFrame.cy() < sizeMinimum.cy())
          {
 
             ::rectangle_f64 rectangleRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
             place_rate_or_size(rectangleRateOrSize);
 
-            display(e_display_restored);
+            display(e_display_normal);
 
          }
 

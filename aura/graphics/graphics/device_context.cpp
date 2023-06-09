@@ -24,8 +24,10 @@ namespace graphics
 
 
 
-   ::draw2d::graphics * device_context::on_begin_draw()
+   buffer_item * device_context::on_begin_draw()
    {
+
+      auto pitem = get_buffer_item();
 
       if (m_spgraphics.is_null())
       {
@@ -52,7 +54,9 @@ namespace graphics
 
       m_spgraphics->on_begin_draw(m_pimpl->oswindow(), m_pimpl->m_puserinteraction->const_layout().design().size());
 
-      return m_spgraphics;
+      //return m_spgraphics;
+
+      return pitem;
 
    }
 

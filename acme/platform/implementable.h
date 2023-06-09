@@ -1,4 +1,4 @@
-// Created on 2021-11-01 18:12 BRT <3ThomasBorregaardS�rensen!!
+// Created on 2021-11-01 18:12 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

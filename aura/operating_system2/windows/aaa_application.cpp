@@ -118,7 +118,7 @@ int SendCtrlShiftQToChrome(oswindow w, ::duration millisSleep, ::aura::applicati
 
    ::BringWindowToTop(w);
 
-   ::SetForegroundWindow(w);
+   ::XXXSetForegroundWindow(w);
 
    if (!is_good_active_w(w))
    {
@@ -913,7 +913,7 @@ int SendCtrlShiftQToChrome(oswindow w, ::duration millisSleep, ::aura::applicati
 //   if (!display(chrome, SW_SHOWNORMAL))
 //      return 0;
 //
-//   if (!SetForegroundWindow(chrome))
+//   if (!XXXSetForegroundWindow(chrome))
 //      return 0;
 //
 //   int iSleep = 40;

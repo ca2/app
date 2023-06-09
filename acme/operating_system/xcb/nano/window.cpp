@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/01/2022 15:37 <3ThomasBorregaardSørensen!!
+// Created by camilo on 31/01/2022 15:37 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "window.h"
@@ -1119,10 +1119,10 @@ void nano_window::redraw()
 
       _get_geometry(&geometry);
 
-      rectangle.left = geometry.x();
-      rectangle.top = geometry.y();
-      rectangle.right = geometry.x() + geometry.width;
-      rectangle.bottom = geometry.y() + geometry.height;
+      rectangle.left = geometry.x;
+      rectangle.top = geometry.y;
+      rectangle.right = geometry.x + geometry.width;
+      rectangle.bottom = geometry.y + geometry.height;
 
    }
 

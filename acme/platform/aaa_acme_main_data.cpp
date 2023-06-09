@@ -1,4 +1,4 @@
-// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSørensen!!
+// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/operating_system.h"
 
@@ -262,7 +262,7 @@ void apex_main_data::system_construct(const ::scoped_string & scopedstrCommandLi
 
    m_strCommandLine = pszCommandLine;
 
-   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+   //m_edisplay = windows_show_window_to_edisplay(edisplay, XXXm_eactivation);
 
    //m_poslocal = nullptr;
 

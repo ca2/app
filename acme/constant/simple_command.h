@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 enum enum_simple_command : ::i32

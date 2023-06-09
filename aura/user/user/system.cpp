@@ -1,4 +1,4 @@
-﻿//
+//
 //  user_create_struct.cpp
 //  aura
 //
@@ -103,8 +103,8 @@ namespace user
 
    //   m_createstruct.x() = rectangle.left;
    //   m_createstruct.y() = rectangle.top;
-   //   m_createstruct.cx = rectangle.width();
-   //   m_createstruct.cy = rectangle.height();
+   //   m_createstruct.cx() = rectangle.width();
+   //   m_createstruct.cy() = rectangle.height();
 
    //}
 
@@ -184,7 +184,7 @@ namespace user
 
       pinteraction->m_pusersystem = this;
 
-      pinteraction->display(e_display_restored);
+      pinteraction->display(e_display_normal);
 
       pinteraction->m_atom = atom;
 
@@ -240,8 +240,8 @@ namespace user
 
    //   lprect->left = m_createstruct.x();
    //   lprect->top = m_createstruct.y();
-   //   lprect->right = m_createstruct.x() + m_createstruct.cx;
-   //   lprect->bottom = m_createstruct.y() + m_createstruct.cy;
+   //   lprect->right = m_createstruct.x() + m_createstruct.cx();
+   //   lprect->bottom = m_createstruct.y() + m_createstruct.cy();
 
    //}
 

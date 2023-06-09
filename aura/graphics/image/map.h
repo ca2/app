@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/collection/map.h"
@@ -11,7 +11,7 @@
 //inline u32hash u32_hash < const ::size_i32 & >(const ::size_i32 & size) 
 //{ 
 //   
-//   return (u32hash)(size.cx | size.cy << 16); 
+//   return (u32hash)(size.cx() | size.cy() << 16); 
 //
 //}
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/toolbutton.h -- Simple radio+toggle button with an icon
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -30,7 +30,7 @@ namespace nanoui
          const ::scoped_string & caption = "")
          : Button(parent, caption, icon) {
          set_flags(Flags::RadioButton | Flags::ToggleButton);
-         set_fixed_size(vector2_i32(25, 25));
+         set_fixed_size(sequence2_i32(25, 25));
       }
 };
 

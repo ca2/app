@@ -1,13 +1,14 @@
-// From geometry2d/align.h by camilo on 2022-10-19 23:25 <3ThomasBorregaardSørensen!!
+// From geometry2d/align.h by camilo on 2022-10-19 23:25 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 enum enum_orientation
 {
 
-   e_orientation_horizontal = -1,
-   e_orientation_none = 0,
+   e_orientation_horizontal = 0,
    e_orientation_vertical = 1,
+   e_orientation_z = 2,
+   e_orientation_w = 3,
 
 };
 
@@ -15,22 +16,22 @@ enum enum_orientation
 constexpr ::index index_of(enum_orientation eorientation)
 {
 
-   return eorientation == e_orientation_vertical ? 1 : 0;
+   return (::index) eorientation;
 
 }
 
 
-constexpr enum_orientation orthogonal_of(enum_orientation eorientation)
+constexpr enum_orientation orthogonal2_of(enum_orientation eorientation)
 {
 
-   return eorientation == e_orientation_vertical ? e_orientation_horizontal : e_orientation_vertical;
+   return eorientation == e_orientation_horizontal ? e_orientation_vertical : e_orientation_horizontal;
 
 }
 
-constexpr ::index orthogonal_index_of(enum_orientation eorientation)
+constexpr ::index orthogonal2_index_of(enum_orientation eorientation)
 {
 
-   return eorientation == e_orientation_vertical ? 0 : 1;
+   return eorientation == e_orientation_horizontal ? 1 : 0;
 
 }
 

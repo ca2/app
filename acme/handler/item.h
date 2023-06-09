@@ -1,4 +1,4 @@
-﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 // From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 21:12 BRT
 #pragma once
@@ -7,9 +7,11 @@
 #include "acme/primitive/primitive/particle.h"
 ////#include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/region.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/constant/element.h"
 #include "acme/user/user/_constant.h"
+
 
 
 #pragma pack(push, user_ITEM, 1)
@@ -274,6 +276,14 @@ public:
 
 };
 
+//
+//namespace geometry2d
+//{
+//
+//   class region;
+//
+//} // namespace geometry2d
+//
 
 class CLASS_DECL_ACME item :
    virtual public item_data
@@ -284,9 +294,10 @@ public:
    
    // a user item is a "pointer"/address to a user interface matter
 
-   ::pointer<::draw2d::graphics>   m_pgraphics;
-   ::pointer<::draw2d::path>       m_ppath;
-   ::pointer<::user::mouse>        m_pmouse;
+   //::pointer<::draw2d::graphics>     m_pgraphics;
+   //::pointer<::geometry2d::region>     m_pregion;
+   ::pointer<::draw2d::path>           m_ppath;
+   ::pointer<::user::mouse>            m_pmouse;
    //bool                             m_bAnyHoverChange;
 
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
@@ -379,7 +390,7 @@ public:
 
    bool is_item_set() const { return m_atom.is_set() || m_eelement != ::e_element_none; }
 
-   operator bool() const { return is_item_set(); }
+   explicit operator bool() const { return is_item_set(); }
 
    operator enum_element() const { return m_eelement; }
 
@@ -445,7 +456,7 @@ public:
 
       item_data::operator=(item);
 
-      m_pgraphics = item.m_pgraphics;
+      //m_pgraphics = item.m_pgraphics;
 
       m_ppath = item.m_ppath;
 

@@ -1,4 +1,4 @@
-﻿#ifdef CUBE
+#ifdef CUBE
 #include "acme/platform/factory_function.h"
 #include "operating_system/appconfig.h"
 #include "_static_factory_.inl"

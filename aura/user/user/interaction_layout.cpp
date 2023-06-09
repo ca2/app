@@ -15,13 +15,13 @@ namespace user
 
       m_bFillParent = true;
 
-      m_sizeSpan.cx = 1;
+      m_sizeSpan.cx() = 1;
 
-      m_sizeSpan.cy = 1;
+      m_sizeSpan.cy() = 1;
 
-      m_sizeWeight.cx = 1.0;
+      m_sizeWeight.cx() = 1.0;
 
-      m_sizeWeight.cy = 1.0;
+      m_sizeWeight.cy() = 1.0;
 
       m_elayoutexperience = e_layout_experience_none;
 
@@ -160,7 +160,7 @@ namespace user
    //void interaction_layout::set_size(const ::size_i32& size)
    //{
 
-   //   set_size(size.cx, size.cy);
+   //   set_size(size.cx(), size.cy());
 
    //}
 
@@ -220,12 +220,12 @@ namespace user
 //
 //      bool bToggle = false;
 //
-//      if (edisplay == e_display_restored)
+//      if (edisplay == e_display_normal)
 //      {
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_restored");
+//         INFORMATION("interaction_layout::display e_display_normal");
 //
 //         #endif
 //
@@ -297,7 +297,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//      if (edisplay == e_display_restored)
+//      if (edisplay == e_display_normal)
 //      {
 //
 //         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
@@ -334,7 +334,7 @@ namespace user
 //         if (edisplayCurrent == e_display_undefined)
 //         {
 //
-//            edisplay = e_display_restored;
+//            edisplay = e_display_normal;
 //
 //         }
 //         else if (::is_screen_visible(edisplayCurrent))
@@ -358,7 +358,7 @@ namespace user
 //         else
 //         {
 //
-//            edisplay = ::e_display_restored;
+//            edisplay = ::e_display_normal;
 //
 //         }
 //
@@ -372,7 +372,7 @@ namespace user
 //
 //      }
 //
-//      layout().sketch().m_eactivation = eactivation;
+//      layout().sketch().XXXm_eactivation = XXXeactivation;
 //
 //      if (!sketch_on_display())
 //      {

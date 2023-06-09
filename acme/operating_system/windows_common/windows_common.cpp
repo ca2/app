@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system/error_code.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/function.h"

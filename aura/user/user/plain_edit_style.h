@@ -1,5 +1,5 @@
 // From control_style.h (just a while ago style_control.h) by camilo
-// on 2022-08-27 02:25 <3ThomasBorregaardSørensen!! (ThomasLikesNumber5!!)
+// on 2022-08-27 02:25 <3ThomasBorregaardSorensen!! (ThomasLikesNumber5!!)
 #pragma once
 
 

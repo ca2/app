@@ -41,8 +41,8 @@ bool GetLogFont(LOGFONTW * pfontw, const ::write_text::font * pfont);
 //   pcreatestructw->hInstance           = (HINSTANCE) pcreatestruct->hInstance;
 //   pcreatestructw->hMenu               = (HMENU) pcreatestruct->hMenu;
 //   pcreatestructw->hwndParent          = (HWND) pcreatestruct->hwndParent;
-//   pcreatestructw->cy                  = pcreatestruct->cy;
-//   pcreatestructw->cx                  = pcreatestruct->cx;
+//   pcreatestructw->cy()                  = pcreatestruct->cy();
+//   pcreatestructw->cx()                  = pcreatestruct->cx();
 //   pcreatestructw->y                   = pcreatestruct->y;
 //   pcreatestructw->x                   = pcreatestruct->x;
 //   pcreatestructw->style               = pcreatestruct->style;
@@ -61,7 +61,7 @@ bool GetLogFont(LOGFONTW * pfontw, const ::write_text::font * pfont);
 //{
 //
 //   ::rectangle_i32  rectangle;       // parent client rectangle_i32 (trim as appropriate)
-//   SIZE_I32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
+//   ::size_i32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
 //   bool  bStretch;   // should stretch to fill all space
 //
 //};

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form_list.h"
 #include "list_column.h"
 #include "list_column_array.h"
@@ -2449,7 +2449,7 @@ namespace user
             }
          ok_control:;
             //
-            //            ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
+            //            ::draw2d::save_context savecontext(pdrawitem->m_pgraphics);
             //
             //            on_context_offset(pdrawitem->m_pgraphics);
             //

@@ -39,7 +39,7 @@ namespace draw2d
    }
 
 
-   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str)
+   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str)
    {
 
 
@@ -52,7 +52,7 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      ::rectangle rectangleOffset(rectangle);
+//      ::rectangle_f64 rectangleOffset(rectangle);
 //      const ::point_i32 & pointOffset(rectangleOffset.top_left());
 //
 //      glyph * pglyph;
@@ -65,7 +65,7 @@ namespace draw2d
 //         if(pglyph != nullptr)
 
 //         {
-//            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx);
+//            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx());
 //            pglyph->DrawGlyph(
 
 //               pgraphics,
@@ -94,7 +94,7 @@ namespace draw2d
 
    }
 
-   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
 
    {
 
@@ -108,7 +108,7 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      const ::rectangle rectangleOffset(rectangle);
+//      const ::rectangle_f64 rectangleOffset(rectangle);
 //      const ::point_i32 & pointOffset;
 //
 //
@@ -152,7 +152,7 @@ namespace draw2d
       /*   SetDC(pgraphics);
          SelectFont();
 
-         ::rectangle clipRect;
+         ::rectangle_f64 clipRect;
 
          i32 iOldMapMode = pgraphics->GetMapMode();
          pgraphics->SetMapMode(MM_TEXT);
@@ -179,7 +179,7 @@ namespace draw2d
       SetDC(pgraphics);
       SelectFont();
 
-      ::rectangle clipRect;
+      ::rectangle_f64 clipRect;
 
       pgraphics->text_out(x, y, str);
 

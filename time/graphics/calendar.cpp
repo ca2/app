@@ -197,8 +197,8 @@ namespace datetime
       {
          m_point = pt;
          m_size = sz;
-         m_iColWidth = m_size.cx / 7;
-         m_iLineHeight = m_size.cy / 8;
+         m_iColWidth = m_size.cx() / 7;
+         m_iLineHeight = m_size.cy() / 8;
       }
 
 

@@ -1,8 +1,8 @@
-﻿#pragma once
+#pragma once
 
 
 #include "app/aura/user/user/interaction.h"
-#include "apex/database/key.h"
+//#include "apex/database/key.h"
 
 
 namespace user
@@ -41,16 +41,17 @@ namespace user
 
 
       
-      void display_restored() override;
-      void display_restore() override;
+      //void display_normal() override;
+      //void display_stored_state() override;
       
       
-      void design_iconic() override;
+      void design_window_iconic() override;
       
 
       ::e_display window_stored_display() override;
       ::e_display window_previous_display() override;
 
+      
       void set_window_previous_display(::e_display edisplayPrevious) override;
 
 
@@ -59,7 +60,7 @@ namespace user
       void window_show_change_visibility() override;
 
 
-      void design_window_restore(::e_display edisplay) override;
+      void design_window_normal(::e_display edisplay) override;
 
 
       string get_display_tag() override;
@@ -83,6 +84,11 @@ namespace user
       virtual void SaveWindowRectangle(const ::scoped_string & strDataKey);
 
 
+      ::size_i32 get_window_normal_stored_size() override;
+
+      void display_normal(::e_display edisplay, ::e_activation eactivation) override;
+      void display_full_screen(::index iMonitor, ::e_activation eactivation) override;
+
       void on_simple_command(::message::simple_command * psimplecommand) override;
       void on_command(::message::command * pcommand) override;
 
@@ -94,7 +100,7 @@ namespace user
       //virtual bool parent_is_local_data();
 
 
-      void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored) override;
+      //void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored) override;
 
 
    };

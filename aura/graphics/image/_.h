@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-03-11 08:24 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-11 08:24 PM <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -370,7 +370,7 @@ using image_list_pointer = ::pointer<::image_list>;
 //inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
 //{
 //
-//   return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+//   return copy_colorref(pcolorrefDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
 //
 //}
 

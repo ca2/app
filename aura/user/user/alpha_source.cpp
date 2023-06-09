@@ -1,4 +1,4 @@
-// From _component.h (index include file) by camilo 2022-08-27 00:38 <3ThomasBorregaardSørensen!!
+// From _component.h (index include file) by camilo 2022-08-27 00:38 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "alpha_source.h"
 

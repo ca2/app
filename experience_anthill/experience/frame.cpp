@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "control_box.h"
 #include "base/user/experience/frame_window.h"
@@ -85,7 +85,7 @@ namespace experience_anthill
 
       ::rectangle_i32 rectangleScreen;
 
-      pframewindow->best_monitor(rectangleScreen);
+      pframewindow->best_monitor(&rectangleScreen);
 
       ::image_pointer pimage1;
 
@@ -249,8 +249,8 @@ namespace experience_anthill
 
          rectangle.left = m_pointWindowIcon.x();
          rectangle.top = m_pointWindowIcon.y();
-         //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx;
-         //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy;
+         //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx();
+         //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy();
          rectangle.right = rectangle.left + 24;
          rectangle.bottom = rectangle.top + 24;
 
@@ -372,7 +372,7 @@ namespace experience_anthill
 
 
       m_minSize = size_i32(144, 48);
-      m_minSize.cy = 48;
+      m_minSize.cy() = 48;
 
       set_frame_color_system_default_001();
 
@@ -622,9 +622,7 @@ namespace experience_anthill
 
          color32_t    crMoveableBorderShadow;
 
-         string str;
-
-         pframewindow->get_window_text(str);
+         auto str = pframewindow->get_window_text();
 
          if (pframewindow->m_fActive)
          {
@@ -682,11 +680,9 @@ namespace experience_anthill
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
-         string wstrWindowText;
+         auto strWindowText = pframewindow->get_window_text();
 
-         pframewindow->get_window_text(wstrWindowText);
-
-         if(wstrWindowText.has_char())
+         if(strWindowText.has_char())
          {
 
             auto pbrushText = __create<::draw2d::brush>();
@@ -697,7 +693,7 @@ namespace experience_anthill
 
             pgraphics->set(pframewindow->get_font(pstyle));
 
-            pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+            pgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
          }
 

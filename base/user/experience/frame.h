@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -66,13 +66,14 @@ namespace experience
       ::rectangle_i32                        m_rectangleCaptionTextPadding;
 
 
-      ::rectangle_i32                        m_rectangleClient;
+      //::rectangle_i32                        m_rectangleClient;
       ::rectangle_i32                        m_rectangleWindow;
 
       bool                                   m_bFirstLayoutDone;
       bool                                   m_bControlBoxAlignRight;
       bool                                   m_bInitialControlBoxPosition;
       bool                                   m_bPendingStyleChange;
+      //int                                    m_iCaptionHeight;
 
 
 
@@ -98,6 +99,8 @@ namespace experience
       //virtual void update_dock_grip_border_and_display();
       virtual void sync_dock_grip_border();
 
+      virtual void set_need_redraw_frame(::user::enum_layout elayout);
+
       //virtual void update_drawing_objects();
       virtual void update_window_client_rect();
       //virtual void update_window_region(const ::rectangle_i32 & rectangleWindow);
@@ -114,7 +117,9 @@ namespace experience
       virtual void set_moveable_border_color(const ::color::color & color);
 
 
-
+      
+      
+      virtual bool calculate_window_client_rect(::rectangle_i32 * prectangle);
 
       virtual bool get_window_client_rect(::rectangle_i32 * prectangle);
 
@@ -132,7 +137,7 @@ namespace experience
       virtual rectangle_i32 get_margin_rect();
       virtual rectangle_i32 get_caption_text_padding();
       virtual i32 get_caption_height();
-      virtual i32 calc_caption_height(::draw2d::graphics_pointer & pgraphics);
+      virtual void calculate_caption_height(::draw2d::graphics_pointer & pgraphics);
 
       virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics);
 

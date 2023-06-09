@@ -239,8 +239,6 @@ namespace draw2d
    }
 
 
-
-
    void draw2d::init1()
    {
 
@@ -621,9 +619,9 @@ void draw2d::emboss_predicate(
 
       const ::size_i32 & size = rectangleEmboss.size();
 
-      pimageBlur->create(rectangleEmboss);
+      //pimageBlur->initialize(rectangleEmboss, iEffectiveBlurRadius);
 
-      pimageBlur->fill(0, 0, 0, 0);
+      //pimageBlur->fill(0, 0, 0, 0);
 
       ::rectangle_i32 rectangleCache;
 
@@ -672,11 +670,11 @@ void draw2d::emboss_predicate(
 
       auto psystem = acmesystem()->m_paurasystem;
 
-      psystem->imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+      psystem->imaging().channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
       for (iptr i = 0; i < iBlur; i++)
       {
-
+         
          blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 
          blur.blur(pimageBlur);

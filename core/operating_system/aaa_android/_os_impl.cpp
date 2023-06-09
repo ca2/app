@@ -196,7 +196,7 @@ void android_aura_main()
 
    }
 
-   ::rectangle rectangle;
+   ::rectangle_f64 rectangle;
 
    rectangle.left = 0;
    rectangle.top = 0;

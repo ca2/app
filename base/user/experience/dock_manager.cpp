@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "dock_manager.h"
 #include "frame_window.h"
 #include "frame.h"
@@ -69,9 +69,13 @@ namespace experience
 
       ::point_i32 pointDock = rectangleDockButtonWindow.center();
 
-      auto pointMove = m_pointWindowOrigin + (pmouse->m_point - (m_pointWindowOrigin + dock_origin() + m_pointCursorDockOrigin));
+      //auto pointMove = m_pointWindowOrigin + (pmouse->m_point - (m_pointWindowOrigin + dock_origin() + m_pointCursorDockOrigin));
 
-      pointDock+=m_pframewindow->screen_to_client();
+      auto sizeMove = pmouse->m_point - m_pointCursorDockOrigin + m_sizeDockRightOrigin;
+
+      sizeMove.cx() -= m_pframewindow->width();
+
+      m_pframewindow->screen_to_client()(pointDock);
 
       point = ::point_i32(pointCursor - pointDock);
 
@@ -95,7 +99,7 @@ namespace experience
 
       auto pdisplay = pwindowing->display();
 
-      int iMonitor = (int)pdisplay->get_best_monitor(screen, rectangleCursor);
+      int iMonitor = (int)pdisplay->get_best_monitor(&screen, rectangleCursor);
 
       pdisplay->get_workspace_rectangle(iMonitor, rectangleWork);
 
@@ -105,6 +109,8 @@ namespace experience
          throw ::exception(error_failed);
 
       }
+
+      auto edisplayNormal = m_pframewindow->m_windowrectangle.m_edisplayLastNormal;
 
       int cxCenterArea = rectangleWork.width() / 2;
 
@@ -188,7 +194,7 @@ namespace experience
 
       enum_display edisplayOld = m_pframewindow->const_layout().sketch().display();
 
-      ::rectangle_i32 rectangleScreenOld = m_pframewindow->screen_rect();
+//      ::rectangle_i32 rectangleScreenOld = m_pframewindow->screen_rect();
 
       if (rectangleCenter.contains_x(pointCursor.x()))
       {
@@ -196,7 +202,7 @@ namespace experience
          if (rectangleCenter.contains_y(pointCursor.y()))
          {
 
-            edisplayDock = ::e_display_restored;
+            edisplayDock = edisplayNormal;
 
          }
          else if (pointCursor.y() < rectangleCenter.top)
@@ -281,41 +287,56 @@ namespace experience
 
       }
 
-      if (edisplayDock == ::e_display_restored)
+      if (equivalence_sink(edisplayDock) == ::e_display_normal)
       {
 
          bool bChange = false;
 
-         if (edisplayOld != e_display_restored)
+         //if (edisplayOld != e_display_normal)
+         //{
+
+         //   //m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleNormal.size());
+
+         //   m_pframewindow->display(e_display_normal, e_activation_default);
+
+         //   bChange = true;
+
+         //}
+         //else
+
+         ::rectangle_i32 rectangleNew;
+
+         if (edisplayDock == e_display_broad)
          {
 
-            m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
+            rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleBroad.size());
 
-            bChange = true;
+         }
+         else if (edisplayDock == e_display_compact)
+         {
+
+            rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleCompact.size());
 
          }
          else
          {
 
-            ::rectangle_i32 rectangleNew(pointMove, m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
-
-            rectangleNew._001Constrain(rectangleWork);
-
-            if(rectangleNew != rectangleScreenOld)
-            {
-
-               m_pframewindow->set_position(pointMove);
-
-               bChange = true;
-
-            }
+            rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleNormal.size());
 
          }
+
+         auto sizeWindow = pmouse->m_point - m_pointCursorDockOrigin + m_sizeDockRightOrigin;
+
+         sizeWindow.cx() -= rectangleNew.width();
+
+         rectangleNew.move_to(::point_i32(sizeWindow));
+
+         m_pframewindow->good_restore(nullptr, rectangleNew, true, e_activation_default, e_zorder_top, edisplayDock);
 
          if(bChange)
          {
 
-            m_pframewindow->display(e_display_restored);
+            m_pframewindow->display(e_display_normal);
 
             m_pframewindow->set_need_layout();
 
@@ -329,14 +350,14 @@ namespace experience
       else if (is_docking_appearance(edisplayDock))
       {
 
-         if (edisplayDock == edisplayOld || rectangleDock != rectangleWindow)
+         if (edisplayDock != edisplayOld || rectangleDock != rectangleWindow)
          {
 
             m_pframewindow->order(e_zorder_top);
 
             m_pframewindow->place(rectangleDock);
 
-            m_pframewindow->display(edisplayDock);
+            m_pframewindow->display_docked(edisplayDock, e_activation_default);
 
             m_pframewindow->set_need_layout();
 
@@ -384,7 +405,9 @@ namespace experience
 
       auto pointDockOrigin = pointCursor;
 
-      pointDockOrigin+=pbutton->screen_to_client();
+      pbutton->screen_to_client()(pointDockOrigin);
+
+      m_sizeDockRightOrigin = dock_button_right_origin();
 
       m_pointCursorDockOrigin = pointDockOrigin;
 
@@ -510,8 +533,8 @@ namespace experience
 
    }
 
-
-   ::point_i32 dock_manager::dock_origin()
+   /// Screen coordinates of center of dock button
+   ::size_i32 dock_manager::dock_button_right_origin()
    {
 
       ::point_i32 pointOrigin;
@@ -527,7 +550,7 @@ namespace experience
 
       }
 
-      return pointOrigin;
+      return { m_pframewindow->width() - pointOrigin.x(), -pointOrigin.y()};
 
    }
 

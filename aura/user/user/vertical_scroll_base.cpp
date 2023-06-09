@@ -1,4 +1,4 @@
-﻿// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSørensen!!
+// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "scroll_data.h"
 #include "vertical_scroll_base.h"
@@ -239,12 +239,12 @@ namespace user
 
       ::pointer<::message::mouse_wheel>pmousewheel(pmessage);
 
-      auto Δ = pmousewheel->m_Δ;
+      auto greekdelta = pmousewheel->m_greekdelta;
 
-      if (Δ > 0)
+      if (greekdelta > 0)
       {
 
-         for (; Δ > 0; Δ -= 120)
+         for (; greekdelta > 0; greekdelta -= 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_up);
@@ -255,7 +255,7 @@ namespace user
       else
       {
 
-         for (; Δ < 0; Δ += 120)
+         for (; greekdelta < 0; greekdelta += 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_down);
@@ -374,10 +374,10 @@ namespace user
 
          auto sizePage = get_page_size();
 
-         if (point.y() > maximum(0, sizeTotal.cy - sizePage.cy))
+         if (point.y() > maximum(0, sizeTotal.cy() - sizePage.cy()))
          {
 
-            point.y() = (::i32)maximum(0, sizeTotal.cy - sizePage.cy);
+            point.y() = (::i32)maximum(0, sizeTotal.cy() - sizePage.cy());
 
          }
 
@@ -413,9 +413,9 @@ namespace user
 
       client_rectangle(rectangleClient);
 
-      ::i32 iTotalHeight = (::i32)sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32)sizeTotal.cy();
 
-      ::i32 iTotalWidth = (::i32)sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32)sizeTotal.cx();
 
       ::i32 iClientHeight = rectangleClient.height();
 

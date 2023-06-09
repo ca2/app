@@ -86,6 +86,9 @@ namespace acme
       
       
       ::pointer < ::particle >                              m_pparticleQuit;
+
+
+      //::pointer < ::particle >                              m_pparticleStandardIOSynchronization;
       
 
       bool                                                  m_bCallstackInitialized;
@@ -94,6 +97,9 @@ namespace acme
 
       string                                                m_strTheme;
       string                                                m_strIconTheme;
+
+      map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
+      string_map < enum_character_set >                     m_mapCharacterSetEnum;
 
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
@@ -630,7 +636,7 @@ namespace acme
 #endif
 
 #ifndef UNIVERSAL_WINDOWS
-      //virtual bool process_contains_module(string & strImage, ::::process_identifier processidentifier, const ::string & pszLibrary);
+      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
       //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
 #endif
 
@@ -669,8 +675,12 @@ namespace acme
 
 
       //virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
-      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
+//      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
       virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
+//      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
+      /// This version of command_system is originally meant for implementators
+      /// to not use standard I/O redirection.
+      virtual int command_system(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
 
 
       virtual void open_terminal_and_run(const ::scoped_string& scopedstr);
@@ -749,6 +759,11 @@ namespace acme
       virtual ::pointer < ::operating_system::application > process_identifier_application(::process_identifier processidentifier);
 
       virtual ::pointer < ::operating_system::application > application_predicate(const ::function < bool(::operating_system::application * papplication) > & function);
+
+
+      virtual ::string get_character_set_default_sample_text(enum_character_set echaracterset);
+      virtual void load_character_set_default_sample_text();
+
 
    };
 

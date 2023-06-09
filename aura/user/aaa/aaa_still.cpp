@@ -65,13 +65,13 @@ namespace user
 
          get_window_text(strText);
 
-         ::rectangle rectangleClient;
+         ::rectangle_f64 rectangleClient;
 
          client_rectangle(rectangleClient);
 
-         //::rectangle rectangleMargin(2, 2,2, 2);
+         //::rectangle_f64 rectangleMargin(2, 2,2, 2);
 
-//         ::rectangle rectangleBorder(2, 2,2, 2);
+//         ::rectangle_f64 rectangleBorder(2, 2,2, 2);
 
   //       rectangleClient.deflate(rectangleMargin);
 
@@ -131,7 +131,7 @@ namespace user
 
          }
 
-         ::rectangle rectanglePadding(0, 0, 0, 0);
+         ::rectangle_f64 rectanglePadding(0, 0, 0, 0);
 
          rectangleClient.deflate(rectanglePadding);
 
@@ -173,7 +173,7 @@ namespace user
 
             pgraphics->set(ppen);
 
-            ::rectangle rectangleIcon(rectangleClient);
+            ::rectangle_f64 rectangleIcon(rectangleClient);
 
             rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -417,7 +417,7 @@ namespace user
 
    //   return control::hit_test(pmouse);
 
-   //   //::rectangle rectangleWindow;
+   //   //::rectangle_f64 rectangleWindow;
    //   //window_rectangle(rectangleWindow);
    //   //if (rectangleWindow.contains(point))
    //   //{
@@ -456,9 +456,9 @@ namespace user
 
       ::size sizeTotal;
 
-      sizeTotal.cx = size.cx;
+      sizeTotal.cx() = size.cx();
 
-      sizeTotal.cy = tm.tmHeight;
+      sizeTotal.cy() = tm.tmHeight;
 
       return sizeTotal;
 
@@ -479,10 +479,10 @@ namespace user
 
          auto size = pgraphics->get_text_extent(str);
 
-         ::rectangle rectangle(0, 0, 0, 0);
+         ::rectangle_f64 rectangle(0, 0, 0, 0);
 
-         rectangle.right = ::i32(size.cx * 1.6);
-         rectangle.bottom = ::i32(size.cy * 1.4);
+         rectangle.right = ::i32(size.cx() * 1.6);
+         rectangle.bottom = ::i32(size.cy() * 1.4);
 
          layout().sketch() = rectangle.size();
 
@@ -500,9 +500,9 @@ namespace user
 
          auto sizeTotal = calc_text_size();
 
-         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
+         sizeTotal.cx() = (::i32)(sizeTotal.cx() * 1.6);
 
-         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
+         sizeTotal.cy() = (::i32)(sizeTotal.cy() * 1.4);
 
          layout().sketch() = sizeTotal;
 
@@ -572,22 +572,22 @@ namespace user
    void still::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
 
       ::size sizeText = calc_text_size();
 
-      ::rectangle rectangle;
+      ::rectangle_f64 rectangle;
 
-      rectangle.left = rectangleClient.left + (rectangleClient.width() - sizeText.cx) / 2;
+      rectangle.left = rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2;
 
-      rectangle.top = rectangleClient.top + (rectangleClient.height() - sizeText.cy) / 2;
+      rectangle.top = rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2;
 
-      rectangle.right = rectangle.left + sizeText.cx;
+      rectangle.right = rectangle.left + sizeText.cx();
 
-      rectangle.bottom = rectangle.top + sizeText.cy;
+      rectangle.bottom = rectangle.top + sizeText.cy();
 
       m_rectangleText = rectangle;
 
@@ -637,7 +637,7 @@ namespace user
 
 
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
 
       client_rectangle(rectangleClient);
 
@@ -714,11 +714,11 @@ namespace user
 
       rectangleClient.left += 3;
       rectangleClient.top += 3;
-      ::rectangle rectangleText = m_rectangleText;
+      ::rectangle_f64 rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pimage->is_ok())
       {
-         ::rectangle rectangleDib;
+         ::rectangle_f64 rectangleDib;
          rectangleDib = m_rectangleText;
          rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
          rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
@@ -809,7 +809,7 @@ namespace user
 
       get_window_text(strText);
 
-      ::rectangle rectangleClient;
+      ::rectangle_f64 rectangleClient;
       client_rectangle(rectangleClient);
 
 
@@ -872,7 +872,7 @@ namespace user
       if (pimage->area() > 0 && rectangleClient.area() > 0)
       {
 
-         ::rectangle rectangleAspect;
+         ::rectangle_f64 rectangleAspect;
 
          rectangleAspect.left = 0;
 
@@ -890,7 +890,7 @@ namespace user
 
          rectangleAspect.Align(e_align_center, rectangleClient);
 
-        pgraphics->draw(rectangleClient, pimage->g(), ::rectangle(pimage->get_size()));
+        pgraphics->draw(rectangleClient, pimage->g(), ::rectangle_f64(pimage->get_size()));
 
       }
 

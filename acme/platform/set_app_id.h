@@ -1,4 +1,4 @@
-// From apex by camilo 2021-11-01 13:38 BRT <3ThomasBorregaardS�rensen!!
+// From apex by camilo 2021-11-01 13:38 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

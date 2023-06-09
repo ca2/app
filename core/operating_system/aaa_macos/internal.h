@@ -82,5 +82,5 @@ int_bool cg_release_color(CGColorRef colorref);
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, const ::rectangle & rectangle, int iDisplay);
+int_bool set_nswindow_frame(oswindow hwnd, const ::rectangle_f64 & rectangle, int iDisplay);
 int_bool move_nswindow(oswindow hwnd, int x, int y);

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-11 10:54 PM <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-03-11 10:54 PM <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/platform/application.h"

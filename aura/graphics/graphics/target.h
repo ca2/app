@@ -1,5 +1,5 @@
-﻿// Created by camilo on 2021-01-29 14:13 <3ThomasBS_!!
-// From animated_wallpaper to graphics::target by camilo on 2022-05-12 17:40 <3ThomasBorregaardSørensen!! (ThomasLikesNumber5!!)
+// Created by camilo on 2021-01-29 14:13 <3ThomasBS_!!
+// From animated_wallpaper to graphics::target by camilo on 2022-05-12 17:40 <3ThomasBorregaardSorensen!! (ThomasLikesNumber5!!)
 #pragma once
 
 

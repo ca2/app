@@ -1,4 +1,4 @@
-﻿//
+//
 //  simple_pointer.h
 //  acme
 //

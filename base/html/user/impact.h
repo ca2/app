@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "axis/html/user/form.h"

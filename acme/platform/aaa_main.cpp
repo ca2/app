@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme.h"
 #include "system.h"
 //#include "sequencer.h"
@@ -1889,7 +1889,7 @@ locale_t get_c_locale()
 //void acme_ref()
 //{
 //
-//   ::acme::acme::g_p->this_ref();
+//   ::acme::acme::g_pacme->this_ref();
 //
 //}
 

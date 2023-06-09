@@ -184,8 +184,8 @@ namespace opengl
       ::gpu::context_lock lock(this);
 
       // Set the width and height appropriately for your image
-      GLuint imageWidth = size.cx;
-      GLuint imageHeight = size.cy;
+      GLuint imageWidth = size.cx();
+      GLuint imageHeight = size.cy();
       
       //Set up a FBO with one renderbuffer attachment
       glGenFramebuffersEXT(1, &m_framebuffer);
@@ -204,7 +204,7 @@ namespace opengl
          
       }
       
-      glViewport(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx(), size.cy());
       
       //return ::success;
 
@@ -394,9 +394,9 @@ namespace opengl
 //
 //      }
       
-      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, size.cx, size.cy);
+      glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, size.cx(), size.cy());
 
-      glViewport(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx(), size.cy());
       
 //      return ::success;
 

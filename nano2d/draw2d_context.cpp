@@ -1,4 +1,4 @@
-// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "draw2d_context.h"
 #include "acme/platform/context.h"
@@ -45,7 +45,7 @@ namespace nano2d
       
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      _create_new_state();
+      m_pstate = create_new_state();
 
    }
 
@@ -82,22 +82,24 @@ namespace nano2d
    }
 
 
-   void draw2d_context::_create_new_state()
+   ::pointer < draw2d_context::state > draw2d_context::create_new_state()
    {
 
-      m_pstate = __new(state(m_pgraphics));
+      auto pstate = __new(state(m_pgraphics));
 
-      m_pstate->initialize(m_pgraphics);
+      pstate->initialize(m_pgraphics);
 
-      m_pgraphics->__construct(m_pstate->m_ppen);
-      m_pgraphics->__construct(m_pstate->m_pbrush);
+      m_pgraphics->__construct(pstate->m_ppen);
+      m_pgraphics->__construct(pstate->m_pbrush);
 
-      m_pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
-      m_pstate->m_ppen->m_dWidth = 1.0;
+      pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
+      pstate->m_ppen->m_dWidth = 1.0;
 
-      m_pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
+      pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
-      m_pstate->m_bHasCurrentPoint = false;
+      pstate->m_bHasCurrentPoint = false;
+
+      return pstate;
 
    }
 
@@ -116,50 +118,48 @@ namespace nano2d
    }
 
 
-   void draw2d_context::save()
+   void draw2d_context::save1()
    {
 
-      m_pstate->m_matrix = m_pgraphics->m_matrix;
+      auto pstateOld = m_pstate;
 
+      pstateOld->m_matrix = m_pgraphics->m_matrix;
 
-      m_statea.add(m_pstate);
+      m_statea.add(pstateOld);
 
-      _create_new_state();
+      auto pstateNew = create_new_state();
 
-      auto & stateNew = *m_pstate;
+      *pstateNew->m_ppen            = *pstateOld->m_ppen;
+      *pstateNew->m_pbrush          = *pstateOld->m_pbrush;
 
-      auto & stateOld = *m_statea.last();
+      pstateNew->m_strFontFace      = pstateOld->m_strFontFace;
+      pstateNew->m_fFontSize        = pstateOld->m_fFontSize;
 
-      *stateNew.m_ppen = *stateOld.m_ppen;
-      *stateNew.m_pbrush = *stateOld.m_pbrush;
-      stateNew.m_strFontFace = stateOld.m_strFontFace;
-      stateNew.m_fFontSize = stateOld.m_fFontSize;
+      pstateNew->m_pointCurrent     = pstateOld->m_pointCurrent;
+      pstateNew->m_bHasCurrentPoint = pstateOld->m_bHasCurrentPoint;
+      pstateNew->m_ealignText       = pstateOld->m_ealignText;
+      pstateNew->m_iSavedContext    = m_pgraphics->save_graphics_context();
 
-      stateNew.m_pointCurrent = stateOld.m_pointCurrent;
-      stateNew.m_bHasCurrentPoint = stateOld.m_bHasCurrentPoint;
-      stateNew.m_ealignText = stateOld.m_ealignText;
-
-
-      if (stateOld.m_ppath)
+      if (pstateOld->m_ppath)
       {
 
-         m_pgraphics->__construct(stateNew.m_ppath);
+         m_pgraphics->__construct(pstateNew->m_ppath);
 
-         *stateNew.m_ppath = *stateOld.m_ppath;
+         *pstateNew->m_ppath = *pstateOld->m_ppath;
 
       }
 
-      
+      m_pstate = pstateNew;
 
    }
 
 
-   void draw2d_context::restore()
+   void draw2d_context::restore1()
    {
 
-      m_pstate = m_statea.pop();
+      m_pgraphics->restore_graphics_context(m_pstate->m_iSavedContext);
 
-      //m_pgraphics->reset_clip();
+      m_pstate = m_statea.pop();
 
       m_pgraphics->set(m_pstate->m_matrix);
 
@@ -286,7 +286,7 @@ namespace nano2d
          else if (paintimage.m_pimage)
          {
 
-            ::draw2d::savedc save(m_pgraphics);
+            ::draw2d::save_context savecontext(m_pgraphics);
 
             m_pgraphics->intersect_clip(m_pstate->m_ppath);
 
@@ -578,7 +578,7 @@ namespace nano2d
       //else if (paintimage.m_pimage)
       //{
 
-      //   ::draw2d::savedc save(m_pgraphics);
+      //   ::draw2d::save_context savecontext(m_pgraphics);
 
       //   m_pgraphics->intersect_clip(m_pstate->m_ppath);
 
@@ -710,32 +710,32 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
       
       m_pgraphics->text_out({ (double)x + offsetx, (double)y + offsety }, scopedstr);
 
-      return (float) (x + offsetx + size.cx);
+      return (float) (x + offsetx + size.cx());
 
    }
 
@@ -757,26 +757,26 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
 
@@ -796,7 +796,7 @@ namespace nano2d
 
          positions[iChar].str = psz;
 
-         positions[iChar].x() = (float) (x+ offsetx+daLeft[psz - pszStart]);
+         positions[iChar].x = (float) (x+ offsetx+daLeft[psz - pszStart]);
 
          positions[iChar].minx = (float) (x + offsetx + daLeft[psz - pszStart]);
 
@@ -832,26 +832,26 @@ namespace nano2d
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx;
+         offsetx = -size.cx();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx / 2.0;
+         offsetx = -size.cx() / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy;
+         offsety = -size.cy();
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy / 2.0;
+         offsety = -size.cy() / 2.0;
 
       }
 
@@ -860,12 +860,12 @@ namespace nano2d
 
          bounds[0] = (float) (x + offsetx);
          bounds[1] = (float) (y + offsety);
-         bounds[2] = (float) (x + offsetx + size.cx);
-         bounds[3] = (float) (y + offsety + size.cy);
+         bounds[2] = (float) (x + offsetx + size.cx());
+         bounds[3] = (float) (y + offsety + size.cy());
 
       }
 
-      return (float) (x + offsetx + size.cx);
+      return (float) (x + offsetx + size.cx());
 
    }
 
@@ -929,36 +929,45 @@ namespace nano2d
 
    void draw2d_context::ellipse(float cx, float cy, float rx, float ry)
    {
+      
+      ::ellipse_f64 ellipse;
+      
+      ellipse.left = cx - rx;
+      ellipse.top = cy - ry;
+      ellipse.right = cx + rx;
+      ellipse.bottom = cy + ry;
 
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_ellipse(rectangle_f64_dimension(cx - rx, cy - ry, rx *2.0, ry*2.0));
+         m_pstate->m_ppath->add_ellipse(ellipse);
 
       }
       else
       {
 
-         m_pgraphics->ellipse(rectangle_f64_dimension(cx - rx, cy - ry, rx * 2.0, ry * 2.0));
+         m_pgraphics->ellipse(ellipse);
 
       }
 
    }
 
 
-   void draw2d_context::arc(float cx, float cy, float r, float a0, float a1, int dir)
+   void draw2d_context::arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir)
    {
+      
+      ::rectangle_f64 rectangle(cx - r, cy - r, cx + r, cy + r);
 
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_arc(rectangle_f64_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pstate->m_ppath->add_arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
 
       }
       else
       {
 
-         m_pgraphics->arc(rectangle_f64_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pgraphics->arc(rectangle, a0, dir ? a1 - a0 : a0 - a1);
 
       }
 

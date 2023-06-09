@@ -168,8 +168,8 @@ namespace simple_ui
 
       /*   rectangleClient.top = m_point.y();
       rectangleClient.left = m_point.x();
-      rectangleClient.bottom = rectangleClient.top + m_size.cy;
-      rectangleClient.right = rectangleClient.left + m_size.cx;*/
+      rectangleClient.bottom = rectangleClient.top + m_size.cy();
+      rectangleClient.right = rectangleClient.left + m_size.cx();*/
       //      pgraphics->fill_rectangle(rectangleClient, crBk);
 
 //
@@ -238,38 +238,38 @@ namespace simple_ui
          pgraphics->get_text_extent(sizeb,strLine,iEnd);
          size_f64 size2(0.0,0.0);
          pgraphics->get_text_extent(size2,strLine,(i32)strLine.length(),(i32)iEnd);
-         size2.cx -= size1.cx;
+         size2.cx() -= size1.cx();
 
          if(iEnd > iStart)
          {
 
-            auto rectangleFill = ::rectangle_f64_dimension((i32)(left + size1.cx), (i32)y, (i32)size2.cx, (i32)size2.cy);
+            auto rectangleFill = ::rectangle_f64_dimension((i32)(left + size1.cx()), (i32)y, (i32)size2.cx(), (i32)size2.cy());
             pgraphics->fill_rectangle(rectangleFill,argb(255,120,240,180));
             pbrushText->create_solid(crSel);
             pgraphics->set(pbrushText);
-            pgraphics->text_out(left + size1.cx,y,strExtent2);
+            pgraphics->text_out(left + size1.cx(),y,strExtent2);
          }
 
          pbrushText->create_solid(color32);
          pgraphics->set(pbrushText);
-         pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
+         pgraphics->text_out(left + size1.cx() + size2.cx(),y,strExtent3);
 
-         //maxcy = maximum(size1.cy, size2.cy);
-         //maxcy = maximum(maxcy, size3.cy);
+         //maxcy = maximum(size1.cy(), size2.cy());
+         //maxcy = maximum(maxcy, size3.cy());
          if(bFocus && bCaretOn && i3 == str1.length())
          {
             
             pgraphics->set(ppenCaret);
-            pgraphics->set_current_point(left + size1.cx,y);
-            pgraphics->line_to(left + size1.cx,y + dLineHeight);
+            pgraphics->set_current_point(left + size1.cx(),y);
+            pgraphics->line_to(left + size1.cx(),y + dLineHeight);
 
          }
          else if(bFocus && bCaretOn && i3 == (str1.length() + str2.length()))
          {
             
             pgraphics->set(ppenCaret);
-            pgraphics->set_current_point(left + size2.cx + size1.cx,y);
-            pgraphics->line_to(left + size2.cx + size1.cx,y + dLineHeight);
+            pgraphics->set_current_point(left + size2.cx() + size1.cx(),y);
+            pgraphics->line_to(left + size2.cx() + size1.cx(),y + dLineHeight);
 
          }
 

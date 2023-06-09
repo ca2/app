@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-30 02:50 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-30 02:50 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -93,7 +93,7 @@ public:
    inline void clear_owner_flag() { clear_flag(e_flag_owner); }
 
 
-   inline bool is_status_ok() const { return m_estatus; }
+   inline bool is_status_ok() const { return m_estatus.ok(); }
    inline bool has_failed_status() const { return !is_status_ok(); }
 
 

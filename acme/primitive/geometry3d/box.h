@@ -27,14 +27,14 @@ public:
       location_type < NUMBER > point;
 
 
-      point = m_origin + locationd(m_dimension.cx / 2.0, m_dimension.cy / 2.0, m_dimension.cz / 2.0).rotate(m_direction);
+      point = m_origin + locationd(m_dimension.cx() / 2.0, m_dimension.cy() / 2.0, m_dimension.cz / 2.0).rotate(m_direction);
 
-      //point.x() = m_dimension.cx *cos(m_direction.z) / 2.0 - m_dimension.cy * sin(m_direction.z) / 2.0;
-      //point.y() = m_dimension.cx *sin(m_direction.z) / 2.0 + m_dimension.cy * cos(m_direction.z) / 2.0;
-      //point.y() = m_dimension.cy *cos(m_direction.x()) / 2.0 - m_dimension.cz * sin(m_direction.x()) / 2.0;
-      //point.z = m_dimension.cy *sin(m_direction.x()) / 2.0 + m_dimension.cz * cos(m_direction.x()) / 2.0;
-      //point.z = m_dimension.cz *cos(m_direction.y()) / 2.0 - m_dimension.cx * sin(m_direction.y()) / 2.0;
-      //point.x() = m_dimension.cz *sin(m_direction.y()) / 2.0 + m_dimension.cx * cos(m_direction.y()) / 2.0;
+      //point.x() = m_dimension.cx() *cos(m_direction.z) / 2.0 - m_dimension.cy() * sin(m_direction.z) / 2.0;
+      //point.y() = m_dimension.cx() *sin(m_direction.z) / 2.0 + m_dimension.cy() * cos(m_direction.z) / 2.0;
+      //point.y() = m_dimension.cy() *cos(m_direction.x()) / 2.0 - m_dimension.cz * sin(m_direction.x()) / 2.0;
+      //point.z = m_dimension.cy() *sin(m_direction.x()) / 2.0 + m_dimension.cz * cos(m_direction.x()) / 2.0;
+      //point.z = m_dimension.cz *cos(m_direction.y()) / 2.0 - m_dimension.cx() * sin(m_direction.y()) / 2.0;
+      //point.x() = m_dimension.cz *sin(m_direction.y()) / 2.0 + m_dimension.cx() * cos(m_direction.y()) / 2.0;
 
       //point += m_origin;
 

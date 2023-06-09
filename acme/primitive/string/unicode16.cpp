@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "string.h"
 #include "international.h"
 ////#include "acme/exception/exception.h"
@@ -530,7 +530,7 @@ extern "C"
 //Top Network Posts
 //
 //5Is it possible for a genin to become a jonin?
-//Impact more network posts →
+//Impact more network posts -->
 
 
 

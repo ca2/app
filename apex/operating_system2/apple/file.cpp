@@ -1,4 +1,4 @@
-// Created by camilo on 2022-02-08 14:16 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-02-08 14:16 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 
 //#ifdef __APPLE__

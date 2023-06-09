@@ -140,7 +140,7 @@ namespace install
 
       //::pointer<::user::interaction>GetFocus();
 
-      //::pointer<::user::interaction>SetFocus();
+      //::pointer<::user::interaction>set_keyboard_focus();
 
       virtual void on_host_timer();
 

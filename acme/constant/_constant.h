@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "GLOBAL_ID.h"
@@ -518,8 +518,8 @@ enum enum_display
 
    e_display_none = 0,
    e_display_current,
-   e_display_restored,
-   e_display_restore,
+   e_display_stored_state,
+   e_display_normal,
    e_display_compact,
    e_display_broad,
    e_display_iconic,
@@ -858,7 +858,7 @@ enum enum_extract
 
 
 
-// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 

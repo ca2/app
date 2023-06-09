@@ -83,9 +83,9 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
 
    TT_OFFSET_TABLE ttOffsetTable;
    f->read({ e_as_block, ttOffsetTable });
-   ttOffsetTable.uNumOfTables = SWAPWORD(ttOffsetTable.uNumOfTables);
-   ttOffsetTable.uMajorVersion = SWAPWORD(ttOffsetTable.uMajorVersion);
-   ttOffsetTable.uMinorVersion = SWAPWORD(ttOffsetTable.uMinorVersion);
+   ttOffsetTable.uNumOfTables = swap_u16(ttOffsetTable.uNumOfTables);
+   ttOffsetTable.uMajorVersion = swap_u16(ttOffsetTable.uMajorVersion);
+   ttOffsetTable.uMinorVersion = swap_u16(ttOffsetTable.uMinorVersion);
 
    //check is this is a true type font and the version is 1.0
    if (ttOffsetTable.uMajorVersion != 1 || ttOffsetTable.uMinorVersion != 0)
@@ -103,8 +103,8 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
       if (csTemp.case_insensitive_order("name") == 0)
       {
          bFound = true;
-         tblDir.uLength = SWAPLONG(tblDir.uLength);
-         tblDir.uOffset = SWAPLONG(tblDir.uOffset);
+         tblDir.uLength = swap_u32(tblDir.uLength);
+         tblDir.uOffset = swap_u32(tblDir.uOffset);
          break;
       }
    }
@@ -114,19 +114,19 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
       f->set_position(tblDir.uOffset);
       TT_NAME_TABLE_HEADER ttNTHeader;
       f->read({ e_as_block, ttNTHeader });
-      ttNTHeader.uNRCount = SWAPWORD(ttNTHeader.uNRCount);
-      ttNTHeader.uStorageOffset = SWAPWORD(ttNTHeader.uStorageOffset);
+      ttNTHeader.uNRCount = swap_u16(ttNTHeader.uNRCount);
+      ttNTHeader.uStorageOffset = swap_u16(ttNTHeader.uStorageOffset);
       TT_NAME_RECORD ttRecord;
       bFound = false;
 
       for (int i = 0; i < ttNTHeader.uNRCount; i++)
       {
          f->read({ e_as_block, ttRecord });
-         ttRecord.uNameID = SWAPWORD(ttRecord.uNameID);
+         ttRecord.uNameID = swap_u16(ttRecord.uNameID);
          if (ttRecord.uNameID == 1)
          {
-            ttRecord.uStringLength = SWAPWORD(ttRecord.uStringLength);
-            ttRecord.uStringOffset = SWAPWORD(ttRecord.uStringOffset);
+            ttRecord.uStringLength = swap_u16(ttRecord.uStringLength);
+            ttRecord.uStringOffset = swap_u16(ttRecord.uStringOffset);
             
             auto nPos = f->get_position();
             

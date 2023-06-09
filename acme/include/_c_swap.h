@@ -1,29 +1,19 @@
 #pragma once
 
 
-#ifndef HIBYTE
-#define HIBYTE(x) (((x) >> 8) & 0x00ff)
-#endif
+#define lower_u8(x) ((x) & 0x00ff)
 
+#define upper_u8(x) (((x) >> 8) & 0x00ff)
 
-#ifndef HIWORD
-#define HIWORD(x) (((x) >> 16) & 0x0000ffff)
-#endif
+#define lower_u16(x) ((x) & 0x0000ffff)
 
+#define upper_u16(x) (((x) >> 16) & 0x0000ffff)
 
-#ifndef LOWORD
-#define LOWORD(x) ((x) & 0x0000ffff)
-#endif
+#define make_u16(lower, upper) (((lower) & 0xff) | (((upper) << 8) & 0xff00))
+#define make_u32(lower, upper) (((lower) & 0xffff) | (((upper) << 16) & 0xffff0000))
 
-
-#ifndef MAKEWORD
-#define MAKEWORD(lo, hi) (((lo) & 0xff) | (((hi) << 8) & 0xff00))
-#endif
-
-
-
-#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), __LOBYTE(x))
-#define SWAPLONG(x)		__MAKE_LONG(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
+#define swap_u16(x)		make_u16(upper_u8(x), lower_u8(x))
+#define swap_u32(x)		make_u32(swap_u16(upper_u16(x)), swap_u16(lower_u16(x)))
 
 
 

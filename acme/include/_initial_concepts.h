@@ -98,12 +98,14 @@ template < typename T >
 concept primitive_character =
 std::is_same < T, ::byte >::value ||
 std::is_same < T, char >::value ||
+std::is_same < T, char8_t >::value ||
 std::is_same < T, wchar_t >::value ||
 std::is_same < T, ::ansi_character >::value ||
 std::is_same < T, ::wd16_character >::value ||
 std::is_same < T, ::wd32_character >::value ||
 std::is_same < T, const ::byte >::value ||
 std::is_same < T, const char >::value ||
+std::is_same < T, const char8_t >::value ||
 std::is_same < T, const wchar_t >::value ||
 std::is_same < T, const ::ansi_character >::value ||
 std::is_same < T, const ::wd16_character >::value ||

@@ -6,7 +6,6 @@
 #include "window_implementation.h"
 #include "device.h"
 #include "child.h"
-#if 0
 #include "button.h"
 #include "nano.h"
 #include "acme/handler/topic.h"
@@ -800,4 +799,3 @@ void nano_window::do_asynchronously()
 
 
 
-#endif

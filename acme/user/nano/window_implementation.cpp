@@ -2,7 +2,6 @@
 // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#if 0
 #include "display.h"
 #include "window_implementation.h"
 #include "window.h"
@@ -303,4 +302,3 @@ void nano_window_implementation::do_asynchronously()
 //
 //
 
-#endif

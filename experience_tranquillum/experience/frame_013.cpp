@@ -1,9 +1,4 @@
 #include "framework.h"
-
-
-#if 0
-
-
 #include "frame_013.h"
 
 
@@ -29,8 +24,5 @@ namespace experience_tranquillum
 
 } // namespace experience_tranquillum
 
-
-
-#endif
 
 

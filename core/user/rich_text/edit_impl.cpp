@@ -892,7 +892,7 @@ namespace user
 
             rectangle_f64 rectangleWindow;
 
-            copy(rectangleWindow, rWindow);
+            rectangleWindow = rWindow;
 
             get_parent()->screen_to_client()(rectangleWindow);
 

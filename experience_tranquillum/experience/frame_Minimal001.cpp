@@ -1,9 +1,4 @@
 #include "framework.h"
-
-
-#if 0
-
-
 #include "aura/graphics/draw2d/graphics.h"
 #include "frame_Minimal001.h"
 #include "base/user/experience/frame_window.h"
@@ -1249,8 +1244,5 @@ SizingNone:;
 
 } // namespace experience_tranquillum
 
-
-
-#endif
 
 

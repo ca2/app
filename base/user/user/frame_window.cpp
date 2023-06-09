@@ -1,5 +1,4 @@
 #include "framework.h"
-#if 0
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
@@ -2888,4 +2887,3 @@ namespace user
 
 
 
-#endif

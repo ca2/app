@@ -1,5 +1,4 @@
 #include "framework.h"
-#
 #include "aura/graphics/draw2d/graphics.h"
 #include "frame_001.h"
 #include "base/user/experience/frame_window.h"

@@ -2,7 +2,7 @@
 //  account_network_credentials.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
 #include "framework.h"
 #include "network_authenticator.h"

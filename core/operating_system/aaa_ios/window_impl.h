@@ -2,7 +2,7 @@
 //  ios_window_impl.h
 //  base
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2013-09-18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2013-09-18.
 //
 //
 

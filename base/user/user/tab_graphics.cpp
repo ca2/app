@@ -2,8 +2,8 @@
 //  tab_graphics.cpp
 //  base
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 05/06/23.
-//  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 05/06/23.
+//  Copyright (c) 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
 #include "tab.h"

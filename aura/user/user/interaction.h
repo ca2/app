@@ -234,7 +234,7 @@ namespace user
 
       bool                                         m_bVisualChanged;
 
-      // <3ThomasBorreggardSørensen_!!
+      // <3ThomasBorreggardSoerensen_!!
       ::pointer<::matter>                          m_pmatterCommandHandler;
 
       ::user::interaction::enum_updown             m_eupdown;

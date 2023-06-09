@@ -2,7 +2,7 @@
 //  __acme.h
 //  __acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 03/01/22.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 03/01/22.
 //
 
 #import <Foundation/Foundation.h>

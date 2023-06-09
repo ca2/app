@@ -74,7 +74,7 @@ int_bool cg_release_color(CGColorRef colorref);
 //  c_os_win_user.h
 //  c
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/30/11.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/30/11.
 //  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 

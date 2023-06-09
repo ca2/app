@@ -2,7 +2,7 @@
 //  _user.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2023-06-06 19:50
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2023-06-06 19:50
 //
 #pragma once
 

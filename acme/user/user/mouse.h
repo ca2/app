@@ -2,7 +2,7 @@
 //  user_mouse.hpp
 //  base
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 14/08/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 14/08/17.
 //
 //
 #pragma once

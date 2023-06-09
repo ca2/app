@@ -2,7 +2,7 @@
 //  macos_MessageBoxA.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 13/09/14.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 13/09/14.
 //  from http://blog.jorgearimany.com/2010/05/messagebox-from-windows-to-mac.html
 //  El blog de Jorge Arimany Españaque
 

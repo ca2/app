@@ -2,8 +2,8 @@
 //  _random.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2023-06-05 00:42
-//  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2023-06-05 00:42
+//  Copyright (c) 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #pragma once
 

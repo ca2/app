@@ -2,8 +2,8 @@
 //  context_fbo.hpp
 //  gpu_opengl
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 25/07/20.
-//  Copyright © 2020 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 25/07/20.
+//  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
 #pragma once

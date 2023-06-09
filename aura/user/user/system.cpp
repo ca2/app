@@ -2,7 +2,7 @@
 //  user_create_struct.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 19/06/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 19/06/18.
 //
 #include "framework.h"
 #include "system.h"

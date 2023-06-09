@@ -2,7 +2,7 @@
 //  winpr_keycode.hpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/06/19.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 07/06/19.
 //
 
 

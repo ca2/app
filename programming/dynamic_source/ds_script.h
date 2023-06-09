@@ -2,8 +2,8 @@
 //  ds_script.h
 //  programming
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2022-09-06 19:55
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2022-09-06 19:55
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

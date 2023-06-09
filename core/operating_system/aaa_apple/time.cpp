@@ -2,7 +2,7 @@
 //  apple_time.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 01/10/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 01/10/17.
 //
 
 #include "framework.h"

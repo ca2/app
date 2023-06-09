@@ -2,8 +2,8 @@
 //  userex_const.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 14/07/18.
-//  Copyright © 2018 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 14/07/18.
+//  Copyright (c) 2018 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #pragma once
 

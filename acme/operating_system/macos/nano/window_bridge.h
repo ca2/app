@@ -2,9 +2,9 @@
 //  c_window.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 01/02/22.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 01/02/22.
 //  23:26
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

@@ -2,7 +2,7 @@
 //  menu_shared.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 10/08/20.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 10/08/20.
 //
 #include "framework.h"
 //#include "base/user/user/_component.h"

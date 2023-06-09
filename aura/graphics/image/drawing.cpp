@@ -2,7 +2,7 @@
 //  drawing.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 23/05/23.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 23/05/23.
 //
 #include "framework.h"
 #include "drawing.h"

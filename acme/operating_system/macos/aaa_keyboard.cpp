@@ -2,7 +2,7 @@
 //  keyboard.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 01/06/20.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 01/06/20.
 //
 
 #include "framework.h"

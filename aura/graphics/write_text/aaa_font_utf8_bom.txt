@@ -43,7 +43,7 @@ namespace write_text
       else if (echarset == e_character_set_greek)
       {
 
-         return unitext("greekdeltaείγμα κειμένου");
+         return unitext("greekdeltaείγgreekmuα κειgreekmuένου");
 
       }
       else if (echarset == e_character_set_turkish)

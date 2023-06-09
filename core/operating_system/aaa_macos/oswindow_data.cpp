@@ -2,7 +2,7 @@
 //  oswindow_data.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 18/05/20.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 18/05/20.
 //
 #include "framework.h"
 #include "oswindow_data.h"

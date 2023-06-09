@@ -683,8 +683,8 @@ namespace user
 //  tool_item.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 03/Oct/22 20:28
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 03/Oct/22 20:28
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

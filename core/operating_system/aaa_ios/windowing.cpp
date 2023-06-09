@@ -2,7 +2,7 @@
 //  ios_windowing.cpp
 //  ios_aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 10/12/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 10/12/17.
 //
 #include "framework.h"
 #include "oswindow_data.h"

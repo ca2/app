@@ -2,8 +2,8 @@
 //  user_shell_metrowin.cpp
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 30/12/16.
-//  Copyright © 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 30/12/16.
+//  Copyright (c) 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #include "framework.h"
 #include "apex/compress/zip/context.h"

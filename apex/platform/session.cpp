@@ -861,7 +861,7 @@ namespace apex
    //      {
 
    //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
-   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
+   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carou e o Lucio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
    //         handle_exception(e);
 

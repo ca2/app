@@ -69,7 +69,7 @@
 	<item code="key_semicolon3" shift="1" value="" />
 	<item code="key_slash2" shift="1" value="" />
 	<item code="key_backslash2" shift="1" value=">" />
-	<item code="key_closebracket2" shift="1" value="µ" />
+	<item code="key_closebracket2" shift="1" value="greekmu" />
 	<item code="key_openbracket2" shift="1" value="£" />
 	<item code="key_til2" shift="1" escape="%" />
 	<item code="key_acute2" shift="1" escape=""  />

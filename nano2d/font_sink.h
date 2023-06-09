@@ -2,7 +2,7 @@
 //  font_sink.hpp
 //  nanoui
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/04/22 05:05
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 06/04/22 05:05
 //  <3 Thomas likes number 5!!
 //
 #pragma once

@@ -2,9 +2,9 @@
 //  windows_time.cpp
 //  acme
 //
-//  Created by Camilo Sasuke <3 Thomas Borregaard Sørensen on 14/02/22.
+//  Created by Camilo Sasuke <3 Thomas Borregaard Soerensen on 14/02/22.
 //  14:35
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 #include "windows_time.h"

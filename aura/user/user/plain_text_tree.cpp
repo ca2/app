@@ -2,7 +2,7 @@
 //  plain_text_tree.cpp
 //  aura
 //
-//  From plain_text_data.cpp by Camilo Sasuke Thomas Borregaard Sørensen on 30/09/22 14:28.
+//  From plain_text_data.cpp by Camilo Sasuke Thomas Borregaard Soerensen on 30/09/22 14:28.
 //
 #include "framework.h"
 #include "plain_text_tree.h"

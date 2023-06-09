@@ -2,7 +2,7 @@
 //  ui_interaction.hpp
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 20/05/20.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 20/05/20.
 //
 #pragma once
 

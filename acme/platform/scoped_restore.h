@@ -77,11 +77,6 @@ inline ::scoped_restore_struct < TYPE > create_scoped_restore(TYPE & t)
 
 
 
-//#define η __counter_name__
-//
-//
-//#define λ η = [&]()
-
 
 template <class PREDICATE>
 struct run_at_destructor_struct

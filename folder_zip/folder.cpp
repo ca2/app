@@ -599,7 +599,7 @@ namespace folder_zip
          //
          //            printf("237 %s\n", szItem);
          //
-         //            const_ansi_range range("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+         //            const_ansi_range range("app/_matter/main/_std/_std/Thomas Borregaard Soerensen.dedicatory");
          //
          //            const_ansi_range rangeBlock(szItem);
          //

@@ -4520,7 +4520,7 @@ bool thread::do_events()
 
 ///
 /// Single step the thread message queue.
-/// \author tst Camilo Sasuke Thomas Borregaard Sørensen
+/// \author tst Camilo Sasuke Thomas Borregaard Soerensen
 ///
 
 void thread::kick_thread()

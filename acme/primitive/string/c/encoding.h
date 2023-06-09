@@ -85,7 +85,7 @@ CLASS_DECL_ACME char * wd32_to_ansi_dup(const ::wd32_character * input, strsize 
  * Encode a code point_i32 using UTF-8
  *
  * @adaptor ca2
- * @authorr Ondřej Hruška <ondra@ondrovo.com>
+ * @authorr Ondrhej Hrusjka <ondra@ondrovo.com>
  * @license MIT
  *
  * @paramrr out - output buffer (minimum 5 characters), will be 0-terminated

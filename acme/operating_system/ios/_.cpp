@@ -2,8 +2,8 @@
 //  _.cpp
 //  ios_acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 11/05/22.
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 11/05/22.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 #include <locale.h>

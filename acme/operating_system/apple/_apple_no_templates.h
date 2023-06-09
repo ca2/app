@@ -2,8 +2,8 @@
 //  _apple_no_templates.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 18/08/21.
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 18/08/21.
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
 #pragma once

@@ -2,7 +2,7 @@
 //  visual_apple_image_gif.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 21/10/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 21/10/17.
 //
 #include "framework.h"
 

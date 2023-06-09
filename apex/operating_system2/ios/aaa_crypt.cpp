@@ -2,7 +2,7 @@
 //  c_os_crypt.cpp
 //  c
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 11/10/12.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 11/10/12.
 //
 //
 #include "framework.h"

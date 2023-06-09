@@ -4270,9 +4270,6 @@
     <ClCompile Include="memory\os_impl\aaa_select.cpp">
       <Filter>Source Files\memory\osdjfh</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\process.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\keyboard.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4290,6 +4287,9 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\size.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\process.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

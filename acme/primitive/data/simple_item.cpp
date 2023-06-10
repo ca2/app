@@ -27,7 +27,7 @@ namespace data
 
    string simple_item::data_item_get_text(::particle * pparticle) const
    {
-      __UNREFERENCED_PARAMETER(pparticle);
+      UNREFERENCED_PARAMETER(pparticle);
       return m_str;
    }
    

@@ -65,7 +65,7 @@ namespace experience_core
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -170,7 +170,7 @@ namespace experience_core
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, byte bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
       pgraphics->fill_rectangle(rectangle, ::color::color(color32, bAlpha));
@@ -372,17 +372,17 @@ namespace experience_core
       color.set_rgb(colorMoveableBorder);
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
-      m_colorMoveableBorderHilight.alpha = 255;
+      m_colorMoveableBorderHilight.m_u8Opacity = 255;
 
       color.set_rgb(colorMoveableBorder);
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
-      m_colorMoveableBorderShadow.alpha = 255;
+      m_colorMoveableBorderShadow.m_u8Opacity = 255;
 
       color.set_rgb(colorMoveableBorder);
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-      m_colorMoveableBorderDkShadow.alpha = 255;
+      m_colorMoveableBorderDkShadow.m_u8Opacity = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -787,7 +787,7 @@ namespace experience_core
    void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

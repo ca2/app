@@ -50,7 +50,7 @@ extern "C" {
 //  String Length Maximums.
 //
 #define MAX_LEADBYTES             12          // 5 ranges, 2 bytes ea., 0 term.
-#define MAX_DEFAULTCHAR           2           // single or double byte
+#define MAX_DEFAULTCHAR           2           // single or double ::u8
 
 //
 //  Surrogate pairs
@@ -206,12 +206,12 @@ extern "C" {
 #endif // (WINVER >= _WIN32_WINNT_WIN7)
 
 #define LCMAP_SORTKEY             0x00000400  // WC sort key (normalize)
-#define LCMAP_BYTEREV             0x00000800  // byte reversal
+#define LCMAP_BYTEREV             0x00000800  // ::u8 reversal
 
 #define LCMAP_HIRAGANA            0x00100000  // map katakana to hiragana
 #define LCMAP_KATAKANA            0x00200000  // map hiragana to katakana
-#define LCMAP_HALFWIDTH           0x00400000  // map double byte to single byte
-#define LCMAP_FULLWIDTH           0x00800000  // map single byte to double byte
+#define LCMAP_HALFWIDTH           0x00400000  // map double ::u8 to single ::u8
+#define LCMAP_FULLWIDTH           0x00800000  // map single ::u8 to double ::u8
 
 #define LCMAP_LINGUISTIC_CASING   0x01000000  // use linguistic rules for casing
 
@@ -936,15 +936,15 @@ typedef ::u32 CALID;
 typedef struct _cpinfo
 {
    ::u32    MaxCharSize;                    // maximum length (in bytes) of a char
-   byte    DefaultChar[MAX_DEFAULTCHAR];   // default character
-   byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
+   ::u8    DefaultChar[MAX_DEFAULTCHAR];   // default character
+   ::u8    LeadByte[MAX_LEADBYTES];        // lead ::u8 ranges
 } CPINFO, *LPCPINFO;
 
 typedef struct _cpinfoexA
 {
    ::u32    MaxCharSize;                    // maximum length (in bytes) of a char
-   byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
-   byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
+   ::u8    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
+   ::u8    LeadByte[MAX_LEADBYTES];        // lead ::u8 ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
    ::u32    CodePage;                       // code page atom
    char    CodePageName[MAX_PATH];         // code page name (Unicode)
@@ -952,8 +952,8 @@ typedef struct _cpinfoexA
 typedef struct _cpinfoexW
 {
    ::u32    MaxCharSize;                    // maximum length (in bytes) of a char
-   byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
-   byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
+   ::u8    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
+   ::u8    LeadByte[MAX_LEADBYTES];        // lead ::u8 ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
    ::u32    CodePage;                       // code page atom
    WCHAR   CodePageName[MAX_PATH];         // code page name (Unicode)
@@ -1226,8 +1226,8 @@ typedef struct _FILEMUIINFO
    ::u32       dwSize;                 // Size of the structure including buffer size [in]
    ::u32       dwVersion;              // Version of the structure [in]
    ::u32       dwFileType;             // Type of the file [out]
-   byte        pChecksum[16];          // Checksum of the file [out]
-   byte        pServiceChecksum[16];   // Checksum of the file [out]
+   ::u8        pChecksum[16];          // Checksum of the file [out]
+   ::u8        pServiceChecksum[16];   // Checksum of the file [out]
    ::u32       dwLanguageNameOffset;   // Language name of the file [out]
    ::u32       dwTypeIDMainSize;       // Number of TypeIDs in main module [out]
    ::u32       dwTypeIDMainOffset;     // Array of TypeIDs (::u32) in main module [out]
@@ -1235,7 +1235,7 @@ typedef struct _FILEMUIINFO
    ::u32       dwTypeIDMUISize;        // Number of TypeIDs in MUI module [out]
    ::u32       dwTypeIDMUIOffset;      // Array of TypeIDs (::u32) in MUI module [out]
    ::u32       dwTypeNameMUIOffset;    // Multistring array of TypeNames in MUI module [out]
-   byte        abBuffer[8];             // Buffer for extra data [in] (Size 4 is for padding)
+   ::u8        abBuffer[8];             // Buffer for extra data [in] (Size 4 is for padding)
 } FILEMUIINFO, *PFILEMUIINFO;
 
 
@@ -1349,14 +1349,14 @@ LPCPINFOEXW  lpCPInfoEx);
 int_bool
 WINAPI
 IsDBCSLeadByte(
-byte  TestChar);
+::u8  TestChar);
 
 //xxx linux WINAXISAPI
 int_bool
 WINAPI
 IsDBCSLeadByteEx(
 ::u32  CodePage,
-byte  TestChar);
+::u8  TestChar);
 
 //xxx linux WINAXISAPI
 

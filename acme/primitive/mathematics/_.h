@@ -613,10 +613,10 @@ namespace degree
 
 
 
-inline byte __byte_rate(double dRate, double dMin, double dMax)
+inline ::u8 __byte_rate(double dRate, double dMin, double dMax)
 {
 
-   return (byte)(dRate * (dMax - dMin) + dMin);
+   return (::u8)(dRate * (dMax - dMin) + dMin);
 
 }
 

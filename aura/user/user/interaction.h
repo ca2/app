@@ -9,6 +9,7 @@
 #include "acme/primitive/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
+#include "acme/primitive/geometry2d/shift.h"
 #include "acme/primitive/time/frequency.h"
 #include "acme/user/user/e_window_flag.h"
 //#include "apex/database/key.h"
@@ -838,6 +839,8 @@ namespace user
       // Client Rect : e_layout_design : Design/_001OnDraw time
       virtual void input_client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
 
+      virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design);
 
       virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
@@ -1757,7 +1760,7 @@ namespace user
       }
       static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
       {
-         __UNREFERENCED_PARAMETER(pinteraction);
+         UNREFERENCED_PARAMETER(pinteraction);
          return nullptr;
       }
 #endif

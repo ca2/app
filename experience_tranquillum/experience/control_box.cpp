@@ -57,7 +57,7 @@ namespace experience_tranquillum
       if(top_level()->frame_is_transparent())
       {
 
-         crBackground = alpha(90,m_colorBackground);
+         crBackground = ::opacity(90,m_colorBackground);
 
       }
       else
@@ -80,7 +80,7 @@ namespace experience_tranquillum
    void control_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
    
@@ -100,7 +100,7 @@ namespace experience_tranquillum
    void control_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
    
@@ -108,7 +108,7 @@ namespace experience_tranquillum
    void control_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       set_need_redraw();
 

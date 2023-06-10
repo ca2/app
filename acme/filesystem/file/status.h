@@ -16,7 +16,7 @@ namespace file
       class ::time         m_timeModification;     // last modification date/time of file
       class ::time         m_timeAccess;           // last access date/time of file
       filesize             m_filesize;             // logical size_i32 of file in bytes
-      byte                 m_attribute;            // logical OR of file_pointer::Attribute enum values
+      ::u8                 m_attribute;            // logical OR of file_pointer::Attribute enum values
       ::file::path         m_pathFullName;         // absolute path name
 
    };

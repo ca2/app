@@ -99,7 +99,7 @@
 //   {
 //
 ////      auto pmouse = pmessage->m_union.m_pmouse;
-//      __UNREFERENCED_PARAMETER(pmessage);
+//      UNREFERENCED_PARAMETER(pmessage);
 //
 //      m_bLButtonDown = true;
 //
@@ -110,7 +110,7 @@
 //   {
 //
 ////      auto pmouse = pmessage->m_union.m_pmouse;
-//      __UNREFERENCED_PARAMETER(pmessage);
+//      UNREFERENCED_PARAMETER(pmessage);
 //
 //      if (m_bLButtonDown)
 //      {
@@ -133,7 +133,7 @@
 //   {
 //
 ////      auto pmouse = pmessage->m_union.m_pmouse;
-//      __UNREFERENCED_PARAMETER(pmessage);
+//      UNREFERENCED_PARAMETER(pmessage);
 //   }
 //
 //
@@ -141,7 +141,7 @@
 //   {
 //
 ////      ::pointer<::message::mouse>pleave(pmessage);
-//      __UNREFERENCED_PARAMETER(pmessage);
+//      UNREFERENCED_PARAMETER(pmessage);
 //
 //      m_bLButtonDown = false;
 //

@@ -3,7 +3,7 @@
 
 #include "context.h"
 #include "acme/platform/session.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace apex
@@ -277,7 +277,7 @@ namespace apex
 
       virtual bool open_by_file_extension(::request * prequest);
 
-      virtual ::color::color get_default_color(u64 u);
+      virtual ::color::color get_default_color(::color::color color);
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 

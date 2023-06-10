@@ -156,7 +156,7 @@ namespace networking
 //
 //   bool port_forward::GetMappingsUsingThread( oswindow oswindow )
 //   {
-//      __UNREFERENCED_PARAMETER(oswindow);
+//      UNREFERENCED_PARAMETER(oswindow);
 //	   // returns true if thread was started successfully
 //
 //      return false;
@@ -180,9 +180,9 @@ namespace networking
 //
 //   bool port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, oswindow oswindow )
 //   {
-//      __UNREFERENCED_PARAMETER(oldMapping);
-//      __UNREFERENCED_PARAMETER(newMapping);
-//      __UNREFERENCED_PARAMETER(oswindow);
+//      UNREFERENCED_PARAMETER(oldMapping);
+//      UNREFERENCED_PARAMETER(newMapping);
+//      UNREFERENCED_PARAMETER(oswindow);
 //      return false;
 //
 //   }
@@ -205,8 +205,8 @@ namespace networking
 //
 //   bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, oswindow oswindow )
 //   {
-//      __UNREFERENCED_PARAMETER(newMapping);
-//      __UNREFERENCED_PARAMETER(oswindow);
+//      UNREFERENCED_PARAMETER(newMapping);
+//      UNREFERENCED_PARAMETER(oswindow);
 //	   return false;
 //   }
 //
@@ -228,8 +228,8 @@ namespace networking
 //
 //   bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, oswindow oswindow )
 //   {
-//      __UNREFERENCED_PARAMETER(oldMapping);
-//      __UNREFERENCED_PARAMETER(oswindow);
+//      UNREFERENCED_PARAMETER(oldMapping);
+//      UNREFERENCED_PARAMETER(oswindow);
 //	   return false;
 //   }
 //
@@ -252,7 +252,7 @@ namespace networking
 //
 //   bool port_forward::GetDeviceInformationUsingThread( oswindow oswindow )
 //   {
-//      __UNREFERENCED_PARAMETER(oswindow);
+//      UNREFERENCED_PARAMETER(oswindow);
 //      return false;
 //
 //   }
@@ -261,7 +261,7 @@ namespace networking
 //   HRESULT port_forward::ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks /* =nullptr */ )
 //   {
 //	   // check if we are already listening
-//      __UNREFERENCED_PARAMETER(pCallbacks);
+//      UNREFERENCED_PARAMETER(pCallbacks);
 //      return E_FAIL;
 //   }
 //

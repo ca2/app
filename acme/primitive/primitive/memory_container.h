@@ -22,7 +22,7 @@ protected:
 public:
 
    
-   byte *                                       m_pbyte;
+   ::u8 *                                       m_pbyte;
    memsize                                      m_memsize;
 
 
@@ -69,17 +69,17 @@ public:
    //virtual stream & write(::stream & stream) const override;
    //virtual stream & read(::stream & stream) override;
 
-   byte * data() { return ::is_set(m_pmemory)?m_pmemory->data():nullptr; }
-   const byte * data() const { return ::is_set(m_pmemory) ? m_pmemory->data() : nullptr; }
+   ::u8 * data() { return ::is_set(m_pmemory)?m_pmemory->data():nullptr; }
+   const ::u8 * data() const { return ::is_set(m_pmemory) ? m_pmemory->data() : nullptr; }
 
-   byte * begin() { return data(); }
-   const byte * begin() const { return data(); }
+   ::u8 * begin() { return data(); }
+   const ::u8 * begin() const { return data(); }
 
-   byte * end() { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
-   const byte * end() const { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
+   ::u8 * end() { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
+   const ::u8 * end() const { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
 
-   //byte * get_data_raw();
-   //const byte * get_data_raw() const;
+   //::u8 * get_data_raw();
+   //const ::u8 * get_data_raw() const;
 
    virtual bool is_valid() const;
 
@@ -105,14 +105,14 @@ public:
 };
 
 
-//inline byte * memory_container::get_data_raw()
+//inline ::u8 * memory_container::get_data_raw()
 //{
 //
 //   return m_pmemory->get_data();
 //
 //}
 //
-//inline const byte * memory_container::get_data_raw() const
+//inline const ::u8 * memory_container::get_data_raw() const
 //{
 //
 //   return m_pmemory->get_data();
@@ -125,14 +125,14 @@ public:
 //}
 //
 //
-//inline byte * memory_container ::get_data()
+//inline ::u8 * memory_container ::get_data()
 //{
 //
 //   return m_pmemory.is_null() ? 0 : get_data_raw();
 //
 //}
 //
-//inline const byte * memory_container ::get_data() const
+//inline const ::u8 * memory_container ::get_data() const
 //{
 //
 //   return m_pmemory.is_null() ? 0 : get_data_raw();

@@ -30,20 +30,20 @@ namespace file
    }
 
 
-   filesize edit_item_base::get_position(bool bForward) { __UNREFERENCED_PARAMETER(bForward); return m_position; };
+   filesize edit_item_base::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_position; };
 
-   byte * edit_item_base::data() { return nullptr; }
+   ::u8 * edit_item_base::data() { return nullptr; }
    enum_edit_item edit_item_base::get_type() { return e_edit_item_undefined; }
    memsize edit_item_base::get_extent() { return 0; }
    memsize edit_item_base::get_file_extent() { return 0; }
-   byte * edit_item_base::reverse_get_data() { return nullptr; }
+   ::u8 * edit_item_base::reverse_get_data() { return nullptr; }
    enum_edit_item edit_item_base::reverse_get_type() { return e_edit_item_undefined; }
    memsize edit_item_base::reverse_get_extent() { return 0; }
    memsize edit_item_base::reverse_get_file_extent() { return 0; }
    memsize edit_item_base::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
    enum_edit_item edit_item_base::get_type(bool bForward) { return bForward ? get_type() : reverse_get_type(); }
    memsize edit_item_base::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
-   byte * edit_item_base::data(bool bForward) { return bForward ? data() : reverse_get_data(); }
+   ::u8 * edit_item_base::data(bool bForward) { return bForward ? data() : reverse_get_data(); }
    memsize edit_item_base::get_delta_length()  { return 0; }
 
 
@@ -63,7 +63,7 @@ namespace file
       return m_memstorage.size();
    }
 
-   byte * delete_item::data()
+   ::u8 * delete_item::data()
    {
       return nullptr;
    }
@@ -89,7 +89,7 @@ namespace file
    }
 
 
-   byte * delete_item::reverse_get_data()
+   ::u8 * delete_item::reverse_get_data()
    {
 
       return m_memstorage.data();
@@ -185,7 +185,7 @@ namespace file
       return 0;
    }
 
-   byte * insert_item::data()
+   ::u8 * insert_item::data()
    {
       return m_memstorage.data();
    }
@@ -205,7 +205,7 @@ namespace file
       return m_memstorage.size();
    }
 
-   byte * insert_item::reverse_get_data()
+   ::u8 * insert_item::reverse_get_data()
    {
       return nullptr;
    }
@@ -326,7 +326,7 @@ namespace file
       return get_extent();
    }
 
-   byte * edit_item::data()
+   ::u8 * edit_item::data()
    {
       return m_memstorage.data();
    }
@@ -346,7 +346,7 @@ namespace file
       return get_extent();
    }
 
-   byte * edit_item::reverse_get_data()
+   ::u8 * edit_item::reverse_get_data()
    {
       return m_memstorageReverse.data();
    }
@@ -382,7 +382,7 @@ namespace file
       return 0;
    }
 
-   byte * edit_group_item::data()
+   ::u8 * edit_group_item::data()
    {
       return 0;
    }
@@ -402,7 +402,7 @@ namespace file
       return 0;
    }
 
-   byte * edit_group_item::reverse_get_data()
+   ::u8 * edit_group_item::reverse_get_data()
    {
       return 0;
    }
@@ -582,7 +582,7 @@ namespace file
 
       }
 
-      byte b = 0;
+      ::u8 b = 0;
 
       m_positionIteration = m_position;
 
@@ -888,7 +888,7 @@ namespace file
       for (::index i = 0; i < dwNew; i++)
       {
 
-         byte b;
+         ::u8 b;
 
          read(&b, 1);
 

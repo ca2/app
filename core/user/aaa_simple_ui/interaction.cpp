@@ -5,10 +5,10 @@ namespace simple_ui
 {
 
 
-//   byte brate(double dRate, double dMin, double dMax)
+//   ::u8 brate(double dRate, double dMin, double dMax)
 //   {
 //
-//      return (byte)(dRate * (dMax - dMin) + dMin);
+//      return (::u8)(dRate * (dMax - dMin) + dMin);
 //
 //   }
 //
@@ -56,7 +56,7 @@ namespace simple_ui
 //   void interaction::on_message_show_window(::message::message * pmessage)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pmessage);
+//      UNREFERENCED_PARAMETER(pmessage);
 //      //::pointer<::message::show_window>pshowwindow(pmessage);
 //
 //
@@ -616,7 +616,7 @@ namespace simple_ui
 //      int iCount = rectangleWindow.width();
 //      int jCount = rectangleWindow.height();
 //
-//      byte * point = (byte *)m_pimage->get_data();
+//      ::u8 * point = (::u8 *)m_pimage->get_data();
 //
 //      for (i = 0; i < iCount; i++)
 //      {
@@ -713,10 +713,10 @@ namespace simple_ui
 //      {
 //         double dRate = (double)i / (double)iCount;
 //         dRate = 1.0 - dRate;
-//         byte a1 = brate(1.0 - dRate, 23, 90);
-//         byte r1 = brate(dRate, 23, 127);
-//         byte g1 = brate(dRate, 23, 127);
-//         byte b1 = brate(dRate, 23, 127);
+//         ::u8 a1 = brate(1.0 - dRate, 23, 90);
+//         ::u8 r1 = brate(dRate, 23, 127);
+//         ::u8 g1 = brate(dRate, 23, 127);
+//         ::u8 b1 = brate(dRate, 23, 127);
 //         point_i32->create_solid(1.0, argb(a1, r1, g1, b1));
 //         pgraphics->set(point);
 //         pgraphics->draw_line(rectangleWindow.left, i, rectangleWindow.right, i);

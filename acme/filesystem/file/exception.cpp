@@ -268,7 +268,7 @@ namespace file
 
       //void exception::dump(dump_context& dumpcontext) const
       //{
-      //   __UNREFERENCED_PARAMETER(dumpcontext);
+      //   UNREFERENCED_PARAMETER(dumpcontext);
       //   //matter::dump(dumpcontext);
 
       //   /*   dumpcontext << "m_cause = ";

@@ -244,7 +244,7 @@ namespace ios
 
 #if(_WIN32_WINNT >= 0x0500)
 
-      virtual bool SetLayeredWindowAttributes(color32_t crKey, byte bAlpha, ::u32 dwFlags);
+      virtual bool SetLayeredWindowAttributes(color32_t crKey, ::u8 bAlpha, ::u32 dwFlags);
       virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, ::point_i32 *pptDst, ::size_i32 *psize,
                                        ::draw2d::graphics * pDCSrc, ::point_i32 *pptSrc, color32_t crKey, BLENDFUNCTION *pblend, ::u32 dwFlags);
 
@@ -252,7 +252,7 @@ namespace ios
 
 #if(_WIN32_WINNT >= 0x0501)
 
-      virtual bool GetLayeredWindowAttributes(color32_t *pcrKey, byte *pbAlpha, ::u32 *pdwFlags) const;
+      virtual bool GetLayeredWindowAttributes(color32_t *pcrKey, ::u8 *pbAlpha, ::u32 *pdwFlags) const;
 
 #endif   // _WIN32_WINNT >= 0x0501
 

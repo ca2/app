@@ -72,7 +72,7 @@ public:
    typedef typename BASE_META_DATA::META                    META;
    typedef typename BASE_META_DATA::DATA                    DATA;
 
-   ::byte            m_data[sizeof(DATA)] = {};
+   ::u8            m_data[sizeof(DATA)] = {};
 
 
    natural_meta_data() {}

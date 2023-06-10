@@ -100,7 +100,7 @@ namespace sockets
 
    void sync_socket_handler::read_payload_v1(string & xml_payload, int iTimeout)
    {
-      __UNREFERENCED_PARAMETER(xml_payload);
+      UNREFERENCED_PARAMETER(xml_payload);
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
       memsize uiLen = 0;

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 // CLASS_DECL_ACME double d_distance(const point_i32 & point1, const point_i32 & point2)

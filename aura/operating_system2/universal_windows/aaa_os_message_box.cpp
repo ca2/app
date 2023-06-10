@@ -141,7 +141,7 @@ void message_box_w::show(String ^ text,String ^ caption, const ::e_message_box &
 void message_box_synchronous(oswindow oswindow, const ::string & pszText, const ::string & pszCaption, emessagebox emessagebox, ::callback callback)
 {
 
-   __UNREFERENCED_PARAMETER(oswindow);
+   UNREFERENCED_PARAMETER(oswindow);
 
    message_box_w a;
 

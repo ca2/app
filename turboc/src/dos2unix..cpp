@@ -269,7 +269,7 @@ write_printer (int fd, const ::string &buf)
 #endif
 
 int
-biosprint (int cmd, int byte, int port)
+biosprint (int cmd, int ::u8, int port)
 {
   int ret = 144;
 
@@ -291,12 +291,12 @@ biosprint (int cmd, int byte, int port)
       break;
     default:
       fd = open_printer (port);
-      sprintf (pom, "%c%c", byte, N_C);
+      sprintf (pom, "%c%c", ::u8, N_C);
       write_printer (fd, pom);
-//      write (fd, &byte, sizeof(int) );
+//      write (fd, &::u8, sizeof(int) );
       close_printer (fd);
 /*	  f = fopen (PRINT_FILE, "a+t");
-	  fprintf (f, "%c", byte);
+	  fprintf (f, "%c", ::u8);
 	  fclose (f);
 */ break;
     }
@@ -308,7 +308,7 @@ biosprint (int cmd, int byte, int port)
   if (cmd != 0)
     return (ret);
   f = fopen (PRINT_FILE, "a+t");
-  fprintf (f, "%c", byte);
+  fprintf (f, "%c", ::u8);
   fclose (f);
 
 #endif /* __CYGWIN__   */

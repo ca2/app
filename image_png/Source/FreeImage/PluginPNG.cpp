@@ -287,8 +287,8 @@ MimeType()
 static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
-   byte png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
-   byte signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+   ::u8 png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
+   ::u8 signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
    io->read_proc(&signature, 1, 8, handle);
 
@@ -359,7 +359,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
       {
          // check to see if the file is in fact a PNG file
 
-         byte png_check[PNG_BYTES_TO_CHECK];
+         ::u8 png_check[PNG_BYTES_TO_CHECK];
 
          io->read_proc(png_check, PNG_BYTES_TO_CHECK, 1, handle);
 
@@ -435,7 +435,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 #ifndef FREEIMAGE_BIGENDIAN
          if((image_type == FIT_::u3216) || (image_type == FIT_RGB16) || (image_type == FIT_RGBA16))
          {
-            // turn on 16 bit byte swapping
+            // turn on 16 bit ::u8 swapping
             png_set_swap(png_ptr);
          }
 #endif
@@ -578,7 +578,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                {
                   palette[i].rgbRed   =
                   palette[i].rgbGreen =
-                  palette[i].rgbBlue  = (byte)((i * 255) / (palette_entries - 1));
+                  palette[i].rgbBlue  = (::u8)((i * 255) / (palette_entries - 1));
                }
             }
             break;
@@ -605,7 +605,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                // single transparent color
                if (trans_color->gray < palette_entries)
                {
-                  byte table[256];
+                  ::u8 table[256];
                   memset(table, 0xFF, palette_entries);
                   table[trans_color->gray] = 0;
 /*                  FreeImage_SetTransparencyTable(pimage, table, palette_entries);
@@ -614,7 +614,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             else if((color_type == PNG_COLOR_TYPE_PALETTE) && trans_alpha)
             {
                // transparency table
-/*               FreeImage_SetTransparencyTable(pimage, (byte *)trans_alpha, num_trans);
+/*               FreeImage_SetTransparencyTable(pimage, (::u8 *)trans_alpha, num_trans);
             }
          }
 
@@ -631,9 +631,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             if (png_get_bKGD(png_ptr, info_ptr, &image_background))
             {
-               rgbBkColor.rgbRed      = (byte)image_background->red;
-               rgbBkColor.rgbGreen    = (byte)image_background->green;
-               rgbBkColor.rgbBlue     = (byte)image_background->blue;
+               rgbBkColor.rgbRed      = (::u8)image_background->red;
+               rgbBkColor.rgbGreen    = (::u8)image_background->green;
+               rgbBkColor.rgbBlue     = (::u8)image_background->blue;
                rgbBkColor.rgbReserved = 0;
 
 /*               FreeImage_SetBackgroundColor(pimage, &rgbBkColor);
@@ -1052,7 +1052,7 @@ static int_bool DLL_CALLCONV
 #ifndef FREEIMAGE_BIGENDIAN
          if (bit_depth == 16)
          {
-            // turn on 16 bit byte swapping
+            // turn on 16 bit ::u8 swapping
             png_set_swap(png_ptr);
          }
 #endif
@@ -1065,7 +1065,7 @@ static int_bool DLL_CALLCONV
 
          if ((pixel_depth == 32) && (!has_alpha_channel))
          {
-            byte *buffer = (byte *)malloc(width * 3);
+            ::u8 *buffer = (::u8 *)malloc(width * 3);
 
             // transparent conversion to 24-bit
             // the number of passes is either 1 for non-interlaced images, or 7 for interlaced images

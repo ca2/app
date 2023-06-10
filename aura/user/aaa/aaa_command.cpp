@@ -116,7 +116,7 @@ namespace user
    //void command::on_request(::request * prequest)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pcreate);
+   //   UNREFERENCED_PARAMETER(pcreate);
 
    //}
 

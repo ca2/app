@@ -175,7 +175,7 @@ extern i32 CLASS_DECL_FOLDER_ZIP unzGetGlobalComment OF((unzFile file,
 /*
   get the global comment string of the ZipFile, in the szComment buffer.
   uSizeBuf is the size_i32 of the szComment buffer.
-  return the number of byte copied or an error code <0
+  return the number of ::u8 copied or an error code <0
 */
 
 
@@ -309,7 +309,7 @@ extern i32 CLASS_DECL_FOLDER_ZIP unzReadCurrentFile OF((unzFile file,
   buf contain buffer where data must be copied
   len the size_i32 of buf.
 
-  return the number of byte copied if somes bytes are copied
+  return the number of ::u8 copied if somes bytes are copied
   return 0 if the end of file was reached
   return <0 with error code if there is an error
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)

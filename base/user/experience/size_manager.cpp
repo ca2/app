@@ -782,7 +782,7 @@ namespace experience
    void size_manager::NotifyFramework(enum_frame eframe)
    {
 
-      __UNREFERENCED_PARAMETER(eframe);
+      UNREFERENCED_PARAMETER(eframe);
 
    }
 

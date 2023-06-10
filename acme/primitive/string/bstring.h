@@ -18,7 +18,7 @@
 //{
 //public:
 //
-//   typedef byte value_type;
+//   typedef ::u8 value_type;
 //
 //   value_type * m_puchData;
 //

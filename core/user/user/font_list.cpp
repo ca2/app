@@ -251,6 +251,8 @@ namespace user
 
             set_need_redraw();
 
+            post_redraw();
+
          }
 
       }
@@ -337,7 +339,7 @@ namespace user
 
          auto rectangleBackground(rectangleClient);
 
-         rectangleBackground += m_pointScroll;
+         //rectangleBackground += m_pointScroll;
 
          pgraphics->fill_rectangle(rectangleBackground, colorBackground);
 
@@ -571,7 +573,7 @@ namespace user
    ::item_pointer font_list::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      return m_pfontlist->hit_test(point + m_pointScroll, ezorder);
+      return m_pfontlist->hit_test(point, ezorder);
 
    }
 

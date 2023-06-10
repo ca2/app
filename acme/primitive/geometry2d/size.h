@@ -123,7 +123,7 @@ public:
 
    ::u32          u32() const noexcept { return __u32(this->cx(), this->cy()); }
    ::u64          u64() const noexcept { return __u64(this->cx(), this->cy()); }
-   class lparam   lparam() const noexcept { return __MAKE_LPARAM(this->cx(), this->cy()); }
+   class lparam   lparam() const noexcept { return make_u32(this->cx(), this->cy()); }
 
    inline UNIT_TYPE width() const noexcept { return this->cx(); }
    inline UNIT_TYPE height() const noexcept { return this->cy(); }

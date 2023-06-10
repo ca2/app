@@ -34,7 +34,7 @@
 //
 //   int iScan = 0;
 //
-//   ::aura::malloc < color32_t * > pcolorref;
+//   ::aura::malloc < color32_t * > pimage32;
 //
 //   CFDataRef data = CFDataCreateWithBytesNoCopy(nullptr, pmemory->data(), pmemory->size(), kCFAllocatorNull);
 //
@@ -148,7 +148,7 @@
 //         if(p->m_pimage->create({ w, h }))
 //         {
 //
-//            ::copy_colorref(p->m_pimage->colorref(), w, h, p->m_pimage->scan_size(), pdata, iScan);
+//            ::copy_image32(p->m_pimage->image32(), w, h, p->m_pimage->scan_size(), pdata, iScan);
 //
 //            p->m_edisposal = ::draw2d::e_disposal_none;
 //

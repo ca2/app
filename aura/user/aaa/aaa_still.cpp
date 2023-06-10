@@ -538,7 +538,7 @@ namespace user
    void still::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       sync_style();
 

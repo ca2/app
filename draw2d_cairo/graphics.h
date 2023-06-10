@@ -259,7 +259,7 @@ namespace draw2d_cairo
       //i32 GetArcDirection() override;
       //i32 SetArcDirection(i32 nArcDirection) override;
 
-      void polydraw(const ::point_f64* lpPoints, const byte* lpTypes, count nCount) override;
+      void polydraw(const ::point_f64* lpPoints, const ::u8* lpTypes, count nCount) override;
       void polyline_to(const ::point_f64* lpPoints, count nCount) override;
       void poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPoints, count nCount) override;
 
@@ -468,7 +468,7 @@ namespace draw2d_cairo
       // MetaFile Functions
       //xxx      bool PlayMetaFile(HMETAFILE hMF) override;
 //      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 & rectangleBounds) override;
-      //    bool AddMetaFileComment(::u32 nDataSize, const byte* pCommentData) override;
+      //    bool AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData) override;
       // can be used for enhanced metafiles only
 
 // Path Functions

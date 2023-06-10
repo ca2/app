@@ -65,7 +65,7 @@ namespace aura
 //   bool application::_001OnDDECommand(const ::string & pcsz)
 
 //   {
-//      __UNREFERENCED_PARAMETER(pcsz);
+//      UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }
@@ -96,7 +96,7 @@ namespace aura
 //
 //            if(dwResSize > 0)
 //            {
-//               LPVOID pdata = memory_new byte[dwResSize];
+//               LPVOID pdata = memory_new ::u8[dwResSize];
 //
 //               if(GetFileVersionInfo(
 //                  pszModuleFilePath,
@@ -162,7 +162,7 @@ namespace aura
 //                     return strVersion;
 //                  }
 //               }
-//               delete [] (byte *) pdata;
+//               delete [] (::u8 *) pdata;
 //
 //            }
 //      */

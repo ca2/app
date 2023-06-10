@@ -321,7 +321,7 @@ typedef struct _TEB   /* win32/win64 */
    PVOID SystemReserved1[54]; /* 0cc/0110 used for kernel32 private data in Wine */
    ::i32 ExceptionCode; /* 1a4/02c0 */
    ACTIVATION_CONTEXT_STACK ActivationContextStack; /* 1a8/02c8 */
-   byte SpareBytes1[24]; /* 1bc/02e8 used for ntdll private data in Wine */
+   ::u8 SpareBytes1[24]; /* 1bc/02e8 used for ntdll private data in Wine */
    PVOID SystemReserved2[10]; /* 1d4/0300 used for ntdll private data in Wine */
    GDI_TEB_BATCH GdiTebBatch; /* 1fc/0350 used for vm86 private data in Wine */
    HANDLE gdiRgn; /* 6dc/0838 */
@@ -1175,9 +1175,9 @@ typedef struct _SYSTEM_BASIC_INFORMATION
    PVOID LowestUserAddress;
    PVOID HighestUserAddress;
    ULONG_PTR ActiveProcessorsAffinityMask;
-   byte NumberOfProcessors;
+   ::u8 NumberOfProcessors;
 #else
-   byte Reserved1[24];
+   ::u8 Reserved1[24];
    PVOID Reserved2[4];
    CCHAR NumberOfProcessors;
 #endif
@@ -1201,7 +1201,7 @@ typedef struct _SYSTEM_CPU_INFORMATION
 #define CPU_FEATURE_PGE    0x00000014   /* Page table Entry Global bit */
 #define CPU_FEATURE_PSE    0x00000024   /* Page Size Extension */
 #define CPU_FEATURE_MTRR   0x00000040   /* Memory Type Range Registers */
-#define CPU_FEATURE_CX8    0x00000080   /* Compare and eXchange 8 byte instr. */
+#define CPU_FEATURE_CX8    0x00000080   /* Compare and eXchange 8 ::u8 instr. */
 #define CPU_FEATURE_MMX    0x00000100   /* Multi Media eXtensions */
 #define CPU_FEATURE_X86    0x00000200   /* seems to be always ON, on the '86 */
 #define CPU_FEATURE_PAT    0x00000400   /* Page Attribute Table */
@@ -1305,7 +1305,7 @@ typedef struct _SYSTEM_TIMEOFDAY_INFORMATION
    WINULONG uCurrentTimeZoneId;
    ::u32 dwUnknown1[5];
 #else
-   byte Reserved1[48];
+   ::u8 Reserved1[48];
 #endif
 } SYSTEM_TIMEOFDAY_INFORMATION, *PSYSTEM_TIMEOFDAY_INFORMATION; /* was SYSTEM_TIME_INFORMATION */
 
@@ -1337,8 +1337,8 @@ typedef struct _SYSTEM_DRIVER_INFORMATION
 typedef struct _SYSTEM_HANDLE_ENTRY
 {
    WINULONG OwnerPid;
-   byte ObjectType;
-   byte HandleFlags;
+   ::u8 ObjectType;
+   ::u8 HandleFlags;
    WINUSHORT HandleValue;
    PVOID ObjectPointer;
    WINULONG AccessMask;
@@ -1368,7 +1368,7 @@ typedef struct _SYSTEM_CACHE_INFORMATION
 
 typedef struct _SYSTEM_INTERRUPT_INFORMATION
 {
-   byte Reserved1[24];
+   ::u8 Reserved1[24];
 } SYSTEM_INTERRUPT_INFORMATION, *PSYSTEM_INTERRUPT_INFORMATION;
 
 typedef struct _SYSTEM_CONFIGURATION_INFO
@@ -1397,12 +1397,12 @@ typedef struct _SYSTEM_CONFIGURATION_INFO
 
 typedef struct _SYSTEM_EXCEPTION_INFORMATION
 {
-   byte Reserved1[16];
+   ::u8 Reserved1[16];
 } SYSTEM_EXCEPTION_INFORMATION, *PSYSTEM_EXCEPTION_INFORMATION;
 
 typedef struct _SYSTEM_LOOKASIDE_INFORMATION
 {
-   byte Reserved1[32];
+   ::u8 Reserved1[32];
 } SYSTEM_LOOKASIDE_INFORMATION, *PSYSTEM_LOOKASIDE_INFORMATION;
 
 typedef struct _SYSTEM_KERNEL_DEBUGGER_INFORMATION
@@ -1450,12 +1450,12 @@ typedef struct _SYSTEM_PROCESS_INFORMATION
    SYSTEM_THREAD_INFORMATION ti[1]; /* b8/100 */
 #else
    WINULONG NextEntryOffset; /* 00/00 */
-   byte Reserved1[52]; /* 04/04 */
+   ::u8 Reserved1[52]; /* 04/04 */
    PVOID Reserved2[3]; /* 38/38 */
    HANDLE UniqueProcessId; /* 44/50 */
    PVOID Reserved3; /* 48/58 */
    WINULONG HandleCount; /* 4c/60 */
-   byte Reserved4[4]; /* 50/64 */
+   ::u8 Reserved4[4]; /* 50/64 */
    PVOID Reserved5[11]; /* 54/68 */
    SIZE_T PeakPagefileUsage; /* 80/c0 */
    SIZE_T PrivatePageCount; /* 84/c8 */
@@ -1490,9 +1490,9 @@ typedef struct _TIME_FIELDS
 
 typedef struct _WINSTATIONINFORMATIONW
 {
-   byte Reserved2[70];
+   ::u8 Reserved2[70];
    WINULONG LogonId;
-   byte Reserved3[1140];
+   ::u8 Reserved3[1140];
 } WINSTATIONINFORMATIONW, *PWINSTATIONINFORMATIONW;
 
 typedef int_bool(WINAPI * PWINSTATIONQUERYINFORMATIONW)(HANDLE, WINULONG, WINSTATIONINFOCLASS, PVOID, WINULONG, PWINULONG);
@@ -2093,7 +2093,7 @@ typedef struct _SYSTEM_MODULE
    ::u16 Rank; /* 16/22 */
    ::u16 Unknown; /* 18/24 */
    ::u16 NameOffset; /* 1a/26 */
-   byte Name[MAXIMUM_FILENAME_LENGTH]; /* 1c/28 */
+   ::u8 Name[MAXIMUM_FILENAME_LENGTH]; /* 1c/28 */
 } SYSTEM_MODULE, *PSYSTEM_MODULE;
 
 typedef struct _SYSTEM_MODULE_INFORMATION
@@ -2367,8 +2367,8 @@ CLASS_DECL_AURA NTSTATUS WINAPI NtWriteVirtualMemory(HANDLE, void*, const void*,
 CLASS_DECL_AURA NTSTATUS WINAPI NtYieldExecution(void);
 
 CLASS_DECL_AURA void WINAPI RtlAcquirePebLock(void);
-CLASS_DECL_AURA byte WINAPI RtlAcquireResourceExclusive(LPRTL_RWLOCK, byte);
-CLASS_DECL_AURA byte WINAPI RtlAcquireResourceShared(LPRTL_RWLOCK, byte);
+CLASS_DECL_AURA ::u8 WINAPI RtlAcquireResourceExclusive(LPRTL_RWLOCK, ::u8);
+CLASS_DECL_AURA ::u8 WINAPI RtlAcquireResourceShared(LPRTL_RWLOCK, ::u8);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlActivateActivationContext(::u32, HANDLE, ULONG_PTR*);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlAddAce(PACL, ::u32, ::u32, PACE_HEADER, ::u32);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlAddAccessAllowedAce(PACL, ::u32, ::u32, PSID);
@@ -2381,7 +2381,7 @@ CLASS_DECL_AURA NTSTATUS WINAPI RtlAddAuditAccessAceEx(PACL, ::u32, ::u32, ::u32
 CLASS_DECL_AURA void WINAPI RtlAddRefActivationContext(HANDLE);
 CLASS_DECL_AURA PVOID WINAPI RtlAddVectoredExceptionHandler(WINULONG, PVECTORED_EXCEPTION_HANDLER);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlAdjustPrivilege(WINULONG, int_bool, int_bool, PBOOLEAN);
-CLASS_DECL_AURA NTSTATUS WINAPI RtlAllocateAndInitializeSid(PSID_IDENTIFIER_AUTHORITY, byte, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, PSID *);
+CLASS_DECL_AURA NTSTATUS WINAPI RtlAllocateAndInitializeSid(PSID_IDENTIFIER_AUTHORITY, ::u8, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, PSID *);
 CLASS_DECL_AURA RTL_HANDLE * WINAPI RtlAllocateHandle(RTL_HANDLE_TABLE *, WINULONG *);
 #ifndef UNIVERSAL_WINDOWS
 CLASS_DECL_AURA PVOID WINAPI RtlAllocateHeap(HANDLE, WINULONG, SIZE_T) __WINE_ALLOC_SIZE(3);
@@ -2407,7 +2407,7 @@ CLASS_DECL_AURA WINULONG WINAPI RtlCompactHeap(HANDLE, WINULONG);
 CLASS_DECL_AURA ::i32 WINAPI RtlCompareString(const STRING*, const STRING*, int_bool);
 CLASS_DECL_AURA ::i32 WINAPI RtlCompareUnicodeString(const UNICODE_STRING*, const UNICODE_STRING*, int_bool);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlCompressBuffer(WINUSHORT, PWINUCHAR, WINULONG, PWINUCHAR, WINULONG, WINULONG, PWINULONG, PVOID);
-CLASS_DECL_AURA ::u32 WINAPI RtlComputeCrc32(::u32, const byte*, ::i32);
+CLASS_DECL_AURA ::u32 WINAPI RtlComputeCrc32(::u32, const ::u8*, ::i32);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlConvertSidToUnicodeString(PUNICODE_STRING, PSID, int_bool);
 CLASS_DECL_AURA void WINAPI RtlCopyLuid(PLUID, const LUID*);
 //    CLASS_DECL_AURA void WINAPI RtlCopyLuidAndAttributesArray(WINULONG, const LUID_AND_ATTRIBUTES*, PLUID_AND_ATTRIBUTES);
@@ -2530,7 +2530,7 @@ CLASS_DECL_AURA NTSTATUS WINAPI RtlInitializeCriticalSectionEx(RTL_CRITICAL_SECT
 CLASS_DECL_AURA void WINAPI RtlInitializeBitMap(PRTL_BITMAP, PWINULONG, WINULONG);
 CLASS_DECL_AURA void WINAPI RtlInitializeHandleTable(WINULONG, WINULONG, RTL_HANDLE_TABLE *);
 CLASS_DECL_AURA void WINAPI RtlInitializeResource(LPRTL_RWLOCK);
-CLASS_DECL_AURA int_bool WINAPI RtlInitializeSid(PSID, PSID_IDENTIFIER_AUTHORITY, byte);
+CLASS_DECL_AURA int_bool WINAPI RtlInitializeSid(PSID, PSID_IDENTIFIER_AUTHORITY, ::u8);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlInt64ToUnicodeString(ULONGLONG, WINULONG, UNICODE_STRING *);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlIntegerToChar(WINULONG, WINULONG, WINULONG, PCHAR);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlIntegerToUnicodeString(WINULONG, WINULONG, UNICODE_STRING *);
@@ -2608,7 +2608,7 @@ CLASS_DECL_AURA NTSTATUS WINAPI RtlSetTimeZoneInformation(const RTL_TIME_ZONE_IN
 CLASS_DECL_AURA SIZE_T WINAPI RtlSizeHeap(HANDLE, WINULONG, const void*);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlStringFromGUID(REFGUID, PUNICODE_STRING);
 CLASS_DECL_AURA LPDWORD WINAPI RtlSubAuthoritySid(PSID, ::u32);
-CLASS_DECL_AURA byte * WINAPI RtlSubAuthorityCountSid(PSID);
+CLASS_DECL_AURA ::u8 * WINAPI RtlSubAuthorityCountSid(PSID);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlSystemTimeToLocalTime(const LARGE_INTEGER*, PLARGE_INTEGER);
 CLASS_DECL_AURA void WINAPI RtlTimeToTimeFields(const LARGE_INTEGER*, PTIME_FIELDS);
 CLASS_DECL_AURA int_bool WINAPI RtlTimeFieldsToTime(PTIME_FIELDS, PLARGE_INTEGER);

@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
@@ -525,6 +526,8 @@ namespace experience
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->payload("log_fill_rectangle") = 0;
+
       if (is_frame_experience_enabled() && m_pframe != nullptr && !layout().is_full_screen())
       {
 
@@ -549,6 +552,8 @@ namespace experience
          }
 
       }
+
+      pgraphics->payload("log_fill_rectangle") = 1;
 
    }
 
@@ -1219,7 +1224,7 @@ namespace experience
    void frame_window::FrameWnd(::user::interaction * pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -1227,8 +1232,8 @@ namespace experience
    void frame_window::ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
-      __UNREFERENCED_PARAMETER(puserinteractionParent);
+      UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(puserinteractionParent);
 
    }
 

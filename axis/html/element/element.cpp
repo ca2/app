@@ -467,7 +467,7 @@ namespace html
    void element::implement_phase2(html_data * phtmldata)
    {
 
-      __UNREFERENCED_PARAMETER(phtmldata);
+      UNREFERENCED_PARAMETER(phtmldata);
 
    }
 
@@ -1250,7 +1250,7 @@ namespace html
    void element::parse_attributes(html_data * phtmldata, ::ansi_range & range)
    {
 
-      __UNREFERENCED_PARAMETER(phtmldata);
+      UNREFERENCED_PARAMETER(phtmldata);
 
       char chQuote;
 
@@ -1902,7 +1902,7 @@ namespace html
    //}
 
 
-   ::color::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
+   ::color::color element::get_color(::user::style * pstyle, ::css::enum_plain_color ecolor)
    {
 
       ::color::color color;

@@ -493,16 +493,16 @@ namespace html
       index iTopW          = -1;
       index iRightW        = -1;
       index iBottomW       = -1;
-      ::color::color color              = 0;
-      ::color::color colorLeft          = 0;
-      ::color::color colorTop           = 0;
-      ::color::color colorRight         = 0;
-      ::color::color colorBottom        = 0;
-      ::color::color crW             = 0;
-      ::color::color colorLeftW         = 0;
-      ::color::color colorTopW          = 0;
-      ::color::color colorRightW        = 0;
-      ::color::color colorBottomW       = 0;
+      ::color::color color                = ::color::transparent;
+      ::color::color colorLeft            = ::color::transparent;
+      ::color::color colorTop             = ::color::transparent;
+      ::color::color colorRight           = ::color::transparent;
+      ::color::color colorBottom          = ::color::transparent;
+      ::color::color crW                  = ::color::transparent;
+      ::color::color colorLeftW           = ::color::transparent;
+      ::color::color colorTopW            = ::color::transparent;
+      ::color::color colorRightW          = ::color::transparent;
+      ::color::color colorBottomW         = ::color::transparent;
 
       if(m_propertyset.has_property(rangeName) && parse_border_color(m_propertyset[rangeName], color))
          pstyle = this;
@@ -876,7 +876,7 @@ namespace html
    {
 
       const char * psz = strParam;
-      __UNREFERENCED_PARAMETER(pdata);
+      UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
          const char * pszStart = psz;

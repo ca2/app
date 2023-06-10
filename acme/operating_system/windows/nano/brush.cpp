@@ -32,7 +32,7 @@ namespace windows
 
          destroy();
 
-         m_hgdiobj = ::CreateSolidBrush(m_color.get_COLORREF());
+         m_hgdiobj = ::CreateSolidBrush(win32_COLORREF(m_color));
 
          m_bModified = false;
 

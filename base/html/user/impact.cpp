@@ -141,7 +141,7 @@ string html_impact::GetLocationURL()
 bool html_impact::Refresh2(i32 i)
 {
 
-   __UNREFERENCED_PARAMETER(i);
+   UNREFERENCED_PARAMETER(i);
 
    get_document()->on_open_document(GetLocationURL());
 
@@ -170,7 +170,7 @@ bool html_impact::browse(const ::string & pszUrl)
 void html_impact::on_document_complete(const ::string & strUrl)
 {
 
-   __UNREFERENCED_PARAMETER(strUrl);
+   UNREFERENCED_PARAMETER(strUrl);
 
 }
 

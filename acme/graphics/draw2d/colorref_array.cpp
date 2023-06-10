@@ -30,9 +30,9 @@ void colorref_array::create_web_palette()
       {
          for(i32 nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
          {
-            this->element_at(nColorMapIdx) = argb(255, (byte) STANDARD_PALETTE[nRedIdx],
-             (byte) STANDARD_PALETTE[nGreenIdx],
-               (byte) STANDARD_PALETTE[nBlueIdx]);
+            this->element_at(nColorMapIdx) = argb(255, (::u8) STANDARD_PALETTE[nRedIdx],
+             (::u8) STANDARD_PALETTE[nGreenIdx],
+               (::u8) STANDARD_PALETTE[nBlueIdx]);
             ++nColorMapIdx;
 
          }

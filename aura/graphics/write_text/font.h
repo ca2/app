@@ -2,11 +2,8 @@
 
 
 #include "aura/graphics/draw2d/object.h"
-
-
+#include "acme/primitive/geometry2d/size.h"
 #include "_constant.h"
-
-
 #include "text_metric.h"
 
 
@@ -78,7 +75,7 @@ namespace write_text
       bool                          m_bCacheLayout;
 
       //bool                          m_bTextMetric;
-      string_map < text >           m_mapText;
+      string_map < text >           m_mapFontText;
 
 
       font();

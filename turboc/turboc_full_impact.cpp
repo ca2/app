@@ -72,7 +72,7 @@ namespace turboc
 
    void full_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      __UNREFERENCED_PARAMETER(ptopic);
+      UNREFERENCED_PARAMETER(ptopic);
    }
 
 
@@ -229,7 +229,7 @@ namespace turboc
          if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
 
-/*            m_pimage->channel_copy(::color::e_channel_alpha,::color::e_channel_green);
+/*            m_pimage->channel_copy(::color::e_channel_opacity,::color::e_channel_green);
 
 /*            m_pimage->set_rgb(ca->m_iR,ca->m_iG,ca->m_iB);
 
@@ -273,7 +273,7 @@ namespace turboc
 
       pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
 
-      byte a,R,g,b;
+      ::u8 a,R,g,b;
 
       if(m_bAlternate)
       {

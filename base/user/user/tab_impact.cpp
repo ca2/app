@@ -100,7 +100,7 @@ namespace user
    void tab_impact::on_message_set_focus(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if(get_impact_uie() != nullptr)
       {
@@ -470,7 +470,7 @@ namespace user
    void tab_impact::_001DropTargetWindowRelay(::user::tab * pchannel)
    {
 
-      __UNREFERENCED_PARAMETER(pchannel);
+      UNREFERENCED_PARAMETER(pchannel);
 
       set_need_redraw();
 
@@ -480,7 +480,7 @@ namespace user
    void tab_impact::_001DropTargetWindowFinalize(::user::tab * pchannel)
    {
 
-      __UNREFERENCED_PARAMETER(pchannel);
+      UNREFERENCED_PARAMETER(pchannel);
 
       if(m_pdroptargetwindow != nullptr)
       {

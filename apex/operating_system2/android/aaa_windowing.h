@@ -171,7 +171,7 @@ struct CLASS_DECL_APEX oswindow_data
 
 // define portable types for 32-bit / 64-bit OS
 //typedef i32 int_bool;
-typedef u8 byte;
+typedef u8 ::u8;
 //typedef u16 ::u16;
 typedef u32 ::u32;
 //typedef i32 ::i32;

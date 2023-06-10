@@ -1,8 +1,9 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 ////#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 class CLASS_DECL_AURA image_list :
@@ -89,11 +90,11 @@ public:
    virtual ::image_pointer get_image(int iImage);
 
 
-   virtual void color_blend(image_list* pimagelistSource, const ::color::color& color, const ::opacity& opacity);
+   virtual void color_blend(image_list* pimagelistSource, const ::color::color& color, const class ::opacity& opacity);
 
 
    virtual void draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag);
-   virtual void draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity& opacity);
+   virtual void draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const class ::opacity& opacity);
    virtual void draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
    virtual void _draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
    virtual i32 get_image_count() const;

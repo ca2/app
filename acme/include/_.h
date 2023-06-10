@@ -66,6 +66,7 @@
 //#include "_macro.h"
 #include "_configuration.h"
 #include "_types.h"
+#include "_integer.h"
 #include "acme/constant/_.h"
 #include "_forward_declaration.h"
 #include "_structures.h"

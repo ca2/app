@@ -350,7 +350,7 @@ namespace hi5
          const string & oauthSignature,
          oAuthKeyValuePairs& keyValueMap )
    {
-      __UNREFERENCED_PARAMETER(rawData);
+      UNREFERENCED_PARAMETER(rawData);
       /* Generate nonce and timestamp if required */
       generateNonceTimeStamp();
 

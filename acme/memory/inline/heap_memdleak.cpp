@@ -271,7 +271,7 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
    if (nAllocSize > pblock->m_size)
    {
 
-      zero(&((byte*)pblock)[pblock->m_size], nAllocSize - pblock.m_size);
+      zero(&((::u8*)pblock)[pblock->m_size], nAllocSize - pblock.m_size);
 
    }
    //pblock->m_iBlockUse = nBlockUse;

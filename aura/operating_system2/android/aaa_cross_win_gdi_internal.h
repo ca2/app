@@ -76,7 +76,7 @@ struct tagLOGRGN :
    public gdi_object
 {
 	::u32        m_uiSize;
-	byte *      m_puchData;
+	::u8 *      m_puchData;
 };
 
 

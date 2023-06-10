@@ -47,12 +47,12 @@ namespace draw2d
    void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size_i32 & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,i32 stride)
    {
 
-      __UNREFERENCED_PARAMETER(size);
-      __UNREFERENCED_PARAMETER(nPlanes);
-      __UNREFERENCED_PARAMETER(nBitcount);
-      __UNREFERENCED_PARAMETER(pBits);
+      UNREFERENCED_PARAMETER(size);
+      UNREFERENCED_PARAMETER(nPlanes);
+      UNREFERENCED_PARAMETER(nBitcount);
+      UNREFERENCED_PARAMETER(pBits);
 
-      __UNREFERENCED_PARAMETER(stride);
+      UNREFERENCED_PARAMETER(stride);
       throw ::interface_only();
       //return false;
    }
@@ -61,7 +61,7 @@ namespace draw2d
 //   void bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics,LPBITMAP pBitmap)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pBitmap);
+//      UNREFERENCED_PARAMETER(pBitmap);
 //
 //      throw ::interface_only();
 //      return false;
@@ -71,14 +71,14 @@ namespace draw2d
 //   void bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,::u32 usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
 //   {
 
-//      __UNREFERENCED_PARAMETER(pgraphics);
-//      __UNREFERENCED_PARAMETER(pbmi);
+//      UNREFERENCED_PARAMETER(pgraphics);
+//      UNREFERENCED_PARAMETER(pbmi);
 
-//      __UNREFERENCED_PARAMETER(usage);
-//      __UNREFERENCED_PARAMETER(ppvBits);
-//      __UNREFERENCED_PARAMETER(stride);
-//      __UNREFERENCED_PARAMETER(hSection);
-//      __UNREFERENCED_PARAMETER(offset);
+//      UNREFERENCED_PARAMETER(usage);
+//      UNREFERENCED_PARAMETER(ppvBits);
+//      UNREFERENCED_PARAMETER(stride);
+//      UNREFERENCED_PARAMETER(hSection);
+//      UNREFERENCED_PARAMETER(offset);
 //      throw ::interface_only();
 //      return false;
 //   }
@@ -86,14 +86,14 @@ namespace draw2d
 //   void bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * pbmi, ::u32 usage, void * ppvBits, int stride, HANDLE hSection, u32 offset)
 
 //   {
-//      __UNREFERENCED_PARAMETER(pgraphics);
-//      __UNREFERENCED_PARAMETER(pbmi);
+//      UNREFERENCED_PARAMETER(pgraphics);
+//      UNREFERENCED_PARAMETER(pbmi);
 
-//      __UNREFERENCED_PARAMETER(usage);
-//      __UNREFERENCED_PARAMETER(ppvBits);
-//      __UNREFERENCED_PARAMETER(stride);
-//      __UNREFERENCED_PARAMETER(hSection);
-//      __UNREFERENCED_PARAMETER(offset);
+//      UNREFERENCED_PARAMETER(usage);
+//      UNREFERENCED_PARAMETER(ppvBits);
+//      UNREFERENCED_PARAMETER(stride);
+//      UNREFERENCED_PARAMETER(hSection);
+//      UNREFERENCED_PARAMETER(offset);
 //      // callers must be prepared to cases when the
 //      // backend doesn't support "hosting" a portion of RAM as bitmap data
 //      return false;
@@ -101,12 +101,12 @@ namespace draw2d
 //
 //   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,u32 flInit,const void *pjBits,const BITMAPINFO *pbmi,::u32 iUsage)
 //   {
-//      __UNREFERENCED_PARAMETER(pgraphics);
-//      __UNREFERENCED_PARAMETER(pbmih);
-//      __UNREFERENCED_PARAMETER(flInit);
-//      __UNREFERENCED_PARAMETER(pjBits);
-//      __UNREFERENCED_PARAMETER(pbmi);
-//      __UNREFERENCED_PARAMETER(iUsage);
+//      UNREFERENCED_PARAMETER(pgraphics);
+//      UNREFERENCED_PARAMETER(pbmih);
+//      UNREFERENCED_PARAMETER(flInit);
+//      UNREFERENCED_PARAMETER(pjBits);
+//      UNREFERENCED_PARAMETER(pbmi);
+//      UNREFERENCED_PARAMETER(iUsage);
 //      throw ::interface_only();
 //      return false;
 //   }
@@ -115,10 +115,10 @@ namespace draw2d
    void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size,void **ppvBits,int * stride)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(size);
-      __UNREFERENCED_PARAMETER(ppvBits);
-      __UNREFERENCED_PARAMETER(stride);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(size);
+      UNREFERENCED_PARAMETER(ppvBits);
+      UNREFERENCED_PARAMETER(stride);
 
       throw ::interface_only();
 
@@ -130,8 +130,8 @@ namespace draw2d
    void bitmap::host_bitmap(::draw2d::graphics * pgraphics, const pixmap * ppixmap)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(ppixmap);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(ppixmap);
 
       // callers must be prepared to cases when the
       // backend doesn't support "hosting" a portion of RAM as bitmap data
@@ -143,12 +143,12 @@ namespace draw2d
 
    void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,u32 flInit,const void *pjBits, ::u32 iUsage)
    {
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(cx);
-      __UNREFERENCED_PARAMETER(cy);
-      __UNREFERENCED_PARAMETER(flInit);
-      __UNREFERENCED_PARAMETER(pjBits);
-      __UNREFERENCED_PARAMETER(iUsage);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(cx);
+      UNREFERENCED_PARAMETER(cy);
+      UNREFERENCED_PARAMETER(flInit);
+      UNREFERENCED_PARAMETER(pjBits);
+      UNREFERENCED_PARAMETER(iUsage);
       throw ::interface_only();
       //return false;
    }
@@ -157,8 +157,8 @@ namespace draw2d
    u32 bitmap::SetBitmapBits(u32 dwCount,const void * pBits)
 
    {
-      __UNREFERENCED_PARAMETER(dwCount);
-      __UNREFERENCED_PARAMETER(pBits);
+      UNREFERENCED_PARAMETER(dwCount);
+      UNREFERENCED_PARAMETER(pBits);
 
       throw ::interface_only();
       return 0;
@@ -168,8 +168,8 @@ namespace draw2d
    u32 bitmap::GetBitmapBits(u32 dwCount,void * pBits) const
    {
 
-      __UNREFERENCED_PARAMETER(dwCount);
-      __UNREFERENCED_PARAMETER(pBits);
+      UNREFERENCED_PARAMETER(dwCount);
+      UNREFERENCED_PARAMETER(pBits);
 
       throw ::interface_only();
       return 0;
@@ -177,17 +177,17 @@ namespace draw2d
 
    void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics,i32 nWidth,i32 nHeight)
    {
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(nWidth);
-      __UNREFERENCED_PARAMETER(nHeight);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(nWidth);
+      UNREFERENCED_PARAMETER(nHeight);
       throw ::interface_only();
       //return false;
    }
    void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics,i32 nWidth,i32 nHeight)
    {
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(nWidth);
-      __UNREFERENCED_PARAMETER(nHeight);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(nWidth);
+      UNREFERENCED_PARAMETER(nHeight);
       throw ::interface_only();
       //return false;
    }
@@ -196,7 +196,7 @@ namespace draw2d
 //   void ::draw2d::bitmap::dump(dump_context & dumpcontext) const
 //   {
 //
-//      __UNREFERENCED_PARAMETER(dumpcontext);
+//      UNREFERENCED_PARAMETER(dumpcontext);
 //
 //      throw ::interface_only();
 //
@@ -205,8 +205,8 @@ namespace draw2d
 
    //const ::size_i32 & size bitmap::SetBitmapDimension(i32 nWidth,i32 nHeight)
    //{
-   //   __UNREFERENCED_PARAMETER(nWidth);
-   //   __UNREFERENCED_PARAMETER(nHeight);
+   //   UNREFERENCED_PARAMETER(nWidth);
+   //   UNREFERENCED_PARAMETER(nHeight);
    //   throw ::interface_only();
    //   return ::size_i32(0,0);
    //}
@@ -214,7 +214,7 @@ namespace draw2d
 
    void bitmap::attach(void * posdata)
    {
-      __UNREFERENCED_PARAMETER(posdata);
+      UNREFERENCED_PARAMETER(posdata);
       throw ::interface_only();
       //return false;
    }
@@ -281,17 +281,17 @@ void vertical_swap(pixmap * ppixmap)
       if (iStride <= 0)
       {
 
-         iStride = ppixmap->width() * sizeof(::color32_t);
+         iStride = ppixmap->width() * sizeof(::image32_t);
 
       }
 
-      int w = iStride / sizeof(::color32_t);
+      int w = iStride / sizeof(::image32_t);
 
       int h = ppixmap->height();
 
-      int wBytes = ppixmap->width() * sizeof(::color32_t);
+      int wBytes = ppixmap->width() * sizeof(::image32_t);
 
-      ::color32_t * pdata = ppixmap->colorref();
+      auto pdata = ppixmap->image32();
 
       u8 * pline1 = (u8 *) pdata;
 
@@ -329,7 +329,7 @@ void vertical_swap(pixmap * ppixmap)
 }
 
 
-void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
+void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cxParam,int cyParam,int iStrideDst, const ::image32_t * pimage32Src,int iStrideSrc)
 {
 
    try
@@ -338,16 +338,16 @@ void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyP
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(::color32_t);
+      iStrideSrc = cxParam * sizeof(::image32_t);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(::color32_t);
-   int wdst = iStrideDst / sizeof(::color32_t);
-   int cw = cxParam * sizeof(::color32_t);
+   int wsrc = iStrideSrc / sizeof(::image32_t);
+   int wdst = iStrideDst / sizeof(::image32_t);
+   int cw = cxParam * sizeof(::image32_t);
 
-   auto * psrc = pcolorrefSrc;
-   auto * pdst = (::color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * psrc = pimage32Src;
+   auto * pdst = (::image32_t * )((u8 *) (pimage32Dst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -372,7 +372,7 @@ void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyP
 }
 
 
-CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
+CLASS_DECL_AURA void vertical_swap_copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cxParam,int cyParam,int iStrideDst, const ::image32_t * pimage32Src,int iStrideSrc)
 {
 
    try
@@ -382,16 +382,16 @@ CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pco
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(::color32_t);
+      iStrideSrc = cxParam * sizeof(::image32_t);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(::color32_t);
-   int wdst = iStrideDst / sizeof(::color32_t);
-   int cw = cxParam * sizeof(::color32_t);
+   int wsrc = iStrideSrc / sizeof(::image32_t);
+   int wdst = iStrideDst / sizeof(::image32_t);
+   int cw = cxParam * sizeof(::image32_t);
 
-   auto * psrc = pcolorrefSrc;
-   auto * pdst = (::color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * psrc = pimage32Src;
+   auto * pdst = (::image32_t * )((u8 *) (pimage32Dst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -408,9 +408,9 @@ CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pco
          pd[2] = ps[0];
          pd[3] = ps[3];
 
-         pd += sizeof(::color32_t);
+         pd += sizeof(::image32_t);
 
-         ps += sizeof(::color32_t);
+         ps += sizeof(::image32_t);
 
       }
 
@@ -431,21 +431,21 @@ CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pco
 }
 
 
-void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+void copy_image32(::image32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
 
    try
    {
 
 
-      if (pcolorrefDst == nullptr)
+      if (pimage32Dst == nullptr)
       {
 
          return;
 
       }
 
-      if (pcolorrefSrc == nullptr)
+      if (pimage32Src == nullptr)
       {
 
          return;
@@ -455,24 +455,24 @@ void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iSt
       if (iStrideSrc <= 0)
       {
 
-         iStrideSrc = cxParam * sizeof(::color32_t);
+         iStrideSrc = cxParam * sizeof(::image32_t);
 
       }
 
       if (iStrideDst == iStrideSrc)
       {
 
-         ::memory_copy(pcolorrefDst, pcolorrefSrc, cyParam * iStrideDst);
+         ::memory_copy(pimage32Dst, pimage32Src, cyParam * iStrideDst);
 
       }
       else
       {
 
-         int cw = cxParam * sizeof(::color32_t);
+         int cw = cxParam * sizeof(::image32_t);
 
-         auto psrc = (byte *) pcolorrefSrc;
+         auto psrc = (::u8 *) pimage32Src;
 
-         auto pdst = (byte *) pcolorrefDst;
+         auto pdst = (::u8 *) pimage32Dst;
 
          for (int i = 0; i < cyParam; i++)
          {
@@ -496,20 +496,20 @@ void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iSt
 }
 
 
-void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
+void copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cxParam,int cyParam,int iStrideDst, const ::image32_t * pimage32Src,int iStrideSrc)
 {
 
    try
    {
 
-   if (pcolorrefDst == nullptr)
+   if (pimage32Dst == nullptr)
    {
 
       return;
 
    }
 
-   if (pcolorrefSrc == nullptr)
+   if (pimage32Src == nullptr)
    {
 
       return;
@@ -519,17 +519,17 @@ void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyP
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(::color32_t);
+      iStrideSrc = cxParam * sizeof(::image32_t);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(::color32_t);
-   int wdst = iStrideDst / sizeof(::color32_t);
-   int cw = cxParam * sizeof(::color32_t);
+   int wsrc = iStrideSrc / sizeof(::image32_t);
+   int wdst = iStrideDst / sizeof(::image32_t);
+   int cw = cxParam * sizeof(::image32_t);
 
 
-   auto * psrc = pcolorrefSrc;
-   auto * pdst = pcolorrefDst;
+   auto * psrc = pimage32Src;
+   auto * pdst = pimage32Dst;
 
 
    for(int i = 0; i < cyParam; i++)
@@ -547,9 +547,9 @@ void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyP
          pd[2] = ps[0];
          pd[3] = ps[3];
 
-         pd += sizeof(::color32_t);
+         pd += sizeof(::image32_t);
 
-         ps += sizeof(::color32_t);
+         ps += sizeof(::image32_t);
 
       }
 
@@ -571,16 +571,16 @@ void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyP
 }
 
 
-void _001ProperCopyColorref(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const ::color32_t * pcolorrefSrc,int iStrideSrc)
+void _001ProperCopyColorref(::image32_t * pimage32Dst, int cxParam,int cyParam,int iStrideDst,const ::image32_t * pimage32Src,int iStrideSrc)
 {
 
 #ifdef WINDOWS_DESKTOP
 
-   copy_colorref(pcolorrefDst, cxParam, cyParam, iStrideDst, pcolorrefSrc, iStrideSrc);
+   copy_image32(pimage32Dst, cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
 
 #else
 
-   vertical_swap_copy_colorref(pcolorrefDst, cxParam, cyParam, iStrideDst, pcolorrefSrc, iStrideSrc);
+   vertical_swap_copy_image32(pimage32Dst, cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
 
 #endif
 
@@ -588,7 +588,7 @@ void _001ProperCopyColorref(::color32_t * pcolorrefDst, int cxParam,int cyParam,
 }
 
 
-void copy_colorref(::color32_t * pcolorrefDst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
+void copy_image32(::image32_t * pimage32Dst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const ::image32_t * pimage32Src,int iStrideSrc)
 {
 
    try
@@ -597,16 +597,16 @@ void copy_colorref(::color32_t * pcolorrefDst, int xParam, int yParam, int cxPar
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(::color32_t);
+      iStrideSrc = cxParam * sizeof(::image32_t);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(::color32_t);
-   int wdst = iStrideDst / sizeof(::color32_t);
-   int cw = cxParam * sizeof(::color32_t);
+   int wsrc = iStrideSrc / sizeof(::image32_t);
+   int wdst = iStrideDst / sizeof(::image32_t);
+   int cw = cxParam * sizeof(::image32_t);
 
-   auto psrc = &pcolorrefSrc[xParam + yParam * iStrideSrc / sizeof(::color32_t)];
-   auto pdst = &pcolorrefDst[xParam + yParam * iStrideDst / sizeof(::color32_t)];
+   auto psrc = &pimage32Src[xParam + yParam * iStrideSrc / sizeof(::image32_t)];
+   auto pdst = &pimage32Dst[xParam + yParam * iStrideDst / sizeof(::image32_t)];
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -630,10 +630,10 @@ void copy_colorref(::color32_t * pcolorrefDst, int xParam, int yParam, int cxPar
 }
 
 
-CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
 
-   copy_colorref(pcolorrefDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
+   copy_image32(pimage32Dst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
 
 }
 

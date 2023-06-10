@@ -402,7 +402,7 @@ namespace user
    void interaction_layout::_set_reposition(bool bSetThis)
    {
 
-      __UNREFERENCED_PARAMETER(bSetThis);
+      UNREFERENCED_PARAMETER(bSetThis);
 
    }
 

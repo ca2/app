@@ -86,7 +86,7 @@ i32 context_image::image_integer(const ::file::path & path)
 }
 
 
-i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, int iScan)
+i32 context_image::create_image_integer(int w, int h, const image32_t * pimage32, int iScan)
 {
 
    if (w <= 0 || h <= 0)
@@ -103,7 +103,7 @@ i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, 
 
    }
 
-   auto pimage = m_pcontext->m_pauracontext->create_image({ w, h }, pcolor, iScan);
+   auto pimage = m_pcontext->m_pauracontext->create_image({ w, h }, pimage32, iScan);
 
    string strPath;
 
@@ -567,7 +567,7 @@ void context_image::_matter_image(image * pimage, const ::string & strMatter, co
 
    }
 
-   pimage->clear(e_flag_success);
+   pimage->clear_flag(e_flag_success);
 
    fork([this, pimage, strMatter]()
       {
@@ -664,7 +664,7 @@ void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFil
 
       //}
 
-      pimage->clear(e_flag_success);
+      pimage->clear_flag(e_flag_success);
 
       _load_thumbnail(pimage, payloadFile);
 

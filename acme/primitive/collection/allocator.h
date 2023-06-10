@@ -90,7 +90,7 @@ namespace constructor
 
             ::zero(p, sizeof(TYPE));
 
-            ((byte*&)p) += sizeof(TYPE);
+            ((::u8*&)p) += sizeof(TYPE);
 
             c--;
 
@@ -110,12 +110,12 @@ namespace constructor
 
       inline static void construct(void * p)
       {
-         __UNREFERENCED_PARAMETER(p);
+         UNREFERENCED_PARAMETER(p);
       }
       inline static void construct_count(void * p, ::count c)
       {
-         __UNREFERENCED_PARAMETER(p);
-         __UNREFERENCED_PARAMETER(c);
+         UNREFERENCED_PARAMETER(p);
+         UNREFERENCED_PARAMETER(c);
       }
 
    };
@@ -161,12 +161,12 @@ namespace destructor
 
       inline static void destruct(TYPE * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
       {
-         __UNREFERENCED_PARAMETER(p);
+         UNREFERENCED_PARAMETER(p);
       }
       inline static void destruct_count(TYPE * p, ::count c OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
       {
-         __UNREFERENCED_PARAMETER(p);
-         __UNREFERENCED_PARAMETER(c);
+         UNREFERENCED_PARAMETER(p);
+         UNREFERENCED_PARAMETER(c);
       }
 
    };

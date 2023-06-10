@@ -399,7 +399,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //		pMedium->hGlobal = clipboard->hmem;   /* points to a FILEGROUPDESCRIPTOR structure */
 //
-//		/* GlobalLock returns a pointer to the first byte of the memory block,
+//		/* GlobalLock returns a pointer to the first ::u8 of the memory block,
 //		* in which is a FILEGROUPDESCRIPTOR structure, whose first ::u32 member
 //		* is the number of FILEDESCRIPTOR's */
 //		instance->m_nStreams = *((P::u32) GlobalLock(clipboard->hmem));
@@ -1047,7 +1047,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return 0;
 //}
 //
-//int cliprdr_send_response_filecontents(wfClipboard* clipboard, ::u32 streamId, ::u32 size, byte* data)
+//int cliprdr_send_response_filecontents(wfClipboard* clipboard, ::u32 streamId, ::u32 size, ::u8* data)
 //{
 //	CLIPRDR_FILE_CONTENTS_RESPONSE fileContentsResponse;
 //
@@ -1262,7 +1262,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	clipboard->nFiles = 0;
 //}
 //
-//static BOOL wf_cliprdr_get_file_contents(WCHAR* file_name, byte* buffer,
+//static BOOL wf_cliprdr_get_file_contents(WCHAR* file_name, ::u8* buffer,
 //	int positionLow, int positionHigh, int nRequested, unsigned int* puSize)
 //{
 //	HANDLE hFile;
@@ -1732,7 +1732,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	response.msgFlags = CB_RESPONSE_OK;
 //	response.dataLen = size;
-//	response.requestedFormatData = (byte*) buff;
+//	response.requestedFormatData = (::u8*) buff;
 //
 //	clipboard->context->ClientFormatDataResponse(clipboard->context, &response);
 //
@@ -1743,12 +1743,12 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //static int wf_cliprdr_server_format_data_response(CliprdrClientContext* context, CLIPRDR_FORMAT_DATA_RESPONSE* formatDataResponse)
 //{
-//	byte* data;
+//	::u8* data;
 //	HANDLE hMem;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
 //	hMem = GlobalAlloc(GMEM_FIXED, formatDataResponse->dataLen);
-//	data = (byte*) GlobalLock(hMem);
+//	data = (::u8*) GlobalLock(hMem);
 //	CopyMemory(data, formatDataResponse->requestedFormatData, formatDataResponse->dataLen);
 //	GlobalUnlock(hMem);
 //
@@ -1761,7 +1761,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //int wf_cliprdr_server_file_contents_request(CliprdrClientContext* context, CLIPRDR_FILE_CONTENTS_REQUEST* fileContentsRequest)
 //{
 //	::u32 uSize = 0;
-//	byte* pData = nullptr;
+//	::u8* pData = nullptr;
 //	HRESULT	hRet = S_OK;
 //	FORMATETC vFormatEtc;
 //	LPDATAOBJECT pDataObj = nullptr;
@@ -1775,7 +1775,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	if (fileContentsRequest->dwFlags == FILECONTENTS_SIZE)
 //		fileContentsRequest->cbRequested = sizeof(::u3264);
 //
-//	pData = (byte*) calloc(1, fileContentsRequest->cbRequested);
+//	pData = (::u8*) calloc(1, fileContentsRequest->cbRequested);
 //	
 //	if (!pData)
 //		goto error;

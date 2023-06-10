@@ -153,27 +153,24 @@ namespace draw3d
 
             double r = (locationa[point1[iMax]].z() + locationa[point2[iMax]].z()) * d;
 
-            ::color::color ca;
+            ::color::color colorA;
 
             auto period = 55000 / 2; // milliseconds
 
             if(iHint == 0)
             {
 
-               ca.set_hls((double) (::integral_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+               colorA.set_hls((double) (::integral_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
 
             }
             else
             {
 
-               ca.set_hls((double) (::integral_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+               colorA.set_hls((double) (::integral_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
 
             }
 
-            ::color::color clr = ca.get_rgb();
-
-
-            ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.red,ca.green,ca.blue));
+            ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),colorA.u8_red(), colorA.u8_green(), colorA.u8_blue()));
             if(i < 6)
             {
                ppen->m_epen = ::draw2d::e_pen_dot;
@@ -318,7 +315,7 @@ namespace draw3d
 
             double r = (locationa[f[iMax][0]].z() + locationa[f[iMax][1]].z() + locationa[f[iMax][2]].z()) * d;
 
-            ::color::color ca;
+            ::color::color colorA;
 
             auto period = 50_s;
             
@@ -327,20 +324,20 @@ namespace draw3d
 ////            if(iHint == 0)
 ////            {
 ////
-////               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+////               colorA.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
 ////
 ////            }
 ////            else
 ////            {
 ////
-////               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+////               colorA.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
 ////
 ////            }
 //
-//            //::color::color clr = ca.get_rgb();
+//            //::color::color clr = colorA.get_rgb();
 //
 //
-//            /*ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
+//            /*ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),colorA.m_iR,colorA.m_iG,colorA.m_iB));
 //            if(i < 6)
 //            {
 //            ppen->m_etype = ::draw2d::e_pen_dot;
@@ -351,7 +348,7 @@ namespace draw3d
 //            }
 //            m_pdc->set(ppen);*/
 //
-//            pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.red,ca.green,ca.blue);
+//            pimage->fill((int)(dA * (184.0 - r * 128.0)),colorA.red,colorA.green,colorA.blue);
 //
 //            point2da[0]=::point_i32((::i32)locationa[f[iMax][0]].x(),(::i32)locationa[f[iMax][0]].y());
 //            point2da[1]= ::point_i32((::i32)locationa[f[iMax][1]].x(),(::i32)locationa[f[iMax][1]].y());

@@ -64,7 +64,7 @@ namespace experience_nanoui
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -169,7 +169,7 @@ namespace experience_nanoui
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, byte bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
       pgraphics->fill_rectangle(rectangle, ::color::color(color32, bAlpha));
@@ -289,7 +289,7 @@ namespace experience_nanoui
 
    //frame::enum_element operator++(frame::enum_element & eelement, i32 i)
    //{
-   //   __UNREFERENCED_PARAMETER(i);
+   //   UNREFERENCED_PARAMETER(i);
    //   return (frame::enum_element) (*((i32*)&eelement))++;
    //}
 
@@ -789,7 +789,7 @@ namespace experience_nanoui
    void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

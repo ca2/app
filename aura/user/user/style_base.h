@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geome//try2d.h"
 #include "acme/constant/element.h"
 #include "apex/handler/manager.h"
 

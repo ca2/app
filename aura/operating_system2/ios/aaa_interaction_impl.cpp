@@ -700,7 +700,7 @@ namespace ios
 
    void interaction_impl::on_message_move(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -708,7 +708,7 @@ namespace ios
    void interaction_impl::on_message_size(::message::message * pmessage)
    {
       
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 //      size_i32 sizeRequest = m_rectangleParentClientRequest.size();
 //
@@ -728,7 +728,7 @@ namespace ios
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //Default();
 
@@ -936,7 +936,7 @@ namespace ios
     */
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -1003,8 +1003,8 @@ namespace ios
 
    bool interaction_impl::_EnableToolTips(bool bEnable, ::u32 nFlag)
    {
-      __UNREFERENCED_PARAMETER(bEnable);
-      __UNREFERENCED_PARAMETER(nFlag);
+      UNREFERENCED_PARAMETER(bEnable);
+      UNREFERENCED_PARAMETER(nFlag);
       return false;
    }
 
@@ -1030,7 +1030,7 @@ namespace ios
    void interaction_impl::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(pevent);
+      UNREFERENCED_PARAMETER(pevent);
 
       //return false;
 
@@ -1309,8 +1309,8 @@ namespace ios
    // return true if command invocation was attempted
    {
       
-      __UNREFERENCED_PARAMETER(wparam);
-      __UNREFERENCED_PARAMETER(lparam);
+      UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(lparam);
 
       return false;
 
@@ -1563,7 +1563,7 @@ namespace ios
 
     bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask)
     {
-    __UNREFERENCED_PARAMETER(nMask);
+    UNREFERENCED_PARAMETER(nMask);
     ASSERT(lpScrollInfo != nullptr);
 
     oswindow hWnd = get_handle();
@@ -1739,7 +1739,7 @@ namespace ios
 
    bool interaction_impl::ReflectChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
    {
-      __UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(wparam);
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
       //  and interaction_impl::_001OnCommand for speed and because these messages are not
       //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -1874,7 +1874,7 @@ namespace ios
 
    /*   void interaction_impl::OnDevModeChange(__in char * lpDeviceName)
     {
-    __UNREFERENCED_PARAMETER(lpDeviceName);
+    UNREFERENCED_PARAMETER(lpDeviceName);
     throw ::not_implemented();
     application* pApp = ::auraacmesystem();
     if (pApp != nullptr && pApp->GetMainWnd() == this)
@@ -2167,7 +2167,7 @@ namespace ios
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //Default();
 
@@ -2193,7 +2193,7 @@ namespace ios
    void interaction_impl::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    
    }
 
@@ -2249,13 +2249,13 @@ namespace ios
 
     void interaction_impl::OnHScroll(::u32, ::u32, CScrollBar* pScrollBar)
     {
-    __UNREFERENCED_PARAMETER(pScrollBar);
+    UNREFERENCED_PARAMETER(pScrollBar);
     Default();
     }
 
     void interaction_impl::OnVScroll(::u32, ::u32, CScrollBar* pScrollBar)
     {
-    __UNREFERENCED_PARAMETER(pScrollBar);
+    UNREFERENCED_PARAMETER(pScrollBar);
     Default();
     }
     */
@@ -2300,7 +2300,7 @@ namespace ios
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
       
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       
    }
 
@@ -2519,8 +2519,8 @@ namespace ios
 
    void interaction_impl::UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler)
    {
-      __UNREFERENCED_PARAMETER(pTarget);
-      __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+      UNREFERENCED_PARAMETER(pTarget);
+      UNREFERENCED_PARAMETER(bDisableIfNoHndler);
       //::message::command state(this);
       //user::interaction wndTemp;       // very temporary user::interaction just for CmdUI update
 
@@ -3078,7 +3078,7 @@ namespace ios
 
     void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
     {
-    __UNREFERENCED_PARAMETER(bRedraw);
+    UNREFERENCED_PARAMETER(bRedraw);
     ASSERT(::is_window(get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
     }
 
@@ -3524,7 +3524,7 @@ namespace ios
    {
       return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
       /*
-       __UNREFERENCED_PARAMETER(lpfnTimer);
+       UNREFERENCED_PARAMETER(lpfnTimer);
 
        m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
 

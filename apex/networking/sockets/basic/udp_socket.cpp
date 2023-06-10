@@ -788,20 +788,20 @@ return -1;
 
    //void udp_socket::OnRawData(char * buf, memsize len, struct sockaddr * sa, socklen_t sa_len)
    //{
-   //   __UNREFERENCED_PARAMETER(buf);
-   //   __UNREFERENCED_PARAMETER(len);
-   //   __UNREFERENCED_PARAMETER(sa);
-   //   __UNREFERENCED_PARAMETER(sa_len);
+   //   UNREFERENCED_PARAMETER(buf);
+   //   UNREFERENCED_PARAMETER(len);
+   //   UNREFERENCED_PARAMETER(sa);
+   //   UNREFERENCED_PARAMETER(sa_len);
    //}
 
 
    //void udp_socket::OnRawData(char * buf, memsize len, struct sockaddr * sa, socklen_t sa_len, struct timeval * ts)
    //{
-   //   __UNREFERENCED_PARAMETER(buf);
-   //   __UNREFERENCED_PARAMETER(len);
-   //   __UNREFERENCED_PARAMETER(sa);
-   //   __UNREFERENCED_PARAMETER(sa_len);
-   //   __UNREFERENCED_PARAMETER(ts);
+   //   UNREFERENCED_PARAMETER(buf);
+   //   UNREFERENCED_PARAMETER(len);
+   //   UNREFERENCED_PARAMETER(sa);
+   //   UNREFERENCED_PARAMETER(sa_len);
+   //   UNREFERENCED_PARAMETER(ts);
    //}
 
 

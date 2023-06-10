@@ -54,7 +54,7 @@ void simple_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       pgraphics->set(text.m_pfont);
 
-      pgraphics->set_text_color(text.m_color.get_rgba());
+      pgraphics->set_text_color(text.m_color.u32_rgba());
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

@@ -538,7 +538,7 @@ void defer_dock_application(int_bool bDock)
 int_bool destroy_window(oswindow window)
 {
 
-   __UNREFERENCED_PARAMETER(window);
+   UNREFERENCED_PARAMETER(window);
 
    return true;
 

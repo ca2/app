@@ -377,7 +377,7 @@ namespace user
 
          }
 
-         pbrush1->m_color = (pbrush1->m_color.operator color32_t() & 0xffffff) | ((byte(255.0 * dRate)) << 24);
+         pbrush1->m_color = (pbrush1->m_color.operator color32_t() & 0xffffff) | ((::u8(255.0 * dRate)) << 24);
 
          pbrush1->set_modified();
 
@@ -391,9 +391,9 @@ namespace user
          pgraphics->path(point);
 
          pbrush->create_solid(argb(255,
-                               (byte)((double) colorref_get_r_value(color32) * dRate),
-                               (byte)((double) colorref_get_g_value(color32) * dRate),
-                               (byte)((double) colorref_get_b_value(color32) * dRate)));
+                               (::u8)((double) color32_u8_red(color32) * dRate),
+                               (::u8)((double) color32_u8_green(color32) * dRate),
+                               (::u8)((double) color32_u8_blue(color32) * dRate)));
 
          ::scroll_x(rectangleEllipse, dRate, rectangle);
 
@@ -403,7 +403,7 @@ namespace user
 
          pgraphics->fill_ellipse(rectangleEllipse);
 
-         byte bAlphaP1 = (byte) (255.0 * (1.0 - dRate));
+         ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
 
          color32_t crP1 = argb(bAlphaP1, 0, 0, 0);
 
@@ -592,7 +592,7 @@ namespace user
    void check_box::on_message_key_down(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

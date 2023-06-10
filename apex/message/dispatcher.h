@@ -38,7 +38,7 @@ namespace message
       dispatcher(T1 * pparticleHandlerTarget, void (T2:: * pfnHandlerFunction)(::message::message * pmessage))
       {
 
-         auto ptrptr = (byte*)&pfnHandlerFunction;
+         auto ptrptr = (::u8*)&pfnHandlerFunction;
 
          m_chunkMemberFunction.assign(ptrptr + get_member_function_offset(), get_member_function_size());
 

@@ -1096,7 +1096,7 @@ inline const ::wd16_character * wd16_concatenate_and_duplicate(const ::wd16_char
 //
 //#ifdef WINDOWS
 //
-//   for (const byte * p = (const byte *)src; srclen >= findlen; p++, srclen--)
+//   for (const ::u8 * p = (const ::u8 *)src; srclen >= findlen; p++, srclen--)
 //   {
 //
 //      if (!memcmp(p, find, findlen))

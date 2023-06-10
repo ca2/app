@@ -5,6 +5,7 @@
 #include "font.h"
 #include "brush.h"
 #include "image.h"
+#include "color.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/mathematics/mathematics.h"
@@ -486,11 +487,15 @@ namespace draw2d_opengl
    //   return nullptr;
    //}
 
+   
    color32_t graphics::GetNearestColor(color32_t crColor) const
    {
+      
       //return ::GetNearestColor(m_hdc, crColor);
-      return 0;
+      return color::transparent;
+
    }
+
 
    ::u32 graphics::RealizePalette()
    {
@@ -898,7 +903,7 @@ namespace draw2d_opengl
    //   //   bool bOk = false;
 
    //   //   BITMAPINFO info;
-   //   //   color32_t * pcolorref;
+   //   //   color32_t * pimage32;
 
    //   //   ZeroMemory(&info, sizeof (BITMAPINFO));
 
@@ -910,7 +915,7 @@ namespace draw2d_opengl
    //   //   info.bmiHeader.biCompression   = BI_RGB;
    //   //   info.bmiHeader.biSizeImage     = cx * cy * 4;
 
-   //   //   HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **) &pcolorref, nullptr, 0);
+   //   //   HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **) &pimage32, nullptr, 0);
 
    //   //   HDC hdc = ::CreateCompatibleDC(nullptr);
 
@@ -949,8 +954,8 @@ namespace draw2d_opengl
 
    //   //      int area = cx * cy;
 
-   //   //      color32_t * pc = pcolorref;
-   //   //      byte * pA = &((byte *) pcolorref)[3];
+   //   //      color32_t * pc = pimage32;
+   //   //      ::u8 * pA = &((::u8 *) pimage32)[3];
 
    //   //      for(int i = 0; i < area; i++)
    //   //      {
@@ -970,8 +975,8 @@ namespace draw2d_opengl
    //   //      if(bAllZeroAlpha && bTheres::u32)
    //   //      {
 
-   //   //         pc = pcolorref;
-   //   //         pA = &((byte *)pcolorref)[3];
+   //   //         pc = pimage32;
+   //   //         pA = &((::u8 *)pimage32)[3];
 
    //   //         for(int i = 0; i < area; i++)
    //   //         {
@@ -989,7 +994,7 @@ namespace draw2d_opengl
    //   //      try
    //   //      {
 
-   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (byte *) pcolorref);
+   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (::u8 *) pimage32);
 
    //   //         bOk = m_pgraphics->DrawImage(&b, x, y, 0, 0, cx, cy, plusplus::UnitPixel) == plusplus::Ok;
 
@@ -1795,7 +1800,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetPixel(m_hdc, x, y);
-      return 0;
+      return color::transparent;
 
    }
 
@@ -1804,7 +1809,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetPixel(m_hdc, point.x(), point.y());
-      return 0;
+      return color::transparent;
 
    }
 
@@ -1812,7 +1817,7 @@ namespace draw2d_opengl
    ::color::color graphics::SetPixel(double x, double y, ::color::color crColor)
    {
       
-      return 0;
+      return color::transparent;
 
    }
 
@@ -2582,7 +2587,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::GetPath(::point_f64 * lpPoints, byte * lpTypes, ::count nCount)
+   //void graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, ::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -2680,7 +2685,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::AddMetaFileComment(::u32 nDataSize, const byte* pCommentData)
+   //void graphics::AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GdiComment(m_hdc, nDataSize, pCommentData) != false;
@@ -2828,7 +2833,7 @@ namespace draw2d_opengl
 ////         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x() - xDest), maximum(0, m_pointAlphaBlend.y() - yDest)),
 ////                         m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x()), maximum(0, yDest - m_pointAlphaBlend.y())), size);
 ////
-////         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
+////         imageWork.channel_multiply(::color::e_channel_opacity, imageWork4);
 ////
 ////
 ////         keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2955,7 +2960,7 @@ namespace draw2d_opengl
          imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x() - xDest), maximum(0, m_pointAlphaBlend.y() - yDest)),
             m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x()), maximum(0, yDest - m_pointAlphaBlend.y())), size);
 
-         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
+         imageWork.channel_multiply(::color::e_channel_opacity, imageWork4);
 
 
          keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -3011,7 +3016,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetDCBrushColor(m_hdc);
-      return 0;
+      return color::transparent;
    }
 
 
@@ -3019,7 +3024,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetDCBrushColor(m_hdc, crColor);
-      return 0;
+      return color::transparent;
 
    }
 
@@ -3028,7 +3033,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetDCPenColor(m_hdc);
-      return 0;
+      return color::transparent;
 
 
    }
@@ -3038,7 +3043,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetDCPenColor(m_hdc, crColor);
-      return 0;
+      return color::transparent;
 
    }
 
@@ -4342,7 +4347,7 @@ namespace draw2d_opengl
    //   return nResult;
    //}
 
-   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const byte* lpTypes, ::count nCount)
+   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const ::u8* lpTypes, ::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -4913,7 +4918,7 @@ namespace draw2d_opengl
 //      //// Set size_i32 to load glyphs as
 //      //FT_Set_Pixel_Sizes(face, 0, 48);
 //
-//      //// Disable byte-alignment restriction
+//      //// Disable ::u8-alignment restriction
 //      //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 //
 //      //// Load first 128 characters of ASCII set
@@ -5060,8 +5065,9 @@ namespace draw2d_opengl
    {
 
       ::opengl::line(point1.x(), point1.y(), point2.x(), point2.y(), (float)(ppen->m_dWidth),
-         ppen->m_color.red/255.f, ppen->m_color.green / 255.f, ppen->m_color.blue / 255.f,
-         ppen->m_color.alpha / 255.f, 0.f, 0.f, true);
+         ppen->m_color.f32_red(), ppen->m_color.f32_green(),
+         ppen->m_color.f32_blue(),
+         ppen->m_color.f32_opacity(), 0.f, 0.f, true);
 
       /*glLineWidth(ppen->m_dWidth);
 

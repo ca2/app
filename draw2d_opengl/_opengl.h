@@ -37,42 +37,6 @@ namespace opengl
 {
 
 
-   inline void color(byte r, byte g, byte b, byte a)
-   {
-
-      //auto fr = (float)r * (float)a / 65355.f;
-      //auto fg = (float)g * (float)a / 65355.f;
-      //auto fb = (float)b * (float)a / 65355.f;
-      auto fr = (float)r / 255.f;
-      auto fg = (float)g / 255.f;
-      auto fb = (float)b / 255.f;
-      auto fa = (float)a / 255.f;
-
-      glColor4f(fr, fg, fb, fa);
-
-   }
-
-
-   inline void color(color32_t color32)
-   {
-
-      ::opengl::color(
-         colorref_get_r_value(color32),
-         colorref_get_g_value(color32),
-         colorref_get_b_value(color32),
-         colorref_get_a_value(color32));
-
-   }
-
-
-   inline void color(const ::color::color & color)
-   {
-
-      ::opengl::color(color.red, color.green, color.blue, color.alpha);
-
-   }
-
-
    inline void vertex2f(const ::rectangle_f64 & rectangle)
    {
 

@@ -545,7 +545,7 @@ namespace user
    bool copydesk::_get_filea(::file::path_array & stra, enum_op & eop)
    {
 
-      __UNREFERENCED_PARAMETER(stra);
+      UNREFERENCED_PARAMETER(stra);
 
       throw ::interface_only();
 
@@ -557,7 +557,7 @@ namespace user
    bool copydesk::_set_filea(const ::file::path_array & patha, enum_op eop)
    {
 
-      __UNREFERENCED_PARAMETER(patha);
+      UNREFERENCED_PARAMETER(patha);
 
       throw ::interface_only();
 
@@ -569,7 +569,7 @@ namespace user
    bool copydesk::_set_plain_text(const ::string & str)
    {
 
-      __UNREFERENCED_PARAMETER(str);
+      UNREFERENCED_PARAMETER(str);
 
       throw ::interface_only();
 
@@ -601,7 +601,7 @@ namespace user
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      __UNREFERENCED_PARAMETER(pimage);
+      UNREFERENCED_PARAMETER(pimage);
 
       throw ::interface_only();
 
@@ -613,7 +613,7 @@ namespace user
    bool copydesk::_image_to_desk(const ::image * pimage)
    {
 
-      __UNREFERENCED_PARAMETER(pimage);
+      UNREFERENCED_PARAMETER(pimage);
 
       throw ::interface_only();
 

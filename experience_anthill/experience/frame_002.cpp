@@ -23,10 +23,10 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-color32_t SetAValue(byte a, color32_t color32)
+color32_t SetAValue(::u8 a, color32_t color32)
 {
 
-   return argb(a, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32));
+   return argb(a, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32));
 
 }
 

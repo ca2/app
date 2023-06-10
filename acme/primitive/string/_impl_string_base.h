@@ -2662,7 +2662,7 @@ inline void string_base < ITERATOR_TYPE >::set_at(strsize iChar, CHARACTER ch)
 //
 //
 //template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE >::string_base(Array <byte >^ a)
+//string_base < ITERATOR_TYPE >::string_base(Array <::u8 >^ a)
 //{
 //
 //   *this = string_base < ITERATOR_TYPE >((const ::ansi_character *) a->begin(), a->Length);

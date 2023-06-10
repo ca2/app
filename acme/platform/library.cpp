@@ -859,7 +859,7 @@ namespace acme
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
-   //   __UNREFERENCED_PARAMETER(ida);
+   //   UNREFERENCED_PARAMETER(ida);
 
    //}
 

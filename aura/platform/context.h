@@ -3,7 +3,7 @@
 
 
 #include "acme/graphics/image/_configuration.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "apex/platform/context.h"
 
 
@@ -29,7 +29,7 @@ namespace aura
       virtual ::image_pointer create_image();
 
 
-      virtual ::image_pointer create_image(const ::size_i32 & size, const color32_t * pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+      virtual ::image_pointer create_image(const ::size_i32 & size, const image32_t * pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
 
    };

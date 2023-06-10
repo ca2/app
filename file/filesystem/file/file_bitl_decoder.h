@@ -1,4 +1,4 @@
-// BitlDecoder.h -- the Least Significant Bit of byte is First
+// BitlDecoder.h -- the Least Significant Bit of ::u8 is First
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
@@ -16,7 +16,7 @@ namespace file
 
       const u32 kMask = (1 << kNumValueBits) - 1;
 
-      extern byte kInvertTable[256];
+      extern ::u8 kInvertTable[256];
 
       template < class TInByte >
       class base_decoder
@@ -43,7 +43,7 @@ namespace file
          {
             for (; m_BitPos >= 8; m_BitPos -= 8)
             {
-               byte b = 0;
+               ::u8 b = 0;
                if (!m_Stream.ReadByte(b))
                {
                   b = 0xFF; // check it
@@ -87,7 +87,7 @@ namespace file
          {
             for (; this->m_BitPos >= 8; this->m_BitPos -= 8)
             {
-               byte b = 0;
+               ::u8 b = 0;
                if (!this->m_Stream.ReadByte(b))
                {
                   b = 0xFF; // check it
@@ -120,11 +120,11 @@ namespace file
 
          void AlignToByte() { MovePos((32 - this->m_BitPos) & 7); }
 
-         byte ReadByte()
+         ::u8 ReadByte()
          {
             if (this->m_BitPos == kNumBigValueBits)
             {
-               byte b = 0;
+               ::u8 b = 0;
                if (!this->m_Stream.ReadByte(b))
                {
                   b = 0xFF;
@@ -133,7 +133,7 @@ namespace file
                return b;
             }
             {
-               byte b = (byte)(m_NormalValue & 0xFF);
+               ::u8 b = (::u8)(m_NormalValue & 0xFF);
                MovePos(8);
                return b;
             }

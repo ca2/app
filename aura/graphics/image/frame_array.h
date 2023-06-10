@@ -20,7 +20,7 @@ public:
    bool                 m_bTransparent;
    ::color::color       m_colorTransparent;
    ::color::color       m_colorBack;
-   byte                 m_backgroundIndex;
+   ::u8                 m_backgroundIndex;
    ::size_i32           m_sizeLogical;
    ::size_i32           m_size;
    ::image_pointer      m_pimageCompose;

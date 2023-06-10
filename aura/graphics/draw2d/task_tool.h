@@ -39,7 +39,7 @@ namespace draw2d
       e_op m_eop;
       int m_scanSrc;
       int m_scanDst;
-      byte m_bA;
+      ::u8 m_bA;
 
 
 

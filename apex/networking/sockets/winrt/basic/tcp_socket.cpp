@@ -86,7 +86,7 @@ namespace sockets
       ,m_bTryingReconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
-      __UNREFERENCED_PARAMETER(osize);
+      UNREFERENCED_PARAMETER(osize);
    }
 #ifdef _MSC_VER
 #pragma warning(default:4355)
@@ -1299,10 +1299,10 @@ namespace sockets
 
    void tcp_socket::OnOptions(int family, int type, int protocol, SOCKET s)
    {
-      __UNREFERENCED_PARAMETER(family);
-      __UNREFERENCED_PARAMETER(type);
-      __UNREFERENCED_PARAMETER(protocol);
-      __UNREFERENCED_PARAMETER(s);
+      UNREFERENCED_PARAMETER(family);
+      UNREFERENCED_PARAMETER(type);
+      UNREFERENCED_PARAMETER(protocol);
+      UNREFERENCED_PARAMETER(s);
       //TRACE("socket::OnOptions()\n");
 #ifdef SO_NOSIGPIPE
       _SetSoNosigpipe(s, true);

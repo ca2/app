@@ -2,6 +2,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/graphics/draw2d/_image32.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
@@ -424,7 +425,7 @@ namespace user
 
          }
 
-         ::color32_t color32 = argb(255, 255, 255, 255);
+         auto color = argb(255, 255, 255, 255);
 
          auto pbrush = __create < ::draw2d::brush > ();
 
@@ -441,7 +442,7 @@ namespace user
 
          }
 
-         pbrush1->m_color = (pbrush1->m_color.u32 & 0xffffff) | ((byte(255.0 * dRate)) << 24);
+         pbrush1->m_color.set_opacity(dRate);
 
          pbrush1->set_modified();
 
@@ -454,10 +455,7 @@ namespace user
 
          pgraphics->path(ppath);
 
-         pbrush->create_solid(argb(255,
-                               (byte)((double) colorref_get_r_value(color32) * dRate),
-                               (byte)((double) colorref_get_g_value(color32) * dRate),
-                               (byte)((double) colorref_get_b_value(color32) * dRate)));
+         pbrush->create_solid(color.multiply_with_opacity(255, dRate));
 
          ::scroll_x(rectangleEllipse, dRate, rectangle);
 
@@ -467,7 +465,7 @@ namespace user
 
          pgraphics->fill_ellipse(rectangleEllipse);
 
-         byte bAlphaP1 = (byte) (255.0 * (1.0 - dRate));
+         ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
 
          ::color::color crP1 = argb(bAlphaP1, 0, 0, 0);
 
@@ -654,7 +652,7 @@ namespace user
    void check_box::on_message_key_down(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

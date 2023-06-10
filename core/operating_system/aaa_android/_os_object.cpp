@@ -133,7 +133,7 @@ bool os_object::get_b(const ::string & pszField)
 
 
 
-void os_object::set_uch(const ::string & pszField, byte b)
+void os_object::set_uch(const ::string & pszField, ::u8 b)
 {
 
    set_uch(field_uch(pszField), b);
@@ -141,7 +141,7 @@ void os_object::set_uch(const ::string & pszField, byte b)
 }
 
 
-byte os_object::get_uch(const ::string & pszField)
+::u8 os_object::get_uch(const ::string & pszField)
 {
 
    return get_uch(field_uch(pszField));
@@ -300,7 +300,7 @@ bool os_object::get_b(jfieldID fid)
 }
 
 
-void os_object::set_uch(jfieldID fid, byte b)
+void os_object::set_uch(jfieldID fid, ::u8 b)
 {
 
    t_pjnienv->SetByteField(m_jobject, fid, b);
@@ -308,7 +308,7 @@ void os_object::set_uch(jfieldID fid, byte b)
 }
 
 
-byte os_object::get_uch(jfieldID fid)
+::u8 os_object::get_uch(jfieldID fid)
 {
 
    return t_pjnienv->GetByteField(m_jobject, fid);

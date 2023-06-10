@@ -46,7 +46,7 @@ namespace hotplugin
 
       {
 
-         byte uchR, uchG, uchB;
+         ::u8 uchR, uchG, uchB;
          ::rectangle_i32 rectangleDraw;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(255, uchR, uchG, uchB));

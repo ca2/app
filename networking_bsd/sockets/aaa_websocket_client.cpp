@@ -141,7 +141,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    m.set_size(length);
 
-   u8 * frame = (byte*)m.get_data();
+   u8 * frame = (::u8*)m.get_data();
 
    frame[0] = 0x80 | fin;
 
@@ -436,9 +436,9 @@ namespace networking_bsd
 
    //   m_emethod = http_method_get;
 
-   //   __UNREFERENCED_PARAMETER(host);
+   //   UNREFERENCED_PARAMETER(host);
 
-   //   __UNREFERENCED_PARAMETER(port);
+   //   UNREFERENCED_PARAMETER(port);
 
    //}
 

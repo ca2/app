@@ -33,7 +33,7 @@ namespace html
 
    void reader::BeginParse(uptr dwAppData, bool &bAbort)
    {
-      __UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(dwAppData);
       m_ptag = nullptr;
       m_ptagMain = nullptr;
       bAbort = false;
@@ -41,7 +41,7 @@ namespace html
 
    void reader::StartTag(lite_html_tag *pTag, uptr dwAppData, bool &bAbort)
    {
-      __UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag == nullptr)
       {
          m_ptag = memory_new ::html::tag(nullptr);
@@ -77,8 +77,8 @@ namespace html
 
    void reader::EndTag(lite_html_tag *pTag, uptr dwAppData, bool &bAbort)
    {
-      __UNREFERENCED_PARAMETER(pTag);
-      __UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(pTag);
+      UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag->get_parent() != nullptr && pTag->getTagName() != "draw2d")
       {
          m_ptag = m_ptag->get_parent();
@@ -89,7 +89,7 @@ namespace html
 
    void reader::Characters(const string &rText, uptr dwAppData, bool &bAbort)
    {
-      __UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag != nullptr)
       {
          ::html::value * pvalue = memory_new ::html::value(m_ptag);
@@ -101,15 +101,15 @@ namespace html
 
    void reader::Comment(const string &rComment, uptr dwAppData, bool &bAbort)
    {
-      __UNREFERENCED_PARAMETER(rComment);
-      __UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(rComment);
+      UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
    void reader::EndParse(uptr dwAppData, bool bIsAborted)
    {
-      __UNREFERENCED_PARAMETER(dwAppData);
-      __UNREFERENCED_PARAMETER(bIsAborted);
+      UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(bIsAborted);
    }
 
    tag * reader::detach_main_tag()

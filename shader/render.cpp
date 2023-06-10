@@ -432,7 +432,7 @@ namespace app_shader
 
 //            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
 
-            colorBackground.alpha = 128;
+            colorBackground.m_u8Opacity = 128;
 
             ::draw2d::brush_pointer pbrush;
 
@@ -560,7 +560,7 @@ namespace app_shader
 
             }
 
-            colorBackground.alpha = 128;
+            colorBackground.m_u8Opacity = 128;
 
             ::draw2d::brush_pointer pbrush;
 

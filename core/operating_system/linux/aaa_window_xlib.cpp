@@ -145,7 +145,7 @@ namespace xlib
 //      if(m_pimage != nullptr)
 //      {
 //
-//         if(m_mem.get_data() == (byte *) m_pimage->data)
+//         if(m_mem.get_data() == (::u8 *) m_pimage->data)
 //         {
 //
 //            m_pimage->data = nullptr;
@@ -205,7 +205,7 @@ namespace xlib
 //      if(m_pimage != nullptr)
 //      {
 //
-//         if((byte *) m_pimage->data == (byte *) pimage->get_data())
+//         if((::u8 *) m_pimage->data == (::u8 *) pimage->get_data())
 //         {
 //
 //            m_pimage->data = nullptr;

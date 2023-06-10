@@ -302,26 +302,26 @@ namespace draw2d_cairo
 //   }
 //
 //   void draw2d::alpha_spread__24CC(
-//   byte * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
-//   byte * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
-//   byte bMin, i32 iRadius)
+//   ::u8 * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
+//   ::u8 * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
+//   ::u8 bMin, i32 iRadius)
 //   {
-//      __UNREFERENCED_PARAMETER(xDest);
-//      __UNREFERENCED_PARAMETER(yDest);
-//      __UNREFERENCED_PARAMETER(xSrc);
-//      __UNREFERENCED_PARAMETER(ySrc);
+//      UNREFERENCED_PARAMETER(xDest);
+//      UNREFERENCED_PARAMETER(yDest);
+//      UNREFERENCED_PARAMETER(xSrc);
+//      UNREFERENCED_PARAMETER(ySrc);
 //      i32 iFilterW = iRadius * 2 + 1;
 //      i32 iFilterH = iRadius * 2 + 1;
 //      i32 iFilterHalfW = iFilterW / 2;
 //      i32 iFilterHalfH = iFilterH / 2;
 //      i32 iFilterArea = iFilterW * iFilterH;
 //      i32 divisor;
-//      byte *lpbSource;
-//      byte *lpbSource_1;
-//      byte *lpbSource_2;
-//      byte *lpwDestination;
-//      byte *lpFilter;
-//      byte *pFilter;
+//      ::u8 *lpbSource;
+//      ::u8 *lpbSource_1;
+//      ::u8 *lpbSource_2;
+//      ::u8 *lpwDestination;
+//      ::u8 *lpFilter;
+//      ::u8 *pFilter;
 //
 //
 //      i32 i;
@@ -379,13 +379,13 @@ namespace draw2d_cairo
 //
 //               }
 //
-//               pFilter[x + y * iFilterW] = (byte)i;
+//               pFilter[x + y * iFilterW] = (::u8)i;
 //
-//               pFilter[iFilterW - 1 - x + y * iFilterW] = (byte)i;
+//               pFilter[iFilterW - 1 - x + y * iFilterW] = (::u8)i;
 //
-//               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (byte)i;
+//               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
 //
-//               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (byte)i;
+//               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
 //
 //            }
 //
@@ -631,12 +631,12 @@ namespace draw2d_cairo
 //      i32 iFilterHalfH = iRadius;
 //      i32 iFilterArea = iFilterW * iFilterH;
 //      i32 divisor = iFilterW * iFilterH;
-//      byte *lpbSource;
-//      byte *lpbSource_1;
-//      byte *lpbSource_2;
-//      byte *lpwDestination;
-//      byte *lpFilter;
-//      byte * pFilter;
+//      ::u8 *lpbSource;
+//      ::u8 *lpbSource_1;
+//      ::u8 *lpbSource_2;
+//      ::u8 *lpwDestination;
+//      ::u8 *lpFilter;
+//      ::u8 * pFilter;
 //
 //      i32 i;
 //      i32 x;
@@ -674,7 +674,7 @@ namespace draw2d_cairo
 //                  i = 1;
 //               else
 //                  i = 0;
-//               pFilter[x + y * iFilterW] = (byte)i;
+//               pFilter[x + y * iFilterW] = (::u8)i;
 //            }
 //         }
 //      }
@@ -687,8 +687,8 @@ namespace draw2d_cairo
 //      if (cx != pimageSrc->width() || cy != pimageSrc->height())
 //         return false;
 //
-//      byte * lpbDst = (byte *)pimageDst->get_data();
-//      byte * lpbSrc = (byte *)pimageSrc->get_data();
+//      ::u8 * lpbDst = (::u8 *)pimageDst->get_data();
+//      ::u8 * lpbSrc = (::u8 *)pimageSrc->get_data();
 //
 //      //i32 wSrc = cx * 4;
 //      //i32 wDst = cx * 4;
@@ -704,7 +704,7 @@ namespace draw2d_cairo
 //      //   i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
 //      //i32 w = cx * 4;
 //
-//      ::copy_colorref(pimageDst, pimageSrc);
+//      ::copy_image32(pimageDst, pimageSrc);
 //      //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 //
 //

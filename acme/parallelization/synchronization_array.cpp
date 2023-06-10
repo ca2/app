@@ -120,7 +120,7 @@ bool synchronization_array::add_item(::particle * pparticle)
    if (handle != nullptr)
    {
 
-      m_byteaSyncIndex[m_hsyncaCache.get_size()] = (byte) m_synchronizationa.get_size();
+      m_byteaSyncIndex[m_hsyncaCache.get_size()] = (::u8) m_synchronizationa.get_size();
 
       m_hsyncaCache.add(handle);
 

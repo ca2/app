@@ -53,7 +53,7 @@ namespace operating_system
    string process::read(bool bUntilExit)
    {
 
-      __UNREFERENCED_PARAMETER(bUntilExit);
+      UNREFERENCED_PARAMETER(bUntilExit);
 
       return m_pipe.m_ppipeOut->read();
 

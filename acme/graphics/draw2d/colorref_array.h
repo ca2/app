@@ -5,7 +5,7 @@
 
 
 class CLASS_DECL_ACME colorref_array :
-   virtual public numeric_array < ::color32_t >
+   virtual public ::array < ::color32_t >
 {
 public:
 

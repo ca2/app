@@ -31,7 +31,7 @@ namespace draw2d
 //   void object::dump(dump_context& dumpcontext) const
 //   {
 //
-//      __UNREFERENCED_PARAMETER(dumpcontext);
+//      UNREFERENCED_PARAMETER(dumpcontext);
 //
 //      throw ::interface_only();
 //
@@ -110,7 +110,7 @@ namespace draw2d
 //   bool object::operator==(const object & obj) const
 //   {
 //      
-//      __UNREFERENCED_PARAMETER(obj);
+//      UNREFERENCED_PARAMETER(obj);
 //
 //      throw ::interface_only();
 //
@@ -122,7 +122,7 @@ namespace draw2d
 //   bool object::operator!=(const object & obj) const
 //   {
 //
-//      __UNREFERENCED_PARAMETER(obj);
+//      UNREFERENCED_PARAMETER(obj);
 //
 //      throw ::interface_only();
 //

@@ -27,7 +27,7 @@
 void wf_invalidate_region(wfContext* wfc, ::u32 x, ::u32 y, ::u32 width,
                           ::u32 height);
 wfBitmap* wf_image_new(wfContext* wfc, ::u32 width, ::u32 height, ::u32 bpp,
-                       const byte* data);
+                       const ::u8* data);
 /*void wf_image_free(wfBitmap* pimage);
 void wf_update_offset(wfContext* wfc);
 void wf_resize_window(wfContext* wfc);

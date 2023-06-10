@@ -776,8 +776,8 @@ file_pointer context::friendly_get_file(::payload payloadFile, ::u32 nOpenFlags)
 string context::http_get(const ::string & strUrl, ::property_set & set)
 {
 
-   __UNREFERENCED_PARAMETER(strUrl);
-   __UNREFERENCED_PARAMETER(set);
+   UNREFERENCED_PARAMETER(strUrl);
+   UNREFERENCED_PARAMETER(set);
 
    return "";
 

@@ -186,12 +186,12 @@ void operator delete(void * ptr, std::align_val_t) noexcept
 void heap_memory_check_padding_after(struct heap_memory* pheapmemory)
 {
 
-   byte* pbyte = (byte*)pheapmemory;
+   ::u8* pbyte = (::u8*)pheapmemory;
 
    int iStructSize = sizeof(heap_memory);
 
    // Heap Memory
-   // 1 byte + 1 byte + 1 byte + 1 byte + 4 bytes
+   // 1 ::u8 + 1 ::u8 + 1 ::u8 + 1 ::u8 + 4 bytes
    // 8 bytes + padding
    // 16 bytes?
 

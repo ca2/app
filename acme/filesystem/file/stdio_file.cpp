@@ -267,7 +267,7 @@ int stdio_file::get_u8()
 
    }
 
-   return (::byte) iChar;
+   return (::u8) iChar;
 
 }
 
@@ -288,15 +288,15 @@ int stdio_file::peek_byte()
 
    ::ungetc(iChar, m_pfile);
 
-   return (::byte) iChar;
+   return (::u8) iChar;
 
 }
 
 
-void stdio_file::put_byte_back(::byte byte)
+void stdio_file::put_byte_back(::u8 u8)
 {
 
-   ::ungetc(byte, m_pfile);
+   ::ungetc(u8, m_pfile);
 
 }
 
@@ -312,8 +312,8 @@ void stdio_file::write(const void * p, ::memsize s)
 void stdio_file::lock(filesize dwPos,filesize dwCount)
 {
 
-   __UNREFERENCED_PARAMETER(dwPos);
-   __UNREFERENCED_PARAMETER(dwCount);
+   UNREFERENCED_PARAMETER(dwPos);
+   UNREFERENCED_PARAMETER(dwCount);
 
 }
 
@@ -321,8 +321,8 @@ void stdio_file::lock(filesize dwPos,filesize dwCount)
 void stdio_file::unlock(filesize dwPos,filesize dwCount)
 {
 
-   __UNREFERENCED_PARAMETER(dwPos);
-   __UNREFERENCED_PARAMETER(dwCount);
+   UNREFERENCED_PARAMETER(dwPos);
+   UNREFERENCED_PARAMETER(dwCount);
 
 }
 
@@ -330,7 +330,7 @@ void stdio_file::unlock(filesize dwPos,filesize dwCount)
 void stdio_file::set_size(filesize dwNewLen)
 {
 
-   __UNREFERENCED_PARAMETER(dwNewLen);
+   UNREFERENCED_PARAMETER(dwNewLen);
 
 }
 

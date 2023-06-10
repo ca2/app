@@ -118,7 +118,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, s
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   __UNREFERENCED_PARAMETER(flags);
+   UNREFERENCED_PARAMETER(flags);
 
    m_straLink.erase_all();
    m_iaLinkStart.erase_all();
@@ -177,7 +177,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, strsize & index, ::wri
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   __UNREFERENCED_PARAMETER(pFont);
+   UNREFERENCED_PARAMETER(pFont);
    index++;
    if (m_iaPosition.get_size() < index + 2)
    {
@@ -348,7 +348,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                   //pimage->get_graphics()->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
                   pimage->invert();
                   //pimage->fill_channel(0, ::color::e_channel_blue);
-                  pimage->fill_channel(255, ::color::e_channel_alpha);
+                  pimage->fill_channel(255, ::color::e_channel_opacity);
 
                   {
 
@@ -1271,7 +1271,7 @@ void xfplayer_impact_line::SetAnimateIncrement(double dIncrement)
 
 void xfplayer_impact_line::SetRenderCriticalSection(critical_section * pcs)
 {
-   __UNREFERENCED_PARAMETER(pcs);
+   UNREFERENCED_PARAMETER(pcs);
    //    m_pcsRender =   pcs;
 }
 
@@ -1417,7 +1417,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   __UNREFERENCED_PARAMETER(pimageCache);
+   UNREFERENCED_PARAMETER(pimageCache);
 
    bool bSaveProcessing = !m_bEnhancedEmboss;
 
@@ -1972,7 +1972,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 void xfplayer_impact_line::OnSetCursor(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
    //if(is_hover())
    //{
@@ -2051,7 +2051,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 void xfplayer_impact_line::_001OnTimer(::timer * ptimer)
 {
 
-   __UNREFERENCED_PARAMETER(ptimer);
+   UNREFERENCED_PARAMETER(ptimer);
 
    //if(GetSelection().OnTimer(*this, user))
    //{

@@ -143,7 +143,7 @@ namespace colorertak5
      /**
       * Parses input bytes in specified encoding and creates DOM tree.
       */
-     Document *parse(const byte *bytes, i32 get_length, const ::string &codepage = 0);
+     Document *parse(const ::u8 *bytes, i32 get_length, const ::string &codepage = 0);
 
      /**
       * Deletes all DOM tree structure.

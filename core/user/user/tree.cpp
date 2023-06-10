@@ -293,7 +293,7 @@ namespace user
                if (m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
-                  m_uchHoverAlpha = (byte)(m_uchHoverAlphaInit + dwCurve);
+                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit + dwCurve);
             }
          }
          else
@@ -321,7 +321,7 @@ namespace user
                if (m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
-                  m_uchHoverAlpha = (byte)(m_uchHoverAlphaInit - dwCurve);
+                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit - dwCurve);
             }
          }
 
@@ -1053,7 +1053,7 @@ namespace user
 
       //::data::simple_lock lock(pitem->m_pitem);
 
-      __UNREFERENCED_PARAMETER(bLayout);
+      UNREFERENCED_PARAMETER(bLayout);
 
       auto pointOffset = get_context_offset();
 

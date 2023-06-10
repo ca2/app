@@ -90,7 +90,7 @@ namespace filehandler
    void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(ptopic);
+      UNREFERENCED_PARAMETER(ptopic);
 
    }
 
@@ -174,7 +174,7 @@ namespace filehandler
 
    void pane_impact::_001OnMenuMessage(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       set_current_tab_by_id(m_pimpactdataOld->m_atom);
    }
 

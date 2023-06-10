@@ -43,8 +43,8 @@
 //
 //void const_empty_string::set_string(const ::string & str, const ::action_context & context)
 //{
-//   __UNREFERENCED_PARAMETER(str);
-//   __UNREFERENCED_PARAMETER(context);
+//   UNREFERENCED_PARAMETER(str);
+//   UNREFERENCED_PARAMETER(context);
 //   throw ::exception(::exception("cannot set const string"));
 //}
 //

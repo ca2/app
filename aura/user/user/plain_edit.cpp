@@ -335,7 +335,7 @@ namespace user
    void plain_edit::OnDraw(::image * pimage)
    {
 
-      __UNREFERENCED_PARAMETER(pimage);
+      UNREFERENCED_PARAMETER(pimage);
 
    }
 
@@ -471,7 +471,7 @@ namespace user
 
       colorComposeBk = crBk;
       colorComposeBk.blend(crBkSel, 0.5);
-      colorComposeBk.alpha = 127;
+      colorComposeBk.m_u8Opacity = 127;
 
       pstyle->get(m_pcontrolstyle, pgraphics, this);
 
@@ -840,7 +840,7 @@ namespace user
 
                auto ppen = __create < ::draw2d::pen >();
 
-               ppen->create_solid(1.0, argb((byte)iErrorA, 255, 0, 0));
+               ppen->create_solid(1.0, argb((::u8)iErrorA, 255, 0, 0));
 
                pgraphics->set(ppen);
 
@@ -7078,8 +7078,8 @@ namespace user
 
    void plain_edit::IndexRegisterDelete(strsize iSel, strsize iCount)
    {
-      __UNREFERENCED_PARAMETER(iSel);
-      __UNREFERENCED_PARAMETER(iCount);
+      UNREFERENCED_PARAMETER(iSel);
+      UNREFERENCED_PARAMETER(iCount);
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
       /*   char flag;
@@ -7144,8 +7144,8 @@ namespace user
    void plain_edit::IndexRegisterInsert(strsize iSel, const ::string & pcszWhat)
 
    {
-      __UNREFERENCED_PARAMETER(iSel);
-      __UNREFERENCED_PARAMETER(pcszWhat);
+      UNREFERENCED_PARAMETER(iSel);
+      UNREFERENCED_PARAMETER(pcszWhat);
 
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
@@ -7770,7 +7770,7 @@ namespace user
    void plain_edit::_001OnHScroll(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -7795,7 +7795,7 @@ namespace user
    void plain_edit::_009OnChar(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -7982,7 +7982,7 @@ namespace user
    void plain_edit::_001OnEditCut(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -8017,7 +8017,7 @@ namespace user
    void plain_edit::_001OnEditCopy(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -8042,7 +8042,7 @@ namespace user
    void plain_edit::_001OnEditPaste(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (is_window_enabled())
       {
@@ -8095,7 +8095,7 @@ namespace user
    void plain_edit::on_message_size(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

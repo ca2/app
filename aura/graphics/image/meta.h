@@ -26,8 +26,8 @@ class CLASS_DECL_AURA image_meta :
 public:
 
 
-   ::pointer<::draw2d::bitmap>     m_pbitmap;
-   ::pointer<::draw2d::graphics>   m_pgraphics;
+   ::pointer<::draw2d::bitmap>      m_pbitmap;
+   ::pointer<::draw2d::graphics>    m_pgraphics;
    double                           m_dSpeed;
    double                           m_dIsotropicRate;
    ::size_i32                       m_sizeAlloc;

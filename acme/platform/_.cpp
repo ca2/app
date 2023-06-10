@@ -93,7 +93,7 @@ void gen_CrtErrorCheck(i32 i);
 
 void gen_CrtErrorCheck(i32 i)
 {
-   __UNREFERENCED_PARAMETER(i);
+   UNREFERENCED_PARAMETER(i);
 }
 
 

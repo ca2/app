@@ -9,8 +9,8 @@ namespace sockets
    void sip_client::invite(const ::string & pszTo, const ::string & pszFrom)
    {
 
-      __UNREFERENCED_PARAMETER(pszTo);
-      __UNREFERENCED_PARAMETER(pszFrom);
+      UNREFERENCED_PARAMETER(pszTo);
+      UNREFERENCED_PARAMETER(pszFrom);
       /*m_psocket = memory_new
       m_psocket->m_strTo = pszTo;
       m_psocket->m_strFrom = pszFrom;

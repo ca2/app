@@ -397,7 +397,7 @@ namespace write_text
 //            //         pPoints->m_lpPoints = point;
 //
 //            //point = (::point_i32 *)malloc( dwBuffSize );
-//            //         point = (::point_i32 *) memory_new byte(dwBuffSize);
+//            //         point = (::point_i32 *) memory_new ::u8(dwBuffSize);
 //            // Convert the starting point. It is an on curve point.
 //            // All other points are continuous from the "last"
 //            // point_i32 of the contour. Thus the start point_i32 the next
@@ -416,7 +416,7 @@ namespace write_text
 //
 //
 //            // get to first curve of contour -
-//            // it starts at the next byte beyond header
+//            // it starts at the next ::u8 beyond header
 //            pCurve = (LPTTPOLYCURVE) (pHeader + 1);
 //
 //
@@ -565,10 +565,10 @@ namespace write_text
 
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(bFill);
-      __UNREFERENCED_PARAMETER(dRateX);
-      __UNREFERENCED_PARAMETER(ppointOffset);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(bFill);
+      UNREFERENCED_PARAMETER(dRateX);
+      UNREFERENCED_PARAMETER(ppointOffset);
 
 
       //pdraw2d->api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);

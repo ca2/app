@@ -210,9 +210,9 @@ namespace user
 
    //   }
 
-   //   __UNREFERENCED_PARAMETER(nIDFirst);
+   //   UNREFERENCED_PARAMETER(nIDFirst);
 
-   //   __UNREFERENCED_PARAMETER(nIDLast);
+   //   UNREFERENCED_PARAMETER(nIDLast);
 
    //   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
@@ -762,9 +762,9 @@ namespace user
       case ::message::e_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x() = GET_X_LPARAM(lparam);
+         pmessage->m_point.x() = i32_x(lparam);
 
-         pmessage->m_point.y() = GET_Y_LPARAM(lparam);
+         pmessage->m_point.y() = i32_y(lparam);
       }
       break;
       case ::message::e_prototype_move:
@@ -876,7 +876,7 @@ namespace user
 
          pmessage->m_nType = static_cast <::u32> (wparam);
 
-         pmessage->m_size = ::size_i32(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+         pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
       }
       break;
       case ::message::e_prototype_activate:
@@ -2228,7 +2228,7 @@ namespace user
    void primitive_impl::set_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      __UNREFERENCED_PARAMETER(pprimitiveimpl);
+      UNREFERENCED_PARAMETER(pprimitiveimpl);
 
       //return ::error_failed;
 
@@ -2238,7 +2238,7 @@ namespace user
    void primitive_impl::erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      __UNREFERENCED_PARAMETER(pprimitiveimpl);
+      UNREFERENCED_PARAMETER(pprimitiveimpl);
 
    }
 
@@ -2528,7 +2528,7 @@ namespace user
    void primitive_impl::show_task(bool bShow)
    {
 
-      __UNREFERENCED_PARAMETER(bShow);
+      UNREFERENCED_PARAMETER(bShow);
 
    }
 

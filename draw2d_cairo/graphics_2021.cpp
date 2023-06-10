@@ -121,8 +121,8 @@ string_to_string * g_pmapFontPath;
 //   //else
 //   //   return false;
 //
-//   //__UNREFERENCED_PARAMETER(lplf);
-//   //__UNREFERENCED_PARAMETER(lpntm);
+//   //UNREFERENCED_PARAMETER(lplf);
+//   //UNREFERENCED_PARAMETER(lpntm);
 //
 //
 //   return true;
@@ -966,7 +966,7 @@ namespace draw2d_cairo
 //
 //        BITMAPINFO info;
 //
-//        color32_t * pcolorref;
+//        color32_t * pimage32;
 //
 //        ZeroMemory(&info, sizeof(BITMAPINFO));
 //
@@ -978,7 +978,7 @@ namespace draw2d_cairo
 //        info.bmiHeader.biCompression = BI_RGB;
 //        info.bmiHeader.biSizeImage = cx * cy * 4;
 //
-//        HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pcolorref, nullptr, 0);
+//        HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pimage32, nullptr, 0);
 //
 //        HDC hdc = ::CreateCompatibleDC(nullptr);
 //
@@ -992,11 +992,11 @@ namespace draw2d_cairo
 //            try
 //            {
 //
-//                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (byte *) pcolorref);
+//                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (::u8 *) pimage32);
 //
 //                ::draw2d::bitmap_pointer b(e_create);
 //
-//                b->CreateBitmap(this, ::size_f64(cx, cy), 1, 32, pcolorref, cx * sizeof(color32_t));
+//                b->CreateBitmap(this, ::size_f64(cx, cy), 1, 32, pimage32, cx * sizeof(color32_t));
 //
 //                cairo_surface_t * psurface = (cairo_surface_t *)b->get_os_data();
 //
@@ -1627,7 +1627,7 @@ namespace draw2d_cairo
 
             }
 
-            pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
+            pimage1->channel_multiply(::color::e_channel_opacity, pimage2);
 
             {
 
@@ -2778,7 +2778,7 @@ namespace draw2d_cairo
    }
 
 //
-//i32 graphics::GetPath(::point_f64 * lpPoints, byte * lpTypes, count nCount)
+//i32 graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, count nCount)
 //{
 //
 //    throw ::interface_only();
@@ -3691,7 +3691,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::polydraw(const ::point_f64 * lpPoints, const byte * lpTypes, count nCount)
+   void graphics::polydraw(const ::point_f64 * lpPoints, const ::u8 * lpTypes, count nCount)
    {
 
       throw ::interface_only();
@@ -6301,13 +6301,13 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(cairo_mutex());
 
-      auto r = colorref_get_r_value(color32);
+      auto r = color32_u8_red(color32);
 
-      auto g = colorref_get_g_value(color32);
+      auto g = color32_u8_green(color32);
 
-      auto b = colorref_get_b_value(color32);
+      auto b = color32_u8_blue(color32);
 
-      auto a = colorref_get_a_value(color32);
+      auto a = color32_u8_opacity(color32);
 
       cairo_set_source_rgba(m_pdc, r / 255.0, g / 255.0, b / 255.0, a / 255.0);
 

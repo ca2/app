@@ -110,7 +110,7 @@ public:
    inline int x() const
    {
 
-      return GET_X_LPARAM(m_lparam);
+      return i32_x(m_lparam);
 
    }
 
@@ -118,7 +118,7 @@ public:
    inline int y() const
    {
 
-      return GET_Y_LPARAM(m_lparam);
+      return i32_y(m_lparam);
 
    }
 

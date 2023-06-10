@@ -339,7 +339,7 @@ pacmedirectory->system() / "obs.png");
 
             color32_t color32;
 
-            byte a, r, g, b, rm, gm, bm;
+            ::u8 a, r, g, b, rm, gm, bm;
 
 /*            ::image_pointer pimage = pgraphics->m_pimage;
 

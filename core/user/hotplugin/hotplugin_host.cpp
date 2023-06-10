@@ -5,7 +5,7 @@
 
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
-void my_munmap(void * pcolorref,HANDLE hfile);
+void my_munmap(void * pimage32,HANDLE hfile);
 void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size_i32);
 #endif
 
@@ -573,7 +573,7 @@ namespace hotplugin
 
       m_pimage->map();
 
-      ::memory_copy(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
+      ::memory_copy(m_pimage->image32(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
       pgraphics->draw((const ::point_i32 *) &rectangleOut, m_sizeBitmap, m_pimage->g());
 

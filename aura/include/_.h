@@ -277,7 +277,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#endif
 ////
 ////
-////#define low_byte(w)              ((byte)((w) & 0xff))
+////#define lower_u8(w)              ((::u8)((w) & 0xff))
 ////
 ////
 ////#if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
@@ -289,13 +289,13 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define IMAGE_B_BYTE_INDEX 0
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(b)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(r))<<16)|(((u32)lower_u8(a))<<24)))
 ////
 ////
-////#define image_r_value(rgb)    (low_byte((rgb)>>16))
-////#define image_g_value(rgb)    (low_byte((rgb)>>8))
-////#define image_b_value(rgb)    (low_byte((rgb)))
-////#define image_a_value(rgb)    (low_byte((rgb)>>24))
+////#define image_r_value(rgb)    (lower_u8((rgb)>>16))
+////#define image_g_value(rgb)    (lower_u8((rgb)>>8))
+////#define image_b_value(rgb)    (lower_u8((rgb)))
+////#define image_a_value(rgb)    (lower_u8((rgb)>>24))
 ////
 ////
 ////#else
@@ -307,13 +307,13 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define IMAGE_B_BYTE_INDEX 2
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(r)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(b))<<16)|(((u32)lower_u8(a))<<24)))
 ////
 ////
-////#define image_r_value(rgb)    (low_byte((rgb)))
-////#define image_g_value(rgb)    (low_byte((rgb)>>8))
-////#define image_b_value(rgb)    (low_byte((rgb)>>16))
-////#define image_a_value(rgb)    (low_byte((rgb)>>24))
+////#define image_r_value(rgb)    (lower_u8((rgb)))
+////#define image_g_value(rgb)    (lower_u8((rgb)>>8))
+////#define image_b_value(rgb)    (lower_u8((rgb)>>16))
+////#define image_a_value(rgb)    (lower_u8((rgb)>>24))
 ////
 ////
 ////#endif
@@ -322,11 +322,11 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
 ////
 ////
-////#define colorref_get_r_value(rgb)    (low_byte(rgb))
-////#define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
-////#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
-////#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-////#define RGBA(r, g, b, a)         ((::color::color)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+////#define color32_u8_red(rgb)    (lower_u8(rgb))
+////#define color32_u8_green(rgb)    (lower_u8((rgb)>>8))
+////#define color32_u8_blue(rgb)    (lower_u8((rgb)>>16))
+////#define color32_u8_opacity(rgb)    (lower_u8((rgb)>>24))
+////#define RGBA(r, g, b, a)         ((::color::color)((lower_u8(r)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(b))<<16)|(((u32)lower_u8(a))<<24)))
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
 ////
@@ -342,7 +342,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////inline int trailingBytesForUTF8(char ch)
 ////{
 ////
-////   return ::g_trailingBytesForUTF8[(byte)ch];
+////   return ::g_trailingBytesForUTF8[(::u8)ch];
 ////
 ////}
 ////
@@ -408,11 +408,11 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#include <intsafe.h>
 ////#else
 ////
-////#ifndef LODWORD
-////#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
+////#ifndef lower_u32
+////#define lower_u32(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
 ////#endif
-////#ifndef HIDWORD
-////#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
+////#ifndef upper_u32
+////#define upper_u32(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
 ////#endif
 ////
 ////#endif
@@ -436,33 +436,33 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////#endif
 ////
-////#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-////#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-////#define __lo32(u)                                     ((::u32)(u))
-////#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+////#define lower_u16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+////#define upper_u16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+////#define lower_u32(u)                                     ((::u32)(u))
+////#define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 ////
-////#define __u32x(u)                                     ((::i16)__lo16(u))
-////#define __u32y(u)                                     ((::i16)__hi16(u))
+////#define u32_x(u)                                     ((::i16)lower_u16(u))
+////#define u32_y(u)                                     ((::i16)upper_u16(u))
 ////
-////#define __u32xy(u)                                    __u32x(u), __u32y(u)
+////#define __u32xy(u)                                    u32_x(u), u32_y(u)
 ////
-////#define __u64x(u)                                     ((::i32)__lo32(u))
-////#define __u64y(u)                                     ((::i32)__hi32(u))
+////#define u64_x(u)                                     ((::i32)lower_u32(u))
+////#define u64_y(u)                                     ((::i32)upper_u32(u))
 ////
-////#define __u64xy(u)                                    __u64x(u), __u64y(u)
+////#define __u64xy(u)                                    u64_x(u), u64_y(u)
 ////
 ////
-////#ifndef GET_X_LPARAM
-////#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+////#ifndef i32_x
+////#define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
 ////#endif
 ////
 ////
-////#ifndef GET_Y_LPARAM
-////#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+////#ifndef i32_y
+////#define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
 ////#endif
 ////
-////#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
-////#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
+////#define GET_X_LPARAM64(lparam)                        ((i32)(i16)lower_u32(lparam))
+////#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)upper_u32(lparam))
 ////
 ////
 //////CLASS_DECL_AURA int get_aura_init();

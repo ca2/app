@@ -127,13 +127,13 @@ struct xf_context
    HANDLE ::pointer < ::mutex >;
    BOOL UseXThreads;
    BOOL cursorHidden;
-   byte* palette;
-   byte palette_hwgdi[256 * 4];
+   ::u8* palette;
+   ::u8 palette_hwgdi[256 * 4];
 
    HGDI_DC hdc;
    ::u32 bitmap_size;
-   byte* bitmap_buffer;
-   byte* primary_buffer;
+   ::u8* bitmap_buffer;
+   ::u8* primary_buffer;
    BOOL inGfxFrame;
    BOOL graphicsReset;
 

@@ -2,8 +2,8 @@
 
 
 #include "type.h"
-#include  "acme/primitive/datetime/earth_time.h"
-#include  "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/datetime/file_time.h"
 #include "acme/graphics/draw2d/color.h"
 #include "ptr.h"
 #include "acme/memory/memory.h"
@@ -59,7 +59,7 @@ public:
       atom                                   m_atom;
       type                                   m_type;
       bool                                   m_b;
-      bool * m_pb;
+      bool *                                 m_pb;
       ::i8                                   m_i8;
       ::u8                                   m_u8;
       ::i16                                  m_i16;

@@ -1,6 +1,7 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/graphics.h"
 #include "frame_002.h"
+#include "acme/graphics/draw2d/_image_argb.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
 #include "base/user/experience/dock_manager.h"
@@ -21,17 +22,6 @@
 #define GRIP_CENTER_SMALL_CX 7
 #define GRIP_CENTER_LARGE_CY 36
 #define GRIP_CENTER_SMALL_CY 7
-
-
-color32_t SetAValue(byte a, color32_t color32)
-{
-
-   return argb(a, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32));
-
-}
-
-
-
 
 
 namespace experience_tranquillum

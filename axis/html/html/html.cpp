@@ -45,7 +45,7 @@ namespace html
       //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pparticle);
       __construct_new(m_pentitysolver);
 
-      m_clrInvalid = 0xffffffff;
+      m_clrInvalid = color::white;
       m_percentMax = USHRT_MAX;
 
       /** 28 system colors */

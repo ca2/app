@@ -46,7 +46,7 @@ namespace sip
    void request::InitBody( size_t sz )
    {
 
-      __UNREFERENCED_PARAMETER(sz);
+      UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
          m_file = ::pointer<IFile>e>(memory_new MemFile);

@@ -228,11 +228,11 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
 
    }
 
-   byte blockuse = pheapmemory->m_blockuse;
+   ::u8 blockuse = pheapmemory->m_blockuse;
 
    memsize sizeOld = pheapmemory->m_size;
 
-   byte align = pheapmemory->m_align;
+   ::u8 align = pheapmemory->m_align;
 
    void * p = heap_memory_base_get(pmemory);
 

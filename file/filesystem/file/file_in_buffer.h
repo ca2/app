@@ -24,16 +24,16 @@ namespace file
    class CLASS_DECL_CA2_FILE in_buffer :
       virtual public ::object
    {
-     byte *_buffer;
-     byte *_bufferLimit;
-     byte *_bufferBase;
+     ::u8 *_buffer;
+     ::u8 *_bufferLimit;
+     ::u8 *_bufferBase;
      reader * _stream;
      u64 _processedSize;
      u32 _bufferSize;
      bool _wasFinished;
 
      bool ReadBlock();
-     byte ReadBlock2();
+     ::u8 ReadBlock2();
 
    public:
      HRESULT ErrorCode;
@@ -51,7 +51,7 @@ namespace file
      //   _stream.Release();
      }
 
-     bool ReadByte(byte &b)
+     bool ReadByte(::u8 &b)
      {
        if (_buffer >= _bufferLimit)
          if (!ReadBlock())
@@ -59,13 +59,13 @@ namespace file
        b = *_buffer++;
        return true;
      }
-     byte ReadByte()
+     ::u8 ReadByte()
      {
        if (_buffer >= _bufferLimit)
          return ReadBlock2();
        return *_buffer++;
      }
-     u32 ReadBytes(byte *buf, u32 size_i32)
+     u32 ReadBytes(::u8 *buf, u32 size_i32)
      {
        if ((u32)(_bufferLimit - _buffer) >= size_i32)
        {

@@ -55,7 +55,7 @@ namespace prompt
 
    void impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ namespace prompt
    void impact::on_message_size(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       ::rectangle_i32 rectangleDesktop;
 
@@ -149,14 +149,14 @@ namespace prompt
 
    void impact::_001OnPaint(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    }
 
 
    void impact:: _001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -209,14 +209,14 @@ namespace prompt
    void impact::on_message_left_button_down(::message::message * pmessage)
    {
       //   auto pmouse = pmessage->m_union.m_pmouse;
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void impact::on_message_left_button_up(::message::message * pmessage)
    {
       //auto pmouse = pmessage->m_union.m_pmouse;
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       KillTimer(5432180);
 
 
@@ -225,14 +225,14 @@ namespace prompt
    void impact::on_message_right_button_up(::message::message * pmessage)
    {
       //auto pmouse = pmessage->m_union.m_pmouse;
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void impact::_001OnOp(::message::message * pmessage)
    {
       //::pointer<::user::message>pusermessage(pmessage);
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -289,7 +289,7 @@ namespace prompt
    void impact::on_message_show_window(::message::message * pmessage)
    {
       //   ::pointer<::message::show_window>pshowwindow(pmessage);
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    }
 
 

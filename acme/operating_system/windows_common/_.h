@@ -181,5 +181,3 @@ inline void copy(RECT & rect, const RECTANGLE & rectangle)
 
 }
 
-
-

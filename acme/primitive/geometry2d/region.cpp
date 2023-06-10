@@ -1,5 +1,6 @@
 // From aura/graphics/draw2d/region by camilo on 2023-05-26 13:55 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "ellipse.h"
 #include "item.h"
 #include "region.h"
 #include "acme/exception/interface_only.h"

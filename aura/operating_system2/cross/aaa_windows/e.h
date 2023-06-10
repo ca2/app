@@ -1943,7 +1943,7 @@
 //
 // MessageText:
 //
-// A requested file lock operation Cannot be processed due to an invalid byte range.
+// A requested file lock operation Cannot be processed due to an invalid ::u8 range.
 //
 #define ERROR_INVALID_LOCK_RANGE         307L
 
@@ -2516,7 +2516,7 @@
 //
 // MessageText:
 //
-// An illegal character was encountered. For a multi-byte character set this includes a lead byte without a succeeding trail byte. For the Unicode character set this includes the characters 0xFFFF and 0xFFFE.
+// An illegal character was encountered. For a multi-::u8 character set this includes a lead ::u8 without a succeeding trail ::u8. For the Unicode character set this includes the characters 0xFFFF and 0xFFFE.
 //
 #define ERROR_ILLEGAL_CHARACTER          582L
 
@@ -5116,7 +5116,7 @@
 //
 // MessageText:
 //
-// No mapping for the Unicode character exists in the target multi-byte code page.
+// No mapping for the Unicode character exists in the target multi-::u8 code page.
 //
 #define ERROR_NO_UNICODE_TRANSLATION     1113L
 
@@ -9302,7 +9302,7 @@
 //
 // MessageText:
 //
-// The byte count is too small.
+// The ::u8 count is too small.
 //
 #define RPC_X_BYTE_COUNT_TOO_SMALL       1782L
 
@@ -36769,7 +36769,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed because a monitor returned an invalid Timing Status byte when the operating system used the DDC/CI Get Timing Report & Timing Message command to get a timing report from a monitor.
+// The function failed because a monitor returned an invalid Timing Status ::u8 when the operating system used the DDC/CI Get Timing Report & Timing Message command to get a timing report from a monitor.
 //
 #define ERROR_GRAPHICS_DDCCI_MONITOR_RETURNED_INVALID_TIMING_STATUS_BYTE _HRESULT_TYPEDEF_(0xC0262586L)
 

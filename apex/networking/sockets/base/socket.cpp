@@ -300,7 +300,7 @@ namespace sockets
    //i32 base_socket::close_socket(socket_id s)
    //{
 
-   //   __UNREFERENCED_PARAMETER(s);
+   //   UNREFERENCED_PARAMETER(s);
 
    //   return 0;
 
@@ -582,8 +582,8 @@ namespace sockets
    //bool base_socket::SetNonblocking(bool bNb, socket_id s)
    //{
 
-   //   __UNREFERENCED_PARAMETER(bNb);
-   //   __UNREFERENCED_PARAMETER(s);
+   //   UNREFERENCED_PARAMETER(bNb);
+   //   UNREFERENCED_PARAMETER(s);
 
    //   return false;
 

@@ -138,7 +138,7 @@ void nsUniversalDetector::HandleData(const ::string & aBuf, PR::u32 aLen)
     //other than 0xa0, if every othe character is ascii, the page is ascii
     if (aBuf[i] & '\x80' && aBuf[i] != '\xA0')  //Since many Ascii only page contains NBSP 
     {
-      //we got a non-ascii byte (high-byte)
+      //we got a non-ascii ::u8 (high-::u8)
       if (mInputState != eHighbyte)
       {
         //adjust state

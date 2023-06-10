@@ -10,7 +10,7 @@
 
 //#include "acme/primitive/primitive/particle.h"
 //#include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/point.h"
 
 
 namespace user

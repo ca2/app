@@ -702,7 +702,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (byte)(d * 255))));
+                  maximum(0, minimum(255, (::u8)(d * 255))));
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, color32))
                {
@@ -710,7 +710,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (byte)(d * 255))));
+                  maximum(0, minimum(255, (::u8)(d * 255))));
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, color32))
                {
@@ -718,7 +718,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (byte)(d * 255))));
+                  maximum(0, minimum(255, (::u8)(d * 255))));
                }
             }
             else
@@ -1050,7 +1050,7 @@ namespace html
       i32 text::hit_test(html_data * pdocument, const ::point_f32 & point)
       {
 
-         __UNREFERENCED_PARAMETER(pdocument);
+         UNREFERENCED_PARAMETER(pdocument);
 
          float x = left();
          float cy = 0.f;
@@ -1260,7 +1260,7 @@ namespace html
       void text::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         __UNREFERENCED_PARAMETER(pgraphics);
+         UNREFERENCED_PARAMETER(pgraphics);
 
       }
 

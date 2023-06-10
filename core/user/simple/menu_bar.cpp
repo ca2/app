@@ -266,7 +266,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   __UNREFERENCED_PARAMETER(wParam);
+//   UNREFERENCED_PARAMETER(wParam);
 //
 //   MESSAGE * pmsg = (MESSAGE *)lParam;
 //
@@ -422,8 +422,8 @@ void simple_menu_bar::_001OnMenuChar(::message::message * pmessage)
 
 void simple_menu_bar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler)
 {
-   __UNREFERENCED_PARAMETER(pTarget);
-   __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+   UNREFERENCED_PARAMETER(pTarget);
+   UNREFERENCED_PARAMETER(bDisableIfNoHndler);
    return;
    /*   tool_command state;
       state.m_pOther = this;
@@ -461,8 +461,8 @@ void simple_menu_bar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool
 
 // index simple_menu_bar::OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
 // {
-//    __UNREFERENCED_PARAMETER(nparam);
-//    __UNREFERENCED_PARAMETER(oparam);
+//    UNREFERENCED_PARAMETER(nparam);
+//    UNREFERENCED_PARAMETER(oparam);
 //    if(mparam == MX_APPLANGUAGE)
 //    {
 //       ReloadMenuBar();

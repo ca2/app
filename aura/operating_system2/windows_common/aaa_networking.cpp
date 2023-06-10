@@ -9,9 +9,9 @@ bool g_bWsaStartup = false;
 bool defer_init_winsock()
 {
 
-   byte byteHi = 2;
+   ::u8 byteHi = 2;
 
-   byte byteLo = 2;
+   ::u8 byteLo = 2;
 
    if (!g_bWsaStartup)
    {
@@ -32,7 +32,7 @@ bool defer_init_winsock()
 
    }
 
-   if (__LOBYTE(g_wsadata.wVersion) < byteHi || (__LOBYTE(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
+   if (lower_u8(g_wsadata.wVersion) < byteHi || (lower_u8(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
    {
 
       output_debug_string("Could not find a usable version of Winsock.dll!\n");

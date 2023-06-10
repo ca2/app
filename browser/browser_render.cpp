@@ -532,7 +532,7 @@ namespace browser
 
                   m_pimageTemplate->fill(0, 0, 0, 0);
 
-/*                  m_pimageTemplate->channel_copy(::color::e_channel_alpha, ::color::e_channel_green, m_pimage);
+/*                  m_pimageTemplate->channel_copy(::color::e_channel_opacity, ::color::e_channel_green, m_pimage);
 
                }
 
@@ -612,7 +612,7 @@ namespace browser
       psystem->imaging().bitmap_blend(pgraphics,
                                          point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->get_size(),
-                                         m_pimageTemplate2->get_graphics(), ::point_i32(), byte (128 + (255 - 128) * r));
+                                         m_pimageTemplate2->get_graphics(), ::point_i32(), ::u8 (128 + (255 - 128) * r));
 
       //pgraphics->from(rectangleClient.top_left(),m_pimageTemplate, ::point_i32(), rectangleClient>si);
 
@@ -832,7 +832,7 @@ namespace browser
             if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
             {
 
-/*               m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_green);
+/*               m_pimage->channel_copy(::color::e_channel_opacity, ::color::e_channel_green);
 
 /*               m_pimageTint->tint(m_pimage, ca);
 
@@ -871,7 +871,7 @@ namespace browser
 
       pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser);
 
-      byte a, R, g, b;
+      ::u8 a, R, g, b;
 
       if (m_bAlternate)
       {
@@ -1205,9 +1205,9 @@ namespace browser
       if (m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         byte uchAlpha;
+         ::u8 uchAlpha;
 
-         uchAlpha = byte(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
+         uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
 /*         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 

@@ -434,8 +434,8 @@ namespace sockets
 
    bool http_socket::http_filter_response_header(string & strKey, string_array & straValue)
    {
-      __UNREFERENCED_PARAMETER(strKey);
-      __UNREFERENCED_PARAMETER(straValue);
+      UNREFERENCED_PARAMETER(strKey);
+      UNREFERENCED_PARAMETER(straValue);
       return true;
    }
 

@@ -390,7 +390,7 @@ namespace nanoui
 
       float luminanceComplement = 1.0f - m_white - m_black;
 
-      color.set_red(rgb.fr() * luminanceComplement + m_black * black.fr() + m_white * white.fr());
+      color.set_red(rgb.fr() * luminanceComplement + m_black * black.f64_r() + m_white * white.fr());
       color.set_green(rgb.fg() * luminanceComplement + m_black * black.fg() + m_white * white.fg());
       color.set_blue(rgb.fb() * luminanceComplement + m_black * black.fb() + m_white * white.fb());
       color.set_alpha(1.0f);

@@ -64,7 +64,7 @@ bool image_list::create(i32 cx, i32 cy)
 bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 {
 
-   __UNREFERENCED_PARAMETER(nFlags);
+   UNREFERENCED_PARAMETER(nFlags);
 
    if(cx <= 0)
       return false;
@@ -142,7 +142,7 @@ void image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   __UNREFERENCED_PARAMETER(iFlag);
+   UNREFERENCED_PARAMETER(iFlag);
 
    point_f64 pointSource((double)(iImage * m_size.cx()), 0.);
 
@@ -161,7 +161,7 @@ void image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 }
 
 
-void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity & opacity)
+void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const class ::opacity & opacity)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -173,7 +173,7 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   __UNREFERENCED_PARAMETER(iFlag);
+   UNREFERENCED_PARAMETER(iFlag);
 
    if (opacity.is_opaque())
    {
@@ -201,7 +201,7 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 }
 
 
-void image_list::color_blend(image_list* pimagelistSource, const ::color::color& color, const ::opacity & opacity)
+void image_list::color_blend(image_list* pimagelistSource, const ::color::color& color, const class ::opacity & opacity)
 {
 
    copy_from(pimagelistSource);
@@ -245,7 +245,7 @@ void image_list::_draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point
 
    ::point_f64 pointOffset(pointOffsetParam);
 
-   __UNREFERENCED_PARAMETER(iFlag);
+   UNREFERENCED_PARAMETER(iFlag);
 
    pointOffset.x() = minimum(m_size.cx(), pointOffset.x());
    pointOffset.y() = minimum(m_size.cy(), pointOffset.y());

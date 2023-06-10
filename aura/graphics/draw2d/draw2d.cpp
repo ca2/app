@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "lock.h"
+#include "acme/graphics/draw2d/_image32.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/array.h"
@@ -571,11 +572,11 @@ namespace draw2d
          bUpdate,
          colorfilter);
 
-      auto bA = colorfilter.opacity().get_alpha();
+      auto opacity = colorfilter.opacity();
 
       auto pbrushText = __create < ::draw2d::brush >();
 
-      pbrushText->create_solid(colorText & ::opacity(bA));
+      pbrushText->create_solid(colorText & opacity);
 
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
@@ -670,7 +671,7 @@ void draw2d::emboss_predicate(
 
       auto psystem = acmesystem()->m_paurasystem;
 
-      psystem->imaging().channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+      psystem->imaging().channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_opacity, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
       for (iptr i = 0; i < iBlur; i++)
       {
@@ -681,7 +682,7 @@ void draw2d::emboss_predicate(
 
       }
 
-      pimageBlur->set_rgb(crGlow);
+      pimageBlur->clear(crGlow);
 
       pimageBlur->mult_alpha();
 
@@ -705,26 +706,26 @@ void draw2d::emboss_predicate(
 
 
    void draw2d::alpha_spread__24CC(
-      byte * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
-      byte * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
-      byte bMin, i32 iRadius)
+      ::u8 * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
+      ::u8 * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
+      ::u8 bMin, i32 iRadius)
    {
-      __UNREFERENCED_PARAMETER(xDest);
-      __UNREFERENCED_PARAMETER(yDest);
-      __UNREFERENCED_PARAMETER(xSrc);
-      __UNREFERENCED_PARAMETER(ySrc);
+      UNREFERENCED_PARAMETER(xDest);
+      UNREFERENCED_PARAMETER(yDest);
+      UNREFERENCED_PARAMETER(xSrc);
+      UNREFERENCED_PARAMETER(ySrc);
       i32 iFilterW = iRadius * 2 + 1;
       i32 iFilterH = iRadius * 2 + 1;
       i32 iFilterHalfW = iFilterW / 2;
       i32 iFilterHalfH = iFilterH / 2;
       i32 iFilterArea = iFilterW * iFilterH;
       //i32 divisor;
-      byte * lpbSource;
-      byte * lpbSource_1;
-      byte * lpbSource_2;
-      byte * lpwDestination;
-      byte * lpFilter;
-      byte * pFilter;
+      ::u8 * lpbSource;
+      ::u8 * lpbSource_1;
+      ::u8 * lpbSource_2;
+      ::u8 * lpwDestination;
+      ::u8 * lpFilter;
+      ::u8 * pFilter;
 
 
       i32 i;
@@ -782,13 +783,13 @@ void draw2d::emboss_predicate(
 
                }
 
-               pFilter[x + y * iFilterW] = (byte)i;
+               pFilter[x + y * iFilterW] = (::u8)i;
 
-               pFilter[iFilterW - 1 - x + y * iFilterW] = (byte)i;
+               pFilter[iFilterW - 1 - x + y * iFilterW] = (::u8)i;
 
-               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (byte)i;
+               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
 
-               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (byte)i;
+               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
 
             }
 
@@ -1021,7 +1022,7 @@ void draw2d::emboss_predicate(
    }
 
 
-   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, ::color::color crSpreadSetColor)
+   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, const ::color::color & colorSpreadSetColor)
    {
 
       pimageDst->map();
@@ -1034,12 +1035,12 @@ void draw2d::emboss_predicate(
       i32 iFilterHalfH = iRadius;
       i32 iFilterArea = iFilterW * iFilterH;
       //i32 divisor = iFilterW * iFilterH;
-      byte * lpbSource;
-      byte * lpbSource_1;
-      byte * lpbSource_2;
-      byte * lpwDestination;
-      byte * lpFilter;
-      byte * pFilter;
+      ::u8 * lpbSource;
+      ::u8 * lpbSource_1;
+      ::u8 * lpbSource_2;
+      ::u8 * lpwDestination;
+      ::u8 * lpFilter;
+      ::u8 * pFilter;
 
       i32 i;
       i32 x;
@@ -1051,6 +1052,9 @@ void draw2d::emboss_predicate(
 
       i32 iRadiusSquare = iRadius * iRadius;
       i32 rSquare;
+
+
+      image32_t u32SpreadSetColor(colorSpreadSetColor);
 
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -1077,7 +1081,7 @@ void draw2d::emboss_predicate(
                   i = 1;
                else
                   i = 0;
-               pFilter[x + y * iFilterW] = (byte)i;
+               pFilter[x + y * iFilterW] = (::u8)i;
             }
          }
       }
@@ -1090,8 +1094,8 @@ void draw2d::emboss_predicate(
       if (cx != pimageSrc->width() || cy != pimageSrc->height())
          return false;
 
-      byte * lpbDst = (byte *)pimageDst->data();
-      byte * lpbSrc = (byte *)pimageSrc->data();
+      ::u8 * lpbDst = (::u8 *)pimageDst->data();
+      ::u8 * lpbSrc = (::u8 *)pimageSrc->data();
 
       //i32 wSrc = cx * 4;
       //i32 wDst = cx * 4;
@@ -1107,7 +1111,7 @@ void draw2d::emboss_predicate(
       //   i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
       //i32 w = cx * 4;
 
-      ::copy_colorref(pimageDst, pimageSrc);
+      ::copy_image32(pimageDst, pimageSrc);
       //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 
 
@@ -1228,7 +1232,7 @@ void draw2d::emboss_predicate(
                         {
                            if (lpbSource_2[0] > 0)
                            {
-                              *((u32 *)lpwDestination) = crSpreadSetColor;
+                              *((image32_t *)lpwDestination) = u32SpreadSetColor;
                               goto breakFilter;
                            }
                         }
@@ -1291,7 +1295,7 @@ void draw2d::emboss_predicate(
                      {
                         if (lpbSource_2[0] > 0)
                         {
-                           *((u32 *)lpwDestination) = crSpreadSetColor;
+                           *((image32_t *)lpwDestination) = u32SpreadSetColor;
                            goto breakFilter2;
                         }
                      }

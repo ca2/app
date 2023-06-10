@@ -1176,7 +1176,7 @@ inline const void * memory_find_memory(const void * src, strsize srclen, const v
 
 #if defined(WINDOWS) || defined(__APPLE__)
 
-   for (const byte * p = (const byte *) src; srclen >= findlen;  p++, srclen--)
+   for (const ::u8 * p = (const ::u8 *) src; srclen >= findlen;  p++, srclen--)
    {
 
       if (!memcmp(p, find, findlen))

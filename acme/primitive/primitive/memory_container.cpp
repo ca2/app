@@ -17,7 +17,7 @@ memory_container::memory_container(const void * pdata, memsize size)
 {
 
    m_pmemory = __new(class memory(this, pdata, size));
-   m_pbyte = (byte *) pdata;
+   m_pbyte = (::u8 *) pdata;
    m_memsize = size;
 
 }

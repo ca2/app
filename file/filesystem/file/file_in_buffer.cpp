@@ -27,7 +27,7 @@ namespace file
          return true;
       Free();
       _bufferSize = bufferSize;
-      _bufferBase = (byte *)::MidAlloc(bufferSize);
+      _bufferBase = (::u8 *)::MidAlloc(bufferSize);
       return (_bufferBase != 0);
    }
 
@@ -77,7 +77,7 @@ namespace file
       return (!_wasFinished);
    }
 
-   byte in_buffer::ReadBlock2()
+   ::u8 in_buffer::ReadBlock2()
    {
       if (!ReadBlock())
       {

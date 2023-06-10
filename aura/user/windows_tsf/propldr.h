@@ -53,7 +53,7 @@ public:
 private:
     int m_ObjRefCount;
     TF_PERSISTENT_PROPERTY_HEADER_ACP m_hdr;
-    byte *m_pb;
+    ::u8 *m_pb;
 };
 
 

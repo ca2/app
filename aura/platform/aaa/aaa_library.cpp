@@ -839,7 +839,7 @@ namespace aura
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-      __UNREFERENCED_PARAMETER(ida);
+      UNREFERENCED_PARAMETER(ida);
 
    }
 

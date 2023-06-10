@@ -52,7 +52,7 @@ void check_bounds(u8 * p)
 
    uptr * pinteraction = (uptr *)p;
 
-   byte a[256];
+   ::u8 a[256];
 
    zero(a);
 

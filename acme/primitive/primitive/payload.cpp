@@ -8617,7 +8617,7 @@ bool payload::is_false() const
       case e_type_enum_flag:
       return !m_i64;
    case e_type_color:
-      return !m_color.u32;
+      return !m_color.m_u32;
    case e_type_hls:
       return m_hls.m_dL == 0.0;
    case e_type_last_element:
@@ -8804,7 +8804,7 @@ bool payload::is_set_false() const
       case e_type_enum_flag:
       return !m_i64;
    case e_type_color:
-      return !m_color.u32;
+      return !m_color.m_u32;
    case e_type_hls:
       return m_hls.m_dL == 0.0;
    case e_type_last_element:

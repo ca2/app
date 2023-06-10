@@ -117,7 +117,7 @@ namespace write_text
 
       ::rectangle_i32 rectangleClient = m_puserinteraction->client_rectangle();
 
-      rectangleClient += m_puserinteraction->get_context_offset();
+      //rectangleClient += m_puserinteraction->get_context_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -400,7 +400,7 @@ namespace write_text
 
             auto color = m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);
 
-            int iA = color.alpha;
+            //auto u8Opacity = color.m_u8Opacity;
 
             pgraphics->fill_rectangle(rectangle, color);
 

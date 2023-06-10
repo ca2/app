@@ -416,8 +416,8 @@
 #define VK_DBE_ALPHANUMERIC      0xF0 /* Changes the mode to alphanumeric. */
 #define VK_DBE_KATAKANA         0xF1 /* Changes the mode to Katakana. */
 #define VK_DBE_HIRAGANA         0xF2 /* Changes the mode to Hiragana. */
-#define VK_DBE_SBCSCHAR         0xF3 /* Changes the mode to single-byte characters. */
-#define VK_DBE_DBCSCHAR         0xF4 /* Changes the mode to double-byte characters. */
+#define VK_DBE_SBCSCHAR         0xF3 /* Changes the mode to single-::u8 characters. */
+#define VK_DBE_DBCSCHAR         0xF4 /* Changes the mode to double-::u8 characters. */
 #define VK_DBE_ROMAN         0xF5 /* Changes the mode to Roman characters. */
 #define VK_DBE_NOROMAN         0xF6 /* Changes the mode to non-Roman characters. */
 #define VK_DBE_ENTERWORDREGISTERMODE   0xF7 /* Activates the word registration dialog box. */

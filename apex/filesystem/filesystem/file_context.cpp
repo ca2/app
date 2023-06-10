@@ -2155,8 +2155,8 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 void file_context::get_status(::file::file_status & status, const ::file::path &path)
 {
 
-   __UNREFERENCED_PARAMETER(status);
-   __UNREFERENCED_PARAMETER(path);
+   UNREFERENCED_PARAMETER(status);
+   UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only();
 
@@ -2168,8 +2168,8 @@ void file_context::get_status(::file::file_status & status, const ::file::path &
 void file_context::set_status(const ::file::path &path, const ::file::file_status &status)
 {
 
-   __UNREFERENCED_PARAMETER(path);
-   __UNREFERENCED_PARAMETER(status);
+   UNREFERENCED_PARAMETER(path);
+   UNREFERENCED_PARAMETER(status);
 
    throw ::interface_only();
 

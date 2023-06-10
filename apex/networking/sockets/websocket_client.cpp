@@ -146,7 +146,7 @@
 //
 //   m.set_size(length);
 //
-//   u8 * frame = (byte*)m.data();
+//   u8 * frame = (::u8*)m.data();
 //
 //   frame[0] = 0x80 | fin;
 //
@@ -417,9 +417,9 @@ namespace sockets
 
    //   m_emethod = http_method_get;
 
-   //   __UNREFERENCED_PARAMETER(host);
+   //   UNREFERENCED_PARAMETER(host);
 
-   //   __UNREFERENCED_PARAMETER(port);
+   //   UNREFERENCED_PARAMETER(port);
 
    //}
 

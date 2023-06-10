@@ -56,7 +56,7 @@ namespace console
    void prompt_document::data_on_after_change(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

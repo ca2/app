@@ -285,7 +285,7 @@
 
 //    _asmxxx{
 //       // Test rshift for >128
-//       mov      al, byte ptr[rshift]
+//       mov      al, ::u8 ptr[rshift]
 //       cmp      al, 80
 //       jl      shiftOK
 //       popfd                           // cleanup stack
@@ -363,7 +363,7 @@
 //       // Divide: var128 = var128 / (2^rshift)
 //       //
 //       xor      eax, eax
-//       mov      al, byte ptr[rshift]
+//       mov      al, ::u8 ptr[rshift]
 //       cmp      al, 0
 //       jz      applySign
 
@@ -401,7 +401,7 @@
 
 // bitShift:
 //       // Do multiple precision bitshift
-//       mov      cl, byte ptr[rshift]
+//       mov      cl, ::u8 ptr[rshift]
 //       mov      eax, dword ptr[edi+4]
 //       shrd   dword ptr[edi], eax, cl
 //       mov      eax, dword ptr[edi+8]

@@ -249,7 +249,7 @@ namespace user
       {
 
 
-         //__UNREFERENCED_PARAMETER(pmessage);
+         //UNREFERENCED_PARAMETER(pmessage);
 
          //::pointer<::message::set_focus>psetfocus(pmessage);
 
@@ -725,7 +725,7 @@ namespace user
 
          //   ::color::color crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
-         //   //if (colorref_get_r_value(crBackground) != 255)
+         //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
          //   //   output_debug_string("no full red");
@@ -749,7 +749,7 @@ namespace user
 
          //   ::color::color crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
-         //   //if (colorref_get_r_value(crBackground) != 255)
+         //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
          //   //   output_debug_string("no full red");

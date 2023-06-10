@@ -21,7 +21,7 @@ public:
 
 
    hsync_array          m_hsyncaCache;
-   byte                 m_byteaSyncIndex[MAXIMUM_SYNCHRONIZING_OBJECTS];
+   ::u8                 m_byteaSyncIndex[MAXIMUM_SYNCHRONIZING_OBJECTS];
 
 
 #endif

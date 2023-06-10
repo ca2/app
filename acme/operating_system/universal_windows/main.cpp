@@ -12,8 +12,8 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 
 void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 {
-   __UNREFERENCED_PARAMETER(uiCode);
-   __UNREFERENCED_PARAMETER(ppointers);
+   UNREFERENCED_PARAMETER(uiCode);
+   UNREFERENCED_PARAMETER(ppointers);
 }
 
 

@@ -995,7 +995,7 @@ typedef void * HDROP;
 typedef struct tagACCEL
 {
 #ifndef _MAC
-   byte   fVirt;               /* Also called the flags field */
+   ::u8   fVirt;               /* Also called the flags field */
    ::u16   key;
    ::u16   cmd;
 #else
@@ -1014,7 +1014,7 @@ typedef struct tagPAINTSTRUCT
    RECT32        rcPaint;
    int_bool        fRestore;
    int_bool        fIncUpdate;
-   byte        rgbReserved[32];
+   ::u8        rgbReserved[32];
 } PAINTSTRUCT,*PPAINTSTRUCT,*NPPAINTSTRUCT,*LPPAINTSTRUCT;
 
 

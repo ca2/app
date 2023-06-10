@@ -58,7 +58,7 @@ namespace aura
    exclusive::exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
    {
 
-      __UNREFERENCED_PARAMETER(psa);
+      UNREFERENCED_PARAMETER(psa);
 
       m_strId = strId;
 

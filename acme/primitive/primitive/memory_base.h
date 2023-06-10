@@ -54,7 +54,7 @@ public:
 
    bool                    m_bOwner;
    bool                    m_bReadOnly;
-   byte *                  m_beginStorage;
+   ::u8 *                  m_beginStorage;
    memsize                 m_sizeStorage;
    double                  m_dAllocationRateUp;
    ::u32                   m_dwAllocationAddUp;
@@ -94,11 +94,11 @@ public:
 
    }
 
-   ::byte * storage_begin() { return m_beginStorage; }
-   const ::byte * storage_begin() const { return m_beginStorage; }
+   ::u8 * storage_begin() { return m_beginStorage; }
+   const ::u8 * storage_begin() const { return m_beginStorage; }
    memsize storage_size() const { return maximum(0,m_sizeStorage); }
-   ::byte * storage_end() { return storage_begin() + storage_size(); }
-   const ::byte * storage_end() const { return storage_begin() + storage_size(); }
+   ::u8 * storage_end() { return storage_begin() + storage_size(); }
+   const ::u8 * storage_end() const { return storage_begin() + storage_size(); }
    memsize offset() const { return m_begin - m_beginStorage; }
    memsize max_offset() const { return storage_size(); }
 
@@ -117,7 +117,7 @@ public:
 
    typedef bstring_manager manager;
 
-   typedef byte value_type;
+   typedef ::u8 value_type;
 
 
    //MEMORY      m_memory;
@@ -157,7 +157,7 @@ public:
    //virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
 
    virtual memory detach_as_primitive_memory();
-   //virtual byte * detach_virtual_memory();
+   //virtual ::u8 * detach_virtual_memory();
    //virtual HGLOBAL detach_shared_memory();
 
    //bool is_enabled() const;
@@ -169,9 +169,9 @@ public:
 
    inline void truncate(memsize sizeSmaller) { if (sizeSmaller < size()) return set_size(sizeSmaller); }
 
-   virtual byte * impl_alloc(memsize dwAllocation);
-   virtual byte * impl_realloc(void * pdata,memsize dwAllocation);
-   virtual void impl_free(byte * pdata);
+   virtual ::u8 * impl_alloc(memsize dwAllocation);
+   virtual ::u8 * impl_realloc(void * pdata,memsize dwAllocation);
+   virtual void impl_free(::u8 * pdata);
 
    virtual void reserve(memsize dwNewLength);
 
@@ -202,26 +202,26 @@ public:
    ::particle * clone() const override;
 
 
-//   inline byte * storage_begin() { return m_memory.storage_begin(); }
-//   inline const byte * storage_begin() const { return m_memory.storage_begin(); }
-//   inline byte * storage_end() { return m_memory.storage_end(); }
-//   inline const byte * storage_end() const { return m_memory.storage_end(); }
+//   inline ::u8 * storage_begin() { return m_memory.storage_begin(); }
+//   inline const ::u8 * storage_begin() const { return m_memory.storage_begin(); }
+//   inline ::u8 * storage_end() { return m_memory.storage_end(); }
+//   inline const ::u8 * storage_end() const { return m_memory.storage_end(); }
 //   inline memsize storage_size() const { return m_memory.storage_size(); }
 
 
    //inline memsize size() const { return m_memory.size(); }
-   //inline const byte * data() const { return m_memory.data(); }
-   //inline byte * data() { return m_memory.data(); }
+   //inline const ::u8 * data() const { return m_memory.data(); }
+   //inline ::u8 * data() { return m_memory.data(); }
 
    //inline memsize          size() const;
-   //inline byte *           data() const;
-   //inline byte *           data();
+   //inline ::u8 *           data() const;
+   //inline ::u8 *           data();
 
 //
-//   inline const byte * begin() const { return data();  }
-//   inline byte * begin() { return data(); }
-//   inline const byte * end() const { return m_memory.end(); }
-//   inline byte * end() { return m_memory.end(); }
+//   inline const ::u8 * begin() const { return data();  }
+//   inline ::u8 * begin() { return data(); }
+//   inline const ::u8 * end() const { return m_memory.end(); }
+//   inline ::u8 * end() { return m_memory.end(); }
 
    //inline const char * c_str() const { return (const char*)data(); }
    //inline char * sz() { return (char*)data(); }
@@ -233,11 +233,11 @@ public:
    inline bool is_empty() const { return MEMORY::is_empty(); }
    inline bool has_data() const { return this->size() > 0; }
 
-   inline byte operator [] (::index i) const { return data()[i]; }
-   inline byte & operator [] (::index i) { return data()[i]; }
+   inline ::u8 operator [] (::index i) const { return data()[i]; }
+   inline ::u8 & operator [] (::index i) { return data()[i]; }
 
-   inline operator const byte * () const { return data(); }
-   inline operator byte * () { return data(); }
+   inline operator const ::u8 * () const { return data(); }
+   inline operator ::u8 * () { return data(); }
 
    inline operator const void * () const { return data(); }
    inline operator void * () { return data(); }
@@ -274,7 +274,7 @@ public:
    void append_from_string(const ::scoped_string & scopedstr);
    void append_from_string(const ::string & str);
    void append_from_string(const ::payload & payload);
-   void append_byte(byte b){ append(&b, 1);}
+   void append_byte(::u8 b){ append(&b, 1);}
    //::string as_string(memsize iStart = 0, memsize uiSize = -1) const;
    virtual string get_string() const;
    virtual string get_string(memsize iStart, memsize uiSize = -1) const;
@@ -285,7 +285,7 @@ public:
    void copy_from(const memory_base * pstorage);
    void copy_from(const void * pdata, memsize s);
    void copy_to(void * pdata, memsize s) const;
-   void set(byte b,memsize iStart = 0,memsize uiSize = -1);
+   void set(::u8 b,memsize iStart = 0,memsize uiSize = -1);
    void zero(memsize iStart = 0, memsize uiSize = -1);
 
    
@@ -299,7 +299,7 @@ public:
    void append(const void * pdata, memsize iCount);
    void append(memsize iCount, uchar uch);
    void append(const memory_base & memory, memsize iStart = 0, memsize iCount = -1);
-   void append(byte b);
+   void append(::u8 b);
 
    void clear();
 
@@ -343,15 +343,15 @@ public:
    inline void set_char_at_grow(strsize iChar, char ch);
 
 
-   byte * find(const ::block& block, ::index iStart = 0) const;
+   ::u8 * find(const ::block& block, ::index iStart = 0) const;
    ::index find_index(const ::block& block, ::index iStart = 0) const;
    ::index find_index(char ch, ::index iStart = 0) const;
-   byte* rear_find(const ::block& block, ::index iStart = 0) const;
+   ::u8* rear_find(const ::block& block, ::index iStart = 0) const;
    ::index reverse_find_index(const ::block& block, ::index iStart = 0) const;
-   byte* reverse_find_byte_not_in_block(const ::block& block, ::index iStart = 0) const;
+   ::u8* reverse_find_byte_not_in_block(const ::block& block, ::index iStart = 0) const;
    ::index reverse_find_index_of_byte_not_in_block(const ::block& block, ::index iStart = 0) const;
 
-   byte * find_line_prefix(const ::block& blockPrefix, ::index iStart = 0);
+   ::u8 * find_line_prefix(const ::block& blockPrefix, ::index iStart = 0);
    ::index find_line_prefix_index(const ::block& blockPrefix, ::index iStart = 0);
    void patch_line_suffix(const ::block & blockPrefix, const ::block& blockSuffix, ::index iStart = 0);
 
@@ -384,27 +384,27 @@ public:
 };
 
 
-//inline byte * memory_base::internal_get_data() const
+//inline ::u8 * memory_base::internal_get_data() const
 //{
-//   return (byte *) m_memory.begin();
+//   return (::u8 *) m_memory.begin();
 //}
 //inline memsize memory_base::size() const
 //{
 //   return size();
 //}
-//inline byte * memory_base::data() const
+//inline ::u8 * memory_base::data() const
 //{
-//   return (byte*)m_memory.m_pbegin;
+//   return (::u8*)m_memory.m_pbegin;
 //}
-//inline byte * memory_base::data()
+//inline ::u8 * memory_base::data()
 //{
-//   return (byte*)m_memory.m_pbegin;
+//   return (::u8*)m_memory.m_pbegin;
 //}
-//inline byte * memory_base::data() const
+//inline ::u8 * memory_base::data() const
 //{
 //   return data();
 //}
-//inline byte * memory_base::data()
+//inline ::u8 * memory_base::data()
 //{
 //   return data();
 //}

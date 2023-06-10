@@ -3457,7 +3457,7 @@ void wm_full_screen(oswindow w, const ::rectangle_f64 & rectangle)
 CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 {
 
-   __UNREFERENCED_PARAMETER(bDock);
+   UNREFERENCED_PARAMETER(bDock);
 
 }
 

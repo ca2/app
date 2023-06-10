@@ -16,7 +16,7 @@ inline int utf8_unicode_length(int c) { return trailingBytesForUTF8(c) + 1; }
 inline i32 utf8_o(char cExtraBytes);
 
 
-inline char utf8_e(byte c);
+inline char utf8_e(::u8 c);
 
 
 

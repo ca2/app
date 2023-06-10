@@ -22,22 +22,22 @@ namespace file
       
       edit_item_base();
 
-      virtual bool read_byte(byte* pbyte, ::file::edit_file* pfile);
+      virtual bool read_byte(::u8* pbyte, ::file::edit_file* pfile);
 
       virtual filesize get_position(bool bForward);
 
-      virtual byte* data();
+      virtual ::u8* data();
       virtual enum_edit_item get_type();
       virtual memsize get_extent();
       virtual memsize get_file_extent();
-      virtual byte* reverse_get_data();
+      virtual ::u8* reverse_get_data();
       virtual enum_edit_item reverse_get_type();
       virtual memsize reverse_get_extent();
       virtual memsize reverse_get_file_extent();
       virtual memsize get_extent(bool bForward);
       virtual enum_edit_item get_type(bool bForward);
       virtual memsize get_file_extent(bool bForward);
-      virtual byte* data(bool bForward);
+      virtual ::u8* data(bool bForward);
       virtual memsize get_delta_length();
 
    };
@@ -57,11 +57,11 @@ namespace file
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual byte* data()  override;
+      virtual ::u8* data()  override;
       virtual enum_edit_item reverse_get_type()  override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
-      virtual byte* reverse_get_data() override;
+      virtual ::u8* reverse_get_data() override;
 
       virtual memsize get_delta_length()  override;
    };
@@ -81,11 +81,11 @@ namespace file
       virtual enum_edit_item get_type()  override;
       virtual memsize get_extent()  override;
       virtual memsize get_file_extent() override;
-      virtual byte* data()  override;
+      virtual ::u8* data()  override;
       virtual enum_edit_item reverse_get_type()  override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
-      virtual byte* reverse_get_data() override;
+      virtual ::u8* reverse_get_data() override;
       virtual memsize get_delta_length() override;
 
    };
@@ -103,11 +103,11 @@ namespace file
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual byte* data()  override;
+      virtual ::u8* data()  override;
       virtual enum_edit_item reverse_get_type() override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
-      virtual byte* reverse_get_data()  override;
+      virtual ::u8* reverse_get_data()  override;
       virtual memsize get_delta_length() override;
 
    };
@@ -132,11 +132,11 @@ namespace file
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
       virtual memsize get_file_extent() override;
-      virtual byte* data() override;
+      virtual ::u8* data() override;
       virtual enum_edit_item reverse_get_type() override;
       virtual memsize reverse_get_extent() override;
       virtual memsize reverse_get_file_extent() override;
-      virtual byte* reverse_get_data()  override;
+      virtual ::u8* reverse_get_data()  override;
       virtual memsize get_delta_length() override;
 
       virtual bool read_byte(u8* pbyte, ::file::edit_file* pfile) override;

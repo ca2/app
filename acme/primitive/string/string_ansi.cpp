@@ -798,7 +798,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//string::string(Array <byte > ^ a):
+//string::string(Array <::u8 > ^ a):
 //   string(::str::GetDefaultManager())
 //{
 //   //      if( !CheckImplicitLoad( pszSrc ) )

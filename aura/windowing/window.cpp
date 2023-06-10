@@ -159,7 +159,7 @@ namespace windowing
    void window::create_window(::user::interaction_impl * puserinteractionimpl)
    {
 
-      __UNREFERENCED_PARAMETER(puserinteractionimpl);
+      UNREFERENCED_PARAMETER(puserinteractionimpl);
 
       throw ::interface_only();
       

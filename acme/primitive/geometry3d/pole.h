@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 struct POLED
@@ -204,7 +204,7 @@ inline ::point_f64 __point_f64(const POLE & pole)
 
 
 template < primitive_pole POLE >
-inline ::point_i32 __point_i32(const POLE & pole)
+inline ::point_i32 u32_point_i32(const POLE & pole)
 {
 
    return {(::i32)pole.x(), (::i32) pole.y() };

@@ -36,7 +36,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME char nibble_lower_case_from(byte b)
+   constexpr CLASS_DECL_ACME char nibble_lower_case_from(::u8 b)
    {
 
       if(b >= 10)
@@ -51,7 +51,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME char nibble_upper_case_from(byte b)
+   constexpr CLASS_DECL_ACME char nibble_upper_case_from(::u8 b)
    {
 
       if(b >= 10)
@@ -66,7 +66,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, byte b)
+   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, ::u8 b)
    {
 
       sz[0] = nibble_lower_case_from((b >> 4) & (char) 0x0f);
@@ -75,7 +75,7 @@ namespace hex
    }
 
    
-   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, byte b)
+   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, ::u8 b)
    {
 
       sz[0] = nibble_upper_case_from((b >> 4) & (char) 0x0f);

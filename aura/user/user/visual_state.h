@@ -2,7 +2,9 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace user
@@ -62,11 +64,11 @@ namespace user
       bool operator == (const visual_state & visualstate) const { return !memcmp(this, &visualstate, sizeof(visual_state)); }
       bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }
 
-      auto client_rect() const { return ::rectangle_i32(m_size); }
-      void client_rect(::rectangle_i32 & rect) const { rect = client_rect(); }
+      auto raw_rectangle() const { return ::rectangle_i32(m_size); }
+      void raw_rectangle(::rectangle_i32 & rect) const { rect = raw_rectangle(); }
 
-      auto parent_client_rectangle() const { return ::rectangle_i32(m_point, m_size); }
-      void parent_client_rectangle(::rectangle_i32 & rect) const { rect = parent_client_rectangle(); }
+      auto parent_raw_rectangle() const { return ::rectangle_i32(m_point, m_size); }
+      void parent_raw_rectangle(::rectangle_i32 & rect) const { rect = parent_raw_rectangle(); }
 
       void bottom_right(const ::point_i32 & point) { m_size = point - m_point; }
 

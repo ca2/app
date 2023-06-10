@@ -99,7 +99,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
    if(m_bTracking)
    {
 
-      auto point = pointClient - m_sizeTrackOffset;
+      auto point = pointClient - m_sizeTrackOffset - get_parent_accumulated_scroll();
 
       queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
          {
@@ -276,7 +276,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
       
       screen_to_client()(point);
 
-      point -= m_sizeTrackOffset;
+      point = point - m_sizeTrackOffset - get_parent_accumulated_scroll();
 
       auto psystem = acmesystem()->m_paurasystem;
 
@@ -354,7 +354,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
       else
       {
 
-         statusrectangleTrack.left = iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iWidth / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
+         statusrectangleTrack.left = rectangleClient.left + iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iWidth / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
 
 
       }
@@ -381,7 +381,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
       else
       {
 
-         statusrectangleTrack.top = iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
+         statusrectangleTrack.top = rectangleClient.top + iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
 
       }
 
@@ -654,6 +654,8 @@ i32 simple_scroll_bar::_001GetScrollPos()
    else
       return m_scrollinfo.nPos;
 }
+
+
 
 
 
@@ -1175,8 +1177,8 @@ i32 simple_scroll_bar::_001SetScrollPos(i32 iPos)
 
 //LRESULT simple_scroll_bar::OnEconoModeChange(WPARAM wParam, LPARAM lParam)
 //{
-//   __UNREFERENCED_PARAMETER(wParam);
-//   __UNREFERENCED_PARAMETER(lParam);
+//   UNREFERENCED_PARAMETER(wParam);
+//   UNREFERENCED_PARAMETER(lParam);
 //   update_drawing_objects();
 //   //set_need_redraw();
 //
@@ -1338,6 +1340,12 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
+   ::draw2d::save_context savecontext(pgraphics);
+
+   //auto pointOffset = get_parent()->get_context_offset();
+
+   //pgraphics->offset_origin(pointOffset.x(), pointOffset.y());
+
    //::user::style_context style(this);
 
    auto pstyle = get_style(pgraphics);
@@ -1413,7 +1421,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   ::u32 tickFadeOut = 300;
 
-   //   byte uchAlpha = maximum(0, minimum(255, prop("tracking_alpha").u32()));
+   //   ::u8 uchAlpha = maximum(0, minimum(255, prop("tracking_alpha").u32()));
 
    //   if (m_bTracking)
    //   {
@@ -1485,7 +1493,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeIn)
    //      {
 
-   //         uchAlpha = (byte)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
+   //         uchAlpha = (::u8)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
 
    //      }
    //      else
@@ -1506,7 +1514,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeOut)
    //      {
 
-   //         uchAlpha = (byte)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
+   //         uchAlpha = (::u8)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
 
    //      }
    //      else
@@ -1651,11 +1659,11 @@ void simple_scroll_bar::on_message_show_window(::message::message * pmessage)
 
 void simple_scroll_bar::on_message_destroy(::message::message * pmessage)
 {
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 }
 
 
-void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDrawParam,const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDrawParam,const ::rectangle_i32 & lpcrectClip,::u8 uchAlpha)
 {
 
    ::draw2d::save_context savecontext(pgraphics);
@@ -1690,7 +1698,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
 
 
-void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleDrawParam, const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleDrawParam, const ::rectangle_i32 & lpcrectClip,::u8 uchAlpha)
 {
 
    ::rectangle_f64 rectangleDraw(rectangleDrawParam);
@@ -1812,6 +1820,8 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
 ::item_pointer simple_scroll_bar::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
 {
+
+   //::point_i32 point = pointClient - get_parent_accumulated_scroll();
 
    auto psystem = acmesystem()->m_paurasystem;
 

@@ -1,4 +1,4 @@
-/*      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
+/*      void SetMemStream(::u8 *buffer) { _buffer2 = buffer; }
 void SetStream(writer *stream);
 void Init();
 HRESULT flush();
@@ -9,7 +9,7 @@ void ReleaseStream()
 }
 HRESULT FlushPart();
 
-void WriteByte(byte b)
+void WriteByte(::u8 b)
 {
 m_memory.get_data()[_pos++] = b;
 if(_pos == _limitPos)
@@ -18,7 +18,7 @@ FlushWithCheck();
 void WriteBytes(const void *data, size_t size)
 {
 for (size_t i = 0; i < size; i++)
-WriteByte(((const byte *)data)[i]);
+WriteByte(((const ::u8 *)data)[i]);
 }
 
 u64 GetProcessedSize() const;*/
@@ -137,7 +137,7 @@ namespace file
    }
 
 
-   void out_buffer::SetMemStream(byte *buffer)
+   void out_buffer::SetMemStream(::u8 *buffer)
    {
       _buffer2 = buffer;
    }
@@ -147,7 +147,7 @@ namespace file
       // _stream.Release();
    }
 
-   void out_buffer::WriteByte(byte b)
+   void out_buffer::WriteByte(::u8 b)
    {
       m_memory.get_data()[_pos++] = b;
       if(_pos == _limitPos)
@@ -157,7 +157,7 @@ namespace file
    void out_buffer::WriteBytes(const void *data, size_t size)
    {
       for (size_t i = 0; i < size; i++)
-         WriteByte(((const byte *)data)[i]);
+         WriteByte(((const ::u8 *)data)[i]);
    }
 
 

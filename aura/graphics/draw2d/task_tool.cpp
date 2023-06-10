@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "task_tool.h"
+#include "acme/graphics/draw2d/_image32.h"
 
 
 namespace draw2d
@@ -109,7 +110,7 @@ namespace draw2d
                               ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
-                           byte bA2 = (byte)~(byte)psrc2[3];
+                           ::u8 bA2 = (::u8)~(::u8)psrc2[3];
                            pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
                            pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
                            pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
@@ -163,7 +164,7 @@ namespace draw2d
 restart:
                      ;
 
-                     byte bA2 = psrc2[3];
+                     ::u8 bA2 = psrc2[3];
                      if (bA2 == 0)
                      {
                         if (x1 >= 0)
@@ -330,7 +331,7 @@ restart:
                            if (xDistanceToBoundary8 > 0)
                            {
 
-                              while (x < xBoundary8 && !(((::color32_t *)psrc3)[x] & 0xff000000))
+                              while (x < xBoundary8 && !(((::image32_t *)psrc3)[x]).u8_opacity())
                               {
 
                                  x++;
@@ -342,7 +343,7 @@ restart:
                                  break;
                               }
 
-                              if (((::color32_t *)psrc3)[x] & 0xff000000)
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity())
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -385,7 +386,7 @@ restart:
 
                               }
 
-                              if (((::color32_t *)psrc3)[x] & 0xff000000)
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity())
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -424,7 +425,7 @@ restart:
 
                               }
 
-                              if (((::color32_t *)psrc3)[x] & 0xff000000)
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity())
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -439,7 +440,7 @@ restart:
 
                            }
 
-                           while (x < xEnd && !(((::color32_t *)psrc3)[x] & 0xff000000))
+                           while (x < xEnd && !(((::image32_t *)psrc3)[x]).u8_opacity())
                            {
 
                               x++;
@@ -455,7 +456,7 @@ restart:
 
                            psrc2 = &psrc3[x << 2];
 
-                           if (((::color32_t *)psrc3)[x] & 0xff000000)
+                           if ((((::image32_t *)psrc3)[x]).u8_opacity())
                            {
 
                               goto restart;
@@ -493,7 +494,7 @@ restart:
                               ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
-                           bA2 = (byte)~bA2;
+                           bA2 = (::u8)~bA2;
                            pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
                            pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
                            pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
@@ -524,7 +525,7 @@ restart:
          else
          {
             //return;
-            byte bA = m_bA;
+            ::u8 bA = m_bA;
             int y = m_y;
             int yEnd = m_yEnd;
             int x = m_x;
@@ -568,7 +569,7 @@ restart:
                   for (; x < xEnd; x++)
                   {
 
-                     byte bA2 = psrc2[3];
+                     ::u8 bA2 = psrc2[3];
                      if (src_transparency[x])
                      {
                         x += src_transparency[x] - 1;
@@ -585,7 +586,7 @@ restart:
                      else
                      {
 
-                        byte bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
+                        ::u8 bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
@@ -620,7 +621,7 @@ restart:
                   for (; x < xEnd; x++)
                   {
 
-                     byte bA2 = psrc2[3];
+                     ::u8 bA2 = psrc2[3];
                      if (bA2 == 0)
                      {
                      }
@@ -634,7 +635,7 @@ restart:
                      else
                      {
 
-                        byte bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
+                        ::u8 bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;

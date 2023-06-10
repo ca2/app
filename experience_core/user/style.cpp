@@ -1874,7 +1874,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleClient = pscrollbar->client_rectangle();
 
-      if (colorBackground.alpha != 0)
+      if (colorBackground.m_u8Opacity != 0)
       {
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1884,7 +1884,7 @@ namespace experience_core
          if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          {
 
-            colorBackground.alpha = 255;
+            colorBackground.m_u8Opacity = 255;
 
          }
 
@@ -1894,9 +1894,9 @@ namespace experience_core
 
       auto statusrectangleTrack = pscrollbar->get_track_rectangle(pgraphics);
 
-      ::rectangle_i32 rectangleWindow;
+      //::rectangle_i32 rectangleWindow;
 
-      pscrollbar->window_rectangle(rectangleWindow);
+      //pscrollbar->window_rectangle(rectangleWindow);
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 
@@ -1956,9 +1956,9 @@ namespace experience_core
 
          }
 
-         ::point_i32 point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
+         //::point_i32 point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
-         pbar->client_to_screen()(point1);
+         //pbar->client_to_screen()(point1);
 
          //auto psession = get_session();
 
@@ -1968,13 +1968,13 @@ namespace experience_core
 
          //auto point = pwindowing->get_cursor_position();
 
-         pbar->client_to_screen()(point1);
+         //pbar->client_to_screen()(point1);
 
          //      prop("tracking_window").cast < trw >()->point1 = point1;
 
          //    prop("tracking_window").cast < trw >()->point2 = point;
 
-         byte uchAlpha;
+         ::u8 uchAlpha;
 
          if (pbar->is_true("tracking_fade_in"))
          {

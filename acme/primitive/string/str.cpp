@@ -2009,14 +2009,14 @@ utf8_character unicode_to_utf8(::i64 i)
       utf8character.m_end = utf8character.m_begin + 1;
    }
    else if (i <= 0x07FF) {
-      // 2-byte unicode
+      // 2-::u8 unicode
       out[0] = (char)(((i >> 6) & 0x1F) | 0xC0);
       out[1] = (char)(((i >> 0) & 0x3F) | 0x80);
       out[2] = 0;
       utf8character.m_end = utf8character.m_begin + 2;
    }
    else if (i <= 0xFFFF) {
-      // 3-byte unicode
+      // 3-::u8 unicode
       out[0] = (char)(((i >> 12) & 0x0F) | 0xE0);
       out[1] = (char)(((i >> 6) & 0x3F) | 0x80);
       out[2] = (char)(((i >> 0) & 0x3F) | 0x80);
@@ -2024,7 +2024,7 @@ utf8_character unicode_to_utf8(::i64 i)
       utf8character.m_end = utf8character.m_begin + 3;
    }
    else if (i <= 0x10FFFF) {
-      // 4-byte unicode
+      // 4-::u8 unicode
       out[0] = (char)(((i >> 18) & 0x07) | 0xF0);
       out[1] = (char)(((i >> 12) & 0x3F) | 0x80);
       out[2] = (char)(((i >> 6) & 0x3F) | 0x80);
@@ -3689,8 +3689,8 @@ bool str::utf8_check_is_valid(const string & string)
       else if (c == 0xed && i < (ix - 1) && ((unsigned char)string[i + 1] & 0xa0) == 0xa0) return false; //U+d800 to U+dfff
       else if ((c & 0xF0) == 0xE0) n = 2; // 1110bbbb
       else if ((c & 0xF8) == 0xF0) n = 3; // 11110bbb
-      //else if (($c & 0xFC) == 0xF8) n=4; // 111110bb //byte 5, unnecessary in 4 byte UTF-8
-      //else if (($c & 0xFE) == 0xFC) n=5; // 1111110b //byte 6, unnecessary in 4 byte UTF-8
+      //else if (($c & 0xFC) == 0xF8) n=4; // 111110bb //::u8 5, unnecessary in 4 ::u8 UTF-8
+      //else if (($c & 0xFE) == 0xFC) n=5; // 1111110b //::u8 6, unnecessary in 4 ::u8 UTF-8
       else return false;
       for (j = 0; j < n && i < ix; j++)   // n bytes matching 10bbbbbb follow ?
       {

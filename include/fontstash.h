@@ -468,7 +468,7 @@ static void * fons__tmpalloc(size_t size, void * up)
 	unsigned char * ptr;
 	FONScontext * stash = (FONScontext *)up;
 
-	// 16-byte align the returned pointer
+	// 16-::u8 align the returned pointer
 	size = (size + 0xf) & ~0xf;
 
 	if (stash->nscratch + (int)size > FONS_SCRATCH_BUF_SIZE) {
@@ -496,7 +496,7 @@ static void fons__tmpfree(void * ptr, void * up)
 #define FONS_UTF8_ACCEPT 0
 #define FONS_UTF8_REJECT 12
 
-static unsigned int fons__decutf8(unsigned int * state, unsigned int * codep, unsigned int byte)
+static unsigned int fons__decutf8(unsigned int * state, unsigned int * codep, unsigned int ::u8)
 {
 	static const unsigned char utf8d[] = {
 		// The first part of the table maps bytes to character classes that
@@ -519,11 +519,11 @@ static unsigned int fons__decutf8(unsigned int * state, unsigned int * codep, un
 		12,36,12,12,12,12,12,12,12,12,12,12,
 	};
 
-	unsigned int type = utf8d[byte];
+	unsigned int type = utf8d[::u8];
 
 	*codep = (*state != FONS_UTF8_ACCEPT) ?
-		(byte & 0x3fu) | (*codep << 6) :
-		(0xff >> type) & (byte);
+		(::u8 & 0x3fu) | (*codep << 6) :
+		(0xff >> type) & (::u8);
 
 	*state = utf8d[256 + *state + type];
 	return *state;

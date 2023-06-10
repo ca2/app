@@ -303,7 +303,7 @@ namespace user
 
    void interaction_child::_002InstallMessageHandling(::channel * pchannel)
    {
-      __UNREFERENCED_PARAMETER(pchannel);
+      UNREFERENCED_PARAMETER(pchannel);
    }
 
 
@@ -316,9 +316,9 @@ namespace user
    //void interaction_child::CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType)
 
    //{
-   //   __UNREFERENCED_PARAMETER(pClientRect);
+   //   UNREFERENCED_PARAMETER(pClientRect);
 
-   //   __UNREFERENCED_PARAMETER(nAdjustType);
+   //   UNREFERENCED_PARAMETER(nAdjustType);
    //   //u32 dwExStyle = GetExStyle();
    //   //if (nAdjustType == 0)
    //   //   dwExStyle &= ~WS_EX_CLIENTEDGE;

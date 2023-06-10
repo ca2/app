@@ -49,7 +49,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if(get_top_level()->frame_is_transparent())
    {
 
-      crBackground = argb(84,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
+      crBackground = argb(84,color32_u8_red(m_colorBackground),color32_u8_green(m_colorBackground),color32_u8_blue(m_colorBackground));
 
    }
    else
@@ -67,21 +67,21 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 void MetaControlBox::on_message_show_window(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
 }
 
 void MetaControlBox::on_message_left_button_down(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
 }
 
 void MetaControlBox::on_message_left_button_up(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
    set_need_redraw();
 

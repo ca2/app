@@ -6,7 +6,7 @@
 
 ////#include "acme/primitive/primitive/property_object.h"
 //#include "acme/primitive/mathematics/c_number.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/point.h"
 
 
 namespace acme

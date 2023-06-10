@@ -5,31 +5,31 @@
 #include "color_indexes.h"
 
 
-#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD)
-
-
-#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
-
-
-#define image_r_value(rgb)    (low_byte((rgb)>>16))
-#define image_g_value(rgb)    (low_byte((rgb)>>8))
-#define image_b_value(rgb)    (low_byte((rgb)))
-#define image_a_value(rgb)    (low_byte((rgb)>>24))
-
-
-#else
-
-
-#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
-
-
-#define image_r_value(rgb)    (low_byte((rgb)))
-#define image_g_value(rgb)    (low_byte((rgb)>>8))
-#define image_b_value(rgb)    (low_byte((rgb)>>16))
-#define image_a_value(rgb)    (low_byte((rgb)>>24))
-
-
-#endif
+//#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD)
+//
+//
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(b)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(r))<<16)|(((u32)lower_u8(a))<<24)))
+//
+//
+//#define image_r_value(rgb)    (lower_u8((rgb)>>16))
+//#define image_g_value(rgb)    (lower_u8((rgb)>>8))
+//#define image_b_value(rgb)    (lower_u8((rgb)))
+//#define image_a_value(rgb)    (lower_u8((rgb)>>24))
+//
+//
+//#else
+//
+//
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(r)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(b))<<16)|(((u32)lower_u8(a))<<24)))
+//
+//
+//#define image_r_value(rgb)    (lower_u8((rgb)))
+//#define image_g_value(rgb)    (lower_u8((rgb)>>8))
+//#define image_b_value(rgb)    (lower_u8((rgb)>>16))
+//#define image_a_value(rgb)    (lower_u8((rgb)>>24))
+//
+//
+//#endif
 
 
 

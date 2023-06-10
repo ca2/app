@@ -183,7 +183,7 @@ public:
    inline ~string_base() {}
 
 
-   const ::block as_block() const { return { (::byte *)this->begin(), this->character_count_in_bytes() }; }
+   const ::block as_block() const { return { (::u8 *)this->begin(), this->character_count_in_bytes() }; }
 
    static consteval bool is_null_terminated() { return true; }
 
@@ -1464,8 +1464,8 @@ public:
 //block::block(const string_base &str)
 //   
 //{
-//   this->m_begin = (::byte *)str.m_begin;
-//   this->m_end = (::byte *) str.m_end;
+//   this->m_begin = (::u8 *)str.m_begin;
+//   this->m_end = (::u8 *) str.m_end;
 //
 //}
 

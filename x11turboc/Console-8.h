@@ -46,7 +46,7 @@
      difficult to confirm or deny its status.
      
   Format of the data:  Each record is the bit-data for a single
-  character.  The records consist of 8 bytes.  The first byte is
+  character.  The records consist of 8 bytes.  The first ::u8 is
   the top row of the character.  The bits within the bytes
   represent pixels, and the most-significant bit is the leftmost pixel.  	   	   
 */

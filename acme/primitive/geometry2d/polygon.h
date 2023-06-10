@@ -4,6 +4,7 @@
 //#include "_collection.h"
 //#include "_geometry2d.h"
 #include "point_array.h"
+#include "rectangle.h"
 
 
 template < primitive_number NUMBER >

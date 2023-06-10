@@ -11,21 +11,33 @@ struct color_indexes
    union
    {
 
-      byte m_ba[4];
+      ::u8 m_ba[4];
 
       struct
       {
 
-         byte a;
-         byte r;
-         byte g;
-         byte b;
+         ::u8 m_u8IndexOpacity;
+         ::u8 m_u8IndexRed;
+         ::u8 m_u8IndexGreen;
+         ::u8 m_u8IndexBlue;
 
       };
 
    };
 
-   color_indexes(byte bA, byte bR, byte bG, byte bB) : a(bA), r(bR), g(bG), b(bB) { }
+   
+   color_indexes(
+      ::u8 u8IndexOpacity, 
+      ::u8 u8IndexRed,
+      ::u8 u8IndexGreen,
+      ::u8 u8IndexBlue) : 
+      m_u8IndexOpacity(u8IndexOpacity),
+      m_u8IndexRed(u8IndexRed), 
+      m_u8IndexGreen(u8IndexGreen),
+      m_u8IndexBlue(u8IndexBlue) 
+   {
+   
+   }
 
 };
 

@@ -517,12 +517,12 @@ namespace base
    CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
-      __UNREFERENCED_PARAMETER(dwExStyle);
-      __UNREFERENCED_PARAMETER(pClassName);
-      __UNREFERENCED_PARAMETER(pWindowName);
-      __UNREFERENCED_PARAMETER(uStyle);
-      __UNREFERENCED_PARAMETER(hInstance);
-      __UNREFERENCED_PARAMETER(pParam);
+      UNREFERENCED_PARAMETER(dwExStyle);
+      UNREFERENCED_PARAMETER(pClassName);
+      UNREFERENCED_PARAMETER(pWindowName);
+      UNREFERENCED_PARAMETER(uStyle);
+      UNREFERENCED_PARAMETER(hInstance);
+      UNREFERENCED_PARAMETER(pParam);
 
       auto pinteraction = __new(::user::interaction);
 
@@ -1426,13 +1426,13 @@ namespace base
 //
 //
 //
-//::color::color argb_swap_rb(::color32_t color32)
+//::color::color argb_swap_red_blue(::color32_t color32)
 //{
 //   return argb(
-//      colorref_get_a_value(color32),
-//      colorref_get_b_value(color32),
-//      colorref_get_g_value(color32),
-//      colorref_get_r_value(color32));
+//      color32_u8_opacity(color32),
+//      color32_u8_blue(color32),
+//      color32_u8_green(color32),
+//      color32_u8_red(color32));
 //}
 
 

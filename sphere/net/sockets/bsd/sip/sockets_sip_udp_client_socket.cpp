@@ -20,8 +20,8 @@ namespace sockets
    void sip_udp_client_socket::OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len)
    {
 
-      __UNREFERENCED_PARAMETER(sa);
-      __UNREFERENCED_PARAMETER(sa_len);
+      UNREFERENCED_PARAMETER(sa);
+      UNREFERENCED_PARAMETER(sa_len);
       // TODO: should validate sa and sa_len
       sip_base_client_socket::OnRawData(buf, len);
 
@@ -31,9 +31,9 @@ namespace sockets
    void sip_udp_client_socket::OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len,struct timeval *ts)
    {
       
-      __UNREFERENCED_PARAMETER(sa);
-      __UNREFERENCED_PARAMETER(sa_len);
-      __UNREFERENCED_PARAMETER(ts);
+      UNREFERENCED_PARAMETER(sa);
+      UNREFERENCED_PARAMETER(sa_len);
+      UNREFERENCED_PARAMETER(ts);
       // TODO: should validate sa, sa_len and organize using ts
       sip_base_client_socket::OnRawData(buf, len);
 

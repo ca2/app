@@ -73,10 +73,10 @@
 
 static const char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-CLASS_DECL_ACME char* _crypto_base64_encode(const byte* data, int length)
+CLASS_DECL_ACME char* _crypto_base64_encode(const ::u8* data, int length)
 {
    int c;
-   const byte* q;
+   const ::u8* q;
    char* p;
    char* ret;
    int i = 0;
@@ -163,14 +163,14 @@ static int _base64_decode_char(char c)
 static void* _base64_decode(const char* s, int length, int* data_len)
 {
    int n[4];
-   byte* q;
-   byte* data;
+   ::u8* q;
+   ::u8* data;
    int nBlocks, i, outputLen;
 
    if (length % 4)
       return nullptr;
 
-   q = data = (byte*)malloc(length / 4 * 3 + 1);
+   q = data = (::u8*)malloc(length / 4 * 3 + 1);
    if (!q)
       return nullptr;
 
@@ -238,9 +238,9 @@ out_free:
    return nullptr;
 }
 
-CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byte** dec_data, int* res_length)
+CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, ::u8** dec_data, int* res_length)
 {
-   *dec_data = (byte *) _base64_decode(enc_data, length, res_length);
+   *dec_data = (::u8 *) _base64_decode(enc_data, length, res_length);
 }
 
 
@@ -351,7 +351,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    {
 
       i32 i,hiteof= false;
-      byte igroup[3],ogroup[4];
+      ::u8 igroup[3],ogroup[4];
       i32 n;
       char ch;
 
@@ -396,7 +396,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    {
 
       i32 i, hiteof = false;
-      byte igroup[3], ogroup[4];
+      ::u8 igroup[3], ogroup[4];
       i32 n;
       char ch;
 
@@ -445,7 +445,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    bool base64::decode(::file::file * pfileOutput, ::file::file * pfileInput)
    {
       i32 i;
-      byte a[4],b[4],o[3];
+      ::u8 a[4],b[4],o[3];
       uchar uch;
 
       while(true)
@@ -503,7 +503,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    i64 base64::decode(const ::block & block, ::file::file * pfileInput)
    {
       i32 i;
-      byte a[4],b[4],o[3];
+      ::u8 a[4],b[4],o[3];
       uchar uch;
       u8 * pdata = (u8 *)block.begin();
       i64 iDecode = 0;

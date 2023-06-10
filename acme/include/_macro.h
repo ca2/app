@@ -78,73 +78,70 @@
 #define __EVALUATE_MACRO(name) name
 
 
-#define low_byte(w)              ((byte)((w) & 0xff))
+///#define lower_u8(w)              ((::u8)((w) & 0xff))
 
 
 
 
 
 
-#define colorref_get_r_value(rgb)    (low_byte(rgb))
-#define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
-#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
-#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
 
 
 
 #define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
-#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
-#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+// #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+// #define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
 
-#ifdef __cplusplus
+// #ifdef __cplusplus
 
 
-#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+// #define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 
-#else
+// #else
 
-#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+// #define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+// #define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 
+// #endif
+
+// #define lower_u16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+// #define upper_u16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+// #define lower_u32(u)                                     ((::u32)(u))
+// #define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+
+// #define u32_x(u)                                     ((::i16)lower_u16(u))
+// #define u32_y(u)                                     ((::i16)upper_u16(u))
+
+// #define __u32xy(u)                                    u32_x(u), u32_y(u)
+
+// #define u64_x(u)                                     ((::i32)lower_u32(u))
+// #define u64_y(u)                                     ((::i32)upper_u32(u))
+
+// #define __u64xy(u)                                    u64_x(u), u64_y(u)
+
+
+//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)upper_u32(lparam))
+
+
+
+#ifndef UNREFERENCED_PARAMETER
+#define UNREFERENCED_PARAMETER(u)	(void)(u)
 #endif
 
-#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-#define __lo32(u)                                     ((::u32)(u))
-#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
-
-#define __u32x(u)                                     ((::i16)__lo16(u))
-#define __u32y(u)                                     ((::i16)__hi16(u))
-
-#define __u32xy(u)                                    __u32x(u), __u32y(u)
-
-#define __u64x(u)                                     ((::i32)__lo32(u))
-#define __u64y(u)                                     ((::i32)__hi32(u))
-
-#define __u64xy(u)                                    __u64x(u), __u64y(u)
 
 
-#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
-#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
+// #define make_i32(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
+// #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
+// #define make_u32(l, h)         ((::uptr)(::u32)make_i32(l, h))
 
-
-#define __UNREFERENCED_PARAMETER(u)	(void)(u)
-
-
-
-#define __MAKE_LONG(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
-
-#define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
-
-#define __MAKE_LPARAM(l, h)         ((::uptr)(::u32)__MAKE_LONG(l, h))
-
-#define __LOBYTE(w)                 ((byte)(((dword_ptr)(w)) & 0xff))
+//#define lower_u8(w)                 ((::u8)(((dword_ptr)(w)) & 0xff))
 
 
 
@@ -348,22 +345,22 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 
-#ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-#endif
+// #ifndef i32_x
+// #define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
+// #endif
 
 
-#ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-#endif
+// #ifndef i32_y
+// #define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
+// #endif
 
 
-#ifndef LODWORD
-#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
-#endif
-#ifndef HIDWORD
-#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
-#endif
+// #ifndef lower_u32
+// #define lower_u32(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
+// #endif
+// #ifndef upper_u32
+// #define upper_u32(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
+// #endif
 
 
 ////https://www.artima.com/articles/the-safe-bool-idiom BEGIN

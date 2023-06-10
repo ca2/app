@@ -4,7 +4,7 @@
 
 //
 //encoding_type utf::detect_encoding(const string &input) {
-//  // look for 4-byte BOM
+//  // look for 4-::u8 BOM
 //  if (input.size() >= 4) {
 //    // UTF32BE
 //    if ((uint8_t)input[0] == 0x00 &&
@@ -25,7 +25,7 @@
 //    }
 //  }
 //
-//  // look for 2-byte BOM
+//  // look for 2-::u8 BOM
 //  if (input.size() >= 2) {
 //    // UTF16BE
 //    if ((uint8_t)input[0] == 0xFE &&
@@ -212,7 +212,7 @@
 //
 //  // UTF8
 //  if (encoding == ENCODING_UTF8) {
-//    // one byte
+//    // one ::u8
 //    if ((uint8_t)input[pos] < 0x80)
 //      return 1;
 //
@@ -456,7 +456,7 @@
 //
 //  // UTF8
 //  if (encoding == ENCODING_UTF8) {
-//    // one byte
+//    // one ::u8
 //    if (code_point <= 0x0000007F) {
 //      input.push_back(code_point);
 //      return;

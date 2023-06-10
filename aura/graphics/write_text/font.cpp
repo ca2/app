@@ -44,7 +44,7 @@ namespace write_text
 //   void font::dump(dump_context & dumpcontext) const
 //   {
 //
-//      __UNREFERENCED_PARAMETER(dumpcontext);
+//      UNREFERENCED_PARAMETER(dumpcontext);
 //
 //      throw ::interface_only();
 //
@@ -70,8 +70,6 @@ namespace write_text
       m_bItalic = bItalic;
       m_bUnderline = bUnderline;
       m_bStrikeout = bStrikeOut;
-
-      m_mapText.clear();
 
       set_modified();
 
@@ -447,9 +445,9 @@ namespace write_text
 //   {
 //
 //
-//      __UNREFERENCED_PARAMETER(piCharsPositions);
+//      UNREFERENCED_PARAMETER(piCharsPositions);
 
-//      __UNREFERENCED_PARAMETER(iCharsPositions);
+//      UNREFERENCED_PARAMETER(iCharsPositions);
 //      SetDC(pgraphics);
 //      SelectFont();
 //
@@ -727,13 +725,6 @@ namespace write_text
 
    void font::destroy()
    {
-
-      for (auto & text : m_mapText.payloads())
-      {
-
-         text.m_bSize = false;
-
-      }
 
    }
 

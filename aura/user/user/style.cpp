@@ -156,24 +156,24 @@ namespace user
          return argb(255, 34, 54, 75);
          break;
       case StyleBlackBorder:
-         return argb(255, 116, 160, 220) | 0xff000000;
+         return argb(255, 116, 160, 220);
       case StyleLightGreen:
       case StyleTranslucidLightGreen:
-         return argb(255, 116, 220, 160) | 0xff000000;
+         return argb(255, 116, 220, 160);
       case StyleRedOrange:
-         return argb(255, 255, 170, 136) | 0xff000000;
+         return argb(255, 255, 170, 136);
       case StyleBlueRedPurple:
-         return argb(255, 200, 100, 220) | 0xff000000;
+         return argb(255, 200, 100, 220);
       case StyleEveningSun:
-         return argb(255, 255, 210, 100) | 0xff000000;
+         return argb(255, 255, 210, 100);
       case StyleTranslucidWarmLiteGray:
-         return argb(255, 239, 230, 219) | 0xff000000;
+         return argb(255, 239, 230, 219);
       default:
-         return argb(255, 200, 100, 220) | 0xff000000;
+         return argb(255, 200, 100, 220);
       }
 
       // Light Green/Translucid Light Green
-      return argb(255, 116, 220, 160) | 0xff000000;
+      return argb(255, 116, 220, 160);
 
    }
 
@@ -776,10 +776,10 @@ namespace user
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -970,7 +970,7 @@ namespace user
             if (eelement == ::e_element_background)
             {
 
-               return ::color::color(0, 0, 0, 0);
+               return ::color::transparent;
 
             }
 

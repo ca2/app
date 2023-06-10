@@ -4420,7 +4420,7 @@ return get_data()[nIndex];
 //      iLength = strlen(lpszN);
 //#endif
 //
-//      lpszN = (char *)((byte *)lpszN) + iLength + sizeof(char);
+//      lpszN = (char *)((::u8 *)lpszN) + iLength + sizeof(char);
 //
 //   }
 //

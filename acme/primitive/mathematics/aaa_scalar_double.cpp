@@ -6,9 +6,9 @@
 ////void double_scalar_source::listener::on_set_scalar(double_scalar_source * psource,enum_scalar escalar,double dValue,int iFlags)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(psource);
-////   __UNREFERENCED_PARAMETER(escalar);
-////   __UNREFERENCED_PARAMETER(dValue);
+////   UNREFERENCED_PARAMETER(psource);
+////   UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(dValue);
 ////
 ////}
 ////
@@ -179,11 +179,11 @@
 bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
-   __UNREFERENCED_PARAMETER(d);
+   UNREFERENCED_PARAMETER(d);
 
-   __UNREFERENCED_PARAMETER(iFlags);
+   UNREFERENCED_PARAMETER(iFlags);
 
    // does nothing.
 
@@ -194,7 +194,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void double_scalar_source::get_scalar_minimum(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -203,7 +203,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void double_scalar_source::get_scalar(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -212,7 +212,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void double_scalar_source::get_scalar_maximum(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -253,10 +253,10 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,i64 real,int iFlags)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(psource);
-////   __UNREFERENCED_PARAMETER(escalar);
-////   __UNREFERENCED_PARAMETER(real);
-////   __UNREFERENCED_PARAMETER(iFlags);
+////   UNREFERENCED_PARAMETER(psource);
+////   UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(real);
+////   UNREFERENCED_PARAMETER(iFlags);
 ////
 ////}
 ////
@@ -384,11 +384,11 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void int_scalar_source::on_set_scalar(enum_scalar escalar,i64 real,int iFlags)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
-////   __UNREFERENCED_PARAMETER(real);
+////   UNREFERENCED_PARAMETER(real);
 ////
-////   __UNREFERENCED_PARAMETER(iFlags);
+////   UNREFERENCED_PARAMETER(iFlags);
 ////
 ////   // does nothing by default.
 ////
@@ -397,7 +397,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   i = 0; // by default
 ////
@@ -406,7 +406,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void int_scalar_source::get_scalar(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
 ////   i = 1; // by default
 ////
@@ -415,7 +415,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
 ////   i = 1; // by default
 ////
@@ -483,9 +483,9 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 //bool scalar_base::set_rate(double dValue, int iFlags)
 //{
 //
-//   __UNREFERENCED_PARAMETER(dValue);
+//   UNREFERENCED_PARAMETER(dValue);
 //
-//   __UNREFERENCED_PARAMETER(iFlags);
+//   UNREFERENCED_PARAMETER(iFlags);
 //
 //   return false;
 //
@@ -495,7 +495,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 //string scalar_base::Format(const ::string & strFormat)
 //{
 //
-//   __UNREFERENCED_PARAMETER(strFormat);
+//   UNREFERENCED_PARAMETER(strFormat);
 //
 //   return "";
 //
@@ -731,10 +731,10 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 bool scalar_source::listener::on_set_real_scalar(scalar_source* psource, enum_scalar escalar, ::real real, int iFlags)
 {
 
-   __UNREFERENCED_PARAMETER(psource);
-   __UNREFERENCED_PARAMETER(escalar);
-   __UNREFERENCED_PARAMETER(real);
-   __UNREFERENCED_PARAMETER(iFlags);
+   UNREFERENCED_PARAMETER(psource);
+   UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(real);
+   UNREFERENCED_PARAMETER(iFlags);
 
    return false;
 
@@ -929,11 +929,11 @@ bool scalar_source::contains_real_scalar(enum_scalar escalar, ::real real)
 //void scalar_source::on_set_scalar(enum_scalar escalar,::real real,int iFlags)
 //{
 //
-//   __UNREFERENCED_PARAMETER(escalar);
+//   UNREFERENCED_PARAMETER(escalar);
 //
-//   __UNREFERENCED_PARAMETER(real);
+//   UNREFERENCED_PARAMETER(real);
 //
-//   __UNREFERENCED_PARAMETER(iFlags);
+//   UNREFERENCED_PARAMETER(iFlags);
 //
 //   // does nothing by default.
 //
@@ -944,7 +944,7 @@ bool scalar_source::contains_real_scalar(enum_scalar escalar, ::real real)
 bool scalar_source::get_real_scalar_minimum(enum_scalar escalar,::real & i)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    //i = 0; // by default
 
@@ -957,7 +957,7 @@ bool scalar_source::get_real_scalar_minimum(enum_scalar escalar,::real & i)
 bool scalar_source::get_real_scalar(enum_scalar escalar,::real & i)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    //i = 1; // by default
 
@@ -969,7 +969,7 @@ bool scalar_source::get_real_scalar(enum_scalar escalar,::real & i)
 bool scalar_source ::get_real_scalar_maximum(enum_scalar escalar,::real & i)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    // i = 1; // by default
 

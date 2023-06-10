@@ -40,14 +40,14 @@ namespace user
    //void form_callback::OnUser123(wparam wparam,lparam lparam)
 
    //{
-   //   __UNREFERENCED_PARAMETER(wparam);
-   //   __UNREFERENCED_PARAMETER(lparam);
+   //   UNREFERENCED_PARAMETER(wparam);
+   //   UNREFERENCED_PARAMETER(lparam);
 
    //}
 
    void form_callback::_001InitializeFormPreData(::user::form * pform)
    {
-      __UNREFERENCED_PARAMETER(pform);
+      UNREFERENCED_PARAMETER(pform);
    }
 
 

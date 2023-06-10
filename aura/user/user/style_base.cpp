@@ -188,7 +188,7 @@ namespace user
             if (eelement == ::e_element_background)
             {
 
-               return ::color::color(0, 0, 0, 0);
+               return ::color::transparent;
 
             }
 

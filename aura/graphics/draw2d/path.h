@@ -3,6 +3,7 @@
 
 #include "object.h"
 #include "path_optimization.h"
+#include "acme/primitive/geometry2d/angle.h"
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 //#include "acme/primitive/geometry2d/lines.h"
 //#include "acme/primitive/geometry2d/ellipse.h"

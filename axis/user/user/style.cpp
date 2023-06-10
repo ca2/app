@@ -168,7 +168,7 @@ namespace axis
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      ::rectangle_i32 rectangleClient = pinteraction->::user::interaction::client_rectangle();
+      ::rectangle_i32 rectangleClient = pinteraction->raw_rectangle();
 
       double dRotate = pinteraction->get_rotate();
 
@@ -711,10 +711,10 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -897,7 +897,7 @@ namespace axis
             if (eelement == ::e_element_background)
             {
 
-               return ::color::color(0, 0, 0, 0);
+               return ::color::transparent;
 
             }
 
@@ -905,7 +905,7 @@ namespace axis
 
       }
 
-      return error_not_found;
+      return ::color::transparent;
 
    }
 
@@ -1315,10 +1315,10 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;

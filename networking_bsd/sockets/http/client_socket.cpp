@@ -33,7 +33,7 @@ string dump_hex(::file::file* pfile)
 
    char* psz = strBuffer.get_buffer((strsize)(pfile->get_size() / 16 + 1) * 80);
 
-   byte buf[16];
+   ::u8 buf[16];
 
    memsize iPos = 0;
 
@@ -456,8 +456,8 @@ namespace sockets
    void http_client_socket::OnDataArrived(const char * buf, memsize len)
    {
 
-      __UNREFERENCED_PARAMETER(buf);
-      __UNREFERENCED_PARAMETER(len);
+      UNREFERENCED_PARAMETER(buf);
+      UNREFERENCED_PARAMETER(len);
    }
 
 

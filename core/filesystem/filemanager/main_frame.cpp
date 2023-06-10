@@ -26,7 +26,7 @@ namespace filemanager
    void main_frame::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 
    }

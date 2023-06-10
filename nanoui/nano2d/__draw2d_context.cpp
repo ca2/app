@@ -1032,7 +1032,7 @@ namespace nano2d
 
       pimage->map();
 
-      copy_colorref(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const color32_t *)data);
+      copy_image32(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const color32_t *)data);
 
    }
 

@@ -863,7 +863,7 @@ inline std::size_t item_count(array_reference < TYPE, SIZE > &) { return SIZE; }
 
 
 template < typename T >
-inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : (((t) > (byte)255) ? (byte)255 : (byte)t))); }
+inline ::u8 u8_clip(const T & t) { return ((::u8)(((t) < (::u8)0) ? (::u8)0 : (((t) > (::u8)255) ? (::u8)255 : (::u8)t))); }
 
 
 template < typename A, typename B >

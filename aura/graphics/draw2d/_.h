@@ -64,7 +64,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void vertical_swap_copy_image32_swap_red_blue(::color32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc);
 
 
 

@@ -293,7 +293,7 @@ namespace user
    void primitive::enable_window(bool bEnable)
    {
 
-      __UNREFERENCED_PARAMETER(bEnable);
+      UNREFERENCED_PARAMETER(bEnable);
 
       //return false;
 
@@ -327,7 +327,7 @@ namespace user
    void primitive::Invalidate(bool bErase)
    {
 
-      __UNREFERENCED_PARAMETER(bErase);
+      UNREFERENCED_PARAMETER(bErase);
 
       //ASSERT(::IsWindow(GetHandle()));
       //::InvalidateRect(GetHandle(), nullptr, bErase);
@@ -378,7 +378,7 @@ namespace user
    //bool primitive::Redraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   UNREFERENCED_PARAMETER(pgraphics);
 
    //   if(get_wnd() == nullptr)
    //      return false;
@@ -1209,7 +1209,7 @@ namespace user
    void primitive::pre_translate_message(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2923,7 +2923,7 @@ namespace user
    //::user::interaction * primitive::previous_sibling(::user::interaction * pinteraction)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pinteraction);
+   //   UNREFERENCED_PARAMETER(pinteraction);
 
    //   return nullptr;
 
@@ -2939,7 +2939,7 @@ namespace user
    //::user::interaction * primitive::next_sibling(::user::interaction * pinteraction)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pinteraction);
+   //   UNREFERENCED_PARAMETER(pinteraction);
 
    //   return nullptr;
 
@@ -3047,7 +3047,7 @@ namespace user
    void primitive::set_tool_window(bool bSet)
    {
 
-      __UNREFERENCED_PARAMETER(bSet);
+      UNREFERENCED_PARAMETER(bSet);
 
       throw ::interface_only();
 
@@ -3412,7 +3412,7 @@ namespace user
    //void primitive::show_keyboard(bool bShow)
    //{
 
-   //   __UNREFERENCED_PARAMETER(bShow);
+   //   UNREFERENCED_PARAMETER(bShow);
 
    //}
 
@@ -3987,7 +3987,7 @@ namespace user
 
    //{
 
-   //   __UNREFERENCED_PARAMETER(puserinteractionpl);
+   //   UNREFERENCED_PARAMETER(puserinteractionpl);
 
 
    //   return false;
@@ -3998,7 +3998,7 @@ namespace user
 
    //{
 
-   //   __UNREFERENCED_PARAMETER(pcwndpl);
+   //   UNREFERENCED_PARAMETER(pcwndpl);
 
 
    //   return false;
@@ -4029,8 +4029,8 @@ namespace user
 //   bool primitive::SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(rectangle);
-//      __UNREFERENCED_PARAMETER(nFlags);
+//      UNREFERENCED_PARAMETER(rectangle);
+//      UNREFERENCED_PARAMETER(nFlags);
 //
 //      return false;
 //
@@ -4049,7 +4049,7 @@ namespace user
    //void primitive::_001OnTimer(::timer * ptimer)
    //{
 
-   //   __UNREFERENCED_PARAMETER(ptimer);
+   //   UNREFERENCED_PARAMETER(ptimer);
 
    //}
 
@@ -4155,7 +4155,7 @@ namespace user
    void primitive::keyboard_focus_OnTimer(i32 iTimer)
    {
 
-      __UNREFERENCED_PARAMETER(iTimer);
+      UNREFERENCED_PARAMETER(iTimer);
 
    }
 
@@ -4163,7 +4163,7 @@ namespace user
    void primitive::keyboard_focus_OnChar(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -4171,7 +4171,7 @@ namespace user
    void primitive::keyboard_focus_OnSysChar(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -4185,7 +4185,7 @@ namespace user
    void primitive::keyboard_focus_OnKeyUp(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -4502,7 +4502,7 @@ namespace user
    void primitive::_001OnTimer(::timer * ptimer)
    {
 
-      __UNREFERENCED_PARAMETER(ptimer);
+      UNREFERENCED_PARAMETER(ptimer);
 
    }
 
@@ -4518,7 +4518,7 @@ namespace user
    //void primitive::set_need_redraw(bool bAscendants)
    //{
 
-   //   __UNREFERENCED_PARAMETER(bAscendants);
+   //   UNREFERENCED_PARAMETER(bAscendants);
 
    //}
 
@@ -4540,7 +4540,7 @@ namespace user
    void primitive::post_redraw(bool bAscendants)
    {
 
-      __UNREFERENCED_PARAMETER(bAscendants);
+      UNREFERENCED_PARAMETER(bAscendants);
 
    }
 

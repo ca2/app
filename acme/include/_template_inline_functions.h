@@ -135,7 +135,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 //#ifdef DEEP_DEBUG
 //
-//   byte* pbyte = (byte*)p;
+//   ::u8* pbyte = (::u8*)p;
 //
 //   if (bReadWrite)
 //   {
@@ -143,9 +143,9 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //      for (::index i = 0; i < size; i++)
 //      {
 //
-//         ::byte& b = *pbyte;
+//         ::u8& b = *pbyte;
 //
-//         b++; // tests read/write of byte b
+//         b++; // tests read/write of ::u8 b
 //
 //         b--; // restablish it
 //
@@ -160,9 +160,9 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //      for (::index i = 0; i < size; i++)
 //      {
 //
-//         ::byte& b = *pbyte;
+//         ::u8& b = *pbyte;
 //
-//         sum += b; // tests read of byte b
+//         sum += b; // tests read of ::u8 b
 //
 //      }
 //
@@ -195,8 +195,8 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen)
 //{
 //
-//   return (((byte*)pszSrc) <= ((byte*)pszDst) && ((byte*)pszSrc) + srclen > ((byte*)pszDst))
-//      || (((byte*)pszDst) <= ((byte*)pszSrc) && ((byte*)pszDst) + srclen > ((byte*)pszSrc));
+//   return (((::u8*)pszSrc) <= ((::u8*)pszDst) && ((::u8*)pszSrc) + srclen > ((::u8*)pszDst))
+//      || (((::u8*)pszDst) <= ((::u8*)pszSrc) && ((::u8*)pszDst) + srclen > ((::u8*)pszSrc));
 //
 //}
 //

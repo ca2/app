@@ -21,7 +21,7 @@ int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory
    if(iSize < 32)
    {
 
-      memory_set(&((byte *) memKeyData.get_data())[iSize], 0, 32 - iSize);
+      memory_set(&((::u8 *) memKeyData.get_data())[iSize], 0, 32 - iSize);
 
    }
 
@@ -193,7 +193,7 @@ int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory
    if(iSize < 32)
    {
 
-      memory_set(&((byte *) memKeyData.get_data())[iSize], 0, 32 - iSize);
+      memory_set(&((::u8 *) memKeyData.get_data())[iSize], 0, 32 - iSize);
 
    }
 

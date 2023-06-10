@@ -688,7 +688,7 @@ namespace experience_lite
 
          ::u32 tickFadeOut = 490;
 
-         byte uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").::u32()));
+         ::u8 uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").::u32()));
 
          if (pbar->m_bTracking)
          {
@@ -734,7 +734,7 @@ namespace experience_lite
             ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeIn)
             {
-               uchAlpha = (byte)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
+               uchAlpha = (::u8)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
             }
             else
             {
@@ -748,7 +748,7 @@ namespace experience_lite
             ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeOut)
             {
-               uchAlpha = (byte)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
+               uchAlpha = (::u8)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
             }
             else
             {

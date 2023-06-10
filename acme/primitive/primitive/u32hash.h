@@ -28,7 +28,7 @@ struct u32hash
    constexpr u32hash(FLOATING f) : u32hash(&f, sizeof(f)) { }
    template < typename T >
    constexpr u32hash(const ::pointer < T > & t) : u32hash(t.m_p) { }
-   constexpr u32hash(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((byte*&)p)++; }
+   constexpr u32hash(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((::u8*&)p)++; }
 
 
    constexpr ::u32hash operator + (::u32hash u) 

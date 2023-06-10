@@ -6,7 +6,7 @@
 
 #include "acme/platform/department.h"
 #include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow);

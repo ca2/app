@@ -69,7 +69,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 //htask_t start_thread(u32 ( * pfn)(void *), void * pv, int iPriority)
 //{
 //
-//   __UNREFERENCED_PARAMETER(iPriority);
+//   UNREFERENCED_PARAMETER(iPriority);
 //
 //   return create_thread(pfn, pv);
 //

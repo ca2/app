@@ -90,19 +90,19 @@ enum enum_stock_icon
 };
 
 
-enum enum_color
+enum enum_plain_color
 {
 
-   e_color_none,       // 0
-   e_color_red,        // 1
-   e_color_green,      // 2
-   e_color_blue,       // 3
-   e_color_yellow,     // 4
-   e_color_cyan,       // 5
-   e_color_magenta,    // 6
-   e_color_black,      // 7
-   e_color_white,      // 8
-   e_color_gray,       // 9
+   e_plain_color_none,       // 0
+   e_plain_color_red,        // 1
+   e_plain_color_green,      // 2
+   e_plain_color_blue,       // 3
+   e_plain_color_yellow,     // 4
+   e_plain_color_cyan,       // 5
+   e_plain_color_magenta,    // 6
+   e_plain_color_black,      // 7
+   e_plain_color_white,      // 8
+   e_plain_color_gray,       // 9
 
 };
 

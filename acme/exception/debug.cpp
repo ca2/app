@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-byte OriginalBytes[5] = {0};
+::u8 OriginalBytes[5] = {0};
 
 
 CLASS_DECL_ACME int is_debugger_attached()

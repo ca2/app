@@ -2917,7 +2917,7 @@ namespace user
 
       }
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       user_interaction_on_destroy();
 
@@ -4720,6 +4720,10 @@ namespace user
 
       windowing_output_debug_string("\ndo_graphics : before Print");
 
+      payload("draw_control_background_counter") = 0;
+
+      payload("nc_draw_0_fill_counter") = 0;
+
       try
       {
 
@@ -5280,9 +5284,7 @@ namespace user
 
       ::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain<::aura::draw_context>::get_last();
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleRaw = this->raw_rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -5301,7 +5303,7 @@ namespace user
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
-         //if (colorref_get_r_value(crBackground) != 255)
+         //if (color32_u8_red(crBackground) != 255)
          //{
 
          //   output_debug_string("no full red");
@@ -5315,7 +5317,7 @@ namespace user
 
             pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-            pgraphics->fill_rectangle(rectangleClient, colorBackground);
+            pgraphics->fill_rectangle(rectangleRaw, colorBackground);
 
             pgraphics->set_smooth_mode(esmoothmode);
 
@@ -5329,14 +5331,46 @@ namespace user
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
-         //if (colorref_get_r_value(crBackground) != 255)
+         //if (color32_u8_red(crBackground) != 255)
          //{
 
          //   output_debug_string("no full red");
 
          //}
 
-         pgraphics->fill_rectangle(rectangleClient, colorBackground);
+         //auto puserinteractionimplHost = get_window_impl();
+
+
+         if (colorBackground.m_u8Opacity != 127)
+         {
+
+            output_debug_string("opacity != 127");
+
+         }
+
+         pgraphics->fill_rectangle(rectangleRaw, colorBackground);
+
+         auto phostwindow = get_host_window();
+
+         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").i32_reference();
+
+         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").i32_reference();
+
+         iDrawControlBackgroundCounter++;
+
+         if (iDrawControlBackgroundCounter >= 2)
+         {
+
+            output_debug_string("draw_control_background_counter >= 2");
+
+         }
+
+         if (iNcDraw0FillCounter <= 0)
+         {
+
+            output_debug_string("nc_draw_0_fill_counter <= 0");
+
+         }
 
       }
 
@@ -5666,7 +5700,7 @@ namespace user
 
       }
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bEnableDragClient)
       {
@@ -6343,7 +6377,7 @@ namespace user
    bool interaction::_001IsClientPointInsideInline(const ::point_i32& point)
    {
 
-      return layout().sketch().client_rect().contains(point);
+      return layout().sketch().raw_rectangle().contains(point);
 
 
    }
@@ -6352,7 +6386,7 @@ namespace user
    bool interaction::_001IsParentClientPointInsideInline(const ::point_i32& point)
    {
 
-      return layout().sketch().parent_client_rectangle().contains(point);
+      return layout().sketch().parent_raw_rectangle().contains(point);
 
    }
 
@@ -6572,11 +6606,11 @@ namespace user
 
          size = size.maximum(sizeMinimum);
 
-         auto rectanglePrevious = layout().window().client_rect();
+         auto rectanglePrevious = layout().window().raw_rectangle();
 
          layout().sketch().m_size = size;
 
-         auto rectangle = layout().sketch().client_rect();
+         auto rectangle = layout().sketch().raw_rectangle();
 
          set_need_layout();
 
@@ -6981,28 +7015,28 @@ namespace user
 
    //void interaction::_002OnLButtonDown(::message::message * pmessage)
    //{
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnLButtonUp(::message::message * pmessage)
    //{
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseMove(::message::message * pmessage)
    //{
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseEnter(::message::message * pmessage)
    //{
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseLeave(::message::message * pmessage)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -7010,7 +7044,7 @@ namespace user
    //void interaction::_002OnKeyDown(::message::message * pmessage)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -7018,7 +7052,7 @@ namespace user
    //void interaction::_002OnKeyUp(::message::message * pmessage)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -7026,7 +7060,7 @@ namespace user
    //void interaction::_002OnTimer(::message::message * pmessage)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -7287,7 +7321,7 @@ namespace user
    //void interaction::pre_translate_message(::message::message * pmessage)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
    //   //::pointer<::message::message>pmessage(pmessage);
 
@@ -8974,9 +9008,9 @@ namespace user
 
       }
 
-      __UNREFERENCED_PARAMETER(nIDFirst);
+      UNREFERENCED_PARAMETER(nIDFirst);
 
-      __UNREFERENCED_PARAMETER(nIDLast);
+      UNREFERENCED_PARAMETER(nIDLast);
 
       ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
@@ -9692,7 +9726,7 @@ namespace user
          else
          {
 
-            design_window_full_screen(layout().sketch().parent_client_rectangle());
+            design_window_full_screen(layout().sketch().parent_raw_rectangle());
 
          }
 
@@ -12109,7 +12143,7 @@ namespace user
          if (::is_set(get_parent()))
          {
 
-            set_need_redraw(layout().design().client_rect());
+            set_need_redraw(layout().design().raw_rectangle());
 
          }
 
@@ -12459,7 +12493,7 @@ namespace user
    //void interaction::GuieProc(::message::message * pmessage)
    //{
    //
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
    //
    //}
 
@@ -13146,7 +13180,7 @@ namespace user
    bool interaction::can_merge(::user::interaction* pinteraction)
    {
 
-      __UNREFERENCED_PARAMETER(pinteraction);
+      UNREFERENCED_PARAMETER(pinteraction);
 
       return false;
 
@@ -13156,7 +13190,7 @@ namespace user
    bool interaction::merge(::user::interaction* pinteraction)
    {
 
-      __UNREFERENCED_PARAMETER(pinteraction);
+      UNREFERENCED_PARAMETER(pinteraction);
 
       return false;
 
@@ -14074,7 +14108,7 @@ namespace user
    bool interaction::is_selected(::data::item* pitem)
    {
 
-      __UNREFERENCED_PARAMETER(pitem);
+      UNREFERENCED_PARAMETER(pitem);
 
       return false;
 
@@ -14374,7 +14408,7 @@ namespace user
    void interaction::_001OnAfterExitNormal()
    {
 
-      auto rectangle = layout().window().parent_client_rectangle();
+      auto rectangle = layout().window().parent_raw_rectangle();
 
       layout().normal() = layout().window();
 
@@ -14390,7 +14424,7 @@ namespace user
    void interaction::_001OnAfterExitZoomed()
    {
 
-      auto rectangle = layout().window().parent_client_rectangle();
+      auto rectangle = layout().window().parent_raw_rectangle();
 
       auto edisplay = layout().window().display();
 
@@ -14408,7 +14442,7 @@ namespace user
    void interaction::_001OnAfterExitFullScreen()
    {
 
-      auto rectangle = layout().window().parent_client_rectangle();
+      auto rectangle = layout().window().parent_raw_rectangle();
 
       auto edisplay = layout().window().display();
 
@@ -14780,7 +14814,7 @@ namespace user
 
       auto zorder = layout().sketch().zorder();
 
-      auto rectangle = layout().sketch().parent_client_rectangle();
+      auto rectangle = layout().sketch().parent_raw_rectangle();
 
       good_restore(nullptr, rectangle, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
 
@@ -14943,10 +14977,32 @@ namespace user
    }
 
 
+   void interaction::raw_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
+   {
+
+      const_layout().state(elayout).raw_rectangle(rectangle);
+
+   }
+
+
+   ::rectangle_i32 interaction::raw_rectangle(enum_layout elayout)
+   {
+
+      ::rectangle_i32 r;
+
+      raw_rectangle(r, elayout);
+
+      return r;
+
+   }
+
+
    void interaction::client_rectangle(::rectangle_i32& rectangle, enum_layout elayout)
    {
 
-      const_layout().state(elayout).client_rect(rectangle);
+      raw_rectangle(rectangle);
+
+      rectangle += get_parent_accumulated_scroll();
 
    }
 
@@ -19740,7 +19796,13 @@ namespace user
             if (m_pinteractionimpl->is_composite())
             {
 
+               auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").i32_reference();
+
+               iNcDraw0FillCounter++;
+
                pgraphics->fill_rectangle(rectangle, argb(0, 0, 0, 0));
+
+               INFORMATION("_001OnNcDraw Fill0Rect " << rectangle);
 
             }
             else

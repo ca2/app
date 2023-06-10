@@ -28,7 +28,7 @@ namespace graphics
 #define WM_COMMANDHELP      0x0365  // lResult = true/false,
 // lParam = dwContext
 #define e_message_help_hit_test      0x0366  // lResult = dwContext,
-// lParam = __MAKE_LONG(x,y)
+// lParam = make_i32(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
 #define WM_RECALCPARENT     0x0368  // force on_layout on frame interaction_impl
 //  (only for inplace frame windows)

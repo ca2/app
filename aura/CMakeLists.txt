@@ -90,6 +90,8 @@ list(APPEND library_source
         graphics/draw2d/palette.h
         graphics/draw2d/path.cpp
         graphics/draw2d/path.h
+        graphics/draw2d/path_optimization.cpp
+        graphics/draw2d/path_optimization.h
         graphics/draw2d/path_shape.h
         graphics/draw2d/path_simple_optimization.cpp
         graphics/draw2d/path_simple_optimization.h

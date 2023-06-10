@@ -1417,9 +1417,6 @@
     <ClCompile Include="hardware\devices.cpp">
       <Filter>Source Files\hardware</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
-      <Filter>Source Files\graphics\write_text</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\text_editor_interface.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>

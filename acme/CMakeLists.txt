@@ -460,27 +460,6 @@ list(APPEND library_source
         primitive/datetime/system_time.cpp
         primitive/datetime/zonetime.cpp
         primitive/datetime/zonetime.h
-        #primitive/time/duration/_.h
-        #primitive/time/duration/duration.cpp
-        #primitive/time/duration/duration.h
-        primitive/time/floating/_.h
-        primitive/time/integral/_.h
-        primitive/time/_.h
-        primitive/time/__string.cpp
-        primitive/time/__string.h
-        primitive/time/_binary_stream.h
-        primitive/time/_impl.h
-        primitive/time/_string.h
-        #primitive/time/_time.h
-        primitive/time/_impl.h
-        primitive/time/_string.h
-        primitive/time/_structures.h
-        primitive/time/_text_stream.h
-        #primitive/time/_unit.h
-        primitive/time/_unit_operator.h
-        primitive/time/time.cpp
-        primitive/time/time.h
-        #primitive/time/time_operator.h
         primitive/geometry/sequence.h
         primitive/geometry2d/_.cpp
         primitive/geometry2d/_.h
@@ -498,6 +477,7 @@ list(APPEND library_source
         #primitive/geometry2d/_shape.h
         #primitive/geometry2d/_size_impl.h
         primitive/geometry2d/_struct.h
+        primitive/geometry2d/_text_stream.h
         #primitive/geometry2d/align.h
         primitive/geometry2d/angle.h
         primitive/geometry2d/arc.h
@@ -507,6 +487,8 @@ list(APPEND library_source
         primitive/geometry2d/ellipse.h
         primitive/geometry2d/geometry.cpp
         primitive/geometry2d/geometry.h
+        primitive/geometry2d/item.cpp
+        primitive/geometry2d/item.h
         primitive/geometry2d/line.h
         primitive/geometry2d/lines.h
         #primitive/geometry2d/point.cpp
@@ -892,6 +874,27 @@ list(APPEND library_source
         primitive/text/text.h
         primitive/text/translator.cpp
         primitive/text/translator.h
+        #primitive/time/duration/_.h
+        #primitive/time/duration/duration.cpp
+        #primitive/time/duration/duration.h
+        primitive/time/floating/_.h
+        primitive/time/integral/_.h
+        primitive/time/_.h
+        primitive/time/__string.cpp
+        primitive/time/__string.h
+        primitive/time/_binary_stream.h
+        primitive/time/_impl.h
+        primitive/time/_string.h
+        #primitive/time/_time.h
+        primitive/time/_impl.h
+        primitive/time/_string.h
+        primitive/time/_structures.h
+        primitive/time/_text_stream.h
+        #primitive/time/_unit.h
+        primitive/time/_unit_operator.h
+        primitive/time/time.cpp
+        primitive/time/time.h
+        #primitive/time/time_operator.h
         promise.cpp
         regular_expression/_regular_expression.h
         regular_expression/context.cpp
@@ -1537,7 +1540,6 @@ list(APPEND library_source
         version/version.config.h
         version/version.h
         include/_impl.h
-        primitive/geometry2d/_text_stream.h
         )
 
 if (ANDROID)

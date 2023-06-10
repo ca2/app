@@ -476,7 +476,6 @@
     <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp" />
     <ClCompile Include="graphics\write_text\font_list.cpp" />
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp" />
     <ClCompile Include="graphics\write_text\glyph.cpp" />
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />

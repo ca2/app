@@ -1319,13 +1319,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return ::color::color(80, 80, 80, 127);
+                  return ::rgba(80, 80, 80, 127);
 
                }
                else
                {
 
-                  return ::color::color(255, 255, 255, 127);
+                  return ::rgba(255, 255, 255, 127);
 
                }
 
@@ -1344,13 +1344,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return ::rgba(255, 255, 255, 127);
 
                   }
                   else
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return ::rgba(80, 80, 80, 127);
 
                   }
 
@@ -1361,13 +1361,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 255);
+                     return ::rgba(80, 80, 80, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::rgba(255, 255, 255, 255);
 
                   }
 
@@ -1383,13 +1383,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return ::rgba(80, 80, 80, 127);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return ::rgba(255, 255, 255, 127);
 
                   }
 
@@ -1400,13 +1400,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::rgba(255, 255, 255, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(80, 80, 80, 255);
+                     return ::rgba(80, 80, 80, 255);
 
                   }
 

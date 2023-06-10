@@ -1665,7 +1665,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
    psystem->imaging().channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
    psystem->imaging().channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
 
-   pimageCache->set_rgb(0, 0, 0);
+   pimageCache->clear(::color::transparent);
 
 }
 

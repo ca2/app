@@ -390,7 +390,7 @@ namespace user
 
          ::color::color color(m_hls);
 
-         color.alpha = 255;
+         color.set_opaque();
 
          ::draw2d::brush_pointer pbrush(e_create, this);
 

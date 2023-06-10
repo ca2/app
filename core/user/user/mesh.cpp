@@ -6126,7 +6126,7 @@ namespace user
             psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),{}, size, pimage2->get_graphics(),{},0,1);
             pimage2->fill(0,0,0,0);
             psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
-            pimage2->set_rgb(0,0,0);
+            pimage2->set(::color::transparent);
 
             image_source imagesource(pimage2, rectangle_i32(1,1, m_rectangleText.width(), m_rectangleText.height()));
 

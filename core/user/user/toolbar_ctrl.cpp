@@ -791,7 +791,7 @@ namespace user
 //
 //#endif
 
-      return 0;
+      return ::color::transparent;
 
    }
 
@@ -809,7 +809,7 @@ namespace user
 //
 //#endif
 
-      return 0;
+      return ::color::transparent;
 
    }
 

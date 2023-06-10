@@ -251,7 +251,7 @@ SizingNone:;
             
          rectangleA.deflate(1, 1, 1, 1);
             
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, 0);
+         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, color::transparent);
 
          rectangleA.deflate(1, 1, 1, 1);
             

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "control_box_button.h"
 #include "acme/handler/item.h"
+#include "acme/primitive/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
@@ -167,7 +168,7 @@ namespace experience_core
 
          auto ppen = __create < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0f, ::color::color(255, 255, 255, 255));
+         ppen->create_solid(1.0f, ::color::white);
 
          pgraphics->set(ppen);
 

@@ -298,13 +298,13 @@ namespace user
             if (::is_set(m_pitemHover))
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 
@@ -315,13 +315,13 @@ namespace user
             if (::is_set(m_pitemHover))
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 

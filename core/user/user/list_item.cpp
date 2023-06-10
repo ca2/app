@@ -462,9 +462,9 @@ namespace user
 
          ::color::color color;
 
-         color.set_COLORREF(m_colorText);
+         color = m_colorText;
 
-         color.alpha = color.alpha / 3;
+         color.rate_opacity(1.0 / 3.0);
 
          if (color != pbrushText->m_color)
          {

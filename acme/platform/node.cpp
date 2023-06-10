@@ -1333,7 +1333,7 @@ namespace acme
    }
 
 
-   ::color::color node::get_default_color(::u64 u )
+   ::color::color node::get_default_color(::color::color color)
    {
 
       return argb(255, 0, 0, 0);

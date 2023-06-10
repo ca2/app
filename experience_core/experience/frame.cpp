@@ -369,17 +369,17 @@ namespace experience_core
 
       ::color::color color;
 
-      color.set_rgb(colorMoveableBorder);
+      color = colorMoveableBorder;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
       m_colorMoveableBorderHilight.m_u8Opacity = 255;
 
-      color.set_rgb(colorMoveableBorder);
+      color = colorMoveableBorder;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
       m_colorMoveableBorderShadow.m_u8Opacity = 255;
 
-      color.set_rgb(colorMoveableBorder);
+      color = colorMoveableBorder;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
       m_colorMoveableBorderDkShadow.m_u8Opacity = 255;

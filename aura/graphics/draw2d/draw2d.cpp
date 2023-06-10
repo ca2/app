@@ -656,7 +656,7 @@ void draw2d::emboss_predicate(
 
       //}
 
-      pimage->fill(0, 0, 0, 0);
+      pimage->fill_byte(0);
 
       auto pbrushText = __create < ::draw2d::brush >();
 

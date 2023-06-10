@@ -1487,7 +1487,7 @@ namespace aura
    //}
 
 
-   ::color::color session::get_default_color(u64 u)
+   ::color::color session::get_default_color(color::color color)
    {
 
       return argb(255, 255, 255, 255);

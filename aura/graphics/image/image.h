@@ -330,7 +330,7 @@ public:
    virtual void fill_byte(uchar uch);
    //virtual void fill(::color32_t level);
    virtual void clear(::color::color colorFill);
-   virtual void fill(i32 A, i32 R, i32 G, i32 B);
+   virtual void clear_argb(i32 A, i32 R, i32 G, i32 B);
    //      virtual void Fill(i32 R, i32 G, i32 B);
    //virtual void set_rgb(i32 R, i32 G, i32 B);
    virtual void fill_glass(i32 R, i32 G, i32 B, i32 A);

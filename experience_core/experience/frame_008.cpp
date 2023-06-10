@@ -256,7 +256,7 @@ SizingNone:;
       else if(m_pframewindow->m_estyle == ::user::StyleLightBlue || m_pframewindow->m_estyle == ::user::StyleRedOrange)
       {
          rectangleA.deflate(1,1,1,1);
-         Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,::color::transparent);//m_colorMoveableBorderDkShadow);
 
          if(!m_bHollow)
          {

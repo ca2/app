@@ -455,7 +455,7 @@ namespace user
 
          pgraphics->path(ppath);
 
-         pbrush->create_solid(color.multiply_with_opacity(255, dRate));
+         pbrush->create_solid(color.rate_rgb_set_opacity(255, dRate));
 
          ::scroll_x(rectangleEllipse, dRate, rectangle);
 

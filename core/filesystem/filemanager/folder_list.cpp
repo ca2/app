@@ -377,7 +377,7 @@ namespace filemanager
       if (filemanager_data()->is_topic())
       {
 
-         ::color32_t color32 = 0;
+         ::color32_t color32 = ::color::transparent;
 
          if (filemanager_document()->m_emode == ::userfs::e_mode_saving)
          {

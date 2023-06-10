@@ -4,7 +4,7 @@
 class xfplayer_impact_line;
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 class CLASS_DECL_CORE xfplayer_impact_line_selection_item

@@ -378,7 +378,7 @@ namespace apex
    //}
 
 
-   ::color::color session::get_default_color(u64 u)
+   ::color::color session::get_default_color(::color::color color)
    {
 
       auto psystem = acmesystem()->m_papexsystem;
@@ -392,7 +392,7 @@ namespace apex
 
       }
 
-      return pnode->get_default_color(u);
+      return pnode->get_default_color(color);
 
    }
 

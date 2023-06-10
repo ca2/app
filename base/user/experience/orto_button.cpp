@@ -4,6 +4,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
+#include "acme/primitive/geometry2d/ellipse.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"

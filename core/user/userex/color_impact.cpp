@@ -2,6 +2,7 @@
 #include "color_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/graphics/draw2d/_image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -186,10 +187,10 @@ namespace visual
 
       ::u8 * pline;
 
-      auto a = pimage->m_colorindexes.a;
-      auto r = pimage->m_colorindexes.r;
-      auto g = pimage->m_colorindexes.g;
-      auto b = pimage->m_colorindexes.b;
+      auto a = pimage->m_colorindexes.m_u8IndexOpacity;
+      auto r = pimage->m_colorindexes.m_u8IndexRed;
+      auto g = pimage->m_colorindexes.m_u8IndexGreen;
+      auto b = pimage->m_colorindexes.m_u8IndexBlue;
 
       for (index i = 0; i < w; i++)
       {
@@ -235,7 +236,7 @@ namespace visual
 
       uScan = pimage->scan_size() / sizeof(::color32_t);
 
-      ::color32_t * pline;
+      ::image32_t * pline;
 
       double dR, dG, dB;
 
@@ -338,7 +339,7 @@ namespace visual
          //m_uchB = (::u8)primitive_color_round(m_dB * 255.0);
 
          pline = pimage->get_data() + uScan * j;
-         ::color32_t color32 = IMAGE_ARGB(255, ::u8(_dR*255.0), ::u8(_dG*255.0), ::u8(_dB*255.0));
+         image32_t color32 = argb(255, _dR, _dG, _dB);
          for (index i = 0; i < w; i++)
          {
 
@@ -501,9 +502,9 @@ namespace userex
 
       color.set_hls(m_hls);
 
-      color.alpha = 255;
+      color.m_u8Opacity = 255;
 
-      return color.get_rgba();
+      return color;
 
    }
 

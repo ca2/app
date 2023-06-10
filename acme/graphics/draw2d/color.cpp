@@ -21,6 +21,7 @@ namespace color
    color yellow = rgba(255, 255, 0, 255);
    color cyan = rgba(0, 255, 255, 255);
    color magenta = rgba(255, 0, 255, 255);
+   color gray = rgba(255, 127, 127, 127);
    color white = rgba(255, 255, 255, 255);
 
 

@@ -276,6 +276,8 @@ namespace color
 
       constexpr void set_opacity(class ::opacity opacity) { this->m_u8Opacity = (::u8)(opacity.u8_opacity() * 255.0); }
 
+      constexpr void set_opaque() { this->m_u8Opacity = 255; }
+
       constexpr void set_u8(::u8 R, ::u8 G, ::u8 B) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = 255; }
       constexpr void set_u8(::u8 R, ::u8 G, ::u8 B, ::u8 A) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = A; }
       constexpr void set_f64(double R, double G, double B) { m_u8Red = (::u8) (R * 255.); m_u8Green = (::u8) (G * 255.); m_u8Blue = (::u8) (B * 255.); m_u8Opacity = 255; }
@@ -322,12 +324,12 @@ namespace color
       void hue_offset(double dRadians);
 
 
-      constexpr ::color::color & multiply_with_opacity(class ::opacity opacity, double dRate)
+      constexpr ::color::color & rate_rgb_set_opacity(class ::opacity opacity, double dRate)
       {
 
-         multiply_red(dRate);
-         multiply_green(dRate);
-         multiply_blue(dRate);
+         rate_red(dRate);
+         rate_green(dRate);
+         rate_blue(dRate);
 
          set_opacity(opacity);
 
@@ -336,9 +338,10 @@ namespace color
       }
 
 
-      constexpr void multiply_red(double dRate) { m_u8Red = (::u8)(m_u8Red * dRate); }
-      constexpr void multiply_green(double dRate) { m_u8Green = (::u8)(m_u8Green * dRate); }
-      constexpr void multiply_blue(double dRate) { m_u8Blue = (::u8)(m_u8Blue * dRate); }
+      constexpr void rate_red(double dRate) { m_u8Red = (::u8)(m_u8Red * dRate); }
+      constexpr void rate_green(double dRate) { m_u8Green = (::u8)(m_u8Green * dRate); }
+      constexpr void rate_blue(double dRate) { m_u8Blue = (::u8)(m_u8Blue * dRate); }
+      constexpr void rate_opacity(double dRate) { m_u8Opacity = (::u8)(m_u8Opacity * dRate); }
 
 
       inline static bool similar_color_component(double d1, double d2) { return fabs(d2 - d1) < (1.0 / 255.0); }

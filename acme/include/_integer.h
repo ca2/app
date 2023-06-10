@@ -24,4 +24,8 @@ constexpr ::u32 make_u32(::iptr a, ::iptr b) { return (::u32) make_i32(a, b); }
 constexpr ::u32 make_u32(::iptr a, ::iptr b, ::iptr c, ::iptr d) { return make_u32(make_u16(a, b), make_u16(c, d)); }
 
 
+constexpr ::u16 swap_u16(::u16 u) { return make_u16(upper_u8(u), lower_u8(u)); }
+constexpr ::u32 swap_u32(::u32 u) { return make_u32(swap_u16(upper_u16(u)), swap_u16(lower_u16(u))); }
+
+
 

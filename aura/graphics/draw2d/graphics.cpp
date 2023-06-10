@@ -5173,7 +5173,7 @@ namespace draw2d
 
          }
 
-         pimage->fill(0, 0, 0, 0);
+         pimage->fill_byte(0);
 
          double dStep = 0.125;
          double dPeriod = 7.0;

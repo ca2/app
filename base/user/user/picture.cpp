@@ -846,7 +846,7 @@ namespace user
 
             rectangleDropShadow.inflate(m_ppictureimpl->m_iGlowDropShadowBlur, m_ppictureimpl->m_iGlowDropShadowBlur);
 
-            pimageDropShadow->fill(0);
+            pimageDropShadow->clear(color::transparent);
 
             image_source imagesource(pimage);
 
@@ -856,7 +856,7 @@ namespace user
 
             pimageDropShadow->g()->draw(imagedrawing);
 
-            pimageDropShadow->paint_rgb(m_ppictureimpl->m_hlsGlowDropShadow);
+            pimageDropShadow->multiply_rgb_by_source_alpha(m_ppictureimpl->m_hlsGlowDropShadow);
             
             blurDropShadow.initialize(pimageDropShadow->size(), iBlur);
 

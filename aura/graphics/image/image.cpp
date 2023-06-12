@@ -6532,7 +6532,7 @@ void image::clear(::color::color color)
 //}
 
 
-void image::fill(i32 a, i32 r, i32 g, i32 b)
+void image::clear_argb(i32 a, i32 r, i32 g, i32 b)
 {
 
    if (a == r && a == g && a == b)
@@ -8946,7 +8946,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const po
    if (greekdeltax == 0.0 && greekdeltay == 0.0)
    {
 
-      fill(
+      clear_argb(
          u8_clip(color1.u8_opacity() * 0.5 + color2.u8_opacity() * 0.5),
          u8_clip(color1.u8_red() * 0.5 + color2.u8_red() * 0.5),
          u8_clip(color1.u8_green() * 0.5 + color2.u8_green() * 0.5),
@@ -9287,7 +9287,7 @@ void image::create_circle(::image* pimage, int diameter)
    if (::is_null(pimage) || pimage->area() <= 0)
    {
 
-      fill(255, 0, 0, 0);
+      clear_argb(255, 0, 0, 0);
 
    }
    else

@@ -33,7 +33,7 @@
 #include <sys/stat.h>
 
 #undef ERROR
-#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 
 
@@ -300,7 +300,7 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(pscript->synchronization());
 
-      FORMATTED_INFORMATION("Compiling script %s", pscript->m_strName.c_str());
+      information("Compiling script %s", pscript->m_strName.c_str());
 
       auto & ostreamError = pscript->m_streamError;
 
@@ -1030,10 +1030,10 @@ namespace dynamic_source
                ostreamError << "Linking...\n";
                //ostreamError << "Linker Command File" << "\n";
                //ostreamError << pathLinker << "\n";
-               INFORMATION("Linker Command File " << pathLinker.c_str());
+               information() << "Linker Command File " << pathLinker.c_str();
                //ostreamError << "Linker Command" << "\n";
                //ostreamError << strLinker << "\n";
-               INFORMATION("Linker Command " << strLinker.c_str());
+               information() << "Linker Command " << strLinker.c_str();
                str.find_replace("\r\n","\n");
                ostreamError << str;
                ostreamError << "</pre>";

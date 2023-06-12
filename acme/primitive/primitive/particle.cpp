@@ -603,229 +603,440 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 
 
 
-void particle::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//
+//   get_tracer()(m_pcontext, etracelevel, etracecategory).format_output_arguments(pszFormat, arguments);
+//
+//}
+
+
+//void particle::trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//void particle::trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//
+//
+//void particle::trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, etracelevel, trace_category()).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//void particle::trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//void particle::trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//void particle::trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
+//
+//}
+//
+//
+//void particle::trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//{
+//
+//   get_tracer()(m_pcontext, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
+//
+//}
+
+
+//void particle::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   trace_arguments(etracelevel, etracecategory, pszFormat, arguments);
+//
+//   va_end(arguments);
+//
+//}
+//
+//
+//void particle::trace_log_information(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   trace_arguments(e_trace_level_information, etracecategory, pszFormat, arguments);
+//
+//   va_end(arguments);
+//
+//}
+//
+//
+//void particle::trace_log_warning(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   trace_arguments(e_trace_level_warning, etracecategory, pszFormat, arguments);
+//
+//   va_end(arguments);
+//
+//}
+//
+//
+//void particle::trace_log_error(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   trace_arguments(e_trace_level_error, etracecategory, pszFormat, arguments);
+//
+//   va_end(arguments);
+//
+//}
+//
+//
+//void particle::trace_log_fatal(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   trace_arguments(e_trace_level_fatal, etracecategory, pszFormat, arguments);
+//
+//   va_end(arguments);
+//
+//}
+
+
+class tracer & particle::tracer()
 {
 
+   auto ptask = get_task();
 
-   tracer(m_pcontext, etracelevel, etracecategory).format_output_arguments(pszFormat, arguments);
+   if (!ptask)
+   {
+
+      return *::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+
+   }
+
+   return *ptask;
 
 }
 
 
-void particle::trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+::trace_statement particle::log_statement()
 {
 
-   tracer(m_pcontext, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
+   return ::transfer(trace_statement(tracer())(this));
 
 }
 
 
-void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+::trace_statement particle::information()
 {
 
-   tracer(m_pcontext, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
+   return ::transfer(trace_statement(tracer())(e_trace_level_information));
 
 }
 
 
-void particle::trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+::trace_statement particle::warning()
 {
 
-   tracer(m_pcontext, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
+   return ::transfer(trace_statement(tracer())(e_trace_level_warning));
 
 }
 
 
-void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+::trace_statement particle::error()
 {
 
-   tracer(m_pcontext, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
+   return ::transfer(trace_statement(tracer())(e_trace_level_error));
+
+}
+
+
+::trace_statement particle::fatal()
+{
+
+   return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
 
 }
 
 
 
-
-void particle::trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments)
-{
-
-
-   tracer(m_pcontext, etracelevel, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void particle::trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments)
-{
-
-   tracer(m_pcontext, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void particle::trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments)
-{
-
-   tracer(m_pcontext, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void particle::trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments)
-{
-
-   tracer(m_pcontext, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void particle::trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments)
-{
-
-   tracer(m_pcontext, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
-
-}
-
-
-void particle::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+void particle::information(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
    va_start(arguments, pszFormat);
 
-   trace_arguments(etracelevel, etracecategory, pszFormat, arguments);
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_information)(trace_category());
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_information(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+void particle::warning(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
    va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_information, etracecategory, pszFormat, arguments);
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_warning)(trace_category());
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_warning(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+void particle::error(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
    va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_warning, etracecategory, pszFormat, arguments);
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_error)(trace_category());
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_error(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+void particle::fatal(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
    va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_error, etracecategory, pszFormat, arguments);
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_fatal)(trace_category());
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_fatal(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   trace_arguments(e_trace_level_fatal, etracecategory, pszFormat, arguments);
-
-   va_end(arguments);
-
-}
+//trace_statement particle::trace(enum_trace_level etracelevel)
+//{ 
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, etracelevel, trace_category()); 
+//
+//   return tracer;
+//
+//}
 
 
-void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   trace_arguments(etracelevel, trace_category(), pszFormat, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void particle::trace_log_information(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   trace_arguments(e_trace_level_information, trace_category(), pszFormat, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void particle::trace_log_warning(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   trace_arguments(e_trace_level_warning, trace_category(), pszFormat, arguments);
-
-   va_end(arguments);
-
-}
-
-
-void particle::trace_log_error(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   trace_arguments(e_trace_level_error, trace_category(), pszFormat, arguments);
-
-   va_end(arguments);
-
-}
+//trace_statement particle::trace_log_information()
+//{
+//   
+//   auto & tracer = get_tracer();
+//
+//   tracer(m_pcontext, e_trace_level_information, trace_category());
+//
+//   return tracer;
+//
+//}
+//
+//
+//trace_statement particle::trace_log_warning()
+//{ 
+//   
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, e_trace_level_warning, trace_category()); 
+//
+//   return tracer;
+//
+//}
+//
+//
+//trace_statement particle::trace_log_error()
+//{ 
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, e_trace_level_error, trace_category()); 
+//
+//   return tracer;
+//
+//}
+//
+//
+//trace_statement particle::trace_log_fatal()
+//{ 
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, e_trace_level_fatal, trace_category()); 
+//
+//   return tracer;
+//
+//}
 
 
-void particle::trace_log_fatal(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   trace_arguments(e_trace_level_fatal, trace_category(), pszFormat, arguments);
-
-   va_end(arguments);
-
-}
-
+//trace_statement particle::trace(enum_trace_level etracelevel, enum_trace_category etracecategory)
+//{
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, etracelevel, etracecategory); 
+//
+//   return tracer;
+//
+//}
+//
+//
+//trace_statement particle::trace_log_information(enum_trace_category etracecategory)
+//{
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, e_trace_level_information, etracecategory); 
+//
+//   return tracer;
+//
+//}
+//
+//
+//trace_statement particle::trace_log_warning(enum_trace_category etracecategory)
+//{
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, e_trace_level_warning, etracecategory); 
+//
+//   return tracer;
+//
+//}
+//
+//
+//trace_statement particle::trace_log_error(enum_trace_category etracecategory)
+//{
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, e_trace_level_error, etracecategory); 
+//
+//   return tracer;
+//
+//}
+//
+//
+//trace_statement particle::trace_log_fatal(enum_trace_category etracecategory)
+//{
+//
+//   auto & tracer = get_tracer();
+//   
+//   tracer(m_pcontext, e_trace_level_fatal, etracecategory); 
+//
+//   return tracer;
+//
+//}
+//
+//
+//void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   trace_arguments(etracelevel, trace_category(), pszFormat, arguments);
+//
+//   va_end(arguments);
+//
+//}
+//
+//
+//
 
 
 
@@ -1884,6 +2095,25 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
    return acmesystem()->nano()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
 
 }
+
+
+CLASS_DECL_ACME class tracer & tracer()
+{
+
+   auto ptask = get_task();
+
+   if (!ptask)
+   {
+
+      return *::acme::acme::g_pacme->m_psubsystem->m_pcontext;
+
+   }
+
+   return *ptask;
+
+}
+
+
 
 
 

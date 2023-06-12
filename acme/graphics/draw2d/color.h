@@ -324,6 +324,14 @@ namespace color
       void hue_offset(double dRadians);
 
 
+      constexpr auto u8_minimum_rgb() const { return minimum({ u8_red(), u8_green(), u8_blue() }); }
+      constexpr auto u8_maximum_rgb() const { return maximum({ u8_red(), u8_green(), u8_blue() }); }
+      constexpr auto f32_minimum_rgb() const { return u8_minimum_rgb() / 255.f; }
+      constexpr auto f32_maximum_rgb() const { return u8_maximum_rgb() / 255.f; }
+      constexpr auto f64_minimum_rgb() const { return u8_minimum_rgb() / 255.; }
+      constexpr auto f64_maximum_rgb() const { return u8_maximum_rgb() / 255.; }
+
+
       constexpr ::color::color & rate_rgb_set_opacity(class ::opacity opacity, double dRate)
       {
 
@@ -397,6 +405,8 @@ namespace color
       constexpr double get_luminance() const { return (m_u8Red + m_u8Green + m_u8Blue) / (255.0 * 3.0); }
       double get_saturation() const { return get_hls().m_dS; }
       double get_hue() const { return get_hls().m_dH; }
+
+      constexpr auto opaque() const { return *this & ::opacity(255); }
 
       
       constexpr color & operator &=(const class ::opacity & opacity)
@@ -592,8 +602,8 @@ constexpr auto argb(OPACITY opacity, RED red, GREEN green, BLUE blue)
 }
 
 
-constexpr auto opacity(const class ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }
-constexpr auto opaque(const ::color::color& color) { return opacity(255, color); }
+//constexpr auto opacity(const class ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }
+//constexpr auto opaque(const ::color::color& color) { return opacity(255, color); }
 
 
 CLASS_DECL_ACME::color::color _020GetColor(::index i);
@@ -837,6 +847,9 @@ constexpr ::color::color color32_color_with_u8_opacity(::u8 u8Opacity, ::color32
 //
 //}
 
+
+#define __expand_f32_rgba(color) color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()
+#define __expand_f64_rgba(color) color.f64_red(), color.f64_green(), color.f64_blue(), color.f64_opacity()
 
 
 

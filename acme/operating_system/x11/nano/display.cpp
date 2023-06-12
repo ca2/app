@@ -442,7 +442,7 @@ namespace x11
 
       }
 
-      INFORMATION("Finished display::message_loop for nano::display");
+      information() << "Finished display::message_loop for nano::display";
 
    }
 

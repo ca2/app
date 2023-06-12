@@ -76,7 +76,7 @@ namespace nanoui
        *     The color initially selected by this ColorPicker (default: Red).
        */
 
-      ColorPicker(Widget* parent, const ::color::color& color = ::color::color(1.f, 0.f, 0.f, 1.f));
+      ColorPicker(Widget* parent, const ::color::color& color = ::argb(1.f, 0.f, 0.f, 1.f));
 
       /// The callback executed when the ColorWheel changes.
       std::function<void(const ::color::color&)> callback() const { return m_callback; }

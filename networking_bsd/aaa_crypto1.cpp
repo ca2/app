@@ -1435,7 +1435,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1466,7 +1466,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1493,7 +1493,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1523,7 +1523,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1552,7 +1552,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1666,7 +1666,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1695,7 +1695,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       } 
 

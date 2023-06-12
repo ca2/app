@@ -495,7 +495,7 @@ namespace sockets
       if (m_eping == ping_sent_ping && m_timeLastPing.elapsed() > m_timeClientPingTimeout)
       {
 
-         INFORMATION("PING TIMEOUT!!");
+         information() << "PING TIMEOUT!!";
 
          SetCloseAndDelete();
 

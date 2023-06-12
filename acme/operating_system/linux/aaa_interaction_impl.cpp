@@ -352,7 +352,7 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
+            information("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
             Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(),
             0,
@@ -543,7 +543,7 @@ namespace linux
             if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))
             {
 
-               INFORMATION("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+               information() << "linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
 
             }
 
@@ -760,7 +760,7 @@ namespace linux
       if (bMove)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x(), m_pointLastMove.y());
+         information("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x(), m_pointLastMove.y());
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -775,7 +775,7 @@ namespace linux
       if (bSize)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
+         information("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -888,7 +888,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __c_str(m_puserinteraction->layout().design().display().m_eenum));
+         information("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __c_str(m_puserinteraction->layout().design().display().m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -1510,7 +1510,7 @@ namespace linux
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
-               INFORMATION("Screen Relative Mouse Message Position");
+               information() << "Screen Relative Mouse Message Position";
                ::rectangle_f64 rectangleWindow32;
                ::window_rectangle((oswindow) get_handle(), &rectangleWindow32);
                ::copy(rectangleWindow, rectangleWindow32);

@@ -171,7 +171,7 @@ namespace user
          //if (!estatus)
          //{
 
-         //   INFORMATION("failed to create user shell");
+         //   information() << "failed to create user shell";
 
          //}
 
@@ -461,7 +461,7 @@ namespace user
 
       //}
 
-      INFORMATION("::user::application::initialize");
+      information() << "::user::application::initialize";
 
       //xml::document docUser;
 
@@ -507,9 +507,9 @@ namespace user
 
       bool bHasUninstall = psystem->is_true("uninstall");
 
-      FORMATTED_INFORMATION("user::initialize bHasInstall %c", bHasInstall);
+      information("user::initialize bHasInstall %c", bHasInstall);
 
-      FORMATTED_INFORMATION("user::initialize bHasUninstall %c", bHasUninstall);
+      information("user::initialize bHasUninstall %c", bHasUninstall);
 
       //return true;
 

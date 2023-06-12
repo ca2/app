@@ -953,7 +953,7 @@ namespace user
             if(!pinteraction)
             {
 
-               WARNING("the impact wasn't created: " << pusersystem->m_typeNewImpact.as_string());
+               warning() <<"the impact wasn't created: " << pusersystem->m_typeNewImpact.as_string();
 
             }
 
@@ -1025,7 +1025,7 @@ namespace user
       if (!on_create_client(pusersystem))
       {
 
-         CATEGORY_ERROR(appmsg, "Failed to create client pane/::user::impact for frame.");
+         error()(e_trace_category_appmsg) << "Failed to create client pane/::user::impact for frame.";
 
          return -1;
 

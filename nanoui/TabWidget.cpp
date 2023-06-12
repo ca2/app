@@ -230,7 +230,8 @@ namespace nanoui
 
       int tab_height = (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton);
 
-      if (m_colorBackground.fa() != 0.f) {
+      if (m_colorBackground.has_opacity())
+      {
          pcontext->fill_color(m_colorBackground);
          pcontext->begin_path();
          pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + .5f + tab_height, (float)m_size.cx(),

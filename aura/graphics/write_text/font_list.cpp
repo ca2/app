@@ -21,11 +21,13 @@
 #define BOX_SEL 1
 #define BOX_HOVER 2
 
-template < primitive_rectangle RECTANGLE >
- tracer & operator << (tracer&  tracer, const RECTANGLE& r)
- {
-    return tracer << r.left << ","<<r.top << ","<<r.right<< "," << r.bottom;
- }
+//template < primitive_rectangle RECTANGLE >
+//class tracer & operator << (class tracer&  tracer, const RECTANGLE& r)
+//{
+//
+//   return tracer << r.left << ","<<r.top << ","<<r.right<< "," << r.bottom;
+//
+//}
 
 namespace write_text
 {
@@ -107,9 +109,9 @@ namespace write_text
    void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pgraphics)
    {
 
-      INFORMATION("font_list::_001OnDrawWide 1");
-      INFORMATION("font_list::_001OnDrawWide 2");
-      INFORMATION("font_list::_001OnDrawWide 3");
+      information() << "font_list::_001OnDrawWide 1";
+      information() << "font_list::_001OnDrawWide 2";
+      information() << "font_list::_001OnDrawWide 3";
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -124,7 +126,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         INFORMATION("!pfontlistdata");
+         information() << "!pfontlistdata";
 
          m_puserinteraction->set_need_layout();
 
@@ -153,7 +155,7 @@ namespace write_text
          if (!pitem)
          {
 
-            INFORMATION("!pitem (pfontlistdata->element_at(i))");
+            information() << "!pitem (pfontlistdata->element_at(i))";
 
             continue;
 
@@ -164,7 +166,7 @@ namespace write_text
          if (!pbox->is_layout_ok(this))
          {
 
-            INFORMATION("!pitem (pbox->is_layout_ok(this))");
+            information() << "!pitem (pbox->is_layout_ok(this))";
 
             continue;
 
@@ -176,13 +178,13 @@ namespace write_text
             if (pbox->m_rectangle.is_empty())
             {
 
-               //INFORMATION("!pitem (pbox->m_rectangle.intersects(rectangleClient(EMPTY)))");
+               //information() << "!pitem (pbox->m_rectangle.intersects(rectangleClient(EMPTY)))";
 
             }
             else if (rectangleClient.area() < 10'000)
             {
 
-               //INFORMATION("!pitem (pbox->m_rectangle.intersects(rectangleClient(<10'000)))");
+               //information() << "!pitem (pbox->m_rectangle.intersects(rectangleClient(<10'000)))";
 
             }
 
@@ -204,7 +206,7 @@ namespace write_text
 
          auto rectangle = pbox->m_rectangle;
 
-         //INFORMATION("rect:" << rectangle);
+         //information() << "rect:" << rectangle;
 
          image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1065,7 +1067,7 @@ namespace write_text
             else if (plistitem->m_strFont != penumitem->m_mapFileName[0])
             {
 
-               INFORMATION("what?!?!");
+               information() << "what?!?!";
 
                continue;
 
@@ -1192,9 +1194,9 @@ namespace write_text
 
       m_puserinteraction->post_redraw();
 
-      INFORMATION("font_list::layout() FINISHED 1");
-      INFORMATION("font_list::layout() FINISHED 2");
-      INFORMATION("font_list::layout() FINISHED 3");
+      information() << "font_list::layout() FINISHED 1";
+      information() << "font_list::layout() FINISHED 2";
+      information() << "font_list::layout() FINISHED 3";
 
    }
 
@@ -1209,7 +1211,7 @@ namespace write_text
 
       }
 
-      INFORMATION("font_list::layout_wide");
+      information() << "font_list::layout_wide";
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -1241,9 +1243,9 @@ namespace write_text
 
       sizeTotal.cx() = m_rectangleClient.width();
 
-      rectangle_i32 rectangleClient = m_puserinteraction->client_rectangle();
+      rectangle_i32 rectangleClient = m_puserinteraction->raw_rectangle();
 
-      rectangleClient += m_puserinteraction->get_context_offset();
+      //rectangleClient += m_puserinteraction->get_context_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 

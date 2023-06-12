@@ -284,7 +284,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32
   ud = *pUdateIn;
 
 //  if (dwFlags & VAR_VALIDDATE)
-//    WARNING("Ignoring VAR_VALIDDATE\n");
+//    warning() <<"Ignoring VAR_VALIDDATE\n";
 
   if (FAILED(FLOATTIME_RollUdate(&ud)))
     return E_INVALIDARG;

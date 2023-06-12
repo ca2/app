@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "frame_002.h"
-#include "acme/graphics/draw2d/_image_argb.h"
+#include "acme/graphics/draw2d/_image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"

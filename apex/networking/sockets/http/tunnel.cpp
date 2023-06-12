@@ -260,7 +260,7 @@ namespace sockets
 //         if (!is_connecting())
 //         {
 //
-//            FATAL("http_get_socket: connect() failed miserably");
+//            fatal() <<"http_get_socket: connect() failed miserably";
 //            
 //            SetCloseAndDelete();
 //
@@ -304,7 +304,7 @@ namespace sockets
             if (!is_connecting())
             {
 
-               FATAL("http_get_socket: connect() failed miserably");
+               fatal() <<"http_get_socket: connect() failed miserably";
 
                SetCloseAndDelete();
 

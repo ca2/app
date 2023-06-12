@@ -314,7 +314,7 @@ namespace user
       if(str.is_empty())
       {
 
-         INFORMATION("unable to load os keyboard on_layout");
+         information() << "unable to load os keyboard on_layout";
          
          //if(is_debugger_attached())
          //{

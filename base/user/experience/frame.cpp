@@ -1265,7 +1265,7 @@ namespace experience
       if (strType.contains("playlist"))
       {
 
-         INFORMATION("frame playlist");
+         information() << "frame playlist";
 
       }
 
@@ -1548,7 +1548,7 @@ namespace experience
       if (strType.contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 

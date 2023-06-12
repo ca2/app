@@ -144,7 +144,7 @@ namespace user
          if(::user::impact::get_document() == nullptr)
          {
 
-            CATEGORY_WARNING(appmsg, "Warning: Creating a pane with no ::user::document.");
+            warning()(e_trace_category_appmsg) << "Warning: Creating a pane with no ::user::document.";
 
          }
 

@@ -18,7 +18,8 @@ typedef map < task *, itask_t > task_id_map;
 class CLASS_DECL_ACME task :
    virtual public object,
    //virtual public synchronization_object,
-   virtual public acme::implementable
+   virtual public acme::implementable,
+   virtual public tracer
 {
 public:
 
@@ -313,6 +314,8 @@ CLASS_DECL_ACME ::task * get_task();
 CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 CLASS_DECL_ACME string get_task_name(::task * ptask);
+
+CLASS_DECL_ACME string current_task_name();
 
 
 template<typename THREAD_POINTER>

@@ -255,7 +255,7 @@ namespace sockets
       if (!IsResponse())
       {
 
-         FATAL("OnFirst: Response expected but not received - aborting");
+         fatal() <<"OnFirst: Response expected but not received - aborting";
 
          SetCloseAndDelete();
 
@@ -339,7 +339,7 @@ namespace sockets
    void http_client_socket::OnDataComplete()
    {
 
-      INFORMATION("OnDataComplete");
+      information() << "OnDataComplete";
 
       m_b_complete = true;
 
@@ -467,7 +467,7 @@ namespace sockets
       if (!m_b_complete)
       {
 
-         INFORMATION("OnDelete");
+         information() << "OnDelete";
 
          m_b_complete = true;
 

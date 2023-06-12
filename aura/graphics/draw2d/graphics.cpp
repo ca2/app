@@ -876,6 +876,14 @@ namespace draw2d
    }
 
 
+   void graphics::polyline(const ::point_f64_array & pointa)
+   {
+
+      polyline(pointa.data(), pointa.size());
+
+   }
+
+
    void graphics::polyline(const ::point_f64 * ppoints, count nCount)
    {
 

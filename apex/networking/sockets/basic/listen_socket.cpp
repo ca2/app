@@ -119,7 +119,7 @@ namespace sockets
 
       //}
 
-      //FATAL("Bind: name resolution of interface name failed");
+      //fatal() <<"Bind: name resolution of interface name failed";
 
       return -1;
 
@@ -139,7 +139,7 @@ namespace sockets
       //   return Bind(ad, protocol, depth);
       //}
 
-      //FATAL("Bind: name resolution of interface name failed");
+      //fatal() <<"Bind: name resolution of interface name failed";
 
       return -1;
 
@@ -249,7 +249,7 @@ namespace sockets
       //if (bind(s, psockaddr, sockaddr_len) == -1)
       //{
 
-      //   FATAL("bind() failed for port " << as_string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"bind() failed for port " << as_string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno);
       //   
       //   close_socket(s);
 
@@ -260,7 +260,7 @@ namespace sockets
       //if (listen(s, depth) == -1)
       //{
 
-      //   FATAL("listen" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"listen" << Errno << ", " << bsd_socket_error(Errno);
 
       //   close_socket(s);
 
@@ -303,7 +303,7 @@ namespace sockets
 //      if (a_s == INVALID_SOCKET)
 //      {
 //
-//         ERROR("accept" << Errno << bsd_socket_error(Errno));
+//         error() <<"accept" << Errno << bsd_socket_error(Errno);
 //
 //         return;
 //
@@ -312,7 +312,7 @@ namespace sockets
 //      if (!socket_handler()->OkToAccept(this))
 //      {
 //
-//         WARNING("accept: -1 Not OK to accept");
+//         warning() <<"accept: -1 Not OK to accept";
 //
 //         close_socket(a_s);
 //
@@ -323,7 +323,7 @@ namespace sockets
 //      if (socket_handler()->get_count() >= FD_SETSIZE)
 //      {
 //
-//         FATAL("accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached");
+//         fatal() <<"accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached";
 //
 //         close_socket(a_s);
 //

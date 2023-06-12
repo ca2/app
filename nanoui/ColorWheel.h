@@ -73,7 +73,7 @@ namespace nanoui
        * \param color
        *     The initial color of the ColorWheel (default: Red).
        */
-      ColorWheel(Widget * parent, const color::color & color = color::color(1.0f, 0.0f, 0.0f, 1.0f));
+      ColorWheel(Widget * parent, const color::color & color = argb(1.0f, 0.0f, 0.0f, 1.0f));
 
       /// The callback to execute when a user changes the ColorWheel value.
       ::function<void(const color::color &)> callback() const { return m_callback; }

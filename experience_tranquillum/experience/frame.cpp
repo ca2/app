@@ -234,18 +234,17 @@ namespace experience_tranquillum
 
       ::color::color color;
 
-      color.set_rgb(color32);
+      color = color32;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
 
-      color.set_rgb(color32);
+      color = color32;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
 
-      color.set_rgb(color32);
+      color = color32;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 

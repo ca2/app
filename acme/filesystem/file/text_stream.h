@@ -5,12 +5,7 @@
 #include "stream.h"
 // #include "acme/primitive/string/string.h"
 
-enum enum_start_reference
-{
 
-   e_start_reference,
-
-};
 
 
 inline ::string ellipsis(const ::ansi_character * psz, strsize len);
@@ -40,23 +35,6 @@ public:
 };
 
 
-class CLASS_DECL_ACME string_stream :
-   public write_text_stream < string_buffer >
-{
-public:
-
-   
-   string_buffer   m_stringbuffer;
-
-
-   string_stream() : write_text_stream(&m_stringbuffer) { }
-
-
-   ::string as_string() const { return m_stringbuffer.m_strOwnStorage; }
-   ::string & as_string()  { return m_stringbuffer.m_strOwnStorage; }
-
-
-};
 
 
 

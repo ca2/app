@@ -7,7 +7,7 @@
 #include "acme/primitive/string/str.h"
 
 
-//#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+//#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 //
 ////#include <stdio.h>
 //
@@ -388,7 +388,7 @@ namespace networking
 //#ifndef __CYGWIN__
 //         error += gai_strerror(n);
 //#endif
-//         ERROR(error + " for " + str);
+//         error() <<error + " for " + str;
 //         item.m_bOk = false;
 //         item.m_bTimeout = true;
 //         item.m_timeLastChecked.Now();

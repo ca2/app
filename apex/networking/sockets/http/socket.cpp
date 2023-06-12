@@ -463,7 +463,7 @@ namespace sockets
 
          msg += "Host: " + strHost + "\r\n";
 
-         INFORMATION("Host: " << strHost);
+         information() << "Host: " << strHost;
 
       }
 
@@ -708,7 +708,7 @@ namespace sockets
 //#ifndef UNIVERSAL_WINDOWS
 //
 //
-//         WARNING("url_this",-1,"SSL not available");
+//         warning() <<"url_this",-1,"SSL not available";
 //
 //#endif
 //

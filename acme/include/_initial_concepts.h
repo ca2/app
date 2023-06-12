@@ -8,19 +8,25 @@
 //
 #pragma once
 
+
 struct ENUM_TYPE_TAG {};
+
 
 //s#include "acme/primitive/primitive/e_status.h"
 
+
 template < typename ENUM >
-concept primitive_enum = std::is_enum < ENUM >::value || ::std::is_same<typename ENUM::ENUM_TAG, ENUM_TYPE_TAG >::value;
+concept primitive_enum = 
+   std::is_enum < ::decay < ENUM > >::value 
+   || ::std::is_same < typename ENUM::ENUM_TAG, ENUM_TYPE_TAG >::value;
+
 
 template < typename BLOCK >
 concept primitive_block = ::std::is_same<typename BLOCK::PRIMITIVE_BLOCK_TAG, PRIMITIVE_BLOCK_TAG_TYPE >::value;
 
 
-template < typename T >
-concept primitive_integral = std::is_integral_v < T >;
+template < typename INTEGRAL >
+concept primitive_integral = std::is_integral_v < ::decay < INTEGRAL > >;
 
 //template < typename T >
 //concept primitive_integral_up_to_32_bit =
@@ -50,8 +56,8 @@ concept primitive_unsigned = std::is_integral < T >::value && !std::is_signed < 
 template < typename T >
 concept primitive_unsigned_not_8bit = primitive_unsigned < T > && sizeof(T) != 1;
 
-template < typename T >
-concept primitive_floating = std::is_floating_point < T >::value;
+template < typename FLOATING >
+concept primitive_floating = std::is_floating_point < ::decay < FLOATING > >::value;
 
 
 

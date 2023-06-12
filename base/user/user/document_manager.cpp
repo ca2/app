@@ -404,7 +404,7 @@ namespace user
       if (c <= 0)
       {
 
-         TRACE("removing document template not managed by document manager");
+         information("removing document template not managed by document manager");
 
       }
 
@@ -842,7 +842,7 @@ namespace user
          else
          {
 
-            CATEGORY_ERROR(appmsg, "Error: Can not find a ::user::impact for document to activate.");
+            error()(e_trace_category_appmsg) << "Error: Can not find a ::user::impact for document to activate.";
 
          }
 

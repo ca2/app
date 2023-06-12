@@ -345,7 +345,7 @@ namespace core
 
       //   //m_result.add(estatus);
 
-      //   ERROR("Failed to initialize html");
+      //   error() <<"Failed to initialize html";
 
       //   return estatus;
 
@@ -362,7 +362,7 @@ namespace core
 
       //}
 
-      TRACE("::user::application::initialize");
+      information("::user::application::initialize");
 
 //      auto pxml = psystem->xml();
 //

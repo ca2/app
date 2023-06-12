@@ -133,7 +133,7 @@ namespace interprocess
    bool communication::_handle_uri(const ::string & strUri)
    {
 
-      INFORMATION("::interprocess::communication::on_interprocess_handle " << strUri);
+      information() << "::interprocess::communication::on_interprocess_handle " << strUri;
 
 
       //   if(!strMessage.begins_eat("call "))
@@ -546,7 +546,7 @@ namespace interprocess
    //{
 
 
-   //   INFORMATION("::interprocess::communication::on_receive " << strMessage);
+   //   information() << "::interprocess::communication::on_receive " << strMessage;
 
    //   string strUrl = strMessage;
 

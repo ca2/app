@@ -999,7 +999,7 @@ namespace ftp
       {
          string strMessage;
          strMessage.format("could not bind to address %s %d", strIp.c_str(), iPort);
-         TRACE(strMessage);
+         information(strMessage);
          //message_box(nullptr, strMessage);
          return false;
       }

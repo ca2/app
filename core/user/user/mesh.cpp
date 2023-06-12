@@ -888,7 +888,7 @@ namespace user
          catch(...)
          {
 
-            TRACE("_001GetItemImage exception");
+            information("_001GetItemImage exception");
 
          }
 
@@ -4847,9 +4847,9 @@ namespace user
 
       auto tickIn = ::time::now();
 
-      TRACE("mesh::Filter1Step");
+      information("mesh::Filter1Step");
 
-      INFORMATION("tickIn = " << tickIn.integral_millisecond());
+      information() << "tickIn = " << tickIn.integral_millisecond();
 
       if(!m_bFilter1)
       {
@@ -4934,8 +4934,8 @@ namespace user
 
       auto tickOut = ::time::now();
 
-      INFORMATION("tickOut = " << tickOut.integral_millisecond());
-      INFORMATION("(delta) = " << (tickOut - tickIn).integral_millisecond());
+      information() << "tickOut = " << tickOut.integral_millisecond();
+      information() << "(delta) = " << (tickOut - tickIn).integral_millisecond();
 
       return m_nItemCount != iItemCount;
    }
@@ -6101,13 +6101,13 @@ namespace user
 
             ::image_pointer pimage1;
             pimage1 = m_pitem->m_pmesh->m_pcontext->m_pauracontext->create_image(size);
-            pimage1->fill(0,0,0,0);
+            pimage1->clear(::color::transparent);
             auto pbrushText = m_pitem->m_pmesh->__create < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
             ::image_pointer pimage2;
             pimage2 = m_pitem->m_pmesh->m_pcontext->m_pauracontext->create_image(size);
-            pimage2->fill(0,0,0,0);
+            pimage2->clear(::color::transparent);
 
             ::rectangle_i32 rectangleCache;
             rectangleCache.left = 2;
@@ -6122,11 +6122,11 @@ namespace user
             auto psystem = m_pitem->m_pmesh->acmesystem()->m_paurasystem;
 
             psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
-            pimage1->fill(0,0,0,0);
+            pimage1->clear(::color::transparent);
             psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),{}, size, pimage2->get_graphics(),{},0,1);
-            pimage2->fill(0,0,0,0);
+            pimage2->clear(::color::transparent);
             psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
-            pimage2->set(::color::transparent);
+            pimage2->clear(::color::transparent);
 
             image_source imagesource(pimage2, rectangle_i32(1,1, m_rectangleText.width(), m_rectangleText.height()));
 

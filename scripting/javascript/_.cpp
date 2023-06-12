@@ -2118,7 +2118,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             CScriptVarLink *objClassOrFunc = findInScopes(className);
             if (!objClassOrFunc)
             {
-               FORMATTED_TRACE("%s is not a valid class name", className.c_str());
+               information("%s is not a valid class name", className.c_str());
                return memory_new CScriptVarLink(memory_new CScriptVar());
             }
             l->match(LEX_ID);
@@ -2545,7 +2545,7 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         TRACE("WHILE Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS <<" iterations at " << l->getPosition());
+         information() << "WHILE Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS <<" iterations at " << l->getPosition();
          throw CScriptException("LOOP_ERROR");
       }
    }
@@ -2604,7 +2604,7 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         TRACE("FOR Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS << "iterations at " << l->getPosition());
+         information() << "FOR Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS << "iterations at " << l->getPosition();
          throw CScriptException("LOOP_ERROR");
       }
    }

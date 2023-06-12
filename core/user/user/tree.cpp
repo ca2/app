@@ -114,7 +114,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   _ERROR(pcreate, "Error creating tree data at ::user::tree::on_message_create");
+      //   pcreate->error() << "Error creating tree data at ::user::tree::on_message_create";
 
       //   return;
 
@@ -127,7 +127,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   _ERROR(pcreate, "Error creating image list at ::user::tree::on_message_create");
+      //   pcreate->error() << "Error creating image list at ::user::tree::on_message_create";
 
       //   return;
 
@@ -140,7 +140,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   _ERROR(pcreate, "Error creating image list (2) at ::user::tree::on_message_create");
+      //   pcreate->error() << "Error creating image list (2) at ::user::tree::on_message_create";
 
       //   return;
 
@@ -241,7 +241,7 @@ namespace user
          if (tickElapsed > 50_ms)
          {
 
-            //WARNING("tree drawing took more than 50ms");
+            //warning() <<"tree drawing took more than 50ms";
 
          }
 
@@ -373,7 +373,7 @@ namespace user
                if (tickElapsed > 20_ms)
                {
 
-                  //WARNING("tree item drawing took more than 20ms");
+                  //warning() <<"tree item drawing took more than 20ms";
 
                }
 
@@ -399,7 +399,7 @@ namespace user
          if (tickElapsed > 50_ms)
          {
 
-            //WARNING("tree drawing took more than 50ms");
+            //warning() <<"tree drawing took more than 50ms";
 
          }
 
@@ -477,7 +477,7 @@ namespace user
       if (elapsed > 2_ms)
       {
 
-         //WARNING("tree item drawing section took more than 2ms");
+         //warning() <<"tree item drawing section took more than 2ms";
 
       }
 

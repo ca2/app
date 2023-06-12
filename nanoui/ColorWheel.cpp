@@ -94,7 +94,7 @@ namespace nanoui
          pcontext->begin_path();
          pcontext->circle(cx, cy, r0 - 0.5f);
          pcontext->circle(cx, cy, r1 + 0.5f);
-         pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
+         pcontext->stroke_color(rgba(0, 0, 0, 64));
          pcontext->stroke_width(1.0f);
          pcontext->stroke();
 
@@ -111,10 +111,10 @@ namespace nanoui
             pcontext->stroke_width(u);
             pcontext->begin_path();
             pcontext->rectangle(r0 - 1, -2 * u, r1 - r0 + 2, 4 * u);
-            pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
+            pcontext->stroke_color(rgba(255, 255, 255, 192));
             pcontext->stroke();
 
-            paint = pcontext->box_gradient(r0 - 3, -5, r1 - r0 + 6, 10, 2, 4, ::color::RGBA_color(0, 0, 0, 128), ::color::RGBA_color(0, 0, 0, 0));
+            paint = pcontext->box_gradient(r0 - 3, -5, r1 - r0 + 6, 10, 2, 4, rgba(0, 0, 0, 128), rgba(0, 0, 0, 0));
             pcontext->begin_path();
             pcontext->rectangle(r0 - 2 - 10, -4 - 10, r1 - r0 + 4 + 20, 8 + 20);
             pcontext->rectangle(r0 - 2, -4, r1 - r0 + 4, 8);
@@ -133,13 +133,13 @@ namespace nanoui
             pcontext->line_to(ax, ay);
             pcontext->line_to(bx, by);
             pcontext->close_path();
-            paint = pcontext->linear_gradient(r, 0, ax, ay, ::color::HSLA_color(hue, 1.0f, 0.5f, 255), ::color::RGBA_color(255, 255, 255, 255));
+            paint = pcontext->linear_gradient(r, 0, ax, ay, ::color::HSLA_color(hue, 1.0f, 0.5f, 255), rgba(255, 255, 255, 255));
             pcontext->fill_paint(paint);
             pcontext->fill();
-            paint = pcontext->linear_gradient((r + ax) * 0.5f, (0 + ay) * 0.5f, bx, by, ::color::RGBA_color(0, 0, 0, 0), ::color::RGBA_color(0, 0, 0, 255));
+            paint = pcontext->linear_gradient((r + ax) * 0.5f, (0 + ay) * 0.5f, bx, by, rgba(0, 0, 0, 0), rgba(0, 0, 0, 255));
             pcontext->fill_paint(paint);
             pcontext->fill();
-            pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
+            pcontext->stroke_color(rgba(0, 0, 0, 64));
             pcontext->stroke();
 
             // Select circle on triangle
@@ -149,7 +149,7 @@ namespace nanoui
             pcontext->stroke_width(u);
             pcontext->begin_path();
             pcontext->circle(sx, sy, 2 * u);
-            pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
+            pcontext->stroke_color(rgba(255, 255, 255, 192));
             pcontext->stroke();
 
             //pcontext->restore();
@@ -374,15 +374,17 @@ namespace nanoui
       break;
       }
 
-      return { r, g, b, 1.f };
+      return rgba( r, g, b, 1.f );
+
    }
+
 
    ::color::color ColorWheel::color() const 
    {
       
       ::color::color rgb = hue2rgb(m_hue);
-      ::color::color black{ 0.f, 0.f, 0.f, 1.f };
-      ::color::color white{ 1.f, 1.f, 1.f, 1.f };
+      ::color::color black = ::color::black;
+      ::color::color white = ::color::white;
       //::color::color black{ 0.f, 0.f, 0.f, m_black };
       //::color::color white{ m_white, m_white, m_white, m_white };
 
@@ -390,10 +392,10 @@ namespace nanoui
 
       float luminanceComplement = 1.0f - m_white - m_black;
 
-      color.set_red(rgb.fr() * luminanceComplement + m_black * black.f64_r() + m_white * white.fr());
-      color.set_green(rgb.fg() * luminanceComplement + m_black * black.fg() + m_white * white.fg());
-      color.set_blue(rgb.fb() * luminanceComplement + m_black * black.fb() + m_white * white.fb());
-      color.set_alpha(1.0f);
+      color.set_red(rgb.f64_red() * luminanceComplement + m_black * black.f64_red() + m_white * white.f64_red());
+      color.set_green(rgb.f64_green() * luminanceComplement + m_black * black.f64_green() + m_white * white.f64_green());
+      color.set_blue(rgb.f64_blue() * luminanceComplement + m_black * black.f64_blue() + m_white * white.f64_blue());
+      color.set_opacity(1.0f);
       //color.set_alpha(rgb.fa() * luminanceComplement + m_black * black.fa() + m_white * white.fa());
 
       return color;
@@ -403,14 +405,16 @@ namespace nanoui
    }
 
 
-   void ColorWheel::set_color(const ::color::color& rgb) 
+   void ColorWheel::set_color(const ::color::color& color) 
    {
 
-      float r = rgb.fr(), g = rgb.fg(), b = rgb.fb();
+      auto r = color.f32_red();
+      auto g = color.f32_green();
+      auto b = color.f32_blue();
 
-      float M = ::maximum({ r, g, b });
+      float M = color.f32_maximum_rgb();
 
-      float m = ::minimum({ r, g, b });
+      float m = color.f32_minimum_rgb();
 
       if (M == m) 
       {
@@ -449,9 +453,9 @@ namespace nanoui
 
          ::color::color ch = hue2rgb(m_hue);
 
-         float M2 = ::maximum({ ch.fr(), ch.fb(), ch.fb() });
+         float M2 = ch.f32_maximum_rgb();
 
-         float m2 = ::minimum({ ch.fr(), ch.fg(), ch.fb() });
+         float m2 = ch.f32_minimum_rgb();
 
          m_white = (M * m2 - m * M2) / (m2 - M2);
 

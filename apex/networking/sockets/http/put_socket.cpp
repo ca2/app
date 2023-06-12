@@ -71,7 +71,7 @@ namespace sockets
       {
 
 //#ifdef BSD_STYLE_SOCKETS
-//         FATAL("SetFile " << Errno << bsd_socket_error(Errno));
+//         fatal() <<"SetFile " << Errno << bsd_socket_error(Errno);
 //#endif
 
          SetCloseAndDelete();

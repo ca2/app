@@ -14,7 +14,9 @@
 
 #include "Object.h"
 #include "Theme.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+///#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 //#include <xxxvector>
 //#include <xxxalgorithm>
 //#include "acme/primitive/primitive/function.h"

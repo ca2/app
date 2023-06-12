@@ -11,9 +11,9 @@
 
 template < typename NUMBER >
 concept primitive_number =
-   std::is_integral_v < ::std::decay_t < NUMBER > > ||
-   std::is_enum_v < ::std::decay_t < NUMBER > > ||
-   std::is_floating_point_v < ::std::decay_t < NUMBER > >;
+   primitive_integral < NUMBER > ||
+   primitive_floating < NUMBER > ||
+   primitive_enum < NUMBER >;
 
 
 template < typename POINT >

@@ -769,7 +769,7 @@ namespace nanoui
          if (!screen()->m_puserinteraction->needs_to_draw(pdraw2dcontext->m_pgraphics, interactionRectangle))
          {
 
-//            INFORMATION("Opting out from draw pwidget!! " << typeid(*this).name());
+//            information() << "Opting out from draw pwidget!! " << typeid(*this).name();
 
             return false;
 
@@ -777,7 +777,7 @@ namespace nanoui
 
       }
 
-      INFORMATION("Need to draw pwidget!! " << typeid(*this).name());
+      information() << "Need to draw pwidget!! " << typeid(*this).name();
 
       return true;
 

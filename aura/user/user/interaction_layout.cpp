@@ -225,7 +225,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_normal");
+//         information() << "interaction_layout::display e_display_normal";
 //
 //         #endif
 //
@@ -235,7 +235,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_hide");
+//         information() << "interaction_layout::display e_display_hide";
 //
 //         #endif
 //
@@ -245,7 +245,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_default");
+//         information() << "interaction_layout::display e_display_default";
 //
 //         #endif
 //
@@ -257,7 +257,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_zoomed");
+//         information() << "interaction_layout::display e_display_zoomed";
 //
 //         #endif
 //
@@ -267,7 +267,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_iconic");
+//         information() << "interaction_layout::display e_display_iconic";
 //
 //         #endif
 //
@@ -279,7 +279,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_full_screen");
+//         information() << "interaction_layout::display e_display_full_screen";
 //
 //         #endif
 //
@@ -289,7 +289,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display (unknown)");
+//         information() << "interaction_layout::display (unknown)";
 //
 //         #endif
 //
@@ -303,7 +303,7 @@ namespace user
 //         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
 //         {
 //
-//            INFORMATION("Parent is Null. Display Request -> normal");
+//            information() << "Parent is Null. Display Request -> normal";
 //
 //         }
 //
@@ -314,7 +314,7 @@ namespace user
 //         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
 //         {
 //
-//            INFORMATION("Parent is Null. Display Request -> hide");
+//            information() << "Parent is Null. Display Request -> hide";
 //
 //         }
 //

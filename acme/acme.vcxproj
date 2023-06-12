@@ -638,6 +638,7 @@
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
+    <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
@@ -786,7 +787,9 @@
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\payload_stream.h" />
     <ClInclude Include="filesystem\file\plain_text_file_options.h" />
+    <ClInclude Include="filesystem\file\print_formatting.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
+    <ClInclude Include="filesystem\file\string_stream.h" />
     <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="filesystem\file\write_text_stream.h" />
@@ -828,6 +831,7 @@
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
+    <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
@@ -1014,6 +1018,7 @@
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
+    <ClCompile Include="platform\trace_statement.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />

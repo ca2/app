@@ -302,7 +302,7 @@ string object::as_string() const
 void object::dev_log(string strMessage)
 {
 
-   INFORMATION(strMessage.c_str());
+   information() << strMessage.c_str();
 
 //#ifdef __DEBUG
 //

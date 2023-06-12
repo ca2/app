@@ -1353,7 +1353,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   INFORMATION("write_text factory_item exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
+      //   information() << "write_text factory_item exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.";
 
       //   //return estatus;
 
@@ -1368,7 +1368,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   INFORMATION("Couldn't construct memory_new write_text.");
+      //   information() << "Couldn't construct memory_new write_text.";
 
       //   return estatus;
 
@@ -1381,7 +1381,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   INFORMATION("Couldn't initialize write_text (init1).");
+      //   information() << "Couldn't initialize write_text (init1).";
 
       //   return estatus;
 

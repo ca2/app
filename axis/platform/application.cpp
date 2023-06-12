@@ -280,7 +280,7 @@ namespace axis
 //   void     application::main()
 //   {
 //
-//      INFORMATION("aura::application::main");
+//      information() << "aura::application::main";
 //
 //      try
 //      {
@@ -684,13 +684,13 @@ namespace axis
 
       ::aura::application::process_init();
 
-      INFORMATION("axis::application::process_init");
+      information() << "axis::application::process_init";
 
       factory()->add_factory_item < ::database::field_array >();
       factory()->add_factory_item < ::database::row >();
       factory()->add_factory_item < ::database::row_array >();
 
-      INFORMATION("axis::application::process_init");
+      information() << "axis::application::process_init";
 
       if (m_psimpledb.is_null())
       {
@@ -699,7 +699,7 @@ namespace axis
 
       }
 
-      INFORMATION("success");
+      information() << "success";
 
    }
 
@@ -798,7 +798,7 @@ namespace axis
 //
 //      //}
 //
-//      INFORMATION("aura::application::init_application");
+//      information() << "aura::application::init_application";
 //
 //      //m_bAuraInitializeInstance = true;
 //

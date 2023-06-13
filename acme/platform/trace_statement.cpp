@@ -1,6 +1,6 @@
 // From tracer.h by camilo on 2023-06-10 23:27 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include <varargs.h>
+#include <stdarg.h>
 
 
 trace_statement::trace_statement(class tracer & tracer) :

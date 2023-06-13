@@ -145,6 +145,8 @@ list(APPEND library_source
         filesystem/file/memory_map.cpp
         #filesystem/file/path.cpp
         filesystem/file/payload_stream.cpp
+        filesystem/file/print_formatting.cpp
+        filesystem/file/print_formatting.h
         #filesystem/file/seekable.cpp
         #filesystem/file/serializable.cpp
         #filesystem/file/serialize.cpp
@@ -183,7 +185,11 @@ list(APPEND library_source
         graphics/draw2d/_system_color.h
         graphics/draw2d/color.cpp
         graphics/draw2d/color32.h
-        graphics/draw2d/colorref_array.cpp
+        graphics/draw2d/color_array.cpp
+        graphics/draw2d/color_array.h
+        graphics/draw2d/image32.h
+        graphics/draw2d/image32_array.cpp
+        graphics/draw2d/image32_array.h
         graphics/draw2d/os_font_name.cpp
         handler/extended_topic.cpp
         handler/extended_topic.h
@@ -387,6 +393,7 @@ list(APPEND library_source
         platform/version.cpp
         primitive/collection/__payload_array.cpp
         primitive/collection/__property_set.h
+        primitive/collection/_generic_array.h
         #primitive/collection/2d_array.cpp
         primitive/collection/array.cpp
         primitive/collection/atom_array.h
@@ -470,7 +477,7 @@ list(APPEND library_source
         #primitive/geometry2d/_concept.h
         #primitive/geometry2d/_enhanced.h
         primitive/geometry2d/_defer.h
-        primitive/geometry2d/_geometry2d.h
+        #primitive/geometry2d/_geometry2d.h
         #primitive/geometry2d/_impl.h
         #primitive/geometry2d/_rect_impl.h
         #primitive/geometry2d/_shape.cpp
@@ -1272,7 +1279,7 @@ list(APPEND library_source
         graphics/draw2d/_.h
         graphics/draw2d/_constant.h
         graphics/draw2d/color.h
-        graphics/draw2d/colorref_array.h
+        #graphics/draw2d/colorref_array.h
         include/_.h
         include/_c.h
         include/_c_bridge.h
@@ -1456,6 +1463,8 @@ list(APPEND library_source
         platform/timer_task.h
         platform/title.h
         platform/trace_category.h
+        platform/trace_statement.cpp
+        platform/trace_statement.h
         platform/uint32_muldiv.h
         platform/uint64_muldiv.h
         platform/user_parent.h
@@ -2301,7 +2310,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} primitive/collection/_generic_array.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

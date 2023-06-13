@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "image32.h"
+
+
 //#include "acme/primitive/collection/numeric_array.h"
 
 

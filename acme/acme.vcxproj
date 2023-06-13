@@ -816,7 +816,6 @@
     <ClInclude Include="include\_configuration.h" />
     <ClInclude Include="include\_new.h" />
     <ClInclude Include="include\_initial_concepts.h" />
-    <ClInclude Include="include\_other_initial_concepts.h" />
     <ClInclude Include="include\_string.h" />
     <ClInclude Include="include\_structures.h" />
     <ClInclude Include="include\_template_inline_functions.h" />

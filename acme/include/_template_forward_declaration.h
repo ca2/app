@@ -260,39 +260,6 @@ template < class TYPE, class ARG_TYPE = const TYPE & >
 class list;
 
 
-template < typename ARGUMENT >
-struct argument_of_struct
-{
-
-   using type = const ARGUMENT &;
-
-};
-
-
-template < typename TYPE >
-struct argument_of_struct < TYPE * >
-{
-
-   using type = TYPE *;
-
-};
-
-
-
-
-//template < primitive_function FUNCTION >
-//struct argument_of_struct < FUNCTION >
-//{
-//
-//   using type = FUNCTION;
-//
-//};
-
-
-template < typename ARGUMENT >
-using argument_of = typename argument_of_struct < ARGUMENT >::type;
-
-
 template < typename T >
 class single;
 

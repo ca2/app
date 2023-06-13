@@ -3032,9 +3032,6 @@
     <ClInclude Include="primitive\geometry2d\vector.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="include\_other_initial_concepts.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry2d\region.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>

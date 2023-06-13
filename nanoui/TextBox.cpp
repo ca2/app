@@ -127,7 +127,7 @@ namespace nanoui
          3.f, 4.f, ::color::color(150, 32), m_colorBackground);
       ::nano2d::paint fg2 = pcontext->box_gradient(
          m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
-         3.f, 4.f, ::color::RGBA_color(255, 0, 0, 100), m_colorBackground);
+         3.f, 4.f, ::rgba(255, 0, 0, 100), m_colorBackground);
 
       pcontext->begin_path();
       pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f,
@@ -312,7 +312,7 @@ namespace nanoui
 
                   // draw selection
                   pcontext->begin_path();
-                  pcontext->fill_color(::color::RGBA_color(255, 255, 255, 80));
+                  pcontext->fill_color(::rgba(255, 255, 255, 80));
                   pcontext->rectangle(caretx, draw_pos.y() - lineh * 0.5f, selx - caretx,
                      lineh);
                   pcontext->fill();
@@ -324,7 +324,7 @@ namespace nanoui
                pcontext->begin_path();
                pcontext->move_to(caretx, draw_pos.y() - lineh * 0.5f);
                pcontext->line_to(caretx, draw_pos.y() + lineh * 0.5f);
-               pcontext->stroke_color(::color::RGBA_color(255, 192, 0, 255));
+               pcontext->stroke_color(::rgba(255, 192, 0, 255));
                pcontext->stroke_width(1.0f);
                pcontext->stroke();
 

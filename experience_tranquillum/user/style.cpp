@@ -299,7 +299,7 @@ namespace experience_tranquillum
                else
                {
 
-                  return ::color::color(0, 0, 0, 0);
+                  return ::color::transparent;
 
                }
 
@@ -413,7 +413,7 @@ namespace experience_tranquillum
             else
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return ::color::white;
 
             }
 

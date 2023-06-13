@@ -2,7 +2,7 @@
 
 
 #include "header.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "acme/graphics/image/_configuration.h"
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/rectangle.h"
@@ -13,7 +13,7 @@ namespace draw2d
 {
 
 
-   inline ::color::color get_pixel(const ::image32_t* pdata, int iScan, int iHeight, int x, int y);
+   inline ::color::color get_pixel(const ::image32_t* pdata, color_indexes indexes, int iScan, int iHeight, int x, int y);
 
 
 } // namespace draw2d
@@ -130,7 +130,7 @@ struct pixmap
    inline ::color::color get_pixel(int x, int y) const
    {
 
-      return ::draw2d::get_pixel(image32(), scan_size(), height(), x, y);
+      return ::draw2d::get_pixel(image32(), m_colorindexes, scan_size(), height(), x, y);
 
    }
 
@@ -395,20 +395,20 @@ namespace draw2d
 {
 
 
-   inline ::color::color get_pixel(const ::image32_t* pdata, int iScan, int iHeight, int x, int y)
+   inline ::color::color get_pixel(const ::image32_t* pdata, color_indexes indexes, int iScan, int iHeight, int x, int y)
    {
 
       ::color::color color;
 
-#ifdef __APPLE__
-
-      color = ((::image32_t*)&((u8*)pdata)[iScan * (iHeight - y - 1)])[x];
-
-#else
-
-      color = ((::image32_t *)&((u8*)pdata)[iScan * y])[x];
-
-#endif
+//#ifdef __APPLE__
+//
+//      color = ((::image32_t*)&((u8*)pdata)[iScan * (iHeight - y - 1)])[x];
+//
+//#else
+//
+      color = ((::image32_t *)&((u8*)pdata)[iScan * y])[x].color(indexes);
+//
+//#endif
 
       return color;
 

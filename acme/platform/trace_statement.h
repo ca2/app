@@ -58,6 +58,9 @@ public:
 
    void format_output_arguments(const ::ansi_character * psz, va_list & arguments);
 
+   trace_statement & operator()(const ::ansi_character * pszFormat, ...);
+
+
    //void format_output_arguments(const ::ansi_character * psz, va_list & arguments)
 //{
 

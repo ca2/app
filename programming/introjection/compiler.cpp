@@ -951,7 +951,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       catch(string strError)
       {
 
-         FORMATTED_TRACE("%s", (strError + "\n").c_str());
+         information("%s", (strError + "\n").c_str());
 
       }
       //try

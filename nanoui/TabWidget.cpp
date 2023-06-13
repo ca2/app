@@ -316,7 +316,7 @@ namespace nanoui
             pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y() + 1.5f, (float)(m_iTabDragMaximum - m_iTabDragMinimum),
                tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
 
-            pcontext->fill_color(::color::color(255, 255, 255, 30));
+            pcontext->fill_color(::rgba(255, 255, 255, 30));
 
             pcontext->fill();
 

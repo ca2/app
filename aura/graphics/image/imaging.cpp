@@ -4,7 +4,7 @@
 #include "fastblur.h"
 #include "context_image.h"
 #include "array.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -5105,6 +5105,9 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    ::u8 *pSource;
 
 
+   image32_t imageSpreadSetColor(colorSpreadSetColor, pimageDst->color_indexes());
+
+
    ::u8 *pSource1;
 
 
@@ -5393,7 +5396,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
                            if (*((u32 *)pSource2))
                            {
 
-                              *((image32_t *)pDestination) = colorSpreadSetColor;
+                              *((image32_t *)pDestination) = imageSpreadSetColor;
 
                               goto breakFilter;
 
@@ -5492,7 +5495,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
                      if(pSource2[0] > 0)
                      {
 
-                        *((image32_t *)pDestination) = colorSpreadSetColor;
+                        *((image32_t *)pDestination) =imageSpreadSetColor;
 
                         goto breakFilter2;
 
@@ -6892,7 +6895,7 @@ void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
    for(i64 i = 0; i < area; i++)
    {
 
-      *((image32_t *)p) = cra[(p[0] + p[1] + p[2]) / 3] & class ::opacity(p[3]);
+      ((image32_t *)p)->assign(cra[(p[0] + p[1] + p[2]) / 3] & class ::opacity(p[3]), pimage->color_indexes());
 
 
 

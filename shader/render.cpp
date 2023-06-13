@@ -427,10 +427,10 @@ namespace app_shader
 
          m_strLastLabel = strLabel;
 
-         if(strLabel.has_char())
+         if (strLabel.has_char())
          {
 
-//            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
+            //            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
 
             colorBackground.m_u8Opacity = 128;
 
@@ -452,7 +452,7 @@ namespace app_shader
 
             m_pimageLabel.defer_create(::particle::m_pcontext);
 
-            if(m_pimageLabel->g() == nullptr)
+            if (m_pimageLabel->g() == nullptr)
             {
 
                m_pimageLabel->create({ 16, 16 });
@@ -465,7 +465,7 @@ namespace app_shader
 
             auto size = pgraphicsLabel->get_text_extent(strLabel);
 
-            ::rectangle_i32 rect(::point_f64( 0, 0 ), size);
+            ::rectangle_i32 rect(::point_f64(0, 0), size);
 
             rect.inflate(4);
 
@@ -481,8 +481,7 @@ namespace app_shader
             pgraphicsLabel->set_alpha_mode(::draw2d::e_alpha_mode_set);
             pgraphicsLabel->set(pbrush);
             pgraphicsLabel->fill_rectangle(rect);
-            pgraphicsLabel->set_text_color(0);
-
+            pgraphicsLabel->set_text_color({});
 
             pgraphicsLabel->text_out({ 4,4 }, strLabel);
 
@@ -609,7 +608,7 @@ namespace app_shader
             pgraphicsError->set_alpha_mode(::draw2d::e_alpha_mode_set);
             pgraphicsError->set(pbrush);
             pgraphicsError->fill_rectangle(rect);
-            pgraphicsError->set_text_color(0);
+            pgraphicsError->set_text_color(::color::transparent);
 
 
             pgraphicsError->text_out({ 4,4 }, strError);

@@ -797,7 +797,7 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\_binary_stream.h" />
-    <ClInclude Include="graphics\draw2d\_image32.h" />
+    <ClInclude Include="graphics\draw2d\image32.h" />
     <ClInclude Include="graphics\draw2d\_string.h" />
     <ClInclude Include="graphics\draw2d\_text_stream.h" />
     <ClInclude Include="graphics\image\color_indexes.h" />

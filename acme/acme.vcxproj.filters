@@ -3152,7 +3152,7 @@
     <ClInclude Include="graphics\draw2d\_text_stream.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\_image32.h">
+    <ClInclude Include="graphics\draw2d\image32.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="include\_integer.h">

@@ -1,5 +1,6 @@
 // From tracer.h by camilo on 2023-06-10 23:27 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include <varargs.h>
 
 
 trace_statement::trace_statement(class tracer & tracer) :
@@ -35,6 +36,26 @@ void trace_statement::format_output_arguments(const ::ansi_character * psz, va_l
 
    operator << (str);
 
+
+}
+
+
+trace_statement & trace_statement::operator()(const ::ansi_character * pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   string str;
+
+   str.format_arguments(pszFormat, arguments);
+
+   operator << (str);
+
+   va_end(arguments);
+
+   return *this;
 
 }
 

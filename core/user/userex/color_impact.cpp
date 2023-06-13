@@ -2,7 +2,7 @@
 #include "color_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -339,7 +339,7 @@ namespace visual
          //m_uchB = (::u8)primitive_color_round(m_dB * 255.0);
 
          pline = pimage->get_data() + uScan * j;
-         image32_t color32 = argb(255, _dR, _dG, _dB);
+         image32_t color32(argb(255, _dR, _dG, _dB), pimage->color_indexes());
          for (index i = 0; i < w; i++)
          {
 

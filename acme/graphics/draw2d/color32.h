@@ -4,20 +4,48 @@
 #pragma once
 
 
+//COLOR32_T_ENDIANESS             (*(const char*)&(const int){0xAABBGGRR})
+
+
+
 struct color32_t
 {
 
+   //static inline const int m_iRedIndex = ENDIAN_ARRAY[0];
+   //static inline const int m_iGreenIndex = ENDIAN_ARRAY[1];
+   //static inline const int m_iBlueIndex = ENDIAN_ARRAY[2];
+   //static inline const int m_iOpacityIndex = ENDIAN_ARRAY[3];
 
-   ::u32 m_u32;
+   union
+   {
+
+      ::u32 m_u32;
+
+      struct
+      {
+
+         ::u8  m_u8Red;
+         ::u8  m_u8Green;
+         ::u8  m_u8Blue;
+         ::u8  m_u8Opacity;
+
+      };
+
+      ::u8 m_ua[4];
+
+   };
 
 
+   constexpr ::u8 u8_red() const { return m_u8Red; }
+   constexpr ::u8 u8_green() const { return m_u8Green; }
+   constexpr ::u8 u8_blue() const { return m_u8Blue; }
+   constexpr ::u8 u8_opacity() const { return m_u8Opacity; }
 
-   constexpr ::u8 u8_red()const { return lower_u8(m_u32); }
-   constexpr ::u8 u8_green()const { return lower_u8(m_u32 >> 8); }
-   constexpr ::u8 u8_blue()const { return lower_u8(m_u32 >> 16); }
-   constexpr ::u8 u8_opacity()const { return lower_u8(m_u32 >> 24); }
 
-
+   constexpr ::u8 & u8_red() { return m_u8Red; }
+   constexpr ::u8 & u8_green() { return m_u8Green; }
+   constexpr ::u8 & u8_blue() { return m_u8Blue; }
+   constexpr ::u8 & u8_opacity() { return m_u8Opacity; }
 
 };
 

@@ -648,7 +648,7 @@ namespace dynamic_source
 
          //::exception_pointer esp(pexception);
 
-         //FORMATTED_TRACE("%s", esp->get_message().c_str());
+         //information("%s", esp->get_message().c_str());
 
       }
 
@@ -668,7 +668,7 @@ namespace dynamic_source
 
          //::exception_pointer esp(pexception);
 
-         //FORMATTED_TRACE("%s", esp->get_message().c_str());
+         //information("%s", esp->get_message().c_str());
 
       }
 
@@ -688,7 +688,7 @@ namespace dynamic_source
 
          //::exception_pointer esp(pexception);
 
-         //FORMATTED_TRACE("%s", esp->get_message().c_str());
+         //information("%s", esp->get_message().c_str());
 
       }
 
@@ -858,8 +858,8 @@ namespace dynamic_source
 
             //ostreamError << "Compiling Command\n";
             //ostreamError << pathCompiler << "\n";
-            FORMATTED_TRACE("Compiling Command File %s", pathCompiler.c_str());
-            FORMATTED_TRACE("Compiling Command %s", strCompiler.c_str());
+            information("Compiling Command File %s", pathCompiler.c_str());
+            information("Compiling Command %s", strCompiler.c_str());
             ostreamError << "Compiling...\n";
             ostreamError << pscript->m_strCppPath;
             ostreamError << "\n";
@@ -877,8 +877,8 @@ namespace dynamic_source
          if (process->m_exitstatus.m_iExitCode != 0 || file()->length(pathObjFile) < iObjFileMinimumByteCount)
          {
 
-            FORMATTED_TRACE("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
-            FORMATTED_TRACE("%s", strLog.c_str());
+            information("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
+            information("%s", strLog.c_str());
 
             //string_array straLog;
             //straLog.add_lines(strLog);
@@ -889,12 +889,12 @@ namespace dynamic_source
             //   {
             //      if (strLine.length() < i + iColCount + 10)
             //      {
-            //         FORMATTED_TRACE(strLine.substr(i));
+            //         information(strLine.substr(i));
             //         break;
             //      }
             //      else
             //      {
-            //         FORMATTED_TRACE(strLine.substr(i, iColCount) + "\\...");
+            //         information(strLine.substr(i, iColCount) + "\\...");
             //      }
             //   }
 

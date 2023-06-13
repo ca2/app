@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "frame_002.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
@@ -247,7 +247,7 @@ SizingNone:;
       else if(estyle == ::user::StyleLightBlue)
       {
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, {});//m_colorMoveableBorderDkShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
          Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
@@ -296,14 +296,14 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -311,7 +311,7 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
       }

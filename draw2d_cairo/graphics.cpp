@@ -37,7 +37,7 @@
 #define DEBUG_WINDOWS_C_ANDROID_FONTS 0
 
 
-#define __expand_f64_rgba(color) color.dr(), color.dg(), color.db(), color.da()
+//#define __expand_f64_rgba(color) color.dr(), color.dg(), color.db(), color.da()
 
 
 // https://www.codeproject.com/Articles/2293/Retrieving-Font-Name-from-TTF-File
@@ -5290,12 +5290,7 @@ namespace draw2d_cairo
       else
       {
 
-         double dR = pbrush->m_color.dr();
-         double dG = pbrush->m_color.dg();
-         double dB = pbrush->m_color.db();
-         double dA = pbrush->m_color.da();
-
-         cairo_set_source_rgba(m_pdc, dR, dG, dB, dA);
+         cairo_set_source_rgba(m_pdc, __expand_f64_rgba(pbrush->m_color));
 
       }
 
@@ -6499,15 +6494,7 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(cairo_mutex());
 
-      auto r = color.red;
-
-      auto g = color.green;
-
-      auto b = color.blue;
-
-      auto a = color.alpha;
-
-      cairo_set_source_rgba(m_pdc, r / 255.0, g / 255.0, b / 255.0, a / 255.0);
+      cairo_set_source_rgba(m_pdc, __expand_f64_rgba(color));
 
       return true;
 
@@ -7054,7 +7041,7 @@ namespace draw2d_cairo
          else
          {
 
-            TRACE("Creating font : " << pszFontName);
+            information() << "Creating font : " << pszFontName;
 
          }
 

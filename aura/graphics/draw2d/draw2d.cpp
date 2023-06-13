@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "lock.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/array.h"
@@ -1054,7 +1054,7 @@ void draw2d::emboss_predicate(
       i32 rSquare;
 
 
-      image32_t u32SpreadSetColor(colorSpreadSetColor);
+      image32_t u32SpreadSetColor(colorSpreadSetColor, pimageDst->m_colorindexes);
 
 
       synchronous_lock synchronouslock(this->synchronization());

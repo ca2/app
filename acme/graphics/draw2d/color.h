@@ -3,6 +3,7 @@
 
 #include "color32.h"
 #include "opacity.h"
+#include "acme/graphics/image/color_indexes.h"
 
 
 struct rgba_t
@@ -10,14 +11,14 @@ struct rgba_t
 
    ::u32 m_u32;
 
-   
+
    constexpr ::u8 u8_red()const { return lower_u8(m_u32); }
    constexpr ::u8 u8_green()const { return lower_u8(m_u32 >> 8); }
    constexpr ::u8 u8_blue()const { return lower_u8(m_u32 >> 16); }
    constexpr ::u8 u8_opacity()const { return lower_u8(m_u32 >> 24); }
 
 
-   
+   constexpr bool operator == (const rgba_t & rgba) const { return m_u32 == rgba.m_u32; }
 
 
 };
@@ -35,6 +36,7 @@ struct bgra_t
    constexpr ::u8 u8_opacity()const { return lower_u8(m_u32 >> 24); }
 
 
+   constexpr bool operator == (const bgra_t & rgba) const { return m_u32 == rgba.m_u32; }
 
 
 };

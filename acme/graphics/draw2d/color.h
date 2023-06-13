@@ -516,7 +516,7 @@ CLASS_DECL_ACME ::color::color HSLA_color(float h, float s, float l, unsigned ch
 constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, ::color32_t color);
 constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor);
 constexpr ::color::color opaque_color(::color32_t color32);
-constexpr ::color::color pure_color(enum_plain_color ecolor);
+//constexpr ::color::color _color(enum_plain_color ecolor);
 constexpr ::color::color opaque_color(enum_plain_color ecolor);
 
 
@@ -803,7 +803,7 @@ constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, ::color32_t color32)
 constexpr::color::color color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor)
 {
 
-   return color_with_u8_opacity(bAlpha, pure_color(ecolor));
+   return color_with_u8_opacity(bAlpha, ::color::color(ecolor));
 
 }
 
@@ -819,7 +819,7 @@ constexpr ::color::color opaque_color(::color32_t color32)
 constexpr ::color::color opaque_color(enum_plain_color ecolor)
 {
 
-   return opaque_color(pure_color(ecolor));
+   return opaque_color(::color::color(ecolor));
 
 }
 

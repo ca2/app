@@ -3,7 +3,7 @@
 
 #include "image.h"
 #include "frame.h"
-#include "acme/graphics/draw2d/colorref_array.h"
+#include "acme/graphics/draw2d/color_array.h"
 
 
 class CLASS_DECL_AURA image_frame_array :
@@ -24,7 +24,7 @@ public:
    ::size_i32           m_sizeLogical;
    ::size_i32           m_size;
    ::image_pointer      m_pimageCompose;
-   colorref_array       m_colorrefa;
+   color_array          m_colora;
 
 
    image_frame_array();

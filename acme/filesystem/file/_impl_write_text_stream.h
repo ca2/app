@@ -448,7 +448,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
 
    char szFormat[32];
 
-   sprintf(szFormat, "%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
+   snprintf(szFormat, sizeof(szFormat), "%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
 
    write_number(f, szFormat);
 

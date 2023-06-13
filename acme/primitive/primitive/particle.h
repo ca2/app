@@ -116,7 +116,7 @@ public:
    virtual void delete_this();
 
 
-   constexpr ::particle * trace_this() const { return (::particle *) this; }
+   inline ::particle * trace_this() const { return (::particle *) this; }
 
 
    inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization : nullptr; }

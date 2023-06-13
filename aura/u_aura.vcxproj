@@ -106,6 +106,7 @@
     <ClInclude Include="graphics\draw2d\object.h" />
     <ClInclude Include="graphics\draw2d\palette.h" />
     <ClInclude Include="graphics\draw2d\path.h" />
+    <ClInclude Include="graphics\draw2d\path_optimization.h" />
     <ClInclude Include="graphics\draw2d\path_shape.h" />
     <ClInclude Include="graphics\draw2d\path_simple_optimization.h" />
     <ClInclude Include="graphics\draw2d\pen.h" />
@@ -432,6 +433,7 @@
     <ClCompile Include="graphics\draw2d\object.cpp" />
     <ClCompile Include="graphics\draw2d\palette.cpp" />
     <ClCompile Include="graphics\draw2d\path.cpp" />
+    <ClCompile Include="graphics\draw2d\path_optimization.cpp" />
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp" />
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />

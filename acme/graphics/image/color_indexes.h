@@ -22,38 +22,40 @@ struct color_indexes
       struct
       {
 
-         ::u8 m_u8IndexOpacity;
          ::u8 m_u8IndexRed;
          ::u8 m_u8IndexGreen;
          ::u8 m_u8IndexBlue;
+         ::u8 m_u8IndexOpacity;
 
       };
+
+      ::u32 m_u32;
 
    };
 
 
    constexpr color_indexes();
 
-   constexpr color_indexes(const color_indexes & indexes)
-   {
+   constexpr color_indexes(const color_indexes & indexes) = default;
+   //{
 
-      m_u8IndexOpacity = indexes.m_u8IndexOpacity;
-      m_u8IndexRed = indexes.m_u8IndexRed;
-      m_u8IndexGreen = indexes.m_u8IndexGreen;
-      m_u8IndexBlue = indexes.m_u8IndexBlue;
+   //   m_u8IndexOpacity = indexes.m_u8IndexOpacity;
+   //   m_u8IndexRed = indexes.m_u8IndexRed;
+   //   m_u8IndexGreen = indexes.m_u8IndexGreen;
+   //   m_u8IndexBlue = indexes.m_u8IndexBlue;
 
-   }
+   //}
 
 
    constexpr color_indexes(
-      ::u8 u8IndexOpacity,
       ::u8 u8IndexRed,
       ::u8 u8IndexGreen,
-      ::u8 u8IndexBlue) :
-      m_u8IndexOpacity(u8IndexOpacity),
+      ::u8 u8IndexBlue,
+      ::u8 u8IndexOpacity) :
       m_u8IndexRed(u8IndexRed),
       m_u8IndexGreen(u8IndexGreen),
-      m_u8IndexBlue(u8IndexBlue)
+      m_u8IndexBlue(u8IndexBlue),
+      m_u8IndexOpacity(u8IndexOpacity)
    {
 
    }
@@ -74,38 +76,11 @@ struct color_indexes
 #pragma pack(pop, color_indexes)
 
 
-constexpr inline color_indexes bgra_indexes() { return { 3, 2, 1, 0 }; }
-constexpr inline color_indexes rgba_indexes() { return { 3, 0, 1, 2 }; }
+constexpr inline color_indexes bgra_indexes() { return { 2, 1, 0, 3 }; }
+constexpr inline color_indexes rgba_indexes() { return { 0, 1, 2, 3 }; }
 
 
-#ifdef __APPLE__
-
-
-#define IMAGE_Y(y, h) ((h) - (y) - 1)
-
-
-#else
-
-
-#define IMAGE_Y(y, h) (y)
-
-
-#endif
-
-
-#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD)
-
-
-constexpr inline color_indexes common_system_image_color_indexes() { return bgra_indexes(); }
-
-
-#else
-
-
-constexpr inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
-
-
-#endif
+#include "_configuration.h"
 
 
 constexpr color_indexes::color_indexes() :

@@ -96,10 +96,10 @@ constexpr image32_t::image32_t(::color::color color, color_indexes indexes)
 }
 
 
-constexpr ::color::color  image32_t::color(color_indexes indexes) const
+constexpr ::color::color image32_t::color(color_indexes indexes) const
 {
 
-   return rgba(u8_red(indexes), u8_green(indexes), u8_blue(indexes), u8_opacity(indexes));
+   return u8_opacity(indexes) == 0 ? ::color::transparent : rgba(u8_red(indexes) * 255 / u8_opacity(indexes), u8_green(indexes) * 255 / u8_opacity(indexes), u8_blue(indexes) * 255 / u8_opacity(indexes), u8_opacity(indexes));
 
 }
 
@@ -107,9 +107,9 @@ constexpr ::color::color  image32_t::color(color_indexes indexes) const
 constexpr void image32_t::assign(::color::color color, color_indexes indexes)
 {
 
-   u8_red(indexes) = color.m_u8Red;
-   u8_green(indexes) = color.m_u8Green;
-   u8_blue(indexes) = color.m_u8Blue;
+   u8_red(indexes) = color.m_u8Red * color.m_u8Opacity / 255;
+   u8_green(indexes) = color.m_u8Green * color.m_u8Opacity / 255;
+   u8_blue(indexes) = color.m_u8Blue * color.m_u8Opacity / 255;
    u8_opacity(indexes) = color.m_u8Opacity;
 
 }

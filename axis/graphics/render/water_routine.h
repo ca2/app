@@ -10,16 +10,16 @@ namespace draw2d
    public:
       
       
-      i32            m_iWidth;
-      i32            m_iHeight;
-      bool           m_bDrawWithLight;
-      i32            m_iLightModifier;
-      i32            m_iHpage;// The current heightfield
-      i32            m_density;// The water density - can machine the density...
+      i32                        m_iWidth;
+      i32                        m_iHeight;
+      bool                       m_bDrawWithLight;
+      i32                        m_iLightModifier;
+      i32                        m_iHpage;// The current heightfield
+      i32                        m_density;// The water density - can machine the density...
       //  the height fields
-      i32*           m_iHeightField1;
-      i32*           m_iHeightField2;
-      color_indexes  m_colorindexes;
+      i32*                       m_iHeightField1;
+      i32*                       m_iHeightField2;
+      struct color_indexes       m_colorindexes;
 
       
       water_routine();

@@ -104,7 +104,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_PALETTE)
                            {
 
-                              ::draw2d::cra_from_quada(pframea->m_colorrefa, (WINRGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
+                              ::draw2d::colora_from_quada(pframea->m_colora, (WINRGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
 
                            }
 

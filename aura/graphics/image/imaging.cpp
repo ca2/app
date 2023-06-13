@@ -2015,7 +2015,7 @@ void imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i
 void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size, const ::color::color & color,::u8 bA)
 {
 
-   pgraphics->fill_rectangle(rectangle_i32(size), color & class ::opacity(bA));
+   pgraphics->fill_rectangle(rectangle_i32(size), color & ::opacity(bA));
 
    //return true;
 
@@ -6895,7 +6895,7 @@ void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
    for(i64 i = 0; i < area; i++)
    {
 
-      ((image32_t *)p)->assign(cra[(p[0] + p[1] + p[2]) / 3] & class ::opacity(p[3]), pimage->color_indexes());
+      ((image32_t *)p)->assign(cra[(p[0] + p[1] + p[2]) / 3] & ::opacity(p[3]), pimage->color_indexes());
 
 
 
@@ -6970,7 +6970,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 
    }
 
-   pbrushText->create_solid(color & class ::opacity(dBlend));
+   pbrushText->create_solid(color & ::opacity(dBlend));
 
    pgraphics->set(pbrushText);
 

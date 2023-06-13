@@ -592,8 +592,8 @@ constexpr auto argb(OPACITY opacity, RED red, GREEN green, BLUE blue)
 }
 
 
-constexpr auto opacity(const class ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }
-constexpr auto opaque(const ::color::color& color) { return opacity(255, color); }
+//constexpr auto opacity(const class ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }
+//constexpr auto opaque(const ::color::color& color) { return opacity(255, color); }
 
 
 CLASS_DECL_ACME::color::color _020GetColor(::index i);

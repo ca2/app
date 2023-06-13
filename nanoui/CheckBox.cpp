@@ -117,13 +117,13 @@ namespace nanoui
             if (m_bChecked)
             {
 
-               INFORMATION("SnakeCheckbox1 Checked");
+               information() << "SnakeCheckbox1 Checked";
 
             }
             else
             {
 
-               INFORMATION("SnakeCheckbox1 Checked");
+               information() << "SnakeCheckbox1 Checked";
 
             }
 
@@ -166,7 +166,7 @@ namespace nanoui
       ::nano2d::paint bg = pcontext->box_gradient(m_pos.x() + 1.5f, m_pos.y() + 1.5f,
          m_size.cy() - 2.0f, m_size.cy() - 2.0f, 3, 3,
          is_mouse_down() ? ::color::color(0, 100) : ::color::color(0, 32),
-                                                  ::color::color(0, 0, 0, 180));
+                                                  ::rgba(0, 0, 0, 180));
 
       pcontext->begin_path();
 
@@ -180,7 +180,7 @@ namespace nanoui
       if (m_bChecked) 
       {
 
-         FORMATTED_INFORMATION("draw \"%s\" Checked!!", m_strAnnotation.c_str());
+         information("draw \"%s\" Checked!!", m_strAnnotation.c_str());
 
          pcontext->font_size(icon_scale() * m_size.cy());
          
@@ -202,7 +202,7 @@ namespace nanoui
       else
       {
 
-         FORMATTED_INFORMATION("no draw \"%s\" Not checked!!", m_strAnnotation.c_str());
+         information("no draw \"%s\" Not checked!!", m_strAnnotation.c_str());
 
       }
 

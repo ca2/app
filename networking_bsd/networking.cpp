@@ -15,7 +15,7 @@
 
 
 #undef ERROR
-#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>
 
@@ -573,11 +573,11 @@ namespace networking_bsd
       i32 n = getaddrinfo(str, nullptr, &hints, &res);
       if (n)
       {
-         string error = "getaddrinfo Error: ";
+         string strError = "getaddrinfo Error: ";
 #ifndef __CYGWIN__
-         error += gai_strerror(n);
+         strError += gai_strerror(n);
 #endif
-         ERROR(error + " for " + str);
+         error() << strError + " for " + str;
          item.m_bOk = false;
          item.m_bTimeout = true;
          item.m_timeLastChecked.Now();
@@ -2968,7 +2968,7 @@ namespace networking_bsd
 //      if (m_socketmap.get_size() >= FD_SETSIZE)
 //      {
 //
-//         WARNING("Select " << (i32)m_socketmap.get_size() << " FD_SETSIZE reached");
+//         warning() <<"Select " << (i32)m_socketmap.get_size() << " FD_SETSIZE reached";
 //
 //         goto end_processing_adding;
 //
@@ -2981,7 +2981,7 @@ namespace networking_bsd
 //      if (m_socketmap.has(SOCKET))
 //      {
 //
-//         _WARNING(psocket, "add" << (i32)psocket->GetSocketId() << "Attempt to add SOCKET already in controlled queue");
+//         psocket->warning() << "add" << (i32)psocket->GetSocketId() << "Attempt to add SOCKET already in controlled queue";
 //
 //         m_socketmapAdd.erase(passociationAdd);
 //
@@ -2992,7 +2992,7 @@ namespace networking_bsd
 //      if (psocket->IsCloseAndDelete())
 //      {
 //
-//         _WARNING(psocket, "add " << (i32)psocket->GetSocketId() << " Trying to add SOCKET with SetCloseAndDelete() true");
+//         psocket->warning() << "add " << (i32)psocket->GetSocketId() << " Trying to add SOCKET with SetCloseAndDelete() true";
 //
 //         m_socketidlist.add_tail(SOCKET);
 //
@@ -3078,7 +3078,7 @@ namespace networking_bsd
 //
 //      tickRWENull.Now();
 //
-//      //INFORMATION("rfds, wfds and efds are null!!"));
+//      //information() << "rfds, wfds and efds are null!!");
 //
 //   }
 //   else

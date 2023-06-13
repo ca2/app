@@ -37,7 +37,7 @@
 #define DEBUG_WINDOWS_C_ANDROID_FONTS 0
 
 
-#define __expand_rgba(color) color.dr(), color.dg(), color.db(), color.da()
+//#define __expand_f64_rgba(color) color.dr(), color.dg(), color.db(), color.da()
 
 
 // https://www.codeproject.com/Articles/2293/Retrieving-Font-Name-from-TTF-File
@@ -1550,7 +1550,7 @@ namespace draw2d_cairo
             if (opacity.is_translucent())
             {
 
-               m_pregion.cast<region>()->mask_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
+               m_pregion.cast<region>()->mask_paint_with_alpha(m_pdc, opacity.f64_opacity());
 
             }
             else
@@ -1567,7 +1567,7 @@ namespace draw2d_cairo
             if (opacity.is_translucent())
             {
 
-               cairo_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
+               cairo_paint_with_alpha(m_pdc, opacity.f32_opacity());
 
             }
             else
@@ -1727,7 +1727,7 @@ namespace draw2d_cairo
          if (opacity.is_translucent())
          {
 
-            m_pregion.cast<region>()->mask_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
+            m_pregion.cast<region>()->mask_paint_with_alpha(m_pdc, opacity.f32_opacity());
 
          }
          else
@@ -1744,7 +1744,7 @@ namespace draw2d_cairo
          if (opacity.is_translucent())
          {
 
-            cairo_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
+            cairo_paint_with_alpha(m_pdc, opacity.f32_opacity());
 
          }
          else
@@ -1769,7 +1769,7 @@ namespace draw2d_cairo
 
       throw ::interface_only();
 
-      return false;
+      return {};
 
    }
 
@@ -1779,7 +1779,7 @@ namespace draw2d_cairo
 
       throw ::interface_only();
 
-      return false;
+      return {};
 
    }
 
@@ -1789,7 +1789,7 @@ namespace draw2d_cairo
 
       throw ::interface_only();
 
-      return false;
+      return {};
 
    }
 
@@ -1799,7 +1799,7 @@ namespace draw2d_cairo
 
       throw ::interface_only();
 
-      return false;
+      return {};
 
    }
 
@@ -3894,7 +3894,7 @@ namespace draw2d_cairo
 
             const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
-            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
+            information("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
          }
 
@@ -4279,7 +4279,7 @@ namespace draw2d_cairo
 
    //            const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
-   //            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
+   //            information("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
    //        }
 
@@ -4583,7 +4583,7 @@ namespace draw2d_cairo
 
             const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
-            FORMATTED_TRACE("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
+            information("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
 
          }
 
@@ -5015,9 +5015,9 @@ namespace draw2d_cairo
                                                                   pbrush->m_point.x() - x, pbrush->m_point.y() - y,
                                                                   maximum(pbrush->m_size.cx(), pbrush->m_size.cy()));
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_rgba(pbrush->m_color1));
+         cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_f32_rgba(pbrush->m_color1));
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_rgba(pbrush->m_color2));
+         cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_f32_rgba(pbrush->m_color2));
 
          cairo_set_source(m_pdc, ppattern);
 
@@ -5037,33 +5037,9 @@ namespace draw2d_cairo
 
          cairo_pattern_t * ppattern = cairo_pattern_create_linear(x0, y0, x1, y1);
 
-         double dR;
+         cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_f64_rgba(pbrush->m_color1));
 
-         double dG;
-
-         double dB;
-
-         double dA;
-
-         dR = (double) pbrush->m_color1.dr();
-
-         dG = (double) pbrush->m_color1.dg();
-
-         dB = (double) pbrush->m_color1.db();
-
-         dA = (double) pbrush->m_color1.da();
-
-         cairo_pattern_add_color_stop_rgba(ppattern, 0., dR, dG, dB, dA);
-
-         dR = (double) pbrush->m_color2.dr();
-
-         dG = (double) pbrush->m_color2.dg();
-
-         dB = (double) pbrush->m_color2.db();
-
-         dA = (double) pbrush->m_color2.da();
-
-         cairo_pattern_add_color_stop_rgba(ppattern, 1., dR, dG, dB, dA);
+         cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_f64_rgba(pbrush->m_color2));
 
          cairo_set_source(m_pdc, ppattern);
 
@@ -5110,10 +5086,10 @@ namespace draw2d_cairo
          //cairo_mesh_pattern_curve_to (pattern, 60,  30, 130,  60, 100, 100);
          //cairo_mesh_pattern_curve_to (pattern, 60,  70,  30, 130,   0, 100);
          //cairo_mesh_pattern_curve_to (pattern, 30,  70, -30,  30,   0, 0);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
          int iStatus = cairo_pattern_status(ppattern);
 
@@ -5123,10 +5099,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, outer.right, inner.top);
          cairo_mesh_pattern_line_to(ppattern, outer.right, inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 ///* Add a Coons patch */
@@ -5167,10 +5143,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_curve_to(ppattern, outer.right, inner.bottom + KR, inner.right + KR, outer.bottom,
                                      inner.right, outer.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5179,10 +5155,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, inner.right, outer.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, outer.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5191,10 +5167,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.top);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
          // clockwise bottom-left
@@ -5211,10 +5187,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_curve_to(ppattern, inner.left - KR, outer.bottom, outer.left, inner.bottom + KR, outer.left,
                                      inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5223,10 +5199,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, outer.left, inner.top);
          cairo_mesh_pattern_line_to(ppattern, outer.left, inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5246,10 +5222,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_curve_to(ppattern, outer.left, inner.top - KR, inner.left - KR, outer.top, inner.left,
                                      outer.top);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.top);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5258,10 +5234,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, inner.left, outer.top);
          cairo_mesh_pattern_line_to(ppattern, inner.right, outer.top);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.top);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5314,12 +5290,7 @@ namespace draw2d_cairo
       else
       {
 
-         double dR = pbrush->m_color.dr();
-         double dG = pbrush->m_color.dg();
-         double dB = pbrush->m_color.db();
-         double dA = pbrush->m_color.da();
-
-         cairo_set_source_rgba(m_pdc, dR, dG, dB, dA);
+         cairo_set_source_rgba(m_pdc, __expand_f64_rgba(pbrush->m_color));
 
       }
 
@@ -5342,7 +5313,7 @@ namespace draw2d_cairo
       else
       {
 
-         cairo_set_source_rgba(m_pdc, __expand_rgba(ppen->m_color));
+         cairo_set_source_rgba(m_pdc, __expand_f64_rgba(ppen->m_color));
 
       }
 
@@ -6428,7 +6399,7 @@ namespace draw2d_cairo
 
          const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
-         FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+         information("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
       }
 
@@ -6464,7 +6435,7 @@ namespace draw2d_cairo
 
          const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
-         FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+         information("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
       }
 
@@ -6523,15 +6494,7 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(cairo_mutex());
 
-      auto r = color.red;
-
-      auto g = color.green;
-
-      auto b = color.blue;
-
-      auto a = color.alpha;
-
-      cairo_set_source_rgba(m_pdc, r / 255.0, g / 255.0, b / 255.0, a / 255.0);
+      cairo_set_source_rgba(m_pdc, __expand_f64_rgba(color));
 
       return true;
 
@@ -7078,7 +7041,7 @@ namespace draw2d_cairo
          else
          {
 
-            TRACE("Creating font : " << pszFontName);
+            information() << "Creating font : " << pszFontName;
 
          }
 

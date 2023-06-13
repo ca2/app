@@ -1355,6 +1355,7 @@ namespace user
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);

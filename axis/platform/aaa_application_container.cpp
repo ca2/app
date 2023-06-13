@@ -202,7 +202,7 @@ application_array application_container::get_applicationa()
 ::pointer<::aura::application>application_container::instantiate_application(const ::string & pszAppId, ::request * prequest)
 {
 
-   INFORMATION("aura::application::instantiate_application");
+   information() << "aura::application::instantiate_application";
 
    ::pointer<::aura::application>papp;
 

@@ -29,7 +29,7 @@ void application_exit::request_exit_application()
 
    }
 
-   INFORMATION("application_exit request_exit_application");
+   information() <<  "application_exit request_exit_application";
 
    m_bProcessingApplicationExitRequest = true;
 

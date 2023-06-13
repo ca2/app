@@ -110,7 +110,7 @@ namespace geo
             for (int i = 0; i < 20; i++)
             {
 
-               FORMATTED_INFORMATION("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
+               information("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
 
             }
 
@@ -1300,7 +1300,7 @@ namespace geo
       else if (!::mathematics::convert_to_double(dTimeZoneOffset, strCountryCode))
       {
 
-         TRACE("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
+         information("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
 
       }
 

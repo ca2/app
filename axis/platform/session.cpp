@@ -148,7 +148,7 @@ namespace axis
    void session::process_init()
    {
 
-      INFORMATION("axis::session::process_init");
+      information() << "axis::session::process_init";
 
       //auto estatus = 
       
@@ -163,7 +163,7 @@ namespace axis
 
 
 
-      INFORMATION("axis::session::process_init success");
+      information() << "axis::session::process_init success";
 
       //return ::success;
 
@@ -819,13 +819,13 @@ namespace axis
    //   if (!estatus || !m_puser)
    //   {
 
-   //      ERROR(".4");
+   //      error() <<".4";
 
    //      return false;
 
    //   }
 
-   //   INFORMATION("end");
+   //   information() << "end";
    //   return true;
 
    //}

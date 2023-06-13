@@ -10,12 +10,15 @@ class logger :
 {
 public:
 
+
+   enum_trace_level     m_etracelevelMinimum = e_trace_level_information;
+
    
    static void t_construct(::acme::context * pcontext);
    static void t_release();
 
 
-   virtual void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) = 0;
+   virtual void print(trace_statement & tracestatement) = 0;
 
 
 };

@@ -134,7 +134,7 @@ namespace acme
       ::pointer<::text::table>                                        m_ptexttable;
 
 
-      enum_trace_level                                                  m_etracelevel;
+      //enum_trace_level                                                  m_etracelevel;
       class ::time                                                        m_timeMainStart;
       //class ::time                                                        m_timeAfterApplicationFirstRequest;
       bool                                                              m_bIsReadyForUserInteraction;
@@ -147,8 +147,6 @@ namespace acme
       ::pointer<::dir_system>                                           m_pdirsystem;
       ::pointer<::file_system>                                          m_pfilesystem;
 
-
-      ::pointer < logger >                                              m_plogger;
 
 
       system();

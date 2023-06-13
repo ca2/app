@@ -286,7 +286,7 @@ m_bDrag(false)
 
          auto rectanglePrevious = interaction_rectangle();
 
-         FORMATTED_INFORMATION("rectanglePrevious (%d, %d, %d, %d)", 
+         information("rectanglePrevious (%d, %d, %d, %d)", 
             rectanglePrevious.left,
             rectanglePrevious.top,
             rectanglePrevious.right, 
@@ -306,7 +306,7 @@ m_bDrag(false)
 
          rectangle.offset(m_offsetToApplyOnDraw.cx(), m_offsetToApplyOnDraw.cy());
 
-         FORMATTED_INFORMATION("rectangle (%d, %d, %d, %d)",
+         information("rectangle (%d, %d, %d, %d)",
             rectangle.left,
             rectangle.top,
             rectangle.right,

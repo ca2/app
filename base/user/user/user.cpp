@@ -210,7 +210,7 @@ namespace base
 
 
 
-      TRACE("::user::application::initialize");
+      information("::user::application::initialize");
 
       //xml::document docUser;
 
@@ -1286,7 +1286,7 @@ namespace base
       if (!pstyle)
       {
 
-         INFORMATION("could not create user_style from " << pexperience->m_strExperience);
+         information() << "could not create user_style from " << pexperience->m_strExperience;
 
          return nullptr;
 
@@ -1337,7 +1337,7 @@ namespace base
          if (!m_puserstyle)
          {
 
-            ERROR("aura::session::defer_instantiate_user_theme");
+            error() <<"aura::session::defer_instantiate_user_theme";
 
             throw ::exception(error_resource);
 

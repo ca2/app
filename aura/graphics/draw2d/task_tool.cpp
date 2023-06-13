@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "task_tool.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 
 
 namespace draw2d
@@ -331,7 +331,7 @@ restart:
                            if (xDistanceToBoundary8 > 0)
                            {
 
-                              while (x < xBoundary8 && !(((::image32_t *)psrc3)[x]).u8_opacity())
+                              while (x < xBoundary8 && !(((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  x++;
@@ -343,7 +343,7 @@ restart:
                                  break;
                               }
 
-                              if ((((::image32_t *)psrc3)[x]).u8_opacity())
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -386,7 +386,7 @@ restart:
 
                               }
 
-                              if ((((::image32_t *)psrc3)[x]).u8_opacity())
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -425,7 +425,7 @@ restart:
 
                               }
 
-                              if ((((::image32_t *)psrc3)[x]).u8_opacity())
+                              if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -440,7 +440,7 @@ restart:
 
                            }
 
-                           while (x < xEnd && !(((::image32_t *)psrc3)[x]).u8_opacity())
+                           while (x < xEnd && !(((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                            {
 
                               x++;
@@ -456,7 +456,7 @@ restart:
 
                            psrc2 = &psrc3[x << 2];
 
-                           if ((((::image32_t *)psrc3)[x]).u8_opacity())
+                           if ((((::image32_t *)psrc3)[x]).u8_opacity(m_indexes))
                            {
 
                               goto restart;

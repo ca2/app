@@ -9,6 +9,619 @@
 #pragma once
 
 
+
+template <class TYPE, TYPE t >
+struct integral_constant
+{
+
+   inline static constexpr TYPE payload = t;
+
+};
+
+
+template < bool b >
+using bool_constant = integral_constant < bool, b >;
+
+
+using true_type = bool_constant < true >;
+
+using false_type = bool_constant < false >;
+
+template<class T> struct is_const_struct : false_type {};
+template<class T> struct is_const_struct<const T> : true_type {};
+
+template < class T >
+inline constexpr bool is_const = is_const_struct < T >::payload;
+
+
+template<class T> struct is_reference_struct : false_type {};
+template<class T> struct is_reference_struct<T &> : true_type {};
+template<class T> struct is_reference_struct<T &&> : true_type {};
+
+template < class T >
+inline constexpr bool is_reference = is_reference_struct < T >::payload;
+
+
+template<typename TYPE>
+struct const_of_struct
+{
+   using CONST_OF_TYPE = const TYPE;
+};
+template<typename TYPE>
+struct const_of_struct<TYPE &>
+{
+   using CONST_OF_TYPE = const TYPE &;
+};
+template<typename TYPE>
+struct const_of_struct< TYPE *>
+{
+   using CONST_OF_TYPE = const TYPE *;
+};
+template<typename TYPE>
+struct const_of_struct< TYPE const &>
+{
+   using CONST_OF_TYPE = const TYPE &;
+};
+template<typename TYPE>
+struct const_of_struct < TYPE * const>
+{
+   using CONST_OF_TYPE = const TYPE *;
+};
+template<typename TYPE>
+struct const_of_struct< TYPE const && >
+{
+   using CONST_OF_TYPE = const TYPE &&;
+};
+
+
+
+
+
+//template < typename FUNCTION  >
+//struct const_of_struct < void(*FUNCTION) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+//
+//template < typename FUNCTION, typename RETURN_TYPE  >
+//struct const_of_struct < RETURN_TYPE( *FUNCTION) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+//
+//
+//template < typename FUNCTION, typename RETURN_TYPE, typename... TYPES >
+//struct const_of_struct < RETURN_TYPE( *FUNCTION) (TYPES...) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+//
+//
+//template < typename FUNCTION, typename... TYPES >
+//struct const_of_struct < void( *FUNCTION)(TYPES...) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+
+
+
+//template <class... Args>
+//struct all_s :std::false_type {};
+//
+//template <>
+//struct all_s<size_t> :true_type {};
+//
+//template <class... Args>
+//struct all_s<size_t, Args...> :all_s<Args...> {};
+//template <class... Args>
+//concept all_s_con = all_s<Args...>::value;
+//
+//template<class C, class R, class Fun>
+//struct fun_all_s :std::false_type {};
+//template<class C, class R, class... Args>
+//   requires all_s_con<Args...>
+//struct fun_all_s<C, R, R(C &, Args...)> :true_type {};
+//
+//template<class C, typename Policy>
+//concept FooConcept = fun_all_s<C, typename C::value_type, decltype(Policy::foo)>::value;
+
+
+
+
+
+template<typename TYPE>
+using const_of = typename const_of_struct<TYPE>::CONST_OF_TYPE;
+
+
+
+
+
+
+// erase_const
+// erase_const
+// erase_const
+
+template<typename TYPE>
+struct erase_const
+{
+   using NON_CONST_TYPE = TYPE;
+};
+template<typename TYPE>
+struct erase_const<TYPE &>
+{
+   using NON_CONST_TYPE = TYPE &;
+};
+template<typename TYPE>
+struct erase_const<const TYPE>
+{
+   using NON_CONST_TYPE = TYPE;
+};
+template<typename TYPE>
+struct erase_const<const TYPE &>
+{
+   using NON_CONST_TYPE = TYPE &;
+};
+template<typename TYPE>
+struct erase_const<const TYPE *>
+{
+   using NON_CONST_TYPE = TYPE *;
+};
+template<typename TYPE>
+struct erase_const<const TYPE &&>
+{
+   using NON_CONST_TYPE = TYPE &&;
+};
+template<typename TYPE>
+using non_const = typename erase_const<TYPE>::NON_CONST_TYPE;
+
+
+
+
+template<typename TYPE>
+struct erase_reference
+{
+   using NON_REFERENCE_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<TYPE &>
+{
+   using NON_REFERENCE_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<const TYPE &>
+{
+   using NON_REFERENCE_TYPE = const TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<TYPE &&>
+{
+   using NON_REFERENCE_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<const TYPE &&>
+{
+   using NON_REFERENCE_TYPE = const TYPE;
+};
+
+template<typename TYPE>
+using non_reference = typename erase_reference<TYPE>::NON_REFERENCE_TYPE;
+
+
+
+
+
+
+template<typename TYPE>
+struct insert_const
+{
+
+   // erase top-level const qualifier
+   using CONST_TYPE = const TYPE;
+
+
+};
+
+template<typename TYPE>
+struct insert_const<TYPE &>
+{
+   using CONST_TYPE = const TYPE &;
+};
+
+
+template<typename TYPE>
+struct insert_const<TYPE *>
+{
+   using CONST_TYPE = const TYPE *;
+};
+
+template<typename TYPE>
+struct insert_const<const TYPE>
+{
+   using CONST_TYPE = const TYPE;
+};
+
+template<typename TYPE>
+struct insert_const<const TYPE &>
+{
+   using CONST_TYPE = const TYPE &;
+};
+
+template<typename TYPE>
+struct insert_const<const TYPE *>
+{
+   using CONST_TYPE = const TYPE *;
+};
+
+
+template<class TYPE>
+using add_const = typename insert_const<TYPE>::CONST_TYPE;
+
+
+//constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
+
+template < typename DERIVED, typename BASE >
+concept is_derived_from =
+::std::is_base_of < BASE, DERIVED >::value;
+
+
+
+template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
+struct if_else_base {};
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else_base < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else_base < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
+
+template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
+using if_else = typename if_else_base < B, TRUE_TYPE, ELSE_TYPE >::type;
+
+template<class T>
+struct is_array_struct : false_type {};
+
+template<class T>
+struct is_array_struct<T[]> : true_type {};
+
+template<class T, std::size_t N>
+struct is_array_struct<T[N]> : true_type {};
+
+template<class T>
+inline constexpr bool is_array = is_array_struct < T >::payload;
+
+
+namespace detail
+{
+   template<class T>
+   struct type_identity { using type = T; }; // or use std::type_identity (since C++20)
+
+   template<class T>
+   auto try_add_pointer(int) -> type_identity< non_reference<T> *>;
+   template<class T>
+   auto try_add_pointer(...) -> type_identity<T>;
+} // namespace detail
+
+template<class T>
+struct add_pointer_struct : decltype(detail::try_add_pointer<T>(0)) {};
+
+template < typename T >
+using add_pointer = typename add_pointer_struct < T >::type;
+
+
+template<class T> struct erase_pointer_struct { typedef T type; };
+template<class T> struct erase_pointer_struct<T *> { typedef T type; };
+template<class T> struct erase_pointer_struct<T * const> { typedef T type; };
+template<class T> struct erase_pointer_struct<T * volatile> { typedef T type; };
+template<class T> struct erase_pointer_struct<T * const volatile> { typedef T type; };
+
+
+template < typename T >
+using erase_pointer = typename erase_pointer_struct < T >::type;
+
+template<class T>
+struct erase_extent_struct { using type = T; };
+
+template<class T>
+struct erase_extent_struct<T[]> { using type = T; };
+
+template<class T, std::size_t N>
+struct erase_extent_struct<T[N]> { using type = T; };
+
+
+template < typename T >
+using non_extent = typename erase_pointer_struct < T >::type;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+template<typename T>
+struct is_function_struct : ::integral_constant<
+   bool,
+   !is_const< const T > && !is_reference< T >
+> {};
+
+template<typename T>
+inline constexpr bool is_function = is_function_struct < T >::payload;
+
+
+//// primary template
+//template<class>
+//struct is_function_struct : false_type {};
+//
+//// specialization for regular functions
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...)> : true_type {};
+//
+//// specialization for variadic functions such as std::printf
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......)>  : true_type {};
+//
+//// specialization for function types that have cv-qualifiers
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) volatile>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const volatile>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) volatile>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const volatile>  : true_type {};
+//
+//// specialization for function types that have ref-qualifiers
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) volatile &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const volatile &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) volatile &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const volatile &>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) &&>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const &&>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) volatile &&>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const volatile &&>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) &&>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const &&>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) volatile &&>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const volatile &&>  : true_type {};
+//
+//// specializations for noexcept versions of all the above (C++17 and later)
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) volatile noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const volatile noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) volatile noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const volatile noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) volatile & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const volatile & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) volatile & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const volatile & noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) && noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const && noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) volatile && noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args...) const volatile && noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) && noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const && noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) volatile && noexcept>  : true_type {};
+//template<class Ret, class... Args>
+//struct is_function_struct<Ret(Args......) const volatile && noexcept>  : true_type {};
+
+
+
+//// primary template
+//template<typename T>
+//using is_function = typename is_function_struct<T > :: type;
+
+// specialization for regular functions
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...)> :: type;
+
+//// specialization for variadic functions such as std::printf
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......)> :: type;
+//
+//// specialization for function types that have cv-qualifiers
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) volatile> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const volatile> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) volatile> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const volatile> :: type;
+//
+//// specialization for function types that have ref-qualifiers
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) volatile &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const volatile &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) volatile &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const volatile &> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) &&> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const &&> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) volatile &&> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const volatile &&> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) &&> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const &&> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) volatile &&> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const volatile &&> :: type;
+//
+//// specializations for noexcept versions of all the above (C++17 and later)
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) volatile noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const volatile noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) volatile noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const volatile noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) volatile & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const volatile & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) volatile & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const volatile & noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) && noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const && noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) volatile && noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args...) const volatile && noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) && noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const && noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) volatile && noexcept> :: type;
+//template<class Ret, class... Args>
+//using is_function = typename is_function_struct<Ret(Args......) const volatile && noexcept> :: type;
+
+
+
+template<class T>
+struct decay_struct
+{
+private:
+   using U = ::non_reference<T>;
+public:
+   using type = 
+   if_else <
+      is_array < U >,
+      add_pointer < non_extent < U > >,
+      if_else <
+      is_function < U >, add_pointer < U >, non_const < U > >
+   >;
+};
+
+
+template <typename T>
+using decay = typename decay_struct<T>::type;
+
+
+
+
 namespace opengl
 {
 
@@ -1573,5 +2186,40 @@ namespace nano
    class nano;
 
 } // namespace nano
+
+
+
+
+template < typename ARGUMENT >
+struct argument_of_struct
+{
+
+   using type = const ARGUMENT &;
+
+};
+
+
+template < typename TYPE >
+struct argument_of_struct < TYPE * >
+{
+
+   using type = TYPE *;
+
+};
+
+
+
+
+//template < primitive_function FUNCTION >
+//struct argument_of_struct < FUNCTION >
+//{
+//
+//   using type = FUNCTION;
+//
+//};
+
+
+template < typename ARGUMENT >
+using argument_of = typename argument_of_struct < ARGUMENT >::type;
 
 

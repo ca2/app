@@ -452,8 +452,8 @@ void TransformSkewX(float* t, float a)
 
 		memset(state, 0, sizeof(*state));
 
-		__setPaintColor(&state->fill, ::color::RGBA_color(255, 255, 255, 255));
-		__setPaintColor(&state->stroke, ::color::RGBA_color(0, 0, 0, 255));
+		__setPaintColor(&state->fill, argb(255, 255, 255, 255));
+		__setPaintColor(&state->stroke, rgba(0, 0, 0, 255));
 		state->compositeOperation = __compositeOperationState(::nano2d::e_composite_operation_source_over);
 		state->shapeAntiAlias = 1;
 		state->strokeWidth = 1.0f;

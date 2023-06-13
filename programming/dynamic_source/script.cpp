@@ -394,7 +394,7 @@ namespace dynamic_source
 
             }
 
-            FORMATTED_TRACE("Error Message Id: %d\n", dwMessageId);
+            information("Error Message Id: %d\n", dwMessageId);
 
             string strError = ::windows::last_error_message(dwMessageId);
 
@@ -418,7 +418,7 @@ namespace dynamic_source
          if (m_lpfnCreateInstance == nullptr)
          {
 
-            TRACE("create_dynamic_source_script_instance error");
+            information("create_dynamic_source_script_instance error");
 
          }
 
@@ -525,7 +525,7 @@ namespace dynamic_source
       if (m_strSourcePath.case_insensitive_find_index("\\applications\\basic\\") > 0)
       {
 
-         TRACE("/applications/basic/");
+         information("/applications/basic/");
 
       }
 
@@ -563,14 +563,14 @@ namespace dynamic_source
          if (iRetry == 0)
          {
 
-            TRACE("Build: " << m_strName);
-            TRACE(str);
+            information() << "Build: " << m_strName;
+            information(str);
 
          }
          else
          {
 
-            TRACE("Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str());
+            information() << "Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str();
 
          }
 

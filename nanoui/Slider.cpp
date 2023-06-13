@@ -21,7 +21,7 @@ namespace nanoui
 Slider::Slider(Widget * parent)
    : Widget(parent), m_value(0.0f), m_range(0.f, 1.f),
    m_highlighted_range(0.f, 0.f) {
-   m_highlight_color =  ::color::color(255, 80, 80, 70);
+   m_highlight_color =  ::argb(255, 80, 80, 70);
 }
 
 

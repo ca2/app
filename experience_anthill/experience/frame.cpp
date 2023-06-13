@@ -341,10 +341,10 @@ namespace experience_anthill
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
       m_ppenText1->create_solid(1, argb(255, 255, 255, 255));
-      m_ppenFace1->create_solid(1, opaque(crButtonFace));
-      m_ppenHilight1->create_solid(1, opaque(crButtonHilite));
-      m_ppenShadow1->create_solid(1, opaque(crButtonShadow));
-      m_ppenDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
+      m_ppenFace1->create_solid(1, crButtonFace.opaque());
+      m_ppenHilight1->create_solid(1, crButtonHilite.opaque());
+      m_ppenShadow1->create_solid(1, crButtonShadow.opaque());
+      m_ppenDkShadow1->create_solid(1, crButtonDarkShadow.opaque());
       m_colorDkShadow = crButtonDarkShadow;
       m_colorFrameBorder = argb(255, 0, 0, 0);
 

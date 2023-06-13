@@ -489,12 +489,12 @@ bool simple_frame_window::WindowDataLoadWindowRectangle()
       }
       else if (wfi_is_down())
       {
-         INFORMATION("-------------------------------------------------------------------");
-         INFORMATION("");
-         INFORMATION("");
-         INFORMATION("interaction_child::WindowDataLoadWindowRectangle (3)");
-         INFORMATION("");
-         INFORMATION("");
+         information() << "-------------------------------------------------------------------";
+         information() << "";
+         information() << "";
+         information() << "interaction_child::WindowDataLoadWindowRectangle (3)";
+         information() << "";
+         information() << "";
 
          return false;
 
@@ -502,12 +502,12 @@ bool simple_frame_window::WindowDataLoadWindowRectangle()
 
    }
 
-   INFORMATION("-------------------------------------------------------------------");
-   INFORMATION("");
-   INFORMATION("");
-   INFORMATION("interaction_child::WindowDataLoadWindowRectangle (4)");
-   INFORMATION("");
-   INFORMATION("");
+   information() << "-------------------------------------------------------------------";
+   information() << "";
+   information() << "";
+   information() << "interaction_child::WindowDataLoadWindowRectangle (4)";
+   information() << "";
+   information() << "";
 
    return ::experience::frame_window::WindowDataLoadWindowRectangle();
 
@@ -2057,8 +2057,8 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
          rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_raw_rectangle();
 
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+         information("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+         information("simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
 
          if (wfi_has_up_down())
          {
@@ -2107,8 +2107,8 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
       //pusersystem->set_rect(rectangleFrame);
 
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+      information("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+      information("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
 
 
    }
@@ -2400,214 +2400,268 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 {
 
-   if (!is_frame_experience_enabled())
-   {
+   //if (!is_frame_experience_enabled())
+   //{
 
       ::user::frame_window::_000OnDraw(pgraphicsParam);
 
       return;
 
-   }
-
-   //{
-
-   //   synchronous_lock synchronouslock(this->synchronization());
-
-   //   if (m_pprimitiveimpl->m_puserinteraction == nullptr)
-   //   {
-
-   //      return;
-
-   //   }
-
-   //   //if (!_000OnBeforeDraw(pgraphicsParam))
-   //   //{
-
-   //     // return;
-
-   //   //}
-
    //}
 
-   //auto pstyle = get_style(pgraphicsParam);
-
-   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
-
-   ::rectangle_i32 rectangleClient;
-
-   client_rectangle(rectangleClient);
-
-   bool bDib = false;
-
-   double dAlpha = get_alpha();
-
-   ::draw2d::graphics_pointer& pgraphics = pgraphicsParam;
-
-   if (dAlpha == 0.0)
-   {
-
-      windowing_output_debug_string("Alpha is Zero\n");
-
-   }
-
-   if (rectangleClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
-   {
-
-      //auto estatus = 
-      __defer_construct(m_pimageAlpha);
-
-      //if(estatus.succeeded())
-      //{
-
-         //estatus = 
-      m_pimageAlpha->create(rectangleClient.size());
-
-      //   if(estatus.succeeded())
-      {
-
-         m_pimageAlpha->fill(0, 0, 0, 0);
-
-         pgraphics = m_pimageAlpha->get_graphics();
-
-         pgraphics->set_origin(pgraphics->get_origin());
-
-         bDib = true;
-
-      }
-
-      //}
-
-   }
-
-   //::user::style_context style(this);
-
-   {
-
-#ifdef VERBOSE_LOG
-
-      ::time t1 = ::time::now();
-
-#endif
-
-      //pinteraction->_001OnDraw(pgraphics);
-      if (dAlpha > 0.0)
-      {
-
-         //bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
-
-         int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
-
-         //if (!bBlurBackground)
-         //{
-
-         //   iDrawingOrder = get_int(pstyle, ::user::e_int_top_level_drawing_order);
-
-         //   if (pstyle)
-         //   {
-
-         //      pstyle->_001OnDrawMainFrameBackground(pgraphics, this);
-
-         //      //if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
-         //      //{
-
-         //      //   break;
-
-         //      //}
-
-         //      //style.next();
-
-         //   }
-
-         //}
+//   ::draw2d::save_context savecontext(pgraphicsParam);
+//
+//   point_i32 pointScroll = m_pointScroll;
+//
+//   if (!pointScroll.is_null())
+//   {
+//
+//      pgraphicsParam->offset_origin(-pointScroll.x(), -pointScroll.y());
+//
+//   }
+//
+//   pgraphicsParam->m_dFontFactor = 1.0;
+//
+//   try
+//   {
+//
+//      auto type = __object_type(*this);
+//
+//
+//      //if (pgraphics->m_bDraw)
+//      //{
+//
+//#ifdef __DEBUG
+//
+//      auto timeStart = ::time::now();
+//
+//#endif //__DEBUG
+//
+//      //{
+//
+//      //   auto pinteraction = get_wnd();
+//
+//      //   if (pinteraction)
+//      //   {
+//
+//         //}
+//
+//      //}
+//
+//      _001OnNcClip(pgraphicsParam);
+//
+//      //auto pstyle = get_style(pgraphics);
+//
+//      _001OnNcDraw(pgraphicsParam);
+//
+//
+//   }
+//   catch (...)
+//   {
+//
+//
+//   }
+//
+//
+//   //{
+//
+//   //   synchronous_lock synchronouslock(this->synchronization());
+//
+//   //   if (m_pprimitiveimpl->m_puserinteraction == nullptr)
+//   //   {
+//
+//   //      return;
+//
+//   //   }
+//
+//   //   //if (!_000OnBeforeDraw(pgraphicsParam))
+//   //   //{
+//
+//   //     // return;
+//
+//   //   //}
+//
+//   //}
+//
+//   //auto pstyle = get_style(pgraphicsParam);
+//
+//   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
+//
+//   ::rectangle_i32 rectangleClient;
+//
+//   client_rectangle(rectangleClient);
+//
+//   bool bDib = false;
+//
+//   double dAlpha = get_alpha();
+//
+//   ::draw2d::graphics_pointer& pgraphics = pgraphicsParam;
+//
+//   if (dAlpha == 0.0)
+//   {
+//
+//      windowing_output_debug_string("Alpha is Zero\n");
+//
+//   }
+//
+//   if (rectangleClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
+//   {
+//
+//      //auto estatus = 
+//      __defer_construct(m_pimageAlpha);
+//
+//      //if(estatus.succeeded())
+//      //{
+//
+//         //estatus = 
+//      m_pimageAlpha->create(rectangleClient.size());
+//
+//      //   if(estatus.succeeded())
+//      {
+//
+//         m_pimageAlpha->clear(color::transparent);
+//
+//         pgraphics = m_pimageAlpha->get_graphics();
+//
+//         pgraphics->set_origin(pgraphics->get_origin());
+//
+//         bDib = true;
+//
+//      }
+//
+//      //}
+//
+//   }
+//
+//   //::user::style_context style(this);
+//
+//   {
+//
+//#ifdef VERBOSE_LOG
+//
+//      ::time t1 = ::time::now();
+//
+//#endif
+//
+//      //pinteraction->_001OnDraw(pgraphics);
+//      if (dAlpha > 0.0)
+//      {
+//
+//         //bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
+//
+//         int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
+//
+//         //if (!bBlurBackground)
+//         //{
+//
+//         //   iDrawingOrder = get_int(pstyle, ::user::e_int_top_level_drawing_order);
+//
+//         //   if (pstyle)
+//         //   {
+//
+//         //      pstyle->_001OnDrawMainFrameBackground(pgraphics, this);
+//
+//         //      //if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+//         //      //{
+//
+//         //      //   break;
+//
+//         //      //}
+//
+//         //      //style.next();
+//
+//         //   }
+//
+//         //}
+////
+////#if TEST
+////
+////         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
+////
+////#endif
+//
+//         string strType = __type_name(this);
+//
+//#ifdef VERBOSE_LOG
+//
+//         ::time d1 = t1.elapsed();
+//
+//         if (d1 > 50_ms)
+//         {
+//
+//            information()(e_trace_category_prodevian) << "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::time.\n";
+//
+//         }
+//
+//#endif
+//
+//         if (iDrawingOrder == DRAWING_ORDER_CLIENT_OVER)
+//         {
+//
+//            _001DrawThis(pgraphics);
+//
+//            _001DrawChildren(pgraphics);
+//
+//         }
+//         else
+//         {
+//
+//#ifdef VERBOSE_LOG
+//
+//            ::time t1 = ::time::now();
+//
+//#endif
+//
+//            draw_frame_and_control_box_over(pgraphics);
+//
+//#ifdef VERBOSE_LOG
+//
+//            auto d1 = t1.elapsed();
+//
+//            if (d1 > 50_ms)
+//            {
+//
+//               information()(e_trace_category_prodevian) << "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::time.\n";
+//
+//            }
+//
+//#endif
+//
+//         }
+//
+//      }
+//
+//      if (m_bOverdraw)
+//      {
+//
+//         _008CallOnDraw(pgraphics);
+//
+//      }
 //
 //#if TEST
 //
-//         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
+//      pgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
 //
 //#endif
-
-         string strType = __type_name(this);
-
-#ifdef VERBOSE_LOG
-
-         ::time d1 = t1.elapsed();
-
-         if (d1 > 50_ms)
-         {
-
-            CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::time.\n");
-
-         }
-
-#endif
-
-         if (iDrawingOrder == DRAWING_ORDER_CLIENT_OVER)
-         {
-
-            _001DrawThis(pgraphics);
-
-            _001DrawChildren(pgraphics);
-
-         }
-         else
-         {
-
-#ifdef VERBOSE_LOG
-
-            ::time t1 = ::time::now();
-
-#endif
-
-            draw_frame_and_control_box_over(pgraphics);
-
-#ifdef VERBOSE_LOG
-
-            auto d1 = t1.elapsed();
-
-            if (d1 > 50_ms)
-            {
-
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::time.\n");
-
-            }
-
-#endif
-
-         }
-
-      }
-
-      if (m_bOverdraw)
-      {
-
-         _008CallOnDraw(pgraphics);
-
-      }
-
-#if TEST
-
-      pgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
-
-#endif
-
-   }
-
-   if (bDib)
-   {
-
-      pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      image_source imagesource(pgraphics);
-
-      image_drawing_options imagedrawingoptions(rectangleClient.size());
-
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      imagedrawing.opacity(dAlpha);
-
-      pgraphicsParam->draw(imagedrawing);
-
-   }
+//
+//   }
+//
+//   if (bDib)
+//   {
+//
+//      pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//
+//      image_source imagesource(pgraphics);
+//
+//      image_drawing_options imagedrawingoptions(rectangleClient.size());
+//
+//      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//      imagedrawing.opacity(dAlpha);
+//
+//      pgraphicsParam->draw(imagedrawing);
+//
+//   }
 
 }
 
@@ -2676,7 +2730,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
          if (rectangleClient.size() != m_pimageBk->size())
          {
             m_pimageBk->create(rectangleClient.size());
-            m_pimageBk->fill(0, 200, 200, 190);
+            m_pimageBk->clear_argb(0, 200, 200, 190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
@@ -3453,7 +3507,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #ifdef VERBOSE_LOG                        
 
-                        CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::time.");
+                        information()(e_trace_category_prodevian) << "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::time.";
 
 #endif
 
@@ -3494,7 +3548,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       if (d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::time.\n");
+         information()(e_trace_category_prodevian) << "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::time.\n";
 
       }
 
@@ -3557,7 +3611,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                         if (d1 > 50_ms)
                         {
 
-                           CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
+                           information()(e_trace_category_prodevian) << "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n";
 
                         }
 
@@ -3599,7 +3653,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       if (d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
+         information()(e_trace_category_prodevian) << "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n";
 
 }
 

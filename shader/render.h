@@ -2,7 +2,8 @@
 
 
 #include "acme/primitive/collection/string_map.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 #include "apex/platform/app_consumer.h"
 
 

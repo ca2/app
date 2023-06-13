@@ -1659,10 +1659,6 @@ template < character_range RANGE, primitive_character CHARACTER >
 //concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
 
 
-
-
-
-
 inline string & operator <<(string & str, const ::ansi_character * psz)
 {
 

@@ -1329,7 +1329,7 @@ namespace apex
    //      return ::thread::main();
    //
    ////
-   ////      INFORMATION("apex::application::main");
+   ////      information() << "apex::application::main";
    ////
    ////      try
    ////      {
@@ -1411,7 +1411,7 @@ namespace apex
    void application::term_task()
    {
 
-      INFORMATION("apex::application::term_thread");
+      information() << "apex::application::term_thread";
 
       m_timeHeartBeat.Now();
 
@@ -1434,7 +1434,7 @@ namespace apex
    void application::pre_run()
    {
 
-      INFORMATION("apex::application::pre_run");
+      information() << "apex::application::pre_run";
 
       try
       {
@@ -1496,7 +1496,7 @@ namespace apex
 
          //}
 
-         INFORMATION("apex::application::pre_run success");
+         information() << "apex::application::pre_run success";
 
          //return true;
 
@@ -1512,7 +1512,7 @@ namespace apex
       catch (...)
       {
 
-         INFORMATION("apex::application::pre_run exception.4");
+         information() << "apex::application::pre_run exception.4";
 
          throw ::exception(error_exception);
 
@@ -1716,7 +1716,7 @@ namespace apex
    void application::pos_run()
    {
 
-      INFORMATION("apex::application::pos_run");
+      information() << "apex::application::pos_run";
 
       try
       {
@@ -1731,7 +1731,7 @@ namespace apex
       catch (...)
       {
 
-         INFORMATION("apex::application::pos_run exception.4");
+         information() << "apex::application::pos_run exception.4";
 
       }
 
@@ -1763,7 +1763,7 @@ namespace apex
 
       }
 
-      INFORMATION("apex::application::init_application .1");
+      information() << "apex::application::init_application .1";
 
       bool bHandled = false;
 
@@ -1801,7 +1801,7 @@ namespace apex
 
             output_debug_string(strMessage + m_strAppName);
 
-            INFORMATION("apex::application::init_application exit");
+            information() << "apex::application::init_application exit";
 
             throw exit_exception(error_exit_application, this, "Another install of the application is running.");
 
@@ -1811,7 +1811,7 @@ namespace apex
 
 #endif
 
-      INFORMATION("apex::application::init_application .2");
+      information() << "apex::application::init_application .2";
 
       if (m_pinterprocesscommunication)
       {
@@ -1872,7 +1872,7 @@ namespace apex
 
       //m_bAxisInitializeInstanceResult = true;
 
-      INFORMATION("axis::application::init_instance success");
+      information() << "axis::application::init_instance success";
 
       //auto estatus = 
       create_impact_system();
@@ -2245,7 +2245,7 @@ namespace apex
    void application::application_pre_run()
    {
       //
-      //INFORMATION("apex::application::application_pre_run");
+      //information() << "apex::application::application_pre_run";
       //
       //#ifdef WINDOWS_DESKTOP
       //
@@ -2612,7 +2612,7 @@ namespace apex
 
       }
 
-      INFORMATION("initial_check_directrix : ok (" << __type_name(this) << ")" << m_strAppId);
+      information() << "initial_check_directrix : ok (" << __type_name(this) << ")" << m_strAppId;
 
       //return true;
 
@@ -2898,7 +2898,7 @@ namespace apex
 
       //}
 
-      INFORMATION("apex::application::process_init");
+      information() << "apex::application::process_init";
 
       m_bThreadToolsForIncreasedFps = psystem->m_bThreadToolsForIncreasedFps;
 
@@ -2914,7 +2914,7 @@ namespace apex
       //if (!notify_process_init())
       //{
       //
-      //FATAL("apex::application::process_init .1");
+      //fatal() <<"apex::application::process_init .1";
       //
       //return false;
       //
@@ -2923,7 +2923,7 @@ namespace apex
       //if (!impl_process_init())
       //{
 
-      //   FATAL("apex::application::process_init .2");
+      //   fatal() <<"apex::application::process_init .2";
 
       //   return false;
 
@@ -2931,7 +2931,7 @@ namespace apex
 
       //      m_bAuraProcessInitializeResult = true;
 
-      INFORMATION("apex::application::process_init success");
+      information() << "apex::application::process_init success";
 
       //add_factory_item < ::database::field_array >();
       //add_factory_item < ::database::row >();
@@ -2944,7 +2944,7 @@ namespace apex
 
       //}
 
-      INFORMATION("axis::application::process_init");
+      information() << "axis::application::process_init";
 
       //m_bAxisProcessInitialize = true;
 
@@ -2960,7 +2960,7 @@ namespace apex
       //if (!::application::process_init())
       //{
 
-      //   FATAL("axis::application::process_init .1");
+      //   fatal() <<"axis::application::process_init .1";
 
       //   return false;
 
@@ -2969,7 +2969,7 @@ namespace apex
 
       //m_bAxisProcessInitializeResult = true;
 
-      INFORMATION("axis::application::process_init success");
+      information() << "axis::application::process_init success";
 
       //return true;
 
@@ -2980,13 +2980,13 @@ namespace apex
       //if()
       //{
       //
-      //ERROR(".2");
+      //error() <<".2";
       //
       //return false;
       //
       //}
 
-      INFORMATION("success");
+      information() << "success";
 
       //return true;
 
@@ -3070,7 +3070,7 @@ namespace apex
 
       auto psystem = acmesystem()->m_papexsystem;
 
-      INFORMATION("apex::application::init_application");
+      information() << "apex::application::init_application";
 
       m_timeHeartBeat.Now();
 
@@ -3313,13 +3313,13 @@ namespace apex
       initialize_contextualized_theme();
       //{
 
-      //   FATAL("Failed to initialize_contextualized_theme");
+      //   fatal() <<"Failed to initialize_contextualized_theme";
 
       //   return false;
 
       //}
 
-      INFORMATION("start");
+      information() << "start";
 
       m_timeHeartBeat.Now();
 
@@ -3652,7 +3652,7 @@ namespace apex
       if (bGlobalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_global)
       {
 
-         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.");
+         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.";
 
          try
          {
@@ -3682,7 +3682,7 @@ namespace apex
          if (bGlobalIdExclusiveFail)
          {
 
-            INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.");
+            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.";
 
             try
             {
@@ -3706,7 +3706,7 @@ namespace apex
       if (bLocalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_local)
       {
 
-         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.");
+         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.";
 
          on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local, "");
 
@@ -3726,7 +3726,7 @@ namespace apex
             {
 
                // Should in some way activate the other instance
-               INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.");
+               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.";
 
                on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
@@ -6072,7 +6072,7 @@ namespace apex
 
    //   //}
 
-   //   INFORMATION("axis::application::process_init");
+   //   information() << "axis::application::process_init";
 
    //   //m_bAxisProcessInitialize = true;
 
@@ -6088,7 +6088,7 @@ namespace apex
    //   if (!::application::process_init())
    //   {
 
-   //      FATAL("axis::application::process_init .1");
+   //      fatal() <<"axis::application::process_init .1";
 
    //      return false;
 
@@ -6097,7 +6097,7 @@ namespace apex
 
    //   //m_bAxisProcessInitializeResult = true;
 
-   //   FATAL("axis::application::process_init success");
+   //   fatal() <<"axis::application::process_init success";
 
    //   return true;
 
@@ -6114,7 +6114,7 @@ namespace apex
 
    //   //}
 
-   //   INFORMATION("axis::application::init_instance .1");
+   //   information() << "axis::application::init_instance .1";
 
    //   //m_bAxisInitializeInstance = true;
 
@@ -6123,7 +6123,7 @@ namespace apex
    //   if (!::application::init_instance())
    //   {
 
-   //      FATAL("axis::application::init_instance .2");
+   //      fatal() <<"axis::application::init_instance .2";
 
    //      return false;
 
@@ -6174,7 +6174,7 @@ namespace apex
 
    //   //m_bAxisInitializeInstanceResult = true;
 
-   //   INFORMATION("axis::application::init_instance success");
+   //   information() << "axis::application::init_instance success";
 
    //   return true;
 
@@ -6318,7 +6318,7 @@ namespace apex
 
       ensure_app_interest();
 
-      INFORMATION(".2");
+      information() << ".2";
 
       if (is_true("install"))
       {
@@ -6331,7 +6331,7 @@ namespace apex
 
       }
 
-      ERROR("1.1");
+      error() <<"1.1";
 
       index i = applicationmenu().get_count();
 
@@ -6341,7 +6341,7 @@ namespace apex
 
       application_menu_update();
 
-      INFORMATION("success");
+      information() << "success";
 
       //return true;
 
@@ -6512,7 +6512,7 @@ namespace apex
 
       string strLocale;
       string strSchema;
-      INFORMATION("update_appmatter(root=" << pszRoot << ", relative=" << pszRelative << ", locale=" << pszLocale << ", style=" << pszStyle << ")");
+      information() << "update_appmatter(root=" << pszRoot << ", relative=" << pszRelative << ", locale=" << pszLocale << ", style=" << pszStyle << ")";
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
       ::file::path strFile = dir()->install() / strRelative;
       ::file::path strUrl(::e_path_url);

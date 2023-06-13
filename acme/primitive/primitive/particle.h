@@ -13,14 +13,19 @@
 
 
 #include "acme/primitive/primitive/e_flag.h"
-#include "acme/platform/tracer.h"
 
+
+class tracer;
 
 class extended_topic;
+
+class trace_statement;
 
 
 CLASS_DECL_ACME ::factory::factory * get_system_factory();
 
+
+CLASS_DECL_ACME class tracer & tracer();
 
 //struct PARTICLE
 //{
@@ -48,6 +53,7 @@ using hsynchronization = void *;
 #include "ptr.h"
 
 
+
 struct PARTICLE :
    public PARTICLE_FLAGS
 {
@@ -67,6 +73,7 @@ struct PARTICLE :
 };
 
 
+#include "acme/platform/trace_statement.h"
 
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
@@ -107,6 +114,9 @@ public:
 #endif
 
    virtual void delete_this();
+
+
+   constexpr ::particle * trace_this() const { return (::particle *) this; }
 
 
    inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization : nullptr; }
@@ -275,46 +285,59 @@ public:
 
 
 
-   virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
 
 
-   virtual void trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   virtual void trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments);
 
 
-   virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_information(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_warning(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_error(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_fatal(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
+   //virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
+   //virtual void trace_log_information() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
+   //virtual void trace_log_warning() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
+   //virtual void trace_log_error() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
+   //virtual void trace_log_fatal() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
 
 
-   virtual void trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_information(const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_warning(const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_error(const ::ansi_character * pszFormat, ...);
-   virtual void trace_log_fatal(const ::ansi_character * pszFormat, ...);
+   //virtual void trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...);
+   //virtual void trace_log_information() << const ::ansi_character * pszFormat, ...;
+   //virtual void trace_log_warning() << const ::ansi_character * pszFormat, ...;
+   //virtual void trace_log_error() << const ::ansi_character * pszFormat, ...;
+   //virtual void trace_log_fatal() << const ::ansi_character * pszFormat, ...;
 
 
-   inline tracer trace(enum_trace_level etracelevel) { return tracer(m_pcontext, etracelevel, trace_category()); }
-   inline tracer trace_log_information() { return tracer(m_pcontext, e_trace_level_information, trace_category()); }
-   inline tracer trace_log_warning() { return tracer(m_pcontext, e_trace_level_warning, trace_category()); }
-   inline tracer trace_log_error() { return tracer(m_pcontext, e_trace_level_error, trace_category()); }
-   inline tracer trace_log_fatal() { return tracer(m_pcontext, e_trace_level_fatal, trace_category()); }
+   virtual class tracer & tracer();
 
 
-   inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_pcontext, etracelevel, etracecategory); }
-   inline tracer trace_log_information(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_information, etracecategory); }
-   inline tracer trace_log_warning(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_warning, etracecategory); }
-   inline tracer trace_log_error(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_error, etracecategory); }
-   inline tracer trace_log_fatal(enum_trace_category etracecategory) { return tracer(m_pcontext, e_trace_level_fatal, etracecategory); }
+   //virtual trace_statement trace(enum_trace_level etracelevel);
+   virtual ::trace_statement log_statement();
+   virtual ::trace_statement information();
+   virtual ::trace_statement warning();
+   virtual ::trace_statement error();
+   virtual ::trace_statement fatal();
+
+   virtual void information(const ::ansi_character * pszFormat, ...);
+   virtual void warning(const ::ansi_character * pszFormat, ...);
+   virtual void error(const ::ansi_character * pszFormat, ...);
+   virtual void fatal(const ::ansi_character * pszFormat, ...);
+
+   //virtual trace_statement trace_log_warning() << ;
+   //virtual trace_statement trace_log_error() << ;
+   //virtual trace_statement trace_log_fatal() << ;
+
+
+   //virtual trace_statement trace(enum_trace_level etracelevel, enum_trace_category etracecategory);
+   //virtual trace_statement trace_log_information() << enum_trace_category etracecategory;
+   //virtual trace_statement trace_log_warning() << enum_trace_category etracecategory;
+   //virtual trace_statement trace_log_error() << enum_trace_category etracecategory;
+   //virtual trace_statement trace_log_fatal() << enum_trace_category etracecategory;
 
 
 
@@ -637,3 +660,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //
 //
 //#endif
+
+
+
+

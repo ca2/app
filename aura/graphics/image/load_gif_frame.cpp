@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "image.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "acme/graphics/draw2d/colorref_array.h"
 
 
@@ -345,7 +345,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
             output_debug_string("test255");
          }
-         pimage32[y*w + x] = argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255);
+         pimage32[y*w + x].assign(argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255), pimageCanvas->color_indexes());
 
 //#endif
 

@@ -665,7 +665,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-      INFORMATION("interaction_layout::display_normal");
+      information() << "interaction_layout::display_normal";
 
 #endif
 

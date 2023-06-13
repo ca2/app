@@ -1355,7 +1355,7 @@ namespace aura
    //void application::term_thread()
    //{
 
-   //   INFORMATION("aura::application::term_thread");
+   //   information() << "aura::application::term_thread";
 
    //   m_timeHeartBeat.Now();
 
@@ -1378,7 +1378,7 @@ namespace aura
 //   void application::pre_run()
 //   {
 //
-//      INFORMATION("aura::application::pre_run");
+//      information() << "aura::application::pre_run";
 //
 //      try
 //      {
@@ -1436,7 +1436,7 @@ namespace aura
 //
 //         }
 //
-//         INFORMATION("aura::application::pre_run success");
+//         information() << "aura::application::pre_run success";
 //
 //         return true;
 //
@@ -1450,7 +1450,7 @@ namespace aura
 //      catch (...)
 //      {
 //
-//         INFORMATION("aura::application::pre_run exception.4");
+//         information() << "aura::application::pre_run exception.4";
 //
 //      }
 //
@@ -1593,7 +1593,7 @@ namespace aura
    void application::pos_run()
    {
 
-      INFORMATION("aura::application::pos_run");
+      information() << "aura::application::pos_run";
 
       try
       {
@@ -1608,7 +1608,7 @@ namespace aura
       catch (...)
       {
 
-         INFORMATION("aura::application::pos_run exception.4");
+         information() << "aura::application::pos_run exception.4";
 
       }
 
@@ -1838,7 +1838,7 @@ retry_license:
 
       }
 
-      INFORMATION("initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId);
+      information() << "initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId;
 
       //return true;
 
@@ -1942,10 +1942,10 @@ retry_license:
       //}
 
 
-      INFORMATION("axis::application::process_init");
+      information() << "axis::application::process_init";
 
 
-      INFORMATION("aura::application::process_init success");
+      information() << "aura::application::process_init success";
 
 
       //return true;
@@ -1976,7 +1976,7 @@ retry_license:
 //
 //      }
 //
-//      INFORMATION("aura::application::init_application");
+//      information() << "aura::application::init_application";
 //
 //      //m_bAuraInitializeInstance = true;
 //
@@ -2111,7 +2111,7 @@ retry_license:
       //   //if (!estatus)
       //   //{
 
-      //   //   INFORMATION("ERROR: context_image required but missing.");
+      //   //   information() << "ERROR: context_image required but missing.";
 
       //   //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
@@ -2135,7 +2135,7 @@ retry_license:
       //    //if (!estatus)
       //    //{
 
-      //    //   INFORMATION("ERROR: context_image required but missing.");
+      //    //   information() << "ERROR: context_image required but missing.";
 
       //    //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
@@ -2146,7 +2146,7 @@ retry_license:
       // }
 
 
-      INFORMATION("start");
+      information() << "start";
 
       m_timeHeartBeat.Now();
 
@@ -3407,7 +3407,7 @@ retry_license:
 
          }
 
-         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this));
+         information() << "::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this);
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3465,7 +3465,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this));
+            information() << "::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this);
 
          }
 
@@ -3479,7 +3479,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this));
+            information() << "::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this);
 
          }
 
@@ -3704,7 +3704,7 @@ retry_license:
    //     if (pmsg->m_atom == 126)
    //     {
 
-   //        INFORMATION("e_message_display_change");
+   //        information() << "e_message_display_change";
 
    //     }
 
@@ -4775,7 +4775,7 @@ retry_license:
       
       string strSchema;
 
-      FORMATTED_INFORMATION("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+      information("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
       
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 

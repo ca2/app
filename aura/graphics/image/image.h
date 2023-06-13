@@ -126,6 +126,10 @@ public:
    //inline int scan_size() const;
 
 
+   const ::color_indexes & color_indexes() const { return m_colorindexes; }
+   ::color_indexes & color_indexes() { return m_colorindexes; }
+
+
    virtual void rate_rgb(int iMul, int iDiv);
    virtual void dc_select(bool bSelect = true);
 
@@ -858,7 +862,7 @@ public:
 
       }
 
-      return ::draw2d::get_pixel(image32(), scan_size(), width(), x, y);
+      return ::draw2d::get_pixel(image32(), m_colorindexes, scan_size(), width(), x, y);
 
    }
 

@@ -1722,7 +1722,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 
@@ -1819,7 +1819,7 @@ namespace user
          if (::is_set(m_puserinteraction))
          {
 
-            INFORMATION(__type_name(m_puserinteraction) << "::destroy_impl_only");
+            information() << __type_name(m_puserinteraction) << "::destroy_impl_only";
 
             m_puserinteraction->transfer_handler(m_dispatchermapNormal, this, false);
             m_puserinteraction->transfer_handler(m_dispatchermapProbe, this, true);
@@ -1845,7 +1845,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            INFORMATION(__type_name(m_puserinteraction) << "::destroy_impl_only ( 2)");
+            information() << __type_name(m_puserinteraction) << "::destroy_impl_only ( 2)";
 
          }
 
@@ -2074,7 +2074,7 @@ namespace user
 
          //g_iMouseMove++;
 
-         //TRACE("linux::interaction_impl::message_handler e_message_mouse_move");
+         //information("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -2085,7 +2085,7 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up (0)");
+         information("e_message_left_button_up (0)");
 
       }
 
@@ -2125,11 +2125,11 @@ namespace user
 
          if (m_puserinteraction->layout().is_moving())
          {
-            //TRACE("moving: skip pre translate message");
+            //information("moving: skip pre translate message");
          }
          else if (m_puserinteraction->layout().is_sizing())
          {
-            //TRACE("sizing: skip pre translate message");
+            //information("sizing: skip pre translate message");
          }
          else
          {
@@ -2223,13 +2223,13 @@ namespace user
          if (pmessage->m_atom == e_message_left_button_double_click)
          {
 
-            INFORMATION("e_message_left_button_double_click");
+            information() << "e_message_left_button_double_click";
 
          }
          else if (pmessage->m_atom == e_message_left_button_down)
          {
 
-            INFORMATION("e_message_left_button_down");
+            information() << "e_message_left_button_down";
 
          }
 
@@ -2624,7 +2624,7 @@ namespace user
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
-         TRACE("e_message_left_button_down");
+         information("e_message_left_button_down");
 
          string strType = __type_name(m_puserinteraction);
 
@@ -2639,19 +2639,19 @@ namespace user
       else if (pmouse->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up");
+         information("e_message_left_button_up");
 
       }
       else if (pmouse->m_atom == e_message_non_client_left_button_up)
       {
 
-         TRACE("e_message_non_client_left_button_up");
+         information("e_message_non_client_left_button_up");
 
       }
       else if (pmouse->m_atom == e_message_non_client_left_button_down)
       {
 
-         TRACE("e_message_non_client_left_button_down");
+         information("e_message_non_client_left_button_down");
 
          string strType;
 
@@ -2687,7 +2687,7 @@ namespace user
 
          pmouse->m_pcursor = pcursor;
 
-         //FORMATTED_INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
+         //information("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
 
          //string strType;
 
@@ -3529,13 +3529,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
 
-         TRACE("moving: skip walk pre translate tree");
+         information("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
 
-         TRACE("sizing: skip walk pre translate tree");
+         information("sizing: skip walk pre translate tree");
 
       }
       else
@@ -4757,7 +4757,7 @@ namespace user
       if (pshowwindow->m_bShow)
       {
 
-         INFORMATION("user::interaction_impl::on_message_show_window bShow = true");
+         information() << "user::interaction_impl::on_message_show_window bShow = true";
 
          if (m_puserinteraction->const_layout().design().display() != ::e_display_iconic)
          {
@@ -4782,7 +4782,7 @@ namespace user
       else
       {
 
-         INFORMATION("user::interaction_impl::on_message_show_window bShow = false");
+         information() << "user::interaction_impl::on_message_show_window bShow = false";
 
          {
 
@@ -5237,6 +5237,8 @@ namespace user
             _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
 
+            information() << "graphics::on_begin_draw";
+
             slGraphics.unlock();
 
             windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
@@ -5272,6 +5274,10 @@ namespace user
             //#endif
 
             pgraphics->on_begin_draw();
+
+            pgraphics->reset_clip();
+
+            pgraphics->set_origin(0., 0.);
 
             {
 
@@ -5443,7 +5449,7 @@ namespace user
 
             auto iRequestsDuringDrawing = m_rectangleaNeedRedraw.size();
 
-            INFORMATION(iRequestsDuringDrawing << " redraw requests while drawing.");
+            information() << iRequestsDuringDrawing << " redraw requests while drawing.";
 
          }
 
@@ -6741,7 +6747,7 @@ namespace user
       if (sizeOutput.is_empty())
       {
 
-         INFORMATION("window_show rectangleUi isEmpty");
+         information() << "window_show rectangleUi isEmpty";
 
          return;
 
@@ -6880,7 +6886,7 @@ namespace user
       if (strType.contains("font_format"))
       {
 
-         INFORMATION("font_format going to gather Z-Ordering information");
+         information() << "font_format going to gather Z-Ordering information";
 
       }
 
@@ -6995,13 +7001,13 @@ namespace user
          if (strType.contains("font_format"))
          {
 
-            INFORMATION("font_format going to SetWindowPos");
+            information() << "font_format going to SetWindowPos";
 
          }
          else if (strType.contains("textformat"))
          {
 
-            INFORMATION("text_format going to SetWindowPos");
+            information() << "text_format going to SetWindowPos";
 
          }
 
@@ -7065,7 +7071,7 @@ namespace user
          if (g_pointLastBottomRight != pointBottomRight)
          {
 
-            TRACE("Different Bottom Right");
+            information("Different Bottom Right");
 
             g_pointLastBottomRight = pointBottomRight;
 
@@ -7312,7 +7318,7 @@ namespace user
       if (strType.case_insensitive_contains("filemanager"))
       {
 
-         INFORMATION("filemanager apply visual");
+         information() << "filemanager apply visual";
 
       }
 
@@ -7413,7 +7419,7 @@ namespace user
       //if (m_puserinteraction->layout().is_moving())
       //{
 
-        // INFORMATION("\nWindow is Moving :: on_message_move");
+        // information() << "\nWindow is Moving :: on_message_move";
 
       //}
 
@@ -7530,7 +7536,7 @@ namespace user
          //if (m_puserinteraction->layout().is_moving())
          //{
 
-         // INFORMATION("\nWindow is Moving :: on_message_move");
+         // information() << "\nWindow is Moving :: on_message_move";
 
          //}
 
@@ -7560,7 +7566,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 

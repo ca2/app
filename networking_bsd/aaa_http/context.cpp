@@ -1158,18 +1158,18 @@ namespace http
 
       }
 
-      ERROR("just before open open http_session ::http::apex::context::open " << tick1.elapsed().integral_second());
+      error() <<"just before open open http_session ::http::apex::context::open " << tick1.elapsed().integral_second();
 
       if (!psession->open(bConfigProxy))
       {
 
-         INFORMATION("Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length()))  << "\") " << tick1.elapsed().integral_second());
+         information() << "Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length()))  << "\") " << tick1.elapsed().integral_second();
 
          return false;
 
       }
 
-      INFORMATION("context::get open time " << tick1.elapsed().integral_second());
+      information() << "context::get open time " << tick1.elapsed().integral_second();
 
       return true;
 
@@ -1179,7 +1179,7 @@ namespace http
    bool context::request(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrRequest, property_set & set)
    {
 
-      INFORMATION("http context request : " << pszRequest);
+      information() << "http context request : " << pszRequest;
 
       ::duration tick1;
 
@@ -1264,7 +1264,7 @@ namespace http
 
             }
 
-            FORMATTED_INFORMATION("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
+            information("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
 
          }
          catch (...)
@@ -1455,13 +1455,13 @@ namespace http
 
          //}
 
-         FORMATTED_INFORMATION("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
+         information("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
 
          tick1 = payload("dw").duration();
 
          tick2.Now();
 
-         INFORMATION("Higher Level Diagnosis : iNTERTIMe context::request " << iIteration << tick1.integral_second() << tick2.integral_second() << (tick2 - tick1).integral_second());
+         information() << "Higher Level Diagnosis : iNTERTIMe context::request " << iIteration << tick1.integral_second() << tick2.integral_second() << (tick2 - tick1).integral_second();
 
          while ((psession->m_psockethandler->get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
@@ -1519,7 +1519,7 @@ namespace http
 
             }
 
-            INFORMATION("context::request " << tick1.elapsed().integral_second());
+            information() << "context::request " << tick1.elapsed().integral_second();
 
             iIteration++;
 
@@ -1609,7 +1609,7 @@ namespace http
                if (string_begins_ci(strCa2Realm, "n7ot licensed: "))
                {
 
-                  INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
+                  information() << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
 
                   string strLocation;
                   
@@ -1635,7 +1635,7 @@ namespace http
 
          set["get_status"] = estatus;
 
-         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i);
+         information("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i);
 
       }
       catch (...)
@@ -1770,7 +1770,7 @@ namespace http
          iTryCount = 2;
 
       }
-      INFORMATION("------------------------------------------------------");
+      information() << "------------------------------------------------------";
 
       string strUrl;
 
@@ -1786,7 +1786,7 @@ namespace http
          if (strRedirect.has_char())
          {
 
-            INFORMATION("Redirect: " << iHttpGetSerial << strRedirect);
+            information() << "Redirect: " << iHttpGetSerial << strRedirect;
 
             strUrl = strRedirect;
 
@@ -1796,7 +1796,7 @@ namespace http
          else
          {
 
-            INFORMATION("Redirect: " << iHttpGetSerial << strUrl);
+            information() << "Redirect: " << iHttpGetSerial << strUrl;
 
          }
 
@@ -1804,7 +1804,7 @@ namespace http
       else
       {
 
-         INFORMATION("Start: " << iHttpGetSerial << strUrl);
+         information() << "Start: " << iHttpGetSerial << strUrl;
 
       }
 
@@ -2130,7 +2130,7 @@ namespace http
 
             auto tick2 = ::duration::now();
 
-            INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
+            information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
 
             return false;
 
@@ -2142,7 +2142,7 @@ namespace http
 
          set["get_status"] = (i64)error_http;
 
-         INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
+         information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
 
          return false;
 
@@ -2206,7 +2206,7 @@ namespace http
          if (tickStart.elapsed() > tickTotalTimeout)
          {
 
-            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
+            information() << LOG_HTTP_PREFIX << "> FAILING BY time_out after " << iIteration << " steps " << tick1.elapsed().integral_second();
 
             break;
 
@@ -2247,7 +2247,7 @@ namespace http
          if (set.has_property("cancel") && set["cancel"].get_bool())
          {
 
-            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY Cancellation at step " << iIteration << " " << tick1.elapsed().integral_second());
+            information() << LOG_HTTP_PREFIX << "> FAILING BY Cancellation at step " << iIteration << " " << tick1.elapsed().integral_second();
 
             break;
 
@@ -2277,7 +2277,7 @@ namespace http
             || psocket->m_estatus == error_on_connection_timeout)
          {
 
-            INFORMATION(LOG_HTTP_PREFIX << "FAILING BY Connection time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
+            information() << LOG_HTTP_PREFIX << "FAILING BY Connection time_out after " << iIteration << " steps " << tick1.elapsed().integral_second();
 
             break;
 
@@ -2286,7 +2286,7 @@ namespace http
          if (psocket->m_b_complete)
          {
 
-            INFORMATION(LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second());
+            information() << LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second();
 
             break;
 
@@ -2295,13 +2295,13 @@ namespace http
          if (iContentLength >= 0)
          {
 
-            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second() << " Content-Length: " << (integral_byte)(memsize) iContentLength);
+            information() << LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second() << " Content-Length: " << (integral_byte)(memsize) iContentLength;
 
          }
          else
          {
 
-            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second());
+            information() << LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second();
 
          }
 
@@ -2309,7 +2309,7 @@ namespace http
          if (HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK)
          {
 
-            INFORMATION(LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds);
+            information() << LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds;
 
          }
 
@@ -2345,7 +2345,7 @@ namespace http
 
       iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
 
-      INFORMATION(LOG_HTTP_PREFIX
+      log_information((LOG_HTTP_PREFIX
          << strUrl
          << " Status: "
          << iStatusCode
@@ -2394,7 +2394,7 @@ namespace http
 
          }
 
-         INFORMATION(LOG_HTTP_PREFIX << "URL: " << strUrl << " Too much tries("<< iTry <<")");
+         information() << LOG_HTTP_PREFIX << "URL: " << strUrl << " Too much tries("<< iTry <<")";
 
          estatus = error_http;
 
@@ -2423,7 +2423,7 @@ namespace http
 
             auto tick2 = ::duration::now();
 
-            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
+            information() << LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
 
             string strLocation;
             
@@ -2541,7 +2541,7 @@ namespace http
 
       }
 
-      INFORMATION(LOG_HTTP_PREFIX << "Total time " << tick1.elapsed().integral_second());
+      information() << LOG_HTTP_PREFIX << "Total time " << tick1.elapsed().integral_second();
 
       return true;
 

@@ -266,8 +266,18 @@ namespace user
    //}
 
 
+   ::rectangle_i32 style::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
+   {
+
+      return {6, 6, 6, 6};
+
+   }
+
+
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
+
+      //return true;
 
       bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(e_layout_sketch);
 
@@ -311,56 +321,56 @@ namespace user
 
          auto pbrush = __create < ::draw2d::brush >();
 
-         if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
-         {
+         //if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
+         //{
 
-            pbrush->create_solid(pinteraction->get_color(this, e_element_background, e_state_hover));
+         //   pbrush->create_solid(pinteraction->get_color(this, e_element_background, e_state_hover));
 
-            pgraphics->set(pbrush);
+         //   pgraphics->set(pbrush);
 
-            pgraphics->fill_rectangle(rectangleClient);
+         //   pgraphics->fill_rectangle(rectangleClient);
 
-         }
+         //}
 
          if (iStyle == 1)
          {
 
             bool bHover = pinteraction->hover_item().is_set();
 
-            if (bHover)
-            {
+            //if (bHover)
+            //{
 
-               ::draw2d::pen_pointer& ppen = m_ppenFocusRect0;
+            //   ::draw2d::pen_pointer& ppen = m_ppenFocusRect0;
 
-               if (!ppen)
-               {
+            //   if (!ppen)
+            //   {
 
-                  ppen.create(this);
+            //      ppen.create(this);
 
-                  ppen->create_solid(1.0, pinteraction->get_color(this, e_element_border, e_state_hover));
+            //      ppen->create_solid(1.0, pinteraction->get_color(this, e_element_border, e_state_hover));
 
-               }
+            //   }
 
-               pgraphics->draw_rectangle(rectangleClient, ppen);
+            //   pgraphics->draw_rectangle(rectangleClient, ppen);
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-               ::draw2d::pen_pointer& ppen = m_ppenFocusRect1;
+            //   ::draw2d::pen_pointer& ppen = m_ppenFocusRect1;
 
-               if (!ppen)
-               {
+            //   if (!ppen)
+            //   {
 
-                  ppen.create(this);
+            //      ppen.create(this);
 
-                  ppen->create_solid(1.0, argb(190, 90, 90, 80));
+            //      ppen->create_solid(1.0, argb(190, 90, 90, 80));
 
-               }
+            //   }
 
-               pgraphics->draw_rectangle(rectangleClient, ppen);
+            //   pgraphics->draw_rectangle(rectangleClient, ppen);
 
-            }
+            //}
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -373,10 +383,7 @@ namespace user
             if (pinteraction->has_keyboard_focus())
             {
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+               rectangleClient.inflate(1);
 
                {
 

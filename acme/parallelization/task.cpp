@@ -89,6 +89,8 @@ void task::on_initialize_particle()
 
    /*auto estatus =*/ ::object::on_initialize_particle();
 
+   //m_pprintingformat);
+
    //if(!estatus)
    //{
 
@@ -521,7 +523,7 @@ void* task::s_os_task(void* p)
       catch (::exit_exception & exitexception)
       {
 
-         _ERROR(ptask, "Exit Exception reached task procedure (1)");
+         ptask->error() << "Exit Exception reached task procedure (1)";
 
          exitexception.finish(ptask);
          
@@ -529,16 +531,15 @@ void* task::s_os_task(void* p)
       catch (::exception& exception)
       {
 
-         _ERROR(ptask, "Exception reached task procedure : " << exception);
+         ptask->error() << "Exception reached task procedure : " << exception;
 
       }
       catch(...)
       {
 
-         _ERROR(ptask, "Exception reached task procedure (...)");
+         ptask->error() << "Exception reached task procedure (...)";
 
       }
-
 
       clear_message_queue(ptask->m_itask);
 
@@ -1276,7 +1277,7 @@ bool task::has_message() const
    if (pthread_equal((pthread_t)m_htask, (pthread_t)m_itask))
    {
 
-      INFORMATION("create_thread success");
+      information() << "create_thread success";
 
    }
 
@@ -2125,10 +2126,10 @@ void preempt()
 }
 
 
-tracer trace_log_information() { return ::get_task()->trace_log_information(); }
-tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
-tracer trace_log_error() { return ::get_task()->trace_log_error(); }
-tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
+trace_statement information() { return ::get_task()->information(); }
+trace_statement warning() { return ::get_task()->warning(); }
+trace_statement error() { return ::get_task()->error(); }
+trace_statement fatal() { return ::get_task()->fatal(); }
 
 
 

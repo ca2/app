@@ -411,7 +411,7 @@ void sub_system::factory_initialize()
    factory()->add_factory_item<task>();
 
 
-   factory()->add_factory_item<simple_log, logger>();
+   factory()->add_factory_item<simple_log, ::logger>();
 
 
    //operating_system_initialize_nano();
@@ -503,7 +503,7 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 
    }
 
-   INFORMATION("system::factory Going to get library \"" << strLibrary << "\".");
+   information() <<  "system::factory Going to get library \"" << strLibrary << "\".";
 
    auto& plibrary = library(strLibrary);
 
@@ -532,7 +532,7 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 
    }
 
-   INFORMATION("system::factory Going to create factory from library \"" << strLibrary << "\".");
+   information() <<  "system::factory Going to create factory from library \"" << strLibrary << "\".";
 
    plibrary->create_factory(pfactory);
 
@@ -619,7 +619,7 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 ////
 ////   }
 ////
-////   INFORMATION("system::factory Going to get library \"" << strLibrary << "\".");
+////   information() << "system::factory Going to get library \"" << strLibrary << "\".";
 ////
 ////   auto& plibrary = library(strLibrary);
 ////
@@ -648,7 +648,7 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 ////
 ////   }
 ////
-////   INFORMATION("system::factory Going to create factory from library \"" << strLibrary << "\".");
+////   information() << "system::factory Going to create factory from library \"" << strLibrary << "\".";
 ////
 ////   pfactory = plibrary->create_factory();
 ////
@@ -743,7 +743,7 @@ void sub_system::factory_terminate()
 
    //auto estatus = plibrary->open(strLibrary);
 
-   INFORMATION("system::create_library Going to open library \"" << strLibrary << "\".");
+   information() << "system::create_library Going to open library \"" << strLibrary << "\".";
 
    plibrary->open(strLibrary);
 
@@ -759,7 +759,7 @@ void sub_system::factory_terminate()
 
       string strMessage = plibrary->m_strMessage;
 
-      INFORMATION("Library wasn't opened (\"" << strLibrary << "\") : " << strMessage);
+      information() << "Library wasn't opened (\"" << strLibrary << "\") : " << strMessage;
 
       throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")", strMessage);
 

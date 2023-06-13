@@ -260,19 +260,19 @@ void imm_client::_001OnIme(::message::message * pmessage)
    else if (pmessage->m_atom == WM_IME_KEYDOWN)
    {
 
-      INFORMATION("WM_IME_KEYDOWN");
+      information() << "WM_IME_KEYDOWN";
 
    }
    else if (pmessage->m_atom == WM_IME_ENDCOMPOSITION)
    {
 
-      INFORMATION("WM_IME_ENDCOMPOSITION");
+      information() << "WM_IME_ENDCOMPOSITION";
 
    }
    else if (pmessage->m_atom == WM_IME_STARTCOMPOSITION)
    {
 
-      INFORMATION("WM_IME_STARTCOMPOSITION");
+      information() << "WM_IME_STARTCOMPOSITION";
 
       m_bImeCancelling = false;
 

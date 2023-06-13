@@ -316,12 +316,12 @@ namespace nanoui
       pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.cx() - 3.f,
          m_size.cy() - 2.f, m_ptheme->m_iButtonCornerRadius - 1.f);
 
-      if (m_colorBackground.alpha != 0) 
+      if (m_colorBackground.has_opacity()) 
       {
 
          auto colorBackground = m_colorBackground;
 
-         colorBackground.set_alpha(1.f);
+         colorBackground.set_opacity(1.f);
 
          pcontext->fill_color(colorBackground);
 
@@ -330,21 +330,21 @@ namespace nanoui
          if (bPressed) 
          {
 
-            colorGradientTop.set_alpha(0.8f);
+            colorGradientTop.set_opacity(0.8f);
 
-            colorGradientBottom.set_alpha(0.8f);
+            colorGradientBottom.set_opacity(0.8f);
 
          }
          else 
          {
             
-            auto alpha = 1.f - m_colorBackground.fa();
+            auto opacity = 1.f - m_colorBackground.f32_opacity();
 
-            alpha = m_bEnabled ? alpha : alpha * .5f + .5f;
+            opacity = m_bEnabled ? opacity : opacity * .5f + .5f;
 
-            colorGradientTop.set_alpha(alpha);
+            colorGradientTop.set_opacity(opacity);
 
-            colorGradientBottom.set_alpha(alpha);
+            colorGradientBottom.set_opacity(opacity);
 
          }
 
@@ -381,7 +381,7 @@ namespace nanoui
       auto text_pos = center - ::size_f32(text_width * 0.5f, 1.f);
 
       ::color::color text_color =
-         m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;
+         m_colorText.is_transparent() ? m_ptheme->m_colorText : m_colorText;
       if (!m_bEnabled)
          text_color = m_ptheme->m_colorDisableText;
 

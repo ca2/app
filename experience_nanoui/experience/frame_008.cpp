@@ -247,7 +247,7 @@ SizingNone:;
          ::rectangle_i32 rectangle;
          GetBorderRect(rectangleA, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, opaque(crMoveableBorder));//m_colorMoveableBorderDkShadow);
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder.opaque());//m_colorMoveableBorderDkShadow);
 
          // rgb(255, 170, 136) RedOrange
       }

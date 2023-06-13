@@ -3,6 +3,7 @@
 
 #include "color32.h"
 #include "opacity.h"
+#include "acme/graphics/image/color_indexes.h"
 
 
 struct rgba_t
@@ -10,14 +11,14 @@ struct rgba_t
 
    ::u32 m_u32;
 
-   
+
    constexpr ::u8 u8_red()const { return lower_u8(m_u32); }
    constexpr ::u8 u8_green()const { return lower_u8(m_u32 >> 8); }
    constexpr ::u8 u8_blue()const { return lower_u8(m_u32 >> 16); }
    constexpr ::u8 u8_opacity()const { return lower_u8(m_u32 >> 24); }
 
 
-   
+   constexpr bool operator == (const rgba_t & rgba) const { return m_u32 == rgba.m_u32; }
 
 
 };
@@ -35,6 +36,7 @@ struct bgra_t
    constexpr ::u8 u8_opacity()const { return lower_u8(m_u32 >> 24); }
 
 
+   constexpr bool operator == (const bgra_t & rgba) const { return m_u32 == rgba.m_u32; }
 
 
 };
@@ -324,6 +326,14 @@ namespace color
       void hue_offset(double dRadians);
 
 
+      constexpr auto u8_minimum_rgb() const { return minimum({ u8_red(), u8_green(), u8_blue() }); }
+      constexpr auto u8_maximum_rgb() const { return maximum({ u8_red(), u8_green(), u8_blue() }); }
+      constexpr auto f32_minimum_rgb() const { return u8_minimum_rgb() / 255.f; }
+      constexpr auto f32_maximum_rgb() const { return u8_maximum_rgb() / 255.f; }
+      constexpr auto f64_minimum_rgb() const { return u8_minimum_rgb() / 255.; }
+      constexpr auto f64_maximum_rgb() const { return u8_maximum_rgb() / 255.; }
+
+
       constexpr ::color::color & rate_rgb_set_opacity(class ::opacity opacity, double dRate)
       {
 
@@ -397,6 +407,8 @@ namespace color
       constexpr double get_luminance() const { return (m_u8Red + m_u8Green + m_u8Blue) / (255.0 * 3.0); }
       double get_saturation() const { return get_hls().m_dS; }
       double get_hue() const { return get_hls().m_dH; }
+
+      constexpr auto opaque() const { return *this & ::opacity(255); }
 
       
       constexpr color & operator &=(const class ::opacity & opacity)
@@ -837,6 +849,9 @@ constexpr ::color::color color32_color_with_u8_opacity(::u8 u8Opacity, ::color32
 //
 //}
 
+
+#define __expand_f32_rgba(color) color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()
+#define __expand_f64_rgba(color) color.f64_red(), color.f64_green(), color.f64_blue(), color.f64_opacity()
 
 
 

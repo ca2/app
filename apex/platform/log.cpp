@@ -216,7 +216,7 @@ namespace apex
 
       synchronouslock.unlock();
 
-      INFORMATION("<log>Log Initialized!!</log>");
+      information() << "<log>Log Initialized!!</log>";
 
 //      return true;
 
@@ -292,7 +292,7 @@ namespace apex
    void log::success(const ::scoped_string & scopedstr)
    {
 
-      INFORMATION(scopedstr);
+      information() << scopedstr;
 
    }
 

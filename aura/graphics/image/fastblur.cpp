@@ -538,10 +538,10 @@ auto tickC1 = ::time::now();
             output_debug_string("| \n");
 
             //::aura::application * papp = pimage->get_app();
-            INFORMATION("/--------------------------------");
-            INFORMATION("| fastblur::blur");
-            INFORMATION("| ");
-            INFORMATION("| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond());
+            information() << "/--------------------------------";
+            information() << "| fastblur::blur";
+            information() << "| ";
+            information() << "| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond();
 
          }
 

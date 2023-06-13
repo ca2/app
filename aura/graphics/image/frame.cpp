@@ -111,7 +111,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
    else
    {
 
-      INFORMATION("Don't know how to handle this GIF Disposal");
+      information() << "Don't know how to handle this GIF Disposal";
 
    }
 

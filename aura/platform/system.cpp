@@ -977,7 +977,7 @@ namespace aura
       //if(!__construct(m_pfilesystem))
       //{
 
-      //   ERROR("failed to initialize file-system");
+      //   error() <<"failed to initialize file-system";
 
       //   return false;
 
@@ -986,13 +986,13 @@ namespace aura
       //if(!__construct(m_pdirsystem))
       //{
 
-      //   ERROR("failed to initialize dir-system");
+      //   error() <<"failed to initialize dir-system";
 
       //   return false;
 
       //}
 
-      //INFORMATION("aura::session::process_init .3");
+      //information() << "aura::session::process_init .3";
 
       //estatus = m_pfilesystem->init_system();
 
@@ -1028,7 +1028,7 @@ namespace aura
       //if (!m_ptrace->process_init())
       //{
 
-      //   WARNING("failed to process_init ::aura::log trace");
+      //   warning() <<"failed to process_init ::aura::log trace";
 
       //}
 
@@ -1103,7 +1103,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   INFORMATION("draw2d_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
+      //   information() << "draw2d_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.";
 
       //   retru
 
@@ -1128,7 +1128,7 @@ namespace aura
             else
             {
 
-               WARNING("Failed to initialize imaging library.");
+               warning() <<"Failed to initialize imaging library.";
 
 #if !defined(MOBILE_PLATFORM)
 
@@ -1159,7 +1159,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   INFORMATION("Couldn't construct memory_new draw2d.");
+      //   information() << "Couldn't construct memory_new draw2d.";
 
       //   return false;
 
@@ -1606,7 +1606,7 @@ namespace aura
       //if(!estatus)
       //{
 
-      //   INFORMATION("Couldn't initialize draw2d (init1).");
+      //   information() << "Couldn't initialize draw2d (init1).";
 
       //   return estatus;
 
@@ -1744,13 +1744,13 @@ namespace aura
       //      //if (!estatus)
       //      //{
       //
-      //      //   FATAL("axis::application::process_init .2");
+      //      //   fatal() <<"axis::application::process_init .2";
       //
       //      //   return false;
       //
       //      //}
       //
-      //      INFORMATION("start");
+      //      information() << "start";
       //
       //#ifdef WINDOWS_DESKTOP
       //
@@ -1771,7 +1771,7 @@ namespace aura
       //
       //#endif // LINUX
 
-      INFORMATION("success");
+      information() << "success";
 
 //      enum_display_monitors();
 
@@ -2836,7 +2836,7 @@ namespace aura
 
    //   }
 
-   //   FORMATTED_INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+as_string((iptr) psession)+")\n\n").c_str());
+   //   information("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+as_string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -4585,7 +4585,7 @@ namespace aura
       //if (!pfactoryGpu)
       //{
 
-      //   ERROR("gpu_opengl ([a-z0-9_]+)_factory has failed");
+      //   error() <<"gpu_opengl ([a-z0-9_]+)_factory has failed";
 
       //   return pfactoryGpu;
 
@@ -5532,7 +5532,7 @@ namespace aura
 //
 //      //}
 //
-//      INFORMATION("start");
+//      information() << "start";
 //
 //      //m_bProcessInitializeResult    = false;
 //
@@ -5552,7 +5552,7 @@ namespace aura
 //      //if (!::aura::application::process_init())
 //      //{
 //
-//      //   ERROR(".1");
+//      //   error() <<".1";
 //
 //      //   return false;
 //
@@ -5561,7 +5561,7 @@ namespace aura
 //      if (!::aura::system::process_init())
 //      {
 //
-//         ERROR(".2");
+//         error() <<".2";
 //
 //         return false;
 //
@@ -5588,7 +5588,7 @@ namespace aura
 //
 //      //m_bProcessInitializeResult = true;
 //
-//      INFORMATION("success");
+//      information() << "success";
 //
 //      return true;
 //

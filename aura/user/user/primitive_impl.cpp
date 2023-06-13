@@ -1841,13 +1841,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
          
-         TRACE("moving: skip walk pre translate tree");
+         information("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
          
-         TRACE("sizing: skip walk pre translate tree");
+         information("sizing: skip walk pre translate tree");
 
       }
       else
@@ -2483,7 +2483,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 
@@ -2511,7 +2511,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 

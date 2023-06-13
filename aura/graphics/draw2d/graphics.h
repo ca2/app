@@ -551,6 +551,7 @@ namespace draw2d
       virtual void arc(const ::rectangle_f64 & rectangle, ::angle_f64 start, ::angle_f64 extends);
       
       
+      virtual void polyline(const ::point_f64_array & pointa);
       virtual void polyline(const ::point_f64 * ppoints,count nCount);
 
 

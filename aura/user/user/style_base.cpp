@@ -134,6 +134,14 @@ namespace user
    }
 
 
+   ::rectangle_i32 style_base::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
+   {
+
+      return {};
+
+   }
+
+
    bool style_base::simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics)
    {
 

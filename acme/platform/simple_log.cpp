@@ -47,7 +47,7 @@ void matter::trace_last_status()
 
    string strStatusMessage = ::get_status_message(estatus);
 
-   WARNING("Status Message :\n" << strStatusMessage << "\n");
+   warning() <<"Status Message :\n" << strStatusMessage << "\n";
 
 }
 
@@ -202,7 +202,7 @@ simple_log::simple_log()
 
 #ifdef _DEBUG
 
-   //INFORMATION("Starting Simple Alog");
+   //information() << "Starting Simple Alog";
 
 #endif
 
@@ -212,12 +212,12 @@ simple_log::simple_log()
 simple_log::~simple_log()
 {
 
-   //INFORMATION("Ending Simple Alog");
+   //information() << "Ending Simple Alog";
 
 }
 
 
-void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrPath, int iLine, const ::scoped_string & scopedstr)
+void simple_log::print(trace_statement & tracestatement)
 {
 
    if (!m_bLog)
@@ -227,15 +227,21 @@ void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracec
 
    }
 
-   if(etracelevel >= acmesystem()->m_etracelevel)
+   if(tracestatement.m_etracelevel >= m_etracelevelMinimum)
    {
 
       string str;
 
+      ::string strTaskName;
+
+      strTaskName = ::current_task_name();
+
       if (m_bReallySimple)
       {
 
-         str = scopedstr;
+         str += strTaskName + "> ";
+
+         str += tracestatement.as_string();
 
          str += "\n";
 
@@ -243,7 +249,9 @@ void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracec
       else
       {
 
-         str.format("%c %s %d %s\n", trace_level_char(etracelevel), scopedstrFunction.c_str(), iLine, scopedstr.c_str());
+
+
+         str.format("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
 
       }
 

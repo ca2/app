@@ -29,7 +29,7 @@ namespace app_shader
 
       m_flagNonClient.erase(e_non_client_focus_rect);
 
-      m_colorBackground = 0;
+      m_colorBackground = {};
 
       m_bClickDefaultMouseHandling = true;
 
@@ -196,7 +196,7 @@ namespace app_shader
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = layout().client_rectangle();
+      auto rectangleClient = client_rectangle();
 
       auto & prender = m_maprender[m_strCurrentShaderPath];
 

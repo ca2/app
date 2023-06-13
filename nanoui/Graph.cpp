@@ -24,7 +24,7 @@ namespace nanoui
 Graph::Graph(Widget * parent, const ::scoped_string & caption)
    : Widget(parent), m_strCaption(caption) {
    m_colorBackground = ::color::color(20, 128);
-   m_fill_color = ::color::color(255, 192, 0, 128);
+   m_fill_color = ::rgba(255, 192, 0, 128);
    m_stroke_color = ::color::color(100, 255);
    m_colorText = ::color::color(240, 192);
 }
@@ -61,7 +61,7 @@ void Graph::draw(::nano2d::context * pcontext) {
    pcontext->line_to((float)m_pos.x() + m_size.cx(), (float)m_pos.y() + m_size.cy());
    pcontext->stroke_color(m_stroke_color);
    pcontext->stroke();
-   if (m_fill_color.alpha > 0) {
+   if (m_fill_color.has_opacity()) {
       pcontext->fill_color(m_fill_color);
       pcontext->fill();
    }

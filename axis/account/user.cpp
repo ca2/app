@@ -251,7 +251,7 @@ namespace account
       if(!is_authenticated())
       {
 
-         ERROR("User not logged in!");
+         error() <<"User not logged in!";
 
          return;
 

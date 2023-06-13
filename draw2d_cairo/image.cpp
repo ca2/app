@@ -136,7 +136,7 @@ namespace draw2d_cairo
 
       }
 
-      color32_t * pimage32Raw = nullptr;
+      image32_t * pimage32Raw = nullptr;
 
       i32 iScan = iGoodStride;
 
@@ -514,7 +514,7 @@ namespace draw2d_cairo
 
       ::u8  * pdata = (::u8 *) cairo_image_surface_get_data(surface);
 
-      m_pimage32Raw = (color32_t * ) pdata;
+      m_pimage32Raw = (image32_t * ) pdata;
 
 //      if(pdata != (::u8 *) m_pimage32Raw && pdata != nullptr)
 //      {
@@ -1178,7 +1178,7 @@ namespace draw2d_cairo
                   else if(alpha == 0)
                   {
 
-                     *((color32_t *)pdst2) = 0;
+                     *((image32_t *)pdst2) = {};
 
                   }
                   else

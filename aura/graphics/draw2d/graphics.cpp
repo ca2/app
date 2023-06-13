@@ -876,6 +876,14 @@ namespace draw2d
    }
 
 
+   void graphics::polyline(const ::point_f64_array & pointa)
+   {
+
+      polyline(pointa.data(), pointa.size());
+
+   }
+
+
    void graphics::polyline(const ::point_f64 * ppoints, count nCount)
    {
 
@@ -5212,12 +5220,12 @@ namespace draw2d
                }
                else
                {
-                  int opacity = pimage32[x + wscan * y].u8_opacity();
+                  int opacity = pimage32[x + wscan * y].u8_opacity(pimage->m_colorindexes);
                   double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
                   double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y] = argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red);
+                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
                }
             }
             dTint = dBaseTint * 0.51;
@@ -5231,12 +5239,12 @@ namespace draw2d
                }
                else
                {
-                  int opacity = pimage32[x + wscan * y].u8_opacity();
+                  int opacity = pimage32[x + wscan * y].u8_opacity(pimage->color_indexes());
                   double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
                   double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y] = argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red);
+                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red),pimage->color_indexes());
                }
 
             }
@@ -5253,12 +5261,12 @@ namespace draw2d
                }
                else
                {
-                  int opacity = pimage32[x + wscan].u8_opacity();
+                  int opacity = pimage32[x + wscan].u8_opacity(pimage->color_indexes());
                   double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
                   double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y] = argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red);
+                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red),pimage->color_indexes());
 
                }
 

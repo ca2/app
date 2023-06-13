@@ -8,7 +8,7 @@
 #include "save_image.h"
 #include "context_image.h"
 #include "acme/exception/interface_only.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/task_tool.h"
@@ -367,6 +367,7 @@ void image::create_isotropic(::image* pimage)
 
       scale.Scale(
          pimage->image32(),
+         pimage->color_indexes(),
          pimage->width(),
          pimage->height(),
          pimage->scan_size(),
@@ -1877,7 +1878,7 @@ void image::draw_ignore_alpha(const ::point_i32& pointDstParam, ::image* pimage,
       for (int x = 0; x < xEnd; x++)
       {
 
-         if (psrc2->u8_opacity() == 0)
+         if (psrc2->u8_opacity(pimage->color_indexes()) == 0)
          {
             i++;
          }
@@ -3769,7 +3770,7 @@ void image::fill_glass(i32 R, i32 G, i32 B, i32 A)
 void image::fill_stippled_glass(i32 R, i32 G, i32 B)
 {
 
-   image32_t color = rgb(B, G, R);
+   image32_t color(rgb(B, G, R), color_indexes());
    i32 w = width();
    i32 h = height();
 
@@ -4362,7 +4363,7 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, ::color::color colo
 
       i32 h = rectangle.height();
 
-      ::image32_t u32Color = color;
+      ::image32_t u32Color(color, color_indexes());
 
       // Clip Rect
       i32 px = x;
@@ -4512,7 +4513,7 @@ void image::fill_stippled_glass_rect(const ::rectangle_i32& rectangle, i32 R, i3
 
    // Prepare buffer Address
    image32_t* dst = data() + (py * width()) + px;
-   image32_t color = rgb(B, G, R);
+   image32_t color(rgb(B, G, R), color_indexes());
 
    // Do FillStippledGlass
    for (i32 j = 0; j < greekdeltay; j++)
@@ -4808,7 +4809,7 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
       x2 += width();
    if (x1 < 0)
       x1 += width();
-   image32_t u32ImageColor = color;
+   image32_t u32ImageColor(color, color_indexes());
 
 #ifdef __APPLE__
 
@@ -4837,7 +4838,7 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
 void image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 {
    i32 d, x, y, aura, ay, sx, sy, greekdeltax, greekdeltay;
-   image32_t color = rgb(B, G, R);
+   image32_t color(rgb(B, G, R), color_indexes());
 
    greekdeltax = x2 - x1;
    aura = abs(greekdeltax) << 1;
@@ -4941,9 +4942,9 @@ void image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A
 
 void image::Mask(::color::color colorMask, ::color::color colorInMask, ::color::color colorOutMask)
 {
-   image32_t crFind = colorMask;
-   image32_t crSet = colorInMask;
-   image32_t crUnset = colorOutMask;
+   image32_t crFind(colorMask, color_indexes());
+   image32_t crSet(colorInMask, color_indexes());
+   image32_t crUnset(colorOutMask, color_indexes());
 
    i64 size = scan_area();
 
@@ -4961,14 +4962,14 @@ void image::Mask(::color::color colorMask, ::color::color colorInMask, ::color::
 void image::transparent_color(::color::color color)
 {
 
-   image32_t crFind = color;
+   image32_t crFind(color, color_indexes());
 
    i64 iSize = scan_area();
 
    for (i32 i = 0; i < iSize; i++)
    {
 
-      if (data()[i].rgb() == crFind.rgb())
+      if (data()[i].rgb(color_indexes()) == crFind.rgb(color_indexes()))
       {
 
          ((::u8*)&data()[i])[3] = 255;
@@ -6132,7 +6133,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
          xsrc = (i32)((dCos * di - dSin * dj) + wsrcmid);
          ysrc = (i32)((dSin * di + dCos * dj) + hsrcmid);
 
-         image32_t colorSrc = ::color::black;
+         image32_t colorSrc(::color::black, color_indexes());
 
          if (xsrc >= 0 && xsrc < wsrc && ysrc >= 0 && ysrc < hsrc)
          {
@@ -6460,7 +6461,7 @@ void image::clear(::color::color color)
    if (m_bMapped)
    {
 
-      image32_t u32Color = color;
+      image32_t u32Color(color, color_indexes());
 
       i64 size = scan_area();
 
@@ -6484,7 +6485,7 @@ void image::clear(::color::color color)
 
       }
 
-      image32_t u32ColorImage = argb(a, r, g, b);
+      image32_t u32ColorImage(argb(a, r, g, b), color_indexes());
 
       image32_t* pcr = image32();
 
@@ -6532,7 +6533,7 @@ void image::clear(::color::color color)
 //}
 
 
-void image::fill(i32 a, i32 r, i32 g, i32 b)
+void image::clear_argb(i32 a, i32 r, i32 g, i32 b)
 {
 
    if (a == r && a == g && a == b)
@@ -7144,6 +7145,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
             scale.Scale(
                &image32()[x + y * m_iScan / sizeof(image32_t)],
+               color_indexes(),
                (::u32)cx,
                (::u32)cy,
                m_iScan,
@@ -7222,6 +7224,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
                scale.Scale(
                   &image32()[x + y * m_iScan / sizeof(image32_t)],
+                  color_indexes(),
                   greekdeltax,
                   greekdeltay,
                   m_iScan,
@@ -8008,7 +8011,7 @@ void image::tint(::image* pimage, ::color::color color)
    //   size--;
    //}
 
-   image32_t o = argb(255, uchR, uchG, uchB);
+   image32_t o(argb(255, uchR, uchG, uchB), color_indexes());
 
    while (size > 0)
    {
@@ -8263,7 +8266,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
 
    ::i64 areaRgba = 0;
 
-   image32_t u32ColorImage = color;
+   image32_t u32ColorImage(color, color_indexes());
 
    const image32_t* p = this->data();
 
@@ -8306,7 +8309,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
 
    ::count areaRgba = 0;
 
-   image32_t u32ColorImage = color;
+   image32_t u32ColorImage(color, color_indexes());
 
    int wscan = m_iScan / sizeof(image32_t);
 
@@ -8560,10 +8563,10 @@ void image::pixelate(i32 iSize)
             for (i32 j = 0; j < iSize; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * s];
-               a += cr.u8_opacity();
-               r += cr.u8_red();
-               g += cr.u8_green();
-               b += cr.u8_blue();
+               a += cr.u8_opacity(color_indexes());
+               r += cr.u8_red(color_indexes());
+               g += cr.u8_green(color_indexes());
+               b += cr.u8_blue(color_indexes());
                iDiv++;
                if (iDiv >= 64)
                {
@@ -8587,7 +8590,7 @@ void image::pixelate(i32 iSize)
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         image32_t cr = argb(a2, r2, g2, b2);
+         image32_t cr(argb(a2, r2, g2, b2), color_indexes());
          for (i32 i = 0; i < iSize; i++)
          {
             for (i32 j = 0; j < iSize; j++)
@@ -8627,10 +8630,10 @@ void image::pixelate(i32 iSize)
             for (i32 j = 0; j < iSize; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * w];
-               a += cr.u8_opacity();
-               r += cr.u8_red();
-               g += cr.u8_green();
-               b += cr.u8_blue();
+               a += cr.u8_opacity(color_indexes());
+               r += cr.u8_red(color_indexes());
+               g += cr.u8_green(color_indexes());
+               b += cr.u8_blue(color_indexes());
                iDiv++;
                if (iDiv >= 64)
                {
@@ -8654,7 +8657,7 @@ void image::pixelate(i32 iSize)
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         image32_t cr = argb(a2, r2, g2, b2);
+         image32_t cr(argb(a2, r2, g2, b2), color_indexes());
          for (i32 i = 0; i < iMax; i++)
          {
             for (i32 j = 0; j < iSize; j++)
@@ -8690,10 +8693,10 @@ void image::pixelate(i32 iSize)
             for (i32 j = 0; j < jMax; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * w];
-               a += cr.u8_opacity();
-               r += cr.u8_red();
-               g += cr.u8_green();
-               b += cr.u8_blue();
+               a += cr.u8_opacity(color_indexes());
+               r += cr.u8_red(color_indexes());
+               g += cr.u8_green(color_indexes());
+               b += cr.u8_blue(color_indexes());
                iDiv++;
                if (iDiv >= 64)
                {
@@ -8717,7 +8720,7 @@ void image::pixelate(i32 iSize)
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         image32_t cr = argb(a2, r2, g2, b2);
+         image32_t cr(argb(a2, r2, g2, b2), color_indexes());
          for (i32 i = 0; i < iSize; i++)
          {
             for (i32 j = 0; j < jMax; j++)
@@ -8754,10 +8757,10 @@ void image::pixelate(i32 iSize)
          for (i32 j = 0; j < jMax; j++)
          {
             image32_t cr = pdata[x1 + i + (y1 + j) * w];
-            a += cr.u8_opacity();
-            r += cr.u8_red();
-            g += cr.u8_green();
-            b += cr.u8_blue();
+            a += cr.u8_opacity(color_indexes());
+            r += cr.u8_red(color_indexes());
+            g += cr.u8_green(color_indexes());
+            b += cr.u8_blue(color_indexes());
             iDiv++;
             if (iDiv >= 64)
             {
@@ -8784,7 +8787,7 @@ void image::pixelate(i32 iSize)
 
       }
 
-      image32_t cr = argb(a2, r2, g2, b2);
+      image32_t cr(argb(a2, r2, g2, b2), color_indexes());
 
       for (i32 i = 0; i < iMax; i++)
       {
@@ -8946,7 +8949,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const po
    if (greekdeltax == 0.0 && greekdeltay == 0.0)
    {
 
-      fill(
+      clear_argb(
          u8_clip(color1.u8_opacity() * 0.5 + color2.u8_opacity() * 0.5),
          u8_clip(color1.u8_red() * 0.5 + color2.u8_red() * 0.5),
          u8_clip(color1.u8_green() * 0.5 + color2.u8_green() * 0.5),
@@ -9073,7 +9076,7 @@ void image::gradient_horizontal_fill(::color::color color1, ::color::color color
    }
 
    end = minimum(end, height() - 1);
-   image32_t clr = color1;
+   image32_t clr(color1, color_indexes());
    u8* pb = (u8*)image32();
    image32_t* pdata;
    int line = 0;
@@ -9092,11 +9095,11 @@ void image::gradient_horizontal_fill(::color::color color1, ::color::color color
 
       d = ((double)(line - start)) / ((double)(end - start));
 
-      clr = argb(
+      clr.assign(argb(
          u8_clip(color1.u8_opacity() * (1.0 - d) + color2.u8_opacity() * d),
          u8_clip(color1.u8_red() * (1.0 - d) + color2.u8_red() * d),
          u8_clip(color1.u8_green() * (1.0 - d) + color2.u8_green() * d),
-         u8_clip(color1.u8_blue() * (1.0 - d) + color2.u8_blue() * d));
+         u8_clip(color1.u8_blue() * (1.0 - d) + color2.u8_blue() * d)), color_indexes());
 
       pdata = (image32_t*)&pb[m_iScan * line];
       for (int row = 0; row < width(); row++)
@@ -9105,7 +9108,7 @@ void image::gradient_horizontal_fill(::color::color color1, ::color::color color
          pdata++;
       }
    }
-   clr = color2;
+   clr.assign(color2, color_indexes());
    for (; line < height(); line++)
    {
       pdata = (image32_t*)&pb[m_iScan * line];
@@ -9132,7 +9135,7 @@ void image::gradient_vertical_fill(::color::color color1, ::color::color color2,
 
    end = minimum(end, width() - 1);
 
-   image32_t clr = color1;
+   image32_t clr(color1, color_indexes());
    
    u8* pb = (u8*)image32();
    
@@ -9157,11 +9160,12 @@ void image::gradient_vertical_fill(::color::color color1, ::color::color color2,
 
       d = ((double)(row - start)) / ((double)(end - start));
 
-      clr = argb(
+      clr.assign(argb(
          u8_clip(color1.u8_opacity() * (1.0 - d) + color2.u8_opacity() * d),
          u8_clip(color1.u8_red() * (1.0 - d) + color2.u8_red() * d),
          u8_clip(color1.u8_green() * (1.0 - d) + color2.u8_green() * d),
-         u8_clip(color1.u8_blue() * (1.0 - d) + color2.u8_blue() * d));
+         u8_clip(color1.u8_blue() * (1.0 - d) + color2.u8_blue() * d)), 
+         color_indexes());
 
       pdata = (image32_t*)&pb[sizeof(image32_t) * row];
 
@@ -9176,7 +9180,7 @@ void image::gradient_vertical_fill(::color::color color1, ::color::color color2,
 
    }
    
-   clr = color2;
+   clr.assign(color2, color_indexes());
 
    for (; row < width(); row++)
    {
@@ -9287,7 +9291,7 @@ void image::create_circle(::image* pimage, int diameter)
    if (::is_null(pimage) || pimage->area() <= 0)
    {
 
-      fill(255, 0, 0, 0);
+      clear_argb(255, 0, 0, 0);
 
    }
    else

@@ -144,7 +144,7 @@ namespace nanoui
       bool fullscreen, bool depth_buffer, bool stencil_buffer,
       bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
       : Widget(nullptr)  /*,  m_glfw_window(nullptr), ctx(nullptr),
-      m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f) /*, m_strCaption(caption),
+      m_cursor(Cursor::Arrow)*/, m_background(rgba(0.3f, 0.3f, 0.32f, 1.f)) /*, m_strCaption(caption),
       m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
       m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false)
    {

@@ -80,7 +80,7 @@ namespace message
 
       m_lresult = -1;
 
-      ERROR(strErrorMessage);
+      error() <<strErrorMessage;
 
    }
 

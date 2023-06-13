@@ -2,6 +2,7 @@
 
 
 #include "contains.h"
+#include "rectangle.h"
 
 
 template < primitive_number NUMBER >
@@ -12,7 +13,13 @@ public:
 
 
    ellipse_type() {}
-   ellipse_type(const ellipse_type & ellipse) : ::rectangle_type < NUMBER >(ellipse) {}
+   template < primitive_number NUMBER2 >
+   ellipse_type(const ellipse_type < NUMBER2 > & ellipse)
+   {
+   
+   
+   
+   }
    
    
    void set(const ::rectangle_type < NUMBER > & rectangle) { ::rectangle_type < NUMBER >::operator =(rectangle); }

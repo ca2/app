@@ -354,7 +354,7 @@ CLASS_DECL_AURA void copy_image32(::image32_t * pimage32Dst, const ::size_i32 & 
 
 
 
-CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
+CLASS_DECL_AURA void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);
 
 
 CLASS_DECL_AURA void vertical_swap(pixmap * ppixmap);

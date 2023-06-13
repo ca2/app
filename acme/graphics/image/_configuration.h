@@ -32,9 +32,34 @@
 //#endif
 
 
+#ifdef __APPLE__
 
 
+#define IMAGE_Y(y, h) ((h) - (y) - 1)
 
+
+#else
+
+
+#define IMAGE_Y(y, h) (y)
+
+
+#endif
+
+
+#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD)
+
+
+constexpr inline color_indexes common_system_image_color_indexes() { return bgra_indexes(); }
+
+
+#else
+
+
+constexpr inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
+
+
+#endif
 
 
 

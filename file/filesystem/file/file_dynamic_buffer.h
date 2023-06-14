@@ -48,7 +48,7 @@ namespace file
 
    typedef dynamic_buffer < char >     char_dynamic_buffer;
    typedef dynamic_buffer < unichar > wchar_dynamic_buffer;
-   typedef dynamic_buffer < byte >     byte_dynamic_buffer;
+   typedef dynamic_buffer < ::u8 >     byte_dynamic_buffer;
 
 
 } // namespace file

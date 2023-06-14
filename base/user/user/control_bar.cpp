@@ -1,14 +1,15 @@
 #include "framework.h"
+#include "control_bar.h"
+#include "frame_window.h"
 //#include "acme/operating_system.h"
 //#include "aura/operating_system/_user.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "control_bar.h"
-#include "frame_window.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
+#include "aura/user/user/size_parent_layout.h"
 
 
 namespace user
@@ -249,7 +250,7 @@ namespace user
 
    void control_bar::_001OnTimer(::timer * ptimer)
    {
-      __UNREFERENCED_PARAMETER(ptimer);
+      UNREFERENCED_PARAMETER(ptimer);
 //      ::u32 uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
       auto psession = get_session();
@@ -432,7 +433,7 @@ namespace user
 
    void control_bar::_001OnHelpHitTest(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 //      ::pointer<::user::message>pmessage(pmessage);
       ASSERT_VALID(this);
 
@@ -442,7 +443,7 @@ namespace user
    void control_bar::_001OnWindowPosChanging(::message::message * pmessage)
    {
 
-      //__UNREFERENCED_PARAMETER(pmessage);
+      //UNREFERENCED_PARAMETER(pmessage);
 
       //default_window_procedure(pmessage);
 
@@ -472,7 +473,7 @@ namespace user
    void control_bar::on_message_destroy(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_pframewindowDockSite)
       {
@@ -763,7 +764,7 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         ::copy(rectangle, playout->m_rectangle);
+         rectangle = playout->m_rectangle;
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 
@@ -1081,9 +1082,9 @@ namespace user
 
    void DrawGripperElement001(::draw2d::graphics_pointer & pgraphics, i32 ix, i32 iy)
    {
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(ix);
-      __UNREFERENCED_PARAMETER(iy);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(ix);
+      UNREFERENCED_PARAMETER(iy);
       /*      pgraphics->SetPixel(ix    , iy + 1, ::windows_definition::Data.clrBtnHilite);
             pgraphics->SetPixel(ix + 1, iy + 1, ::windows_definition::Data.clrBtnHilite);
             pgraphics->SetPixel(ix + 1, iy    , ::windows_definition::Data.clrBtnHilite);

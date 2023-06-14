@@ -33,6 +33,7 @@ namespace user
       //using ::user::interaction::create_interaction;
       //virtual bool create_interaction(enum_orientation eorientation, ::user::interaction * puiParent);
 
+      ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) override;
 
       virtual void post_scroll_message(enum_scroll_command ecommand);
 

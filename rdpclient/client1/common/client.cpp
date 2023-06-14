@@ -231,7 +231,7 @@ out:
 	return ret;
 }
 
-int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, const byte* buffer, size_t size)
+int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, const ::u8* buffer, size_t size)
 {
 	rdpFile* file;
 	int status = -1;

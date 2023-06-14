@@ -271,7 +271,7 @@ namespace ios
 
        key1.QueryValue("DefaultConnectionSettings", mem);
 
-       bool bAutoDetect = (((byte *) mem.get_data())[8] & 0x08) != 0;
+       bool bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
 
        return bAutoDetect;
        */
@@ -863,7 +863,7 @@ namespace ios
 //  macos_os.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2013-09-17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2013-09-17.
 //
 //
 

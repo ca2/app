@@ -370,7 +370,8 @@ list(APPEND library_references
    acme
    apex
    aqua
-   aura)
+   aura
+        unac)
 
 
 list(APPEND static_library_references ${library_references})

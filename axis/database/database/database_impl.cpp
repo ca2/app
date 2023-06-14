@@ -116,8 +116,10 @@ namespace database
 
    }
 
+
    void database_impl::trace_error1(const ::string & pszPrefix)
    {
+
       m_strLastError += query_error(pszPrefix);
    
       information("%s", m_strLastError.c_str());

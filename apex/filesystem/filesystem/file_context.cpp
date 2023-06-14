@@ -726,7 +726,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    catch (const ::exception & e)
    {
 
-      INFORMATION(e.get_message());
+      information() << e.get_message();
 
       v = ::e_type_new;
 
@@ -734,7 +734,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    catch (...)
    {
 
-      INFORMATION("GENERAL Exception parsing network_payload file_context::as_network_payload : \"" << str << "\"");
+      information() << "GENERAL Exception parsing network_payload file_context::as_network_payload : \"" << str << "\"";
 
       v = ::e_type_new;
 
@@ -1767,8 +1767,19 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          bStatusFail = true;
 
-         INFORMATION("During copy, failed to get status from input file \"" <<
-               varSource.as_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
+         {
+
+            auto information = this->information();
+
+            information << "During copy, failed to get status from input file \"";
+
+            information << varSource.as_file_path();
+
+            information << "\" bFailIfExists = ";
+
+            information << (bFailIfExists ? "true" : "false");
+
+         }
 
       }
 
@@ -1786,8 +1797,8 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
             bStatusFail = true;
 
-            INFORMATION("During copy, failed to set status to output file \""
-               << varTarget.as_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
+            information() << "During copy, failed to set status to output file \""
+               << varTarget.as_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false");
 
          }
 
@@ -2155,8 +2166,8 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 void file_context::get_status(::file::file_status & status, const ::file::path &path)
 {
 
-   __UNREFERENCED_PARAMETER(status);
-   __UNREFERENCED_PARAMETER(path);
+   UNREFERENCED_PARAMETER(status);
+   UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only();
 
@@ -2168,8 +2179,8 @@ void file_context::get_status(::file::file_status & status, const ::file::path &
 void file_context::set_status(const ::file::path &path, const ::file::file_status &status)
 {
 
-   __UNREFERENCED_PARAMETER(path);
-   __UNREFERENCED_PARAMETER(status);
+   UNREFERENCED_PARAMETER(path);
+   UNREFERENCED_PARAMETER(status);
 
    throw ::interface_only();
 
@@ -2982,7 +2993,7 @@ void file_context::post_output(const ::file::path & pathOut, const ::file::path 
    catch (...)
    {
 
-      INFORMATION("Failed to rename \"downloading\" file from " << pathDownloading << " to " << pathOut);
+      information() << "Failed to rename \"downloading\" file from " << pathDownloading << " to " << pathOut;
 
       erase(pathDownloading);
 
@@ -3076,7 +3087,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
             if (pbase64->decode(*pmemoryfile->get_primitive_memory(), strData.substr(iEncoding + 1)))
             {
 
-               INFORMATION("::file::file_context::data_get_file Succeeded");
+               information() << "::file::file_context::data_get_file Succeeded";
 
                return pmemoryfile;
 
@@ -3088,7 +3099,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
 
    }
 
-   INFORMATION("::file::file_context::data_get_file Failed");
+   information() << "::file::file_context::data_get_file Failed";
 
    //throw ::exception(error_failed);
    //return ::error_failed;
@@ -3125,7 +3136,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
       pfolder->open_for_reading(pfile);
       //{
 
-         //INFORMATION("::file::file_context::zip_get_file Succeeded");
+         //information() << "::file::file_context::zip_get_file Succeeded";
 
          return pfolder;
 
@@ -3139,7 +3150,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
       pfolder->open_for_writing(pfile);
       //{
 
-        // INFORMATION("::file::file_context::zip_get_file Succeeded");
+        // information() << "::file::file_context::zip_get_file Succeeded";
 
          return pfolder;
 
@@ -3147,7 +3158,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
    }
 
-   //INFORMATION("::file::file_context::zip_get_file Failed");
+   //information() << "::file::file_context::zip_get_file Failed";
 
    return nullptr;
 
@@ -3186,21 +3197,21 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
       if (string_ends(pathCache, "en_us_international.xml"))
       {
 
-         INFORMATION("Debug Here");
+         information() << "Debug Here";
 
       }
 
       if (string_ends(pathCache, "text_select.xml"))
       {
 
-         INFORMATION("Debug Here");
+         information() << "Debug Here";
 
       }
 
       if (string_ends(pathCache, "arialuni.ttf"))
       {
 
-         INFORMATION("Debug Here : arialuni.ttf");
+         information() << "Debug Here : arialuni.ttf";
 
       }
 
@@ -3475,7 +3486,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    if (pathProcessed.is_empty())
    {
 
-      //INFORMATION("::file::file_context::get_file file with empty name!!");
+      //information() << "::file::file_context::get_file file with empty name!!";
 
       if(eopen & ::file::e_open_no_exception_on_open)
       {

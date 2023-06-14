@@ -196,7 +196,7 @@ private:
 
   Timeout timeout_;           // Timeout for read operations
   unsigned long baudrate_;    // Baudrate
-  ::u32 byte_time_ns_;     // Nanoseconds to transmit/receive a single byte
+  ::u32 byte_time_ns_;     // Nanoseconds to transmit/receive a single ::u8
 
   enum_parity eparity_;           // Parity
   enum_byte_size ebytesize_;       // Size of the bytes

@@ -232,7 +232,7 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -454,6 +454,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -635,6 +638,7 @@
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
+    <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
@@ -783,14 +787,19 @@
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\payload_stream.h" />
     <ClInclude Include="filesystem\file\plain_text_file_options.h" />
+    <ClInclude Include="filesystem\file\print_formatting.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
+    <ClInclude Include="filesystem\file\string_stream.h" />
     <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="filesystem\file\write_text_stream.h" />
     <ClInclude Include="filesystem\file\__string.h" />
     <ClInclude Include="filesystem\_.h" />
+    <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\_binary_stream.h" />
+    <ClInclude Include="graphics\draw2d\image32.h" />
     <ClInclude Include="graphics\draw2d\_string.h" />
+    <ClInclude Include="graphics\draw2d\_text_stream.h" />
     <ClInclude Include="graphics\image\color_indexes.h" />
     <ClInclude Include="graphics\image\_.h" />
     <ClInclude Include="graphics\image\_configuration.h" />
@@ -807,7 +816,6 @@
     <ClInclude Include="include\_configuration.h" />
     <ClInclude Include="include\_new.h" />
     <ClInclude Include="include\_initial_concepts.h" />
-    <ClInclude Include="include\_other_initial_concepts.h" />
     <ClInclude Include="include\_string.h" />
     <ClInclude Include="include\_structures.h" />
     <ClInclude Include="include\_template_inline_functions.h" />
@@ -822,11 +830,14 @@
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
+    <ClInclude Include="platform\trace_statement.h" />
+    <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>
     </None>
+    <ClInclude Include="include\_integer.h" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
     <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
@@ -1006,6 +1017,7 @@
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
+    <ClCompile Include="platform\trace_statement.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />
@@ -1352,7 +1364,7 @@
     <ClInclude Include="primitive\geometry2d\_f64.h" />
     <ClInclude Include="primitive\geometry2d\_function.h" />
     <ClInclude Include="primitive\geometry2d\_function_impl.h" />
-    <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_geometry2d.h" />
     <ClInclude Include="primitive\geometry2d\_i32.h" />
     <ClInclude Include="primitive\geometry2d\_i64.h" />
     <ClInclude Include="primitive\geometry2d\_random.h" />

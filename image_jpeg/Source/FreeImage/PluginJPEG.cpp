@@ -7,7 +7,7 @@
 // - Jan L. Nauta (jln@magentammt.com)
 // - Markus Loibl (markus.loibl@epost.de)
 // - Karl-Heinz Bussian (khbussian@moss.de)
-// - Hervé Drolon (drolon@infonie.fr)
+// - Herveh Drolon (drolon@infonie.fr)
 // - Jascha Wetzel (jascha@mainia.de)
 // - Mihail Naydenov (mnaydenov@users.sourceforge.net)
 //
@@ -296,7 +296,7 @@ init_source (j_decompress_ptr cinfo)
 	bytes_in_buffer), reset the pointer & count to the start of the
 	buffer, and return true indicating that the buffer has been reloaded.
 	It is not necessary to fill the buffer entirely, only to obtain at
-	least one more byte.  bytes_in_buffer MUST be set to a positive value
+	least one more ::u8.  bytes_in_buffer MUST be set to a positive value
 	if true is returned.  A false return should only be used when I/O
 	suspension is desired.
 */
@@ -460,10 +460,10 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
 /**
 	Read JPEG_COM marker (comment)
 */
-/*static int_bool jpeg_read_comment(FIBITMAP * pimage, const byte *dataptr, unsigned int datalen)
+/*static int_bool jpeg_read_comment(FIBITMAP * pimage, const ::u8 *dataptr, unsigned int datalen)
 {
    size_t length = datalen;
-   byte *profile = (byte*)dataptr;
+   ::u8 *profile = (::u8*)dataptr;
 
    // read the comment
    char *value = (char*)malloc((length + 1) * sizeof(char));
@@ -507,7 +507,7 @@ static int_bool
 marker_is_icc(jpeg_saved_marker_ptr marker)
 {
    // marker identifying string "ICC_PROFILE" (null-terminated)
-   const byte icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
+   const ::u8 icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
 
    if(marker->marker == ICC_MARKER)
    {
@@ -552,7 +552,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
    unsigned total_length;
 
    const int MAX_SEQ_NO = 255;			// sufficient since marker numbers are bytes
-   byte marker_present[MAX_SEQ_NO+1];	// 1 if marker found
+   ::u8 marker_present[MAX_SEQ_NO+1];	// 1 if marker found
    unsigned data_length[MAX_SEQ_NO+1];	// size_i32 of profile data in marker
    unsigned data_offset[MAX_SEQ_NO+1];	// offset for data in marker
 
@@ -650,7 +650,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
 	Read JPEG_APPD marker (IPTC or Adobe Photoshop profile)
 */
 static int_bool
-/*jpeg_read_iptc_profile(FIBITMAP * pimage, const byte *dataptr, unsigned int datalen)
+/*jpeg_read_iptc_profile(FIBITMAP * pimage, const ::u8 *dataptr, unsigned int datalen)
 {
 /*   return read_iptc_profile(pimage, dataptr, datalen);
 }
@@ -663,7 +663,7 @@ static int_bool
 	@return Returns true if successful, false otherwise
 */
 static int_bool
-/*jpeg_read_xmp_profile(FIBITMAP * pimage, const byte *dataptr, unsigned int datalen)
+/*jpeg_read_xmp_profile(FIBITMAP * pimage, const ::u8 *dataptr, unsigned int datalen)
 {
    // marker identifying string for XMP (null terminated)
    const char *xmp_signature = "http://ns.adobe.com/xap/1.0/";
@@ -671,7 +671,7 @@ static int_bool
    const size_t xmp_signature_size = strlen(xmp_signature) + 1;
 
    size_t length = datalen;
-   byte *profile = (byte*)dataptr;
+   ::u8 *profile = (::u8*)dataptr;
 
    if(length <= xmp_signature_size)
    {
@@ -720,7 +720,7 @@ static int_bool
 	@return Returns true if successful, false otherwise
 */
 static int_bool
-/*jpeg_read_jfxx(FIBITMAP * pimage, const byte *dataptr, unsigned int datalen)
+/*jpeg_read_jfxx(FIBITMAP * pimage, const ::u8 *dataptr, unsigned int datalen)
 {
    if(datalen < 6)
    {
@@ -728,10 +728,10 @@ static int_bool
    }
 
    const int id_length = 5;
-   const byte *data = dataptr + id_length;
+   const ::u8 *data = dataptr + id_length;
    unsigned remaining = datalen - id_length;
 
-   const byte type = *data;
+   const ::u8 type = *data;
    ++data;
    --remaining;
 
@@ -740,7 +740,7 @@ static int_bool
    case JFXX_TYPE_JPEG:
    {
       // load the thumbnail
-      FIMEMORY* hmem = FreeImage_OpenMemory(const_cast<byte*>(data), remaining);
+      FIMEMORY* hmem = FreeImage_OpenMemory(const_cast<::u8*>(data), remaining);
       FIBITMAP* thumbnail = FreeImage_LoadFromMemory(FreeImage_GetFIFFromFormat("JPEG"), hmem);
       FreeImage_CloseMemory(hmem);
       // store the thumbnail
@@ -809,7 +809,7 @@ static int_bool
    }
 
    // ICC profile
-   byte *icc_profile = nullptr;
+   ::u8 *icc_profile = nullptr;
    unsigned icc_length = 0;
 
    if( jpeg_read_icc_profile(cinfo, &icc_profile, &icc_length) )
@@ -845,7 +845,7 @@ static int_bool
       {
          for(long i = 0; i < (long)strlen(tag_value); i+= MAX_BYTES_IN_MARKER)
          {
-            jpeg_write_marker(cinfo, JPEG_COM, (byte*)tag_value + i, (unsigned int) minimum((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
+            jpeg_write_marker(cinfo, JPEG_COM, (::u8*)tag_value + i, (unsigned int) minimum((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
          }
          return true;
       }
@@ -860,7 +860,7 @@ static int_bool
 /*jpeg_write_icc_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string "ICC_PROFILE" (null-terminated)
-   byte icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
+   ::u8 icc_signature[12] = { 0x49, 0x43, 0x43, 0x5F, 0x50, 0x52, 0x4F, 0x46, 0x49, 0x4C, 0x45, 0x00 };
 
 /*   FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(pimage);
 
@@ -868,7 +868,7 @@ static int_bool
    {
       // ICC_HEADER_SIZE: ICC signature is 'ICC_PROFILE' + 2 bytes
 
-      byte *profile = (byte*)malloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(byte));
+      ::u8 *profile = (::u8*)malloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(::u8));
       if(profile == nullptr) return false;
       memcpy(profile, icc_signature, 12);
 
@@ -876,11 +876,11 @@ static int_bool
       {
          unsigned length = (unsigned) minimum((long)(iccProfile->size - i), MAX_DATA_BYTES_IN_MARKER);
          // sequence number
-         profile[12] = (byte) ((i / MAX_DATA_BYTES_IN_MARKER) + 1);
+         profile[12] = (::u8) ((i / MAX_DATA_BYTES_IN_MARKER) + 1);
          // number of markers
-         profile[13] = (byte) (iccProfile->size / MAX_DATA_BYTES_IN_MARKER + 1);
+         profile[13] = (::u8) (iccProfile->size / MAX_DATA_BYTES_IN_MARKER + 1);
 
-         memcpy(profile + ICC_HEADER_SIZE, (byte*)iccProfile->data + i, length);
+         memcpy(profile + ICC_HEADER_SIZE, (::u8*)iccProfile->data + i, length);
          jpeg_write_marker(cinfo, ICC_MARKER, profile, (length + ICC_HEADER_SIZE));
       }
 
@@ -904,7 +904,7 @@ static int_bool
 
 /*   if(FreeImage_GetMetadataCount(FIMD_IPTC, pimage))
    {
-      byte *profile = nullptr;
+      ::u8 *profile = nullptr;
       unsigned profile_size = 0;
 
       // create a binary profile
@@ -916,15 +916,15 @@ static int_bool
          {
             unsigned length = (unsigned) minimum((long)profile_size - i, 65517L);
             unsigned roundup = (unsigned) (length & 0x01);	// needed for Photoshop
-            byte *iptc_profile = (byte*)malloc(length + roundup + tag_length);
+            ::u8 *iptc_profile = (::u8*)malloc(length + roundup + tag_length);
             if(iptc_profile == nullptr) break;
             // Photoshop identification string
             memcpy(&iptc_profile[0], "Photoshop 3.0\x0", 14);
             // 8BIM segment type
             memcpy(&iptc_profile[14], "8BIM\x04\x04\x0\x0\x0\x0", 10);
             // segment size_i32
-            iptc_profile[24] = (byte)(length >> 8);
-            iptc_profile[25] = (byte)(length & 0xFF);
+            iptc_profile[24] = (::u8)(length >> 8);
+            iptc_profile[25] = (::u8)(length & 0xFF);
             // segment data
             memcpy(&iptc_profile[tag_length], &profile[i], length);
             if(roundup)
@@ -958,7 +958,7 @@ static int_bool
 
    if(tag_xmp)
    {
-      const byte *tag_value = (byte*)FreeImage_GetTagValue(tag_xmp);
+      const ::u8 *tag_value = (::u8*)FreeImage_GetTagValue(tag_xmp);
 
       if(nullptr != tag_value)
       {
@@ -967,7 +967,7 @@ static int_bool
 
          ::u32 tag_length = FreeImage_GetTagLength(tag_xmp);
 
-         byte *profile = (byte*)malloc((tag_length + xmp_header_size) * sizeof(byte));
+         ::u8 *profile = (::u8*)malloc((tag_length + xmp_header_size) * sizeof(::u8));
          if(profile == nullptr) return false;
          memcpy(profile, xmp_signature, xmp_header_size);
 
@@ -996,14 +996,14 @@ static int_bool
 /*jpeg_write_exif_profile_raw(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string for Exif = "Exif\0\0"
-   byte exif_signature[6] = { 0x45, 0x78, 0x69, 0x66, 0x00, 0x00 };
+   ::u8 exif_signature[6] = { 0x45, 0x78, 0x69, 0x66, 0x00, 0x00 };
 
    FITAG *tag_exif = nullptr;
 /*   FreeImage_GetMetadata(FIMD_EXIF_RAW, pimage, g_TagLib_ExifRawFieldName, &tag_exif);
 
    if(tag_exif)
    {
-      const byte *tag_value = (byte*)FreeImage_GetTagValue(tag_exif);
+      const ::u8 *tag_value = (::u8*)FreeImage_GetTagValue(tag_exif);
 
       // verify the identifying string
       if(memcmp(exif_signature, tag_value, sizeof(exif_signature)) != 0)
@@ -1016,7 +1016,7 @@ static int_bool
       {
          ::u32 tag_length = FreeImage_GetTagLength(tag_exif);
 
-         byte *profile = (byte*)malloc(tag_length * sizeof(byte));
+         ::u8 *profile = (::u8*)malloc(tag_length * sizeof(::u8));
          if(profile == nullptr) return false;
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
@@ -1077,13 +1077,13 @@ static int_bool
       return false;
    }
 
-   byte* thData = nullptr;
+   ::u8* thData = nullptr;
    ::u32 thSize = 0;
 
    FreeImage_AcquireMemory(stream, &thData, &thSize);
 
-   byte id_length = 5; //< "JFXX"
-   byte type = JFXX_TYPE_JPEG;
+   ::u8 id_length = 5; //< "JFXX"
+   ::u8 type = JFXX_TYPE_JPEG;
 
    ::u32 totalsize = id_length + sizeof(type) + thSize;
    jpeg_write_m_header(cinfo, JPEG_APP0, totalsize);
@@ -1101,10 +1101,10 @@ static int_bool
 
    freeimage_dst_ptr dest = (freeimage_dst_ptr) cinfo->dest;
 
-   byte* & out = dest->pub.next_output_byte;
+   ::u8* & out = dest->pub.next_output_byte;
    size_t & bufRemain = dest->pub.free_in_buffer;
 
-   const byte *thData_end = thData + thSize;
+   const ::u8 *thData_end = thData + thSize;
 
    while(thData < thData_end)
    {
@@ -1223,8 +1223,8 @@ MimeType()
 static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
-   byte jpeg_signature[] = { 0xFF, 0xD8 };
-   byte signature[2] = { 0, 0 };
+   ::u8 jpeg_signature[] = { 0xFF, 0xD8 };
+   ::u8 signature[2] = { 0, 0 };
 
    io->read_proc(signature, 1, sizeof(jpeg_signature), handle);
 
@@ -1384,9 +1384,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
                for (int i = 0; i < 256; i++)
                {
-                  colors[i].rgbRed   = (byte)i;
-                  colors[i].rgbGreen = (byte)i;
-                  colors[i].rgbBlue  = (byte)i;
+                  colors[i].rgbRed   = (::u8)i;
+                  colors[i].rgbGreen = (::u8)i;
+                  colors[i].rgbBlue  = (::u8)i;
                }
             }
          }
@@ -1449,9 +1449,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                for(unsigned x = 0; x < cinfo.output_width; x++)
                {
                   ::u16 K = (::u16)src[3];
-                  dst[FI_RGBA_RED]   = (byte)((K * src[0]) / 255);	// C -> R
-                  dst[FI_RGBA_GREEN] = (byte)((K * src[1]) / 255);	// M -> G
-                  dst[FI_RGBA_BLUE]  = (byte)((K * src[2]) / 255);	// Y -> B
+                  dst[FI_RGBA_RED]   = (::u8)((K * src[0]) / 255);	// C -> R
+                  dst[FI_RGBA_GREEN] = (::u8)((K * src[1]) / 255);	// M -> G
+                  dst[FI_RGBA_BLUE]  = (::u8)((K * src[2]) / 255);	// Y -> B
                   src += 4;
                   dst += 3;
                }
@@ -1765,7 +1765,7 @@ static int_bool DLL_CALLCONV
          {
             // 24-bit rgb image : need to __swap red and blue channels
 /*            unsigned pitch = FreeImage_GetPitch(pimage);
-            byte *target = (byte*)malloc(pitch * sizeof(byte));
+            ::u8 *target = (::u8*)malloc(pitch * sizeof(::u8));
             if (target == nullptr)
             {
                throw ::exception(FI_MSG_ERROR_MEMORY);
@@ -1777,7 +1777,7 @@ static int_bool DLL_CALLCONV
 /*               memcpy(target, FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1), pitch);
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
                // __swap R and B channels
-               byte *target_p = target;
+               ::u8 *target_p = target;
                for(unsigned x = 0; x < cinfo.image_width; x++)
                {
                   INPLACESWAP(target_p[0], target_p[2]);
@@ -1803,7 +1803,7 @@ static int_bool DLL_CALLCONV
          {
             // 8-bit palettized images are converted to 24-bit images
 /*            RGBQUAD *palette = FreeImage_GetPalette(pimage);
-            byte *target = (byte*)malloc(cinfo.image_width * 3);
+            ::u8 *target = (::u8*)malloc(cinfo.image_width * 3);
             if (target == nullptr)
             {
                throw ::exception(FI_MSG_ERROR_MEMORY);
@@ -1811,12 +1811,12 @@ static int_bool DLL_CALLCONV
 
             while (cinfo.next_scanline < cinfo.image_height)
             {
-/*               byte *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
+/*               ::u8 *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
                FreeImage_ConvertLine8To24(target, source, cinfo.image_width, palette);
 
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
                // __swap R and B channels
-               byte *target_p = target;
+               ::u8 *target_p = target;
                for(unsigned x = 0; x < cinfo.image_width; x++)
                {
                   INPLACESWAP(target_p[0], target_p[2]);
@@ -1834,8 +1834,8 @@ static int_bool DLL_CALLCONV
          {
             // reverse 8-bit greyscale image, so reverse grey value on the fly
             unsigned i;
-            byte reverse[256];
-            byte *target = (byte *)malloc(cinfo.image_width);
+            ::u8 reverse[256];
+            ::u8 *target = (::u8 *)malloc(cinfo.image_width);
             if (target == nullptr)
             {
                throw ::exception(FI_MSG_ERROR_MEMORY);
@@ -1843,12 +1843,12 @@ static int_bool DLL_CALLCONV
 
             for(i = 0; i < 256; i++)
             {
-               reverse[i] = (byte)(255 - i);
+               reverse[i] = (::u8)(255 - i);
             }
 
             while(cinfo.next_scanline < cinfo.image_height)
             {
-/*               byte *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
+/*               ::u8 *source = FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1);
                for(i = 0; i < cinfo.image_width; i++)
                {
                   target[i] = reverse[ source[i] ];

@@ -787,6 +787,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="color.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="draw2d_opengl.def" />

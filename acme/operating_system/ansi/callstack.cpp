@@ -2,9 +2,9 @@
 //  callstack.cpp
 //  acme
 //
-//  Created by Camilo Sasuke <3 Thomas Borregaard Sørensen on 14/02/22.
+//  Created by Camilo Sasuke <3 Thomas Borregaard Soerensen on 14/02/22.
 //  15:33
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 #include "callstack.h"

@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2020-11-19. <3Thomas Boregaard SørensenCamilo SasukeThomas Boregaard Sørensen!! DOMAS_16-09-0.1989
+// Created by camilo on 2020-11-19. <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!! DOMAS_16-09-0.1989
 //
 #include "framework.h"
 #include "acme/operating_system/process.h"

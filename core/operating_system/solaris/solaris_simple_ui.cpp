@@ -301,7 +301,7 @@ namespace os
 
                            //                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                            //                  lpMsg->wParam        = 0;
-                           //              lpMsg->lParam        = __MAKE_LONG(e.xbutton.x_root, e.xbutton.y_root);
+                           //              lpMsg->lParam        = make_i32(e.xbutton.x_root, e.xbutton.y_root);
 
                         }
 
@@ -430,7 +430,7 @@ namespace os
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->wParam        = e.xkey.keycode;
-                        //lpMsg->lParam        = __MAKE_LONG(0, e.xkey.keycode);
+                        //lpMsg->lParam        = make_i32(0, e.xkey.keycode);
 
 
 
@@ -441,7 +441,7 @@ namespace os
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->message       = e_message_mouse_move;
                         //lpMsg->wParam        = 0;
-                        //lpMsg->lParam        = __MAKE_LONG(e.xmotion.x_root, e.xmotion.y_root);
+                        //lpMsg->lParam        = make_i32(e.xmotion.x_root, e.xmotion.y_root);
 
                         on_mouse_move(e.xmotion.x(), e.xmotion.y());
 
@@ -529,12 +529,12 @@ namespace os
       string str;
       //unichar wsz[32];
 
-      byte baState[256];
+      ::u8 baState[256];
 
       zero(baState);
       for (int i = 0; i < 256; i++)
       {
-//         baState[i] = (byte)GetAsyncKeyState(i);
+//         baState[i] = (::u8)GetAsyncKeyState(i);
       }
 
       baState[uiKey & 0xff] = 0x80;
@@ -635,11 +635,11 @@ namespace os
 
          //m_pimage->map();
 
-/*         m_pimage->fill_channel(255, ::color::e_channel_alpha);
+/*         m_pimage->fill_channel(255, ::color::e_channel_opacity);
 
          //m_pimage->Fill(255, 184, 184, 177);
 
-/*         byte *dst = (byte*) m_pimage->get_data();
+/*         ::u8 *dst = (::u8*) m_pimage->get_data();
 
          i64 size = m_size.cx() * m_size.cy();
 
@@ -649,46 +649,46 @@ namespace os
 
          while (size >= 8)
          {
-            dst[0] = __LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
-            dst[1] = __LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
-            dst[2] = __LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
+            dst[0] = lower_u8(((i32)dst[0] * (i32)dst[3]) >> 8);
+            dst[1] = lower_u8(((i32)dst[1] * (i32)dst[3]) >> 8);
+            dst[2] = lower_u8(((i32)dst[2] * (i32)dst[3]) >> 8);
 
-            dst[4 + 0] = __LOBYTE(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
-            dst[4 + 1] = __LOBYTE(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
-            dst[4 + 2] = __LOBYTE(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
+            dst[4 + 0] = lower_u8(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
+            dst[4 + 1] = lower_u8(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
+            dst[4 + 2] = lower_u8(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
 
-            dst[8 + 0] = __LOBYTE(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
-            dst[8 + 1] = __LOBYTE(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
-            dst[8 + 2] = __LOBYTE(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
+            dst[8 + 0] = lower_u8(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
+            dst[8 + 1] = lower_u8(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
+            dst[8 + 2] = lower_u8(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
 
-            dst[12 + 0] = __LOBYTE(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
-            dst[12 + 1] = __LOBYTE(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
-            dst[12 + 2] = __LOBYTE(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
+            dst[12 + 0] = lower_u8(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
+            dst[12 + 1] = lower_u8(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
+            dst[12 + 2] = lower_u8(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
 
-            dst[16 + 0] = __LOBYTE(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
-            dst[16 + 1] = __LOBYTE(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
-            dst[16 + 2] = __LOBYTE(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
+            dst[16 + 0] = lower_u8(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
+            dst[16 + 1] = lower_u8(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
+            dst[16 + 2] = lower_u8(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
 
-            dst[20 + 0] = __LOBYTE(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
-            dst[20 + 1] = __LOBYTE(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
-            dst[20 + 2] = __LOBYTE(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
+            dst[20 + 0] = lower_u8(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
+            dst[20 + 1] = lower_u8(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
+            dst[20 + 2] = lower_u8(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
 
-            dst[24 + 0] = __LOBYTE(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
-            dst[24 + 1] = __LOBYTE(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
-            dst[24 + 2] = __LOBYTE(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
+            dst[24 + 0] = lower_u8(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
+            dst[24 + 1] = lower_u8(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
+            dst[24 + 2] = lower_u8(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
 
-            dst[28 + 0] = __LOBYTE(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
-            dst[28 + 1] = __LOBYTE(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
-            dst[28 + 2] = __LOBYTE(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
+            dst[28 + 0] = lower_u8(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
+            dst[28 + 1] = lower_u8(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
+            dst[28 + 2] = lower_u8(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
 
             dst += 4 * 8;
             size -= 8;
          }
          while (size--)
          {
-            dst[0] = __LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
-            dst[1] = __LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
-            dst[2] = __LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
+            dst[0] = lower_u8(((i32)dst[0] * (i32)dst[3]) >> 8);
+            dst[1] = lower_u8(((i32)dst[1] * (i32)dst[3]) >> 8);
+            dst[2] = lower_u8(((i32)dst[2] * (i32)dst[3]) >> 8);
             dst += 4;
          }
 

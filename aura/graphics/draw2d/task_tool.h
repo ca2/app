@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/graphics/image/_configuration.h"
 #include "acme/parallelization/tools.h"
 
 
@@ -34,12 +35,13 @@ namespace draw2d
       u8 * m_psrcOpacity; // opacity map if available
       u8 * m_pdstTransparency; // transparency map if available
       u8 * m_psrcTransparency; // transparency map if available
+      color_indexes m_indexes = common_system_image_color_indexes();
       int m_w;
       int m_h;
       e_op m_eop;
       int m_scanSrc;
       int m_scanDst;
-      byte m_bA;
+      ::u8 m_bA;
 
 
 

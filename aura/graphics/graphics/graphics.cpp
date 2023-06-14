@@ -279,9 +279,7 @@ namespace graphics
 
       _synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
 
-      ::color::color colorTransparent(0);
-
-      return get_screen_item()->m_pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent, rect);
+      return get_screen_item()->m_pimage->_001GetTopLeftWeightedOpaqueArea(0, rect);
 
    }
 

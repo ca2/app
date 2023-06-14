@@ -19,9 +19,9 @@ public:
    ~paged_memory() override;
 
 
-   virtual byte * impl_alloc(memsize dwAllocation) override;
-   virtual byte * impl_realloc(void * pdata, memsize dwAllocation) override;
-   virtual void impl_free(byte * pdata) override;
+   virtual ::u8 * impl_alloc(memsize dwAllocation) override;
+   virtual ::u8 * impl_realloc(void * pdata, memsize dwAllocation) override;
+   virtual void impl_free(::u8 * pdata) override;
 
 
 };

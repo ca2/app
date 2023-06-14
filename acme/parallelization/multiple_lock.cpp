@@ -137,7 +137,7 @@ multiple_lock::~multiple_lock()
       if (bWaitForAll)
       {
 
-         for (byte j = 0, i = 0; j < m_synchronizationa.synchronization_count(); j++)
+         for (::u8 j = 0, i = 0; j < m_synchronizationa.synchronization_count(); j++)
          {
 
             m_bitsLocked.set(i);

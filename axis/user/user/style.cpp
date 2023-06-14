@@ -164,346 +164,348 @@ namespace axis
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::e_layout_sketch);
+      return ::user::style::simple_ui_draw_focus_rect(pinteraction, pgraphics);
 
-      ::draw2d::save_context savecontext(pgraphics);
+      //bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::e_layout_sketch);
 
-      ::rectangle_i32 rectangleClient = pinteraction->::user::interaction::client_rectangle();
+      //::draw2d::save_context savecontext(pgraphics);
 
-      double dRotate = pinteraction->get_rotate();
+      //::rectangle_i32 rectangleClient = pinteraction->client_rectangle();
 
-      if (dRotate != 0.)
-      {
+      //double dRotate = pinteraction->get_rotate();
 
-         ::draw2d::matrix mRot;
+      //if (dRotate != 0.)
+      //{
 
-         mRot.append(::draw2d::matrix::rotation(dRotate));
+      //   ::draw2d::matrix mRot;
 
-         pgraphics->prepend(mRot);
+      //   mRot.append(::draw2d::matrix::rotation(dRotate));
 
-         ::draw2d::matrix mTrans;
+      //   pgraphics->prepend(mRot);
 
-         auto offset = rectangleClient.center();
+      //   ::draw2d::matrix mTrans;
 
-         mTrans.append(::draw2d::matrix::translation(offset.x(), offset.y()));
+      //   auto offset = rectangleClient.center();
 
-         pgraphics->append(mTrans);
+      //   mTrans.append(::draw2d::matrix::translation(offset.x(), offset.y()));
 
-         rectangleClient -= offset;
+      //   pgraphics->append(mTrans);
 
-      }
+      //   rectangleClient -= offset;
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //}
 
-      i32 iStyle = 1;
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //rectangleClient.left--;
+      //i32 iStyle = 1;
 
-      //rectangleClient.top--;
+      ////rectangleClient.left--;
 
-      if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
-      {
+      ////rectangleClient.top--;
 
-         if (!pinteraction->m_flagNonClient.has(::user::interaction::e_non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
-         {
+      //if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
+      //{
 
-            auto & pbrush = m_pbrush001;
+      //   if (!pinteraction->m_flagNonClient.has(::user::interaction::e_non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
+      //   {
 
-            if (!pbrush)
-            {
+      //      auto & pbrush = m_pbrush001;
 
-               pbrush = __create < ::draw2d::brush >();
+      //      if (!pbrush)
+      //      {
 
-               pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
+      //         pbrush = __create < ::draw2d::brush >();
 
-            }
+      //         pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
 
-            pgraphics->set(pbrush);
+      //      }
 
-            pgraphics->fill_rectangle(rectangleClient);
+      //      pgraphics->set(pbrush);
 
-         }
+      //      pgraphics->fill_rectangle(rectangleClient);
 
-         if (iStyle == 1)
-         {
+      //   }
 
-            bool bHover = pinteraction->hover_item().is_set();
+      //   if (iStyle == 1)
+      //   {
 
-            if (bHover)
-            {
+      //      bool bHover = pinteraction->hover_item().is_set();
 
-               ::draw2d::pen_pointer & ppen = m_ppenFocusRect0;
+      //      if (bHover)
+      //      {
 
-               if (!ppen)
-               {
+      //         ::draw2d::pen_pointer & ppen = m_ppenFocusRect0;
 
-                  ppen.create(this);
+      //         if (!ppen)
+      //         {
 
-                  ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border, ::user::e_state_hover));
+      //            ppen.create(this);
 
-               }
+      //            ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border, ::user::e_state_hover));
 
-               pgraphics->draw_rectangle(rectangleClient, ppen);
+      //         }
 
-            }
-            else
-            {
+      //         pgraphics->draw_rectangle(rectangleClient, ppen);
 
-               ::draw2d::pen_pointer & ppen = m_ppenFocusRect1;
+      //      }
+      //      else
+      //      {
 
-               if (!ppen)
-               {
+      //         ::draw2d::pen_pointer & ppen = m_ppenFocusRect1;
 
-                  ppen.create(this);
+      //         if (!ppen)
+      //         {
 
-                  ppen->create_solid(1.0, argb(190, 90, 90, 80));
+      //            ppen.create(this);
 
-               }
+      //            ppen->create_solid(1.0, argb(190, 90, 90, 80));
 
-               pgraphics->draw_rectangle(rectangleClient, ppen);
+      //         }
 
-            }
+      //         pgraphics->draw_rectangle(rectangleClient, ppen);
 
-            //auto pwindowing = pinteraction->windowing();
+      //      }
 
-            //auto pwindowFocus = pwindowing->get_keyboard_focus(pinteraction->m_pthreadUserInteraction);
+      //      //auto pwindowing = pinteraction->windowing();
 
-            //auto pwindowThis = pinteraction->window();
+      //      //auto pwindowFocus = pwindowing->get_keyboard_focus(pinteraction->m_pthreadUserInteraction);
 
-            if (pinteraction->has_keyboard_focus())
-            {
+      //      //auto pwindowThis = pinteraction->window();
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+      //      if (pinteraction->has_keyboard_focus())
+      //      {
 
-               {
+      //         rectangleClient.left--;
+      //         rectangleClient.right++;
+      //         rectangleClient.top--;
+      //         rectangleClient.bottom++;
 
-                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect2;
+      //         {
 
-                  if (!ppen)
-                  {
+      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect2;
 
-                     ppen.create(this);
+      //            if (!ppen)
+      //            {
 
-                     ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
+      //               ppen.create(this);
 
-                  }
+      //               ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+      //            }
 
-               }
+      //            pgraphics->draw_rectangle(rectangleClient, ppen);
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+      //         }
 
-               {
+      //         rectangleClient.left--;
+      //         rectangleClient.right++;
+      //         rectangleClient.top--;
+      //         rectangleClient.bottom++;
 
-                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect3;
+      //         {
 
-                  if (!ppen)
-                  {
+      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect3;
 
-                     ppen.create(this);
+      //            if (!ppen)
+      //            {
 
-                     ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
+      //               ppen.create(this);
 
-                  }
+      //               ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
-                  pgraphics->set(ppen);
+      //            }
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+      //            pgraphics->set(ppen);
 
-               }
+      //            pgraphics->draw_rectangle(rectangleClient, ppen);
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+      //         }
 
-               {
+      //         rectangleClient.left--;
+      //         rectangleClient.right++;
+      //         rectangleClient.top--;
+      //         rectangleClient.bottom++;
 
-                  //::draw2d::path_pointer & pathRound = m_pathFocusRect1;
-                  //
-                  //if (!pathRound)
-                  //{
+      //         {
 
-                  //   pathRound.create();
+      //            //::draw2d::path_pointer & pathRound = m_pathFocusRect1;
+      //            //
+      //            //if (!pathRound)
+      //            //{
 
-                  //   ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+      //            //   pathRound.create();
 
-                  //   ppathRound->add_round_rect(rectangleClient, 1 * 2);
+      //            //   ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //   ppathRound->end_figure(true);
+      //            //   ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //}
+      //            //   ppathRound->end_figure(true);
 
-                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect4;
+      //            //}
 
-                  if (!ppen)
-                  {
+      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect4;
 
-                     ppen.create(this);
+      //            if (!ppen)
+      //            {
 
-                     ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
+      //               ppen.create(this);
 
-                  }
+      //               ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
-                  pgraphics->set(ppen);
+      //            }
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+      //            pgraphics->set(ppen);
 
-               }
+      //            pgraphics->draw_rectangle(rectangleClient, ppen);
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
+      //         }
 
-               {
+      //         rectangleClient.left--;
+      //         rectangleClient.right++;
+      //         rectangleClient.top--;
+      //         rectangleClient.bottom++;
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+      //         {
 
-                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+      //            //auto ppathRound = __create < ::draw2d::path >();
 
-                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
+      //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //ppathRound->end_figure(true);
+      //            //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
-                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect5;
+      //            //ppathRound->end_figure(true);
 
-                  if (!ppen)
-                  {
+      //            //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
+      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect5;
 
-                     ppen.create(this);
+      //            if (!ppen)
+      //            {
 
-                     ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
+      //               ppen.create(this);
 
-                  }
+      //               ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
 
-                  pgraphics->set(ppen);
+      //            }
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+      //            pgraphics->set(ppen);
 
-               }
+      //            pgraphics->draw_rectangle(rectangleClient, ppen);
 
+      //         }
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
 
-               {
+      //         rectangleClient.left--;
+      //         rectangleClient.right++;
+      //         rectangleClient.top--;
+      //         rectangleClient.bottom++;
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+      //         {
 
-                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+      //            //auto ppathRound = __create < ::draw2d::path >();
 
-                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
+      //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //ppathRound->end_figure(true);
+      //            //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
-                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect6;
+      //            //ppathRound->end_figure(true);
 
-                  if (!ppen)
-                  {
+      //            //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
+      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect6;
 
-                     ppen.create(this);
+      //            if (!ppen)
+      //            {
 
-                     ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
+      //               ppen.create(this);
 
-                  }
+      //               ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
 
-                  pgraphics->set(ppen);
+      //            }
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+      //            pgraphics->set(ppen);
 
-               }
+      //            pgraphics->draw_rectangle(rectangleClient, ppen);
 
+      //         }
 
 
-               rectangleClient.left--;
-               rectangleClient.right++;
-               rectangleClient.top--;
-               rectangleClient.bottom++;
 
-               {
+      //         rectangleClient.left--;
+      //         rectangleClient.right++;
+      //         rectangleClient.top--;
+      //         rectangleClient.bottom++;
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+      //         {
 
-                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
+      //            //auto ppathRound = __create < ::draw2d::path >();
 
-                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
+      //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
-                  //ppathRound->end_figure(true);
+      //            //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
-                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect7;
+      //            //ppathRound->end_figure(true);
 
-                  if (!ppen)
-                  {
+      //            //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
+      //            ::draw2d::pen_pointer & ppen = m_ppenFocusRect7;
 
-                     ppen.create(this);
+      //            if (!ppen)
+      //            {
 
-                     ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
+      //               ppen.create(this);
 
-                  }
+      //               ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
 
-                  pgraphics->set(ppen);
+      //            }
 
-                  pgraphics->draw_rectangle(rectangleClient, ppen);
+      //            pgraphics->set(ppen);
 
-               }
+      //            pgraphics->draw_rectangle(rectangleClient, ppen);
 
+      //         }
 
 
 
-            }
 
-         }
-         else
-         {
+      //      }
 
-            ::draw2d::pen_pointer & ppen = m_ppenFocusRect8;
+      //   }
+      //   else
+      //   {
 
-            if (!ppen)
-            {
+      //      ::draw2d::pen_pointer & ppen = m_ppenFocusRect8;
 
-               ppen.create(this);
+      //      if (!ppen)
+      //      {
 
-               ppen->create_solid(3.0, argb(255, 90, 80, 255));
+      //         ppen.create(this);
 
-            }
+      //         ppen->create_solid(3.0, argb(255, 90, 80, 255));
 
-            pgraphics->draw_rectangle(rectangleClient, ppen);
+      //      }
 
-         }
+      //      pgraphics->draw_rectangle(rectangleClient, ppen);
 
-      }
-      else
-      {
+      //   }
 
-         ::draw2d::pen_pointer & ppen = m_ppenFocusRect;
+      //}
+      //else
+      //{
 
-         if (!ppen)
-         {
+      //   ::draw2d::pen_pointer & ppen = m_ppenFocusRect;
 
-            ppen = __create < ::draw2d::pen >();
+      //   if (!ppen)
+      //   {
 
-            ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
+      //      ppen = __create < ::draw2d::pen >();
 
-         }
+      //      ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
 
-         pgraphics->draw_rectangle(rectangleClient, ppen);
+      //   }
 
-      }
+      //   pgraphics->draw_rectangle(rectangleClient, ppen);
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
@@ -711,10 +713,10 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -897,7 +899,7 @@ namespace axis
             if (eelement == ::e_element_background)
             {
 
-               return ::color::color(0, 0, 0, 0);
+               return ::color::transparent;
 
             }
 
@@ -905,7 +907,7 @@ namespace axis
 
       }
 
-      return error_not_found;
+      return ::color::transparent;
 
    }
 
@@ -1315,10 +1317,10 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;

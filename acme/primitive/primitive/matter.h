@@ -5,7 +5,7 @@
 #include "pointer.h"
 #include "atom.h"
 #include "factory.h"
-//#include "acme/platform/sequencer.h"
+#include "acme/platform/tracer.h"
 
 
 class CLASS_DECL_ACME matter :
@@ -478,7 +478,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
    if (::is_null(p))
    {
 
-      ERROR("particle::__construct p is null");
+      error() << "particle::__construct p is null";
 
       throw_exception(::error_null_pointer);
 
@@ -491,7 +491,7 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
    if (::is_null(ptype))
    {
 
-      ERROR("particle::__construct p is null (is assignee type derived from BASE_TYPE?");
+      error() <<"particle::__construct p is null (is assignee type derived from BASE_TYPE?";
 
       throw_exception(::error_null_pointer);
 

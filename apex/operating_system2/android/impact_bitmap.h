@@ -22,7 +22,7 @@
 //      virtual void create_window_graphics(oswindow interaction_impl, i64 cx, i64 cy, int iStride = -1);
 //      virtual void destroy_window_graphics();
 //
-//      //virtual void update_window(color32_t * pcolorref, const ::rectangle_i32 & rectangle, int cxParam, int cyParam, int iStride = -1, bool bTransferBuffer = true);
+//      //virtual void update_window(color32_t * pimage32, const ::rectangle_i32 & rectangle, int cxParam, int cyParam, int iStride = -1, bool bTransferBuffer = true);
 //
 //      virtual ::draw2d::graphics * on_begin_draw();
 //

@@ -56,7 +56,10 @@ namespace experience_core
       if(top_level()->frame_is_transparent())
       {
 
-         crBackground = argb(90, m_colorBackground.red, m_colorBackground.green, m_colorBackground.blue);
+         crBackground = argb(90, 
+            m_colorBackground.m_u8Red, 
+            m_colorBackground.m_u8Green, 
+            m_colorBackground.m_u8Blue);
 
       }
       else
@@ -74,7 +77,7 @@ namespace experience_core
    void control_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -82,7 +85,7 @@ namespace experience_core
    void control_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -90,7 +93,7 @@ namespace experience_core
    void control_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

@@ -166,7 +166,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::atom & atom, WPARAM wParam, LPARAM l
 // Message handler for about box.
 INT_PTR CALLBACK About(HWND hDlg, const ::atom & atom, WPARAM wParam, LPARAM lParam)
 {
-   __UNREFERENCED_PARAMETER(lParam);
+   UNREFERENCED_PARAMETER(lParam);
    switch (message)
    {
    case WM_INITDIALOG:

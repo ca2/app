@@ -103,7 +103,7 @@ gdb_check(void)
 //  macos_debug.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2013-09-17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2013-09-17.
 //
 //
 
@@ -202,6 +202,6 @@ VOID WINAPI output_debug_string(const ::wide_character * pOutputString)
 //
 //void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 //{
-//   __UNREFERENCED_PARAMETER(uiCode);
-//   __UNREFERENCED_PARAMETER(ppointers);
+//   UNREFERENCED_PARAMETER(uiCode);
+//   UNREFERENCED_PARAMETER(ppointers);
 //}

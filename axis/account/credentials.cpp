@@ -2,7 +2,7 @@
 //  account_credentials.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
 #include "framework.h"
 #include "credentials.h"
@@ -510,7 +510,7 @@ namespace account
          catch (const ::exception& exception)
          {
 
-            ERROR("check_ca2_hash " << exception.m_estatus.as_i64());
+            error() <<"check_ca2_hash " << exception.m_estatus.as_i64();
 
          }
 

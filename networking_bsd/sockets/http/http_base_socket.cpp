@@ -91,7 +91,7 @@ namespace sockets
 
       http_socket::OnHeaderComplete();
 
-      INFORMATION(strProtocol << "://" << strHost << strRequestUri);
+      information() << strProtocol << "://" << strHost << strRequestUri;
 
       string strTest(strHost);
 
@@ -110,34 +110,34 @@ namespace sockets
       if(m_request.attr("request_uri").string().find("/passthrough/") >= 0)
       {
          
-         INFORMATION("Passthrough");
+         information() << "Passthrough";
 
       }
 
       if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header("user_agent").as_string());
+         information() << "user-agent: " << m_request.header("user_agent").as_string();
 
       }
       else
       {
 
-         INFORMATION("user-agent: ():[" << m_addressRemote.get_string() << "]");
+         information() << "user-agent: ():[" << m_addressRemote.get_string() << "]";
 
       }
 
       if(m_request.headers().has_property("from"))
       {
 
-         INFORMATION("from: " + m_request.header("from").as_string());
+         information() << "from: " + m_request.header("from").as_string();
 
       }
 
       if(m_request.headers().has_property("accept-language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").string().c_str());
+         information("accept-language: %s", m_request.header("accept-language").string().c_str());
 
       }
 

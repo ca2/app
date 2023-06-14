@@ -5,6 +5,33 @@
 #include <math.h>
 
 
+template < typename T >
+T default_epsilon()
+{
+
+   return {};
+
+}
+
+
+template < primitive_integral INTEGRAL >
+constexpr INTEGRAL default_epsilon()
+{
+
+   return 0;
+
+}
+
+
+template < primitive_floating FLOATING >
+constexpr FLOATING default_epsilon()
+{
+
+   return ::std::numeric_limits<FLOATING>::epsilon();
+
+}
+
+
 //template < typename A, typename B >
 //inline void swap(A & a, B & b)
 //{
@@ -42,7 +69,7 @@ CLASS_DECL_ACME void this_is_a_debugging_consumer(::i32 & i);
 inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 {
 
-   auto p = (const ::byte *)pMemory;
+   auto p = (const ::u8 *)pMemory;
 
    auto e = p + s;
 
@@ -56,7 +83,7 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
       while (p < e)
       {
 
-         sum += *b; // tests read of byte *p
+         sum += *b; // tests read of ::u8 *p
 
          p++;
 
@@ -72,12 +99,12 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 
          ::i32 sum = 0;
 
-         sum += p[0]; // tests read of byte p[0]
+         sum += p[0]; // tests read of ::u8 p[0]
 
          if (s >= 2)
          {
 
-            sum += e[-1]; // tests read of byte e[-1]
+            sum += e[-1]; // tests read of ::u8 e[-1]
 
          }
 
@@ -105,7 +132,7 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 inline bool is_memory_segment_ok(void * pMemory, memsize s)
 {
 
-   auto p = (::byte *)pMemory;
+   auto p = (::u8 *)pMemory;
 
    auto e = p + s;
 
@@ -117,9 +144,9 @@ inline bool is_memory_segment_ok(void * pMemory, memsize s)
       while (p < e)
       {
 
-         ::byte & b = *p;
+         ::u8 & b = *p;
 
-         b++; // tests read/write of byte b
+         b++; // tests read/write of ::u8 b
 
          b--; // restablish it
 
@@ -133,18 +160,18 @@ inline bool is_memory_segment_ok(void * pMemory, memsize s)
       if (s >= 1)
       {
 
-         ::byte & b = p[0];
+         ::u8 & b = p[0];
 
-         b++; // tests read/write of byte p[0]
+         b++; // tests read/write of ::u8 p[0]
 
          b--; // restablish it
 
          if (s >= 2)
          {
 
-            ::byte & b = e[-1];
+            ::u8 & b = e[-1];
 
-            b++; // tests read/write of byte e[-1]
+            b++; // tests read/write of ::u8 e[-1]
 
             b--; // restablish it
 
@@ -230,7 +257,7 @@ inline bool is_null_terminated_primitive_array_ok(TYPE * p)
 
          auto & item = *p;
 
-         item++; // tests read/write of byte b
+         item++; // tests read/write of ::u8 b
 
          item--; // restablish it
 
@@ -317,8 +344,8 @@ inline bool is_string_ok(const ::ansi_character * p)
 inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsize srclen)
 {
 
-   return (((byte*)pszSrc) <= ((byte*)pszDst) && ((byte*)pszSrc) + srclen > ((byte*)pszDst))
-      || (((byte*)pszDst) <= ((byte*)pszSrc) && ((byte*)pszDst) + srclen > ((byte*)pszSrc));
+   return (((::u8*)pszSrc) <= ((::u8*)pszDst) && ((::u8*)pszSrc) + srclen > ((::u8*)pszDst))
+      || (((::u8*)pszDst) <= ((::u8*)pszSrc) && ((::u8*)pszDst) + srclen > ((::u8*)pszSrc));
 
 }
 
@@ -650,7 +677,7 @@ constexpr ::std::strong_ordering negation(const ::std::strong_ordering & orderin
 
 
 template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
    return ::std::abs(n1 - n2) < epsilon;
@@ -659,7 +686,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 
 
 template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
    return ::std::abs(n1 - n2) < epsilon;
@@ -668,7 +695,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 
 
 template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
    return ::std::abs(n1 - n2) < epsilon;
@@ -677,7 +704,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float epsilon = 0.0001)
 
 
 template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
-bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, float)
+bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = 0)
 {
 
    return n1 == n2;

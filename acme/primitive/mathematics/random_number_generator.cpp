@@ -61,7 +61,7 @@ namespace mathematics
 } // namespace random_number_generator
 
 
-   i64 random_context_entropy64(byte bLevel)
+   i64 random_context_entropy64(::u8 bLevel)
    {
 
       bLevel = minimum(bLevel, 3);

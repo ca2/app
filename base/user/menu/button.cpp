@@ -160,7 +160,7 @@ namespace user
 
       auto colorBackground = ::user::button::_001GetButtonBackgroundColor();
 
-      colorBackground.alpha = 200;
+      colorBackground.m_u8Opacity = 200;
 
       return colorBackground;
 

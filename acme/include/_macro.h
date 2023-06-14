@@ -1,7 +1,7 @@
 // Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
 #pragma once
 
-// Sorensen ø
+// Sorensen oe
 
 
 #include "acme/platform/object_reference_count_debug.h"
@@ -78,73 +78,70 @@
 #define __EVALUATE_MACRO(name) name
 
 
-#define low_byte(w)              ((byte)((w) & 0xff))
+///#define lower_u8(w)              ((::u8)((w) & 0xff))
 
 
 
 
 
 
-#define colorref_get_r_value(rgb)    (low_byte(rgb))
-#define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
-#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
-#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
 
 
 
 #define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
-#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
-#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+// #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+// #define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
 
-#ifdef __cplusplus
+// #ifdef __cplusplus
 
 
-#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+// #define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 
-#else
+// #else
 
-#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+// #define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+// #define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 
+// #endif
+
+// #define lower_u16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+// #define upper_u16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+// #define lower_u32(u)                                     ((::u32)(u))
+// #define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+
+// #define u32_x(u)                                     ((::i16)lower_u16(u))
+// #define u32_y(u)                                     ((::i16)upper_u16(u))
+
+// #define __u32xy(u)                                    u32_x(u), u32_y(u)
+
+// #define u64_x(u)                                     ((::i32)lower_u32(u))
+// #define u64_y(u)                                     ((::i32)upper_u32(u))
+
+// #define __u64xy(u)                                    u64_x(u), u64_y(u)
+
+
+//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)upper_u32(lparam))
+
+
+
+#ifndef UNREFERENCED_PARAMETER
+#define UNREFERENCED_PARAMETER(u)	(void)(u)
 #endif
 
-#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-#define __lo32(u)                                     ((::u32)(u))
-#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
-
-#define __u32x(u)                                     ((::i16)__lo16(u))
-#define __u32y(u)                                     ((::i16)__hi16(u))
-
-#define __u32xy(u)                                    __u32x(u), __u32y(u)
-
-#define __u64x(u)                                     ((::i32)__lo32(u))
-#define __u64y(u)                                     ((::i32)__hi32(u))
-
-#define __u64xy(u)                                    __u64x(u), __u64y(u)
 
 
-#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
-#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
+// #define make_i32(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
+// #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
+// #define make_u32(l, h)         ((::uptr)(::u32)make_i32(l, h))
 
-
-#define __UNREFERENCED_PARAMETER(u)	(void)(u)
-
-
-
-#define __MAKE_LONG(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
-
-#define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
-
-#define __MAKE_LPARAM(l, h)         ((::uptr)(::u32)__MAKE_LONG(l, h))
-
-#define __LOBYTE(w)                 ((byte)(((dword_ptr)(w)) & 0xff))
+//#define lower_u8(w)                 ((::u8)(((dword_ptr)(w)) & 0xff))
 
 
 
@@ -202,80 +199,87 @@
 
 
 
+//
+//#define TRACE_FORMATTED_CATEGORY_INFORMATION(p, etracecategory, ...)    p->log_statement()(p)(e_trace_level_information )()  (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//#define TRACE_FORMATTED_CATEGORY_WARNING(p, etracecategory, ...)        p->log_statement()(p)(e_trace_level_warning     )()  (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//#define TRACE_FORMATTED_CATEGORY_ERROR(p, etracecategory, ...)          p->log_statement()(p)(e_trace_level_error       )()  (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//#define TRACE_FORMATTED_CATEGORY_FATAL(p, etracecategory, ...)          p->log_statement()(p)(e_trace_level_fatal       )()  (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//
+//
+//#define TRACE_CATEGORY_INFORMATION(p, etracecategory, ...)              p->log_statement()(p)(e_trace_level_information )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//#define TRACE_CATEGORY_WARNING(p, etracecategory, ...)                  p->log_statement()(p)(e_trace_level_warning     )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//#define TRACE_CATEGORY_ERROR(p, etracecategory, ...)                    p->log_statement()(p)(e_trace_level_error       )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//#define TRACE_CATEGORY_FATAL(p, etracecategory, ...)                    p->log_statement()(p)(e_trace_level_fatal       )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//
+//
+//#define TRACE_FORMATTED_INFORMATION(p, ...)                             p->log_statement()(p)(e_trace_level_information )()  (__VA_ARGS__)
+//#define TRACE_FORMATTED_WARNING(p, ...)                                 p->log_statement()(p)(e_trace_level_warning     )()  (__VA_ARGS__)
+//#define TRACE_FORMATTED_ERROR(p, ...)                                   p->log_statement()(p)(e_trace_level_error       )()  (__VA_ARGS__)
+//#define TRACE_FORMATTED_FATAL(p, ...)                                   p->log_statement()(p)(e_trace_level_fatal       )()  (__VA_ARGS__)
+//
+//
+//#define TRACE_INFORMATION(p, ...)                                       p->log_statement()(p)(e_trace_level_information )()  << __VA_ARGS__
+//#define TRACE_WARNING(p, ...)                                           p->log_statement()(p)(e_trace_level_warning     )()  << __VA_ARGS__
+//#define TRACE_ERROR(p, ...)                                             p->log_statement()(p)(e_trace_level_error       )()  << __VA_ARGS__
+//#define TRACE_FATAL(p, ...)                                             p->log_statement()(p)(e_trace_level_fatal       )()  << __VA_ARGS__
+//
+//
+//#define FORMATTED_CATEGORY_INFORMATION(etracecategory, ...)             log_statement()(trace_this())(e_trace_level_information )()   (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//#define FORMATTED_CATEGORY_WARNING(etracecategory, ...)                 log_statement()(trace_this())(e_trace_level_warning     )()   (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//#define FORMATTED_CATEGORY_ERROR(etracecategory, ...)                   log_statement()(trace_this())(e_trace_level_error       )()   (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//#define FORMATTED_CATEGORY_FATAL(etracecategory, ...)                   log_statement()(trace_this())(e_trace_level_fatal       )()   (e_trace_category_ ## etracecategory, __VA_ARGS__)
+//
+//
+//#define CATEGORY_INFORMATION(etracecategory, ...)                       log_statement()(trace_this())(e_trace_level_information )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//#define CATEGORY_WARNING(etracecategory, ...)                           log_statement()(trace_this())(e_trace_level_warning     )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//#define CATEGORY_ERROR(etracecategory, ...)                             log_statement()(trace_this())(e_trace_level_error       )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//#define CATEGORY_FATAL(etracecategory, ...)                             log_statement()(trace_this())(e_trace_level_fatal       )()  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+//
+//
+//#define LOG_FORMATTED_INFORMATION(...)                                  log_statement()(trace_this())(e_trace_level_information )() (__VA_ARGS__)
+//#define LOG_FORMATTED_WARNING(...)                                      log_statement()(trace_this())(e_trace_level_warning     )() (__VA_ARGS__)
+//#define LOG_FORMATTED_ERROR(...)                                        log_statement()(trace_this())(e_trace_level_error       )() (__VA_ARGS__)
+//#define LOG_FORMATTED_FATAL(...)                                        log_statement()(trace_this())(e_trace_level_fatal       )() (__VA_ARGS__)
+//
+//
+//#define LOG_INFORMATION(...)                                            log_statement()(trace_this())(e_trace_level_information )() << e_start_reference << __VA_ARGS__
+//#define LOG_WARNING(...)                                                log_statement()(trace_this())(e_trace_level_warning     )() << e_start_reference << __VA_ARGS__
+//#define LOG_ERROR(...)                                                  log_statement()(trace_this())(e_trace_level_error       )() << e_start_reference << __VA_ARGS__
+//#define LOG_FATAL(...)                                                  log_statement()(trace_this())(e_trace_level_fatal       )() << e_start_reference << __VA_ARGS__
+//
+//
+//#define information(...)                                      LOG_FORMATTED_INFORMATION(__VA_ARGS__)
+//#define warning(...)                                          LOG_FORMATTED_WARNING(__VA_ARGS__)
+//#define error(...)                                            LOG_FORMATTED_ERROR(__VA_ARGS__)
+//#define fatal(...)                                            LOG_FORMATTED_FATAL(__VA_ARGS__)
+//
+//
+//#define log_information((...)                                                LOG_INFORMATION(__VA_ARGS__)
+//#define log_warning(...)                                                    LOG_WARNING(__VA_ARGS__)
+//#define log_error(...)                                                      LOG_ERROR(__VA_ARGS__)
+//#define log_fatal(...)                                                      LOG_FATAL(__VA_ARGS__)
+//
+//
+////#define log_information((...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information   , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+////#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning       , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+////#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+////#define log_fatal(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//
+//
+//#define information(...)                                            information(__VA_ARGS__)
+//#define information(...)                                                      log_information((__VA_ARGS__)
+//
 
-#define _FORMATTED_CATEGORY_INFORMATION(p, etracecategory, ...)   p->trace_log_information   (e_trace_category_ ## etracecategory, __VA_ARGS__)
-#define _FORMATTED_CATEGORY_WARNING(p, etracecategory, ...)   p->trace_log_warning       (e_trace_category_ ## etracecategory, __VA_ARGS__)
-#define _FORMATTED_CATEGORY_ERROR(p, etracecategory, ...)   p->trace_log_error         (e_trace_category_ ## etracecategory, __VA_ARGS__)
-#define _FORMATTED_CATEGORY_FATAL(p, etracecategory, ...)   p->trace_log_fatal         (e_trace_category_ ## etracecategory, __VA_ARGS__)
-
-
-#define _CATEGORY_INFORMATION(p, etracecategory, ...)   p->trace_log_information   (e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_WARNING(p, etracecategory, ...)   p->trace_log_warning       (e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_ERROR(p, etracecategory, ...)   p->trace_log_error         (e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_FATAL(p, etracecategory, ...)   p->trace_log_fatal         (e_trace_category_ ## etracecategory) << __VA_ARGS__
-
-
-#define FORMATTED_CATEGORY_INFORMATION(etracecategory, ...)      trace_log_information            (e_trace_category_ ## etracecategory, __VA_ARGS__)
-#define FORMATTED_CATEGORY_WARNING(etracecategory, ...)      trace_log_warning                (e_trace_category_ ## etracecategory, __VA_ARGS__)
-#define FORMATTED_CATEGORY_ERROR(etracecategory, ...)      trace_log_error                  (e_trace_category_ ## etracecategory, __VA_ARGS__)
-#define FORMATTED_CATEGORY_FATAL(etracecategory, ...)      trace_log_fatal                  (e_trace_category_ ## etracecategory, __VA_ARGS__)
-
-
-#define CATEGORY_INFORMATION(etracecategory, ...)      trace_log_information            (e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_WARNING(etracecategory, ...)      trace_log_warning                (e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_ERROR(etracecategory, ...)      trace_log_error                  (e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_FATAL(etracecategory, ...)      trace_log_fatal                  (e_trace_category_ ## etracecategory) << __VA_ARGS__
-
-
-#define _FORMATTED_INFORMATION(p, ...)                   p->trace_log_information         (__VA_ARGS__)
-#define _FORMATTED_WARNING(p, ...)                   p->trace_log_warning             (__VA_ARGS__)
-#define _FORMATTED_ERROR(p, ...)                   p->trace_log_error               (__VA_ARGS__)
-#define _FORMATTED_FATAL(p, ...)                   p->trace_log_fatal               (__VA_ARGS__)
-
-
-#define _INFORMATION(p, ...)                   p->trace_log_information         () << __VA_ARGS__
-#define _WARNING(p, ...)                   p->trace_log_warning             () << __VA_ARGS__
-#define _ERROR(p, ...)                   p->trace_log_error               () << __VA_ARGS__
-#define _FATAL(p, ...)                   p->trace_log_fatal               () << __VA_ARGS__
-
-
-#define TRACE_LOG_FORMATTED_INFORMATION(...)                      trace_log_information            (__VA_ARGS__)
-#define TRACE_LOG_FORMATTED_WARNING(...)                      trace_log_warning                (__VA_ARGS__)
-#define TRACE_LOG_FORMATTED_ERROR(...)                      trace_log_error                  (__VA_ARGS__)
-#define TRACE_LOG_FORMATTED_FATAL(...)                      trace_log_fatal                  (__VA_ARGS__)
-
-
-#define TRACE_LOG_INFORMATION(...)                      trace_log_information            () << e_start_reference << __VA_ARGS__
-#define TRACE_LOG_WARNING(...)                      trace_log_warning                () << e_start_reference << __VA_ARGS__
-#define TRACE_LOG_ERROR(...)                      trace_log_error                  () << e_start_reference << __VA_ARGS__
-#define TRACE_LOG_FATAL(...)                      trace_log_fatal                  () << e_start_reference << __VA_ARGS__
-
-
-#define FORMATTED_INFORMATION(...)                      TRACE_LOG_FORMATTED_INFORMATION(__VA_ARGS__)
-#define warning(...)                      TRACE_LOG_FORMATTED_WARNING(__VA_ARGS__)
-#define FORMATTED_ERROR(...)                      TRACE_LOG_FORMATTED_ERROR(__VA_ARGS__)
-#define FORMATTED_FATAL(...)                      TRACE_LOG_FORMATTED_FATAL(__VA_ARGS__)
-
-
-#define INFORMATION(...)               TRACE_LOG_INFORMATION(__VA_ARGS__)
-#define warning(...)                   TRACE_LOG_WARNING(__VA_ARGS__)
-#define ERROR(...)                     TRACE_LOG_ERROR(__VA_ARGS__)
-#define FATAL(...)                     TRACE_LOG_FATAL(__VA_ARGS__)
-
-
-//#define INFORMATION(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information   , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning       , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-
-
-#define information(...)              FORMATTED_INFORMATION(__VA_ARGS__)
-#define information(...)                        INFORMATION(__VA_ARGS__)
-
-
-
-
-
+//#define LOG_INFORMATION    log_information()()
+//#define LOG_WARNING        log_warning()()
+//#define LOG_ERROR          log_error()()
+//#define LOG_FATAL          log_fatal()()
+//
+//
+//#define INFORMATION        LOG_INFORMATION
+//#define WARNING            LOG_WARNING
+//#define ERROR              LOG_ERROR
+//#define FATAL              LOG_FATAL
 
 #ifdef _WIN32
 
@@ -348,22 +352,22 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 
-#ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-#endif
+// #ifndef i32_x
+// #define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
+// #endif
 
 
-#ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-#endif
+// #ifndef i32_y
+// #define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
+// #endif
 
 
-#ifndef LODWORD
-#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
-#endif
-#ifndef HIDWORD
-#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
-#endif
+// #ifndef lower_u32
+// #define lower_u32(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
+// #endif
+// #ifndef upper_u32
+// #define upper_u32(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
+// #endif
 
 
 ////https://www.artima.com/articles/the-safe-bool-idiom BEGIN

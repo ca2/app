@@ -12,9 +12,9 @@ namespace primitive
       ::object(pparticle)
    {
 
-      __UNREFERENCED_PARAMETER(nGrowBytes);
+      UNREFERENCED_PARAMETER(nGrowBytes);
 
-      __UNREFERENCED_PARAMETER(nAllocFlags);
+      UNREFERENCED_PARAMETER(nAllocFlags);
 
    }
 

@@ -343,7 +343,7 @@ namespace acme
 
       virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
 
-      virtual ::color::color get_default_color(::u64 u);
+      virtual ::color::color get_default_color(::color::color color);
 
       virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 

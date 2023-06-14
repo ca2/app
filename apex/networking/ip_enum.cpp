@@ -22,7 +22,7 @@ namespace networking
    ::count ip_enum::enumerate(pointer_array < ::networking::address > & ipa)
    {
 
-      __UNREFERENCED_PARAMETER(ipa);
+      UNREFERENCED_PARAMETER(ipa);
 
       throw ::interface_only();
 

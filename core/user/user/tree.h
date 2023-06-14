@@ -53,8 +53,8 @@ namespace user
       bool                                      m_bHoverStart;
       class ::time                              m_timeHoverStart;
       class ::time                              m_timeHoverEnd;
-      byte                                      m_uchHoverAlpha;
-      byte                                      m_uchHoverAlphaInit;
+      ::u8                                      m_uchHoverAlpha;
+      ::u8                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
       manual_reset_event                        m_evOpen;
       ptr_array < ::data::tree_item >           m_treeitemaExpand;

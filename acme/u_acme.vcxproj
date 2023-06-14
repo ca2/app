@@ -1800,7 +1800,6 @@
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />

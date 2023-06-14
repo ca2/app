@@ -218,7 +218,7 @@ namespace filemanager
       if(m_fileSrc.is_null())
       {
 
-         INFORMATION("\n Could not open source file(" << m_iFile <<")="<< pszSrc);
+         information() << "\n Could not open source file(" << m_iFile <<")="<< pszSrc;
 
          return false;
 
@@ -290,7 +290,7 @@ namespace filemanager
       if(m_fileDst.is_null())
       {
 
-         INFORMATION("\n Could not open dest file("<<m_iFile<<")=" << strDst);
+         information() << "\n Could not open dest file("<<m_iFile<<")=" << strDst;
 
          property_set propertyset;
 
@@ -302,7 +302,7 @@ namespace filemanager
 
       }
 
-      INFORMATION( m_iFile << " Opened "<<pszSrc<<" "<< strDst);
+      information() <<  m_iFile << " Opened "<<pszSrc<<" "<< strDst;
 
       return true;
 

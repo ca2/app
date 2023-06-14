@@ -159,7 +159,7 @@ void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
 void html_form::_001OnImageLoaded(::message::message * pmessage)
 {
    
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
    
    if(get_html_data() != nullptr)
    {

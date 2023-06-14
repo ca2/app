@@ -1249,8 +1249,8 @@ namespace user
    ////      ::memory_copy(&save, &button, sizeof(save));
    ////      button.idCommand = nID;
    ////      button.iBitmap = iImage;
-   ////      button.fsStyle = (byte)LOWORD(nStyle);
-   ////      button.fsState = (byte)HIWORD(nStyle);
+   ////      button.fsStyle = (::u8)LOWORD(nStyle);
+   ////      button.fsState = (::u8)HIWORD(nStyle);
    ////      if (__memcmp(&save, &button, sizeof(save)) != 0)
    ////      {
    ////         _SetButton(nIndex, &button);
@@ -1513,7 +1513,7 @@ namespace user
    void toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
       //if (m_bDelayedButtonLayout)
       //{
@@ -1634,7 +1634,7 @@ namespace user
 
    void toolbar::_001OnSysColorChange(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // re-color bitmap for toolbar
 //      if (m_hInstImageWell != nullptr && m_hbmImageWell != nullptr)
       {

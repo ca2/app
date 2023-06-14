@@ -2,7 +2,7 @@
 //  sockets_ssl_context.cpp
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/01/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 06/01/18.
 //
 
 #include "framework.h"

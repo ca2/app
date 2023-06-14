@@ -25,7 +25,7 @@ namespace user
          m_bUnderline = false;
          m_dFontSize = 12.0;
          m_colorForeground = argb(255, 0, 0, 0);
-         m_colorBackground = 0;
+         m_colorBackground = ::color::transparent;
          m_escript = e_script_normal;
          m_elineheight = e_line_height_single;
          m_bUpdated = false;

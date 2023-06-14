@@ -1572,7 +1572,7 @@ namespace experience_nanoui
 
          //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
 
-         byte uchAlpha;
+         ::u8 uchAlpha;
 
          if (pbar->is_true("tracking_fade_in"))
          {

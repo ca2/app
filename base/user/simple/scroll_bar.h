@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/point_array.h"
 #include "aura/user/user/scroll_bar.h"
 
 
@@ -16,12 +17,12 @@ public:
    bool                             m_bTrackOffsetThumbAdjusted;
    point_i32                        m_pointTrack;
    ::status < ::rectangle_i32 >     m_statusrectangleTrack;
-   ::rectangle_i32                  m_rectangleA;
-   ::rectangle_i32                  m_rectangleB;
-   point_f64                        m_pointaA[4]; // pontos da primeira seta
-   point_f64                        m_pointaB[4]; // pontos da segunda seta
-   ::draw2d::region_pointer         m_pregionA; // região da primeira seta
-   ::draw2d::region_pointer         m_pregionB; // região da segunda seta
+   //::rectangle_i32                  m_rectangleA;
+   //::rectangle_i32                  m_rectangleB;
+   //point_f64                        m_pointaA[4]; // pontos da primeira seta
+   //point_f64                        m_pointaB[4]; // pontos da segunda seta
+   ::draw2d::region_pointer         m_pregionA; // regiao da primeira seta
+   ::draw2d::region_pointer         m_pregionB; // regiao da segunda seta
    ::u32                            m_uiTimer;
 
 
@@ -40,6 +41,14 @@ public:
    void update_drawing_objects();
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+
+   ::rectangle_i32 get_buttonA_rectangle(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
+
+   ::rectangle_i32 get_buttonB_rectangle(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
+
+   ::point_f64_array get_arrowA(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
+
+   ::point_f64_array get_arrowB(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
 
    ::status < ::rectangle_i32 > get_pageA_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
 
@@ -71,9 +80,9 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
    //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
-   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,::u8 uchAlpha);
 
-   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,::u8 uchAlpha);
 
 
 

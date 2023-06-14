@@ -171,14 +171,14 @@ HGLOBAL WINAPI GlobalAlloc(::u32 uFlags, SIZE_T dwBytes)
     * Note:
     *  - The current position in the file is at the end of the stretched
     *    file due to the call to lseek().
-    *  - An empty string is actually a single '\0' character, so a zero-byte
-    *    will be written at the last byte of the file.
+    *  - An empty string is actually a single '\0' character, so a zero-::u8
+    *    will be written at the last ::u8 of the file.
     */
    /*result = write(hglobal->m_fd, "", 1);
    if(result != 1)
    {
       close(hglobal->m_fd);
-   //    perror("Error writing last byte of the file");
+   //    perror("Error writing last ::u8 of the file");
     //  exit(EXIT_FAILURE);
       delete hglobal;
       return nullptr;

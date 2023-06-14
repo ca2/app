@@ -1165,9 +1165,9 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 void _android_size(float xDummy, float yDummy, float cx, float cy)
 {
 
-   __UNREFERENCED_PARAMETER(xDummy);
+   UNREFERENCED_PARAMETER(xDummy);
 
-   __UNREFERENCED_PARAMETER(yDummy);
+   UNREFERENCED_PARAMETER(yDummy);
 
    if (::apexacmesystem() == nullptr)
       return;
@@ -1395,7 +1395,7 @@ namespace apex
 CLASS_DECL_APEX void defer_dock_application(int_bool bDock)
 {
 
-   __UNREFERENCED_PARAMETER(bDock);
+   UNREFERENCED_PARAMETER(bDock);
 
 
 }

@@ -74,7 +74,7 @@ namespace turboc
 
    void lite_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      __UNREFERENCED_PARAMETER(ptopic);
+      UNREFERENCED_PARAMETER(ptopic);
    }
 
 
@@ -212,7 +212,7 @@ namespace turboc
 
             m_pimageTemplate->Fill(0,0,0,0);
 
-/*            m_pimageTemplate->channel_copy(::color::e_channel_alpha,::color::e_channel_green,m_pimage);
+/*            m_pimageTemplate->channel_copy(::color::e_channel_opacity,::color::e_channel_green,m_pimage);
 
 
          }

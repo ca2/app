@@ -171,7 +171,7 @@ namespace user
       //else
       //{
 
-      //   warning("notification area action atom is number or enum?!?!");
+      //   warning() <<"notification area action atom is number or enum?!?!";
 
       //}
 

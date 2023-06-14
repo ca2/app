@@ -1056,7 +1056,7 @@ pacmedirectory->is(strPath))
    //         break;
    //      pshiidLast = lpshiid;
 
-   //      pshiid = (LPSHITEMID)(((byte *)lpshiid) + cb);
+   //      pshiid = (LPSHITEMID)(((::u8 *)lpshiid) + cb);
 
 
    //   }

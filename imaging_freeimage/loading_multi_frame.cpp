@@ -104,7 +104,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_PALETTE)
                            {
 
-                              ::draw2d::cra_from_quada(pframea->m_colorrefa, (WINRGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
+                              ::draw2d::colora_from_quada(pframea->m_colora, (WINRGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
 
                            }
 
@@ -124,7 +124,7 @@ namespace imaging_freeimage
 
                         pimageCompose->create(pframea->m_size);
 
-                        pimageCompose->fill(0);
+                        pimageCompose->clear(::color::transparent);
 
                      }
 
@@ -211,7 +211,7 @@ namespace imaging_freeimage
                      else if(pframe->m_time > 1_s)
                      {
 
-                        INFORMATION("Long frame time " << pframe->m_time.integral_second());
+                        information() << "Long frame time " << pframe->m_time.integral_second();
 
                      }
 
@@ -363,7 +363,7 @@ namespace imaging_freeimage
 //      else if (FreeImage_GetBPP(pfi) == 32)
 //      {
 //
-//         ::copy_colorref(pframe->m_pimage->colorref(), pframe->m_pimage->width(), pframe->m_pimage->height(), pframe->m_pimage->scan_size(), (color32_t *)pdata, iScan);
+//         ::copy_image32(pframe->m_pimage->image32(), pframe->m_pimage->width(), pframe->m_pimage->height(), pframe->m_pimage->scan_size(), (color32_t *)pdata, iScan);
 //
 //         return true;
 //

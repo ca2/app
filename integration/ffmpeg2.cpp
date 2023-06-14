@@ -287,8 +287,7 @@ namespace app_integration
 
 
 //
-//=======
-//﻿// Created by camilo on 2023-01-15 07:10 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2023-01-15 07:10 <3ThomasBorregaardSorensen!!
 //#include "framework.h"
 //
 //namespace console

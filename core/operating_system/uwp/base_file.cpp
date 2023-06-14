@@ -385,7 +385,7 @@ string file_module_path_dup()
 // // {
 // //    THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
-// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)memory_new byte[MAX_PATH * 8];
+// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)memory_new ::u8[MAX_PATH * 8];
 
 // //    GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 // //    for(g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;)
@@ -422,7 +422,7 @@ string file_module_path_dup()
 // //       SetEvent(pThreadParam->hFinishedEvent);
 
 // //    }
-// //    delete[](byte *) pinfo;
+// //    delete[](::u8 *) pinfo;
 // //    return 0;
 // // }
 
@@ -474,7 +474,7 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)memory_new byte[size_i32];
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)memory_new ::u8[size_i32];
 // //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
@@ -663,7 +663,7 @@ string file_module_path_dup()
 // //    }
 
 // //    u32 dwsize = 300;
-// //    PDWORD pDwId = (PDWORD)memory_new byte[dwsize];
+// //    PDWORD pDwId = (PDWORD)memory_new ::u8[dwsize];
 // //    ::u32 dwReturned = dwsize;
 // //    // Enum all the process first
 // //    while(1)
@@ -675,7 +675,7 @@ string file_module_path_dup()
 // //       }
 // //       delete pDwId;
 // //       dwsize += 50;
-// //       pDwId = (PDWORD)memory_new byte[dwsize];
+// //       pDwId = (PDWORD)memory_new ::u8[dwsize];
 // //    }
 // //    i32 nCount = dwReturned / sizeof(u32);
 // //    i32 nItemCount = -1;
@@ -1146,7 +1146,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //         }
 //         else if(br > 1)
 //         {
-//            // This is the hard part: must peek ahead one byte
+//            // This is the hard part: must peek ahead one ::u8
 //            ::u32 br2 = 0;
 //            char peekChar = 0;
 //            ReadFile(hFile,&peekChar,1,&br2,0);

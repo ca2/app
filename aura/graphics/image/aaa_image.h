@@ -14,15 +14,15 @@
 //
 //
 //CLASS_DECL_AURA void vertical_swap(pixmap * ppixmap);
-//CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-//CLASS_DECL_AURA void _001ProperCopyColorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+//CLASS_DECL_AURA void vertical_swap_copy_image32(::color32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void vertical_swap_copy_image32_swap_red_blue(::color32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void copy_image32(::color32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void copy_image32(::color32_t * pimage32Dst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void copy_image32(::color32_t * pimage32Dst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void copy_image32(::color32_t * pimage32Dst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void copy_image32(::color32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void copy_image32_swap_red_blue(::color32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
+//CLASS_DECL_AURA void _001ProperCopyColorref(::color32_t * pimage32Dst, int cx, int cy, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc = -1);
 //
 //
 //
@@ -131,15 +131,15 @@
 ////   virtual bool Blend(::image * pimage, ::image * pimageA)= 0;
 ////   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, ::image * pimageAlf, const ::point_i32 & pointDstAlf, const ::size_i32 & size)= 0;
 ////   virtual bool precision_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-////   virtual bool precision_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA)= 0;
+////   virtual bool precision_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
 ////   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-////   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA)= 0;
-////   virtual bool blend2(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA)= 0;
+////   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
+////   virtual bool blend2(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
 ////   virtual bool fork_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-////   virtual bool fork_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA)= 0;
+////   virtual bool fork_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
 ////   virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)= 0;
 ////
-////   virtual bool color_blend(::color32_t color32, byte bAlpha)= 0;
+////   virtual bool color_blend(::color32_t color32, ::u8 bAlpha)= 0;
 ////   virtual bool BitBlt(::image * pimage, i32 op)= 0;
 ////   virtual bool BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)= 0;
 ////   virtual i32 cos(i32 i, i32 iAngle)= 0;
@@ -211,10 +211,10 @@
 ////
 ////
 ////   virtual bool SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)= 0;
-////   virtual bool RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius)= 0;
+////   virtual bool RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, i32 x, i32 y, i32 iRadius)= 0;
 ////   virtual bool RadialFill(
-////   byte a1, byte r1, byte g1, byte b1, // center colors
-////   byte a2, byte r2, byte g2, byte b2, // border colors
+////   ::u8 a1, ::u8 r1, ::u8 g1, ::u8 b1, // center colors
+////   ::u8 a2, ::u8 r2, ::u8 g2, ::u8 b2, // border colors
 ////   i32 x, i32 y, i32 iRadius)= 0;
 ////
 ////   virtual bool gradient_fill(::color::color clr1, ::color::color clr2, const point_i32 & point1, const point_i32 & point2)= 0;
@@ -226,7 +226,7 @@
 ////
 ////   virtual u32 GetPixel(i32 x, i32 y)= 0;
 ////   virtual bool Mask(::color::color crMask, ::color::color crInMask, ::color::color crOutMask)= 0;
-////   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, ::color::enum_channel echannel)= 0;
+////   virtual bool channel_mask(::u8 uchFind, ::u8 uchSet, ::u8 uchUnset, ::color::enum_channel echannel)= 0;
 ////   virtual bool transparent_color(::color::color color)= 0;
 ////
 ////   virtual bool create_thumbnail(const ::string & pszPath) = 0;
@@ -261,7 +261,7 @@
 ////   virtual bool from(::draw2d::graphics_pointer & pgraphics)= 0;
 ////   virtual bool from(const ::point_i32 & pointDst, ::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
 ////   virtual bool from(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
-////   virtual bool from(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA)= 0;
+////   virtual bool from(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
 ////   //virtual bool blend(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
 ////   virtual bool from_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
 ////
@@ -389,28 +389,28 @@
 //
 //
 //
-////inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+////inline void copy_image32(::color32_t * pimage32Dst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc)
 ////{
 ////
-////   return copy_colorref(pcolorrefDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
+////   return copy_image32(pimage32Dst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
 ////
 ////}
 //
 //
-//inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+//inline CLASS_DECL_AURA void copy_image32(::color32_t * pimage32Dst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc)
 //{
 //
-//   byte * pDst = (byte *)pcolorrefDst;
+//   ::u8 * pDst = (::u8 *)pimage32Dst;
 //
-//   return copy_colorref((::color32_t *)pDst + point.x() * sizeof(::color32_t) + point.y() * iStrideDst, size.cx(), size.cy(), iStrideDst, pcolorrefSrc, iStrideSrc);
+//   return copy_image32((::color32_t *)pDst + point.x() * sizeof(::color32_t) + point.y() * iStrideDst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
 //
 //}
 //
 //
-//inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+//inline CLASS_DECL_AURA void copy_image32(::color32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc)
 //{
 //
-//   return copy_colorref(pcolorrefDst, rectangle.top_left(), rectangle.size(), iStrideDst, pcolorrefSrc, iStrideSrc);
+//   return copy_image32(pimage32Dst, rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
 //
 //}
 //

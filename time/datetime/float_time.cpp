@@ -30,7 +30,7 @@ namespace datetime
 /* Determine if a day is valid in a given month of a given year */
 static int_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
 {
-  static const byte days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
   if (day && month && month < 13)
   {
@@ -123,7 +123,7 @@ CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDate
 /* Roll a date forwards or backwards to correct it */
 static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
 {
-  static const byte days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
   int16_t iYear, iMonth, iDay, iHour, iMinute, iSecond;
 
   /* interpret values signed */
@@ -284,7 +284,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32
   ud = *pUdateIn;
 
 //  if (dwFlags & VAR_VALIDDATE)
-//    warning("Ignoring VAR_VALIDDATE\n");
+//    warning() <<"Ignoring VAR_VALIDDATE\n";
 
   if (FAILED(FLOATTIME_RollUdate(&ud)))
     return E_INVALIDARG;
@@ -352,7 +352,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
     LOCALE_S1159, LOCALE_S2359,
     LOCALE_SDATE
   };
-  static const byte ParseDateMonths[] =
+  static const ::u8 ParseDateMonths[] =
   {
     1,2,3,4,5,6,7,8,9,10,11,12,13,
     1,2,3,4,5,6,7,8,9,10,11,12,13
@@ -911,7 +911,7 @@ static inline void VARIANT_DMYFromJulian(int jd, u16 *year, u16 *month, u16 *day
 /* Roll a date forwards or backwards to correct it */
 static HRESULT VARIANT_RollUdate(UDATE *lpUd)
 {
-  static const byte days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
   short iYear, iMonth, iDay, iHour, iMinute, iSecond;
 
   /* interpret values signed */

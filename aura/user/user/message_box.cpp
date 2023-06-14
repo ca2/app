@@ -520,7 +520,7 @@ namespace user
 
       auto colorBorder = pstyle->get_color(this, e_element_border);
 
-      colorBorder.alpha = 100;
+      colorBorder.m_u8Opacity = 100;
 
       pgraphics->draw_inset_rectangle(rectangleClient, colorBorder, 1.0);
 

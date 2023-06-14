@@ -2,8 +2,8 @@
 //  userex_impact_container.hpp
 //  app_veriwell_musical_player
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 14/07/18.
-//  Copyright © 2018 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 14/07/18.
+//  Copyright (c) 2018 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //  at macOS High Sierra 10.13.6
 //
 #pragma once

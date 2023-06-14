@@ -1647,7 +1647,7 @@ void simple_toolbar::_001DiscardImageList()
 void simple_toolbar::_001SetImageList(::pointer<::image_list>imagelist)
 {
 
-   __UNREFERENCED_PARAMETER(imagelist);
+   UNREFERENCED_PARAMETER(imagelist);
 
    /*
 
@@ -1767,12 +1767,12 @@ void simple_toolbar::_001OnImageListAttrib()
 //
 //   }
 //
-//   if (ptoolitem->m_fsStyle != (byte)LOWORD(nStyle) || ptoolitem->m_fsState != (byte)HIWORD(nStyle))
+//   if (ptoolitem->m_fsStyle != (::u8)LOWORD(nStyle) || ptoolitem->m_fsState != (::u8)HIWORD(nStyle))
 //   {
 //
-//      ptoolitem->m_fsStyle = (byte)LOWORD(nStyle);
+//      ptoolitem->m_fsStyle = (::u8)LOWORD(nStyle);
 //
-//      ptoolitem->m_fsState = (byte)HIWORD(nStyle);
+//      ptoolitem->m_fsState = (::u8)HIWORD(nStyle);
 //
 //      m_bDelayedButtonLayout = true;
 //

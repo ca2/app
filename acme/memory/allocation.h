@@ -13,10 +13,10 @@
    struct heap_memory_header
    {
 
-      byte                    m_back;
+      ::u8                    m_back;
       enum_memory_heap        m_ememoryheap;
-      byte                    m_blockuse;
-      byte                    m_align;
+      ::u8                    m_blockuse;
+      ::u8                    m_align;
       ::u32                   m_size;
 
    };
@@ -27,7 +27,7 @@
 
 #if HEAP_PADDING_SIZE > 0
 
-      byte                    m_padding[HEAP_PADDING_SIZE];
+      ::u8                    m_padding[HEAP_PADDING_SIZE];
 
 #endif
 
@@ -121,7 +121,7 @@
    }
 
 
-   inline static byte heap_memory_get_align(void * pmemory)
+   inline static ::u8 heap_memory_get_align(void * pmemory)
    {
 
       return heap_memory_get(pmemory)->m_align;

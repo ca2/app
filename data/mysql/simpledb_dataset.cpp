@@ -480,7 +480,7 @@ namespace simpledb
 
    string set::sql_consume_join_on(const char * & pszSql)
    {
-      __UNREFERENCED_PARAMETER(pszSql);
+      UNREFERENCED_PARAMETER(pszSql);
       return "";
    }
 
@@ -604,7 +604,7 @@ namespace simpledb
 
    bool set::query(const ::string &query)
    {
-      __UNREFERENCED_PARAMETER(query);
+      UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
       {
          information("set::query: base is not Defined");
@@ -761,7 +761,7 @@ namespace simpledb
 
    long set::nextid(const ::string &seq_name)
    {
-      __UNREFERENCED_PARAMETER(seq_name);
+      UNREFERENCED_PARAMETER(seq_name);
       /*      if(handle())
                return db->nextid(seq_name);
             else*/

@@ -23,9 +23,9 @@ namespace windows
       HWND m_hwnd;
       bool m_bDestroy;
 //      HFONT m_hfont;
-//      COLORREF m_crText;
-//      COLORREF m_crFocus;
-//      COLORREF m_crWindow;
+//      color32_t m_crText;
+//      color32_t m_crFocus;
+//      color32_t m_crWindow;
 //      string m_strTitle;
 //      bool m_bNcActive;
 

@@ -14,7 +14,7 @@ public:
    ::wd32_character     m_wd32char;
 
 
-   character(::ansi_character ::ansi_character) { m_wd32char = (::wd32_character) static_cast <byte> (::ansi_character); }
+   character(::ansi_character ::ansi_character) { m_wd32char = (::wd32_character) static_cast <::u8> (::ansi_character); }
    character(::wd16_character ::wd16_character) { wd16_to_wd32(&m_wd32char, &::wd16_character, 1); }
    character(::wd32_character ::wd32_character) { m_wd32char = ::wd32_character; }
    character(const ::scoped_string & scopedstrUtf8) { m_wd32char= parse_utf8(pszUtf8); }

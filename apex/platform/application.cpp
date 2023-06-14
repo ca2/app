@@ -1304,7 +1304,7 @@ namespace apex
    //bool application::final_handle_exception(const ::exception & e)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pe);
+   //   UNREFERENCED_PARAMETER(pe);
 
    //   //linux      exit(-1);
 
@@ -1329,7 +1329,7 @@ namespace apex
    //      return ::thread::main();
    //
    ////
-   ////      INFORMATION("apex::application::main");
+   ////      information() << "apex::application::main";
    ////
    ////      try
    ////      {
@@ -1411,7 +1411,7 @@ namespace apex
    void application::term_task()
    {
 
-      INFORMATION("apex::application::term_thread");
+      information() << "apex::application::term_thread";
 
       m_timeHeartBeat.Now();
 
@@ -1434,7 +1434,7 @@ namespace apex
    void application::pre_run()
    {
 
-      INFORMATION("apex::application::pre_run");
+      information() << "apex::application::pre_run";
 
       try
       {
@@ -1496,7 +1496,7 @@ namespace apex
 
          //}
 
-         INFORMATION("apex::application::pre_run success");
+         information() << "apex::application::pre_run success";
 
          //return true;
 
@@ -1512,7 +1512,7 @@ namespace apex
       catch (...)
       {
 
-         INFORMATION("apex::application::pre_run exception.4");
+         information() << "apex::application::pre_run exception.4";
 
          throw ::exception(error_exception);
 
@@ -1716,7 +1716,7 @@ namespace apex
    void application::pos_run()
    {
 
-      INFORMATION("apex::application::pos_run");
+      information() << "apex::application::pos_run";
 
       try
       {
@@ -1731,7 +1731,7 @@ namespace apex
       catch (...)
       {
 
-         INFORMATION("apex::application::pos_run exception.4");
+         information() << "apex::application::pos_run exception.4";
 
       }
 
@@ -1763,7 +1763,7 @@ namespace apex
 
       }
 
-      INFORMATION("apex::application::init_application .1");
+      information() << "apex::application::init_application .1";
 
       bool bHandled = false;
 
@@ -1801,7 +1801,7 @@ namespace apex
 
             output_debug_string(strMessage + m_strAppName);
 
-            INFORMATION("apex::application::init_application exit");
+            information() << "apex::application::init_application exit";
 
             throw exit_exception(error_exit_application, this, "Another install of the application is running.");
 
@@ -1811,7 +1811,7 @@ namespace apex
 
 #endif
 
-      INFORMATION("apex::application::init_application .2");
+      information() << "apex::application::init_application .2";
 
       if (m_pinterprocesscommunication)
       {
@@ -1872,7 +1872,7 @@ namespace apex
 
       //m_bAxisInitializeInstanceResult = true;
 
-      INFORMATION("axis::application::init_instance success");
+      information() << "axis::application::init_instance success";
 
       //auto estatus = 
       create_impact_system();
@@ -2245,7 +2245,7 @@ namespace apex
    void application::application_pre_run()
    {
       //
-      //INFORMATION("apex::application::application_pre_run");
+      //information() << "apex::application::application_pre_run";
       //
       //#ifdef WINDOWS_DESKTOP
       //
@@ -2612,7 +2612,7 @@ namespace apex
 
       }
 
-      INFORMATION("initial_check_directrix : ok (" << __type_name(this) << ")" << m_strAppId);
+      information() << "initial_check_directrix : ok (" << __type_name(this) << ")" << m_strAppId;
 
       //return true;
 
@@ -2898,7 +2898,7 @@ namespace apex
 
       //}
 
-      INFORMATION("apex::application::process_init");
+      information() << "apex::application::process_init";
 
       m_bThreadToolsForIncreasedFps = psystem->m_bThreadToolsForIncreasedFps;
 
@@ -2914,7 +2914,7 @@ namespace apex
       //if (!notify_process_init())
       //{
       //
-      //FATAL("apex::application::process_init .1");
+      //fatal() <<"apex::application::process_init .1";
       //
       //return false;
       //
@@ -2923,7 +2923,7 @@ namespace apex
       //if (!impl_process_init())
       //{
 
-      //   FATAL("apex::application::process_init .2");
+      //   fatal() <<"apex::application::process_init .2";
 
       //   return false;
 
@@ -2931,7 +2931,7 @@ namespace apex
 
       //      m_bAuraProcessInitializeResult = true;
 
-      INFORMATION("apex::application::process_init success");
+      information() << "apex::application::process_init success";
 
       //add_factory_item < ::database::field_array >();
       //add_factory_item < ::database::row >();
@@ -2944,7 +2944,7 @@ namespace apex
 
       //}
 
-      INFORMATION("axis::application::process_init");
+      information() << "axis::application::process_init";
 
       //m_bAxisProcessInitialize = true;
 
@@ -2960,7 +2960,7 @@ namespace apex
       //if (!::application::process_init())
       //{
 
-      //   FATAL("axis::application::process_init .1");
+      //   fatal() <<"axis::application::process_init .1";
 
       //   return false;
 
@@ -2969,7 +2969,7 @@ namespace apex
 
       //m_bAxisProcessInitializeResult = true;
 
-      INFORMATION("axis::application::process_init success");
+      information() << "axis::application::process_init success";
 
       //return true;
 
@@ -2980,13 +2980,13 @@ namespace apex
       //if()
       //{
       //
-      //ERROR(".2");
+      //error() <<".2";
       //
       //return false;
       //
       //}
 
-      INFORMATION("success");
+      information() << "success";
 
       //return true;
 
@@ -3070,7 +3070,7 @@ namespace apex
 
       auto psystem = acmesystem()->m_papexsystem;
 
-      INFORMATION("apex::application::init_application");
+      information() << "apex::application::init_application";
 
       m_timeHeartBeat.Now();
 
@@ -3313,13 +3313,13 @@ namespace apex
       initialize_contextualized_theme();
       //{
 
-      //   FATAL("Failed to initialize_contextualized_theme");
+      //   fatal() <<"Failed to initialize_contextualized_theme";
 
       //   return false;
 
       //}
 
-      INFORMATION("start");
+      information() << "start";
 
       m_timeHeartBeat.Now();
 
@@ -3652,7 +3652,7 @@ namespace apex
       if (bGlobalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_global)
       {
 
-         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.");
+         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.";
 
          try
          {
@@ -3682,7 +3682,7 @@ namespace apex
          if (bGlobalIdExclusiveFail)
          {
 
-            INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.");
+            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.";
 
             try
             {
@@ -3706,7 +3706,7 @@ namespace apex
       if (bLocalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_local)
       {
 
-         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.");
+         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.";
 
          on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local, "");
 
@@ -3726,7 +3726,7 @@ namespace apex
             {
 
                // Should in some way activate the other instance
-               INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.");
+               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.";
 
                on_exclusive_instance_conflict(bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
@@ -4248,7 +4248,7 @@ namespace apex
    //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
-   //   __UNREFERENCED_PARAMETER(timeTimeOut);
+   //   UNREFERENCED_PARAMETER(timeTimeOut);
 
    //   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
 
@@ -4313,8 +4313,8 @@ namespace apex
    void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
    {
-      __UNREFERENCED_PARAMETER(context);
-      __UNREFERENCED_PARAMETER(pcsz);
+      UNREFERENCED_PARAMETER(context);
+      UNREFERENCED_PARAMETER(pcsz);
 
       //psystem->appa_load_string_table();
    }
@@ -4323,8 +4323,8 @@ namespace apex
    void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
    {
-      __UNREFERENCED_PARAMETER(context);
-      __UNREFERENCED_PARAMETER(pcsz);
+      UNREFERENCED_PARAMETER(context);
+      UNREFERENCED_PARAMETER(pcsz);
 
       //psystem->appa_load_string_table();
    }
@@ -4597,8 +4597,8 @@ namespace apex
    //void application::play_audio(::payload payloadFile, bool bSynch)
    //{
 
-   //   __UNREFERENCED_PARAMETER(payloadFile);
-   //   __UNREFERENCED_PARAMETER(bSynch);
+   //   UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(bSynch);
 
    //}
 
@@ -6072,7 +6072,7 @@ namespace apex
 
    //   //}
 
-   //   INFORMATION("axis::application::process_init");
+   //   information() << "axis::application::process_init";
 
    //   //m_bAxisProcessInitialize = true;
 
@@ -6088,7 +6088,7 @@ namespace apex
    //   if (!::application::process_init())
    //   {
 
-   //      FATAL("axis::application::process_init .1");
+   //      fatal() <<"axis::application::process_init .1";
 
    //      return false;
 
@@ -6097,7 +6097,7 @@ namespace apex
 
    //   //m_bAxisProcessInitializeResult = true;
 
-   //   FATAL("axis::application::process_init success");
+   //   fatal() <<"axis::application::process_init success";
 
    //   return true;
 
@@ -6114,7 +6114,7 @@ namespace apex
 
    //   //}
 
-   //   INFORMATION("axis::application::init_instance .1");
+   //   information() << "axis::application::init_instance .1";
 
    //   //m_bAxisInitializeInstance = true;
 
@@ -6123,7 +6123,7 @@ namespace apex
    //   if (!::application::init_instance())
    //   {
 
-   //      FATAL("axis::application::init_instance .2");
+   //      fatal() <<"axis::application::init_instance .2";
 
    //      return false;
 
@@ -6174,7 +6174,7 @@ namespace apex
 
    //   //m_bAxisInitializeInstanceResult = true;
 
-   //   INFORMATION("axis::application::init_instance success");
+   //   information() << "axis::application::init_instance success";
 
    //   return true;
 
@@ -6318,7 +6318,7 @@ namespace apex
 
       ensure_app_interest();
 
-      INFORMATION(".2");
+      information() << ".2";
 
       if (is_true("install"))
       {
@@ -6331,7 +6331,7 @@ namespace apex
 
       }
 
-      ERROR("1.1");
+      error() <<"1.1";
 
       index i = applicationmenu().get_count();
 
@@ -6341,7 +6341,7 @@ namespace apex
 
       application_menu_update();
 
-      INFORMATION("success");
+      information() << "success";
 
       //return true;
 
@@ -6512,7 +6512,7 @@ namespace apex
 
       string strLocale;
       string strSchema;
-      INFORMATION("update_appmatter(root=" << pszRoot << ", relative=" << pszRelative << ", locale=" << pszLocale << ", style=" << pszStyle << ")");
+      information() << "update_appmatter(root=" << pszRoot << ", relative=" << pszRelative << ", locale=" << pszLocale << ", style=" << pszStyle << ")";
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
       ::file::path strFile = dir()->install() / strRelative;
       ::file::path strUrl(::e_path_url);
@@ -6687,9 +6687,9 @@ namespace apex
 
    //   //::pointer<::user::message>pusermessage(pmessage);
 
-   //   __UNREFERENCED_PARAMETER(code);
+   //   UNREFERENCED_PARAMETER(code);
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
 
    //}
@@ -6851,8 +6851,8 @@ namespace apex
    //bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
-   //   __UNREFERENCED_PARAMETER(payloadFile);
-   //   __UNREFERENCED_PARAMETER(nIDSTitle);
+   //   UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(nIDSTitle);
 
    //   return false;
 
@@ -7040,8 +7040,8 @@ namespace apex
    //bool application::on_open_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pdocument);
-   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(pdocument);
+   //   UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
@@ -7050,8 +7050,8 @@ namespace apex
    //bool application::on_save_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pdocument);
-   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(pdocument);
+   //   UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
@@ -7329,9 +7329,9 @@ namespace apex
    //LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
    //{
 
-   //   __UNREFERENCED_PARAMETER(nCode);
-   //   __UNREFERENCED_PARAMETER(wParam);
-   //   __UNREFERENCED_PARAMETER(lParam);
+   //   UNREFERENCED_PARAMETER(nCode);
+   //   UNREFERENCED_PARAMETER(wParam);
+   //   UNREFERENCED_PARAMETER(lParam);
 
    //   return 0;
 
@@ -7341,9 +7341,9 @@ namespace apex
    //bool application::CreateFileFromRawResource(::u32 nID, const ::string & pcszType, const ::string & pcszFilePath)
    //{
    //
-   //__UNREFERENCED_PARAMETER(nID);
-   //__UNREFERENCED_PARAMETER(pcszType);
-   //__UNREFERENCED_PARAMETER(pcszFilePath);
+   //UNREFERENCED_PARAMETER(nID);
+   //UNREFERENCED_PARAMETER(pcszType);
+   //UNREFERENCED_PARAMETER(pcszFilePath);
    //
    //return false;
    //
@@ -7356,7 +7356,7 @@ namespace apex
    //
    //{
    //
-   //__UNREFERENCED_PARAMETER(pmsg);
+   //UNREFERENCED_PARAMETER(pmsg);
    //
    //
    //return false;
@@ -7368,7 +7368,7 @@ namespace apex
    //bool application::OnX11WindowMessage(void* pXevent) // XEvent *
    //{
    //
-   //__UNREFERENCED_PARAMETER(pXevent);
+   //UNREFERENCED_PARAMETER(pXevent);
    //
    //return false;
    //
@@ -7379,7 +7379,7 @@ namespace apex
    //void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    //{
    //
-   //__UNREFERENCED_PARAMETER(pcommand);
+   //UNREFERENCED_PARAMETER(pcommand);
    //
    //}
    //
@@ -7388,10 +7388,10 @@ namespace apex
    //
    //{
    //
-   //__UNREFERENCED_PARAMETER(nID);
-   //__UNREFERENCED_PARAMETER(pcszType);
+   //UNREFERENCED_PARAMETER(nID);
+   //UNREFERENCED_PARAMETER(pcszType);
    //
-   //__UNREFERENCED_PARAMETER(storage);
+   //UNREFERENCED_PARAMETER(storage);
    //
    //return false;
    //
@@ -7423,7 +7423,7 @@ namespace apex
    //
    //void application::EnableModelessEx(bool bEnable)
    //{
-   //__UNREFERENCED_PARAMETER(bEnable);
+   //UNREFERENCED_PARAMETER(bEnable);
    //#ifdef ___NO_OLE_SUPPORT
    //UNUSED(bEnable);
    //#endif
@@ -7521,7 +7521,7 @@ namespace apex
    ::count count = (len + 1) / 2;
    memory.set_size(count);
    index i = 0;
-   byte b;
+   ::u8 b;
    while(*pszHex != '\0')
    {
    char ch = (char) tolower(*pszHex);
@@ -7572,9 +7572,9 @@ namespace apex
 
    for(index i = 0; i < count; i++)
    {
-   *psz++ = ::hex::lower_from((byte) ((memory.get_data()[i] >> 4) & 0xf));
+   *psz++ = ::hex::lower_from((::u8) ((memory.get_data()[i] >> 4) & 0xf));
 
-   *psz++ = ::hex::lower_from((byte) (memory.get_data()[i] & 0xf));
+   *psz++ = ::hex::lower_from((::u8) (memory.get_data()[i] & 0xf));
 
    }
    strHex.ReleaseBuffer(count * 2);
@@ -7844,7 +7844,7 @@ namespace apex
    ////                  pData->szPolicyName,
    ////                  nullptr,
    ////                  &dwType,
-   ////                  (byte*)&dwValue,
+   ////                  (::u8*)&dwValue,
    ////                  &dwDataLen))
    ////         {
    ////            if (dwType == REG_DWORD)
@@ -7896,7 +7896,7 @@ namespace apex
 
    /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
    {
-   __UNREFERENCED_PARAMETER(nMaxMRU);
+   UNREFERENCED_PARAMETER(nMaxMRU);
    ASSERT_VALID(this);
 
    // 0 by default means not set
@@ -8057,8 +8057,8 @@ namespace apex
    //
    //   void application::WinHelp(uptr dwData, ::u32 nCmd)
    //   {
-   //      __UNREFERENCED_PARAMETER(dwData);
-   //      __UNREFERENCED_PARAMETER(nCmd);
+   //      UNREFERENCED_PARAMETER(dwData);
+   //      UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -8073,9 +8073,9 @@ namespace apex
    //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
    //   {
    //
-   //      __UNREFERENCED_PARAMETER(dwData);
+   //      UNREFERENCED_PARAMETER(dwData);
    //
-   //      __UNREFERENCED_PARAMETER(nCmd);
+   //      UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -8087,8 +8087,8 @@ namespace apex
    //
    //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
    //   {
-   //      __UNREFERENCED_PARAMETER(dwData);
-   //      __UNREFERENCED_PARAMETER(nCmd);
+   //      UNREFERENCED_PARAMETER(dwData);
+   //      UNREFERENCED_PARAMETER(nCmd);
    //      //   ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
@@ -8111,7 +8111,7 @@ namespace apex
    //void application::DevModeChange(char * pDeviceName)
    //
    //{
-   //__UNREFERENCED_PARAMETER(pDeviceName);
+   //UNREFERENCED_PARAMETER(pDeviceName);
    //
    //
    ////#ifdef WINDOWS
@@ -8141,7 +8141,7 @@ namespace apex
    //bool application::final_handle_exception(const ::exception & e)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pexception);
+   //   UNREFERENCED_PARAMETER(pexception);
 
    //   if (!is_system())
    //   {
@@ -8162,8 +8162,8 @@ namespace apex
 
    /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
    {
-   __UNREFERENCED_PARAMETER(pszLink);
-   __UNREFERENCED_PARAMETER(pszTarget);
+   UNREFERENCED_PARAMETER(pszLink);
+   UNREFERENCED_PARAMETER(pszTarget);
    return false;
    }
    */
@@ -8342,7 +8342,7 @@ namespace apex
 
    //void application::UpdatePrinterSelection(bool bForceDefaults)
    //{
-   //__UNREFERENCED_PARAMETER(bForceDefaults);
+   //UNREFERENCED_PARAMETER(bForceDefaults);
    //}
 
 
@@ -8355,9 +8355,9 @@ namespace apex
    //
    //   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
    //   {
-   //      __UNREFERENCED_PARAMETER(hDevNames);
-   //      __UNREFERENCED_PARAMETER(hDevMode);
-   //      __UNREFERENCED_PARAMETER(bFreeOld);
+   //      UNREFERENCED_PARAMETER(hDevNames);
+   //      UNREFERENCED_PARAMETER(hDevMode);
+   //      UNREFERENCED_PARAMETER(bFreeOld);
    //      throw ::interface_only();
    //   }
    //
@@ -8467,7 +8467,7 @@ namespace apex
    //
    //void application::DoEnableModeless(bool bEnable)
    //{
-   //__UNREFERENCED_PARAMETER(bEnable);
+   //UNREFERENCED_PARAMETER(bEnable);
    //#ifdef ___NO_OLE_SUPPORT
    //UNUSED(bEnable);
    //#endif
@@ -8553,7 +8553,7 @@ namespace apex
    //
    //void application::SetRegistryKey(::u32 nIDRegistryKey)
    //{
-   ////__UNREFERENCED_PARAMETER(nIDRegistryKey);
+   ////UNREFERENCED_PARAMETER(nIDRegistryKey);
    ////ASSERT(m_pszRegistryKey == nullptr);
    ////throw ::interface_only();
    /////*char szRegistryKey[256];
@@ -8649,7 +8649,7 @@ namespace apex
    u32 dwCount = sizeof(u32);
    ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
-   (byte *)&dwValue, &dwCount);
+   (::u8 *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
    if (lResult == ERROR_SUCCESS)
    {
@@ -8695,7 +8695,7 @@ namespace apex
    ASSERT(dwType == REG_SZ);
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
-   (byte *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
+   (::u8 *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
    strValue.ReleaseBuffer();
    }
    RegCloseKey(hSecKey);
@@ -8727,7 +8727,7 @@ namespace apex
 
    bool application::GetProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
-   byte** ppData, ::u32* pBytes)
+   ::u8** ppData, ::u32* pBytes)
    {
    ASSERT(pszSection != nullptr);
 
@@ -8758,7 +8758,7 @@ namespace apex
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = memory_new byte[*pBytes];
+   *ppData = memory_new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -8786,10 +8786,10 @@ namespace apex
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = memory_new byte[*pBytes];
+   *ppData = memory_new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
-   (*ppData)[i/2] = (byte)
+   (*ppData)[i/2] = (::u8)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
    return true;
@@ -8813,7 +8813,7 @@ namespace apex
    return false;
    ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
-   (byte *)&nValue, sizeof(nValue));
+   (::u8 *)&nValue, sizeof(nValue));
    RegCloseKey(hSecKey);
    return lResult == ERROR_SUCCESS;
    }
@@ -8869,7 +8869,7 @@ namespace apex
    return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (byte *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
+   (::u8 *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
 
    RegCloseKey(hSecKey);
    }
@@ -8887,7 +8887,7 @@ namespace apex
 
    bool application::WriteProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
-   byte * pData, ::u32 nBytes)
+   ::u8 * pData, ::u32 nBytes)
    {
    ASSERT(pszSection != nullptr);
 
@@ -9216,9 +9216,9 @@ namespace apex
    //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
    //{
    //
-   //   __UNREFERENCED_PARAMETER(propertyset);
+   //   UNREFERENCED_PARAMETER(propertyset);
    //
-   //   __UNREFERENCED_PARAMETER(pszMatter);
+   //   UNREFERENCED_PARAMETER(pszMatter);
    //
    //   return "";
 
@@ -9431,7 +9431,7 @@ namespace apex
    void application::on_application_signal(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -9455,9 +9455,9 @@ namespace apex
    //i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszMatter);
-   //   __UNREFERENCED_PARAMETER(point);
-   //   __UNREFERENCED_PARAMETER(puie);
+   //   UNREFERENCED_PARAMETER(pszMatter);
+   //   UNREFERENCED_PARAMETER(point);
+   //   UNREFERENCED_PARAMETER(puie);
 
    //   return 1;
 
@@ -9583,7 +9583,7 @@ namespace apex
    //oswindow application::get_ca2_app_wnd(const ::string & psz)
    //{
 
-   //   __UNREFERENCED_PARAMETER(psz);
+   //   UNREFERENCED_PARAMETER(psz);
 
    //   return nullptr;
 

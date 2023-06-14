@@ -369,10 +369,10 @@ namespace draw2d_opengl
       //   else
       //   {
       //      ((pen *) this)->m_ppen = memory_new plusplus::Pen(plusplus::Color(
-      //         colorref_get_a_value(m_color),
-      //         colorref_get_r_value(m_color),
-      //         colorref_get_g_value(m_color),
-      //         colorref_get_b_value(m_color)), (plusplus::REAL) m_dWidth);
+      //         color32_u8_opacity(m_color),
+      //         color32_u8_red(m_color),
+      //         color32_u8_green(m_color),
+      //         color32_u8_blue(m_color)), (plusplus::REAL) m_dWidth);
 
       //   }
       //   switch(m_elinejoin)

@@ -463,7 +463,7 @@ namespace draw2d
 
    void water_routine::DrawWaterNoLight(i32 page, color32_t * pSrcImage, color32_t * pTargetImage)
    {
-      __UNREFERENCED_PARAMETER(page);
+      UNREFERENCED_PARAMETER(page);
       //  i32 ox, oy;
       i32 greekdeltax, greekdeltay;
       i32 x, y;
@@ -503,8 +503,8 @@ namespace draw2d
 
    void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,color32_t * pSrcImage, color32_t * pTargetImage)
    {
-      __UNREFERENCED_PARAMETER(page);
-      __UNREFERENCED_PARAMETER(LightModifier);
+      UNREFERENCED_PARAMETER(page);
+      UNREFERENCED_PARAMETER(LightModifier);
       //  i32 ox, oy;
       i32 greekdeltax, greekdeltay;
       i32 x, y;

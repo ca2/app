@@ -74,9 +74,9 @@ namespace sockets
 
       m_emethod = http_method_get;
 
-      __UNREFERENCED_PARAMETER(host);
+      UNREFERENCED_PARAMETER(host);
 
-      __UNREFERENCED_PARAMETER(port);
+      UNREFERENCED_PARAMETER(port);
 
    }
 

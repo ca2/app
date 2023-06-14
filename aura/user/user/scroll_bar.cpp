@@ -14,8 +14,8 @@ namespace user
    scroll_bar::scroll_bar()
    {
 
-      m_bParentScrollX = false;
-      m_bParentScrollY = false;
+      //m_bParentScrollX = false;
+      //m_bParentScrollY = false;
 
       m_scrollinfo.nMin    = 0;
       m_scrollinfo.nMax    = 100;
@@ -31,6 +31,34 @@ namespace user
    {
 
    }
+
+
+
+   ::point_i32 scroll_bar::get_parent_accumulated_scroll(enum_layout elayout)
+   {
+
+      //auto pparent = get_parent();
+
+      //if (::is_null(pparent))
+      //{
+
+         return ::user::interaction::get_parent_accumulated_scroll(elayout);
+
+      //}
+
+      //auto pparentParent = pparent->get_parent();
+
+      //if (::is_null(pparentParent))
+      //{
+
+      //   return pparent->get_parent_accumulated_scroll(elayout);
+
+      //}
+
+      //return pparentParent->get_parent_accumulated_scroll(elayout);
+
+   }
+
 
 
    void scroll_bar::post_scroll_message(enum_scroll_command ecommand)

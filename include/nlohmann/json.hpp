@@ -2383,14 +2383,14 @@ This exception is thrown by the library when a parse error occurs. Parse errors
 can occur during the deserialization of JSON text, CBOR, MessagePack, as well
 as when using JSON Patch.
 
-Member @a byte holds the byte index of the last read character in the input
+Member @a ::u8 holds the ::u8 index of the last read character in the input
 file.
 
 Exceptions have ids 1xx.
 
 name / id                      | example message | description
 ------------------------------ | --------------- | -------------------------
-json.exception.parse_error.101 | parse error at 2: unexpected end of input; expected string literal | This error indicates a syntax error while deserializing a JSON text. The error message describes that an unexpected token (character) was encountered, and the member @a byte indicates the error position.
+json.exception.parse_error.101 | parse error at 2: unexpected end of input; expected string literal | This error indicates a syntax error while deserializing a JSON text. The error message describes that an unexpected token (character) was encountered, and the member @a ::u8 indicates the error position.
 json.exception.parse_error.102 | parse error at 14: missing or wrong low surrogate | JSON uses the `\uxxxx` format to describe Unicode characters. Code points above above 0xFFFF are split into two `\uxxxx` entries ("surrogate pairs"). This error indicates that the surrogate pair is incomplete or contains an invalid code point.
 json.exception.parse_error.103 | parse error: code points above 0x10FFFF are invalid | Unicode supports code points up to 0x10FFFF. Code points above 0x10FFFF are invalid.
 json.exception.parse_error.104 | parse error: JSON patch must be an array of objects | [RFC 6902](https://tools.ietf.org/html/rfc6902) requires a JSON Patch document to be a JSON document that represents an array of objects.
@@ -2399,15 +2399,15 @@ json.exception.parse_error.106 | parse error: array index '01' must not begin wi
 json.exception.parse_error.107 | parse error: JSON pointer must be empty or begin with '/' - was: 'foo' | A JSON Pointer must be a Unicode string containing a sequence of zero or more reference tokens, each prefixed by a `/` character.
 json.exception.parse_error.108 | parse error: escape character '~' must be followed with '0' or '1' | In a JSON Pointer, only `~0` and `~1` are valid escape sequences.
 json.exception.parse_error.109 | parse error: array index 'one' is not a number | A JSON Pointer array index must be a number.
-json.exception.parse_error.110 | parse error at 1: cannot read 2 bytes from vector | When parsing CBOR or MessagePack, the byte vector ends before the complete value has been read.
-json.exception.parse_error.112 | parse error at 1: error reading CBOR; last byte: 0xF8 | Not all types of CBOR or MessagePack are supported. This exception occurs if an unsupported byte was read.
-json.exception.parse_error.113 | parse error at 2: expected a CBOR string; last byte: 0x98 | While parsing a map key, a value that is not a string has been read.
+json.exception.parse_error.110 | parse error at 1: cannot read 2 bytes from vector | When parsing CBOR or MessagePack, the ::u8 vector ends before the complete value has been read.
+json.exception.parse_error.112 | parse error at 1: error reading CBOR; last ::u8: 0xF8 | Not all types of CBOR or MessagePack are supported. This exception occurs if an unsupported ::u8 was read.
+json.exception.parse_error.113 | parse error at 2: expected a CBOR string; last ::u8: 0x98 | While parsing a map key, a value that is not a string has been read.
 json.exception.parse_error.114 | parse error: Unsupported BSON record type 0x0F | The parsing of the corresponding BSON record type is not implemented (yet).
-json.exception.parse_error.115 | parse error at byte 5: syntax error while parsing UBJSON high-precision number: invalid number text: 1A | A UBJSON high-precision number could not be parsed.
+json.exception.parse_error.115 | parse error at ::u8 5: syntax error while parsing UBJSON high-precision number: invalid number text: 1A | A UBJSON high-precision number could not be parsed.
 
 @note For an input with n bytes, 1 is the index of the first character and n+1
-      is the index of the terminating null byte or the end of file. This also
-      holds true when reading a byte vector (CBOR or MessagePack).
+      is the index of the terminating null ::u8 or the end of file. This also
+      holds true when reading a ::u8 vector (CBOR or MessagePack).
 
 @liveexample{The following code shows how a `parse_error` exception can be
 caught.,parse_error}
@@ -2443,25 +2443,25 @@ class parse_error : public exception
     static parse_error create(int id_, std::size_t byte_, const std::string& what_arg)
     {
         std::string w = exception::name("parse_error", id_) + "parse error" +
-                        (byte_ != 0 ? (" at byte " + std::to_string(byte_)) : "") +
+                        (byte_ != 0 ? (" at ::u8 " + std::to_string(byte_)) : "") +
                         ": " + what_arg;
         return parse_error(id_, byte_, w.c_str());
     }
 
     /*!
-    @brief byte index of the parse error
+    @brief ::u8 index of the parse error
 
-    The byte index of the last read character in the input file.
+    The ::u8 index of the last read character in the input file.
 
     @note For an input with n bytes, 1 is the index of the first character and
-          n+1 is the index of the terminating null byte or the end of file.
-          This also holds true when reading a byte vector (CBOR or MessagePack).
+          n+1 is the index of the terminating null ::u8 or the end of file.
+          This also holds true when reading a ::u8 vector (CBOR or MessagePack).
     */
-    const std::size_t byte;
+    const std::size_t ::u8;
 
   private:
     parse_error(int id_, std::size_t byte_, const char* what_arg)
-        : exception(id_, what_arg), byte(byte_) {}
+        : exception(id_, what_arg), ::u8(byte_) {}
 
     static std::string position_string(const position_t& pos)
     {
@@ -2547,7 +2547,7 @@ json.exception.type_error.312 | cannot use update() with string | The @ref updat
 json.exception.type_error.313 | invalid value to unflatten | The @ref unflatten function converts an object whose keys are JSON Pointers back into an arbitrary nested JSON value. The JSON Pointers must not overlap, because then the resulting value would not be well defined.
 json.exception.type_error.314 | only objects can be unflattened | The @ref unflatten function only works for an object whose keys are JSON Pointers.
 json.exception.type_error.315 | values in object must be primitive | The @ref unflatten function only works for an object whose keys are JSON Pointers and whose values are primitive.
-json.exception.type_error.316 | invalid UTF-8 byte at index 10: 0x7E | The @ref dump function only works with UTF-8 encoded strings; that is, if you assign a `std::string` to a JSON value, make sure it is UTF-8 encoded. |
+json.exception.type_error.316 | invalid UTF-8 ::u8 at index 10: 0x7E | The @ref dump function only works with UTF-8 encoded strings; that is, if you assign a `std::string` to a JSON value, make sure it is UTF-8 encoded. |
 json.exception.type_error.317 | JSON value cannot be serialized to requested format | The dynamic type of the object cannot be represented in the requested serialization format (e.g. a raw `true` or `null` JSON object cannot be serialized to BSON) |
 
 @liveexample{The following code shows how a `type_error` exception can be
@@ -2594,7 +2594,7 @@ json.exception.out_of_range.405 | JSON pointer has no parent | The JSON Patch op
 json.exception.out_of_range.406 | number overflow parsing '10E1000' | A parsed number could not be stored as without changing it to NaN or INF.
 json.exception.out_of_range.407 | number overflow serializing '9223372036854775808' | UBJSON and BSON only support integer numbers up to 9223372036854775807. (until version 3.8.0) |
 json.exception.out_of_range.408 | excessive array size: 8658170730974374167 | The size (following `#`) of an UBJSON array or object exceeds the maximal capacity. |
-json.exception.out_of_range.409 | BSON key cannot contain code point U+0000 (at byte 2) | Key identifiers to be serialized to BSON cannot contain code point U+0000, since the key is stored as zero-terminated c-string |
+json.exception.out_of_range.409 | BSON key cannot contain code point U+0000 (at ::u8 2) | Key identifiers to be serialized to BSON cannot contain code point U+0000, since the key is stored as zero-terminated c-string |
 
 @liveexample{The following code shows how an `out_of_range` exception can be
 caught.,out_of_range}
@@ -4684,9 +4684,9 @@ std::size_t hash(const BasicJsonType& j)
             const auto h = std::hash<bool> {}(j.get_binary().has_subtype());
             seed = combine(seed, h);
             seed = combine(seed, j.get_binary().subtype());
-            for (const auto byte : j.get_binary())
+            for (const auto ::u8 : j.get_binary())
             {
-                seed = combine(seed, std::hash<std::uint8_t> {}(byte));
+                seed = combine(seed, std::hash<std::uint8_t> {}(::u8));
             }
             return seed;
         }
@@ -4748,7 +4748,7 @@ enum class input_format_t { json, cbor, msgpack, ubjson, bson };
 ////////////////////
 
 /*!
-Input adapter for stdio file access. This adapter read only 1 byte and do not use any
+Input adapter for stdio file access. This adapter read only 1 ::u8 and do not use any
  buffer. This adapter is a very low level adapter.
 */
 class file_input_adapter
@@ -5039,7 +5039,7 @@ class wide_string_input_adapter
     /// a buffer for UTF-8 bytes
     std::array<std::char_traits<char>::int_type, 4> utf8_bytes = {{0, 0, 0, 0}};
 
-    /// index to the utf8_codes array for the next valid byte
+    /// index to the utf8_codes array for the next valid ::u8
     std::size_t utf8_bytes_index = 0;
     /// number of valid bytes in the utf8_codes array
     std::size_t utf8_bytes_filled = 0;
@@ -6071,9 +6071,9 @@ class lexer : public lexer_base<BasicJsonType>
     }
 
     /*!
-    @brief check if the next byte(s) are inside a given range
+    @brief check if the next ::u8(s) are inside a given range
 
-    Adds the current byte and, for each passed range, reads a new byte and
+    Adds the current ::u8 and, for each passed range, reads a new ::u8 and
     checks if it is inside the range. If a violation was detected, set up an
     error message and return false. Otherwise, return true.
 
@@ -6099,7 +6099,7 @@ class lexer : public lexer_base<BasicJsonType>
             }
             else
             {
-                error_message = "invalid string: ill-formed UTF-8 byte";
+                error_message = "invalid string: ill-formed UTF-8 ::u8";
                 return false;
             }
         }
@@ -6253,25 +6253,25 @@ class lexer : public lexer_base<BasicJsonType>
                             // translate codepoint into bytes
                             if (codepoint < 0x80)
                             {
-                                // 1-byte characters: 0xxxxxxx (ASCII)
+                                // 1-::u8 characters: 0xxxxxxx (ASCII)
                                 add(static_cast<char_int_type>(codepoint));
                             }
                             else if (codepoint <= 0x7FF)
                             {
-                                // 2-byte characters: 110xxxxx 10xxxxxx
+                                // 2-::u8 characters: 110xxxxx 10xxxxxx
                                 add(static_cast<char_int_type>(0xC0u | (static_cast<unsigned int>(codepoint) >> 6u)));
                                 add(static_cast<char_int_type>(0x80u | (static_cast<unsigned int>(codepoint) & 0x3Fu)));
                             }
                             else if (codepoint <= 0xFFFF)
                             {
-                                // 3-byte characters: 1110xxxx 10xxxxxx 10xxxxxx
+                                // 3-::u8 characters: 1110xxxx 10xxxxxx 10xxxxxx
                                 add(static_cast<char_int_type>(0xE0u | (static_cast<unsigned int>(codepoint) >> 12u)));
                                 add(static_cast<char_int_type>(0x80u | ((static_cast<unsigned int>(codepoint) >> 6u) & 0x3Fu)));
                                 add(static_cast<char_int_type>(0x80u | (static_cast<unsigned int>(codepoint) & 0x3Fu)));
                             }
                             else
                             {
-                                // 4-byte characters: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+                                // 4-::u8 characters: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
                                 add(static_cast<char_int_type>(0xF0u | (static_cast<unsigned int>(codepoint) >> 18u)));
                                 add(static_cast<char_int_type>(0x80u | ((static_cast<unsigned int>(codepoint) >> 12u) & 0x3Fu)));
                                 add(static_cast<char_int_type>(0x80u | ((static_cast<unsigned int>(codepoint) >> 6u) & 0x3Fu)));
@@ -6701,7 +6701,7 @@ class lexer : public lexer_base<BasicJsonType>
                 // remaining bytes (80..C1 and F5..FF) are ill-formed
                 default:
                 {
-                    error_message = "invalid string: ill-formed UTF-8 byte";
+                    error_message = "invalid string: ill-formed UTF-8 ::u8";
                     return token_type::parse_error;
                 }
             }
@@ -7351,7 +7351,7 @@ scan_number_done:
     /////////////////////
 
     /*!
-    @brief skip the UTF-8 byte order mark
+    @brief skip the UTF-8 ::u8 order mark
     @return true iff there is no BOM or the correct BOM has been skipped
     */
     bool skip_bom()
@@ -7452,7 +7452,7 @@ scan_number_done:
             case '9':
                 return scan_number();
 
-            // end of input (the null byte is needed when parsing from
+            // end of input (the null ::u8 is needed when parsing from
             // string literals)
             case '\0':
             case std::char_traits<char_type>::eof():
@@ -7672,9 +7672,9 @@ enum class cbor_tag_handler_t
 };
 
 /*!
-@brief determine system byte order
+@brief determine system ::u8 order
 
-@return true if and only if system's byte order is little endian
+@return true if and only if system's ::u8 order is little endian
 
 @note from https://stackoverflow.com/a/1001328/266378
 */
@@ -7760,7 +7760,7 @@ class binary_reader
                 JSON_ASSERT(false);  // LCOV_EXCL_LINE
         }
 
-        // strict mode: next byte must be EOF
+        // strict mode: next ::u8 must be EOF
         if (result && strict)
         {
             if (format == input_format_t::ubjson)
@@ -7775,7 +7775,7 @@ class binary_reader
             if (JSON_HEDLEY_UNLIKELY(current != std::char_traits<char_type>::eof()))
             {
                 return sax->parse_error(chars_read, get_token_string(),
-                                        parse_error::create(110, chars_read, exception_message(format, "expected end of input; last byte: 0x" + get_token_string(), "value")));
+                                        parse_error::create(110, chars_read, exception_message(format, "expected end of input; last ::u8: 0x" + get_token_string(), "value")));
             }
         }
 
@@ -7813,7 +7813,7 @@ class binary_reader
     @brief Parses a C-style string from the BSON input.
     @param[in, out] result  A reference to the string variable where the read
                             string is to be stored.
-    @return `true` if the \x00-byte indicating the end of the string was
+    @return `true` if the \x00-::u8 indicating the end of the string was
              encountered before the EOF; false` indicates an unexpected EOF.
     */
     bool get_bson_cstr(string_t& result)
@@ -7837,7 +7837,7 @@ class binary_reader
     /*!
     @brief Parses a zero-terminated string of length @a len from the BSON
            input.
-    @param[in] len  The length (including the zero-byte at the end) of the
+    @param[in] len  The length (including the zero-::u8 at the end) of the
                     string to be read.
     @param[in, out] result  A reference to the string variable where the read
                             string is to be stored.
@@ -7858,13 +7858,13 @@ class binary_reader
     }
 
     /*!
-    @brief Parses a byte array input of length @a len from the BSON input.
-    @param[in] len  The length of the byte array to be read.
+    @brief Parses a ::u8 array input of length @a len from the BSON input.
+    @param[in] len  The length of the ::u8 array to be read.
     @param[in, out] result  A reference to the binary variable where the read
                             array is to be stored.
     @tparam NumberType The type of the length @a len
     @pre len >= 0
-    @return `true` if the byte array was successfully parsed
+    @return `true` if the ::u8 array was successfully parsed
     */
     template<typename NumberType>
     bool get_bson_binary(const NumberType len, binary_t& result)
@@ -7872,7 +7872,7 @@ class binary_reader
         if (JSON_HEDLEY_UNLIKELY(len < 0))
         {
             auto last_token = get_token_string();
-            return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::bson, "byte array length cannot be negative, is " + std::to_string(len), "binary")));
+            return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::bson, "::u8 array length cannot be negative, is " + std::to_string(len), "binary")));
         }
 
         // All BSON binary values have a subtype
@@ -8075,25 +8075,25 @@ class binary_reader
             case 0x17:
                 return sax->number_unsigned(static_cast<number_unsigned_t>(current));
 
-            case 0x18: // Unsigned integer (one-byte uint8_t follows)
+            case 0x18: // Unsigned integer (one-::u8 uint8_t follows)
             {
                 std::uint8_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_unsigned(number);
             }
 
-            case 0x19: // Unsigned integer (two-byte uint16_t follows)
+            case 0x19: // Unsigned integer (two-::u8 uint16_t follows)
             {
                 std::uint16_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_unsigned(number);
             }
 
-            case 0x1A: // Unsigned integer (four-byte uint32_t follows)
+            case 0x1A: // Unsigned integer (four-::u8 uint32_t follows)
             {
                 std::uint32_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_unsigned(number);
             }
 
-            case 0x1B: // Unsigned integer (eight-byte uint64_t follows)
+            case 0x1B: // Unsigned integer (eight-::u8 uint64_t follows)
             {
                 std::uint64_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_unsigned(number);
@@ -8126,25 +8126,25 @@ class binary_reader
             case 0x37:
                 return sax->number_integer(static_cast<std::int8_t>(0x20 - 1 - current));
 
-            case 0x38: // Negative integer (one-byte uint8_t follows)
+            case 0x38: // Negative integer (one-::u8 uint8_t follows)
             {
                 std::uint8_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_integer(static_cast<number_integer_t>(-1) - number);
             }
 
-            case 0x39: // Negative integer -1-n (two-byte uint16_t follows)
+            case 0x39: // Negative integer -1-n (two-::u8 uint16_t follows)
             {
                 std::uint16_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_integer(static_cast<number_integer_t>(-1) - number);
             }
 
-            case 0x3A: // Negative integer -1-n (four-byte uint32_t follows)
+            case 0x3A: // Negative integer -1-n (four-::u8 uint32_t follows)
             {
                 std::uint32_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_integer(static_cast<number_integer_t>(-1) - number);
             }
 
-            case 0x3B: // Negative integer -1-n (eight-byte uint64_t follows)
+            case 0x3B: // Negative integer -1-n (eight-::u8 uint64_t follows)
             {
                 std::uint64_t number{};
                 return get_number(input_format_t::cbor, number) && sax->number_integer(static_cast<number_integer_t>(-1)
@@ -8176,10 +8176,10 @@ class binary_reader
             case 0x55:
             case 0x56:
             case 0x57:
-            case 0x58: // Binary data (one-byte uint8_t for n follows)
-            case 0x59: // Binary data (two-byte uint16_t for n follow)
-            case 0x5A: // Binary data (four-byte uint32_t for n follow)
-            case 0x5B: // Binary data (eight-byte uint64_t for n follow)
+            case 0x58: // Binary data (one-::u8 uint8_t for n follows)
+            case 0x59: // Binary data (two-::u8 uint16_t for n follow)
+            case 0x5A: // Binary data (four-::u8 uint32_t for n follow)
+            case 0x5B: // Binary data (eight-::u8 uint64_t for n follow)
             case 0x5F: // Binary data (indefinite length)
             {
                 binary_t b;
@@ -8211,10 +8211,10 @@ class binary_reader
             case 0x75:
             case 0x76:
             case 0x77:
-            case 0x78: // UTF-8 string (one-byte uint8_t for n follows)
-            case 0x79: // UTF-8 string (two-byte uint16_t for n follow)
-            case 0x7A: // UTF-8 string (four-byte uint32_t for n follow)
-            case 0x7B: // UTF-8 string (eight-byte uint64_t for n follow)
+            case 0x78: // UTF-8 string (one-::u8 uint8_t for n follows)
+            case 0x79: // UTF-8 string (two-::u8 uint16_t for n follow)
+            case 0x7A: // UTF-8 string (four-::u8 uint32_t for n follow)
+            case 0x7B: // UTF-8 string (eight-::u8 uint64_t for n follow)
             case 0x7F: // UTF-8 string (indefinite length)
             {
                 string_t s;
@@ -8248,25 +8248,25 @@ class binary_reader
             case 0x97:
                 return get_cbor_array(static_cast<std::size_t>(static_cast<unsigned int>(current) & 0x1Fu), tag_handler);
 
-            case 0x98: // array (one-byte uint8_t for n follows)
+            case 0x98: // array (one-::u8 uint8_t for n follows)
             {
                 std::uint8_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_array(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0x99: // array (two-byte uint16_t for n follow)
+            case 0x99: // array (two-::u8 uint16_t for n follow)
             {
                 std::uint16_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_array(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0x9A: // array (four-byte uint32_t for n follow)
+            case 0x9A: // array (four-::u8 uint32_t for n follow)
             {
                 std::uint32_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_array(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0x9B: // array (eight-byte uint64_t for n follow)
+            case 0x9B: // array (eight-::u8 uint64_t for n follow)
             {
                 std::uint64_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_array(static_cast<std::size_t>(len), tag_handler);
@@ -8302,25 +8302,25 @@ class binary_reader
             case 0xB7:
                 return get_cbor_object(static_cast<std::size_t>(static_cast<unsigned int>(current) & 0x1Fu), tag_handler);
 
-            case 0xB8: // map (one-byte uint8_t for n follows)
+            case 0xB8: // map (one-::u8 uint8_t for n follows)
             {
                 std::uint8_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0xB9: // map (two-byte uint16_t for n follow)
+            case 0xB9: // map (two-::u8 uint16_t for n follow)
             {
                 std::uint16_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0xBA: // map (four-byte uint32_t for n follow)
+            case 0xBA: // map (four-::u8 uint32_t for n follow)
             {
                 std::uint32_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0xBB: // map (eight-byte uint64_t for n follow)
+            case 0xBB: // map (eight-::u8 uint64_t for n follow)
             {
                 std::uint64_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(static_cast<std::size_t>(len), tag_handler);
@@ -8354,7 +8354,7 @@ class binary_reader
                     case cbor_tag_handler_t::error:
                     {
                         auto last_token = get_token_string();
-                        return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::cbor, "invalid byte: 0x" + last_token, "value")));
+                        return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::cbor, "invalid ::u8: 0x" + last_token, "value")));
                     }
 
                     case cbor_tag_handler_t::ignore:
@@ -8405,7 +8405,7 @@ class binary_reader
             case 0xF6: // null
                 return sax->null();
 
-            case 0xF9: // Half-Precision Float (two-byte IEEE 754)
+            case 0xF9: // Half-Precision Float (two-::u8 IEEE 754)
             {
                 const auto byte1_raw = get();
                 if (JSON_HEDLEY_UNLIKELY(!unexpect_eof(input_format_t::cbor, "number")))
@@ -8453,13 +8453,13 @@ class binary_reader
                                          : static_cast<number_float_t>(val), "");
             }
 
-            case 0xFA: // Single-Precision Float (four-byte IEEE 754)
+            case 0xFA: // Single-Precision Float (four-::u8 IEEE 754)
             {
                 float number{};
                 return get_number(input_format_t::cbor, number) && sax->number_float(static_cast<number_float_t>(number), "");
             }
 
-            case 0xFB: // Double-Precision Float (eight-byte IEEE 754)
+            case 0xFB: // Double-Precision Float (eight-::u8 IEEE 754)
             {
                 double number{};
                 return get_number(input_format_t::cbor, number) && sax->number_float(static_cast<number_float_t>(number), "");
@@ -8468,7 +8468,7 @@ class binary_reader
             default: // anything else (0xFF is handled inside the other types)
             {
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::cbor, "invalid byte: 0x" + last_token, "value")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::cbor, "invalid ::u8: 0x" + last_token, "value")));
             }
         }
     }
@@ -8522,25 +8522,25 @@ class binary_reader
                 return get_string(input_format_t::cbor, static_cast<unsigned int>(current) & 0x1Fu, result);
             }
 
-            case 0x78: // UTF-8 string (one-byte uint8_t for n follows)
+            case 0x78: // UTF-8 string (one-::u8 uint8_t for n follows)
             {
                 std::uint8_t len{};
                 return get_number(input_format_t::cbor, len) && get_string(input_format_t::cbor, len, result);
             }
 
-            case 0x79: // UTF-8 string (two-byte uint16_t for n follow)
+            case 0x79: // UTF-8 string (two-::u8 uint16_t for n follow)
             {
                 std::uint16_t len{};
                 return get_number(input_format_t::cbor, len) && get_string(input_format_t::cbor, len, result);
             }
 
-            case 0x7A: // UTF-8 string (four-byte uint32_t for n follow)
+            case 0x7A: // UTF-8 string (four-::u8 uint32_t for n follow)
             {
                 std::uint32_t len{};
                 return get_number(input_format_t::cbor, len) && get_string(input_format_t::cbor, len, result);
             }
 
-            case 0x7B: // UTF-8 string (eight-byte uint64_t for n follow)
+            case 0x7B: // UTF-8 string (eight-::u8 uint64_t for n follow)
             {
                 std::uint64_t len{};
                 return get_number(input_format_t::cbor, len) && get_string(input_format_t::cbor, len, result);
@@ -8563,21 +8563,21 @@ class binary_reader
             default:
             {
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::cbor, "expected length specification (0x60-0x7B) or indefinite string type (0x7F); last byte: 0x" + last_token, "string")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::cbor, "expected length specification (0x60-0x7B) or indefinite string type (0x7F); last ::u8: 0x" + last_token, "string")));
             }
         }
     }
 
     /*!
-    @brief reads a CBOR byte array
+    @brief reads a CBOR ::u8 array
 
     This function first reads starting bytes to determine the expected
-    byte array length and then copies this number of bytes into the byte array.
-    Additionally, CBOR's byte arrays with indefinite lengths are supported.
+    ::u8 array length and then copies this number of bytes into the ::u8 array.
+    Additionally, CBOR's ::u8 arrays with indefinite lengths are supported.
 
-    @param[out] result  created byte array
+    @param[out] result  created ::u8 array
 
-    @return whether byte array creation completed
+    @return whether ::u8 array creation completed
     */
     bool get_cbor_binary(binary_t& result)
     {
@@ -8617,28 +8617,28 @@ class binary_reader
                 return get_binary(input_format_t::cbor, static_cast<unsigned int>(current) & 0x1Fu, result);
             }
 
-            case 0x58: // Binary data (one-byte uint8_t for n follows)
+            case 0x58: // Binary data (one-::u8 uint8_t for n follows)
             {
                 std::uint8_t len{};
                 return get_number(input_format_t::cbor, len) &&
                        get_binary(input_format_t::cbor, len, result);
             }
 
-            case 0x59: // Binary data (two-byte uint16_t for n follow)
+            case 0x59: // Binary data (two-::u8 uint16_t for n follow)
             {
                 std::uint16_t len{};
                 return get_number(input_format_t::cbor, len) &&
                        get_binary(input_format_t::cbor, len, result);
             }
 
-            case 0x5A: // Binary data (four-byte uint32_t for n follow)
+            case 0x5A: // Binary data (four-::u8 uint32_t for n follow)
             {
                 std::uint32_t len{};
                 return get_number(input_format_t::cbor, len) &&
                        get_binary(input_format_t::cbor, len, result);
             }
 
-            case 0x5B: // Binary data (eight-byte uint64_t for n follow)
+            case 0x5B: // Binary data (eight-::u8 uint64_t for n follow)
             {
                 std::uint64_t len{};
                 return get_number(input_format_t::cbor, len) &&
@@ -8662,7 +8662,7 @@ class binary_reader
             default:
             {
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::cbor, "expected length specification (0x40-0x5B) or indefinite binary array type (0x5F); last byte: 0x" + last_token, "binary")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::cbor, "expected length specification (0x40-0x5B) or indefinite binary array type (0x5F); last ::u8: 0x" + last_token, "binary")));
             }
         }
     }
@@ -9129,7 +9129,7 @@ class binary_reader
             default: // anything else
             {
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::msgpack, "invalid byte: 0x" + last_token, "value")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::msgpack, "invalid ::u8: 0x" + last_token, "value")));
             }
         }
     }
@@ -9211,20 +9211,20 @@ class binary_reader
             default:
             {
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::msgpack, "expected length specification (0xA0-0xBF, 0xD9-0xDB); last byte: 0x" + last_token, "string")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::msgpack, "expected length specification (0xA0-0xBF, 0xD9-0xDB); last ::u8: 0x" + last_token, "string")));
             }
         }
     }
 
     /*!
-    @brief reads a MessagePack byte array
+    @brief reads a MessagePack ::u8 array
 
     This function first reads starting bytes to determine the expected
-    byte array length and then copies this number of bytes into a byte array.
+    ::u8 array length and then copies this number of bytes into a ::u8 array.
 
-    @param[out] result  created byte array
+    @param[out] result  created ::u8 array
 
-    @return whether byte array creation completed
+    @return whether ::u8 array creation completed
     */
     bool get_msgpack_binary(binary_t& result)
     {
@@ -9404,8 +9404,8 @@ class binary_reader
     /*!
     @brief reads a UBJSON string
 
-    This function is either called after reading the 'S' byte explicitly
-    indicating a string, or in case of an object key where the 'S' byte can be
+    This function is either called after reading the 'S' ::u8 explicitly
+    indicating a string, or in case of an object key where the 'S' ::u8 can be
     left out.
 
     @param[out] result   created string
@@ -9461,7 +9461,7 @@ class binary_reader
 
             default:
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::ubjson, "expected length type specification (U, i, I, l, L); last byte: 0x" + last_token, "string")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::ubjson, "expected length type specification (U, i, I, l, L); last ::u8: 0x" + last_token, "string")));
         }
     }
 
@@ -9531,7 +9531,7 @@ class binary_reader
             default:
             {
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::ubjson, "expected length type specification (U, i, I, l, L) after '#'; last byte: 0x" + last_token, "size")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::ubjson, "expected length type specification (U, i, I, l, L) after '#'; last ::u8: 0x" + last_token, "size")));
             }
         }
     }
@@ -9569,7 +9569,7 @@ class binary_reader
                     return false;
                 }
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::ubjson, "expected '#' after type information; last byte: 0x" + last_token, "size")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::ubjson, "expected '#' after type information; last ::u8: 0x" + last_token, "size")));
             }
 
             return get_ubjson_size_value(result.first);
@@ -9659,7 +9659,7 @@ class binary_reader
                 if (JSON_HEDLEY_UNLIKELY(current > 127))
                 {
                     auto last_token = get_token_string();
-                    return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::ubjson, "byte after 'C' must be in range 0x00..0x7F; last byte: 0x" + last_token, "char")));
+                    return sax->parse_error(chars_read, last_token, parse_error::create(113, chars_read, exception_message(input_format_t::ubjson, "::u8 after 'C' must be in range 0x00..0x7F; last ::u8: 0x" + last_token, "char")));
                 }
                 string_t s(1, static_cast<typename string_t::value_type>(current));
                 return sax->string(s);
@@ -9680,7 +9680,7 @@ class binary_reader
             default: // anything else
             {
                 auto last_token = get_token_string();
-                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::ubjson, "invalid byte: 0x" + last_token, "value")));
+                return sax->parse_error(chars_read, last_token, parse_error::create(112, chars_read, exception_message(input_format_t::ubjson, "invalid ::u8: 0x" + last_token, "value")));
             }
         }
     }
@@ -9923,7 +9923,7 @@ class binary_reader
     template<typename NumberType, bool InputIsLittleEndian = false>
     bool get_number(const input_format_t format, NumberType& result)
     {
-        // step 1: read input into array with system's byte order
+        // step 1: read input into array with system's ::u8 order
         std::array<std::uint8_t, sizeof(NumberType)> vec;
         for (std::size_t i = 0; i < sizeof(NumberType); ++i)
         {
@@ -9933,7 +9933,7 @@ class binary_reader
                 return false;
             }
 
-            // reverse byte order prior to conversion if necessary
+            // reverse ::u8 order prior to conversion if necessary
             if (is_little_endian != InputIsLittleEndian)
             {
                 vec[sizeof(NumberType) - i - 1] = static_cast<std::uint8_t>(current);
@@ -9983,14 +9983,14 @@ class binary_reader
     }
 
     /*!
-    @brief create a byte array by reading bytes from the input
+    @brief create a ::u8 array by reading bytes from the input
 
     @tparam NumberType the type of the number
     @param[in] format the current format (for diagnostics)
     @param[in] len number of bytes to read
-    @param[out] result byte array created by reading @a len bytes
+    @param[out] result ::u8 array created by reading @a len bytes
 
-    @return whether byte array creation completed
+    @return whether ::u8 array creation completed
 
     @note We can not reserve @a len bytes for the result, because @a len
           may be too large. Usually, @ref unexpect_eof() detects the end of
@@ -10032,7 +10032,7 @@ class binary_reader
     }
 
     /*!
-    @return a string representation of the last read byte
+    @return a string representation of the last read ::u8
     */
     std::string get_token_string() const
     {
@@ -10267,7 +10267,7 @@ class parser
         (void)detail::is_sax_static_asserts<SAX, BasicJsonType> {};
         const bool result = sax_parse_internal(sax);
 
-        // strict mode: next byte must be EOF
+        // strict mode: next ::u8 must be EOF
         if (result && strict && (get_token() != token_type::end_of_input))
         {
             return sax->parse_error(m_lexer.get_position(),
@@ -12640,7 +12640,7 @@ template<typename CharType> struct output_adapter_protocol
 template<typename CharType>
 using output_adapter_t = std::shared_ptr<output_adapter_protocol<CharType>>;
 
-/// output adapter for byte vectors
+/// output adapter for ::u8 vectors
 template<typename CharType>
 class output_vector_adapter : public output_adapter_protocol<CharType>
 {
@@ -12843,7 +12843,7 @@ class binary_writer
                 else
                 {
                     // The conversions below encode the sign in the first
-                    // byte, and the value is converted to a positive number.
+                    // ::u8, and the value is converted to a positive number.
                     const auto positive_number = -1 - j.m_value.number_integer;
                     if (j.m_value.number_integer >= -24)
                     {
@@ -12927,7 +12927,7 @@ class binary_writer
 
             case value_t::string:
             {
-                // step 1: write control byte and the string length
+                // step 1: write control ::u8 and the string length
                 const auto N = j.m_value.string->size();
                 if (N <= 0x17)
                 {
@@ -12965,7 +12965,7 @@ class binary_writer
 
             case value_t::array:
             {
-                // step 1: write control byte and the array size
+                // step 1: write control ::u8 and the array size
                 const auto N = j.m_value.array->size();
                 if (N <= 0x17)
                 {
@@ -13010,7 +13010,7 @@ class binary_writer
                     write_number(j.m_value.binary->subtype());
                 }
 
-                // step 1: write control byte and the binary array size
+                // step 1: write control ::u8 and the binary array size
                 const auto N = j.m_value.binary->size();
                 if (N <= 0x17)
                 {
@@ -13049,7 +13049,7 @@ class binary_writer
 
             case value_t::object:
             {
-                // step 1: write control byte and the object size
+                // step 1: write control ::u8 and the object size
                 const auto N = j.m_value.object->size();
                 if (N <= 0x17)
                 {
@@ -13231,7 +13231,7 @@ class binary_writer
 
             case value_t::string:
             {
-                // step 1: write control byte and the string length
+                // step 1: write control ::u8 and the string length
                 const auto N = j.m_value.string->size();
                 if (N <= 31)
                 {
@@ -13266,7 +13266,7 @@ class binary_writer
 
             case value_t::array:
             {
-                // step 1: write control byte and the array size
+                // step 1: write control ::u8 and the array size
                 const auto N = j.m_value.array->size();
                 if (N <= 15)
                 {
@@ -13300,7 +13300,7 @@ class binary_writer
                 // determine whether or not to use the ext or fixext types
                 const bool use_ext = j.m_value.binary->has_subtype();
 
-                // step 1: write control byte and the byte string length
+                // step 1: write control ::u8 and the ::u8 string length
                 const auto N = j.m_value.binary->size();
                 if (N <= (std::numeric_limits<std::uint8_t>::max)())
                 {
@@ -13369,7 +13369,7 @@ class binary_writer
                     write_number(static_cast<std::int8_t>(j.m_value.binary->subtype()));
                 }
 
-                // step 2: write the byte string
+                // step 2: write the ::u8 string
                 oa->write_characters(
                     reinterpret_cast<const CharType*>(j.m_value.binary->data()),
                     N);
@@ -13379,7 +13379,7 @@ class binary_writer
 
             case value_t::object:
             {
-                // step 1: write control byte and the object size
+                // step 1: write control ::u8 and the object size
                 const auto N = j.m_value.object->size();
                 if (N <= 15)
                 {
@@ -13632,7 +13632,7 @@ class binary_writer
         if (JSON_HEDLEY_UNLIKELY(it != BasicJsonType::string_t::npos))
         {
             JSON_THROW(out_of_range::create(409,
-                                            "BSON key cannot contain code point U+0000 (at byte " + std::to_string(it) + ")"));
+                                            "BSON key cannot contain code point U+0000 (at ::u8 " + std::to_string(it) + ")"));
         }
 
         return /*id*/ 1ul + name.size() + /*zero-terminator*/1u;
@@ -14241,7 +14241,7 @@ class binary_writer
         // step 2: write array to output (with possible reordering)
         if (is_little_endian != OutputIsLittleEndian)
         {
-            // reverse byte order prior to conversion if necessary
+            // reverse ::u8 order prior to conversion if necessary
             std::reverse(vec.begin(), vec.end());
         }
 
@@ -15520,7 +15520,7 @@ class serializer
     - integer numbers are converted implicitly via `operator<<`
     - floating-point numbers are converted to a string using `"%g"` format
     - binary values are serialized as objects containing the subtype and the
-      byte array
+      ::u8 array
 
     @param[in] val               value to serialize
     @param[in] pretty_print      whether the output shall be pretty-printed
@@ -15820,15 +15820,15 @@ class serializer
         std::uint8_t state = UTF8_ACCEPT;
         std::size_t bytes = 0;  // number of bytes written to string_buffer
 
-        // number of bytes written at the point of the last valid byte
+        // number of bytes written at the point of the last valid ::u8
         std::size_t bytes_after_last_accept = 0;
         std::size_t undumped_chars = 0;
 
         for (std::size_t i = 0; i < s.size(); ++i)
         {
-            const auto byte = static_cast<uint8_t>(s[i]);
+            const auto ::u8 = static_cast<uint8_t>(s[i]);
 
-            switch (decode(state, codepoint, byte))
+            switch (decode(state, codepoint, ::u8))
             {
                 case UTF8_ACCEPT:  // decode found a new code point
                 {
@@ -15905,7 +15905,7 @@ class serializer
                             }
                             else
                             {
-                                // copy byte to buffer (all previous bytes
+                                // copy ::u8 to buffer (all previous bytes
                                 // been copied have in default case above)
                                 string_buffer[bytes++] = s[i];
                             }
@@ -15922,28 +15922,28 @@ class serializer
                         bytes = 0;
                     }
 
-                    // remember the byte position of this accept
+                    // remember the ::u8 position of this accept
                     bytes_after_last_accept = bytes;
                     undumped_chars = 0;
                     break;
                 }
 
-                case UTF8_REJECT:  // decode found invalid UTF-8 byte
+                case UTF8_REJECT:  // decode found invalid UTF-8 ::u8
                 {
                     switch (error_handler)
                     {
                         case error_handler_t::strict:
                         {
                             std::string sn(3, '\0');
-                            (std::snprintf)(&sn[0], sn.size(), "%.2X", byte);
-                            JSON_THROW(type_error::create(316, "invalid UTF-8 byte at index " + std::to_string(i) + ": 0x" + sn));
+                            (std::snprintf)(&sn[0], sn.size(), "%.2X", ::u8);
+                            JSON_THROW(type_error::create(316, "invalid UTF-8 ::u8 at index " + std::to_string(i) + ": 0x" + sn));
                         }
 
                         case error_handler_t::ignore:
                         case error_handler_t::replace:
                         {
                             // in case we saw this character the first time, we
-                            // would like to read it again, because the byte
+                            // would like to read it again, because the ::u8
                             // may be OK for itself, but just not OK for the
                             // previous sequence
                             if (undumped_chars > 0)
@@ -15999,11 +15999,11 @@ class serializer
                     break;
                 }
 
-                default:  // decode found yet incomplete multi-byte code point
+                default:  // decode found yet incomplete multi-::u8 code point
                 {
                     if (!ensure_ascii)
                     {
-                        // code point will not be escaped - copy byte to buffer
+                        // code point will not be escaped - copy ::u8 to buffer
                         string_buffer[bytes++] = s[i];
                     }
                     ++undumped_chars;
@@ -16030,7 +16030,7 @@ class serializer
                 {
                     std::string sn(3, '\0');
                     (std::snprintf)(&sn[0], sn.size(), "%.2X", static_cast<std::uint8_t>(s.back()));
-                    JSON_THROW(type_error::create(316, "incomplete UTF-8 string; last byte: 0x" + sn));
+                    JSON_THROW(type_error::create(316, "incomplete UTF-8 string; last ::u8: 0x" + sn));
                 }
 
                 case error_handler_t::ignore:
@@ -16148,7 +16148,7 @@ class serializer
             *buffer_ptr = '-';
             abs_value = remove_sign(static_cast<number_integer_t>(x));
 
-            // account one more byte for the minus sign
+            // account one more ::u8 for the minus sign
             n_chars = 1 + count_digits(abs_value);
         }
         else
@@ -16157,7 +16157,7 @@ class serializer
             n_chars = count_digits(abs_value);
         }
 
-        // spare 1 byte for '\0'
+        // spare 1 ::u8 for '\0'
         JSON_ASSERT(n_chars < number_buffer.size() - 1);
 
         // jump to the end to generate the string from backward
@@ -16277,17 +16277,17 @@ class serializer
     /*!
     @brief check whether a string is UTF-8 encoded
 
-    The function checks each byte of a string whether it is UTF-8 encoded. The
+    The function checks each ::u8 of a string whether it is UTF-8 encoded. The
     result of the check is stored in the @a state parameter. The function must
     be called initially with state 0 (accept). State 1 means the string must
-    be rejected, because the current byte is not allowed. If the string is
+    be rejected, because the current ::u8 is not allowed. If the string is
     completely processed, but the state is non-zero, the string ended
-    prematurely; that is, the last byte indicated more bytes should have
+    prematurely; that is, the last ::u8 indicated more bytes should have
     followed.
 
     @param[in,out] state  the state of the decoding
     @param[in,out] codep  codepoint (valid only if resulting state is UTF8_ACCEPT)
-    @param[in] byte       next byte to decode
+    @param[in] ::u8       next ::u8 to decode
     @return               new state
 
     @note The function has been edited: a std::array is used.
@@ -16295,7 +16295,7 @@ class serializer
     @copyright Copyright (c) 2008-2009 Bjoern Hoehrmann <bjoern@hoehrmann.de>
     @sa http://bjoern.hoehrmann.de/utf-8/decoder/dfa/
     */
-    static std::uint8_t decode(std::uint8_t& state, std::uint32_t& codep, const std::uint8_t byte) noexcept
+    static std::uint8_t decode(std::uint8_t& state, std::uint32_t& codep, const std::uint8_t ::u8) noexcept
     {
         static const std::array<std::uint8_t, 400> utf8d =
         {
@@ -16317,11 +16317,11 @@ class serializer
             }
         };
 
-        const std::uint8_t type = utf8d[byte];
+        const std::uint8_t type = utf8d[::u8];
 
         codep = (state != UTF8_ACCEPT)
-                ? (byte & 0x3fu) | (codep << 6u)
-                : (0xFFu >> type) & (byte);
+                ? (::u8 & 0x3fu) | (codep << 6u)
+                : (0xFFu >> type) & (::u8);
 
         std::size_t index = 256u + static_cast<size_t>(state) * 16u + static_cast<size_t>(type);
         JSON_ASSERT(index < 400);
@@ -17044,7 +17044,7 @@ class basic_json
 
     To store objects in C++, a type is defined by the template parameter
     described below. Unicode values are split by the JSON class into
-    byte-sized characters during deserialization.
+    ::u8-sized characters during deserialization.
 
     @tparam StringType  the container to store strings (e.g., `std::string`).
     Note this container is used for keys/names in objects, see @ref object_t.
@@ -17333,7 +17333,7 @@ class basic_json
     serialized formats, such as CBOR's Major Type 2, MessagePack's bin, and
     BSON's generic binary subtype. This type is NOT a part of standard JSON and
     exists solely for compatibility with these binary types. As such, it is
-    simply defined as an ordered sequence of zero or more byte values.
+    simply defined as an ordered sequence of zero or more ::u8 values.
 
     Additionally, as an implementation detail, the subtype of the binary data is
     carried around as a `std::uint8_t`, which is compatible with both of the
@@ -17343,14 +17343,14 @@ class basic_json
 
     [CBOR's RFC 7049](https://tools.ietf.org/html/rfc7049) describes this type
     as:
-    > Major type 2: a byte string. The string's length in bytes is represented
+    > Major type 2: a ::u8 string. The string's length in bytes is represented
     > following the rules for positive integers (major type 0).
 
     [MessagePack's documentation on the bin type
     family](https://github.com/msgpack/msgpack/blob/master/spec.md#bin-format-family)
     describes this type as:
-    > Bin format family stores an byte array in 2, 3, or 5 bytes of extra bytes
-    > in addition to the size of the byte array.
+    > Bin format family stores an ::u8 array in 2, 3, or 5 bytes of extra bytes
+    > in addition to the size of the ::u8 array.
 
     [BSON's specifications](http://bsonspec.org/spec.html) describe several
     binary types; however, this type is intended to represent the generic binary
@@ -17363,7 +17363,7 @@ class basic_json
     decomposable into bytes.
 
     The default representation of this binary format is a
-    `std::vector<std::uint8_t>`, which is a very common way to represent a byte
+    `std::vector<std::uint8_t>`, which is a very common way to represent a ::u8
     array in modern C++.
 
     #### Default type
@@ -17379,7 +17379,7 @@ class basic_json
     #### Notes on subtypes
 
     - CBOR
-       - Binary values are represented as byte strings. No subtypes are
+       - Binary values are represented as ::u8 strings. No subtypes are
          supported and will be ignored when CBOR is written.
     - MessagePack
        - If a subtype is given and the binary array contains exactly 1, 2, 4, 8,
@@ -21609,7 +21609,7 @@ class basic_json
     boolean     | `false`
     string      | `""`
     number      | `0`
-    binary      | An empty byte vector
+    binary      | An empty ::u8 vector
     object      | `{}`
     array       | `[]`
 
@@ -23087,7 +23087,7 @@ class basic_json
     - an std::istream object
     - a FILE pointer
     - a C-style array of characters
-    - a pointer to a null-terminated string of single byte characters
+    - a pointer to a null-terminated string of single ::u8 characters
     - an object obj for which begin(obj) and end(obj) produces a valid pair of
       iterators.
 
@@ -23114,7 +23114,7 @@ class basic_json
     LL(1) parser. The complexity can be higher if the parser callback function
     @a cb or reading from the input @a i has a super-linear complexity.
 
-    @note A UTF-8 byte order mark is silently ignored.
+    @note A UTF-8 ::u8 order mark is silently ignored.
 
     @liveexample{The example below demonstrates the `parse()` function reading
     from an array.,parse__array__parser_callback_t}
@@ -23205,7 +23205,7 @@ class basic_json
     - an std::istream object
     - a FILE pointer
     - a C-style array of characters
-    - a pointer to a null-terminated string of single byte characters
+    - a pointer to a null-terminated string of single ::u8 characters
     - an object obj for which begin(obj) and end(obj) produces a valid pair of
       iterators.
 
@@ -23219,7 +23219,7 @@ class basic_json
     @complexity Linear in the length of the input. The parser is a predictive
     LL(1) parser.
 
-    @note A UTF-8 byte order mark is silently ignored.
+    @note A UTF-8 ::u8 order mark is silently ignored.
 
     @liveexample{The example below demonstrates the `accept()` function reading
     from a string.,accept__string}
@@ -23255,7 +23255,7 @@ class basic_json
     - an std::istream object
     - a FILE pointer
     - a C-style array of characters
-    - a pointer to a null-terminated string of single byte characters
+    - a pointer to a null-terminated string of single ::u8 characters
     - an object obj for which begin(obj) and end(obj) produces a valid pair of
       iterators.
 
@@ -23278,7 +23278,7 @@ class basic_json
     LL(1) parser. The complexity can be higher if the SAX consumer @a sax has
     a super-linear complexity.
 
-    @note A UTF-8 byte order mark is silently ignored.
+    @note A UTF-8 ::u8 order mark is silently ignored.
 
     @liveexample{The example below demonstrates the `sax_parse()` function
     reading from string and processing the events with a user-defined SAX
@@ -23355,7 +23355,7 @@ class basic_json
     @complexity Linear in the length of the input. The parser is a predictive
     LL(1) parser.
 
-    @note A UTF-8 byte order mark is silently ignored.
+    @note A UTF-8 ::u8 order mark is silently ignored.
 
     @liveexample{The example below shows how a JSON value is constructed by
     reading a serialization from a stream.,operator_deserialize}
@@ -23457,7 +23457,7 @@ class basic_json
     /*!
     @brief create a CBOR serialization of a given JSON value
 
-    Serializes a given JSON value @a j to a byte vector using the CBOR (Concise
+    Serializes a given JSON value @a j to a ::u8 vector using the CBOR (Concise
     Binary Object Representation) serialization format. CBOR is a binary
     serialization format which aims to be more compact than JSON itself, yet
     more efficient to parse.
@@ -23465,7 +23465,7 @@ class basic_json
     The library uses the following mapping from JSON values types to
     CBOR types according to the CBOR specification (RFC 7049):
 
-    JSON value type | value/range                                | CBOR type                          | first byte
+    JSON value type | value/range                                | CBOR type                          | first ::u8
     --------------- | ------------------------------------------ | ---------------------------------- | ---------------
     null            | `null`                                     | Null                               | 0xF6
     boolean         | `true`                                     | True                               | 0xF5
@@ -23473,40 +23473,40 @@ class basic_json
     number_integer  | -9223372036854775808..-2147483649          | Negative integer (8 bytes follow)  | 0x3B
     number_integer  | -2147483648..-32769                        | Negative integer (4 bytes follow)  | 0x3A
     number_integer  | -32768..-129                               | Negative integer (2 bytes follow)  | 0x39
-    number_integer  | -128..-25                                  | Negative integer (1 byte follow)   | 0x38
+    number_integer  | -128..-25                                  | Negative integer (1 ::u8 follow)   | 0x38
     number_integer  | -24..-1                                    | Negative integer                   | 0x20..0x37
     number_integer  | 0..23                                      | Integer                            | 0x00..0x17
-    number_integer  | 24..255                                    | Unsigned integer (1 byte follow)   | 0x18
+    number_integer  | 24..255                                    | Unsigned integer (1 ::u8 follow)   | 0x18
     number_integer  | 256..65535                                 | Unsigned integer (2 bytes follow)  | 0x19
     number_integer  | 65536..4294967295                          | Unsigned integer (4 bytes follow)  | 0x1A
     number_integer  | 4294967296..18446744073709551615           | Unsigned integer (8 bytes follow)  | 0x1B
     number_unsigned | 0..23                                      | Integer                            | 0x00..0x17
-    number_unsigned | 24..255                                    | Unsigned integer (1 byte follow)   | 0x18
+    number_unsigned | 24..255                                    | Unsigned integer (1 ::u8 follow)   | 0x18
     number_unsigned | 256..65535                                 | Unsigned integer (2 bytes follow)  | 0x19
     number_unsigned | 65536..4294967295                          | Unsigned integer (4 bytes follow)  | 0x1A
     number_unsigned | 4294967296..18446744073709551615           | Unsigned integer (8 bytes follow)  | 0x1B
     number_float    | *any value representable by a float*       | Single-Precision Float             | 0xFA
     number_float    | *any value NOT representable by a float*   | Double-Precision Float             | 0xFB
     string          | *length*: 0..23                            | UTF-8 string                       | 0x60..0x77
-    string          | *length*: 23..255                          | UTF-8 string (1 byte follow)       | 0x78
+    string          | *length*: 23..255                          | UTF-8 string (1 ::u8 follow)       | 0x78
     string          | *length*: 256..65535                       | UTF-8 string (2 bytes follow)      | 0x79
     string          | *length*: 65536..4294967295                | UTF-8 string (4 bytes follow)      | 0x7A
     string          | *length*: 4294967296..18446744073709551615 | UTF-8 string (8 bytes follow)      | 0x7B
     array           | *size*: 0..23                              | array                              | 0x80..0x97
-    array           | *size*: 23..255                            | array (1 byte follow)              | 0x98
+    array           | *size*: 23..255                            | array (1 ::u8 follow)              | 0x98
     array           | *size*: 256..65535                         | array (2 bytes follow)             | 0x99
     array           | *size*: 65536..4294967295                  | array (4 bytes follow)             | 0x9A
     array           | *size*: 4294967296..18446744073709551615   | array (8 bytes follow)             | 0x9B
     object          | *size*: 0..23                              | map                                | 0xA0..0xB7
-    object          | *size*: 23..255                            | map (1 byte follow)                | 0xB8
+    object          | *size*: 23..255                            | map (1 ::u8 follow)                | 0xB8
     object          | *size*: 256..65535                         | map (2 bytes follow)               | 0xB9
     object          | *size*: 65536..4294967295                  | map (4 bytes follow)               | 0xBA
     object          | *size*: 4294967296..18446744073709551615   | map (8 bytes follow)               | 0xBB
-    binary          | *size*: 0..23                              | byte string                        | 0x40..0x57
-    binary          | *size*: 23..255                            | byte string (1 byte follow)        | 0x58
-    binary          | *size*: 256..65535                         | byte string (2 bytes follow)       | 0x59
-    binary          | *size*: 65536..4294967295                  | byte string (4 bytes follow)       | 0x5A
-    binary          | *size*: 4294967296..18446744073709551615   | byte string (8 bytes follow)       | 0x5B
+    binary          | *size*: 0..23                              | ::u8 string                        | 0x40..0x57
+    binary          | *size*: 23..255                            | ::u8 string (1 ::u8 follow)        | 0x58
+    binary          | *size*: 256..65535                         | ::u8 string (2 bytes follow)       | 0x59
+    binary          | *size*: 65536..4294967295                  | ::u8 string (4 bytes follow)       | 0x5A
+    binary          | *size*: 4294967296..18446744073709551615   | ::u8 string (8 bytes follow)       | 0x5B
 
     @note The mapping is **complete** in the sense that any JSON value type
           can be converted to a CBOR value.
@@ -23519,7 +23519,7 @@ class basic_json
           - UTF-8 strings terminated by "break" (0x7F)
           - arrays terminated by "break" (0x9F)
           - maps terminated by "break" (0xBF)
-          - byte strings terminated by "break" (0x5F)
+          - ::u8 strings terminated by "break" (0x5F)
           - date/time (0xC0..0xC1)
           - bignum (0xC2..0xC3)
           - decimal fraction (0xC4)
@@ -23531,11 +23531,11 @@ class basic_json
           - break (0xFF)
 
     @param[in] j  JSON value to serialize
-    @return CBOR serialization as byte vector
+    @return CBOR serialization as ::u8 vector
 
     @complexity Linear in the size of the JSON value @a j.
 
-    @liveexample{The example shows the serialization of a JSON value to a byte
+    @liveexample{The example shows the serialization of a JSON value to a ::u8
     vector in CBOR format.,to_cbor}
 
     @sa http://cbor.io
@@ -23568,14 +23568,14 @@ class basic_json
     /*!
     @brief create a MessagePack serialization of a given JSON value
 
-    Serializes a given JSON value @a j to a byte vector using the MessagePack
+    Serializes a given JSON value @a j to a ::u8 vector using the MessagePack
     serialization format. MessagePack is a binary serialization format which
     aims to be more compact than JSON itself, yet more efficient to parse.
 
     The library uses the following mapping from JSON values types to
     MessagePack types according to the MessagePack specification:
 
-    JSON value type | value/range                       | MessagePack type | first byte
+    JSON value type | value/range                       | MessagePack type | first ::u8
     --------------- | --------------------------------- | ---------------- | ----------
     null            | `null`                            | nil              | 0xC0
     boolean         | `true`                            | true             | 0xC3
@@ -23616,7 +23616,7 @@ class basic_json
 
     @note The following values can **not** be converted to a MessagePack value:
           - strings with more than 4294967295 bytes
-          - byte strings with more than 4294967295 bytes
+          - ::u8 strings with more than 4294967295 bytes
           - arrays with more than 4294967295 elements
           - objects with more than 4294967295 elements
 
@@ -23628,11 +23628,11 @@ class basic_json
           function which serializes NaN or Infinity to `null`.
 
     @param[in] j  JSON value to serialize
-    @return MessagePack serialization as byte vector
+    @return MessagePack serialization as ::u8 vector
 
     @complexity Linear in the size of the JSON value @a j.
 
-    @liveexample{The example shows the serialization of a JSON value to a byte
+    @liveexample{The example shows the serialization of a JSON value to a ::u8
     vector in MessagePack format.,to_msgpack}
 
     @sa http://msgpack.org
@@ -23663,7 +23663,7 @@ class basic_json
     /*!
     @brief create a UBJSON serialization of a given JSON value
 
-    Serializes a given JSON value @a j to a byte vector using the UBJSON
+    Serializes a given JSON value @a j to a ::u8 vector using the UBJSON
     (Universal Binary JSON) serialization format. UBJSON aims to be more compact
     than JSON itself, yet more efficient to parse.
 
@@ -23702,7 +23702,7 @@ class basic_json
 
     @note The following markers are not used in the conversion:
           - `Z`: no-op values are not created.
-          - `C`: single-byte strings are serialized with `S` markers.
+          - `C`: single-::u8 strings are serialized with `S` markers.
 
     @note Any UBJSON output created @ref to_ubjson can be successfully parsed
           by @ref from_ubjson.
@@ -23731,11 +23731,11 @@ class basic_json
     @param[in] use_size  whether to add size annotations to container types
     @param[in] use_type  whether to add type annotations to container types
                          (must be combined with @a use_size = true)
-    @return UBJSON serialization as byte vector
+    @return UBJSON serialization as ::u8 vector
 
     @complexity Linear in the size of the JSON value @a j.
 
-    @liveexample{The example shows the serialization of a JSON value to a byte
+    @liveexample{The example shows the serialization of a JSON value to a ::u8
     vector in UBJSON format.,to_ubjson}
 
     @sa http://ubjson.org
@@ -23809,11 +23809,11 @@ class basic_json
           by @ref from_bson.
 
     @param[in] j  JSON value to serialize
-    @return BSON serialization as byte vector
+    @return BSON serialization as ::u8 vector
 
     @complexity Linear in the size of the JSON value @a j.
 
-    @liveexample{The example shows the serialization of a JSON value to a byte
+    @liveexample{The example shows the serialization of a JSON value to a ::u8
     vector in BSON format.,to_bson}
 
     @sa http://bsonspec.org/spec.html
@@ -23861,7 +23861,7 @@ class basic_json
 
     The library maps CBOR types to JSON value types as follows:
 
-    CBOR type              | JSON value type | first byte
+    CBOR type              | JSON value type | first ::u8
     ---------------------- | --------------- | ----------
     Integer                | number_unsigned | 0x00..0x17
     Unsigned integer       | number_unsigned | 0x18
@@ -23940,7 +23940,7 @@ class basic_json
 
     @complexity Linear in the size of the input @a i.
 
-    @liveexample{The example shows the deserialization of a byte vector in CBOR
+    @liveexample{The example shows the deserialization of a ::u8 vector in CBOR
     format to a JSON value.,from_cbor}
 
     @sa http://cbor.io
@@ -24020,7 +24020,7 @@ class basic_json
 
     The library maps MessagePack types to JSON value types as follows:
 
-    MessagePack type | JSON value type | first byte
+    MessagePack type | JSON value type | first ::u8
     ---------------- | --------------- | ----------
     positive fixint  | number_unsigned | 0x00..0x7F
     fixmap           | object          | 0x80..0x8F
@@ -24081,7 +24081,7 @@ class basic_json
 
     @complexity Linear in the size of the input @a i.
 
-    @liveexample{The example shows the deserialization of a byte vector in
+    @liveexample{The example shows the deserialization of a ::u8 vector in
     MessagePack format to a JSON value.,from_msgpack}
 
     @sa http://msgpack.org
@@ -24199,7 +24199,7 @@ class basic_json
 
     @complexity Linear in the size of the input @a i.
 
-    @liveexample{The example shows the deserialization of a byte vector in
+    @liveexample{The example shows the deserialization of a ::u8 vector in
     UBJSON format to a JSON value.,from_ubjson}
 
     @sa http://ubjson.org
@@ -24275,7 +24275,7 @@ class basic_json
 
     The library maps BSON record types to JSON value types as follows:
 
-    BSON type       | BSON marker byte | JSON value type
+    BSON type       | BSON marker ::u8 | JSON value type
     --------------- | ---------------- | ---------------------------
     double          | 0x01             | number_float
     string          | 0x02             | string
@@ -24315,7 +24315,7 @@ class basic_json
 
     @complexity Linear in the size of the input @a i.
 
-    @liveexample{The example shows the deserialization of a byte vector in
+    @liveexample{The example shows the deserialization of a ::u8 vector in
     BSON format to a JSON value.,from_bson}
 
     @sa http://bsonspec.org/spec.html

@@ -60,7 +60,7 @@ BOOL WINAPI DosDateTimeToFileTime(WORD fatdate, WORD fattime, LPFILETIME ft) {
    time1 = mktime(&newtm);
    gtm = gmtime(&time1);
    time2 = mktime(gtm);
-   RtlSecondsSince1970ToFileTime(2 * time1 - time2, ft);
+   RtlSecondsSince1970ToFileTime((DWORD) (2 * time1 - time2), ft);
 #endif
 
    return TRUE;
@@ -415,7 +415,7 @@ namespace folder_zip
 
 #else
 
-      time.m_iSecond = dos_time_unix_time(dosDate);
+      time.m_iSecond = dos_time_unix_time((dostime_t) dosDate);
       time.m_iNanosecond = 0;
 
 #endif
@@ -599,7 +599,7 @@ namespace folder_zip
          //
          //            printf("237 %s\n", szItem);
          //
-         //            const_ansi_range range("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+         //            const_ansi_range range("app/_matter/main/_std/_std/Thomas Borregaard Soerensen.dedicatory");
          //
          //            const_ansi_range rangeBlock(szItem);
          //

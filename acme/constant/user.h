@@ -4,7 +4,7 @@
 
 
 
-//#define __MAKE_LONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
+//#define make_i32(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
 
 enum enum_windowing
 {
@@ -683,8 +683,8 @@ namespace user
 //  tool_item.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 03/Oct/22 20:28
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 03/Oct/22 20:28
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 
@@ -718,15 +718,15 @@ enum enum_tool_item_style : ::i64
    e_tool_item_style_autosize = e_toolbar_style_autosize,
    e_tool_item_style_noprefix = e_toolbar_style_noprefix,
    e_tool_item_style_custom_control = 1_uintmax,
-   //#define TBBS_AUTOSIZE   __MAKE_LONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-   //#define TBBS_NOPREFIX   __MAKE_LONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
-   e_tool_item_style_checked = __MAKE_LONG(0, e_tool_item_state_checked),
-   e_tool_item_style_pressed = __MAKE_LONG(0, e_tool_item_state_pressed),
-   e_tool_item_style_disabled = __MAKE_LONG(0, e_tool_item_state_enabled),
-   e_tool_item_style_indeterminate = __MAKE_LONG(0, e_tool_item_state_indeterminate),
-   e_tool_item_style_hidden = __MAKE_LONG(0, e_tool_item_state_hidden),
-   e_tool_item_style_wrapped = __MAKE_LONG(0, e_tool_item_state_wrap),
-   e_tool_item_style_ellipses = __MAKE_LONG(0, e_tool_item_state_ellipses),
-   e_tool_item_style_marked = __MAKE_LONG(0, e_tool_item_state_marked),
+   //#define TBBS_AUTOSIZE   make_i32(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+   //#define TBBS_NOPREFIX   make_i32(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+   e_tool_item_style_checked = make_i32(0, e_tool_item_state_checked),
+   e_tool_item_style_pressed = make_i32(0, e_tool_item_state_pressed),
+   e_tool_item_style_disabled = make_i32(0, e_tool_item_state_enabled),
+   e_tool_item_style_indeterminate = make_i32(0, e_tool_item_state_indeterminate),
+   e_tool_item_style_hidden = make_i32(0, e_tool_item_state_hidden),
+   e_tool_item_style_wrapped = make_i32(0, e_tool_item_state_wrap),
+   e_tool_item_style_ellipses = make_i32(0, e_tool_item_state_ellipses),
+   e_tool_item_style_marked = make_i32(0, e_tool_item_state_marked),
 };
 

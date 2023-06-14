@@ -22,8 +22,8 @@
 
 
 
-#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), __LOBYTE(x))
-#define SWAPLONG(x)		__MAKE_LONG(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
+#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), lower_u8(x))
+#define SWAPLONG(x)		make_i32(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
 
 
 

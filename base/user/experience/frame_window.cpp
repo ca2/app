@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
@@ -525,6 +526,8 @@ namespace experience
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->payload("log_fill_rectangle") = 0;
+
       if (is_frame_experience_enabled() && m_pframe != nullptr && !layout().is_full_screen())
       {
 
@@ -549,6 +552,8 @@ namespace experience
          }
 
       }
+
+      pgraphics->payload("log_fill_rectangle") = 1;
 
    }
 
@@ -1155,8 +1160,8 @@ namespace experience
    //}
 
 
-   //  define System flags que serão usados para posicionar ou
-   //  dimensionar pelo uso da função set_window_position
+   //  define System flags que serao usados para posicionar ou
+   //  dimensionar pelo uso da funcao set_window_position
 
    void frame_window::SetSWPFlags(::u32 uFlags)
    {
@@ -1219,7 +1224,7 @@ namespace experience
    void frame_window::FrameWnd(::user::interaction * pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -1227,8 +1232,8 @@ namespace experience
    void frame_window::ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
-      __UNREFERENCED_PARAMETER(puserinteractionParent);
+      UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(puserinteractionParent);
 
    }
 
@@ -1520,19 +1525,19 @@ namespace experience
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
          {
 
-            INFORMATION("e_message_mouse_move during window transfer ignored!!");
+            information() << "e_message_mouse_move during window transfer ignored!!";
 
          }
          else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
          {
 
-            INFORMATION("synthesized e_message_mouse_move ignored!!");
+            information() << "synthesized e_message_mouse_move ignored!!";
 
          }
          else
          {
 
-            //INFORMATION("e_message_mouse_move for experience::frame");
+            //information() << "e_message_mouse_move for experience::frame";
 
             if (m_pframe->on_message_mouse_move(pmouse))
             {
@@ -1629,19 +1634,19 @@ namespace experience
    //      if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
    //      {
 
-   //         INFORMATION("e_message_mouse_move during window transfer ignored!!");
+   //         information() << "e_message_mouse_move during window transfer ignored!!";
 
    //      }
    //      else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)
    //      {
 
-   //         INFORMATION("synthesized e_message_mouse_move ignored!!");
+   //         information() << "synthesized e_message_mouse_move ignored!!";
 
    //      }
    //      else
    //      {
 
-   //         //INFORMATION("e_message_mouse_move for experience::frame");
+   //         //information() << "e_message_mouse_move for experience::frame";
 
    //         //if (m_pframe->on_message_set_cursor(psetcursor))
    //         //{

@@ -165,9 +165,9 @@ namespace draw2d
                             const ::color_filter & colorfilter = nullptr);
 
 
-      virtual void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin, i32 iRadius);
+      virtual void alpha_spread__24CC(::u8 * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, ::u8 * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, ::u8 bMin, i32 iRadius);
 
-      virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, ::color::color crSpreadSetColor);
+      virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, const ::color::color & colorSpreadSetColor);
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 

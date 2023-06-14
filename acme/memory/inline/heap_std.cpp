@@ -114,16 +114,16 @@ void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * s
 
    void * paligned;
 
-   __UNREFERENCED_PARAMETER(nBlockUse);
-   __UNREFERENCED_PARAMETER(szFileName);
-   __UNREFERENCED_PARAMETER(nLine);
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
 
    align = align <= 0 ? ALIGN_BYTE_COUNT : align;
 
    auto sizeProvision = heap_memory_aligned_provision_get_size(size, (int) align);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    if(g_pheap == nullptr)
    {
 
@@ -286,11 +286,11 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
 
    }
 
-   byte blockuse = pheapmemory->m_blockuse;
+   ::u8 blockuse = pheapmemory->m_blockuse;
 
    memsize sizeOld = pheapmemory->m_size;
 
-   byte align = pheapmemory->m_align;
+   ::u8 align = pheapmemory->m_align;
 
    void * p = heap_memory_base_get(pmemory);
 

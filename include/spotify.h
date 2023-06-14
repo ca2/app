@@ -56,7 +56,7 @@ typedef uint64_t sp_::u3264;
 typedef unsigned char bool;
 #endif
 
-typedef unsigned char byte;
+typedef unsigned char ::u8;
 
 /**
  * @defgroup types Spotify types & structs
@@ -1812,13 +1812,13 @@ SP_LIBEXPORT(sp_artist *) sp_album_artist(sp_album *album);
  * @param[in]   album      Album object
  * @param[in]   size_i32       The desired size_i32 of the image
  *
- * @return                 ID byte sequence that can be passed to sp_image_create()
+ * @return                 ID ::u8 sequence that can be passed to sp_image_create()
  *                         If the album has no image or the metadata for the album is not
  *                         loaded yet, this function returns NULL.
  *
  * @see sp_image_create
  */
-SP_LIBEXPORT(const byte *) sp_album_cover(sp_album *album, sp_image_size size_i32);
+SP_LIBEXPORT(const ::u8 *) sp_album_cover(sp_album *album, sp_image_size size_i32);
 
 /**
  * Return name of album
@@ -1905,12 +1905,12 @@ SP_LIBEXPORT(bool) sp_artist_is_loaded(sp_artist *artist);
  * @param[in]   artist     The artist object
  * @param[in]   size_i32       The desired size_i32 of the image
  *
- * @return                 ID byte sequence that can be passed to sp_image_create()
+ * @return                 ID ::u8 sequence that can be passed to sp_image_create()
  *                         If the artist has no image or the metadata for the album is not
  *                         loaded yet, this function returns NULL.
  *
  */
-SP_LIBEXPORT(const byte *) sp_artist_portrait(sp_artist *artist, sp_image_size size_i32);
+SP_LIBEXPORT(const ::u8 *) sp_artist_portrait(sp_artist *artist, sp_image_size size_i32);
 
 /**
  * Increase the object count of a artist
@@ -2183,11 +2183,11 @@ SP_LIBEXPORT(int) sp_artistbrowse_num_portraits(sp_artistbrowse *arb);
  * @param[in] arb             Artist object
  * @param[in] index           The index of the portrait. Should be in the interval [0, sp_artistbrowse_num_portraits() - 1]
  *
- * @return                    ID byte sequence that can be passed to sp_image_create()
+ * @return                    ID ::u8 sequence that can be passed to sp_image_create()
  *
  * @see sp_image_create
  */
-SP_LIBEXPORT(const byte *) sp_artistbrowse_portrait(sp_artistbrowse *arb, int index);
+SP_LIBEXPORT(const ::u8 *) sp_artistbrowse_portrait(sp_artistbrowse *arb, int index);
 
 /**
  * Given an artist browse object, return number of tracks
@@ -2352,7 +2352,7 @@ typedef void SP_CALLCONV image_loaded_cb(sp_image * pimage, void *userdata);
  * @see sp_album_cover
  * @see sp_artistbrowse_portrait
  */
-SP_LIBEXPORT(sp_image *) sp_image_create(sp_session *session, const byte image_id[20]);
+SP_LIBEXPORT(sp_image *) sp_image_create(sp_session *session, const ::u8 image_id[20]);
 
 /**
  * Create an image object from a link
@@ -2443,7 +2443,7 @@ SP_LIBEXPORT(const void *) sp_image_data(sp_image * pimage, size_t *data_size);
  *
  * @return                Image ID
  */
-SP_LIBEXPORT(const byte *) sp_image_image_id(sp_image * pimage);
+SP_LIBEXPORT(const ::u8 *) sp_image_image_id(sp_image * pimage);
 
 
 /**
@@ -2854,7 +2854,7 @@ typedef struct sp_playlist_callbacks {
    * @param[in]  image      New image
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
    */
-  void (SP_CALLCONV *image_changed)(sp_playlist *pl, const byte * pimage, void *userdata);
+  void (SP_CALLCONV *image_changed)(sp_playlist *pl, const ::u8 * pimage, void *userdata);
 
 
   /**
@@ -3079,12 +3079,12 @@ SP_LIBEXPORT(const ::string &) sp_playlist_get_description(sp_playlist *playlist
  * Get description for a playlist
  *
  * @param[in]  playlist       Playlist object
- * @param[out] image          20 byte image atom
+ * @param[out] image          20 ::u8 image atom
 
  * @return                    true if playlist has an image, false if not
  *
  */
-SP_LIBEXPORT(bool) sp_playlist_get_image(sp_playlist *playlist, byte image[20]);
+SP_LIBEXPORT(bool) sp_playlist_get_image(sp_playlist *playlist, ::u8 image[20]);
 
 
 /**

@@ -2,8 +2,8 @@
 //  color.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 03/06/23.
-//  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 03/06/23.
+//  Copyright (c) 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 // Merge of estamira/particle/vec4 with geometry/sequence.h by
 // camilo on 2023-06-03 21:46 <3ThomasBorregaardSorensen!!
@@ -133,11 +133,11 @@ public:
    ::color::color color() const
    {
       
-      return ::color::color(
-                            this->red(),
-                           this->green(),
-                            this->blue(),
-                            this->opacity());
+      return ::rgba(
+         this->red(),
+         this->green(),
+         this->blue(),
+         this->opacity());
       
    }
 

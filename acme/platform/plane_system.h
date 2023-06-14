@@ -2,8 +2,8 @@
 //  _opaque_system.hpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/06/22.
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 06/06/22.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

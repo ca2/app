@@ -28,15 +28,15 @@ namespace datetime
       void clock::_001OnDraw(::draw2d::graphics * pgraphics)
       {
    
-         __UNREFERENCED_PARAMETER(pgraphics);
+         UNREFERENCED_PARAMETER(pgraphics);
 
       }
 
 
       void clock::GetRect(::rectangle_i32 * lprect, enum_element eelement)
       {
-         __UNREFERENCED_PARAMETER(lprect);
-         __UNREFERENCED_PARAMETER(eelement);
+         UNREFERENCED_PARAMETER(lprect);
+         UNREFERENCED_PARAMETER(eelement);
       }
 
 

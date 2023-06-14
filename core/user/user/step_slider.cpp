@@ -45,7 +45,7 @@ namespace user
 
    void step_slider::on_message_create(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 //      ::pointer<::message::create>pcreate(pmessage);
 
    }
@@ -98,7 +98,7 @@ namespace user
    void step_slider::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       SetTimer(1, 200_ms, nullptr);
 
@@ -120,7 +120,7 @@ namespace user
       ::rectangle_i32 rectangleClient;
       client_rectangle(rectangleClient);
 
-      byte bAlpha = (byte) (128.0 * get_alpha());
+      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 150, 200, 255));
 

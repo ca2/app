@@ -102,7 +102,7 @@ namespace write_text
       if (uForegroundColor.is_transparent())
       {
       
-         INFORMATION("Color is transparent");
+         plist->information() << "Color is transparent";
 
       }
 
@@ -118,10 +118,15 @@ namespace write_text
 
          string str;
 
-         str.format("item:ARGB(%d,%d,%d,%d):%d, %d, %s", uForegroundColor.alpha,  uForegroundColor.red, uForegroundColor.green, uForegroundColor.blue,
-            plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, strText.c_str());
+         str.format("item:ARGB(%d,%d,%d,%d):%d, %d, %s",
+            uForegroundColor.m_u8Opacity,
+            uForegroundColor.m_u8Red,
+            uForegroundColor.m_u8Green,
+            uForegroundColor.m_u8Blue,
+            plist->m_rectangleMargin.left, 
+            plist->m_rectangleMargin.top, strText.c_str());
          
-         INFORMATION(str);
+         plist->information() << str;
 
 #endif
 

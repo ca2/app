@@ -40,7 +40,7 @@ namespace mathematics
       double         m_dPi;
       float          m_fPi;
       u32            dwMode;
-      byte           pbData[16];
+      ::u8           pbData[16];
 
    public:
 

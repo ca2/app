@@ -72,7 +72,7 @@ namespace user
    void toolbar_control::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //      SetButtonStructSize(sizeof(TBBUTTON));
@@ -234,8 +234,8 @@ namespace user
       return 0;
 
 //#ifdef WINDOWS_DESKTOP
-//      __UNREFERENCED_PARAMETER(uId);
-//      __UNREFERENCED_PARAMETER(str);
+//      UNREFERENCED_PARAMETER(uId);
+//      UNREFERENCED_PARAMETER(str);
 //      TBBUTTONINFOW tbbi;
 //      tbbi.cbSize = sizeof(tbbi);
 //      tbbi.dwMask = TBIF_TEXT;
@@ -791,7 +791,7 @@ namespace user
 //
 //#endif
 
-      return 0;
+      return ::color::transparent;
 
    }
 
@@ -809,7 +809,7 @@ namespace user
 //
 //#endif
 
-      return 0;
+      return ::color::transparent;
 
    }
 
@@ -1005,7 +1005,7 @@ namespace user
 
    ::image_list* toolbar_control::SetDisabledImageList(::image_list* pImageList)
    {
-//      __UNREFERENCED_PARAMETER(pImageList);
+//      UNREFERENCED_PARAMETER(pImageList);
 //#ifdef WINDOWS_DESKTOP
 //
 //      ASSERT(is_window());
@@ -1024,7 +1024,7 @@ namespace user
 
    ::image_list* toolbar_control::SetHotImageList(::image_list* pImageList)
    {
-//      __UNREFERENCED_PARAMETER(pImageList);
+//      UNREFERENCED_PARAMETER(pImageList);
 //#ifdef WINDOWS_DESKTOP
 //
 //      ASSERT(is_window());
@@ -1044,7 +1044,7 @@ namespace user
    ::image_list* toolbar_control::SetImageList(::image_list* pImageList)
    {
 
-//      __UNREFERENCED_PARAMETER(pImageList);
+//      UNREFERENCED_PARAMETER(pImageList);
 //
 //#ifdef WINDOWS_DESKTOP
 //

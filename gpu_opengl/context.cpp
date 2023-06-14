@@ -320,8 +320,8 @@ namespace opengl
 
          m_memorySwap.set_size(m_sizeBitmap1.area() * 4);
 
-         vertical_swap_copy_colorref_swap_red_blue(
-            (color32_t *) m_memorySwap.data(),
+         vertical_swap_copy_image32_swap_red_blue(
+            (image32_t *) m_memorySwap.data(),
             m_sizeBitmap1.cx(),
             m_sizeBitmap1.cy(),
             m_sizeBitmap1.cx() * 4,

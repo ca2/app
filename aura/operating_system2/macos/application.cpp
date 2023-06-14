@@ -47,7 +47,7 @@ namespace aura
 
 //   bool application::_001OnDDECommand(const ::string & pcsz)
 //   {
-//      __UNREFERENCED_PARAMETER(pcsz);
+//      UNREFERENCED_PARAMETER(pcsz);
 //      return false;
 //   }
 
@@ -302,7 +302,7 @@ namespace aura
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(bShow);
+//      UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 //

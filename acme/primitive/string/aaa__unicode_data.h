@@ -28,13 +28,13 @@
   //// get the number of code points in a string
   //size_t get_length(const std::string &input, encoding_type encoding);
 
-  //// return the number of bytes of the code point at pos, or 0 if the byte index does not refer to a valid code point
+  //// return the number of bytes of the code point at pos, or 0 if the ::u8 index does not refer to a valid code point
   //size_t get_char_size(const std::string &input, size_t pos, encoding_type encoding);
 
-  //// get the code point at a particular byte index
+  //// get the code point at a particular ::u8 index
   //::i32 get_char(const std::string &input, size_t pos, encoding_type encoding);
 
-  //// set the code point at a particular byte index
+  //// set the code point at a particular ::u8 index
   //void set_char(std::string &input, size_t pos, ::i32 code_point, encoding_type encoding);
 
   //// add a code point to the end of a string

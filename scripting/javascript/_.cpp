@@ -2545,7 +2545,7 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         information("WHILE Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS <<" iterations at " << l->getPosition());
+         information() << "WHILE Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS <<" iterations at " << l->getPosition();
          throw CScriptException("LOOP_ERROR");
       }
    }
@@ -2604,7 +2604,7 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         information("FOR Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS << "iterations at " << l->getPosition());
+         information() << "FOR Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS << "iterations at " << l->getPosition();
          throw CScriptException("LOOP_ERROR");
       }
    }

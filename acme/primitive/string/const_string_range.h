@@ -141,7 +141,7 @@ public:
    //inline bool has_char() const noexcept { return !this->is_empty(); }
    inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->size() + i; }
 
-   operator ::block() const { return { (::byte*)this->m_begin, this->length_in_bytes() }; }
+   operator ::block() const { return { (::u8*)this->m_begin, this->length_in_bytes() }; }
 
    inline CHARACTER character_at(strsize i) const { return this->data()[i]; }
 

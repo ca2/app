@@ -189,7 +189,7 @@ simple_trace::simple_trace()
 
 #ifdef _DEBUG
 
-   //INFORMATION("Starting Simple Alog");
+   //information() << "Starting Simple Alog";
 
 #endif
 
@@ -199,7 +199,7 @@ simple_trace::simple_trace()
 simple_trace::~simple_trace()
 {
 
-   //INFORMATION("Ending Simple Alog");
+   //information() << "Ending Simple Alog";
 
 }
 

@@ -179,9 +179,9 @@ namespace base
 //
 //      create_point_font(font_default, pnode->font_name(e_font_sans), 12.0);
 //
-//      create_color(color_text_normal, alpha_color(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, alpha_color(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_color(color_background, argb(100, 180, 192, 255));
 //      create_color(color_background_press, argb(200, 180, 192, 255));
@@ -195,9 +195,9 @@ namespace base
 //      theme_current_control(control_menu_popup);
 //
 //      create_point_font(font_default, pnode->font_name(e_font_sans), 9.0, e_font_weight_bold);
-//      create_color(color_text_normal, alpha_color(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, alpha_color(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_session_default_color(color_background, 200, COLOR_3DHIGHLIGHT);
 //      create_session_default_color(color_background_press, 200, COLOR_3DHIGHLIGHT);
@@ -212,9 +212,9 @@ namespace base
 //
 //      create_point_font(font_default, "Marlett", 11.0);
 //
-//      create_color(color_text_normal, alpha_color(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, alpha_color(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_session_default_color(color_background, 200, COLOR_3DFACE);
 //      create_session_default_color(color_background_press, 200, COLOR_3DFACE);
@@ -243,9 +243,9 @@ namespace base
 //
 //      create_point_font(font_default, "Marlett", 11.0);
 //
-//      create_color(color_text_normal, alpha_color(200, ::color_black));
+//      create_color(color_text_normal, color_with_u8_opacity(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
-//      create_color(color_text_disabled, alpha_color(200, ::color_gray));
+//      create_color(color_text_disabled, color_with_u8_opacity(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
 //      create_session_default_color(color_background, 200, COLOR_3DFACE);
 //      create_session_default_color(color_background_press, 200, COLOR_3DFACE);

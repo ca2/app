@@ -2,8 +2,8 @@
 //  _start.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 16/09/20.
-//  Copyright © 2020 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 16/09/20.
+//  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

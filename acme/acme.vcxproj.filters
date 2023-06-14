@@ -3032,9 +3032,6 @@
     <ClInclude Include="primitive\geometry2d\vector.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="include\_other_initial_concepts.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry2d\region.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
@@ -3074,7 +3071,7 @@
     <ClInclude Include="primitive\geometry2d\_function_impl.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_geometry2d.h">
+    <ClInclude Include="primitive\geometry2d\_aaa_geometry2d.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_i32.h">
@@ -3148,6 +3145,30 @@
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_defer_item.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_text_stream.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\image32.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_integer.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="_win32_gdi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\color32.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\print_formatting.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\trace_statement.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\string_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4267,9 +4288,6 @@
     <ClCompile Include="memory\os_impl\aaa_select.cpp">
       <Filter>Source Files\memory\osdjfh</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\process.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\keyboard.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4287,6 +4305,15 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\size.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\process.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\print_formatting.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace_statement.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

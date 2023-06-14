@@ -548,7 +548,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       string str(pszMessage);
 
-      FORMATTED_INFORMATION("interprocess_intercommunication::on_receive %s", pszMessage);
+      information("interprocess_intercommunication::on_receive %s", pszMessage);
 
       if(!str.begins_eat("call "))
       {

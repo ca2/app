@@ -904,7 +904,7 @@ namespace browser
 
       m_pimageBrowser->map();
 
-      ::copy_colorref(m_pimageBrowser->m_pimpl, &p);
+      ::copy_image32(m_pimageBrowser->m_pimpl, &p);
 
       set_need_redraw();
 

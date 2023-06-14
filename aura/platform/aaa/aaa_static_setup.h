@@ -2,7 +2,7 @@
 //  aura_app.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 18/08/19.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 18/08/19.
 //
 #pragma once
 

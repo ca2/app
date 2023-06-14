@@ -33,9 +33,9 @@ CLASS_DECL_APEX i32 ca2_main();
 //void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 //{
 //
-//   __UNREFERENCED_PARAMETER(uiCode);
+//   UNREFERENCED_PARAMETER(uiCode);
 //
-//   __UNREFERENCED_PARAMETER(ppointers);
+//   UNREFERENCED_PARAMETER(ppointers);
 //
 //}
 //

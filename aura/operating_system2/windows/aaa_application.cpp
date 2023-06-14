@@ -781,7 +781,7 @@ int SendCtrlShiftQToChrome(oswindow w, ::duration millisSleep, ::aura::applicati
 ////
 ////
 ////   const SHORT Vk = VkKeyScanExW(ch, hkl);
-////   //const ::u32 VKey = ::MapVirtualKey(__LOBYTE(Vk), 0);
+////   //const ::u32 VKey = ::MapVirtualKey(lower_u8(Vk), 0);
 ////
 ////   if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 ////   {
@@ -842,7 +842,7 @@ int SendCtrlShiftQToChrome(oswindow w, ::duration millisSleep, ::aura::applicati
 ////   sleep(iSleep);
 ////
 ////   //const SHORT Vk = VkKeyScanExW(ch, hkl);
-////   ////const ::u32 VKey = ::MapVirtualKey(__LOBYTE(Vk), 0);
+////   ////const ::u32 VKey = ::MapVirtualKey(lower_u8(Vk), 0);
 ////
 ////   //if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 ////   //{

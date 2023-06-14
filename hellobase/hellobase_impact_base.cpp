@@ -295,7 +295,7 @@ pacmedirectory->system() / "obs.png");
 
             color32_t color32;
 
-            byte a, r, g, b, rm, gm, bm;
+            ::u8 a, r, g, b, rm, gm, bm;
 
 /*            ::image_pointer pimage = pgraphics->m_pimage;
 
@@ -331,10 +331,10 @@ pacmedirectory->system() / "obs.png");
                   i2 = i1 + rstride;
                   i3 = i2 + rstride;
                   color32 = pdata[i1];
-                  a = colorref_get_a_value(color32);
-                  r = colorref_get_r_value(color32);
-                  g = colorref_get_g_value(color32);
-                  b = colorref_get_b_value(color32);
+                  a = color32_u8_opacity(color32);
+                  r = color32_u8_red(color32);
+                  g = color32_u8_green(color32);
+                  b = color32_u8_blue(color32);
                   rm = (g + b) / 4;
                   gm = (r + b) / 4;
                   bm = (r + g) / 4;

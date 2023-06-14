@@ -54,20 +54,20 @@ namespace crypto_openssl
       //   goto OPENSSL_ERROR;
       //}
       //if (!OSSL_PARAM_BLD_push_BN(params_build, "n", modulus)) {
-      //   ERROR("Error: failed to push modulus into param build.\n");
+      //   error() <<"Error: failed to push modulus into param build.\n";
       //   goto OPENSSL_ERROR;
       //}
       //if (!OSSL_PARAM_BLD_push_BN(params_build, "e", exponent)) {
-      //   ERROR("Error: failed to push exponent into param build.\n");
+      //   error() <<"Error: failed to push exponent into param build.\n";
       //   goto OPENSSL_ERROR;
       //}
       //if (!OSSL_PARAM_BLD_push_BN(params_build, "d", NULL)) {
-      //   ERROR("Error: failed to push NULL into param build.\n");
+      //   error() <<"Error: failed to push NULL into param build.\n";
       //   goto OPENSSL_ERROR;
       //}
       //OSSL_PARAM* params = OSSL_PARAM_BLD_to_param(params_build);
       //if (params == NULL) {
-      //   ERROR("Error: failed to construct params from build.\n");
+      //   error() <<"Error: failed to construct params from build.\n";
       //   goto OPENSSL_ERROR;
       //}
       OSSL_PARAM params[] = {

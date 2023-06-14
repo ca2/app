@@ -300,7 +300,7 @@ string url_encode(const ::scoped_string & scopedstr)
       else
       {
 
-         ansi_from_i64(sz,(i64)(byte) ch,16);
+         ansi_from_i64(sz,(i64)(::u8) ch,16);
 
          ansi_upper(sz);
 

@@ -33,7 +33,7 @@ string dump_hex(::file::file* pfile)
 
    char* psz = strBuffer.get_buffer((strsize)(pfile->get_size() / 16 + 1) * 80);
 
-   byte buf[16];
+   ::u8 buf[16];
 
    memsize iPos = 0;
 
@@ -255,7 +255,7 @@ namespace sockets
       if (!IsResponse())
       {
 
-         FATAL("OnFirst: Response expected but not received - aborting");
+         fatal() <<"OnFirst: Response expected but not received - aborting";
 
          SetCloseAndDelete();
 
@@ -339,7 +339,7 @@ namespace sockets
    void http_client_socket::OnDataComplete()
    {
 
-      INFORMATION("OnDataComplete");
+      information() << "OnDataComplete";
 
       m_b_complete = true;
 
@@ -456,8 +456,8 @@ namespace sockets
    void http_client_socket::OnDataArrived(const char * buf, memsize len)
    {
 
-      __UNREFERENCED_PARAMETER(buf);
-      __UNREFERENCED_PARAMETER(len);
+      UNREFERENCED_PARAMETER(buf);
+      UNREFERENCED_PARAMETER(len);
    }
 
 
@@ -467,7 +467,7 @@ namespace sockets
       if (!m_b_complete)
       {
 
-         INFORMATION("OnDelete");
+         information() << "OnDelete";
 
          m_b_complete = true;
 

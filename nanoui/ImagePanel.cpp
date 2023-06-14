@@ -231,7 +231,7 @@ void ImagePanel::draw(::nano2d::context * pcontext)
 
       ::nano2d::paint shadow_paint =
          pcontext->box_gradient(image_top_left.x() - 1.f, (float)image_top_left.y(), m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
-            ::color::RGBA_color(0, 0, 0, 128), ::color::RGBA_color(0, 0, 0, 0));
+            ::rgba(0, 0, 0, 128), ::rgba(0, 0, 0, 0));
       pcontext->begin_path();
       pcontext->rectangle(image_top_left.x() - 5.f, image_top_left.y() - 5.f, m_iThumbSize + 10.f, m_iThumbSize + 10.f);
       pcontext->rounded_rectangle((float)image_top_left.x(), (float)image_top_left.y(), (float)m_iThumbSize, (float)m_iThumbSize, 6.f);
@@ -242,7 +242,7 @@ void ImagePanel::draw(::nano2d::context * pcontext)
       pcontext->begin_path();
       pcontext->rounded_rectangle(image_top_left.x() + 0.5f, image_top_left.y() + 0.5f, m_iThumbSize - 1.f, m_iThumbSize - 1.f, 4.f - 0.5f);
       pcontext->stroke_width(1.0f);
-      pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 80));
+      pcontext->stroke_color(::rgba(255, 255, 255, 80));
       pcontext->stroke();
 
    }

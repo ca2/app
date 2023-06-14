@@ -441,7 +441,7 @@ memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s
 
    auto iReadAtMostByteCount = s;
 
-   byte * psz = (byte *) p;
+   ::u8 * psz = (::u8 *) p;
 
    ::size_t iPos = 0;
 

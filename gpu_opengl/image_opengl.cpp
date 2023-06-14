@@ -15,7 +15,7 @@
 CLASS_DECL_GPU_OPENGL void image_gl_set(image * pimage)
 {
 
-   unsigned char* data = (unsigned char *) pimage->m_pcolorrefRaw;
+   unsigned char* data = (unsigned char *) pimage->m_pimage32Raw;
 
    if (data)
    {

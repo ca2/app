@@ -106,7 +106,7 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
 
       int h = gdk_pixbuf_get_height(pixbuf);
 
-      color32_t * pcolorrefSrc = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
+      color32_t * pimage32Src = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
 
       int iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
 
@@ -117,18 +117,18 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
 
          pdata->m_pimage->map();
 
-         ::copy_colorref_swap_red_blue(
-         pdata->m_pimage->colorref(),
+         ::copy_image32_swap_red_blue(
+         pdata->m_pimage->image32(),
          pdata->m_pimage->width(),
          pdata->m_pimage->height(),
          pdata->m_pimage->scan_size(),
-         pcolorrefSrc,
+         pimage32Src,
          iSrcScan);
 
          if(!bHasAlpha)
          {
 
-            pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
+            pdata->m_pimage->fill_channel(255, ::color::e_channel_opacity);
 
          }
 
@@ -408,25 +408,25 @@ gboolean clipboard_callback(gpointer data)
 //
 //            int h = gdk_pixbuf_get_height(pixbuf);
 //
-//            color32_t * pcolorrefSrc = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
+//            color32_t * pimage32Src = (color32_t *) gdk_pixbuf_read_pixels(pixbuf);
 //
 //            int iSrcScan = gdk_pixbuf_get_rowstride(pixbuf);
 //
 //            if(pdata->m_pimage = create_image({w,  h)})
 //            {
 //
-//               ::copy_colorref(
+//               ::copy_image32(
 //                  pdata->m_pimage->width(),
 //                  pdata->m_pimage->height(),
 //                  pdata->m_pimage->m_pcolorref,
 //                  pdata->m_pimage->m_iScan,
-//                  pcolorrefSrc,
+//                  pimage32Src,
 //                  iSrcScan);
 //
 //               if(!bHasAlpha)
 //               {
 //
-//                  pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
+//                  pdata->m_pimage->fill_channel(255, ::color::e_channel_opacity);
 //
 //               }
 //

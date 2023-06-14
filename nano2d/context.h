@@ -20,6 +20,7 @@
 
 #include "_constant.h"
 #include "types.h"
+#include "acme/primitive/geometry2d/angle.h"
 
 
 namespace nano2d

@@ -41,7 +41,7 @@
       //bool tx::open(const ::scoped_string & scopedstrChannel, launcher * plauncher)
       //{
 
-      //   __UNREFERENCED_PARAMETER(plauncher);
+      //   UNREFERENCED_PARAMETER(plauncher);
 
       //   if (m_strBaseChannel.has_char())
       //      close();
@@ -131,7 +131,7 @@
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::acmeacmesystem()->url_encode(::acmeacmesystem()->base64().encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::acmeacmesystem()->url_encode(::acmeacmesystem()->base64().encode((::u8 *)pdata, len));
 
          Uri ^uri = ref memory_new Uri(anotherappURI);
 

@@ -25,7 +25,7 @@
   These are functions which have no purpose for simple CPU-based programs,
   but are needed when reading data to/from a file of a pre-defined format.
   This is typical in Turbo C programs; since they ran only on x86 
-  processors, they implicitly assume a little-endian byte ordering
+  processors, they implicitly assume a little-endian ::u8 ordering
   for data files.
   
   For good measure, big-endian conversion functions are also thrown in, 

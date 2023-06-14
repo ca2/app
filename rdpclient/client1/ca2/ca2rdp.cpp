@@ -287,7 +287,7 @@ BOOL ca2rdp_verify_certificate(freerdp* instance, char* topic, char* issuer, cha
    return false;
 }
 
-static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, byte* data, int size, int flags, int total_size)
+static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, ::u8* data, int size, int flags, int total_size)
 {
    return freerdp_channels_data(instance, channelId, data, size, flags, total_size);
 }

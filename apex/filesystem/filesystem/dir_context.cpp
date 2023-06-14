@@ -373,9 +373,9 @@ inline bool myspace(char ch)
 //::file::path dir_context::relpath(const string & pcszSource,const string & lpcszRelative)
 
 //{
-//   __UNREFERENCED_PARAMETER(pcszSource);
+//   UNREFERENCED_PARAMETER(pcszSource);
 
-//   __UNREFERENCED_PARAMETER(pcszRelative);
+//   UNREFERENCED_PARAMETER(pcszRelative);
 
 //   throw ::interface_only("this is an interface");
 //}
@@ -384,11 +384,11 @@ inline bool myspace(char ch)
 //::file::path dir_context::relpath(const string & pcszSource, const string & lpcszRelative, const string & psz2)
 
 //{
-//   __UNREFERENCED_PARAMETER(pcszSource);
+//   UNREFERENCED_PARAMETER(pcszSource);
 
-//   __UNREFERENCED_PARAMETER(pcszRelative);
+//   UNREFERENCED_PARAMETER(pcszRelative);
 
-//   __UNREFERENCED_PARAMETER(psz2);
+//   UNREFERENCED_PARAMETER(psz2);
 //   throw ::interface_only("this is an interface");
 //}
 
@@ -1703,7 +1703,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //::file::path dir_context::userfolder(::particle * pparticle)
 //{
 
-//   __UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pparticle);
 
 //   synchronous_lock synchronouslock(this->synchronization());
 
@@ -1747,7 +1747,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 ::file::path dir_context::time_log(const string& pszId)
 {
 
-   __UNREFERENCED_PARAMETER(pszId);
+   UNREFERENCED_PARAMETER(pszId);
 
    throw ::interface_only("this is an interface");
 
@@ -2104,7 +2104,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
-         INFORMATION("cache map path: " << pathCache);
+         information() << "cache map path: " << pathCache;
 
          path = file()->as_string(pathCache);
 
@@ -2148,13 +2148,13 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
             if (etype == ::file::e_type_file || etype == ::file::e_type_folder)
             {
 
-               INFORMATION("!!Cache Hit: " << strFinal);
+               information() << "!!Cache Hit: " << strFinal;
 
                return path;
 
             }
 
-            INFORMATION("...Cache Miss: " << strFinal);
+            information() << "...Cache Miss: " << strFinal;
 
          }
 
@@ -2223,7 +2223,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       }
 
       //      information("");
-      INFORMATION("Topic: " << patha[0]);
+      information() << "Topic: " << patha[0];
       //      information("");
 
       string strCandidate = stra.implode("|");
@@ -2261,7 +2261,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       //information("");
       //information("");
-      INFORMATION("matter = " << strMatter);
+      information() << "matter = " << strMatter;
       //information("");
       //information("");
 
@@ -2610,7 +2610,7 @@ ret:
 ::file::path dir_context::trash_that_is_not_trash(const ::file::path& psz)
 {
 
-   __UNREFERENCED_PARAMETER(psz);
+   UNREFERENCED_PARAMETER(psz);
 
    throw ::interface_only("this is an interface");
 
@@ -2697,8 +2697,8 @@ ret:
 //::file::path dir_context::usersystemappdata(const string & pcszPrefix)
 
 //{
-//   __UNREFERENCED_PARAMETER(pparticle);
-//   __UNREFERENCED_PARAMETER(pcszPrefix);
+//   UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pcszPrefix);
 
 //   throw ::interface_only("this is an interface");
 //}
@@ -2707,7 +2707,7 @@ ret:
 //::file::path dir_context::userappdata(::particle * pparticle)
 //{
 
-//   __UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pparticle);
 
 //   throw ::interface_only("this is an interface");
 
@@ -2717,7 +2717,7 @@ ret:
 //::file::path dir_context::userdata(::particle * pparticle)
 //{
 
-//   __UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pparticle);
 
 //   throw ::interface_only("this is an interface");
 
@@ -2727,7 +2727,7 @@ ret:
 //::file::path dir_context::default_os_user_path_prefix(::particle * pparticle)
 //{
 
-//   __UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pparticle);
 
 //   throw ::interface_only("this is an interface");
 
@@ -2737,10 +2737,10 @@ ret:
 //::file::path dir_context::default_userappdata(const string & pcszPrefix, const string & lpcszLogin)
 
 //{
-//   __UNREFERENCED_PARAMETER(pparticle);
-//   __UNREFERENCED_PARAMETER(pcszPrefix);
+//   UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   __UNREFERENCED_PARAMETER(pcszLogin);
+//   UNREFERENCED_PARAMETER(pcszLogin);
 
 //   throw ::interface_only("this is an interface");
 //}
@@ -2748,10 +2748,10 @@ ret:
 //::file::path dir_context::default_userdata(const string & pcszPrefix, const string & lpcszLogin)
 
 //{
-//   __UNREFERENCED_PARAMETER(pparticle);
-//   __UNREFERENCED_PARAMETER(pcszPrefix);
+//   UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   __UNREFERENCED_PARAMETER(pcszLogin);
+//   UNREFERENCED_PARAMETER(pcszLogin);
 
 //   throw ::interface_only("this is an interface");
 //}
@@ -2759,10 +2759,10 @@ ret:
 //::file::path dir_context::default_userfolder(const string & pcszPrefix, const string & lpcszLogin)
 
 //{
-//   __UNREFERENCED_PARAMETER(pparticle);
-//   __UNREFERENCED_PARAMETER(pcszPrefix);
+//   UNREFERENCED_PARAMETER(pparticle);
+//   UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   __UNREFERENCED_PARAMETER(pcszLogin);
+//   UNREFERENCED_PARAMETER(pcszLogin);
 
 //   throw ::interface_only("this is an interface");
 //}
@@ -2801,7 +2801,7 @@ ret:
 bool dir_context::is_inside_time(const ::file::path& pszPath)
 {
 
-   __UNREFERENCED_PARAMETER(pszPath);
+   UNREFERENCED_PARAMETER(pszPath);
 
    throw ::interface_only("this is an interface");
 
@@ -2813,8 +2813,8 @@ bool dir_context::is_inside_time(const ::file::path& pszPath)
 bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszPath)
 {
 
-   __UNREFERENCED_PARAMETER(pszDir);
-   __UNREFERENCED_PARAMETER(pszPath);
+   UNREFERENCED_PARAMETER(pszDir);
+   UNREFERENCED_PARAMETER(pszPath);
 
    throw ::interface_only("this is an interface");
 

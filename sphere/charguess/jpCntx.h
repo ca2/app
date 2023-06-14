@@ -55,8 +55,8 @@ protected:
   //The order of previous char
   PRInt32  mLastCharOrder;
 
-  //if last byte in current buffer is not the last byte of a character, we
-  //need to know how many byte to skip in next buffer.
+  //if last ::u8 in current buffer is not the last ::u8 of a character, we
+  //need to know how many ::u8 to skip in next buffer.
   PR::u32 mNeedToSkipCharNum;
 
   //If this flag is set to PR_TRUE, detection is done and conclusion has been made
@@ -72,7 +72,7 @@ protected:
 
   PRInt32 GetOrder(const ::string & str)
   {
-    //We only interested in Hiragana, so first byte is '\202'
+    //We only interested in Hiragana, so first ::u8 is '\202'
     if (*str == '\202' && 
           (unsigned char)*(str+1) >= (unsigned char)0x9f && 
           (unsigned char)*(str+1) <= (unsigned char)0xf1)
@@ -86,7 +86,7 @@ class EUCJPContextAnalysis : public JapaneseContextAnalysis
 protected:
   PRInt32 GetOrder(const ::string & str, PR::u32 *charLen);
   PRInt32 GetOrder(const ::string & str)
-    //We only interested in Hiragana, so first byte is '\244'
+    //We only interested in Hiragana, so first ::u8 is '\244'
   {
     if (*str == '\244' &&
           (unsigned char)*(str+1) >= (unsigned char)0xa1 &&

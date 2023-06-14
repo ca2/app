@@ -125,7 +125,7 @@ namespace mathematics
 //         if (CryptSetKeyParam(
 //            m_hOriginalKey,
 //            KP_MODE,
-//            (byte*)& dwMode,
+//            (::u8*)& dwMode,
 //            0))
 //         {
 //            //debug_print("Key Parameters set. \n");
@@ -241,7 +241,7 @@ namespace mathematics
 //         critical_section_lock lock(&m_criticalsection);
 //
 //
-//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (byte*)p);
+//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (::u8*)p);
 //
 //      }
 //

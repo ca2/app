@@ -26,6 +26,8 @@ namespace write_text
 
       string_map < int_to_string >                    m_mapFontKeyFaceName;
 
+      ::pointer < ::particle >                        m_pparticleFontTextMapSynchronization;
+
 
       write_text();
       ~write_text() override;

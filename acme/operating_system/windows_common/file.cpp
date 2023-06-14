@@ -239,7 +239,7 @@ namespace windows
 
       memsize totalRead = 0;
 
-      auto data = (::byte *)p;
+      auto data = (::u8 *)p;
 
       while (s > 0)
       {
@@ -398,7 +398,7 @@ namespace windows
    void file::lock_file(::i64 iOffset, ::i64 iCount)
    {
 
-      if (!::LockFile(m_handle, LODWORD(iOffset), HIDWORD(iOffset), LODWORD(iCount), HIDWORD(iCount)))
+      if (!::LockFile(m_handle, lower_u32(iOffset), upper_u32(iOffset), lower_u32(iCount), upper_u32(iCount)))
       {
 
          throw_last_error_exception();
@@ -411,7 +411,7 @@ namespace windows
    void file::unlock_file(::i64 iOffset, ::i64 iCount)
    {
 
-      if (!::UnlockFile(m_handle, LODWORD(iOffset), HIDWORD(iOffset), LODWORD(iCount), HIDWORD(iCount)))
+      if (!::UnlockFile(m_handle, lower_u32(iOffset), upper_u32(iOffset), lower_u32(iCount), upper_u32(iCount)))
       {
 
          throw_last_error_exception();

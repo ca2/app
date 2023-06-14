@@ -251,7 +251,7 @@ SizingNone:;
             
          rectangleA.deflate(1, 1, 1, 1);
             
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, 0);
+         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, color::transparent);
 
          rectangleA.deflate(1, 1, 1, 1);
             
@@ -296,14 +296,14 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -311,7 +311,7 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
       }

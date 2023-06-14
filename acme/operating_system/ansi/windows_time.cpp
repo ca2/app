@@ -2,9 +2,9 @@
 //  windows_time.cpp
 //  acme
 //
-//  Created by Camilo Sasuke <3 Thomas Borregaard Sørensen on 14/02/22.
+//  Created by Camilo Sasuke <3 Thomas Borregaard Soerensen on 14/02/22.
 //  14:35
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 #include "windows_time.h"
@@ -1029,7 +1029,7 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
    if (!settimeofday(&tv, nullptr)) /* 0 is OK, -1 is error */
       return STATUS_SUCCESS;
    //tm_t = sec;
-   // xxx FORMATTED_ERROR("Cannot set time to %s, time adjustment %ld: %s\n",
+   // xxx error("Cannot set time to %s, time adjustment %ld: %s\n",
    // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
    if (errno == EPERM)
       return STATUS_PRIVILEGE_NOT_HELD;

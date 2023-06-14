@@ -23,9 +23,9 @@
 #include "wf_client.h"
 
 HBITMAP wf_create_dib(wfContext* wfc, ::u32 width, ::u32 height,
-                      ::u32 format, const byte* data, byte** pdata);
+                      ::u32 format, const ::u8* data, ::u8** pdata);
 wfBitmap* wf_image_new(wfContext* wfc, ::u32 width, ::u32 height,
-                       ::u32 format, const byte* data);
+                       ::u32 format, const ::u8* data);
 /*void wf_image_free(wfBitmap* pimage);
 
 BOOL wf_register_pointer(rdpGraphics* graphics);

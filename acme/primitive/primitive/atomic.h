@@ -2,7 +2,7 @@
 //  atomic.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 02/06/19.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 02/06/19.
 //
 #pragma once
 

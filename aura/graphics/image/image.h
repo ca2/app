@@ -99,7 +99,7 @@ public:
 
    virtual void on_load_image();
    virtual void on_exif_orientation();
-   virtual void fast_copy(::color32_t * pcolor32FullImage);
+   virtual void fast_copy(::image32_t * pcolor32FullImage);
 
    //inline ::size_i32 get_size() const;
 
@@ -126,6 +126,10 @@ public:
    //inline int scan_size() const;
 
 
+   const ::color_indexes & color_indexes() const { return m_colorindexes; }
+   ::color_indexes & color_indexes() { return m_colorindexes; }
+
+
    virtual void rate_rgb(int iMul, int iDiv);
    virtual void dc_select(bool bSelect = true);
 
@@ -136,15 +140,15 @@ public:
    virtual void Blend(::image * pimage, ::image * imageA);
    virtual void blend(const ::point_i32 & pointDst, ::image * imageSrc, const ::point_i32 & pointSrc, ::image * imageAlf, const ::point_i32 & pointDstAlf, const ::size_i32 & size);
    virtual void precision_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size);
-   virtual void precision_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA);
+   virtual void precision_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA);
    virtual void blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size);
-   virtual void blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA);
-   virtual void blend2(const ::point_i32 & pointDst, ::image * imageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA);
+   virtual void blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA);
+   virtual void blend2(const ::point_i32 & pointDst, ::image * imageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA);
    virtual void fork_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size);
-   virtual void fork_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA);
+   virtual void fork_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA);
    //virtual void bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32 & rectangle);
 
-   virtual void color_blend(::color32_t color32, byte bAlpha);
+   virtual void color_blend(::color::color color, ::u8 bAlpha);
    virtual void BitBlt(::image * pimage, i32 op);
    virtual void BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op);
    //virtual i32 cos(i32 i, i32 iAngle);
@@ -178,8 +182,8 @@ public:
    virtual void do_xor(::image * pimage);
 
    virtual void ToAlpha(i32 i);
-   virtual void ToAlphaAndFill(i32 i, ::color32_t color32);
-   virtual void GrayToARGB(::color32_t color32);
+   virtual void ToAlphaAndFill(i32 i, ::color::color color);
+   virtual void GrayToARGB(::color::color color);
 
    virtual void from_alpha();
    virtual void mult_alpha(::image * imageWork, bool bPreserveAlpha = true);
@@ -218,15 +222,16 @@ public:
    virtual void e_rotate_270_flip_horizontally();
 
 
-   virtual void set_rgb(::color32_t color32);
-   virtual void set_rgb(i32 R, i32 G, i32 B);
-   virtual void tint(::image * pimage, const ::color::color & color);
+   //virtual void set_rgb(::color::color color);
+   //virtual void set_rgb(i32 R, i32 G, i32 B);
+   virtual void tint(::image * pimage, ::color::color color);
    virtual void set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A);
    virtual void rgb_from(::image * pimage);
-   virtual void paint_rgb(const ::color::color & color);
+   // paint_rgb
+   virtual void multiply_rgb_by_source_alpha(::color::color color);
 
-   virtual ::i64 get_rgba_area(const ::color::color & color) const;
-   virtual ::i64 get_rgba_area(const ::color::color & color, const ::rectangle_i32 &rect) const;
+   virtual ::i64 get_rgba_area(::color::color color) const;
+   virtual ::i64 get_rgba_area(::color::color color, const ::rectangle_i32 &rect) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::rectangle_i32 &rect) const;
 
@@ -237,34 +242,34 @@ public:
 
 
    virtual void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
-   virtual void RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius);
+   virtual void RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, i32 x, i32 y, i32 iRadius);
    virtual void RadialFill(
-   byte a1, byte r1, byte g1, byte b1, // center colors
-   byte a2, byte r2, byte g2, byte b2, // border colors
+   ::u8 a1, ::u8 r1, ::u8 g1, ::u8 b1, // center colors
+   ::u8 a2, ::u8 r2, ::u8 g2, ::u8 b2, // border colors
    i32 x, i32 y, i32 iRadius);
 
 
-   virtual void gradient_fill(::color32_t clr1, ::color32_t clr2, const ::point_i32 & point1, const ::point_i32 & point2);
-   virtual void gradient_horizontal_fill(::color32_t clr1, ::color32_t clr2, int start, int end);
-   virtual void gradient_vertical_fill(::color32_t clr1, ::color32_t clr2, int start, int end);
-   virtual void gradient_horizontal_fill(::color32_t clr1, ::color32_t clr2);
-   virtual void gradient_vertical_fill(::color32_t clr1, ::color32_t clr2);
+   virtual void gradient_fill(::color::color color1, ::color::color color2, const ::point_i32 & point1, const ::point_i32 & point2);
+   virtual void gradient_horizontal_fill(::color::color color1, ::color::color color2, int start, int end);
+   virtual void gradient_vertical_fill(::color::color color1, ::color::color color2, int start, int end);
+   virtual void gradient_horizontal_fill(::color::color color1, ::color::color color2);
+   virtual void gradient_vertical_fill(::color::color color1, ::color::color color2);
 
 
-   virtual u32 GetPixel(i32 x, i32 y);
-   virtual u32 GetPixel(const ::point_i32 & point) { return GetPixel(point.x(), point.y()); }
-   virtual void Mask(::color32_t crMask, ::color32_t crInMask, ::color32_t crOutMask);
-   virtual void channel_mask(byte uchFind, byte uchSet, byte uchUnset, ::color::enum_channel echannel);
-   virtual void transparent_color(const ::color::color & color);
+   virtual ::color::color GetPixel(i32 x, i32 y);
+   virtual ::color::color GetPixel(const ::point_i32 & point) { return GetPixel(point.x(), point.y()); }
+   virtual void Mask(::color::color colorMask, ::color::color colorInMask, ::color::color crOutMask);
+   virtual void channel_mask(::u8 uchFind, ::u8 uchSet, ::u8 uchUnset, ::color::enum_channel echannel);
+   virtual void transparent_color(::color::color color);
 
 
    virtual void create_thumbnail(const ::string & pszPath);
 
-   virtual void create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   virtual void create_ex(const ::size_i32 & size, ::image32_t * pimage32, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
    virtual void create(::draw2d::graphics* pgraphics);
    virtual void create(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
    using ::particle::initialize;
-   virtual void initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+   virtual void initialize(const ::size_i32 & size, ::image32_t * pimage32, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
    inline void preserve(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1)
    {
 
@@ -307,7 +312,7 @@ public:
    //virtual void from(const ::point_i32 & pointDst, ::draw2d::graphics* pgraphics, const ::point_i32 & pointSrc, const ::size_i32 & size);
    //using image_drawer::draw;
    virtual void _draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc = ::point_i32());
-   virtual void blend(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc, byte bA);
+   virtual void blend(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc, ::u8 bA);
    //virtual void blend(const ::point_i32 & pointDst, ::image * piml, const ::point_i32 & pointSrc, const ::size_i32 & size);
    virtual void draw_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::rectangle_i32 & rectangleSource);
 
@@ -327,9 +332,9 @@ public:
    virtual void fill_channel(i32 C, ::color::enum_channel echannel);
    virtual void white_fill_channel(i32 C, ::color::enum_channel echannel);
    virtual void fill_byte(uchar uch);
-   virtual void fill(::color32_t level);
-   virtual void clear(const ::color::color & colorFill);
-   virtual void fill(i32 A, i32 R, i32 G, i32 B);
+   //virtual void fill(::color32_t level);
+   virtual void clear(::color::color colorFill);
+   virtual void clear_argb(i32 A, i32 R, i32 G, i32 B);
    //      virtual void Fill(i32 R, i32 G, i32 B);
    //virtual void set_rgb(i32 R, i32 G, i32 B);
    virtual void fill_glass(i32 R, i32 G, i32 B, i32 A);
@@ -375,7 +380,7 @@ public:
    virtual void copy_from(::image * pimage, enum_flag eflagCreate = e_flag_success);
    //virtual void copy_to(::image * pimage, const ::point_i32 & point = {});
 
-   virtual void fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32);
+   virtual void fill_rectangle(const ::rectangle_i32 & rectangle, ::color::color color);
 
    virtual void fill_rectangle(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B);
 
@@ -392,7 +397,7 @@ public:
    virtual void MultiplyRect(::image * piml, i32 x, i32 y);
    virtual void ScreenRect(::image * piml, i32 x, i32 y);
 
-   virtual void horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A = 0, i32 x1 = 0, i32 x2 = -1);
+   virtual void horizontal_line(i32 y, ::color::color color, i32 x1 = 0, i32 x2 = -1);
    virtual void Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B);
    virtual void LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A);
 
@@ -407,7 +412,7 @@ public:
 
 
    virtual void create_circle(::image * piml, int diameter);
-   virtual void create_framed_square(::image * piml, int inner, int outer, ::color32_t color32);
+   virtual void create_framed_square(::image * piml, int inner, int outer, ::color::color color);
 
 
    virtual void invert_rgb(const ::rectangle_i32 & rectangle);
@@ -426,7 +431,7 @@ public:
 
    //static void static_initialize();
 
-   inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::color32_t); }
+   inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::image32_t); }
    inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy(); }
 
 
@@ -457,22 +462,22 @@ public:
    //inline void is_empty() const;
 
 
-   //inline ::color32_t * get_data();
+   //inline ::image32_t * get_data();
 
 
-   //inline const ::color32_t * get_data() const;
+   //inline const ::image32_t * get_data() const;
 
 
-   //inline ::color32_t * colorref();
+   //inline ::image32_t * image32();
 
 
-   //inline const ::color32_t* colorref() const;
+   //inline const ::image32_t* image32() const;
 
 
-   //inline operator ::color32_t* ();
+   //inline operator ::image32_t* ();
 
 
-   //inline operator const ::color32_t* () const;
+   //inline operator const ::image32_t* () const;
 
 
    //inline ::pixmap * pixmap();
@@ -597,34 +602,34 @@ public:
    }
 
 
-   inline ::color32_t * colorref()
+   inline ::image32_t * image32()
    {
 
-      return m_pcolorref1;
+      return m_pimage32;
 
    }
 
 
-   inline const ::color32_t * colorref() const
+   inline const ::image32_t * image32() const
    {
 
-      return m_pcolorref1;
+      return m_pimage32;
 
    }
 
 
-   inline operator ::color32_t * ()
+   inline operator ::image32_t * ()
    {
 
-      return colorref();
+      return image32();
 
    }
 
 
-   inline operator const ::color32_t * () const
+   inline operator const ::image32_t * () const
    {
 
-      return colorref();
+      return image32();
 
    }
 
@@ -693,52 +698,54 @@ public:
    }
 
 
-   inline ::color32_t * data()
+   inline ::image32_t * data()
    {
 
-      return m_pcolorref1;
+      return m_pimage32;
 
    }
 
-   inline ::color32_t * begin()
-   {
-
-      return this->data();
-
-   }
-
-   inline const ::color32_t * data() const
-   {
-
-      return m_pcolorref1;
-
-   }
-
-
-   inline const ::color32_t * begin() const 
+   inline ::image32_t * begin()
    {
 
       return this->data();
 
    }
 
-   const ::color32_t * get_data() const
+   inline const ::image32_t * data() const
+   {
+
+      return m_pimage32;
+
+   }
+
+
+   inline const ::image32_t * begin() const
+   {
+
+      return this->data();
+
+   }
+
+   const ::image32_t * get_data() const
    {
 
       map();
 
-      return colorref();
+      return image32();
 
    }
 
-   ::color32_t * get_data()
+
+   ::image32_t * get_data()
    {
 
       map();
 
-      return colorref();
+      return image32();
 
    }
+
    //inline ::image & operator = (const ::image & image);
    //inline void operator == (const ::image & image) const;
    //inline void operator != (const ::image & image) const;
@@ -792,7 +799,7 @@ public:
    inline bool operator == (const image& image) const
    {
 
-      return m_pcolorrefRaw == image.m_pcolorrefRaw;
+      return m_pimage32Raw == image.m_pimage32Raw;
 
    }
 
@@ -848,14 +855,14 @@ public:
    inline ::color::color pixel(int x, int y) const
    {
 
-      if (::is_null(this) || ::is_null(colorref()) || x < 0 || y < 0 || x>= m_size.cx() || y >= m_size.cy())
+      if (::is_null(this) || ::is_null(image32()) || x < 0 || y < 0 || x>= m_size.cx() || y >= m_size.cy())
       {
 
-         return 0;
+         return {};
 
       }
 
-      return ::draw2d::get_pixel(colorref(), scan_size(), width(), x, y);
+      return ::draw2d::get_pixel(image32(), m_colorindexes, scan_size(), width(), x, y);
 
    }
 

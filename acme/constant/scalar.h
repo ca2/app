@@ -38,7 +38,7 @@ enum enum_scalar_flags
 };
 
 
-enum enum_number : ::byte
+enum enum_number : ::u8
 {
 
    e_number_none,

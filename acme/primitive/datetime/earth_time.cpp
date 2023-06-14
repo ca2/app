@@ -566,7 +566,7 @@ namespace earth
    #elif defined(__APPLE__)
 
    #if __WORDSIZE != 64
-   #pragma error "error: long should 8-byte on __APPLE__"
+   #pragma error "error: long should 8-::u8 on __APPLE__"
    #endif
 
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
@@ -687,7 +687,7 @@ namespace earth
    ::earth::time & time::operator+=(date_span span)
    {
 
-      __UNREFERENCED_PARAMETER(span);
+      UNREFERENCED_PARAMETER(span);
 
       //throw ::not_implemented();
 
@@ -699,7 +699,7 @@ namespace earth
    ::earth::time & time::operator-=(date_span span)
    {
 
-      __UNREFERENCED_PARAMETER(span);
+      UNREFERENCED_PARAMETER(span);
 
       //throw ::not_implemented();
 
@@ -711,7 +711,7 @@ namespace earth
    ::earth::time time::operator-(date_span span) const
    {
 
-      __UNREFERENCED_PARAMETER(span);
+      UNREFERENCED_PARAMETER(span);
 
       //throw ::not_implemented();
 
@@ -723,7 +723,7 @@ namespace earth
    ::earth::time time::operator+(date_span span) const
    {
 
-      __UNREFERENCED_PARAMETER(span);
+      UNREFERENCED_PARAMETER(span);
 
       //throw_();
 

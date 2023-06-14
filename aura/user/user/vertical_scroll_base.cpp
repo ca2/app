@@ -53,7 +53,7 @@ namespace user
    void vertical_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient = client_rectangle();
+      ::rectangle_i32 rectangleClient = raw_rectangle();
 
       //scroll_bar_get_client_rect(rectangleClient);
 

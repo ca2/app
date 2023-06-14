@@ -214,7 +214,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
             }
 
-            ::output_debug_string("\nWM_IME_COMPOSITION Compositè String Length = " + as_string(strComposition.length()));
+            ::output_debug_string("\nWM_IME_COMPOSITION Compositeh String Length = " + as_string(strComposition.length()));
 
             on_text_composition(strComposition);
 
@@ -260,19 +260,19 @@ void imm_client::_001OnIme(::message::message * pmessage)
    else if (pmessage->m_atom == WM_IME_KEYDOWN)
    {
 
-      INFORMATION("WM_IME_KEYDOWN");
+      information() << "WM_IME_KEYDOWN";
 
    }
    else if (pmessage->m_atom == WM_IME_ENDCOMPOSITION)
    {
 
-      INFORMATION("WM_IME_ENDCOMPOSITION");
+      information() << "WM_IME_ENDCOMPOSITION";
 
    }
    else if (pmessage->m_atom == WM_IME_STARTCOMPOSITION)
    {
 
-      INFORMATION("WM_IME_STARTCOMPOSITION");
+      information() << "WM_IME_STARTCOMPOSITION";
 
       m_bImeCancelling = false;
 

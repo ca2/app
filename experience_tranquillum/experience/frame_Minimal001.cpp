@@ -1,9 +1,4 @@
 #include "framework.h"
-
-
-#if 0
-
-
 #include "aura/graphics/draw2d/graphics.h"
 #include "frame_Minimal001.h"
 #include "base/user/experience/frame_window.h"
@@ -253,7 +248,7 @@ SizingNone:;
          //class imaging & imaging = psystem->imaging();
 
          //imaging.color_blend(
-            pgraphics->fill_rectangle(rectangle, colorMoveableBorder & opacity(127));
+            pgraphics->fill_rectangle(rectangle, colorMoveableBorder & ::opacity(127));
 
       }
       /*else if(m_estyle == StyleLightBlue)
@@ -1249,8 +1244,5 @@ SizingNone:;
 
 } // namespace experience_tranquillum
 
-
-
-#endif
 
 

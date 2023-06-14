@@ -34,9 +34,9 @@ public:
 
    bool get_b(jfieldID jfieldid);
 
-   void set_uch(jfieldID jfieldid, byte b);
+   void set_uch(jfieldID jfieldid, ::u8 b);
 
-   byte get_uch(jfieldID jfieldid);
+   ::u8 get_uch(jfieldID jfieldid);
 
    void set_ch(jfieldID jfieldid, char ch);
 
@@ -70,9 +70,9 @@ public:
 
    bool get_b(const ::scoped_string & scopedstrField);
 
-   void set_uch(const ::scoped_string & scopedstrField, byte b);
+   void set_uch(const ::scoped_string & scopedstrField, ::u8 b);
 
-   byte get_uch(const ::scoped_string & scopedstrField);
+   ::u8 get_uch(const ::scoped_string & scopedstrField);
 
    void set_ch(const ::scoped_string & scopedstrField, char ch);
 

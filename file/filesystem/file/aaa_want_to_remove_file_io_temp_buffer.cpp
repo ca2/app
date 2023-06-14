@@ -65,7 +65,7 @@ namespace file
          _crc = crc_update(_crc, data, cur);
          _bufPos += cur;
          size -= cur;
-         data = ((const byte *)data) + cur;
+         data = ((const ::u8 *)data) + cur;
          _size += cur;
       }
       return write_to_file(data, size);

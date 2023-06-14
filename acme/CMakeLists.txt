@@ -145,6 +145,8 @@ list(APPEND library_source
         filesystem/file/memory_map.cpp
         #filesystem/file/path.cpp
         filesystem/file/payload_stream.cpp
+        filesystem/file/print_formatting.cpp
+        filesystem/file/print_formatting.h
         #filesystem/file/seekable.cpp
         #filesystem/file/serializable.cpp
         #filesystem/file/serialize.cpp
@@ -183,7 +185,11 @@ list(APPEND library_source
         graphics/draw2d/_system_color.h
         graphics/draw2d/color.cpp
         graphics/draw2d/color32.h
-        graphics/draw2d/colorref_array.cpp
+        graphics/draw2d/color_array.cpp
+        graphics/draw2d/color_array.h
+        graphics/draw2d/image32.h
+        graphics/draw2d/image32_array.cpp
+        graphics/draw2d/image32_array.h
         graphics/draw2d/os_font_name.cpp
         handler/extended_topic.cpp
         handler/extended_topic.h
@@ -387,6 +393,7 @@ list(APPEND library_source
         platform/version.cpp
         primitive/collection/__payload_array.cpp
         primitive/collection/__property_set.h
+        primitive/collection/_generic_array.h
         #primitive/collection/2d_array.cpp
         primitive/collection/array.cpp
         primitive/collection/atom_array.h
@@ -460,27 +467,6 @@ list(APPEND library_source
         primitive/datetime/system_time.cpp
         primitive/datetime/zonetime.cpp
         primitive/datetime/zonetime.h
-        #primitive/time/duration/_.h
-        #primitive/time/duration/duration.cpp
-        #primitive/time/duration/duration.h
-        primitive/time/floating/_.h
-        primitive/time/integral/_.h
-        primitive/time/_.h
-        primitive/time/__string.cpp
-        primitive/time/__string.h
-        primitive/time/_binary_stream.h
-        primitive/time/_impl.h
-        primitive/time/_string.h
-        #primitive/time/_time.h
-        primitive/time/_impl.h
-        primitive/time/_string.h
-        primitive/time/_structures.h
-        primitive/time/_text_stream.h
-        #primitive/time/_unit.h
-        primitive/time/_unit_operator.h
-        primitive/time/time.cpp
-        primitive/time/time.h
-        #primitive/time/time_operator.h
         primitive/geometry/sequence.h
         primitive/geometry2d/_.cpp
         primitive/geometry2d/_.h
@@ -491,13 +477,14 @@ list(APPEND library_source
         #primitive/geometry2d/_concept.h
         #primitive/geometry2d/_enhanced.h
         primitive/geometry2d/_defer.h
-        primitive/geometry2d/_geometry2d.h
+        #primitive/geometry2d/_geometry2d.h
         #primitive/geometry2d/_impl.h
         #primitive/geometry2d/_rect_impl.h
         #primitive/geometry2d/_shape.cpp
         #primitive/geometry2d/_shape.h
         #primitive/geometry2d/_size_impl.h
         primitive/geometry2d/_struct.h
+        primitive/geometry2d/_text_stream.h
         #primitive/geometry2d/align.h
         primitive/geometry2d/angle.h
         primitive/geometry2d/arc.h
@@ -507,6 +494,8 @@ list(APPEND library_source
         primitive/geometry2d/ellipse.h
         primitive/geometry2d/geometry.cpp
         primitive/geometry2d/geometry.h
+        primitive/geometry2d/item.cpp
+        primitive/geometry2d/item.h
         primitive/geometry2d/line.h
         primitive/geometry2d/lines.h
         #primitive/geometry2d/point.cpp
@@ -516,6 +505,8 @@ list(APPEND library_source
         primitive/geometry2d/rectangle.cpp
         primitive/geometry2d/rectangle.h
         primitive/geometry2d/rectangle_array.h
+        primitive/geometry2d/region.cpp
+        primitive/geometry2d/region.h
         #primitive/geometry2d/shape.cpp
         #primitive/geometry2d/shape.h
         #primitive/geometry2d/shape_array.h
@@ -890,6 +881,27 @@ list(APPEND library_source
         primitive/text/text.h
         primitive/text/translator.cpp
         primitive/text/translator.h
+        #primitive/time/duration/_.h
+        #primitive/time/duration/duration.cpp
+        #primitive/time/duration/duration.h
+        primitive/time/floating/_.h
+        primitive/time/integral/_.h
+        primitive/time/_.h
+        primitive/time/__string.cpp
+        primitive/time/__string.h
+        primitive/time/_binary_stream.h
+        primitive/time/_impl.h
+        primitive/time/_string.h
+        #primitive/time/_time.h
+        primitive/time/_impl.h
+        primitive/time/_string.h
+        primitive/time/_structures.h
+        primitive/time/_text_stream.h
+        #primitive/time/_unit.h
+        primitive/time/_unit_operator.h
+        primitive/time/time.cpp
+        primitive/time/time.h
+        #primitive/time/time_operator.h
         promise.cpp
         regular_expression/_regular_expression.h
         regular_expression/context.cpp
@@ -1267,7 +1279,7 @@ list(APPEND library_source
         graphics/draw2d/_.h
         graphics/draw2d/_constant.h
         graphics/draw2d/color.h
-        graphics/draw2d/colorref_array.h
+        #graphics/draw2d/colorref_array.h
         include/_.h
         include/_c.h
         include/_c_bridge.h
@@ -1451,6 +1463,8 @@ list(APPEND library_source
         platform/timer_task.h
         platform/title.h
         platform/trace_category.h
+        platform/trace_statement.cpp
+        platform/trace_statement.h
         platform/uint32_muldiv.h
         platform/uint64_muldiv.h
         platform/user_parent.h
@@ -1535,7 +1549,6 @@ list(APPEND library_source
         version/version.config.h
         version/version.h
         include/_impl.h
-        primitive/geometry2d/_text_stream.h
         )
 
 if (ANDROID)
@@ -2297,7 +2310,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} primitive/collection/_generic_array.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

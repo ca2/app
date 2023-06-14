@@ -142,14 +142,14 @@ typedef WINUCHAR *PWINUCHAR;
 
 typedef u32       ::u32;
 //typedef i32                 int_bool;
-typedef unsigned char       byte;
+typedef unsigned char       ::u8;
 typedef unsigned short      ::u16;
 typedef float               FLOAT;
 typedef FLOAT               *PFLOAT;
 typedef int_bool near           *PBOOL;
 typedef int_bool far            *int_bool *;
-typedef byte near           *PBYTE;
-typedef byte far            *LPBYTE;
+typedef ::u8 near           *PBYTE;
+typedef ::u8 far            *LPBYTE;
 typedef i32 near            *PINT;
 typedef i32 far             *LPINT;
 typedef ::u16 near           *PWORD;
@@ -182,12 +182,12 @@ typedef iptr            LPARAM;
 typedef iptr            LRESULT;
 
 
-#define MAKEWORD(a, b)      ((::u16)(((byte)(((dword_ptr)(a)) & 0xff)) | ((::u16)((byte)(((dword_ptr)(b)) & 0xff))) << 8))
-#define __MAKE_LONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
-#define LOWORD(l)           ((::u16)(((dword_ptr)(l)) & 0xffff))
-#define HIWORD(l)           ((::u16)((((dword_ptr)(l)) >> 16) & 0xffff))
-#define __LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
-#define HIBYTE(w)           ((byte)((((dword_ptr)(w)) >> 8) & 0xff))
+// #define MAKEWORD(a, b)      ((::u16)(((::u8)(((dword_ptr)(a)) & 0xff)) | ((::u16)((::u8)(((dword_ptr)(b)) & 0xff))) << 8))
+// #define make_i32(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
+// #define LOWORD(l)           ((::u16)(((dword_ptr)(l)) & 0xffff))
+// #define HIWORD(l)           ((::u16)((((dword_ptr)(l)) >> 16) & 0xffff))
+// #define lower_u8(w)           ((::u8)(((dword_ptr)(w)) & 0xff))
+// #define HIBYTE(w)           ((::u8)((((dword_ptr)(w)) >> 8) & 0xff))
 
 
 #ifndef WIN_INTERNAL
@@ -365,14 +365,14 @@ struct tagHandle
 
 ///typedef u32       ::u32;
 //typedef i32                 int_bool;
-//typedef unsigned char       byte;
+//typedef unsigned char       ::u8;
 //typedef unsigned short      ::u16;
 //typedef float               FLOAT;
 //typedef FLOAT               *PFLOAT;
 //typedef int_bool near           *PBOOL;
 //typedef int_bool far            *int_bool *;
-//typedef byte near           *PBYTE;
-//typedef byte far            *LPBYTE;
+//typedef ::u8 near           *PBYTE;
+//typedef ::u8 far            *LPBYTE;
 //typedef i32 near            *PINT;
 //typedef i32 far             *LPINT;
 //typedef ::u16 near           *PWORD;
@@ -460,7 +460,7 @@ typedef  const WCHAR *PCNZWCH;
 typedef  WCHAR UNALIGNED *PUNZWCH;
 typedef  const WCHAR UNALIGNED *PCUNZWCH;
 //
-// ANSI (Multi-byte Character) types
+// ANSI (Multi-::u8 Character) types
 //
 //typedef char *PCHAR, *LPCH, *PCH;
 //typedef const char *LPCCH, *PCCH;
@@ -511,7 +511,7 @@ typedef struct
    unsigned long  Data1;
    unsigned short Data2;
    unsigned short Data3;
-   byte           Data4[ 8 ];
+   ::u8           Data4[ 8 ];
 } GUID;
 #else
 typedef struct _GUID
@@ -549,16 +549,16 @@ MY_EXTERN_C ::u32 get_last_error(void);
 MY_EXTERN_C void set_last_error(::u32 dw);
 
 
-/*#define MAKEWORD(a, b)      ((::u16)(((byte)(((DWORD_PTR)(a)) & 0xff)) | ((::u16)((byte)(((DWORD_PTR)(b)) & 0xff))) << 8))
-#define __MAKE_LONG(a, b)      ((::i32)(((::u16)(((DWORD_PTR)(a)) & 0xffff)) | ((::u32)((::u16)(((DWORD_PTR)(b)) & 0xffff))) << 16))
-#define LOWORD(l)           ((::u16)(((DWORD_PTR)(l)) & 0xffff))
-#define HIWORD(l)           ((::u16)((((DWORD_PTR)(l)) >> 16) & 0xffff))
-#define __LOBYTE(w)           ((byte)(((DWORD_PTR)(w)) & 0xff))
-#define HIBYTE(w)           ((byte)((((DWORD_PTR)(w)) >> 8) & 0xff))*/
+// #define MAKEWORD(a, b)      ((::u16)(((::u8)(((DWORD_PTR)(a)) & 0xff)) | ((::u16)((::u8)(((DWORD_PTR)(b)) & 0xff))) << 8))
+// #define make_i32(a, b)      ((::i32)(((::u16)(((DWORD_PTR)(a)) & 0xffff)) | ((::u32)((::u16)(((DWORD_PTR)(b)) & 0xffff))) << 16))
+// #define LOWORD(l)           ((::u16)(((DWORD_PTR)(l)) & 0xffff))
+// #define HIWORD(l)           ((::u16)((((DWORD_PTR)(l)) >> 16) & 0xffff))
+// #define lower_u8(w)           ((::u8)(((DWORD_PTR)(w)) & 0xff))
+// #define HIBYTE(w)           ((::u8)((((DWORD_PTR)(w)) >> 8) & 0xff))*/
 
-#define MAKEWPARAM(l, h)      ((WPARAM)(::u32)__MAKE_LONG(l, h))
-#define MAKELPARAM(l, h)      ((LPARAM)(::u32)__MAKE_LONG(l, h))
-#define MAKELRESULT(l, h)     ((LRESULT)(::u32)__MAKE_LONG(l, h))
+// #define MAKEWPARAM(l, h)      ((WPARAM)(::u32)make_i32(l, h))
+// #define MAKELPARAM(l, h)      ((LPARAM)(::u32)make_i32(l, h))
+// #define MAKELRESULT(l, h)     ((LRESULT)(::u32)make_i32(l, h))
 
 
 
@@ -581,8 +581,8 @@ MY_EXTERN_C void set_last_error(::u32 dw);
 typedef char char;
 typedef uchar WINUCHAR;
 
-#undef byte
-typedef uchar byte;
+#undef ::u8
+typedef uchar ::u8;
 
 typedef i16 SHORT;
 typedef u16 WINUSHORT;

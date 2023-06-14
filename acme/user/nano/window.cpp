@@ -21,6 +21,7 @@
 #include "acme/exception/interface_only.h"
 
 
+
 nano_window::nano_window()
 {
 
@@ -49,8 +50,6 @@ nano_window::~nano_window()
    acmesystem()->m_pnano->m_nanowindowa.erase_item(this);
 
 }
-
-
 
 
 void nano_window::on_initialize_particle()

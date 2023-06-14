@@ -327,7 +327,7 @@ namespace linux
             ::read
             ::write
 
-            access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
+            access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single ::u8 writes
 
             */
 

@@ -76,7 +76,7 @@ namespace sockets
       //   if(!is_null(socket_handler()))
       //   {
 
-      //      warning("socket::close: file descriptor invalid");
+      //      warning() <<"socket::close: file descriptor invalid";
 
       //   }
 
@@ -93,7 +93,7 @@ namespace sockets
       //   {
 
       //      // failed...
-      //      ERROR("close" << Errno << ", " << bsd_socket_error(Errno));
+      //      error() <<"close" << Errno << ", " << bsd_socket_error(Errno);
 
       //   }
 
@@ -156,7 +156,7 @@ namespace sockets
 //            if (pprotoent == nullptr)
 //            {
 //
-//               FATAL("getprotobyname" << Errno << ", " << bsd_socket_error(Errno));
+//               fatal() <<"getprotobyname" << Errno << ", " << bsd_socket_error(Errno);
 //
 //               SetCloseAndDelete();
 //
@@ -184,7 +184,7 @@ namespace sockets
 //      if (s == INVALID_SOCKET)
 //      {
 //
-//         FATAL("socket" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"socket" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         SetCloseAndDelete();
 //         throw ::exception(error_socket, string("socket() failed: ") + bsd_socket_error(Errno));
@@ -226,7 +226,7 @@ namespace sockets
 //      if (n != 0)
 //      {
 //
-//         INFORMATION("ioctlsocket(FIONBIO) " << Errno);
+//         information() << "ioctlsocket(FIONBIO) " << Errno;
 //
 //         return false;
 //      }
@@ -237,7 +237,7 @@ namespace sockets
 //         if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
 //         {
 //
-//            ERROR("fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno));
+//            error() <<"fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //            return false;
 //         }
@@ -247,7 +247,7 @@ namespace sockets
 //         if (fcntl(s, F_SETFL, 0) == -1)
 //         {
 //
-//            ERROR("fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno));
+//            error() <<"fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //            return false;
 //         }

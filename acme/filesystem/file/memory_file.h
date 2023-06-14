@@ -6,13 +6,13 @@
 
 #pragma pack(push, custom__integers__, 1)
 
-struct u24 { byte m_u[3]; };
+struct u24 { ::u8 m_u[3]; };
 
-struct u40 { byte m_u[5]; };
+struct u40 { ::u8 m_u[5]; };
 
-struct u48 { byte m_u[6]; };
+struct u48 { ::u8 m_u[6]; };
 
-struct u56 { byte m_u[7]; };
+struct u56 { ::u8 m_u[7]; };
 
 #pragma pack(pop, custom__integers__)
 
@@ -22,7 +22,7 @@ class memory_file;
 typedef ::pointer<memory_file>memory_file_pointer;
 
 
-inline void inline_byte_array_copy(::byte * target, const ::byte * source, ::memsize s)
+inline void inline_byte_array_copy(::u8 * target, const ::u8 * source, ::memsize s)
 {
 
    switch (s)
@@ -122,7 +122,7 @@ public:
 
    void write(::file::readable * pfileIn, memsize uiBufSize = 16_MiB) override;
 
-   void put_byte_back(::byte byte) override;
+   void put_byte_back(::u8 u8) override;
 
    virtual void write_from_hex(const ::block & block) override;
 
@@ -135,14 +135,14 @@ public:
    bool is_in_memory_file() const override { return true; }
 
    using ::file::file::full_data;
-   ::byte * full_data_begin() override;
-   ::byte * full_data_end() override;
-   const ::byte * full_data_begin() const override;
-   const ::byte * full_data_end() const override;
-   ::byte * data_begin() override;
-   ::byte * data_end() override;
-   const ::byte * data_begin() const override;
-   const ::byte * data_end() const override;
+   ::u8 * full_data_begin() override;
+   ::u8 * full_data_end() override;
+   const ::u8 * full_data_begin() const override;
+   const ::u8 * full_data_end() const override;
+   ::u8 * data_begin() override;
+   ::u8 * data_end() override;
+   const ::u8 * data_begin() const override;
+   const ::u8 * data_end() const override;
 
    using ::file::file::data;
 
@@ -251,7 +251,7 @@ public:
    memsize read_inline(void * p, ::memsize s)
    {
 
-      auto target = (::byte *)p;
+      auto target = (::u8 *)p;
 
       memsize left = m_pmemory->size() - m_position;
 
@@ -283,7 +283,7 @@ public:
    void write_inline(const void * p, ::memsize s)
    {
 
-      auto source = (const ::byte *)p;
+      auto source = (const ::u8 *)p;
 
       auto e = m_position + s;
 

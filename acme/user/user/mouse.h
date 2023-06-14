@@ -2,7 +2,7 @@
 //  user_mouse.hpp
 //  base
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 14/08/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 14/08/17.
 //
 //
 #pragma once
@@ -10,7 +10,7 @@
 
 //#include "acme/primitive/primitive/particle.h"
 //#include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/point.h"
 
 
 namespace user

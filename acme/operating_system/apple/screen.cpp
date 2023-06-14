@@ -2,9 +2,9 @@
 //  screen.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/11/2022.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 29/11/2022.
 //  14:07
-//  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Copyright (c) 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
 

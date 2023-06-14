@@ -20,7 +20,7 @@ CLASS_DECL_ACME float os_get_dpi()
 CLASS_DECL_ACME float point_dpi(oswindow hwnd, float points)
 {
 
-   __UNREFERENCED_PARAMETER(hwnd);
+   UNREFERENCED_PARAMETER(hwnd);
 
    return points * g_DPIScaleX / 72.f;
 
@@ -30,7 +30,7 @@ CLASS_DECL_ACME float point_dpi(oswindow hwnd, float points)
 CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
 {
 
-   __UNREFERENCED_PARAMETER(hwnd);
+   UNREFERENCED_PARAMETER(hwnd);
 
    return y * g_DPIScaleY / 96.f;
 
@@ -40,7 +40,7 @@ CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
 //CLASS_DECL_ACME float dpix(HWND hwnd, float x)
 //{
 //
-//   __UNREFERENCED_PARAMETER(hwnd);
+//   UNREFERENCED_PARAMETER(hwnd);
 //
 //   return x * g_DPIScaleX / 96.f;
 //
@@ -50,7 +50,7 @@ CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
 //CLASS_DECL_ACME float y_dpi(HWND hwnd, float y)
 //{
 //
-//   __UNREFERENCED_PARAMETER(hwnd);
+//   UNREFERENCED_PARAMETER(hwnd);
 //
 //   return y / g_DPIScaleY;
 //
@@ -60,7 +60,7 @@ CLASS_DECL_ACME float dpiy(oswindow hwnd, float y)
 //CLASS_DECL_ACME float x_dpi(HWND hwnd, float x)
 //{
 //
-//   __UNREFERENCED_PARAMETER(hwnd);
+//   UNREFERENCED_PARAMETER(hwnd);
 //
 //   return x / g_DPIScaleX;
 //

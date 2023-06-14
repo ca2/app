@@ -254,7 +254,7 @@ namespace console
    void prompt_impact::on_message_key_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

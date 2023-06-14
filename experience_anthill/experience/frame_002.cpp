@@ -23,12 +23,12 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-color32_t SetAValue(byte a, color32_t color32)
-{
-
-   return argb(a, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32));
-
-}
+//color32_t SetAValue(::u8 a, color32_t color32)
+//{
+//
+//   return argb(a, color32), color32_u8_green(color32), color32_u8_blue(color32));
+//
+//}
 
 
 namespace experience_anthill
@@ -264,7 +264,7 @@ namespace experience_anthill
       else if (estyle == ::user::StyleLightBlue)
       {
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorder, ::color::transparent);//m_colorMoveableBorderDkShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
          Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorderHilight, colorMoveableBorderShadow);
@@ -306,14 +306,14 @@ namespace experience_anthill
          rectangleA.right--;
          if (edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
+         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -321,7 +321,7 @@ namespace experience_anthill
          rectangleA.right--;
          if (edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
       }

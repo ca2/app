@@ -132,7 +132,7 @@ bool simple_list_control::erase_item(::user::range & range)
 
 void simple_list_control::install_message_routing(::channel * pchannel)
 {
-   __UNREFERENCED_PARAMETER(pchannel);
+   UNREFERENCED_PARAMETER(pchannel);
    ::user::list::install_message_routing(pchannel);
 }
 

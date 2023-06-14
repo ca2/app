@@ -263,7 +263,7 @@ namespace user
    void button::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_estyle == style_none)
       {
@@ -572,7 +572,7 @@ namespace user
 
          colorBack.hls_rate(0.0, -0.1, 0.0);
 
-         if (colorref_get_a_value(crBackground) > 0)
+         if (color32_u8_opacity(crBackground) > 0)
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -601,7 +601,7 @@ namespace user
       else
       {
 
-         if (colorref_get_a_value(crBackground) > 0)
+         if (color32_u8_opacity(crBackground) > 0)
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

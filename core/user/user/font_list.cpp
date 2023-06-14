@@ -251,6 +251,8 @@ namespace user
 
             set_need_redraw();
 
+            post_redraw();
+
          }
 
       }
@@ -281,7 +283,7 @@ namespace user
    void font_list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //::user::list_box::_001OnClip(pgraphics);
+      ::user::list_box::_001OnNcClip(pgraphics);
 
    }
 
@@ -297,10 +299,9 @@ namespace user
    void font_list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //::user::list_box::_001OnClip(pgraphics);
+      ::user::list_box::_001OnClip(pgraphics);
 
    }
-
 
 
    void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -337,7 +338,7 @@ namespace user
 
          auto rectangleBackground(rectangleClient);
 
-         rectangleBackground += m_pointScroll;
+         //rectangleBackground += m_pointScroll;
 
          pgraphics->fill_rectangle(rectangleBackground, colorBackground);
 
@@ -571,7 +572,7 @@ namespace user
    ::item_pointer font_list::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      return m_pfontlist->hit_test(point + m_pointScroll, ezorder);
+      return m_pfontlist->hit_test(point, ezorder);
 
    }
 

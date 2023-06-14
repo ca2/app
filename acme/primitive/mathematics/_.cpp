@@ -40,7 +40,7 @@ CLASS_DECL_ACME extern const char log2_LogTable256[256] =
 CLASS_DECL_ACME void simple_generate_random_bytes(void* p, memsize s)
 {
 
-   byte* puch = (byte*)p;
+   ::u8* puch = (::u8*)p;
 
    while (s > 0)
    {

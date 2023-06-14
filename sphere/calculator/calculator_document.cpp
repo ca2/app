@@ -65,7 +65,7 @@ namespace calculator
 
    void document::data_on_after_change(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    }
 
    bool document::on_open_document(const ::payload & payloadFile)

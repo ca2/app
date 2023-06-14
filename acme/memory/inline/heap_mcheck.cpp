@@ -191,12 +191,12 @@ void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * sz
 
 #else
 
-   __UNREFERENCED_PARAMETER(nBlockUse);
-   __UNREFERENCED_PARAMETER(szFileName);
-   __UNREFERENCED_PARAMETER(nLine);
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    if(g_pheap == nullptr)
    {
 
@@ -259,12 +259,12 @@ void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * 
 
 #else
 
-   __UNREFERENCED_PARAMETER(nBlockUse);
-   __UNREFERENCED_PARAMETER(szFileName);
-   __UNREFERENCED_PARAMETER(nLine);
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    void * pusermessage = g_pheap->alloc_debug(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 
    if (pusermessage == nullptr)
@@ -464,7 +464,7 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
    if (pmemory == nullptr)
       return memory_allocate_debug(size, nBlockUse, szFileName, nLine);
 
-   byte blockuse = heap_memory::heap_get_block_use(pmemory);
+   ::u8 blockuse = heap_memory::heap_get_block_use(pmemory);
 
    size_t sizeOld = heap_memory::heap_get_size(pmemory);
 
@@ -903,11 +903,11 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
 
    }
 
-   byte blockuse = pheapmemory->m_blockuse;
+   ::u8 blockuse = pheapmemory->m_blockuse;
 
    memsize sizeOld = pheapmemory->m_size;
 
-   byte align = pheapmemory->m_align;
+   ::u8 align = pheapmemory->m_align;
 
    void * p = heap_memory_base_get(pmemory);
 

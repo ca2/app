@@ -145,7 +145,7 @@ namespace user
 
          auto sizeMinimum = frame::get_window_minimum_size();
 
-         auto rectangleClient = const_layout().state(e_layout_sketch).client_rect();
+         auto rectangleClient = const_layout().state(e_layout_sketch).raw_rectangle();
 
          auto sizeFrame = rectangleClient.size();
 

@@ -335,7 +335,7 @@ namespace user
    void plain_edit::OnDraw(::image * pimage)
    {
 
-      __UNREFERENCED_PARAMETER(pimage);
+      UNREFERENCED_PARAMETER(pimage);
 
    }
 
@@ -471,7 +471,7 @@ namespace user
 
       colorComposeBk = crBk;
       colorComposeBk.blend(crBkSel, 0.5);
-      colorComposeBk.alpha = 127;
+      colorComposeBk.m_u8Opacity = 127;
 
       pstyle->get(m_pcontrolstyle, pgraphics, this);
 
@@ -840,7 +840,7 @@ namespace user
 
                auto ppen = __create < ::draw2d::pen >();
 
-               ppen->create_solid(1.0, argb((byte)iErrorA, 255, 0, 0));
+               ppen->create_solid(1.0, argb((::u8)iErrorA, 255, 0, 0));
 
                pgraphics->set(ppen);
 
@@ -908,7 +908,7 @@ namespace user
       if (timeElapsed > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "plain_edit took more than 50ms to draw " << d1.integral_millisecond());
+         information()(e_trace_category_prodevian) << "plain_edit took more than 50ms to draw " << d1.integral_millisecond();
 
       }
 
@@ -1167,12 +1167,12 @@ namespace user
       else if (ptimer->m_etimer == e_timer_caret_flashing)
       {
 
-         //INFORMATION("_001OnTimer e_timer_caret_flashing");
+         //information() << "_001OnTimer e_timer_caret_flashing";
 
          if (has_keyboard_focus())
          {
 
-            //INFORMATION("Keyboard Focus");
+            //information() << "Keyboard Focus";
 
             _001OnKeyboardFocusTimer(ptimer->m_etimer);
 
@@ -1180,7 +1180,7 @@ namespace user
          else
          {
 
-            //INFORMATION("No keyboard Focus");
+            //information() << "No keyboard Focus";
 
          }
 
@@ -1312,7 +1312,7 @@ namespace user
 
    //   }
 
-   //   INFORMATION("key_to_char (1)");
+   //   information() << "key_to_char (1)";
 
    //   on_message_character(&key);
 
@@ -1948,7 +1948,7 @@ namespace user
 
                auto iSelEnd = iSelBeg;
                
-               FORMATTED_INFORMATION("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
+               information("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
 
                _001SetSel(iSelBeg, iSelEnd);
 
@@ -5251,7 +5251,7 @@ namespace user
 
       {
 
-         INFORMATION("plain_edit::_001OnMessageKey (1)");
+         information() << "plain_edit::_001OnMessageKey (1)";
 
          auto pkey = pmessage->m_union.m_pkey;
 
@@ -5259,7 +5259,7 @@ namespace user
 
          auto psession = get_session();
 
-         INFORMATION("on_message_key_down (1)");
+         information() << "on_message_key_down (1)";
 
          {
 
@@ -5282,7 +5282,7 @@ namespace user
 
          }
 
-         INFORMATION("on_message_key_down (2)");
+         information() << "on_message_key_down (2)";
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -5658,7 +5658,7 @@ namespace user
             else if (pkey->m_ekey == ::user::e_key_back)
             {
 
-               INFORMATION("plain_edit::on_message_character (key_back)");
+               information() << "plain_edit::on_message_character (key_back)";
 
                if (is_text_composition_active())
                {
@@ -6283,7 +6283,7 @@ namespace user
    void plain_edit::on_message_char(::message::message * pmessage)
    {
 
-      INFORMATION("plain_edit::on_message_char (1)");
+      information() << "plain_edit::on_message_char (1)";
 
       auto pkey = pmessage->m_union.m_pkey;
 
@@ -7003,13 +7003,13 @@ namespace user
 //            if (bCaretOn)
 //            {
 //
-//               INFORMATION("CARET ON!!!!");
+//               information() << "CARET ON!!!!";
 //
 //            }
 //            else
 //            {
 //
-//               INFORMATION("CARET OFF!!!!");
+//               information() << "CARET OFF!!!!";
 //
 //            }
 
@@ -7021,13 +7021,13 @@ namespace user
 //               if (bCaretOn)
 //               {
 //
-//                  INFORMATION("CARET ON!!!!");
+//                  information() << "CARET ON!!!!";
 //
 //               }
 //               else
 //               {
 //
-//                  INFORMATION("CARET OFF!!!!");
+//                  information() << "CARET OFF!!!!";
 //
 //               }
 
@@ -7078,8 +7078,8 @@ namespace user
 
    void plain_edit::IndexRegisterDelete(strsize iSel, strsize iCount)
    {
-      __UNREFERENCED_PARAMETER(iSel);
-      __UNREFERENCED_PARAMETER(iCount);
+      UNREFERENCED_PARAMETER(iSel);
+      UNREFERENCED_PARAMETER(iCount);
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
       /*   char flag;
@@ -7144,8 +7144,8 @@ namespace user
    void plain_edit::IndexRegisterInsert(strsize iSel, const ::string & pcszWhat)
 
    {
-      __UNREFERENCED_PARAMETER(iSel);
-      __UNREFERENCED_PARAMETER(pcszWhat);
+      UNREFERENCED_PARAMETER(iSel);
+      UNREFERENCED_PARAMETER(pcszWhat);
 
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
@@ -7770,7 +7770,7 @@ namespace user
    void plain_edit::_001OnHScroll(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -7795,7 +7795,7 @@ namespace user
    void plain_edit::_009OnChar(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -7840,7 +7840,7 @@ namespace user
    void plain_edit::on_set_keyboard_focus()
    {
 
-      INFORMATION("plain_edit::on_set_keyboard_focus");
+      information() << "plain_edit::on_set_keyboard_focus";
 
       m_ewindowflag |= e_window_flag_focus;
 
@@ -7892,7 +7892,7 @@ namespace user
    void plain_edit::on_kill_keyboard_focus()
    {
 
-      INFORMATION("plain_edit::on_kill_keyboard_focus");
+      information() << "plain_edit::on_kill_keyboard_focus";
 
       KillTimer(e_timer_caret_flashing);
 
@@ -7982,7 +7982,7 @@ namespace user
    void plain_edit::_001OnEditCut(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -8017,7 +8017,7 @@ namespace user
    void plain_edit::_001OnEditCopy(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -8042,7 +8042,7 @@ namespace user
    void plain_edit::_001OnEditPaste(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (is_window_enabled())
       {
@@ -8095,7 +8095,7 @@ namespace user
    void plain_edit::on_message_size(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

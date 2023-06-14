@@ -104,17 +104,17 @@ namespace mail
 
    void pop3::set_stat_count(i32 iCount)
    {
-      __UNREFERENCED_PARAMETER(iCount);
+      UNREFERENCED_PARAMETER(iCount);
    }
 
    void pop3::set_stat_size(i32 iSize)
    {
-      __UNREFERENCED_PARAMETER(iSize);
+      UNREFERENCED_PARAMETER(iSize);
    }
 
    void pop3::set_list_size(i32 iSize)
    {
-      __UNREFERENCED_PARAMETER(iSize);
+      UNREFERENCED_PARAMETER(iSize);
    }
 
    void pop3::on_finished_transaction()

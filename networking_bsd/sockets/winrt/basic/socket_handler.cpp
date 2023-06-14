@@ -173,7 +173,7 @@ namespace sockets
       if (m_add.lookup(p -> GetSocket(), plookup))
       {
          
-         //FATAL(log_this, p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue");
+         //fatal() <<log_this, p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue";
 
          m_delete.add_tail(p->GetSocket());
 
@@ -452,7 +452,7 @@ namespace sockets
       //psession->sockets().net().convert(local, "127.0.0.1");
       if(!resolv -> open(addressLocal))
       {
-         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //fatal() <<log_this, resolv, "Resolve", -1, "Can't connect to local resolve server";
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -470,7 +470,7 @@ namespace sockets
       ::networking::address addressLocal("127.0.0.1",m_resolver_port);
       if(!resolv -> open(addressLocal))
       {
-         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //fatal() <<log_this, resolv, "Resolve", -1, "Can't connect to local resolve server";
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -488,7 +488,7 @@ namespace sockets
       ::networking::address addressLocal("127.0.0.1",m_resolver_port);
       if(!resolv -> open(addressLocal))
       {
-         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //fatal() <<log_this, resolv, "Resolve", -1, "Can't connect to local resolve server";
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -506,7 +506,7 @@ namespace sockets
       ::networking::address addressLocal("127.0.0.1",m_resolver_port);
       if(!resolv -> open(addressLocal))
       {
-         //FATAL(log_this, resolv, "Resolve", -1, "Can't connect to local resolve server");
+         //fatal() <<log_this, resolv, "Resolve", -1, "Can't connect to local resolve server";
       }
       add(resolv);
       m_resolve_q[p] = true;

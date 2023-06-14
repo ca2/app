@@ -1168,7 +1168,7 @@ namespace crypto
    /*void crypto::free_rsa_key(::pointer<::crypto::rsa>prsa)
    {
 
-      __UNREFERENCED_PARAMETER(prsa);
+      UNREFERENCED_PARAMETER(prsa);
 
    }*/
 
@@ -1435,7 +1435,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1466,7 +1466,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1493,7 +1493,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1523,7 +1523,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1552,7 +1552,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1666,7 +1666,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       }
 
@@ -1695,7 +1695,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         ERROR(strError);
+         error() <<strError;
 
       } 
 

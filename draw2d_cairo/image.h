@@ -54,8 +54,8 @@ namespace draw2d_cairo
       //void read(::binary_stream < FILE > & stream) override;
 
 
-      void blend(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA) override;
-      //void blend2(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA) override;
+      void blend(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA) override;
+      //void blend2(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA) override;
 
 
    };

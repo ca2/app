@@ -302,7 +302,7 @@ string object::as_string() const
 void object::dev_log(string strMessage)
 {
 
-   INFORMATION(strMessage.c_str());
+   information() << strMessage.c_str();
 
 //#ifdef __DEBUG
 //
@@ -748,7 +748,7 @@ void object::destruct()
 void object::system(const ::string & strProjectName)
 {
 
-   __UNREFERENCED_PARAMETER(strProjectName);
+   UNREFERENCED_PARAMETER(strProjectName);
 
 }
 
@@ -2337,7 +2337,7 @@ struct context_object_test_struct :
 
    }
 
-   byte m_ucha[1024];
+   ::u8 m_ucha[1024];
 
 };
 

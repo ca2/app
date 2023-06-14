@@ -417,7 +417,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //   {
 //      for( i32 i = 0; i < m_nSize; i++ )
 //         destruct_element(m_begin + i)->~TYPE();
-//      delete[] (byte*)m_begin;
+//      delete[] (::u8*)m_begin;
 //      m_begin     = nullptr;
 //      m_nSize     = 0;
 //      m_nMaxSize  = 0;
@@ -473,7 +473,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      {
 ////         for( i32 i = 0; i < m_nSize; i++ )
 ////            (m_begin + i)->~TYPE();
-//         delete[] (byte*)m_begin;
+//         delete[] (::u8*)m_begin;
 //         m_begin = nullptr;
 //      }
 //      m_nSize = m_nMaxSize = 0;
@@ -489,7 +489,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //#endif
 //      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
 ////
-//      m_begin = (TYPE*) memory_new byte[(size_t)nAllocSize * sizeof(TYPE)];
+//      m_begin = (TYPE*) memory_new ::u8[(size_t)nAllocSize * sizeof(TYPE)];
 //      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::index i = 0; i < nNewSize; i++ )
 //  //       ::memory_new( (void *)( m_begin + i ) ) TYPE;
@@ -543,7 +543,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
 //
-//      TYPE* pNewData = (TYPE*) memory_new byte[(size_t)nNewMax * sizeof(TYPE)];
+//      TYPE* pNewData = (TYPE*) memory_new ::u8[(size_t)nNewMax * sizeof(TYPE)];
 ////#define memory_new ACME_NEW
 //
 //      // copy memory_new data from old
@@ -558,7 +558,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 ////         ::memory_new( (void *)( pNewData + m_nSize + i ) ) TYPE;
 //////#define memory_new ACME_NEW
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (byte*)m_begin;
+//      delete[] (::u8*)m_begin;
 //      m_begin = pNewData;
 //      m_nSize = nNewSize;
 //      m_nMaxSize = nNewMax;
@@ -582,14 +582,14 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      TYPE* pNewData = nullptr;
 //      if (m_nSize != 0)
 //      {
-//         pNewData = (TYPE*) memory_new byte[m_nSize * sizeof(TYPE)];
+//         pNewData = (TYPE*) memory_new ::u8[m_nSize * sizeof(TYPE)];
 //         // copy memory_new data from old
 //         ::acme::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
 //            m_begin, m_nSize * sizeof(TYPE));
 //      }
 //
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (byte*)m_begin;
+//      delete[] (::u8*)m_begin;
 //      m_begin = pNewData;
 //      m_nMaxSize = m_nSize;
 //   }
@@ -1138,7 +1138,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////   {
 ////      for( i32 i = 0; i < m_nSize; i++ )
 ////         destruct_element(m_begin + i)->~TYPE();
-////      delete[] (byte*)m_begin;
+////      delete[] (::u8*)m_begin;
 ////      m_begin     = nullptr;
 ////      m_nSize     = 0;
 ////      m_nMaxSize  = 0;
@@ -1194,7 +1194,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      {
 //////         for( i32 i = 0; i < m_nSize; i++ )
 //////            (m_begin + i)->~TYPE();
-////         delete[] (byte*)m_begin;
+////         delete[] (::u8*)m_begin;
 ////         m_begin = nullptr;
 ////      }
 ////      m_nSize = m_nMaxSize = 0;
@@ -1210,7 +1210,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////#endif
 ////      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
 //////
-////      m_begin = (TYPE*) memory_new byte[(size_t)nAllocSize * sizeof(TYPE)];
+////      m_begin = (TYPE*) memory_new ::u8[(size_t)nAllocSize * sizeof(TYPE)];
 ////      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
 //////      for( ::index i = 0; i < nNewSize; i++ )
 ////  //       ::memory_new( (void *)( m_begin + i ) ) TYPE;
@@ -1264,7 +1264,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 ////#endif
 ////
-////      TYPE* pNewData = (TYPE*) memory_new byte[(size_t)nNewMax * sizeof(TYPE)];
+////      TYPE* pNewData = (TYPE*) memory_new ::u8[(size_t)nNewMax * sizeof(TYPE)];
 //////#define memory_new ACME_NEW
 ////
 ////      // copy memory_new data from old
@@ -1279,7 +1279,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 //////         ::memory_new( (void *)( pNewData + m_nSize + i ) ) TYPE;
 ////////#define memory_new ACME_NEW
 ////      // get rid of old stuff (note: no destructors called)
-////      delete[] (byte*)m_begin;
+////      delete[] (::u8*)m_begin;
 ////      m_begin = pNewData;
 ////      m_nSize = nNewSize;
 ////      m_nMaxSize = nNewMax;
@@ -1303,14 +1303,14 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      TYPE* pNewData = nullptr;
 ////      if (m_nSize != 0)
 ////      {
-////         pNewData = (TYPE*) memory_new byte[m_nSize * sizeof(TYPE)];
+////         pNewData = (TYPE*) memory_new ::u8[m_nSize * sizeof(TYPE)];
 ////         // copy memory_new data from old
 ////         ::acme::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
 ////            m_begin, m_nSize * sizeof(TYPE));
 ////      }
 ////
 ////      // get rid of old stuff (note: no destructors called)
-////      delete[] (byte*)m_begin;
+////      delete[] (::u8*)m_begin;
 ////      m_begin = pNewData;
 ////      m_nMaxSize = m_nSize;
 ////   }

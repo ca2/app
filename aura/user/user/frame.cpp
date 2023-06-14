@@ -161,7 +161,7 @@ namespace user
    ::color::color frame::get_border_main_body_color()
    {
 
-      return 0;
+      return color::transparent;
 
    }
 

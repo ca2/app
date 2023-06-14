@@ -280,7 +280,7 @@ namespace universal_windows
 
       key1.QueryValue("DefaultConnectionSettings", mem);
 
-      bAutoDetect = (((byte *) mem.get_data())[8] & 0x08) != 0;
+      bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
 
 #else
 

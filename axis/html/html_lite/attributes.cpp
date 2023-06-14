@@ -488,13 +488,13 @@ bool LiteHTMLElemAttr::isHexColorValue() const
    else if (isHexColorValue())
    {
 
-      color.u32 = (::u32) ::strtoul(m_strValue.substr(1), nullptr, 16);
+      color.m_u32 = (::u32) ::strtoul(m_strValue.substr(1), nullptr, 16);
 
       color.m_estatus = ::success;
 
    }
 
-   return color.u32;
+   return color;
 
 }
 
@@ -516,7 +516,7 @@ string LiteHTMLElemAttr::getColorHexValue(::lite_html_reader * preader) const
       ::color::color crTemp = getColorValue(preader);
 
       if (crTemp != 0xffffffff)
-         strColorHex.format("#%06x", crTemp.u32);
+         strColorHex.format("#%06x", crTemp.m_u32);
 
    }
 

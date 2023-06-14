@@ -1,8 +1,8 @@
 #pragma once
 
 
-
 #include "text.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace write_text

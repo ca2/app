@@ -413,7 +413,7 @@ namespace user
       else
       {
 
-         pimage1->fill(255, 200, 200, 200);
+         pimage1->clear_argb(255, 200, 200, 200);
 
       }
 

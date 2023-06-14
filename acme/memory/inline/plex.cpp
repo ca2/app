@@ -21,7 +21,7 @@ void plex::FreeDataChain()     // free this one and links
       plex* p = this;
       while (p != nullptr)
       {
-         byte* bytes = (byte*) p;
+         ::u8* bytes = (::u8*) p;
          plex* pNextLocal = p->pNext;
          memory_free(bytes);
          //pPrevious = p;

@@ -880,7 +880,7 @@ pacmedirectory->create("/ca2core");
       //if(!estatus)
       //{
 
-      //   ERROR("failed to initialize file-system");
+      //   error() <<"failed to initialize file-system";
 
       //   return estatus;
 
@@ -892,13 +892,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   ERROR("failed to initialize dir-system");
+      //   error() <<"failed to initialize dir-system";
 
       //   return false;
 
       //}
 
-      ///INFORMATION("apex::session::process_init .3");
+      ///information() << "apex::session::process_init .3";
 
       //estatus = 
       m_pfilesystem->init_system();
@@ -1034,7 +1034,7 @@ pacmedirectory->create("/ca2core");
             //if(!estatus)
             //{
 
-               //warning("failed to process_init ::apex::log trace");
+               //warning() <<"failed to process_init ::apex::log trace";
 
             //}
 
@@ -1088,7 +1088,7 @@ pacmedirectory->create("/ca2core");
             //if (!pfactoryCrypto)
             //{
 
-            //   warning("Could not open crypto openssl plugin.");
+            //   warning() <<"Could not open crypto openssl plugin.";
 
             //   //return pfactoryCrypto;
 
@@ -1103,7 +1103,7 @@ pacmedirectory->create("/ca2core");
          catch (...)
          {
 
-            FORMATTED_ERROR("No crypto library!!");
+            error("No crypto library!!");
 
          }
 
@@ -1150,7 +1150,7 @@ pacmedirectory->create("/ca2core");
 
          bool bMatterFromResource = false;
 
-         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sorensen.dedicatory");
 
          if (pfile)
          {
@@ -1202,13 +1202,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   FATAL("axis::application::process_init .2");
+      //   fatal() <<"axis::application::process_init .2";
 
       //   return false;
 
       //}
 
-      //INFORMATION("start");
+      //information() << "start";
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1240,7 +1240,7 @@ pacmedirectory->create("/ca2core");
 //
 //#endif // LINUX
 
-      //INFORMATION("success");
+      //information() << "success";
 
 //      return true;
 
@@ -2222,7 +2222,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      INFORMATION(strPrint);
+      information() << strPrint;
 
       if (iReportType == _CRT_ASSERT)
       {
@@ -2245,9 +2245,9 @@ pacmedirectory->create("/ca2core");
    bool system::assert_failed_line(const ::string& pszFileName, i32 iLine)
 
    {
-      __UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(pszFileName);
 
-      __UNREFERENCED_PARAMETER(iLine);
+      UNREFERENCED_PARAMETER(iLine);
       return false;
    }
 
@@ -2255,9 +2255,9 @@ pacmedirectory->create("/ca2core");
    bool system::on_assert_failed_line(const ::string& pszFileName, i32 iLine)
 
    {
-      __UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(pszFileName);
 
-      __UNREFERENCED_PARAMETER(iLine);
+      UNREFERENCED_PARAMETER(iLine);
       return true;
    }
 
@@ -2672,7 +2672,7 @@ pacmedirectory->create("/ca2core");
    void system::install_progress_add_up(int iAddUp)
    {
 
-      __UNREFERENCED_PARAMETER(iAddUp);
+      UNREFERENCED_PARAMETER(iAddUp);
 
    }
 
@@ -2900,27 +2900,27 @@ pacmedirectory->create("/ca2core");
    //
    //      if(!strcmp(pszLibrary,"app_core_rdpclient"))
    //      {
-   //         INFORMATION("reach");
+   //         information() << "reach";
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         INFORMATION("reach app_core_hello_multiverse");
+   //         information() << "reach app_core_hello_multiverse";
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
    //      {
-   //         INFORMATION("reach experience_lite");
+   //         information() << "reach experience_lite";
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         INFORMATION("reach app_core_hello_multiverse");
+   //         information() << "reach app_core_hello_multiverse";
    //      }
    //
    //      if(!library.open(pszLibrary, true))
    //      {
-   //         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
+   //         information() << "::system::map_application_library Failed to open library :" << pszLibrary;
    //         return false;
    //      }
    //
@@ -4459,7 +4459,7 @@ namespace apex
    void system::discard_to_factory(::pointer<object>pca)
    {
 
-      __UNREFERENCED_PARAMETER(pca);
+      UNREFERENCED_PARAMETER(pca);
 
    }
 
@@ -5200,7 +5200,7 @@ string get_bundle_app_library_name();
          //if (!pfactoryCrypto)
          //{
 
-         //   warning("Could not open crypto openssl plugin.");
+         //   warning() <<"Could not open crypto openssl plugin.";
 
          //   //return pfactoryCrypto;
 

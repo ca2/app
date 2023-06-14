@@ -158,7 +158,7 @@ namespace user
 
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
-      __UNREFERENCED_PARAMETER(bCompat);
+      UNREFERENCED_PARAMETER(bCompat);
       throw ::interface_only();
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
@@ -517,7 +517,7 @@ namespace user
    bool document_manager::OnDDECommand(char * pszCommand)
 
    {
-      __UNREFERENCED_PARAMETER(pszCommand);
+      UNREFERENCED_PARAMETER(pszCommand);
 
       /*string strCommand = pszCommand;
 
@@ -842,7 +842,7 @@ namespace user
          else
          {
 
-            CATEGORY_ERROR(appmsg, "Error: Can not find a ::user::impact for document to activate.");
+            error()(e_trace_category_appmsg) << "Error: Can not find a ::user::impact for document to activate.";
 
          }
 

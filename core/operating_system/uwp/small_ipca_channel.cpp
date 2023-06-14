@@ -40,7 +40,7 @@ namespace aura
       //bool tx::open(const ::string & pszChannel, launcher * plauncher)
       //{
 
-      //   __UNREFERENCED_PARAMETER(plauncher);
+      //   UNREFERENCED_PARAMETER(plauncher);
 
       //   if (m_strBaseChannel.has_char())
       //      close();
@@ -130,7 +130,7 @@ namespace aura
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::url::encode(pbase64->encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::url::encode(pbase64->encode((::u8 *)pdata, len));
 
          Uri ^uri = ref memory_new Uri(anotherappURI);
 

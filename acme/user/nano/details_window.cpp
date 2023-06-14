@@ -5,7 +5,7 @@
 #include "details_window.h"
 #include "window_implementation.h"
 #include "button.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 //#include "acme/operating_system.h"
 
 

@@ -36,14 +36,14 @@
 
 
 
-inline auto left(const ::rectangle_i32& rectangle) { return rectangle.left; }
-inline auto top(const ::rectangle_i32& rectangle) { return rectangle.top; }
-inline auto left(const ::rectangle_i64& rectangle) { return rectangle.left; }
-inline auto top(const ::rectangle_i64& rectangle) { return rectangle.top; }
-inline auto left(const ::rectangle_f32& rectangle) { return rectangle.left; }
-inline auto top(const ::rectangle_f32& rectangle) { return rectangle.top; }
-inline auto left(const ::rectangle_f64& rectangle) { return rectangle.left; }
-inline auto top(const ::rectangle_f64& rectangle) { return rectangle.top; }
+//inline auto left(const ::rectangle_i32& rectangle) { return rectangle.left; }
+//inline auto top(const ::rectangle_i32& rectangle) { return rectangle.top; }
+//inline auto left(const ::rectangle_i64& rectangle) { return rectangle.left; }
+//inline auto top(const ::rectangle_i64& rectangle) { return rectangle.top; }
+//inline auto left(const ::rectangle_f32& rectangle) { return rectangle.left; }
+//inline auto top(const ::rectangle_f32& rectangle) { return rectangle.top; }
+//inline auto left(const ::rectangle_f64& rectangle) { return rectangle.left; }
+//inline auto top(const ::rectangle_f64& rectangle) { return rectangle.top; }
 
 
 

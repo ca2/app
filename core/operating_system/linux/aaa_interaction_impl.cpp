@@ -364,7 +364,7 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
+            information("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
             Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(),
             0,
@@ -553,7 +553,7 @@ namespace linux
             if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))
             {
 
-               INFORMATION("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+               information() << "linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
 
             }
 
@@ -770,7 +770,7 @@ namespace linux
       if (bMove)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x(), m_pointLastMove.y());
+         information("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x(), m_pointLastMove.y());
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -785,7 +785,7 @@ namespace linux
       if (bSize)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
+         information("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -898,7 +898,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __c_str(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
+         information("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __c_str(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -966,7 +966,7 @@ namespace linux
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       {
 
@@ -1188,7 +1188,7 @@ namespace linux
    */
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -1284,8 +1284,8 @@ namespace linux
 
 //   bool interaction_impl::_EnableToolTips(bool bEnable, ::u32 nFlag)
 //   {
-//      __UNREFERENCED_PARAMETER(bEnable);
-//      __UNREFERENCED_PARAMETER(nFlag);
+//      UNREFERENCED_PARAMETER(bEnable);
+//      UNREFERENCED_PARAMETER(nFlag);
 //      return false;
 //   }
 
@@ -1314,7 +1314,7 @@ namespace linux
    void interaction_impl::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(pevent);
+      UNREFERENCED_PARAMETER(pevent);
 
    }
 
@@ -1527,7 +1527,7 @@ namespace linux
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
-               INFORMATION("Screen Relative Mouse Message Position");
+               information() << "Screen Relative Mouse Message Position";
                ::rectangle_f64 rectangleWindow32;
                ::window_rectangle((oswindow) get_handle(), &rectangleWindow32);
                ::copy(rectangleWindow, rectangleWindow32);
@@ -1678,8 +1678,8 @@ namespace linux
 //   bool interaction_impl::OnCommand(WPARAM wparam, LPARAM lparam)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(wparam);
-//      __UNREFERENCED_PARAMETER(lparam);
+//      UNREFERENCED_PARAMETER(wparam);
+//      UNREFERENCED_PARAMETER(lparam);
 //
 //      return false;
 //
@@ -1908,7 +1908,7 @@ namespace linux
       bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask)
 
       {
-         __UNREFERENCED_PARAMETER(nMask);
+         UNREFERENCED_PARAMETER(nMask);
          ASSERT(pScrollInfo != nullptr);
 
 
@@ -2101,7 +2101,7 @@ namespace linux
 //   bool interaction_impl::ReflectChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
 //
 //   {
-//      __UNREFERENCED_PARAMETER(wparam);
+//      UNREFERENCED_PARAMETER(wparam);
 //      // Note: reflected messages are send directly to interaction_impl::OnWndMsg
 //      //  and interaction_impl::_001OnCommand for speed and because these messages are not
 //      //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -2366,7 +2366,7 @@ namespace linux
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 //      Default();
 
@@ -2496,7 +2496,7 @@ namespace linux
 //
 //   void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
 //   {
-//      __UNREFERENCED_PARAMETER(pmessage);
+//      UNREFERENCED_PARAMETER(pmessage);
 //   }
 
 
@@ -3251,7 +3251,7 @@ namespace linux
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      __UNREFERENCED_PARAMETER(bRedraw);
+      UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
 
@@ -3327,8 +3327,8 @@ namespace linux
 //   i32 interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(hRgn);
-//      __UNREFERENCED_PARAMETER(bRedraw);
+//      UNREFERENCED_PARAMETER(hRgn);
+//      UNREFERENCED_PARAMETER(bRedraw);
 //
 //      //throw ::not_implemented();
 //
@@ -3713,7 +3713,7 @@ namespace linux
 //      return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
 //
 //
-////        __UNREFERENCED_PARAMETER(pfnTimer);
+////        UNREFERENCED_PARAMETER(pfnTimer);
 //
 ////
 ////        m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
@@ -4713,7 +4713,7 @@ namespace linux
 //
 //   void interaction_impl::on_delete(::object * pinteraction)
 //   {
-//      __UNREFERENCED_PARAMETER(pinteraction);
+//      UNREFERENCED_PARAMETER(pinteraction);
 //   }
 //
 //

@@ -68,7 +68,7 @@ namespace datetime
 //      static atom idCalendarHour("calendar:hour");
 //      static atom idCalendarHours("calendar:hours");
 //      static atom idCalendarNow("calendar:now");
-//      __UNREFERENCED_PARAMETER(pparticle);
+//      UNREFERENCED_PARAMETER(pparticle);
 //      value time;
 //      time.m_bSpan = true;
 //      string str(pszSpanExpression);

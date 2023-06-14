@@ -563,14 +563,14 @@ namespace dynamic_source
          if (iRetry == 0)
          {
 
-            information("Build: " << m_strName);
+            information() << "Build: " << m_strName;
             information(str);
 
          }
          else
          {
 
-            information("Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str());
+            information() << "Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str();
 
          }
 

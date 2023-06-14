@@ -11,7 +11,7 @@ namespace http
    response::response(const string & version) 
    {
 
-      __UNREFERENCED_PARAMETER(version);
+      UNREFERENCED_PARAMETER(version);
 
       __raw_construct_new(m_pmemfileBody);
 

@@ -33,10 +33,10 @@ CLASS_DECL_CORE bool __compare_class_name(oswindow hWnd, const ::string & lpszCl
 CLASS_DECL_CORE oswindow __child_window_from_point(oswindow, POINT32);
 
 // for determining version of COMCTL32.DLL
-#define VERSION_WIN4    __MAKE_LONG(0, 4)
-#define VERSION_IE3             __MAKE_LONG(70, 4)
-#define VERSION_IE4             __MAKE_LONG(71, 4)
-#define VERSION_IE401   __MAKE_LONG(72, 4)
-#define VERSION_6      __MAKE_LONG(0, 6)
+#define VERSION_WIN4    make_i32(0, 4)
+#define VERSION_IE3             make_i32(70, 4)
+#define VERSION_IE4             make_i32(71, 4)
+#define VERSION_IE401   make_i32(72, 4)
+#define VERSION_6      make_i32(0, 6)
 extern int gen_ComCtlVersion;
 ::u32 __get_common_controls_version();

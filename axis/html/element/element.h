@@ -8,7 +8,7 @@
 namespace css
 {
 
-   enum enum_color
+   enum enum_plain_color
    {
 
       color_text,
@@ -91,7 +91,7 @@ namespace html
       //virtual bool get_color(::color::color & color32, ::user::e_color ecolor, ::user::style_context * pcontext) override;
       //virtual bool get_font(::write_text::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;
 
-      virtual ::color::color get_color(::user::style * pstyle, ::css::enum_color ecolor);
+      virtual ::color::color get_color(::user::style * pstyle, ::css::enum_plain_color ecolor);
       virtual ::write_text::font_pointer get_font();
 
       tag * get_tag();

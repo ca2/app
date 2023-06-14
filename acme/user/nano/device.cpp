@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "device.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 //#include "acme/primitive/collection/string_array.h"
 
 

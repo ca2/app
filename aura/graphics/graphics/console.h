@@ -4,7 +4,8 @@
 #include "acme/filesystem/file/text_file.h"
 //#include "acme/filesystem/file/text_stream.h"
 #include "acme/operating_system/console.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/size.h"
 #include "acme/primitive/collection/int_map.h"
 //#include "acme/primitive/collection/string_array.h"
 

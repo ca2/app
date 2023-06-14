@@ -107,12 +107,10 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      layout().client_rectangle(rectangleClient, ::user::e_layout_design);
+      auto rectangleClinet = client_rectangle();
       //::user::e_::color::color colorText = color_text;
 
-      ::color::color colorText(0, 0, 0, 255);
+      ::color::color colorText = ::color::black;
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -248,7 +246,7 @@ namespace user
       ::rectangle_i32 rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
-      ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
+      ::color::color colorDropDown = ::color::gray;
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -300,13 +298,13 @@ namespace user
             if (::is_set(m_pitemHover))
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 
@@ -317,13 +315,13 @@ namespace user
             if (::is_set(m_pitemHover))
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 
@@ -597,7 +595,7 @@ namespace user
    void combo_box::on_message_key_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -641,7 +639,7 @@ namespace user
    void combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       m_pitemHover = nullptr;
 

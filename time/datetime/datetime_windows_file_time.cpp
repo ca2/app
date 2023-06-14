@@ -57,7 +57,7 @@ namespace windows
 
          ::u32 year, mon, day, hour, minimum, sec;
          uint64_t v64 = ft.dwLowDateTime | ((uint64_t)ft.dwHighDateTime << 32);
-         byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+         ::u8 ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
          ::u32 temp;
          ::u32 v;
          v64 += (kNumTimeQuantumsInSecond * 2 - 1);
@@ -149,7 +149,7 @@ namespace windows
             return false;
          ::u32 numYears = year - kFileTimeStartYear;
          ::u32 numDays = numYears * 365 + numYears / 4 - numYears / 100 + numYears / 400;
-         byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+         ::u8 ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
          if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
             ms[1] = 29;
          month--;

@@ -2,7 +2,7 @@
 //  user_create_struct.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 19/06/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 19/06/18.
 //
 #include "framework.h"
 #include "system.h"
@@ -160,7 +160,7 @@ namespace user
          if (pparticle.is_null() || ::is_null(pparticle->get_app()))
          {
 
-            _ERROR(pparticle, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
+            pparticle->error() << "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)";
 
             return nullptr;
 

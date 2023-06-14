@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "arc.h"
+#include "ellipse.h"
+#include "line.h"
+
+
 namespace geometry2d
 {
 

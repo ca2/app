@@ -3,11 +3,11 @@
  */
 #include  "framework.h"
 
-/* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora cient凬ica, financeira e com pilha
-mais tico de calculadora no command */
+/* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora cientifica, financeira e com pilha
+mais tipico de calculadora no command */
 
-/* o LeoFischer falouu sobre participar do cl・(modinha de jogos de conquista de terra na internet) -
-para mim sugest縊 na minha linguagem - para "criar um cl・? */
+/* o LeoFischer falouu sobre participar do cla(modinha de jogos de conquista de terra na internet) -
+para mim sugestao na minha linguagem - para "criar um cla? */
 
 namespace calculator
 {

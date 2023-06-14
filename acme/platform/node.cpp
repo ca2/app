@@ -868,7 +868,7 @@ namespace acme
 
       //const ::file::path & pathFile = pathFile;
 
-      INFORMATION("node::get_last_run_application_path_file pathFile:" << pathFile);
+      information() << "node::get_last_run_application_path_file pathFile:" << pathFile;
 
       return pathFile;
 
@@ -894,7 +894,7 @@ namespace acme
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      INFORMATION("node::set_last_run_application_path_file path:" << path);
+      information() << "node::set_last_run_application_path_file path:" << path;
 
       return acmefile()->put_contents(pathFile, path);
 
@@ -1333,7 +1333,7 @@ namespace acme
    }
 
 
-   ::color::color node::get_default_color(::u64 u )
+   ::color::color node::get_default_color(::color::color color)
    {
 
       return argb(255, 0, 0, 0);

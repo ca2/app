@@ -62,7 +62,7 @@ namespace user
    void split_layout::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
@@ -1051,9 +1051,9 @@ namespace user
    void split_layout::SetPaneFixedSize(index iIndex, const ::size_i32 & size)
    {
 
-      __UNREFERENCED_PARAMETER(iIndex);
+      UNREFERENCED_PARAMETER(iIndex);
 
-      __UNREFERENCED_PARAMETER(size);
+      UNREFERENCED_PARAMETER(size);
 
       ASSERT(iIndex >= 0);
 
@@ -1357,7 +1357,7 @@ namespace user
 
       auto colorBackground = get_color(pstyle, e_element_background);
 
-      if (colorBackground.alpha > 0)
+      if (colorBackground.m_u8Opacity > 0)
       {
 
          ::rectangle_i32 rectangleClient;

@@ -263,7 +263,7 @@ namespace universal_windows
 
       // get the Windows version.
 
-      ::u32 dwWindowsMajorVersion =  (::u32)(__LOBYTE(LOWORD(dwVersion)));
+      ::u32 dwWindowsMajorVersion =  (::u32)(lower_u8(LOWORD(dwVersion)));
       //   ::u32 dwWindowsMinorVersion =  (::u32)(HIBYTE(LOWORD(dwVersion)));
 
       // get the build number.
@@ -501,7 +501,7 @@ namespace universal_windows
 //      ::u32 cbFileInfo,
 //      ::u32 uFlags)
 //   {
-//      __UNREFERENCED_PARAMETER(cbFileInfo);
+//      UNREFERENCED_PARAMETER(cbFileInfo);
 //      string strPath;
 //      UnicodeToACP(strPath, pszPath);
 //      SHFILEINFOA shia;

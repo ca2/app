@@ -620,10 +620,9 @@ namespace user
 
       GetTabClientRect(rectangleTabClient);
 
-      copy(rectangle, rectangleTabClient);
+      rectangle = rectangleTabClient;
 
    }
-
 
 
    void tab::layout_pane(index iIndex, bool bDisplay)
@@ -968,7 +967,7 @@ namespace user
    void tab::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       //::pointer<::user::message>pusermessage(pmessage);
 
    }
@@ -1850,7 +1849,7 @@ namespace user
    void tab::_001OnAppLanguage(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       set_need_layout();
 
@@ -2322,7 +2321,7 @@ namespace user
    void tab::_001ConnectParent(::channel * pchannel)
    {
 
-      __UNREFERENCED_PARAMETER(pchannel);
+      UNREFERENCED_PARAMETER(pchannel);
 
    }
 
@@ -3261,7 +3260,7 @@ namespace user
    void tab::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 //      ::pointer<::message::show_window>pshowwindow(pmessage);
 

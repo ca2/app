@@ -6,7 +6,8 @@
 
 #include "acme/primitive/primitive/particle.h"
 ////#include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 //#include "acme/primitive/geometry2d/region.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/constant/element.h"

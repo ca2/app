@@ -16,7 +16,7 @@ inline int utf8_unicode_length(int c) { return trailingBytesForUTF8(c) + 1; }
 inline i32 utf8_o(char cExtraBytes);
 
 
-inline char utf8_e(byte c);
+inline char utf8_e(::u8 c);
 
 
 
@@ -85,7 +85,7 @@ CLASS_DECL_ACME char * wd32_to_ansi_dup(const ::wd32_character * input, strsize 
  * Encode a code point_i32 using UTF-8
  *
  * @adaptor ca2
- * @authorr Ondřej Hruška <ondra@ondrovo.com>
+ * @authorr Ondrhej Hrusjka <ondra@ondrovo.com>
  * @license MIT
  *
  * @paramrr out - output buffer (minimum 5 characters), will be 0-terminated

@@ -434,8 +434,8 @@ namespace sockets
 
    bool http_socket::http_filter_response_header(string & strKey, string_array & straValue)
    {
-      __UNREFERENCED_PARAMETER(strKey);
-      __UNREFERENCED_PARAMETER(straValue);
+      UNREFERENCED_PARAMETER(strKey);
+      UNREFERENCED_PARAMETER(straValue);
       return true;
    }
 
@@ -460,7 +460,7 @@ namespace sockets
          
          msg += "Host: " + strHost + "\r\n";
          
-         INFORMATION("Host: "<<strHost);
+         information() << "Host: "<<strHost;
 
       }
 
@@ -707,7 +707,7 @@ namespace sockets
 #ifndef UNIVERSAL_WINDOWS
 
 
-         warning("url_this",-1,"SSL not available");
+         warning() <<"url_this",-1,"SSL not available";
 
 #endif
 

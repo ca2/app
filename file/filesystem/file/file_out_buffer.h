@@ -30,7 +30,7 @@ namespace file
       filesize                        _streamPos;
       writer *                         _stream;
       u64                           _processedSize;
-      byte *                           _buffer2;
+      ::u8 *                           _buffer2;
       bool                             _overDict;
 
       HRESULT ErrorCode;
@@ -41,7 +41,7 @@ namespace file
       bool create(memsize bufferSize);
       void destroy();
 
-      void SetMemStream(byte *buffer);
+      void SetMemStream(::u8 *buffer);
       void SetStream(writer *stream);
       void Init();
       HRESULT flush();
@@ -49,7 +49,7 @@ namespace file
       void ReleaseStream();
       HRESULT FlushPart();
 
-      void WriteByte(byte b);
+      void WriteByte(::u8 b);
       void WriteBytes(const void *data, size_t size);
 
       u64 GetProcessedSize() const;

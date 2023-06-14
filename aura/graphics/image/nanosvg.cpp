@@ -31,13 +31,13 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
 
    int h = (int)pimage->height();
 
-   ::color32_t * pdata = nullptr;
+   ::image32_t * pdata = nullptr;
 
    int iScan = 0;
 
    {
 
-      pdata = pimage->colorref();
+      pdata = pimage->image32();
 
       iScan = pimage->m_iScan;
 
@@ -45,17 +45,17 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
 
 #ifdef UNIVERSAL_WINDOWS
 
-      u8 * pcolorref = (u8 *)pimage->colorref();
+      u8 * pimage32 = (u8 *)pimage->image32();
 
       for (index iLine = 0; iLine < h; iLine++)
       {
 
-         u8 * pline = &pcolorref[iLine * iScan];
+         u8 * pline = &pimage32[iLine * iScan];
 
          for (index x = 0; x < w; x++)
          {
 
-            byte b = pline[0];
+            ::u8 b = pline[0];
 
             pline[0] = pline[2];
 

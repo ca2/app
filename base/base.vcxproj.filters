@@ -784,6 +784,9 @@
     <ClCompile Include="user\user\statusbar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\tab_graphics.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">

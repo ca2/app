@@ -526,7 +526,7 @@ namespace filemanager
    void file_list::_001OnFileRename(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       ::user::range range;
 
@@ -549,7 +549,7 @@ namespace filemanager
    void file_list::_001OnFileOpen(::message::message* pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       _017OpenSelected(true, ::e_source_user);
 
@@ -592,7 +592,7 @@ namespace filemanager
    void file_list::_001OnEditCopy(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       auto patha = get_selected_final_path();
 
@@ -624,7 +624,7 @@ namespace filemanager
    void file_list::_001OnTrashThatIsNotTrash(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       auto patha = get_selected_final_path();
 
@@ -822,7 +822,7 @@ namespace filemanager
    //void file_list::_001OnSpafy(::message::message * pmessage)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
    //   auto itema = get_selected_items();
 
@@ -897,7 +897,7 @@ namespace filemanager
 
    //   ::pointer<::userfs::list_data>pdata = fs_list();
    //
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
    //
    //   string_array stra;
    //
@@ -998,7 +998,7 @@ namespace filemanager
    //void file_list::schedule_file_size(const ::string & psz)
    //{
 
-   //   __UNREFERENCED_PARAMETER(psz);
+   //   UNREFERENCED_PARAMETER(psz);
 
    //   if (!is_window_visible())
    //   {
@@ -1015,7 +1015,7 @@ namespace filemanager
 
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -1199,7 +1199,7 @@ namespace filemanager
          {
             /*   // primeiro, todos System arquivos que foram removidos
             // ou seja, que existem no array antigo,
-            // mas não existe no novo.
+            // mas nao existe no novo.
             for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
             {
             string str = straStrictOrder[strictOld];
@@ -1222,7 +1222,7 @@ namespace filemanager
                   iaDisplayToStrictNew.set(iDisplay, strictNew);
                }
             }
-            // terceiro, adiciona System novos arquivos nos primeiros espaços
+            // terceiro, adiciona System novos arquivos nos primeiros espacos
             // vazios
             for (index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
             {
@@ -1846,7 +1846,7 @@ namespace filemanager
    //void file_list::file_size_add_request(bool bClear)
    //{
 
-   //   __UNREFERENCED_PARAMETER(bClear);
+   //   UNREFERENCED_PARAMETER(bClear);
 
    //   db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
 

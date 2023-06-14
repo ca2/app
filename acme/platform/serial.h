@@ -179,7 +179,7 @@ namespace serial
        * \lparam timeout A serial::timeout struct that defines the timeout
        * conditions for the serial port. \see serial::timeout
        *
-       * \lparam ebytesize Size of each byte in the serial transmission of data,
+       * \lparam ebytesize Size of each ::u8 in the serial transmission of data,
        * default is e_byte_size_eight, possible values are: fivebits, sixbits, sevenbits,
        * e_byte_size_eight
        *
@@ -273,9 +273,9 @@ namespace serial
        *  * A timeout occurred, in this case the number of bytes read will not
        *    match the amount requested, but no exception will be thrown.  One of
        *    two possible timeouts occurred:
-       *    * The inter byte timeout expired, this means that number of
+       *    * The inter ::u8 timeout expired, this means that number of
        *      ::times elapsed between receiving bytes from the serial port
-       *      exceeded the inter byte timeout.
+       *      exceeded the inter ::u8 timeout.
        *    * The total timeout expired, which is calculated by multiplying the
        *      read timeout multiplier by the number of requested bytes and then
        *      added to the read timeout constant.  If that total number of
@@ -457,11 +457,11 @@ namespace serial
       /*! Sets the timeout for reads and writes using the timeout struct.
        *
        * There are two timeout conditions described here:
-       *  * The inter byte timeout:
+       *  * The inter ::u8 timeout:
        *    * The inter_byte_timeout component of serial::timeout defines the
        *      maximum amount of time, in ::times, between receiving bytes on
        *      the serial port that can pass before a timeout occurs.  Setting this
-       *      to zero will prevent inter byte timeouts from occurring.
+       *      to zero will prevent inter ::u8 timeouts from occurring.
        *  * Total time timeout:
        *    * The constant and multiplier component of this timeout condition,
        *      for both read and write, are defined in serial::timeout.  This
@@ -474,7 +474,7 @@ namespace serial
        *      you asked for then set the read_timeout_constant component of
        *      serial::timeout to 1000 and the read_timeout_multiplier to zero.
        *      This timeout condition can be used in conjunction with the inter
-       *      byte timeout condition with out any problems, timeout will simply
+       *      ::u8 timeout condition with out any problems, timeout will simply
        *      occur when one of the two timeout conditions is met.  This allows
        *      users to have maximum control over the trade-off between
        *      responsiveness and efficiency.
@@ -485,7 +485,7 @@ namespace serial
        *
        * A timeout of 0 enables non-blocking mode.
        *
-       * \lparam timeout A serial::timeout struct containing the inter byte
+       * \lparam timeout A serial::timeout struct containing the inter ::u8
        * timeout, and the read and write timeout constants and multipliers.
        *
        * \see serial::timeout
@@ -539,7 +539,7 @@ namespace serial
 
       /*! Sets the ebytesize for the serial port.
        *
-       * \lparam ebytesize Size of each byte in the serial transmission of data,
+       * \lparam ebytesize Size of each ::u8 in the serial transmission of data,
        * default is e_byte_size_eight, possible values are: fivebits, sixbits, sevenbits,
        * e_byte_size_eight
        *

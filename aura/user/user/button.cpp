@@ -286,7 +286,7 @@ namespace user
    void button::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_estyle == e_style_none)
       {
@@ -1068,15 +1068,15 @@ namespace user
 
       color32 = color;
 
-      class ::color::color colorExt1TL;
-      class ::color::color colorExt2TL;
-      class ::color::color colorExt1BR;
-      class ::color::color colorExt2BR;
+      ::color::color colorExt1TL;
+      ::color::color colorExt2TL;
+      ::color::color colorExt1BR;
+      ::color::color colorExt2BR;
 
-      colorExt1TL.set_rgb(color32);
-      colorExt2TL.set_rgb(color32);
-      colorExt1BR.set_rgb(color32);
-      colorExt2BR.set_rgb(color32);
+      colorExt1TL = color32;
+      colorExt2TL = color32;
+      colorExt1BR = color32;
+      colorExt2BR = color32;
 
       if(echeck() == ::e_check_checked)
       {

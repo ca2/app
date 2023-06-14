@@ -2,7 +2,7 @@
 //  winpr_scancode.cpp
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/06/19.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 07/06/19.
 //
 #include "framework.h"
 #include "winpr_input.h"

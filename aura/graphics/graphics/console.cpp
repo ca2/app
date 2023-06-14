@@ -128,7 +128,7 @@ namespace graphics
          break;
       }
 
-      return 0;
+      return {};
 
    }
 
@@ -276,7 +276,7 @@ namespace graphics
    void console::write(const void * p, ::memsize s)
    {
 
-      auto data = (::byte *)p;
+      auto data = (::u8 *)p;
 
 #ifdef WINDOWS
 
@@ -307,7 +307,7 @@ namespace graphics
 
       ::color::color crScreen = console_dos_color(m_edoscolor);
 
-      m_pimage->fill(crScreen);
+      m_pimage->clear(crScreen);
 
       for (int y = 0; y < m_stra.get_count(); y++)
       {

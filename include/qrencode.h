@@ -188,7 +188,7 @@ extern QRinput *QRinput_newMQR(int version, QRecLevel level);
  * The data is copied and appended to the input object.
  * @param input input object.
  * @param mode encoding mode.
- * @param size_i32 size of data (byte).
+ * @param size_i32 size of data (::u8).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.
@@ -267,7 +267,7 @@ extern void QRinput_free(QRinput *input);
 /**
  * Validate the input data.
  * @param mode encoding mode.
- * @param size_i32 size of data (byte).
+ * @param size_i32 size of data (::u8).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 invalid arguments.
@@ -444,7 +444,7 @@ extern QRcode *QRcode_encodeStringMQR(const ::string &string, int version, QRecL
 extern QRcode *QRcode_encodeString8bitMQR(const ::string &string, int version, QRecLevel level);
 
 /**
- * Encode byte stream (may include '\0') in 8-bit mode.
+ * Encode ::u8 stream (may include '\0') in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  * @param size_i32 size of the input data.
  * @param data input data.
@@ -505,7 +505,7 @@ extern QRcode_List *QRcode_encodeStringStructured(const ::string &string, int ve
 extern QRcode_List *QRcode_encodeString8bitStructured(const ::string &string, int version, QRecLevel level);
 
 /**
- * Create structured symbols from byte stream (may include '\0'). Wholde data
+ * Create structured symbols from ::u8 stream (may include '\0'). Wholde data
  * are encoded in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  * @param size_i32 size of the input data.

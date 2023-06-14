@@ -60,7 +60,7 @@ namespace nanoui
 
          auto icon = get_utf8_character(m_efontawesomeChevron);
          ::color::color text_color =
-            m_colorText.alpha == 0 ? m_ptheme->m_colorText : m_colorText;
+            m_colorText.is_transparent() ? m_ptheme->m_colorText : m_colorText;
 
          pcontext->font_size((m_font_size < 0 ? m_ptheme->m_iButtonFontSize : m_font_size) * icon_scale());
          pcontext->font_face("icons");

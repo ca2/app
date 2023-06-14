@@ -2,7 +2,7 @@
 //  account_storage_client.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
 #include "framework.h"
 #include "storage_client.h"
@@ -52,7 +52,7 @@ namespace account
       if(m_strToken.is_empty())
       {
          
-         ERROR("::account::storage_client::get Token is Empty!");
+         error() <<"::account::storage_client::get Token is Empty!";
          
          ASSERT(false);
          
@@ -71,7 +71,7 @@ namespace account
       if(m_strToken.is_empty())
       {
          
-         ERROR("::account::storage_client::set Token is Empty!");
+         error() <<"::account::storage_client::set Token is Empty!";
          
          //ASSERT(false);
          

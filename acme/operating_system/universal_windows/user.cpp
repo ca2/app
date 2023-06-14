@@ -24,7 +24,7 @@ int g_iMouseY = 0;
 CLASS_DECL_ACME void defer_dock_application(int_bool bDock)
 {
 
-   __UNREFERENCED_PARAMETER(bDock);
+   UNREFERENCED_PARAMETER(bDock);
 
 }
 

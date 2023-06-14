@@ -1,5 +1,5 @@
 /**************************************************************************
-   THIS CODE AND INFORMATION IS PROVIDED 'AS IS' WITHOUT WARRANTY OF
+   THIS CODE AND log_information( IS PROVIDED 'AS IS' WITHOUT WARRANTY OF
    ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
    PARTICULAR PURPOSE.
@@ -31,7 +31,7 @@ CTSFPersistentPropertyLoader::CTSFPersistentPropertyLoader(TF_PERSISTENT_PROPERT
 {
     m_ObjRefCount = 1;
     m_hdr = *pHdr;
-    m_pb = (byte *)GlobalAlloc(GPTR, pHdr->cb);
+    m_pb = (::u8 *)GlobalAlloc(GPTR, pHdr->cb);
     if(m_pb)
     {
         pStream->Read(m_pb, pHdr->cb, NULL);

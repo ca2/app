@@ -142,7 +142,7 @@ void memory_file::write(const void * p, ::memsize s)
 }
 
 
-void memory_file::put_byte_back(::byte byte)
+void memory_file::put_byte_back(::u8 u8)
 {
 
    if(m_position <= 0 || m_position >= size())
@@ -154,7 +154,7 @@ void memory_file::put_byte_back(::byte byte)
 
    m_position--;
 
-   m_pmemory.m_p->data()[m_position] = byte;
+   m_pmemory.m_p->data()[m_position] = u8;
 
 }
 
@@ -192,7 +192,7 @@ void memory_file::write_from_hex(const ::block & block)
 
    }
 
-   byte * pb = full_data_begin();
+   ::u8 * pb = full_data_begin();
 
    auto nCount = block.size();
 
@@ -373,11 +373,11 @@ bool memory_file::read_string(memory_base & memory)
 
       // there are 258 bytes left;
 
-      auto b = (m_pbyte + m_position)[(iLookAhead -2)]; // stop searching at byte 257
+      auto b = (m_pbyte + m_position)[(iLookAhead -2)]; // stop searching at ::u8 257
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = '\0';
 
-      const byte * p = (const byte *) strpbrk((const char*)(m_pbyte + m_position), "\r\n");
+      const ::u8 * p = (const ::u8 *) strpbrk((const char*)(m_pbyte + m_position), "\r\n");
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = b;
 
@@ -507,7 +507,7 @@ void memory_file::translate(filesize offset, ::enum_seek eseek)
 
    m_memsize = m_pmemory->size();
 
-   m_pbyte = (::byte *)m_pmemory->begin();
+   m_pbyte = (::u8 *)m_pmemory->begin();
 
    memsize dwNew = (memsize)m_position;
 
@@ -713,7 +713,7 @@ string memory_file::as_string() const
 //}
 
 
-::byte * memory_file::full_data_begin()
+::u8 * memory_file::full_data_begin()
 {
 
    return m_pmemory ? m_pmemory->begin() : nullptr;
@@ -721,7 +721,7 @@ string memory_file::as_string() const
 }
 
 
-::byte * memory_file::full_data_end()
+::u8 * memory_file::full_data_end()
 {
 
    return m_pmemory ? m_pmemory->end() : nullptr;
@@ -729,7 +729,7 @@ string memory_file::as_string() const
 }
 
 
-const ::byte * memory_file::full_data_begin() const
+const ::u8 * memory_file::full_data_begin() const
 {
 
    return m_pmemory ? m_pmemory->begin() : nullptr;
@@ -737,7 +737,7 @@ const ::byte * memory_file::full_data_begin() const
 }
 
 
-const ::byte * memory_file::full_data_end() const
+const ::u8 * memory_file::full_data_end() const
 {
 
    return m_pmemory ? m_pmemory->end() : nullptr;
@@ -746,7 +746,7 @@ const ::byte * memory_file::full_data_end() const
 
 
 
-::byte * memory_file::data_begin()
+::u8 * memory_file::data_begin()
 {
 
    auto pbegin = full_data_begin();
@@ -756,7 +756,7 @@ const ::byte * memory_file::full_data_end() const
 }
 
 
-::byte * memory_file::data_end()
+::u8 * memory_file::data_end()
 {
 
    auto pend = full_data_end();
@@ -766,7 +766,7 @@ const ::byte * memory_file::full_data_end() const
 }
 
 
-const ::byte * memory_file::data_begin() const
+const ::u8 * memory_file::data_begin() const
 {
 
    auto pbegin = full_data_begin();
@@ -777,7 +777,7 @@ const ::byte * memory_file::data_begin() const
 
 
 
-const ::byte * memory_file::data_end() const
+const ::u8 * memory_file::data_end() const
 {
 
    auto pend = full_data_end();

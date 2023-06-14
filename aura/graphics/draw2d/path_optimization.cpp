@@ -2,7 +2,7 @@
 //  path_optimization.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2023-06-05 09:38
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2023-06-05 09:38
 //
 #include "framework.h"
 #include "path_optimization.h"

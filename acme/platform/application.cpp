@@ -199,13 +199,13 @@ namespace acme
 
       ::set_task(psystem);
 
+      psystem->system_construct(this);
+
       psystem->initialize_system();
 
       //psystem->acmeapplication() = pacmeapplication;
 
       //psystem->m_psubsystem = psubsystem;
-
-      psystem->system_construct(this);
 
       psystem->create_os_node();
 

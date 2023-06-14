@@ -2,7 +2,7 @@
 //  ios_plane_system.cpp
 //  ios_aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 03/10/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 03/10/17.
 //
 
 #include "framework.h"
@@ -16,8 +16,8 @@
 //  app_system.cpp
 //  app
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/05/14.
-//  Copyright (c) 2014 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/05/14.
+//  Copyright (c) 2014 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
 

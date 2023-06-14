@@ -267,7 +267,7 @@ namespace sockets
       int n = sctp_getpaddrs(GetSocket(), atom, &p);
       if (!n || n == -1)
       {
-         warning("SctpSocket", -1, "sctp_getpaddrs failed");
+         warning() <<"SctpSocket", -1, "sctp_getpaddrs failed";
          return n;
       }
       for (int i = 0; i < n; i++)
@@ -285,7 +285,7 @@ namespace sockets
       int n = sctp_getladdrs(GetSocket(), atom, &p);
       if (!n || n == -1)
       {
-         warning("SctpSocket", -1, "sctp_getladdrs failed");
+         warning() <<"SctpSocket", -1, "sctp_getladdrs failed";
          return n;
       }
       for (int i = 0; i < n; i++)
@@ -302,7 +302,7 @@ namespace sockets
       int n = sctp_peeloff(GetSocket(), atom);
       if (n == -1)
       {
-         warning("SctpSocket", -1, "PeelOff failed");
+         warning() <<"SctpSocket", -1, "PeelOff failed";
          return -1;
       }
       socket *p = create();
@@ -339,7 +339,7 @@ namespace sockets
       int n = sctp_recvmsg(GetSocket(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
       if (n == -1)
       {
-         FATAL(log_this, "SctpSocket", Errno, bsd_socket_error(Errno));
+         fatal() <<log_this, "SctpSocket", Errno, bsd_socket_error(Errno);
          SetCloseAndDelete();
       }
       else
@@ -369,7 +369,7 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
-         FATAL(log_this, "sctp: connect failed", err, bsd_socket_error(err));
+         fatal() <<log_this, "sctp: connect failed", err, bsd_socket_error(err);
          Set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -400,7 +400,7 @@ namespace sockets
 
    void SctpSocket::on_connection_timeout()
    {
-      FATAL(log_this, "connect", -1, "connect timeout");
+      fatal() <<log_this, "connect", -1, "connect timeout";
 #ifdef ENABLE_SOCKS4
       if (Socks4())
       {
@@ -466,7 +466,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      FATAL(log_this, "exception on select", err, bsd_socket_error(err));
+      fatal() <<log_this, "exception on select", err, bsd_socket_error(err);
       SetCloseAndDelete();
    }
 #endif // _WIN32

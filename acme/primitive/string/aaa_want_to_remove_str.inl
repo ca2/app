@@ -33,7 +33,7 @@ inline void std_string_assign(stdstring < memory > & t, const unichar * psz)
 }
 
 template < >
-inline void std_string_bassign(stdstring < memory > & t, const byte * psz, strsize nsize)
+inline void std_string_bassign(stdstring < memory > & t, const ::u8 * psz, strsize nsize)
 {
    t.assign(string((const char *)psz, min(nsize, strlen_s_dup((const char *)psz, nsize))));
 }

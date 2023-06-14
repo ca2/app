@@ -11,7 +11,7 @@ namespace user
    void interaction_listener::interaction_message_handler(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

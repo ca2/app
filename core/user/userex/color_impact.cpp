@@ -2,6 +2,7 @@
 #include "color_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -45,7 +46,7 @@ namespace visual
 {
 
 
-   void image_color_with_shade_of_grey(byte & r, byte & g, byte & b, double i, double j, double w, double h)
+   void image_color_with_shade_of_grey(::u8 & r, ::u8 & g, ::u8 & b, double i, double j, double w, double h)
    {
 
       double dR, dG, dB;
@@ -142,9 +143,9 @@ namespace visual
       double _dG = (dCMin + dG * dCAdd);
       double _dB = (dCMin + dB * dCAdd);
 
-      r = byte(_dR * 255.0);
-      g = byte(_dG * 255.0);
-      b = byte(_dB * 255.0);
+      r = ::u8(_dR * 255.0);
+      g = ::u8(_dG * 255.0);
+      b = ::u8(_dB * 255.0);
 
    }
 
@@ -154,11 +155,19 @@ namespace visual
       
 #ifdef __APPLE__
 
-      image_color_with_shade_of_grey(color.red, color.green, color.blue, i, dh - j -1, dw, dh);
+      image_color_with_shade_of_grey(
+         color.m_u8Red,
+         color.m_u8Green,
+         color.m_u8Blue, 
+         i, dh - j -1, dw, dh);
       
 #else
       
-      image_color_with_shade_of_grey(color.red, color.green, color.blue, i, j, dw, dh);
+      image_color_with_shade_of_grey(
+         color.m_u8Red, 
+         color.m_u8Green,
+         color.m_u8Blue,
+         i, j, dw, dh);
       
 #endif
 
@@ -176,17 +185,17 @@ namespace visual
 
       ::u32 uScan = pimage->scan_size();
 
-      ::byte * pline;
+      ::u8 * pline;
 
-      auto a = pimage->m_colorindexes.a;
-      auto r = pimage->m_colorindexes.r;
-      auto g = pimage->m_colorindexes.g;
-      auto b = pimage->m_colorindexes.b;
+      auto a = pimage->m_colorindexes.m_u8IndexOpacity;
+      auto r = pimage->m_colorindexes.m_u8IndexRed;
+      auto g = pimage->m_colorindexes.m_u8IndexGreen;
+      auto b = pimage->m_colorindexes.m_u8IndexBlue;
 
       for (index i = 0; i < w; i++)
       {
 
-         pline = (byte *) (pimage->get_data() + i);
+         pline = (::u8 *) (pimage->get_data() + i);
 
          for (index j = 0; j < h; j++)
          {
@@ -227,7 +236,7 @@ namespace visual
 
       uScan = pimage->scan_size() / sizeof(::color32_t);
 
-      ::color32_t * pline;
+      ::image32_t * pline;
 
       double dR, dG, dB;
 
@@ -325,12 +334,12 @@ namespace visual
          double _dG = (dCMin + dG * dCAdd);
          double _dB = (dCMin + dB * dCAdd);
 
-         //byte uchR = (byte)primitive_color_round(m_dR * 255.0);
-         //m_uchG = (byte)primitive_color_round(m_dG * 255.0);
-         //m_uchB = (byte)primitive_color_round(m_dB * 255.0);
+         //::u8 uchR = (::u8)primitive_color_round(m_dR * 255.0);
+         //m_uchG = (::u8)primitive_color_round(m_dG * 255.0);
+         //m_uchB = (::u8)primitive_color_round(m_dB * 255.0);
 
          pline = pimage->get_data() + uScan * j;
-         ::color32_t color32 = IMAGE_ARGB(255, byte(_dR*255.0), byte(_dG*255.0), byte(_dB*255.0));
+         image32_t color32(argb(255, _dR, _dG, _dB), pimage->color_indexes());
          for (index i = 0; i < w; i++)
          {
 
@@ -480,7 +489,7 @@ namespace userex
    void color_impact::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
    }
@@ -493,9 +502,9 @@ namespace userex
 
       color.set_hls(m_hls);
 
-      color.alpha = 255;
+      color.m_u8Opacity = 255;
 
-      return color.get_rgba();
+      return color;
 
    }
 

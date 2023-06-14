@@ -407,7 +407,7 @@ struct c_in_addr
 
 //} // namespace str
 
-//inline string ip_to_string(byte b1, byte b2, byte b3, byte b4)
+//inline string ip_to_string(::u8 b1, ::u8 b2, ::u8 b3, ::u8 b4)
 //{
 //
 //   string str;

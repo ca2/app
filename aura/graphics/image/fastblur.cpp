@@ -286,7 +286,7 @@ namespace draw2d
 
       }
 
-      m_uia.set_size(m_size.area());
+      m_rgbaa.set_size(m_size.area());
 
 
 
@@ -354,7 +354,7 @@ namespace draw2d
 
 #ifdef DO_BOX_BLUR
 
-      u32 * pdata = (u32 *) m_p->get_data();
+      u32 * pimage32 = (u32 *) m_p->get_data();
 
       u8 * point_i32;
       vector4 * t = timage;
@@ -371,7 +371,7 @@ auto tickA0 = ::time::now();
          {
             for(index x = 0; x < w; x++)
             {
-               p = (u8 *)&pdata[y * s + x];
+               p = (u8 *)&pimage32[y * s + x];
                t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
             }
          }
@@ -434,12 +434,12 @@ auto tickC0 = ::time::now();
          {
             for(index x = 0; x < w; x++)
             {
-               p = (u8 *)&pdata[y * s + x];
+               p = (u8 *)&pimage32[y * s + x];
                t = &timage[y * w + x];
-               point_i32[0] = (byte)t->w;
-               point_i32[1] = (byte)t->x;
-               point_i32[2] = (byte)t->y;
-               point_i32[3] = (byte)t->z;
+               point_i32[0] = (::u8)t->w;
+               point_i32[1] = (::u8)t->x;
+               point_i32[2] = (::u8)t->y;
+               point_i32[3] = (::u8)t->z;
             }
          }
 auto tickC1 = ::time::now();
@@ -449,7 +449,7 @@ auto tickC1 = ::time::now();
          str.format("%d",dwC2);
       }
 #else
-      u32 * pdata = (u32 *)pimage->colorref();
+      u32 * pimage32 = (u32 *)pimage->image32();
 
       vector4 * t = timage;
 
@@ -477,7 +477,7 @@ auto tickC1 = ::time::now();
             for(index x = 0; x < wj; x++)
             {
 
-               p = (u8 *)&pdata[y * s + x];
+               p = (u8 *)&pimage32[y * s + x];
 
                t[y * wj + x] = vector4(p[0],p[1],p[2],p[3]);
 
@@ -508,7 +508,7 @@ auto tickC1 = ::time::now();
                 w,
                 h,
                 m_iRadius,
-                (u32 *)m_uia.get_data(),
+                (u32 *)m_rgbaa.get_data(),
                 m_uchaDiv.get_data(),
                 wj,
                 w,h,bottomup);
@@ -538,10 +538,10 @@ auto tickC1 = ::time::now();
             output_debug_string("| \n");
 
             //::aura::application * papp = pimage->get_app();
-            INFORMATION("/--------------------------------");
-            INFORMATION("| fastblur::blur");
-            INFORMATION("| ");
-            INFORMATION("| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond());
+            information() << "/--------------------------------";
+            information() << "| fastblur::blur";
+            information() << "| ";
+            information() << "| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond();
 
          }
 
@@ -557,12 +557,12 @@ auto tickC1 = ::time::now();
             for(index x = 0; x < w; x++)
             {
 
-               p = (u8 *)&pdata[y * s + x];
+               p = (u8 *)&pimage32[y * s + x];
                t = &timage[y * wj + x];
-               p[0] = (byte)t->w;
-               p[1] = (byte)t->x;
-               p[2] = (byte)t->y;
-               p[3] = (byte)t->z;
+               p[0] = (::u8)t->w;
+               p[1] = (::u8)t->x;
+               p[2] = (::u8)t->y;
+               p[3] = (::u8)t->z;
 
             }
 
@@ -600,10 +600,10 @@ auto tickC1 = ::time::now();
          //{
 
             do_fastblur(
-                (u32*)pimage->colorref(),
+                pimage->image32(),
                 m_size.cx(),
                 m_size.cy(),
-                m_uia.get_data(),
+                m_rgbaa.data(),
                 m_uchaDiv.get_data(),
                 pimage->scan_size(),
                 cx,cy,bottomup);
@@ -827,7 +827,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(u32 * pimage32,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
    {
 
       //int stride = 4 * cx;
@@ -835,7 +835,7 @@ auto tick2 = ::time::now();
       int dxRight = 0;
       int dyLeft = 0;
       int dyRight = 0;
-      u32* src = pdata;
+      u32* src = pimage32;
       u32* dst = m_pimage->m_pcolorref;
       unsigned int kernelSizeX = radius * 3 / 2 + 1;
       unsigned int kernelSizeY = radius * 3 / 2 + 1;
@@ -868,10 +868,10 @@ auto tick2 = ::time::now();
       }
 
       // The final result should be stored in srcPixelArray.
-      if(dst != pdata)
+      if(dst != pimage32)
       {
 
-         ::memory_copy(pdata,dst,m_p->m_iScan * m_p.height());
+         ::memory_copy(pimage32,dst,m_p->m_iScan * m_p.height());
 
       }
 
@@ -1056,7 +1056,7 @@ auto tick2 = ::time::now();
    *
    */
 
-   void fastblur::stackblur(vector4* pix,const int w,const int h,const int radius, int wj)
+   void fastblur::stackblur(vector4* pimage32,const int w,const int h,const int radius, int wj)
    {
 
       if(radius < 1) return;	// nothing to do
@@ -1123,7 +1123,7 @@ auto tick2 = ::time::now();
          {
 
             // calcualte address of source pixel
-            const vector4& p = pix[yi + minimum(wm,maximum(i,0))];
+            const vector4& p = pimage32[yi + minimum(wm,maximum(i,0))];
 
             // put pixel in the stack
             vector4& sir = stack[i + radius];
@@ -1165,8 +1165,8 @@ auto tick2 = ::time::now();
             // past the right edge of the width pimage->
             // minimum() will cause the last pixel to repeat.
             //if(y == 0) vmin[x] = minimum(x + radius + 1,wm);
-            //vector4& p = pix[yw + vmin[x]];
-            vector4& p = pix[yw + vxmin[x]];
+            //vector4& p = pimage32[yw + vmin[x]];
+            vector4& p = pimage32[yw + vxmin[x]];
 
 
             // erase "past" pixels from the sum
@@ -1248,7 +1248,7 @@ auto tick2 = ::time::now();
          for(int y=0; y<h; y++)
          {
 
-            pix[yi] = sum * divsum;
+            pimage32[yi] = sum * divsum;
 
             stackstart = stackpointer - radius + div;
             vector4& sir = stack[stackstart % div];
@@ -1340,7 +1340,7 @@ auto tick2 = ::time::now();
 
 
 
-   void fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(image32_t * pimage32,i32 w,i32 h,rgba_t * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
    {
 
       int radius = m_iRadius;
@@ -1376,9 +1376,9 @@ auto tick2 = ::time::now();
       if(bottomup)
       {
 
-         pdata = (u32 *)(((u8 *)pdata) + (stride * (cy - h)));
+         pimage32 = (image32_t *)(((u8 *)pimage32) + (stride * (cy - h)));
 
-         prgba = (u32 *)(((u8 *)prgba) + (stride * (cy - h)));
+         prgba = (rgba_t *)(((u8 *)prgba) + (stride * (cy - h)));
 
       }
 
@@ -1399,8 +1399,8 @@ auto tick2 = ::time::now();
 
       int workstride = w * sizeof(u32);
 
-      i32 * pix = (i32 *)pdata;
-      u8 * pb = (u8 *)pdata;
+      //i32 * pimage32 = (i32 *)pimage32;
+      u8 * pb = (u8 *)pimage32;
       u8 * pwork = (u8 *)prgba;
       u8 * pwk = (u8 *)prgba;
 
@@ -1514,7 +1514,7 @@ auto tick2 = ::time::now();
          u8 * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
          u8 * r2 = &pwk[(x * 4)];
 
-         pu8_1 = (u8 *)&pix[x];
+         pu8_1 = (u8 *)&pimage32[x];
 
          for(y = 0; y < radius; y++)
          {
@@ -1582,7 +1582,7 @@ auto tick2 = ::time::now();
 
 #endif // VECTOR3_SSE
 
-   void fastblur::do_fastblur(u32 * pix,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(image32_t * pimage32,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
    {
 
       throw ::exception(error_wrong_state);
@@ -1619,7 +1619,7 @@ auto tick2 = ::time::now();
                yi = y * s;
                for (i = -radius; i <= radius; i++)
                {
-                  p = pix[yi + minimum(wm, maximum(i, 0))];
+                  p = pimage32[yi + minimum(wm, maximum(i, 0))];
                   asum += ((point_i32 & 0xff000000) >> 24);
                   rsum += ((point_i32 & 0xff0000) >> 16);
                   gsum += ((point_i32 & 0x00ff00) >> 8);
@@ -1632,8 +1632,8 @@ auto tick2 = ::time::now();
                   g[yi] = dv[gsum];
                   b[yi] = dv[bsum];
 
-                  pu8_1 = pix[yw + vmin[x]];
-                  pu8_2 = pix[yw + vmax[x]];
+                  pu8_1 = pimage32[yw + vmin[x]];
+                  pu8_2 = pimage32[yw + vmax[x]];
 
                   asum += ((pu8_1 >> 24) & 0xff) - ((pu8_2 >> 24) & 0xff);
                   rsum += ((pu8_1 & 0x00ff0000) - (pu8_2 & 0x00ff0000)) >> 16;
@@ -1665,7 +1665,7 @@ auto tick2 = ::time::now();
                yi = x;
                for (y = 0; y < h; y++)
                {
-                  pix[yi] = (dv[asum] << 24) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
+                  pimage32[yi] = (dv[asum] << 24) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
 
                   pu8_1 = x + vmin[y];
                   pu8_2 = x + vmax[y];

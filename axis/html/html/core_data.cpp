@@ -646,7 +646,7 @@ namespace html
    void core_data::on_image_loaded(image* pimage)
    {
 
-      __UNREFERENCED_PARAMETER(pimage);
+      UNREFERENCED_PARAMETER(pimage);
 
       if (m_puserinteraction != nullptr)
       {

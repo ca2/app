@@ -2,8 +2,8 @@
 //  _apple_no_templates.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 18/08/21.
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 18/08/21.
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
 #pragma once
@@ -12,7 +12,7 @@
 #include <CoreGraphics/CoreGraphics.h>
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const ::property_set & propertyset);

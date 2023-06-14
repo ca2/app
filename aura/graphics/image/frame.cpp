@@ -2,7 +2,7 @@
 #include "frame.h"
 #include "frame_array.h"
 #include "image.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "aura/graphics/image/drawing.h"
 
 
@@ -61,7 +61,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
       //::color::color crBack = pframea->m_colorBack;
 
-      //byte bAlpha = colorref_get_a_value(crBack);
+      //::u8 bAlpha = color32_u8_opacity(crBack);
 
       //if (bAlpha == 0)
       //{
@@ -111,7 +111,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
    else
    {
 
-      INFORMATION("Don't know how to handle this GIF Disposal");
+      information() << "Don't know how to handle this GIF Disposal";
 
    }
 

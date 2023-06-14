@@ -2,8 +2,8 @@
 //  acme_framework.h
 //  acme_framework
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/12/21.
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 07/12/21.
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

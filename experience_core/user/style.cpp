@@ -1319,13 +1319,13 @@ namespace experience_core
                if (is_dark_mode())
                {
 
-                  return ::color::color(80, 80, 80, 127);
+                  return ::rgba(80, 80, 80, 127);
 
                }
                else
                {
 
-                  return ::color::color(255, 255, 255, 127);
+                  return ::rgba(255, 255, 255, 127);
 
                }
 
@@ -1344,13 +1344,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return ::rgba(255, 255, 255, 127);
 
                   }
                   else
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return ::rgba(80, 80, 80, 127);
 
                   }
 
@@ -1361,13 +1361,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 255);
+                     return ::rgba(80, 80, 80, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::rgba(255, 255, 255, 255);
 
                   }
 
@@ -1383,13 +1383,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return ::rgba(80, 80, 80, 127);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return ::rgba(255, 255, 255, 127);
 
                   }
 
@@ -1400,13 +1400,13 @@ namespace experience_core
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::rgba(255, 255, 255, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(80, 80, 80, 255);
+                     return ::rgba(80, 80, 80, 255);
 
                   }
 
@@ -1874,7 +1874,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleClient = pscrollbar->client_rectangle();
 
-      if (colorBackground.alpha != 0)
+      if (colorBackground.m_u8Opacity != 0)
       {
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1884,7 +1884,7 @@ namespace experience_core
          if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          {
 
-            colorBackground.alpha = 255;
+            colorBackground.m_u8Opacity = 255;
 
          }
 
@@ -1894,9 +1894,9 @@ namespace experience_core
 
       auto statusrectangleTrack = pscrollbar->get_track_rectangle(pgraphics);
 
-      ::rectangle_i32 rectangleWindow;
+      //::rectangle_i32 rectangleWindow;
 
-      pscrollbar->window_rectangle(rectangleWindow);
+      //pscrollbar->window_rectangle(rectangleWindow);
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 
@@ -1956,9 +1956,9 @@ namespace experience_core
 
          }
 
-         ::point_i32 point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
+         //::point_i32 point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
-         pbar->client_to_screen()(point1);
+         //pbar->client_to_screen()(point1);
 
          //auto psession = get_session();
 
@@ -1968,13 +1968,13 @@ namespace experience_core
 
          //auto point = pwindowing->get_cursor_position();
 
-         pbar->client_to_screen()(point1);
+         //pbar->client_to_screen()(point1);
 
          //      prop("tracking_window").cast < trw >()->point1 = point1;
 
          //    prop("tracking_window").cast < trw >()->point2 = point;
 
-         byte uchAlpha;
+         ::u8 uchAlpha;
 
          if (pbar->is_true("tracking_fade_in"))
          {
@@ -2005,7 +2005,7 @@ namespace experience_core
             if (elapsed < periodFadeOut)
             {
 
-               uchAlpha = as_byte(255 *( (periodFadeOut - elapsed) / periodFadeOut));
+               uchAlpha = as_byte(255 * ((periodFadeOut - elapsed) / periodFadeOut));
 
             }
             else
@@ -2103,27 +2103,41 @@ namespace experience_core
 
       }
 
-      auto ppenArrow = __create < ::draw2d::pen >();
+      {
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
+         auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient, pgraphics);
 
-      pgraphics->set(ppenArrow);
+         auto ppenArrow = __create < ::draw2d::pen >();
 
-      pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-      pgraphics->set(pbar->m_pbrushDraw);
+         pgraphics->set(ppenArrow);
 
-      pgraphics->rectangle(pbar->m_rectangleA);
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+         pgraphics->set(pbar->m_pbrushDraw);
 
-      pgraphics->set(ppenArrow);
+         pgraphics->rectangle(rectangleA);
 
-      pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
+      }
 
-      pgraphics->set(pbar->m_pbrushDraw);
+      {
 
-      pgraphics->rectangle(pbar->m_rectangleB);
+         auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient, pgraphics);
+
+         auto ppenArrow = __create < ::draw2d::pen >();
+
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+
+         pgraphics->set(ppenArrow);
+
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
+
+         pgraphics->set(pbar->m_pbrushDraw);
+
+         pgraphics->rectangle(rectangleB);
+
+      }
 
       if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
@@ -2152,21 +2166,39 @@ namespace experience_core
 
       }
 
-      ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
-      ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
-      ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
+      {
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
+         auto ppenArrow = __create < ::draw2d::pen >();
 
-      pgraphics->set(ppenArrow);
+         ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
+         ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
+         ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-      pgraphics->polyline(pbar->m_pointaA, 3);
+         {
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+            auto pointaA = pbar->get_arrowA(rectangleClient, pgraphics);
 
-      pgraphics->set(ppenArrow);
+            ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-      pgraphics->polyline(pbar->m_pointaB, 3);
+            pgraphics->set(ppenArrow);
+
+            pgraphics->polyline(pointaA);
+
+         }
+
+         {
+
+            auto pointaB = pbar->get_arrowB(rectangleClient, pgraphics);
+
+            ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+
+            pgraphics->set(ppenArrow);
+
+            pgraphics->polyline(pointaB);
+
+         }
+
+      }
 
       return true;
 

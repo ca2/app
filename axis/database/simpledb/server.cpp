@@ -68,7 +68,7 @@ namespace simpledb
       //if(!pfactoryDatabase)
       //{
       //   
-      //   warning("Failed to load database_sqlite3");
+      //   warning() <<"Failed to load database_sqlite3";
 
       //   return pfactoryDatabase;
 
@@ -300,7 +300,7 @@ namespace simpledb
       if(strType.contains("filemanager::frame"))
       {
 
-         INFORMATION("filemanager");
+         information() << "filemanager";
 
       }
 
@@ -326,7 +326,7 @@ namespace simpledb
       if(strType.contains("filemanager::frame"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 

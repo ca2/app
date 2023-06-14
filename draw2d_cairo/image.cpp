@@ -136,14 +136,14 @@ namespace draw2d_cairo
 
       }
 
-      color32_t * pcolorrefRaw = nullptr;
+      image32_t * pimage32Raw = nullptr;
 
       i32 iScan = iGoodStride;
 
-      pbitmap->create_bitmap(nullptr, size, (void**)&pcolorrefRaw, &iScan);
+      pbitmap->create_bitmap(nullptr, size, (void**)&pimage32Raw, &iScan);
       //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
 
-      //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pcolorrefRaw, &iScan))
+      //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pimage32Raw, &iScan))
       //{
 
       //   return false;
@@ -155,15 +155,15 @@ namespace draw2d_cairo
 
          map();
 
-         if (::is_set(m_pcolorrefRaw))
+         if (::is_set(m_pimage32Raw))
          {
 
-            copy_colorref(
-               pcolorrefRaw,
+            copy_image32(
+               pimage32Raw,
                minimum(size.cx(), m_size.cx()),
                minimum(size.cy(), m_size.cy()),
                iScan,
-               m_pcolorrefRaw,
+               m_pimage32Raw,
                m_iScan);
 
          }
@@ -181,9 +181,9 @@ namespace draw2d_cairo
       m_pgraphics->m_pimage = this;
       m_sizeRaw = size;
       m_sizeAlloc = size;
-      m_pcolorref1 = nullptr;
+      m_pimage32 = nullptr;
 
-      //init(size, pcolorrefRaw, iScan);
+      //init(size, pimage32Raw, iScan);
       init(size, nullptr, iScan);
 
       m_bMapped = false;
@@ -379,7 +379,7 @@ namespace draw2d_cairo
 
    //   i32 size = scan*cy;
 
-   //   byte * pbyte = (byte *) m_pcolorrefMap;
+   //   ::u8 * pbyte = (::u8 *) m_pcolorrefMap;
 
    //   i32 i;
    //   i32 j;
@@ -388,9 +388,9 @@ namespace draw2d_cairo
    //   {
    //      for (j=0; j<cx; j++ )
    //      {
-   //         *pbyte++ = (byte) R * pbyte[3] / 255;
-   //         *pbyte++ = (byte) G * pbyte[2] / 255;
-   //         *pbyte++ = (byte) B * pbyte[1] / 255;
+   //         *pbyte++ = (::u8) R * pbyte[3] / 255;
+   //         *pbyte++ = (::u8) G * pbyte[2] / 255;
+   //         *pbyte++ = (::u8) B * pbyte[1] / 255;
    //         pbyte++;
    //      }
    //      j+= rectangle;
@@ -399,7 +399,7 @@ namespace draw2d_cairo
 
    //void image::ToAlpha(i32 i)
    //{
-   //   byte *dst=(byte*)m_pcolorrefMap;
+   //   ::u8 *dst=(::u8*)m_pcolorrefMap;
    //   i32 size=cx*cy;
 
    //   while ( size-- )
@@ -411,7 +411,7 @@ namespace draw2d_cairo
 
    //void image::from_alpha()
    //{
-   //   byte *dst=(byte*)m_pcolorrefMap;
+   //   ::u8 *dst=(::u8*)m_pcolorrefMap;
    //   i64 size = cx * cy;
 
    //   while ( size-- )
@@ -447,9 +447,9 @@ namespace draw2d_cairo
 
    //   imageWork.FillByte(0);
 
-   //   imageWork.channel_from(::color::e_channel_alpha, this);
+   //   imageWork.channel_from(::color::e_channel_opacity, this);
 
-   //   imageWork.channel_invert(::color::e_channel_alpha);
+   //   imageWork.channel_invert(::color::e_channel_opacity);
 
 
    //   BLENDFUNCTION bf;
@@ -464,9 +464,9 @@ namespace draw2d_cairo
    //   if(bPreserveAlpha)
    //   {
 
-   //      imageWork.channel_invert(::color::e_channel_alpha);
+   //      imageWork.channel_invert(::color::e_channel_opacity);
 
-   //      ::color::e_channel_from(::color::e_channel_alpha, imageWork);
+   //      ::color::e_channel_from(::color::e_channel_opacity, imageWork);
 
    //   }
 
@@ -487,7 +487,7 @@ namespace draw2d_cairo
 
       }
 
-//      if (m_pcolorrefRaw == nullptr)
+//      if (m_pimage32Raw == nullptr)
 //      {
 //
 //         return;
@@ -512,18 +512,18 @@ namespace draw2d_cairo
 
       cairo_surface_flush (surface);
 
-      byte  * pdata = (byte *) cairo_image_surface_get_data(surface);
+      ::u8  * pdata = (::u8 *) cairo_image_surface_get_data(surface);
 
-      m_pcolorrefRaw = (color32_t * ) pdata;
+      m_pimage32Raw = (image32_t * ) pdata;
 
-//      if(pdata != (byte *) m_pcolorrefRaw && pdata != nullptr)
+//      if(pdata != (::u8 *) m_pimage32Raw && pdata != nullptr)
 //      {
 //
-//         ::memory_copy(m_pcolorrefRaw, pdata, m_sizeRaw.cy() * m_iScan);
+//         ::memory_copy(m_pimage32Raw, pdata, m_sizeRaw.cy() * m_iScan);
 //
 //      }
 
-      //pdata = (byte *) m_pcolorrefRaw;
+      //pdata = (::u8 *) m_pimage32Raw;
 
 //      if(!bApplyAlphaTransform)
 //      {
@@ -577,7 +577,7 @@ namespace draw2d_cairo
 
       }
 
-      if (m_pcolorrefRaw == nullptr)
+      if (m_pimage32Raw == nullptr)
       {
 
          return;
@@ -600,16 +600,16 @@ namespace draw2d_cairo
 
       }
 
-//      byte * pdata =  (byte *) m_pcolorrefRaw;
+//      ::u8 * pdata =  (::u8 *) m_pimage32Raw;
 //
 //      int size = m_iScan * m_sizeRaw.cy() / sizeof(color32_t);
 //
-//      pdata =  (byte *) cairo_image_surface_get_data(surface);
+//      pdata =  (::u8 *) cairo_image_surface_get_data(surface);
 //
-//      if(pdata != (byte *)m_pcolorrefRaw && pdata != nullptr)
+//      if(pdata != (::u8 *)m_pimage32Raw && pdata != nullptr)
 //      {
 //
-//         ::memory_copy(pdata, m_pcolorrefRaw, m_sizeRaw.cy() * m_iScan);
+//         ::memory_copy(pdata, m_pimage32Raw, m_sizeRaw.cy() * m_iScan);
 //
 //      }
 
@@ -688,14 +688,14 @@ namespace draw2d_cairo
 //
 //      pimageM->g()->stretch(::size_i32(cx, cy), picon);
 //
-//      byte * r1=(byte*)pimage1->colorref();
-//      byte * r2=(byte*)pimage2->get_data();
-//      byte * srcM=(byte*)pimageM->colorref();
-//      byte * dest=(byte*)m_pcolorref1;
+//      ::u8 * r1=(::u8*)pimage1->colorref();
+//      ::u8 * r2=(::u8*)pimage2->get_data();
+//      ::u8 * srcM=(::u8*)pimageM->colorref();
+//      ::u8 * dest=(::u8*)m_pimage32;
 //      i32 iSize = cx*cy;
 //
-//      byte b;
-//      byte bMax;
+//      ::u8 b;
+//      ::u8 bMax;
 //      while ( iSize-- > 0)
 //      {
 //         if(srcM[0] == 255)
@@ -705,11 +705,11 @@ namespace draw2d_cairo
 //         else
 //         {
 //            bMax = 0;
-//            b =(byte)(r1[0]  - r2[0]);
+//            b =(::u8)(r1[0]  - r2[0]);
 //            bMax = maximum(b, bMax);
-//            b =(byte)(r1[1]  - r2[1]);
+//            b =(::u8)(r1[1]  - r2[1]);
 //            bMax = maximum(b, bMax);
-//            b =(byte)(r1[2]  - r2[2]);
+//            b =(::u8)(r1[2]  - r2[2]);
 //            bMax = maximum(b, bMax);
 //            bMax = 255 - bMax;
 //         }
@@ -951,7 +951,7 @@ namespace draw2d_cairo
 //#endif
 
 
-   void image::blend(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, byte bA)
+   void image::blend(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, ::u8 bA)
    {
 
       auto size = sizeParam;
@@ -1028,20 +1028,20 @@ namespace draw2d_cairo
 
       i32 scanSrc = pimplSrc->scan_size();
 
-      byte * pdst2;
+      ::u8 * pdst2;
 
-      byte * psrc2;
+      ::u8 * psrc2;
 
 #ifdef APPLEOS
-      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
+      ::u8 * pdst = &((::u8 *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
+      ::u8 * psrc = &((::u8 *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
 
 #else
 
-      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
+      ::u8 * pdst = &((::u8 *)pimplDst->m_pimage32)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
 
-      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
+      ::u8 * psrc = &((::u8 *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
 
 #endif
 
@@ -1074,7 +1074,7 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  byte acomplement = ~psrc2[3];
+//                  ::u8 acomplement = ~psrc2[3];
 //                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
@@ -1111,12 +1111,12 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  //byte acomplement = (~psrc2[3] * bA) >> 8;
+//                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-//                  byte acomplement = (~psrc2[3] * bA) >> 8;
+//                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
 //                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
 //                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1169,8 +1169,8 @@ namespace draw2d_cairo
                   //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                   //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                   //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-                  byte a = pdst2[3];
-                  byte alpha = psrc2[3];
+                  ::u8 a = pdst2[3];
+                  ::u8 alpha = psrc2[3];
                   if (a == 0)
                   {
 
@@ -1178,7 +1178,7 @@ namespace draw2d_cairo
                   else if(alpha == 0)
                   {
 
-                     *((color32_t *)pdst2) = 0;
+                     *((image32_t *)pdst2) = {};
 
                   }
                   else
@@ -1243,18 +1243,18 @@ namespace draw2d_cairo
                   //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                   //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                   //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-                  //byte acomplement = (~psrc2[3] * bA) >> 8;
+                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
                   //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
                   //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
                   //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                   //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
 
-                  byte acomplement = (~psrc2[3] * bA) >> 8;
+                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 
-                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+                  pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+                  pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+                  pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+                  pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
                   pdst2 += 4;
 
@@ -1275,7 +1275,7 @@ namespace draw2d_cairo
    }
 
 
-//   void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, byte bA)
+//   void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, ::u8 bA)
 //   {
 //
 //      ::image* pimageDst = this;
@@ -1353,13 +1353,13 @@ namespace draw2d_cairo
 //
 //      i32 scanSrc = pimageSrc->m_iScan;
 //
-//      byte * pdst = ((byte *) pimageDst->colorref()) + (scanDst * pointDst.y()) + (pointDst.x() * sizeof(color32_t));
+//      ::u8 * pdst = ((::u8 *) pimageDst->colorref()) + (scanDst * pointDst.y()) + (pointDst.x() * sizeof(color32_t));
 //
-//      byte * psrc = ((byte *) pimageSrc->colorref()) + (scanSrc * pointSrc.y()) + (pointSrc.x() * sizeof(color32_t));
+//      ::u8 * psrc = ((::u8 *) pimageSrc->colorref()) + (scanSrc * pointSrc.y()) + (pointSrc.x() * sizeof(color32_t));
 //
-//      byte * pdst2;
+//      ::u8 * pdst2;
 //
-//      byte * psrc2;
+//      ::u8 * psrc2;
 //
 //      if (bA == 0)
 //      {
@@ -1438,16 +1438,16 @@ namespace draw2d_cairo
 //               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//               //byte acomplement = (~psrc2[3] * bA) >> 8;
+//               //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //               //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //               //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-//               byte acomplement = (~psrc2[3] * bA) >> 8;
-//               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-//               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-//               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-//               pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//               ::u8 acomplement = (~psrc2[3] * bA) >> 8;
+//               pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//               pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//               pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//               pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 //
 //               pdst2 += 4;
 //
@@ -1466,7 +1466,7 @@ namespace draw2d_cairo
 //   }
 
 
-//   void image::blend2(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, byte bA)
+//   void image::blend2(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, ::u8 bA)
 //   {
 //
 //      auto size = sizeParam;
@@ -1543,20 +1543,20 @@ namespace draw2d_cairo
 //
 //      i32 scanSrc = pimplSrc->scan_size();
 //
-//      byte * pdst2;
+//      ::u8 * pdst2;
 //
-//      byte * psrc2;
+//      ::u8 * psrc2;
 //
 //#ifdef APPLEOS
-//      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
+//      ::u8 * pdst = &((::u8 *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
 //
-//      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
+//      ::u8 * psrc = &((::u8 *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
 //
 //#else
 //
-//      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
+//      ::u8 * pdst = &((::u8 *)pimplDst->m_pimage32)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
 //
-//      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
+//      ::u8 * psrc = &((::u8 *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
 //
 //#endif
 //
@@ -1589,7 +1589,7 @@ namespace draw2d_cairo
 ////                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-////                  byte acomplement = ~psrc2[3];
+////                  ::u8 acomplement = ~psrc2[3];
 ////                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 ////                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 ////                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
@@ -1626,12 +1626,12 @@ namespace draw2d_cairo
 ////                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-////                  //byte acomplement = (~psrc2[3] * bA) >> 8;
+////                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 ////                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 ////                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 ////                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 ////                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-////                  byte acomplement = (~psrc2[3] * bA) >> 8;
+////                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 ////                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
 ////                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
 ////                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1684,8 +1684,8 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  byte a = pdst2[3];
-//                  byte alpha = psrc2[3];
+//                  ::u8 a = pdst2[3];
+//                  ::u8 alpha = psrc2[3];
 //                  if (a == 0)
 //                  {
 //
@@ -1760,18 +1760,18 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  //byte acomplement = (~psrc2[3] * bA) >> 8;
+//                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
 //
-//                  byte acomplement = (~psrc2[3] * bA) >> 8;
+//                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //
-//                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-//                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-//                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-//                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//                  pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//                  pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//                  pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//                  pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 //
 //                  pdst2 += 4;
 //

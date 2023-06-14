@@ -32,7 +32,7 @@ namespace filemanager
       {
          color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (::u8)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
          pgraphics->fill_rectangle(::rectangle_f64_dimension(x,iTop,iW,cy), color32);
       }
@@ -40,7 +40,7 @@ namespace filemanager
       {
          color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (::u8)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
          pgraphics->fill_rectangle(::rectangle_f64_dimension(x,iTop,iRight - x,cy), color32);
       }
@@ -111,8 +111,8 @@ namespace filemanager
 
    void operation_info_impact::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
-      __UNREFERENCED_PARAMETER(iOperation);
-      __UNREFERENCED_PARAMETER(bFinal);
+      UNREFERENCED_PARAMETER(iOperation);
+      UNREFERENCED_PARAMETER(bFinal);
    }
 
    ::pointer<operation_document>operation_info_impact::get_document()
@@ -130,7 +130,7 @@ namespace filemanager
 
    void operation_info_impact::on_message_create(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       //SetTimer(123, 184, nullptr);
    }
 

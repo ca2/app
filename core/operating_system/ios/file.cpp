@@ -285,7 +285,7 @@ namespace ios
          
          readNow = (size_t) minimum(0x7fffffff, nCount);
          
-         size_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
+         size_t iRead = ::read(m_iFile, &((::u8 *)lpBuf)[pos], readNow);
          
          if(iRead == -1)
          {
@@ -343,7 +343,7 @@ namespace ios
       while(nCount > 0)
       {
          
-         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) minimum(0x7fffffff, nCount));
+         size_t iWrite = ::write(m_iFile, &((const ::u8 *)lpBuf)[pos], (size_t) minimum(0x7fffffff, nCount));
          
          if(iWrite == -1)
          {
@@ -406,7 +406,7 @@ namespace ios
 //       ::read
 //       ::write
 //
-//       access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
+//       access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single ::u8 writes
 //
 //       */
 //
@@ -442,7 +442,7 @@ namespace ios
 //       ::read
 //       ::write
 //
-//       access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
+//       access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single ::u8 writes
 //
 //       */
 //
@@ -496,7 +496,7 @@ namespace ios
       
       ASSERT(m_iFile != (::u32)hFileNull);
 
-      /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
+      /*if (!::LockFile((HANDLE)m_iFile, lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
        ::macos::file_exception::throw_os_error( (::i32)::get_last_error());*/
       
    }
@@ -509,7 +509,7 @@ namespace ios
       
       ASSERT(m_iFile != (::u32)hFileNull);
 
-      /*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
+      /*      if (!::UnlockFile((HANDLE)m_iFile,  lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
        ::macos::file_exception::throw_os_error( (::i32)::get_last_error());*/
       
    }
@@ -675,7 +675,7 @@ namespace ios
 //      //VERIFY(FindClose(hFind));
 //
 //      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-//      //rStatus.m_attribute = (byte) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+//      //rStatus.m_attribute = (::u8) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 //
 //      rStatus.m_attribute = 0;
 //

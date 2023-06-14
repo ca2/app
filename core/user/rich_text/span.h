@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 namespace user
@@ -29,7 +30,7 @@ namespace user
          string            m_str;
 
          // Common thing among indexes:
-         // A single character is accounted for the same as the UTF8-byte-count.
+         // A single character is accounted for the same as the UTF8-::u8-count.
          //
          // Sel* -> Selection
          // (selection index:

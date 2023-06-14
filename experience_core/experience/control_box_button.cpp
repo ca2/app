@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "control_box_button.h"
 #include "acme/handler/item.h"
+#include "acme/primitive/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
@@ -62,7 +63,7 @@ namespace experience_core
       if (d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "is_activeis_activeis_active more than 50ms user::control_box_button wndframe_core");
+         information()(e_trace_category_prodevian) << "is_activeis_activeis_active more than 50ms user::control_box_button wndframe_core";
 
       }
 
@@ -167,7 +168,7 @@ namespace experience_core
 
          auto ppen = __create < ::draw2d::pen > ();
 
-         ppen->create_solid(1.0f, ::color::color(255, 255, 255, 255));
+         ppen->create_solid(1.0f, ::color::white);
 
          pgraphics->set(ppen);
 
@@ -186,7 +187,7 @@ namespace experience_core
       if (d2 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(d2) more than 50ms user::control_box_button wndframe_core");
+         information()(e_trace_category_prodevian) << "(d2) more than 50ms user::control_box_button wndframe_core";
 
       }
 

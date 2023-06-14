@@ -9,6 +9,7 @@
 #include "acme/primitive/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
+#include "acme/primitive/geometry2d/shift.h"
 #include "acme/primitive/time/frequency.h"
 #include "acme/user/user/e_window_flag.h"
 //#include "apex/database/key.h"
@@ -234,7 +235,7 @@ namespace user
 
       bool                                         m_bVisualChanged;
 
-      // <3ThomasBorreggardSørensen_!!
+      // <3ThomasBorreggardSoerensen_!!
       ::pointer<::matter>                          m_pmatterCommandHandler;
 
       ::user::interaction::enum_updown             m_eupdown;
@@ -838,6 +839,8 @@ namespace user
       // Client Rect : e_layout_design : Design/_001OnDraw time
       virtual void input_client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
 
+      virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design);
 
       virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
@@ -1352,6 +1355,7 @@ namespace user
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -1757,7 +1761,7 @@ namespace user
       }
       static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
       {
-         __UNREFERENCED_PARAMETER(pinteraction);
+         UNREFERENCED_PARAMETER(pinteraction);
          return nullptr;
       }
 #endif

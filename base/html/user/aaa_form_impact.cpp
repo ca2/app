@@ -68,7 +68,7 @@ void html_form_impact::on_form_implemented()
 //void html_form_impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
 //{
 //
-//   __UNREFERENCED_PARAMETER(pgraphics);
+//   UNREFERENCED_PARAMETER(pgraphics);
 //
 //}
 
@@ -115,7 +115,7 @@ string html_form_impact::GetLocationURL()
 
 bool html_form_impact::Refresh2(i32 i)
 {
-   __UNREFERENCED_PARAMETER(i);
+   UNREFERENCED_PARAMETER(i);
    get_document()->on_open_document(GetLocationURL());
    return true;
 }
@@ -132,14 +132,14 @@ bool html_form_impact::browse(const ::string & pszUrl)
 
 void html_form_impact::on_document_complete(const ::string & strUrl)
 {
-   __UNREFERENCED_PARAMETER(strUrl);
+   UNREFERENCED_PARAMETER(strUrl);
 }
 
 
 void html_form_impact::on_message_set_focus(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
    if(get_html_data()->m_pcoredata->m_focusptra.get_size() > 0)
    {
@@ -154,7 +154,7 @@ void html_form_impact::on_message_set_focus(::message::message * pmessage)
 void html_form_impact::on_message_kill_focus(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
 }
 

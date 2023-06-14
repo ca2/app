@@ -255,7 +255,7 @@ namespace datetime
 
       }
 
-      __UNREFERENCED_PARAMETER(iPath);
+      UNREFERENCED_PARAMETER(iPath);
 
       ::earth::time time(timeParam);
 
@@ -1363,11 +1363,11 @@ namespace datetime
 
             if (bAdd)
             {
-               INFORMATION("strtotime: invalid char +");
+               information() << "strtotime: invalid char +";
             }
             else if (bMinus)
             {
-               INFORMATION("strtotime: invalid char + on Minus state");
+               information() << "strtotime: invalid char + on Minus state";
             }
 
 #endif
@@ -1384,13 +1384,13 @@ namespace datetime
             if (bAdd)
             {
                
-               INFORMATION("strtotime: invalid char - on add state");
+               information() << "strtotime: invalid char - on add state";
 
             }
             else if (bMinus)
             {
                
-               INFORMATION("strtotime: invalid char - on Minus state");
+               information() << "strtotime: invalid char - on Minus state";
 
             }
 

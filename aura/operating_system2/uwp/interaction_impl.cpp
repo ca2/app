@@ -423,7 +423,7 @@ namespace universal_windows
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
       
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       
       Default();
 
@@ -621,7 +621,7 @@ namespace universal_windows
 
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -723,8 +723,8 @@ namespace universal_windows
 
    bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
-      __UNREFERENCED_PARAMETER(bEnable);
-      __UNREFERENCED_PARAMETER(nFlag);
+      UNREFERENCED_PARAMETER(bEnable);
+      UNREFERENCED_PARAMETER(nFlag);
       return false;
    }
 
@@ -789,7 +789,7 @@ namespace universal_windows
 
 
 
-   //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
+   //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,::u8 bAlpha,u32 dwFlags)
    //{
    //   throw ::exception(todo);
    //   //ASSERT(::is_window((oswindow)get_os_data()));
@@ -806,7 +806,7 @@ namespace universal_windows
    //}
 
 
-   //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,byte *pbAlpha,u32 *pdwFlags) const
+   //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,::u8 *pbAlpha,u32 *pdwFlags) const
    //{
    //   throw ::exception(todo);
    //   //ASSERT(::is_window((oswindow)get_os_data()));
@@ -838,8 +838,8 @@ namespace universal_windows
 #ifdef WINDOWS_DESKTOP
    void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)
    {
-      __UNREFERENCED_PARAMETER(dwData);
-      __UNREFERENCED_PARAMETER(nCmd);
+      UNREFERENCED_PARAMETER(dwData);
+      UNREFERENCED_PARAMETER(nCmd);
       throw ::not_implemented();
       /*
       application* pApp = ::auraacmesystem();
@@ -880,7 +880,7 @@ namespace universal_windows
    void interaction_impl::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(pevent);
+      UNREFERENCED_PARAMETER(pevent);
 
 //      return false;
 
@@ -1465,7 +1465,7 @@ case ::ca2::Sig_v_uu_v:
 break;
 
 case ::ca2::Sig_v_v_ii:
-(this->*mmf.pfn_v_i_i)(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+(this->*mmf.pfn_v_i_i)(i32_x(lParam), i32_y(lParam));
 break;
 
 case ::ca2::Sig_v_u_uu:
@@ -1592,7 +1592,7 @@ break;
 
 case ::ca2::Sig_MOUSEWHEEL:
 lResult = (this->*mmf.pfn_b_u_s_p)(LOWORD(wParam), (short)HIWORD(wParam),
-point_i32(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
+point_i32(i32_x(lParam), i32_y(lParam)));
 if (!lResult)
 return false;
 break;
@@ -1625,8 +1625,8 @@ return true;
    bool interaction_impl::OnCommand(WPARAM wParam,LPARAM lParam)
    {
       
-      __UNREFERENCED_PARAMETER(wParam);
-      __UNREFERENCED_PARAMETER(lParam);
+      UNREFERENCED_PARAMETER(wParam);
+      UNREFERENCED_PARAMETER(lParam);
 
       return false;
 
@@ -1870,7 +1870,7 @@ return true;
 
    bool interaction_impl::GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask)
    {
-      __UNREFERENCED_PARAMETER(nMask);
+      UNREFERENCED_PARAMETER(nMask);
       ASSERT(lpScrollInfo != nullptr);
 
       oswindow hWnd = get_handle();
@@ -2063,7 +2063,7 @@ return true;
 
    bool interaction_impl::ReflectChildNotify(::u32 uMsg,WPARAM wParam,LPARAM lParam,LRESULT* pResult)
    {
-      __UNREFERENCED_PARAMETER(wParam);
+      UNREFERENCED_PARAMETER(wParam);
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
       //  and interaction_impl::_001OnCommand for speed and because these messages are not
       //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -2200,7 +2200,7 @@ return true;
 
    void interaction_impl::OnDevModeChange(char * lpDeviceName)
    {
-      __UNREFERENCED_PARAMETER(lpDeviceName);
+      UNREFERENCED_PARAMETER(lpDeviceName);
       throw ::not_implemented();
       /*application* pApp = ::auraacmesystem();
       if (pApp != nullptr && pApp->GetMainWnd() == this)
@@ -2302,7 +2302,7 @@ return true;
       //m_pframeworkview->on_size(m_rectangle.size());
 
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       Default();
 
@@ -2320,13 +2320,13 @@ return true;
 
    //void interaction_impl::OnHScroll(::u32,::u32,CScrollBar* pScrollBar)
    //{
-   //   __UNREFERENCED_PARAMETER(pScrollBar);
+   //   UNREFERENCED_PARAMETER(pScrollBar);
    //   Default();
    //}
 
    //void interaction_impl::OnVScroll(::u32,::u32,CScrollBar* pScrollBar)
    //{
-   //   __UNREFERENCED_PARAMETER(pScrollBar);
+   //   UNREFERENCED_PARAMETER(pScrollBar);
    //   Default();
    //}
 
@@ -2400,7 +2400,7 @@ return true;
 
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       //      ::auraacmesystem()->get_event(m_pthread)->SetEvent();
       //    ::auraacmesystem()->get_event(::auraacmesystem()->get_twf())->wait(::time(8400));
    }
@@ -2708,8 +2708,8 @@ return true;
 
    void interaction_impl::UpdateDialogControls(channel* pTarget,bool bDisableIfNoHndler)
    {
-      __UNREFERENCED_PARAMETER(pTarget);
-      __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+      UNREFERENCED_PARAMETER(pTarget);
+      UNREFERENCED_PARAMETER(bDisableIfNoHndler);
       //::message::command state(this);
       //interaction_impl wndTemp;       // very temporary interaction_impl just for CmdUI update
 
@@ -3635,7 +3635,7 @@ return true;
 
    void interaction_impl::SetFont(::write_text::font* pfont,bool bRedraw)
    {
-      __UNREFERENCED_PARAMETER(bRedraw);
+      UNREFERENCED_PARAMETER(bRedraw);
       ASSERT(::is_window(get_handle()));
       m_pfont = memory_new ::write_text::font(*pfont);
    }
@@ -5463,7 +5463,7 @@ lCallNextHook:
 
 //hwnd_map* ::windows_definition::MapHWND(bool bCreate)
 //{
-//   __UNREFERENCED_PARAMETER(bCreate);
+//   UNREFERENCED_PARAMETER(bCreate);
 //   try
 //   {
 //      __MODULE_STATE* pState = __get_module_state();

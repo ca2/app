@@ -58,7 +58,7 @@ namespace user
       if (is_modified())
       {
 
-         CATEGORY_WARNING(appmsg, "Warning: destroying an unsaved document.\n");
+         warning()(e_trace_category_appmsg) << "Warning: destroying an unsaved document.\n";
 
       }
 #endif
@@ -770,7 +770,7 @@ namespace user
 
    void document::set_path_name(::payload payloadFile, bool bAddToMRU)
    {
-      __UNREFERENCED_PARAMETER(bAddToMRU);
+      UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
       if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
       {
@@ -1281,7 +1281,7 @@ namespace user
       try
       {
 
-         __UNREFERENCED_PARAMETER(bSave);
+         UNREFERENCED_PARAMETER(bSave);
 
          string strPrompt(pszDefault);
 
@@ -1476,7 +1476,7 @@ namespace user
       {
 
 
-         INFORMATION("Unsaved Document");
+         information() << "Unsaved Document";
 
          return false;       // don't continue
 
@@ -1627,7 +1627,7 @@ namespace user
             catch(const ::exception &)
             {
 
-               CATEGORY_WARNING(appmsg, "Warning: failed to delete file after failed SaveAs.\n");
+               warning()(e_trace_category_appmsg) << "Warning: failed to delete file after failed SaveAs.\n";
 
             }
 
@@ -1656,7 +1656,7 @@ namespace user
          if (!do_save(::payload(::e_type_empty)))
          {
 
-            CATEGORY_WARNING(appmsg, "Warning: File save with memory_new name failed.\n");
+            warning()(e_trace_category_appmsg) << "Warning: File save with memory_new name failed.\n";
 
             return false;
 
@@ -1669,7 +1669,7 @@ namespace user
          if (!do_save(m_path))
          {
 
-            CATEGORY_WARNING(appmsg, "Warning: File save failed.\n");
+            warning()(e_trace_category_appmsg) << "Warning: File save failed.\n";
 
             return false;
 
@@ -1905,7 +1905,7 @@ namespace user
    //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pdata);
+   //   UNREFERENCED_PARAMETER(pdata);
    //   string strUrl(payloadFile);
    //   if(strUrl.begins_eat("ext://"))
    //   {
@@ -1929,7 +1929,7 @@ namespace user
 
    void document::form_document_set_property_set(const property_set & set)
    {
-      __UNREFERENCED_PARAMETER(set);
+      UNREFERENCED_PARAMETER(set);
    }
 
 

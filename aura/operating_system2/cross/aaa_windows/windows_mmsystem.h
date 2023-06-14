@@ -21,8 +21,8 @@ typedef ::u32           FOURCC;         /* a four character code */
  *
  */
 #define MAKEFOURCC(ch0, ch1, ch2, ch3)                              \
-                ((::u32)(byte)(ch0) | ((::u32)(byte)(ch1) << 8) |   \
-                ((::u32)(byte)(ch2) << 16) | ((::u32)(byte)(ch3) << 24 ))
+                ((::u32)(::u8)(ch0) | ((::u32)(::u8)(ch1) << 8) |   \
+                ((::u32)(::u8)(ch2) << 16) | ((::u32)(::u8)(ch3) << 24 ))
 
 
 /* MMIO macros */
@@ -68,7 +68,7 @@ typedef struct midihdr_tag
 
 
 
-typedef ::u32        MMVERSION;  /* major (high byte), minor (low byte) */
+typedef ::u32        MMVERSION;  /* major (high ::u8), minor (low ::u8) */
 
 
 

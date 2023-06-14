@@ -118,20 +118,20 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 
 }
 
-
-namespace color
-{
-
-
-   ::u32 color::get_COLORREF() const
-   {
-
-      return RGB(red, green, blue);
-   
-   }
-
-
-} // namespace color
+//
+//namespace color
+//{
+//
+//
+//   ::u32 color::u32_COLORREF() const
+//   {
+//
+//      return RGB(red, green, blue);
+//   
+//   }
+//
+//
+//} // namespace color
 
 
 namespace windows

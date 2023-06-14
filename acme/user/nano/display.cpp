@@ -5,6 +5,7 @@
 #include "display.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 namespace nano

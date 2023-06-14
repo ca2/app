@@ -404,13 +404,13 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 //
 //}
 
-//#ifndef GET_X_LPARAM
-//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+//#ifndef i32_x
+//#define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
 //#endif
 //
 //
-//#ifndef GET_Y_LPARAM
-//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+//#ifndef i32_y
+//#define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
 //#endif
 //
 ////LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
@@ -435,14 +435,14 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 //      }
 //         break;
 //      case WM_LBUTTONDOWN:
-//         on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//         on_left_button_down(i32_x(lparam), i32_y(lparam));
 //         break;
 //      case WM_MOUSEMOVE:
-//         on_mouse_move(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//         on_mouse_move(i32_x(lparam), i32_y(lparam));
 //         break;
 //      case WM_LBUTTONUP:
 //      {
-//         on_left_button_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//         on_left_button_up(i32_x(lparam), i32_y(lparam));
 //
 //      }
 //
@@ -976,11 +976,11 @@ void nano_window::redraw()
 //   }
 //   break;
 //   case WM_LBUTTONDOWN:
-//      on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//      on_left_button_down(i32_x(lparam), i32_y(lparam));
 //      break;
 //   case WM_LBUTTONUP:
 //   {
-//      on_left_button_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//      on_left_button_up(i32_x(lparam), i32_y(lparam));
 //   }
 //
 //   break;

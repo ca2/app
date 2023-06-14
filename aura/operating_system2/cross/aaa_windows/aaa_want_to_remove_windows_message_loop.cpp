@@ -172,7 +172,7 @@ LRESULT DispatchMessage(const MESSAGE * pmessage)
 
 // {
 
-//    __UNREFERENCED_PARAMETER(pmessage);
+//    UNREFERENCED_PARAMETER(pmessage);
 
 
 //    return true;

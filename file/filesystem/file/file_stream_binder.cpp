@@ -132,7 +132,7 @@ namespace file
    {
       if (size > 0)
       {
-         _data = (byte *) data;
+         _data = (::u8 *) data;
          _size = size;
          _allBytesAreWritenEvent.ResetEvent();
          _thereAreBytesToReadEvent.SetEvent();

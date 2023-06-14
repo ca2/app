@@ -70,7 +70,7 @@ namespace crypto_openssl
       //virtual void sha256(memory & memSha256, const block& block);
       //virtual void nessie(memory & memNessie, const block& block);
 
-      // result is 20-byte digest
+      // result is 20-::u8 digest
       void hmac(void * result,const memory & memMessage,const memory & key) override;
       void hmac(void * result,const string & memMessage,const string & key) override;
 

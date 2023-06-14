@@ -1,7 +1,7 @@
 #include "framework.h"
 
 /*
-* Find the first occurrence of the byte string s in byte string l.
+* Find the first occurrence of the ::u8 string s in ::u8 string l.
 */
 
 void * memory_find(const void * l, size_t l_len, const void * s, memsize s_len)

@@ -29,9 +29,9 @@ namespace draw2d
 //   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(hPackedDIB);
+//      UNREFERENCED_PARAMETER(hPackedDIB);
 //
-//      __UNREFERENCED_PARAMETER(nUsage);
+//      UNREFERENCED_PARAMETER(nUsage);
 //
 //      throw ::interface_only();
 //
@@ -61,7 +61,7 @@ namespace draw2d
 //   void brush::dump(dump_context & dumpcontext) const
 //   {
 //
-//      __UNREFERENCED_PARAMETER(dumpcontext);
+//      UNREFERENCED_PARAMETER(dumpcontext);
 //
 //      throw ::interface_only();
 //
@@ -71,7 +71,7 @@ namespace draw2d
    bool brush::create_null()
    {
 
-      m_color.set_argb(0);
+      m_color = {};
 
       m_ebrush     = e_brush_null;
 
@@ -104,9 +104,9 @@ namespace draw2d
    bool brush::CreateHatchBrush(i32 nIndex, ::color::color color)
    {
 
-      __UNREFERENCED_PARAMETER(nIndex);
+      UNREFERENCED_PARAMETER(nIndex);
 
-      __UNREFERENCED_PARAMETER(color);
+      UNREFERENCED_PARAMETER(color);
 
       throw ::interface_only();
 
@@ -121,7 +121,7 @@ namespace draw2d
 //   bool brush::CreateBrushIndirect(const LOGBRUSH* pLogBrush)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pLogBrush);
+//      UNREFERENCED_PARAMETER(pLogBrush);
 //
 //      throw ::interface_only();
 //
@@ -154,9 +154,9 @@ namespace draw2d
    bool brush::CreateDIBPatternBrush(const void * pPackedDIB, ::u32 nUsage)
    {
 
-      __UNREFERENCED_PARAMETER(pPackedDIB);
+      UNREFERENCED_PARAMETER(pPackedDIB);
 
-      __UNREFERENCED_PARAMETER(nUsage);
+      UNREFERENCED_PARAMETER(nUsage);
 
       throw ::interface_only();
 
@@ -168,7 +168,7 @@ namespace draw2d
    bool brush::CreateSysColorBrush(i32 nIndex)
    {
 
-      __UNREFERENCED_PARAMETER(nIndex);
+      UNREFERENCED_PARAMETER(nIndex);
 
       throw ::interface_only();
 
@@ -180,7 +180,7 @@ namespace draw2d
 //   i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pLogBrush);
+//      UNREFERENCED_PARAMETER(pLogBrush);
 //
 //      throw ::interface_only();
 //

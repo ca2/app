@@ -623,7 +623,7 @@ namespace windows
          case WM_LBUTTONDOWN:
          {
             
-            POINT point{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
+            POINT point{ i32_x(lparam), i32_y(lparam) };
             
             ::ClientToScreen(m_hwnd, &point);
 
@@ -638,7 +638,7 @@ namespace windows
          case WM_MOUSEMOVE:
          {
 
-            POINT point{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
+            POINT point{ i32_x(lparam), i32_y(lparam) };
 
             ::ClientToScreen(m_hwnd, &point);
 
@@ -653,7 +653,7 @@ namespace windows
          case WM_LBUTTONUP:
          {
 
-            POINT point{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
+            POINT point{ i32_x(lparam), i32_y(lparam) };
 
             ::ClientToScreen(m_hwnd, &point);
 
@@ -668,7 +668,7 @@ namespace windows
          case WM_RBUTTONDOWN:
          {
 
-            POINT point{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
+            POINT point{ i32_x(lparam), i32_y(lparam) };
 
             ::ClientToScreen(m_hwnd, &point);
 
@@ -683,7 +683,7 @@ namespace windows
          case WM_RBUTTONUP:
          {
 
-            POINT point{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
+            POINT point{ i32_x(lparam), i32_y(lparam) };
 
             ::ClientToScreen(m_hwnd, &point);
 
@@ -958,11 +958,11 @@ namespace windows
 //   }
 //   break;
 //   case WM_LBUTTONDOWN:
-//      on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//      on_left_button_down(i32_x(lparam), i32_y(lparam));
 //      break;
 //   case WM_LBUTTONUP:
 //   {
-//      on_left_button_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//      on_left_button_up(i32_x(lparam), i32_y(lparam));
 //   }
 //
 //   break;

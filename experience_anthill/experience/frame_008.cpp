@@ -337,7 +337,7 @@ namespace experience_anthill
 
             auto ppen = __create < ::draw2d::pen >();
 
-            ppen->create_solid(1.0, argb((byte)((i + 1) * 10), iR, iG, iB));
+            ppen->create_solid(1.0, argb((::u8)((i + 1) * 10), iR, iG, iB));
 
             pgraphics->set(ppen);
 
@@ -382,7 +382,7 @@ namespace experience_anthill
       else if (estyle == ::user::StyleLightBlue || estyle == ::user::StyleRedOrange)
       {
          //rectangleA.deflate(1,1,1,1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorderHilight, 0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorderHilight, ::color::transparent);//m_colorMoveableBorderDkShadow);
 
          //if(!m_bHollow)
          //{

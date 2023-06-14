@@ -81,7 +81,7 @@ namespace user
    void box::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -665,7 +665,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-      INFORMATION("interaction_layout::display_normal");
+      information() << "interaction_layout::display_normal";
 
 #endif
 

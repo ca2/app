@@ -2,8 +2,8 @@
 //  _unit_operator.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 15/10/21 09:27 BRT.
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 15/10/21 09:27 BRT.
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 //template < a_enum ENUM >

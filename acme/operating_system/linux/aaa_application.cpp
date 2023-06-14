@@ -58,7 +58,7 @@ namespace acme
 //   bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 
 //   {
-//      __UNREFERENCED_PARAMETER(pcsz);
+//      UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }
@@ -89,7 +89,7 @@ namespace acme
 
             if(dwResSize > 0)
             {
-               LPVOID pdata = memory_new byte[dwResSize];
+               LPVOID pdata = memory_new ::u8[dwResSize];
 
                if(GetFileVersionInfo(
                   pszModuleFilePath,
@@ -155,7 +155,7 @@ namespace acme
                      return strVersion;
                   }
                }
-               delete [] (byte *) pdata;
+               delete [] (::u8 *) pdata;
 
             }
       */

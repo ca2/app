@@ -387,7 +387,7 @@ namespace sqlite
 
          if (iResult != SQLITE_OK)
          {
-            INFORMATION("Error: " <<  err);
+            information() << "Error: " <<  err;
             throw ::database::exception(get_error_message());
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)

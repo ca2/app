@@ -2,7 +2,7 @@
 
 
 #include "base/user/experience/frame.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace experience_tranquillum
@@ -81,7 +81,7 @@ namespace experience_tranquillum
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, const ::opacity & opacity);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, const class ::opacity & opacity);
 
 
       //virtual ::user::front_end_schema * get_user_front_end_schema();

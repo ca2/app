@@ -131,7 +131,7 @@ struct xf_context
 
    HGDI_DC hdc;
    ::u32 bitmap_size;
-   byte* bitmap_buffer;
+   ::u8* bitmap_buffer;
 
    BOOL frame_begin;
    ::u3216 frame_x1;

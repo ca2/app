@@ -214,7 +214,7 @@ void simple_ui_display::on_expose()
 
    color32_t crBk = get_simple_ui_color(::user::color_background);
 
-   crBk = argb_swap_rb(crBk);
+   crBk = argb_swap_red_blue(crBk);
 
    XSetForeground(d, gc, crBk);
 
@@ -272,7 +272,7 @@ void simple_ui_display::on_expose()
 
    color32_t crText = get_simple_ui_color(::user::color_text);
 
-   crText = argb_swap_rb(crText);
+   crText = argb_swap_red_blue(crText);
 
    XSetForeground(d, gc, crText);
 

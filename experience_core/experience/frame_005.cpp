@@ -291,7 +291,7 @@ SizingNone:;
       else if(m_pframewindow->m_estyle == ::user::StyleLightBlue)
       {
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, ::color::transparent);//m_colorMoveableBorderDkShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
          Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);

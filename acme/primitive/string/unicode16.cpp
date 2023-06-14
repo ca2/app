@@ -742,7 +742,7 @@ strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsi
 
       auto used_len = ansi_to_wd32_char(&u32, psz, srclen);
 
-      if(used_len <= 0)
+      if(u32 & 0x80000000)
       {
 
          used_len = 1;

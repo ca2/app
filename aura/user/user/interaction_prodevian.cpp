@@ -192,7 +192,7 @@ namespace user
 
                   auto iRequestsRemaining = pimpl->m_rectangleaNeedRedraw.size();
 
-                  INFORMATION(iRequestsRemaining << " redraw requests remaining after updating the screen.");
+                  information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
 
                   m_puserinteraction->post_redraw();
 
@@ -227,7 +227,7 @@ namespace user
       if (strType.contains("playlist"))
       {
 
-         INFORMATION("frame playlist");
+         information() << "frame playlist";
 
       }
 
@@ -427,7 +427,7 @@ namespace user
          if (strType.case_insensitive_contains("filemanager"))
          {
 
-            //INFORMATION("filemanager frame... ");
+            //information() << "filemanager frame... ";
 
          }
 
@@ -495,7 +495,7 @@ namespace user
             if(m_message.m_atom == e_message_quit)
             {
 
-               CATEGORY_INFORMATION(prodevian, "Prodevian has quit!! " << strType);
+               information()(e_trace_category_prodevian) << "Prodevian has quit!! " << strType;
 
                return false;
 
@@ -534,7 +534,7 @@ namespace user
 
    #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-            INFORMATION("Skipped e_message_redraw count "+ as_string(iSkipped) + "\n");
+            information() << "Skipped e_message_redraw count "+ as_string(iSkipped) + "\n";
 
    #endif
 
@@ -618,7 +618,7 @@ namespace user
       if(strType.case_insensitive_contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 
@@ -926,7 +926,7 @@ namespace user
       //else
       //{
 
-      //   INFORMATION("no update screen");
+      //   information() << "no update screen";
 
       //}
 

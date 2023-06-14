@@ -32,7 +32,7 @@ namespace windows
 
          destroy();
 
-         m_hgdiobj = ::CreatePen(PS_SOLID, m_iWidth, m_color.get_COLORREF());
+         m_hgdiobj = ::CreatePen(PS_SOLID, m_iWidth, win32_COLORREF(m_color));
 
          m_bModified = false;
 

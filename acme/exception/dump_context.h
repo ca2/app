@@ -67,7 +67,7 @@
 //////
 //////#endif
 //////
-////   void hex_dump(const ::scoped_string & scopedstrLine, byte* pby, i32 nBytes, i32 nWidth);
+////   void hex_dump(const ::scoped_string & scopedstrLine, ::u8* pby, i32 nBytes, i32 nWidth);
 ////
 ////   void flush() override;
 ////

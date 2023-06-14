@@ -2,7 +2,7 @@
 //  apple_main.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 02/10/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 02/10/17.
 //
 
 #pragma once

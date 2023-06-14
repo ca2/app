@@ -2,8 +2,9 @@
 #pragma once
 
 
-#include "_geometry2d.h"
-#include "_collection.h"
+//#include "_geometry2d.h"
+//#include "_collection.h"
+#include "polygon.h"
 
 
 namespace geometry2d

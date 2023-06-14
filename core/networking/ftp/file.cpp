@@ -140,7 +140,7 @@ namespace ftp
       write(vBuffer.data(), sizeof(memory::value_type), lReceivedBytes);
    }
 
-   void file::OnPreBytesSend(byte* pszBuffer, memsize bufferSize, memsize& bytesToSend)
+   void file::OnPreBytesSend(::u8* pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
       bytesToSend = Read(pszBuffer, sizeof(char), bufferSize);
    }

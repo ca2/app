@@ -443,7 +443,7 @@ namespace userex
 
          ::image_pointer pimage;
          
-         pimage= pbutton->m_pbitmap->m_pimage->clone();
+         pimage= pbutton->m_pbitmap->m_pimage->interface_clone();
 
          pimage->saturation(0.0);
 

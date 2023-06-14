@@ -756,7 +756,7 @@ namespace user
 
                ::image_pointer pimageGray;
 
-               pimageGray = pimage1->clone();
+               pimageGray = pimage1->interface_clone();
 
                //pimageGray->from(pimage1);
 

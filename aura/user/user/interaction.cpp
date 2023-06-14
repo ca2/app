@@ -18776,7 +18776,7 @@ namespace user
       if (pitemLeftButtonDoubleClick)
       {
 
-         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_is_second_click)
+         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_as_second_click)
          {
 
             ::pointer < ::message::mouse > pmouseUp1 = this->create_new_clone(pmouse);
@@ -18790,6 +18790,8 @@ namespace user
             pmouseDown2->m_atom = e_message_left_button_down;
 
             get_wnd()->post(pmouseDown2);
+
+            preempt(100_ms);
 
             ::pointer < ::message::mouse > pmouseUp2 = this->create_new_clone(pmouse);
 

@@ -37,6 +37,17 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(begin_figure_item);
+
+         return pitem;
+
+      }
+
+
+
    };
 
 
@@ -47,6 +58,16 @@ namespace geometry2d
 
 
       ::draw2d::enum_item type() const override;
+
+
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(close_figure_item);
+
+         return pitem;
+
+      }
 
 
    };
@@ -62,6 +83,16 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(end_figure_item);
+
+         return pitem;
+
+      }
+
+
    };
 
 
@@ -72,6 +103,16 @@ namespace geometry2d
 
 
       ::draw2d::enum_item type() const override;
+
+
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(intersect_clip_item);
+
+         return pitem;
+
+      }
 
 
    };
@@ -99,6 +140,20 @@ namespace geometry2d
       //void expand_bounding_box(::rectangle_f64 & rectangle) override;
 
 
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(polygon_item);
+
+         pitem->m_polygon = m_polygon;
+
+         pitem->m_efillmode = m_efillmode;
+
+         return pitem;
+
+      }
+
+
    };
 
 
@@ -122,6 +177,22 @@ namespace geometry2d
       //void expand_bounding_box(::rectangle_f64 & rectangle) override;
       bool contains(const ::point_f64 & pooint) override;
       void expand_bounding_box(::rectangle_f64 & rectangle) override;
+
+
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(poly_polygon_item);
+
+         pitem->m_polypolygon = m_polypolygon;
+
+         pitem->m_efillmode = m_efillmode;
+
+         return pitem;
+
+      }
+
+
 
 
    };
@@ -148,6 +219,9 @@ namespace geometry2d
       void expand_bounding_box(::rectangle_f64 & rectangle) override;
 
 
+      ::particle_pointer clone() const override;
+
+
    };
 
 
@@ -165,6 +239,19 @@ namespace geometry2d
       bool contains(const ::point_f64 & point) override;
       void expand_bounding_box(::rectangle_f64 & rectangle) override;
 
+
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(round_rectangle_item);
+
+         pitem->m_rectangle = m_rectangle;
+
+         pitem->m_sizeRadius = m_sizeRadius;
+
+         return pitem;
+
+      }
 
    };
 

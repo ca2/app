@@ -1306,6 +1306,10 @@ namespace nanoui
 
       window->set_position((m_size - window->size()) / 2);
 
+      window->set_need_redraw();
+
+      window->post_redraw();
+
    }
 
 

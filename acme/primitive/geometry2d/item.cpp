@@ -552,6 +552,23 @@ namespace geometry2d
    }
 
 
+   ::particle_pointer combine_item::clone() const
+   {
+
+      auto pitem = __new(combine_item);
+
+      pitem->m_pregion1 = m_pregion1->clone();
+
+      pitem->m_pregion2 = m_pregion2->clone();
+
+      pitem->m_ecombine = m_ecombine;
+
+      return pitem;
+
+   }
+
+
+
 } // namespace geometry2d
 
 

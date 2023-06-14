@@ -659,6 +659,7 @@ namespace nanoui
 
       }
 
+
       if (pitem->m_eelement != e_element_close_button)
       {
 
@@ -666,7 +667,7 @@ namespace nanoui
 
       }
 
-      if (pitem->m_iItem != m_iCloseIndex)
+      if (pitem && pitem->m_iItem != m_iCloseIndex)
       {
 
          m_iCloseIndex = pitem->m_iItem;

@@ -192,7 +192,9 @@ namespace nanoui
          
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-         point_f32 pointText = m_pos + m_size / 2.f;
+         auto sizeIcon = ::size_i32(m_size.cy(), m_size.cy());
+
+         point_f32 pointText = m_pos + sizeIcon / 2.f;
          
          pointText.x() += 1.f;
          

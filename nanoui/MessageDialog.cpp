@@ -84,6 +84,8 @@ namespace nanoui
          });
       center();
       request_focus();
+      set_need_redraw();
+      post_redraw();
    }
 
 

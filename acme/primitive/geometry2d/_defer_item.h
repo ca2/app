@@ -29,6 +29,18 @@ namespace geometry2d
       void expand_bounding_box(::rectangle_f64 & rectangle) override { m_item.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right()); }
 
 
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(item_type);
+
+         pitem->m_item = m_item;
+
+         return pitem;
+
+      }
+
+
    };
 
 

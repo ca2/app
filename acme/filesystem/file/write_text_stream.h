@@ -7,7 +7,7 @@
 #include "acme/filesystem/file/print_formatting.h"
 
 
-struct write_text_stream_struct
+struct CLASS_DECL_ACME write_text_stream_struct
 {
 
 
@@ -19,7 +19,7 @@ struct write_text_stream_struct
 #endif
    print_formatting * m_pprintingformat;
 
-   write_text_stream_struct() {}
+   write_text_stream_struct();
    write_text_stream_struct(const write_text_stream_struct & writetextstreamstruct) = default;
    write_text_stream_struct(write_text_stream_struct && writetextstreamstruct) = default;
 

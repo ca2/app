@@ -436,9 +436,7 @@ public:
    ::pointer < T > clone(const T & t)
    {
 
-      ::pointer <T> p;
-
-      this->__create(p);
+      auto p = this->__create< T >();
 
       if (!p)
       {
@@ -458,9 +456,7 @@ public:
    ::pointer < T > clone_new(const T & t)
    {
 
-      ::pointer <T> p;
-
-      this->__create_new(p);
+      auto p = this->__create_new< T >();
 
       if (!p)
       {

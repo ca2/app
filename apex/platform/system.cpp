@@ -807,7 +807,7 @@ pacmedirectory->create("/ca2core");
 
          if (status != errAuthorizationSuccess)
          {
-            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
+            information("Error Creating Initial Authorization: %d", status);
 
             return false;
 
@@ -830,7 +830,7 @@ pacmedirectory->create("/ca2core");
          if (status != errAuthorizationSuccess)
          {
 
-            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
+            information("Copy Rights Unsuccessful: %d", status);
 
             return false;
 
@@ -1034,7 +1034,7 @@ pacmedirectory->create("/ca2core");
             //if(!estatus)
             //{
 
-               //WARNING("failed to process_init ::apex::log trace");
+               //warning("failed to process_init ::apex::log trace");
 
             //}
 
@@ -1088,7 +1088,7 @@ pacmedirectory->create("/ca2core");
             //if (!pfactoryCrypto)
             //{
 
-            //   WARNING("Could not open crypto openssl plugin.");
+            //   warning("Could not open crypto openssl plugin.");
 
             //   //return pfactoryCrypto;
 
@@ -2327,7 +2327,7 @@ pacmedirectory->create("/ca2core");
 
       //   //}
 
-      //   TRACE(strMessage);
+      //   information(strMessage);
 
       //}
 
@@ -5200,7 +5200,7 @@ string get_bundle_app_library_name();
          //if (!pfactoryCrypto)
          //{
 
-         //   WARNING("Could not open crypto openssl plugin.");
+         //   warning("Could not open crypto openssl plugin.");
 
          //   //return pfactoryCrypto;
 

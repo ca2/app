@@ -496,7 +496,7 @@ namespace networking_bsd
             l = item.m_ipaddr;
          }
          //         ::time tick2= ::time::now();
-         /*FORMATTED_TRACE("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+         /*information("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (u32)((byte*)&pitem->m_ipaddr)[0],
          (u32)((byte*)&pitem->m_ipaddr)[1],
          (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -614,7 +614,7 @@ namespace networking_bsd
       }
 
       //      ::time tick2= ::time::now();
-      //      FORMATTED_TRACE("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+      //      information("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          //       (u32)((byte*)&pitem->m_ipaddr)[0],
          //     (u32)((byte*)&pitem->m_ipaddr)[1],
          //   (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -1873,7 +1873,7 @@ namespace networking_bsd
    //            l = item.m_ipaddr;
    //         }
    //         //         ::time tick2= ::time::now();
-   //         /*FORMATTED_TRACE("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+   //         /*information("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //         (u32)((byte*)&pitem->m_ipaddr)[0],
    //         (u32)((byte*)&pitem->m_ipaddr)[1],
    //         (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -1991,7 +1991,7 @@ namespace networking_bsd
    //   }
    //
    ////      ::time tick2= ::time::now();
-   ////      FORMATTED_TRACE("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+   ////      information("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //   //       (u32)((byte*)&pitem->m_ipaddr)[0],
    //   //     (u32)((byte*)&pitem->m_ipaddr)[1],
    //   //   (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -2968,7 +2968,7 @@ namespace networking_bsd
 //      if (m_socketmap.get_size() >= FD_SETSIZE)
 //      {
 //
-//         WARNING("Select " << (i32)m_socketmap.get_size() << " FD_SETSIZE reached");
+//         warning("Select " << (i32)m_socketmap.get_size() << " FD_SETSIZE reached");
 //
 //         goto end_processing_adding;
 //

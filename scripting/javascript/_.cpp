@@ -2074,7 +2074,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    {
       CScriptVarLink *funcVar = parseFunctionDefinition();
       if (funcVar->name != TINYJS_TEMP_NAME)
-         TRACE("Functions not defined at statement-level are not meant to have a name");
+         information("Functions not defined at statement-level are not meant to have a name");
       return funcVar;
    }
    if (l->tk==LEX_R_NEW)
@@ -2118,7 +2118,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             CScriptVarLink *objClassOrFunc = findInScopes(className);
             if (!objClassOrFunc)
             {
-               FORMATTED_TRACE("%s is not a valid class name", className.c_str());
+               information("%s is not a valid class name", className.c_str());
                return memory_new CScriptVarLink(memory_new CScriptVar());
             }
             l->match(LEX_ID);
@@ -2379,7 +2379,7 @@ CScriptVarLink *tinyjs::axis(bool &execute)
             lhs = realLhs;
          }
          else
-            TRACE("Trying to assign to an un-named type\n");
+            information("Trying to assign to an un-named type\n");
       }
 
       i32 op = l->tk;
@@ -2545,7 +2545,7 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         TRACE("WHILE Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS <<" iterations at " << l->getPosition());
+         information("WHILE Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS <<" iterations at " << l->getPosition());
          throw CScriptException("LOOP_ERROR");
       }
    }
@@ -2604,7 +2604,7 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         TRACE("FOR Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS << "iterations at " << l->getPosition());
+         information("FOR Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS << "iterations at " << l->getPosition());
          throw CScriptException("LOOP_ERROR");
       }
    }
@@ -2620,7 +2620,7 @@ void tinyjs::statement(bool &execute)
          if (resultVar)
             resultVar->replaceWith(result);
          else
-            TRACE("RETURN statement, but not in a function.\n");
+            information("RETURN statement, but not in a function.\n");
          execute = false;
       }
       CLEAN(result);
@@ -2632,7 +2632,7 @@ void tinyjs::statement(bool &execute)
       if (execute)
       {
          if (funcVar->name == TINYJS_TEMP_NAME)
-            TRACE("Functions defined at statement-level are meant to have a name\n");
+            information("Functions defined at statement-level are meant to have a name\n");
          else
             scopes.last()->addChildNoDup(funcVar->name, funcVar->payload);
       }

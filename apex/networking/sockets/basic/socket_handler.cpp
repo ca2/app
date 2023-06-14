@@ -236,7 +236,7 @@ namespace sockets
    //   if (psocket->get_socket_id() == INVALID_SOCKET_ID)
    //   {
 
-   //      WARNING("add: Invalid socket_id");
+   //      warning("add: Invalid socket_id");
 
    //      if (psocket->IsCloseAndDelete())
    //      {
@@ -486,7 +486,7 @@ namespace sockets
       //     if (!m_socketmap.lookup(socket_id, psocket)) // not found
       //     {
 
-      //        WARNING("get_socket_id/handler/4 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(4)");
+      //        warning("get_socket_id/handler/4 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(4)");
 
       //        socket_id_list_erase(psocket->get_socket_id(), e_list_call_on_connect);
 
@@ -858,7 +858,7 @@ namespace sockets
 //              else
 //              {
 //
-//                 WARNING("get_socket_id/handler/1 " << (i32)socket_id << "Did not find expected socket_id using file descriptor(1)");
+//                 warning("get_socket_id/handler/1 " << (i32)socket_id << "Did not find expected socket_id using file descriptor(1)");
 //
 //              }
 //
@@ -892,7 +892,7 @@ namespace sockets
 //              else
 //              {
 //
-//                 WARNING("get_socket_id/handler/2" << (i32)socket_id << "Did not find expected socket_id using file descriptor(2)");
+//                 warning("get_socket_id/handler/2" << (i32)socket_id << "Did not find expected socket_id using file descriptor(2)");
 //
 //              }
 //
@@ -918,7 +918,7 @@ namespace sockets
 //                    if (ppairsocket_id->m_psocket->is_connecting())
 //                    {
 //
-//                       WARNING("get_socket_id/handler/3" << (i32)socket_id << "stream_socket_id on_connection_timeout (3)");
+//                       warning("get_socket_id/handler/3" << (i32)socket_id << "stream_socket_id on_connection_timeout (3)");
 //
 //                       ppairsocket_id->m_psocket->on_connection_timeout();
 //
@@ -926,7 +926,7 @@ namespace sockets
 //                    else
 //                    {
 //
-//                       WARNING("get_socket_id/handler/3 " << (i32)socket_id << " socket_id on_timeout(3)");
+//                       warning("get_socket_id/handler/3 " << (i32)socket_id << " socket_id on_timeout(3)");
 //
 //                       ppairsocket_id->m_psocket->on_timeout();
 //
@@ -944,7 +944,7 @@ namespace sockets
 //              else
 //              {
 //
-//                 WARNING("get_socket_id/handler/3 " << (i32)socket_id << " Did not find expected socket_id using file descripto(3)r");
+//                 warning("get_socket_id/handler/3 " << (i32)socket_id << " Did not find expected socket_id using file descripto(3)r");
 //
 //              }
 //
@@ -1051,7 +1051,7 @@ namespace sockets
 //                 if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
 //                 {
 //
-//                    WARNING("get_socket_id/handler/6 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(f)");
+//                    warning("get_socket_id/handler/6 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(f)");
 //
 //                    m_socketidlistTimeout.erase(socket_id);
 //
@@ -1072,7 +1072,7 @@ namespace sockets
 //                    if (ppairsocket_id->m_psocket->is_connecting())
 //                    {
 //
-//                       WARNING("get_socket_id/handler/7 " << (i32)socket_id << "stream_socket_id on_connection_timeout (g)");
+//                       warning("get_socket_id/handler/7 " << (i32)socket_id << "stream_socket_id on_connection_timeout (g)");
 //
 //                       ppairsocket_id->m_psocket->on_connection_timeout();
 //
@@ -1080,7 +1080,7 @@ namespace sockets
 //                    else
 //                    {
 //
-//                       WARNING("get_socket_id/handler/7 " << (i32)socket_id << " socket_id on_timeout (g)");
+//                       warning("get_socket_id/handler/7 " << (i32)socket_id << " socket_id on_timeout (g)");
 //
 //                       ppairsocket_id->m_psocket->on_timeout();
 //
@@ -1116,7 +1116,7 @@ namespace sockets
 //           if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
 //           {
 //
-//              WARNING("get_socket_id/handler/7 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(g)");
+//              warning("get_socket_id/handler/7 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(g)");
 //
 //           }
 //
@@ -1193,7 +1193,7 @@ namespace sockets
 //              if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
 //              {
 //
-//                 WARNING("get_socket_id/handler/8 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(8)");
+//                 warning("get_socket_id/handler/8 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(8)");
 //
 //              }
 //              else

@@ -96,7 +96,7 @@ namespace draw2d_opengl
       if(!gladLoadGL())
       {
          // Problem: glewInit failed, something is seriously wrong.
-         FORMATTED_TRACE("gladLoadGL failed");
+         information("gladLoadGL failed");
          //return false;
          throw resource_exception();
       }
@@ -154,7 +154,7 @@ namespace draw2d_opengl
    //         if (pfont->m_familya[iFamily].GetLastStatus() != Gdiplus::Ok)
    //         {
 
-   //            FORMATTED_WARNING("font family nok");
+   //            warning("font family nok");
 
    //         }
 

@@ -241,7 +241,7 @@ namespace user
          if (tickElapsed > 50_ms)
          {
 
-            //WARNING("tree drawing took more than 50ms");
+            //warning("tree drawing took more than 50ms");
 
          }
 
@@ -373,7 +373,7 @@ namespace user
                if (tickElapsed > 20_ms)
                {
 
-                  //WARNING("tree item drawing took more than 20ms");
+                  //warning("tree item drawing took more than 20ms");
 
                }
 
@@ -399,7 +399,7 @@ namespace user
          if (tickElapsed > 50_ms)
          {
 
-            //WARNING("tree drawing took more than 50ms");
+            //warning("tree drawing took more than 50ms");
 
          }
 
@@ -477,11 +477,11 @@ namespace user
       if (elapsed > 2_ms)
       {
 
-         //WARNING("tree item drawing section took more than 2ms");
+         //warning("tree item drawing section took more than 2ms");
 
       }
 
-      //FORMATTED_TRACE("(1)TreeItemElapsed %d", ::time.elapsed());
+      //information("(1)TreeItemElapsed %d", ::time.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 

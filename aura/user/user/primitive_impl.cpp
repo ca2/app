@@ -1841,13 +1841,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
          
-         TRACE("moving: skip walk pre translate tree");
+         information("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
          
-         TRACE("sizing: skip walk pre translate tree");
+         information("sizing: skip walk pre translate tree");
 
       }
       else
@@ -2058,7 +2058,7 @@ namespace user
 
       start_destroying_window();
 
-      //FORMATTED_TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
+      //information("destroy_impl_only DestroyWindow %d", bOk != false);
 
       //return bOk;
 

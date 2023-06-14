@@ -273,7 +273,7 @@ void html_document::soft_reload()
 
    property_set_replace(str);
 
-   FORMATTED_TRACE("%s", str.c_str());
+   information("%s", str.c_str());
 
    get_html_data()->load(str);
 

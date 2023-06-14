@@ -210,7 +210,7 @@ namespace base
 
 
 
-      TRACE("::user::application::initialize");
+      information("::user::application::initialize");
 
       //xml::document docUser;
 

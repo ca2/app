@@ -267,7 +267,7 @@ namespace sockets
       int n = sctp_getpaddrs(GetSocket(), atom, &p);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getpaddrs failed");
+         warning("SctpSocket", -1, "sctp_getpaddrs failed");
          return n;
       }
       for (int i = 0; i < n; i++)
@@ -285,7 +285,7 @@ namespace sockets
       int n = sctp_getladdrs(GetSocket(), atom, &p);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getladdrs failed");
+         warning("SctpSocket", -1, "sctp_getladdrs failed");
          return n;
       }
       for (int i = 0; i < n; i++)
@@ -302,7 +302,7 @@ namespace sockets
       int n = sctp_peeloff(GetSocket(), atom);
       if (n == -1)
       {
-         WARNING("SctpSocket", -1, "PeelOff failed");
+         warning("SctpSocket", -1, "PeelOff failed");
          return -1;
       }
       socket *p = create();

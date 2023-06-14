@@ -3129,7 +3129,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //   // don't execute the command when the u is disabled
 //   if (!is_window_enabled())
 //   {
-//      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
+//      information(trace_category_appmsg, e_trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
 //            string(strCommand).c_str());
 //      return 0;
 //   }
@@ -3139,7 +3139,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //
 //   //if (!psystem->OnDDECommand(pszCommand))
 //
-//   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
+//   //   information(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //
 //   //strCommand.release_buffer();
 //

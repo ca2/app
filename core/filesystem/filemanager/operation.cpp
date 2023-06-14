@@ -444,7 +444,7 @@ namespace filemanager
                   if(!bStatusOk)
                   {
 
-                     FORMATTED_TRACE("Failed to set status of destination file '%s' using file status of '%s' file",strDestPath.c_str(),m_fileSrc->get_file_path().c_str());
+                     information("Failed to set status of destination file '%s' using file status of '%s' file",strDestPath.c_str(),m_fileSrc->get_file_path().c_str());
 
                   }
 
@@ -452,7 +452,7 @@ namespace filemanager
                else
                {
 
-                  FORMATTED_TRACE("Failed to get status of source file '%s' for setting file status of '%s' file",m_fileSrc->get_file_path().c_str(),strDestPath.c_str());
+                  information("Failed to get status of source file '%s' for setting file status of '%s' file",m_fileSrc->get_file_path().c_str(),strDestPath.c_str());
 
                }
 

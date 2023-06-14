@@ -813,7 +813,7 @@ namespace networking_bsd
 
          //str += strLine + "\r\n";
 
-         //FORMATTED_TRACE("%s", strLine);
+         //information("%s", strLine);
 
          m_memResponse.append(buf, len);
 

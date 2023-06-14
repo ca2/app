@@ -414,9 +414,9 @@ namespace linux
 
                strMessage.format("%s\n\nSystem Error Code: %d", strLastError.c_str(), dwLastError);
 
-               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
+               information(trace_category_appmsg, e_trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
 
-               FORMATTED_TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
+               information(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
 
                try
                {
@@ -1333,13 +1333,13 @@ namespace linux
       else if(pusermessage->m_atom == e_message_left_button_down)
       {
 
-         TRACE("e_message_left_button_down (0)");
+         information("e_message_left_button_down (0)");
 
       }
       else if(pusermessage->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up (0)");
+         information("e_message_left_button_up (0)");
 
       }
       else if(pusermessage->m_atom == e_message_mouse_move)
@@ -1347,7 +1347,7 @@ namespace linux
 
          g_iMouseMove++;
 
-         //TRACE("linux::interaction_impl::message_handler e_message_mouse_move");
+         //information("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -1392,11 +1392,11 @@ namespace linux
 
          if (m_puserinteraction->layout().is_moving())
          {
-            //TRACE("moving: skip pre translate message");
+            //information("moving: skip pre translate message");
          }
          else if (m_puserinteraction->layout().is_sizing())
          {
-            //TRACE("sizing: skip pre translate message");
+            //information("sizing: skip pre translate message");
          }
          else
          {
@@ -2345,7 +2345,7 @@ namespace linux
 //      if(m_puserinteraction->is_message_only_window())
 //      {
 //
-//         TRACE("good : opt out!");
+//         information("good : opt out!");
 //
 //      }
 //      else
@@ -2410,7 +2410,7 @@ namespace linux
 //
 //         if(m_event.wait(::duration(tickTimeout)).timeout())
 //         {
-//            TRACE("print_window::time_out");
+//            information("print_window::time_out");
 //         }
 //      }
 //

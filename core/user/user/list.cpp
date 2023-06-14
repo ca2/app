@@ -6343,7 +6343,7 @@ namespace user
 
       auto tickIn = ::time::now();
 
-      TRACE("list::Filter1Step");
+      information("list::Filter1Step");
 
       INFORMATION("tickIn = " << tickIn.integral_millisecond());
 
@@ -7569,7 +7569,7 @@ namespace user
 //         catch (...)
 //         {
 //
-//            TRACE("Exception : ::list::_001OnClip");
+//            information("Exception : ::list::_001OnClip");
 //
 //         }
 //

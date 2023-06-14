@@ -376,7 +376,7 @@ namespace sockets_bsd
       if (!__Handler(m_psockethandler)->OkToAccept(this))
       {
 
-         WARNING("accept: -1 Not OK to accept");
+         warning("accept: -1 Not OK to accept");
 
          close_socket(socketAccept);
 

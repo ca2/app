@@ -705,18 +705,18 @@ namespace aura
 
       //auto pcreate = pcommand->m_pcreate;
 
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate WARNING");
-      //TRACE("m_pcreate COMMENT BEGIN");
+      //information("m_pcreate warning");
+      //information("m_pcreate warning");
+      //information("m_pcreate warning");
+      //information("m_pcreate warning");
+      //information("m_pcreate warning");
+      //information("m_pcreate warning");
+      //information("m_pcreate warning");
+      //information("m_pcreate COMMENT BEGIN");
       //auto pcreate = m_pcreate;
 
       //pcreate->m_XstrAppId = strAppId;
-      //TRACE("m_pcreate COMMENT END");
+      //information("m_pcreate COMMENT END");
 
       //add_factory_item < ::database::field >();
 
@@ -909,7 +909,7 @@ namespace aura
 //
 //         if(status != errAuthorizationSuccess)
 //         {
-//            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
+//            information("Error Creating Initial Authorization: %d", status);
 //
 //            return false;
 //
@@ -932,7 +932,7 @@ namespace aura
 //         if (status != errAuthorizationSuccess)
 //         {
 //
-//            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
+//            information("Copy Rights Unsuccessful: %d", status);
 //
 //            return false;
 //
@@ -1028,7 +1028,7 @@ namespace aura
       //if (!m_ptrace->process_init())
       //{
 
-      //   WARNING("failed to process_init ::aura::log trace");
+      //   warning("failed to process_init ::aura::log trace");
 
       //}
 
@@ -1128,7 +1128,7 @@ namespace aura
             else
             {
 
-               WARNING("Failed to initialize imaging library.");
+               warning("Failed to initialize imaging library.");
 
 #if !defined(MOBILE_PLATFORM)
 
@@ -2332,7 +2332,7 @@ namespace aura
 
    //   //}
 
-   //   TRACE(strMessage);
+   //   information(strMessage);
 
    //}
 
@@ -2999,22 +2999,22 @@ namespace aura
 //
 //      if(!strcmp(pszLibrary,"app_core_rdpclient"))
 //      {
-//         TRACE("reach");
+//         information("reach");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         TRACE("reach app_core_hello_multiverse");
+//         information("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
 //      {
-//         TRACE("reach experience_lite");
+//         information("reach experience_lite");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         TRACE("reach app_core_hello_multiverse");
+//         information("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!library.open(pszLibrary, true))

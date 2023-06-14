@@ -439,7 +439,7 @@ namespace sockets_bsd
    ipaddr_t l = 0;
    if(m_bIpv6)
    {
-   WARNING("GetRemoteIP4", 0, "get ipv4 address for ipv6 base_socket");
+   warning("GetRemoteIP4", 0, "get ipv4 address for ipv6 base_socket");
    }
    if(m_addressRemote.m_p != nullptr)
    {
@@ -455,7 +455,7 @@ namespace sockets_bsd
    {
    if(!m_bIpv6)
    {
-   WARNING("GetRemoteIP6", 0, "get ipv6 address for ipv4 base_socket");
+   warning("GetRemoteIP6", 0, "get ipv6 address for ipv4 base_socket");
    }
    struct sockaddr_in6 fail;
    if (m_addressRemote.m_p != nullptr)
@@ -610,7 +610,7 @@ namespace sockets_bsd
    ::networking::port_t base_socket::GetPort()
    {
 
-      WARNING("GetPort only implemented for listen_socket");
+      warning("GetPort only implemented for listen_socket");
 
       return 0;
 

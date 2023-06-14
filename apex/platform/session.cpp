@@ -421,7 +421,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed at apex::session::init_thread after process_init");
+      //   warning("Failed at apex::session::init_thread after process_init");
 
       //   return estatus;
 
@@ -434,7 +434,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed at apex::session::init_thread after init_session");
+      //   warning("Failed at apex::session::init_thread after init_session");
 
       //   return estatus;
 
@@ -509,7 +509,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("acme::str_context Failed to Allocate!!");
+      //   warning("acme::str_context Failed to Allocate!!");
 
       //   return estatus;
 
@@ -539,7 +539,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed to init1 the session (::apex::session or ::apex::session derived)");
+      //   warning("Failed to init1 the session (::apex::session or ::apex::session derived)");
 
       //   return estatus;
 
@@ -551,7 +551,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed to init2 the session (::apex::session or ::apex::session derived)");
+      //   warning("Failed to init2 the session (::apex::session or ::apex::session derived)");
 
       //   return estatus;
 
@@ -562,7 +562,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed to init() the session (::apex::session or ::apex::session derived)");
+      //   warning("Failed to init() the session (::apex::session or ::apex::session derived)");
 
       //   return estatus;
 
@@ -1188,7 +1188,7 @@ ret:
       //   if (!bCreateSessionWindow)
       //   {
 
-      //      WARNING("Could not create session window");
+      //      warning("Could not create session window");
 
       //   }
 
@@ -1201,7 +1201,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   TRACE("Failed to create memory_new User Presence");
+      //   information("Failed to create memory_new User Presence");
 
       //   return false;
 
@@ -1253,7 +1253,7 @@ ret:
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create ftpfs");
+      //      information("Failed to create ftpfs");
 
       //   }
 
@@ -1652,13 +1652,13 @@ namespace apex
 
       //if(m_pdatabase == nullptr)
       //{
-      //   TRACE("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   TRACE("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
       //   return false;
       //}
 

@@ -252,13 +252,13 @@
 
 
 #define FORMATTED_INFORMATION(...)                      TRACE_LOG_FORMATTED_INFORMATION(__VA_ARGS__)
-#define FORMATTED_WARNING(...)                      TRACE_LOG_FORMATTED_WARNING(__VA_ARGS__)
+#define warning(...)                      TRACE_LOG_FORMATTED_WARNING(__VA_ARGS__)
 #define FORMATTED_ERROR(...)                      TRACE_LOG_FORMATTED_ERROR(__VA_ARGS__)
 #define FORMATTED_FATAL(...)                      TRACE_LOG_FORMATTED_FATAL(__VA_ARGS__)
 
 
 #define INFORMATION(...)               TRACE_LOG_INFORMATION(__VA_ARGS__)
-#define WARNING(...)                   TRACE_LOG_WARNING(__VA_ARGS__)
+#define warning(...)                   TRACE_LOG_WARNING(__VA_ARGS__)
 #define ERROR(...)                     TRACE_LOG_ERROR(__VA_ARGS__)
 #define FATAL(...)                     TRACE_LOG_FATAL(__VA_ARGS__)
 
@@ -269,8 +269,8 @@
 //#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 
 
-#define FORMATTED_TRACE(...)              FORMATTED_INFORMATION(__VA_ARGS__)
-#define TRACE(...)                        INFORMATION(__VA_ARGS__)
+#define information(...)              FORMATTED_INFORMATION(__VA_ARGS__)
+#define information(...)                        INFORMATION(__VA_ARGS__)
 
 
 

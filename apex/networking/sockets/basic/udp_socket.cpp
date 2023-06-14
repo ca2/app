@@ -436,7 +436,7 @@ return -1;
 //            if (sa_len != sizeof(sa))
 //            {
 //
-//               WARNING("recvfrom 0 unexpected address struct size_i32");
+//               warning("recvfrom 0 unexpected address struct size_i32");
 //
 //            }
 //            this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -516,7 +516,7 @@ return -1;
 //         if (sa_len != sizeof(sa))
 //         {
 //
-//            WARNING("recvfrom 0 unexpected address struct size_i32");
+//            warning("recvfrom 0 unexpected address struct size_i32");
 //
 //         }
 //         this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -551,7 +551,7 @@ return -1;
       //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(i32)) == -1)
       //{
 
-      //   WARNING("SetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
+      //   warning("SetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
 
       //}
    }
@@ -569,7 +569,7 @@ return -1;
       //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       //{
 
-      //   WARNING("GetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
+      //   warning("GetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
 
       //}
       return ttl;
@@ -588,7 +588,7 @@ return -1;
       //   if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
       //   {
 
-      //      WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+      //      warning("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
       //   }
       //   return;
@@ -597,7 +597,7 @@ return -1;
       //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
       //{
 
-      //   WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+      //   warning("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
       //}
       return false;
@@ -617,7 +617,7 @@ return -1;
       //   if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       //   {
 
-      //      WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+      //      warning("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
       //   }
       //   return is_loop ? true : false;
@@ -627,7 +627,7 @@ return -1;
       //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       //{
 
-      //   WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+      //   warning("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
       //}
       return is_loop ? true : false;
@@ -654,7 +654,7 @@ return -1;
       //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
-      //         WARNING("AddMulticastMembership" << Errno << ", " << bsd_socket_error(Errno));
+      //         warning("AddMulticastMembership" << Errno << ", " << bsd_socket_error(Errno));
 
       //      }
       //   }
@@ -678,7 +678,7 @@ return -1;
       //   if (setsockopt(get_socket_id(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
-      //      WARNING("AddMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
+      //      warning("AddMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
 
       //   }
       //}
@@ -705,7 +705,7 @@ return -1;
       //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
-      //         WARNING("DropMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
+      //         warning("DropMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
 
       //      }
       //   }
@@ -726,7 +726,7 @@ return -1;
       //   if (setsockopt(get_socket_id(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
-      //      WARNING("DropMulticastMembership " << Errno << ", " << bsd_socket_error(Errno));
+      //      warning("DropMulticastMembership " << Errno << ", " << bsd_socket_error(Errno));
 
       //   }
       //}
@@ -749,7 +749,7 @@ return -1;
       //if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(i32)) == -1)
       //{
 
-      //   WARNING("SetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
+      //   warning("SetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
 
       //}
    }
@@ -773,7 +773,7 @@ return -1;
       //if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       //{
 
-      //   WARNING("GetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
+      //   warning("GetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
 
       //}
       return hops;

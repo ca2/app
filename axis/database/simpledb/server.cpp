@@ -68,7 +68,7 @@ namespace simpledb
       //if(!pfactoryDatabase)
       //{
       //   
-      //   WARNING("Failed to load database_sqlite3");
+      //   warning("Failed to load database_sqlite3");
 
       //   return pfactoryDatabase;
 

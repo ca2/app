@@ -76,7 +76,7 @@ namespace sockets
       //   if(!is_null(socket_handler()))
       //   {
 
-      //      WARNING("socket::close: file descriptor invalid");
+      //      warning("socket::close: file descriptor invalid");
 
       //   }
 

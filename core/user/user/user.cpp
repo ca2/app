@@ -362,7 +362,7 @@ namespace core
 
       //}
 
-      TRACE("::user::application::initialize");
+      information("::user::application::initialize");
 
 //      auto pxml = psystem->xml();
 //

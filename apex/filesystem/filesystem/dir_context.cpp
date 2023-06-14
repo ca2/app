@@ -2222,9 +2222,9 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       }
 
-      //      TRACE("");
+      //      information("");
       INFORMATION("Topic: " << patha[0]);
-      //      TRACE("");
+      //      information("");
 
       string strCandidate = stra.implode("|");
 
@@ -2259,11 +2259,11 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
 
 
-      //TRACE("");
-      //TRACE("");
+      //information("");
+      //information("");
       INFORMATION("matter = " << strMatter);
-      //TRACE("");
-      //TRACE("");
+      //information("");
+      //information("");
 
       strMatter.trim();
 

@@ -298,7 +298,7 @@ namespace user
       m_rectangleBorder.top = (::i32)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom);
       if (m_rectangleBorder.top < 0)
       {
-         FORMATTED_TRACE("Warning: toolbar::SetHeight(%d) is smaller than button.",
+         information("Warning: toolbar::SetHeight(%d) is smaller than button.",
             nHeight);
          m_rectangleBorder.bottom += m_rectangleBorder.top;
          m_rectangleBorder.top = 0;  // will clip at bottom
@@ -1123,11 +1123,11 @@ namespace user
       //
       //               GetToolBarCtrl().GetButtonInfo(uId, &buttona);
       //
-      //               FORMATTED_TRACE("BUTTON.idCommand = %d\n", buttona.idCommand);
+      //               information("BUTTON.idCommand = %d\n", buttona.idCommand);
       //
-      //               FORMATTED_TRACE("BUTTON.fsStyle = %d\n", buttona.fsStyle);
+      //               information("BUTTON.fsStyle = %d\n", buttona.fsStyle);
       //
-      //               FORMATTED_TRACE("BUTTON.cx() = %d\n", buttona.cx() );
+      //               information("BUTTON.cx() = %d\n", buttona.cx() );
       //
       //            }
       //

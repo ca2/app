@@ -361,7 +361,7 @@ namespace sockets
          if (!SSL_CTX_set1_groups(m_psslcontext->m_pclientcontext->m_psslcontext, iaCurves.get_data(), (long) iaCurves.get_size()))
          {
          
-            WARNING("failed to set ecdhe curves");
+            warning("failed to set ecdhe curves");
 
          }
 
@@ -383,7 +383,7 @@ namespace sockets
       if (!SSL_CTX_set_cipher_list(m_psslcontext->m_pclientcontext->m_psslcontext, strCipherList))
       {
 
-         WARNING("failed to set cipher_list");
+         warning("failed to set cipher_list");
 
       }
 

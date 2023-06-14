@@ -888,7 +888,7 @@ namespace user
          catch(...)
          {
 
-            TRACE("_001GetItemImage exception");
+            information("_001GetItemImage exception");
 
          }
 
@@ -1167,10 +1167,10 @@ namespace user
 
       on_change_impact_size(pgraphics);
 
-      //FORMATTED_TRACE("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
+      //information("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
       //{
-        // FORMATTED_TRACE("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
+        // information("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
       //}
 
       return true;
@@ -4847,7 +4847,7 @@ namespace user
 
       auto tickIn = ::time::now();
 
-      TRACE("mesh::Filter1Step");
+      information("mesh::Filter1Step");
 
       INFORMATION("tickIn = " << tickIn.integral_millisecond());
 

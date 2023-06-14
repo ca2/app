@@ -82,7 +82,7 @@ namespace netserver
 
          strMessage.format("Invalid address \"%s\" or invalid port range", m_strIp.c_str());
 
-         TRACE(strMessage);
+         information(strMessage);
 
          throw ::exception(error_bad_argument);
 
@@ -134,7 +134,7 @@ namespace netserver
 
                      strMessage.format("\n\netserver::socket_thread_base::run Couldn't bind to address %s!!\n\n", m_strIp.c_str());
 
-                     TRACE(strMessage);
+                     information(strMessage);
 
                      break;
 

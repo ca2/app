@@ -28,7 +28,7 @@ namespace ios
       if (gethostname(szHostname, sizeof(szHostname)))
       {
 
-         FORMATTED_TRACE("Failed in call to gethostname, errno returns %d\n", errno);
+         information("Failed in call to gethostname, errno returns %d\n", errno);
          
          return false;
          
@@ -40,7 +40,7 @@ namespace ios
       if (phostent == nullptr)
       {
 
-         FORMATTED_TRACE("Failed in call to gethostbyname, errno returns %d\n", errno);
+         information("Failed in call to gethostbyname, errno returns %d\n", errno);
          
          return false;
          
@@ -50,7 +50,7 @@ namespace ios
       if (phostent->h_length != 4)
       {
          
-         TRACE("IP address returned is not 32 bits !!\n");
+         information("IP address returned is not 32 bits !!\n");
          
          return false;
          

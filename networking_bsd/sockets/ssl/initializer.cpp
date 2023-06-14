@@ -79,7 +79,7 @@ namespace sockets_bsd
 
       //RAND_cleanup();
 
-      //      TRACE("~SSLInitializer()\n");
+      //      information("~SSLInitializer()\n");
       //DeleteRandFile();
       // %! delete mutexes
 

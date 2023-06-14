@@ -248,7 +248,7 @@ namespace sockets
       i32 n = sctp_getpaddrs(get_socket_id(), atom, &point);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getpaddrs failed");
+         warning("SctpSocket", -1, "sctp_getpaddrs failed");
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -266,7 +266,7 @@ namespace sockets
       i32 n = sctp_getladdrs(get_socket_id(), atom, &point);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getladdrs failed");
+         warning("SctpSocket", -1, "sctp_getladdrs failed");
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -283,7 +283,7 @@ namespace sockets
       i32 n = sctp_peeloff(get_socket_id(), atom);
       if (n == -1)
       {
-         WARNING("SctpSocket", -1, "PeelOff failed");
+         warning("SctpSocket", -1, "PeelOff failed");
          return -1;
       }
       socket *point = create();

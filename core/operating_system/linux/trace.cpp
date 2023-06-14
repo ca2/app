@@ -149,7 +149,7 @@ static void TraceDDE(const ::string & pszPrefix, const MESSAGE* pMsg)
 
 //   {
 //#ifdef OS64BIT
-//      //FORMATTED_TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %s (%point, %point_i32)\n",
+//      //information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %s (%point, %point_i32)\n",
 //        // pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
 //         //pusermessage->m_wparam, pusermessage->m_lparam);
@@ -263,7 +263,7 @@ static void TraceDDE(const ::string & pszPrefix, const MESSAGE* pMsg)
 
 //   {
 //#ifdef WIN64
-////      FORMATTED_TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %hs (%point, %point_i32)\n",
+////      information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %hs (%point, %point_i32)\n",
 //  //       pszPrefix, pMsg->hwnd, pszMsgName,
 
 //    //     pMsg->wParam, pMsg->lParam);

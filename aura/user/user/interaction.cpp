@@ -3653,13 +3653,13 @@ namespace user
       if (psize->m_nType == ::user::e_size_minimized)
       {
 
-         TRACE("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
+         information("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
 
       }
       else if (m_pprimitiveimpl->m_bIgnoreSizeEvent)
       {
 
-         TRACE("::user::interaction::on_message_size instructed to m_bIgnoreSizeEvent");
+         information("::user::interaction::on_message_size instructed to m_bIgnoreSizeEvent");
 
       }
 
@@ -4599,7 +4599,7 @@ namespace user
                catch (...)
                {
 
-                  TRACE("\n\nException thrown while drawing user::interaction\n\n");
+                  information("\n\nException thrown while drawing user::interaction\n\n");
 
                }
 
@@ -5189,7 +5189,7 @@ namespace user
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __object_type(*this).as_string());
+               information("Exception: interaction::_000OnDraw _001DrawThis %s" << __object_type(*this).as_string());
 
             }
 
@@ -5216,7 +5216,7 @@ namespace user
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __object_type(*this).as_string());
+               information("Exception: interaction::_000OnDraw _001DrawChildren %s" << __object_type(*this).as_string());
 
             }
 
@@ -7499,7 +7499,7 @@ namespace user
    //   if (!create_interaction(puserinteractionParent))
    //   {
 
-   //      TRACE("Failed to create control");
+   //      information("Failed to create control");
 
    //      return false;
 
@@ -9635,7 +9635,7 @@ namespace user
       if (get_parent() != nullptr)
       {
 
-         WARNING("iconify child window?");
+         warning("iconify child window?");
 
          layout().sketch() = e_display_normal;
 
@@ -9684,7 +9684,7 @@ namespace user
          if (!is_top_level_window())
          {
 
-            WARNING("full screen child window?");
+            warning("full screen child window?");
 
             layout().sketch() = e_display_normal;
 
@@ -9709,7 +9709,7 @@ namespace user
          if (get_parent() != nullptr)
          {
 
-            WARNING("zooming child window?");
+            warning("zooming child window?");
 
             layout().sketch() = e_display_normal;
 
@@ -9732,7 +9732,7 @@ namespace user
          //if (get_parent() != nullptr || bIsSandboxed || bIsUniversalWindows)
          //{
 
-         //   WARNING("restoring child window?");
+         //   warning("restoring child window?");
 
          //   layout().sketch() = e_display_normal;
 
@@ -9763,7 +9763,7 @@ namespace user
          if (get_parent() != nullptr)
          {
 
-            WARNING("restoring child window?");
+            warning("restoring child window?");
 
             layout().sketch() = e_display_normal;
 
@@ -9794,7 +9794,7 @@ namespace user
          if (get_parent() != nullptr)
          {
 
-            WARNING("snapping child window?");
+            warning("snapping child window?");
 
             layout().sketch() = e_display_normal;
 
@@ -11331,7 +11331,7 @@ namespace user
    void interaction::EndModalLoop(atom idResult)
    {
 
-      TRACE("EndModalLoop");
+      information("EndModalLoop");
 
       ASSERT(is_window());
 
@@ -18443,7 +18443,7 @@ namespace user
 
             bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, pitemLeftButtonUp);
 
-            //TRACE("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+            //information("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
             if (::is_set(pwindowimpl->m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -18517,7 +18517,7 @@ namespace user
 
                      route_command(&command);
 
-                     TRACE("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
+                     information("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
 
                      pmessage->m_bRet = command.m_bRet;
 
@@ -18714,7 +18714,7 @@ namespace user
 
                route_command(&command);
 
-               TRACE("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
+               information("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
 
                pmessage->m_bRet = command.m_bRet;
 

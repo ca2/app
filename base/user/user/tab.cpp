@@ -2964,7 +2964,7 @@ namespace user
       else
       {
 
-         TRACE("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .\n");
+         information("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .\n");
 
       }
 
@@ -2990,7 +2990,7 @@ namespace user
 
          //if (payloada.get_size() > 0)
          //{
-         //   TRACE(".");
+         //   information(".");
          //   for (index i = 0; i < 200; i++)
          //   {
 
@@ -3000,7 +3000,7 @@ namespace user
          //}
          //else
          //{
-         //   TRACE("o");
+         //   information("o");
          //   for (index i = 0; i < 200; i++)
          //   {
 

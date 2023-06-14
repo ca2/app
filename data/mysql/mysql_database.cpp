@@ -340,7 +340,7 @@ namespace mysql
 
          m_cAffectedRows = mysql_affected_rows((MYSQL*)m_pmysql);
 
-         TRACE("Number of rows affected: %lu\n", (u32)m_cAffectedRows);
+         information("Number of rows affected: %lu\n", (u32)m_cAffectedRows);
 
       }
 
@@ -367,7 +367,7 @@ namespace mysql
 
          //   presult->m_uiAffectedRows = mysql_affected_rows((MYSQL *)m_pmysql);
 
-         //   TRACE("Number of rows affected: %lu\n", (u32)presult->m_uiAffectedRows);
+         //   information("Number of rows affected: %lu\n", (u32)presult->m_uiAffectedRows);
 
          //   return presult;
 

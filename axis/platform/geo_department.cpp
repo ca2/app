@@ -1294,7 +1294,7 @@ namespace geo
       else if (!::mathematics::convert_to_double(dTimeZoneOffset, strCountryCode))
       {
 
-         TRACE("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
+         information("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
 
       }
 

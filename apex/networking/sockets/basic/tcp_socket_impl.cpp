@@ -335,7 +335,7 @@
 //      //   if (!paddressdepartment->convert(l, host))
 //      //   {
 //      //      
-//      //      WARNING("paddressdepartment->convert failed");
+//      //      warning("paddressdepartment->convert failed");
 //      //      
 //      //      SetCloseAndDelete();
 //      //      
@@ -488,7 +488,7 @@
 ////               //   SetFlushBeforeClose(false);
 ////               //   SetLost();
 ////               //   SetShutdownStatus(SHUT_WR);
-////               //   //TRACE("tcp_socket_impl::recv ssl disconnect(2)");
+////               //   //information("tcp_socket_impl::recv ssl disconnect(2)");
 ////
 ////               //}
 ////               else if (n > 0 && n <= nBufSize)
@@ -552,7 +552,7 @@
 //////            #else
 //////            #endif
 //////            {
-//////               TRACE("tcp_socket_impl::recv 0 No Error or WOULD BLOCK");
+//////               information("tcp_socket_impl::recv 0 No Error or WOULD BLOCK");
 //////            }
 //////            else
 ////            {
@@ -623,7 +623,7 @@
 //            {
 //
 //
-//               WARNING( "tcp_socket_impl::read : ibuf overflow");
+//               warning( "tcp_socket_impl::read : ibuf overflow");
 //
 //
 //            }
@@ -1018,7 +1018,7 @@
 //      //if(!Ready() && !is_connecting())
 //      //{
 //
-//      //   WARNING("write: Attempt to write to a non-ready socket"); // warning
+//      //   warning("write: Attempt to write to a non-ready socket"); // warning
 //
 //      //   if (get_socket_id() == INVALID_SOCKET)
 //      //   {
@@ -1049,7 +1049,7 @@
 //      //{
 //
 //
-//      //   WARNING("write: Attempt to write to a non-connected socket, will be sent on connect"); // warning
+//      //   warning("write: Attempt to write to a non-connected socket, will be sent on connect"); // warning
 //
 //      //   buffer(buf,(int) len);
 //      //   return;
@@ -1133,7 +1133,7 @@
 //   //{
 //
 //
-//   //   WARNING("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
+//   //   warning("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
 //
 //
 //   //   if(!socket_handler()->Socks4TryDirect())
@@ -1234,7 +1234,7 @@
 //      //   if(m_ssl_ctx)
 //      //   {
 //
-//      //      TRACE("SSL Context already initialized - closing socket\n");
+//      //      information("SSL Context already initialized - closing socket\n");
 //
 //      //      SetCloseAndDelete(true);
 //
@@ -1481,7 +1481,7 @@
 //
 //      //      long error = ERR_get_error();
 //      //      const char* error_str = ERR_error_string(error, nullptr);
-//      //      WARNING("could not SSL_connect: " << error_str);
+//      //      warning("could not SSL_connect: " << error_str);
 //
 //      //      int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
 //
@@ -1491,7 +1491,7 @@
 //      //            && (m_psslcontext->m_pclientcontext->m_psslmethod == TLS_client_method()))
 //      //      {
 //
-//      //         WARNING("ssl_error_zero_return");
+//      //         warning("ssl_error_zero_return");
 //
 //      //      }
 //
@@ -1931,7 +1931,7 @@
 //   //   if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
 //   //   {
 //   //      FATAL("InitializeContext: Couldn't read private key file " << keyfile);
-//   //      //TRACE(string("tcp_socket_impl InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
+//   //      //information(string("tcp_socket_impl InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
 //   //   }
 //
 //   //}
@@ -1970,7 +1970,7 @@
 ////      {
 ////
 ////
-////         WARNING("socket::close: file descriptor invalid");
+////         warning("socket::close: file descriptor invalid");
 ////
 ////         return;
 ////
@@ -2006,7 +2006,7 @@
 ////         {
 ////
 ////
-////            WARNING("read() after shutdown: bytes read");
+////            warning("read() after shutdown: bytes read");
 ////
 ////         }
 ////
@@ -2031,7 +2031,7 @@
 ////      {
 ////
 ////
-////         WARNING("GetSslContext: SSL Context is nullptr; check InitSSLServer/InitSSLClient");
+////         warning("GetSslContext: SSL Context is nullptr; check InitSSLServer/InitSSLClient");
 ////
 ////      }
 ////      return m_psslcontext->m_pclientcontext->m_psslcontext;
@@ -2043,7 +2043,7 @@
 ////      {
 ////
 ////
-////         WARNING("GetSsl: SSL is nullptr; check InitSSLServer/InitSSLClient");
+////         warning("GetSsl: SSL is nullptr; check InitSSLServer/InitSSLClient");
 ////
 ////      }
 ////      return m_psslcontext->m_ssl;
@@ -2144,7 +2144,7 @@
 ////      __UNREFERENCED_PARAMETER(type);
 ////      __UNREFERENCED_PARAMETER(protocol);
 ////      __UNREFERENCED_PARAMETER(s);
-////      //TRACE("socket::OnOptions()\n");
+////      //information("socket::OnOptions()\n");
 ////#ifdef SO_NOSIGPIPE
 ////      SetSoNosigpipe(true);
 ////#endif

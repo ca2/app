@@ -47,7 +47,7 @@ void matter::trace_last_status()
 
    string strStatusMessage = ::get_status_message(estatus);
 
-   WARNING("Status Message :\n" << strStatusMessage << "\n");
+   warning("Status Message :\n" << strStatusMessage << "\n");
 
 }
 

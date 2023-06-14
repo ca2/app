@@ -52,7 +52,7 @@
 //      if (::is_null(m_pdataserver))
 //      {
 //
-//         FORMATTED_WARNING("Data server is null trying to binary_get key=\"%s\".", key.m_strDataKey.c_str());
+//         warning("Data server is null trying to binary_get key=\"%s\".", key.m_strDataKey.c_str());
 //
 //         return false;
 //

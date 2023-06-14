@@ -324,9 +324,9 @@ namespace android
 
          strMessage.format("%s\n\nSystem Error Code: %d",strLastError.c_str(),dwLastError);
 
-         TRACE("Warning: Window creation failed: get_last_error returned:\n");
+         information("Warning: Window creation failed: get_last_error returned:\n");
 
-         FORMATTED_TRACE("%s\n", strMessage.c_str());
+         information("%s\n", strMessage.c_str());
 
          try
          {
@@ -334,13 +334,13 @@ namespace android
             if(dwLastError == 0x0000057e)
             {
 
-               TRACE("Cannot create a top-level child interaction_impl.");
+               information("Cannot create a top-level child interaction_impl.");
 
             }
             else
             {
 
-               FORMATTED_TRACE("%s", strMessage.c_str());
+               information("%s", strMessage.c_str());
 
             }
 
@@ -917,7 +917,7 @@ namespace android
       // need to use top level parent (for the case where get_handle() is in DLL)
       ::pointer<::user::interaction>pwindow = EnsureTopLevelParent();
 
-      FORMATTED_TRACE(trace_category_appmsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+      information(trace_category_appmsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -945,7 +945,7 @@ namespace android
    // need to use top level parent (for the case where get_handle() is in DLL)
    ::pointer<::user::interaction>pwindow = EnsureTopLevelParent();
 
-   FORMATTED_TRACE(trace_category_appmsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   information(trace_category_appmsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    // run the HTML Help engine
    /* trans   if (!::aura::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1099,11 +1099,11 @@ namespace android
       {
          if(m_puserinteraction->layout().is_moving())
          {
-            //TRACE("moving: skip pre translate message");
+            //information("moving: skip pre translate message");
          }
          else if(m_puserinteraction->layout().is_sizing())
          {
-            //TRACE("sizing: skip pre translate message");
+            //information("sizing: skip pre translate message");
          }
          else
          {
@@ -1815,7 +1815,7 @@ namespace android
       if (m_puserinteraction->is_message_only_window())
       {
 
-         TRACE("good : opt out!");
+         information("good : opt out!");
 
       }
       else
@@ -1913,7 +1913,7 @@ namespace android
    //      begin_thread( &print_window::s_print_window, (LPVOID) this, ::e_priority_normal);
    //      if (m_event.wait(::time(tickTimeout)).timeout())
    //      {
-   //         TRACE("print_window::time_out");
+   //         information("print_window::time_out");
    //      }
    //   }
 
@@ -2089,7 +2089,7 @@ namespace android
 //      //      if (hDC == nullptr)
 //      //      {
 //      //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
-//      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+//      //         //         information(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
 //      //         return false;
 //      //      }
 //      //

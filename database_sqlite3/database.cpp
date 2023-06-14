@@ -193,7 +193,7 @@ namespace sqlite
       if (::is_null(m_psqlite))
       {
 
-         TRACE("sqlite::database::_sqlite_query_result: No database Connection");
+         information("sqlite::database::_sqlite_query_result: No database Connection");
 
          m_strLastError = "No database Connection";
 
@@ -232,7 +232,7 @@ namespace sqlite
       } else
       {
 
-         FORMATTED_TRACE("sqlite::database::_sqlite_query_result: Error %s", m_strLastError.c_str());
+         information("sqlite::database::_sqlite_query_result: Error %s", m_strLastError.c_str());
 
          return nullptr;
 
@@ -392,7 +392,7 @@ namespace sqlite
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
 //         {
-//            FORMATTED_TRACE("Error: %s", err);
+//            information("Error: %s", err);
 //            const ::scoped_string & scopedstrErrorMessage = get_error_message();
 //            if(pszErrorMessage != nullptr)
 //            {
@@ -408,7 +408,7 @@ namespace sqlite
 ////         }
          //if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA temp_store=MEMORY", nullptr, nullptr, &err)) != SQLITE_OK)
          //{
-         //   FORMATTED_TRACE("Error: %s", err);
+         //   information("Error: %s", err);
          //   //throw ::exception(::database::exception(get_error_message()));
          //}
 
@@ -777,7 +777,7 @@ namespace sqlite
             if (res != SQLITE_OK)
             {
 
-               TRACE("failure to bind text");
+               information("failure to bind text");
 
                throw ::exception(error_failed);
 
@@ -788,7 +788,7 @@ namespace sqlite
             if (res != SQLITE_OK)
             {
 
-               TRACE("failure to bind blob");
+               information("failure to bind blob");
 
                throw ::exception(error_failed);
 

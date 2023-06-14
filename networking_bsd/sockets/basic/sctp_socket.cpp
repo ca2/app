@@ -248,7 +248,7 @@ namespace sockets_bsd
       i32 n = sctp_getpaddrs(GetSocketId(), atom, &point);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getpaddrs failed");
+         warning("SctpSocket", -1, "sctp_getpaddrs failed");
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -266,7 +266,7 @@ namespace sockets_bsd
       i32 n = sctp_getladdrs(GetSocketId(), atom, &point);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getladdrs failed");
+         warning("SctpSocket", -1, "sctp_getladdrs failed");
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -283,7 +283,7 @@ namespace sockets_bsd
       i32 n = sctp_peeloff(GetSocketId(), atom);
       if (n == -1)
       {
-         WARNING("SctpSocket", -1, "PeelOff failed");
+         warning("SctpSocket", -1, "PeelOff failed");
          return -1;
       }
       socket *point = create();

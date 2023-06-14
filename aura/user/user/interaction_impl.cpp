@@ -2074,7 +2074,7 @@ namespace user
 
          //g_iMouseMove++;
 
-         //TRACE("linux::interaction_impl::message_handler e_message_mouse_move");
+         //information("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -2085,7 +2085,7 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up (0)");
+         information("e_message_left_button_up (0)");
 
       }
 
@@ -2125,11 +2125,11 @@ namespace user
 
          if (m_puserinteraction->layout().is_moving())
          {
-            //TRACE("moving: skip pre translate message");
+            //information("moving: skip pre translate message");
          }
          else if (m_puserinteraction->layout().is_sizing())
          {
-            //TRACE("sizing: skip pre translate message");
+            //information("sizing: skip pre translate message");
          }
          else
          {
@@ -2624,7 +2624,7 @@ namespace user
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
-         TRACE("e_message_left_button_down");
+         information("e_message_left_button_down");
 
          string strType = __type_name(m_puserinteraction);
 
@@ -2639,19 +2639,19 @@ namespace user
       else if (pmouse->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up");
+         information("e_message_left_button_up");
 
       }
       else if (pmouse->m_atom == e_message_non_client_left_button_up)
       {
 
-         TRACE("e_message_non_client_left_button_up");
+         information("e_message_non_client_left_button_up");
 
       }
       else if (pmouse->m_atom == e_message_non_client_left_button_down)
       {
 
-         TRACE("e_message_non_client_left_button_down");
+         information("e_message_non_client_left_button_down");
 
          string strType;
 
@@ -3529,13 +3529,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
 
-         TRACE("moving: skip walk pre translate tree");
+         information("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
 
-         TRACE("sizing: skip walk pre translate tree");
+         information("sizing: skip walk pre translate tree");
 
       }
       else
@@ -5360,7 +5360,7 @@ namespace user
 
                //m_rectangleUpdateBuffer = r;
 
-               //FORMATTED_TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+               //information("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
                if (!m_pgraphics)
                {
@@ -7065,7 +7065,7 @@ namespace user
          if (g_pointLastBottomRight != pointBottomRight)
          {
 
-            TRACE("Different Bottom Right");
+            information("Different Bottom Right");
 
             g_pointLastBottomRight = pointBottomRight;
 

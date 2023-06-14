@@ -891,7 +891,7 @@ namespace html
       
       property_set_replace(str);
       
-      FORMATTED_TRACE("%s", str.c_str());
+      information("%s", str.c_str());
       
       if (str.has_char())
       {

@@ -2370,7 +2370,7 @@ return true;
    //      begin_thread(&print_window::s_print_window,(LPVOID) this,::e_priority_above_normal);
    //      if(m_event.wait(::time(tickTimeout)).timeout())
    //      {
-   //         TRACE("print_window::time_out");
+   //         information("print_window::time_out");
    //      }
    //   }
 
@@ -2532,7 +2532,7 @@ return true;
       //if (hDC == nullptr)
       //{
       //   // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
-      //   //         TRACE(::aura::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+      //   //         information(::aura::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
       //   return false;
       //}
 
@@ -5251,7 +5251,7 @@ return true;
       catch(::exception::aura * pe)
       {
          __process_window_procedure_exception(pe, spbase);
-         //         TRACE(::aura::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
+         //         information(::aura::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
          ::exception_pointer esp(pe);
       }
       catch(...)
@@ -5885,7 +5885,7 @@ __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM l
       msg.lParam = lParam;
 
       //lResult = __process_window_procedure_exception(pe, &msg);
-      //      TRACE(::aura::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
+      //      information(::aura::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
       //       lResult);
       ::exception_pointer esp(pe);
    }
@@ -5913,7 +5913,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 
    if (!::RegisterClass(lpWndClass))
    {
-      //      FORMATTED_TRACE(::aura::trace::category_AppMsg, 0, "Can't register interaction_impl class named %s\n",
+      //      information(::aura::trace::category_AppMsg, 0, "Can't register interaction_impl class named %s\n",
       //       lpWndClass->lpszClassName);
       return false;
    }

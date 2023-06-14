@@ -15,7 +15,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       /* initialize client library */
       if(mysql_library_init(0,nullptr,nullptr))
       {
-         TRACE("mysql_library_init() failed\n");
+         information("mysql_library_init() failed\n");
          return false;
       }
 #endif

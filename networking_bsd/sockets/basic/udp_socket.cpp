@@ -526,7 +526,7 @@ namespace sockets_bsd
             if (sa_len != sizeof(sa))
             {
 
-               WARNING("recvfrom 0 unexpected address struct size_i32");
+               warning("recvfrom 0 unexpected address struct size_i32");
 
             }
             this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -604,7 +604,7 @@ namespace sockets_bsd
          if (sa_len != sizeof(sa))
          {
 
-            WARNING("recvfrom 0 unexpected address struct size_i32");
+            warning("recvfrom 0 unexpected address struct size_i32");
 
          }
          this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -639,7 +639,7 @@ namespace sockets_bsd
       if (setsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(i32)) == -1)
       {
 
-         WARNING("SetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         warning("SetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
    }
@@ -657,7 +657,7 @@ namespace sockets_bsd
       if (getsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       {
 
-         WARNING("GetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         warning("GetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
       return ttl;
@@ -682,7 +682,7 @@ namespace sockets_bsd
          if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
          {
 
-            WARNING("SetMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+            warning("SetMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          }
 
@@ -695,7 +695,7 @@ namespace sockets_bsd
       if (setsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
       {
 
-         WARNING("SetMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         warning("SetMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -717,7 +717,7 @@ namespace sockets_bsd
          if (getsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
          {
 
-            WARNING("IsMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+            warning("IsMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          }
          return is_loop ? true : false;
@@ -727,7 +727,7 @@ namespace sockets_bsd
       if (getsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
 
-         WARNING("IsMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         warning("IsMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
       return is_loop ? true : false;
@@ -762,7 +762,7 @@ namespace sockets_bsd
       //      if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
-      //         WARNING("AddMulticastMembership" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+      //         warning("AddMulticastMembership" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       //      }
       //   }
@@ -786,7 +786,7 @@ namespace sockets_bsd
       //   if (setsockopt(GetSocketId(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
-      //      WARNING("AddMulticastMembership " << networking_last_error() << " , " << bsd_socket_error(networking_last_error()));
+      //      warning("AddMulticastMembership " << networking_last_error() << " , " << bsd_socket_error(networking_last_error()));
 
       //   }
       //}
@@ -821,7 +821,7 @@ namespace sockets_bsd
       //      if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
-      //         WARNING("DropMulticastMembership " << networking_last_error() << " , " << bsd_socket_error(networking_last_error()));
+      //         warning("DropMulticastMembership " << networking_last_error() << " , " << bsd_socket_error(networking_last_error()));
 
       //      }
       //   }
@@ -842,7 +842,7 @@ namespace sockets_bsd
       //   if (setsockopt(GetSocketId(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
-      //      WARNING("DropMulticastMembership " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+      //      warning("DropMulticastMembership " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       //   }
       //}
@@ -867,7 +867,7 @@ namespace sockets_bsd
       if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(i32)) == -1)
       {
 
-         WARNING("SetMulticastHops" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         warning("SetMulticastHops" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
    }
@@ -891,7 +891,7 @@ namespace sockets_bsd
       if (getsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
 
-         WARNING("GetMulticastHops" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         warning("GetMulticastHops" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
       return hops;

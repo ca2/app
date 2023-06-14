@@ -930,7 +930,7 @@ namespace http
 
       //            pproxy->m_iPort = pnode->attribute("port");
 
-      //            FORMATTED_TRACE("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").as_string().c_str(),
+      //            information("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").as_string().c_str(),
       //               pnode->attribute("mask").as_string().c_str(), pproxy->m_strProxy.c_str(), pproxy->m_iPort);
 
       //            return;
@@ -970,14 +970,14 @@ namespace http
       ////         //if(bAutoDetect)
       ////         //{
       ////
-      ////         //   TRACE("proxy auto_detect true");
+      ////         //   information("proxy auto_detect true");
       ////
       ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
       ////
-      ////         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
+      ////         //      information("get_auto_config_url : %s",strUrl);
       ////
       ////         //      if(try_pac_script(strUrl,pszUrl,pproxy))
       ////         //         return;
@@ -988,14 +988,14 @@ namespace http
       ////         //else
       ////         //{
       ////
-      ////         //   TRACE("proxy auto_detect false");
+      ////         //   information("proxy auto_detect false");
       ////
       ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
       ////
-      ////         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
+      ////         //      information("get_auto_config_url : %s",strUrl);
       ////
       ////         //      if(try_pac_script(strUrl,pszUrl,pproxy))
       ////         //         return;
@@ -1741,8 +1741,8 @@ namespace http
 
       i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
 
-      //TRACE("");
-      //TRACE("");
+      //information("");
+      //information("");
       set["http_get_serial"] = iHttpGetSerial;
 
       auto tickStart = ::duration::now();

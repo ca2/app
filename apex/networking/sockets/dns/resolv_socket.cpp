@@ -185,7 +185,7 @@ namespace sockets
          //         INFORMATION("Cached");
          //         if (result.is_empty()) /* failed */
          //         {
-         //            WARNING("Failed");
+         //            warning("Failed");
          //            SetCloseAndDelete();
          //            return;
          //         }

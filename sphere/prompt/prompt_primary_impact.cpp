@@ -88,7 +88,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  FORMATTED_TRACE("error %s", psz);
+                  information("error %s", psz);
 
                   bOk = false;
 
@@ -182,7 +182,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  FORMATTED_TRACE("error %s", psz);
+                  information("error %s", psz);
 
                   bOk = false;
 

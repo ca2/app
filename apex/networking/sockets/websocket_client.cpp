@@ -826,7 +826,7 @@ namespace sockets
 
          //str += strLine + "\r\n";
 
-         //FORMATTED_TRACE("%s", strLine);
+         //information("%s", strLine);
 
          m_memResponse.append(buf, len);
 

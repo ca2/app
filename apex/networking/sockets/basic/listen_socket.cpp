@@ -312,7 +312,7 @@ namespace sockets
 //      if (!socket_handler()->OkToAccept(this))
 //      {
 //
-//         WARNING("accept: -1 Not OK to accept");
+//         warning("accept: -1 Not OK to accept");
 //
 //         close_socket(a_s);
 //

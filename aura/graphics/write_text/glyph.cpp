@@ -161,7 +161,7 @@ namespace write_text
 //   *  PURPOSE    : Converts line segments into their Bezier point_i32
 //   *               representation and appends them to a list of Bezier points.
 //   *
-//   *               WARNING - The array must have at least one valid
+//   *               warning - The array must have at least one valid
 //   *               start point_i32 prior to the address of the matter passed.
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
@@ -221,7 +221,7 @@ namespace write_text
 //   *  PURPOSE    : Converts Quadratic spline segments into their Bezier point_i32
 //   *               representation and appends them to a list of Bezier points.
 //   *
-//   *               WARNING - The array must have at least one valid
+//   *               warning - The array must have at least one valid
 //   *               start point_i32 prior to the address of the matter passed.
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.

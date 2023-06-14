@@ -585,7 +585,7 @@ namespace user
 
             auto psz = strLine.c_str();
 
-            FORMATTED_TRACE("Line %s", psz);
+            information("Line %s", psz);
 
          }
 
@@ -2170,7 +2170,7 @@ namespace user
       //   if (iRead < iImpactSize)
       //   {
 
-      //      TRACE("ops1");
+      //      information("ops1");
 
       //      iImpactSize = iRead;
 
@@ -2207,14 +2207,14 @@ namespace user
       //   if (iPos + iStrLen > m_iImpactSize)
       //   {
 
-      //      TRACE("ops3");
+      //      information("ops3");
 
       //      iStrLen = iImpactSize - iPos;
 
       //      if (iStrLen <= 0)
       //      {
 
-      //         TRACE("ops4");
+      //         information("ops4");
 
       //         break;
 
@@ -2237,7 +2237,7 @@ namespace user
       //   else
       //   {
 
-      //      //TRACE("optstr");
+      //      //information("optstr");
 
       //   }
 
@@ -2246,7 +2246,7 @@ namespace user
       //   if (iPos > iImpactSize)
       //   {
 
-      //      TRACE("ops2");
+      //      information("ops2");
 
       //      break;
 
@@ -2621,7 +2621,7 @@ namespace user
       //         if (iRead < iImpactSize)
       //         {
       //
-      //            TRACE("ops1");
+      //            information("ops1");
       //
       //            iImpactSize = iRead;
       //
@@ -2659,14 +2659,14 @@ namespace user
       //         if (iPos + iStrLen > m_iImpactSize)
       //         {
       //
-      //            TRACE("ops3");
+      //            information("ops3");
       //
       //            iStrLen = iImpactSize - iPos;
       //
       //            if (iStrLen <= 0)
       //            {
       //
-      //               TRACE("ops4");
+      //               information("ops4");
       //
       //               break;
       //
@@ -2690,7 +2690,7 @@ namespace user
       //         else
       //         {
       //
-      //            //TRACE("optstr");
+      //            //information("optstr");
       //
       //         }
       //
@@ -2702,7 +2702,7 @@ namespace user
       //         if (iPos > iImpactSize)
       //         {
       //
-      //            TRACE("ops2");
+      //            information("ops2");
       //
       //            break;
       //
@@ -3033,7 +3033,7 @@ namespace user
          if (iRead < iImpactSize)
          {
 
-            TRACE("ops1");
+            information("ops1");
 
             iImpactSize = iRead;
 
@@ -3070,14 +3070,14 @@ namespace user
          if (iPos + iStrLen > m_iImpactSize)
          {
 
-            TRACE("ops3");
+            information("ops3");
 
             iStrLen = iImpactSize - iPos;
 
             if (iStrLen <= 0)
             {
 
-               TRACE("ops4");
+               information("ops4");
 
                break;
 
@@ -3100,7 +3100,7 @@ namespace user
          else
          {
 
-            //TRACE("optstr");
+            //information("optstr");
 
          }
 
@@ -3109,7 +3109,7 @@ namespace user
          if (iPos > iImpactSize)
          {
 
-            TRACE("ops2");
+            information("ops2");
 
             break;
 
@@ -3399,7 +3399,7 @@ namespace user
 //   if (iRead < iImpactSize)
 //   {
 
-//      TRACE("ops1");
+//      information("ops1");
 
 //      iImpactSize = iRead;
 
@@ -3436,14 +3436,14 @@ namespace user
 //   if (iPos + iStrLen > m_iImpactSize)
 //   {
 
-//      TRACE("ops3");
+//      information("ops3");
 
 //      iStrLen = iImpactSize - iPos;
 
 //      if (iStrLen <= 0)
 //      {
 
-//         TRACE("ops4");
+//         information("ops4");
 
 //         break;
 
@@ -3466,7 +3466,7 @@ namespace user
 //   else
 //   {
 
-//      //TRACE("optstr");
+//      //information("optstr");
 
 //   }
 
@@ -3475,7 +3475,7 @@ namespace user
 //   if (iPos > iImpactSize)
 //   {
 
-//      TRACE("ops2");
+//      information("ops2");
 
 //      break;
 
@@ -7806,7 +7806,7 @@ namespace user
    //   if (!::user::interaction::create_interaction(puserinteractionParent, atom))
    //   {
 
-   //      TRACE("Failed to create control");
+   //      information("Failed to create control");
 
    //      return false;
 
@@ -8122,7 +8122,7 @@ namespace user
    //   if (nCmdShow != e_display_none)
    //   {
 
-   //      TRACE("Going to Show plain_edit");
+   //      information("Going to Show plain_edit");
 
    //   }
 

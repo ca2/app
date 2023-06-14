@@ -695,7 +695,7 @@ namespace dir
 
             FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
 
-            //TRACE("         auto psystem = acmesystem();
+            //information("         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

@@ -339,7 +339,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
 
       string strSql = "REPLACE INTO fun_user_long_set PAYLOAD('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', " + as_string(lValue) + ")";
 
-      TRACE(strSql);
+      information(strSql);
 
       return m_pcore->m_pmysqldbUser->query(strSql) != nullptr;
 
@@ -411,7 +411,7 @@ bool db_long_set::find(const ::string & lpKey)
    HRESULT hr;
    if(m_bIndexed)
    {
-   //         TRACE("CSongsSet::FindKey Seeking\n");
+   //         information("CSongsSet::FindKey Seeking\n");
    string strSection(lpSection);
    string strKey(lpKey);
    if(FAILED(hr = MoveFirst()))

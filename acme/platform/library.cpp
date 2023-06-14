@@ -931,10 +931,10 @@ namespace acme
          if (::is_null((const void *) pfnFactory))
          {
 
-            FORMATTED_WARNING("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
+            warning("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
 
-            FORMATTED_WARNING("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
-            FORMATTED_WARNING("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
+            warning("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
+            warning("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
 
             string strDetails;
 

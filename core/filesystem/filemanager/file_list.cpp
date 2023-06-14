@@ -2001,7 +2001,7 @@ namespace filemanager
    void file_list::on_message_set_focus(::message::message * pmessage)
    {
 
-      TRACE("filemanager::file_list::on_message_set_focus");
+      information("filemanager::file_list::on_message_set_focus");
 
    }
 
@@ -2009,7 +2009,7 @@ namespace filemanager
    void file_list::on_message_kill_focus(::message::message * pmessage)
    {
 
-      TRACE("filemanager::file_list::on_message_kill_focus");
+      information("filemanager::file_list::on_message_kill_focus");
 
    }
 

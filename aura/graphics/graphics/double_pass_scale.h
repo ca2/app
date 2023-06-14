@@ -267,7 +267,7 @@ HorizScale (::color32_t*pSrc,
                 ::u32                uResWidth,
                 ::u32                uResHeight)
 {
-//   TRACE ("Performing horizontal scaling...\n");
+//   information ("Performing horizontal scaling...\n");
    if (uResWidth == uSrcWidth)
    {
       // No scaling required, just copy
@@ -347,7 +347,7 @@ VertScale (::color32_t*pSrc,
             ::u32                uResWidth,
             ::u32                uResHeight)
 {
-//   TRACE ("Performing vertical scaling...");
+//   information ("Performing vertical scaling...");
 
    if (uSrcHeight == uResHeight)
    {

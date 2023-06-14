@@ -271,7 +271,7 @@ namespace sockets
    {
 
 #if HEAVY_HTTP_LOG
-      FORMATTED_TRACE("OnHeader %s: %s", (const char*)key, (const char*)value);
+      information("OnHeader %s: %s", (const char*)key, (const char*)value);
 #endif
 
       m_content += as_string(key) + ": " + value + "\r\n";
@@ -371,7 +371,7 @@ namespace sockets
          m_pfile->seek_to_begin();
 
          string str = dump_hex(m_pfile);
-         FORMATTED_TRACE("%s", m_strUrl.c_str());
+         information("%s", m_strUrl.c_str());
          
          for (int i = 0; i < str.length(); i+=32 * 100)
          {

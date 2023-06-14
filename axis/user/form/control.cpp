@@ -520,7 +520,7 @@ namespace user
 //            if (pclient.is_null())
 //            {
 //
-//               TRACE("control doesn't implement database::client");
+//               information("control doesn't implement database::client");
 //
 //               return;
 //
@@ -1227,7 +1227,7 @@ namespace user
 
    //   //if(!normalize_control_descriptor_typeinfo(pdescriptor))
    //   //{
-   //   //   TRACE("form_control::create_interaction: failed to create control, could not find proper type for allocation");
+   //   //   information("form_control::create_interaction: failed to create control, could not find proper type for allocation");
    //   //   return false;
    //   //}
 
@@ -1238,7 +1238,7 @@ namespace user
    //   if(!pparticle)
    //   {
 
-   //      TRACE("form_control::create_interaction: failed to create control, allocation error");
+   //      information("form_control::create_interaction: failed to create control, allocation error");
 
    //      return false;
 
@@ -1251,7 +1251,7 @@ namespace user
 
    //      pparticle.release();
 
-   //      TRACE("form_control::create_interaction: failed to create control, object is not derived from user::control_descriptor");
+   //      information("form_control::create_interaction: failed to create control, object is not derived from user::control_descriptor");
 
    //      return false;
 
@@ -1493,7 +1493,7 @@ namespace user
    //         if (pclient.is_null())
    //         {
 
-   //            TRACE("control doesn't implement database::client");
+   //            information("control doesn't implement database::client");
 
    //            return;
 

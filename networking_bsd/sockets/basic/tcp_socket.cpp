@@ -657,7 +657,7 @@ namespace sockets_bsd
       //   if (!paddress)
       //   {
       //      
-      //      WARNING("paddressdepartment->convert failed");
+      //      warning("paddressdepartment->convert failed");
       //      
       //      SetCloseAndDelete();
       //      
@@ -880,7 +880,7 @@ namespace sockets_bsd
                //   SetFlushBeforeClose(false);
                //   SetLost();
                //   SetShutdownStatus(SHUT_WR);
-               //   //TRACE("tcp_socket::recv ssl disconnect(2)");
+               //   //information("tcp_socket::recv ssl disconnect(2)");
 
                //}
                else if (n > 0 && n <= nBufSize)
@@ -944,7 +944,7 @@ namespace sockets_bsd
 //            #else
 //            #endif
 //            {
-//               TRACE("tcp_socket::recv 0 No Error or WOULD BLOCK");
+//               information("tcp_socket::recv 0 No Error or WOULD BLOCK");
 //            }
 //            else
             {
@@ -1017,7 +1017,7 @@ namespace sockets_bsd
             {
 
 
-               WARNING( "tcp_socket::read : ibuf overflow");
+               warning( "tcp_socket::read : ibuf overflow");
 
 
             }
@@ -1443,7 +1443,7 @@ namespace sockets_bsd
       if(!Ready() && !is_connecting())
       {
 
-         WARNING("write: Attempt to write to a non-ready socket"); // warning
+         warning("write: Attempt to write to a non-ready socket"); // warning
 
          if (GetSocketId() == INVALID_SOCKET)
          {
@@ -1473,7 +1473,7 @@ namespace sockets_bsd
       if(!IsConnected())
       {
 
-         WARNING("write: Attempt to write to a non-connected socket, will be sent on connect"); // warning
+         warning("write: Attempt to write to a non-connected socket, will be sent on connect"); // warning
 
          buffer(buf,(int) s);
 
@@ -1576,7 +1576,7 @@ namespace sockets_bsd
    void tcp_socket::OnSocks4ConnectFailed()
    {
 
-      WARNING("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
+      warning("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
 
       if(!__Handler(m_psockethandler)->Socks4TryDirect())
       {
@@ -1684,7 +1684,7 @@ namespace sockets_bsd
       //   if(m_ssl_ctx)
       //   {
 
-      //      TRACE("SSL Context already initialized - closing socket\n");
+      //      information("SSL Context already initialized - closing socket\n");
 
       //      SetCloseAndDelete(true);
 
@@ -1937,7 +1937,7 @@ namespace sockets_bsd
 
             long error = ERR_get_error();
             const char* error_str = ERR_error_string(error, nullptr);
-            WARNING("could not SSL_connect: " << error_str);
+            warning("could not SSL_connect: " << error_str);
 
             int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
 
@@ -1947,7 +1947,7 @@ namespace sockets_bsd
                   && (m_psslcontext->m_pclientcontext->m_psslmethod == TLS_client_method()))
             {
 
-               WARNING("ssl_error_zero_return");
+               warning("ssl_error_zero_return");
 
             }
 
@@ -2248,7 +2248,7 @@ namespace sockets_bsd
          if (!SSL_CTX_set1_groups(m_psslcontext->m_pclientcontext->m_psslcontext, iaCurves.get_data(), (long) iaCurves.get_size()))
          {
          
-            WARNING("failed to set ecdhe curves");
+            warning("failed to set ecdhe curves");
 
          }
 
@@ -2270,7 +2270,7 @@ namespace sockets_bsd
       if (!SSL_CTX_set_cipher_list(m_psslcontext->m_pclientcontext->m_psslcontext, strCipherList))
       {
 
-         WARNING("failed to set cipher_list");
+         warning("failed to set cipher_list");
 
       }
 
@@ -2559,7 +2559,7 @@ namespace sockets_bsd
       if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
       {
          FATAL("InitializeContext: Couldn't read private key file " << keyfile);
-         //TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
+         //information(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
       }
 
    }
@@ -2597,7 +2597,7 @@ namespace sockets_bsd
       {
 
 
-         WARNING("socket::close: file descriptor invalid");
+         warning("socket::close: file descriptor invalid");
 
          return;
 
@@ -2633,7 +2633,7 @@ namespace sockets_bsd
          {
 
 
-            WARNING("read() after shutdown: bytes read");
+            warning("read() after shutdown: bytes read");
 
          }
 
@@ -2658,7 +2658,7 @@ namespace sockets_bsd
       {
 
 
-         WARNING("GetSslContext: SSL Context is nullptr; check InitSSLServer/InitSSLClient");
+         warning("GetSslContext: SSL Context is nullptr; check InitSSLServer/InitSSLClient");
 
       }
       return m_psslcontext->m_pclientcontext->m_psslcontext;
@@ -2670,7 +2670,7 @@ namespace sockets_bsd
       {
 
 
-         WARNING("GetSsl: SSL is nullptr; check InitSSLServer/InitSSLClient");
+         warning("GetSsl: SSL is nullptr; check InitSSLServer/InitSSLClient");
 
       }
       return m_psslcontext->m_ssl;
@@ -2775,7 +2775,7 @@ namespace sockets_bsd
       __UNREFERENCED_PARAMETER(type);
       __UNREFERENCED_PARAMETER(protocol);
 
-      //TRACE("socket::OnOptions()\n");
+      //information("socket::OnOptions()\n");
       
 #ifdef SO_NOSIGPIPE
       

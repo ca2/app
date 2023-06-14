@@ -598,12 +598,12 @@ inline void swap(::pointer<TYPE>& a, ::pointer<TYPE> & b)
 
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p);
+//template < typename TYPE >
+//inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p);
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>& clone(::pointer<TYPE> & p);
+//template < typename TYPE >
+//inline ::pointer<TYPE>& clone(::pointer<TYPE> & p);
 
 
 template < typename TYPE >

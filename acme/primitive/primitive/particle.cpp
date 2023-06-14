@@ -1787,7 +1787,7 @@ void particle::set_timeout(const class time & timeTimeout)
 //}
 
 
-::particle * particle::clone() const
+::particle_pointer particle::interface_clone() const
 {
 
    throw interface_only();
@@ -2097,14 +2097,14 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
 }
 
 
-::pointer < particle > particle::interface_clone() const
-{
-
-   throw ::interface_only();
-
-   return nullptr;
-
-}
+//::pointer < particle > particle::interface_clone() const
+//{
+//
+//   throw ::interface_only();
+//
+//   return nullptr;
+//
+//}
 
 
 CLASS_DECL_ACME class tracer & tracer()

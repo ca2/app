@@ -62,7 +62,9 @@ namespace user
       void clear_x1_button_pressed() { m_ebuttonstate &= ::user::e_button_state_x1; }
       void clear_x2_button_pressed() { m_ebuttonstate &= ::user::e_button_state_x2; }
 
-      mouse operator = (const mouse & mouse);
+      
+      ::user::mouse & operator = (const ::user::mouse & mouse);
+
 
    };
 

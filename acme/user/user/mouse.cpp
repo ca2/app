@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   mouse & mouse::operator = (const mouse & mouse)
+   ::user::mouse & mouse::operator = (const ::user::mouse & mouse)
    {
 
       if (this != &mouse)

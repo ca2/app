@@ -1893,10 +1893,10 @@ memsize memory_base::length() const
 }
 
 
-::particle * memory_base::clone() const
+::particle_pointer memory_base::interface_clone() const
 {
 
-   auto pmemory = memory_new memory();
+   auto pmemory = ((::particle *)this)->__create_new < ::memory >();
 
    pmemory->copy_from(this);
 

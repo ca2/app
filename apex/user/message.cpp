@@ -164,6 +164,29 @@ namespace user
    //}
 
 
+   message & message::operator = (const message & message)
+   {
+
+      if (this != &message)
+      {
+
+         ::message::message::operator = (message);
+
+         m_pchannel = message.m_pchannel;
+         m_pwindow = message.m_pwindow;
+         //m_bConditional = m_bConditional;
+         //m_bReflect = m_bReflect;
+         //m_bDestroyed = m_bDestroyed;
+         //m_bDoSystemDefault = m_bDoSystemDefault;
+
+      }
+
+      return *this;
+
+   }
+
+
+
 } // namespace user
 
 

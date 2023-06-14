@@ -139,6 +139,11 @@ namespace message
       virtual public ::user::message,
       virtual public ::user::mouse
    {
+   public:
+
+
+      mouse_base & operator = (const mouse_base & mousebase);
+
 
    };
 
@@ -166,6 +171,10 @@ namespace message
       {
          return (unsigned int)m_atom.as_i64();
       }
+
+
+      mouse & operator = (const mouse & mouse);
+
 
    };
 

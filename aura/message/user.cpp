@@ -292,6 +292,18 @@ namespace message
    //}
 
 
+   mouse_base & mouse_base::operator = (const mouse_base & mousebase)
+   {
+
+      ::user::message::operator = (mousebase);
+
+      ::user::mouse::operator = (mousebase);
+
+      return *this;
+
+   }
+
+
    mouse::mouse()
    {
 
@@ -365,6 +377,17 @@ namespace message
       {
 
       }
+
+   }
+
+
+   mouse & mouse::operator = (const mouse & mouse)
+   {
+
+      mouse_base::operator=(mouse);
+
+      return *this;
+
 
    }
 

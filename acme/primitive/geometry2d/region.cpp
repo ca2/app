@@ -344,7 +344,7 @@ namespace geometry2d
       else
       {
 
-         m_pitem = regionSrc.m_pitem->clone();
+         m_pitem = clone(m_pitem);
 
       }
 

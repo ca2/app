@@ -18760,7 +18760,6 @@ namespace user
 
       }
 
-
       if (has_mouse_capture())
       {
 
@@ -18773,6 +18772,46 @@ namespace user
       auto pwindowimpl = get_window_impl();
 
       auto pitemLeftButtonDoubleClick = hit_test(pmouse, e_zorder_front);
+
+      if (pitemLeftButtonDoubleClick)
+      {
+
+         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_is_second_click)
+         {
+
+            ::pointer < ::message::mouse > pmouseUp1 = transfer(pmouse->clone());
+
+            pmouseUp1->m_atom = e_message_left_button_up;
+
+            get_wnd()->post(pmouseUp1);
+
+            ::pointer < ::message::mouse > pmouseDown2 = pmouse->clone();
+
+            pmouseDown2->m_atom = e_message_left_button_down;
+
+            get_wnd()->post(pmouseDown2);
+
+            ::pointer < ::message::mouse > pmouseUp2 = pmouse->clone();
+
+            pmouseUp2->m_atom = e_message_left_button_up;
+
+            get_wnd()->post(pmouseUp2);
+
+            pmouse->m_bRet = true;
+
+            return;
+
+         }
+         if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_eat_double_click)
+         {
+
+            pmouse->m_bRet = true;
+
+            return;
+
+         }
+
+      }
 
       bool bSameUserInteractionAsMouseDown = pwindowimpl->m_puiLastLButtonDown == this;
 

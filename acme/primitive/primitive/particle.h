@@ -341,7 +341,7 @@ public:
 
 
 
-   virtual ::particle * clone() const;
+   //virtual ::particle * raw_new() const;
 
 
    // ThomasBorregaardSorensen!! Like handlers
@@ -431,6 +431,51 @@ public:
    template < typename TYPE >
    inline ::pointer<TYPE>__create_new();
 
+
+   template < typename T >
+   ::pointer < T > clone(const T & t)
+   {
+
+      ::pointer <T> p;
+
+      this->__create(p);
+
+      if (!p)
+      {
+
+         return nullptr;
+
+      }
+
+      p->operator=(t);
+
+      return p;
+
+   }
+
+
+   template < typename T >
+   ::pointer < T > clone_new(const T & t)
+   {
+
+      ::pointer <T> p;
+
+      this->__create_new(p);
+
+      if (!p)
+      {
+
+         return nullptr;
+
+      }
+
+      p->operator =(t);
+
+      return p;
+
+   }
+
+
    //template < typename BASE_TYPE >
    //inline void __raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory = ::get_system_factory());
 
@@ -484,6 +529,18 @@ public:
 
 
    virtual void kick_idle();
+
+   particle & operator = (const particle & particle)
+   {
+
+      // all particle members are quite instance members.
+
+      return *this;
+
+   }
+
+
+   virtual ::pointer < particle > interface_clone() const;
 
 
 };

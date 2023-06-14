@@ -2097,6 +2097,16 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
 }
 
 
+::pointer < particle > particle::interface_clone() const
+{
+
+   throw ::interface_only();
+
+   return nullptr;
+
+}
+
+
 CLASS_DECL_ACME class tracer & tracer()
 {
 

@@ -175,7 +175,7 @@ public:
    void delete_this() override;
 
 
-   ::particle * clone() const override;
+   //::particle * clone() const override;
 
 
    using particle::has_flag;

@@ -2126,11 +2126,11 @@ void preempt()
 }
 
 
-trace_statement information() { return ::get_task()->information(); }
-trace_statement warning() { return ::get_task()->warning(); }
-trace_statement error() { return ::get_task()->error(); }
-trace_statement fatal() { return ::get_task()->fatal(); }
-
+//trace_statement information() { return ::get_task()->information(); }
+//trace_statement warning() { return ::get_task()->warning(); }
+//trace_statement error() { return ::get_task()->error(); }
+//trace_statement fatal() { return ::get_task()->fatal(); }
+//
 
 
 

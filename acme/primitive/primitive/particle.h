@@ -319,8 +319,12 @@ public:
    virtual class tracer & tracer();
 
 
-   //virtual trace_statement trace(enum_trace_level etracelevel);
    virtual ::trace_statement log_statement();
+
+
+   //virtual trace_statement trace(enum_trace_level etracelevel);
+
+
    virtual ::trace_statement information();
    virtual ::trace_statement warning();
    virtual ::trace_statement error();
@@ -735,6 +739,27 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //
 //#endif
 
+
+
+
+
+
+//virtual trace_statement trace(enum_trace_level etracelevel);
+
+
+CLASS_DECL_ACME ::trace_statement log_statement();
+
+
+CLASS_DECL_ACME ::trace_statement information();
+CLASS_DECL_ACME ::trace_statement warning();
+CLASS_DECL_ACME ::trace_statement error();
+CLASS_DECL_ACME ::trace_statement fatal();
+
+
+CLASS_DECL_ACME void information(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void warning(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void error(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void fatal(const ::ansi_character * pszFormat, ...);
 
 
 

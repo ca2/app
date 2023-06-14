@@ -2127,3 +2127,131 @@ CLASS_DECL_ACME class tracer & tracer()
 
 
 
+
+CLASS_DECL_ACME ::trace_statement log_statement()
+{
+
+   return ::transfer(trace_statement(tracer())((::particle *)nullptr));
+
+}
+
+
+::trace_statement information()
+{
+
+   return ::transfer(trace_statement(tracer())(e_trace_level_information));
+
+}
+
+
+::trace_statement warning()
+{
+
+   return ::transfer(trace_statement(tracer())(e_trace_level_warning));
+
+}
+
+
+::trace_statement error()
+{
+
+   return ::transfer(trace_statement(tracer())(e_trace_level_error));
+
+}
+
+
+::trace_statement fatal()
+{
+
+   return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
+
+}
+
+
+
+void information(const ::ansi_character * pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_information);
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
+
+   va_end(arguments);
+
+}
+
+
+void warning(const ::ansi_character * pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_warning);
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
+
+   va_end(arguments);
+
+}
+
+
+void error(const ::ansi_character * pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_error);
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
+
+   va_end(arguments);
+
+}
+
+
+void fatal(const ::ansi_character * pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   {
+
+      auto statement = log_statement();
+
+      statement(e_trace_level_fatal);
+
+      statement.format_output_arguments(pszFormat, arguments);
+
+   }
+
+   va_end(arguments);
+
+}

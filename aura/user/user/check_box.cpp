@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   ::particle_pointer check_box::interface_clone() const
+   ::particle_pointer check_box::clone() const
    {
 
       auto pcheckbox = m_pcontext->__create_new <::user::check_box>();

@@ -29,7 +29,7 @@ namespace geometry2d
       //m_lppoints        = nullptr;
       //m_eregion = ::draw2d::e_region_none;
 
-      m_pitem = region.m_pitem->interface_clone();
+      m_pitem = region.m_pitem->clone();
 
    }
 
@@ -344,7 +344,7 @@ namespace geometry2d
       else
       {
 
-         m_pitem = m_pitem->interface_clone();
+         m_pitem = m_pitem->clone();
 
       }
 

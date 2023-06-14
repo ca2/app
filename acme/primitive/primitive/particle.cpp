@@ -1787,7 +1787,7 @@ void particle::set_timeout(const class time & timeTimeout)
 //}
 
 
-::particle_pointer particle::interface_clone() const
+::particle_pointer particle::clone() const
 {
 
    throw interface_only();
@@ -2097,7 +2097,7 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_console(c
 }
 
 
-//::pointer < particle > particle::interface_clone() const
+//::pointer < particle > particle::clone() const
 //{
 //
 //   throw ::interface_only();

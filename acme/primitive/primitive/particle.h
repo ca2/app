@@ -436,16 +436,16 @@ public:
 
    
    template < typename T >
-   ::pointer < T > clone(const ::pointer < T > & psource)
+   ::pointer < T > create_clone(const ::pointer < T > & psource)
    {
 
-      return this->clone(psource.m_p);
+      return this->create_clone(psource.m_p);
 
    }
 
 
    template < typename T >
-   ::pointer < T > clone(const T * pSource)
+   ::pointer < T > create_clone(const T * pSource)
    {
 
       auto p = this->__create< T >();
@@ -465,16 +465,16 @@ public:
 
 
    template < typename T >
-   ::pointer < T > clone_new(const ::pointer < T > & psource)
+   ::pointer < T > create_new_clone(const ::pointer < T > & psource)
    {
 
-      return this->clone_new(psource.m_p);
+      return this->create_new_clone(psource.m_p);
 
    }
 
 
    template < typename T >
-   ::pointer < T > clone_new(const T * pSource)
+   ::pointer < T > create_new_clone(const T * pSource)
    {
 
       auto p = this->__create_new< T >();
@@ -557,7 +557,7 @@ public:
    }
 
 
-   virtual ::particle_pointer interface_clone() const;
+   virtual ::particle_pointer clone() const;
 
 
 };

@@ -25,7 +25,7 @@ namespace draw2d
       //m_lppoints        = nullptr;
       //m_eregion         = e_region_none;
 
-      m_pitem = region.m_pitem->interface_clone();
+      m_pitem = region.m_pitem->clone();
 
    }
 
@@ -308,7 +308,7 @@ namespace draw2d
       else
       {
 
-         m_pitem = regionSrc.m_pitem->interface_clone();
+         m_pitem = regionSrc.m_pitem->clone();
 
       }
 

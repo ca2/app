@@ -870,12 +870,12 @@ template<typename T>
 inline bool not_found(const pointer < T >& p);
 
 
-template<typename TDST, typename TSRC>
-inline ::pointer<TDST>& clone(::pointer<TDST>dst, const ::pointer<TSRC>rc);
+//template<typename TDST, typename TSRC>
+//inline ::pointer<TDST>& clone(::pointer<TDST>dst, const ::pointer<TSRC>rc);
 
 
-template<typename T>
-inline pointer < T > clone(const pointer < T >& t);
+//template<typename T>
+//inline pointer < T > clone(const pointer < T >& t);
 
 
 template<class POINTER_TYPE>

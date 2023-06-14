@@ -434,9 +434,18 @@ public:
    template < typename TYPE >
    inline ::pointer<TYPE>__create_new();
 
+   
+   template < typename T >
+   ::pointer < T > clone(const ::pointer < T > & psource)
+   {
+
+      return this->clone(psource.m_p);
+
+   }
+
 
    template < typename T >
-   ::pointer < T > clone(const T & t)
+   ::pointer < T > clone(const T * pSource)
    {
 
       auto p = this->__create< T >();
@@ -448,7 +457,7 @@ public:
 
       }
 
-      p->operator=(t);
+      *p = pSource;
 
       return p;
 
@@ -456,7 +465,16 @@ public:
 
 
    template < typename T >
-   ::pointer < T > clone_new(const T & t)
+   ::pointer < T > clone_new(const ::pointer < T > & psource)
+   {
+
+      return this->clone_new(psource.m_p);
+
+   }
+
+
+   template < typename T >
+   ::pointer < T > clone_new(const T * pSource)
    {
 
       auto p = this->__create_new< T >();
@@ -468,7 +486,7 @@ public:
 
       }
 
-      p->operator =(t);
+      *p = *pSource;
 
       return p;
 

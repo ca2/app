@@ -18779,19 +18779,19 @@ namespace user
          if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_is_second_click)
          {
 
-            ::pointer < ::message::mouse > pmouseUp1 = transfer(pmouse->clone());
+            ::pointer < ::message::mouse > pmouseUp1 = this->clone_new(pmouse);
 
             pmouseUp1->m_atom = e_message_left_button_up;
 
             get_wnd()->post(pmouseUp1);
 
-            ::pointer < ::message::mouse > pmouseDown2 = pmouse->clone();
+            ::pointer < ::message::mouse > pmouseDown2 = this->clone_new(pmouse);
 
             pmouseDown2->m_atom = e_message_left_button_down;
 
             get_wnd()->post(pmouseDown2);
 
-            ::pointer < ::message::mouse > pmouseUp2 = pmouse->clone();
+            ::pointer < ::message::mouse > pmouseUp2 = this->clone_new(pmouse);
 
             pmouseUp2->m_atom = e_message_left_button_up;
 

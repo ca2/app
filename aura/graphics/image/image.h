@@ -440,7 +440,7 @@ public:
    //::stream & read(::stream & stream) override;
 
    
-   ::particle * clone() const override;
+   ::particle_pointer interface_clone() const override;
 
 
    //inline int line(int line);

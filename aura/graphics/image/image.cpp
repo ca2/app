@@ -2460,10 +2460,11 @@ void image::flip_vertically()
 //}
 //
 
+
 ::image_pointer image::horizontally_flipped()
 {
 
-   ::image_pointer pimage = clone();
+   ::image_pointer pimage = this->interface_clone();
 
    pimage->flip_horizontally();
 
@@ -2475,7 +2476,7 @@ void image::flip_vertically()
 ::image_pointer image::vertically_flipped()
 {
 
-   ::image_pointer pimage = clone();
+   ::image_pointer pimage = this->interface_clone();
 
    pimage->flip_vertically();
 
@@ -5554,7 +5555,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
 void image::rotate(const ::angle_f64 & angle, double dScale)
 {
 
-   image_pointer pimage = clone();
+   image_pointer pimage = this->interface_clone();
 
    rotate(pimage, angle, dScale);
 
@@ -6371,7 +6372,7 @@ void image::e_rotate_270_flip_horizontally(::image* pimage)
 void image::e_rotate_90_flip_horizontally()
 {
 
-   ::image_pointer pimage = clone();
+   ::image_pointer pimage = this->interface_clone();
 
    return e_rotate_90_flip_horizontally(pimage);
 
@@ -6381,7 +6382,7 @@ void image::e_rotate_90_flip_horizontally()
 void image::e_rotate_180_flip_horizontally()
 {
 
-   ::image_pointer pimage = clone();
+   ::image_pointer pimage = this->interface_clone();
 
    return e_rotate_180_flip_horizontally(pimage);
 
@@ -6391,7 +6392,7 @@ void image::e_rotate_180_flip_horizontally()
 void image::e_rotate_270_flip_horizontally()
 {
 
-   ::image_pointer pimage = clone();
+   ::image_pointer pimage = this->interface_clone();
 
    return e_rotate_270_flip_horizontally(pimage);
 
@@ -7085,7 +7086,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
    ASSERT(emipmap != ::draw2d::e_mipmap_none);
 
-   ::image_pointer pimage(clone());
+   ::image_pointer pimage = this->interface_clone();
 
    int cxSource = pimage->width();
 
@@ -10163,7 +10164,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 greekdeltax, i32 gre
 //}
 
 
-::particle * image::clone() const
+::particle_pointer image::interface_clone() const
 {
 
    auto pimage = ((::image*)this)->__create<::image>();

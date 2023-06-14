@@ -655,7 +655,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp" />
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
+    <ClCompile Include="graphics\draw2d\color_array.cpp" />
+    <ClCompile Include="graphics\draw2d\image32_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
@@ -796,9 +797,12 @@
     <ClInclude Include="filesystem\file\__string.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
+    <ClInclude Include="graphics\draw2d\color_array.h" />
+    <ClInclude Include="graphics\draw2d\image32_array.h" />
     <ClInclude Include="graphics\draw2d\_binary_stream.h" />
     <ClInclude Include="graphics\draw2d\image32.h" />
     <ClInclude Include="graphics\draw2d\_string.h" />
+    <ClInclude Include="graphics\draw2d\_system_color.h" />
     <ClInclude Include="graphics\draw2d\_text_stream.h" />
     <ClInclude Include="graphics\image\color_indexes.h" />
     <ClInclude Include="graphics\image\_.h" />

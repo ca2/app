@@ -3170,6 +3170,15 @@
     <ClInclude Include="filesystem\file\string_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\_system_color.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\color_array.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\image32_array.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3453,9 +3462,6 @@
     </ClCompile>
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -4314,6 +4320,12 @@
     </ClCompile>
     <ClCompile Include="platform\trace_statement.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image32_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

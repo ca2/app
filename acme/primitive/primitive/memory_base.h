@@ -199,7 +199,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   //::particle * clone() const override;
+   ::particle_pointer interface_clone() const override;
 
 
 //   inline ::u8 * storage_begin() { return m_memory.storage_begin(); }

@@ -344,7 +344,7 @@ namespace geometry2d
       else
       {
 
-         m_pitem = clone(m_pitem);
+         m_pitem = m_pitem->interface_clone();
 
       }
 

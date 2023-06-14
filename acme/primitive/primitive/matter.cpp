@@ -208,15 +208,15 @@ void matter::on_set_finish()
 }
 
 
-
-::particle * matter::clone() const
-{
-
-   throw ::interface_only();
-
-   return nullptr;
-
-}
+//
+//::particle * matter::clone() const
+//{
+//
+//   throw ::interface_only();
+//
+//   return nullptr;
+//
+//}
 
 
 bool matter::is_ready_to_quit() const

@@ -76,6 +76,9 @@ struct PARTICLE :
 #include "acme/platform/trace_statement.h"
 
 
+using particle_pointer = ::pointer < ::particle >;
+
+
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
    virtual public PARTICLE
@@ -536,7 +539,7 @@ public:
    }
 
 
-   virtual ::pointer < particle > interface_clone() const;
+   virtual ::particle_pointer interface_clone() const;
 
 
 };

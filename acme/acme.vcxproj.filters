@@ -3182,6 +3182,12 @@
     <ClInclude Include="include\_tags.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\mathematics\numeric.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\aaa_numeric.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

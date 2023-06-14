@@ -28,4 +28,32 @@ inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color
 }
 
 
+template < typename FILE >
+inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::color::color & color)
+{
+
+   s << color.m_u8Red;
+   s << color.m_u8Green;
+   s << color.m_u8Blue;
+   s << color.m_u8Opacity;
+
+   return s;
+
+}
+
+
+template < typename FILE >
+inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color::color & color)
+{
+
+   s >> color.m_u8Red;
+   s >> color.m_u8Green;
+   s >> color.m_u8Blue;
+   s >> color.m_u8Opacity;
+
+   return s;
+
+}
+
+
 

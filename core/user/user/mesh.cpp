@@ -662,7 +662,7 @@ namespace user
          
             rectangle.inflate(8,0,8,-1);
             
-            pdrawitem->m_pgraphics->fill_rectangle(rectangle, ::color::color(crTranslucid, 127));
+            pdrawitem->m_pgraphics->fill_rectangle(rectangle, crTranslucid & ::opacity(127));
             
          }
          

@@ -243,7 +243,7 @@ SizingNone:;
             
          GetBorderRect(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
       }
       else if(m_pframewindow->m_estyle == ::user::StyleLightBlue)
@@ -269,7 +269,7 @@ SizingNone:;
             
          GetBorderRect(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 0.5));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(0.5));
             
       }
       else
@@ -281,7 +281,7 @@ SizingNone:;
 
          GetBorderRect(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle,::color::color(crMoveableBorder, 200));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(200));
 
          GetBorderRect(rectangleClient, &rectangle, eside);
 

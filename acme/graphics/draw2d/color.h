@@ -82,6 +82,10 @@ constexpr ::color32_t argb32_color32(
 
 namespace color
 {
+
+
+   class color;
+
    
    struct HLS
    {
@@ -104,7 +108,7 @@ namespace color
       hls() {}
       hls(enum_zero_init) : HLS{ 0.0,0.0, 0.0 } {}
       hls(double dH, double dL = 0.5, double dS = 1.0) :HLS{ dH, dL, dS } {}
-
+      hls(const ::color::color & color);
       hls & operator =(const ::payload & payload);
 
 
@@ -852,6 +856,22 @@ constexpr ::color::color color32_color_with_u8_opacity(::u8 u8Opacity, ::color32
 
 #define __expand_f32_rgba(color) color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()
 #define __expand_f64_rgba(color) color.f64_red(), color.f64_green(), color.f64_blue(), color.f64_opacity()
+
+
+
+namespace color
+{
+
+
+   inline hls::hls(const ::color::color & color)
+   {
+
+      operator=(color.get_hls());
+
+   }
+
+
+} // namespace color
 
 
 

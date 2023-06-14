@@ -1201,7 +1201,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   TRACE("Failed to create memory_new User Presence");
+      //   information("Failed to create memory_new User Presence");
 
       //   return false;
 
@@ -1253,7 +1253,7 @@ ret:
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create ftpfs");
+      //      information("Failed to create ftpfs");
 
       //   }
 
@@ -1652,13 +1652,13 @@ namespace apex
 
       //if(m_pdatabase == nullptr)
       //{
-      //   TRACE("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   TRACE("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
       //   return false;
       //}
 

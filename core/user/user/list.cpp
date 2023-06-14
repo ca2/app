@@ -7569,7 +7569,7 @@ namespace user
 //         catch (...)
 //         {
 //
-//            TRACE("Exception : ::list::_001OnClip");
+//            information("Exception : ::list::_001OnClip");
 //
 //         }
 //

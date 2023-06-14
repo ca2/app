@@ -1909,7 +1909,7 @@ void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
 //
 //               strError.Format("Failed to delete the file to transfer \"%s\" error=%d", psz, dwError);
 //
-//               TRACE("%s", strError);
+//               information("%s", strError);
 //
 //            }
 //

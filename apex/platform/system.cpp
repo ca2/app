@@ -807,7 +807,7 @@ pacmedirectory->create("/ca2core");
 
          if (status != errAuthorizationSuccess)
          {
-            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
+            information("Error Creating Initial Authorization: %d", status);
 
             return false;
 
@@ -830,7 +830,7 @@ pacmedirectory->create("/ca2core");
          if (status != errAuthorizationSuccess)
          {
 
-            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
+            information("Copy Rights Unsuccessful: %d", status);
 
             return false;
 
@@ -2327,7 +2327,7 @@ pacmedirectory->create("/ca2core");
 
       //   //}
 
-      //   TRACE(strMessage);
+      //   information(strMessage);
 
       //}
 

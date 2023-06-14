@@ -1145,7 +1145,7 @@ throw_todo();
    //   //if(!normalize_control_descriptor_typeinfo(pdescriptor))
    //   //{
 
-   //   //   TRACE("form_window::create_interaction: failed to create control, could not find proper type for allocation");
+   //   //   information("form_window::create_interaction: failed to create control, could not find proper type for allocation");
 
    //   //   return false;
 
@@ -1156,7 +1156,7 @@ throw_todo();
    //   //if(!pinteraction)
    //   //{
 
-   //   //   TRACE("form_window::create_interaction: failed to create control, allocation error");
+   //   //   information("form_window::create_interaction: failed to create control, allocation error");
 
    //   //   return false;
 

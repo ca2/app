@@ -880,7 +880,7 @@ namespace sockets_bsd
                //   SetFlushBeforeClose(false);
                //   SetLost();
                //   SetShutdownStatus(SHUT_WR);
-               //   //TRACE("tcp_socket::recv ssl disconnect(2)");
+               //   //information("tcp_socket::recv ssl disconnect(2)");
 
                //}
                else if (n > 0 && n <= nBufSize)
@@ -944,7 +944,7 @@ namespace sockets_bsd
 //            #else
 //            #endif
 //            {
-//               TRACE("tcp_socket::recv 0 No Error or WOULD BLOCK");
+//               information("tcp_socket::recv 0 No Error or WOULD BLOCK");
 //            }
 //            else
             {
@@ -1684,7 +1684,7 @@ namespace sockets_bsd
       //   if(m_ssl_ctx)
       //   {
 
-      //      TRACE("SSL Context already initialized - closing socket\n");
+      //      information("SSL Context already initialized - closing socket\n");
 
       //      SetCloseAndDelete(true);
 
@@ -2559,7 +2559,7 @@ namespace sockets_bsd
       if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
       {
          fatal() <<"InitializeContext: Couldn't read private key file " << keyfile;
-         //TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
+         //information(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
       }
 
    }
@@ -2775,7 +2775,7 @@ namespace sockets_bsd
       UNREFERENCED_PARAMETER(type);
       UNREFERENCED_PARAMETER(protocol);
 
-      //TRACE("socket::OnOptions()\n");
+      //information("socket::OnOptions()\n");
       
 #ifdef SO_NOSIGPIPE
       

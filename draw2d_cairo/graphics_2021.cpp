@@ -3920,7 +3920,7 @@ namespace draw2d_cairo
 
             const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
+            information("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
          }
 
@@ -4275,7 +4275,7 @@ namespace draw2d_cairo
 
    //            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-   //            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
+   //            information("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
    //        }
 
@@ -4584,7 +4584,7 @@ namespace draw2d_cairo
          if (string_begins(str, unitext("virtual_machine")))
          {
 
-            TRACE("Likely to fail in certain circumstances");
+            information("Likely to fail in certain circumstances");
 
          }
 
@@ -4610,7 +4610,7 @@ namespace draw2d_cairo
 
             const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-            FORMATTED_TRACE("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
+            information("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
 
          }
 
@@ -6206,7 +6206,7 @@ namespace draw2d_cairo
 
          const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-         FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+         information("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
       }
 
@@ -6242,7 +6242,7 @@ namespace draw2d_cairo
 
          const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
-         FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+         information("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
       }
 
@@ -6856,7 +6856,7 @@ namespace draw2d_cairo
          else
          {
 
-            TRACE("Creating font : " << pszFontName);
+            information("Creating font : " << pszFontName);
 
          }
 

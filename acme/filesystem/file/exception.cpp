@@ -428,7 +428,7 @@ namespace file
 //
 //      ::acme::application* papp = ::get_app();
 //
-//      TRACE(strFormat);
+//      information(strFormat);
 //
 //#endif // __DEBUG
 //

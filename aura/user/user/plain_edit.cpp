@@ -585,7 +585,7 @@ namespace user
 
             auto psz = strLine.c_str();
 
-            FORMATTED_TRACE("Line %s", psz);
+            information("Line %s", psz);
 
          }
 

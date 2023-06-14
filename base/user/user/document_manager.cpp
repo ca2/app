@@ -678,7 +678,7 @@ namespace user
    {
    if (m_templateptra.is_empty())
    {
-   TRACE(trace_category_appmsg, 0, "Error: no document templates registered with application.\n");
+   information(trace_category_appmsg, 0, "Error: no document templates registered with application.\n");
    // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
    message_box(nullptr, "Failed to create document");
    return;

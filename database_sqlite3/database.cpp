@@ -392,7 +392,7 @@ namespace sqlite
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
 //         {
-//            FORMATTED_TRACE("Error: %s", err);
+//            information("Error: %s", err);
 //            const ::scoped_string & scopedstrErrorMessage = get_error_message();
 //            if(pszErrorMessage != nullptr)
 //            {
@@ -408,7 +408,7 @@ namespace sqlite
 ////         }
          //if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA temp_store=MEMORY", nullptr, nullptr, &err)) != SQLITE_OK)
          //{
-         //   FORMATTED_TRACE("Error: %s", err);
+         //   information("Error: %s", err);
          //   //throw ::exception(::database::exception(get_error_message()));
          //}
 

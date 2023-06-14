@@ -193,7 +193,7 @@ namespace acme
       ////      else
       ////      {
 
-      ////         FORMATTED_TRACE("Waiting France Exit of %s", typeid(pappItem.m_p).name());
+      ////         information("Waiting France Exit of %s", typeid(pappItem.m_p).name());
 
       ////         j++;
 

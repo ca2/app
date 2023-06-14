@@ -266,8 +266,8 @@
 ////#define log_fatal(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //
 //
-//#define FORMATTED_TRACE(...)                                            information(__VA_ARGS__)
-//#define TRACE(...)                                                      log_information((__VA_ARGS__)
+//#define information(...)                                            information(__VA_ARGS__)
+//#define information(...)                                                      log_information((__VA_ARGS__)
 //
 
 //#define LOG_INFORMATION    log_information()()

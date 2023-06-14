@@ -307,7 +307,7 @@ namespace networking
 //            l = item.m_ipaddr;
 //         }
 //         //         ::time tick2= ::time::now();
-//         /*FORMATTED_TRACE("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//         /*information("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //         (u32)((::u8*)&pitem->m_ipaddr)[0],
 //         (u32)((::u8*)&pitem->m_ipaddr)[1],
 //         (u32)((::u8*)&pitem->m_ipaddr)[2],
@@ -425,7 +425,7 @@ namespace networking
 //      }
 //
 //      //      ::time tick2= ::time::now();
-//      //      FORMATTED_TRACE("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//      //      information("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //         //       (u32)((::u8*)&pitem->m_ipaddr)[0],
 //         //     (u32)((::u8*)&pitem->m_ipaddr)[1],
 //         //   (u32)((::u8*)&pitem->m_ipaddr)[2],

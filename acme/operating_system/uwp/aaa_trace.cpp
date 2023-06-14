@@ -59,7 +59,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
          // format names.
       }
 
-      TRACE(
+      information(
       "%s: Advise item='%s', Format='%s', Ack=%d, Defer Update= %d\n",
       lpszPrefix, szItem, szFormat, lpAdvise->fAckReq,
       lpAdvise->fDeferUpd);

@@ -397,7 +397,7 @@ namespace sockets
 
    void tcp_socket::OnResolved(int atom, ::networking::address * addr)
    {
-      FORMATTED_TRACE("tcp_socket::OnResolved atom %d addr %x port %d\n", atom, addr.get_display_number(), addr.get_service_number());
+      information("tcp_socket::OnResolved atom %d addr %x port %d\n", atom, addr.get_display_number(), addr.get_service_number());
       if (atom == m_resolver_id)
       {
          if(open(addr))
@@ -511,7 +511,7 @@ namespace sockets
       //{
       //   if(IsCloseAndDelete())
       //   {
-      //      TRACE("Close and delete set");
+      //      information("Close and delete set");
       //   }
       //   else if(asyncStatus == ::winrt::Windows::Foundation::AsyncStatus::Completed)
       //   {
@@ -946,7 +946,7 @@ namespace sockets
             {
                if (m_ssl_ctx)
                {
-         TRACE("SSL Context already initialized - closing socket\n");
+         information("SSL Context already initialized - closing socket\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -958,7 +958,7 @@ namespace sockets
       /*       m_ssl = SSL_new(m_ssl_ctx);
              if (!m_ssl)
              {
-       TRACE(" m_ssl is nullptr\n");
+       information(" m_ssl is nullptr\n");
                 SetCloseAndDelete(true);
                 return;
              }
@@ -966,7 +966,7 @@ namespace sockets
              m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
              if (!m_sbio)
              {
-       TRACE(" m_sbio is nullptr\n");
+       information(" m_sbio is nullptr\n");
                 SetCloseAndDelete(true);
                 return;
              }
@@ -989,7 +989,7 @@ namespace sockets
       /*      {
                if (m_ssl_ctx)
                {
-         TRACE("SSL Context already initialized - closing socket\n");
+         information("SSL Context already initialized - closing socket\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1001,7 +1001,7 @@ namespace sockets
                m_ssl = SSL_new(m_ssl_ctx);
                if (!m_ssl)
                {
-         TRACE(" m_ssl is nullptr\n");
+         information(" m_ssl is nullptr\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1009,7 +1009,7 @@ namespace sockets
                m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
                if (!m_sbio)
                {
-         TRACE(" m_sbio is nullptr\n");
+         information(" m_sbio is nullptr\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1103,7 +1103,7 @@ namespace sockets
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_connect", -1, "Connection failed");
-         FORMATTED_TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
+         information("SSL_connect() failed - closing socket, return code: %d\n",r);
                      SetSSLNegotiate(false);
                      SetCloseAndDelete(true);
                      OnSSLConnectFailed();
@@ -1145,7 +1145,7 @@ namespace sockets
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_accept", -1, "Connection failed");
-         FORMATTED_TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
+         information("SSL_accept() failed - closing socket, return code: %d\n",r);
                      SetSSLNegotiate(false);
                      SetCloseAndDelete(true);
                      OnSSLAcceptFailed();
@@ -1303,7 +1303,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(type);
       UNREFERENCED_PARAMETER(protocol);
       UNREFERENCED_PARAMETER(s);
-      //TRACE("socket::OnOptions()\n");
+      //information("socket::OnOptions()\n");
 #ifdef SO_NOSIGPIPE
       _SetSoNosigpipe(s, true);
 #endif

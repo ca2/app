@@ -2074,7 +2074,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    {
       CScriptVarLink *funcVar = parseFunctionDefinition();
       if (funcVar->name != TINYJS_TEMP_NAME)
-         TRACE("Functions not defined at statement-level are not meant to have a name");
+         information("Functions not defined at statement-level are not meant to have a name");
       return funcVar;
    }
    if (l->tk==LEX_R_NEW)
@@ -2379,7 +2379,7 @@ CScriptVarLink *tinyjs::axis(bool &execute)
             lhs = realLhs;
          }
          else
-            TRACE("Trying to assign to an un-named type\n");
+            information("Trying to assign to an un-named type\n");
       }
 
       i32 op = l->tk;
@@ -2620,7 +2620,7 @@ void tinyjs::statement(bool &execute)
          if (resultVar)
             resultVar->replaceWith(result);
          else
-            TRACE("RETURN statement, but not in a function.\n");
+            information("RETURN statement, but not in a function.\n");
          execute = false;
       }
       CLEAN(result);
@@ -2632,7 +2632,7 @@ void tinyjs::statement(bool &execute)
       if (execute)
       {
          if (funcVar->name == TINYJS_TEMP_NAME)
-            TRACE("Functions defined at statement-level are meant to have a name\n");
+            information("Functions defined at statement-level are meant to have a name\n");
          else
             scopes.last()->addChildNoDup(funcVar->name, funcVar->payload);
       }

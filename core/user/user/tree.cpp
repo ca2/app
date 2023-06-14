@@ -481,7 +481,7 @@ namespace user
 
       }
 
-      //FORMATTED_TRACE("(1)TreeItemElapsed %d", ::time.elapsed());
+      //information("(1)TreeItemElapsed %d", ::time.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 

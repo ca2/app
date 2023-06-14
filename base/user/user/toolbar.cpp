@@ -1123,11 +1123,11 @@ namespace user
       //
       //               GetToolBarCtrl().GetButtonInfo(uId, &buttona);
       //
-      //               FORMATTED_TRACE("BUTTON.idCommand = %d\n", buttona.idCommand);
+      //               information("BUTTON.idCommand = %d\n", buttona.idCommand);
       //
-      //               FORMATTED_TRACE("BUTTON.fsStyle = %d\n", buttona.fsStyle);
+      //               information("BUTTON.fsStyle = %d\n", buttona.fsStyle);
       //
-      //               FORMATTED_TRACE("BUTTON.cx() = %d\n", buttona.cx() );
+      //               information("BUTTON.cx() = %d\n", buttona.cx() );
       //
       //            }
       //

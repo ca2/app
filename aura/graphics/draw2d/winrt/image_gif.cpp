@@ -52,7 +52,7 @@ CLASS_DECL_AURA bool windows_load_image_from_file(::image * pimage, ::winrt::Win
       return false;
    }
    //::u32 dw2 =::get_tick();
-   //FORMATTED_TRACE("InPath %d ms\n",dw2 - dw1);
+   //information("InPath %d ms\n",dw2 - dw1);
    //dwLast = dw2;
 
    //memfile.Truncate(0);
@@ -114,7 +114,7 @@ CLASS_DECL_AURA bool node_save_image(const ::image * pimage, ::winrt::Windows::S
       return false;
    }
    //::u32 dw2 =::get_tick();
-   //FORMATTED_TRACE("InPath %d ms\n",dw2 - dw1);
+   //information("InPath %d ms\n",dw2 - dw1);
    //dwLast = dw2;
 
    //memfile.Truncate(0);

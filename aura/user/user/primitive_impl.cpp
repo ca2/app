@@ -2058,7 +2058,7 @@ namespace user
 
       start_destroying_window();
 
-      //FORMATTED_TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
+      //information("destroy_impl_only DestroyWindow %d", bOk != false);
 
       //return bOk;
 

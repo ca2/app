@@ -1166,7 +1166,7 @@ bool thread::process_thread_message(::message::message * pmessage)
 //
 //      process_window_procedure_exception(pe, pusermessage);
 //
-//      TRACE("application::process_window_message : ::extended::status processing window message (const ::exception & )");
+//      information("application::process_window_message : ::extended::status processing window message (const ::exception & )");
 //
 //      if (!handle_exception(pe))
 //      {
@@ -1181,7 +1181,7 @@ bool thread::process_thread_message(::message::message * pmessage)
 //   catch (...)
 //   {
 //
-//      TRACE("application::process_window_message : ::extended::status processing window message (...)");
+//      information("application::process_window_message : ::extended::status processing window message (...)");
 //
 //   }
 //
@@ -3226,7 +3226,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 //      else
 //      {
 //
-//         TRACE("thread::set_os_data failed to duplicate handle");
+//         information("thread::set_os_data failed to duplicate handle");
 //
 //      }
 //
@@ -3644,7 +3644,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (strWaiting.has_char())
 ////            {
 ////
-////               FORMATTED_TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
+////               information("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 ////
 ////            }
 ////

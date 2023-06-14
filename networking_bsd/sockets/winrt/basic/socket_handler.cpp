@@ -201,7 +201,7 @@ namespace sockets
 
    void socket_handler::set(SOCKET s,bool bRead,bool bWrite,bool bException)
    {
-      //FORMATTED_TRACE("Set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
+      //information("Set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
       if (s >= 0)
       {
          /*         if (bRead)
@@ -456,7 +456,7 @@ namespace sockets
       }
       add(resolv);
       m_resolve_q[p] = true;
-      FORMATTED_TRACE(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
+      information(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
       return resolv -> GetId();
    }
 
@@ -678,8 +678,8 @@ namespace sockets
          }
          if (!found)
          {
-            //FORMATTED_TRACE("CheckList failed for \"%s\": fd %d\n", listname, s);
-            FORMATTED_TRACE("CheckList failed for \"%s\"\n", listname);
+            //information("CheckList failed for \"%s\": fd %d\n", listname, s);
+            information("CheckList failed for \"%s\"\n", listname);
          }
       }
    }
@@ -689,7 +689,7 @@ namespace sockets
    {
       if (s == INVALID_SOCKET)
       {
-         TRACE("AddList:  invalid_socket\n");
+         information("AddList:  invalid_socket\n");
          return;
       }
       socket_id_list& ref =
@@ -700,7 +700,7 @@ namespace sockets
       (which_one == LIST_CLOSE) ? m_fds_close : m_fds_close;
       if (add)
       {
-         /*         FORMATTED_TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
+         /*         information("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
                      (which_one == LIST_DETACH) ? "detach" :
                      (which_one == LIST_TIMEOUT) ? "Timeout" :
                      (which_one == LIST_RETRY) ? "Retry" :
@@ -714,7 +714,7 @@ namespace sockets
       }
       // erase
       ref.erase(s);
-      //TRACE("/AddList\n");
+      //information("/AddList\n");
    }
 
 

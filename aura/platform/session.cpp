@@ -1756,7 +1756,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create ifs");
+      //      information("Failed to create ifs");
 
       //   }
 
@@ -1772,7 +1772,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create remotefs");
+      //      information("Failed to create remotefs");
 
       //   }
 
@@ -1798,7 +1798,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create fsdata");
+      //      information("Failed to create fsdata");
 
       //   }
 
@@ -2356,13 +2356,13 @@ namespace aura
 
       //if(m_pdatabase == nullptr)
       //{
-      //   TRACE("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   TRACE("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
       //   return false;
       //}
 

@@ -5366,7 +5366,7 @@ namespace user
 
                //m_rectangleUpdateBuffer = r;
 
-               //FORMATTED_TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+               //information("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
                if (!m_pgraphics)
                {

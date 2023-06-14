@@ -130,7 +130,7 @@ bool simple_menu_bar::pre_create_window(::user::system * pusersystem)
     //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 3, (LPARAM) this);
     //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 4, pnmtb->iItem);
 
-    TRACE("MenuBarV033::OnDropDown simple_menu_bar::_track_popup_menu % d\n", pnmtb->iItem);
+    information("MenuBarV033::OnDropDown simple_menu_bar::_track_popup_menu % d\n", pnmtb->iItem);
 
     _track_popup_menu(pnmtb->iItem);
 
@@ -281,7 +281,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //
-//         FORMATTED_TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x(), point.y());
+//         information("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x(), point.y());
 //
 //         //::point_i32 point(xPos, yPos);
 //
@@ -310,7 +310,7 @@ bool simple_menu_bar::_track_popup_menu(const ::point_i32 & point)
 
    //   if (m_itemHitTest.is_valid_item(m_iTopMenuCount) && item != m_iTracking)
    //   {
-   //      TRACE("simple_menu_bar::OnMouseMove simple_menu_bar::_track_popup_menu % d\n", item.m_iItem);
+   //      information("simple_menu_bar::OnMouseMove simple_menu_bar::_track_popup_menu % d\n", item.m_iItem);
    //      //            SendMessage(e_message_key_down, VK_ESCAPE);
    //      //            if(m_iTracking >= 0)
    //      //          {

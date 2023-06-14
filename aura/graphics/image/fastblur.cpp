@@ -421,10 +421,10 @@ auto tick2 = ::time::now();
          output_debug_string("| \n");
 
          ::aura::application * papp = m_p->get_app();
-         TRACE("/--------------------------------");
-         TRACE("| fastblur::blur");
-         TRACE("| ");
-         FORMATTED_TRACE("| do_fastblur = %d ms",dw3);
+         information("/--------------------------------");
+         information("| fastblur::blur");
+         information("| ");
+         information("| do_fastblur = %d ms",dw3);
       }
 
       {
@@ -631,10 +631,10 @@ auto tick2 = ::time::now();
       output_debug_string("| \n");
 
       ::aura::application * papp = m_p->get_app();
-      TRACE("/--------------------------------");
-      TRACE("| fastblur::blur");
-      TRACE("| ");
-      FORMATTED_TRACE("| do_fastblur = %d ms",dw3);
+      information("/--------------------------------");
+      information("| fastblur::blur");
+      information("| ");
+      information("| do_fastblur = %d ms",dw3);
       */
 #endif
 

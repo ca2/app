@@ -1151,7 +1151,7 @@ namespace ios
          if(pusermessage->m_atom == e_message_left_button_down)
          {
 
-            //            TRACE("e_message_left_button_down");
+            //            information("e_message_left_button_down");
 
          }
 
@@ -2179,7 +2179,7 @@ namespace ios
       if(m_puserinteraction->is_message_only_window())
       {
 
-         TRACE("good : opt out!");
+         information("good : opt out!");
 
       }
       else
@@ -2429,7 +2429,7 @@ namespace ios
       //      if (hDC == nullptr)
       //      {
       //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
-      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+      //         //         information(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
       //         return false;
       //      }
       //

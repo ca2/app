@@ -402,7 +402,7 @@ namespace introjection
 //
 //      ::payload payload = psystem->process().get_output(strCommandLine);
 //
-//      FORMATTED_TRACE("%s", payload.string().c_str());
+//      information("%s", payload.string().c_str());
 //
 //#endif
 //
@@ -433,7 +433,7 @@ namespace introjection
 //      bResult = setenv("PATH",str,true);
 //#endif
 //
-//      TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
+//      information("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
 //
 //
 //   }
@@ -502,7 +502,7 @@ namespace introjection
 //      for (auto & pproperty : setEnvironment)
 //      {
 //
-//         FORMATTED_TRACE("%s : %s", pproperty->m_atom.to_string().c_str(), pproperty->string().c_str());
+//         information("%s : %s", pproperty->m_atom.to_string().c_str(), pproperty->string().c_str());
 //
 //         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
 //

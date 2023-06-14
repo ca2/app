@@ -1386,7 +1386,7 @@ public:
       create_host();
       //{
 
-      //   TRACE("created trw");
+      //   information("created trw");
 
       //}
 

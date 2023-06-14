@@ -1112,13 +1112,13 @@ namespace axis
 
       //if(m_pdatabase == nullptr)
       //{
-      //   TRACE("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   TRACE("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
       //   return false;
       //}
 

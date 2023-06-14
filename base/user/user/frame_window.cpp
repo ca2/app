@@ -928,7 +928,7 @@ namespace user
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
    //   {
 
-   //      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
+   //      information(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
 
    //      return false;
 
@@ -1970,7 +1970,7 @@ namespace user
       else
       {
       // not found
-      TRACE(trace_category_appmsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
+      information(trace_category_appmsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
       }
       rMessage.ReleaseBuffer();*/
    }
@@ -2269,8 +2269,8 @@ namespace user
 
          //         ::u32 dwTime2= ::time::now();
 
-         //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //FORMATTED_TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //information("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 

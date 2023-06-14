@@ -605,7 +605,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 ////#define log_fatal(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 ////
-////#define TRACE(...) log_information((__VA_ARGS__)
+////#define information(...) log_information((__VA_ARGS__)
 ////
 ////
 ////namespace aura

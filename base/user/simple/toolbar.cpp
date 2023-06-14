@@ -2410,9 +2410,9 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //    | TBIF_SIZE;
             // ::u32 uID = GetItemID(i);
             // GetToolBarCtrl().GetButtonInfo(uId, &buttona);
-            // FORMATTED_TRACE("BUTTON.m_atom = %d\n", buttona.m_atom  );
-            // FORMATTED_TRACE("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
-            // FORMATTED_TRACE("BUTTON.cx() = %d\n", buttona.cx() );
+            // information("BUTTON.m_atom = %d\n", buttona.m_atom  );
+            // information("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
+            // information("BUTTON.cx() = %d\n", buttona.cx() );
 
          }
 

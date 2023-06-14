@@ -4153,7 +4153,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                if (!xim)
                {
 
-                  TRACE("cannot Open Input Manager: Try default.\n");
+                  information("cannot Open Input Manager: Try default.\n");
 
                   XSetLocaleModifiers("@im=");
 
@@ -4162,7 +4162,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if (!xim)
                   {
 
-                     TRACE("Couldn't Open Input Manager");
+                     information("Couldn't Open Input Manager");
 
                   }
 
@@ -4191,7 +4191,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      for (pstyle = pximstyles->supported_styles; i < pximstyles->count_styles; i++, pstyle++)
                      {
 
-                        TRACE("input style : 0x%X\n", *pstyle);
+                        information("input style : 0x%X\n", *pstyle);
 
                         if ((*pstyle & XIMStatusNone || *pstyle & XIMStatusNothing) && (*pstyle & XIMPreeditNone || *pstyle & XIMPreeditNothing))
                         {
@@ -4243,7 +4243,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                else
                {
 
-                  TRACE("cannot create Input pcontext->m_papexcontext->\n");
+                  information("cannot create Input pcontext->m_papexcontext->\n");
 
                }
 

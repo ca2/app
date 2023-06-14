@@ -44,9 +44,9 @@
 #endif
 #endif
 
-#ifndef information
-#define information printf
-#endif // information
+//#ifndef information
+//#define information printf
+//#endif // information
 
 
 const i32 TINYJS_LOOP_MAX_ITERATIONS = 8192;

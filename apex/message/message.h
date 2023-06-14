@@ -82,6 +82,9 @@ namespace message
       oswindow get_oswindow() const { return m_oswindow; }
 
 
+      message & operator = (const message & message);
+
+
    };
 
 

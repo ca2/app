@@ -563,47 +563,47 @@ inline bool operator !=(const ::pointer<T1>& t1, const ::pointer<T2> t2)
 //}
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p)
-{
+//template < typename TYPE >
+//inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p)
+//{
+//
+//   if (!p)
+//   {
+//
+//      return p;
+//
+//   }
+//
+//   auto pelement = p->clone();
+//
+//   if(__pointer_is_null(pelement))
+//   {
+//
+//      throw_exception(error_failed);
+//
+//   }
+//
+//   auto pNew = dynamic_cast < TYPE * > (pelement);
+//
+//   if(__pointer_is_null(pNew))
+//   {
+//
+//      throw_exception(error_wrong_type);
+//
+//   }
+//
+//   return ::pointer_transfer(pNew);
+//
+//}
 
-   if (!p)
-   {
 
-      return p;
-
-   }
-
-   auto pelement = p->clone();
-
-   if(__pointer_is_null(pelement))
-   {
-
-      throw_exception(error_failed);
-
-   }
-
-   auto pNew = dynamic_cast < TYPE * > (pelement);
-
-   if(__pointer_is_null(pNew))
-   {
-
-      throw_exception(error_wrong_type);
-
-   }
-
-   return ::pointer_transfer(pNew);
-
-}
-
-
-template < typename TYPE >
-inline ::pointer<TYPE>& clone(::pointer<TYPE> & p)
-{
-
-   return p = ::clone((const ::pointer<TYPE>&) p);
-
-}
+//template < typename TYPE >
+//inline ::pointer<TYPE>& clone(::pointer<TYPE> & p)
+//{
+//
+//   return p = ::clone((const ::pointer<TYPE>&) p);
+//
+//}
 
 
 template < typename TYPE >

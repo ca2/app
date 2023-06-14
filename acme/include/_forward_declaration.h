@@ -341,7 +341,7 @@ struct erase_extent_struct<T[N]> { using type = T; };
 
 
 template < typename T >
-using non_extent = typename erase_pointer_struct < T >::type;
+using non_extent = typename erase_extent_struct < T >::type;
 
 
 

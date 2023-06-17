@@ -199,9 +199,9 @@ namespace acme
 
       ::set_task(psystem);
 
-      psystem->system_construct(this);
-
       psystem->initialize_system();
+
+      psystem->system_construct(this);
 
       //psystem->acmeapplication() = pacmeapplication;
 

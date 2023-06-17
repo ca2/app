@@ -727,7 +727,7 @@ namespace user
    void box::display_full_screen(::index iMonitor, ::e_activation eactivation)
    {
 
-      best_monitor(nullptr, m_windowrectangle.m_rectangleNormal, true, e_activation_default, e_zorder_top);
+      best_monitor(nullptr, const_layout().sketch().parent_raw_rectangle(), true, e_activation_default, e_zorder_top);
 
    }
 

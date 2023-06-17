@@ -447,33 +447,33 @@ public:
 
 
 
-   template < class ARRAY >
-   bool erase_key_array(ARRAY a)
-   {
+   //template < class ARRAY >
+   //bool erase_key_array(ARRAY a)
+   //{
 
-      bool bRemoved = false;
+   //   bool bRemoved = false;
 
-      for(index i = 0; i < a.get_count(); i++)
-      {
+   //   for(index i = 0; i < a.get_count(); i++)
+   //   {
 
-         bRemoved |= erase_key(a[i]);
+   //      bRemoved |= erase_item(a[i]);
 
-      }
+   //   }
 
-      return bRemoved;
+   //   return bRemoved;
 
-   }
+   //}
 
-   template < class ARRAY >
-   ::count erase_node_array(ARRAY a)
+   template < primitive_container CONTAINER >
+   ::count erase_nodes(CONTAINER container)
    {
 
       ::count countRemoved = 0;
 
-      for(index i = 0; i < a.get_count(); i++)
+      for(auto & item : container)
       {
 
-         if(erase_node(a[i]))
+         if(this->erase(item))
          {
 
             countRemoved++;
@@ -561,6 +561,33 @@ public:
 
    }
 
+
+   template < primitive_container CONTAINER >
+   void add_items(const CONTAINER& container)
+   {
+
+      for (auto& item : container)
+      {
+
+         this->set_at(item);
+
+      }
+
+   }
+
+
+   template < primitive_container CONTAINER >
+   void erase_items(const CONTAINER& container)
+   {
+
+      for (auto& item : container)
+      {
+
+         this->erase_item(item);
+
+      }
+
+   }
 
 };
 

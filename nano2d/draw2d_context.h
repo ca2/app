@@ -158,6 +158,8 @@ namespace nano2d
       void arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir) override;
 
 
+      void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width);
+
       int create_image(const ::scoped_string & scopedstrFilename, int imageFlags) override;
       int create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan) override;
       void image_size(int image, int * w, int * h) override;

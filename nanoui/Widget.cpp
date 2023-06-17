@@ -303,6 +303,30 @@ namespace nanoui
    }
 
 
+   bool Widget::has_ascendant(Widget* pwidgetAscendantCandidate) const
+   {
+
+      auto pwidgetAscendant = this->parent();
+
+      while (pwidgetAscendant != nullptr)
+      {
+
+         if (pwidgetAscendantCandidate == pwidgetAscendant)
+         {
+
+            return true;
+
+         }
+
+         pwidgetAscendant = pwidgetAscendant->parent();
+
+      }
+
+      return false;
+
+   }
+
+
    const Widget* Widget::find_widget(const point_i32& p) const
    {
 

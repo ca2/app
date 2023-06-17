@@ -805,6 +805,19 @@ namespace draw2d
    }
 
 
+   void graphics::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width)
+   {
+
+      if (m_pimage)
+      {
+
+         m_pimage->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
+
+      }
+
+   }
+
+
    void graphics::draw_rectangle(const ::rectangle_f64 & rectangle)
    {
 

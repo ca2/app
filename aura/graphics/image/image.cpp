@@ -4804,21 +4804,19 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
    if (width() == 0)
       return;
    map();
-   x1 %= width();
-   x2 %= width();
-   if (x2 < 0)
-      x2 += width();
    if (x1 < 0)
-      x1 += width();
+      x1 = 0;
+   if (x2 >= width() - 1)
+      x2 = width() - 1;
    image32_t u32ImageColor(color, color_indexes());
 
 #ifdef __APPLE__
 
-   image32_t* pdata = (image32_t*)((::u8 *) data() + (height() - y - 1) * (m_iScan));
+   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 + (height() - y - 1) * (m_iScan));
 
 #else
 
-   image32_t* pdata = (image32_t*)((::u8 *) data() + y * (m_iScan));
+   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 * sizeof(image32_t) + y * (m_iScan));
 
 #endif
 
@@ -4832,6 +4830,86 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
    }
 
    //return true;
+
+}
+
+
+void image::vertical_line(i32 x, ::color::color color, i32 y1, i32 y2)
+{
+   if (height() == 0)
+      return;
+   map();
+   if (y1 < 0)
+      y1 = 0;
+   if (y2 >= height() - 1)
+      y2 = height() - 1;
+   //y1 %= height();
+   //y2 %= height();
+   //if (y2 < 0)
+     // y2 += height();
+   //if (x1 < 0)
+     // x1 += width();
+   image32_t u32ImageColor(color, color_indexes());
+
+   image32_t* pdata = (image32_t*)((::u8*)data() + x *sizeof(image32_t) + (y1 * m_iScan));
+
+   for (i32 y = y1; y <= y2; y++)
+   {
+
+      *pdata = u32ImageColor;
+
+      ((::u8*&)pdata)+=m_iScan;
+
+   }
+
+   //return true;
+
+}
+
+
+void image::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color)
+{
+
+   horizontal_line(y, color, x, x + w);
+
+   vertical_line(x, color, y + 1, y + h - 1);
+
+   horizontal_line(y + h, color, x, x + w);
+
+   vertical_line(x + w, color, y + 1, y + h - 1);
+
+}
+
+void image::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width)
+{
+
+   if (width <= 0)
+   {
+
+      return;
+
+   }
+
+   while (true)
+   {
+
+      frame_pixel_perfect_rectangle(x, y, w, h, color);
+
+      width--;
+
+      if (width <= 0)
+      {
+
+         break;
+
+      }
+
+      x++;
+      y++;
+      w -= 2;
+      h -= 2;
+
+   }
 
 }
 

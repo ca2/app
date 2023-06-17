@@ -652,6 +652,8 @@ namespace draw2d
 
       virtual void rectangle(const ::rectangle_f64 & rectangle);
 
+      virtual void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width);
+
       virtual void draw_rectangle(const ::rectangle_f64 & rectangle);
       virtual void draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen);
 

@@ -837,6 +837,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
     <ClInclude Include="platform\trace_statement.h" />
+    <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
     <ClInclude Include="primitive\mathematics\numeric.h" />
     <ClInclude Include="_win32_gdi.h" />

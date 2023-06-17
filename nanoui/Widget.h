@@ -135,6 +135,33 @@ namespace nanoui
       /// Set the parent pwidget
       void set_parent(Widget* parent) { m_pwidgetParent = parent; }
 
+      bool has_ascendant(Widget* pwidgetAscendantCandidate) const;
+
+      template < typename TYPE >
+      bool has_ascendant_of_type() const
+      {
+
+         auto pwidgetAscendant = this->parent();
+
+         while (pwidgetAscendant != nullptr)
+         {
+
+            if (dynamic_cast < TYPE * >((Widget *)pwidgetAscendant) != nullptr)
+            {
+
+               return true;
+
+            }
+
+            pwidgetAscendant = pwidgetAscendant->parent();
+
+         }
+
+         return false;
+
+      }
+
+
       /// Return the used \::pointer Layout generator
       Layout* layout() { return m_playout; }
       /// Return the used \::pointer Layout generator

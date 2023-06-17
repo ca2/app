@@ -2103,6 +2103,12 @@ void TransformSkewX(float* t, float a)
 	}
 
 
+	void context::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width)
+	{
+
+
+	}
+
 	void context::rounded_rectangle(float x, float y, float w, float h, float r)
 	{
 	//	context::RoundedRectVarying)(ctx, x, y, w, h, r, r, r, r);

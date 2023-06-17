@@ -390,8 +390,8 @@ public:
    rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }
 
-   template < primitive_number NUMBER >
-   rectangle_type & operator*=(NUMBER n) noexcept
+   template < primitive_number NUMBER2 >
+   rectangle_type & operator*=(NUMBER2 n) noexcept
    {
       
       this->left = (UNIT_TYPE) (this->left * n);

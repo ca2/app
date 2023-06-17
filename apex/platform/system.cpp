@@ -5244,7 +5244,7 @@ string get_bundle_app_library_name();
    ::string system::fetch_public_internet_domain_extension_list_text()
    {
 
-      throw interface_only();
+      //throw interface_only();
 
       ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
 

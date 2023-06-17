@@ -894,8 +894,8 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 
    cast_copy(rectangle1.left    , rectangle2.origin.x);
    cast_copy(rectangle1.top     , rectangle2.origin.y);
-   cast_copy(rectangle1.right   , rectangle2.origin.x - rectangle2.size.width);
-   cast_copy(rectangle1.bottom  , rectangle2.origin.y - rectangle2.size.height);
+   cast_copy(rectangle1.right   , rectangle2.origin.x + rectangle2.size.width);
+   cast_copy(rectangle1.bottom  , rectangle2.origin.y + rectangle2.size.height);
 
 }
 

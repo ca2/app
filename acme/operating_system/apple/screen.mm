@@ -15,7 +15,7 @@
 #import <Foundation/Foundation.h>
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 CGRect g_rectScreen;

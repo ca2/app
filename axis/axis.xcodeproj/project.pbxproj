@@ -54,6 +54,7 @@
 		9A1626D326F0041A003D9CB9 /* _networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626AB26F0041A003D9CB9 /* _networking.h */; };
 		9A1626DC26F0041A003D9CB9 /* email_department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B526F0041A003D9CB9 /* email_department.h */; };
 		9A1626DD26F0041A003D9CB9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B626F0041A003D9CB9 /* _.h */; };
+		9A268D942A3D86DE00AE8FE0 /* libunac.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA652752A33458D0082D8B3 /* libunac.dylib */; };
 		9A47A7E228CBBF1D0002CAE0 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7E028CBBF1D0002CAE0 /* composite.cpp */; };
 		9A47A7E328CBBF1D0002CAE0 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7E028CBBF1D0002CAE0 /* composite.cpp */; };
 		9A5ECCD728CCBE040084D354 /* form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBB28CCBE040084D354 /* form.cpp */; };
@@ -967,6 +968,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A268D942A3D86DE00AE8FE0 /* libunac.dylib in Frameworks */,
 				9ADB6CB128D1397200608B22 /* libacme.dylib in Frameworks */,
 				9AE64963252A641500BED5B8 /* libsqlite3.tbd in Frameworks */,
 				9AE64955252A63D100BED5B8 /* libbz2.tbd in Frameworks */,
@@ -2473,6 +2475,7 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/port/include";
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
@@ -2577,6 +2580,7 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/port/include";
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",

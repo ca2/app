@@ -18,6 +18,7 @@
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "acme/platform/scoped_restore.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
@@ -125,6 +126,8 @@ namespace user
       m_bUpdateGraphics = false;
       m_bPendingRedraw = false;
       m_bTransparentMouseEvents = false;
+      
+      m_bDoingGraphics = false;
 
 #if defined(APPLE_IOS) || defined(ANDROID)
 
@@ -3929,36 +3932,94 @@ namespace user
    }
 
 
-   void interaction_impl::set_need_redraw(const ::rectangle_i32& rectangleHostNeedRedraw, bool bAscendants)
+   void interaction_impl::set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw, function<void()> function, bool bAscendants)
    {
 
       _synchronous_lock synchronouslock(synchronization());
 
-      if (rectangleHostNeedRedraw.is_empty())
+      if (rectangleaHostNeedRedraw.is_empty())
       {
 
          return;
 
       }
-
-      for (auto& rectangle : m_rectangleaNeedRedraw)
+      
+      for(auto & predraw : m_redrawa)
       {
-
-         if (rectangle.contains(rectangleHostNeedRedraw))
+         
+         bool bContainsAll = true;
+         
+         for(auto& rectangle : rectangleaHostNeedRedraw)
+         {
+            
+            bool bContainsAny = false;
+            
+            for(auto& rectangleRedraw : predraw->m_rectanglea)
+            {
+               
+               if(rectangleRedraw.contains(rectangle))
+               {
+                  
+                  bContainsAny = true;
+                  
+                  break;
+                  
+               }
+               
+            }
+            
+            if(!bContainsAny)
+            {
+               
+               bContainsAll = false;
+               
+               break;
+               
+            }
+            
+         }
+         
+         if(bContainsAll)
          {
 
-            return;
-
+            if(function)
+            {
+             
+               predraw->m_functiona.add(function);
+               
+            }
+            
+            return true;
+            
          }
 
       }
+      
+      if(m_bDoingGraphics)
+      {
+       
+         output_debug_string("set_need_redraw on doing graphics");
+         
+      }
+      
+      auto predraw = __new(redraw);
+      
+      predraw->m_rectanglea.append(rectangleaHostNeedRedraw);
+      
+      if(function)
+      {
+         
+         predraw->m_functiona.add(function);
+         
+      }
 
-      m_rectangleaNeedRedraw.add(rectangleHostNeedRedraw);
+      m_redrawa.add(predraw);
 
    }
 
 
-   bool interaction_impl::needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw)
+   bool interaction_impl::needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics
+)
    {
 
       _synchronous_lock synchronouslock(synchronization());
@@ -3970,17 +4031,17 @@ namespace user
 
       }
 
-      if (m_rectangleaNeedRedraw.is_empty())
+      if (pgraphics->m_rectangleaNeedRedraw.is_empty())
       {
 
          return true;
 
       }
 
-      for (auto& rectangle : m_rectangleaNeedRedraw)
+      for (auto& rectangleRedraw : pgraphics->m_rectangleaNeedRedraw)
       {
-
-         if (rectangle.intersects(rectangleHostNeedsToDraw))
+         
+         if (rectangleRedraw.intersects(rectangleHostNeedsToDraw))
          {
 
             return true;
@@ -4978,6 +5039,16 @@ namespace user
          return;
 
       }
+      
+      
+      m_bDoingGraphics = true;
+      
+      at_end_of_scope
+      {
+         
+         m_bDoingGraphics = false;
+         
+      };
 
 #if TIME_REPORTING
 
@@ -5282,8 +5353,34 @@ namespace user
             {
 
                _synchronous_lock synchronouslock(synchronization());
+               
+               pgraphics->m_rectangleaNeedRedraw.clear();
 
-               pgraphics->m_rectangleaNeedRedraw = ::transfer(m_rectangleaNeedRedraw);
+               for(auto & predraw : m_redrawa)
+               {
+                
+                  pgraphics->m_rectangleaNeedRedraw.append(predraw->m_rectanglea);
+                  
+                  if(predraw->m_functiona.has_element())
+                  {
+                     
+                     for(auto & function : predraw->m_functiona)
+                     {
+                        
+                        if(function)
+                        {
+                           
+                           function();
+                           
+                        }
+                        
+                     }
+                     
+                  }
+                  
+               }
+               
+               m_redrawa.clear();
 
             }
 
@@ -5349,7 +5446,7 @@ namespace user
 
                   m_puserinteraction->do_graphics(pgraphics);
 
-                  if (!bDraw && m_rectangleaNeedRedraw.has_element())
+                  if (!bDraw && m_redrawa.has_element())
                   {
 
                      synchronouslock.unlock();
@@ -5444,10 +5541,10 @@ namespace user
 
          //   }
 
-         if (m_rectangleaNeedRedraw.has_element())
+         if (m_redrawa.has_element())
          {
 
-            auto iRequestsDuringDrawing = m_rectangleaNeedRedraw.size();
+            auto iRequestsDuringDrawing = m_redrawa.size();
 
             information() << iRequestsDuringDrawing << " redraw requests while drawing.";
 

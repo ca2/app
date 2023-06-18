@@ -682,6 +682,7 @@
 		9A2489C82453417E00F23D28 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9A2489C92453417E00F23D28 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
 		9A2489CF2453417E00F23D28 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A268DA52A3E3E4700AE8FE0 /* clip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clip.h; sourceTree = "<group>"; };
 		9A281A2C252428BA009FA9CB /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aqua.xcodeproj; path = ../aqua/aqua.xcodeproj; sourceTree = "<group>"; };
 		9A29773329E87CD800502330 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A2A52FC1F1FEDFD001AB0F8 /* draw2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d.h; sourceTree = "<group>"; };
@@ -1247,6 +1248,7 @@
 				9A37641E2409BEFC002D15D3 /* brush.h */,
 				9A37640D2409BEF9002D15D3 /* buffered_graphics.cpp */,
 				9A3764152409BEFB002D15D3 /* buffered_graphics.h */,
+				9A268DA52A3E3E4700AE8FE0 /* clip.h */,
 				9AC2CE932653452D00CC8096 /* color_filter.cpp */,
 				9AC2CE8A2653452900CC8096 /* color_filter.h */,
 				9A3764252409BEFD002D15D3 /* color_matrix.cpp */,

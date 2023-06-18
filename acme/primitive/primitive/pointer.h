@@ -183,6 +183,14 @@ public:
             t.m_pparticle = nullptr;
 
          }
+         else
+         {
+          
+            m_p = nullptr;
+
+            m_pparticle = nullptr;
+
+         }
 
       }
       else

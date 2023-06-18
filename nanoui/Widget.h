@@ -53,8 +53,8 @@ namespace nanoui
       point_i32               m_pos;
       size_i32                m_size;
       size_i32                m_fixed_size;
-      size_i32                m_offsetToApplyOnDraw;
-      size_i32                m_offsetSizeToApplyOnDraw;
+      //size_i32                m_offsetToApplyOnDraw;
+      //size_i32                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;
       ::pointer_array<Widget> m_children;
       //::index               m_iHoverCandidateChildStart;
@@ -216,7 +216,7 @@ namespace nanoui
 
       ::rectangle_i32 interaction_rectangle() const;
 
-      virtual void set_need_redraw(const ::rectangle_i32& rectangleParentCoordinates = {});
+      virtual void set_need_redraw(const ::rectangle_i32& rectangle = {}, function < void() > function = nullptr);
 
       virtual void post_redraw();
 

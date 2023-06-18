@@ -1258,7 +1258,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw, bool bAscendants)
+   void primitive_impl::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    {
 
 

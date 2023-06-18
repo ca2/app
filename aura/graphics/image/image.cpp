@@ -4812,7 +4812,7 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
 
 #ifdef __APPLE__
 
-   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 + (height() - y - 1) * (m_iScan));
+   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 * sizeof(image32_t) + (height() - y - 1) * (m_iScan));
 
 #else
 

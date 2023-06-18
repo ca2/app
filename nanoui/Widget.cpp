@@ -801,7 +801,7 @@ namespace nanoui
 
       }
 
-      information() << "Need to draw pwidget!! " << typeid(*this).name();
+      //information() << "Need to draw pwidget!! " << typeid(*this).name();
 
       return true;
 
@@ -1076,10 +1076,10 @@ namespace nanoui
    }
 
 
-   void Widget::set_need_redraw(const ::rectangle_i32& rectangleParentCoordinates)
+   void Widget::set_need_redraw(const ::rectangle_i32& rectangle, function < void() > function)
    {
 
-      auto rectangleInteraction = rectangleParentCoordinates;
+      auto rectangleInteraction = rectangle;
 
       if (rectangleInteraction.is_empty())
       {
@@ -1107,8 +1107,7 @@ namespace nanoui
 
       }
 
-
-      screen()->m_puserinteraction->set_need_redraw(rectangleInteraction);
+      screen()->m_puserinteraction->set_need_redraw({rectangleInteraction}, function);
 
    }
 

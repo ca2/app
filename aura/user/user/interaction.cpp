@@ -35,6 +35,7 @@
 #include "apex/message/simple_command.h"
 #include "apex/user/message.h"
 #include "aqua/user/controller.h"
+#include "aura/graphics/draw2d/clip.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -1405,7 +1406,7 @@ namespace user
    }
 
 
-   void interaction::set_need_redraw(const ::rectangle_i32 & rectangleNeedRedraw, bool bAscendants)
+   void interaction::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function,  bool bAscendants)
    {
 
       auto * pinteraction = get_wnd();
@@ -1417,12 +1418,12 @@ namespace user
 
       }
 
-      auto rectangle = rectangleNeedRedraw;
+      auto rectanglea = rectangleaNeedRedraw;
 
-      if (rectangle.is_empty())
+      if (rectanglea.is_empty())
       {
 
-         rectangle = client_rectangle();
+         auto rectangle = client_rectangle();
 
          if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
          {
@@ -1436,6 +1437,8 @@ namespace user
             rectangle.inflate(rectangleFocusRectExtraMargin);
 
          }
+         
+         rectanglea.add(rectangle);
 
       }
 
@@ -1445,17 +1448,20 @@ namespace user
 
       auto edisplayState = pinteraction->layout().window().display();
 
-      if (pinteraction->m_pprimitiveimpl.is_set() &&
+      if (function || (pinteraction->m_pprimitiveimpl.is_set() &&
          (
             layout().sketch().is_screen_visible() || edisplayState != edisplayRequest
-            ))
+            )))
       {
 
-         auto rectangleHost = rectangle;
+         for(auto & rectangleHost : rectanglea)
+         {
+            
+            client_to_host()(rectangleHost);
+            
+         }
 
-         client_to_host()(rectangleHost);
-
-         pinteraction->m_pprimitiveimpl->set_need_redraw(rectangleHost);
+         pinteraction->m_pprimitiveimpl->set_need_redraw(rectanglea, function);
 
       }
 
@@ -3914,7 +3920,7 @@ namespace user
 
    void interaction::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
-
+      
       if (!get_host_window()->m_pinteractionimpl->m_pgraphics->is_single_buffer_mode())
       {
 
@@ -3927,84 +3933,26 @@ namespace user
 
          pgraphics->reset_clip();
 
-         if (!get_host_window()->has_prodevian())
+         if (pgraphics->m_rectangleaNeedRedraw.has_element())
          {
+            
+            ::draw2d::clip_group clipgroup;
 
-            //pgraphics->m_pointAddShapeTranslate = m_pointScroll;
-
-            if (pgraphics->m_rectangleaNeedRedraw.has_element())
+            for (auto rectangleHostNeedRedraw : pgraphics->m_rectangleaNeedRedraw)
             {
 
-               if (pgraphics->m_rectangleaNeedRedraw.size() == 1)
-               {
+               auto rectangleNeedRedraw = rectangleHostNeedRedraw;
 
-                  auto rectangleNeedRedraw = pgraphics->m_rectangleaNeedRedraw.first();
+               auto hostToClient = host_to_client();
 
-                  auto hostToClient = host_to_client();
-
-                  hostToClient(rectangleNeedRedraw);
-
-                  pgraphics->intersect_clip(rectangleNeedRedraw);
-
-                  information() << "Single rectangle need redraw " << rectangleNeedRedraw;
-
-               }
-               else
-               {
-
-                  ::pointer<::draw2d::region> pregion;
-
-                  bool bFirst = true;
-
-                  //::rectangle_i32 rUnion;
-
-                  for (auto rectangleHostNeedRedraw : pgraphics->m_rectangleaNeedRedraw)
-                  {
-
-                     auto rectangleNeedRedraw = rectangleHostNeedRedraw;
-
-                     auto hostToClient = host_to_client();
-
-                     hostToClient(rectangleNeedRedraw);
-
-                     ::pointer<::draw2d::region> pregionItem = __create<::draw2d::region>();
-
-                     pregionItem->create_rectangle(rectangleNeedRedraw);
-
-                     information() << "Multiple rectangle need redraw " << rectangleNeedRedraw;
-
-                     if (bFirst)
-                     {
-
-                        pregion = pregionItem;
-
-                        bFirst = false;
-
-                        //rUnion = rectangleNeedRedraw;
-
-                     }
-                     else
-                     {
-
-                        ::pointer<::draw2d::region> pregionCombine = __create<::draw2d::region>();
-
-                        pregionCombine->combine(pregion, pregionItem, ::draw2d::e_combine_add);
-
-                        pregion = pregionCombine;
-
-                        //rUnion.unite(rUnion, rectangleNeedRedraw);
-
-                     }
-
-                  }
-
-                  pgraphics->set_clipping(pregion);
-
-                  //pgraphics->intersect_clip(rUnion);
-
-               }
+               hostToClient(rectangleNeedRedraw);
+               auto prectangle = __new(::draw2d::clip_rectangle);
+               prectangle->m_item  = rectangleNeedRedraw;
+               clipgroup.add(prectangle);
 
             }
+
+            pgraphics->intersect_clip(clipgroup );
 
          }
 
@@ -4021,7 +3969,7 @@ namespace user
 
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-
+      
       try
       {
 
@@ -6696,6 +6644,8 @@ namespace user
          auto rectangle = layout().sketch().raw_rectangle();
 
          set_need_layout();
+         
+         ::rectangle_i32_array rectanglea;
 
          if (rectangle.right > rectanglePrevious.right)
          {
@@ -6707,7 +6657,7 @@ namespace user
             r.top = rectangle.top;
             r.bottom = rectangle.bottom;
 
-            set_need_redraw(r);
+            rectanglea.add(r);
 
          }
 
@@ -6721,8 +6671,15 @@ namespace user
             r.top = rectanglePrevious.bottom;
             r.bottom = rectangle.bottom;
 
-            set_need_redraw(r);
+            rectanglea.add(r);
 
+         }
+         
+         if(rectanglea.has_element())
+         {
+          
+            set_need_redraw(rectanglea);
+            
          }
 
          post_redraw();
@@ -12226,7 +12183,7 @@ namespace user
          if (::is_set(get_parent()))
          {
 
-            set_need_redraw(layout().design().raw_rectangle());
+            set_need_redraw({layout().design().raw_rectangle() });
 
          }
 
@@ -12329,7 +12286,7 @@ namespace user
       if (!bUpdateBuffer && m_pinteractionimpl)
       {
 
-         bUpdateBuffer = m_pinteractionimpl->m_rectangleaNeedRedraw.has_element();
+         bUpdateBuffer = m_pinteractionimpl->m_redrawa.has_element();
 
       }
 
@@ -18374,6 +18331,8 @@ namespace user
 
          if (::is_set(pappearance))
          {
+            
+            pappearance->m_pointLastCursor = pmouse->m_point;
 
             ::point_i32 pointClient;
 
@@ -18712,6 +18671,8 @@ namespace user
 
       if (::is_set(pappearance))
       {
+         
+         pappearance->m_pointLastCursor = pmouse->m_point;
 
          ::point_i32 pointClient;
 
@@ -18946,6 +18907,8 @@ namespace user
 
       if (::is_set(pappearance))
       {
+         
+         pappearance->m_pointLastCursor = pmouse->m_point;
 
          ::point_i32 pointClient;
 
@@ -18998,7 +18961,9 @@ namespace user
 
          if (::is_set(pappearance))
          {
-
+            
+            pappearance->m_pointLastCursor = pmouse->m_point;
+            
             ::point_i32 pointClient;
 
             pointClient = pmouse->m_point;
@@ -19055,7 +19020,9 @@ namespace user
 
       if (::is_set(pappearance))
       {
-
+      
+         pappearance->m_pointLastCursor = pmouse->m_point;
+         
          ::point_i32 pointClient;
 
          pointClient = pmouse->m_point;
@@ -19315,6 +19282,8 @@ namespace user
 
          if (::is_set(pappearance))
          {
+            
+            pappearance->m_pointLastCursor = pmouse->m_point;
 
             ::point_i32 pointClient;
 
@@ -19377,6 +19346,8 @@ namespace user
 
       if (::is_set(pappearance))
       {
+         
+         pappearance->m_pointLastCursor = pwheel->m_point;
 
          ::point_i32 pointClient;
 
@@ -19435,28 +19406,26 @@ namespace user
 
          }
 
-         bool bAnyRedraw = false;
+         ::rectangle_i32_array rectanglea;
 
          if (::is_item_set(pitemOldHover) && should_redraw_on_hover(pitemOldHover))
          {
 
-            set_need_redraw(pitemOldHover->m_rectangle);
-
-            bAnyRedraw = true;
+            rectanglea.add(pitemOldHover->m_rectangle);
 
          }
 
          if (::is_item_set(pitemHitTest) && should_redraw_on_hover(pitemHitTest))
          {
 
-            set_need_redraw(pitemHitTest->m_rectangle);
-
-            bAnyRedraw = true;
+            rectanglea.add(pitemHitTest->m_rectangle);
 
          }
 
-         if (bAnyRedraw)
+         if (rectanglea.has_element())
          {
+            
+            set_need_redraw(rectanglea);
 
             post_redraw();
 
@@ -19587,7 +19556,7 @@ namespace user
          if (pitemOldHover->m_rectangle.is_set())
          {
 
-            set_need_redraw(pitemOldHover->m_rectangle);
+            set_need_redraw({pitemOldHover->m_rectangle});
 
             post_redraw();
 

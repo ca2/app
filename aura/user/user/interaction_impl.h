@@ -63,6 +63,15 @@ class native_window;
 namespace user
 {
 
+   class redraw :
+   public ::particle
+   {
+   public:
+      
+      ::rectangle_i32_array               m_rectanglea;
+      ::array < ::function <void() > >    m_functiona;
+      
+   };
 
    class prodevian;
    class thread;
@@ -164,12 +173,13 @@ namespace user
 
       ::size_i32                                m_sizeDrawnBuffer;
 
-      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
+//      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
+      ::pointer_array < redraw >                m_redrawa;
 
       ::pointer < ::user::interaction >                     m_puiLastLButtonDown;
       ::pointer < ::item >                                  m_pitemLButtonDown;
 
-
+      bool                                      m_bDoingGraphics;
       bool                                      m_bUpdateBuffer; // internal offscreen buffer
       bool                                      m_bUpdateScreen; // screen buffer
       bool                                      m_bUpdateWindow; // window frame
@@ -807,8 +817,8 @@ namespace user
 
       virtual void on_visual_applied();
 
-      void set_need_redraw(const ::rectangle_i32& rectangleHostNeedRedraw = {}, bool bAscendants = true) override;
-      virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw);
+      void set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
+      virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
 

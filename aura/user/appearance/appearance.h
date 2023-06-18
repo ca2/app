@@ -17,8 +17,9 @@ namespace appearance
 
 
       bool                                   m_bUsePreferredSize;
-      ::pointer<::user::interaction>        m_puserinteraction;
+      ::pointer<::user::interaction>         m_puserinteraction;
       ::point_i32                            m_pointMouseLast;
+      ::point_i32                            m_pointLastCursor;
 
 
       appearance();

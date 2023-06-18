@@ -37,6 +37,9 @@ namespace draw2d
 {
 
 
+   class clip;
+   class clip_group;
+   class clip_item;
    class graphics;
    class palette;
    class host;
@@ -452,10 +455,11 @@ namespace draw2d
       
 
       
-      virtual void add_clipping_shapes(const pointer_array < ::draw2d::region > & regiona);
+      //virtual void add_clipping_shapes(const pointer_array < ::draw2d::region > & regiona);
       virtual void reset_clip();
-
-      virtual void set_clipping(::draw2d::region * pregion);
+      
+      
+      //virtual void set_clipping(::draw2d::region * pregion);
       
       virtual void intersect_clip(const ::rectangle_f64 & rectangle_f64);
       virtual void intersect_clip(const ::ellipse_f64 & ellipse);
@@ -470,12 +474,23 @@ namespace draw2d
       // (initially created for clipping).
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
+      virtual void _clip(bool bAdd);
       virtual void _intersect_clip();
+      virtual void _eo_clip();
       //virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
-      virtual void _add_clipping_shape(::draw2d::region * pregion);
-      virtual void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion);
-      virtual void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion);
-      virtual void _add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion);
+
+      virtual void intersect_clip(const clip & clip);
+      virtual void intersect_clip(const clip_group & clipgroup);
+      virtual void _add_clip_item(clip_item * pclipitem);
+    
+      /// If it is "simple" shape (not combine_item) it
+      /// calls add_shape on the item and returns true.
+      /// Otherwise (if it is "complex" shape, a combine_item)
+      /// it returns false.
+      virtual bool _add_simple_shape(::geometry2d::item * pitem);
+      virtual void _add_shape(const ::rectangle_f64 & rectangle);
+      virtual void _add_shape(const ::ellipse_f64 & ellipse);
+      virtual void _add_shape(const ::polygon_f64 & polygon);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);

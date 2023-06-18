@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "brush.h"
+#include "clip.h"
 #include "pen.h"
 #include "path.h"
 #include "draw2d.h"
@@ -3205,68 +3206,205 @@ namespace draw2d
    }
 
 
-   void graphics::add_clipping_shapes(const ::pointer_array < ::draw2d::region > & regiona)
+//   void graphics::add_clipping_shapes(const ::pointer_array < ::draw2d::region > & regiona)
+//   {
+//
+//      for(auto & pregion : regiona)
+//      {
+//
+//         _set_clipping_shape(pregion, true);
+//
+//      }
+//
+//      //return ::success;
+//
+//   }
+
+
+//   void graphics::set_clipping(::draw2d::region* pregion)
+//   {
+//
+//      if(::is_null(pregion))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if(!pregion->m_pitem)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      _set_clipping_shape(pregion, true);
+//
+//   }
+//
+//
+//   void graphics:: intersect_clip_with_union_of_simple_shapes_of(const ::pointer_array < geometry2d::item > & itema)
+//   {
+//
+//      for(auto & pitem : itema)
+//      {
+//
+//         _add_simple_shape(pitem);
+//
+//      }
+//
+//      _intersect_clip();
+//
+//   }
+//
+
+   void graphics::intersect_clip(const clip & clip)
    {
       
-      for(auto & pregion : regiona)
+      for(auto & pclipgroup : clip)
       {
          
-         _add_clipping_shape(pregion);
+         intersect_clip(*pclipgroup);
          
       }
-
-      //return ::success;
-
+      
    }
 
 
-   void graphics::set_clipping(::draw2d::region* pregion)
+   void graphics::intersect_clip(const clip_group & clipgroup)
    {
+   
+      for(auto & pclipitem : clipgroup)
+      {
+       
+         _add_clip_item(pclipitem);
 
-
+      }
+      
+      _intersect_clip();
+   
    }
 
 
-   void graphics::_add_clipping_shape(::draw2d::region * pregion)
+   void graphics::_add_clip_item(clip_item * pclipitem)
    {
-
-      if (::is_null(pregion))
+      
+      switch(pclipitem->clip_item_type())
       {
+      case e_clip_item_rectangle:
+         _add_shape(dynamic_cast<clip_rectangle *>(pclipitem)->m_item);
+         break;
+      case e_clip_item_ellipse:
+         _add_shape(dynamic_cast<clip_ellipse *>(pclipitem)->m_item);
+         break;
+      case e_clip_item_polygon:         _add_shape(dynamic_cast<clip_polygon *>(pclipitem)->m_item);
+         break;
+      default:
+         break;
+      };
+      
+   }
 
-         return;
 
-      }
 
-      if (::is_null(pregion->m_pitem))
+
+   bool graphics::_add_simple_shape(::geometry2d::item * pitem)
+   {
+      
+      if(::is_null(pitem))
       {
-
-         return;
-
+         
+         return false;
+         
       }
-
-      switch(pregion->m_pitem->type())
+      
+      switch(pitem->type())
       {
       case e_item_none:
-         return;
+         return true;
       case e_item_intersect_clip:
          _intersect_clip();
-         break;
+         return true;
       case e_item_rectangle:
-         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::rectangle_item >()->m_item, pregion);
-         break;
+         _add_shape(pitem->cast < ::geometry2d::rectangle_item >()->m_item);
+         return true;
       case e_item_ellipse:
-         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::ellipse_item >()->m_item, pregion);
-         break;
+         _add_shape(pitem->cast < ::geometry2d::ellipse_item >()->m_item);
+         return true;
 //      case e_shape_lines:
 //         return _add_shape(shape.shape < ::lines >());
       case e_item_polygon:
-         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::polygon_item >()->m_polygon, pregion);
-         break;
+         _add_shape(pitem->cast < ::geometry2d::polygon_item >()->m_polygon);
+         return true;
       default:
-         throw ::exception(error_not_implemented);
-         break;
+         return false;
       }
+      
+   }
 
+
+//   void graphics::_set_clipping_shape(::draw2d::region * pregion, bool bAdd)
+//   {
+//
+//      if (::is_null(pregion))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (::is_null(pregion->m_pitem))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if(_add_simple_shape(pregion->m_pitem))
+//      {
+//
+//         _clip(bAdd);
+//
+//      }
+//      else if(pregion->m_pitem->type() == e_item_combine)
+//      {
+//
+//         ::pointer < ::geometry2d::combine_item > pcombineitem = pregion->m_pitem;
+//
+//         _set_clipping_shape(defer_get_os_data(pcombineitem->m_pregion1), bAdd);
+//
+//         bool bAdd2 = bAdd;
+//
+//         if(pcombineitem->m_ecombine == e_combine_exclude)
+//         {
+//
+//            bAdd2 = !bAdd2;
+//
+//         }
+//
+//         _set_clipping_shape(defer_get_os_data(pcombineitem->m_pregion2), bAdd2);
+//
+//      }
+//
+//   }
+
+
+   void graphics::_clip(bool bAdd)
+   {
+   
+      if(bAdd)
+      {
+         
+         _intersect_clip();
+         
+      }
+      else
+      {
+         
+         _eo_clip();
+         
+      }
+      
    }
 
 
@@ -3280,7 +3418,17 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
+   void graphics::_eo_clip()
+   {
+
+      throw ::interface_only();
+
+      //throw ::interface_only();
+
+   }
+
+
+   void graphics::_add_shape(const ::rectangle_f64 & rectangle)
    {
    
       throw ::interface_only();
@@ -3310,7 +3458,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion)
+   void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    {
    
       throw ::interface_only();
@@ -3330,7 +3478,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion)
+   void graphics::_add_shape(const ::polygon_f64 & polygon)
    {
 
       throw ::interface_only();
@@ -3342,36 +3490,30 @@ namespace draw2d
 
    void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
    {
-      
-      //_shape < ::rectangle_f64, e_shape_rectangle, ::draw2d::region > regionshape;
-      
-      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(rectangle, pregion);
+      _add_shape(rectangle);
+
+      _intersect_clip();
 
    }
 
 
    void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    {
-   
-      //_shape < ::ellipse_f64, e_shape_ellipse, ::draw2d::region > regionshape;
-      
-      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(ellipse, pregion);
-   
+      _add_shape(ellipse);
+
+      _intersect_clip();
+
    }
 
 
    void graphics::intersect_clip(const ::polygon_f64 & polygon)
    {
 
-      //_shape < ::polygon_f64, e_shape_polygon, ::draw2d::region > regionshape;
-      
-      ::draw2d::region * pregion = nullptr;
+      _add_shape(polygon);
 
-      _add_clipping_shape(polygon, pregion);
+      _intersect_clip();
 
    }
 

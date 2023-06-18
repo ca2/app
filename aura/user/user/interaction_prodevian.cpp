@@ -187,10 +187,10 @@ namespace user
 
                _synchronous_lock synchronouslock(pimpl->synchronization());
 
-               if(pimpl->m_rectangleaNeedRedraw.has_element())
+               if(pimpl->m_redrawa.has_element())
                {
 
-                  auto iRequestsRemaining = pimpl->m_rectangleaNeedRedraw.size();
+                  auto iRequestsRemaining = pimpl->m_redrawa.size();
 
                   information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
 

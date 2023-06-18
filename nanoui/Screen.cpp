@@ -1511,8 +1511,8 @@ namespace nanoui
 
       context.set_font_sink(m_pfontsink);
 
-      auto size = m_puserinteraction->get_size();
-
+      ::size_i32 size = m_puserinteraction->get_size();
+      
       set_size({ (int)size.cx(), (int)size.cy() });
 
       resize_event(m_size);

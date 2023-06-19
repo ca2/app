@@ -371,52 +371,65 @@ namespace draw2d_cairo
    void graphics::_intersect_clip()
    {
 
-      cairo_clip(m_pdc);
-
-   }
-
-
-   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
-   {
-
-      //cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x(), rectangle.top + m_pointAddShapeTranslate.y(),
-        //              rectangle.width(), rectangle.height());
-      cairo_rectangle(m_pdc, rectangle.left, rectangle.top,
-                      rectangle.width(), rectangle.height());
+      cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_WINDING);
 
       cairo_clip(m_pdc);
 
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
+   void graphics::_eo_clip()
    {
 
-      _add_shape(rectangle);
+      cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
 
-      _intersect_clip();
+      cairo_clip(m_pdc);
 
    }
 
 
-   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion)
-   {
 
-      _add_shape(ellipse);
-
-      _intersect_clip();
-
-   }
-
-
-   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion)
-   {
-
-      _add_shape(polygon);
-
-      _intersect_clip();
-
-   }
+//   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
+//   {
+//
+//      //cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x(), rectangle.top + m_pointAddShapeTranslate.y(),
+//        //              rectangle.width(), rectangle.height());
+//      cairo_rectangle(m_pdc, rectangle.left, rectangle.top,
+//                      rectangle.width(), rectangle.height());
+//
+//      cairo_clip(m_pdc);
+//
+//   }
+//
+//
+//   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
+//   {
+//
+//      _add_shape(rectangle);
+//
+//      _intersect_clip();
+//
+//   }
+//
+//
+//   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion)
+//   {
+//
+//      _add_shape(ellipse);
+//
+//      _intersect_clip();
+//
+//   }
+//
+//
+//   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion)
+//   {
+//
+//      _add_shape(polygon);
+//
+//      _intersect_clip();
+//
+//   }
 
 
    void graphics::_add_shape(const ::rectangle_f64 & rectangle)
@@ -3310,28 +3323,28 @@ namespace draw2d_cairo
 
 
 
-   void graphics::set_clipping(::draw2d::region* pregion)
-   {
-
-      if(::is_null(pregion))
-      {
-
-         throw ::exception(error_bad_argument, "draw2d_cairo::set_clippping pregion is nullptr");
-
-      }
-
-      ::pointer < region > pcairoregion = pregion;
-
-      if(::is_null(pregion))
-      {
-
-         throw ::exception(error_not_expected, "pregion isn't draw2d_cairo::region");
-
-      }
-
-      pcairoregion->clip(m_pdc);
-
-   }
+//   void graphics::set_clipping(::draw2d::region* pregion)
+//   {
+//
+//      if(::is_null(pregion))
+//      {
+//
+//         throw ::exception(error_bad_argument, "draw2d_cairo::set_clippping pregion is nullptr");
+//
+//      }
+//
+//      ::pointer < region > pcairoregion = pregion;
+//
+//      if(::is_null(pregion))
+//      {
+//
+//         throw ::exception(error_not_expected, "pregion isn't draw2d_cairo::region");
+//
+//      }
+//
+//      pcairoregion->clip(m_pdc);
+//
+//   }
 
 
 

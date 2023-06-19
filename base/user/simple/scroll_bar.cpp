@@ -664,14 +664,14 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    ::rectangle_i32 rectangleClient;
    client_rectangle(rectangleClient);
-   ::size_i32 size = rectangleClient.size();
+   //::size_i32 size = rectangleClient.size();
 
-   int iArrowForce = 4;
-   int iArrowStability = size.get_normal_dimension(m_eorientation) - 2 - 3 * 2;
+   //int iArrowForce = 4;
+   //int iArrowStability = size.get_normal_dimension(m_eorientation) - 2 - 3 * 2;
 
-   auto pstyle = get_style(pgraphics);
+   //auto pstyle = get_style(pgraphics);
 
-   int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+   //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
    if(m_eorientation == e_orientation_horizontal)
    {
@@ -1151,9 +1151,9 @@ void simple_scroll_bar::UpdateBitmaps()
 ::point_f64_array simple_scroll_bar::get_arrowA(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto pstyle = get_style(pgraphics);
+   //auto pstyle = get_style(pgraphics);
 
-   int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+   //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
    auto rectangleA = get_buttonA_rectangle(rectangleClient, pgraphics);
 
@@ -1208,7 +1208,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    auto pstyle = get_style(pgraphics);
 
-   int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+   //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
    auto rectangleB = get_buttonB_rectangle(rectangleClient, pgraphics);
 

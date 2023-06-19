@@ -701,7 +701,7 @@ namespace experience
 
             rectangleBorder -= rectangleAfter.top_left();
 
-            pframewindow->set_need_redraw(rectangleBorder);
+            pframewindow->set_need_redraw({rectangleBorder});
 
          }
 

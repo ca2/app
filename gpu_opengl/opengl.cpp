@@ -10,7 +10,7 @@ namespace opengl
 
 #ifdef WINDOWS_DESKTOP
 
-   ::gpu::context * create_system_context();
+   ::pointer <::gpu::context > create_system_context(::particle * pparticle);
 
 #elif defined(__APPLE__)
 
@@ -111,12 +111,12 @@ namespace opengl
    }
 
 
-   ::gpu::context * opengl::create_context()
+   ::pointer < ::gpu::context > opengl::create_context(::particle * pparticle)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      return create_system_context();
+      return create_system_context(pparticle);
 
 #elif defined(__APPLE__)
       
@@ -158,6 +158,8 @@ namespace opengl
 
    void opengl::defer_init_glew()
    {
+
+      gladLoadGL();
 
 //      if (!m_bGlewInit)
 //      {

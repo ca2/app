@@ -681,6 +681,9 @@
     <ClCompile Include="graphics\draw2d\path_optimization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="gpu\gpu\render.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1699,6 +1702,9 @@
     </ClInclude>
     <ClInclude Include="graphics\draw2d\holder.h">
       <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\render.h">
+      <Filter>Header Files\gpu\gpu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

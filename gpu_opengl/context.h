@@ -9,6 +9,7 @@ namespace opengl
 {
 
 
+
    class CLASS_DECL_GPU_OPENGL context :
       virtual public ::gpu::context
    {
@@ -45,6 +46,7 @@ namespace opengl
       void set_bitmap_1(::image * pimage) override;
 
       void swap_buffers() override;
+
 
       //virtual void create_offscreen_buffer(const ::size_i32& size);
       //virtual void _create_offscreen_buffer(const ::size_i32& size);

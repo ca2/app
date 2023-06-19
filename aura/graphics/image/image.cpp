@@ -10440,3 +10440,10 @@ image_pointer image::get_resized_image(const ::size_i32 & size)
 }
 
 
+
+::image32_t * image::line_data(int iLine)
+{
+
+   return (::image32_t *) (((::u8*)data()) + (iLine * m_iScan));
+
+}

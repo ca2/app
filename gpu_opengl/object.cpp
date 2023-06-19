@@ -266,6 +266,8 @@ namespace opengl
 
       // Load the texture
       m_uniformTexture = papproach->load_dds(m_path+ ".uvmap.DDS");
+      //m_uniformTexture = papproach->load_dds(m_path + ".uvmap.DDS");
+      //m_uniformTexture = papproach->load_normal_map(m_path.folder() / (m_path.title() + ".png"));
 
    }
 

@@ -631,6 +631,7 @@
     <ClCompile Include="gpu\gpu\context.cpp" />
     <ClCompile Include="gpu\gpu\object.cpp" />
     <ClCompile Include="gpu\gpu\program.cpp" />
+    <ClCompile Include="gpu\gpu\render.cpp" />
     <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\alpha.cpp" />
     <ClCompile Include="graphics\draw2d\api.cpp" />
@@ -852,6 +853,7 @@
     <ClInclude Include="gpu\gpu\context.h" />
     <ClInclude Include="gpu\gpu\object.h" />
     <ClInclude Include="gpu\gpu\program.h" />
+    <ClInclude Include="gpu\gpu\render.h" />
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />
     <ClInclude Include="gpu\gpu\_constant.h" />

@@ -42,7 +42,7 @@ namespace gpu
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual context * create_context();
+      virtual ::pointer < context > create_context(::particle * pparticle);
 
 
       virtual void defer_init_glew();

@@ -45,7 +45,7 @@ namespace opengl
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual ::gpu::context* create_context() override;
+      ::pointer < ::gpu::context > create_context(::particle * pparticle) override;
 
 
       int fread(void * data, int c, int s ,::file::file* pfile);

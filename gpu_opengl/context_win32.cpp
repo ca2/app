@@ -11,10 +11,10 @@ namespace opengl
 {
 
 
-   ::gpu::context * create_system_context()
+   ::pointer < ::gpu::context > create_system_context(::particle * pparticle)
    {
 
-      return memory_new context_win32();
+      return pparticle->__create_new <context_win32>();
 
    }
 
@@ -192,10 +192,12 @@ namespace opengl
 
       }
 
+
+      popengl->defer_init_glew();
+
       auto pszVersion = (const char *)glGetString(GL_VERSION);
       //::e_status estatus = 
 
-      popengl->defer_init_glew();
 
       //if (!estatus)
       //{

@@ -705,6 +705,8 @@ public:
 
    }
 
+   ::image32_t * line_data(int iLine);
+
    inline ::image32_t * begin()
    {
 

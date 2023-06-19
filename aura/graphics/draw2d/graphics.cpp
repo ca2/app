@@ -3910,45 +3910,45 @@ namespace draw2d
 
       size_f64 size = get_text_extent(str);
 
-      double greekdeltax;
+      double Δx;
 
-      double greekdeltay;
+      double Δy;
 
       if(ealign & e_align_right)
       {
 
-         greekdeltax = rectangleParam.right - rectangleParam.left - size.cx();
+         Δx = rectangleParam.right - rectangleParam.left - size.cx();
 
       }
       else if(ealign & e_align_horizontal_center)
       {
 
-         greekdeltax = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
+         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
 
       }
       else
       {
 
-         greekdeltax = 0.;
+         Δx = 0.;
 
       }
 
       if(ealign & e_align_bottom)
       {
 
-         greekdeltay = rectangleParam.bottom - rectangleParam.top - size.cy();
+         Δy = rectangleParam.bottom - rectangleParam.top - size.cy();
 
       }
       else if(ealign & e_align_vertical_center)
       {
 
-         greekdeltay = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
+         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
 
       }
       else
       {
 
-         greekdeltay = 0.;
+         Δy = 0.;
 
       }
 
@@ -3972,7 +3972,7 @@ namespace draw2d
 
          str.replace_with("", "\n");
 
-         text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay, str);
+         text_out(rectangleParam.left + Δx, rectangleParam.top + Δy, str);
 
       }
       else
@@ -3991,7 +3991,7 @@ namespace draw2d
 
             auto size1 = get_text_extent(str);
 
-            text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay + offsety, str);
+            text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
 
             offsety += (i32) size1.cy();
 
@@ -5357,27 +5357,27 @@ namespace draw2d
 
          auto wscan = scan / sizeof(::color32_t);
 
-         for (double greekdeltax = 0; greekdeltax < w; greekdeltax += dStep)
+         for (double Δx = 0; Δx < w; Δx += dStep)
          {
-            dCircleX = fmod(greekdeltax, (double)(dPeriod));
+            dCircleX = fmod(Δx, (double)(dPeriod));
             double dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
             dCircleX -= dPeriod / 2.0;
             dTint = dBaseTint * 0.51;
             dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
             {
-               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                ;
-               greekdeltay = (greekdeltay * dHalfH + dH - dHSpan);
-               int x = (int)round(greekdeltax);
-               int y = (int)round(greekdeltay);
+               Δy = (Δy * dHalfH + dH - dHSpan);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int opacity = pimage32[x + wscan * y].u8_opacity(pimage->m_colorindexes);
-                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
-                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
                   pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
@@ -5385,18 +5385,18 @@ namespace draw2d
             }
             dTint = dBaseTint * 0.51;
             {
-               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               greekdeltay = (greekdeltay * dHalfH + dH + dHSpan);
-               int x = (int)round(greekdeltax);
-               int y = (int)round(greekdeltay);
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               Δy = (Δy * dHalfH + dH + dHSpan);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int opacity = pimage32[x + wscan * y].u8_opacity(pimage->color_indexes());
-                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
-                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
                   pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red),pimage->color_indexes());
@@ -5407,18 +5407,18 @@ namespace draw2d
             dTint = dBaseTint * 2.3;
 
             {
-               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               greekdeltay = (greekdeltay * dHalfH + dH);
-               int x = (int)round(greekdeltax);
-               int y = (int)round(greekdeltay);
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               Δy = (Δy * dHalfH + dH);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int opacity = pimage32[x + wscan].u8_opacity(pimage->color_indexes());
-                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
-                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
                   pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red),pimage->color_indexes());
@@ -5740,19 +5740,19 @@ namespace draw2d
    float graphics::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
    {
 
-      float pqx, pqy, greekdeltax, greekdeltay, d, t;
+      float pqx, pqy, Δx, Δy, d, t;
       pqx = qx - px;
       pqy = qy - py;
-      greekdeltax = x - px;
-      greekdeltay = y - py;
+      Δx = x - px;
+      Δy = y - py;
       d = pqx*pqx + pqy*pqy;
-      t = pqx*greekdeltax + pqy*greekdeltay;
+      t = pqx*Δx + pqy*Δy;
       if (d > 0) t /= d;
       if (t < 0) t = 0;
       else if (t > 1) t = 1;
-      greekdeltax = px + t*pqx - x;
-      greekdeltay = py + t*pqy - y;
-      return greekdeltax*greekdeltax + greekdeltay*greekdeltay;
+      Δx = px + t*pqx - x;
+      Δy = py + t*pqy - y;
+      return Δx*Δx + Δy*Δy;
 
    }
 

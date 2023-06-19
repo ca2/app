@@ -100,39 +100,39 @@ namespace html
 
          UNREFERENCED_PARAMETER(pdata);
 
-         float greekdeltax;
+         float Δx;
 
-         float greekdeltay;
+         float Δy;
 
          if (point.x() < m_box.left)
          {
 
-            greekdeltax = m_box.left - point.x();
+            Δx = m_box.left - point.x();
 
          }
          else if (point.x() > m_box.right)
          {
-            greekdeltax = point.x() - m_box.right;
+            Δx = point.x() - m_box.right;
          }
          else
          {
-            greekdeltax = 0;
+            Δx = 0;
          }
 
          if (point.y() < m_box.top)
          {
-            greekdeltay = m_box.top - point.y();
+            Δy = m_box.top - point.y();
          }
          else if (point.y() > m_box.bottom)
          {
-            greekdeltay = point.y() - m_box.bottom;
+            Δy = point.y() - m_box.bottom;
          }
          else
          {
-            greekdeltay = 0;
+            Δy = 0;
          }
 
-         return sqrt(greekdeltax * greekdeltax + greekdeltay * greekdeltay);
+         return sqrt(Δx * Δx + Δy * Δy);
       }
 
       void element::OnLButtonDown(::message::message* pmessage)

@@ -119,16 +119,16 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	double Rx=0,Ry=0; //fading edge of a line
 	double cx=0,cy=0; //cap of a line
 	double ALW=0.01;
-	double greekdeltax=x2-x1;
-	double greekdeltay=y2-y1;
-	if ( GET_ABS(greekdeltax) < ALW) {
+	double Δx=x2-x1;
+	double Δy=y2-y1;
+	if ( GET_ABS(Δx) < ALW) {
 		//vertical
 		tx=t; ty=0;
 		Rx=R; Ry=0;
 		if ( w>0.0 && w<=1.0) {
 			tx = 0.5; Rx=0.0;
 		}
-	} else if ( GET_ABS(greekdeltay) < ALW) {
+	} else if ( GET_ABS(Δy) < ALW) {
 		//horizontal
 		tx=0; ty=t;
 		Rx=0; Ry=R;
@@ -137,7 +137,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		}
 	} else {
 		if ( w < 3) { //approximate to make things even faster
-			double m=greekdeltay/greekdeltax;
+			double m=Δy/Δx;
 			//and calculate tx,ty,Rx,Ry
 			if ( m>-0.4142 && m<=0.4142) {
 				// -22.5< angle <= 22.5, approximate to 0 (degree)
@@ -160,14 +160,14 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 				//printf( "error in determining angle: m=%.4f\n",m);
 			}
 		} else { //calculate to exact
-			greekdeltax=y1-y2;
-			greekdeltay=x2-x1;
-			double L=sqrt(greekdeltax*greekdeltax+greekdeltay*greekdeltay);
-			greekdeltax/=L;
-			greekdeltay/=L;
-			cx=-greekdeltay; cy=greekdeltax;
-			tx=t*greekdeltax; ty=t*greekdeltay;
-			Rx=R*greekdeltax; Ry=R*greekdeltay;
+			Δx=y1-y2;
+			Δy=x2-x1;
+			double L=sqrt(Δx*Δx+Δy*Δy);
+			Δx/=L;
+			Δy/=L;
+			cx=-Δy; cy=Δx;
+			tx=t*Δx; ty=t*Δy;
+			Rx=R*Δx; Ry=R*Δy;
 		}
 	}
 	
@@ -296,18 +296,18 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 	//determine angle of the line to horizontal
 	double tx=0,ty=0, Rx=0,Ry=0;
 	double ALW=0.01;
-	double greekdeltax=x2-x1;
-	double greekdeltay=y2-y1;
-	if ( GET_ABS(greekdeltax) < ALW) {
+	double Δx=x2-x1;
+	double Δy=y2-y1;
+	if ( GET_ABS(Δx) < ALW) {
 		//vertical
 		tx = 0.5; ty = 0.0;
 		Rx = 0.0; Ry = 0.0;
-	} else if ( GET_ABS(greekdeltay) < ALW) {
+	} else if ( GET_ABS(Δy) < ALW) {
 		//horizontal
 		tx = 0.0; ty = 0.5;
 		Rx = 0.0; Ry = 0.0;
 	} else {
-		double m=greekdeltay/greekdeltax;
+		double m=Δy/Δx;
 		if ( m>-0.4142 && m<=0.4142) {
 			// -22.5< angle <= 22.5, approximate to 0 (degree)
 			tx=t*0.1; ty=t;

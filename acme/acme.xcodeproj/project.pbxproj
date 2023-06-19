@@ -716,6 +716,8 @@
 		9A359B3229A4A324007AAC52 /* folder_dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A359B2A29A4A324007AAC52 /* folder_dialog.h */; };
 		9A359B3429A4ABCE007AAC52 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A359B3329A4ABCE007AAC52 /* _.h */; };
 		9A359B3529A4ABCE007AAC52 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A359B3329A4ABCE007AAC52 /* _.h */; };
+		9A3B84A72A3FA26E00FBE257 /* numeric.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3B84A42A3FA26E00FBE257 /* numeric.h */; };
+		9A3B84A82A3FA26E00FBE257 /* numeric.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3B84A42A3FA26E00FBE257 /* numeric.h */; };
 		9A3BFBBA29C83392005DE2BF /* _impl_text_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBAF29C83390005DE2BF /* _impl_text_stream.h */; };
 		9A3BFBBB29C83392005DE2BF /* _impl_text_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBAF29C83390005DE2BF /* _impl_text_stream.h */; };
 		9A3BFBBC29C83393005DE2BF /* write_text_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBB229C83391005DE2BF /* write_text_stream.h */; };
@@ -3038,6 +3040,7 @@
 		9A359B2929A4A324007AAC52 /* file_dialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_dialog.cpp; sourceTree = "<group>"; };
 		9A359B2A29A4A324007AAC52 /* folder_dialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = folder_dialog.h; sourceTree = "<group>"; };
 		9A359B3329A4ABCE007AAC52 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A3B84A42A3FA26E00FBE257 /* numeric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric.h; sourceTree = "<group>"; };
 		9A3BFBAF29C83390005DE2BF /* _impl_text_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl_text_stream.h; sourceTree = "<group>"; };
 		9A3BFBB229C83391005DE2BF /* write_text_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = write_text_stream.h; sourceTree = "<group>"; };
 		9A3BFBB329C83391005DE2BF /* _constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
@@ -5511,6 +5514,7 @@
 		9A7861D9264B90B4003DF8A0 /* mathematics */ = {
 			isa = PBXGroup;
 			children = (
+				9A3B84A42A3FA26E00FBE257 /* numeric.h */,
 				9A7861F0264B90B4003DF8A0 /* _.cpp */,
 				9A786204264B90B4003DF8A0 /* _.h */,
 				9A7861DC264B90B4003DF8A0 /* _impl.h */,
@@ -6756,6 +6760,7 @@
 				9AAE6E97251920CE00F10692 /* _.h in Headers */,
 				9A68AEDA25114435008DABD2 /* api.h in Headers */,
 				9A08433129366748009F7FF4 /* enum_names.h in Headers */,
+				9A3B84A72A3FA26E00FBE257 /* numeric.h in Headers */,
 				9A94D39828EB8DE400F7C157 /* tool_item.h in Headers */,
 				9A15A748264B6F2D0080670E /* _.h in Headers */,
 				9A0842A92935E694009F7FF4 /* _loosely.h in Headers */,
@@ -7227,6 +7232,7 @@
 				9A15A68D264B59EE0080670E /* task.h in Headers */,
 				9AA8F8FE27BA7268008FF9AA /* child.h in Headers */,
 				9AC018E427489248006BEBCC /* folder.h in Headers */,
+				9A3B84A82A3FA26E00FBE257 /* numeric.h in Headers */,
 				9A0841DE2935DD5C009F7FF4 /* wd16.h in Headers */,
 				9AA8038627BACA53008FF9AA /* windows_time.h in Headers */,
 				9A786198264B9096003DF8A0 /* enumeration.h in Headers */,

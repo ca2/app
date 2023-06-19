@@ -206,6 +206,7 @@ namespace nanoui
       {
 
          parent()->perform_layout(pcontext);
+         
          perform_layout(pcontext);
 
       };
@@ -1103,7 +1104,7 @@ namespace nanoui
 
          auto offsetScroll = pparent->get_accumulated_scroll_offset();
 
-         rectangleInteraction += offsetScroll;
+         rectangleInteraction -= offsetScroll;
 
       }
 
@@ -1130,7 +1131,7 @@ namespace nanoui
    }
 
 
-   void Widget::expose_fixed_size(const ::rectangle_i32& rectangle)
+   void Widget::expose_fixed_size(const ::rectangle_i32& rectangle, bool bRedraw)
    {
 
       auto positionOld = m_pos;
@@ -1144,35 +1145,42 @@ namespace nanoui
       auto sizeNew = rectangle.size();
 
       set_fixed_size(sizeNew);
+      
+      set_need_layout();
 
-      auto rectangleNew = interaction_rectangle();
-
-      if (positionOld != positionNew)
+      if(bRedraw)
       {
-
-         set_need_redraw(rectangleOld);
-
-         set_need_redraw(rectangleNew);
-
+         
+         auto rectangleNew = interaction_rectangle();
+         
+         if (positionOld != positionNew)
+         {
+            
+            set_need_redraw(rectangleOld);
+            
+            set_need_redraw(rectangleNew);
+            
+         }
+         else
+         {
+            
+            auto rectangleRightDifference = rectangleOld.right_plus_difference(rectangleNew);
+            
+            auto rectangleBottomDifference = rectangleOld.bottom_difference(rectangleNew);
+            
+            rectangleRightDifference.normalize();
+            
+            rectangleBottomDifference.normalize();
+            
+            set_need_redraw(rectangleRightDifference);
+            
+            set_need_redraw(rectangleBottomDifference);
+            
+         }
+         
+         post_redraw();
+         
       }
-      else
-      {
-
-         auto rectangleRightDifference = rectangleOld.right_plus_difference(rectangleNew);
-
-         auto rectangleBottomDifference = rectangleOld.bottom_difference(rectangleNew);
-
-         rectangleRightDifference.normalize();
-
-         rectangleBottomDifference.normalize();
-
-         set_need_redraw(rectangleRightDifference);
-
-         set_need_redraw(rectangleBottomDifference);
-
-      }
-
-      post_redraw();
 
    }
 

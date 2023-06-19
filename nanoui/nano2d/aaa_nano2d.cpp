@@ -123,7 +123,7 @@ namespace nano2d
 	//
 	//struct NVGpoint {
 	//	float x, y;
-	//	float greekdeltax, greekdeltay;
+	//	float Δx, Δy;
 	//	float len;
 	//	float dmx, dmy;
 	//	unsigned char flags;
@@ -663,11 +663,11 @@ void TransformSkewX(float* t, float a)
 		return 1;
 	}
 
-	//void transform_point(float * greekdeltax, float * greekdeltay, const float * t, float sx, float sy)
-		void transform_point(float* greekdeltax, float* greekdeltay, const float* t, float sx, float sy)
+	//void transform_point(float * Δx, float * Δy, const float * t, float sx, float sy)
+		void transform_point(float* Δx, float* Δy, const float* t, float sx, float sy)
 	{
-		*greekdeltax = sx * t[0] + sy * t[2] + t[4];
-		*greekdeltay = sx * t[1] + sy * t[3] + t[5];
+		*Δx = sx * t[0] + sy * t[2] + t[4];
+		*Δy = sx * t[1] + sy * t[3] + t[5];
 	}
 
 	//float CONTEXT::DegToRad)(float deg)
@@ -1001,27 +1001,27 @@ void TransformSkewX(float* t, float a)
 
 		//return linear_gradient(sx, sy, ex, ey, icol, ocol);
 		//::nano2d::paint p;
-		//float greekdeltax, greekdeltay, d;
+		//float Δx, Δy, d;
 		//const float large = 1e5;
 		//NVG_NOTUSED(ctx);
 		//memset(&p, 0, sizeof(p));
 
 		//// Calculate transform aligned to the line
-		//greekdeltax = ex - sx;
-		//greekdeltay = ey - sy;
-		//d = sqrtf(greekdeltax * greekdeltax + greekdeltay * greekdeltay);
+		//Δx = ex - sx;
+		//Δy = ey - sy;
+		//d = sqrtf(Δx * Δx + Δy * Δy);
 		//if (d > 0.0001f) {
-		//	greekdeltax /= d;
-		//	greekdeltay /= d;
+		//	Δx /= d;
+		//	Δy /= d;
 		//}
 		//else {
-		//	greekdeltax = 0;
-		//	greekdeltay = 1;
+		//	Δx = 0;
+		//	Δy = 1;
 		//}
 
-		//p.xform[0] = greekdeltay; p.xform[1] = -greekdeltax;
-		//p.xform[2] = greekdeltax; p.xform[3] = greekdeltay;
-		//p.xform[4] = sx - greekdeltax * large; p.xform[5] = sy - greekdeltay * large;
+		//p.xform[0] = Δy; p.xform[1] = -Δx;
+		//p.xform[2] = Δx; p.xform[3] = Δy;
+		//p.xform[4] = sx - Δx * large; p.xform[5] = sy - Δy * large;
 
 		//p.extent[0] = large;
 		//p.extent[1] = large + d * 0.5f;
@@ -1231,28 +1231,28 @@ void TransformSkewX(float* t, float a)
 	int point_equals(float x1, float y1, float x2, float y2, float tol)
 	{
 		
-		float greekdeltax = x2 - x1;
-		float greekdeltay = y2 - y1;
-		return greekdeltax * greekdeltax + greekdeltay * greekdeltay < tol * tol;
+		float Δx = x2 - x1;
+		float Δy = y2 - y1;
+		return Δx * Δx + Δy * Δy < tol * tol;
 
 	}
 
 
 	float point_distance_seg(float x, float y, float px, float py, float qx, float qy)
 	{
-		float pqx, pqy, greekdeltax, greekdeltay, d, t;
+		float pqx, pqy, Δx, Δy, d, t;
 		pqx = qx - px;
 		pqy = qy - py;
-		greekdeltax = x - px;
-		greekdeltay = y - py;
+		Δx = x - px;
+		Δy = y - py;
 		d = pqx * pqx + pqy * pqy;
-		t = pqx * greekdeltax + pqy * greekdeltay;
+		t = pqx * Δx + pqy * Δy;
 		if (d > 0) t /= d;
 		if (t < 0) t = 0;
 		else if (t > 1) t = 1;
-		greekdeltax = px + t * pqx - x;
-		greekdeltay = py + t * pqy - y;
-		return greekdeltax * greekdeltax + greekdeltay * greekdeltay;
+		Δx = px + t * pqx - x;
+		Δy = py + t * pqy - y;
+		return Δx * Δx + Δy * Δy;
 	}
 
 
@@ -1468,7 +1468,7 @@ void TransformSkewX(float* t, float a)
 	//	int level, int type)
 	//{
 	//	float x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
-	//	float greekdeltax, greekdeltay, d2, d3;
+	//	float Δx, Δy, d2, d3;
 	//
 	//	if (level > 10) return;
 	//
@@ -1481,12 +1481,12 @@ void TransformSkewX(float* t, float a)
 	//	x123 = (x12 + x23) * 0.5f;
 	//	y123 = (y12 + y23) * 0.5f;
 	//
-	//	greekdeltax = x4 - x1;
-	//	greekdeltay = y4 - y1;
-	//	d2 = CONTEXT::__absf)(((x2 - x4) * greekdeltay - (y2 - y4) * greekdeltax));
-	//	d3 = CONTEXT::__absf)(((x3 - x4) * greekdeltay - (y3 - y4) * greekdeltax));
+	//	Δx = x4 - x1;
+	//	Δy = y4 - y1;
+	//	d2 = CONTEXT::__absf)(((x2 - x4) * Δy - (y2 - y4) * Δx));
+	//	d3 = CONTEXT::__absf)(((x3 - x4) * Δy - (y3 - y4) * Δx));
 	//
-	//	if ((d2 + d3) * (d2 + d3) < tessTol * (greekdeltax * greekdeltax + greekdeltay * greekdeltay)) {
+	//	if ((d2 + d3) * (d2 + d3) < tessTol * (Δx * Δx + Δy * Δy)) {
 	//		CONTEXT::__addPoint)(ctx, x4, y4, type);
 	//		return;
 	//	}
@@ -1590,9 +1590,9 @@ void TransformSkewX(float* t, float a)
 	//
 	//		for (i = 0; i < path->count; i++) {
 	//			// Calculate segment direction and length
-	//			p0->greekdeltax = p1->x - p0->x;
-	//			p0->greekdeltay = p1->y - p0->y;
-	//			p0->len = CONTEXT::__normalize)(&p0->greekdeltax, &p0->greekdeltay);
+	//			p0->Δx = p1->x - p0->x;
+	//			p0->Δy = p1->y - p0->y;
+	//			p0->len = CONTEXT::__normalize)(&p0->Δx, &p0->Δy);
 	//			// Update bounds
 	//			cache->bounds[0] = CONTEXT::__minf)(cache->bounds[0], p0->x);
 	//			cache->bounds[1] = CONTEXT::__minf)(cache->bounds[1], p0->y);
@@ -1614,10 +1614,10 @@ void TransformSkewX(float* t, float a)
 	//	float * x0, float * y0, float * x1, float * y1)
 	//{
 	//	if (bevel) {
-	//		*x0 = p1->x + p0->greekdeltay * w;
-	//		*y0 = p1->y - p0->greekdeltax * w;
-	//		*x1 = p1->x + p1->greekdeltay * w;
-	//		*y1 = p1->y - p1->greekdeltax * w;
+	//		*x0 = p1->x + p0->Δy * w;
+	//		*y0 = p1->y - p0->Δx * w;
+	//		*x1 = p1->x + p1->Δy * w;
+	//		*y1 = p1->y - p1->Δx * w;
 	//	}
 	//	else {
 	//		*x0 = p1->x + p1->dmx * w;
@@ -1632,10 +1632,10 @@ void TransformSkewX(float* t, float a)
 	//	float fringe)
 	//{
 	//	int i, n;
-	//	float dlx0 = p0->greekdeltay;
-	//	float dly0 = -p0->greekdeltax;
-	//	float dlx1 = p1->greekdeltay;
-	//	float dly1 = -p1->greekdeltax;
+	//	float dlx0 = p0->Δy;
+	//	float dly0 = -p0->Δx;
+	//	float dlx1 = p1->Δy;
+	//	float dly1 = -p1->Δx;
 	//	NVG_NOTUSED(fringe);
 	//
 	//	if (p1->flags & NVG_PT_LEFT) {
@@ -1694,10 +1694,10 @@ void TransformSkewX(float* t, float a)
 	//{
 	//	float rx0, ry0, rx1, ry1;
 	//	float lx0, ly0, lx1, ly1;
-	//	float dlx0 = p0->greekdeltay;
-	//	float dly0 = -p0->greekdeltax;
-	//	float dlx1 = p1->greekdeltay;
-	//	float dly1 = -p1->greekdeltax;
+	//	float dlx0 = p0->Δy;
+	//	float dly0 = -p0->Δx;
+	//	float dlx1 = p1->Δy;
+	//	float dly1 = -p1->Δx;
 	//	NVG_NOTUSED(fringe);
 	//
 	//	if (p1->flags & NVG_PT_LEFT) {
@@ -1766,50 +1766,50 @@ void TransformSkewX(float* t, float a)
 	//}
 
 	//static NVGvertex * CONTEXT::__buttCapStart)(NVGvertex * dst, NVGpoint * p,
-	//	float greekdeltax, float greekdeltay, float w, float d,
+	//	float Δx, float Δy, float w, float d,
 	//	float aa, float u0, float u1)
 	//{
-	//	float px = p->x - greekdeltax * d;
-	//	float py = p->y - greekdeltay * d;
-	//	float dlx = greekdeltay;
-	//	float dly = -greekdeltax;
-	//	CONTEXT::__vset)(dst, px + dlx * w - greekdeltax * aa, py + dly * w - greekdeltay * aa, u0, 0); dst++;
-	//	CONTEXT::__vset)(dst, px - dlx * w - greekdeltax * aa, py - dly * w - greekdeltay * aa, u1, 0); dst++;
+	//	float px = p->x - Δx * d;
+	//	float py = p->y - Δy * d;
+	//	float dlx = Δy;
+	//	float dly = -Δx;
+	//	CONTEXT::__vset)(dst, px + dlx * w - Δx * aa, py + dly * w - Δy * aa, u0, 0); dst++;
+	//	CONTEXT::__vset)(dst, px - dlx * w - Δx * aa, py - dly * w - Δy * aa, u1, 0); dst++;
 	//	CONTEXT::__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
 	//	CONTEXT::__vset)(dst, px - dlx * w, py - dly * w, u1, 1); dst++;
 	//	return dst;
 	//}
 
 	//static NVGvertex * CONTEXT::__buttCapEnd)(NVGvertex * dst, NVGpoint * p,
-	//	float greekdeltax, float greekdeltay, float w, float d,
+	//	float Δx, float Δy, float w, float d,
 	//	float aa, float u0, float u1)
 	//{
-	//	float px = p->x + greekdeltax * d;
-	//	float py = p->y + greekdeltay * d;
-	//	float dlx = greekdeltay;
-	//	float dly = -greekdeltax;
+	//	float px = p->x + Δx * d;
+	//	float py = p->y + Δy * d;
+	//	float dlx = Δy;
+	//	float dly = -Δx;
 	//	CONTEXT::__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
 	//	CONTEXT::__vset)(dst, px - dlx * w, py - dly * w, u1, 1); dst++;
-	//	CONTEXT::__vset)(dst, px + dlx * w + greekdeltax * aa, py + dly * w + greekdeltay * aa, u0, 0); dst++;
-	//	CONTEXT::__vset)(dst, px - dlx * w + greekdeltax * aa, py - dly * w + greekdeltay * aa, u1, 0); dst++;
+	//	CONTEXT::__vset)(dst, px + dlx * w + Δx * aa, py + dly * w + Δy * aa, u0, 0); dst++;
+	//	CONTEXT::__vset)(dst, px - dlx * w + Δx * aa, py - dly * w + Δy * aa, u1, 0); dst++;
 	//	return dst;
 	//}
 	//
 
 	//static NVGvertex * CONTEXT::__roundCapStart)(NVGvertex * dst, NVGpoint * p,
-	//	float greekdeltax, float greekdeltay, float w, int ncap,
+	//	float Δx, float Δy, float w, int ncap,
 	//	float aa, float u0, float u1)
 	//{
 	//	int i;
 	//	float px = p->x;
 	//	float py = p->y;
-	//	float dlx = greekdeltay;
-	//	float dly = -greekdeltax;
+	//	float dlx = Δy;
+	//	float dly = -Δx;
 	//	NVG_NOTUSED(aa);
 	//	for (i = 0; i < ncap; i++) {
 	//		float a = i / (float)(ncap - 1) * ::nano2d::f_pi;
 	//		float ax = cosf(a) * w, ay = sinf(a) * w;
-	//		CONTEXT::__vset)(dst, px - dlx * ax - greekdeltax * ay, py - dly * ax - greekdeltay * ay, u0, 1); dst++;
+	//		CONTEXT::__vset)(dst, px - dlx * ax - Δx * ay, py - dly * ax - Δy * ay, u0, 1); dst++;
 	//		CONTEXT::__vset)(dst, px, py, 0.5f, 1); dst++;
 	//	}
 	//	CONTEXT::__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
@@ -1818,14 +1818,14 @@ void TransformSkewX(float* t, float a)
 	//}
 
 	//static NVGvertex * CONTEXT::__roundCapEnd)(NVGvertex * dst, NVGpoint * p,
-	//	float greekdeltax, float greekdeltay, float w, int ncap,
+	//	float Δx, float Δy, float w, int ncap,
 	//	float aa, float u0, float u1)
 	//{
 	//	int i;
 	//	float px = p->x;
 	//	float py = p->y;
-	//	float dlx = greekdeltay;
-	//	float dly = -greekdeltax;
+	//	float dlx = Δy;
+	//	float dly = -Δx;
 	//	NVG_NOTUSED(aa);
 	//	CONTEXT::__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
 	//	CONTEXT::__vset)(dst, px - dlx * w, py - dly * w, u1, 1); dst++;
@@ -1833,7 +1833,7 @@ void TransformSkewX(float* t, float a)
 	//		float a = i / (float)(ncap - 1) * ::nano2d::f_pi;
 	//		float ax = cosf(a) * w, ay = sinf(a) * w;
 	//		CONTEXT::__vset)(dst, px, py, 0.5f, 1); dst++;
-	//		CONTEXT::__vset)(dst, px - dlx * ax + greekdeltax * ay, py - dly * ax + greekdeltay * ay, u0, 1); dst++;
+	//		CONTEXT::__vset)(dst, px - dlx * ax + Δx * ay, py - dly * ax + Δy * ay, u0, 1); dst++;
 	//	}
 	//	return dst;
 	//}
@@ -1859,10 +1859,10 @@ void TransformSkewX(float* t, float a)
 	//
 	//		for (j = 0; j < path->count; j++) {
 	//			float dlx0, dly0, dlx1, dly1, dmr2, cross, limit;
-	//			dlx0 = p0->greekdeltay;
-	//			dly0 = -p0->greekdeltax;
-	//			dlx1 = p1->greekdeltay;
-	//			dly1 = -p1->greekdeltax;
+	//			dlx0 = p0->Δy;
+	//			dly0 = -p0->Δx;
+	//			dlx1 = p1->Δy;
+	//			dly1 = -p1->Δx;
 	//			// Calculate extrusions
 	//			p1->dmx = (dlx0 + dlx1) * 0.5f;
 	//			p1->dmy = (dly0 + dly1) * 0.5f;
@@ -1880,7 +1880,7 @@ void TransformSkewX(float* t, float a)
 	//			p1->flags = (p1->flags & NVG_PT_CORNER) ? NVG_PT_CORNER : 0;
 	//
 	//			// Keep track of left turns.
-	//			cross = p1->greekdeltax * p0->greekdeltay - p0->greekdeltax * p1->greekdeltay;
+	//			cross = p1->Δx * p0->Δy - p0->Δx * p1->Δy;
 	//			if (cross > 0.0f) {
 	//				nleft++;
 	//				p1->flags |= NVG_PT_LEFT;
@@ -1958,7 +1958,7 @@ void TransformSkewX(float* t, float a)
 	//		NVGpoint * p0;
 	//		NVGpoint * p1;
 	//		int s, e, loop;
-	//		float greekdeltax, greekdeltay;
+	//		float Δx, Δy;
 	//
 	//		path->fill = 0;
 	//		path->nfill = 0;
@@ -1985,15 +1985,15 @@ void TransformSkewX(float* t, float a)
 	//
 	//		if (loop == 0) {
 	//			// Add cap
-	//			greekdeltax = p1->x - p0->x;
-	//			greekdeltay = p1->y - p0->y;
-	//			CONTEXT::__normalize)(&greekdeltax, &greekdeltay);
+	//			Δx = p1->x - p0->x;
+	//			Δy = p1->y - p0->y;
+	//			CONTEXT::__normalize)(&Δx, &Δy);
 	//			if (lineCap == ::nano2d::e_line_cap_butt)
-	//				dst = CONTEXT::__buttCapStart)(dst, p0, greekdeltax, greekdeltay, w, -aa * 0.5f, aa, u0, u1);
+	//				dst = CONTEXT::__buttCapStart)(dst, p0, Δx, Δy, w, -aa * 0.5f, aa, u0, u1);
 	//			else if (lineCap == ::nano2d::e_line_cap_butt || lineCap == NVG_SQUARE)
-	//				dst = CONTEXT::__buttCapStart)(dst, p0, greekdeltax, greekdeltay, w, w - aa, aa, u0, u1);
+	//				dst = CONTEXT::__buttCapStart)(dst, p0, Δx, Δy, w, w - aa, aa, u0, u1);
 	//			else if (lineCap == NVG_ROUND)
-	//				dst = CONTEXT::__roundCapStart)(dst, p0, greekdeltax, greekdeltay, w, ncap, aa, u0, u1);
+	//				dst = CONTEXT::__roundCapStart)(dst, p0, Δx, Δy, w, ncap, aa, u0, u1);
 	//		}
 	//
 	//		for (j = s; j < e; ++j) {
@@ -2019,15 +2019,15 @@ void TransformSkewX(float* t, float a)
 	//		}
 	//		else {
 	//			// Add cap
-	//			greekdeltax = p1->x - p0->x;
-	//			greekdeltay = p1->y - p0->y;
-	//			CONTEXT::__normalize)(&greekdeltax, &greekdeltay);
+	//			Δx = p1->x - p0->x;
+	//			Δy = p1->y - p0->y;
+	//			CONTEXT::__normalize)(&Δx, &Δy);
 	//			if (lineCap == ::nano2d::e_line_cap_butt)
-	//				dst = CONTEXT::__buttCapEnd)(dst, p1, greekdeltax, greekdeltay, w, -aa * 0.5f, aa, u0, u1);
+	//				dst = CONTEXT::__buttCapEnd)(dst, p1, Δx, Δy, w, -aa * 0.5f, aa, u0, u1);
 	//			else if (lineCap == ::nano2d::e_line_cap_butt || lineCap == NVG_SQUARE)
-	//				dst = CONTEXT::__buttCapEnd)(dst, p1, greekdeltax, greekdeltay, w, w - aa, aa, u0, u1);
+	//				dst = CONTEXT::__buttCapEnd)(dst, p1, Δx, Δy, w, w - aa, aa, u0, u1);
 	//			else if (lineCap == NVG_ROUND)
-	//				dst = CONTEXT::__roundCapEnd)(dst, p1, greekdeltax, greekdeltay, w, ncap, aa, u0, u1);
+	//				dst = CONTEXT::__roundCapEnd)(dst, p1, Δx, Δy, w, ncap, aa, u0, u1);
 	//		}
 	//
 	//		path->nstroke = (int)(dst - verts);
@@ -2082,10 +2082,10 @@ void TransformSkewX(float* t, float a)
 	//			p1 = &pts[0];
 	//			for (j = 0; j < path->count; ++j) {
 	//				if (p1->flags & NVG_PT_BEVEL) {
-	//					float dlx0 = p0->greekdeltay;
-	//					float dly0 = -p0->greekdeltax;
-	//					float dlx1 = p1->greekdeltay;
-	//					float dly1 = -p1->greekdeltax;
+	//					float dlx0 = p0->Δy;
+	//					float dly0 = -p0->Δx;
+	//					float dlx1 = p1->Δy;
+	//					float dly1 = -p1->Δx;
 	//					if (p1->flags & NVG_PT_LEFT) {
 	//						float lx = p1->x + p1->dmx * woff;
 	//						float ly = p1->y + p1->dmy * woff;
@@ -2285,7 +2285,7 @@ void TransformSkewX(float* t, float a)
 	{
 		//arc(cx, cy, r, a0, a1, dir);
 		//float a = 0, da = 0, hda = 0, kappa = 0;
-		//float greekdeltax = 0, greekdeltay = 0, x = 0, y = 0, tanx = 0, tany = 0;
+		//float Δx = 0, Δy = 0, x = 0, y = 0, tanx = 0, tany = 0;
 		//float px = 0, py = 0, ptanx = 0, ptany = 0;
 		//float vals[3 + 5 * 7 + 100];
 		//int i, ndivs, nvals;
@@ -2321,12 +2321,12 @@ void TransformSkewX(float* t, float a)
 		//nvals = 0;
 		//for (i = 0; i <= ndivs; i++) {
 		//	a = a0 + da * (i / (float)ndivs);
-		//	greekdeltax = CONTEXT::__cosf)(a);
-		//	greekdeltay = CONTEXT::__sinf)(a);
-		//	x = cx + greekdeltax * r;
-		//	y = cy + greekdeltay * r;
-		//	tanx = -greekdeltay * r * kappa;
-		//	tany = greekdeltax * r * kappa;
+		//	Δx = CONTEXT::__cosf)(a);
+		//	Δy = CONTEXT::__sinf)(a);
+		//	x = cx + Δx * r;
+		//	y = cy + Δy * r;
+		//	tanx = -Δy * r * kappa;
+		//	tany = Δx * r * kappa;
 
 		//	if (i == 0) {
 		//		vals[nvals++] = (float)transfer;
@@ -3219,16 +3219,16 @@ void TransformSkewX(float* t, float a)
 	//	while ((nrows = CONTEXT::TextBreakLines)(ctx, string, end, breakRowWidth, rows, 2))) {
 	//		for (i = 0; i < nrows; i++) {
 	//			::nano2d::text_row * row = &rows[i];
-	//			float rminx, rmaxx, greekdeltax = 0;
+	//			float rminx, rmaxx, Δx = 0;
 	//			// Horizontal bounds
 	//			if (haling & ::nano2d::e_align_left)
-	//				greekdeltax = 0;
+	//				Δx = 0;
 	//			else if (haling & ::nano2d::e_align_center)
-	//				greekdeltax = breakRowWidth * 0.5f - row->width * 0.5f;
+	//				Δx = breakRowWidth * 0.5f - row->width * 0.5f;
 	//			else if (haling & ::nano2d::e_align_right)
-	//				greekdeltax = breakRowWidth - row->width;
-	//			rminx = x + row->minx + greekdeltax;
-	//			rmaxx = x + row->maxx + greekdeltax;
+	//				Δx = breakRowWidth - row->width;
+	//			rminx = x + row->minx + Δx;
+	//			rmaxx = x + row->maxx + Δx;
 	//			minx = CONTEXT::__minf)(minx, rminx);
 	//			maxx = CONTEXT::__maxf)(maxx, rmaxx);
 	//			// Vertical bounds.

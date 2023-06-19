@@ -13,8 +13,15 @@
 #include <execinfo.h>
 #include <cxxabi.h>
 
+#ifdef __APPLE__
+
+void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address);
+
+#else
 
 void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pmessage, void *address);
+
+#endif
 
 string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, int iSkip)
 {
@@ -63,8 +70,17 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
       string strSymbolName;
 
       string strAddress;
-
+      
+#ifdef __APPLE__
+      
+      apple_backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
+      
+#else
+      
       backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
+      
+#endif
+      
 
       string strLine;
 
@@ -99,7 +115,7 @@ namespace acme
 
       auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-      string str = _ansi_stack_trace(stack, minimum_non_negative(iCount, frames), strFormat, iSkip);
+      string str = _ansi_stack_trace(stack, minimum_non_negative(iCount, frames), strFormat, maximum( iSkip, 0));
 
       return str;
 

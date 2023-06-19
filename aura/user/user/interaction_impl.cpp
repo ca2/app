@@ -4385,14 +4385,14 @@ namespace user
    //}
 
 
-   //i32 interaction_impl::ScrollWindowEx(i32 greekdeltax,i32 greekdeltay,
+   //i32 interaction_impl::ScrollWindowEx(i32 Δx,i32 Δy,
    //                                     const ::rectangle_i32 * prectScroll,
    //                                       const ::rectangle_i32 * prectClip,
    //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,::u32 flags)
    //{
 
-   //   UNREFERENCED_PARAMETER(greekdeltax);
-   //   UNREFERENCED_PARAMETER(greekdeltay);
+   //   UNREFERENCED_PARAMETER(Δx);
+   //   UNREFERENCED_PARAMETER(Δy);
    //   UNREFERENCED_PARAMETER(prectScroll);
    //   UNREFERENCED_PARAMETER(prectClip);
    //   UNREFERENCED_PARAMETER(prgnUpdate);
@@ -5744,7 +5744,7 @@ namespace user
 
             m_pgraphics->update_screen();
 
-            m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
+            //m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
 
          }
 
@@ -7232,7 +7232,7 @@ namespace user
 
       }
 
-      m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), e_layout_window);
+      m_puserinteraction->set_display(m_puserinteraction->const_layout().design().display(), e_layout_window);
 
       m_puserinteraction->clear_activation(e_layout_design);
 
@@ -7609,7 +7609,8 @@ namespace user
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 
-      if ((m_puserinteraction->const_layout().sketch().size()
+      if (!m_puserinteraction->is_window_resizing()
+          && (m_puserinteraction->const_layout().sketch().size()
          != m_puserinteraction->const_layout().window().size()))
       {
 
@@ -7620,6 +7621,7 @@ namespace user
          int cy = m_puserinteraction->const_layout().sketch().size().height();
          //         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
 
+         
          m_puserinteraction->set_need_layout();
 
          m_puserinteraction->set_need_redraw();

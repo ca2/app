@@ -3297,7 +3297,8 @@ namespace draw2d
       case e_clip_item_ellipse:
          _add_shape(dynamic_cast<clip_ellipse *>(pclipitem)->m_item);
          break;
-      case e_clip_item_polygon:         _add_shape(dynamic_cast<clip_polygon *>(pclipitem)->m_item);
+      case e_clip_item_polygon:
+         _add_shape(dynamic_cast<clip_polygon *>(pclipitem)->m_item);
          break;
       default:
          break;

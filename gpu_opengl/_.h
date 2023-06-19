@@ -3,7 +3,7 @@
 
 
 #include "aura/_.h"
-#include "aura/gpu/gpu/_.h"
+#include "aura/graphics/gpu/_.h"
 
 
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS

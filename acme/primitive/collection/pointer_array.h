@@ -342,7 +342,7 @@ public:
    }
 
 
-   void call_member(enum_id eid, ::index iStart, ::count inCountLastOut)
+   void call_member(enum_id eid, ::index iStart = 0, ::count inCountLastOut = -1)
    {
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);

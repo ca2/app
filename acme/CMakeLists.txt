@@ -165,6 +165,8 @@ list(APPEND library_source
         filesystem/file/transfer.h
         filesystem/file/translatable.cpp
         filesystem/file/translatable.h
+        filesystem/file/write_text_stream.cpp
+        filesystem/file/write_text_stream.h
         filesystem/filesystem/acme_directory.cpp
         filesystem/filesystem/acme_directory.h
         filesystem/filesystem/acme_file.cpp
@@ -956,6 +958,7 @@ list(APPEND library_source
         user/user/element.cpp
         user/user/element.h
         user/user/e_window_flag.h
+        user/user/mouse.cpp
         user/user/mouse.h
         user/user/os_colors.cpp
         user/user/os_theme_colors.cpp
@@ -2351,8 +2354,6 @@ elseif (LINUX OR FREEBSD)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})

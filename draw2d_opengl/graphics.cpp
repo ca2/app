@@ -5753,11 +5753,11 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
-   {
+   //void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
+   //{
 
 
-   }
+   //}
 
    //void graphics::on_begin_draw(oswindow wnd, const ::size_i32 & sz)
    void graphics::on_begin_draw()

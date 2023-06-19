@@ -1697,6 +1697,9 @@
     <ClInclude Include="graphics\gpu\shader.h">
       <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\clip.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

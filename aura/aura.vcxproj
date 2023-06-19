@@ -852,6 +852,7 @@
     <ClInclude Include="graphics\draw2d\bitmap.h" />
     <ClInclude Include="graphics\draw2d\brush.h" />
     <ClInclude Include="graphics\draw2d\buffered_graphics.h" />
+    <ClInclude Include="graphics\draw2d\clip.h" />
     <ClInclude Include="graphics\draw2d\color_filter.h" />
     <ClInclude Include="graphics\draw2d\color_matrix.h" />
     <ClInclude Include="graphics\draw2d\common.h" />

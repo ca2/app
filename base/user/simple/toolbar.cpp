@@ -1885,32 +1885,32 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
       str = ptoolitem->m_str;
 
-      index greekdeltax, greekdeltaxNext;
+      index Δx, ΔxNext;
 
       if (ptoolitem->m_estyle & e_tool_item_style_separator)
       {
 
-         greekdeltax = sizeSeparator.cx();
+         Δx = sizeSeparator.cx();
 
-         greekdeltaxNext = greekdeltax;
+         ΔxNext = Δx;
 
       }
       else
       {
 
-         greekdeltax = rectangleItemPad.left;
+         Δx = rectangleItemPad.left;
 
          if (ptoolitem->m_pimage->is_set())
          {
 
-            greekdeltax += ptoolitem->m_pimage->height();
+            Δx += ptoolitem->m_pimage->height();
 
          }
 
          if (str.has_char() && ptoolitem->m_pimage->is_set())
          {
 
-            greekdeltax += iImageSpacing;
+            Δx += iImageSpacing;
 
          }
 
@@ -1919,19 +1919,19 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
             size_f64 size = pgraphics->get_text_extent(str);
 
-            greekdeltax = (index)  (size.cx() + EXTRA_TEXT_CX);
+            Δx = (index)  (size.cx() + EXTRA_TEXT_CX);
 
          }
 
-         greekdeltax += rectangleItemPad.right; // +sPress.cx();
+         Δx += rectangleItemPad.right; // +sPress.cx();
 
-         greekdeltaxNext = greekdeltax - CX_OVERLAP;
+         ΔxNext = Δx - CX_OVERLAP;
 
       }
 
       bool bFound = false;
 
-      if (x + greekdeltax > nWidth - rectangleBorder.right)
+      if (x + Δx > nWidth - rectangleBorder.right)
       {
 
          for (index iItemHere = iItem; iItemHere >= 0; iItemHere--)
@@ -2040,7 +2040,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
          bFirstInRow = false;
 
-         x += greekdeltaxNext;
+         x += ΔxNext;
 
       }
 

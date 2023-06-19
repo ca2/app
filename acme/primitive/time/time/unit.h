@@ -8,12 +8,12 @@
 #pragma once
 
 
-// nanosecond unit greekethas
-constexpr class time operator "" _greekethas(unsigned long long int u) { return integral_nanosecond(u); }
+// nanosecond unit ηs
+constexpr class time operator "" _ηs(unsigned long long int u) { return integral_nanosecond(u); }
 
 
-// microsecond unit greekmus
-constexpr class time operator "" _greekmus(unsigned long long int u) { return integral_microsecond(u); }
+// microsecond unit μs
+constexpr class time operator "" _μs(unsigned long long int u) { return integral_microsecond(u); }
 
 
 constexpr class time operator "" _ms(unsigned long long int u) { return integral_millisecond(u); }
@@ -39,11 +39,11 @@ constexpr class time operator "" _days(unsigned long long int u) { return integr
 
 
 // unit _nanosecond
-constexpr class time operator "" _greekethas(long double d) { return floating_nanosecond(d); }
+constexpr class time operator "" _ηs(long double d) { return floating_nanosecond(d); }
 
 
 // unit _microsecond
-constexpr class time operator "" _greekmus(long double d) { return floating_microsecond(d); }
+constexpr class time operator "" _μs(long double d) { return floating_microsecond(d); }
 
 
 constexpr class time operator "" _ms(long double d) { return floating_millisecond(d); }

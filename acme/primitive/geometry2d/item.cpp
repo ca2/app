@@ -168,16 +168,16 @@ namespace geometry2d
 
    //   double y = p.y();
 
-   //   double greekdeltax = x - center.x();
+   //   double Δx = x - center.x();
 
-   //   double greekdeltay = y - center.y();
+   //   double Δy = y - center.y();
 
    //   if (radius.cx() == radius.cy())
    //   {
 
    //      double r = radius.cx();
 
-   //      double square_distance = (greekdeltax * greekdeltax) + (greekdeltay * greekdeltay);
+   //      double square_distance = (Δx * Δx) + (Δy * Δy);
 
    //      double square_boundary = (r * r);
 
@@ -187,7 +187,7 @@ namespace geometry2d
    //   else
    //   {
 
-   //      double normal_distance = ((greekdeltax * greekdeltax) / (radius.cx() * radius.cx()) + (greekdeltay * greekdeltay) / (radius.cx() * radius.cy()));
+   //      double normal_distance = ((Δx * Δx) / (radius.cx() * radius.cx()) + (Δy * Δy) / (radius.cx() * radius.cy()));
 
    //      return normal_distance <= 1.0;
 

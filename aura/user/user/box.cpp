@@ -136,13 +136,13 @@ namespace user
 
          calculate_broad_and_compact_restore();
 
-         if (m_windowrectangle.m_rectangleWindow.size() == m_sizeRestoreBroad)
+         if (m_windowrectangle.m_rectangleWindow.size() == m_rectangleRestoreBroad.size())
          {
 
             m_windowrectangle.m_rectangleBroad = m_windowrectangle.m_rectangleWindow;
 
          }
-         else if (m_windowrectangle.m_rectangleWindow.size() == m_sizeRestoreCompact)
+         else if (m_windowrectangle.m_rectangleWindow.size() == m_rectangleRestoreCompact.size())
          {
 
             m_windowrectangle.m_rectangleCompact = m_windowrectangle.m_rectangleWindow;
@@ -597,7 +597,7 @@ namespace user
          windowrect.m_rectangleSnapped = windowrect.m_rectangleWindow;
 
       }
-      else if (windowrect.m_rectangleWindow.size() == m_sizeRestoreCompact)
+      else if (windowrect.m_rectangleWindow.size() == m_rectangleRestoreCompact.size())
       {
 
          windowrect.m_rectangleCompact = windowrect.m_rectangleWindow;
@@ -605,7 +605,7 @@ namespace user
          windowrect.m_edisplay = e_display_compact;
 
       }
-      else if (windowrect.m_rectangleWindow.size() == m_sizeRestoreBroad)
+      else if (windowrect.m_rectangleWindow.size() == m_rectangleRestoreBroad.size())
       {
 
          windowrect.m_rectangleBroad = windowrect.m_rectangleWindow;
@@ -652,11 +652,27 @@ namespace user
    }
 
 
-   ::size_i32 box::get_window_normal_stored_size()
+   ::rectangle_i32 box::get_window_normal_stored_rectangle()
    {
 
-      return m_windowrectangle.m_rectangleNormal.size();
+      return m_windowrectangle.m_rectangleNormal;
 
+   }
+
+
+   ::rectangle_i32 box::get_window_broad_stored_rectangle()
+   {
+
+      return m_windowrectangle.m_rectangleBroad;
+
+   }
+
+
+   ::rectangle_i32 box::get_window_compact_stored_rectangle()
+   {
+
+      return m_windowrectangle.m_rectangleCompact;
+   
    }
 
 
@@ -678,23 +694,31 @@ namespace user
             edisplay = e_display_normal;
 
          }
+         
+         auto rectangleSketch = const_layout().sketch().parent_raw_rectangle();
 
          if (edisplay == e_display_broad)
          {
+            
+            auto rectangle = m_windowrectangle.m_rectangleBroad.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleBroad;
 
-            good_restore(nullptr, m_windowrectangle.m_rectangleBroad, true, eactivation, e_zorder_top, e_display_broad);
+            good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_broad);
 
          }
          else if (edisplay == e_display_compact)
          {
 
-            good_restore(nullptr, m_windowrectangle.m_rectangleCompact, true, eactivation, e_zorder_top, e_display_compact);
+            auto rectangle = m_windowrectangle.m_rectangleCompact.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleCompact;
+
+            good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_compact);
 
          }
          else
          {
 
-            good_restore(nullptr, m_windowrectangle.m_rectangleNormal, true, eactivation, e_zorder_top, e_display_normal);
+            auto rectangle = m_windowrectangle.m_rectangleNormal.is_empty() ? rectangleSketch : m_windowrectangle.m_rectangleNormal;
+
+            good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_normal);
 
          }
 

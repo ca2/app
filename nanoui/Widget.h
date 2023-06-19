@@ -222,7 +222,7 @@ namespace nanoui
 
       virtual void fixed_placement(const ::rectangle_i32& rectangle);
 
-      virtual void expose_fixed_size(const ::rectangle_i32& rectangle);
+      virtual void expose_fixed_size(const ::rectangle_i32& rectangle, bool bRedraw = true);
 
 
       /**

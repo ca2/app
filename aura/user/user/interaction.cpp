@@ -1408,6 +1408,25 @@ namespace user
 
    void interaction::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function,  bool bAscendants)
    {
+      
+      if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
+      {
+         
+         
+         information() << "set_need_redraw while resize";
+         
+         if(rectangleaNeedRedraw.size() > 0)
+         {
+            
+            auto r = rectangleaNeedRedraw[0];
+            
+            information("%d,%d  %d,%d", r.left, r.top, r.width(), r.height());
+            
+         }
+         
+         information() << acmenode()->get_callstack();
+         
+      }
 
       auto * pinteraction = get_wnd();
 
@@ -6631,65 +6650,81 @@ namespace user
 
          pdrag->m_ecursor = e_cursor_size_bottom_right;
 
-         auto size = pdrag->point() - layout().sketch().m_point;
+         auto Δ = pdrag->point() - pdrag->m_pointLButtonDown;
+         
+         auto pointBottomRight = pdrag->m_pointInitial + Δ;
+         
+         auto size = pointBottomRight - layout().window().origin();
 
          auto sizeMinimum = get_window_minimum_size();
 
          size = size.maximum(sizeMinimum);
 
+         information("drag_shift resize %d, %d", size.cx(), size.cy());
+         
          auto rectanglePrevious = layout().window().raw_rectangle();
-
+         
          layout().sketch().m_size = size;
-
-         auto rectangle = layout().sketch().raw_rectangle();
-
+         
          set_need_layout();
          
-         ::rectangle_i32_array rectanglea;
-
-         if (rectangle.right > rectanglePrevious.right)
-         {
-
-            ::rectangle_i32 r;
-
-            r.left = rectanglePrevious.right;
-            r.right = rectangle.right;
-            r.top = rectangle.top;
-            r.bottom = rectangle.bottom;
-
-            rectanglea.add(r);
-
-         }
-
-         if (rectangle.bottom > rectanglePrevious.bottom)
-         {
-
-            ::rectangle_i32 r;
-
-            r.left = rectangle.left;
-            r.right = rectangle.right;
-            r.top = rectanglePrevious.bottom;
-            r.bottom = rectangle.bottom;
-
-            rectanglea.add(r);
-
-         }
+         on_size_change_request(rectanglePrevious);
          
-         if(rectanglea.has_element())
-         {
-          
-            set_need_redraw(rectanglea);
-            
-         }
-
-         post_redraw();
-
          return true;
 
       }
 
       return false;
 
+   }
+
+
+   void interaction::on_size_change_request(const ::rectangle_i32 & rectanglePrevious)
+   {
+      
+      auto rectangle = layout().sketch().raw_rectangle();
+      
+      ::rectangle_i32_array rectanglea;
+
+      if (rectangle.right > rectanglePrevious.right)
+      {
+
+         ::rectangle_i32 r;
+
+         r.left = rectanglePrevious.right;
+         r.right = rectangle.right;
+         r.top = rectangle.top;
+         r.bottom = rectangle.bottom;
+
+         rectanglea.add(r);
+
+      }
+
+      if (rectangle.bottom > rectanglePrevious.bottom)
+      {
+
+         ::rectangle_i32 r;
+
+         r.left = rectangle.left;
+         r.right = rectangle.right;
+         r.top = rectanglePrevious.bottom;
+         r.bottom = rectangle.bottom;
+
+         rectanglea.add(r);
+
+      }
+      
+      if(rectanglea.has_element())
+      {
+       
+         set_need_redraw(rectanglea);
+         
+      }
+
+      post_redraw();
+
+
+      
    }
 
 
@@ -14685,7 +14720,9 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         layout().m_statea[elayout] = rectangle;
+         auto & layoutstate = layout().m_statea[elayout];
+         
+         layoutstate = rectangle;
 
       }
 
@@ -15438,10 +15475,48 @@ namespace user
 
       if (iMatchingWorkspace >= 0)
       {
+         
+         ::size_i32 sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
+         
+         ::size_i32 sizeMinimumBroad = sizeMin.maximum(rectangleWorkspace.size() * 7 / 10);
+         
+         auto rectangleStoredBroad = get_window_broad_stored_rectangle();
+         
+         if(rectangleStoredBroad.size() >= sizeMinimumBroad
+            && rectangleStoredBroad.size() <= rectangleWorkspace.size())
+         {
+            
+            m_rectangleRestoreBroad = rectangleStoredBroad;
+            
+         }
+         else
+         {
+            
+            m_rectangleRestoreBroad.set_size(sizeMin.maximum(rectangleWorkspace.size() * 4 / 5));
+            
+            m_rectangleRestoreBroad.move_to(rectangleWorkspace.size() / 10);
+            
+         }
 
-         m_sizeRestoreBroad = sizeMin.maximum(rectangleWorkspace.size() * 4 / 5);
-
-         m_sizeRestoreCompact = sizeMin.maximum(rectangleWorkspace.size() * 2 / 5);
+         ::size_i32 sizeMaximumCompact = sizeMin.maximum(rectangleWorkspace.size() * 5 / 10);
+         
+         auto rectangleStoreCompact = get_window_compact_stored_rectangle();
+         
+         if(rectangleStoreCompact.size() >= sizeMin
+            && rectangleStoreCompact.size() <= sizeMaximumCompact)
+         {
+            
+            m_rectangleRestoreCompact = rectangleStoreCompact;
+            
+         }
+         else
+         {
+            
+            m_rectangleRestoreCompact.set_size(sizeMin.maximum(rectangleWorkspace.size() * 2 / 5));
+            
+            m_rectangleRestoreCompact.move_to(rectangleWorkspace.size() / 10);
+            
+         }
 
          if (::is_set(prectWorkspace))
          {
@@ -16361,11 +16436,27 @@ namespace user
    }
 
 
-   ::size_i32 interaction::get_window_normal_stored_size()
+   ::rectangle_i32 interaction::get_window_normal_stored_rectangle()
    {
 
-      return this->size();
+      return this->raw_rectangle();
 
+   }
+
+
+   ::rectangle_i32 interaction::get_window_broad_stored_rectangle()
+   {
+   
+      return m_rectangleRestoreBroad;
+   
+   }
+
+
+   ::rectangle_i32 interaction::get_window_compact_stored_rectangle()
+   {
+   
+      return m_rectangleRestoreCompact;
+      
    }
 
 
@@ -17624,6 +17715,20 @@ namespace user
    }
 
 
+   bool interaction::is_window_resizing()
+   {
+      
+      if(::is_set(m_pdragCurrent) && m_pdragCurrent->m_eelement == e_element_resize)
+      {
+         
+         return true;
+         
+      }
+   
+      return false;
+      
+   }
+
 
    void interaction::set_stock_icon(enum_stock_icon estockicon)
    {
@@ -18661,9 +18766,9 @@ namespace user
 
          pwindowimpl->m_puiLastLButtonDown = nullptr;
 
-         set_need_redraw();
+         //set_need_redraw();
 
-         post_redraw();
+         //post_redraw();
 
       }
 
@@ -19340,7 +19445,7 @@ namespace user
 
       ::pointer<::message::mouse_wheel>pwheel = pmessage;
 
-      double y = pwheel->m_greekdelta / 120.0;
+      double y = pwheel->m_Δ / 120.0;
 
       auto pappearance = get_appearance();
 

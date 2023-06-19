@@ -23,11 +23,11 @@ namespace app_integration
 
       ::rectangle_f64 r(100, 100, 900, 500);
 
-      double greekdeltax = m_rectangle.width() / 1000.0;
+      double Δx = m_rectangle.width() / 1000.0;
 
-      double greekdeltay = m_rectangle.height() / 600.0;
+      double Δy = m_rectangle.height() / 600.0;
 
-      double d = minimum(greekdeltax, greekdeltay);
+      double d = minimum(Δx, Δy);
 
       r *= d;
 

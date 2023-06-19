@@ -248,22 +248,36 @@ public:
 //   inline bool operator == (const RECTANGLE_TYPE & rectangle) const noexcept { return this->cx() == rectangle.width() && this->cy() == rectangle.height(); }
    //inline bool operator != (const RECTANGLE_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }
 
-   inline ::std::strong_ordering operator <=> (const size_type & size) const noexcept 
+   inline bool operator >= (const size_type & size) const noexcept
    {
    
-      auto order = this->cx() <=> size.cx();
-
-      if (order != 0)
-      {
-
-         return order;
-
-      }
-      
-      return this->cy() <=> size.cy(); 
+      return this->cx() >= size.cx() && this->cy() >= size.cy();
 
    }
 
+   
+   inline bool operator > (const size_type & size) const noexcept
+   {
+   
+      return *this >= size && *this != size;
+
+   }
+
+   
+   inline bool operator <= (const size_type & size) const noexcept
+   {
+   
+      return this->cx() <= size.cx() && this->cy() <= size.cy();
+
+   }
+
+   
+   inline bool operator < (const size_type & size) const noexcept
+   {
+   
+      return *this <= size && *this != size;
+
+   }
 //   inline ::std::strong_ordering operator <=> (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <=> (rectangle.size()); }
    //inline bool operator >= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator >= (rectangle.size()); }
    //inline bool operator < (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator < (rectangle.size()); }

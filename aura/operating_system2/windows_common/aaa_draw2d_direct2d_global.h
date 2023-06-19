@@ -100,7 +100,7 @@ namespace draw2d_direct2d
 
 } // namespace draw2d
 
-namespace greekdeltax
+namespace Δx
 {
 
    inline void throw_if_failed(HRESULT hr)
@@ -114,7 +114,7 @@ namespace greekdeltax
    }
 
 
-} // namespace greekdeltax
+} // namespace Δx
 
 
 CLASS_DECL_AURA void directx_debug();

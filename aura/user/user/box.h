@@ -84,7 +84,10 @@ namespace user
       virtual void SaveWindowRectangle(const ::scoped_string & strDataKey);
 
 
-      ::size_i32 get_window_normal_stored_size() override;
+      ::rectangle_i32 get_window_normal_stored_rectangle() override;
+      ::rectangle_i32 get_window_broad_stored_rectangle() override;
+      ::rectangle_i32 get_window_compact_stored_rectangle() override;
+
 
       void display_normal(::e_display edisplay, ::e_activation eactivation) override;
       void display_full_screen(::index iMonitor, ::e_activation eactivation) override;

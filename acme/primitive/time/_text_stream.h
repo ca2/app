@@ -56,7 +56,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_microsecond& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "greekmus", integral.m_i);
+//   textstream.append_format("%" PRId64 "μs", integral.m_i);
 //
 //   return textstream;
 //

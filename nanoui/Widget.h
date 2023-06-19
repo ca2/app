@@ -53,8 +53,8 @@ namespace nanoui
       point_i32               m_pos;
       size_i32                m_size;
       size_i32                m_fixed_size;
-      size_i32                m_offsetToApplyOnDraw;
-      size_i32                m_offsetSizeToApplyOnDraw;
+      //size_i32                m_offsetToApplyOnDraw;
+      //size_i32                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;
       ::pointer_array<Widget> m_children;
       //::index               m_iHoverCandidateChildStart;
@@ -135,6 +135,33 @@ namespace nanoui
       /// Set the parent pwidget
       void set_parent(Widget* parent) { m_pwidgetParent = parent; }
 
+      bool has_ascendant(Widget* pwidgetAscendantCandidate) const;
+
+      template < typename TYPE >
+      bool has_ascendant_of_type() const
+      {
+
+         auto pwidgetAscendant = this->parent();
+
+         while (pwidgetAscendant != nullptr)
+         {
+
+            if (dynamic_cast < TYPE * >((Widget *)pwidgetAscendant) != nullptr)
+            {
+
+               return true;
+
+            }
+
+            pwidgetAscendant = pwidgetAscendant->parent();
+
+         }
+
+         return false;
+
+      }
+
+
       /// Return the used \::pointer Layout generator
       Layout* layout() { return m_playout; }
       /// Return the used \::pointer Layout generator
@@ -189,13 +216,13 @@ namespace nanoui
 
       ::rectangle_i32 interaction_rectangle() const;
 
-      virtual void set_need_redraw(const ::rectangle_i32& rectangleParentCoordinates = {});
+      virtual void set_need_redraw(const ::rectangle_i32& rectangle = {}, function < void() > function = nullptr);
 
       virtual void post_redraw();
 
       virtual void fixed_placement(const ::rectangle_i32& rectangle);
 
-      virtual void expose_fixed_size(const ::rectangle_i32& rectangle);
+      virtual void expose_fixed_size(const ::rectangle_i32& rectangle, bool bRedraw = true);
 
 
       /**

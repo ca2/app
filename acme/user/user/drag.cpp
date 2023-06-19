@@ -42,6 +42,8 @@ namespace user
       m_bDrag = false;
 
       m_pointLButtonDown = m_pmouse->m_point;
+      
+      m_pointInitial = pointDrag;
 
       m_sizeLButtonDownOffset = m_pointLButtonDown - pointDrag;
 

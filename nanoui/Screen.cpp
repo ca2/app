@@ -581,9 +581,9 @@ namespace nanoui
 
    void Screen::set_need_layout()
    {
-      
-      m_bNeedLayout = true; 
-   
+
+      m_bNeedLayout = true;
+
    }
 
 
@@ -806,15 +806,15 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) 
+   bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText)
    {
 
-      if (m_focus_path.size() > 0) 
+      if (m_focus_path.size() > 0)
       {
-      
+
          for (auto i = 0; i < m_focus_path.get_upper_bound(); i++)
          {
-            
+
             auto pwidget = m_focus_path[i];
 
             if (pwidget->keyboard_event(ekey, scancode, action, ekeyModifiers, strText))
@@ -833,10 +833,10 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_character_event(unsigned int codepoint) 
+   bool Screen::keyboard_character_event(unsigned int codepoint)
    {
 
-      if (m_focus_path.size() > 0) 
+      if (m_focus_path.size() > 0)
       {
 
          for (auto it = m_focus_path.get_upper_bound(-2); it >= 0; --it)
@@ -856,7 +856,7 @@ namespace nanoui
       return false;
    }
 
-   bool Screen::resize_event(const sequence2_i32& size) {
+   bool Screen::resize_event(const size_i32& size) {
       if (m_resize_callback)
          m_resize_callback(size);
       //m_redraw = true;
@@ -944,7 +944,7 @@ namespace nanoui
          if (!screen()->m_pwidgetLeftButtonDown)
          {
 
-            auto pointClient = pointCursor - m_pwidgetDrag->parent()->absolute_position();
+            auto pointClient = pointCursor - m_pwidgetDrag->absolute_position();
 
             ret = m_pwidgetDrag->mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
 
@@ -981,7 +981,7 @@ namespace nanoui
    //catch (const std::exception & e) {
      // std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
    //}
-      
+
       return ret;
 
    }
@@ -1050,7 +1050,7 @@ namespace nanoui
       //#endif
 
          //try {
-      if (m_focus_path.size() > 1) 
+      if (m_focus_path.size() > 1)
       {
 
          auto pwidget = m_focus_path[m_focus_path.size() - 2];
@@ -1075,6 +1075,8 @@ namespace nanoui
 
       }
 
+
+
       ////if (action == GLFW_PRESS)
       //if (down)
       //{
@@ -1084,19 +1086,6 @@ namespace nanoui
       //else
       //   m_mouse_state &= ~(1 << button);
 
-      m_pwidgetDrop = find_widget(m_mouse_pos);
-      //if (m_bDragActive && action == GLFW_RELEASE &&
-      if (m_bDragActive && !down && m_pwidgetDrag 
-         && m_pwidgetDrop != m_pwidgetDrag
-         && m_pwidgetLeftButtonDown == nullptr)
-      {
-
-         auto pointClient = m_mouse_pos - m_pwidgetDrag->parent()->absolute_position();
-
-         bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, emouse, false, bDoubleClick, ekeyModifiers);
-
-      }
-
       /*     if (drop_widget != nullptr && drop_widget->cursor() != m_cursor) {
               m_cursor = drop_widget->cursor();
               glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
@@ -1105,19 +1094,75 @@ namespace nanoui
            //bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
       bool btn12 = emouse == ::user::e_mouse_left_button || emouse == ::user::e_mouse_right_button;
 
-      //if (!m_bDragActive && action == GLFW_PRESS && btn12) {
-      if (!m_bDragActive && down && btn12) {
-         m_pwidgetDrag = find_widget(m_mouse_pos);
-         if (m_pwidgetDrag == this)
-            m_pwidgetDrag = nullptr;
-         m_bDragActive = m_pwidgetDrag != nullptr;
-         if (!m_bDragActive)
-            update_focus(nullptr);
-      }
-      //else if (m_bDragActive && action == GLFW_RELEASE && btn12) {
-      else if (m_bDragActive && !down && btn12) {
-         m_bDragActive = false;
-         m_pwidgetDrag = nullptr;
+      if (btn12)
+      {
+
+         if (down)
+         {
+
+            //if (!m_bDragActive && action == GLFW_PRESS && btn12) {
+            if (!m_bDragActive && btn12)
+            {
+
+               auto pwidget = find_widget(m_mouse_pos);
+
+               if (!on_mouse_down(pwidget))
+               {
+
+                  return true;
+
+               }
+
+               m_pwidgetDrag = pwidget;
+
+               if (m_pwidgetDrag == this)
+               {
+
+                  m_pwidgetDrag = nullptr;
+
+               }
+
+               m_bDragActive = m_pwidgetDrag != nullptr;
+
+               if (!m_bDragActive)
+               {
+
+                  update_focus(nullptr);
+
+               }
+
+            }
+
+         }
+         //else if (m_bDragActive && action == GLFW_RELEASE && btn12) {
+         else // !down
+         {
+
+            m_pwidgetDrop = find_widget(m_mouse_pos);
+   
+            if (m_bDragActive)
+            {
+
+               //if (m_bDragActive && action == GLFW_RELEASE &&
+               if (m_bDragActive && m_pwidgetDrag
+                  && m_pwidgetDrop != m_pwidgetDrag
+                  && m_pwidgetLeftButtonDown == nullptr)
+               {
+
+                  auto pointClient = m_mouse_pos - m_pwidgetDrag->parent()->absolute_position();
+
+                  bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, emouse, false, bDoubleClick, ekeyModifiers);
+
+               }
+
+               m_bDragActive = false;
+
+               m_pwidgetDrag = nullptr;
+
+            }
+
+         }
+
       }
 
       bool bRet = Widget::mouse_button_event(m_mouse_pos, emouse, down, bDoubleClick, m_modifiers);
@@ -1221,10 +1266,10 @@ namespace nanoui
    //   redraw();
    //}
 
-   void Screen::update_focus(Widget* pwidget) 
+   void Screen::update_focus(Widget* pwidget)
    {
 
-      for (auto pwidget : m_focus_path) 
+      for (auto pwidget : m_focus_path)
       {
 
          pwidget->focus_event(false);
@@ -1233,9 +1278,9 @@ namespace nanoui
 
       m_focus_path.clear();
 
-      Window * window = nullptr;
+      Window* window = nullptr;
 
-      while (pwidget) 
+      while (pwidget)
       {
 
          m_focus_path.add(pwidget);
@@ -1268,7 +1313,7 @@ namespace nanoui
    }
 
 
-   void Screen::dispose_window(Window* window) 
+   void Screen::dispose_window(Window* window)
    {
 
       if (m_focus_path.contains(window))
@@ -1289,11 +1334,19 @@ namespace nanoui
 
    }
 
-
-   void Screen::center_window(Window* window, ::nano2d::context* pcontext) 
+   
+   bool Screen::on_mouse_down(Widget* pwidget)
    {
 
-      if (window->size() == 0) 
+      return true;
+
+   }
+
+
+   void Screen::center_window(Window* window, ::nano2d::context* pcontext)
+   {
+
+      if (window->size() == 0)
       {
 
          window->set_size(window->preferred_size(pcontext));
@@ -1313,7 +1366,7 @@ namespace nanoui
    }
 
 
-   void Screen::move_window_to_front(Window* window) 
+   void Screen::move_window_to_front(Window* window)
    {
 
       m_children.erase(window);
@@ -1322,15 +1375,15 @@ namespace nanoui
 
       /* Brute force topological sort (no problem for a few windows..) */
       bool changed = false;
-      do 
+      do
       {
          ::index base_index = 0;
          for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex)
             if (m_children[iIndex] == window)
                base_index = iIndex;
          changed = false;
-         
-         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex) 
+
+         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex)
          {
 
             ::pointer < Popup > pw = m_children[iIndex];
@@ -1458,8 +1511,8 @@ namespace nanoui
 
       context.set_font_sink(m_pfontsink);
 
-      auto size = m_puserinteraction->get_size();
-
+      ::size_i32 size = m_puserinteraction->get_size();
+      
       set_size({ (int)size.cx(), (int)size.cy() });
 
       resize_event(m_size);

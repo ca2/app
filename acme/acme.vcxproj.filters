@@ -276,6 +276,9 @@
     <Filter Include="Header Files\primitive\geometry2d\NewFilter1">
       <UniqueIdentifier>{81f02fce-3b27-4611-9364-284970db5ff6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\geometry">
+      <UniqueIdentifier>{6128342c-5077-4706-928f-0864361f9904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3181,6 +3184,15 @@
     </ClInclude>
     <ClInclude Include="include\_tags.h">
       <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\numeric.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\aaa_numeric.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry\sequence.h">
+      <Filter>Header Files\primitive\geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

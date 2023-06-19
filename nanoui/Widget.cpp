@@ -206,6 +206,7 @@ namespace nanoui
       {
 
          parent()->perform_layout(pcontext);
+         
          perform_layout(pcontext);
 
       };
@@ -299,6 +300,30 @@ namespace nanoui
       }
 
       return contains(p) ? this : nullptr;
+
+   }
+
+
+   bool Widget::has_ascendant(Widget* pwidgetAscendantCandidate) const
+   {
+
+      auto pwidgetAscendant = this->parent();
+
+      while (pwidgetAscendant != nullptr)
+      {
+
+         if (pwidgetAscendantCandidate == pwidgetAscendant)
+         {
+
+            return true;
+
+         }
+
+         pwidgetAscendant = pwidgetAscendant->parent();
+
+      }
+
+      return false;
 
    }
 
@@ -777,7 +802,7 @@ namespace nanoui
 
       }
 
-      information() << "Need to draw pwidget!! " << typeid(*this).name();
+      //information() << "Need to draw pwidget!! " << typeid(*this).name();
 
       return true;
 
@@ -1052,10 +1077,10 @@ namespace nanoui
    }
 
 
-   void Widget::set_need_redraw(const ::rectangle_i32& rectangleParentCoordinates)
+   void Widget::set_need_redraw(const ::rectangle_i32& rectangle, function < void() > function)
    {
 
-      auto rectangleInteraction = rectangleParentCoordinates;
+      auto rectangleInteraction = rectangle;
 
       if (rectangleInteraction.is_empty())
       {
@@ -1079,12 +1104,11 @@ namespace nanoui
 
          auto offsetScroll = pparent->get_accumulated_scroll_offset();
 
-         rectangleInteraction += offsetScroll;
+         rectangleInteraction -= offsetScroll;
 
       }
 
-
-      screen()->m_puserinteraction->set_need_redraw(rectangleInteraction);
+      screen()->m_puserinteraction->set_need_redraw({rectangleInteraction}, function);
 
    }
 
@@ -1107,7 +1131,7 @@ namespace nanoui
    }
 
 
-   void Widget::expose_fixed_size(const ::rectangle_i32& rectangle)
+   void Widget::expose_fixed_size(const ::rectangle_i32& rectangle, bool bRedraw)
    {
 
       auto positionOld = m_pos;
@@ -1121,35 +1145,42 @@ namespace nanoui
       auto sizeNew = rectangle.size();
 
       set_fixed_size(sizeNew);
+      
+      set_need_layout();
 
-      auto rectangleNew = interaction_rectangle();
-
-      if (positionOld != positionNew)
+      if(bRedraw)
       {
-
-         set_need_redraw(rectangleOld);
-
-         set_need_redraw(rectangleNew);
-
+         
+         auto rectangleNew = interaction_rectangle();
+         
+         if (positionOld != positionNew)
+         {
+            
+            set_need_redraw(rectangleOld);
+            
+            set_need_redraw(rectangleNew);
+            
+         }
+         else
+         {
+            
+            auto rectangleRightDifference = rectangleOld.right_plus_difference(rectangleNew);
+            
+            auto rectangleBottomDifference = rectangleOld.bottom_difference(rectangleNew);
+            
+            rectangleRightDifference.normalize();
+            
+            rectangleBottomDifference.normalize();
+            
+            set_need_redraw(rectangleRightDifference);
+            
+            set_need_redraw(rectangleBottomDifference);
+            
+         }
+         
+         post_redraw();
+         
       }
-      else
-      {
-
-         auto rectangleRightDifference = rectangleOld.right_plus_difference(rectangleNew);
-
-         auto rectangleBottomDifference = rectangleOld.bottom_difference(rectangleNew);
-
-         rectangleRightDifference.normalize();
-
-         rectangleBottomDifference.normalize();
-
-         set_need_redraw(rectangleRightDifference);
-
-         set_need_redraw(rectangleBottomDifference);
-
-      }
-
-      post_redraw();
 
    }
 

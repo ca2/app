@@ -1,6 +1,7 @@
 //
-// Created by camilo on 2022-10-23 09:16 <3ThomasBorregaardSorensen!!
+// as numeric Created by camilo on 2022-10-23 09:16 <3ThomasBorregaardSorensen!!
 //
+// as numerics Created by camilo on 2023-06-14 20:45 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -31,7 +32,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   T & set_maximum(T & payload)
+   T& set_maximum(T& payload)
    {
 
       return payload = ::numeric_info < T >::maximum();
@@ -39,7 +40,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
    template <typename T>
-   T & set_minimum(T & payload)
+   T& set_minimum(T& payload)
    {
 
       return payload = ::numeric_info < T >::minimum();
@@ -48,7 +49,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   T & set_null(T & payload)
+   T& set_null(T& payload)
    {
 
       return payload = ::numeric_info < T >::null();
@@ -57,7 +58,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   T & set_unitary(T & payload)
+   T& set_unitary(T& payload)
    {
 
       return payload = ::numeric_info < T >::unitary();
@@ -66,7 +67,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   bool is_maximum(const T & payload)
+   bool is_maximum(const T& payload)
    {
 
       return payload == ::numeric_info < T >::maximum();
@@ -74,7 +75,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
    template <typename T>
-   bool is_minimum(const T & payload)
+   bool is_minimum(const T& payload)
    {
 
       return payload == ::numeric_info < T >::minimum();
@@ -83,7 +84,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   bool is_null(const T & payload)
+   bool is_null(const T& payload)
    {
 
       return payload == ::numeric_info < T >::null();
@@ -92,10 +93,42 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   bool is_unitary(const T & payload)
+   bool is_unitary(const T& payload)
    {
 
       return payload == ::numeric_info < T >::unitary();
+
+   }
+
+
+   inline ::f64 floor(::f64 f)
+   {
+
+      return ::floor(f);
+
+   }
+
+
+   inline ::f32 floor(::f32 f)
+   {
+
+      return ::floorf(f);
+
+   }
+
+
+   inline ::f64 ceil(::f64 f)
+   {
+
+      return ::ceil(f);
+
+   }
+
+
+   inline ::f32 ceil(::f32 f)
+   {
+
+      return ::ceilf(f);
 
    }
 

@@ -398,6 +398,11 @@ public:
    virtual void ScreenRect(::image * piml, i32 x, i32 y);
 
    virtual void horizontal_line(i32 y, ::color::color color, i32 x1 = 0, i32 x2 = -1);
+   virtual void vertical_line(i32 x, ::color::color color, i32 y1 = 0, i32 y2 = -1);
+
+   virtual void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color);
+   virtual void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width);
+
    virtual void Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B);
    virtual void LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A);
 

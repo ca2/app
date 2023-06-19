@@ -315,8 +315,8 @@ namespace user
       string                                       m_strInteractionTag;
 
       ::index                                      m_iIndex;
-      ::size_i32                                   m_sizeRestoreBroad;
-      ::size_i32                                   m_sizeRestoreCompact;
+      ::rectangle_i32                              m_rectangleRestoreBroad;
+      ::rectangle_i32                              m_rectangleRestoreCompact;
       enumeration < enum_non_client >              m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
@@ -776,7 +776,7 @@ namespace user
       virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_layout(bool bAscendants = true);
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw = {}, bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {},  ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
@@ -1547,6 +1547,7 @@ namespace user
       void drag_release_capture() override;
       void drag_set_cursor(::user::drag * pdrag) override;
 
+      virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
 
       void _001OnTimer(::timer* ptimer) override;
       void on_timer(::timer* ptimer) override;
@@ -1928,7 +1929,9 @@ namespace user
 
       virtual ::size_i32 get_window_minimum_size();
 
-      virtual ::size_i32 get_window_normal_stored_size();
+      virtual ::rectangle_i32 get_window_normal_stored_rectangle();
+      virtual ::rectangle_i32 get_window_broad_stored_rectangle();
+      virtual ::rectangle_i32 get_window_compact_stored_rectangle();
 
 
       virtual void UpDownTargetAttach(::user::interaction* pupdown);
@@ -2099,6 +2102,7 @@ namespace user
 
       virtual bool has_pending_redraw_flags() override;
 
+      virtual bool is_window_resizing();
 
       virtual void set_bitmap_source(const string & strBitmapFileTitle) override;
       virtual void clear_bitmap_source() override;

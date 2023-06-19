@@ -794,15 +794,15 @@ namespace user
    //   //      if (pData[i].fsState & e_toolbar_button_hidden)
    //   //         continue;
    //   //      GetButtonText(i, str);
-   //   //      index greekdeltax, dxNext;
+   //   //      index Δx, dxNext;
    //   //      if (pData[i].fsStyle & TBSTYLE_SEP)
    //   //      {
-   //   //         greekdeltax = pData[i].iBitmap;
-   //   //         dxNext = greekdeltax;
+   //   //         Δx = pData[i].iBitmap;
+   //   //         dxNext = Δx;
    //   //      }
    //   //      else if (!str.is_empty())
    //   //      {
-   //   //         greekdeltax = m_sizeButton.cx();
+   //   //         Δx = m_sizeButton.cx();
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
    //   //         //         str = (const unichar *) pData[i].iString;
@@ -812,16 +812,16 @@ namespace user
    //   //         str,
    //   //         (index) str.length(),
    //   //         &size);
-   //   //         greekdeltax += size.cx();
-   //   //         dxNext = greekdeltax - CX_OVERLAP;
+   //   //         Δx += size.cx();
+   //   //         dxNext = Δx - CX_OVERLAP;
    //   //      }
    //   //      else
    //   //      {
-   //   //         greekdeltax = m_sizeButton.cx();
-   //   //         dxNext = greekdeltax - CX_OVERLAP;
+   //   //         Δx = m_sizeButton.cx();
+   //   //         dxNext = Δx - CX_OVERLAP;
    //   //      }
    //
-   //   //      if (x + greekdeltax > nWidth)
+   //   //      if (x + Δx > nWidth)
    //   //      {
    //   //         bool bFound = false;
    //   //         for (index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)

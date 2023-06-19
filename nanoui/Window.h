@@ -37,6 +37,9 @@ namespace nanoui
       Widget *                         m_button_panel;
       bool                             m_bModal;
       bool                             m_bDrag;
+      ::point_i32                      m_pointDragStartCursor;
+      ::point_i32                      m_pointDragStartPosition;
+      ::point_i32                      m_pointLastDragPosition;
       
 
       Window(Widget * parent, const ::scoped_string & title = "Untitled");

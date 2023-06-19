@@ -975,6 +975,14 @@ namespace nano2d
    }
 
 
+   void draw2d_context::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width)
+   {
+
+      m_pgraphics->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
+
+   }
+
+
    int draw2d_context::create_image(const ::scoped_string& scopedstrFilename, int imageFlags)
    {
 

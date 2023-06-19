@@ -6,6 +6,7 @@
 #include "acme/user/nano/font.h"
 #include "acme/user/nano/brush.h"
 #include "acme/user/nano/pen.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace quartz2d
@@ -88,10 +89,7 @@ namespace quartz2d
       CGContextSetTextDrawingMode (m_pdc, kCGTextFill);
       CGAffineTransform trans = CGAffineTransformMakeScale(1, -1);
       CGContextSetTextMatrix(m_pdc, trans);
-      CGContextSetRGBFillColor (m_pdc, pnanobrushText->m_color.dr(),
-                                pnanobrushText->m_color.dg(),
-                                pnanobrushText->m_color.db(),
-                                pnanobrushText->m_color.da());
+      CGContextSetRGBFillColor (m_pdc, __expand_f32_rgba(pnanobrushText->m_color));
 
       double x = rectangleText.left;
       
@@ -162,7 +160,7 @@ namespace quartz2d
       rect.size.width = rectangle.width();
       rect.size.height = rectangle.height();
 
-      if (pnanobrush && pnanobrush->m_color)
+      if (pnanobrush && pnanobrush->m_color.has_opacity())
       {
    
          _set_fill_color(pnanobrush->m_color);
@@ -178,7 +176,7 @@ namespace quartz2d
          
          CGContextAddRect(m_pdc, rect);
          
-         CGContextSetRGBStrokeColor(m_pdc, pnanopen->m_color.dr(), pnanopen->m_color.dg(), pnanopen->m_color.db(), pnanopen->m_color.da());
+         CGContextSetRGBStrokeColor(m_pdc, __expand_f32_rgba(pnanopen->m_color));
          
          CGContextSetLineWidth(m_pdc, pnanopen->m_iWidth);
          
@@ -199,7 +197,7 @@ namespace quartz2d
    void nano_device::_set_fill_color(const ::color::color & color)
    {
 
-      CGContextSetRGBFillColor(m_pdc, color.dr(), color.dg(), color.db(), color.da());
+      CGContextSetRGBFillColor(m_pdc, __expand_f32_rgba(color));
 
    }
 

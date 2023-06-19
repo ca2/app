@@ -8,11 +8,11 @@
 #pragma once
 
 
-// nanosecond unit ηs
+// nanosecond unit ηs - greek eta - greek etha
 constexpr class time operator "" _ηs(unsigned long long int u) { return integral_nanosecond(u); }
 
 
-// microsecond unit μs
+// microsecond unit μs - greek mu
 constexpr class time operator "" _μs(unsigned long long int u) { return integral_microsecond(u); }
 
 

@@ -716,7 +716,7 @@
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_geometry.h" />
     <ClInclude Include="constant\_id.h" />
-    <ClInclude Include="constant\_mathematics.h" />
+    <ClInclude Include="constant\aaa_mathematics.h" />
     <ClInclude Include="constant\_message.h" />
     <ClInclude Include="exception\aaa_base.h" />
     <ClInclude Include="exception\aaa_debug_stream.h" />
@@ -840,6 +840,7 @@
     <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
     <ClInclude Include="primitive\mathematics\numeric.h" />
+    <ClInclude Include="primitive\mathematics\_constant.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />

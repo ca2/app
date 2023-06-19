@@ -88,7 +88,7 @@ enum enum_image_type
 
 
 
-#include "_mathematics.h"
+//#include "_mathematics.h"
 
 
 #include "_geometry.h"

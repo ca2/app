@@ -219,7 +219,9 @@
     <ClCompile Include="filesystem\file\translatable.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\draw2d\color.cpp" />
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
+    <ClCompile Include="graphics\draw2d\color_array.cpp" />
+    <ClCompile Include="graphics\draw2d\image32_array.cpp" />
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />

@@ -62,7 +62,7 @@ namespace app_shader
 
       auto pgpu = psystem->get_gpu();
 
-      m_pcontext = pgpu->create_context();
+      m_pcontext = pgpu->create_context(this);
 
       if (m_pcontext)
       {

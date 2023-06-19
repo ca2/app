@@ -2,6 +2,7 @@
 #include "opengl.h"
 #include "acme/filesystem/file/file.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "aura/graphics/gpu/context.h"
 
 
 namespace opengl

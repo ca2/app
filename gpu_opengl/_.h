@@ -89,7 +89,8 @@
 #elif defined(MACOS)
 
 
-#include <OpenGL/gl.h>
+#include <glad.h>
+//#include <OpenGL/gl.h>
 //#include <OpenGL/gl3.h>
 //#include <OpenGL/CGLTypes.h>
 //#include <OpenGL/glu.h>

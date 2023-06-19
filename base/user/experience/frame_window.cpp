@@ -2497,7 +2497,7 @@ namespace experience
 
          auto sizeRectangleNormal = m_windowrectangle.m_rectangleNormal;
 
-         if (sizeRectangleNormal == m_sizeRestoreCompact)
+         if (sizeRectangleNormal == m_rectangleRestoreCompact.size())
          {
 
             display_normal(e_display_broad, e_activation_default);

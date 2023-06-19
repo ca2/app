@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/gpu/gpu/context.h"
+#include "aura/graphics/gpu/context.h"
 #include "acme/primitive/primitive/memory.h"
 
 

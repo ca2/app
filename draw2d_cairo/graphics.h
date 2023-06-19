@@ -198,6 +198,10 @@ namespace draw2d_cairo
       // Clipping Functions
       i32 get_clip_box(::rectangle_f64 & rectangle) override;
 
+      //void _intersect_clip() override;
+      //void _add_shape(const ::rectangle_f64 & rectangle) override;
+      //void _add_shape(const ::ellipse_f64 & ellipse) override;
+      //void _add_shape(const ::polygon_f64 & polygon) override;
 
       //void intersect_clip(const ::rectangle_f64 & rectangle) override;
       //void intersect_clip(const ::ellipse_f64 & rectangle) override;

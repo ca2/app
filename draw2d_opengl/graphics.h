@@ -582,7 +582,7 @@ namespace draw2d_opengl
       void is_valid_update_window_thread() override;
 
 
-      void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion) override;
+      //void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion) override;
 
 
       void on_begin_draw() override;

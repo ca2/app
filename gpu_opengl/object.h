@@ -5,7 +5,7 @@
 #include "glm/vec2.hpp"
 #include "glm/vec3.hpp"
 #include "acme/primitive/geometry3d/location.h"
-#include "aura/gpu/gpu/object.h"
+#include "aura/graphics/gpu/object.h"
 
 
 namespace opengl

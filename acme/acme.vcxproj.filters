@@ -2573,7 +2573,7 @@
     <ClInclude Include="constant\_id.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="constant\_mathematics.h">
+    <ClInclude Include="constant\aaa_mathematics.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\_message.h">
@@ -3193,6 +3193,9 @@
     </ClInclude>
     <ClInclude Include="primitive\geometry\sequence.h">
       <Filter>Header Files\primitive\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\_constant.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

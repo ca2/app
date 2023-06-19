@@ -7,6 +7,8 @@
 #include "_constant.h"
 
 
+#include "acme/primitive/geometry2d/rectangle.h"
+
 
 CLASS_DECL_ACME ::critical_section * children_critical_section();
 

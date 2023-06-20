@@ -137,7 +137,7 @@ namespace opengl
       if(pszError2)
       {
          
-         INFORMATION("error " << pszError2);
+         information() << "error " << pszError2;
          
       }
 #ifdef __APPLE__
@@ -150,7 +150,7 @@ namespace opengl
       if(pszErrorA)
       {
          
-         INFORMATION("error " << pszErrorA);
+         information() << "error " << pszErrorA;
          
       }
 
@@ -160,7 +160,7 @@ namespace opengl
       if(pszError1)
       {
          
-         INFORMATION("error " << pszError1);
+         information() << "error " << pszError1;
          
       }
 
@@ -171,7 +171,7 @@ namespace opengl
       if(pszError5)
       {
          
-         INFORMATION("error " << pszError5);
+         information() << "error " << pszError5;
          
       }
 
@@ -184,7 +184,7 @@ namespace opengl
       if(pszError4)
       {
          
-         INFORMATION("error " << pszError4);
+         information() << "error " << pszError4;
          
       }
       //glEnableVertexAttribArray(m_vao_vertices);
@@ -266,6 +266,8 @@ namespace opengl
 
       // Load the texture
       m_uniformTexture = papproach->load_dds(m_path+ ".uvmap.DDS");
+      //m_uniformTexture = papproach->load_dds(m_path + ".uvmap.DDS");
+      //m_uniformTexture = papproach->load_normal_map(m_path.folder() / (m_path.title() + ".png"));
 
    }
 

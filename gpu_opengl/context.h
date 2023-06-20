@@ -1,12 +1,13 @@
 #pragma once
 
 
-#include "aura/gpu/gpu/context.h"
+#include "aura/graphics/gpu/context.h"
 #include "acme/primitive/primitive/memory.h"
 
 
 namespace opengl
 {
+
 
 
    class CLASS_DECL_GPU_OPENGL context :
@@ -45,6 +46,7 @@ namespace opengl
       void set_bitmap_1(::image * pimage) override;
 
       void swap_buffers() override;
+
 
       //virtual void create_offscreen_buffer(const ::size_i32& size);
       //virtual void _create_offscreen_buffer(const ::size_i32& size);

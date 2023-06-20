@@ -283,7 +283,7 @@ namespace user
    void font_list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //::user::list_box::_001OnClip(pgraphics);
+      ::user::list_box::_001OnNcClip(pgraphics);
 
    }
 
@@ -299,10 +299,9 @@ namespace user
    void font_list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //::user::list_box::_001OnClip(pgraphics);
+      ::user::list_box::_001OnClip(pgraphics);
 
    }
-
 
 
    void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "water_routine.h"
+#include "acme/graphics/draw2d/image32.h"
 
 
 namespace draw2d
@@ -38,8 +39,11 @@ namespace draw2d
    }
 
 
-   void water_routine::create(i32 iWidth,i32 iHeight)
+   void water_routine::create(i32 iWidth,i32 iHeight, struct color_indexes indexes)
    {
+
+      m_colorindexes = indexes;
+
       if(m_iHeightField1 != nullptr)
          delete [] m_iHeightField1;
       if(m_iHeightField2 != nullptr)
@@ -68,7 +72,7 @@ namespace draw2d
    }
 
 
-   void water_routine::to(::color32_t * pSrcImage, ::color32_t * pTargetImage)
+   void water_routine::to(::image32_t * pSrcImage, ::image32_t * pTargetImage)
    {
       
       // Yes they have to be the same size...(for now)
@@ -488,12 +492,12 @@ namespace draw2d
       }
    }
 
-   void water_routine::DrawWaterNoLight(i32 page, ::color32_t * pSrcImage, ::color32_t * pTargetImage)
+   void water_routine::DrawWaterNoLight(i32 page, ::image32_t * pSrcImage, ::image32_t * pTargetImage)
    {
       
       UNREFERENCED_PARAMETER(page);
       //  i32 ox, oy;
-      i32 greekdeltax, greekdeltay;
+      i32 Δx, Δy;
       i32 x, y;
       u32 ca;
 
@@ -505,23 +509,23 @@ namespace draw2d
       {
          for (x = offset+m_iWidth-2; offset < x; offset++)
          {
-            greekdeltax = ptr[offset] - ptr[offset+1];
-            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
+            Δx = ptr[offset] - ptr[offset+1];
+            Δy = ptr[offset] - ptr[offset+m_iWidth];
 
-            //Shading = greekdeltax;?
+            //Shading = Δx;?
             // Water draw method?
-            //      ca = BkGdImage[offset + WATERWID*(greekdeltay>>3) + (greekdeltax>>3)];
-            ca = pSrcImage[offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3)].m_u32;
+            //      ca = BkGdImage[offset + WATERWID*(Δy>>3) + (Δx>>3)];
+            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)].m_u32;
 
             // If anyone knows a better/faster way to do this, please tell me...
             //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
             pTargetImage[offset].m_u32 = ca;
 
             offset++;
-            greekdeltax = ptr[offset] - ptr[offset+1];
-            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
-            //    ca = BkGdImage[offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3)];
-            ca = pSrcImage[offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3)].m_u32;
+            Δx = ptr[offset] - ptr[offset+1];
+            Δy = ptr[offset] - ptr[offset+m_iWidth];
+            //    ca = BkGdImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)];
+            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)].m_u32;
             pTargetImage[offset].m_u32 = ca;
             //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
 
@@ -529,15 +533,15 @@ namespace draw2d
       }
    }
 
-   void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,::color32_t * pSrcImage, ::color32_t * pTargetImage)
+   void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,::image32_t * pSrcImage, ::image32_t * pTargetImage)
    {
       
       UNREFERENCED_PARAMETER(page);
       UNREFERENCED_PARAMETER(LightModifier);
       //  i32 ox, oy;
-      i32 greekdeltax, greekdeltay;
+      i32 Δx, Δy;
       i32 x, y;
-      u32 ca;
+      image32_t ca;
 
       i32 offset=m_iWidth + 1;
       long lIndex;
@@ -550,31 +554,31 @@ namespace draw2d
       {
          for (x = offset+m_iWidth-2; offset < x; offset++)
          {
-            greekdeltax = ptr[offset] - ptr[offset+1];
-            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
+            Δx = ptr[offset] - ptr[offset+1];
+            Δy = ptr[offset] - ptr[offset+m_iWidth];
 
-            lIndex = offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3);
+            lIndex = offset + m_iWidth*(Δy>>3) + (Δx>>3);
             if(lIndex < lBreak && lIndex > 0)
             {
-               ca = pSrcImage[lIndex].m_u32;// - (greekdeltax>>LightModifier);
-               // Now we shift it by the greekdeltax component...
+               ca = pSrcImage[lIndex];// - (Δx>>LightModifier);
+               // Now we shift it by the Δx component...
                //
-               ca = GetShiftedColor({ ca }, greekdeltax).m_u32;
+               ca = GetShiftedColor(ca, Δx);
 
-               pTargetImage[offset].m_u32 = ca;
+               pTargetImage[offset] = ca;
             }
 
             offset++;
-            greekdeltax = ptr[offset] - ptr[offset+1];
-            greekdeltay = ptr[offset] - ptr[offset+m_iWidth];
+            Δx = ptr[offset] - ptr[offset+1];
+            Δy = ptr[offset] - ptr[offset+m_iWidth];
 
-            lIndex = offset + m_iWidth*(greekdeltay>>3) + (greekdeltax>>3);
+            lIndex = offset + m_iWidth*(Δy>>3) + (Δx>>3);
             if(lIndex < lBreak && lIndex > 0)
             {
-               ca = pSrcImage[lIndex].m_u32;// - (greekdeltax>>LightModifier);
-               ca = GetShiftedColor({ ca}, greekdeltax).m_u32;
+               ca = pSrcImage[lIndex];// - (Δx>>LightModifier);
+               ca = GetShiftedColor(ca, Δx);
                //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
-               pTargetImage[offset].m_u32 = ca;
+               pTargetImage[offset] = ca;
             }
 
          }
@@ -583,7 +587,7 @@ namespace draw2d
    }
 
 
-   inline ::color32_t water_routine::GetShiftedColor(::color32_t color,i32 shift)
+   inline ::image32_t water_routine::GetShiftedColor(::image32_t color,i32 shift)
    {
       
       long R;
@@ -593,15 +597,15 @@ namespace draw2d
       ::u8 ig;
       ::u8 ib;
 
-      R = color.u8_red() - shift;
-      G = color.u8_green() - shift;
-      B = color.u8_blue() - shift;
+      R = color.u8_red(color_indexes()) - shift;
+      G = color.u8_green(color_indexes()) - shift;
+      B = color.u8_blue(color_indexes()) - shift;
 
       ir = (::u8) ((R < 0) ? 0 : (R > 255) ? 255 : R);
       ig = (::u8) ((G < 0) ? 0 : (G > 255) ? 255 : G);
       ib = (::u8) ((B < 0) ? 0 : (B > 255) ? 255 : B);
 
-      return rgba(ir, ig, ib, 255);
+      return { rgba(ir, ig, ib, 255), m_colorindexes };
 
    }
 

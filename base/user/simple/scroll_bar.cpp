@@ -664,22 +664,22 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    ::rectangle_i32 rectangleClient;
    client_rectangle(rectangleClient);
-   ::size_i32 size = rectangleClient.size();
+   //::size_i32 size = rectangleClient.size();
 
-   int iArrowForce = 4;
-   int iArrowStability = size.get_normal_dimension(m_eorientation) - 2 - 3 * 2;
+   //int iArrowForce = 4;
+   //int iArrowStability = size.get_normal_dimension(m_eorientation) - 2 - 3 * 2;
 
-   auto pstyle = get_style(pgraphics);
+   //auto pstyle = get_style(pgraphics);
 
-   int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+   //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
    if(m_eorientation == e_orientation_horizontal)
    {
 
-      m_rectangleA.left   = 0;
-      m_rectangleA.top    = 0;
-      m_rectangleA.right  = minimum(iScrollBarWidth,size.cx() / 2);
-      m_rectangleA.bottom = size.cy();
+      //m_rectangleA.left   = 0;
+      //m_rectangleA.top    = 0;
+      //m_rectangleA.right  = minimum(iScrollBarWidth,size.cx() / 2);
+      //m_rectangleA.bottom = size.cy();
 
       /*
       m_pointaA[0].x() = 0;
@@ -692,17 +692,19 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_pointaA[3].y() = m_pointaA[0].y();
       */
 
-      m_pointaA[0].x() = m_rectangleA.left + (m_rectangleA.width() + iArrowForce) / 2;
-      m_pointaA[0].y() = m_rectangleA.top + (m_rectangleA.height() - iArrowStability) / 2;
-      m_pointaA[1].x() = m_rectangleA.left + (m_rectangleA.width() - iArrowForce) / 2;
-      m_pointaA[1].y() = m_rectangleA.top + m_rectangleA.height() / 2;
-      m_pointaA[2].x() = m_rectangleA.left + (m_rectangleA.width() + iArrowForce) / 2;
-      m_pointaA[2].y() = m_rectangleA.top + (m_rectangleA.height() + iArrowStability) / 2;;
+      //auto rectangleA = get_buttonA_rectangle(rectangleClinet)
 
-      m_rectangleB.left   = maximum(size.cx() - iScrollBarWidth,size.cx() / 2);
-      m_rectangleB.top    = 0;
-      m_rectangleB.right  = size.cx();
-      m_rectangleB.bottom = size.cy();
+      //m_pointaA[0].x() = m_rectangleA.left + (m_rectangleA.width() + iArrowForce) / 2;
+      //m_pointaA[0].y() = m_rectangleA.top + (m_rectangleA.height() - iArrowStability) / 2;
+      //m_pointaA[1].x() = m_rectangleA.left + (m_rectangleA.width() - iArrowForce) / 2;
+      //m_pointaA[1].y() = m_rectangleA.top + m_rectangleA.height() / 2;
+      //m_pointaA[2].x() = m_rectangleA.left + (m_rectangleA.width() + iArrowForce) / 2;
+      //m_pointaA[2].y() = m_rectangleA.top + (m_rectangleA.height() + iArrowStability) / 2;;
+
+      //m_rectangleB.left   = maximum(size.cx() - iScrollBarWidth,size.cx() / 2);
+      //m_rectangleB.top    = 0;
+      //m_rectangleB.right  = size.cx();
+      //m_rectangleB.bottom = size.cy();
 
       /*
       m_pointaB[0].x() = size.cx();
@@ -715,21 +717,21 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_pointaB[3].y() = m_pointaA[0].y();
       */
 
-      m_pointaB[0].x() = m_rectangleB.left + (m_rectangleB.width() - iArrowForce) / 2;
-      m_pointaB[0].y() = m_rectangleB.top + (m_rectangleB.height() - iArrowStability) / 2;
-      m_pointaB[1].x() = m_rectangleB.left + (m_rectangleB.width() + iArrowForce) / 2;
-      m_pointaB[1].y() = m_rectangleB.top + m_rectangleB.height() / 2;
-      m_pointaB[2].x() = m_rectangleB.left + (m_rectangleB.width() - iArrowForce) / 2;
-      m_pointaB[2].y() = m_rectangleB.top + (m_rectangleB.height() + iArrowStability) / 2;;
+      //m_pointaB[0].x() = m_rectangleB.left + (m_rectangleB.width() - iArrowForce) / 2;
+      //m_pointaB[0].y() = m_rectangleB.top + (m_rectangleB.height() - iArrowStability) / 2;
+      //m_pointaB[1].x() = m_rectangleB.left + (m_rectangleB.width() + iArrowForce) / 2;
+      //m_pointaB[1].y() = m_rectangleB.top + m_rectangleB.height() / 2;
+      //m_pointaB[2].x() = m_rectangleB.left + (m_rectangleB.width() - iArrowForce) / 2;
+      //m_pointaB[2].y() = m_rectangleB.top + (m_rectangleB.height() + iArrowStability) / 2;;
 
    }
    else if(m_eorientation == e_orientation_vertical)
    {
 
-      m_rectangleA.left   = 0;
-      m_rectangleA.top    = 0;
-      m_rectangleA.right  = size.cx();
-      m_rectangleA.bottom = minimum(iScrollBarWidth,size.cy() / 2);
+      //m_rectangleA.left   = 0;
+      //m_rectangleA.top    = 0;
+      //m_rectangleA.right  = size.cx();
+      //m_rectangleA.bottom = minimum(iScrollBarWidth,size.cy() / 2);
 
       /*
       m_pointaA[0].x() = size.cx() / 2;
@@ -742,17 +744,17 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_pointaA[3].y() = m_pointaA[0].y();
       */
 
-      m_pointaA[0].x() = m_rectangleA.left + (m_rectangleA.width() - iArrowStability) / 2;
-      m_pointaA[0].y() = m_rectangleA.top + (m_rectangleA.height() + iArrowForce) / 2;
-      m_pointaA[1].x() = m_rectangleA.left + m_rectangleA.width() / 2;
-      m_pointaA[1].y() = m_rectangleA.top +( m_rectangleA.height() - iArrowForce) / 2;
-      m_pointaA[2].x() = m_rectangleA.left + (m_rectangleA.width() + iArrowStability) / 2;
-      m_pointaA[2].y() = m_rectangleA.top + (m_rectangleA.height() + iArrowForce) / 2;;
+      //m_pointaA[0].x() = m_rectangleA.left + (m_rectangleA.width() - iArrowStability) / 2;
+      //m_pointaA[0].y() = m_rectangleA.top + (m_rectangleA.height() + iArrowForce) / 2;
+      //m_pointaA[1].x() = m_rectangleA.left + m_rectangleA.width() / 2;
+      //m_pointaA[1].y() = m_rectangleA.top +( m_rectangleA.height() - iArrowForce) / 2;
+      //m_pointaA[2].x() = m_rectangleA.left + (m_rectangleA.width() + iArrowStability) / 2;
+      //m_pointaA[2].y() = m_rectangleA.top + (m_rectangleA.height() + iArrowForce) / 2;;
 
-      m_rectangleB.left   = 0;
-      m_rectangleB.top    = maximum(size.cy() - iScrollBarWidth,size.cy() / 2);
-      m_rectangleB.right  = size.cx();
-      m_rectangleB.bottom = size.cy();
+      //m_rectangleB.left   = 0;
+      //m_rectangleB.top    = maximum(size.cy() - iScrollBarWidth,size.cy() / 2);
+      //m_rectangleB.right  = size.cx();
+      //m_rectangleB.bottom = size.cy();
 
       /*
       m_pointaB[0].x() = size.cx() / 2;
@@ -764,20 +766,21 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_pointaB[3].x() = m_pointaA[0].x();
       m_pointaB[3].y() = m_pointaB[0].y();
       */
-      m_pointaB[0].x() = m_rectangleB.left + (m_rectangleB.width() - iArrowStability) / 2;
-      m_pointaB[0].y() = m_rectangleB.top + (m_rectangleB.height() - iArrowForce) / 2;
-      m_pointaB[1].x() = m_rectangleB.left + m_rectangleB.width() / 2;
-      m_pointaB[1].y() = m_rectangleB.top + (m_rectangleB.height() + iArrowForce) / 2;
-      m_pointaB[2].x() = m_rectangleB.left + (m_rectangleB.width() + iArrowStability) / 2;
-      m_pointaB[2].y() = m_rectangleB.top + (m_rectangleB.height() - iArrowForce) / 2;;
+      //m_pointaB[0].x() = m_rectangleB.left + (m_rectangleB.width() - iArrowStability) / 2;
+      //m_pointaB[0].y() = m_rectangleB.top + (m_rectangleB.height() - iArrowForce) / 2;
+      //m_pointaB[1].x() = m_rectangleB.left + m_rectangleB.width() / 2;
+      //m_pointaB[1].y() = m_rectangleB.top + (m_rectangleB.height() + iArrowForce) / 2;
+      //m_pointaB[2].x() = m_rectangleB.left + (m_rectangleB.width() + iArrowStability) / 2;
+      //m_pointaB[2].y() = m_rectangleB.top + (m_rectangleB.height() - iArrowForce) / 2;;
    }
    else
    {
       ASSERT(false);
    }
 
-   m_pregionA->create_rectangle(m_rectangleA);
-   m_pregionB->create_rectangle(m_rectangleB);
+   m_pregionA->create_rectangle(get_buttonA_rectangle(rectangleClient, pgraphics));
+
+   m_pregionB->create_rectangle(get_buttonB_rectangle(rectangleClient, pgraphics));
 
 
 //   psize->m_bRet = false;
@@ -1082,6 +1085,179 @@ void simple_scroll_bar::UpdateBitmaps()
 }
 
 
+::rectangle_i32 simple_scroll_bar::get_buttonA_rectangle(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics)
+{
+
+   ::rectangle_i32 rectangleButtonA;
+
+   auto pstyle = get_style(pgraphics);
+
+   int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+
+   if (m_eorientation == e_orientation_horizontal)
+   {
+
+      rectangleButtonA = rectangleClient;
+
+      rectangleButtonA.right = rectangleButtonA.left + iScrollBarWidth;
+
+   }
+   else if (m_eorientation == e_orientation_vertical)
+   {
+
+      rectangleButtonA = rectangleClient;
+
+      rectangleButtonA.bottom = rectangleButtonA.top + iScrollBarWidth;
+
+   }
+
+   return rectangleButtonA;
+
+}
+
+
+::rectangle_i32 simple_scroll_bar::get_buttonB_rectangle(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics)
+{
+
+   ::rectangle_i32 rectangleButtonB;
+
+   auto pstyle = get_style(pgraphics);
+
+   int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+
+   if (m_eorientation == e_orientation_horizontal)
+   {
+
+      rectangleButtonB = rectangleClient;
+
+      rectangleButtonB.left = rectangleButtonB.right - iScrollBarWidth;
+
+
+   }
+   else if (m_eorientation == e_orientation_vertical)
+   {
+
+      rectangleButtonB = rectangleClient;
+
+      rectangleButtonB.top = rectangleButtonB.bottom - iScrollBarWidth;
+
+   }
+
+   return rectangleButtonB;
+
+}
+
+
+::point_f64_array simple_scroll_bar::get_arrowA(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics)
+{
+
+   //auto pstyle = get_style(pgraphics);
+
+   //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+
+   auto rectangleA = get_buttonA_rectangle(rectangleClient, pgraphics);
+
+   ::size_i32 size = rectangleClient.size();
+
+   point_f64_array pointaA;
+
+   int iArrowForce = 4;
+
+   int iArrowStability = size.get_normal_dimension(m_eorientation) - 2 - 3 * 2;
+
+   if (m_eorientation == e_orientation_horizontal)
+   {
+
+      pointaA.add(
+         rectangleA.left + (rectangleA.width() + iArrowForce) / 2,
+         rectangleA.top + (rectangleA.height() - iArrowStability) / 2);
+
+      pointaA.add(
+         rectangleA.left + (rectangleA.width() - iArrowForce) / 2,
+         rectangleA.top + rectangleA.height() / 2);
+
+      pointaA.add(
+         rectangleA.left + (rectangleA.width() + iArrowForce) / 2,
+         rectangleA.top + (rectangleA.height() + iArrowStability) / 2);
+
+   }
+   else if (m_eorientation == e_orientation_vertical)
+   {
+
+      pointaA.add(
+         rectangleA.left + (rectangleA.width() - iArrowStability) / 2,
+         rectangleA.top + (rectangleA.height() + iArrowForce) / 2);
+
+      pointaA.add(
+         rectangleA.left + rectangleA.width() / 2,
+         rectangleA.top + (rectangleA.height() - iArrowForce) / 2);
+      
+      pointaA.add(
+         rectangleA.left + (rectangleA.width() + iArrowStability) / 2,
+         rectangleA.top + (rectangleA.height() + iArrowForce) / 2);
+
+   }
+
+   return pointaA;
+
+}
+
+
+::point_f64_array simple_scroll_bar::get_arrowB(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics)
+{
+
+   //auto pstyle = get_style(pgraphics);
+
+   //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
+
+   auto rectangleB = get_buttonB_rectangle(rectangleClient, pgraphics);
+
+   ::size_i32 size = rectangleClient.size();
+
+   point_f64_array pointaB;
+
+   int iArrowForce = 4;
+
+   int iArrowStability = size.get_normal_dimension(m_eorientation) - 2 - 3 * 2;
+
+   if (m_eorientation == e_orientation_horizontal)
+   {
+
+      pointaB.add(
+         rectangleB.left + (rectangleB.width() - iArrowForce) / 2,
+         rectangleB.top + (rectangleB.height() - iArrowStability) / 2);
+
+      pointaB.add(
+         rectangleB.left + (rectangleB.width() + iArrowForce) / 2,
+         rectangleB.top + rectangleB.height() / 2);
+
+      pointaB.add(
+         rectangleB.left + (rectangleB.width() - iArrowForce) / 2,
+         rectangleB.top + (rectangleB.height() + iArrowStability) / 2);
+
+   }
+   else if (m_eorientation == e_orientation_vertical)
+   {
+
+      pointaB.add(
+         rectangleB.left + (rectangleB.width() - iArrowStability) / 2,
+         rectangleB.top + (rectangleB.height() - iArrowForce) / 2);
+
+      pointaB.add(
+         rectangleB.left + rectangleB.width() / 2,
+         rectangleB.top + (rectangleB.height() + iArrowForce) / 2);
+
+      pointaB.add(
+         rectangleB.left + (rectangleB.width() + iArrowStability) / 2,
+         rectangleB.top + (rectangleB.height() - iArrowForce) / 2);
+
+   }
+
+   return pointaB;
+
+}
+
+
 ::status < ::rectangle_i32 > simple_scroll_bar::get_pageA_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics)
 {
 
@@ -1210,7 +1386,7 @@ public:
       create_host();
       //{
 
-      //   TRACE("created trw");
+      //   information("created trw");
 
       //}
 
@@ -1577,30 +1753,42 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //}
 
-   ::color32_t color32 = scrollbar_color(pstyle, ::e_element_scrollbar_rectA);
+   {
 
-   m_pbrushDraw->create_solid(color32);
+      auto color = scrollbar_color(pstyle, ::e_element_scrollbar_rectA);
 
-   pgraphics->set(m_pbrushDraw);
+      m_pbrushDraw->create_solid(color);
 
-   pgraphics->fill_rectangle(m_rectangleA);
+      pgraphics->set(m_pbrushDraw);
 
-   color32 = scrollbar_color(pstyle, ::e_element_scrollbar_rectB);
+      auto rectangleA = get_buttonA_rectangle(rectangleClient, pgraphics);
 
-   m_pbrushDraw->create_solid(color32);
+      pgraphics->fill_rectangle(rectangleA);
 
-   pgraphics->set(m_pbrushDraw);
+   }
 
-   pgraphics->fill_rectangle(m_rectangleB);
+   {
+
+      auto color = scrollbar_color(pstyle, ::e_element_scrollbar_rectB);
+
+      m_pbrushDraw->create_solid(color);
+
+      pgraphics->set(m_pbrushDraw);
+
+      auto rectangleB = get_buttonB_rectangle(rectangleClient, pgraphics);
+
+      pgraphics->fill_rectangle(rectangleB);
+
+   }
 
    if (::is_element(m_pitemCurrent, ::e_element_scrollbar_pageA) || ::is_element(m_pitemHover, ::e_element_scrollbar_pageA))
    {
 
       auto statusrectanglePageA = get_pageA_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
 
-      color32 = scrollbar_color(pstyle, ::e_element_scrollbar_pageA);
+      auto color = scrollbar_color(pstyle, ::e_element_scrollbar_pageA);
 
-      m_pbrushDraw->create_solid(color32);
+      m_pbrushDraw->create_solid(color);
 
       pgraphics->set(m_pbrushDraw);
 
@@ -1612,9 +1800,9 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       auto statusrectanglePageB = get_pageB_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
 
-      color32 = scrollbar_color(pstyle, ::e_element_scrollbar_pageB);
+      auto color = scrollbar_color(pstyle, ::e_element_scrollbar_pageB);
 
-      m_pbrushDraw->create_solid(color32);
+      m_pbrushDraw->create_solid(color);
 
       pgraphics->set(m_pbrushDraw);
 
@@ -1622,29 +1810,45 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    }
 
-   auto ppenArrow = __create < ::draw2d::pen > ();
+   {
 
-   ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
+      auto ppenArrow = __create < ::draw2d::pen >();
 
-   ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
+      ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
 
-   ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
+      ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
 
-   color32 = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectA);
+      ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-   ppenArrow->create_solid(1.0, color32);
+      {
 
-   pgraphics->set(ppenArrow);
+         auto pointaA = get_arrowA(rectangleClient, pgraphics);
 
-   pgraphics->polyline(m_pointaA, 3);
+         auto color = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectA);
 
-   color32 = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectB);
+         ppenArrow->create_solid(1.0, color);
 
-   ppenArrow->create_solid(1.0, color32);
+         pgraphics->set(ppenArrow);
 
-   pgraphics->set(ppenArrow);
+         pgraphics->polyline(pointaA);
 
-   pgraphics->polyline(m_pointaB, 3);
+      }
+
+      {
+
+         auto pointaB = get_arrowB(rectangleClient, pgraphics);
+
+         auto color = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectB);
+
+         ppenArrow->create_solid(1.0, color);
+
+         pgraphics->set(ppenArrow);
+
+         pgraphics->polyline(pointaB);
+
+      }
+
+   }
 
 }
 
@@ -1823,11 +2027,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    //::point_i32 point = pointClient - get_parent_accumulated_scroll();
 
-   auto psystem = acmesystem()->m_paurasystem;
-
-   auto pdraw2d = psystem->draw2d();
-
-   auto pgraphics = pdraw2d->create_memory_graphics(this);
+   auto pgraphics = get_internal_draw2d_graphics();
 
    auto statusrectangleTrack = get_track_rectangle(pgraphics);
 
@@ -1860,14 +2060,14 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       }
 
-      if (m_rectangleA.contains(point))
+      if (get_buttonA_rectangle(rectangleClient, pgraphics).contains(point))
       {
 
          return __new(::item(::e_element_scrollbar_rectA));
 
       }
 
-      if (m_rectangleB.contains(point))
+      if (get_buttonA_rectangle(rectangleClient, pgraphics).contains(point))
       {
 
          return __new(::item(::e_element_scrollbar_rectB));

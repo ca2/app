@@ -198,10 +198,19 @@ namespace draw2d_cairo
       // Clipping Functions
       i32 get_clip_box(::rectangle_f64 & rectangle) override;
 
+      //void _intersect_clip() override;
+      //void _add_shape(const ::rectangle_f64 & rectangle) override;
+      //void _add_shape(const ::ellipse_f64 & ellipse) override;
+      //void _add_shape(const ::polygon_f64 & polygon) override;
 
-      void intersect_clip(const ::rectangle_f64 & rectangle) override;
+      //void intersect_clip(const ::rectangle_f64 & rectangle) override;
+      //void intersect_clip(const ::ellipse_f64 & rectangle) override;
+      //void intersect_clip(const ::polygon_f64 & rectangle) override;
 
-      void set_clipping(::draw2d::region* pregion) override;
+      //void set_clipping(::draw2d::region* pregion) override;
+      //virtual void intersect_clip(const ::draw2d::clip & clip);
+      //virtual void intersect_clip(const ::draw2d::clip_group & clipgroup);
+      //virtual void _add_clip_item(::draw2d::clip_item * pclipitem);
 
 
       //virtual bool PtVisible(double x, double y) override;
@@ -227,18 +236,19 @@ namespace draw2d_cairo
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
       void _intersect_clip() override;
+      void _eo_clip() override;
       //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-      void _add_clipping_shape(const ::rectangle_f64 & rectangle_f64, ::draw2d::region * pregion) override;
+      //void _add_shape(const ::rectangle_f64 & rectangle_f64, ::draw2d::region * pregion) override;
       //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;
-      void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion) override;
+      //void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion) override;
       //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
-      void _add_clipping_shape(const ::polygon_f64 & polygon_i32, ::draw2d::region * pregion) override;
+      //void _add_clipping_shape(const ::polygon_f64 & polygon_i32, ::draw2d::region * pregion) override;
 
-      void _add_shape(const ::rectangle_f64 & rectangle_f64);
+      void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
       //virtual void _add_shape(const ::ellipse_f64 & ellipse) override;
-      void _add_shape(const ::ellipse_f64 & ellipse);
+      void _add_shape(const ::ellipse_f64 & ellipse) override;
       //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
-      void _add_shape(const ::polygon_f64 & polygon_i32);
+      void _add_shape(const ::polygon_f64 & polygon_i32) override;
 
 
       // Line-Output Functions
@@ -421,7 +431,7 @@ namespace draw2d_cairo
 //      bool DrawFrameControl(const ::rectangle_f64 & rectangle_f64, ::u32 nType, ::u32 nState) override;
 
 //      // Scrolling Functions
-//      bool ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
+//      bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
 //                    ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate) override;
 
 //      // font Functions

@@ -60,7 +60,7 @@ BOOL WINAPI DosDateTimeToFileTime(WORD fatdate, WORD fattime, LPFILETIME ft) {
    time1 = mktime(&newtm);
    gtm = gmtime(&time1);
    time2 = mktime(gtm);
-   RtlSecondsSince1970ToFileTime(2 * time1 - time2, ft);
+   RtlSecondsSince1970ToFileTime((DWORD) (2 * time1 - time2), ft);
 #endif
 
    return TRUE;
@@ -415,7 +415,7 @@ namespace folder_zip
 
 #else
 
-      time.m_iSecond = dos_time_unix_time(dosDate);
+      time.m_iSecond = dos_time_unix_time((dostime_t) dosDate);
       time.m_iNanosecond = 0;
 
 #endif

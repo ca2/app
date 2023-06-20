@@ -57,7 +57,7 @@ namespace experience_tranquillum
       if(top_level()->frame_is_transparent())
       {
 
-         crBackground = ::opacity(90,m_colorBackground);
+         crBackground &= ::opacity(90);
 
       }
       else

@@ -2,6 +2,7 @@
 #include "opengl.h"
 #include "acme/filesystem/file/file.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "aura/graphics/gpu/context.h"
 
 
 namespace opengl
@@ -10,7 +11,7 @@ namespace opengl
 
 #ifdef WINDOWS_DESKTOP
 
-   ::gpu::context * create_system_context();
+   ::pointer <::gpu::context > create_system_context(::particle * pparticle);
 
 #elif defined(__APPLE__)
 
@@ -111,12 +112,12 @@ namespace opengl
    }
 
 
-   ::gpu::context * opengl::create_context()
+   ::pointer < ::gpu::context > opengl::create_context(::particle * pparticle)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      return create_system_context();
+      return create_system_context(pparticle);
 
 #elif defined(__APPLE__)
       
@@ -159,6 +160,8 @@ namespace opengl
    void opengl::defer_init_glew()
    {
 
+      gladLoadGL();
+
 //      if (!m_bGlewInit)
 //      {
 //         
@@ -175,7 +178,7 @@ namespace opengl
 //
 //            //throw ::exception(error_resource);
 //            // Problem: glewInit failed, something is seriously wrong.
-//            FORMATTED_TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
+//            information("glewInit failed: %s (%d)\n", pszErrorString, err);
 //
 //            throw ::exception(error_failed);
 //

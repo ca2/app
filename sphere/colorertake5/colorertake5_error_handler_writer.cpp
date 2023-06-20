@@ -16,7 +16,7 @@ ErrorHandlerWriter::~ErrorHandlerWriter()
 void ErrorHandlerWriter::error(const string &msg)
 {
    
-   FORMATTED_TRACE(trace_category_colorertake5, e_trace_level_error, "%s", msg.c_str());
+   information(trace_category_colorertake5, e_trace_level_error, "%s", msg.c_str());
    
 }
 
@@ -24,7 +24,7 @@ void ErrorHandlerWriter::error(const string &msg)
 void ErrorHandlerWriter::fatalError(const string &msg)
 {
    
-   TRACE(trace_category_colorertake5, e_trace_level_fatal, msg.c_str());
+   information(trace_category_colorertake5, e_trace_level_fatal, msg.c_str());
    
 }
 
@@ -32,7 +32,7 @@ void ErrorHandlerWriter::fatalError(const string &msg)
 void ErrorHandlerWriter::warning(const string &msg)
 {
    
-   TRACE(trace_category_colorertake5, e_trace_level_warning, msg.c_str());
+   information(trace_category_colorertake5, e_trace_level_warning, msg.c_str());
 
 }
 

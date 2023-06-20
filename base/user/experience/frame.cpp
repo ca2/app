@@ -14,60 +14,62 @@
 #include "base/platform/session.h"
 
 
-CLASS_DECL_BASE ::count get_borders(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleOuter, const ::rectangle_i32 & rectangleInner)
+CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectangleOuter, const ::rectangle_i32 & rectangleInner)
 {
 
-   ::count c = 0;
+   rectangle_i32_array rectanglea;
 
+   ::rectangle_i32 rectangle;
+   
    // Top
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].bottom = rectangleInner.top + 1;
+   rectangle = rectangleOuter;
+   rectangle.bottom = rectangleInner.top + 1;
 
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
    // Bottom
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].top = rectangleInner.bottom - 1;
+   rectangle = rectangleOuter;
+   rectangle.top = rectangleInner.bottom - 1;
    
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
    // Left
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].top = rectangleInner.top;
-   rectanglea[c].bottom = rectangleInner.bottom;
-   rectanglea[c].right = rectangleInner.left + 1;
+   rectangle = rectangleOuter;
+   rectangle.top = rectangleInner.top;
+   rectangle.bottom = rectangleInner.bottom;
+   rectangle.right = rectangleInner.left + 1;
 
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
    // Right
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].top = rectangleInner.top;
-   rectanglea[c].bottom = rectangleInner.bottom;
-   rectanglea[c].left = rectangleInner.right - 1;
+   rectangle = rectangleOuter;
+   rectangle.top = rectangleInner.top;
+   rectangle.bottom = rectangleInner.bottom;
+   rectangle.left = rectangleInner.right - 1;
 
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
-   return c;
+   return ::transfer(rectanglea);
 
 }
 
@@ -1118,17 +1120,9 @@ namespace experience
 
       calculate_window_client_rect(&rectangleInner);
 
-      ::rectangle_i32 rectangleBorders[4];
+      auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 
-      auto count = get_borders(rectangleBorders, rectangle, rectangleInner);
-
-      for (::index i = 0; i < count; i++)
-      {
-       
-         m_pframewindow->set_need_redraw(rectangleBorders[i]);
-
-      }
-
+      m_pframewindow->set_need_redraw(rectangleaBorders);
 
    }
 
@@ -1265,7 +1259,7 @@ namespace experience
       if (strType.contains("playlist"))
       {
 
-         INFORMATION("frame playlist");
+         information() << "frame playlist";
 
       }
 
@@ -1548,7 +1542,7 @@ namespace experience
       if (strType.contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 

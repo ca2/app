@@ -276,6 +276,9 @@
     <Filter Include="Header Files\primitive\geometry2d\NewFilter1">
       <UniqueIdentifier>{81f02fce-3b27-4611-9364-284970db5ff6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\geometry">
+      <UniqueIdentifier>{6128342c-5077-4706-928f-0864361f9904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2570,7 +2573,7 @@
     <ClInclude Include="constant\_id.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="constant\_mathematics.h">
+    <ClInclude Include="constant\aaa_mathematics.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\_message.h">
@@ -3032,9 +3035,6 @@
     <ClInclude Include="primitive\geometry2d\vector.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="include\_other_initial_concepts.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry2d\region.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
@@ -3152,7 +3152,7 @@
     <ClInclude Include="graphics\draw2d\_text_stream.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\_image32.h">
+    <ClInclude Include="graphics\draw2d\image32.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="include\_integer.h">
@@ -3163,6 +3163,39 @@
     </ClInclude>
     <ClInclude Include="graphics\draw2d\color32.h">
       <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\print_formatting.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\trace_statement.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\string_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_system_color.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\color_array.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\image32_array.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_tags.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\numeric.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\aaa_numeric.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry\sequence.h">
+      <Filter>Header Files\primitive\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\_constant.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3447,9 +3480,6 @@
     </ClCompile>
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -4302,6 +4332,24 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\process.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\print_formatting.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace_statement.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image32_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\mouse.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\write_text_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

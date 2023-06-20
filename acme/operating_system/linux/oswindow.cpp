@@ -1375,7 +1375,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
          #ifdef SET_WINDOW_POS_LOG
 
-         FORMATTED_INFORMATION("XMoveResizeWindow (%d, %d) - (%d, %d)", x, y, cx, cy);
+         information("XMoveResizeWindow (%d, %d) - (%d, %d)", x, y, cx, cy);
 
          #endif
 
@@ -1388,7 +1388,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
             #ifdef SET_WINDOW_POS_LOG
 
-            FORMATTED_INFORMATION("Changing parameters... (%d, %d) - (%d, %d)", x, y, cx, cy);
+            information("Changing parameters... (%d, %d) - (%d, %d)", x, y, cx, cy);
 
             #endif
 
@@ -1432,7 +1432,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 //            if(!XChangeWindowAttributes(display(), window(), CWOverrideRedirect, &set))
 //            {
 //
-//               INFORMATION("linux::interaction_impl::_native_create_window_ex failed to clear override_redirect");
+//               information() << "linux::interaction_impl::_native_create_window_ex failed to clear override_redirect";
 //
 //            }
 //

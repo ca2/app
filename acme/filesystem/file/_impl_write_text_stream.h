@@ -34,7 +34,7 @@ inline write_text_stream < FILE >::write_text_stream(FILE* pfile)
 
    m_pfile = pfile;
 
-   set_ok_flag();
+   //set_ok_flag();
 
    //if (pfile->has_storing_flag())
    //{
@@ -210,7 +210,7 @@ template < typename FILE >
 void write_text_stream < FILE >::new_line()
 {
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       m_pfile->unget_if(m_chSeparator);
@@ -239,7 +239,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(bool b)
 
    }
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -257,7 +257,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(char ch)
 
    write(&ch, 1);
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -284,7 +284,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(uchar uch)
 
    write(&uch, 1);
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -309,7 +309,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(unichar wch
 
    print(sz);
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -331,7 +331,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(SIGNED i)
 
    write_number(i);
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -350,7 +350,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(UNSIGNED u)
 
    write_number(u);
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -382,7 +382,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(integral_by
 
    print_string_copy(integralbyte);
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -446,9 +446,13 @@ template < primitive_floating FLOATING >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
 {
 
-   write_number(f);
+   char szFormat[32];
 
-   if (m_fmtflags & ::file::separated)
+   snprintf(szFormat, sizeof(szFormat), "%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
+
+   write_number(f, szFormat);
+
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -497,7 +501,7 @@ template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
 {
 
-   if (m_fmtflags & ::file::network_payload)
+   if (this->fmtflags() & ::file::network_payload)
    {
 
       print("\"");
@@ -506,14 +510,14 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ans
 
    print(psz);
 
-   if (m_fmtflags & ::file::network_payload)
+   if (this->fmtflags() & ::file::network_payload)
    {
 
       print("\"");
 
    }
 
-   if (m_fmtflags & ::file::separated)
+   if (this->fmtflags() & ::file::separated)
    {
 
       print(m_chSeparator);
@@ -538,7 +542,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::str
     write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
     {
 
-       if (m_fmtflags & ::file::network_payload)
+       if (this->fmtflags() & ::file::network_payload)
        {
 
           print("\"");
@@ -547,14 +551,14 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::str
 
        print(scopedstr);
 
-       if (m_fmtflags & ::file::network_payload)
+       if (this->fmtflags() & ::file::network_payload)
        {
 
           print("\"");
 
        }
 
-       if (m_fmtflags & ::file::separated)
+       if (this->fmtflags() & ::file::separated)
        {
 
           print(m_chSeparator);
@@ -571,7 +575,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::str
     write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
     {
 
-       if (m_fmtflags & ::file::network_payload)
+       if (this->fmtflags() & ::file::network_payload)
        {
 
           print("\"");
@@ -580,14 +584,14 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::str
 
        write(inlinestring.data(), inlinestring.size());
 
-       if (m_fmtflags & ::file::network_payload)
+       if (this->fmtflags() & ::file::network_payload)
        {
 
           print("\"");
 
        }
 
-       if (m_fmtflags & ::file::separated)
+       if (this->fmtflags() & ::file::separated)
        {
 
           print(m_chSeparator);
@@ -673,7 +677,7 @@ void write_text_stream < FILE >::raw_print(const ::string& str)
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
 //{
 //
-//   if (m_fmtflags & ::file::network_payload)
+//   if (this->fmtflags() & ::file::network_payload)
 //   {
 //
 //      print("\"");
@@ -682,14 +686,14 @@ void write_text_stream < FILE >::raw_print(const ::string& str)
 //
 //   print(psz);
 //
-//   if (m_fmtflags & ::file::network_payload)
+//   if (this->fmtflags() & ::file::network_payload)
 //   {
 //
 //      print("\"");
 //
 //   }
 //
-//   if (m_fmtflags & ::file::separated)
+//   if (this->fmtflags() & ::file::separated)
 //   {
 //
 //      print(m_chSeparator);
@@ -723,7 +727,7 @@ void write_text_stream < FILE >::print(const ::scoped_string& str)
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
 //{
 //
-//   if (m_fmtflags & ::file::network_payload)
+//   if (this->fmtflags() & ::file::network_payload)
 //   {
 //
 //      print("\"");
@@ -732,14 +736,14 @@ void write_text_stream < FILE >::print(const ::scoped_string& str)
 //
 //   print(scopedstr);
 //
-//   if (m_fmtflags & ::file::network_payload)
+//   if (this->fmtflags() & ::file::network_payload)
 //   {
 //
 //      print("\"");
 //
 //   }
 //
-//   if (m_fmtflags & ::file::separated)
+//   if (this->fmtflags() & ::file::separated)
 //   {
 //
 //      print(m_chSeparator);
@@ -756,7 +760,7 @@ void write_text_stream < FILE >::print(const ::scoped_string& str)
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 //{
 //
-//   if (m_fmtflags & ::file::network_payload)
+//   if (this->fmtflags() & ::file::network_payload)
 //   {
 //
 //      print("\"");
@@ -765,14 +769,14 @@ void write_text_stream < FILE >::print(const ::scoped_string& str)
 //
 //   write(inlinestring.data(), inlinestring.size());
 //
-//   if (m_fmtflags & ::file::network_payload)
+//   if (this->fmtflags() & ::file::network_payload)
 //   {
 //
 //      print("\"");
 //
 //   }
 //
-//   if (m_fmtflags & ::file::separated)
+//   if (this->fmtflags() & ::file::separated)
 //   {
 //
 //      print(m_chSeparator);

@@ -32,11 +32,6 @@
 //#endif
 
 
-
-
-
-
-
 #ifdef __APPLE__
 
 
@@ -55,16 +50,16 @@
 #if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD)
 
 
-inline color_indexes common_system_image_color_indexes() { return bgra_indexes(); }
+constexpr inline color_indexes common_system_image_color_indexes() { return bgra_indexes(); }
 
 
 #else
 
-inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
+
+constexpr inline color_indexes common_system_image_color_indexes() { return rgba_indexes(); }
 
 
 #endif
-
 
 
 

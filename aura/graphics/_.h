@@ -32,3 +32,12 @@ class image_array;
 
 
 
+// From aura/gpu/_.h by camilo on 2023-06-19 06:04 UTC <3ThomasBorregaardSorensen!!
+// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardS�rensen!!
+//#pragma once
+
+
+#include "gpu/_.h"
+
+
+

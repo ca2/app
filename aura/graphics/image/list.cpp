@@ -674,7 +674,7 @@ bool image_list::_grow(int iAddUpHint)
 void image_list::copy_from(const ::image_list * plist)
 {
 
-   __construct(m_pimage, ::pointer_transfer(plist->m_pimage->clone()));
+   m_pimage = plist->m_pimage->clone();
    m_size = plist->m_size;
    m_iSize = plist->m_iSize;
    m_iGrow = plist->m_iGrow;

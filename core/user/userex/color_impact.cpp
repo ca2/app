@@ -2,7 +2,7 @@
 #include "color_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -23,19 +23,19 @@ namespace app_core_flag
 
       ::color::color crDenmarkRoed = argb(255, 200, 16, 46);
 
-      double greekdeltax = w / 90.0;
+      double Δx = w / 90.0;
 
-      double greekdeltay = h / 70.0;
+      double Δy = h / 70.0;
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * greekdeltax, 70.0 * greekdeltay), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * greekdeltax, 30.0 * greekdeltay), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * greekdeltax, y, 50 * greekdeltax, 30 * greekdeltay), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * greekdeltay, 30.0 * greekdeltax, 30.0 * greekdeltay), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * greekdeltax, y + 40.0 * greekdeltay, 50.0 * greekdeltax, 30.0 * greekdeltay), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
    }
 
@@ -339,7 +339,7 @@ namespace visual
          //m_uchB = (::u8)primitive_color_round(m_dB * 255.0);
 
          pline = pimage->get_data() + uScan * j;
-         image32_t color32 = argb(255, _dR, _dG, _dB);
+         image32_t color32(argb(255, _dR, _dG, _dB), pimage->color_indexes());
          for (index i = 0; i < w; i++)
          {
 

@@ -427,7 +427,9 @@ namespace html
 
             if (m_pimpl->m_margin.left > 1.0f)
             {
-               TRACE("margin-left greater than 1.0f");
+
+               information("margin-left greater than 1.0f");
+
             }
 
          }

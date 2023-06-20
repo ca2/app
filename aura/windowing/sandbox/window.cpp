@@ -179,7 +179,7 @@ namespace sandbox_windowing
             //if (!XGetWindowAttributes(Display(), Window(), &m_px11data->m_attr))
             //{
 
-            //   INFORMATION("freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+            //   information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
 
             //}
 
@@ -2117,7 +2117,7 @@ namespace sandbox_windowing
       //
       //#ifdef SET_WINDOW_POS_LOG
       //
-      //            FORMATTED_INFORMATION("XMoveResizeWindow (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
+      //            information("XMoveResizeWindow (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
       //
       //#endif
       //
@@ -2130,7 +2130,7 @@ namespace sandbox_windowing
       //
       //#ifdef SET_WINDOW_POS_LOG
       //
-      //               FORMATTED_INFORMATION("Changing parameters... (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
+      //               information("Changing parameters... (%Display(), %d) - (%Display(), %d)", x, y, cx, cy);
       //
       //#endif
       //
@@ -2174,7 +2174,7 @@ namespace sandbox_windowing
       //      //            if(!XChangeWindowAttributes(Display(), Window(), CWOverrideRedirect, &set))
       //      //            {
       //      //
-      //      //               INFORMATION("freebsd::interaction_impl::_native_create_window_ex failed to clear override_redirect");
+      //      //               information() << "freebsd::interaction_impl::_native_create_window_ex failed to clear override_redirect";
       //      //
       //      //            }
       //      //

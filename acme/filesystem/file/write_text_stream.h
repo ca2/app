@@ -4,26 +4,49 @@
 #pragma once
 
 
+#include "acme/filesystem/file/print_formatting.h"
+
+
+struct CLASS_DECL_ACME write_text_stream_struct
+{
+
+
+   char                               m_chSeparator = ' ';
+#ifdef WINDOWS
+   const char * m_pszEolSeparator = "\r\n";
+#else
+   const char * m_pszEolSeparator = "\n";
+#endif
+   print_formatting * m_pprintingformat;
+
+   write_text_stream_struct();
+   write_text_stream_struct(const write_text_stream_struct & writetextstreamstruct) = default;
+   write_text_stream_struct(write_text_stream_struct && writetextstreamstruct) = default;
+
+
+   void set_width(int width) { m_pprintingformat->m_width = width; }
+
+   void set_precision(int precision) { m_pprintingformat->m_precision = precision; }
+
+
+};
+
+
 template < typename FILE >
 class write_text_stream :
-        public PARTICLE_FLAGS,
-        public print_formatting
+   public write_text_stream_struct
 {
 public:
 
 
-    FILE *         m_pfile;
-    char           m_chSeparator = ' ';
-#ifdef WINDOWS
-    const char* m_pszEolSeparator = "\r\n";
-#else
-    const char* m_pszEolSeparator = "\n";
-#endif
+    FILE *                             m_pfile;
 
 
     write_text_stream();
     write_text_stream(FILE* pfile);
-    write_text_stream(const write_text_stream& stream) = delete;
+    write_text_stream(const write_text_stream & stream) = default;
+    write_text_stream(write_text_stream && stream) = default;
+    write_text_stream(FILE * pfile, write_text_stream_struct && streamstruct) : m_pfile(pfile), write_text_stream_struct(streamstruct) {}
     ~write_text_stream();
 
 
@@ -68,6 +91,9 @@ public:
     //   ::copy(t, str);
 
     //}
+
+    inline ::file::fmtflags & fmtflags() { return m_pprintingformat->m_fmtflags; }
+    inline ::file::fmtflags fmtflags() const { return m_pprintingformat->m_fmtflags; }
 
 
     void print(const ::scoped_string& str);
@@ -172,6 +198,16 @@ public:
 //       print(m_pszEolSeparator);
 //
 //    }
+
+    
+    write_text_stream & operator <<(::file::fmtflags e)
+    {
+
+       m_pprintingformat->set_format_flags(e);
+
+       return *this;
+
+    }
 
 
     write_text_stream& operator <<(bool b);

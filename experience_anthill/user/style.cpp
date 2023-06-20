@@ -471,13 +471,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return ::color::color(50, 120, 190, 127);
+                  return ::rgba(50, 120, 190, 127);
 
                }
                else
                {
 
-                  return ::color::color(100, 160, 220, 127);
+                  return ::rgba(100, 160, 220, 127);
 
                }
 
@@ -511,13 +511,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return ::color::color(50, 120, 190, 127);
+                  return ::rgba(50, 120, 190, 127);
 
                }
                else
                {
 
-                  return ::color::color(100, 160, 220, 127);
+                  return ::rgba(100, 160, 220, 127);
 
                }
 
@@ -555,13 +555,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return ::color::color(100, 110, 120, 127);
+                  return ::rgba(100, 110, 120, 127);
 
                }
                else
                {
 
-                  return ::color::color(180, 190, 200, 127);
+                  return ::rgba(180, 190, 200, 127);
 
                }
 
@@ -594,13 +594,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return ::color::color(100, 160, 220, 127);
+                  return ::rgba(100, 160, 220, 127);
 
                }
                else
                {
 
-                  return ::color::color(50, 120, 190, 50);
+                  return ::rgba(50, 120, 190, 50);
 
                }
 

@@ -255,7 +255,7 @@ namespace xlib
       if(!(m_pimpl->m_puserinteraction->GetStyle() & WS_VISIBLE))
       {
 
-         INFORMATION("XPutImage not called. Ui is not visible.");
+         information() << "XPutImage not called. Ui is not visible.";
 
          return false;
 

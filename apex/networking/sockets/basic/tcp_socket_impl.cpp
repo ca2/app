@@ -119,13 +119,13 @@
 //
 //      //int iPort = ad.get_service_number();
 //
-//      //INFORMATION("open address = " << strIp << ":" << iPort);
+//      //information() << "open address = " << strIp << ":" << iPort;
 //
 //      //if(!ad.is_valid())
 //      //{
 //
 //
-//      //   FATAL("open Invalid ::networking::address");
+//      //   fatal() <<"open Invalid ::networking::address";
 //
 //      //   SetCloseAndDelete();
 //
@@ -140,7 +140,7 @@
 ////      {
 ////
 ////
-////         FATAL(log_this, "open",0,"no space left in fd_set");
+////         fatal() <<log_this, "open",0,"no space left in fd_set";
 ////
 ////         SetCloseAndDelete();
 ////         return false;
@@ -208,7 +208,7 @@
 ////
 ////            paddressdepartment->convert(sockshost,GetSocks4Host());
 ////
-////            INFORMATION("open: is_connecting to socks4 server @ " << sockshost << ":" << GetSocks4Port());
+////            information() << "open: is_connecting to socks4 server @ " << sockshost << ":" << GetSocks4Port();
 ////
 ////         }
 ////
@@ -247,7 +247,7 @@
 ////         {
 ////            string strError = bsd_socket_error(iError);
 ////
-////            INFORMATION("connect: failed, reconnect pending " << iError << bsd_socket_error(iError));
+////            information() << "connect: failed, reconnect pending " << iError << bsd_socket_error(iError);
 ////
 ////            attach(s);
 ////            set_connecting(true); // this flag will control fd_set's
@@ -256,7 +256,7 @@
 ////         {
 ////            string strError = bsd_socket_error(iError);
 ////
-////            FATAL("connect: failed " << iError << bsd_socket_error(iError));
+////            fatal() <<"connect: failed " << iError << bsd_socket_error(iError);
 ////
 ////            SetCloseAndDelete();
 ////            ::closesocket(s);
@@ -335,7 +335,7 @@
 //      //   if (!paddressdepartment->convert(l, host))
 //      //   {
 //      //      
-//      //      WARNING("paddressdepartment->convert failed");
+//      //      warning() <<"paddressdepartment->convert failed";
 //      //      
 //      //      SetCloseAndDelete();
 //      //      
@@ -372,7 +372,7 @@
 ////
 ////      auto paddressdepartment = ::networking::address_department();
 ////
-////      FORMATTED_INFORMATION("OnResolved atom %d addr %s port %d\n",atom,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
+////      information("OnResolved atom %d addr %s port %d\n",atom,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
 ////
 ////      if(atom == m_resolver_id)
 ////      {
@@ -390,7 +390,7 @@
 ////         else
 ////         {
 ////
-////            FATAL(log_this, "OnResolved",0,"Resolver failed");
+////            fatal() <<log_this, "OnResolved",0,"Resolver failed";
 ////
 ////            SetCloseAndDelete();
 ////         }
@@ -398,7 +398,7 @@
 ////      else
 ////      {
 ////
-////         FATAL(log_this, "OnResolved",atom,"Resolver returned wrong job atom");
+////         fatal() <<log_this, "OnResolved",atom,"Resolver returned wrong job atom";
 ////
 ////         SetCloseAndDelete();
 ////      }
@@ -424,7 +424,7 @@
 ////            if (!Ready())
 ////            {
 ////
-////               INFORMATION("tcp_socket_impl::recv not ready");
+////               information() << "tcp_socket_impl::recv not ready";
 ////
 ////               return 0;
 ////
@@ -433,9 +433,9 @@
 ////            if (m_psslcontext->m_ssl == nullptr)
 ////            {
 ////
-////               ERROR("tcp_socket_impl::recv(ssl)" << (int)n << "SSL context is nullptr");
+////               error() <<"tcp_socket_impl::recv(ssl)" << (int)n << "SSL context is nullptr";
 ////
-////               INFORMATION("tcp_socket_impl::recv ssl SSL context is nullptr(0)");
+////               information() << "tcp_socket_impl::recv ssl SSL context is nullptr(0)";
 ////
 ////               OnDisconnect();
 ////               SetCloseAndDelete(true);
@@ -459,27 +459,27 @@
 ////                     break;
 ////                  case SSL_ERROR_ZERO_RETURN:
 ////                     //if(SSL_m_psslcontext->m_pclientcontext->m_psslsession)
-////                     INFORMATION("SSL_read() returns zero - closing socket");
+////                     information() << "SSL_read() returns zero - closing socket";
 ////                     OnDisconnect();
 ////                     SetCloseAndDelete(true);
 ////                     SetFlushBeforeClose(false);
 ////                     SetLost();
 ////                     break;
 ////                  case SSL_ERROR_SYSCALL:
-////                     FORMATTED_INFORMATION("SSL read problem, errcode = %d (SSL_FORMATTED_ERROR_SYSCALL) errno = %d ", n , errno);
+////                     information("SSL read problem, errcode = %d (SSL_FORMATTED_ERROR_SYSCALL) errno = %d ", n , errno);
 ////                     OnDisconnect();
 ////                     SetCloseAndDelete(true);
 ////                     SetFlushBeforeClose(false);
 ////                     SetLost();
 ////                     break;
 ////                  default:
-////                     FORMATTED_INFORMATION("SSL read problem, errcode = %d", n);
+////                     information("SSL read problem, errcode = %d", n);
 ////                     OnDisconnect();
 ////                     SetCloseAndDelete(true);
 ////                     SetFlushBeforeClose(false);
 ////                     SetLost();
 ////                  }
-////                  INFORMATION("tcp_socket_impl::recv ssl error(1)");
+////                  information() << "tcp_socket_impl::recv ssl error(1)";
 ////               }
 ////               //else if (!n)
 ////               //{
@@ -488,7 +488,7 @@
 ////               //   SetFlushBeforeClose(false);
 ////               //   SetLost();
 ////               //   SetShutdownStatus(SHUT_WR);
-////               //   //TRACE("tcp_socket_impl::recv ssl disconnect(2)");
+////               //   //information("tcp_socket_impl::recv ssl disconnect(2)");
 ////
 ////               //}
 ////               else if (n > 0 && n <= nBufSize)
@@ -501,11 +501,11 @@
 ////
 ////
 ////
-////                  ERROR("tcp_socket_impl::recv(ssl) " <<  (int)n <<  " abnormal value from SSL_read");
+////                  error() <<"tcp_socket_impl::recv(ssl) " <<  (int)n <<  " abnormal value from SSL_read";
 ////
 ////
 ////
-////                  INFORMATION("tcp_socket_impl::recv ssl abnormal value from SSL_read(3)");
+////                  information() << "tcp_socket_impl::recv ssl abnormal value from SSL_read(3)";
 ////
 ////               }
 ////
@@ -536,13 +536,13 @@
 ////         if(n == -1)
 ////         {
 ////
-////            FATAL("recv " << Errno << bsd_socket_error(Errno));
+////            fatal() <<"recv " << Errno << bsd_socket_error(Errno);
 ////
 ////            OnDisconnect();
 ////            SetCloseAndDelete(true);
 ////            SetFlushBeforeClose(false);
 ////            SetLost();
-////            INFORMATION("tcp_socket_impl::recv (B1) recv error(" << bsd_socket_error(Errno) << ")");
+////            information() << "tcp_socket_impl::recv (B1) recv error(" << bsd_socket_error(Errno) << ")";
 ////         }
 ////         else if(!n)
 ////         {
@@ -552,11 +552,11 @@
 //////            #else
 //////            #endif
 //////            {
-//////               TRACE("tcp_socket_impl::recv 0 No Error or WOULD BLOCK");
+//////               information("tcp_socket_impl::recv 0 No Error or WOULD BLOCK");
 //////            }
 //////            else
 ////            {
-////               INFORMATION("tcp_socket_impl::recv (B2) recv disconnect");
+////               information() << "tcp_socket_impl::recv (B2) recv disconnect";
 ////               OnDisconnect();
 ////               SetCloseAndDelete(true);
 ////               SetFlushBeforeClose(false);
@@ -575,11 +575,11 @@
 ////
 ////
 ////
-////            ERROR("tcp_socket_impl::recv " << (i32)n << " abnormal value from recv");
+////            error() <<"tcp_socket_impl::recv " << (i32)n << " abnormal value from recv";
 ////
 ////
 ////
-////            INFORMATION("tcp_socket_impl::recv (B3) recv abnormal value from recv");
+////            information() << "tcp_socket_impl::recv (B3) recv abnormal value from recv";
 ////
 ////         }
 ////
@@ -623,7 +623,7 @@
 //            {
 //
 //
-//               WARNING( "tcp_socket_impl::read : ibuf overflow");
+//               warning() << "tcp_socket_impl::read : ibuf overflow";
 //
 //
 //            }
@@ -633,7 +633,7 @@
 //      else if(n < 0)
 //      {
 //
-//         ERROR("tcp_socket_impl::read " << (i32)n << " abnormal value from rcv");
+//         error() <<"tcp_socket_impl::read " << (i32)n << " abnormal value from rcv";
 //
 //      }
 //
@@ -737,7 +737,7 @@
 //      //      return;
 //      //   }
 //
-//      //   FATAL("tcp: connect failed " << err << bsd_socket_error(err));
+//      //   fatal() <<"tcp: connect failed " << err << bsd_socket_error(err);
 //
 //      //   set(false,false); // no more monitoring because connection failed
 //
@@ -864,7 +864,7 @@
 ////                  int iError = errno;
 ////
 ////                  const ::scoped_string & scopedstrError = strerror(iError);
-////                  INFORMATION(pszError);
+////                  information() << pszError;
 ////               }
 ////               OnDisconnect();
 ////               SetCloseAndDelete(true);
@@ -872,7 +872,7 @@
 ////               SetLost();
 ////               const char *errbuf = ERR_error_string(errnr,nullptr);
 ////
-////               FATAL("OnWrite / SSL_write " << errnr << errbuf);
+////               fatal() <<"OnWrite / SSL_write " << errnr << errbuf;
 ////
 ////               //throw ::exception(io_exception(errbuf));
 ////            }
@@ -886,7 +886,7 @@
 ////            SetLost();
 ////            i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
 ////            const char *errbuf = ERR_error_string(errnr,nullptr);
-////            INFORMATION("SSL_write() returns 0: " << errnr << ", " << errbuf);
+////            information() << "SSL_write() returns 0: " << errnr << ", " << errbuf;
 ////            //throw ::exception(io_exception(errbuf));
 ////         }
 ////
@@ -916,7 +916,7 @@
 ////#endif
 ////            {
 ////
-////               FATAL("send " << Errno << bsd_socket_error(Errno));
+////               fatal() <<"send " << Errno << bsd_socket_error(Errno);
 ////
 ////               OnDisconnect();
 ////               SetCloseAndDelete(true);
@@ -1018,12 +1018,12 @@
 //      //if(!Ready() && !is_connecting())
 //      //{
 //
-//      //   WARNING("write: Attempt to write to a non-ready socket"); // warning
+//      //   warning() <<"write: Attempt to write to a non-ready socket"; // warning
 //
 //      //   if (get_socket_id() == INVALID_SOCKET)
 //      //   {
 //
-//      //      INFORMATION("write: * get_socket_id() == INVALID_SOCKET");
+//      //      information() << "write: * get_socket_id() == INVALID_SOCKET";
 //
 //
 //      //   }
@@ -1031,14 +1031,14 @@
 //      //   {
 //
 //
-//      //      INFORMATION("write: * is_connecting()");
+//      //      information() << "write: * is_connecting()";
 //
 //      //   }
 //      //   if (IsCloseAndDelete())
 //      //   {
 //
 //
-//      //      INFORMATION("write: * IsCloseAndDelete()");
+//      //      information() << "write: * IsCloseAndDelete()";
 //
 //
 //
@@ -1049,7 +1049,7 @@
 //      //{
 //
 //
-//      //   WARNING("write: Attempt to write to a non-connected socket, will be sent on connect"); // warning
+//      //   warning() <<"write: Attempt to write to a non-connected socket, will be sent on connect"; // warning
 //
 //      //   buffer(buf,(int) len);
 //      //   return;
@@ -1133,7 +1133,7 @@
 //   //{
 //
 //
-//   //   WARNING("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
+//   //   warning() <<"OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection";
 //
 //
 //   //   if(!socket_handler()->Socks4TryDirect())
@@ -1184,7 +1184,7 @@
 //   //            OnConnect();
 //
 //
-//   //            INFORMATION("OnSocks4Read: Connection established");
+//   //            information() << "OnSocks4Read: Connection established";
 //
 //   //            break;
 //   //         case 91:
@@ -1192,7 +1192,7 @@
 //   //         case 93:
 //
 //
-//   //            FATAL("OnSocks4Read: socks4 server reports connect failed");
+//   //            fatal() <<"OnSocks4Read: socks4 server reports connect failed";
 //
 //   //            set_connecting(false);
 //   //            SetCloseAndDelete();
@@ -1201,7 +1201,7 @@
 //   //         default:
 //
 //
-//   //            FATAL("OnSocks4Read: socks4 server unrecognized response");
+//   //            fatal() <<"OnSocks4Read: socks4 server unrecognized response";
 //
 //   //            SetCloseAndDelete();
 //   //            break;
@@ -1234,7 +1234,7 @@
 //      //   if(m_ssl_ctx)
 //      //   {
 //
-//      //      TRACE("SSL Context already initialized - closing socket\n");
+//      //      information("SSL Context already initialized - closing socket\n");
 //
 //      //      SetCloseAndDelete(true);
 //
@@ -1270,7 +1270,7 @@
 //      //   if(!m_psslcontext->m_ssl)
 //      //   {
 //
-//      //      INFORMATION("m_ssl is nullptr");
+//      //      information() << "m_ssl is nullptr";
 //
 //      //      SetCloseAndDelete(true);
 //
@@ -1297,7 +1297,7 @@
 //      //   if(!m_psslcontext->m_sbio)
 //      //   {
 //
-//      //      INFORMATION("m_sbio is nullptr");
+//      //      information() << "m_sbio is nullptr";
 //
 //      //      SetCloseAndDelete(true);
 //
@@ -1338,7 +1338,7 @@
 //      //         && m_psslcontext->m_pclientcontext.is_set()
 //      //         && m_psslcontext->m_pclientcontext->m_psslcontext != nullptr)
 //      //   {
-//      //      INFORMATION("SSL Context already initialized - closing socket");
+//      //      information() << "SSL Context already initialized - closing socket";
 //      //      SetCloseAndDelete(true);
 //      //      return;
 //      //   }
@@ -1357,7 +1357,7 @@
 //      //   m_psslcontext->m_ssl = SSL_new(m_psslcontext->m_pclientcontext->m_psslcontext);
 //      //   if(!m_psslcontext->m_ssl)
 //      //   {
-//      //      INFORMATION("m_ssl is nullptr");
+//      //      information() << "m_ssl is nullptr";
 //      //      SetCloseAndDelete(true);
 //      //      return;
 //      //   }
@@ -1366,7 +1366,7 @@
 //      //   m_psslcontext->m_sbio = BIO_new_socket((i32)get_socket_id(),BIO_NOCLOSE);
 //      //   if(!m_psslcontext->m_sbio)
 //      //   {
-//      //      INFORMATION("m_sbio is nullptr");
+//      //      information() << "m_sbio is nullptr";
 //      //      SetCloseAndDelete(true);
 //      //      return;
 //      //   }
@@ -1385,7 +1385,7 @@
 //      //if(!IsSSLServer()) // client
 //      //{
 //
-//      //   INFORMATION("SSLNegotiate: SSL_connect");
+//      //   information() << "SSLNegotiate: SSL_connect";
 //
 //      //   if (m_bReuseSession && !m_bClientSessionSet && m_psslcontext->m_pclientcontext->m_psslsession != nullptr)
 //      //   {
@@ -1406,13 +1406,13 @@
 //      //      if (SSL_session_reused(m_psslcontext->m_ssl))
 //      //      {
 //
-//      //         INFORMATION("REUSED SESSION");
+//      //         information() << "REUSED SESSION";
 //
 //      //      }
 //      //      else
 //      //      {
 //
-//      //         INFORMATION("NEW SESSION");
+//      //         information() << "NEW SESSION";
 //
 //      //      }
 //
@@ -1424,7 +1424,7 @@
 //      //      {
 //
 //
-//      //         INFORMATION("SSLNegotiate/cert_common_name_check: cert_common_name_check failed (error=" << x509_err << ",url=" << m_strUrl << ")");
+//      //         information() << "SSLNegotiate/cert_common_name_check: cert_common_name_check failed (error=" << x509_err << ",url=" << m_strUrl << ")";
 //
 //      //         SetSSLNegotiate(false);
 //      //         SetCloseAndDelete();
@@ -1471,7 +1471,7 @@
 //      //      }
 //
 //
-//      //      INFORMATION("SSLNegotiate/SSL_connect: Connection established");
+//      //      information() << "SSLNegotiate/SSL_connect: Connection established";
 //
 //      //      return true;
 //
@@ -1481,7 +1481,7 @@
 //
 //      //      long error = ERR_get_error();
 //      //      const char* error_str = ERR_error_string(error, nullptr);
-//      //      WARNING("could not SSL_connect: " << error_str);
+//      //      warning() <<"could not SSL_connect: " << error_str;
 //
 //      //      int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
 //
@@ -1491,7 +1491,7 @@
 //      //            && (m_psslcontext->m_pclientcontext->m_psslmethod == TLS_client_method()))
 //      //      {
 //
-//      //         WARNING("ssl_error_zero_return");
+//      //         warning() <<"ssl_error_zero_return";
 //
 //      //      }
 //
@@ -1528,7 +1528,7 @@
 //      //         if (m_psslcontext->m_iSslCtxRetry == 0)
 //      //         {
 //
-//      //            INFORMATION("SSLNegotiate/SSL_connect: Connection failed");
+//      //            information() << "SSLNegotiate/SSL_connect: Connection failed";
 //
 //      //            SetSSLNegotiate(false);
 //      //            SetCloseAndDelete();
@@ -1565,7 +1565,7 @@
 //      //         }
 //
 //
-//      //         INFORMATION("SSLNegotiate: SSL_connect() failed");
+//      //         information() << "SSLNegotiate: SSL_connect() failed";
 //
 //      //         SetSSLNegotiate(false);
 //      //         SetCloseAndDelete(true);
@@ -1594,7 +1594,7 @@
 //      //      OnAccept();
 //
 //
-//      //      INFORMATION("SSLNegotiate/SSL_accept: Connection established");
+//      //      information() << "SSLNegotiate/SSL_accept: Connection established";
 //
 //      //      return true;
 //
@@ -1603,7 +1603,7 @@
 //      //   {
 //
 //
-//      //      INFORMATION("SSLNegotiate/SSL_accept: Connection failed");
+//      //      information() << "SSLNegotiate/SSL_accept: Connection failed";
 //
 //      //      SetSSLNegotiate(false);
 //      //      SetCloseAndDelete();
@@ -1625,11 +1625,11 @@
 //      //         if (r == SSL_ERROR_SYSCALL)
 //      //         {
 //      //            
-//      //            ERROR("SSL_ERROR_SYSCALL: Errno = " << iError);
+//      //            error() <<"SSL_ERROR_SYSCALL: Errno = " << iError;
 //
 //      //         }
 //
-//      //         INFORMATION("SSLNegotiate " << r << " SSL_accept() failed");
+//      //         information() << "SSLNegotiate " << r << " SSL_accept() failed";
 //
 //
 //      //         SetSSLNegotiate(false);
@@ -1656,7 +1656,7 @@
 //   {
 //
 //
-//      FATAL("InitSSLServer: You MUST implement your own InitSSLServer method");
+//      fatal() <<"InitSSLServer: You MUST implement your own InitSSLServer method";
 //
 //      SetCloseAndDelete();
 //   }
@@ -1737,7 +1737,7 @@
 ////            //if (!(SSL_CTX_use_RSAPrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key)))
 ////            //{
 ////
-////            //   FORMATTED_ERROR("tcp_socket_impl InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
+////            //   error("tcp_socket_impl InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
 ////
 ////            //}
 ////
@@ -1797,7 +1797,7 @@
 ////               if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, certificate, key, pchain, 1))
 ////               {
 ////
-////                  FATAL("tcp_socket_impl InitializeContext,-1,Couldn't read certificate string " << keyfile);
+////                  fatal() <<"tcp_socket_impl InitializeContext,-1,Couldn't read certificate string " << keyfile;
 ////
 ////               }
 ////
@@ -1806,14 +1806,14 @@
 ////               if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
 ////               {
 ////
-////                  FATAL("tcp_socket_impl InitializeContext: Couldn't read certificate string " << keyfile);
+////                  fatal() <<"tcp_socket_impl InitializeContext: Couldn't read certificate string " << keyfile;
 ////
 ////               }
 ////
 ////               if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key))
 ////               {
 ////
-////                  FATAL("tcp_socket_impl InitializeContext: Couldn't read certificate string " << keyfile);
+////                  fatal() <<"tcp_socket_impl InitializeContext: Couldn't read certificate string " << keyfile;
 ////
 ////               }
 ////
@@ -1823,7 +1823,7 @@
 ////                  if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, x))
 ////                  {
 ////
-////                     FATAL("tcp_socket_impl InitializeContext: Couldn't read certificate string " + keyfile);
+////                     fatal() <<"tcp_socket_impl InitializeContext: Couldn't read certificate string " + keyfile;
 ////
 ////                  }
 ////
@@ -1857,7 +1857,7 @@
 ////            /* Load our keys and certificates*/
 ////            if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
 ////            {
-////               FATAL("tcp_socket_impl InitializeContext: Couldn't read certificate file " << keyfile);
+////               fatal() <<"tcp_socket_impl InitializeContext: Couldn't read certificate file " << keyfile;
 ////            }
 ////         }
 ////         m_password = password;
@@ -1867,7 +1867,7 @@
 ////         if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
 ////         {
 ////
-////            FORMATTED_FATAL("tcp_socket_impl InitializeContext: Couldn't read private key file %s ", keyfile.c_str());
+////            fatal("tcp_socket_impl InitializeContext: Couldn't read private key file %s ", keyfile.c_str());
 ////
 ////         }
 ////
@@ -1922,7 +1922,7 @@
 //   //   /* Load our keys and certificates*/
 //   //   if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, certfile, SSL_FILETYPE_PEM)))
 //   //   {
-//   //      FATAL("InitializeContext: Couldn't read certificate file " << keyfile);
+//   //      fatal() <<"InitializeContext: Couldn't read certificate file " << keyfile;
 //   //   }
 //
 //   //   m_password = password;
@@ -1930,8 +1930,8 @@
 //   //   SSL_CTX_set_default_passwd_cb_userdata(m_psslcontext->m_pclientcontext->m_psslcontext, (socket *) this);
 //   //   if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
 //   //   {
-//   //      FATAL("InitializeContext: Couldn't read private key file " << keyfile);
-//   //      //TRACE(string("tcp_socket_impl InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
+//   //      fatal() <<"InitializeContext: Couldn't read private key file " << keyfile;
+//   //      //information(string("tcp_socket_impl InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
 //   //   }
 //
 //   //}
@@ -1970,7 +1970,7 @@
 ////      {
 ////
 ////
-////         WARNING("socket::close: file descriptor invalid");
+////         warning() <<"socket::close: file descriptor invalid";
 ////
 ////         return;
 ////
@@ -1989,7 +1989,7 @@
 ////            // failed...
 ////
 ////
-////            ERROR("shutdown " << Errno << bsd_socket_error(Errno));
+////            error() <<"shutdown " << Errno << bsd_socket_error(Errno);
 ////
 ////
 ////
@@ -2006,7 +2006,7 @@
 ////         {
 ////
 ////
-////            WARNING("read() after shutdown: bytes read");
+////            warning() <<"read() after shutdown: bytes read";
 ////
 ////         }
 ////
@@ -2031,7 +2031,7 @@
 ////      {
 ////
 ////
-////         WARNING("GetSslContext: SSL Context is nullptr; check InitSSLServer/InitSSLClient");
+////         warning() <<"GetSslContext: SSL Context is nullptr; check InitSSLServer/InitSSLClient";
 ////
 ////      }
 ////      return m_psslcontext->m_pclientcontext->m_psslcontext;
@@ -2043,7 +2043,7 @@
 ////      {
 ////
 ////
-////         WARNING("GetSsl: SSL is nullptr; check InitSSLServer/InitSSLClient");
+////         warning() <<"GetSsl: SSL is nullptr; check InitSSLServer/InitSSLClient";
 ////
 ////      }
 ////      return m_psslcontext->m_ssl;
@@ -2144,7 +2144,7 @@
 ////      UNREFERENCED_PARAMETER(type);
 ////      UNREFERENCED_PARAMETER(protocol);
 ////      UNREFERENCED_PARAMETER(s);
-////      //TRACE("socket::OnOptions()\n");
+////      //information("socket::OnOptions()\n");
 ////#ifdef SO_NOSIGPIPE
 ////      SetSoNosigpipe(true);
 ////#endif
@@ -2168,14 +2168,14 @@
 //      {
 //
 //
-//         FATAL("setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno);
 //
 //         return false;
 //      }
 //      return true;
 //#else
 //
-//      INFORMATION("socket option not available: TCP_NODELAY");
+//      information() << "socket option not available: TCP_NODELAY";
 //
 //      return false;
 //#endif
@@ -2185,7 +2185,7 @@
 //   void tcp_socket_impl::on_connection_timeout()
 //   {
 //
-//      FATAL("connect: connect timeout");
+//      fatal() <<"connect: connect timeout";
 //
 //      m_estatus = error_connection_timed_out;
 //
@@ -2278,7 +2278,7 @@
 //
 //         //   int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 //
-//         //   INFORMATION("got " << n << " bytes of Out of Band Data");
+//         //   information() << "got " << n << " bytes of Out of Band Data";
 //
 //         //   // even though the connection failed at once, only retry after
 //         //   // the connection timeout
@@ -2297,7 +2297,7 @@
 //      //// errno valid here?
 //      //i32 err = SoError();
 //
-//      //FATAL("exception on select " << err << bsd_socket_error(err));
+//      //fatal() <<"exception on select " << err << bsd_socket_error(err);
 //
 //      SetCloseAndDelete();
 //   }

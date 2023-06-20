@@ -574,7 +574,7 @@ namespace xcb
 
       }
 
-      INFORMATION("Finished display::message_loop for nano::display");
+      information() << "Finished display::message_loop for nano::display";
 
    }
 
@@ -1808,7 +1808,7 @@ namespace xcb
       if(!preply)
       {
 
-         INFORMATION("freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+         information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
 
          return error_failed;
 
@@ -1831,7 +1831,7 @@ namespace xcb
       if (!preply)
       {
 
-         INFORMATION("freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+         information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
 
          return
             error_failed;

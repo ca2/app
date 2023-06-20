@@ -30,7 +30,7 @@
 //      catch(...)
 //      {
 //
-//         TRACE("Could not create .desktop shortcut file for the Linux papp for the current user.");
+//         information("Could not create .desktop shortcut file for the Linux papp for the current user.");
 //
 //      }
 //

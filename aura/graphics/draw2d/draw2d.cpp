@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "lock.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/array.h"
@@ -1054,7 +1054,7 @@ void draw2d::emboss_predicate(
       i32 rSquare;
 
 
-      image32_t u32SpreadSetColor(colorSpreadSetColor);
+      image32_t u32SpreadSetColor(colorSpreadSetColor, pimageDst->m_colorindexes);
 
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -1353,7 +1353,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   INFORMATION("write_text factory_item exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
+      //   information() << "write_text factory_item exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.";
 
       //   //return estatus;
 
@@ -1368,7 +1368,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   INFORMATION("Couldn't construct memory_new write_text.");
+      //   information() << "Couldn't construct memory_new write_text.";
 
       //   return estatus;
 
@@ -1381,7 +1381,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   INFORMATION("Couldn't initialize write_text (init1).");
+      //   information() << "Couldn't initialize write_text (init1).";
 
       //   return estatus;
 

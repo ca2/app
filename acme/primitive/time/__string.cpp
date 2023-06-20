@@ -16,7 +16,7 @@
 //::string & copy(::string & str, const integral_microsecond & integral)
 //{
 //
-//   str.format("%" PRId64 "greekmus", integral.m_i);
+//   str.format("%" PRId64 "μs", integral.m_i);
 //
 //   return str;
 //

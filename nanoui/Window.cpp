@@ -145,16 +145,18 @@ m_bDrag(false)
    void Window::draw(::nano2d::context* pcontext)
    {
 
-      if (m_offsetToApplyOnDraw.cx() != 0 || m_offsetToApplyOnDraw.cy() != 0)
-      {
+      information() << "Draw Window!! " << typeid(*this).name();
 
-         m_pos += m_offsetToApplyOnDraw;
-
-         m_offsetToApplyOnDraw.cx() = 0;
-
-         m_offsetToApplyOnDraw.cy() = 0;
-
-      }
+//      if (m_offsetToApplyOnDraw.cx() != 0 || m_offsetToApplyOnDraw.cy() != 0)
+//      {
+//
+//         m_pos += m_offsetToApplyOnDraw;
+//
+//         m_offsetToApplyOnDraw.cx() = 0;
+//
+//         m_offsetToApplyOnDraw.cy() = 0;
+//
+//      }
 
       if (!need_to_draw(pcontext))
       {
@@ -264,10 +266,10 @@ m_bDrag(false)
    }
 
 
-   bool Window::mouse_enter_event(const point_i32& p, bool enter, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_enter_event(const point_i32& pointCursor, bool enter, const ::user::e_key& ekeyModifiers)
    {
 
-      Widget::mouse_enter_event(p, enter, ekeyModifiers);
+      Widget::mouse_enter_event(pointCursor, enter, ekeyModifiers);
 
       return true;
 
@@ -278,59 +280,96 @@ m_bDrag(false)
 #define __MOUSE_RIGHT_BUTTON 1
 
 
-   bool Window::mouse_motion_event(const point_i32&p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_motion_event(const point_i32&pointCursor, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       if (m_bDrag && (ekeyModifiers & ::user::e_key_left_button) != 0 && bDown)
       {
 
-         auto rectanglePrevious = interaction_rectangle();
+         auto offset = screen()->m_pointLastCursor - m_pointDragStartCursor;
+         
+         auto posNew = m_pointDragStartPosition + offset;
+         
+         posNew = posNew.maximum(::point_i32(0, 0));
+         
+         posNew = posNew.minimum(parent()->size() - m_size);
+         
+         if(posNew != m_pointLastDragPosition)
+         {
+            
+            ::point_i32 parentPosition;
+            
+            if(parent())
+            {
+             
+               parentPosition = parent()->absolute_position();
+               
+            }
+            
+            ::rectangle_i32 rectangleOld(m_pointLastDragPosition, m_size);
+            
+            if(parent())
+            {
+               
+               rectangleOld += parentPosition;
+               
+            }
 
-         FORMATTED_INFORMATION("rectanglePrevious (%d, %d, %d, %d)", 
-            rectanglePrevious.left,
-            rectanglePrevious.top,
-            rectanglePrevious.right, 
-            rectanglePrevious.bottom);
+            information("rectangleOld (%d, %d, %d, %d)",
+                        rectangleOld.left,
+                        rectangleOld.top,
+                        rectangleOld.right,
+                        rectangleOld.bottom);
+            
+            ::rectangle_i32_array rectanglea;
+            
+            rectanglea.add(rectangleOld);
 
-         auto posOld = m_pos + m_offsetToApplyOnDraw;
+            ::rectangle_i32 rectangleNew(posNew, m_size);
+            
+            if(parent())
+            {
+               
+               rectangleNew += parentPosition;
+               
+            }
+            
+            information("rectangleNew (%d, %d, %d, %d)",
+                        rectangleNew.left,
+                        rectangleNew.top,
+                        rectangleNew.right,
+                        rectangleNew.bottom);
 
-         auto pos = posOld + rel;
+            rectanglea.add(rectangleNew);
+            
+            auto function = [this, posNew]()
+            {
+               
+               m_pos = posNew;
 
-         pos = pos.maximum(::point_i32(0, 0));
-
-         pos = pos.minimum(parent()->size() - m_size);
-
-         m_offsetToApplyOnDraw = pos - m_pos;
-
-         auto rectangle = interaction_rectangle();
-
-         rectangle.offset(m_offsetToApplyOnDraw.cx(), m_offsetToApplyOnDraw.cy());
-
-         FORMATTED_INFORMATION("rectangle (%d, %d, %d, %d)",
-            rectangle.left,
-            rectangle.top,
-            rectangle.right,
-            rectangle.bottom);
-
-         screen()->m_puserinteraction->set_need_redraw(rectanglePrevious);
-
-         screen()->m_puserinteraction->set_need_redraw(rectangle);
-
-         post_redraw();
-
+            };
+            
+            screen()->m_puserinteraction->set_need_redraw(rectanglea, function);
+            
+            post_redraw();
+            
+            m_pointLastDragPosition = posNew;
+            
+         }
+         
          return true;
 
       }
 
-      return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
+      return Widget::mouse_motion_event(pointCursor, rel, bDown, ekeyModifiers);
 
    }
 
 
-   bool Window::mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_button_event(const point_i32& pointCursor, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
-      if (Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers))
+      if (Widget::mouse_button_event(pointCursor, emouse, down, bDoubleClick, ekeyModifiers))
       {
 
          return true;
@@ -343,7 +382,7 @@ m_bDrag(false)
          if (down)
          {
 
-            auto bDrag = down && (p.y() - m_pos.y()) < m_ptheme->m_iWindowHeaderHeight;
+            auto bDrag = down && (pointCursor.y() - m_pos.y()) < m_ptheme->m_iWindowHeaderHeight;
 
             m_bDrag = bDrag;
 
@@ -351,6 +390,12 @@ m_bDrag(false)
             {
 
                set_mouse_capture();
+               
+               m_pointDragStartCursor = screen()->m_pointLastCursor;
+               
+               m_pointDragStartPosition = m_pos;
+               
+               m_pointLastDragPosition = m_pos;
 
                return true;
 
@@ -387,10 +432,10 @@ m_bDrag(false)
    }
 
 
-   bool Window::scroll_event(const point_i32& p, const size_f32& rel)
+   bool Window::scroll_event(const point_i32& pointCursor, const size_f32& rel)
    {
 
-      Widget::scroll_event(p, rel);
+      Widget::scroll_event(pointCursor, rel);
 
       return true;
 

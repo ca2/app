@@ -301,7 +301,7 @@ namespace user
       if (pshow->m_bShow)
       {
 
-         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
          if (m_puserinteractionParent)
          {
@@ -330,7 +330,7 @@ namespace user
       else
       {
 
-         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
 

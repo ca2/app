@@ -52,7 +52,7 @@ namespace http
       /*if (!m_file.get())
          m_file = ::pointer<IFile>e>(memory_new MemFile);
       DEBUG_ONLY(   else
-         TRACE("Body data file already opened\n");*/
+         information("Body data file already opened\n");*/
    }
 
 

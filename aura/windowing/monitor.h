@@ -3,6 +3,7 @@
 
 
 //#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace windowing
@@ -18,7 +19,7 @@ namespace windowing
       ::index                                               m_iIndex;
       ::rectangle_i32                                       m_rectangle;
       ::rectangle_i32                                       m_rectangleWorkspace;
-      ::pointer<::windowing::display>                      m_pdisplay;
+      ::pointer<::windowing::display>                       m_pdisplay;
 
 
       monitor();

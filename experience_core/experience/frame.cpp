@@ -173,7 +173,7 @@ namespace experience_core
    void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
-      pgraphics->fill_rectangle(rectangle, ::color::color(color32, bAlpha));
+      pgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
 
    }
 

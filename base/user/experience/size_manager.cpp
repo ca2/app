@@ -680,7 +680,7 @@ namespace experience
 
          pframewindow->place(rectangleParentClient);
 
-         FORMATTED_TRACE("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
+         information("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
 
          //pframewindow->display();
 
@@ -701,7 +701,7 @@ namespace experience
 
             rectangleBorder -= rectangleAfter.top_left();
 
-            pframewindow->set_need_redraw(rectangleBorder);
+            pframewindow->set_need_redraw({rectangleBorder});
 
          }
 

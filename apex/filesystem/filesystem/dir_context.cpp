@@ -2104,7 +2104,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
-         INFORMATION("cache map path: " << pathCache);
+         information() << "cache map path: " << pathCache;
 
          path = file()->as_string(pathCache);
 
@@ -2148,13 +2148,13 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
             if (etype == ::file::e_type_file || etype == ::file::e_type_folder)
             {
 
-               INFORMATION("!!Cache Hit: " << strFinal);
+               information() << "!!Cache Hit: " << strFinal;
 
                return path;
 
             }
 
-            INFORMATION("...Cache Miss: " << strFinal);
+            information() << "...Cache Miss: " << strFinal;
 
          }
 
@@ -2222,9 +2222,9 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       }
 
-      //      TRACE("");
-      INFORMATION("Topic: " << patha[0]);
-      //      TRACE("");
+      //      information("");
+      information() << "Topic: " << patha[0];
+      //      information("");
 
       string strCandidate = stra.implode("|");
 
@@ -2259,11 +2259,11 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
 
 
-      //TRACE("");
-      //TRACE("");
-      INFORMATION("matter = " << strMatter);
-      //TRACE("");
-      //TRACE("");
+      //information("");
+      //information("");
+      information() << "matter = " << strMatter;
+      //information("");
+      //information("");
 
       strMatter.trim();
 

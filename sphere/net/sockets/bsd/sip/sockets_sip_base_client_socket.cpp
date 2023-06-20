@@ -282,8 +282,8 @@ namespace sockets
 
    void sip_base_client_socket::SendResponse()
    {
-      TRACE("\n");
-      TRACE("SendResponse\n");
+      information("\n");
+      information("SendResponse\n");
       string msg;
       string strLine;
       string strTrace;
@@ -291,7 +291,7 @@ namespace sockets
       msg = strLine + "\r\n";
       strTrace = strLine;
       strTrace.replace("%", "%%");
-      TRACE(strTrace + "\n");
+      information(strTrace + "\n");
       for(auto assoc : m_response.m_propertysetHeader)
       {
          strLine = string(assoc.name()) +
@@ -300,7 +300,7 @@ namespace sockets
          msg += strLine + "\r\n";
          strTrace = strLine;
          strTrace.replace("%", "%%");
-         TRACE(strTrace + "\n");
+         information(strTrace + "\n");
       }
       msg += "\r\n";
       write( msg );
@@ -459,7 +459,7 @@ namespace sockets
    void sip_base_client_socket::OnHeader(atom key, const string & value)
    {
       //sip_base_client_socket::OnHeader(key, value);
-      FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const ::string &) string(key), (const ::string &) value);
+      information("  (request)OnHeader %s: %s\n", (const ::string &) string(key), (const ::string &) value);
       if(key == "cookie")
       {
          m_request.cookies().parse_header(value);

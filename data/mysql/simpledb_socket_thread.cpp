@@ -70,13 +70,13 @@ namespace simpledb
       if(!m_plistensocket->create(80, SOCK_STREAM))
       {
       u32 dw = ::get_last_error();
-      TRACE("error %u", dw);
+      information("error %u", dw);
       return false;
       }
       if(!m_plistensocket->Listen())
       {
       u32 dw = ::get_last_error();
-      TRACE("error %u", dw);
+      information("error %u", dw);
       return false;
       }*/
       m_evInitialized.SetEvent();
@@ -109,7 +109,7 @@ namespace simpledb
                   {
                      string strMessage;
                      strMessage.format("could not bind to address %s %d", m_strIp, m_iPort);
-                     TRACE(strMessage);
+                     information(strMessage);
                      //message_box(nullptr, strMessage);
                      return;
                   }

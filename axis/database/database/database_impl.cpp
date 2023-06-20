@@ -116,11 +116,13 @@ namespace database
 
    }
 
+
    void database_impl::trace_error1(const ::string & pszPrefix)
    {
+
       m_strLastError += query_error(pszPrefix);
    
-      FORMATTED_TRACE("%s", m_strLastError.c_str());
+      information("%s", m_strLastError.c_str());
 
    }
 

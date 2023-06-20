@@ -14,6 +14,18 @@
 #include "acme/user/user/_constant.h"
 
 
+enum enum_item_flag : ::i64
+{
+
+   e_item_flag_none = 0,
+   e_item_flag_double_click_as_second_click = 1,
+   e_item_flag_eat_double_click = 2,
+
+};
+
+
+DECLARE_ENUMERATION(e_item_flag, enum_item_flag);
+
 
 #pragma pack(push, user_ITEM, 1)
 
@@ -53,6 +65,7 @@ struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
+   ::e_item_flag                 m_eitemflag;
    ::pointer < ::particle >      m_pparticle;
    ::enum_item                   m_eitem;
    ::user::e_zorder              m_ezorder;

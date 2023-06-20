@@ -93,7 +93,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 
    }
 
-   FORMATTED_INFORMATION("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
+   information("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
 
    return 0;
 

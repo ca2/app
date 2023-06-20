@@ -3,7 +3,7 @@
 
 
 
-constexpr long double operator "" _greeketha(long double d)
+constexpr long double operator "" _η(long double d)
 {
 
    return d / (1'000.0 * 1'000.0 * 1'000.0);
@@ -11,7 +11,7 @@ constexpr long double operator "" _greeketha(long double d)
 }
 
 
-constexpr unsigned long long int operator "" _greeketha(unsigned long long int i)
+constexpr unsigned long long int operator "" _η(unsigned long long int i)
 {
 
    return i / (1'000 * 1'000 * 1'000);
@@ -19,7 +19,7 @@ constexpr unsigned long long int operator "" _greeketha(unsigned long long int i
 }
 
 
-constexpr long double operator "" _greekmu(long double d)
+constexpr long double operator "" _μ(long double d)
 {
 
    return d / (1'000.0 * 1'000.0);
@@ -27,7 +27,7 @@ constexpr long double operator "" _greekmu(long double d)
 }
 
 
-constexpr unsigned long long int operator "" _greekmu(unsigned long long int i)
+constexpr unsigned long long int operator "" _μ(unsigned long long int i)
 {
 
    return i / (1'000 * 1'000);

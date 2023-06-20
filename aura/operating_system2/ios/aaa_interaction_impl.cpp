@@ -1151,7 +1151,7 @@ namespace ios
          if(pusermessage->m_atom == e_message_left_button_down)
          {
 
-            //            TRACE("e_message_left_button_down");
+            //            information("e_message_left_button_down");
 
          }
 
@@ -2179,7 +2179,7 @@ namespace ios
       if(m_puserinteraction->is_message_only_window())
       {
 
-         TRACE("good : opt out!");
+         information("good : opt out!");
 
       }
       else
@@ -2429,7 +2429,7 @@ namespace ios
       //      if (hDC == nullptr)
       //      {
       //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
-      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+      //         //         information(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
       //         return false;
       //      }
       //
@@ -3847,12 +3847,12 @@ namespace ios
 
    }
 
-//   i32 interaction_impl::ScrollWindowEx(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
 //   {
 //
 //      throw ::not_implemented();
 //      //      ASSERT(::is_window(get_handle()));
-//      //      return ::ScrollWindowEx(get_handle(), greekdeltax, greekdeltay, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
+//      //      return ::ScrollWindowEx(get_handle(), Δx, Δy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 //
 //   }
 

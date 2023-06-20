@@ -4196,7 +4196,7 @@ bool payload::as_bool() const
    if(m_etype == e_type_color)
    {
 
-      hls = m_color;
+      hls = m_color.get_hls();
 
    }
    else if(m_etype == e_type_hls)

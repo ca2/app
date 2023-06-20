@@ -513,9 +513,9 @@ CLASS_DECL_TURBOC void initgraph (int *graphdriver, int *graphmode, char *pathto
 CLASS_DECL_TURBOC int installuserdriver (char *name, int (*detect) (void));
 CLASS_DECL_TURBOC int installuserfont (char *name);
 CLASS_DECL_TURBOC void line (int x1, int y1, int x2, int y2);
-CLASS_DECL_TURBOC void linerel (int greekdeltax, int greekdeltay);
+CLASS_DECL_TURBOC void linerel (int Δx, int Δy);
 CLASS_DECL_TURBOC void lineto (int x, int y);
-CLASS_DECL_TURBOC void moverel (int greekdeltax, int greekdeltay);
+CLASS_DECL_TURBOC void moverel (int Δx, int Δy);
 CLASS_DECL_TURBOC void moveto (int x, int y);
 CLASS_DECL_TURBOC void outtext (char *textstring);
 CLASS_DECL_TURBOC void outtextxy (int x, int y, char *textstring);

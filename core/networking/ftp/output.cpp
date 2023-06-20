@@ -74,7 +74,7 @@ namespace ftp
    void output::WriteLine(const ::string & strLine, const string &  strStatus)
    {
 
-      FORMATTED_TRACE("%s: %s", strStatus.c_str(), strLine.c_str());
+      information("%s: %s", strStatus.c_str(), strLine.c_str());
 
    }
 

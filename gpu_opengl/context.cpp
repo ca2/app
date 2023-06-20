@@ -78,18 +78,18 @@ namespace opengl
       };
 
 #if defined(__APPLE__)
-      
+
       glGenVertexArraysAPPLE(1, &m_VAO);
       glGenBuffers(1, &m_VBO);
       // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
       glBindVertexArrayAPPLE(m_VAO);
 
-//#elif defined(ANDROID)
-//
-//      glGenVertexArrays(1, &m_VAO);
-//      glGenBuffers(1, &m_VBO);
-//      // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-//      glBindVertexArray(m_VAO);
+      //#elif defined(ANDROID)
+      //
+      //      glGenVertexArrays(1, &m_VAO);
+      //      glGenBuffers(1, &m_VBO);
+      //      // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+      //      glBindVertexArray(m_VAO);
 
 #else
 
@@ -104,7 +104,7 @@ namespace opengl
       glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
       // position attribute
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
       glEnableVertexAttribArray(0);
       // color attribute
       //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -133,9 +133,9 @@ namespace opengl
 
       ASSERT(m_itaskGpu == ::get_current_itask());
 
-//      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+      //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
-      // Clear the screen
+            // Clear the screen
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
       //glClear(GL_COLOR_BUFFER_BIT);
@@ -162,11 +162,11 @@ namespace opengl
 
    }
 
- 
-   
+
+
    void context::global_transform()
    {
-      
+
 
       // Get a handle for our "MVP" uniform
       //GLint MatrixID = glGetUniformLocation(programID, "MVP");
@@ -217,11 +217,11 @@ namespace opengl
 
       ASSERT(m_itaskGpu == ::get_current_itask());
 
-//#ifdef __APPLE__
+      //#ifdef __APPLE__
 
-      //glBindVertexArrayAPPLE(m_VAO);
+            //glBindVertexArrayAPPLE(m_VAO);
 
-//#else
+      //#else
 
       if (m_gluTextureBitmap1)
       {
@@ -266,11 +266,11 @@ namespace opengl
 
          glDrawArrays(GL_TRIANGLES, 0, 6);
 
-      }
+   }
 
       //return ::success;
 
-   }
+}
 
 
    void context::set_bitmap_1(::image * pimage)
@@ -286,7 +286,7 @@ namespace opengl
          glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
 
          glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
-         
+
 #if defined(__APPLE__) || defined(ANDROID)
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
@@ -321,7 +321,7 @@ namespace opengl
          m_memorySwap.set_size(m_sizeBitmap1.area() * 4);
 
          vertical_swap_copy_image32_swap_red_blue(
-            (color32_t *) m_memorySwap.data(),
+            (image32_t *)m_memorySwap.data(),
             m_sizeBitmap1.cx(),
             m_sizeBitmap1.cy(),
             m_sizeBitmap1.cx() * 4,
@@ -335,7 +335,7 @@ namespace opengl
             m_memorySwap.data()); // upload image data to the textur
 
 
-         
+
 
 
       }
@@ -444,7 +444,7 @@ namespace opengl
          "   ourPosition = aPos;\n"
          "}\n";
 
-         return strProjection;
+      return strProjection;
    }
 
 
@@ -473,105 +473,105 @@ namespace opengl
 
    }
 
-//   string context::load_fragment(const ::string & pszPath, enum_shader & eshader)
-//   {
-//
-//      ::file::path path(pszPath);
-//
-//      auto & app = papp;
-//
-//      auto & file = app.file();
-//
-//      string strFragment = file.as_string(path);
-//
-//      string strExtension = path.extension();
-//
-//      string strVersion = get_shader_version_text();
-//
-//      if (strExtension.case_insensitive_begins("shadertoy"))
-//      {
-//
-//         eshader = e_shader_shadertoy;
-//
-//         strFragment =
-//            //"#" + strVersion + "\n"
-//            //"\n"
-//            //"precision highp float;\n"
-//            "\n"
-//            "uniform vec2 iResolution;\n"
-//            "uniform float iTime;\n"
-//            "uniform vec2 iMouse;\n"
-//            "uniform sampler2D backbuffer;\n"
-//            "\n"
-//            "\n"
-//            + strFragment;
-//
-//
-//         strFragment +=
-//            "\n\n"
-//            "void main(void)\n"
-//            "{\n"
-//            "   mainImage(gl_FragColor, gl_FragCoord.xy);\n"
-//            "}\n";
-//
-//      }
-//      else
-//      {
-//
-//         strFragment =
-////            "#" + strVersion + "\n"
-////            "\n"
-//            + strFragment;
-//
-//         eshader = e_shader_neort;
-//
-//      }
-//
-//      return strFragment;
-//
-//   }
-
-
-   //string context::get_shader_version_text()
-   //{
-
-   //   return "version 330 core";
-
-   //}
-
-   //void context::translate_shader(string& strFragment)
-   //{
-
-   //   string_array stra;
-
-   //   stra.add_lines(strFragment);
-
-   //   auto pFind = stra.find_first_begins_ci("#version ");
-
-   //   if (::is_set(pFind))
+   //   string context::load_fragment(const ::string & pszPath, enum_shader & eshader)
    //   {
-
-   //      stra[iFind] = get_shader_version_text();
-
-   //   }
-   //   else
-   //   {
-
-   //      stra.insert_at(0, get_shader_version_text());
-
+   //
+   //      ::file::path path(pszPath);
+   //
+   //      auto & app = papp;
+   //
+   //      auto & file = app.file();
+   //
+   //      string strFragment = file.as_string(path);
+   //
+   //      string strExtension = path.extension();
+   //
+   //      string strVersion = get_shader_version_text();
+   //
+   //      if (strExtension.case_insensitive_begins("shadertoy"))
+   //      {
+   //
+   //         eshader = e_shader_shadertoy;
+   //
+   //         strFragment =
+   //            //"#" + strVersion + "\n"
+   //            //"\n"
+   //            //"precision highp float;\n"
+   //            "\n"
+   //            "uniform vec2 iResolution;\n"
+   //            "uniform float iTime;\n"
+   //            "uniform vec2 iMouse;\n"
+   //            "uniform sampler2D backbuffer;\n"
+   //            "\n"
+   //            "\n"
+   //            + strFragment;
+   //
+   //
+   //         strFragment +=
+   //            "\n\n"
+   //            "void main(void)\n"
+   //            "{\n"
+   //            "   mainImage(gl_FragColor, gl_FragCoord.xy);\n"
+   //            "}\n";
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         strFragment =
+   ////            "#" + strVersion + "\n"
+   ////            "\n"
+   //            + strFragment;
+   //
+   //         eshader = e_shader_neort;
+   //
+   //      }
+   //
+   //      return strFragment;
+   //
    //   }
 
-   //   _translate_shader(stra);
 
-   //   strFragment = stra.implode("\n");
+      //string context::get_shader_version_text()
+      //{
 
-   //}
+      //   return "version 330 core";
+
+      //}
+
+      //void context::translate_shader(string& strFragment)
+      //{
+
+      //   string_array stra;
+
+      //   stra.add_lines(strFragment);
+
+      //   auto pFind = stra.find_first_begins_ci("#version ");
+
+      //   if (::is_set(pFind))
+      //   {
+
+      //      stra[iFind] = get_shader_version_text();
+
+      //   }
+      //   else
+      //   {
+
+      //      stra.insert_at(0, get_shader_version_text());
+
+      //   }
+
+      //   _translate_shader(stra);
+
+      //   strFragment = stra.implode("\n");
+
+      //}
 
 
-   //void context::_translate_shader(string_array& stra)
-   //{
+      //void context::_translate_shader(string_array& stra)
+      //{
 
-   //}
+      //}
 
 
    void context::set_matrix_uniform(::gpu::uniform uniformMatrix)

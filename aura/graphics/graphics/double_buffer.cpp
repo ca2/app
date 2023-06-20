@@ -76,9 +76,6 @@ namespace graphics
 
       auto pitem = get_buffer_item();
 
-
-
-
       buffer_size_and_position(pitem);
 
       if (!m_bDibIsHostingBuffer)

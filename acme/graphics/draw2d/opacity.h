@@ -19,9 +19,9 @@ public:
    constexpr opacity(const class ::opacity & opacity) : m_u8Opacity(opacity.m_u8Opacity) { }
 
    template < primitive_floating FLOATING >
-   opacity(FLOATING f) { m_u8Opacity = u8_clip(f * 255.); }
+   constexpr opacity(FLOATING f) { m_u8Opacity = u8_clip(f * 255.); }
    template < primitive_integral INTEGRAL >
-   opacity(INTEGRAL i) { m_u8Opacity = u8_clip(i); }
+   constexpr opacity(INTEGRAL i) { m_u8Opacity = u8_clip(i); }
 
 
    constexpr ::f64 f64_opacity() const { return m_u8Opacity / 255.; }

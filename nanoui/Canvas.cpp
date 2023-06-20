@@ -143,11 +143,14 @@ void Canvas::set_background_color(const ::color::color & colorBackground)
 }
 
 
-::color::color Canvas::colorBackground() const {
+::color::color Canvas::colorBackground() const 
+{
    //return m_render_pass->clear_color(0);
-   return ::color::color(
-      m_colorClear.fr(), 
-      m_colorClear.fg(), m_colorClear.fb(), m_colorClear.fa());
+   //return ::color::color(
+     // m_colorClear.fr(), 
+      //m_colorClear.fg(), m_colorClear.fb(), m_colorClear.fa());
+
+   return m_colorClear;
 
 }
 

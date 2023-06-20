@@ -61,7 +61,7 @@ int main(int UNUSED(argc), char **UNUSED(argv))
     js->execute("::payload lets_quit = 0; function quit() { lets_quit = 1; }");
     js->execute("print(\"Interactive mode... Type quit(); to exit, or print(...); to print something, or dump() to dump the symbol table!\");");
   } catch (CScriptException *e) {
-    printf("FORMATTED_ERROR: %s\n", e->text.c_str());
+    printf("error: %s\n", e->text.c_str());
 	 delete e;
   }
 
@@ -71,7 +71,7 @@ int main(int UNUSED(argc), char **UNUSED(argv))
     try {
       js->execute(buffer);
     } catch (CScriptException *e) {
-      printf("FORMATTED_ERROR: %s\n", e->text.c_str());
+      printf("error: %s\n", e->text.c_str());
 		delete e;
     }
   }

@@ -42,7 +42,7 @@ namespace user
       if (!m_docptra.is_empty())
       {
 
-         CATEGORY_WARNING(appmsg, "Warning: destroying multiple_document_template with " << m_docptra.get_count() << " documents alive.");
+         warning()(e_trace_category_appmsg) << "Warning: destroying multiple_document_template with " << m_docptra.get_count() << " documents alive.";
 
       }
 
@@ -104,7 +104,7 @@ namespace user
       if (pdocument == nullptr)
       {
 
-         CATEGORY_WARNING(appmsg, "impact_system::create_new_document returned nullptr.");
+         warning()(e_trace_category_appmsg) << "impact_system::create_new_document returned nullptr.";
 
          // TODO Translate
          output_error_message("failed to create ::user::document");
@@ -160,7 +160,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // ::account::user has be alerted to what failed in on_new_document
-            CATEGORY_WARNING(appmsg, "::user::document::on_new_document returned false.\n");
+            warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
             pFrame->destroy_window();
             return;
 
@@ -180,7 +180,7 @@ namespace user
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
             // prepare aura for async operations and also async failures
             // ::account::user has be alerted to what failed in on_open_document
-            CATEGORY_WARNING(appmsg, "::user::document::on_open_document returned false.\n");
+            warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
             pFrame->post_message(e_message_destroy_window);
             return;
 

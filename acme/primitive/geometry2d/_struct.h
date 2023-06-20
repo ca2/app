@@ -12,8 +12,8 @@
 //struct SHIFT_I32
 //{
 //
-//   int greekdeltax;
-//   int greekdeltay;
+//   int Δx;
+//   int Δy;
 //
 //};
 

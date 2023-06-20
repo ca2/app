@@ -20,10 +20,6 @@
 
 
 
-
-
-struct no_initialize_t {};
-
 template < primitive_number COORDINATE, size_t t_iSize >
 struct sequence_type
 {

@@ -4,7 +4,7 @@
 #include "fastblur.h"
 #include "context_image.h"
 #include "array.h"
-#include "acme/graphics/draw2d/_image32.h"
+#include "acme/graphics/draw2d/image32.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -142,7 +142,7 @@ i32                 cy)
    //if(!pgraphics->text_out(x,y, string(pcsz, cb)))
    pgraphics->text_out(x, y, string(pcsz, cb));
    //{
-   //   //      FORMATTED_TRACE("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
+   //   //      information("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
    //}
 
    /* restore the DC
@@ -2015,7 +2015,7 @@ void imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i
 void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size, const ::color::color & color,::u8 bA)
 {
 
-   pgraphics->fill_rectangle(rectangle_i32(size), color & class ::opacity(bA));
+   pgraphics->fill_rectangle(rectangle_i32(size), color & ::opacity(bA));
 
    //return true;
 
@@ -5105,6 +5105,9 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    ::u8 *pSource;
 
 
+   image32_t imageSpreadSetColor(colorSpreadSetColor, pimageDst->color_indexes());
+
+
    ::u8 *pSource1;
 
 
@@ -5393,7 +5396,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
                            if (*((u32 *)pSource2))
                            {
 
-                              *((image32_t *)pDestination) = colorSpreadSetColor;
+                              *((image32_t *)pDestination) = imageSpreadSetColor;
 
                               goto breakFilter;
 
@@ -5492,7 +5495,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
                      if(pSource2[0] > 0)
                      {
 
-                        *((image32_t *)pDestination) = colorSpreadSetColor;
+                        *((image32_t *)pDestination) =imageSpreadSetColor;
 
                         goto breakFilter2;
 
@@ -6892,7 +6895,7 @@ void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
    for(i64 i = 0; i < area; i++)
    {
 
-      *((image32_t *)p) = cra[(p[0] + p[1] + p[2]) / 3] & class ::opacity(p[3]);
+      ((image32_t *)p)->assign(cra[(p[0] + p[1] + p[2]) / 3] & ::opacity(p[3]), pimage->color_indexes());
 
 
 
@@ -6967,7 +6970,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 
    }
 
-   pbrushText->create_solid(color & class ::opacity(dBlend));
+   pbrushText->create_solid(color & ::opacity(dBlend));
 
    pgraphics->set(pbrushText);
 

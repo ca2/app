@@ -254,7 +254,7 @@ namespace user
       virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::index iItem = -1, i32 iLevel = -1);
 
 
-      virtual void set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw = {}, bool bAscendants = true);
+      virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
 
 
       virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);

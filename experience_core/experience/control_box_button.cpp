@@ -63,7 +63,7 @@ namespace experience_core
       if (d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "is_activeis_activeis_active more than 50ms user::control_box_button wndframe_core");
+         information()(e_trace_category_prodevian) << "is_activeis_activeis_active more than 50ms user::control_box_button wndframe_core";
 
       }
 
@@ -187,7 +187,7 @@ namespace experience_core
       if (d2 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(d2) more than 50ms user::control_box_button wndframe_core");
+         information()(e_trace_category_prodevian) << "(d2) more than 50ms user::control_box_button wndframe_core";
 
       }
 

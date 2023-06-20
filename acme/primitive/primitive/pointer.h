@@ -183,6 +183,14 @@ public:
             t.m_pparticle = nullptr;
 
          }
+         else
+         {
+          
+            m_p = nullptr;
+
+            m_pparticle = nullptr;
+
+         }
 
       }
       else
@@ -598,12 +606,12 @@ inline void swap(::pointer<TYPE>& a, ::pointer<TYPE> & b)
 
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p);
+//template < typename TYPE >
+//inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p);
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>& clone(::pointer<TYPE> & p);
+//template < typename TYPE >
+//inline ::pointer<TYPE>& clone(::pointer<TYPE> & p);
 
 
 template < typename TYPE >
@@ -620,6 +628,9 @@ inline ::pointer<TYPE> __create_new(::particle* pparticle);
 
 template < typename TARGET, typename SOURCE >
 inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pSource);
+
+
+
 
 
 

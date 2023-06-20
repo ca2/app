@@ -585,7 +585,7 @@ namespace user
 
       ::rectangle_i32 rectangleIntersect;
 
-      rectangleClient.offset(get_context_offset());
+      //rectangleClient.offset(get_context_offset());
 
       bool bHoverFont = false;
 

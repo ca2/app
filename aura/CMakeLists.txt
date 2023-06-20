@@ -26,19 +26,6 @@ list(APPEND library_source
         game/estamira.h
         game/game.cpp
         game/game.h
-        gpu/gpu/_.h
-        gpu/gpu/approach.cpp
-        gpu/gpu/approach.h
-        gpu/gpu/buffer.cpp
-        gpu/gpu/buffer.h
-        gpu/gpu/context.cpp
-        gpu/gpu/context.h
-        gpu/gpu/object.cpp
-        gpu/gpu/object.h
-        gpu/gpu/program.cpp
-        gpu/gpu/program.h
-        gpu/gpu/shader.cpp
-        gpu/gpu/shader.h
         graphics/draw2d/winrt/image_gif.cpp
         graphics/draw2d/_.cpp
         graphics/draw2d/_.h
@@ -111,6 +98,19 @@ list(APPEND library_source
         graphics/draw3d/_.h
         graphics/draw3d/ortho.cpp
         graphics/draw3d/ortho.h
+        graphics/gpu/_.h
+        graphics/gpu/approach.cpp
+        graphics/gpu/approach.h
+        graphics/gpu/buffer.cpp
+        graphics/gpu/buffer.h
+        graphics/gpu/context.cpp
+        graphics/gpu/context.h
+        graphics/gpu/object.cpp
+        graphics/gpu/object.h
+        graphics/gpu/program.cpp
+        graphics/gpu/program.h
+        graphics/gpu/shader.cpp
+        graphics/gpu/shader.h
         #graphics/graphics/asset/control_box_button.cpp
         #graphics/graphics/asset/control_box_button.h
         #graphics/graphics/asset/control_box_icon.cpp

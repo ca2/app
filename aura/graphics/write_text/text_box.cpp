@@ -102,7 +102,7 @@ namespace write_text
       if (uForegroundColor.is_transparent())
       {
       
-         INFORMATION("Color is transparent");
+         plist->information() << "Color is transparent";
 
       }
 
@@ -126,7 +126,7 @@ namespace write_text
             plist->m_rectangleMargin.left, 
             plist->m_rectangleMargin.top, strText.c_str());
          
-         INFORMATION(str);
+         plist->information() << str;
 
 #endif
 

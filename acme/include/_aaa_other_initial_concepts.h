@@ -184,6 +184,18 @@ void copy(POINT1& point1, const POINT2& point2)
 }
 
 
+template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+inline void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+{
+
+   rectangle1.left = (::decay<decltype(rectangle1.left)>)rectangle2.left;
+   rectangle1.top = (::decay<decltype(rectangle1.top)>)rectangle2.top;
+   rectangle1.right = (::decay<decltype(rectangle1.right)>)rectangle2.right;
+   rectangle1.bottom = (::decay<decltype(rectangle1.bottom)>)rectangle2.bottom;
+
+}
+
+
 template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
 void copy(XYDim& xydim, const RECTANGLE& rectangle)
 {

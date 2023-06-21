@@ -73,7 +73,7 @@ namespace datetime
       }
 
 
-      enum_element clock::hit_test(const point_i32 & point)
+      enum_element clock::hit_test(const point_i32 & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
@@ -98,7 +98,7 @@ namespace datetime
 
          ::rectangle_i32 rectangle;
 
-         GetRect(rectangle, eelement);
+         GetRect(&rectangle, eelement);
 
          return rectangle.contains(pt) != false;
 

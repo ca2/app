@@ -585,7 +585,7 @@ namespace user
 
       ::rectangle_i32 rectangleIntersect;
 
-      rectangleClient.offset(get_context_offset());
+      //rectangleClient.offset(get_context_offset());
 
       bool bHoverFont = false;
 
@@ -692,9 +692,9 @@ namespace user
             if (tickElapsed > 100_ms)
             {
 
-               INFORMATION("drawing took " << tickElapsed.integral_millisecond() << "!!");
-               INFORMATION("drawing took more than 100ms to complete!!");
-               INFORMATION("");
+               information() << "drawing took " << tickElapsed.integral_millisecond() << "!!";
+               information() << "drawing took more than 100ms to complete!!";
+               information() << "";
 
                // let's try to reproduce the offending scenario
                //_001DrawItem(m_pdrawlistitem);
@@ -886,7 +886,7 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            color.alpha = 90;
+            color.m_u8Opacity = 90;
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectangleItem, color);
 
@@ -6343,9 +6343,9 @@ namespace user
 
       auto tickIn = ::time::now();
 
-      TRACE("list::Filter1Step");
+      information("list::Filter1Step");
 
-      INFORMATION("tickIn = " << tickIn.integral_millisecond());
+      information() << "tickIn = " << tickIn.integral_millisecond();
 
       if (!m_bFilter1)
       {
@@ -6436,8 +6436,8 @@ namespace user
 
       //auto tickOut = ::time::now();
 
-      //INFORMATION("tickOut = " << integral_millisecond(tickOut));
-      //INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));
+      //information() << "tickOut = " << integral_millisecond(tickOut);
+      //information() << "(delta) = " << integral_millisecond(tickOut - tickIn);
 
       //return m_nItemCount != iItemCount;
 
@@ -7569,7 +7569,7 @@ namespace user
 //         catch (...)
 //         {
 //
-//            TRACE("Exception : ::list::_001OnClip");
+//            information("Exception : ::list::_001OnClip");
 //
 //         }
 //

@@ -72,7 +72,7 @@ namespace imaging_freeimage
 
       color32_t * pdst = pimage32;
 
-      const color32_t * psrc = pimage->image32();
+      auto psrc = pimage->image32();
 
 #if  defined(ANDROID)
 

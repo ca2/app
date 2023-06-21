@@ -26,6 +26,8 @@ namespace user
    main_window::main_window()
    {
 
+      m_flagNonClient -= e_non_client_focus_rect;
+
       m_bEnableDragClient = true;
 
       m_bEnableDragResize = true;

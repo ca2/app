@@ -17,6 +17,7 @@ public:
 
    
    using array < ::rectangle_type < NUMBER > >::array;
+   rectangle_array_base(const rectangle_array_base & a) noexcept : array < ::rectangle_type < NUMBER > > (a) { }
    rectangle_array_base(rectangle_array_base && a) noexcept : array < ::rectangle_type < NUMBER > >(::transfer(a)) { }
 
    

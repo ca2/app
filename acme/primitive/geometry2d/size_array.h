@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "size.h"
+
+
 template < primitive_number NUMBER >
 class size_array_base :
 public ::array < ::size_type < NUMBER > >

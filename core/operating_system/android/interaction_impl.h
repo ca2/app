@@ -262,7 +262,7 @@ namespace android
       virtual void ShowScrollBar(::u32 nBar,bool bShow = true) override;
       virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = true) override;
 
-      virtual i32 ScrollWindowEx(i32 greekdeltax,i32 greekdeltay,
+      virtual i32 ScrollWindowEx(i32 Δx,i32 Δy,
                                  const ::rectangle_i32 * lpRectScroll,const ::rectangle_i32 * lpRectClip,
                                  ::draw2d::region* prgnUpdate,::rectangle_i32 * lpRectUpdate,::u32 flags) override;
       //virtual bool SetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,

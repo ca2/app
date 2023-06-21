@@ -92,7 +92,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 #include "aura/game/_.h"
 
 
-#include "aura/gpu/_.h"
+//#include "aura/gpu/_.h"
 
 
 #include "aura/user/_.h"
@@ -600,12 +600,12 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////#define __alog(...) __tracef(__VA_ARGS__)
 ////
-////#define INFORMATION(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+////#define log_information((...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 ////#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 ////#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-////#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+////#define log_fatal(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 ////
-////#define TRACE(...) INFORMATION(__VA_ARGS__)
+////#define information(...) log_information((__VA_ARGS__)
 ////
 ////
 ////namespace aura

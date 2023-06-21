@@ -146,7 +146,7 @@ namespace sockets
          if (t == -1)
          {
 
-            INFORMATION("datetime2httpdate: mktime() failed");
+            information() << "datetime2httpdate: mktime() failed";
             
          }
 

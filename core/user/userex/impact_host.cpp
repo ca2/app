@@ -256,12 +256,12 @@ namespace userex
    {
 
 
-      INFORMATION("-------------------------------------------------------------------");
-      INFORMATION("");
-      INFORMATION("");
-      INFORMATION("impact_host::tabfy (1)");
-      INFORMATION("");
-      INFORMATION("");
+      information() << "-------------------------------------------------------------------";
+      information() << "";
+      information() << "";
+      information() << "impact_host::tabfy (1)";
+      information() << "";
+      information() << "";
 
       post_procedure([pupdown, this]
       {
@@ -294,35 +294,35 @@ namespace userex
             strTitle.set_if_empty(atom.as_string());
 
 
-            INFORMATION("-------------------------------------------------------------------");
-            INFORMATION("");
-            INFORMATION("");
-            INFORMATION("impact_host::tabfy (2)");
-            INFORMATION("");
-            INFORMATION("");
+            information() << "-------------------------------------------------------------------";
+            information() << "";
+            information() << "";
+            information() << "impact_host::tabfy (2)";
+            information() << "";
+            information() << "";
 
             //::user::impact_data* pimpactdata = ptabimpact->host_impact(atom, strTitle, pframewindow, pframewindow->get_active_document());
             ptabimpact->host_impact(atom, pframewindow, pframewindow->get_active_document());
 
             ptabimpact->get_tab_by_id(atom)->set_title(strTitle);
 
-            INFORMATION("-------------------------------------------------------------------");
-            INFORMATION("");
-            INFORMATION("");
-            INFORMATION("impact_host::tabfy (3)");
-            INFORMATION("");
-            INFORMATION("");
+            information() << "-------------------------------------------------------------------";
+            information() << "";
+            information() << "";
+            information() << "impact_host::tabfy (3)";
+            information() << "";
+            information() << "";
 
             if (pframewindow->m_ewindowflag & e_window_flag_window_created)
             {
 
 
-               INFORMATION("-------------------------------------------------------------------");
-               INFORMATION("");
-               INFORMATION("");
-               INFORMATION("impact_host::tabfy (3.1)");
-               INFORMATION("");
-               INFORMATION("");
+               information() << "-------------------------------------------------------------------";
+               information() << "";
+               information() << "";
+               information() << "impact_host::tabfy (3.1)";
+               information() << "";
+               information() << "";
 
 
                ptabimpact->set_current_tab_by_id(atom);
@@ -336,24 +336,24 @@ namespace userex
          }
 
 
-         INFORMATION("-------------------------------------------------------------------");
-         INFORMATION("");
-         INFORMATION("");
-         INFORMATION("impact_host::tabfy (4)");
-         INFORMATION("");
-         INFORMATION("");
+         information() << "-------------------------------------------------------------------";
+         information() << "";
+         information() << "";
+         information() << "impact_host::tabfy (4)";
+         information() << "";
+         information() << "";
 
 
          if (pframewindow->m_ewindowflag & e_window_flag_window_created)
          {
 
 
-            INFORMATION("-------------------------------------------------------------------");
-            INFORMATION("");
-            INFORMATION("");
-            INFORMATION("impact_host::tabfy (4.1)");
-            INFORMATION("");
-            INFORMATION("");
+            information() << "-------------------------------------------------------------------";
+            information() << "";
+            information() << "";
+            information() << "impact_host::tabfy (4.1)";
+            information() << "";
+            information() << "";
 
             ptabimpact->parent_frame()->display();
 
@@ -377,10 +377,10 @@ namespace userex
    bool impact_host::OnUpDownTargetDetach(::user::interaction * pupdown)
    {
 
-      INFORMATION("-------------------------------------------------------------------");
-      INFORMATION("");
-      INFORMATION("");
-      INFORMATION("impact_host::OnUpDownTargetDetach (1)");
+      information() << "-------------------------------------------------------------------";
+      information() << "";
+      information() << "";
+      information() << "impact_host::OnUpDownTargetDetach (1)";
 
       ::pointer<::simple_frame_window>pframewindow = pupdown;
 
@@ -503,12 +503,12 @@ namespace userex
 
                   if (pframewindowTab->is_this_visible())
                   {
-                     INFORMATION("-------------------------------------------------------------------");
-                     INFORMATION("");
-                     INFORMATION("");
-                     INFORMATION("pframewindowTab HIDE HIDE HIDE");
-                     INFORMATION("");
-                     INFORMATION("");
+                     information() << "-------------------------------------------------------------------";
+                     information() << "";
+                     information() << "";
+                     information() << "pframewindowTab HIDE HIDE HIDE";
+                     information() << "";
+                     information() << "";
                      pframewindowTab->hide();
 
                   }
@@ -518,12 +518,12 @@ namespace userex
                {
                   
 
-                  INFORMATION("-------------------------------------------------------------------");
-                  INFORMATION("");
-                  INFORMATION("");
-                  INFORMATION("pframewindowTab VISIBLE VISIBLE VISIBLE");
-                  INFORMATION("");
-                  INFORMATION("");
+                  information() << "-------------------------------------------------------------------";
+                  information() << "";
+                  information() << "";
+                  information() << "pframewindowTab VISIBLE VISIBLE VISIBLE";
+                  information() << "";
+                  information() << "";
                   auto rectangleRequest = rectangle_i32_dimension(20, 20, 800, 300);
 
                   //if (!pframewindowTab->is_this_visible() || rectangleRequest != pframewindowTab->window_request_rect())

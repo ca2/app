@@ -1,20 +1,21 @@
+// From image32_array.cpp by camilo on 2023-06-13 15:47 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "colorref_array.h"
+#include "color_array.h"
 
 
-colorref_array::colorref_array()
+//colorref_array::colorref_array()
+//{
+//
+//}
+
+
+color_array::~color_array()
 {
 
 }
 
 
-colorref_array::~colorref_array()
-{
-
-}
-
-
-void colorref_array::create_web_palette()
+void color_array::create_web_palette()
 {
 
    // Do nothing
@@ -49,26 +50,26 @@ namespace draw2d
 
 
 
-   CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount)
+   CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount)
    {
 
-      colorrefa.set_size(iCount);
+      colora.set_size(iCount);
 
       for (index i = 0; i < iCount; i++)
       {
 
-#if defined(ANDROID) && defined(__arm__)
-         colorrefa[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
-#else
-         colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
-#endif
+//#if defined(ANDROID) && defined(__arm__)
+         colora[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
+//#else
+//         colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
+//#endif
 
-         if (colorrefa[i] == argb(255, 255, 255, 255))
-         {
-
-            output_debug_string("completely white");
-
-         }
+//         if (colora[i] == argb(255, 255, 255, 255))
+//         {
+//
+//            output_debug_string("colora_from_quada  completely white");
+//
+//         }
 
       }
 

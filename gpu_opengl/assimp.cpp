@@ -22,12 +22,15 @@ namespace assimp
 
       //const aiScene * scene = importer.ReadFile(path, aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
       //const aiScene * scene = importer.ReadFile(path, 0);
-      const aiScene* scene = importer.ReadFileFromMemory(data, size, aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
+      //const aiScene* scene = importer.ReadFileFromMemory(data, size, aiProcess_SortByPType);
+       const aiScene* scene = importer.ReadFileFromMemory(data, size, aiProcess_FlipUVs);
+      //const aiScene * scene = importer.ReadFileFromMemory(data, size, 0);
       if (!scene) {
          fprintf(stderr, "%s", importer.GetErrorString());
          getchar();
          return false;
       }
+
       const aiMesh * mesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
 
       // Fill vertices positions

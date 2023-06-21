@@ -4,6 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/platform/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -70,10 +71,10 @@ namespace user
    }
 
 
-   ::particle * button::clone() const
+   ::particle_pointer button::clone() const
    {
 
-      auto pcheckbox = memory_new ::user::button;
+      auto pcheckbox = m_pcontext->__create_new < ::user::button >();
 
       return pcheckbox;
 
@@ -1108,7 +1109,7 @@ namespace user
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      pgraphics->fill_rectangle(rectangle,::color::color(color32,200));
+      pgraphics->fill_rectangle(rectangle,color32 & ::opacity(200));
       rectangle.deflate(1,1,1,1);
 
       i32 x1 = rectangle.left;

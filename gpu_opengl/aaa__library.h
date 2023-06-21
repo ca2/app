@@ -3,7 +3,7 @@
 
 
 #include "acme/operating_system.h"
-#include "aura/gpu/gpu/_gpu.h"
+#include "aura/graphics/gpu/_gpu.h"
 
 #ifdef ANDROID
 

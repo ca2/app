@@ -93,7 +93,7 @@ namespace interprocess
 
    //   string strUri = blockUri;
 
-   //   INFORMATION("::interprocess::target::on_interprocess_handle " << strUri);
+   //   information() << "::interprocess::target::on_interprocess_handle " << strUri;
 
 
    //   //   if(!strMessage.begins_eat("call "))

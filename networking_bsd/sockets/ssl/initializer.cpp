@@ -79,7 +79,7 @@ namespace sockets_bsd
 
       //RAND_cleanup();
 
-      //      TRACE("~SSLInitializer()\n");
+      //      information("~SSLInitializer()\n");
       //DeleteRandFile();
       // %! delete mutexes
 
@@ -107,7 +107,7 @@ namespace sockets_bsd
 //
 //#endif
 
-      //INFORMATION("SSLInitializer::SSLInitializer .1");
+      //information() << "SSLInitializer::SSLInitializer .1";
 
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
@@ -122,7 +122,7 @@ namespace sockets_bsd
 
 #endif
 
-      //INFORMATION("SSLInitializer::SSLInitializer .2");
+      //information() << "SSLInitializer::SSLInitializer .2";
 
 
       //ENGINE_load_openssl();

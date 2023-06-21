@@ -263,9 +263,9 @@ namespace user
 
          }
 
-         FORMATTED_TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex]->m_dwPosition);
+         information("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex]->m_dwPosition);
 
-         FORMATTED_TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
+         information("split_layout::RelayChildEvent nPos %d\n", nPos);
 
          if(bMove)
          {

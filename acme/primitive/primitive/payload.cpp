@@ -4196,7 +4196,7 @@ bool payload::as_bool() const
    if(m_etype == e_type_color)
    {
 
-      hls = m_color;
+      hls = m_color.get_hls();
 
    }
    else if(m_etype == e_type_hls)
@@ -4673,19 +4673,19 @@ class ::time payload::time() const
    else if(is_integer())
    {
 
-      return integral_second(as_i64());
+      return second_time(as_i64());
 
    }
    else if (is_floating())
    {
 
-      return floating_second(as_f64());
+      return second_time(as_f64());
 
    }
    else
    {
 
-      return floating_second(as_f64());
+      return second_time(as_f64());
 
    }
 

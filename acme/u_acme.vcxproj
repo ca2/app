@@ -732,6 +732,7 @@
     <ClInclude Include="platform\apex_main_data.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
     <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\application_base.h" />
     <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\c_class.h" />

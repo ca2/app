@@ -187,12 +187,12 @@ namespace user
 
                _synchronous_lock synchronouslock(pimpl->synchronization());
 
-               if(pimpl->m_rectangleaNeedRedraw.has_element())
+               if(pimpl->m_redrawa.has_element())
                {
 
-                  auto iRequestsRemaining = pimpl->m_rectangleaNeedRedraw.size();
+                  auto iRequestsRemaining = pimpl->m_redrawa.size();
 
-                  INFORMATION(iRequestsRemaining << " redraw requests remaining after updating the screen.");
+                  information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
 
                   m_puserinteraction->post_redraw();
 
@@ -227,7 +227,7 @@ namespace user
       if (strType.contains("playlist"))
       {
 
-         INFORMATION("frame playlist");
+         information() << "frame playlist";
 
       }
 
@@ -427,7 +427,7 @@ namespace user
          if (strType.case_insensitive_contains("filemanager"))
          {
 
-            //INFORMATION("filemanager frame... ");
+            //information() << "filemanager frame... ";
 
          }
 
@@ -495,7 +495,7 @@ namespace user
             if(m_message.m_atom == e_message_quit)
             {
 
-               CATEGORY_INFORMATION(prodevian, "Prodevian has quit!! " << strType);
+               information()(e_trace_category_prodevian) << "Prodevian has quit!! " << strType;
 
                return false;
 
@@ -534,7 +534,7 @@ namespace user
 
    #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-            INFORMATION("Skipped e_message_redraw count "+ as_string(iSkipped) + "\n");
+            information() << "Skipped e_message_redraw count "+ as_string(iSkipped) + "\n";
 
    #endif
 
@@ -618,11 +618,11 @@ namespace user
       if(strType.case_insensitive_contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 
-      i64 i1 = ::integral_nanosecond();
+      i64 i1 = ::i64_nanosecond();
 
       bRedraw = m_message.wParam & 1;
 
@@ -926,7 +926,7 @@ namespace user
       //else
       //{
 
-      //   INFORMATION("no update screen");
+      //   information() << "no update screen";
 
       //}
 
@@ -1085,7 +1085,7 @@ namespace user
 
          //bUpdateWindow = false;
 
-         i64 i1 = ::integral_nanosecond();
+         i64 i1 = ::i64_nanosecond();
 
       //   bool bTransparentDraw;
 
@@ -1138,7 +1138,7 @@ namespace user
 
          m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 
-         i64 i2 = ::integral_nanosecond();
+         i64 i2 = ::i64_nanosecond();
 
 #if TIME_REPORTING
 

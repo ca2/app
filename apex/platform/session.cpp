@@ -103,10 +103,10 @@ namespace apex
    session::~session()
    {
 
-      if(acmesystem()->m_etracelevel >= e_trace_level_information)
+      //if(acmesystem()->m_etracelevel >= e_trace_level_information)
       {
 
-         output_debug_string("apex::session::~session()\n");
+         information("apex::session::~session()");
 
       }
 
@@ -421,7 +421,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed at apex::session::init_thread after process_init");
+      //   warning() <<"Failed at apex::session::init_thread after process_init";
 
       //   return estatus;
 
@@ -434,7 +434,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed at apex::session::init_thread after init_session");
+      //   warning() <<"Failed at apex::session::init_thread after init_session";
 
       //   return estatus;
 
@@ -450,7 +450,7 @@ namespace apex
 
       //}
 
-      //INFORMATION(".1");
+      //information() << ".1";
 
       //return true;
 
@@ -492,7 +492,7 @@ namespace apex
    void session::process_init()
    {
 
-      //INFORMATION("apex::session::process_init");
+      //information() << "apex::session::process_init";
 
       //auto estatus = ::apex::context::initialize_context();
 
@@ -509,15 +509,15 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("acme::str_context Failed to Allocate!!");
+      //   warning() <<"acme::str_context Failed to Allocate!!";
 
       //   return estatus;
 
       //}
 
-      //INFORMATION("acme::str_context Succeeded to Allocate!!");
+      //information() << "acme::str_context Succeeded to Allocate!!";
 
-      //INFORMATION("apex::session::process_init success");
+      //information() << "apex::session::process_init success";
 
       //return ::success;
 
@@ -539,7 +539,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed to init1 the session (::apex::session or ::apex::session derived)");
+      //   warning() <<"Failed to init1 the session (::apex::session or ::apex::session derived)";
 
       //   return estatus;
 
@@ -551,7 +551,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed to init2 the session (::apex::session or ::apex::session derived)");
+      //   warning() <<"Failed to init2 the session (::apex::session or ::apex::session derived)";
 
       //   return estatus;
 
@@ -562,7 +562,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   WARNING("Failed to init() the session (::apex::session or ::apex::session derived)");
+      //   warning() <<"Failed to init() the session (::apex::session or ::apex::session derived)";
 
       //   return estatus;
 
@@ -675,20 +675,20 @@ namespace apex
 
       }
 
-      INFORMATION("::apex::session::on_request(::pointer<::create> " << __type_name(this));
+      information() << "::apex::session::on_request(::pointer<::create> " << __type_name(this);
 
       //string strAppId = prequest->m_strAppId;
 
       //if (strAppId.is_empty())
       //{
 
-      //   INFORMATION("m_strAppId Is Empty!!");
+      //   information() << "m_strAppId Is Empty!!";
 
       //   return;
 
       //}
 
-      INFORMATION("m_strAppId = " << prequest->m_strAppId);
+      information() << "m_strAppId = " << prequest->m_strAppId;
 
       auto papplication = get_application(prequest->m_strAppId, true, prequest);
 
@@ -1188,7 +1188,7 @@ ret:
       //   if (!bCreateSessionWindow)
       //   {
 
-      //      WARNING("Could not create session window");
+      //      warning() <<"Could not create session window";
 
       //   }
 
@@ -1201,7 +1201,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   TRACE("Failed to create memory_new User Presence");
+      //   information("Failed to create memory_new User Presence");
 
       //   return false;
 
@@ -1218,7 +1218,7 @@ ret:
 
          //   m_result.add(estatus);
 
-         //   INFORMATION("Failed to create ifs");
+         //   information() << "Failed to create ifs";
 
          //}
 
@@ -1235,7 +1235,7 @@ ret:
 
          //   m_result.add(estatus);
 
-         //   INFORMATION("Failed to create remotefs");
+         //   information() << "Failed to create remotefs";
 
          //}
 
@@ -1253,7 +1253,7 @@ ret:
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create ftpfs");
+      //      information("Failed to create ftpfs");
 
       //   }
 
@@ -1282,14 +1282,14 @@ ret:
 
          //   m_result.add(estatus);
 
-         //   INFORMATION("Failed to create fsdata");
+         //   information() << "Failed to create fsdata";
 
          //}
 
 
       }
 
-      //INFORMATION(".2");
+      //information() << ".2";
 
 
       //return true;
@@ -1310,7 +1310,7 @@ ret:
 
       ::e_status estatus;
 
-      //INFORMATION("apex::session::init2 .1");
+      //information() << "apex::session::init2 .1";
 
       if (acmeapplication()->m_bUser)
       {
@@ -1323,7 +1323,7 @@ ret:
          //   if (!estatus)
          //   {
 
-         //      FATAL("apex::session::init2 Failed to create account department");
+         //      fatal() <<"apex::session::init2 Failed to create account department";
 
          //      return false;
 
@@ -1652,13 +1652,13 @@ namespace apex
 
       //if(m_pdatabase == nullptr)
       //{
-      //   TRACE("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   TRACE("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
       //   return false;
       //}
 

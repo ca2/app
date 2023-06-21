@@ -28,7 +28,7 @@
 /*				freeimage function has been dropped.
 
 
-			WARNING!  WARNING!  WARNING!
+			warning!  warning!  warning!
 			----------------------------
 
   It's very important to understand that though these functions work

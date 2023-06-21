@@ -18,6 +18,7 @@
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "acme/platform/scoped_restore.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
@@ -125,6 +126,8 @@ namespace user
       m_bUpdateGraphics = false;
       m_bPendingRedraw = false;
       m_bTransparentMouseEvents = false;
+      
+      m_bDoingGraphics = false;
 
 #if defined(APPLE_IOS) || defined(ANDROID)
 
@@ -1722,7 +1725,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 
@@ -1819,7 +1822,7 @@ namespace user
          if (::is_set(m_puserinteraction))
          {
 
-            INFORMATION(__type_name(m_puserinteraction) << "::destroy_impl_only");
+            information() << __type_name(m_puserinteraction) << "::destroy_impl_only";
 
             m_puserinteraction->transfer_handler(m_dispatchermapNormal, this, false);
             m_puserinteraction->transfer_handler(m_dispatchermapProbe, this, true);
@@ -1845,7 +1848,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            INFORMATION(__type_name(m_puserinteraction) << "::destroy_impl_only ( 2)");
+            information() << __type_name(m_puserinteraction) << "::destroy_impl_only ( 2)";
 
          }
 
@@ -2074,7 +2077,7 @@ namespace user
 
          //g_iMouseMove++;
 
-         //TRACE("linux::interaction_impl::message_handler e_message_mouse_move");
+         //information("linux::interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
@@ -2085,7 +2088,7 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up (0)");
+         information("e_message_left_button_up (0)");
 
       }
 
@@ -2125,11 +2128,11 @@ namespace user
 
          if (m_puserinteraction->layout().is_moving())
          {
-            //TRACE("moving: skip pre translate message");
+            //information("moving: skip pre translate message");
          }
          else if (m_puserinteraction->layout().is_sizing())
          {
-            //TRACE("sizing: skip pre translate message");
+            //information("sizing: skip pre translate message");
          }
          else
          {
@@ -2223,13 +2226,13 @@ namespace user
          if (pmessage->m_atom == e_message_left_button_double_click)
          {
 
-            INFORMATION("e_message_left_button_double_click");
+            information() << "e_message_left_button_double_click";
 
          }
          else if (pmessage->m_atom == e_message_left_button_down)
          {
 
-            INFORMATION("e_message_left_button_down");
+            information() << "e_message_left_button_down";
 
          }
 
@@ -2624,7 +2627,7 @@ namespace user
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
-         TRACE("e_message_left_button_down");
+         information("e_message_left_button_down");
 
          string strType = __type_name(m_puserinteraction);
 
@@ -2639,19 +2642,19 @@ namespace user
       else if (pmouse->m_atom == e_message_left_button_up)
       {
 
-         TRACE("e_message_left_button_up");
+         information("e_message_left_button_up");
 
       }
       else if (pmouse->m_atom == e_message_non_client_left_button_up)
       {
 
-         TRACE("e_message_non_client_left_button_up");
+         information("e_message_non_client_left_button_up");
 
       }
       else if (pmouse->m_atom == e_message_non_client_left_button_down)
       {
 
-         TRACE("e_message_non_client_left_button_down");
+         information("e_message_non_client_left_button_down");
 
          string strType;
 
@@ -2687,7 +2690,7 @@ namespace user
 
          pmouse->m_pcursor = pcursor;
 
-         //FORMATTED_INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
+         //information("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
 
          //string strType;
 
@@ -3529,13 +3532,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
 
-         TRACE("moving: skip walk pre translate tree");
+         information("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
 
-         TRACE("sizing: skip walk pre translate tree");
+         information("sizing: skip walk pre translate tree");
 
       }
       else
@@ -3929,36 +3932,94 @@ namespace user
    }
 
 
-   void interaction_impl::set_need_redraw(const ::rectangle_i32& rectangleHostNeedRedraw, bool bAscendants)
+   void interaction_impl::set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw, function<void()> function, bool bAscendants)
    {
 
       _synchronous_lock synchronouslock(synchronization());
 
-      if (rectangleHostNeedRedraw.is_empty())
+      if (rectangleaHostNeedRedraw.is_empty())
       {
 
          return;
 
       }
-
-      for (auto& rectangle : m_rectangleaNeedRedraw)
+      
+      for(auto & predraw : m_redrawa)
       {
-
-         if (rectangle.contains(rectangleHostNeedRedraw))
+         
+         bool bContainsAll = true;
+         
+         for(auto& rectangle : rectangleaHostNeedRedraw)
+         {
+            
+            bool bContainsAny = false;
+            
+            for(auto& rectangleRedraw : predraw->m_rectanglea)
+            {
+               
+               if(rectangleRedraw.contains(rectangle))
+               {
+                  
+                  bContainsAny = true;
+                  
+                  break;
+                  
+               }
+               
+            }
+            
+            if(!bContainsAny)
+            {
+               
+               bContainsAll = false;
+               
+               break;
+               
+            }
+            
+         }
+         
+         if(bContainsAll)
          {
 
+            if(function)
+            {
+             
+               predraw->m_functiona.add(function);
+               
+            }
+            
             return;
-
+            
          }
 
       }
+      
+      if(m_bDoingGraphics)
+      {
+       
+         output_debug_string("set_need_redraw on doing graphics");
+         
+      }
+      
+      auto predraw = __new(redraw);
+      
+      predraw->m_rectanglea.append(rectangleaHostNeedRedraw);
+      
+      if(function)
+      {
+         
+         predraw->m_functiona.add(function);
+         
+      }
 
-      m_rectangleaNeedRedraw.add(rectangleHostNeedRedraw);
+      m_redrawa.add(predraw);
 
    }
 
 
-   bool interaction_impl::needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw)
+   bool interaction_impl::needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics
+)
    {
 
       _synchronous_lock synchronouslock(synchronization());
@@ -3970,17 +4031,17 @@ namespace user
 
       }
 
-      if (m_rectangleaNeedRedraw.is_empty())
+      if (pgraphics->m_rectangleaNeedRedraw.is_empty())
       {
 
          return true;
 
       }
 
-      for (auto& rectangle : m_rectangleaNeedRedraw)
+      for (auto& rectangleRedraw : pgraphics->m_rectangleaNeedRedraw)
       {
-
-         if (rectangle.intersects(rectangleHostNeedsToDraw))
+         
+         if (rectangleRedraw.intersects(rectangleHostNeedsToDraw))
          {
 
             return true;
@@ -4324,14 +4385,14 @@ namespace user
    //}
 
 
-   //i32 interaction_impl::ScrollWindowEx(i32 greekdeltax,i32 greekdeltay,
+   //i32 interaction_impl::ScrollWindowEx(i32 Δx,i32 Δy,
    //                                     const ::rectangle_i32 * prectScroll,
    //                                       const ::rectangle_i32 * prectClip,
    //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,::u32 flags)
    //{
 
-   //   UNREFERENCED_PARAMETER(greekdeltax);
-   //   UNREFERENCED_PARAMETER(greekdeltay);
+   //   UNREFERENCED_PARAMETER(Δx);
+   //   UNREFERENCED_PARAMETER(Δy);
    //   UNREFERENCED_PARAMETER(prectScroll);
    //   UNREFERENCED_PARAMETER(prectClip);
    //   UNREFERENCED_PARAMETER(prgnUpdate);
@@ -4757,7 +4818,7 @@ namespace user
       if (pshowwindow->m_bShow)
       {
 
-         INFORMATION("user::interaction_impl::on_message_show_window bShow = true");
+         information() << "user::interaction_impl::on_message_show_window bShow = true";
 
          if (m_puserinteraction->const_layout().design().display() != ::e_display_iconic)
          {
@@ -4782,7 +4843,7 @@ namespace user
       else
       {
 
-         INFORMATION("user::interaction_impl::on_message_show_window bShow = false");
+         information() << "user::interaction_impl::on_message_show_window bShow = false";
 
          {
 
@@ -4978,6 +5039,16 @@ namespace user
          return;
 
       }
+      
+      
+      m_bDoingGraphics = true;
+      
+      at_end_of_scope
+      {
+         
+         m_bDoingGraphics = false;
+         
+      };
 
 #if TIME_REPORTING
 
@@ -5237,6 +5308,8 @@ namespace user
             _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
 
+            information() << "graphics::on_begin_draw";
+
             slGraphics.unlock();
 
             windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
@@ -5273,11 +5346,41 @@ namespace user
 
             pgraphics->on_begin_draw();
 
+            pgraphics->reset_clip();
+
+            pgraphics->set_origin(0., 0.);
+
             {
 
                _synchronous_lock synchronouslock(synchronization());
+               
+               pgraphics->m_rectangleaNeedRedraw.clear();
 
-               pgraphics->m_rectangleaNeedRedraw = ::transfer(m_rectangleaNeedRedraw);
+               for(auto & predraw : m_redrawa)
+               {
+                
+                  pgraphics->m_rectangleaNeedRedraw.append(predraw->m_rectanglea);
+                  
+                  if(predraw->m_functiona.has_element())
+                  {
+                     
+                     for(auto & function : predraw->m_functiona)
+                     {
+                        
+                        if(function)
+                        {
+                           
+                           function();
+                           
+                        }
+                        
+                     }
+                     
+                  }
+                  
+               }
+               
+               m_redrawa.clear();
 
             }
 
@@ -5343,7 +5446,7 @@ namespace user
 
                   m_puserinteraction->do_graphics(pgraphics);
 
-                  if (!bDraw && m_rectangleaNeedRedraw.has_element())
+                  if (!bDraw && m_redrawa.has_element())
                   {
 
                      synchronouslock.unlock();
@@ -5360,7 +5463,7 @@ namespace user
 
                //m_rectangleUpdateBuffer = r;
 
-               //FORMATTED_TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+               //information("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
                if (!m_pgraphics)
                {
@@ -5438,12 +5541,12 @@ namespace user
 
          //   }
 
-         if (m_rectangleaNeedRedraw.has_element())
+         if (m_redrawa.has_element())
          {
 
-            auto iRequestsDuringDrawing = m_rectangleaNeedRedraw.size();
+            auto iRequestsDuringDrawing = m_redrawa.size();
 
-            INFORMATION(iRequestsDuringDrawing << " redraw requests while drawing.");
+            information() << iRequestsDuringDrawing << " redraw requests while drawing.";
 
          }
 
@@ -5641,7 +5744,7 @@ namespace user
 
             m_pgraphics->update_screen();
 
-            m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
+            //m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
 
          }
 
@@ -6741,7 +6844,7 @@ namespace user
       if (sizeOutput.is_empty())
       {
 
-         INFORMATION("window_show rectangleUi isEmpty");
+         information() << "window_show rectangleUi isEmpty";
 
          return;
 
@@ -6880,7 +6983,7 @@ namespace user
       if (strType.contains("font_format"))
       {
 
-         INFORMATION("font_format going to gather Z-Ordering information");
+         information() << "font_format going to gather Z-Ordering information";
 
       }
 
@@ -6995,13 +7098,13 @@ namespace user
          if (strType.contains("font_format"))
          {
 
-            INFORMATION("font_format going to SetWindowPos");
+            information() << "font_format going to SetWindowPos";
 
          }
          else if (strType.contains("textformat"))
          {
 
-            INFORMATION("text_format going to SetWindowPos");
+            information() << "text_format going to SetWindowPos";
 
          }
 
@@ -7065,7 +7168,7 @@ namespace user
          if (g_pointLastBottomRight != pointBottomRight)
          {
 
-            TRACE("Different Bottom Right");
+            information("Different Bottom Right");
 
             g_pointLastBottomRight = pointBottomRight;
 
@@ -7129,7 +7232,7 @@ namespace user
 
       }
 
-      m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), e_layout_window);
+      m_puserinteraction->set_display(m_puserinteraction->const_layout().design().display(), e_layout_window);
 
       m_puserinteraction->clear_activation(e_layout_design);
 
@@ -7312,7 +7415,7 @@ namespace user
       if (strType.case_insensitive_contains("filemanager"))
       {
 
-         INFORMATION("filemanager apply visual");
+         information() << "filemanager apply visual";
 
       }
 
@@ -7413,7 +7516,7 @@ namespace user
       //if (m_puserinteraction->layout().is_moving())
       //{
 
-        // INFORMATION("\nWindow is Moving :: on_message_move");
+        // information() << "\nWindow is Moving :: on_message_move";
 
       //}
 
@@ -7506,7 +7609,8 @@ namespace user
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 
-      if ((m_puserinteraction->const_layout().sketch().size()
+      if (!m_puserinteraction->is_window_resizing()
+          && (m_puserinteraction->const_layout().sketch().size()
          != m_puserinteraction->const_layout().window().size()))
       {
 
@@ -7517,6 +7621,7 @@ namespace user
          int cy = m_puserinteraction->const_layout().sketch().size().height();
          //         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
 
+         
          m_puserinteraction->set_need_layout();
 
          m_puserinteraction->set_need_redraw();
@@ -7530,7 +7635,7 @@ namespace user
          //if (m_puserinteraction->layout().is_moving())
          //{
 
-         // INFORMATION("\nWindow is Moving :: on_message_move");
+         // information() << "\nWindow is Moving :: on_message_move";
 
          //}
 
@@ -7560,7 +7665,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 

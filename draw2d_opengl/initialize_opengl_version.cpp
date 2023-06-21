@@ -41,7 +41,7 @@
 //   if (!gladLoadWGL(hdc))
 //   {
 //      // Problem: glewInit failed, something is seriously wrong.
-//      FORMATTED_TRACE("gladLoadWGL failed");
+//      information("gladLoadWGL failed");
 //      //return false;
 //      throw resource_exception();
 //

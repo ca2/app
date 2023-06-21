@@ -1641,7 +1641,7 @@ namespace user
       if (!::user::interaction::create_control(pdescriptor))
       {
 
-         TRACE("Failed to create control");
+         information("Failed to create control");
 
          return false;
 

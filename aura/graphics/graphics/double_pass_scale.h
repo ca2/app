@@ -50,6 +50,7 @@ public:
 
    ::image32_t *  Scale (
    ::image32_t *  pDstImage,
+      color_indexes indexes, 
    ::u32          uNewWidth,
    ::u32          uNewHeight,
    ::u32          uNewScan,
@@ -71,9 +72,10 @@ private:
 
    LineContribType *CalcContributions (    ::u32    uLineSize,
                                            ::u32    uSrcSize,
-                                           double  dScale);
-
+                                          double  dScale);
+ 
    void ScaleRow (::image32_t *pSrc,
+      ::color_indexes indexes, 
                    ::u32                uSrcWidth,
       ::image32_t*pRes,
                    ::u32                uResWidth,
@@ -81,6 +83,7 @@ private:
                    LineContribType    *Contrib);
 
    void HorizScale (::image32_t *pSrc,
+      color_indexes indexes,
                        ::u32                uSrcWidth,
                        ::u32                uSrcHeight,
       ::image32_t*pDst,
@@ -88,6 +91,7 @@ private:
                        ::u32                uResHeight);
 
    void ScaleCol (::image32_t *pSrc,
+      color_indexes indexes,
                    ::u32                uSrcWidth,
       ::image32_t *pRes,
                    ::u32                uResWidth,
@@ -96,6 +100,7 @@ private:
                    LineContribType    *Contrib);
 
    void VertScale (::image32_t *pSrc,
+      color_indexes indexes,
                        ::u32                uSrcWidth,
                        ::u32                uSrcHeight,
       ::image32_t*pDst,
@@ -229,6 +234,7 @@ template <class FilterClass>
 void
 C2PassScale<FilterClass>::
 ScaleRow (::image32_t*pSrc,
+   ::color_indexes indexes,
             ::u32                uSrcWidth,
    ::image32_t*pRes,
             ::u32                uResWidth,
@@ -249,11 +255,11 @@ ScaleRow (::image32_t*pSrc,
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         r += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_red()));
-         g += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_green()));
-         b += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_blue()));
+         r += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_red(indexes)));
+         g += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_green(indexes)));
+         b += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_blue(indexes)));
       }
-      pDstRow[x] = rgb(r,g,b); // Place result in destination pixel
+      pDstRow[x].assign(rgb(r, g, b), indexes); // Place result in destination pixel
    }
 }
 
@@ -261,13 +267,14 @@ template <class FilterClass>
 void
 C2PassScale<FilterClass>::
 HorizScale (::image32_t*pSrc,
+   color_indexes indexes,
                 ::u32                uSrcWidth,
                 ::u32                uSrcHeight,
    ::image32_t*pDst,
                 ::u32                uResWidth,
                 ::u32                uResHeight)
 {
-//   TRACE ("Performing horizontal scaling...\n");
+//   information ("Performing horizontal scaling...\n");
    if (uResWidth == uSrcWidth)
    {
       // No scaling required, just copy
@@ -295,6 +302,7 @@ HorizScale (::image32_t*pSrc,
       }
 
       ScaleRow (  pSrc,
+                  indexes,
                   uSrcWidth,
                   pDst,
                   uResWidth,
@@ -308,6 +316,7 @@ template <class FilterClass>
 void
 C2PassScale<FilterClass>::
 ScaleCol (::image32_t*pSrc,
+   color_indexes indexes,
             ::u32                uSrcWidth,
    ::image32_t*pRes,
             ::u32                uResWidth,
@@ -327,12 +336,12 @@ ScaleCol (::image32_t*pSrc,
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         ::color::color pCurSrc = pSrc[i * uSrcWidth + uCol];
+         ::color::color pCurSrc = pSrc[i * uSrcWidth + uCol].color(indexes);
          r += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_red()));
          g += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_green()));
          b += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_blue()));
       }
-      pRes[y * uResWidth + uCol] = rgb (r,g,b);   // Place result in destination pixel
+      pRes[y * uResWidth + uCol].assign(rgb(r, g, b), indexes);   // Place result in destination pixel
    }
 }
 
@@ -341,13 +350,14 @@ template <class FilterClass>
 void
 C2PassScale<FilterClass>::
 VertScale (::image32_t*pSrc,
+   color_indexes indexes,
             ::u32                uSrcWidth,
             ::u32                uSrcHeight,
    ::image32_t*pDst,
             ::u32                uResWidth,
             ::u32                uResHeight)
 {
-//   TRACE ("Performing vertical scaling...");
+//   information ("Performing vertical scaling...");
 
    if (uSrcHeight == uResHeight)
    {
@@ -375,6 +385,7 @@ VertScale (::image32_t*pSrc,
          }
       }
       ScaleCol (  pSrc,
+         indexes,
                   uSrcWidth,
                   pDst,
                   uResWidth,
@@ -432,6 +443,7 @@ template <class FilterClass>
 C2PassScale<FilterClass>::
 Scale (
 ::image32_t *pDstImage,
+color_indexes indexes,
 ::u32        uNewWidth,
 ::u32        uNewHeight,
 ::u32        uNewScan,
@@ -457,6 +469,7 @@ Scale (
       ::copy_image32(pOrig, uOrigWidth, uOrigHeight, uOrigWidth * sizeof(::image32_t), pOrigImage, uOrigScan);
 
       HorizScale(pOrig,
+         indexes,
                  uOrigWidth,
                  uOrigHeight,
                  pTemp,
@@ -479,6 +492,7 @@ Scale (
       pDest.alloc(sizeof(::image32_t) * uNewWidth * uNewHeight);
       // Scale temporary image vertically into result image
       VertScale(pTemp,
+         indexes,
                 uNewWidth,
                 uOrigHeight,
                 pDest,

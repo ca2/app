@@ -48,7 +48,7 @@ void __trace_message(const ::scoped_string & scopedstrPrefix, LPMESSAGE lpmsg)
    if (lpszMsgName != nullptr)
    {
 #ifdef WIN64
-//      FORMATTED_TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
+//      information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
       //       lpszPrefix, pMsg->hwnd, lpszMsgName,
       //     pMsg->wParam, pMsg->lParam);
 #else

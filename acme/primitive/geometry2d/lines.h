@@ -68,6 +68,16 @@ public:
 
    }
 
+
+   lines_base & operator = (const lines_base & lines)
+   {
+
+      point_array_base < NUMBER >::operator =(lines);
+
+      return * this;
+
+   }
+
 };
 
 

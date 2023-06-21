@@ -2,6 +2,25 @@
 #pragma once
 
 
+#define ENDIAN_SERIAL_ARRAY   ((const char*)&((const int)(0x00010203)))
+#define ENDIAN_CPU_ARRAY      ((const char*)&((const int)(0x03020100)))
+#define SERIAL_ENDIANESS             (*ENDIAN_SERIAL_ARRAY)
+#define SERIAL_LITTLE_ENDIAN         0x03
+#define SERIAL_BIG_ENDIAN            0x00
+#define SERIAL_PDP_ENDIAN            0x02
+#define SERIAL_HONEYWELL_ENDIAN      0x01
+#define CPU_LITTLE_ENDIAN     (3-SERIAL_LITTLE_ENDIAN)
+#define CPU_BIG_ENDIAN        (3-SERIAL_BIG_ENDIAN)
+#define CPU_PDP_ENDIAN        (3-SERIAL_PDP_ENDIAN)
+#define CPU_HONEYWELL_ENDIAN  (3-SERIAL_HONEYWELL_ENDIAN)
+
+
+#define IS_LITTLE_ENDIAN      (SERIAL_ENDIANESS == SERIAL_LITTLE_ENDIAN)
+#define IS_BIG_ENDIAN         (SERIAL_ENDIANESS == SERIAL_BIG_ENDIAN)
+#define IS_PDP_ENDIAN         (SERIAL_ENDIANESS == SERIAL_PDP_ENDIAN)
+#define IS_HONEYWELL_ENDIAN   (SERIAL_ENDIANESS == SERIAL_HONEYWELL_ENDIAN)
+
+
 constexpr ::u8 lower_u8(::iptr i) { return (::u8)(i & 0xff); }
 constexpr ::u8 upper_u8(::iptr i) { return (::u8)((i >> 8) & 0xff); }
 constexpr ::u16 lower_u16(::iptr i) { return (::u16)(i & 0xffff); }

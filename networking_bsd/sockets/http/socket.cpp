@@ -460,7 +460,7 @@ namespace sockets
          
          msg += "Host: " + strHost + "\r\n";
          
-         INFORMATION("Host: "<<strHost);
+         information() << "Host: "<<strHost;
 
       }
 
@@ -511,9 +511,9 @@ namespace sockets
             string strValue = straValue[j];
             //         strLine = ;
             msg += strKey + ": " + strValue + "\r\n";
-            //FORMATTED_TRACE("%s: %s", strKey, strValue);
+            //information("%s: %s", strKey, strValue);
          }
-         //TRACE(strTrace + "\n");
+         //information(strTrace + "\n");
       }
 
       for (auto & pcookie : m_response.cookies())
@@ -707,7 +707,7 @@ namespace sockets
 #ifndef UNIVERSAL_WINDOWS
 
 
-         WARNING("url_this",-1,"SSL not available");
+         warning() <<"url_this",-1,"SSL not available";
 
 #endif
 
@@ -752,7 +752,7 @@ namespace sockets
       //http_socket::OnHeader(key, value);
       /*if(key.case_insensitive_order("user-agent") == 0)
       {
-         FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+         information("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
       if(key == "cookie")
       {

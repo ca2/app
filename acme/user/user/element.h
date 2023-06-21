@@ -5,6 +5,7 @@
 #include "command_update_target.h"
 #include "conversation.h"
 #include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 
 
@@ -665,7 +666,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::rectangle_i32& rectangleScreenNeedRedraw = {}, bool bAscendants = true);
+      virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaScreenNeedRedraw = {}, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);

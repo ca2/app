@@ -480,7 +480,7 @@ namespace networking_bsd
       if (m_eping == ping_sent_ping && m_durationLastPing.elapsed() > m_durationClientPingTimeout)
       {
 
-         INFORMATION("PING TIMEOUT!!");
+         information() << "PING TIMEOUT!!";
 
          SetCloseAndDelete();
 
@@ -813,7 +813,7 @@ namespace networking_bsd
 
          //str += strLine + "\r\n";
 
-         //FORMATTED_TRACE("%s", strLine);
+         //information("%s", strLine);
 
          m_memResponse.append(buf, len);
 

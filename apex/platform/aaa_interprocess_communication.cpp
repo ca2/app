@@ -343,7 +343,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 {
 
 
-   INFORMATION("::interprocess::communication::on_receive " << strMessage);
+   information() << "::interprocess::communication::on_receive " << strMessage;
    
    string strUrl = strMessage;
 

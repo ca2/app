@@ -152,11 +152,11 @@ namespace datetime
 //
 //            if(bAdd)
 //            {
-//               TRACE("strtotime: invalid char +");
+//               information("strtotime: invalid char +");
 //            }
 //            else if(bMinus)
 //            {
-//               TRACE("strtotime: invalid char + on Minus state");
+//               information("strtotime: invalid char + on Minus state");
 //            }
 //
 //#endif
@@ -172,11 +172,11 @@ namespace datetime
 //
 //            if(bAdd)
 //            {
-//               TRACE("strtotime: invalid char - on add state");
+//               information("strtotime: invalid char - on add state");
 //            }
 //            else if(bMinus)
 //            {
-//               TRACE("strtotime: invalid char - on Minus state");
+//               information("strtotime: invalid char - on Minus state");
 //            }
 //
 //#endif

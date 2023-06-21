@@ -57,7 +57,7 @@ void Popup::draw(::nano2d::context * pcontext)
    {
       ::nano2d::guard guard(pcontext);
       //pcontext->save();
-      pcontext->reset_scissor();
+      //pcontext->reset_scissor();
 
       /* Draw a drop shadow */
       ::nano2d::paint shadow_paint = pcontext->box_gradient((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), cr * 2.f, ds * 2.f,

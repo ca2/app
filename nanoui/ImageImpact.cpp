@@ -53,7 +53,7 @@ ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, fals
 
    m_image_border_color = m_ptheme->m_colorBorderDark;
    m_draw_image_border = true;
-   m_image_background_color = ::color::color(0.f, 0.f, 0.f, 0.f);
+   m_image_background_color = ::color::transparent;
 }
 
 // opengl

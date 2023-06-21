@@ -435,11 +435,21 @@ namespace nanoui
 
             } while (!pwidgetChild->visible());
 
-            sequence2_i32 sizeTarget;
-
             auto sizeFixed = pwidgetChild->fixed_size();
 
-            if (sizeFixed.is_set())
+            size_i32 sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+               [&]()
+               {
+
+                  auto sizePreferred = pwidgetChild->preferred_size(pcontext, bRecalcTextSize);
+
+                  return sizePreferred;
+
+               });
+
+
+
+            /*if (sizeFixed.is_set())
             {
 
                sizeTarget = sizeFixed;
@@ -448,11 +458,11 @@ namespace nanoui
             else
             {
 
-               auto sizePreferred = pwidgetChild->preferred_size(pcontext, bRecalcTextSize);
+               
 
                sizeTarget = sizePreferred;
 
-            }
+            }*/
 
             grid[iAxisIndex1][i1] = ::maximum(grid[iAxisIndex1][i1], sizeTarget[iAxisIndex1]);
 

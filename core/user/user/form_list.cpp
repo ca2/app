@@ -2212,7 +2212,7 @@ namespace user
 
          }
 
-         pinteraction = ::clone(pinteractionTemplate);
+         pinteraction = pinteractionTemplate->clone();
 
          if (::is_set(pinteraction))
          {

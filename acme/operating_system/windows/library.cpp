@@ -35,7 +35,7 @@ namespace acme
 
          strMessage.format("Not going to try to load library. Invalid file extension in name : \"%s\"", pathParam.c_str());
 
-         ERROR(strMessage);
+         error() << strMessage;
 
          throw library_not_loaded(strMessage);
 
@@ -67,7 +67,7 @@ namespace acme
       if (plibrary != nullptr)
       {
 
-         //FORMATTED_TRACE("Loaded Library (1) %s", strPath.c_str());
+         //information("Loaded Library (1) %s", strPath.c_str());
 
          goto finished;
 

@@ -38,14 +38,14 @@ CLASS_DECL_ACME ::i64 _get_nanosecond()
 
 void utc_timespec(timespec * ptimespec);
 
-CLASS_DECL_ACME ::i64 integral_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
    
    struct timespec timespec;
 
    utc_timespec(&timespec);
 
-    return timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec;
+   return timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec;
 
 }
 

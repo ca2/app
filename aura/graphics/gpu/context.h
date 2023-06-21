@@ -3,12 +3,50 @@
 
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/geometry2d/size.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/primitive/memory.h"
 #include "aura/graphics/draw3d/matrix.h"
 
 
 namespace gpu
 {
+
+
+
+   class image_data
+   {
+   public:
+
+
+      ::memory       m_memory;
+
+      int m_iWidth;
+      int m_iHeight;
+
+      int width() const { return m_iWidth; }
+      int height() const { return m_iHeight; }
+      const void * data() const { return m_memory.data(); }
+      void * data() { return m_memory.data(); }
+
+      image_data() :m_iWidth(0), m_iHeight(0) {}
+      image_data(const image_data & imagedata) :
+         m_iWidth(imagedata.m_iWidth),
+         m_iHeight(imagedata.m_iHeight),
+         m_memory(imagedata.m_memory)
+      {
+
+
+      }
+      image_data(image_data && imagedata) :
+         m_iWidth(imagedata.m_iWidth),
+         m_iHeight(imagedata.m_iHeight),
+         m_memory(::transfer(imagedata.m_memory))
+      {
+
+
+      }
+
+   };
+
 
 
    class CLASS_DECL_AURA context :
@@ -63,9 +101,9 @@ namespace gpu
       inline const ::draw3d::matrix & projection_matrix() const { return m_matrixProjection; }
       inline ::draw3d::matrix & projection_matrix() { return m_matrixProjection; }
 
-      virtual void draw();
       virtual void start_drawing();
       virtual void global_transform();
+      virtual void draw();
       virtual void render();
 
 
@@ -95,6 +133,10 @@ namespace gpu
       virtual string get_shader_version_text();
 
       virtual void set_matrix_uniform(uniform uniformMatrix);
+
+
+      virtual class image_data image24(const ::payload & payloadFile);
+      virtual class image_data image32(const ::payload & payloadFile);
 
 
    };

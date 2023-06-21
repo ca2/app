@@ -8,7 +8,7 @@
 //#define trans(color, alpha, un) (color * color * alpha * un / (255.0 * 255.0))
 #define trans(color, alpha, un) (color * alpha /  255.0)
 
-bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagepointera, image_pointer * pointer, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex)
+bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagepointera, image_pointer * pointer, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
 {
 
    return true;

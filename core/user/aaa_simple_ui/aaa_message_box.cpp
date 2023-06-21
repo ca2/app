@@ -174,9 +174,9 @@ namespace simple_ui
 
       }
 
-      TRACE("(1) Just after create_window_ex for message_box (m_pimpl.m_p) : %" PRIxPTR, m_pimpl.m_p);
+      information("(1) Just after create_window_ex for message_box (m_pimpl.m_p) : %" PRIxPTR, m_pimpl.m_p);
 
-      TRACE("(2) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
+      information("(2) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
 
       auto emessagebox = m_emessagebox & e_message_box_type_mask;
 
@@ -214,9 +214,9 @@ namespace simple_ui
          break;
       }
 
-      TRACE("(3) Just after create_window_ex for message_box (m_pimpl.m_p) : %" PRIxPTR, m_pimpl.m_p);
+      information("(3) Just after create_window_ex for message_box (m_pimpl.m_p) : %" PRIxPTR, m_pimpl.m_p);
 
-      TRACE("(4) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
+      information("(4) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
 
       order(e_zorder_top);
 

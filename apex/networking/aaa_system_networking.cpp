@@ -19,7 +19,7 @@ namespace apex
          //if (!pfactoryCrypto)
          //{
 
-         //   WARNING("Could not open crypto openssl plugin.");
+         //   warning("Could not open crypto openssl plugin.");
 
          //   //return pfactoryCrypto;
 

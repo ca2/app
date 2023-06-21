@@ -133,11 +133,11 @@ public:
    ::color::color color() const
    {
       
-      return ::color::color(
-                            this->red(),
-                           this->green(),
-                            this->blue(),
-                            this->opacity());
+      return ::rgba(
+         this->red(),
+         this->green(),
+         this->blue(),
+         this->opacity());
       
    }
 

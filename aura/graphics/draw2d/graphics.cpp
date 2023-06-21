@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "brush.h"
+#include "clip.h"
 #include "pen.h"
 #include "path.h"
 #include "draw2d.h"
@@ -805,6 +806,19 @@ namespace draw2d
    }
 
 
+   void graphics::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width)
+   {
+
+      if (m_pimage)
+      {
+
+         m_pimage->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
+
+      }
+
+   }
+
+
    void graphics::draw_rectangle(const ::rectangle_f64 & rectangle)
    {
 
@@ -872,6 +886,14 @@ namespace draw2d
    {
 
       arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
+
+   }
+
+
+   void graphics::polyline(const ::point_f64_array & pointa)
+   {
+
+      polyline(pointa.data(), pointa.size());
 
    }
 
@@ -3184,68 +3206,206 @@ namespace draw2d
    }
 
 
-   void graphics::add_clipping_shapes(const ::pointer_array < ::draw2d::region > & regiona)
+//   void graphics::add_clipping_shapes(const ::pointer_array < ::draw2d::region > & regiona)
+//   {
+//
+//      for(auto & pregion : regiona)
+//      {
+//
+//         _set_clipping_shape(pregion, true);
+//
+//      }
+//
+//      //return ::success;
+//
+//   }
+
+
+//   void graphics::set_clipping(::draw2d::region* pregion)
+//   {
+//
+//      if(::is_null(pregion))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if(!pregion->m_pitem)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      _set_clipping_shape(pregion, true);
+//
+//   }
+//
+//
+//   void graphics:: intersect_clip_with_union_of_simple_shapes_of(const ::pointer_array < geometry2d::item > & itema)
+//   {
+//
+//      for(auto & pitem : itema)
+//      {
+//
+//         _add_simple_shape(pitem);
+//
+//      }
+//
+//      _intersect_clip();
+//
+//   }
+//
+
+   void graphics::intersect_clip(const clip & clip)
    {
       
-      for(auto & pregion : regiona)
+      for(auto & pclipgroup : clip)
       {
          
-         _add_clipping_shape(pregion);
+         intersect_clip(*pclipgroup);
          
       }
-
-      //return ::success;
-
+      
    }
 
 
-   void graphics::set_clipping(::draw2d::region* pregion)
+   void graphics::intersect_clip(const clip_group & clipgroup)
    {
+   
+      for(auto & pclipitem : clipgroup)
+      {
+       
+         _add_clip_item(pclipitem);
 
-
+      }
+      
+      _intersect_clip();
+   
    }
 
 
-   void graphics::_add_clipping_shape(::draw2d::region * pregion)
+   void graphics::_add_clip_item(clip_item * pclipitem)
    {
-
-      if (::is_null(pregion))
+      
+      switch(pclipitem->clip_item_type())
       {
+      case e_clip_item_rectangle:
+         _add_shape(dynamic_cast<clip_rectangle *>(pclipitem)->m_item);
+         break;
+      case e_clip_item_ellipse:
+         _add_shape(dynamic_cast<clip_ellipse *>(pclipitem)->m_item);
+         break;
+      case e_clip_item_polygon:
+         _add_shape(dynamic_cast<clip_polygon *>(pclipitem)->m_item);
+         break;
+      default:
+         break;
+      };
+      
+   }
 
-         return;
 
-      }
 
-      if (::is_null(pregion->m_pitem))
+
+   bool graphics::_add_simple_shape(::geometry2d::item * pitem)
+   {
+      
+      if(::is_null(pitem))
       {
-
-         return;
-
+         
+         return false;
+         
       }
-
-      switch(pregion->m_pitem->type())
+      
+      switch(pitem->type())
       {
       case e_item_none:
-         return;
+         return true;
       case e_item_intersect_clip:
          _intersect_clip();
-         break;
+         return true;
       case e_item_rectangle:
-         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::rectangle_item >()->m_item, pregion);
-         break;
+         _add_shape(pitem->cast < ::geometry2d::rectangle_item >()->m_item);
+         return true;
       case e_item_ellipse:
-         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::ellipse_item >()->m_item, pregion);
-         break;
+         _add_shape(pitem->cast < ::geometry2d::ellipse_item >()->m_item);
+         return true;
 //      case e_shape_lines:
 //         return _add_shape(shape.shape < ::lines >());
       case e_item_polygon:
-         _add_clipping_shape(pregion->m_pitem.cast < ::geometry2d::polygon_item >()->m_polygon, pregion);
-         break;
+         _add_shape(pitem->cast < ::geometry2d::polygon_item >()->m_polygon);
+         return true;
       default:
-         throw ::exception(error_not_implemented);
-         break;
+         return false;
       }
+      
+   }
 
+
+//   void graphics::_set_clipping_shape(::draw2d::region * pregion, bool bAdd)
+//   {
+//
+//      if (::is_null(pregion))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (::is_null(pregion->m_pitem))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if(_add_simple_shape(pregion->m_pitem))
+//      {
+//
+//         _clip(bAdd);
+//
+//      }
+//      else if(pregion->m_pitem->type() == e_item_combine)
+//      {
+//
+//         ::pointer < ::geometry2d::combine_item > pcombineitem = pregion->m_pitem;
+//
+//         _set_clipping_shape(defer_get_os_data(pcombineitem->m_pregion1), bAdd);
+//
+//         bool bAdd2 = bAdd;
+//
+//         if(pcombineitem->m_ecombine == e_combine_exclude)
+//         {
+//
+//            bAdd2 = !bAdd2;
+//
+//         }
+//
+//         _set_clipping_shape(defer_get_os_data(pcombineitem->m_pregion2), bAdd2);
+//
+//      }
+//
+//   }
+
+
+   void graphics::_clip(bool bAdd)
+   {
+   
+      if(bAdd)
+      {
+         
+         _intersect_clip();
+         
+      }
+      else
+      {
+         
+         _eo_clip();
+         
+      }
+      
    }
 
 
@@ -3259,7 +3419,17 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
+   void graphics::_eo_clip()
+   {
+
+      throw ::interface_only();
+
+      //throw ::interface_only();
+
+   }
+
+
+   void graphics::_add_shape(const ::rectangle_f64 & rectangle)
    {
    
       throw ::interface_only();
@@ -3289,7 +3459,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion)
+   void graphics::_add_shape(const ::ellipse_f64 & ellipse)
    {
    
       throw ::interface_only();
@@ -3309,7 +3479,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion)
+   void graphics::_add_shape(const ::polygon_f64 & polygon)
    {
 
       throw ::interface_only();
@@ -3321,36 +3491,30 @@ namespace draw2d
 
    void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
    {
-      
-      //_shape < ::rectangle_f64, e_shape_rectangle, ::draw2d::region > regionshape;
-      
-      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(rectangle, pregion);
+      _add_shape(rectangle);
+
+      _intersect_clip();
 
    }
 
 
    void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
    {
-   
-      //_shape < ::ellipse_f64, e_shape_ellipse, ::draw2d::region > regionshape;
-      
-      ::draw2d::region * pregion = nullptr;
 
-      _add_clipping_shape(ellipse, pregion);
-   
+      _add_shape(ellipse);
+
+      _intersect_clip();
+
    }
 
 
    void graphics::intersect_clip(const ::polygon_f64 & polygon)
    {
 
-      //_shape < ::polygon_f64, e_shape_polygon, ::draw2d::region > regionshape;
-      
-      ::draw2d::region * pregion = nullptr;
+      _add_shape(polygon);
 
-      _add_clipping_shape(polygon, pregion);
+      _intersect_clip();
 
    }
 
@@ -3747,45 +3911,45 @@ namespace draw2d
 
       size_f64 size = get_text_extent(str);
 
-      double greekdeltax;
+      double Δx;
 
-      double greekdeltay;
+      double Δy;
 
       if(ealign & e_align_right)
       {
 
-         greekdeltax = rectangleParam.right - rectangleParam.left - size.cx();
+         Δx = rectangleParam.right - rectangleParam.left - size.cx();
 
       }
       else if(ealign & e_align_horizontal_center)
       {
 
-         greekdeltax = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
+         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
 
       }
       else
       {
 
-         greekdeltax = 0.;
+         Δx = 0.;
 
       }
 
       if(ealign & e_align_bottom)
       {
 
-         greekdeltay = rectangleParam.bottom - rectangleParam.top - size.cy();
+         Δy = rectangleParam.bottom - rectangleParam.top - size.cy();
 
       }
       else if(ealign & e_align_vertical_center)
       {
 
-         greekdeltay = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
+         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
 
       }
       else
       {
 
-         greekdeltay = 0.;
+         Δy = 0.;
 
       }
 
@@ -3809,7 +3973,7 @@ namespace draw2d
 
          str.replace_with("", "\n");
 
-         text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay, str);
+         text_out(rectangleParam.left + Δx, rectangleParam.top + Δy, str);
 
       }
       else
@@ -3828,7 +3992,7 @@ namespace draw2d
 
             auto size1 = get_text_extent(str);
 
-            text_out(rectangleParam.left + greekdeltax, rectangleParam.top + greekdeltay + offsety, str);
+            text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
 
             offsety += (i32) size1.cy();
 
@@ -5194,49 +5358,49 @@ namespace draw2d
 
          auto wscan = scan / sizeof(::color32_t);
 
-         for (double greekdeltax = 0; greekdeltax < w; greekdeltax += dStep)
+         for (double Δx = 0; Δx < w; Δx += dStep)
          {
-            dCircleX = fmod(greekdeltax, (double)(dPeriod));
+            dCircleX = fmod(Δx, (double)(dPeriod));
             double dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
             dCircleX -= dPeriod / 2.0;
             dTint = dBaseTint * 0.51;
             dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
             {
-               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                ;
-               greekdeltay = (greekdeltay * dHalfH + dH - dHSpan);
-               int x = (int)round(greekdeltax);
-               int y = (int)round(greekdeltay);
+               Δy = (Δy * dHalfH + dH - dHSpan);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
-                  int opacity = pimage32[x + wscan * y].u8_opacity();
-                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
-                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
+                  int opacity = pimage32[x + wscan * y].u8_opacity(pimage->m_colorindexes);
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y] = argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red);
+                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
                }
             }
             dTint = dBaseTint * 0.51;
             {
-               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               greekdeltay = (greekdeltay * dHalfH + dH + dHSpan);
-               int x = (int)round(greekdeltax);
-               int y = (int)round(greekdeltay);
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               Δy = (Δy * dHalfH + dH + dHSpan);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
-                  int opacity = pimage32[x + wscan * y].u8_opacity();
-                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
-                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
+                  int opacity = pimage32[x + wscan * y].u8_opacity(pimage->color_indexes());
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y] = argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red);
+                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red),pimage->color_indexes());
                }
 
             }
@@ -5244,21 +5408,21 @@ namespace draw2d
             dTint = dBaseTint * 2.3;
 
             {
-               double greekdeltay = (sin((double)greekdeltax * 2.0 * 3.1415 / dPeriod) - fmod(greekdeltax, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               greekdeltay = (greekdeltay * dHalfH + dH);
-               int x = (int)round(greekdeltax);
-               int y = (int)round(greekdeltay);
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               Δy = (Δy * dHalfH + dH);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
-                  int opacity = pimage32[x + wscan].u8_opacity();
-                  double fy = 1.0 - fmod(fabs(greekdeltay), 1.0);
-                  double fx = 1.0 - fmod(fabs(greekdeltax), 1.0);
+                  int opacity = pimage32[x + wscan].u8_opacity(pimage->color_indexes());
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
                   opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y] = argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red);
+                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red),pimage->color_indexes());
 
                }
 
@@ -5577,19 +5741,19 @@ namespace draw2d
    float graphics::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
    {
 
-      float pqx, pqy, greekdeltax, greekdeltay, d, t;
+      float pqx, pqy, Δx, Δy, d, t;
       pqx = qx - px;
       pqy = qy - py;
-      greekdeltax = x - px;
-      greekdeltay = y - py;
+      Δx = x - px;
+      Δy = y - py;
       d = pqx*pqx + pqy*pqy;
-      t = pqx*greekdeltax + pqy*greekdeltay;
+      t = pqx*Δx + pqy*Δy;
       if (d > 0) t /= d;
       if (t < 0) t = 0;
       else if (t > 1) t = 1;
-      greekdeltax = px + t*pqx - x;
-      greekdeltay = py + t*pqy - y;
-      return greekdeltax*greekdeltax + greekdeltay*greekdeltay;
+      Δx = px + t*pqx - x;
+      Δy = py + t*pqy - y;
+      return Δx*Δx + Δy*Δy;
 
    }
 

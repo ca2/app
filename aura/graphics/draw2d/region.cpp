@@ -25,7 +25,7 @@ namespace draw2d
       //m_lppoints        = nullptr;
       //m_eregion         = e_region_none;
 
-      m_pitem = ::clone(region.m_pitem);
+      m_pitem = region.m_pitem->clone();
 
    }
 
@@ -609,16 +609,16 @@ namespace draw2d
 
    //   double y = point.y();
    //   
-   //   double greekdeltax = x - centerx;
+   //   double Δx = x - centerx;
    //   
-   //   double greekdeltay = y - centery;
+   //   double Δy = y - centery;
    //   
    //   if(rx == ry)
    //   {
    //      
    //      double r = rx;
    //      
-   //      double square_distance = (greekdeltax * greekdeltax) + (greekdeltay * greekdeltay);
+   //      double square_distance = (Δx * Δx) + (Δy * Δy);
    //      
    //      double square_boundary = (r * r);
    //      
@@ -628,7 +628,7 @@ namespace draw2d
    //   else
    //   {
 
-   //      double normal_distance = ((greekdeltax * greekdeltax) / (rx * rx) + (greekdeltay * greekdeltay) / (ry * ry));
+   //      double normal_distance = ((Δx * Δx) / (rx * rx) + (Δy * Δy) / (ry * ry));
    //      
    //      return normal_distance <= 1.0;
    //      

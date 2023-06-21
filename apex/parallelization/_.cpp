@@ -964,7 +964,7 @@ void thread_ptra::destroy()
       if (pthreadItem != ptask && pthreadItem != nullptr)
       {
 
-         FORMATTED_INFORMATION("thread_ptra::get_count_except_current_thread \"%s\"", __type_name(pthreadItem).c_str());
+         information("thread_ptra::get_count_except_current_thread \"%s\"", __type_name(pthreadItem).c_str());
 
          c++;
 

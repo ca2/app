@@ -2,7 +2,7 @@
 #include "context_win32.h"
 #include "opengl.h"
 #include "buffer.h"
-#include "aura/gpu/gpu/approach.h"
+#include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/image.h"
 #include "aura/platform/system.h"
 
@@ -11,10 +11,10 @@ namespace opengl
 {
 
 
-   ::gpu::context * create_system_context()
+   ::pointer < ::gpu::context > create_system_context(::particle * pparticle)
    {
 
-      return memory_new context_win32();
+      return pparticle->__create_new <context_win32>();
 
    }
 
@@ -64,9 +64,9 @@ namespace opengl
       if (!hwnd)
       {
 
-         TRACE("MS GDI - CreateWindow failed\n");
+         information("MS GDI - CreateWindow failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 
@@ -91,9 +91,9 @@ namespace opengl
       if (!popengl->m_atomClass)
       {
 
-         TRACE("MS GDI - RegisterClass failed\n");
+         information("MS GDI - RegisterClass failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 
@@ -110,9 +110,9 @@ namespace opengl
       if (!hdc)
       {
 
-         TRACE("MS GDI - GetDC failed\n");
+         information("MS GDI - GetDC failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 
@@ -137,9 +137,9 @@ namespace opengl
       if (chosenformat == 0)
       {
 
-         TRACE("MS GDI - ChoosePixelFormat failed\n");
+         information("MS GDI - ChoosePixelFormat failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -152,9 +152,9 @@ namespace opengl
       if (!spfok)
       {
 
-         TRACE("MS GDI - SetPixelFormat failed\n");
+         information("MS GDI - SetPixelFormat failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -167,9 +167,9 @@ namespace opengl
       if (!hglrc)
       {
 
-         TRACE("MS WGL - wglCreateContext failed\n");
+         information("MS WGL - wglCreateContext failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -182,9 +182,9 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         TRACE("MS WGL - wglMakeCurrent failed\n");
+         information("MS WGL - wglMakeCurrent failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          ReleaseDC(hwnd, hdc);
 
@@ -192,10 +192,12 @@ namespace opengl
 
       }
 
+
+      popengl->defer_init_glew();
+
       auto pszVersion = (const char *)glGetString(GL_VERSION);
       //::e_status estatus = 
 
-      popengl->defer_init_glew();
 
       //if (!estatus)
       //{
@@ -291,9 +293,9 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         TRACE("MS WGL - wglMakeCurrent failed\n");
+         information("MS WGL - wglMakeCurrent failed\n");
 
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("last-error code: %d\n", GetLastError());
 
          throw ::exception(error_failed);
 

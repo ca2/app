@@ -510,7 +510,7 @@ namespace account
          catch (const ::exception& exception)
          {
 
-            ERROR("check_ca2_hash " << exception.m_estatus.as_i64());
+            error() <<"check_ca2_hash " << exception.m_estatus.as_i64();
 
          }
 

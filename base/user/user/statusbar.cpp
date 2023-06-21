@@ -129,7 +129,7 @@ namespace user
          {
             /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                         {
-                           TRACE(trace_category_appmsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
+                           information(trace_category_appmsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                               pSBP->strId);
                            bResult = false;
                            break;

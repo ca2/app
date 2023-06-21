@@ -7,7 +7,7 @@
 #include "acme/primitive/string/str.h"
 
 
-//#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+//#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 //
 ////#include <stdio.h>
 //
@@ -307,7 +307,7 @@ namespace networking
 //            l = item.m_ipaddr;
 //         }
 //         //         ::time tick2= ::time::now();
-//         /*FORMATTED_TRACE("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//         /*information("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //         (u32)((::u8*)&pitem->m_ipaddr)[0],
 //         (u32)((::u8*)&pitem->m_ipaddr)[1],
 //         (u32)((::u8*)&pitem->m_ipaddr)[2],
@@ -388,7 +388,7 @@ namespace networking
 //#ifndef __CYGWIN__
 //         error += gai_strerror(n);
 //#endif
-//         ERROR(error + " for " + str);
+//         error() <<error + " for " + str;
 //         item.m_bOk = false;
 //         item.m_bTimeout = true;
 //         item.m_timeLastChecked.Now();
@@ -425,7 +425,7 @@ namespace networking
 //      }
 //
 //      //      ::time tick2= ::time::now();
-//      //      FORMATTED_TRACE("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//      //      information("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //         //       (u32)((::u8*)&pitem->m_ipaddr)[0],
 //         //     (u32)((::u8*)&pitem->m_ipaddr)[1],
 //         //   (u32)((::u8*)&pitem->m_ipaddr)[2],

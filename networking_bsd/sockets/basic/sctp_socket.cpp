@@ -45,7 +45,7 @@ namespace sockets_bsd
    {
       if (!ad.IsValid())
       {
-         ERROR("SctpSocket", -1, "invalid address");
+         error() <<"SctpSocket", -1, "invalid address";
          return -1;
       }
       if (GetSocketId() == INVALID_SOCKET)
@@ -57,7 +57,7 @@ namespace sockets_bsd
          i32 n = bind(GetSocketId(), ad, ad);
          if (n == -1)
          {
-            ERROR("SctpSocket", -1, "bind() failed");
+            error() <<"SctpSocket", -1, "bind() failed";
 #ifdef ENABLE_EXCEPTIONS
             throw ::exception(Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort())));
 #endif
@@ -88,18 +88,18 @@ namespace sockets_bsd
    {
       if (!ad.IsValid())
       {
-         ERROR("SctpSocket", -1, "invalid address");
+         error() <<"SctpSocket", -1, "invalid address";
          return -1;
       }
       if (GetSocketId() == INVALID_SOCKET)
       {
-         ERROR("SctpSocket", -1, "AddAddress called with invalid file descriptor");
+         error() <<"SctpSocket", -1, "AddAddress called with invalid file descriptor";
          return -1;
       }
       i32 n = sctp_bindx(GetSocketId(), ad, ad, SCTP_BINDX_ADD_ADDR);
       if (n == -1)
       {
-         ERROR("SctpSocket", -1, "sctp_bindx() failed");
+         error() <<"SctpSocket", -1, "sctp_bindx() failed";
       }
       return n;
    }
@@ -125,18 +125,18 @@ namespace sockets_bsd
    {
       if (!ad.IsValid())
       {
-         ERROR("SctpSocket", -1, "invalid address");
+         error() <<"SctpSocket", -1, "invalid address";
          return -1;
       }
       if (GetSocketId() == INVALID_SOCKET)
       {
-         ERROR("SctpSocket", -1, "RemoveAddress called with invalid file descriptor");
+         error() <<"SctpSocket", -1, "RemoveAddress called with invalid file descriptor";
          return -1;
       }
       i32 n = sctp_bindx(GetSocketId(), ad, ad, SCTP_BINDX_REM_ADDR);
       if (n == -1)
       {
-         ERROR("SctpSocket", -1, "sctp_bindx() failed");
+         error() <<"SctpSocket", -1, "sctp_bindx() failed";
       }
       return n;
    }
@@ -162,7 +162,7 @@ namespace sockets_bsd
    {
       if (!ad.IsValid())
       {
-         ERROR("SctpSocket", -1, "invalid address");
+         error() <<"SctpSocket", -1, "invalid address";
          return -1;
       }
       if (GetSocketId() == INVALID_SOCKET)
@@ -190,7 +190,7 @@ namespace sockets_bsd
             }
             else
             {
-               ERROR("SctpSocket", -1, "connect() failed");
+               error() <<"SctpSocket", -1, "connect() failed";
             }
          }
          return n;
@@ -220,18 +220,18 @@ namespace sockets_bsd
    {
       if (!ad.IsValid())
       {
-         ERROR("SctpSocket", -1, "invalid address");
+         error() <<"SctpSocket", -1, "invalid address";
          return -1;
       }
       if (GetSocketId() == INVALID_SOCKET)
       {
-         ERROR("SctpSocket", -1, "AddConnection called with invalid file descriptor");
+         error() <<"SctpSocket", -1, "AddConnection called with invalid file descriptor";
          return -1;
       }
       i32 n = sctp_connectx(GetSocketId(), ad, ad);
       if (n == -1)
       {
-         ERROR("SctpSocket", -1, "sctp_connectx() failed");
+         error() <<"SctpSocket", -1, "sctp_connectx() failed";
       }
       else
       {
@@ -248,7 +248,7 @@ namespace sockets_bsd
       i32 n = sctp_getpaddrs(GetSocketId(), atom, &point);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getpaddrs failed");
+         warning() <<"SctpSocket", -1, "sctp_getpaddrs failed";
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -266,7 +266,7 @@ namespace sockets_bsd
       i32 n = sctp_getladdrs(GetSocketId(), atom, &point);
       if (!n || n == -1)
       {
-         WARNING("SctpSocket", -1, "sctp_getladdrs failed");
+         warning() <<"SctpSocket", -1, "sctp_getladdrs failed";
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -283,7 +283,7 @@ namespace sockets_bsd
       i32 n = sctp_peeloff(GetSocketId(), atom);
       if (n == -1)
       {
-         WARNING("SctpSocket", -1, "PeelOff failed");
+         warning() <<"SctpSocket", -1, "PeelOff failed";
          return -1;
       }
       socket *point = create();
@@ -320,7 +320,7 @@ namespace sockets_bsd
       i32 n = sctp_recvmsg(GetSocketId(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
       if (n == -1)
       {
-         FATAL(log_this, "SctpSocket", networking_last_error(), bsd_socket_error(networking_last_error()));
+         fatal() <<log_this, "SctpSocket", networking_last_error(), bsd_socket_error(networking_last_error());
          SetCloseAndDelete();
       }
       else
@@ -350,7 +350,7 @@ namespace sockets_bsd
             SetCallOnConnect();
             return;
          }
-         FATAL(log_this, "sctp: connect failed", err, bsd_socket_error(err));
+         fatal() <<log_this, "sctp: connect failed", err, bsd_socket_error(err);
          set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -381,7 +381,7 @@ namespace sockets_bsd
 
    void SctpSocket::on_connection_timeout()
    {
-      FATAL(log_this, "connect", -1, "connect timeout");
+      fatal() <<log_this, "connect", -1, "connect timeout";
 #ifdef ENABLE_SOCKS4
       if (Socks4())
       {
@@ -447,7 +447,7 @@ namespace sockets_bsd
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       i32 err = SoError();
-      FATAL(log_this, "exception on select", err, bsd_socket_error(err));
+      fatal() <<log_this, "exception on select", err, bsd_socket_error(err);
       SetCloseAndDelete();
    }
 #endif // _WIN32

@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      ::channel *                         m_pchannel;
+      //::channel *                         m_pchannel;
       ::pointer < ::windowing::window >   m_pwindow;
       bool                                m_bConditional;
       bool                                m_bReflect;
@@ -28,6 +28,10 @@ namespace user
 
 
       ::windowing::window * window() { return m_pwindow; }
+
+
+      message & operator = (const message & message);
+
 
    };
 

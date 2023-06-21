@@ -249,7 +249,7 @@ SizingNone:;
          ::rectangle_i32 rectangle;
          GetBorderRect(rectangleA, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, opaque(crMoveableBorder));//m_colorMoveableBorderDkShadow);
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder.opaque());//m_colorMoveableBorderDkShadow);
 
          // rgb(255, 170, 136) RedOrange
       }
@@ -277,7 +277,7 @@ SizingNone:;
                      
             GetBorderRect(rectangleClient, &rectangle, eside);
                      
-            pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
+            pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
          }
 
@@ -291,7 +291,7 @@ SizingNone:;
                   
          GetBorderRect(rectangleClient, &rectangle, eside);
                   
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
                   
       }
       else
@@ -301,7 +301,7 @@ SizingNone:;
                   
          GetBorderRect(rectangleClient, &rectangle, eside);
                   
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
          ::rectangle_i32 rectangleClientB = rectangleA;
 

@@ -2005,7 +2005,7 @@ namespace experience_core
             if (elapsed < periodFadeOut)
             {
 
-               uchAlpha = as_byte(255 *( (periodFadeOut - elapsed) / periodFadeOut));
+               uchAlpha = as_byte(255 * ((periodFadeOut - elapsed) / periodFadeOut));
 
             }
             else
@@ -2103,27 +2103,41 @@ namespace experience_core
 
       }
 
-      auto ppenArrow = __create < ::draw2d::pen >();
+      {
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
+         auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient, pgraphics);
 
-      pgraphics->set(ppenArrow);
+         auto ppenArrow = __create < ::draw2d::pen >();
 
-      pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-      pgraphics->set(pbar->m_pbrushDraw);
+         pgraphics->set(ppenArrow);
 
-      pgraphics->rectangle(pbar->m_rectangleA);
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+         pgraphics->set(pbar->m_pbrushDraw);
 
-      pgraphics->set(ppenArrow);
+         pgraphics->rectangle(rectangleA);
 
-      pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
+      }
 
-      pgraphics->set(pbar->m_pbrushDraw);
+      {
 
-      pgraphics->rectangle(pbar->m_rectangleB);
+         auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient, pgraphics);
+
+         auto ppenArrow = __create < ::draw2d::pen >();
+
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+
+         pgraphics->set(ppenArrow);
+
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
+
+         pgraphics->set(pbar->m_pbrushDraw);
+
+         pgraphics->rectangle(rectangleB);
+
+      }
 
       if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
@@ -2152,21 +2166,39 @@ namespace experience_core
 
       }
 
-      ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
-      ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
-      ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
+      {
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
+         auto ppenArrow = __create < ::draw2d::pen >();
 
-      pgraphics->set(ppenArrow);
+         ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
+         ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
+         ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-      pgraphics->polyline(pbar->m_pointaA, 3);
+         {
 
-      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+            auto pointaA = pbar->get_arrowA(rectangleClient, pgraphics);
 
-      pgraphics->set(ppenArrow);
+            ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-      pgraphics->polyline(pbar->m_pointaB, 3);
+            pgraphics->set(ppenArrow);
+
+            pgraphics->polyline(pointaA);
+
+         }
+
+         {
+
+            auto pointaB = pbar->get_arrowB(rectangleClient, pgraphics);
+
+            ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+
+            pgraphics->set(ppenArrow);
+
+            pgraphics->polyline(pointaB);
+
+         }
+
+      }
 
       return true;
 

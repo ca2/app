@@ -52,8 +52,8 @@ namespace simple_ui
    void tap::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      FORMATTED_INFORMATION("simple_ui::_001OnDraw pos(%d,%d)", layout().sketch().origin().x(), layout().sketch().origin().y());
-      FORMATTED_INFORMATION("simple_ui::_001OnDraw scr_pos(%d,%d)", screen_origin().x(), screen_origin().y());
+      information("simple_ui::_001OnDraw pos(%d,%d)", layout().sketch().origin().x(), layout().sketch().origin().y());
+      information("simple_ui::_001OnDraw scr_pos(%d,%d)", screen_origin().x(), screen_origin().y());
 
       simple_ui_draw_volume(pgraphics);
 
@@ -117,7 +117,7 @@ namespace simple_ui
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      INFORMATION("simple_ui::tap::on_message_mouse_move");
+      information() << "simple_ui::tap::on_message_mouse_move";
 
       pmouse->m_bRet = true;
 

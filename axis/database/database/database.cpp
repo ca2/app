@@ -93,7 +93,7 @@ namespace database
    //void database::trace_error1(const ::string & pszPrefix)
    //{
    //   //m_pdatabase->add_error_message(error1(pszPrefix));
-   //   //FORMATTED_TRACE("%s", m_strLastError.c_str());
+   //   //information("%s", m_strLastError.c_str());
    //}
 
 
@@ -493,7 +493,7 @@ namespace database
    {
 
      //m_strLastError += error1(pszPrefix);
-     //FORMATTED_TRACE("%s", m_strLastError.c_str());
+     //information("%s", m_strLastError.c_str());
 
    }
 

@@ -152,7 +152,7 @@ namespace aura
          if(m_plibrary == nullptr)
          {
 
-            ERROR("acme::library::open error: " << pszPath);
+            error() <<"acme::library::open error: " << pszPath;
 
             return false;
 
@@ -164,13 +164,13 @@ namespace aura
       catch(...)
       {
 
-         FORMATTED_ERROR("acme::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
+         error("acme::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
 
          return false;
 
       }
 
-      INFORMATION("acme::library::open success");
+      information() << "acme::library::open success";
 
       if (m_strCa2Name.has_char())
       {

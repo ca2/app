@@ -807,7 +807,7 @@ pacmedirectory->create("/ca2core");
 
          if (status != errAuthorizationSuccess)
          {
-            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
+            information("Error Creating Initial Authorization: %d", status);
 
             return false;
 
@@ -830,7 +830,7 @@ pacmedirectory->create("/ca2core");
          if (status != errAuthorizationSuccess)
          {
 
-            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
+            information("Copy Rights Unsuccessful: %d", status);
 
             return false;
 
@@ -880,7 +880,7 @@ pacmedirectory->create("/ca2core");
       //if(!estatus)
       //{
 
-      //   ERROR("failed to initialize file-system");
+      //   error() <<"failed to initialize file-system";
 
       //   return estatus;
 
@@ -892,13 +892,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   ERROR("failed to initialize dir-system");
+      //   error() <<"failed to initialize dir-system";
 
       //   return false;
 
       //}
 
-      ///INFORMATION("apex::session::process_init .3");
+      ///information() << "apex::session::process_init .3";
 
       //estatus = 
       m_pfilesystem->init_system();
@@ -1034,7 +1034,7 @@ pacmedirectory->create("/ca2core");
             //if(!estatus)
             //{
 
-               //WARNING("failed to process_init ::apex::log trace");
+               //warning() <<"failed to process_init ::apex::log trace";
 
             //}
 
@@ -1088,7 +1088,7 @@ pacmedirectory->create("/ca2core");
             //if (!pfactoryCrypto)
             //{
 
-            //   WARNING("Could not open crypto openssl plugin.");
+            //   warning() <<"Could not open crypto openssl plugin.";
 
             //   //return pfactoryCrypto;
 
@@ -1103,7 +1103,7 @@ pacmedirectory->create("/ca2core");
          catch (...)
          {
 
-            FORMATTED_ERROR("No crypto library!!");
+            error("No crypto library!!");
 
          }
 
@@ -1202,13 +1202,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   FATAL("axis::application::process_init .2");
+      //   fatal() <<"axis::application::process_init .2";
 
       //   return false;
 
       //}
 
-      //INFORMATION("start");
+      //information() << "start";
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1240,7 +1240,7 @@ pacmedirectory->create("/ca2core");
 //
 //#endif // LINUX
 
-      //INFORMATION("success");
+      //information() << "success";
 
 //      return true;
 
@@ -2222,7 +2222,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      INFORMATION(strPrint);
+      information() << strPrint;
 
       if (iReportType == _CRT_ASSERT)
       {
@@ -2327,7 +2327,7 @@ pacmedirectory->create("/ca2core");
 
       //   //}
 
-      //   TRACE(strMessage);
+      //   information(strMessage);
 
       //}
 
@@ -2900,27 +2900,27 @@ pacmedirectory->create("/ca2core");
    //
    //      if(!strcmp(pszLibrary,"app_core_rdpclient"))
    //      {
-   //         INFORMATION("reach");
+   //         information() << "reach";
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         INFORMATION("reach app_core_hello_multiverse");
+   //         information() << "reach app_core_hello_multiverse";
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
    //      {
-   //         INFORMATION("reach experience_lite");
+   //         information() << "reach experience_lite";
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         INFORMATION("reach app_core_hello_multiverse");
+   //         information() << "reach app_core_hello_multiverse";
    //      }
    //
    //      if(!library.open(pszLibrary, true))
    //      {
-   //         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
+   //         information() << "::system::map_application_library Failed to open library :" << pszLibrary;
    //         return false;
    //      }
    //
@@ -5200,7 +5200,7 @@ string get_bundle_app_library_name();
          //if (!pfactoryCrypto)
          //{
 
-         //   WARNING("Could not open crypto openssl plugin.");
+         //   warning() <<"Could not open crypto openssl plugin.";
 
          //   //return pfactoryCrypto;
 
@@ -5244,7 +5244,7 @@ string get_bundle_app_library_name();
    ::string system::fetch_public_internet_domain_extension_list_text()
    {
 
-      throw interface_only();
+      //throw interface_only();
 
       ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
 

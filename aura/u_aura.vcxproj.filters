@@ -969,6 +969,9 @@
     <ClInclude Include="aaa_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\path_optimization.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1503,6 +1506,9 @@
     </ClCompile>
     <ClCompile Include="graphics\image\drawing.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\path_optimization.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

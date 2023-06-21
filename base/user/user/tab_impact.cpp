@@ -1126,7 +1126,7 @@ namespace user
 
 #ifdef VERBOSE_LOG               
 
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
+               information()(e_trace_category_prodevian) << "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n";
 
 #endif
 

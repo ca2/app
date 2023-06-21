@@ -62,7 +62,7 @@ namespace universal_windows
             catch (...)
             {
 
-               FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", __type_name(this));
+               information("Exception: interaction::_000OnDraw _001DrawChildren %s", __type_name(this));
 
             }
 
@@ -109,7 +109,7 @@ namespace universal_windows
          catch (...)
          {
 
-            TRACE("\n\nException thrown while drawing user::interaction\n\n");
+            information("\n\nException thrown while drawing user::interaction\n\n");
 
          }
 

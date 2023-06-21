@@ -26,7 +26,7 @@
 
 
 #undef ERROR
-#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 
 namespace sockets_bsd
@@ -87,7 +87,7 @@ namespace sockets_bsd
          if(!::is_null(socket_handler()))
          {
 
-            WARNING("socket::close: file descriptor invalid");
+            warning() <<"socket::close: file descriptor invalid";
 
          }
 
@@ -104,7 +104,7 @@ namespace sockets_bsd
          {
 
             // failed...
-            ERROR("close" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+            error() <<"close" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
 
          }
 
@@ -167,7 +167,7 @@ namespace sockets_bsd
             if (pprotoent == nullptr)
             {
 
-               FATAL("getprotobyname" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+               fatal() <<"getprotobyname" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
 
                SetCloseAndDelete();
 
@@ -195,7 +195,7 @@ namespace sockets_bsd
       if (s == INVALID_SOCKET)
       {
 
-         FATAL("socket" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+         fatal() <<"socket" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
 
          SetCloseAndDelete();
          throw ::exception(error_socket, string("socket() failed: ") + bsd_socket_error(networking_last_error()));
@@ -247,7 +247,7 @@ namespace sockets_bsd
       if (n != 0)
       {
 
-         INFORMATION("ioctlsocket(FIONBIO) " << networking_last_error());
+         information() << "ioctlsocket(FIONBIO) " << networking_last_error();
 
          return false;
       }
@@ -258,7 +258,7 @@ namespace sockets_bsd
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
 
-            ERROR("fcntl(F_SETFL, O_NONBLOCK)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+            error() <<"fcntl(F_SETFL, O_NONBLOCK)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
 
             return false;
          }
@@ -268,7 +268,7 @@ namespace sockets_bsd
          if (fcntl(s, F_SETFL, 0) == -1)
          {
 
-            ERROR("fcntl(F_SETFL, 0)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+            error() <<"fcntl(F_SETFL, 0)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
 
             return false;
          }

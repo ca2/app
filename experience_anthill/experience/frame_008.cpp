@@ -382,7 +382,7 @@ namespace experience_anthill
       else if (estyle == ::user::StyleLightBlue || estyle == ::user::StyleRedOrange)
       {
          //rectangleA.deflate(1,1,1,1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorderHilight, 0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorderHilight, ::color::transparent);//m_colorMoveableBorderDkShadow);
 
          //if(!m_bHollow)
          //{

@@ -864,7 +864,7 @@ namespace user
 
          pmessage->m_point = lparam.point();
 
-         pmessage->m_greekdelta = second_i16(wparam);
+         pmessage->m_Δ = second_i16(wparam);
 
          _raw_client_to_screen(pmessage->m_point);
 
@@ -1258,7 +1258,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw, bool bAscendants)
+   void primitive_impl::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    {
 
 
@@ -1841,13 +1841,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
          
-         TRACE("moving: skip walk pre translate tree");
+         information("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
          
-         TRACE("sizing: skip walk pre translate tree");
+         information("sizing: skip walk pre translate tree");
 
       }
       else
@@ -2058,7 +2058,7 @@ namespace user
 
       start_destroying_window();
 
-      //FORMATTED_TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
+      //information("destroy_impl_only DestroyWindow %d", bOk != false);
 
       //return bOk;
 
@@ -2483,7 +2483,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 
@@ -2511,7 +2511,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 

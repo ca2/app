@@ -140,7 +140,7 @@
 //   if (lpszMsgName != nullptr)
 //   {
 //#ifdef _WIN64
-//      //FORMATTED_TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
+//      //information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
 //      // lpszPrefix, pusermessage->m_hwnd, lpszMsgName,
 //      //pusermessage->m_wparam, pusermessage->m_lparam);
 //#else
@@ -223,7 +223,7 @@
 //   if (lpszMsgName != nullptr)
 //   {
 //#ifdef WIN64
-//      //      FORMATTED_TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
+//      //      information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
 //      //       lpszPrefix, pMsg->hwnd, lpszMsgName,
 //      //     pMsg->wParam, pMsg->lParam);
 //#else

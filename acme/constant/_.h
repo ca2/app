@@ -15,6 +15,14 @@
 //#include "_enumeration.h"
 
 
+enum enum_start_reference
+{
+
+   e_start_reference,
+
+};
+
+
 enum enum_font_awesome : ::i32;
 
 
@@ -80,7 +88,7 @@ enum enum_image_type
 
 
 
-#include "_mathematics.h"
+//#include "_mathematics.h"
 
 
 #include "_geometry.h"

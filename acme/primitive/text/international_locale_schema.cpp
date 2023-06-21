@@ -713,7 +713,7 @@ namespace text
 
             if (m_idaLocale.get_count() > 256)
             {
-               //TRACE("What!!!!!!");
+               //information("What!!!!!!");
             }
 
             for (index i = 0; i < m_idaLocale.get_count(); i++)

@@ -446,7 +446,7 @@ namespace user
 
          rEdit.deflate(rectanglePadding);
 
-         pgraphics->fill_rectangle(rEdit, color.get_rgba());
+         pgraphics->fill_rectangle(rEdit, color);
 
       }
 
@@ -458,7 +458,7 @@ namespace user
 
       ::color::color color(get_color(pstyle, estate));
 
-      if (!color)
+      if (color.is_transparent())
       {
 
          color = argb(210, 230, 230, 230);

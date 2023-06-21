@@ -421,10 +421,10 @@ auto tick2 = ::time::now();
          output_debug_string("| \n");
 
          ::aura::application * papp = m_p->get_app();
-         TRACE("/--------------------------------");
-         TRACE("| fastblur::blur");
-         TRACE("| ");
-         FORMATTED_TRACE("| do_fastblur = %d ms",dw3);
+         information("/--------------------------------");
+         information("| fastblur::blur");
+         information("| ");
+         information("| do_fastblur = %d ms",dw3);
       }
 
       {
@@ -538,10 +538,10 @@ auto tickC1 = ::time::now();
             output_debug_string("| \n");
 
             //::aura::application * papp = pimage->get_app();
-            INFORMATION("/--------------------------------");
-            INFORMATION("| fastblur::blur");
-            INFORMATION("| ");
-            INFORMATION("| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond());
+            information() << "/--------------------------------";
+            information() << "| fastblur::blur";
+            information() << "| ";
+            information() << "| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond();
 
          }
 
@@ -631,10 +631,10 @@ auto tick2 = ::time::now();
       output_debug_string("| \n");
 
       ::aura::application * papp = m_p->get_app();
-      TRACE("/--------------------------------");
-      TRACE("| fastblur::blur");
-      TRACE("| ");
-      FORMATTED_TRACE("| do_fastblur = %d ms",dw3);
+      information("/--------------------------------");
+      information("| fastblur::blur");
+      information("| ");
+      information("| do_fastblur = %d ms",dw3);
       */
 #endif
 
@@ -652,10 +652,10 @@ auto tick2 = ::time::now();
 
 
    inline void boxBlurNEON(u32* sourcePixel,u32* destinationPixel,
-                           unsigned greekdeltax,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                           unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      float32x4_t deltaX = vdupq_n_f32(1.0 / greekdeltax);
+      float32x4_t deltaX = vdupq_n_f32(1.0 / Δx);
 
       int pixelLine = strideLine / 4;
 
@@ -882,10 +882,10 @@ auto tick2 = ::time::now();
 #if VECTOR3_SSE
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
-                          unsigned greekdeltax,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                          unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      vector4 deltaX = vector4(1.0f / greekdeltax,1.0f / greekdeltax,1.0f / greekdeltax,1.0f / greekdeltax);
+      vector4 deltaX = vector4(1.0f / Δx,1.0f / Δx,1.0f / Δx,1.0f / Δx);
 
       int pixelLine = strideLine / 4;
 

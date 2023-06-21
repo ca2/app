@@ -97,12 +97,12 @@ namespace netserver
 
       string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
 
-      FORMATTED_INFORMATION("socket::OnExecute: %s\n", strUrl.c_str());
+      information("socket::OnExecute: %s\n", strUrl.c_str());
 
       for (auto& item : m_request.headers())
       {
 
-         FORMATTED_INFORMATION("Headers %s=%s\n", item->m_atom.as_string().c_str(), item->as_string().c_str());
+         information("Headers %s=%s\n", item->m_atom.as_string().c_str(), item->as_string().c_str());
 
       }
 
@@ -112,7 +112,7 @@ namespace netserver
 
       auto tickExecuteEnd = ::time::now();
 
-      ERROR("=> " << (tickExecuteEnd - tickExecuteBeg).integral_second());
+      error() <<"=> " << (tickExecuteEnd - tickExecuteBeg).integral_second();
 
    }
 

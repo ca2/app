@@ -404,7 +404,7 @@ namespace user
       if (c <= 0)
       {
 
-         TRACE("removing document template not managed by document manager");
+         information("removing document template not managed by document manager");
 
       }
 
@@ -678,7 +678,7 @@ namespace user
    {
    if (m_templateptra.is_empty())
    {
-   TRACE(trace_category_appmsg, 0, "Error: no document templates registered with application.\n");
+   information(trace_category_appmsg, 0, "Error: no document templates registered with application.\n");
    // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
    message_box(nullptr, "Failed to create document");
    return;
@@ -842,7 +842,7 @@ namespace user
          else
          {
 
-            CATEGORY_ERROR(appmsg, "Error: Can not find a ::user::impact for document to activate.");
+            error()(e_trace_category_appmsg) << "Error: Can not find a ::user::impact for document to activate.";
 
          }
 

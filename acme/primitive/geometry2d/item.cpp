@@ -168,16 +168,16 @@ namespace geometry2d
 
    //   double y = p.y();
 
-   //   double greekdeltax = x - center.x();
+   //   double Δx = x - center.x();
 
-   //   double greekdeltay = y - center.y();
+   //   double Δy = y - center.y();
 
    //   if (radius.cx() == radius.cy())
    //   {
 
    //      double r = radius.cx();
 
-   //      double square_distance = (greekdeltax * greekdeltax) + (greekdeltay * greekdeltay);
+   //      double square_distance = (Δx * Δx) + (Δy * Δy);
 
    //      double square_boundary = (r * r);
 
@@ -187,7 +187,7 @@ namespace geometry2d
    //   else
    //   {
 
-   //      double normal_distance = ((greekdeltax * greekdeltax) / (radius.cx() * radius.cx()) + (greekdeltay * greekdeltay) / (radius.cx() * radius.cy()));
+   //      double normal_distance = ((Δx * Δx) / (radius.cx() * radius.cx()) + (Δy * Δy) / (radius.cx() * radius.cy()));
 
    //      return normal_distance <= 1.0;
 
@@ -550,6 +550,23 @@ namespace geometry2d
       return m_rectangle.contains(point);
 
    }
+
+
+   ::particle_pointer combine_item::clone() const
+   {
+
+      auto pitem = __new(combine_item);
+
+      pitem->m_pregion1 = m_pregion1->clone();
+
+      pitem->m_pregion2 = m_pregion2->clone();
+
+      pitem->m_ecombine = m_ecombine;
+
+      return pitem;
+
+   }
+
 
 
 } // namespace geometry2d

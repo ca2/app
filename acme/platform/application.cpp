@@ -201,11 +201,11 @@ namespace acme
 
       psystem->initialize_system();
 
+      psystem->system_construct(this);
+
       //psystem->acmeapplication() = pacmeapplication;
 
       //psystem->m_psubsystem = psubsystem;
-
-      psystem->system_construct(this);
 
       psystem->create_os_node();
 

@@ -3197,6 +3197,9 @@
     <ClInclude Include="primitive\mathematics\_constant.h">
       <Filter>Header Files\primitive\mathematics</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\mathematics\trigonometry.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

@@ -73,15 +73,15 @@ namespace mathematics
 
       }
 
-      i64 i0 = ::integral_nanosecond();
+      i64 i0 = ::i64_nanosecond();
 
-      preempt(integral_millisecond(bLevel));
+      preempt(microsecond_time(bLevel));
 
-      i64 i1 = ::integral_nanosecond();
+      i64 i1 = ::i64_nanosecond();
 
       i64 i2 = time(nullptr);
 
-      i64 i3 = ::integral_nanosecond();
+      i64 i3 = ::i64_nanosecond();
 
       i64 i4 = abs(i0 + i1 + i2 + i3);
 

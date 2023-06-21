@@ -622,7 +622,7 @@ namespace user
 
       }
 
-      i64 i1 = ::integral_nanosecond();
+      i64 i1 = ::i64_nanosecond();
 
       bRedraw = m_message.wParam & 1;
 
@@ -1085,7 +1085,7 @@ namespace user
 
          //bUpdateWindow = false;
 
-         i64 i1 = ::integral_nanosecond();
+         i64 i1 = ::i64_nanosecond();
 
       //   bool bTransparentDraw;
 
@@ -1138,7 +1138,7 @@ namespace user
 
          m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 
-         i64 i2 = ::integral_nanosecond();
+         i64 i2 = ::i64_nanosecond();
 
 #if TIME_REPORTING
 

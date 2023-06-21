@@ -22,7 +22,7 @@ namespace user
 
       m_pscrolldataVertical->m_bScroll = false;
       m_pscrolldataVertical->m_iPage = 0;
-      m_pscrolldataVertical->m_iLine = 0;
+      m_pscrolldataVertical->m_iLine = 60;
       m_pscrolldataVertical->m_bScrollEnable = true;
 
    }

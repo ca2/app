@@ -1409,7 +1409,7 @@ namespace user
    void interaction::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function,  bool bAscendants)
    {
       
-      if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
+      //if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
       {
          
          

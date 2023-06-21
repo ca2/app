@@ -63,10 +63,12 @@ class native_window;
 namespace user
 {
 
+
    class redraw :
    public ::particle
    {
    public:
+
       
       ::rectangle_i32_array               m_rectanglea;
       ::array < ::function <void() > >    m_functiona;

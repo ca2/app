@@ -143,9 +143,26 @@ namespace acme
 
          SymFromAddr(process, (DWORD64)(stack[i]), 0, psymbolinfo);
 
+         IMAGEHLP_LINE imagehlp_line{.SizeOfStruct =sizeof(IMAGEHLP_LINE)};
+
+         DWORD dwCharacter = 0;
+
+         SymGetLineFromAddr64(process, (DWORD64)(stack[i]), &dwCharacter, &imagehlp_line);
+
          string strLine;
 
-         strLine.format("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
+         if (dwCharacter)
+         {
+
+            strLine.format("%02d : %" PRIdPTR " : %s %d,%d\n", frames - i - 1, psymbolinfo->Address, imagehlp_line.LineNumber, dwCharacter);
+
+         }
+         else
+         {
+
+            strLine.format("%02d : %" PRIdPTR " : %s %d\n", frames - i - 1, psymbolinfo->Address, imagehlp_line.LineNumber);
+
+         }
 
          strCallstack += strLine;
 

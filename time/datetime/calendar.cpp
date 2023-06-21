@@ -246,7 +246,7 @@ namespace datetime
       }
 
 
-      enum_element calendar::hit_test(const point_i32 & point)
+      enum_element calendar::hit_test(const point_i32 & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
@@ -276,7 +276,7 @@ namespace datetime
          int32_t iDay;
          for (iDay = 1; iDay <= 33; iDay++)
          {
-            GetRectDay(time, rectangleDay);
+            GetRectDay(time, &rectangleDay);
             if (rectangleDay.contains(point))
             {
                timeRet = time;
@@ -295,7 +295,7 @@ namespace datetime
 
          ::rectangle_i32 rectangle;
 
-         GetRect(rectangle, eelement);
+         GetRect(&rectangle, eelement);
 
          return rectangle.contains(point) != false;
 

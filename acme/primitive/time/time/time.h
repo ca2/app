@@ -362,7 +362,7 @@ public:
    constexpr::i64 integral_hour() const { return m_iSecond / 3'600; }
    constexpr::i64 integral_minute() const { return m_iSecond / 60; }
    constexpr::i64 integral_second() const { return m_iSecond; }
-   constexpr ::i64 integral_millisecond() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000; }
+   constexpr::i64 integral_millisecond() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000; }
    constexpr::i64 integral_microsecond() const { return m_iSecond * 1'000'000 + m_iNanosecond / 1'000; }
    constexpr::i64 integral_nanosecond() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
 
@@ -393,7 +393,12 @@ public:
    //inline bool operator <= (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond <= time.m_iNanosecond); }
    //inline bool operator > (const class time & time) const { return !operator <=(time); }
    //inline bool operator >= (const class time & time) const { return !operator <=(time); }
+   ::pair < ::i64, time > count_and_remainder(const class time & time)
+   {
 
+      return { (::i64)(*this / time), *this % time };
+
+   }
 
    constexpr time operator %(const class time & time) const;
    constexpr double operator /(const class time & time) const;

@@ -19802,7 +19802,9 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+      //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+
+      auto pointScroll = point + m_pointBarDragScroll;
 
       for (auto & pitem : *m_pitema)
       {

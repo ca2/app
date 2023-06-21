@@ -87,6 +87,7 @@ struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
    ITEM_DATA_ADDITIONS()
    {
 
+      m_ezorder = ::user::e_zorder_front;
 
    }
    

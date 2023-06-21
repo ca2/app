@@ -1201,21 +1201,34 @@ inline class time time::remaining(const class time & time, const class time & ti
 
 
 
-
-constexpr class time integral_nanosecond(::i64 i) { return { (::i64)i / 1'000'000'000, (long)(i % 1'000'000'000) }; }
-constexpr class time floating_nanosecond(double d) { return { (::i64)(d / 1'000'000'000.0), (long)(fmod(d, 1'000'000'000.0)) }; }
-constexpr class time integral_microsecond(::i64 i) { return { i / 1'000'000, (long)((i % 1'000'000) * 1'000) }; }
-constexpr class time floating_microsecond(double d) { return { (::i64)(d / 1'000'000.0), (long)(fmod(d, 1'000'000.0) * 1'000.0) }; }
-constexpr class time integral_millisecond(::i64 i) { return { i / 1'000, (long)((i % 1'000) * 1'000'000) }; }
-constexpr class time floating_millisecond(double d) { return { (::i64)(d / 1'000.0), (long)(fmod(d, 1'000.0) * 1'000'000.0) }; }
-constexpr class time integral_second(::i64 i) { return { i }; }
-constexpr class time floating_second(double d) { return { (::i64)(d), (long)(fmod(d, 1.0) * 1'000'000'000.0) }; }
-constexpr class time integral_minute(::i64 i) { return { i * 60 }; }
-constexpr class time floating_minute(double d) { return { (::i64)(d * 60.0), (long)(fmod(d * 60.0, 1.0) * 1'000'000'000.0) }; }
-constexpr class time integral_hour(::i64 i) { return { i * 3'600 }; }
-constexpr class time floating_hour(double d) { return { (::i64)(d * 3'600.0), (long)(fmod(d * 3'600.0, 1.0) * 1'000'000'000.0) }; }
-constexpr class time integral_day(::i64 i) { return { i * 86'400 }; }
-constexpr class time floating_day(double d) { return { (::i64)(d * 86'400.0), (long)(fmod(d * 86'400.0, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time nanosecond_time(INTEGRAL i) { return { (INTEGRAL)i / 1'000'000'000, (long)(i % 1'000'000'000) }; }
+template < primitive_floating FLOATING >
+constexpr class time nanosecond_time(FLOATING f) { return { (FLOATING)(f / 1'000'000'000.0), (long)(fmod(f, 1'000'000'000.0)) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time microsecond_time(INTEGRAL i) { return { i / 1'000'000, (long)((i % 1'000'000) * 1'000) }; }
+template < primitive_floating FLOATING >
+constexpr class time microsecond_time(FLOATING f) { return { (FLOATING)(f / 1'000'000.0), (long)(fmod(f, 1'000'000.0) * 1'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time millisecond_time(INTEGRAL i) { return { i / 1'000, (long)((i % 1'000) * 1'000'000) }; }
+template < primitive_floating FLOATING >
+constexpr class time millisecond_time(FLOATING f) { return { (FLOATING)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time second_time(INTEGRAL i) { return { i }; }
+template < primitive_floating FLOATING >
+constexpr class time second_time(FLOATING f) { return { (FLOATING)(f), (long)(fmod(f, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time minute_time(INTEGRAL i) { return { i * 60 }; }
+template < primitive_floating FLOATING >
+constexpr class time minute_time(FLOATING f) { return { (FLOATING)(f * 60.0), (long)(fmod(f * 60.0, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time hour_time(INTEGRAL i) { return { i * 3'600 }; }
+template < primitive_floating FLOATING >
+constexpr class time hour_time(FLOATING f) { return { (FLOATING)(f * 3'600.0), (long)(fmod(f * 3'600.0, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time day_time(INTEGRAL i) { return { i * 86'400 }; }
+template < primitive_floating FLOATING >
+constexpr class time day_time(FLOATING f) { return { (FLOATING)(f * 86'400.0), (long)(fmod(f * 86'400.0, 1.0) * 1'000'000'000.0) }; }
 
 
 

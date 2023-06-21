@@ -169,8 +169,6 @@ namespace user
 
                m_pdragCurrent->m_bDrag = true;
 
-               auto pointDrag = pmouse->m_point - m_pdragCurrent->m_sizeLButtonDownOffset;
-
                drag_shift(m_pdragCurrent);
 
                if (m_pdragCurrent->m_ecursor != e_cursor_none)

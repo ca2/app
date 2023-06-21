@@ -1220,6 +1220,15 @@ template < primitive_floating FLOATING >
 constexpr class time millisecond_time(FLOATING f) { return { (FLOATING)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
 template < primitive_integral INTEGRAL >
 constexpr class time second_time(INTEGRAL i) { return { i }; }
+template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
+constexpr class time second_time(NUMERATOR numerator, DENOMINATOR denominator)
+{
+   return  
+   { 
+      (::i64) (numerator / denominator),
+      (::i64) ((numerator % denominator) * 1'000'000'000 / denominator)
+   }; 
+}
 template < primitive_floating FLOATING >
 constexpr class time second_time(FLOATING f) { return { (FLOATING)(f), (long)(fmod(f, 1.0) * 1'000'000'000.0) }; }
 template < primitive_integral INTEGRAL >

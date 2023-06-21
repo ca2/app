@@ -2111,7 +2111,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          if (path.case_insensitive_begins_eat("itdoesntexist."))
          {
 
-            class ::time t = integral_millisecond(::as_i64(path));
+            class ::time t = milisecond_time(::as_i64(path));
 
             auto elapsed = t.elapsed();
 
@@ -2359,7 +2359,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    bOk = false;
 
-   path = "itdoesntexist." + ::as_string(::integral_millisecond());
+   path = "itdoesntexist." + ::as_string(::i64_millisecond());
 
 ret:
 

@@ -124,6 +124,16 @@
     <ClInclude Include="graphics\draw2d\_visual_impl.h" />
     <ClInclude Include="graphics\draw3d\ortho.h" />
     <ClInclude Include="graphics\draw3d\_draw3d.h" />
+    <ClInclude Include="graphics\gpu\aaaa_gpu.h" />
+    <ClInclude Include="graphics\gpu\approach.h" />
+    <ClInclude Include="graphics\gpu\buffer.h" />
+    <ClInclude Include="graphics\gpu\context.h" />
+    <ClInclude Include="graphics\gpu\object.h" />
+    <ClInclude Include="graphics\gpu\program.h" />
+    <ClInclude Include="graphics\gpu\render.h" />
+    <ClInclude Include="graphics\gpu\shader.h" />
+    <ClInclude Include="graphics\gpu\_.h" />
+    <ClInclude Include="graphics\gpu\_constant.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\graphics\buffer.h" />
     <ClInclude Include="graphics\graphics\console.h" />
@@ -371,11 +381,6 @@
     </ClCompile>
     <ClCompile Include="game\estamira.cpp" />
     <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="gpu\gpu\approach.cpp" />
-    <ClCompile Include="gpu\gpu\buffer.cpp" />
-    <ClCompile Include="gpu\gpu\context.cpp" />
-    <ClCompile Include="gpu\gpu\program.cpp" />
-    <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\alpha.cpp" />
     <ClCompile Include="graphics\draw2d\api.cpp" />
     <ClCompile Include="graphics\draw2d\bitmap.cpp" />
@@ -441,6 +446,13 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
+    <ClCompile Include="graphics\gpu\approach.cpp" />
+    <ClCompile Include="graphics\gpu\buffer.cpp" />
+    <ClCompile Include="graphics\gpu\context.cpp" />
+    <ClCompile Include="graphics\gpu\object.cpp" />
+    <ClCompile Include="graphics\gpu\program.cpp" />
+    <ClCompile Include="graphics\gpu\render.cpp" />
+    <ClCompile Include="graphics\gpu\shader.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
     <ClCompile Include="graphics\graphics\buffer.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />

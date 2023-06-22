@@ -123,9 +123,9 @@ namespace userex
 
             m_bEnterKeyPressed = false;
 
-            auto pdocument = get_document();
+            //auto pdocument = get_document();
 
-            if (::is_set(pdocument))
+            //if (::is_set(pdocument))
             {
 
                auto pextendedtopic = create_topic(id_after_change_text_delayed);
@@ -134,7 +134,9 @@ namespace userex
 
                pextendedtopic->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
-               pdocument->update_all_impacts(pextendedtopic);
+               route(pextendedtopic);
+
+               //pdocument->update_all_impacts(pextendedtopic);
 
             }
 

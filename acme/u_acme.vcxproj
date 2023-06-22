@@ -1345,6 +1345,7 @@
     <ClCompile Include="filesystem\file\memory_file.cpp" />
     <ClCompile Include="filesystem\file\memory_map.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
+    <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
@@ -1354,6 +1355,7 @@
     <ClCompile Include="filesystem\file\text_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="filesystem\file\translatable.cpp" />
+    <ClCompile Include="filesystem\file\write_text_stream.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -1373,7 +1375,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp" />
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
+    <ClCompile Include="graphics\draw2d\color_array.cpp" />
+    <ClCompile Include="graphics\draw2d\image32_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
@@ -1719,6 +1722,7 @@
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
+    <ClCompile Include="platform\trace_statement.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />

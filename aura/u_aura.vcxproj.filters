@@ -28,12 +28,6 @@
     <Filter Include="Source Files\filesystem\filemanager">
       <UniqueIdentifier>{4040fc88-d657-4841-8d4f-272fd74187ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gpu">
-      <UniqueIdentifier>{3b076a98-d207-48ed-8aa5-8b17473f43fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gpu\gpu">
-      <UniqueIdentifier>{b7b4a949-fbd4-4043-b538-2cbb69b986d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics\game">
       <UniqueIdentifier>{57196f87-50cc-44e5-a402-ce2345eda686}</UniqueIdentifier>
     </Filter>
@@ -153,6 +147,12 @@
     </Filter>
     <Filter Include="Header Files\hardware">
       <UniqueIdentifier>{1deb9b5c-6ef1-4ab9-a26f-e1220f47065a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\gpu">
+      <UniqueIdentifier>{d3a3434d-d011-4373-998b-306354fb9b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\gpu">
+      <UniqueIdentifier>{24b7a4e5-49f7-4a5e-a6a2-49645c341ad0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -972,6 +972,36 @@
     <ClInclude Include="graphics\draw2d\path_optimization.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\gpu\shader.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\render.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\program.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\object.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\context.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\buffer.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\approach.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\aaaa_gpu.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_constant.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1104,21 +1134,6 @@
     </ClCompile>
     <ClCompile Include="message\timer.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\approach.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\buffer.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\context.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\program.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\shader.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
     </ClCompile>
     <ClCompile Include="platform\shell_open.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1509,6 +1524,27 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\path_optimization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\approach.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\buffer.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\context.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\object.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\program.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\render.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\shader.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

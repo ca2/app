@@ -343,9 +343,6 @@
     <ClCompile Include="graphics\draw2d\color.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\_.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1371,6 +1368,21 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\item.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image32_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\write_text_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\print_formatting.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace_statement.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

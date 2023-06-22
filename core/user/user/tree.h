@@ -26,7 +26,7 @@ namespace user
       ::pointer<::data::tree_item_ptr_array>    m_pitemptraSelected;
       ::data::tree_item *                       m_pitemHover;
 
-      ::pointer<::draw2d::graphics_extension>   m_pdcextension;
+      ::pointer<::draw2d::graphics_extension>   m_pgraphicsextension;
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;

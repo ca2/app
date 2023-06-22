@@ -54,7 +54,7 @@ namespace experience_nanoui
       if (top_level()->frame_is_transparent())
       {
 
-         crBackground = argb(90, m_colorBackground.red, m_colorBackground.green, m_colorBackground.blue);
+         crBackground = m_colorBackground & ::opacity(90);
 
       }
       else

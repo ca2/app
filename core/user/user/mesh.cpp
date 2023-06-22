@@ -3573,7 +3573,7 @@ namespace user
 
       __defer_construct_new(m_pgraphicsextension);
 
-      //m_pdcextension->initialize(this);
+      //m_pgraphicsextension->initialize(this);
 
       //on_create_draw_item();
 

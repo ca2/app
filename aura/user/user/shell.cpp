@@ -1811,7 +1811,7 @@ namespace user
 //
 //      auto pimageHover = m_pimagelist[iSize]->get_image(iImage);
 //
-//      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+//      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
 //
 //      m_pimagelistHover[iSize]->set(iImage, pimageHover);
 //
@@ -2082,7 +2082,7 @@ namespace user
 
    //      auto pimage = m_pimagelist[iSize]->get_image(iImage);
    //      
-   //      pimage->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+   //      pimage->g()->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
 
    //      m_pimagelistHover[iSize]->add_image(pimage, 0, 0, iImage);
 

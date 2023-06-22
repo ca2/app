@@ -121,13 +121,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(192,192,192, 255);
+      //         colorText = ::rgba(192, 192, 192, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(255, 255, 255, 255);
+      //         colorText = ::rgba(255, 255, 255, 255);
 
       //      }
 
@@ -138,13 +138,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
 
@@ -257,13 +257,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(80, 80, 180, 255);
+      //         colorDropDown = ::rgba(80, 80, 180, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(100, 100, 200, 255);
+      //         colorDropDown = ::rgba(100, 100, 200, 255);
 
       //      }
 
@@ -274,13 +274,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(200, 200, 250, 255);
+      //         colorDropDown = ::rgba(200, 200, 250, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(192, 192, 192, 255);
+      //         colorDropDown = ::rgba(192, 192, 192, 255);
 
       //      }
 

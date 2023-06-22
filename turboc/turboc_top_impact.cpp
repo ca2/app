@@ -57,42 +57,42 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_peditview = create_impact < edit_impact >();
+      m_peditimpact = create_impact < edit_impact >();
 
-      if(m_peditview == NULL)
+      if(m_peditimpact == NULL)
       {
 
          message_box(NULL,"Could not create folder edit impact");
 
       }
 
-      m_peditview->m_ptopview = this;
+      m_peditimpact->m_ptopview = this;
 
-      SetPane(0,m_peditview,false);
+      SetPane(0,m_peditimpact,false);
 
       if(m_atom == "turboc_top")
       {
 
-         m_ptoggleview = create_impact < toggle_impact >(NULL,::rectangle_i32(),NULL,"turboc_toggle");
+         m_ptoggleimpact = create_impact < toggle_impact >(NULL,::rectangle_i32(),NULL,"turboc_toggle");
 
       }
       else
       {
 
-         m_ptoggleview = create_impact < toggle_impact >(NULL,::rectangle_i32(),NULL,"switcher_toggle");
+         m_ptoggleimpact = create_impact < toggle_impact >(NULL,::rectangle_i32(),NULL,"switcher_toggle");
 
       }
 
-      if(m_ptoggleview == NULL)
+      if(m_ptoggleimpact == NULL)
       {
 
          message_box(NULL,"Could not create file list ::aura::impact");
 
       }
 
-      m_ptoggleview->m_ptopview = this;
+      m_ptoggleimpact->m_ptopview = this;
 
-      SetPane(1,m_ptoggleview,false);
+      SetPane(1,m_ptoggleimpact,false);
 
 
    }

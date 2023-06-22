@@ -11,8 +11,8 @@ namespace userex
    top_impact::top_impact()
    {
 
-      m_peditview = nullptr;
-      m_ptoggleview = nullptr;
+      m_peditimpact = nullptr;
+      m_ptoggleimpact = nullptr;
 
    }
 
@@ -65,29 +65,29 @@ namespace userex
 
       initialize_split_layout();
 
-      m_peditview = create_pane_impact < top_edit_impact >(0, "top_edit_impact");
+      m_peditimpact = create_pane_impact < top_edit_impact >(0, "top_edit_impact");
 
-      m_peditview->m_bParseDataPacks = true;
+      m_peditimpact->m_bParseDataPacks = true;
 
-      if (m_peditview == nullptr)
+      if (m_peditimpact == nullptr)
       {
 
          output_error_message("Could not create folder edit impact");
 
       }
 
-      m_peditview->m_ptopview = this;
+      m_peditimpact->m_ptopview = this;
 
-      m_ptoggleview = create_pane_impact < top_toggle_impact >(1, "top_toggle_impact");
+      m_ptoggleimpact = create_pane_impact < top_toggle_impact >(1, "top_toggle_impact");
 
-      if (m_ptoggleview == nullptr)
+      if (m_ptoggleimpact == nullptr)
       {
 
          output_error_message("Could not create file list ::user::impact");
 
       }
 
-      m_ptoggleview->m_ptopview = this;
+      m_ptoggleimpact->m_ptopview = this;
 
    }
 

@@ -154,13 +154,13 @@ namespace acme
          if (dwCharacter)
          {
 
-            strLine.format("%02d : %" PRIdPTR " : %s %d,%d\n", frames - i - 1, psymbolinfo->Address, imagehlp_line.LineNumber, dwCharacter);
+            strLine.format("%02d : %" PRIdPTR " : %s %d,%d\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name, imagehlp_line.LineNumber, dwCharacter);
 
          }
          else
          {
 
-            strLine.format("%02d : %" PRIdPTR " : %s %d\n", frames - i - 1, psymbolinfo->Address, imagehlp_line.LineNumber);
+            strLine.format("%02d : %" PRIdPTR " : %s %d\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name, imagehlp_line.LineNumber);
 
          }
 

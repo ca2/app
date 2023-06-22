@@ -158,7 +158,17 @@ namespace user
             if (pscroll->m_ecommand == e_scroll_command_line_up)
             {
 
-               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - m_pscrolldataVertical->m_iLine));
+               auto Δ = m_pscrolldataVertical->m_iLine;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
+
+            }
+            else if (pscroll->m_ecommand == e_scroll_command_wheel_up)
+            {
+
+               auto Δ = m_pscrolldataVertical->m_iWheel;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_up)
@@ -179,6 +189,14 @@ namespace user
                auto iLine = m_pscrolldataVertical->m_iLine;
 
                set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + iLine));
+
+            }
+            else if (pscroll->m_ecommand == e_scroll_command_wheel_down)
+            {
+
+               auto Δ = m_pscrolldataVertical->m_iWheel;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + Δ));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_track)

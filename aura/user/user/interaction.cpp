@@ -12219,12 +12219,12 @@ namespace user
 
          layout().design().copy_position(layout().sketch());
 
-         if (::is_set(get_parent()))
-         {
+         //if (::is_set(get_parent()))
+         //{
 
-            set_need_redraw({layout().design().raw_rectangle() });
+         //   set_need_redraw({layout().design().raw_rectangle() });
 
-         }
+         //}
 
       }
 
@@ -16048,6 +16048,8 @@ namespace user
       }
 
       m_pointScroll = pointOffset;
+
+      m_bClipRectangle = false;
 
       on_change_context_offset(pgraphics);
 

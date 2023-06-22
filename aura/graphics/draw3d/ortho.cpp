@@ -160,13 +160,13 @@ namespace draw3d
             if(iHint == 0)
             {
 
-               colorA.set_hls((double) (::integral_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+               colorA.set_hls((double) (::i64_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
 
             }
             else
             {
 
-               colorA.set_hls((double) (::integral_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+               colorA.set_hls((double) (::i64_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
 
             }
 

@@ -1409,7 +1409,7 @@ namespace user
    void interaction::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function,  bool bAscendants)
    {
       
-      if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
+      //if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
       {
          
          
@@ -6637,7 +6637,11 @@ namespace user
 
          pdrag->m_ecursor = e_cursor_move;
 
-         set_position(pdrag->point());
+         auto Δ = pdrag->point() - pdrag->m_pointLButtonDown;
+
+         auto pointTopLeft = pdrag->m_pointInitial + Δ;
+
+         set_position(pointTopLeft);
 
          set_reposition();
 
@@ -12218,12 +12222,12 @@ namespace user
 
          layout().design().copy_position(layout().sketch());
 
-         if (::is_set(get_parent()))
-         {
+         //if (::is_set(get_parent()))
+         //{
 
-            set_need_redraw({layout().design().raw_rectangle() });
+         //   set_need_redraw({layout().design().raw_rectangle() });
 
-         }
+         //}
 
       }
 
@@ -16048,6 +16052,8 @@ namespace user
 
       m_pointScroll = pointOffset;
 
+      m_bClipRectangle = false;
+
       on_change_context_offset(pgraphics);
 
    }
@@ -19805,7 +19811,9 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+      //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+
+      auto pointScroll = point + m_pointBarDragScroll;
 
       for (auto & pitem : *m_pitema)
       {

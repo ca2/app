@@ -9,61 +9,61 @@
 
 
 // nanosecond unit ηs - greek eta - greek etha
-constexpr class time operator "" _ηs(unsigned long long int u) { return integral_nanosecond(u); }
+constexpr class time operator "" _ηs(unsigned long long int u) { return nanosecond_time(u); }
 
 
 // microsecond unit μs - greek mu
-constexpr class time operator "" _μs(unsigned long long int u) { return integral_microsecond(u); }
+constexpr class time operator "" _μs(unsigned long long int u) { return microsecond_time(u); }
 
 
-constexpr class time operator "" _ms(unsigned long long int u) { return integral_millisecond(u); }
+constexpr class time operator "" _ms(unsigned long long int u) { return millisecond_time(u); }
 
 
-constexpr class time operator "" _s(unsigned long long int u) { return integral_second(u); }
+constexpr class time operator "" _s(unsigned long long int u) { return second_time(u); }
 
 
-constexpr class time operator "" _min(unsigned long long int u) { return integral_minute(u); }
-constexpr class time operator "" _minute(unsigned long long int u) { return integral_minute(u); }
-constexpr class time operator "" _minutes(unsigned long long int u) { return integral_minute(u); }
+constexpr class time operator "" _min(unsigned long long int u) { return minute_time(u); }
+constexpr class time operator "" _minute(unsigned long long int u) { return minute_time(u); }
+constexpr class time operator "" _minutes(unsigned long long int u) { return minute_time(u); }
 
 
-constexpr class time operator "" _h(unsigned long long int u) { return integral_hour(u); }
-constexpr class time operator "" _hour(unsigned long long int u) { return integral_hour(u); }
-constexpr class time operator "" _hours(unsigned long long int u) { return integral_hour(u); }
+constexpr class time operator "" _h(unsigned long long int u) { return hour_time(u); }
+constexpr class time operator "" _hour(unsigned long long int u) { return hour_time(u); }
+constexpr class time operator "" _hours(unsigned long long int u) { return hour_time(u); }
 
 
-constexpr class time operator "" _day(unsigned long long int u) { return integral_day(u); }
-constexpr class time operator "" _days(unsigned long long int u) { return integral_day(u); }
+constexpr class time operator "" _day(unsigned long long int u) { return day_time(u); }
+constexpr class time operator "" _days(unsigned long long int u) { return day_time(u); }
 
 
 
 
 // unit _nanosecond
-constexpr class time operator "" _ηs(long double d) { return floating_nanosecond(d); }
+constexpr class time operator "" _ηs(long double d) { return nanosecond_time(d); }
 
 
 // unit _microsecond
-constexpr class time operator "" _μs(long double d) { return floating_microsecond(d); }
+constexpr class time operator "" _μs(long double d) { return microsecond_time(d); }
 
 
-constexpr class time operator "" _ms(long double d) { return floating_millisecond(d); }
+constexpr class time operator "" _ms(long double d) { return millisecond_time(d); }
 
 
-constexpr class time operator "" _s(long double d) { return floating_second(d); }
+constexpr class time operator "" _s(long double d) { return second_time(d); }
 
 
-constexpr class time operator "" _min(long double d) { return floating_minute(d); }
-constexpr class time operator "" _minute(long double d) { return floating_minute(d); }
-constexpr class time operator "" _minutes(long double d) { return floating_minute(d); }
+constexpr class time operator "" _min(long double d) { return minute_time(d); }
+constexpr class time operator "" _minute(long double d) { return minute_time(d); }
+constexpr class time operator "" _minutes(long double d) { return minute_time(d); }
 
 
-constexpr class time operator "" _h(long double d) { return floating_hour(d); }
-constexpr class time operator "" _hour(long double d) { return floating_hour(d); }
-constexpr class time operator "" _hours(long double d) { return floating_hour(d); }
+constexpr class time operator "" _h(long double d) { return hour_time(d); }
+constexpr class time operator "" _hour(long double d) { return hour_time(d); }
+constexpr class time operator "" _hours(long double d) { return hour_time(d); }
 
 
-constexpr class time operator "" _day(long double d) { return floating_day(d); }
-constexpr class time operator "" _days(long double d) { return floating_day(d); }
+constexpr class time operator "" _day(long double d) { return day_time(d); }
+constexpr class time operator "" _days(long double d) { return day_time(d); }
 
 
 

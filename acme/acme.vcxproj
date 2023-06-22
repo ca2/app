@@ -840,6 +840,7 @@
     <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
     <ClInclude Include="primitive\mathematics\numeric.h" />
+    <ClInclude Include="primitive\mathematics\trigonometry.h" />
     <ClInclude Include="primitive\mathematics\_constant.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />

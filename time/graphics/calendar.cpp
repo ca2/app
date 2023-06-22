@@ -49,7 +49,7 @@ namespace datetime
          int32_t iDay;
          for(iDay = 1; iDay <= 7; iDay++)
          {
-            GetRectDay(iDay,0,rectangleDay);
+            GetRectDay(iDay,0,&rectangleDay);
             //crBorder = rgb(184, 184, 177);
             //pgraphics->Draw3dRect(rectangleDay, crBorder, crBorder);
             rectangleDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
@@ -72,7 +72,7 @@ namespace datetime
                   break;
                continue;
             }
-            GetRectDay(time,rectangleDay);
+            GetRectDay(time,&rectangleDay);
             crBorder = rgb(189,189,177);
             pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
@@ -87,7 +87,7 @@ namespace datetime
                && timeNow.year() == iYear)
          {
             crBorder = rgb(90, 90, 80);
-            GetRectDay(timeNow,rectangleDay);
+            GetRectDay(timeNow,&rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
             pgraphics->fill_rectangle(rectangleDay,rgb(220,220,210));
             pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
@@ -105,7 +105,7 @@ namespace datetime
                 m_bRange && time <= m_timeEnd)); time += timespan)
          {
             crBorder = rgb(240,120,52);
-            GetRectDay(m_time,rectangleDay);
+            GetRectDay(m_time,&rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
             pgraphics->draw_inset_rectangle(rectangleDay,crBorder, 1.0);
             rectangleDay.deflate(1,1);
@@ -118,25 +118,25 @@ namespace datetime
 
          pgraphics->set(m_pfontYear);
          ::rectangle_i32 rectangle;
-         GetRect(rectangle,e_element_year_title);
+         GetRect(&rectangle,e_element_year_title);
          string strYear;
          strYear.format("%d",iYear);
          pgraphics->draw_text(strYear,rectangle,e_align_center);
 
          pgraphics->set(m_pfontMonth);
-         GetRect(rectangle,e_element_month_title);
+         GetRect(&rectangle,e_element_month_title);
          string strMonth;
          strMonth = GetMonth(pgraphics->textcontext(),iMonth);
          pgraphics->draw_text(strMonth,rectangle,e_align_center);
 
          pgraphics->set(m_pfontSpin);
-         GetRect(rectangle,e_element_previous_year);
+         GetRect(&rectangle,e_element_previous_year);
          pgraphics->draw_text("<<",rectangle,e_align_center);
-         GetRect(rectangle,e_element_next_year);
+         GetRect(&rectangle,e_element_next_year);
          pgraphics->draw_text(">>",rectangle,e_align_center);
-         GetRect(rectangle,e_element_previous_month);
+         GetRect(&rectangle,e_element_previous_month);
          pgraphics->draw_text("<",rectangle,e_align_center);
-         GetRect(rectangle,e_element_next_month);
+         GetRect(&rectangle,e_element_next_month);
          pgraphics->draw_text(">",rectangle,e_align_center);
       }
 
@@ -233,7 +233,7 @@ namespace datetime
          int32_t iDay;
          for(iDay = 1; iDay <= 33; iDay++)
          {
-            GetRectDay(time,rectangleDay);
+            GetRectDay(time,&rectangleDay);
             if(rectangleDay.contains(point))
             {
                timeRet = time;
@@ -250,7 +250,7 @@ namespace datetime
       {
 
          ::rectangle_i32 rectangle;
-         GetRect(rectangle,eelement);
+         GetRect(&rectangle,eelement);
          return rectangle.contains(pt) != false;
 
       }

@@ -3,7 +3,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME integral_nanosecond get_integral_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
 #ifdef RASPBERRYPIOS
 

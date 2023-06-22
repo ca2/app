@@ -1206,7 +1206,7 @@ void simple_scroll_bar::UpdateBitmaps()
 ::point_f64_array simple_scroll_bar::get_arrowB(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto pstyle = get_style(pgraphics);
+   //auto pstyle = get_style(pgraphics);
 
    //int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 

@@ -951,13 +951,18 @@ namespace user
       else if (pointClient.y() > ptabdata->m_iTabHeight)
       {
 
-         m_bOverrideVisibleTabs = false;
+         if (m_bOverrideVisibleTabs)
+         {
 
-         set_need_layout();
+            m_bOverrideVisibleTabs = false;
 
-         set_need_redraw();
+            set_need_layout();
 
-         post_redraw();
+            set_need_redraw();
+
+            post_redraw();
+
+         }
 
       }
 

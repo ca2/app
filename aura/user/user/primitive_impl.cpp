@@ -866,7 +866,7 @@ namespace user
 
          pmessage->m_Δ = second_i16(wparam);
 
-         _raw_client_to_screen(pmessage->m_point);
+         //_raw_client_to_screen(pmessage->m_point);
 
       }
       break;

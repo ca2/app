@@ -11,8 +11,8 @@ namespace turboc
    public:
 
 
-      edit_impact *             m_peditview;
-      toggle_impact *           m_ptoggleview;
+      edit_impact *             m_peditimpact;
+      toggle_impact *           m_ptoggleimpact;
       impact *                  m_pimpact;
 
 

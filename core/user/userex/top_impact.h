@@ -14,8 +14,8 @@ namespace userex
    public:
 
 
-      top_edit_impact *                     m_peditview;
-      top_toggle_impact *                   m_ptoggleview;
+      top_edit_impact *                     m_peditimpact;
+      top_toggle_impact *                   m_ptoggleimpact;
 
 
       top_impact();

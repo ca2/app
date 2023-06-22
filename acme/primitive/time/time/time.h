@@ -393,10 +393,16 @@ public:
    //inline bool operator <= (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond <= time.m_iNanosecond); }
    //inline bool operator > (const class time & time) const { return !operator <=(time); }
    //inline bool operator >= (const class time & time) const { return !operator <=(time); }
-   ::pair < ::i64, time > count_and_remainder(const class time & time)
+   ::pair < ::count, time > count_and_remainder(const class time & time) const
    {
 
-      return { (::i64)(*this / time), *this % time };
+      auto d = *this / time;
+
+      auto count = (::count)::floor(d);
+
+      auto remainder = *this % time;
+
+      return { count, remainder };
 
    }
 

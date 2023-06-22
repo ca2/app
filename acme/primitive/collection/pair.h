@@ -102,10 +102,10 @@ public: \
    inline T2 & element2() { return MEMBER2; } \
    inline CONST_TYPE1 & element1() const { return (CONST_TYPE1 &) MEMBER1; } \
    inline CONST_TYPE2 & element2() const { return (CONST_TYPE2 &) MEMBER2; } \
-   inline T1 transfer_element1() { return ::transfer(MEMBER1); } \
-   inline T2 transfer_element2() { return ::transfer(MEMBER2); } \
-   inline CONST_TYPE1 transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
-   inline CONST_TYPE2 transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+   inline T1 && transfer_element1() { return ::transfer(MEMBER1); } \
+   inline T2 && transfer_element2() { return ::transfer(MEMBER2); } \
+   inline CONST_TYPE1 && transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+   inline CONST_TYPE2 && transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
 \
 \
    PAIR() {} \

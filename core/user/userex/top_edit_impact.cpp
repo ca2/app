@@ -167,7 +167,7 @@ namespace userex
 
          pextendedtopic->m_puserelement = this;
 
-         get_document()->update_all_impacts(pextendedtopic);
+         route(pextendedtopic);
 
          if (m_timeDelayedAfterChange > 0_s)
          {

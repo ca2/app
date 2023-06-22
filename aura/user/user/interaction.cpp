@@ -3939,7 +3939,7 @@ namespace user
 
    void interaction::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       if (!get_host_window()->m_pinteractionimpl->m_pgraphics->is_single_buffer_mode())
       {
 
@@ -3965,13 +3965,16 @@ namespace user
                auto hostToClient = host_to_client();
 
                hostToClient(rectangleNeedRedraw);
+
                auto prectangle = __new(::draw2d::clip_rectangle);
-               prectangle->m_item  = rectangleNeedRedraw;
+
+               prectangle->m_item = rectangleNeedRedraw;
+
                clipgroup.add(prectangle);
 
             }
 
-            pgraphics->intersect_clip(clipgroup );
+            pgraphics->intersect_clip(clipgroup);
 
          }
 
@@ -3988,7 +3991,7 @@ namespace user
 
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       try
       {
 

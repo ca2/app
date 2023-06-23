@@ -293,7 +293,7 @@ namespace acme
       {
          
          psystem->init_task();
-         
+
          psystem->m_pacmesession->init_task();
 
          psystem->m_pacmeapplication->init_task();
@@ -306,6 +306,8 @@ namespace acme
          }
          else
          {
+
+            psystem->system_main();
 
             auto prequest = __create_new < ::request >();
 
@@ -2095,7 +2097,9 @@ return false;
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
-      exception_message_box(exception, strMoreDetails);
+      auto psequencer = exception_message_box(exception, strMoreDetails);
+
+      psequencer->do_synchronously();
 
    }
 

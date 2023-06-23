@@ -138,6 +138,34 @@ namespace acme
 
       auto process = GetCurrentProcess();
 
+      ::string_array stra;
+
+      strsize maximum_line_length = 0;
+
+      for (auto i = 0; i < frames; ++i)
+      {
+
+         IMAGEHLP_LINE imagehlp_line{ .SizeOfStruct = sizeof(IMAGEHLP_LINE) };
+
+         DWORD dwDisplacement = 0;
+
+         SymGetLineFromAddr64(process, (DWORD64)(stack[i]), &dwDisplacement, &imagehlp_line);
+
+         ::string strLine;
+
+         strLine.format("%s (%d)", imagehlp_line.FileName, imagehlp_line.LineNumber);
+
+         if (strLine.length() > maximum_line_length)
+         {
+
+            maximum_line_length = strLine.length();
+
+         }
+
+         stra.add(strLine);
+
+      }
+
       for (auto i = 0; i < frames; ++i)
       {
 
@@ -145,24 +173,19 @@ namespace acme
 
          IMAGEHLP_LINE imagehlp_line{.SizeOfStruct =sizeof(IMAGEHLP_LINE)};
 
-         DWORD dwCharacter = 0;
+         ::string strPrefix;
 
-         SymGetLineFromAddr64(process, (DWORD64)(stack[i]), &dwCharacter, &imagehlp_line);
+         strPrefix = stra[i];
 
-         string strLine;
+         ::string strSpacing;
 
-         if (dwCharacter)
-         {
+         strSpacing.assign(' ', maximum_line_length - strPrefix.length());
 
-            strLine.format("%02d : %" PRIdPTR " : %s %d,%d\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name, imagehlp_line.LineNumber, dwCharacter);
+         strPrefix += strSpacing;
 
-         }
-         else
-         {
+         ::string strLine;
 
-            strLine.format("%02d : %" PRIdPTR " : %s %d\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name, imagehlp_line.LineNumber);
-
-         }
+         strLine.format("%s : %02d : %s\n", strPrefix.c_str(), frames - i - 1, psymbolinfo->Name);
 
          strCallstack += strLine;
 

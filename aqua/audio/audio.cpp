@@ -26,7 +26,17 @@ namespace aqua
    }
 
 
-   void audio::play_audio(::file::file * pfile, bool bSynch)
+   void audio::play_audio(const ::payload& payloadFile, bool bSynch)
+   {
+
+      auto pfile = file() -> get_reader(payloadFile);
+
+      _play_audio(pfile, bSynch);
+
+   }
+
+
+   void audio::_play_audio(::file::file * pfile, bool bSynch)
    {
 
       throw ::interface_only();

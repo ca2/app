@@ -202,7 +202,7 @@ public:
    {
       m_etype = e_type_new;
       //operator = (p.m_p);
-      _set_element((T*) p.m_p);
+      _set_element((::particle*) p.m_p);
    }
 
    template < class T >

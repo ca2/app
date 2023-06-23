@@ -2210,7 +2210,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      INFORMATION(strPrint);
+      information(strPrint);
 
       if (iReportType == _CRT_ASSERT)
       {
@@ -2233,9 +2233,9 @@ pacmedirectory->create("/ca2core");
    bool system::assert_failed_line(const ::string& pszFileName, i32 iLine)
 
    {
-      __UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(pszFileName);
 
-      __UNREFERENCED_PARAMETER(iLine);
+      UNREFERENCED_PARAMETER(iLine);
       return false;
    }
 
@@ -2243,9 +2243,9 @@ pacmedirectory->create("/ca2core");
    bool system::on_assert_failed_line(const ::string& pszFileName, i32 iLine)
 
    {
-      __UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(pszFileName);
 
-      __UNREFERENCED_PARAMETER(iLine);
+      UNREFERENCED_PARAMETER(iLine);
       return true;
    }
 
@@ -2660,7 +2660,7 @@ pacmedirectory->create("/ca2core");
    void system::install_progress_add_up(int iAddUp)
    {
 
-      __UNREFERENCED_PARAMETER(iAddUp);
+      UNREFERENCED_PARAMETER(iAddUp);
 
    }
 
@@ -4447,7 +4447,7 @@ namespace apex
    void system::discard_to_factory(::pointer<object>pca)
    {
 
-      __UNREFERENCED_PARAMETER(pca);
+      UNREFERENCED_PARAMETER(pca);
 
    }
 
@@ -5150,14 +5150,17 @@ string get_bundle_app_library_name();
    // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
 
 
-   void system::get_public_internet_domain_extension_list(string_array& stra)
+   ::string system::fetch_public_internet_domain_extension_list_text()
    {
-
-      //auto estatus = 
-      ::acme::system::get_public_internet_domain_extension_list(stra);
-
-      //return estatus;
-
+//
+//      //auto estatus =
+//      ::acme::system::get_public_internet_domain_extension_list(stra);
+//
+//      //return estatus;
+//
+      
+      return {};
+      
    }
 
 

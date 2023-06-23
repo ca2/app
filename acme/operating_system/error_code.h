@@ -1,9 +1,9 @@
-﻿//
+//
 //  error_code.hpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/09/22 ~22:12
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 29/09/22 ~22:12
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

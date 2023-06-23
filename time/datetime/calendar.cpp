@@ -54,7 +54,7 @@ namespace datetime
       void calendar::_001OnDraw(::draw2d::graphics* pgraphics)
       {
 
-         __UNREFERENCED_PARAMETER(pgraphics);
+         UNREFERENCED_PARAMETER(pgraphics);
 
       }
 
@@ -72,9 +72,9 @@ namespace datetime
       void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, ::rectangle_i32 * lprect)
       {
 
-         __UNREFERENCED_PARAMETER(iWeekDay);
-         __UNREFERENCED_PARAMETER(iLine);
-         __UNREFERENCED_PARAMETER(lprect);
+         UNREFERENCED_PARAMETER(iWeekDay);
+         UNREFERENCED_PARAMETER(iLine);
+         UNREFERENCED_PARAMETER(lprect);
 
       }
 
@@ -82,8 +82,8 @@ namespace datetime
       void calendar::GetRect(::rectangle_i32 * lprect, enum enum_element eelement)
       {
 
-         __UNREFERENCED_PARAMETER(lprect);
-         __UNREFERENCED_PARAMETER(eelement);
+         UNREFERENCED_PARAMETER(lprect);
+         UNREFERENCED_PARAMETER(eelement);
 
       }
 
@@ -126,8 +126,8 @@ namespace datetime
       void calendar::set_pos(point_i32 point, size_i32 sz)
       {
 
-         __UNREFERENCED_PARAMETER(point);
-         __UNREFERENCED_PARAMETER(sz);
+         UNREFERENCED_PARAMETER(point);
+         UNREFERENCED_PARAMETER(sz);
 
       }
 
@@ -246,7 +246,7 @@ namespace datetime
       }
 
 
-      enum_element calendar::hit_test(const point_i32 & point)
+      enum_element calendar::hit_test(const point_i32 & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
@@ -276,7 +276,7 @@ namespace datetime
          int32_t iDay;
          for (iDay = 1; iDay <= 33; iDay++)
          {
-            GetRectDay(time, rectangleDay);
+            GetRectDay(time, &rectangleDay);
             if (rectangleDay.contains(point))
             {
                timeRet = time;
@@ -295,7 +295,7 @@ namespace datetime
 
          ::rectangle_i32 rectangle;
 
-         GetRect(rectangle, eelement);
+         GetRect(&rectangle, eelement);
 
          return rectangle.contains(point) != false;
 

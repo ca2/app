@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "frame.h"
 #include "image.h"
-#include "acme/graphics/draw2d/colorref_array.h"
+#include "acme/graphics/draw2d/image32.h"
+#include "acme/graphics/draw2d/color_array.h"
 
 
 //#define unequal(a, b, n) ((a) > (b) - (n))
@@ -17,11 +18,11 @@
 
 #endif
 
-bool draw2d_gif_detect_8bit_borders(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex);
+bool draw2d_gif_detect_8bit_borders(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
 
-bool draw2d_gif_antialias_8bit(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex);
+bool draw2d_gif_antialias_8bit(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
 
-bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex);
+bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
 
 
 //CLASS_DECL_AURA bool draw2d_gif_load_frame(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex)
@@ -70,7 +71,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      ::color::color crBack = pframea->m_colorBack;
 //
-//   //      byte bAlpha = colorref_get_a_value(crBack);
+//   //      ::u8 bAlpha = color32_u8_opacity(crBack);
 //
 //   //      if (bAlpha == 0)
 //   //      {
@@ -194,7 +195,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   //   f.initialize(pframe->m_pimage->get_size() + size(10, 10), 1);
 //
-//   //   //   f.channel_copy(::color::e_channel_red, ::color::e_channel_alpha, pimageCanvas);
+//   //   //   f.channel_copy(::color::e_channel_red, ::color::e_channel_opacity, pimageCanvas);
 //
 //   //   //   f.channel_invert(::color::e_channel_red);
 //
@@ -216,7 +217,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   //   pframe->m_pimage->div_alpha();
 //
-//   //   //   pframe->m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_red, d);
+//   //   //   pframe->m_pimage->channel_copy(::color::e_channel_opacity, ::color::e_channel_red, d);
 //
 //   //   //   pframe->m_pimage->mult_alpha();
 //
@@ -236,7 +237,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //         ::color::color crBack = pframea->m_colorBack;
 //
-//         byte bAlpha = colorref_get_a_value(crBack);
+//         ::u8 bAlpha = color32_u8_opacity(crBack);
 //
 //         if (bAlpha == 0)
 //         {
@@ -285,10 +286,10 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //}
 //
 
-bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex)
+bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
 {
 
-   auto colorref = pframe->m_pimage->colorref();
+   auto pimage32 = pframe->m_pimage->image32();
 
    int w = pframe->m_pimage->scan_size() / sizeof(::color32_t);
 
@@ -300,10 +301,10 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
          index iIndex = pixel(x, y);
 
-         if (iIndex >= cra.get_count())
+         if (iIndex >= colora.get_count())
          {
 
-            colorref[y*w + x] = 0;
+            pimage32[y * w + x] = {};
 
             continue;
 
@@ -312,39 +313,39 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
          if (iIndex == transparentIndex)
          {
 
-            colorref[y*w + x] = 0;
+            pimage32[y * w + x] = {};
 
             continue;
 
          }
 
-         ::color32_t color32 = cra[iIndex];
+         auto color = colora[iIndex];
 
-         byte bA = colorref_get_a_value(color32);
+         ::u8 bA = color.u8_opacity();
 
 //#if defined(__APPLE__) || (defined(ANDROID) && defined(__arm__))
 //#if defined(__APPLE__) || defined(ANDROID)
 // ANDROID -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
 //#if defined(__APPLE__) || defined(ANDROID)
 //
-//         //byte bR = colorref_get_r_value(color32);
-//         //byte bG = colorref_get_g_value(color32);
-//         //byte bB = colorref_get_b_value(color32);
+//         //::u8 bR = color32_u8_red(color32);
+//         //::u8 bG = color32_u8_green(color32);
+//         //::u8 bB = color32_u8_blue(color32);
 //
 //         //pframe->m_pimage->m_pcolorref[y*w + x] = argb(bA, bB, bG, bR);
 //
 //         pframe->m_pimage->m_pcolorref[y*w + x] = ((color32 << 16) & 0xff0000) | ((color32 >> 16) & 0xff) | (color32 & 0xff00ff00);
 //
 //#else
-         byte bR = colorref_get_r_value(color32);
-         byte bG = colorref_get_g_value(color32);
-         byte bB = colorref_get_b_value(color32);
+         ::u8 bR = color.u8_red();
+         ::u8 bG = color.u8_green();
+         ::u8 bB = color.u8_blue();
          if (bA != 255)
          {
 
             output_debug_string("test255");
          }
-         colorref[y*w + x] = argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255);
+         pimage32[y*w + x].assign(argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255), pimageCanvas->color_indexes());
 
 //#endif
 

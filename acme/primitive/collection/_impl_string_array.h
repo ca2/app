@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 23/12/2022 01:38 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 23/12/2022 01:38 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
@@ -4420,7 +4420,7 @@ return get_data()[nIndex];
 //      iLength = strlen(lpszN);
 //#endif
 //
-//      lpszN = (char *)((byte *)lpszN) + iLength + sizeof(char);
+//      lpszN = (char *)((::u8 *)lpszN) + iLength + sizeof(char);
 //
 //   }
 //

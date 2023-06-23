@@ -42,8 +42,8 @@
 
 
 
-HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, byte* data, byte** pdata);
-CLASS_DECL_AXIS_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, byte* data);
+HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, ::u8* data, ::u8** pdata);
+CLASS_DECL_AXIS_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, ::u8* data);
 /*void wf_image_free(wfBitmap* pimage);
 
 void wf_register_pointer(rdpGraphics* graphics);

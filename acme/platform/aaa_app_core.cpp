@@ -1,4 +1,4 @@
-// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSørensen!!
+// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "app_core.h"
@@ -952,7 +952,7 @@ struct heap_test_struct :
    virtual public object
 {
 
-   byte m_ucha[1024];
+   ::u8 m_ucha[1024];
 
 };
 

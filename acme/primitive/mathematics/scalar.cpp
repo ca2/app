@@ -1,13 +1,13 @@
-﻿// From template to class by camilo on 2022-11-17 04:50 ILoveYouThomasBorregaardSørensen!!
+// From template to class by camilo on 2022-11-17 04:50 ILoveYouThomasBorregaardSorensen!!
 #include "framework.h"
 #include "scalar.h"
 //
 ////void double_scalar_source::listener::on_set_scalar(double_scalar_source * psource,enum_scalar escalar,double dValue,int iFlags)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(psource);
-////   __UNREFERENCED_PARAMETER(escalar);
-////   __UNREFERENCED_PARAMETER(dValue);
+////   UNREFERENCED_PARAMETER(psource);
+////   UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(dValue);
 ////
 ////}
 ////
@@ -178,11 +178,11 @@
 ////void double_scalar_source::on_set_scalar(enum_scalar escalar,double d,int iFlags)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
-////   __UNREFERENCED_PARAMETER(d);
+////   UNREFERENCED_PARAMETER(d);
 ////
-////   __UNREFERENCED_PARAMETER(iFlags);
+////   UNREFERENCED_PARAMETER(iFlags);
 ////
 ////   // does nothing.
 ////
@@ -191,7 +191,7 @@
 ////void double_scalar_source::get_scalar_minimum(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -200,7 +200,7 @@
 ////void double_scalar_source::get_scalar(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -209,7 +209,7 @@
 ////void double_scalar_source::get_scalar_maximum(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -250,10 +250,10 @@
 ////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,i64 iValue,int iFlags)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(psource);
-////   __UNREFERENCED_PARAMETER(escalar);
-////   __UNREFERENCED_PARAMETER(iValue);
-////   __UNREFERENCED_PARAMETER(iFlags);
+////   UNREFERENCED_PARAMETER(psource);
+////   UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(iValue);
+////   UNREFERENCED_PARAMETER(iFlags);
 ////
 ////}
 ////
@@ -381,11 +381,11 @@
 ////void int_scalar_source::on_set_scalar(enum_scalar escalar,i64 iValue,int iFlags)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
-////   __UNREFERENCED_PARAMETER(iValue);
+////   UNREFERENCED_PARAMETER(iValue);
 ////
-////   __UNREFERENCED_PARAMETER(iFlags);
+////   UNREFERENCED_PARAMETER(iFlags);
 ////
 ////   // does nothing by default.
 ////
@@ -394,7 +394,7 @@
 ////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   i = 0; // by default
 ////
@@ -403,7 +403,7 @@
 ////void int_scalar_source::get_scalar(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
 ////   i = 1; // by default
 ////
@@ -412,7 +412,7 @@
 ////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
 ////   i = 1; // by default
 ////
@@ -480,9 +480,9 @@
 //bool scalar::set_rate(double dValue, int iFlags)
 //{
 //
-//   __UNREFERENCED_PARAMETER(dValue);
+//   UNREFERENCED_PARAMETER(dValue);
 //
-//   __UNREFERENCED_PARAMETER(iFlags);
+//   UNREFERENCED_PARAMETER(iFlags);
 //
 //   return false;
 //
@@ -492,7 +492,7 @@
 //string scalar::Format(const ::string & strFormat)
 //{
 //
-//   __UNREFERENCED_PARAMETER(strFormat);
+//   UNREFERENCED_PARAMETER(strFormat);
 //
 //   return "";
 //
@@ -753,7 +753,7 @@ bool scalar::set_rate(double dRate, int iFlags)
 //string scalar::Format(const ::string & strFormat)
 //{
 //
-//   __UNREFERENCED_PARAMETER(strFormat);
+//   UNREFERENCED_PARAMETER(strFormat);
 //
 //   return "";
 //
@@ -765,7 +765,7 @@ bool scalar::set_rate(double dRate, int iFlags)
 
 
 
-// From template to class by camilo on 2022-11-17 04:35 ILoveYouThomasBorregaardSørensen!!
+// From template to class by camilo on 2022-11-17 04:35 ILoveYouThomasBorregaardSorensen!!
 #include "framework.h"
 #include "scalar.h"
 ////#include "acme/exception/exception.h"
@@ -773,9 +773,9 @@ bool scalar::set_rate(double dRate, int iFlags)
 ////void double_scalar_source::listener::on_set_scalar(double_scalar_source * psource,enum_scalar escalar,double dValue,int iFlags)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(psource);
-////   __UNREFERENCED_PARAMETER(escalar);
-////   __UNREFERENCED_PARAMETER(dValue);
+////   UNREFERENCED_PARAMETER(psource);
+////   UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(dValue);
 ////
 ////}
 ////
@@ -946,11 +946,11 @@ bool scalar::set_rate(double dRate, int iFlags)
 bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
-   __UNREFERENCED_PARAMETER(d);
+   UNREFERENCED_PARAMETER(d);
 
-   __UNREFERENCED_PARAMETER(iFlags);
+   UNREFERENCED_PARAMETER(iFlags);
 
    // does nothing.
 
@@ -961,7 +961,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void double_scalar_source::get_scalar_minimum(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -970,7 +970,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void double_scalar_source::get_scalar(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -979,7 +979,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void double_scalar_source::get_scalar_maximum(enum_scalar escalar, double & d)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   d = 1.0; // by default
 ////
@@ -1020,10 +1020,10 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,i64 number,int iFlags)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(psource);
-////   __UNREFERENCED_PARAMETER(escalar);
-////   __UNREFERENCED_PARAMETER(number);
-////   __UNREFERENCED_PARAMETER(iFlags);
+////   UNREFERENCED_PARAMETER(psource);
+////   UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(number);
+////   UNREFERENCED_PARAMETER(iFlags);
 ////
 ////}
 ////
@@ -1151,11 +1151,11 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void int_scalar_source::on_set_scalar(enum_scalar escalar,i64 number,int iFlags)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
-////   __UNREFERENCED_PARAMETER(number);
+////   UNREFERENCED_PARAMETER(number);
 ////
-////   __UNREFERENCED_PARAMETER(iFlags);
+////   UNREFERENCED_PARAMETER(iFlags);
 ////
 ////   // does nothing by default.
 ////
@@ -1164,7 +1164,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////
 ////   i = 0; // by default
 ////
@@ -1173,7 +1173,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void int_scalar_source::get_scalar(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
 ////   i = 1; // by default
 ////
@@ -1182,7 +1182,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, i64 & i)
 ////{
 ////   
-////   __UNREFERENCED_PARAMETER(escalar);
+////   UNREFERENCED_PARAMETER(escalar);
 ////   
 ////   i = 1; // by default
 ////
@@ -1250,9 +1250,9 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 //bool scalar::set_rate(double dValue, int iFlags)
 //{
 //
-//   __UNREFERENCED_PARAMETER(dValue);
+//   UNREFERENCED_PARAMETER(dValue);
 //
-//   __UNREFERENCED_PARAMETER(iFlags);
+//   UNREFERENCED_PARAMETER(iFlags);
 //
 //   return false;
 //
@@ -1262,7 +1262,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 //string scalar::Format(const ::string & strFormat)
 //{
 //
-//   __UNREFERENCED_PARAMETER(strFormat);
+//   UNREFERENCED_PARAMETER(strFormat);
 //
 //   return "";
 //
@@ -1498,10 +1498,10 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 bool scalar_source::listener::on_set_scalar(scalar_source* psource, enum_scalar escalar, ::number number, int iFlags)
 {
 
-   __UNREFERENCED_PARAMETER(psource);
-   __UNREFERENCED_PARAMETER(escalar);
-   __UNREFERENCED_PARAMETER(number);
-   __UNREFERENCED_PARAMETER(iFlags);
+   UNREFERENCED_PARAMETER(psource);
+   UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(number);
+   UNREFERENCED_PARAMETER(iFlags);
 
    return false;
 
@@ -1694,11 +1694,11 @@ bool scalar_source::contains_scalar(enum_scalar escalar, ::number number)
 //void scalar_source::on_set_scalar(enum_scalar escalar,::number number,int iFlags)
 //{
 //
-//   __UNREFERENCED_PARAMETER(escalar);
+//   UNREFERENCED_PARAMETER(escalar);
 //
-//   __UNREFERENCED_PARAMETER(number);
+//   UNREFERENCED_PARAMETER(number);
 //
-//   __UNREFERENCED_PARAMETER(iFlags);
+//   UNREFERENCED_PARAMETER(iFlags);
 //
 //   // does nothing by default.
 //
@@ -1711,7 +1711,7 @@ bool scalar_source::contains_scalar(enum_scalar escalar, ::number number)
 number scalar_source::get_scalar_minimum(enum_scalar escalar)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    //i = 0; // by default
 
@@ -1724,7 +1724,7 @@ number scalar_source::get_scalar_minimum(enum_scalar escalar)
 number scalar_source::get_scalar(enum_scalar escalar)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    //i = 1; // by default
 
@@ -1736,7 +1736,7 @@ number scalar_source::get_scalar(enum_scalar escalar)
 number scalar_source::get_scalar_maximum(enum_scalar escalar)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    // i = 1; // by default
 

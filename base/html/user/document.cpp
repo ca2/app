@@ -110,7 +110,7 @@ html_document::~html_document()
 void html_document::data_on_after_change(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -273,7 +273,7 @@ void html_document::soft_reload()
 
    property_set_replace(str);
 
-   FORMATTED_TRACE("%s", str.c_str());
+   information("%s", str.c_str());
 
    get_html_data()->load(str);
 

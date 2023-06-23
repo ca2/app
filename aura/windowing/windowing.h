@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #pragma once
@@ -6,7 +6,7 @@
 
 #include "acme/platform/department.h"
 #include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow);

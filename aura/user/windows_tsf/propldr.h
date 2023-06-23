@@ -1,5 +1,5 @@
 /**************************************************************************
-   THIS CODE AND INFORMATION IS PROVIDED 'AS IS' WITHOUT WARRANTY OF
+   THIS CODE AND log_information( IS PROVIDED 'AS IS' WITHOUT WARRANTY OF
    ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
    PARTICULAR PURPOSE.
@@ -53,7 +53,7 @@ public:
 private:
     int m_ObjRefCount;
     TF_PERSISTENT_PROPERTY_HEADER_ACP m_hdr;
-    byte *m_pb;
+    ::u8 *m_pb;
 };
 
 

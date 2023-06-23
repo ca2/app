@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "font_impact.h"
 #include "top_impact.h"
 #include "top_edit_impact.h"
@@ -87,14 +87,14 @@ namespace userex
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         if (m_ptopview != nullptr && ptopic->m_puserelement == m_ptopview->m_peditview)
+         if (m_ptopview != nullptr && ptopic->m_puserelement == m_ptopview->m_peditimpact)
          {
 
             synchronous_lock synchronouslock(m_pimpact->m_pfontlist->synchronization());
 
             string strText;
 
-            m_ptopview->m_peditview->_001GetText(strText);
+            m_ptopview->m_peditimpact->_001GetText(strText);
 
             m_pimpact->m_pfontlist->m_strText = strText;
 
@@ -114,11 +114,11 @@ namespace userex
 
                strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-               m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
+               m_ptopview->m_peditimpact->_001SetText(strText, ::e_source_sync);
 
-               m_ptopview->m_peditview->m_pfont.defer_create(this);
+               m_ptopview->m_peditimpact->m_pfont.defer_create(this);
 
-               m_ptopview->m_peditview->m_pfont->set_family_name(strText);
+               m_ptopview->m_peditimpact->m_pfont->set_family_name(strText);
 
                m_pimpact->m_pfontlist->m_strText = "";
 
@@ -197,11 +197,11 @@ namespace userex
       if (m_bSourceFontSel)
       {
 
-         m_ptopview->m_peditview->_001SetText(str, ::e_source_sync);
+         m_ptopview->m_peditimpact->_001SetText(str, ::e_source_sync);
 
-         m_ptopview->m_peditview->m_pfont.defer_create(this);
+         m_ptopview->m_peditimpact->m_pfont.defer_create(this);
 
-         m_ptopview->m_peditview->m_pfont->set_family_name(str);
+         m_ptopview->m_peditimpact->m_pfont->set_family_name(str);
 
       }
 
@@ -249,11 +249,11 @@ namespace userex
 
    //            strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-   //            m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
+   //            m_ptopview->m_peditimpact->_001SetText(strText, ::e_source_sync);
 
-   //            m_ptopview->m_peditview->m_pfont.defer_create(this);
+   //            m_ptopview->m_peditimpact->m_pfont.defer_create(this);
 
-   //            m_ptopview->m_peditview->m_pfont->set_family_name(strText);
+   //            m_ptopview->m_peditimpact->m_pfont->set_family_name(strText);
 
    //            m_pimpact->m_pfontlist->m_strText = "";
 

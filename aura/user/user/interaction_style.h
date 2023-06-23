@@ -1,4 +1,4 @@
-// From scroll.h by camilo on 2022-08-27 13:42 <3ThomasBorregaardSørensen!!
+// From scroll.h by camilo on 2022-08-27 13:42 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

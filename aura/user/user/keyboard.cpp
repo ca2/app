@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "user.h"
 #include "key.h"
 #include "interaction.h"
@@ -314,7 +314,7 @@ namespace user
       if(str.is_empty())
       {
 
-         INFORMATION("unable to load os keyboard on_layout");
+         information() << "unable to load os keyboard on_layout";
          
          //if(is_debugger_attached())
          //{
@@ -331,7 +331,7 @@ namespace user
 
       //if(!doc.load(str))
       //{
-      //   TRACE("unable to load os keyboard on_layout");
+      //   information("unable to load os keyboard on_layout");
       //   //if(is_debugger_attached())
       //   //{
 
@@ -440,23 +440,23 @@ namespace user
 //      }
 //      if(initialize(playout, strPath))
 //      {
-//         FORMATTED_TRACE("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//         information("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //         if(playout->load(playout->m_strPath))
 //         {
 //            m_playout = playout;
 //// xxx            papp->simpledb().on_set_keyboard_layout(playout->m_strPath, context);
-//            FORMATTED_TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//            information("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //            return true;
 //         }
 //         else
 //         {
 //            playout->release();
-//            FORMATTED_TRACE("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//            information("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //         }
 //      }
 //      else
 //      {
-//         FORMATTED_TRACE("failed to set keyboard on_layout path=%s", pszPath);
+//         information("failed to set keyboard on_layout path=%s", pszPath);
 //      }
 //      return false;
 //   }

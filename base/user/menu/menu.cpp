@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "menu.h"
 #include "item.h"
 #include "interaction.h"
@@ -301,7 +301,7 @@ namespace user
       if (pshow->m_bShow)
       {
 
-         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
          if (m_puserinteractionParent)
          {
@@ -330,7 +330,7 @@ namespace user
       else
       {
 
-         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         information("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
 
@@ -1208,7 +1208,7 @@ namespace user
 
       pmessage->previous();
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //create_color(color_background, argb(84 + 77, 185, 184, 177));
       //create_translucency(::user::e_translucency_present;
@@ -1221,7 +1221,7 @@ namespace user
 
    //    void menu::_001OnIdleUpdateCmdUI(::message::message * pmessage)
    //    {
-   //       __UNREFERENCED_PARAMETER(pmessage);
+   //       UNREFERENCED_PARAMETER(pmessage);
    //       //      ::pointer<::user::message>pusermessage(pmessage);
 
    //       ::pointer<::user::menu_item>pitemThis = get_item();
@@ -1260,7 +1260,7 @@ namespace user
 
    void menu::_001OnEnable(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -1605,7 +1605,7 @@ namespace user
    }
 
 
-   // <3ThomasBorregaardSørensen__!! (I need to suck you, back, middle, front .20211031)
+   // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front .20211031)
    void menu::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
@@ -1629,7 +1629,7 @@ namespace user
 
 
 
-   // <3ThomasBorregaardSørensen__!! (I need to suck you, back, middle, front)
+   // <3ThomasBorregaardSorensen__!! (I need to suck you, back, middle, front)
    void menu::handle_command(const ::atom& atom)
    {
 

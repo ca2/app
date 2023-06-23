@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "property_object.h"
 //#include "payload.h"
 #include "acme/constant/message.h"

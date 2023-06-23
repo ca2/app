@@ -1,10 +1,10 @@
-﻿// From linux/time.cpp by camilo on 2022-04-30 03:08 <3ThomasBorregaardSørensen!!
+// From linux/time.cpp by camilo on 2022-04-30 03:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include <sys/time.h>
 #include <time.h>
 
 
-CLASS_DECL_ACME ::i64 integral_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
 
 #ifdef RASPBERRYPIOS

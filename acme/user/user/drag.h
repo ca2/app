@@ -1,8 +1,9 @@
-﻿// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSørensen
+// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSorensen
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/size.h"
 #include "acme/constant/element.h"
 
 
@@ -25,7 +26,8 @@ namespace user
       e_zorder                   m_ezorder;
       bool                       m_bLButtonDown;
       ::point_i32                m_pointLButtonDown;
-      ::size_i32                 m_sizeLButtonDownOffset;
+      ::point_i32                m_pointInitial;
+      //::size_i32                 m_sizeLButtonDownOffset;
       ::pointer<::user::mouse>   m_pmouse;
       enum_cursor                m_ecursor;
 

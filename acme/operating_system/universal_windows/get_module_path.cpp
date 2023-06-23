@@ -1,4 +1,4 @@
-﻿// From https://stackoverflow.com/questions/41413534/get-app-path-for-fopen-in-uwpby by camilo on 2023-02-11 01:17 BRT <3ThomasBorregaardSorensen!!
+// From https://stackoverflow.com/questions/41413534/get-app-path-for-fopen-in-uwpby by camilo on 2023-02-11 01:17 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/_operating_system.h"
 //#include <windows.h>

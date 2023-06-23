@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_child.h"
 #include "interaction.h"
 #include "acme/constant/message.h"
@@ -50,12 +50,12 @@ namespace user
       if (_is_window())
       {
 
-         INFORMATION("-------------------------------------------------------------------");
-         INFORMATION("");
-         INFORMATION("");
-         INFORMATION("interaction_child::create_window_ex (DestroyWindow)");
-         INFORMATION("");
-         INFORMATION("");
+         information() << "-------------------------------------------------------------------";
+         information() << "";
+         information() << "";
+         information() << "interaction_child::create_window_ex (DestroyWindow)";
+         information() << "";
+         information() << "";
 
          start_destroying_window();
 
@@ -85,12 +85,12 @@ namespace user
 
          //if (!m_puserinteraction->pre_create_window(pusersystem))
          //{
-         //   INFORMATION("-------------------------------------------------------------------");
-         //   INFORMATION("");
-         //   INFORMATION("");
-         //   INFORMATION("interaction_child::create_window_ex (2)");
-         //   INFORMATION("");
-         //   INFORMATION("");
+         //   information() << "-------------------------------------------------------------------";
+         //   information() << "";
+         //   information() << "";
+         //   information() << "interaction_child::create_window_ex (2)";
+         //   information() << "";
+         //   information() << "";
 
          //   return false;
 
@@ -105,12 +105,12 @@ namespace user
          if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl)
          {
 
-            INFORMATION("-------------------------------------------------------------------");
-            INFORMATION("");
-            INFORMATION("");
-            INFORMATION("interaction_child::create_window_ex (rectangle)");
-            INFORMATION("");
-            INFORMATION("");
+            information() << "-------------------------------------------------------------------";
+            information() << "";
+            information() << "";
+            information() << "interaction_child::create_window_ex (rectangle)";
+            information() << "";
+            information() << "";
 
             m_puserinteraction->WindowDataLoadWindowRectangle();
 
@@ -126,12 +126,12 @@ namespace user
          //if (rectangleChild.is_set())
          //{
 
-         //   INFORMATION("-------------------------------------------------------------------");
-         //   INFORMATION("");
-         //   INFORMATION("");
-         //   FORMATTED_INFORMATION("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
-         //   INFORMATION("");
-         //   INFORMATION("");
+         //   information() << "-------------------------------------------------------------------";
+         //   information() << "";
+         //   information() << "";
+         //   information("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
+         //   information() << "";
+         //   information() << "";
 
          //   m_puserinteraction->layout().sketch() = rectangleChild;
 
@@ -142,7 +142,7 @@ namespace user
          if(m_puserinteraction->is_top_level())
          {
 
-            INFORMATION("top_level");
+            information() << "top_level";
 
          }
          else
@@ -151,12 +151,12 @@ namespace user
             //if (pusersystem->m_createstruct.style & WS_VISIBLE)
             //{
 
-            //   INFORMATION("-------------------------------------------------------------------");
-            //   INFORMATION("");
-            //   INFORMATION("");
-            //   INFORMATION("interaction_child::create_window_ex VISIBLE");
-            //   INFORMATION("");
-            //   INFORMATION("");
+            //   information() << "-------------------------------------------------------------------";
+            //   information() << "";
+            //   information() << "";
+            //   information() << "interaction_child::create_window_ex VISIBLE";
+            //   information() << "";
+            //   information() << "";
 
             //   m_puserinteraction->display();
 
@@ -164,12 +164,12 @@ namespace user
             //else
             //{
 
-            //   INFORMATION("-------------------------------------------------------------------");
-            //   INFORMATION("");
-            //   INFORMATION("");
-            //   INFORMATION("interaction_child::create_window_ex NOT VISIBLE");
-            //   INFORMATION("");
-            //   INFORMATION("");
+            //   information() << "-------------------------------------------------------------------";
+            //   information() << "";
+            //   information() << "";
+            //   information() << "interaction_child::create_window_ex NOT VISIBLE";
+            //   information() << "";
+            //   information() << "";
 
             //   m_puserinteraction->hide();
 
@@ -303,7 +303,7 @@ namespace user
 
    void interaction_child::_002InstallMessageHandling(::channel * pchannel)
    {
-      __UNREFERENCED_PARAMETER(pchannel);
+      UNREFERENCED_PARAMETER(pchannel);
    }
 
 
@@ -316,9 +316,9 @@ namespace user
    //void interaction_child::CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType)
 
    //{
-   //   __UNREFERENCED_PARAMETER(pClientRect);
+   //   UNREFERENCED_PARAMETER(pClientRect);
 
-   //   __UNREFERENCED_PARAMETER(nAdjustType);
+   //   UNREFERENCED_PARAMETER(nAdjustType);
    //   //u32 dwExStyle = GetExStyle();
    //   //if (nAdjustType == 0)
    //   //   dwExStyle &= ~WS_EX_CLIENTEDGE;

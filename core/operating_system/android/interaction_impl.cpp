@@ -324,9 +324,9 @@ namespace android
 
          strMessage.format("%s\n\nSystem Error Code: %d",strLastError.c_str(),dwLastError);
 
-         TRACE("Warning: Window creation failed: get_last_error returned:\n");
+         information("Warning: Window creation failed: get_last_error returned:\n");
 
-         FORMATTED_TRACE("%s\n", strMessage.c_str());
+         information("%s\n", strMessage.c_str());
 
          try
          {
@@ -334,13 +334,13 @@ namespace android
             if(dwLastError == 0x0000057e)
             {
 
-               TRACE("Cannot create a top-level child interaction_impl.");
+               information("Cannot create a top-level child interaction_impl.");
 
             }
             else
             {
 
-               FORMATTED_TRACE("%s", strMessage.c_str());
+               information("%s", strMessage.c_str());
 
             }
 
@@ -582,7 +582,7 @@ namespace android
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //::parallelization::post_quit_and_wait(m_pprodevian, seconds(10));
 
@@ -723,7 +723,7 @@ namespace android
 
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -814,8 +814,8 @@ namespace android
 
    bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
-      __UNREFERENCED_PARAMETER(bEnable);
-      __UNREFERENCED_PARAMETER(nFlag);
+      UNREFERENCED_PARAMETER(bEnable);
+      UNREFERENCED_PARAMETER(nFlag);
       return false;
    }
 
@@ -855,7 +855,7 @@ namespace android
 
 
 
-   //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
+   //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,::u8 bAlpha,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   return ::SetLayeredWindowAttributes(get_handle(),crKey,bAlpha,dwFlags) != false;
@@ -872,7 +872,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,byte *pbAlpha,u32 *pdwFlags) const
+   //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,::u8 *pbAlpha,u32 *pdwFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
    //   return ::GetLayeredWindowAttributes(((interaction_impl *) this)->get_handle(),pcrKey,pbAlpha,(LPDWORD)pdwFlags) != false;
@@ -901,8 +901,8 @@ namespace android
 
    void interaction_impl::WinHelp(uptr dwData,::u32 nCmd)
    {
-      __UNREFERENCED_PARAMETER(dwData);
-      __UNREFERENCED_PARAMETER(nCmd);
+      UNREFERENCED_PARAMETER(dwData);
+      UNREFERENCED_PARAMETER(nCmd);
       throw ::interface_only();
 
       /*      application* pApp = System;
@@ -917,7 +917,7 @@ namespace android
       // need to use top level parent (for the case where get_handle() is in DLL)
       ::pointer<::user::interaction>pwindow = EnsureTopLevelParent();
 
-      FORMATTED_TRACE(trace_category_appmsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+      information(trace_category_appmsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -945,7 +945,7 @@ namespace android
    // need to use top level parent (for the case where get_handle() is in DLL)
    ::pointer<::user::interaction>pwindow = EnsureTopLevelParent();
 
-   FORMATTED_TRACE(trace_category_appmsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   information(trace_category_appmsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    // run the HTML Help engine
    /* trans   if (!::aura::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -993,8 +993,8 @@ namespace android
 
    void interaction_impl::WinHelpInternal(uptr dwData,::u32 nCmd)
    {
-      __UNREFERENCED_PARAMETER(dwData);
-      __UNREFERENCED_PARAMETER(nCmd);
+      UNREFERENCED_PARAMETER(dwData);
+      UNREFERENCED_PARAMETER(nCmd);
       throw ::interface_only();
       /*
       application* pApp = System;
@@ -1099,11 +1099,11 @@ namespace android
       {
          if(m_puserinteraction->layout().is_moving())
          {
-            //TRACE("moving: skip pre translate message");
+            //information("moving: skip pre translate message");
          }
          else if(m_puserinteraction->layout().is_sizing())
          {
-            //TRACE("sizing: skip pre translate message");
+            //information("sizing: skip pre translate message");
          }
          else
          {
@@ -1329,7 +1329,7 @@ namespace android
 
    bool interaction_impl::OnCommand(::user::message * pusermessage)
    {
-      __UNREFERENCED_PARAMETER(pusermessage);
+      UNREFERENCED_PARAMETER(pusermessage);
       return false;
    }
 
@@ -1448,7 +1448,7 @@ namespace android
 
    //bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,::u32 nMask)
    //{
-   //   __UNREFERENCED_PARAMETER(nMask);
+   //   UNREFERENCED_PARAMETER(nMask);
    //   ASSERT(lpScrollInfo != nullptr);
 
    //   oswindow oswindow = get_handle();
@@ -1625,7 +1625,7 @@ namespace android
 //
 //bool interaction_impl::ReflectChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
 //{
-//   __UNREFERENCED_PARAMETER(wparam);
+//   UNREFERENCED_PARAMETER(wparam);
 //   // Note: reflected messages are send directly to interaction_impl::OnWndMsg
 //   //  and interaction_impl::_001OnCommand for speed and because these messages are not
 //   //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -1808,14 +1808,14 @@ namespace android
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       Default();
 
       if (m_puserinteraction->is_message_only_window())
       {
 
-         TRACE("good : opt out!");
+         information("good : opt out!");
 
       }
       else
@@ -1913,7 +1913,7 @@ namespace android
    //      begin_thread( &print_window::s_print_window, (LPVOID) this, ::e_priority_normal);
    //      if (m_event.wait(::time(tickTimeout)).timeout())
    //      {
-   //         TRACE("print_window::time_out");
+   //         information("print_window::time_out");
    //      }
    //   }
 
@@ -1966,7 +1966,7 @@ namespace android
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2089,7 +2089,7 @@ namespace android
 //      //      if (hDC == nullptr)
 //      //      {
 //      //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
-//      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+//      //         //         information(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
 //      //         return false;
 //      //      }
 //      //
@@ -2275,9 +2275,9 @@ namespace android
    void interaction_impl::UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler)
    {
 
-      //__UNREFERENCED_PARAMETER(pTarget);
+      //UNREFERENCED_PARAMETER(pTarget);
 
-      //__UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+      //UNREFERENCED_PARAMETER(bDisableIfNoHndler);
 
       //::message::command state(this);
 
@@ -2881,7 +2881,7 @@ namespace android
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      __UNREFERENCED_PARAMETER(bRedraw);
+      UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
 
@@ -3006,8 +3006,8 @@ namespace android
    //i32 interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
    //{
 
-   //   __UNREFERENCED_PARAMETER(hRgn);
-   //   __UNREFERENCED_PARAMETER(bRedraw);
+   //   UNREFERENCED_PARAMETER(hRgn);
+   //   UNREFERENCED_PARAMETER(bRedraw);
 
    //   //throw ::not_implemented();
 
@@ -3377,7 +3377,7 @@ namespace android
    //   //return ::user::interaction_impl::SetTimer(uEvent, nElapse, lpfnTimer);
 
 
-   //   //__UNREFERENCED_PARAMETER(lpfnTimer);
+   //   //UNREFERENCED_PARAMETER(lpfnTimer);
 
    //   //m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
 
@@ -3654,12 +3654,12 @@ namespace android
 
    }
 
-   i32 interaction_impl::ScrollWindowEx(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 * lpRectScroll, const ::rectangle_i32 * lpRectClip, ::draw2d::region * prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
+   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const ::rectangle_i32 * lpRectScroll, const ::rectangle_i32 * lpRectClip, ::draw2d::region * prgnUpdate, ::rectangle_i32 * lpRectUpdate, ::u32 flags)
    {
 
       throw ::not_implemented();
       //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::ScrollWindowEx(get_handle(), greekdeltax, greekdeltay, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
+      //      return ::ScrollWindowEx(get_handle(), Δx, Δy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 
    }
 
@@ -4023,7 +4023,7 @@ namespace android
 
    void interaction_impl::on_message_size(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //size_i32 sizeRequest = m_puserinteraction->m_rectangleParentClientRequest.size();
 
@@ -4477,7 +4477,7 @@ namespace android
 
 //void interaction_impl::on_delete(::object * pinteraction)
 //{
-//   __UNREFERENCED_PARAMETER(pinteraction);
+//   UNREFERENCED_PARAMETER(pinteraction);
 //}
 
 
@@ -4576,7 +4576,7 @@ namespace android
    bool interaction_impl::on_keyboard_focus(::user::primitive * pfocus)
    {
 
-      __UNREFERENCED_PARAMETER(pfocus);
+      UNREFERENCED_PARAMETER(pfocus);
 
       psystem->operating_system_driver::get().m_bShowKeyboard = true;
 

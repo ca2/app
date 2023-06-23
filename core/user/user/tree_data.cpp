@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree_data.h"
 #include "tree.h"
 #include "acme/primitive/data/listener.h"
@@ -361,7 +361,7 @@ namespace user
    void tree_data::on_merge_user_tree(::user::tree * pusertree)
    {
 
-      __UNREFERENCED_PARAMETER(pusertree);
+      UNREFERENCED_PARAMETER(pusertree);
 
    }
 
@@ -369,7 +369,7 @@ namespace user
    void tree_data::on_bind_user_tree(::user::tree * pusertree)
    {
 
-      __UNREFERENCED_PARAMETER(pusertree);
+      UNREFERENCED_PARAMETER(pusertree);
 
    }
 

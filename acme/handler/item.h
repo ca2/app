@@ -1,4 +1,4 @@
-﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 // From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 21:12 BRT
 #pragma once
@@ -6,12 +6,25 @@
 
 #include "acme/primitive/primitive/particle.h"
 ////#include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 //#include "acme/primitive/geometry2d/region.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/constant/element.h"
 #include "acme/user/user/_constant.h"
 
+
+enum enum_item_flag : ::i64
+{
+
+   e_item_flag_none = 0,
+   e_item_flag_double_click_as_second_click = 1,
+   e_item_flag_eat_double_click = 2,
+
+};
+
+
+DECLARE_ENUMERATION(e_item_flag, enum_item_flag);
 
 
 #pragma pack(push, user_ITEM, 1)
@@ -52,6 +65,7 @@ struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
+   ::e_item_flag                 m_eitemflag;
    ::pointer < ::particle >      m_pparticle;
    ::enum_item                   m_eitem;
    ::user::e_zorder              m_ezorder;
@@ -73,6 +87,7 @@ struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
    ITEM_DATA_ADDITIONS()
    {
 
+      m_ezorder = ::user::e_zorder_front;
 
    }
    
@@ -390,7 +405,7 @@ public:
 
    bool is_item_set() const { return m_atom.is_set() || m_eelement != ::e_element_none; }
 
-   operator bool() const { return is_item_set(); }
+   explicit operator bool() const { return is_item_set(); }
 
    operator enum_element() const { return m_eelement; }
 

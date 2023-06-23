@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -551,6 +551,7 @@ namespace windowing
       return m_monitora[iMonitor];
 
    }
+
 
 
    void display::get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const rectangle_i32 & rectangleParam)
@@ -1108,7 +1109,7 @@ namespace windowing
          rectangleIntersect.intersect(rectangleMonitor, rectangleParam);
 
       }
-
+      
       auto sizeMax = rectangleMonitor.size() * 0.9;
 
       if (rectangleIntersect.width() < sizeMin.cx() || rectangleIntersect.height() < sizeMin.cy()
@@ -1171,6 +1172,7 @@ namespace windowing
    }
 
 
+
    index display::get_good_restore(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
    {
 
@@ -1180,9 +1182,9 @@ namespace windowing
 
       ::size_i32 sizeMin;
 
-      ::size_i32 sizeBroad;
+      ::rectangle_i32 rectangleBroad;
 
-      ::size_i32 sizeCompact;
+      ::rectangle_i32 rectangleCompact;
 
       ::rectangle_i32 rectangleNormal;
 
@@ -1234,13 +1236,11 @@ namespace windowing
             
          }
 
-         sizeBroad = pinteraction->m_sizeRestoreBroad;
+         rectangleBroad = pinteraction->m_rectangleRestoreBroad;
 
-         sizeCompact = pinteraction->m_sizeRestoreCompact;
+         rectangleCompact = pinteraction->m_rectangleRestoreCompact;
 
-         rectangleNormal.set_size(pinteraction->get_window_normal_stored_size());
-
-         rectangleNormal.move_to(rectangleHint.top_left());
+         rectangleNormal = pinteraction->get_window_normal_stored_rectangle();
 
          if(rectangleNormal.size() < sizeMin)
          {
@@ -1269,9 +1269,13 @@ namespace windowing
             
          }
 
-         sizeBroad = sizeMin.maximum(rectangleWorkspace.size() * 4 / 5);
+         rectangleBroad.set_size(sizeMin.maximum(rectangleWorkspace.size() * 4 / 5));
+         
+         rectangleBroad.move_to(rectangleHint.top_left());
 
-         sizeCompact = sizeMin.maximum(rectangleWorkspace.size() * 2 / 5);
+         rectangleCompact.set_size(sizeMin.maximum(rectangleWorkspace.size() * 2 / 5));
+         
+         rectangleCompact.move_to(rectangleHint.top_left());
 
          rectangleNormal.set_size(sizeMin.maximum(rectangleWorkspace.size() * 3 / 5));
 
@@ -1284,56 +1288,28 @@ namespace windowing
       if(edisplay == e_display_broad)
       {
 
-         if (rectangleHint.size() == sizeBroad)
-         {
-
-            rectanglePlacement = rectangleHint;
-
-         }
-         else
-         {
-
-            rectanglePlacement.set_size(sizeBroad);
-
-            rectanglePlacement.move_to(rectangleHint.top_left());
-
-         }
-
+         rectanglePlacement = rectangleBroad;
+         
       }
       else if(edisplay == e_display_compact)
       {
 
-         if (rectangleHint.size() == sizeCompact)
-         {
-
-            rectanglePlacement = rectangleHint;
-
-         }
-         else
-         {
-
-            rectanglePlacement.set_size(sizeCompact);
-
-            rectanglePlacement.move_to(rectangleHint.top_left());
-
-         }
+         rectanglePlacement = rectangleCompact;
 
       }
       else
       {
 
-         if (rectangleHint.size() == sizeBroad || rectangleHint.size() == sizeCompact)
+         if (rectangleHint.size() == rectangleBroad.size() || rectangleHint.size() == rectangleCompact.size())
          {
 
-            rectanglePlacement.set_size(rectangleNormal.size());
-
-            rectanglePlacement.move_to(rectangleHint.top_left());
+            rectanglePlacement = rectangleNormal;
 
          }
          else
          {
 
-            rectanglePlacement = rectangleNormal;
+            rectanglePlacement = rectangleHint;
 
          }
 
@@ -1368,18 +1344,21 @@ namespace windowing
          rectanglePlacement.move_right_to(rectangleWorkspace.right - 5);
 
       }
+      
       if (rectanglePlacement.left < rectangleWorkspace.left)
       {
 
          rectanglePlacement.move_left_to(rectangleWorkspace.left + 5);
 
       }
+      
       if(rectanglePlacement.bottom > rectangleWorkspace.bottom)
       {
 
          rectanglePlacement.move_bottom_to(rectangleWorkspace.bottom - 5);
 
       }
+      
       if (rectanglePlacement.top < rectangleWorkspace.top)
       {
 
@@ -1426,8 +1405,6 @@ namespace windowing
 
 
 
-
-
    index display::get_ui_workspace(::user::interaction * pinteraction)
    {
 
@@ -1449,6 +1426,8 @@ namespace windowing
       }
 
    }
+
+
 
    string_array display::get_wallpaper()
    {
@@ -1492,6 +1471,8 @@ namespace windowing
    }
 
 
+
+
    void display::set_wallpaper(const string_array & straWallpaper)
    {
 
@@ -1529,6 +1510,7 @@ namespace windowing
 #endif
 
    }
+
 
    
    string display::get_wallpaper(::index iScreen)
@@ -1601,7 +1583,7 @@ namespace windowing
 
    }
 
-   
+  
    bool display::would_be_docked(const ::rectangle_i32 & rectangleWouldBeSnapped)
    {
 
@@ -1772,6 +1754,8 @@ namespace windowing
       return false;
 
    }
+
+
 
 
    bool display::would_be_restored(const ::rectangle_i32 & rectangleWouldBeRestored)

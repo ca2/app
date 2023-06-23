@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "operation_impact.h"
 #include "operation_document.h"
 #include "operation_thread.h"
@@ -95,7 +95,7 @@ namespace filemanager
 
    void operation_impact::on_message_destroy(::message::message *pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    }
 
 

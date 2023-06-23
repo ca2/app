@@ -268,7 +268,7 @@ namespace console
 
    void prompt_frame::on_message_move(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       /*if(m_pframewindow->move_manager()->IsMoving())
       {
          oswindow oswindowDesktop = ::get_desktop_window();

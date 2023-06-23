@@ -50,7 +50,7 @@ namespace http
 
       ::text_stream is(infil);
 
-      __UNREFERENCED_PARAMETER(content-length);
+      UNREFERENCED_PARAMETER(content-length);
 
       strsize extra = 2;
 
@@ -397,7 +397,7 @@ namespace http
 
          //strsize len = str.length();
 //         strsize clen = content-length;
-         //FORMATTED_TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
+         //information("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_network_arguments(strNetworkArguments);
 
       }

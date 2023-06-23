@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application_container.h"
 #include "node.h"
 #include "application.h"
@@ -193,7 +193,7 @@ namespace acme
       ////      else
       ////      {
 
-      ////         FORMATTED_TRACE("Waiting France Exit of %s", typeid(pappItem.m_p).name());
+      ////         information("Waiting France Exit of %s", typeid(pappItem.m_p).name());
 
       ////         j++;
 
@@ -276,7 +276,7 @@ namespace acme
    ::pointer<::acme::application>application_container::instantiate_application(const ::string& strAppId)
    {
 
-      INFORMATION("apex::application::instantiate_application");
+      information() <<  "apex::application::instantiate_application";
 
       ::e_status estatus = ::success;
 
@@ -311,7 +311,7 @@ namespace acme
             !strAppId.begins(strStartupApplicationAppId))
          {
 
-            INFORMATION("Wrong papp Data Type");
+            information() << "Wrong papp Data Type";
 
             return nullptr;
 
@@ -509,7 +509,7 @@ namespace acme
    //      if (!papp->on_start_application())
    //      {
    //
-   //         INFORMATION("One or more errors occurred during on_start_application execution.");
+   //         information() << "One or more errors occurred during on_start_application execution.";
    //
    //      }
    //

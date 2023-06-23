@@ -1,4 +1,4 @@
-﻿// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSørensen!!
+// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

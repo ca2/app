@@ -64,6 +64,17 @@ namespace user
 {
 
 
+   class redraw :
+   public ::particle
+   {
+   public:
+
+      
+      ::rectangle_i32_array               m_rectanglea;
+      ::array < ::function <void() > >    m_functiona;
+      
+   };
+
    class prodevian;
    class thread;
 
@@ -164,12 +175,13 @@ namespace user
 
       ::size_i32                                m_sizeDrawnBuffer;
 
-      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
+//      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
+      ::pointer_array < redraw >                m_redrawa;
 
       ::pointer < ::user::interaction >                     m_puiLastLButtonDown;
       ::pointer < ::item >                                  m_pitemLButtonDown;
 
-
+      bool                                      m_bDoingGraphics;
       bool                                      m_bUpdateBuffer; // internal offscreen buffer
       bool                                      m_bUpdateScreen; // screen buffer
       bool                                      m_bUpdateWindow; // window frame
@@ -539,14 +551,14 @@ namespace user
 
 //#if(_WIN32_WINNT >= 0x0500)
 //
-//      virtual bool SetLayeredWindowAttributes(::color::color crKey,byte bAlpha,u32 dwFlags);
+//      virtual bool SetLayeredWindowAttributes(::color::color crKey,::u8 bAlpha,u32 dwFlags);
 //      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,::size_i32 *psize,::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,u32 dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
 //#if(_WIN32_WINNT >= 0x0501)
 //
-//      virtual bool GetLayeredWindowAttributes(::color::color *pcrKey,byte *pbAlpha,u32 *pdwFlags) const;
+//      virtual bool GetLayeredWindowAttributes(::color::color *pcrKey,::u8 *pbAlpha,u32 *pdwFlags) const;
 //
 //#endif   // _WIN32_WINNT >= 0x0501
 //
@@ -598,7 +610,7 @@ namespace user
       //virtual void ShowScrollBar(::u32 nBar,bool bShow = true);
       //virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = true);
 
-      //virtual i32 ScrollWindowEx(i32 greekdeltax,i32 greekdeltay, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
+      //virtual i32 ScrollWindowEx(i32 Δx,i32 Δy, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -807,8 +819,8 @@ namespace user
 
       virtual void on_visual_applied();
 
-      void set_need_redraw(const ::rectangle_i32& rectangleHostNeedRedraw = {}, bool bAscendants = true) override;
-      virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw);
+      void set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
+      virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
 

@@ -43,9 +43,6 @@
     <ClCompile Include="graphics\draw2d\color.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
@@ -1170,6 +1167,15 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\translatable.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image32_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
+#include "acme/primitive/geometry2d/ellipse.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -130,7 +131,7 @@ namespace experience
    void orto_button::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -138,7 +139,7 @@ namespace experience
    void orto_button::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -146,7 +147,7 @@ namespace experience
    void orto_button::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //set_need_redraw();
 

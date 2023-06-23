@@ -62,7 +62,7 @@ namespace linux
 
       ::u32 nRead = 0;
 
-      if ((nRead = fread(pdata, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
+      if ((nRead = fread(pdata, sizeof(::u8), nCount, m_pStream)) == 0 && !feof(m_pStream))
 
          throw ::file::exception(error_file, errno, m_path);
       if (ferror(m_pStream))
@@ -81,7 +81,7 @@ namespace linux
 //   ASSERT(fx_is_valid_address(pdata, nCount, false));
 
 
-      if (fwrite(pdata, sizeof(byte), nCount, m_pStream) != nCount)
+      if (fwrite(pdata, sizeof(::u8), nCount, m_pStream) != nCount)
 
          throw ::file::exception(error_file, errno, m_path);
    }

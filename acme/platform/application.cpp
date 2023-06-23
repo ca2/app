@@ -1,7 +1,7 @@
 //
 // Created by camilo on 22/02/2022.
 //
-// app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSørensen!!
+// app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "application.h"
 #include "acme.h"
@@ -201,11 +201,11 @@ namespace acme
 
       psystem->initialize_system();
 
+      psystem->system_construct(this);
+
       //psystem->acmeapplication() = pacmeapplication;
 
       //psystem->m_psubsystem = psubsystem;
-
-      psystem->system_construct(this);
 
       psystem->create_os_node();
 

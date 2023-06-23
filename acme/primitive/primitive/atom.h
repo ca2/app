@@ -1,4 +1,4 @@
-// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSorensen
 #pragma once
 
 
@@ -23,7 +23,7 @@ class lparam;
 //// order_square(AMajor - BMajor, AMinor - BMinor)
 //// Maybe it is better to cache MAJOR_COMPARISON into a variable?
 //typename < typename ORDERING >
-//constexpr ::std::strong_ordering order²(::std::strong_ordering orderingMajor, ORDERING ordering)
+//constexpr ::std::strong_ordering order squaresuperscript(::std::strong_ordering orderingMajor, ORDERING ordering)
 //{
 //
 //   return orderingMajor != 0 ? orderingMajor : orderingMinor;

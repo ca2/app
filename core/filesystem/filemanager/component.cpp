@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "component.h"
 #include "fs_simple_tree.h"
 #include "form.h"
@@ -1138,7 +1138,7 @@ namespace filemanager
 //document * component::open_child_list(bool bMakeVisible, bool bTransparentBackground, ::pointer<::user::interaction>puserinteractionParent, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
-//   __UNREFERENCED_PARAMETER(bMakeVisible);
+//   UNREFERENCED_PARAMETER(bMakeVisible);
 
 //   ::pointer<::create>pcreate(e_create);
 
@@ -1196,7 +1196,7 @@ namespace filemanager
 //document * component::open_folder_selection_list(bool bMakeVisible, bool bTransparentBackground, ::pointer<::user::interaction>puserinteractionParent, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
-//   __UNREFERENCED_PARAMETER(bMakeVisible);
+//   UNREFERENCED_PARAMETER(bMakeVisible);
 
 //   ::pointer<::create>pcreate(e_create);
 

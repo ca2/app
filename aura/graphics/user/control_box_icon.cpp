@@ -59,13 +59,13 @@ namespace user
       if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_icon))
       {
 
-         color.alpha = 189;
+         color.m_u8Opacity = 189;
 
       }
       else
       {
 
-         color.alpha = 121;
+         color.m_u8Opacity = 121;
 
       }
 
@@ -102,13 +102,13 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         colorPen.alpha = 189;
+         colorPen.m_u8Opacity = 189;
 
       }
       else
       {
 
-         colorPen.alpha = 121;
+         colorPen.m_u8Opacity = 121;
 
       }
 
@@ -146,13 +146,13 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         colorPen.alpha = 189;
+         colorPen.m_u8Opacity = 189;
 
       }
       else
       {
 
-         colorPen.alpha = 121;
+         colorPen.m_u8Opacity = 121;
 
       }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 ////#include "acme/exception/exception.h"
 //#include "acme/platform/acme.h"
 #include "acme/platform/simple_log.h"
@@ -255,7 +255,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //   if (!pfactory)
 //   {
 //
-//      FORMATTED_INFORMATION("plibrary->add_factory_item()? : Library \"%s\" didn't register any relevant factory_item for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
+//      information("plibrary->add_factory_item()? : Library \"%s\" didn't register any relevant factory_item for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
 //
 //   }
 //

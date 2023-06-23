@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "fs_simple_impact.h"
 #include "fs_simple_list_impact.h"
 #include "fs_simple_tree.h"

@@ -145,6 +145,8 @@ list(APPEND library_source
         filesystem/file/memory_map.cpp
         #filesystem/file/path.cpp
         filesystem/file/payload_stream.cpp
+        filesystem/file/print_formatting.cpp
+        filesystem/file/print_formatting.h
         #filesystem/file/seekable.cpp
         #filesystem/file/serializable.cpp
         #filesystem/file/serialize.cpp
@@ -163,6 +165,8 @@ list(APPEND library_source
         filesystem/file/transfer.h
         filesystem/file/translatable.cpp
         filesystem/file/translatable.h
+        filesystem/file/write_text_stream.cpp
+        filesystem/file/write_text_stream.h
         filesystem/filesystem/acme_directory.cpp
         filesystem/filesystem/acme_directory.h
         filesystem/filesystem/acme_file.cpp
@@ -183,7 +187,11 @@ list(APPEND library_source
         graphics/draw2d/_system_color.h
         graphics/draw2d/color.cpp
         graphics/draw2d/color32.h
-        graphics/draw2d/colorref_array.cpp
+        graphics/draw2d/color_array.cpp
+        graphics/draw2d/color_array.h
+        graphics/draw2d/image32.h
+        graphics/draw2d/image32_array.cpp
+        graphics/draw2d/image32_array.h
         graphics/draw2d/os_font_name.cpp
         handler/extended_topic.cpp
         handler/extended_topic.h
@@ -387,6 +395,7 @@ list(APPEND library_source
         platform/version.cpp
         primitive/collection/__payload_array.cpp
         primitive/collection/__property_set.h
+        primitive/collection/_generic_array.h
         #primitive/collection/2d_array.cpp
         primitive/collection/array.cpp
         primitive/collection/atom_array.h
@@ -460,66 +469,51 @@ list(APPEND library_source
         primitive/datetime/system_time.cpp
         primitive/datetime/zonetime.cpp
         primitive/datetime/zonetime.h
-        #primitive/time/duration/_.h
-        #primitive/time/duration/duration.cpp
-        #primitive/time/duration/duration.h
-        primitive/time/floating/_.h
-        primitive/time/integral/_.h
-        primitive/time/_.h
-        primitive/time/__string.cpp
-        primitive/time/__string.h
-        primitive/time/_binary_stream.h
-        primitive/time/_impl.h
-        primitive/time/_string.h
-        #primitive/time/_time.h
-        primitive/time/_impl.h
-        primitive/time/_string.h
-        primitive/time/_structures.h
-        primitive/time/_text_stream.h
-        #primitive/time/_unit.h
-        primitive/time/_unit_operator.h
-        primitive/time/time.cpp
-        primitive/time/time.h
-        #primitive/time/time_operator.h
+        primitive/geometry/sequence.h
         primitive/geometry2d/_.cpp
         primitive/geometry2d/_.h
         primitive/geometry2d/_collection.h
-        primitive/geometry2d/_collection_bounding_rect.h
-        primitive/geometry2d/_collection_contains.h
-        primitive/geometry2d/_collection_enhanced.h
+        #primitive/geometry2d/_collection_bounding_rect.h
+        #primitive/geometry2d/_collection_contains.h
+        #primitive/geometry2d/_collection_enhanced.h
         #primitive/geometry2d/_concept.h
-        primitive/geometry2d/_enhanced.h
+        #primitive/geometry2d/_enhanced.h
         primitive/geometry2d/_defer.h
-        primitive/geometry2d/_geometry2d.h
+        #primitive/geometry2d/_geometry2d.h
         #primitive/geometry2d/_impl.h
         #primitive/geometry2d/_rect_impl.h
-        primitive/geometry2d/_shape.cpp
-        primitive/geometry2d/_shape.h
+        #primitive/geometry2d/_shape.cpp
+        #primitive/geometry2d/_shape.h
         #primitive/geometry2d/_size_impl.h
         primitive/geometry2d/_struct.h
+        primitive/geometry2d/_text_stream.h
         #primitive/geometry2d/align.h
-        primitive/geometry2d/_angle.h
-        primitive/geometry2d/_arc.h
-        primitive/geometry2d/bounding_rect.h
+        primitive/geometry2d/angle.h
+        primitive/geometry2d/arc.h
+        #primitive/geometry2d/bounding_rect.h
         primitive/geometry2d/collection.h
         primitive/geometry2d/contains.h
-        primitive/geometry2d/_ellipse.h
+        primitive/geometry2d/ellipse.h
         primitive/geometry2d/geometry.cpp
         primitive/geometry2d/geometry.h
-        primitive/geometry2d/_line.h
-        primitive/geometry2d/_lines.h
+        primitive/geometry2d/item.cpp
+        primitive/geometry2d/item.h
+        primitive/geometry2d/line.h
+        primitive/geometry2d/lines.h
         #primitive/geometry2d/point.cpp
-        primitive/geometry2d/_point.h
+        primitive/geometry2d/point.h
         primitive/geometry2d/point_array.h
-        primitive/geometry2d/_polygon.h
+        primitive/geometry2d/polygon.h
         primitive/geometry2d/rectangle.cpp
-        primitive/geometry2d/_rectangle.h
+        primitive/geometry2d/rectangle.h
         primitive/geometry2d/rectangle_array.h
-        primitive/geometry2d/shape.cpp
-        primitive/geometry2d/shape.h
-        primitive/geometry2d/shape_array.h
+        primitive/geometry2d/region.cpp
+        primitive/geometry2d/region.h
+        #primitive/geometry2d/shape.cpp
+        #primitive/geometry2d/shape.h
+        #primitive/geometry2d/shape_array.h
         #primitive/geometry2d/size.cpp
-        primitive/geometry2d/_size.h
+        primitive/geometry2d/size.h
         primitive/geometry2d/size_array.h
         #primitive/geometry2d/types.cpp
         primitive/geometry2d/types.h
@@ -530,6 +524,8 @@ list(APPEND library_source
         primitive/geometry3d/location.cpp
         primitive/geometry3d/location.h
         primitive/geometry3d/quaternions.h
+        primitive/geometry4d/color.h
+        primitive/geometry4d/quadruple.h
         primitive/mathematics/_.cpp
         primitive/mathematics/_.h
         primitive/mathematics/_impl.h
@@ -689,7 +685,7 @@ list(APPEND library_source
         #primitive/primitive/simple_object.h
         primitive/primitive/stick.h
         #primitive/primitive/str.h
-        primitive/primitive/top_level_domain_list.cpp
+        #primitive/primitive/top_level_domain_list.cpp
         #primitive/primitive/tracer.cpp
         #primitive/primitive/tracer.h
         #primitive/primitive/trait.h
@@ -887,6 +883,27 @@ list(APPEND library_source
         primitive/text/text.h
         primitive/text/translator.cpp
         primitive/text/translator.h
+        #primitive/time/duration/_.h
+        #primitive/time/duration/duration.cpp
+        #primitive/time/duration/duration.h
+        primitive/time/floating/_.h
+        primitive/time/integral/_.h
+        primitive/time/_.h
+        primitive/time/__string.cpp
+        primitive/time/__string.h
+        primitive/time/_binary_stream.h
+        primitive/time/_impl.h
+        primitive/time/_string.h
+        #primitive/time/_time.h
+        primitive/time/_impl.h
+        primitive/time/_string.h
+        primitive/time/_structures.h
+        primitive/time/_text_stream.h
+        #primitive/time/_unit.h
+        primitive/time/_unit_operator.h
+        primitive/time/time.cpp
+        primitive/time/time.h
+        #primitive/time/time_operator.h
         promise.cpp
         regular_expression/_regular_expression.h
         regular_expression/context.cpp
@@ -941,6 +958,7 @@ list(APPEND library_source
         user/user/element.cpp
         user/user/element.h
         user/user/e_window_flag.h
+        user/user/mouse.cpp
         user/user/mouse.h
         user/user/os_colors.cpp
         user/user/os_theme_colors.cpp
@@ -1264,7 +1282,7 @@ list(APPEND library_source
         graphics/draw2d/_.h
         graphics/draw2d/_constant.h
         graphics/draw2d/color.h
-        graphics/draw2d/colorref_array.h
+        #graphics/draw2d/colorref_array.h
         include/_.h
         include/_c.h
         include/_c_bridge.h
@@ -1448,6 +1466,8 @@ list(APPEND library_source
         platform/timer_task.h
         platform/title.h
         platform/trace_category.h
+        platform/trace_statement.cpp
+        platform/trace_statement.h
         platform/uint32_muldiv.h
         platform/uint64_muldiv.h
         platform/user_parent.h
@@ -1532,7 +1552,6 @@ list(APPEND library_source
         version/version.config.h
         version/version.h
         include/_impl.h
-        primitive/geometry2d/_text_stream.h
         )
 
 if (ANDROID)
@@ -2294,7 +2313,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} primitive/collection/_generic_array.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2335,8 +2354,6 @@ elseif (LINUX OR FREEBSD)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})

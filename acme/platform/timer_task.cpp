@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/id.h"
 #include "timer_task.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -227,9 +227,10 @@ void timer_task::run()
 
    auto waitSleep = m_timeWait;
 
-   auto countDecisecondSleep = (::i32) (waitSleep.integral_millisecond() / 100);
+   const auto intervalTime = 100_ms;
 
-   auto remainderDecisecondSleep = (::i32) (waitSleep.integral_millisecond() % 100);
+
+   auto [countDecisecondSleep, remainderDecisecondSleep] = waitSleep.count_and_remainder(intervalTime);
 
    while (true)
    {
@@ -248,7 +249,7 @@ void timer_task::run()
 
       }
 
-      ::preempt(integral_millisecond(remainderDecisecondSleep));
+      ::preempt(remainderDecisecondSleep);
 
       if (!task_get_run())
       {

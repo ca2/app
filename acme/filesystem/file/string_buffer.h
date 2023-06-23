@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -21,8 +21,10 @@ public:
 
 
    string_reference_buffer(::string& str) : m_str(str) {}
-   string_reference_buffer(string_reference_buffer& buffer) : m_str(buffer.m_str) {}
-   ~string_reference_buffer() {}
+   string_reference_buffer(const string_reference_buffer & buffer) = default;
+   string_reference_buffer(string_reference_buffer & buffer) = default;
+   //string_reference_buffer(string_reference_buffer && buffer) {}
+   //~string_reference_buffer() {}
 
 
    //using ::file::file::read;
@@ -180,6 +182,16 @@ public:
    {
    
    
+   }
+   string_buffer(string_buffer && buffer) :
+      m_strOwnStorage(::transfer(buffer.m_strOwnStorage)),
+      string_reference_buffer(m_strOwnStorage)
+   {
+
+   }
+   ~string_buffer()
+   {
+
    }
 
 

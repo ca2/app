@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/platform/system_setup.h"
 #include "apex/platform/application.h"
 #include "aqua/platform/session.h"

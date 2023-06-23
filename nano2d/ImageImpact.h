@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/ImageImpact.h -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.

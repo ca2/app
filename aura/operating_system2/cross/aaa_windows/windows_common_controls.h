@@ -22,12 +22,12 @@
 typedef struct _TBBUTTON {
    int iBitmap;
    int idCommand;
-   byte fsState;
-   byte fsStyle;
+   ::u8 fsState;
+   ::u8 fsStyle;
 #ifdef _WIN64
-   byte bReserved[6];          // padding for alignment
+   ::u8 bReserved[6];          // padding for alignment
 #elif defined(_WIN32)
-   byte bReserved[2];          // padding for alignment
+   ::u8 bReserved[2];          // padding for alignment
 #endif
    DWORD_PTR dwData;
    INT_PTR iString;
@@ -377,8 +377,8 @@ typedef struct {
    ::u32 dwMask;
    int idCommand;
    int iImage;
-   byte fsState;
-   byte fsStyle;
+   ::u8 fsState;
+   ::u8 fsStyle;
    ::u16 cx;
    DWORD_PTR lParam;
    char * pszText;
@@ -390,8 +390,8 @@ typedef struct {
    ::u32 dwMask;
    int idCommand;
    int iImage;
-   byte fsState;
-   byte fsStyle;
+   ::u8 fsState;
+   ::u8 fsStyle;
    ::u16 cx;
    DWORD_PTR lParam;
    LPWSTR pszText;

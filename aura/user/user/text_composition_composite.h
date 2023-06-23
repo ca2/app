@@ -1,4 +1,4 @@
-// From text_composition.h by camilo on 2022-08-27 19:18 <3ThomasBorregaardSørensen!!
+// From text_composition.h by camilo on 2022-08-27 19:18 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

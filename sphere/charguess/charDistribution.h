@@ -106,8 +106,8 @@ public:
 protected:
 
   //for euc-TW encoding, we are interested 
-  //  first  byte range: 0xc4 -- 0xfe
-  //  second byte range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xc4 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xc4)  
@@ -124,8 +124,8 @@ public:
   EUCKRDistributionAnalysis();
 protected:
   //for euc-KR encoding, we are interested 
-  //  first  byte range: 0xb0 -- 0xfe
-  //  second byte range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xb0 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xb0)  
@@ -141,8 +141,8 @@ public:
   GB2312DistributionAnalysis();
 protected:
   //for GB2312 encoding, we are interested 
-  //  first  byte range: 0xb0 -- 0xfe
-  //  second byte range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xb0 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xb0 && (unsigned char)str[1] >= (unsigned char)0xa1)  
@@ -159,8 +159,8 @@ public:
   Big5DistributionAnalysis();
 protected:
   //for big5 encoding, we are interested 
-  //  first  byte range: 0xa4 -- 0xfe
-  //  second byte range: 0x40 -- 0x7e , 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xa4 -- 0xfe
+  //  second ::u8 range: 0x40 -- 0x7e , 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xa4)  
@@ -179,8 +179,8 @@ public:
   SJISDistributionAnalysis();
 protected:
   //for sjis encoding, we are interested 
-  //  first  byte range: 0x81 -- 0x9f , 0xe0 -- 0xfe
-  //  second byte range: 0x40 -- 0x7e,  0x81 -- oxfe
+  //  first  ::u8 range: 0x81 -- 0x9f , 0xe0 -- 0xfe
+  //  second ::u8 range: 0x40 -- 0x7e,  0x81 -- oxfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::string & str) 
   { 
@@ -204,8 +204,8 @@ public:
   EUCJPDistributionAnalysis();
 protected:
   //for euc-JP encoding, we are interested 
-  //  first  byte range: 0xa0 -- 0xfe
-  //  second byte range: 0xa1 -- 0xfe
+  //  first  ::u8 range: 0xa0 -- 0xfe
+  //  second ::u8 range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xa0)  

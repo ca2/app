@@ -21,12 +21,12 @@ namespace sockets
    {
       if (atom != 0x1234)
       {
-         TRACE("ABORT: bad packet atom: %x\n", atom);
+         information("ABORT: bad packet atom: %x\n", atom);
          SetCloseAndDelete();
       }
       else
       {
-         FORMATTED_TRACE("Packet size_i32: %d bytes\n", len);
+         information("Packet size_i32: %d bytes\n", len);
       }
    }
 
@@ -36,7 +36,7 @@ namespace sockets
    {
       if (sz - 2 > m_body_size_left)
       {
-         TRACE("More body data received than expected\n");
+         information("More body data received than expected\n");
          SetCloseAndDelete();
          return;
       }
@@ -81,11 +81,11 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceiveForwardRequest( const char *buf, memsize sz )
    {
-      __UNREFERENCED_PARAMETER(sz);
+      UNREFERENCED_PARAMETER(sz);
       //
       int ptr = 0;
 
-      get_byte(buf, ptr); // skip first byte: prefix_code
+      get_byte(buf, ptr); // skip first ::u8: prefix_code
       unsigned char method = get_byte(buf, ptr);
       string    protocol = get_string(buf, ptr);
       string    req_uri = get_string(buf, ptr);
@@ -118,7 +118,7 @@ namespace sockets
                unsigned short x = (unsigned short)get_integer(buf, ptr);
                if (!psession->sockets().m_pajpbasesocketinit->header.lookup(x, key))
                {
-                  TRACE("Unknown header key value: %x\n", x);
+                  information("Unknown header key value: %x\n", x);
                   SetCloseAndDelete();
                }
             }
@@ -151,7 +151,7 @@ namespace sockets
             {
                if(!psession->sockets().m_pajpbasesocketinit->Attribute.lookup(code, key))
                {
-                  TRACE("Unknown attribute key: 0x%02x\n", buf[ptr]);
+                  information("Unknown attribute key: 0x%02x\n", buf[ptr]);
                   SetCloseAndDelete();
                }
             }
@@ -176,24 +176,24 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceiveShutdown( const char *buf, memsize sz )
    {
-      __UNREFERENCED_PARAMETER(buf);
-      __UNREFERENCED_PARAMETER(sz);
+      UNREFERENCED_PARAMETER(buf);
+      UNREFERENCED_PARAMETER(sz);
    }
 
 
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceivePing( const char *buf, memsize sz )
    {
-      __UNREFERENCED_PARAMETER(buf);
-      __UNREFERENCED_PARAMETER(sz);
+      UNREFERENCED_PARAMETER(buf);
+      UNREFERENCED_PARAMETER(sz);
    }
 
 
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceiveCPing( const char *buf, memsize sz )
    {
-      __UNREFERENCED_PARAMETER(buf);
-      __UNREFERENCED_PARAMETER(sz);
+      UNREFERENCED_PARAMETER(buf);
+      UNREFERENCED_PARAMETER(sz);
    }
 
 
@@ -345,7 +345,7 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::OnPacket( const char *buf, memsize sz )
    {
-      FORMATTED_TRACE("OnPacket: %d bytes, code 0x%02x %02x %02x %02x\n", sz, *buf, buf[1], buf[2], buf[3]);
+      information("OnPacket: %d bytes, code 0x%02x %02x %02x %02x\n", sz, *buf, buf[1], buf[2], buf[3]);
 
       // check body size_i32 left to read, if non-zero packet is body data
       if (m_body_size_left) // must be a body packet
@@ -372,7 +372,7 @@ namespace sockets
          ReceiveCPing(buf, sz);
          break;
       default:
-         TRACE("Unknown packet type: 0x%02x\n", *buf);
+         information("Unknown packet type: 0x%02x\n", *buf);
          SetCloseAndDelete();
       }
 

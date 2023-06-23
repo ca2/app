@@ -13,7 +13,7 @@ public:
   FileWriter(string fileName);
   /** @param fileName File name, used to write data to.
       @param encoding Output encoding.
-      @param useBOM If true, BOM (byte Order Mark) is written first.
+      @param useBOM If true, BOM (::u8 Order Mark) is written first.
   */
   FileWriter(string fileName, i32 encoding, bool useBOM);
   ~FileWriter();

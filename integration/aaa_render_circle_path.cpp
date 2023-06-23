@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-03-23 11:55 PM <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
+// Created by camilo on 2022-03-23 11:55 PM <3ThomasBorregaardSorensen!! (Thomas likes number 5!!)
 #include "framework.h"
 #include "render.h"
 #include "application.h"
@@ -25,11 +25,11 @@ namespace app_integration
 
       ::rectangle_f64 r(300, 300, 800, 800);
 
-      double greekdeltax = m_rectangle.width() / 1000.0;
+      double Δx = m_rectangle.width() / 1000.0;
 
-      double greekdeltay = m_rectangle.height() / 900.0;
+      double Δy = m_rectangle.height() / 900.0;
 
-      double d = minimum(greekdeltax, greekdeltay);
+      double d = minimum(Δx, Δy);
 
       r *= d;
 

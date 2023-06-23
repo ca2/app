@@ -1,24 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{fbcbdec3-69f8-4451-a80b-7412a2a6ba19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user">
-      <UniqueIdentifier>{fe19d842-6966-4fed-a6b9-b90282732268}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem">
-      <UniqueIdentifier>{11acacb4-934d-4dcd-bac0-5bcd4c558da7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{35f5e63e-9e18-4c22-9c42-2db6cc9cc8b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw2d">
-      <UniqueIdentifier>{4b9e67bb-bf7f-4358-8d0d-bd2a83d61e05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net">
-      <UniqueIdentifier>{e5a008d6-0aae-4ddf-a8f8-9a3aaae71ed7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{8dc7ea77-5777-4177-a62e-aebfa0b3f269}</UniqueIdentifier>
     </Filter>
@@ -37,6 +19,96 @@
     <Filter Include="Source Files\graphics\draw3d">
       <UniqueIdentifier>{8bce8610-67a0-4abf-9dfb-6ab7a3bc61e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{69c6e5c7-5c9a-4a13-94b8-3b6d0288fc22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\message">
+      <UniqueIdentifier>{9324d3a7-4e8a-4063-9d05-769da50463f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filemanager">
+      <UniqueIdentifier>{4040fc88-d657-4841-8d4f-272fd74187ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\game">
+      <UniqueIdentifier>{57196f87-50cc-44e5-a402-ce2345eda686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\write_text">
+      <UniqueIdentifier>{08867584-972d-4957-9e89-1f116846391d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\no_precompiled_header">
+      <UniqueIdentifier>{e87a678e-6bd6-49c5-b056-2db25b3aa132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{6c104630-d344-4c5e-be77-fa82026a09ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\user">
+      <UniqueIdentifier>{78cc1ae4-b9aa-42e9-a6fb-2a6f9beaeea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{550a02e8-3dee-4521-8417-bb6e98938a96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\image">
+      <UniqueIdentifier>{c2d3d13a-9c3c-4939-a1e7-f26944f52781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{af151713-85ba-44dc-a62e-b6d9025290a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\appearance">
+      <UniqueIdentifier>{8a462ede-5ec4-4c3f-9e2b-dbb389b164e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{7aa079df-da7c-4b0a-8e93-67287809d0fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hardware">
+      <UniqueIdentifier>{694a03a0-d04f-48a0-8bcc-19ecb4e596fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing\sandbox">
+      <UniqueIdentifier>{aae7216c-6076-43b2-8571-b2e126194179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{3cdf2f94-1bab-4045-bf41-8cafa2d081fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{fbcbdec3-69f8-4451-a80b-7412a2a6ba19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{fe19d842-6966-4fed-a6b9-b90282732268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\appearance">
+      <UniqueIdentifier>{8b5ef6df-4258-4341-9569-a366513427fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\menu">
+      <UniqueIdentifier>{8e2c3c3c-d4b6-43f9-b794-5e4c32179e2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{0c4b54df-97a2-4779-8f5a-8c0523138f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem">
+      <UniqueIdentifier>{11acacb4-934d-4dcd-bac0-5bcd4c558da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filemanager">
+      <UniqueIdentifier>{96eb97df-2894-4831-be2b-3c3665999643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{35f5e63e-9e18-4c22-9c42-2db6cc9cc8b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw2d">
+      <UniqueIdentifier>{4b9e67bb-bf7f-4358-8d0d-bd2a83d61e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\graphics">
+      <UniqueIdentifier>{024e3ab1-3f76-485f-92ff-c4eae4630e25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw3d">
+      <UniqueIdentifier>{48500543-0c64-4f00-98da-ebee4577bdd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\write_text">
+      <UniqueIdentifier>{434ffefb-81d7-41ed-b740-c27636ff245b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\image">
+      <UniqueIdentifier>{c01d91fd-711c-49a7-92e2-e771fdec825a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net">
+      <UniqueIdentifier>{e5a008d6-0aae-4ddf-a8f8-9a3aaae71ed7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\net\sockets">
       <UniqueIdentifier>{5c7e7ea5-a067-4eb9-abb3-7cd453930c34}</UniqueIdentifier>
     </Filter>
@@ -49,29 +121,11 @@
     <Filter Include="Header Files\net\sockets\base">
       <UniqueIdentifier>{a7ef6052-93dc-42c0-b8ed-b63e71f70f75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\graphics">
-      <UniqueIdentifier>{024e3ab1-3f76-485f-92ff-c4eae4630e25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\graphics">
-      <UniqueIdentifier>{69c6e5c7-5c9a-4a13-94b8-3b6d0288fc22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw3d">
-      <UniqueIdentifier>{48500543-0c64-4f00-98da-ebee4577bdd6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{36de485f-31f1-40de-9588-e58ef6c8d00a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\message">
-      <UniqueIdentifier>{9324d3a7-4e8a-4063-9d05-769da50463f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{76a54bda-71f0-439f-aef3-3587972519c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\filemanager">
-      <UniqueIdentifier>{96eb97df-2894-4831-be2b-3c3665999643}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\filemanager">
-      <UniqueIdentifier>{4040fc88-d657-4841-8d4f-272fd74187ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{a327a67c-2ea2-4544-be5b-ec806577b2b3}</UniqueIdentifier>
@@ -82,77 +136,23 @@
     <Filter Include="Header Files\template">
       <UniqueIdentifier>{ebc060f4-4117-480c-b9ec-09d9e4f1a8ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gpu">
-      <UniqueIdentifier>{3b076a98-d207-48ed-8aa5-8b17473f43fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gpu\gpu">
-      <UniqueIdentifier>{b7b4a949-fbd4-4043-b538-2cbb69b986d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\game">
-      <UniqueIdentifier>{57196f87-50cc-44e5-a402-ce2345eda686}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\write_text">
-      <UniqueIdentifier>{08867584-972d-4957-9e89-1f116846391d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\write_text">
-      <UniqueIdentifier>{434ffefb-81d7-41ed-b740-c27636ff245b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d\no_precompiled_header">
-      <UniqueIdentifier>{e87a678e-6bd6-49c5-b056-2db25b3aa132}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windowing">
-      <UniqueIdentifier>{6c104630-d344-4c5e-be77-fa82026a09ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\user">
-      <UniqueIdentifier>{78cc1ae4-b9aa-42e9-a6fb-2a6f9beaeea2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{6c4bf7cc-5025-4a6a-9f85-3f1c2f844b3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\constant">
-      <UniqueIdentifier>{bf6bd182-ae84-4c17-8ae1-9ad49aa7b6a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{550a02e8-3dee-4521-8417-bb6e98938a96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\image">
-      <UniqueIdentifier>{c2d3d13a-9c3c-4939-a1e7-f26944f52781}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\image">
-      <UniqueIdentifier>{c01d91fd-711c-49a7-92e2-e771fdec825a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\user">
-      <UniqueIdentifier>{af151713-85ba-44dc-a62e-b6d9025290a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\appearance">
-      <UniqueIdentifier>{8a462ede-5ec4-4c3f-9e2b-dbb389b164e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\menu">
-      <UniqueIdentifier>{7aa079df-da7c-4b0a-8e93-67287809d0fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\appearance">
-      <UniqueIdentifier>{8b5ef6df-4258-4341-9569-a366513427fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\menu">
-      <UniqueIdentifier>{8e2c3c3c-d4b6-43f9-b794-5e4c32179e2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\user">
-      <UniqueIdentifier>{0c4b54df-97a2-4779-8f5a-8c0523138f1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\hardware">
-      <UniqueIdentifier>{694a03a0-d04f-48a0-8bcc-19ecb4e596fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\hardware">
-      <UniqueIdentifier>{1deb9b5c-6ef1-4ab9-a26f-e1220f47065a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windowing\sandbox">
-      <UniqueIdentifier>{aae7216c-6076-43b2-8571-b2e126194179}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\windowing\sandbox">
       <UniqueIdentifier>{a5180dfc-089d-4317-be61-0e59d451a951}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\platform">
-      <UniqueIdentifier>{3cdf2f94-1bab-4045-bf41-8cafa2d081fa}</UniqueIdentifier>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{bf6bd182-ae84-4c17-8ae1-9ad49aa7b6a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hardware">
+      <UniqueIdentifier>{1deb9b5c-6ef1-4ab9-a26f-e1220f47065a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\gpu">
+      <UniqueIdentifier>{d3a3434d-d011-4373-998b-306354fb9b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\gpu">
+      <UniqueIdentifier>{24b7a4e5-49f7-4a5e-a6a2-49645c341ad0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -969,6 +969,39 @@
     <ClInclude Include="aaa_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\path_optimization.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\shader.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\render.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\program.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\object.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\context.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\buffer.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\approach.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\aaaa_gpu.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_constant.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1101,21 +1134,6 @@
     </ClCompile>
     <ClCompile Include="message\timer.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\approach.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\buffer.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\context.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\program.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\shader.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
     </ClCompile>
     <ClCompile Include="platform\shell_open.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1417,9 +1435,6 @@
     <ClCompile Include="hardware\devices.cpp">
       <Filter>Source Files\hardware</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
-      <Filter>Source Files\graphics\write_text</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\text_editor_interface.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
@@ -1442,9 +1457,6 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\holdee.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\region_item.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp">
@@ -1506,6 +1518,33 @@
     </ClCompile>
     <ClCompile Include="user\user\_.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\drawing.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\path_optimization.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\approach.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\buffer.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\context.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\object.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\program.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\render.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\shader.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

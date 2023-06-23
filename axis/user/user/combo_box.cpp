@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "combo_box.h"
 #include "list_box.h"
 #include "acme/constant/id.h"
@@ -107,12 +107,10 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      layout().client_rectangle(rectangleClient, ::user::e_layout_design);
+      auto rectangleClinet = client_rectangle();
       //::user::e_::color::color colorText = color_text;
 
-      ::color::color colorText(0, 0, 0, 255);
+      ::color::color colorText = ::color::black;
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -123,13 +121,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(192,192,192, 255);
+      //         colorText = ::rgba(192, 192, 192, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(255, 255, 255, 255);
+      //         colorText = ::rgba(255, 255, 255, 255);
 
       //      }
 
@@ -140,13 +138,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
 
@@ -248,7 +246,7 @@ namespace user
       ::rectangle_i32 rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
-      ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
+      ::color::color colorDropDown = ::color::gray;
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -259,13 +257,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(80, 80, 180, 255);
+      //         colorDropDown = ::rgba(80, 80, 180, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(100, 100, 200, 255);
+      //         colorDropDown = ::rgba(100, 100, 200, 255);
 
       //      }
 
@@ -276,13 +274,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(200, 200, 250, 255);
+      //         colorDropDown = ::rgba(200, 200, 250, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(192, 192, 192, 255);
+      //         colorDropDown = ::rgba(192, 192, 192, 255);
 
       //      }
 
@@ -300,13 +298,13 @@ namespace user
             if (::is_set(m_pitemHover))
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 
@@ -317,13 +315,13 @@ namespace user
             if (::is_set(m_pitemHover))
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 
@@ -597,7 +595,7 @@ namespace user
    void combo_box::on_message_key_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -641,7 +639,7 @@ namespace user
    void combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       m_pitemHover = nullptr;
 

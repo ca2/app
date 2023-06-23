@@ -2,7 +2,7 @@
 //  menu_shared.hpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2021-02-08 <3TBS_!! Thomas Borregaard Sørensen
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2021-02-08 <3TBS_!! Thomas Borregaard Soerensen
 //
 #pragma once
 

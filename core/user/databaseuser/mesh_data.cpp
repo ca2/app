@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "mesh_data.h"
 #include "acme/primitive/data/listener.h"
 #include "apex/database/_binary_stream.h"
@@ -50,7 +50,7 @@ namespace databaseuser
    bool mesh_data::Map(::user::mesh * pmesh, ::string & strDataKey1, ::string & strDataKey2, index iItem, index iSubItem, index iListItem)
    {
 
-      __UNREFERENCED_PARAMETER(pmesh);
+      UNREFERENCED_PARAMETER(pmesh);
 
       // default implementation
 

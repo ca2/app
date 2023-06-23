@@ -1,4 +1,4 @@
-﻿// From impact.h on 2023-01-15 09:46 <3ThomasBorregaardSørensen!!
+// From impact.h on 2023-01-15 09:46 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

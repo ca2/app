@@ -16,7 +16,7 @@ namespace sockets
 
       SSLInitializer *                             m_psslinit;
 
-      byte                                         m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+      ::u8                                         m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
 #if defined(BSD_STYLE_SOCKETS)
       ssl_client_context_map                       m_clientcontextmap;

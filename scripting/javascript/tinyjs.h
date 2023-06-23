@@ -1,4 +1,4 @@
-﻿/*
+/*
  * TinyJS
  *
  * A single-file Javascript-alike engine
@@ -44,9 +44,9 @@
 #endif
 #endif
 
-#ifndef TRACE
-#define TRACE printf
-#endif // TRACE
+//#ifndef information
+//#define information printf
+//#endif // information
 
 
 const i32 TINYJS_LOOP_MAX_ITERATIONS = 8192;

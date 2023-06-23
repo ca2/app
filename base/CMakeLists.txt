@@ -210,6 +210,7 @@ list(APPEND library_source
         user/user/tab_data.h
         user/user/tab_drop_target_window.cpp
         user/user/tab_drop_target_window.h
+        user/user/tab_graphics.cpp
         user/user/tab_pane.cpp
         user/user/tab_pane.h
         user/user/tab_pane_array.cpp

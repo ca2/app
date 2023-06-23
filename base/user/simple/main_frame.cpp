@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 ////#include "base/user/simple/_component.h"
 #include "main_frame.h"
 #include "acme/constant/message.h"

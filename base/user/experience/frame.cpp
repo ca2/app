@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "frame_window.h"
 #include "control_box.h"
@@ -14,60 +14,62 @@
 #include "base/platform/session.h"
 
 
-CLASS_DECL_BASE ::count get_borders(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleOuter, const ::rectangle_i32 & rectangleInner)
+CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectangleOuter, const ::rectangle_i32 & rectangleInner)
 {
 
-   ::count c = 0;
+   rectangle_i32_array rectanglea;
 
+   ::rectangle_i32 rectangle;
+   
    // Top
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].bottom = rectangleInner.top + 1;
+   rectangle = rectangleOuter;
+   rectangle.bottom = rectangleInner.top + 1;
 
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
    // Bottom
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].top = rectangleInner.bottom - 1;
+   rectangle = rectangleOuter;
+   rectangle.top = rectangleInner.bottom - 1;
    
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
    // Left
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].top = rectangleInner.top;
-   rectanglea[c].bottom = rectangleInner.bottom;
-   rectanglea[c].right = rectangleInner.left + 1;
+   rectangle = rectangleOuter;
+   rectangle.top = rectangleInner.top;
+   rectangle.bottom = rectangleInner.bottom;
+   rectangle.right = rectangleInner.left + 1;
 
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
    // Right
-   rectanglea[c] = rectangleOuter;
-   rectanglea[c].top = rectangleInner.top;
-   rectanglea[c].bottom = rectangleInner.bottom;
-   rectanglea[c].left = rectangleInner.right - 1;
+   rectangle = rectangleOuter;
+   rectangle.top = rectangleInner.top;
+   rectangle.bottom = rectangleInner.bottom;
+   rectangle.left = rectangleInner.right - 1;
 
-   if (rectanglea[c].is_set())
+   if (rectangle.is_set())
    {
 
-      c++;
+      rectanglea.add(rectangle);
 
    }
 
-   return c;
+   return ::transfer(rectanglea);
 
 }
 
@@ -155,7 +157,7 @@ namespace experience
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -163,7 +165,7 @@ namespace experience
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -710,7 +712,7 @@ namespace experience
    bool frame::_001OnNcHitTest(const ::point_i32 & point, enum_hit_test & ehittest)
    {
 
-      __UNREFERENCED_PARAMETER(point);
+      UNREFERENCED_PARAMETER(point);
 
       ehittest = e_hit_test_client;
 
@@ -722,7 +724,7 @@ namespace experience
    bool frame::_001OnTimer(::u32 uEvent)
    {
 
-      __UNREFERENCED_PARAMETER(uEvent);
+      UNREFERENCED_PARAMETER(uEvent);
 
       return false;
 
@@ -732,8 +734,8 @@ namespace experience
    //bool frame::on_message_size(u32 nType,i32 cx,i32 cy)
    //{
 
-   //   __UNREFERENCED_PARAMETER(cx);
-   //   __UNREFERENCED_PARAMETER(cy);
+   //   UNREFERENCED_PARAMETER(cx);
+   //   UNREFERENCED_PARAMETER(cy);
 
    //   return false;
 
@@ -743,8 +745,8 @@ namespace experience
 /*       bool frame::on_message_move(i32 x, i32 y)
    {
 
-      __UNREFERENCED_PARAMETER(x);
-      __UNREFERENCED_PARAMETER(y);
+      UNREFERENCED_PARAMETER(x);
+      UNREFERENCED_PARAMETER(y);
 
       return false;
 
@@ -1008,17 +1010,17 @@ namespace experience
       color = colorParam;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
-      m_colorMoveableBorderHilight.alpha = 255;
+      m_colorMoveableBorderHilight.m_u8Opacity = 255;
 
       color = colorParam;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
-      m_colorMoveableBorderHilight.alpha = 255;
+      m_colorMoveableBorderHilight.m_u8Opacity = 255;
 
       color = colorParam;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-      m_colorMoveableBorderDkShadow.alpha = 255;
+      m_colorMoveableBorderDkShadow.m_u8Opacity = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -1073,7 +1075,7 @@ namespace experience
 
       m_pframewindow->::user::interaction::client_rectangle(rectangleClient);
 
-      if (!calculate_window_client_rect(rectangleClient))
+      if (!calculate_window_client_rect(&rectangleClient))
       {
 
          return false;
@@ -1116,19 +1118,11 @@ namespace experience
 
       ::rectangle_i32 rectangleInner(rectangle);
 
-      calculate_window_client_rect(rectangleInner);
+      calculate_window_client_rect(&rectangleInner);
 
-      ::rectangle_i32 rectangleBorders[4];
+      auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 
-      auto count = get_borders(rectangleBorders, rectangle, rectangleInner);
-
-      for (::index i = 0; i < count; i++)
-      {
-       
-         m_pframewindow->set_need_redraw(rectangleBorders[i]);
-
-      }
-
+      m_pframewindow->set_need_redraw(rectangleaBorders);
 
    }
 
@@ -1265,7 +1259,7 @@ namespace experience
       if (strType.contains("playlist"))
       {
 
-         INFORMATION("frame playlist");
+         information() << "frame playlist";
 
       }
 
@@ -1548,7 +1542,7 @@ namespace experience
       if (strType.contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 
@@ -1640,7 +1634,7 @@ namespace experience
    ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
-      __UNREFERENCED_PARAMETER(point);
+      UNREFERENCED_PARAMETER(point);
 
       return e_frame_client;
 

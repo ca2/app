@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/filesystem/filemanager/item_action.h"
@@ -198,7 +198,7 @@ namespace aura
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
 
-      virtual ::color::color get_default_color(u64 u) override;
+      virtual ::color::color get_default_color(::color::color colors) override;
 
       //virtual ::size_i32 get_window_minimum_size();
 

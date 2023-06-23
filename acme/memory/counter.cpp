@@ -1,4 +1,4 @@
-﻿// Created on 2021-03-21 16:35 <3ThomasBS_!!
+// Created on 2021-03-21 16:35 <3ThomasBS_!!
 #include "framework.h"
 #include "counter.h"
 #include "acme/platform/node.h"

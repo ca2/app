@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "impact_system.h"
 #include "document.h"
 #include "impact.h"
@@ -134,7 +134,7 @@ namespace user
       if (!m_typeDocument)
       {
 
-         CATEGORY_ERROR(appmsg, "Error: you must override impact_system::create_new_document.");
+         error()(e_trace_category_appmsg) << "Error: you must override impact_system::create_new_document.";
 
          ASSERT(false);
 
@@ -153,7 +153,7 @@ namespace user
       if (!pdocument)
       {
 
-         CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.as_string());
+         warning()(e_trace_category_appmsg) << "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.as_string();
 
          return nullptr;
 
@@ -212,7 +212,7 @@ namespace user
       if (!m_typeFrame)
       {
 
-         CATEGORY_ERROR(appmsg, "Error: you must override impact_system::create_new_frame.\n");
+         error()(e_trace_category_appmsg) << "Error: you must override impact_system::create_new_frame.\n";
 
          ASSERT(false);
 
@@ -231,7 +231,7 @@ namespace user
       if (!pframe)
       {
 
-         CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.as_string().c_str());
+         warning()(e_trace_category_appmsg) << "Warning: Dynamic create of frame %hs failed." << m_typeFrame.as_string().c_str();
 
          string strMessage;
 
@@ -252,7 +252,7 @@ namespace user
       if (!pusersystem->m_typeNewImpact)
       {
 
-         CATEGORY_WARNING(appmsg,"Warning: creating frame with no default ::user::impact.\n");
+         warning()(e_trace_category_appmsg) << "Warning: creating frame with no default ::user::impact.\n";
 
       }
 
@@ -292,7 +292,7 @@ namespace user
                               pusersystem))
       {
 
-         CATEGORY_WARNING(appmsg,"Warning: impact_system couldn't create a frame.\n");
+         warning()(e_trace_category_appmsg) << "Warning: impact_system couldn't create a frame.\n";
 
          // frame will be deleted in post_non_client_destroy cleanup
 

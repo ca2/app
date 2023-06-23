@@ -1,9 +1,9 @@
-﻿////TBS__<3tbs
+////TBS__<3tbs
 //  _start.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 16/09/20.
-//  Copyright © 2020 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 16/09/20.
+//  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 
@@ -47,7 +47,7 @@
 #endif
 
 
-// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSørensen!!
+// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
 #ifdef DEBUG
 #ifndef _DEBUG
 #define _DEBUG 1
@@ -62,7 +62,7 @@
 #endif
 
 
-// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSørensen!!
+// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
 #ifdef _DEBUG
 #ifndef __DEBUG
 #define __DEBUG

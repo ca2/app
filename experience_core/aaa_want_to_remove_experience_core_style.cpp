@@ -390,8 +390,8 @@ namespace experience_lite
 
          //         ::u32 dwTime2= ::duration::now();
 
-         //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //FORMATTED_TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //information("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
       if(!ptab->get_data()->m_bCreated)
          return false;
@@ -688,7 +688,7 @@ namespace experience_lite
 
          ::u32 tickFadeOut = 490;
 
-         byte uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").::u32()));
+         ::u8 uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").::u32()));
 
          if (pbar->m_bTracking)
          {
@@ -734,7 +734,7 @@ namespace experience_lite
             ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeIn)
             {
-               uchAlpha = (byte)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
+               uchAlpha = (::u8)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
             }
             else
             {
@@ -748,7 +748,7 @@ namespace experience_lite
             ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeOut)
             {
-               uchAlpha = (byte)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
+               uchAlpha = (::u8)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
             }
             else
             {

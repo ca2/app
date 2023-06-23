@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "select.h"
 #include "axis/user/user/combo_box.h"
 #include "aura/user/user/check_box.h"
@@ -235,7 +235,7 @@ namespace html
          if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
             return;
 
-         __UNREFERENCED_PARAMETER(pdata);
+         UNREFERENCED_PARAMETER(pdata);
 
          m_pcombo->place(m_box);
 

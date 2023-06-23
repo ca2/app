@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "message.h"
 
 
@@ -137,6 +137,34 @@ namespace message
    {
 
       return atom.as_u32();
+
+   }
+
+
+   message & message::operator = (const message & message)
+   {
+
+      if (this != &message)
+      {
+         
+         m_pdispatchera = message.m_pdispatchera;
+         m_pchannel = message.m_pchannel;
+         m_oswindow = message.m_oswindow;
+         m_eflagMessage = message.m_eflagMessage;
+         //m_iRouteIndex = message.m_iRouteIndex;
+         m_iParam = message.m_iRouteIndex;
+         //m_bRet = message.m_iRouteIndex;
+         m_uiMessageFlags = message.m_uiMessageFlags;
+         //m_estatus = message.m_estatus;
+         //m_actioncontext = message.m_estatus;
+         m_pointMessage = message.m_pointMessage;
+         //m_bProbing = message.m_bProbing;
+         //m_bCommand = message.m_bCommand;
+
+      }
+
+
+      return *this;
 
    }
 

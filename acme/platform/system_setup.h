@@ -2,7 +2,7 @@
 //  apex_app.h
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 18/08/19.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 18/08/19.
 //  Moved from Apex to Acme on 2021-03-20 18:39 <3ThomasBS_
 //
 #pragma once

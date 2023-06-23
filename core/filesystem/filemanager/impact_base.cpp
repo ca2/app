@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "impact_base.h"
 #include "document.h"
 #include "tab_impact.h"
@@ -157,7 +157,7 @@ void filemanager_impact_base::_001Refresh()
 void filemanager_impact_base::browse_sync(const ::action_context & context)
 {
 
-   __UNREFERENCED_PARAMETER(context);
+   UNREFERENCED_PARAMETER(context);
 
 }
 
@@ -165,8 +165,8 @@ void filemanager_impact_base::browse_sync(const ::action_context & context)
 void filemanager_impact_base::knowledge(const ::file::path & pathUser, const ::action_context & context)
 {
 
-   __UNREFERENCED_PARAMETER(pathUser);
-   __UNREFERENCED_PARAMETER(context);
+   UNREFERENCED_PARAMETER(pathUser);
+   UNREFERENCED_PARAMETER(context);
 
 }
 
@@ -190,7 +190,7 @@ void filemanager_impact_base::_001OnUpdateEditPaste(::message::message * pmessag
 void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
    ::file::listing listing;
 

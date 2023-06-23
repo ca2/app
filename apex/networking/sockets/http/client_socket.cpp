@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "client_socket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/memory/counter.h"
@@ -40,7 +40,7 @@ string dump_hex(::file::file* pfile)
 
    char* psz = strBuffer.get_buffer((strsize)(pfile->size() / 16 + 1) * 80);
 
-   byte buf[16];
+   ::u8 buf[16];
 
    memsize iPos = 0;
 
@@ -265,7 +265,7 @@ namespace sockets
       if (!IsResponse())
       {
 
-         FATAL("OnFirst: Response expected but not received - aborting");
+         fatal() <<"OnFirst: Response expected but not received - aborting";
 
          SetCloseAndDelete();
 
@@ -281,7 +281,7 @@ namespace sockets
    {
 
 #if HEAVY_HTTP_LOG
-      FORMATTED_TRACE("OnHeader %s: %s", (const char*)key, (const char*)value);
+      information("OnHeader %s: %s", (const char*)key, (const char*)value);
 #endif
 
       m_content += key + ": " + value + "\r\n";
@@ -351,7 +351,7 @@ namespace sockets
    void http_client_socket::OnDataComplete()
    {
 
-      INFORMATION("OnDataComplete");
+      information() << "OnDataComplete";
 
       m_b_complete = true;
 
@@ -384,7 +384,7 @@ namespace sockets
 //         m_pfile->seek_to_begin();
 //
 //         string str = dump_hex(m_pfile);
-//         FORMATTED_TRACE("%s", m_strUrl.c_str());
+//         information("%s", m_strUrl.c_str());
 //         
 //         for (int i = 0; i < str.length(); i+=32 * 100)
 //         {
@@ -469,8 +469,8 @@ namespace sockets
    void http_client_socket::OnDataArrived(const char * buf, memsize len)
    {
 
-      __UNREFERENCED_PARAMETER(buf);
-      __UNREFERENCED_PARAMETER(len);
+      UNREFERENCED_PARAMETER(buf);
+      UNREFERENCED_PARAMETER(len);
    }
 
 
@@ -480,7 +480,7 @@ namespace sockets
       if (!m_b_complete)
       {
 
-         INFORMATION("OnDelete");
+         information() << "OnDelete";
 
          m_b_complete = true;
 

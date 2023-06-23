@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/01/2022 14:32 <3ThomasBorregaardSørensen!!
+// Created by camilo on 31/01/2022 14:32 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
@@ -7,7 +7,7 @@
 #include "acme/platform/conversation_message.h"
 #include "acme/user/user/drag_client.h"
 #include "window_interface.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 class CLASS_DECL_ACME nano_window :

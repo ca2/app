@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //CLASS_DECL_ACME void throw_resource_exception(const ::scoped_string & scopedstr);
 

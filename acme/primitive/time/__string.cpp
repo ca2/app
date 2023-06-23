@@ -1,4 +1,4 @@
-﻿//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2022-11-05 15:48 BRT.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2022-11-05 15:48 BRT.
 #include "framework.h"
 // #include "acme/primitive/string/string.h"
 
@@ -16,7 +16,7 @@
 //::string & copy(::string & str, const integral_microsecond & integral)
 //{
 //
-//   str.format("%" PRId64 "µs", integral.m_i);
+//   str.format("%" PRId64 "μs", integral.m_i);
 //
 //   return str;
 //

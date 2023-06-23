@@ -40,7 +40,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                byte    buffer[BLOCK_SIZE];
+//                ::u8    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //
@@ -208,7 +208,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                byte    buffer[BLOCK_SIZE];
+//                ::u8    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //

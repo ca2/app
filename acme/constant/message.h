@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 enum enum_message : ::i32
@@ -130,7 +130,7 @@ enum enum_message : ::i32
 // lParam = dwContext
 //#define WM_HELPHITTEST      0x0366  // lResult = dwContext,
    e_message_help_hit_test,
-// lParam = __MAKE_LONG(x,y)
+// lParam = make_i32(x,y)
 //#define WM_EXITHELPMODE     0x0367  // (params unused)
    e_message_exit_help_mode,
 //#define WM_RECALCPARENT     0x0368  // force on_layout on frame interaction_impl

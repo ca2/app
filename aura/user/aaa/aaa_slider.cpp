@@ -35,7 +35,7 @@ namespace user
 
       pmessage->previous();
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -205,7 +205,7 @@ namespace user
 
       class imaging & imaging = ::auraacmesystem()->imaging();
 
-      byte bAlpha1 = (byte) (128.0* get_alpha());
+      ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
       imaging.color_blend(pgraphics, rectangleClient, rgb(250,255,255), bAlpha1);
 
@@ -213,7 +213,7 @@ namespace user
 
       get_slider_rect(rectangle);
 
-      byte bAlpha = (byte) (220.0* get_alpha());
+      ::u8 bAlpha = (::u8) (220.0* get_alpha());
 
       pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);

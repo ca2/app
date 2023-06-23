@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "notify_icon.h"
 #include "acme/exception/interface_only.h"
 
@@ -171,7 +171,7 @@ namespace user
       //else
       //{
 
-      //   WARNING("notification area action atom is number or enum?!?!");
+      //   warning() <<"notification area action atom is number or enum?!?!";
 
       //}
 

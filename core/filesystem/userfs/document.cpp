@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"

@@ -1,7 +1,7 @@
-﻿#pragma once
+#pragma once
 
 
-#include "acme/primitive/primitive/particle_flags.h"
+#include "acme/primitive/primitive/particle.h"
 
 
 //#define __EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), m_##xxx)
@@ -152,84 +152,17 @@ enum enum_set_loading
 };
 
 
-#pragma pack(push, print_formatting, 1)
-
-
-class print_formatting
-{
-public:
-
-
-   ::file::fmtflags           m_fmtflags;
-   ::i8                       m_width;
-   ::i8                       m_precision;
-
-
-   print_formatting()
-   {
-
-      m_fmtflags = ::file::nofmtflags;
-      m_width = 2;
-      m_precision = 2;
-
-   }
-
-
-   print_formatting & operator <<(::file::fmtflags e)
-   {
-
-      m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)e));
-
-      return *this;
-
-   }
-
-
-   filesize precision() const { return m_precision; }
-
-   filesize precision(i8 prec) { return m_precision = prec; }
-
-   filesize width() const { return m_width; }
-
-   filesize width(i8 wide) { return m_width = wide; }
-
-
-   ::file::fmtflags setf(::file::fmtflags flagsAdd)
-   {
-
-      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)flagsAdd));
-
-   }
-
-
-   ::file::fmtflags setf(::file::fmtflags flagsAdd, ::file::fmtflags flagsRemove)
-   {
-
-      setf(flagsAdd);
-
-      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) & (~(::i32)flagsAdd));
-
-   }
-
-
-
-};
-
-
-#pragma pack(pop, print_formatting)
-
 
 class stream_base :
-   public PARTICLE_FLAGS,
-   public print_formatting
+   public ::particle
 //class CLASS_DECL_ACME stream_base
 {
 public:
 
 
-   e_str_flag                 m_estrflag;
-   ::file::e_iostate          m_iostate;
-   memsize                    m_gcount;
+   e_str_flag                       m_estrflag;
+   ::file::e_iostate                m_iostate;
+   memsize                          m_gcount;
 
 
    stream_base()
@@ -238,8 +171,6 @@ public:
       //m_bStoring = false;
       m_gcount = 0;
       m_iostate = ::file::goodbit;
-      m_fmtflags = ::file::nofmtflags;
-      m_precision = 0;
       //m_iVersion = FIRST_VERSION;
 
    }

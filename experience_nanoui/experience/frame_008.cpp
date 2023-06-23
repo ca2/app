@@ -247,14 +247,14 @@ SizingNone:;
          ::rectangle_i32 rectangle;
          GetBorderRect(rectangleA, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, opaque(crMoveableBorder));//m_colorMoveableBorderDkShadow);
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder.opaque());//m_colorMoveableBorderDkShadow);
 
          // rgb(255, 170, 136) RedOrange
       }
       else if(m_pframewindow->m_estyle == ::user::StyleLightBlue || m_pframewindow->m_estyle == ::user::StyleRedOrange)
       {
          rectangleA.deflate(1,1,1,1);
-         Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,::color::transparent);//m_colorMoveableBorderDkShadow);
 
          if(!m_bHollow)
          {
@@ -275,7 +275,7 @@ SizingNone:;
                      
             GetBorderRect(rectangleClient, &rectangle, eside);
                      
-            pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
+            pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
          }
 
@@ -289,7 +289,7 @@ SizingNone:;
                   
          GetBorderRect(rectangleClient, &rectangle, eside);
                   
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
                   
       }
       else
@@ -299,7 +299,7 @@ SizingNone:;
                   
          GetBorderRect(rectangleClient, &rectangle, eside);
                   
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
          ::rectangle_i32 rectangleClientB = rectangleA;
 
@@ -554,27 +554,27 @@ SizingNone:;
       m_ppenHollow4.defer_create(this);
       m_ppenHollow5.defer_create(this);
 
-      color.alpha = 8;
+      color.set_opacity(8);
 
       m_ppenHollow0->create_solid(1.0,color);
 
-      color.alpha = 11;
+      color.set_opacity(11);
 
       m_ppenHollow1->create_solid(1.0,color);
 
-      color.alpha = 23;
+      color.set_opacity(23);
 
       m_ppenHollow2->create_solid(1.0,color);
 
-      color.alpha = 49;
+      color.set_opacity(49);
 
       m_ppenHollow3->create_solid(1.0,color);
 
-      color.alpha = 72;
+      color.set_opacity(72);
 
       m_ppenHollow4->create_solid(1.0, color);
 
-      color.alpha = 255;
+      color.set_opacity(255);
 
       m_ppenHollow5->create_solid(1.0,color);
 

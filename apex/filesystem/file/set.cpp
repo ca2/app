@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "set.h"
 #include "acme/parallelization/event.h"
 #include "apex/platform/context.h"

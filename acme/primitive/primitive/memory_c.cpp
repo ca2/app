@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #ifdef WINDOWS
 #include "_c_memory.h"
 #endif
@@ -208,7 +208,7 @@ CLASS_DECL_ACME void * reverse_memory(void * p, memsize iLen)
 
    }
 
-   auto pleft = (::byte *) p;
+   auto pleft = (::u8 *) p;
 
    auto pright = pleft + iLen - 1;
 

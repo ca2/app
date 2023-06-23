@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "child_frame.h"
 #include "file_list.h"
 #include "document.h"
@@ -116,7 +116,7 @@ namespace filemanager
    void child_frame::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

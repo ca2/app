@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "impact.h"
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
@@ -413,7 +413,7 @@ namespace user
       else
       {
 
-         pimage1->fill(255, 200, 200, 200);
+         pimage1->clear_argb(255, 200, 200, 200);
 
       }
 

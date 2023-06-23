@@ -51,7 +51,7 @@ public:
    iptr     m_iMaxSize;
    iptr     m_iSize;
    int         m_iCurPos;
-   byte        m_ba[1];
+   ::u8        m_ba[1];
 
 
 
@@ -74,15 +74,15 @@ public:
 
       // TODO : better dynamically memory align
 
-      byte * pb;
+      ::u8 * pb;
 
       if(((iptr)p) % iSize == 0)
       {
-         pb = (byte *)p;
+         pb = (::u8 *)p;
       }
       else
       {
-         pb = (byte *)(((iptr)p) % iSize + (((iptr)p) / iSize) * iSize);
+         pb = (::u8 *)(((iptr)p) % iSize + (((iptr)p) / iSize) * iSize);
       }
 
       x86_cache_oriented_memory_pool * ppool = (x86_cache_oriented_memory_pool *) pb;
@@ -103,7 +103,7 @@ public:
 
    void * alloc(::count c)
    {
-      byte * pb;
+      ::u8 * pb;
 
       if(m_iCurPos + c < m_iSize)
       {
@@ -113,11 +113,11 @@ public:
       }
       else
       {
-         pb = (byte *) memory_allocate(c);
+         pb = (::u8 *) memory_allocate(c);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::acme::application * papp = get_app();
-         //FORMATTED_TRACE("handler oriented cache: memory out of cache palace garden (size=%d)", c);
+         //information("handler oriented cache: memory out of cache palace garden (size=%d)", c);
       }
       return pb;
 
@@ -125,7 +125,7 @@ public:
    }
    void free(void * p)
    {
-      if((p >= m_p && p < m_ba) || (p >= &m_ba[m_iCurPos] && p < ((byte *)m_p) + m_iMaxSize))
+      if((p >= m_p && p < m_ba) || (p >= &m_ba[m_iCurPos] && p < ((::u8 *)m_p) + m_iMaxSize))
       {
          // freeing memory in palace garden (not supposed to allocated memory in these places as they would cause a cache fault)
          throw_exception(error_bad_argument);

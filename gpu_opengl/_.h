@@ -1,9 +1,9 @@
-// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardSørensen!!
+// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "aura/_.h"
-#include "aura/gpu/gpu/_.h"
+#include "aura/graphics/gpu/_.h"
 
 
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
@@ -89,7 +89,8 @@
 #elif defined(MACOS)
 
 
-#include <OpenGL/gl.h>
+#include <glad.h>
+//#include <OpenGL/gl.h>
 //#include <OpenGL/gl3.h>
 //#include <OpenGL/CGLTypes.h>
 //#include <OpenGL/glu.h>

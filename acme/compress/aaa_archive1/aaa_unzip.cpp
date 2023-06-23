@@ -92,7 +92,7 @@ typedef struct
    char  *read_buffer;         /* internal buffer for compressed data */
    z_stream stream;            /* zLib stream structure for inflate */
 
-   uptr pos_in_zipfile;       /* position in byte on the zipfile, for fseek*/
+   uptr pos_in_zipfile;       /* position in ::u8 on the zipfile, for fseek*/
    uptr stream_initialised;   /* flag set if stream structure is initialised*/
 
    uptr offset_local_extrafield;/* offset of the static extra field */
@@ -101,12 +101,12 @@ typedef struct
 
    u32 crc32;                /* crc32 of all data uncompressed */
    uptr crc32_wait;           /* crc32 we must obtain after decompress all */
-   uptr rest_read_compressed; /* number of byte to be decompressed */
-   uptr rest_read_uncompressed;/*number of byte to be obtained after decomp*/
+   uptr rest_read_compressed; /* number of ::u8 to be decompressed */
+   uptr rest_read_uncompressed;/*number of ::u8 to be obtained after decomp*/
    zlib_filefunc_def z_filefunc;
    voidpf filestream;        /* io structore of the zipfile */
    uptr compression_method;   /* compression method (0==store) */
-   uptr byte_before_the_zipfile;/* byte before the zipfile, (>0 for sfx)*/
+   uptr byte_before_the_zipfile;/* ::u8 before the zipfile, (>0 for sfx)*/
    i32   raw;
 } file_in_zip_read_info_s;
 
@@ -118,7 +118,7 @@ typedef struct
    zlib_filefunc_def z_filefunc;
    voidpf filestream;        /* io structore of the zipfile */
    unz_global_info gi;       /* public global information */
-   uptr byte_before_the_zipfile;/* byte before the zipfile, (>0 for sfx)*/
+   uptr byte_before_the_zipfile;/* ::u8 before the zipfile, (>0 for sfx)*/
    uptr num_file;             /* number of the current file in the zipfile*/
    uptr pos_in_central_dir;   /* pos of the current file in the central dir*/
    uptr current_file_ok;      /* flag about the usability of the current file*/
@@ -149,7 +149,7 @@ typedef struct
 #endif
 
 /* ===========================================================================
-     read a byte from a gz_stream; update next_in and avail_in. Return EOF
+     read a ::u8 from a gz_stream; update next_in and avail_in. Return EOF
    for end of spfile->
    IN assertion: the stream s has been sucessfully opened for reading.
 */
@@ -1136,7 +1136,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
       pfile_in_zip_read_info->stream.zalloc = (alloc_func)0;
       pfile_in_zip_read_info->stream.zfree = (free_func)0;
       pfile_in_zip_read_info->stream.opaque = (voidpf)0;
-      pfile_in_zip_read_info->stream.next_in = (byte* )0;
+      pfile_in_zip_read_info->stream.next_in = (::u8* )0;
       pfile_in_zip_read_info->stream.avail_in = 0;
 
       err=inflateInit2(&pfile_in_zip_read_info->stream, -MAX_WBITS);
@@ -1145,7 +1145,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
       else
          return err;
       /* windowBits is passed < 0 to tell that there is no zlib header.
-       * Note that in this case inflate *requires* an extra "dummy" byte
+       * Note that in this case inflate *requires* an extra "dummy" ::u8
        * after the compressed stream in order to complete decompression and
        * return Z_STREAM_END.
        * In unzip, i don't wait absolutely Z_STREAM_END because I known the
@@ -1219,7 +1219,7 @@ i32 raw)
   buf contain buffer where data must be copied
   len the size_i32 of buf.
 
-  return the number of byte copied if somes bytes are copied
+  return the number of ::u8 copied if somes bytes are copied
   return 0 if the end of file was reached
   return <0 with error code if there is an error
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
@@ -1247,7 +1247,7 @@ u32 len)
    if (len==0)
       return 0;
 
-   pfile_in_zip_read_info->stream.next_out = (byte*)buf;
+   pfile_in_zip_read_info->stream.next_out = (::u8*)buf;
 
    pfile_in_zip_read_info->stream.avail_out = (u32)len;
 
@@ -1295,7 +1295,7 @@ u32 len)
          pfile_in_zip_read_info->rest_read_compressed-=uReadThis;
 
          pfile_in_zip_read_info->stream.next_in =
-         (byte*)pfile_in_zip_read_info->read_buffer;
+         (::u8*)pfile_in_zip_read_info->read_buffer;
          pfile_in_zip_read_info->stream.avail_in = (u32)uReadThis;
       }
 
@@ -1519,7 +1519,7 @@ unzFile file)
 /*
   get the global comment string of the ZipFile, in the szComment buffer.
   uSizeBuf is the size_i32 of the szComment buffer.
-  return the number of byte copied or an error code <0
+  return the number of ::u8 copied or an error code <0
 */
 extern i32 CLASS_DECL_ACME unzGetGlobalComment (
 unzFile file,

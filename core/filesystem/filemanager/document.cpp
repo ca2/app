@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "document.h"
 #include "impact.h"
 #include "tab_impact.h"
@@ -99,9 +99,9 @@ namespace filemanager
    bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
    {
 
-      __UNREFERENCED_PARAMETER(nIDSTitle);
-      __UNREFERENCED_PARAMETER(lFlags);
-      __UNREFERENCED_PARAMETER(ptemplate);
+      UNREFERENCED_PARAMETER(nIDSTitle);
+      UNREFERENCED_PARAMETER(lFlags);
+      UNREFERENCED_PARAMETER(ptemplate);
 
       ASSERT(bOpenFileDialog == false);
 
@@ -979,7 +979,7 @@ namespace filemanager
    void document::_001OnReplaceText(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       id_update_all_impacts(id_replace_name);
 
@@ -1003,7 +1003,7 @@ namespace filemanager
    void document::_001OnNewFolder(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       id_update_all_impacts(id_new_folder);
 
@@ -1022,7 +1022,7 @@ namespace filemanager
 
    void document::_001OnEditPaste(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       //pcontext->m_papexcontext->file()->paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_impacts(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
@@ -1050,7 +1050,7 @@ namespace filemanager
    void document::_001OnFileSaveAs(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_emode == ::userfs::e_mode_saving || m_emode == ::userfs::e_mode_export)
       {
@@ -1071,7 +1071,7 @@ namespace filemanager
    void document::_001OnFileImport(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_emode == ::userfs::e_mode_import)
       {
@@ -1090,7 +1090,7 @@ namespace filemanager
    void document::_001OnFileExport(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_emode == ::userfs::e_mode_saving)
       {

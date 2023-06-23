@@ -107,7 +107,7 @@
 //
 //   typedef CLASS_DECL_ACME buffer < char >      char_buffer;
 //   typedef CLASS_DECL_ACME buffer < unichar >   wchar_buffer;
-//   typedef CLASS_DECL_ACME buffer < byte >      byte_buffer;
+//   typedef CLASS_DECL_ACME buffer < ::u8 >      byte_buffer;
 //
 //
 //} // namespace file

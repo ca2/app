@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "progress.h"
 //#include "user.h"
 #include "acme/constant/message.h"

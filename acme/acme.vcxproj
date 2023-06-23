@@ -186,7 +186,6 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -232,7 +231,7 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -292,7 +291,6 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -418,7 +416,6 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -454,6 +451,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -511,7 +511,6 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -635,11 +634,13 @@
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
+    <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="filesystem\file\translatable.cpp" />
+    <ClCompile Include="filesystem\file\write_text_stream.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
@@ -651,7 +652,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp" />
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
+    <ClCompile Include="graphics\draw2d\color_array.cpp" />
+    <ClCompile Include="graphics\draw2d\image32_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
@@ -710,7 +712,7 @@
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_geometry.h" />
     <ClInclude Include="constant\_id.h" />
-    <ClInclude Include="constant\_mathematics.h" />
+    <ClInclude Include="constant\aaa_mathematics.h" />
     <ClInclude Include="constant\_message.h" />
     <ClInclude Include="exception\aaa_base.h" />
     <ClInclude Include="exception\aaa_debug_stream.h" />
@@ -783,14 +785,22 @@
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\payload_stream.h" />
     <ClInclude Include="filesystem\file\plain_text_file_options.h" />
+    <ClInclude Include="filesystem\file\print_formatting.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
+    <ClInclude Include="filesystem\file\string_stream.h" />
     <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="filesystem\file\write_text_stream.h" />
     <ClInclude Include="filesystem\file\__string.h" />
     <ClInclude Include="filesystem\_.h" />
+    <ClInclude Include="graphics\draw2d\color32.h" />
+    <ClInclude Include="graphics\draw2d\color_array.h" />
+    <ClInclude Include="graphics\draw2d\image32_array.h" />
     <ClInclude Include="graphics\draw2d\_binary_stream.h" />
+    <ClInclude Include="graphics\draw2d\image32.h" />
     <ClInclude Include="graphics\draw2d\_string.h" />
+    <ClInclude Include="graphics\draw2d\_system_color.h" />
+    <ClInclude Include="graphics\draw2d\_text_stream.h" />
     <ClInclude Include="graphics\image\color_indexes.h" />
     <ClInclude Include="graphics\image\_.h" />
     <ClInclude Include="graphics\image\_configuration.h" />
@@ -807,9 +817,9 @@
     <ClInclude Include="include\_configuration.h" />
     <ClInclude Include="include\_new.h" />
     <ClInclude Include="include\_initial_concepts.h" />
-    <ClInclude Include="include\_other_initial_concepts.h" />
     <ClInclude Include="include\_string.h" />
     <ClInclude Include="include\_structures.h" />
+    <ClInclude Include="include\_tags.h" />
     <ClInclude Include="include\_template_inline_functions.h" />
     <ClInclude Include="include\_template_structures.h" />
     <ClInclude Include="include\_template_forward_declaration.h" />
@@ -822,10 +832,19 @@
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
+    <ClInclude Include="platform\trace_statement.h" />
+    <ClInclude Include="primitive\geometry\sequence.h" />
+    <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
+    <ClInclude Include="primitive\mathematics\numeric.h" />
+    <ClInclude Include="primitive\mathematics\trigonometry.h" />
+    <ClInclude Include="primitive\mathematics\_constant.h" />
+    <ClInclude Include="_win32_gdi.h" />
+    <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>
     </None>
+    <ClInclude Include="include\_integer.h" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
     <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
@@ -1005,6 +1024,7 @@
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
+    <ClCompile Include="platform\trace_statement.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />
@@ -1085,7 +1105,6 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
@@ -1134,6 +1153,7 @@
     <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
+    <ClCompile Include="user\user\mouse.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />
@@ -1352,7 +1372,7 @@
     <ClInclude Include="primitive\geometry2d\_f64.h" />
     <ClInclude Include="primitive\geometry2d\_function.h" />
     <ClInclude Include="primitive\geometry2d\_function_impl.h" />
-    <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_geometry2d.h" />
     <ClInclude Include="primitive\geometry2d\_i32.h" />
     <ClInclude Include="primitive\geometry2d\_i64.h" />
     <ClInclude Include="primitive\geometry2d\_random.h" />

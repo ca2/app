@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "control_box.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -73,7 +73,7 @@ namespace experience_anthill
    void control_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -81,7 +81,7 @@ namespace experience_anthill
    void control_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -89,7 +89,7 @@ namespace experience_anthill
    void control_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       set_need_redraw();
 

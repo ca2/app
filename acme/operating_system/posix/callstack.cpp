@@ -1,5 +1,5 @@
 //
-// Created by camilo on 5/17/22 02:38 <3ThomasBorregaardSørensen!!
+// Created by camilo on 5/17/22 02:38 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "acme/platform/node.h"
@@ -117,6 +117,114 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
         *pszMangledName++ = '\0';
         *pszOffsetBegin++ = '\0';
         *pszOffsetEnd++ = '\0';
+
+        i32 status;
+
+        acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+
+        const ::ansi_character * pszSymbolName;
+
+        if (status == 0)
+        {
+
+            strSymbolName = (const char *) (char *) pszRealName;
+
+        }
+        else
+        {
+
+            strSymbolName = pszMangledName;
+
+        }
+
+        strAddress = pszOffsetEnd;
+
+    }
+
+}
+
+void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
+{
+
+   char * pszMangledName = nullptr;
+   
+   char * pszMangledNameEnd = nullptr;
+
+   char * pszOffsetBegin = nullptr;
+
+   char * pszOffsetEnd = nullptr;
+   
+   int i = 0;
+
+   bool bWasSpace = false;
+   char * psz = pmessage;
+   
+    // find parantheses and +address offset surrounding mangled name
+    for (; *psz; ++psz)
+    {
+
+        if (*psz == ' ')
+        {
+           
+           if(::is_null(pszMangledNameEnd))
+           {
+              
+              if(::is_set(pszMangledName))
+              {
+                 
+                 pszMangledNameEnd = psz;
+                 
+              }
+              
+           }
+           
+           if(!bWasSpace)
+           {
+
+              i++;
+              
+           }
+           
+           bWasSpace = true;
+
+        }
+        else
+        {
+           
+           if(bWasSpace)
+           {
+              
+              if(i == 3)
+              {
+                 
+                 pszMangledName = psz;
+                 
+              }
+              
+           }
+           
+           bWasSpace = false;
+           
+        }
+
+    }
+   
+   if(::is_null(pszMangledNameEnd))
+   {
+      
+      if(::is_set(pszMangledName))
+      {
+         
+         pszMangledNameEnd = psz;
+         
+      }
+      
+   }
+
+    if (pszMangledName)
+    {
+
+        *pszMangledNameEnd = '\0';
 
         i32 status;
 

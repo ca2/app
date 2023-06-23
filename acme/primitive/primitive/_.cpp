@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/primitive/primitive/atom.h"
 //#include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/string/str.h"

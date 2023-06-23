@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "single_document_template.h"
 #include "document.h"
 #include "impact.h"
@@ -28,7 +28,7 @@ namespace user
    {
 #ifdef _DEBUG
       if (m_pdocument != nullptr)
-         CATEGORY_WARNING(appmsg, "Warning: destroying single_document_template with live ::user::document.");
+         warning()(e_trace_category_appmsg) << "Warning: destroying single_document_template with live ::user::document.";
 #endif
    }
 
@@ -233,7 +233,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            CATEGORY_WARNING(appmsg, "::user::document::on_new_document returned false.\n");
+            warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
 
             if (bCreated)
             {
@@ -261,7 +261,7 @@ namespace user
          if (!on_open_document(pdocument, prequest))
          {
             // user has been alerted to what failed in on_open_document
-            CATEGORY_WARNING(appmsg, "::user::document::on_open_document returned false.\n");
+            warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
 
             if (bCreated)
             {
@@ -281,8 +281,8 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  CATEGORY_WARNING(appmsg, "Error: on_new_document failed after trying "
-                        "to open a ::user::document - trying to continue.\n");
+                  warning()(e_trace_category_appmsg)<< "Error: on_new_document failed after trying "
+                        "to open a ::user::document - trying to continue.\n";
                   // assume we can continue
                }
             }

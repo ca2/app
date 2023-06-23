@@ -984,7 +984,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 *
 		 * Values:
 		 *
-		 * 0: If server authentication fails, connect to the computer without warning (Connect and don’t warn me).
+		 * 0: If server authentication fails, connect to the computer without warning (Connect and don't warn me).
 		 * 1: If server authentication fails, do not establish a connection (Do not connect).
 		 * 2: If server authentication fails, show a warning and allow me to connect or refuse the connection (Warn me).
 		 * 3: No authentication requirement is specified.

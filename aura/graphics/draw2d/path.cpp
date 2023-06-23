@@ -127,7 +127,7 @@ namespace draw2d
 
       //}
 
-      copy(rectangle, r);
+      rectangle = r;
 
       return true;
 
@@ -1912,7 +1912,7 @@ namespace draw2d
          for (auto & pitem : path.m_itema)
          {
 
-            m_itema.add(::clone(pitem));
+            m_itema.add(pitem->clone());
 
          }
 

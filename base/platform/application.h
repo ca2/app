@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/user/user/e_window_flag.h"
@@ -1176,7 +1176,7 @@ namespace base
 //application& operator = (const application& app)
 //{
 //
-//   __UNREFERENCED_PARAMETER(app);
+//   UNREFERENCED_PARAMETER(app);
 //
 //   // do nothing
 //

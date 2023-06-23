@@ -101,9 +101,9 @@ void JapaneseContextAnalysis::HandleData(const ::string & aBuf, PR::u32 aLen)
   if (mDone)
     return;
 
-  //The buffer we got is byte oriented, and a character may span in more than one
-  //buffers. In case the last one or two byte in last buffer is not complete, we 
-  //record how many byte needed to complete that character and skip these bytes here.
+  //The buffer we got is ::u8 oriented, and a character may span in more than one
+  //buffers. In case the last one or two ::u8 in last buffer is not complete, we 
+  //record how many ::u8 needed to complete that character and skip these bytes here.
   //We can choose to record those bytes as well and analyse the character once it 
   //is complete, but since a character will not make much difference, by simply skipping
   //this character will simply our logic and improve performance.
@@ -157,7 +157,7 @@ float  JapaneseContextAnalysis::GetConfidence()
 
 PRInt32 SJISContextAnalysis::GetOrder(const ::string & str, PR::u32 *charLen)
 {
-  //find out current char's byte length
+  //find out current char's ::u8 length
   if (((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f) ||
       (((unsigned char)*str >= (unsigned char)0xe0 && (unsigned char)*str <= (unsigned char)0xfc)))
       *charLen = 2;
@@ -174,7 +174,7 @@ PRInt32 SJISContextAnalysis::GetOrder(const ::string & str, PR::u32 *charLen)
 
 PRInt32 EUCJPContextAnalysis::GetOrder(const ::string & str, PR::u32 *charLen)
 {
-  //find out current char's byte length
+  //find out current char's ::u8 length
   if ((unsigned char)*str == (unsigned char)0x8e ||
       ((unsigned char)*str >= (unsigned char)0xa1 && 
       (unsigned char)*str <= (unsigned char)0xfe))

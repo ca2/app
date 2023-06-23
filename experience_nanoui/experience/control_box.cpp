@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "control_box.h"
 #include "acme/constant/message.h"
 #include "aura/user/user/frame.h"
@@ -54,7 +54,7 @@ namespace experience_nanoui
       if (top_level()->frame_is_transparent())
       {
 
-         crBackground = argb(90, m_colorBackground.red, m_colorBackground.green, m_colorBackground.blue);
+         crBackground = m_colorBackground & ::opacity(90);
 
       }
       else
@@ -72,7 +72,7 @@ namespace experience_nanoui
    void control_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -80,7 +80,7 @@ namespace experience_nanoui
    void control_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -88,7 +88,7 @@ namespace experience_nanoui
    void control_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 

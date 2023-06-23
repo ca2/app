@@ -1,4 +1,4 @@
-// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSørensen!!
+// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "communication.h"
 #include "target.h"
@@ -133,7 +133,7 @@ namespace interprocess
    bool communication::_handle_uri(const ::string & strUri)
    {
 
-      INFORMATION("::interprocess::communication::on_interprocess_handle " << strUri);
+      information() << "::interprocess::communication::on_interprocess_handle " << strUri;
 
 
       //   if(!strMessage.begins_eat("call "))
@@ -546,7 +546,7 @@ namespace interprocess
    //{
 
 
-   //   INFORMATION("::interprocess::communication::on_receive " << strMessage);
+   //   information() << "::interprocess::communication::on_receive " << strMessage;
 
    //   string strUrl = strMessage;
 

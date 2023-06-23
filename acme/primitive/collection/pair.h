@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/transfer.h"
@@ -49,6 +49,36 @@
 //
 //#define PAIR_IMPL(T1, T2, ARG_T1, ARG_T2, m_element1, m_element2) 
 
+//#define PAIR_TUPLE(PAIR, T1, T2, MEMBER1, MEMBER2) \
+//   template < > \
+//   struct std::tuple_element < 0, PAIR > \
+//   { \
+//      \
+//      using type = T1; \
+//      \
+//   }; \
+//   \
+//   \
+//   template <  > \
+//   struct tuple_element < 1, PAIR > \
+//   { \
+//      \
+//      using type = T2; \
+//      \
+//   }; \
+//   \
+//} \
+//\
+//template < > constexpr T1 & get<0>(PAIR & pair) { return pair.MEMBER1; } \
+//template < > constexpr T2 & get<1>(PAIR & pair) { return pair.MEMBER2; } \
+//template < > constexpr T1 && get<0>(PAIR && pair) { return pair.MEMBER1; } \
+//template < > constexpr T2 && get<1>(PAIR && pair) { return pair.MEMBER2; } \
+//template < > constexpr const T1 & get<0>(const PAIR & pair) { return pair.MEMBER1; } \
+//template < > constexpr const T2 & get<1>(const PAIR & pair) { return pair.MEMBER2; } \
+//template < > constexpr const T1 && get<0>(const PAIR && pair) { return pair.MEMBER1; } \
+//template < > constexpr const T2 && get<1>(const PAIR && pair) { return pair.MEMBER2; }
+
+
 
 #define MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
 class PAIR \
@@ -72,10 +102,10 @@ public: \
    inline T2 & element2() { return MEMBER2; } \
    inline CONST_TYPE1 & element1() const { return (CONST_TYPE1 &) MEMBER1; } \
    inline CONST_TYPE2 & element2() const { return (CONST_TYPE2 &) MEMBER2; } \
-   inline T1 transfer_element1() { return ::transfer(MEMBER1); } \
-   inline T2 transfer_element2() { return ::transfer(MEMBER2); } \
-   inline CONST_TYPE1 transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
-   inline CONST_TYPE2 transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+   inline T1 && transfer_element1() { return ::transfer(MEMBER1); } \
+   inline T2 && transfer_element2() { return ::transfer(MEMBER2); } \
+   inline CONST_TYPE1 && transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+   inline CONST_TYPE2 && transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
 \
 \
    PAIR() {} \
@@ -86,8 +116,130 @@ public: \
 }
 
 
+//#define MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
+//_MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
+//PAIR_TUPLE(PAIR, T1, T2, MEMBER1, MEMBER2)
+
+
+
 template < typename T1, typename T2 >
 MAKE_PAIR(pair, T1, T2, m_element1, m_element2);
+
+
+namespace std
+{
+
+
+   template < typename T1, typename T2 >
+   struct tuple_element < 0, ::pair < T1, T2 > >
+   {
+
+      using type = T1;
+
+   };
+
+
+   template < typename T1, typename T2 >
+   struct tuple_element < 1, ::pair < T1, T2 > >
+   {
+
+      using type = T2;
+
+   };
+
+
+} // namespace std
+
+   
+template < size_t n, typename T1, typename T2 >
+constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type & get(::pair < T1, T2 > & pair)
+{
+
+   static_assert(n < 2, "index not accepted for a pair");
+
+   if constexpr (n == 0)
+   {
+
+      return pair.element1();
+
+   }
+   else
+   {
+
+      return pair.element2();
+
+   }
+
+}
+
+
+template < size_t n, typename T1, typename T2 >
+constexpr const typename std::tuple_element < n, ::pair < T1, T2 > >::type & get(const ::pair < T1, T2 > & pair)
+{
+
+   static_assert(n < 2, "index not accepted for a pair");
+
+   if constexpr (n == 0)
+   {
+
+      return pair.element1();
+
+   }
+   else
+   {
+
+      return pair.element2();
+
+   }
+
+}
+
+
+template < size_t n, typename T1, typename T2 >
+constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type && get(::pair < T1, T2 > && pair)
+{
+
+   static_assert(n < 2, "index not accepted for a pair");
+
+   if constexpr (n == 0)
+   {
+
+      return ::transfer(pair.transfer_element1());
+
+   }
+   else
+   {
+
+      return ::transfer(pair.transfer_element2());
+
+   }
+
+}
+
+
+template < size_t n, typename T1, typename T2 >
+constexpr const typename std::tuple_element < n, ::pair < T1, T2 > >::type && get(const ::pair < T1, T2 > && pair)
+{
+
+   static_assert(n < 2, "index not accepted for a pair");
+
+   if constexpr (n == 0)
+   {
+
+      return ::transfer(pair.transfer_element1());
+
+   }
+   else
+   {
+
+      return ::transfer(pair.transfer_element2());
+
+   }
+
+}
+
+
+
 
 
 template < typename PAIR >
@@ -179,6 +331,10 @@ namespace std
    ALIENATED_ANDROID_ANARCHY tuple_size< ::pair < A, B > > : integral_constant<size_t, 2> {};
 
 } //namespace std
+
+
+
+
 
 
 template < size_t n, typename PAIR >

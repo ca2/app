@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "memory.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
@@ -16,7 +16,7 @@ memory::memory(memory && memory) :
 memory::memory(manager * pmanager)
 {
 
-   __UNREFERENCED_PARAMETER(pmanager);
+   UNREFERENCED_PARAMETER(pmanager);
    m_pprimitivememory      = this;
    m_bAligned              = false;
 
@@ -26,7 +26,7 @@ memory::memory(manager * pmanager)
 memory::memory(const memory & s, manager * pmanager)
 {
 
-   __UNREFERENCED_PARAMETER(pmanager);
+   UNREFERENCED_PARAMETER(pmanager);
    this->m_pprimitivememory      = this;
    m_bAligned              = false;
    operator = (s);
@@ -37,7 +37,7 @@ memory::memory(const memory & s, manager * pmanager)
 memory::memory(const memory * ps, manager * pmanager)
 {
 
-   __UNREFERENCED_PARAMETER(pmanager);
+   UNREFERENCED_PARAMETER(pmanager);
    this->m_pprimitivememory      = this;
    m_bAligned              = false;
    operator   = (*ps);
@@ -48,7 +48,7 @@ memory::memory(const memory * ps, manager * pmanager)
 memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 {
 
-   __UNREFERENCED_PARAMETER(pmanager);
+   UNREFERENCED_PARAMETER(pmanager);
 
    this->m_pprimitivememory      = this;
 
@@ -82,7 +82,7 @@ memory::memory(const ::std::initializer_list < int > & iaList)
    for(auto i : iaList)
    {
 
-      byte b = 0xff & i;
+      ::u8 b = 0xff & i;
 
       append(&b, 1);
 
@@ -111,12 +111,12 @@ memory::memory(const ::block & block)
 memory::memory(void * pdata, memsize iCount)
 {
 
-   this->m_begin = (::byte*)pdata;
+   this->m_begin = (::u8*)pdata;
    this->m_end = this->m_begin + iCount;
 
    this->m_bOwner = false;
    this->m_bReadOnly = false;
-   this->m_beginStorage = (::byte *) pdata;
+   this->m_beginStorage = (::u8 *) pdata;
 
    this->m_sizeStorage = iCount;
    this->m_dAllocationRateUp = 0.0;
@@ -137,12 +137,12 @@ memory::memory(void * pdata, memsize iCount)
 memory::memory(const void* pdata, memsize iCount)
 {
 
-   this->m_begin = (::byte*)pdata;
+   this->m_begin = (::u8*)pdata;
    this->m_end = this->m_begin + iCount;
 
    this->m_bOwner = false;
    this->m_bReadOnly = true;
-   this->m_beginStorage = (::byte*)pdata;
+   this->m_beginStorage = (::u8*)pdata;
 
    this->m_sizeStorage = iCount;
    this->m_dAllocationRateUp = 0.0;
@@ -194,9 +194,9 @@ memory::memory(const ::scoped_string & scopedstr)
 {
 
    this->m_pprimitivememory      = this;
-   this->m_beginStorage          = (::byte *) scopedstr.begin();
+   this->m_beginStorage          = (::u8 *) scopedstr.begin();
    this->m_begin                 = this->m_beginStorage;
-   this->m_end                   = (::byte *) scopedstr.end();
+   this->m_end                   = (::u8 *) scopedstr.end();
    this->m_sizeStorage           = scopedstr.size();
    m_bAligned                    = false;
 
@@ -213,7 +213,7 @@ memory::memory(const ::string & str):
 memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 nAllocFlags)
 {
 
-   __UNREFERENCED_PARAMETER(nAllocFlags);
+   UNREFERENCED_PARAMETER(nAllocFlags);
    this->m_pprimitivememory   = this;
    this->m_pcontainer         = pcontainer;
    if(dwAllocationAddUp == 0)
@@ -233,12 +233,12 @@ memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 n
 memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
 {
 
-   this->m_begin = (::byte*) pdata;
+   this->m_begin = (::u8*) pdata;
    this->m_end = this->m_begin + size;
 
    this->m_bOwner = false;
    this->m_bReadOnly = true;
-   this->m_beginStorage = (::byte*)pdata;
+   this->m_beginStorage = (::u8*)pdata;
 
    this->m_sizeStorage = size;
    this->m_dAllocationRateUp = 0.0;
@@ -299,7 +299,7 @@ memory::~memory()
 
 
 
-byte * memory::impl_alloc(memsize dwAllocation)
+::u8 * memory::impl_alloc(memsize dwAllocation)
 {
 
    if(dwAllocation < 0)
@@ -314,13 +314,13 @@ byte * memory::impl_alloc(memsize dwAllocation)
    if(m_bAligned)
    {
 
-      return (byte *)::HEAP_NAMESPACE::aligned_memory_allocate((size_t)dwAllocation);
+      return (::u8 *)::HEAP_NAMESPACE::aligned_memory_allocate((size_t)dwAllocation);
 
    }
    else
    {
 
-      return (byte *)memory_allocate((size_t)dwAllocation);
+      return (::u8 *)memory_allocate((size_t)dwAllocation);
 
    }
 
@@ -335,13 +335,13 @@ byte * memory::impl_alloc(memsize dwAllocation)
          if(m_bAligned)
          {
 
-            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://" + m_strTag, m_iLine;
+            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://" + m_strTag, m_iLine;
 
          }
          else
          {
 
-            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://"+m_strTag, m_iLine;
+            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://"+m_strTag, m_iLine;
 
          }
 
@@ -352,13 +352,13 @@ byte * memory::impl_alloc(memsize dwAllocation)
          if(m_bAligned)
          {
 
-            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://" + m_strTag, m_iLine;
+            return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://" + m_strTag, m_iLine;
 
          }
          else
          {
 
-            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://"+m_strTag, m_iLine;
+            return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://"+m_strTag, m_iLine;
 
          }
 
@@ -371,13 +371,13 @@ byte * memory::impl_alloc(memsize dwAllocation)
       if(m_bAligned)
       {
 
-         return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
+         return (::u8 *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
 
       }
       else
       {
 
-         return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
+         return (::u8 *)memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
 
       }
 
@@ -388,13 +388,13 @@ byte * memory::impl_alloc(memsize dwAllocation)
       if(m_bAligned)
       {
 
-         return (byte *)aligned_memory_allocate((size_t)dwAllocation);
+         return (::u8 *)aligned_memory_allocate((size_t)dwAllocation);
 
       }
       else
       {
 
-         return (byte *)memory_allocate((size_t)dwAllocation);
+         return (::u8 *)memory_allocate((size_t)dwAllocation);
 
       }
 
@@ -405,7 +405,7 @@ byte * memory::impl_alloc(memsize dwAllocation)
 }
 
 
-byte * memory::impl_realloc(void * pdata, memsize dwAllocation)
+::u8 * memory::impl_realloc(void * pdata, memsize dwAllocation)
 {
    if(m_bAligned)
    {
@@ -413,12 +413,12 @@ byte * memory::impl_realloc(void * pdata, memsize dwAllocation)
    }
    else
    {
-      return (byte *)memory_reallocate(pdata, (size_t)dwAllocation);
+      return (::u8 *)memory_reallocate(pdata, (size_t)dwAllocation);
    }
 
 }
 
-void memory::impl_free(byte * pdata)
+void memory::impl_free(::u8 * pdata)
 {
 
    if (this->m_bOwner)

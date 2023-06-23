@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
+// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
 #include "networking.h"
 #include "acme/exception/parsing.h"
@@ -7,7 +7,7 @@
 #include "acme/primitive/string/str.h"
 
 
-//#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+//#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 //
 ////#include <stdio.h>
 //
@@ -307,11 +307,11 @@ namespace networking
 //            l = item.m_ipaddr;
 //         }
 //         //         ::time tick2= ::time::now();
-//         /*FORMATTED_TRACE("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-//         (u32)((byte*)&pitem->m_ipaddr)[0],
-//         (u32)((byte*)&pitem->m_ipaddr)[1],
-//         (u32)((byte*)&pitem->m_ipaddr)[2],
-//         (u32)((byte*)&pitem->m_ipaddr)[3],
+//         /*information("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//         (u32)((::u8*)&pitem->m_ipaddr)[0],
+//         (u32)((::u8*)&pitem->m_ipaddr)[1],
+//         (u32)((::u8*)&pitem->m_ipaddr)[2],
+//         (u32)((::u8*)&pitem->m_ipaddr)[3],
 //         (tick2 - tick1));*/
 //         return item.m_bOk;
 //      }
@@ -388,7 +388,7 @@ namespace networking
 //#ifndef __CYGWIN__
 //         error += gai_strerror(n);
 //#endif
-//         ERROR(error + " for " + str);
+//         error() <<error + " for " + str;
 //         item.m_bOk = false;
 //         item.m_bTimeout = true;
 //         item.m_timeLastChecked.Now();
@@ -425,11 +425,11 @@ namespace networking
 //      }
 //
 //      //      ::time tick2= ::time::now();
-//      //      FORMATTED_TRACE("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-//         //       (u32)((byte*)&pitem->m_ipaddr)[0],
-//         //     (u32)((byte*)&pitem->m_ipaddr)[1],
-//         //   (u32)((byte*)&pitem->m_ipaddr)[2],
-//         // (u32)((byte*)&pitem->m_ipaddr)[3],
+//      //      information("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//         //       (u32)((::u8*)&pitem->m_ipaddr)[0],
+//         //     (u32)((::u8*)&pitem->m_ipaddr)[1],
+//         //   (u32)((::u8*)&pitem->m_ipaddr)[2],
+//         // (u32)((::u8*)&pitem->m_ipaddr)[3],
 //         //(tick2 - tick1));
 //      l = item.m_ipaddr;
 //
@@ -848,7 +848,7 @@ namespace networking
 //               x = i + 1;
 //            }
 //         }
-//         index sz = vec.get_length(); // number of byte pairs
+//         index sz = vec.get_length(); // number of ::u8 pairs
 //         index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
 //         u16 addr16[8];
 //         for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)

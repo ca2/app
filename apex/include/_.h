@@ -1,4 +1,4 @@
-﻿//        apex / thomas thomas thomas my pray my life my GOD
+//        apex / thomas thomas thomas my pray my life my GOD
 // 
 //   
 //    
@@ -210,33 +210,33 @@ extern CLASS_DECL_APEX int g_bApex;
 //
 //#endif
 //
-//#define __lo16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-//#define __hi16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-//#define __lo32(u)                                     ((::u32)(u))
-//#define __hi32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+//#define lower_u16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+//#define upper_u16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+//#define lower_u32(u)                                     ((::u32)(u))
+//#define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 //
-//#define __u32x(u)                                     ((::i16)__lo16(u))
-//#define __u32y(u)                                     ((::i16)__hi16(u))
+//#define u32_x(u)                                     ((::i16)lower_u16(u))
+//#define u32_y(u)                                     ((::i16)upper_u16(u))
 //
-//#define __u32xy(u)                                    __u32x(u), __u32y(u)
+//#define __u32xy(u)                                    u32_x(u), u32_y(u)
 //
-//#define __u64x(u)                                     ((::i32)__lo32(u))
-//#define __u64y(u)                                     ((::i32)__hi32(u))
+//#define u64_x(u)                                     ((::i32)lower_u32(u))
+//#define u64_y(u)                                     ((::i32)upper_u32(u))
 //
-//#define __u64xy(u)                                    __u64x(u), __u64y(u)
+//#define __u64xy(u)                                    u64_x(u), u64_y(u)
 //
 //
-//#ifndef GET_X_LPARAM
-//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+//#ifndef i32_x
+//#define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
 //#endif
 //
 //
-//#ifndef GET_Y_LPARAM
-//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+//#ifndef i32_y
+//#define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
 //#endif
 //
-//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)upper_u32(lparam))
 //
 //
 //

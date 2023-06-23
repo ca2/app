@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "frame.h"
 #include "main_frame.h"
@@ -194,13 +194,13 @@ namespace app_integration
          if(prequest->m_bMakeVisible)
          {
 
-            INFORMATION("pcreate->m_bMakeVisible");
+            information() << "pcreate->m_bMakeVisible";
 
          }
          else
          {
 
-            INFORMATION("NOT pcreate->m_bMakeVisible");
+            information() << "NOT pcreate->m_bMakeVisible";
 
          }
 

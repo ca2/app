@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "format_tool.h"
 #include "format.h"
 #include "acme/constant/id.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form_mesh.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -222,16 +222,16 @@ namespace user
 
    bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
-      __UNREFERENCED_PARAMETER(pDesktopWnd);
-      __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(atom);
-      __UNREFERENCED_PARAMETER(iResult);
+      UNREFERENCED_PARAMETER(pDesktopWnd);
+      UNREFERENCED_PARAMETER(nHitTest);
+      UNREFERENCED_PARAMETER(atom);
+      UNREFERENCED_PARAMETER(iResult);
       return false;
    }
 
    void form_mesh::_001OnNotify(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
    }
 
    void form_mesh::_001OnTimer(::timer * ptimer)
@@ -241,7 +241,7 @@ namespace user
 
    void form_mesh::_001OnMessageNotify(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // linux na verdade revamp
       /*
       lresult = user::NotifyRetContinue;

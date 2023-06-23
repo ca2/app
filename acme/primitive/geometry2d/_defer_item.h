@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "arc.h"
+#include "ellipse.h"
+#include "line.h"
+
+
 namespace geometry2d
 {
 
@@ -22,6 +27,18 @@ namespace geometry2d
       void translate(const ::point_f64 & point) override { m_item.offset(point); }
       bool contains(const ::point_f64 & point) override { return m_item.contains(point); }
       void expand_bounding_box(::rectangle_f64 & rectangle) override { m_item.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right()); }
+
+
+      ::particle_pointer clone() const override
+      {
+
+         auto pitem = __new(item_type);
+
+         pitem->m_item = m_item;
+
+         return pitem;
+
+      }
 
 
    };

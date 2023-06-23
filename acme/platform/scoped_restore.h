@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template <class TYPE>
@@ -76,11 +76,6 @@ inline ::scoped_restore_struct < TYPE > create_scoped_restore(TYPE & t)
 
 
 
-
-//#define η __counter_name__
-//
-//
-//#define λ η = [&]()
 
 
 template <class PREDICATE>

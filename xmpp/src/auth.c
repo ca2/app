@@ -1184,7 +1184,7 @@ int _handle_component_auth(xmpp_conn_t * const conn)
     char *digest;
     size_t i;
 
-    /* Feed the session id and passphrase to the algorithm.
+   /* Feed the session id and passphrase to the algorithm.
      * We need to compute SHA1(session_id + passphrase)
      */
     SHA1_Init(&mdctx);

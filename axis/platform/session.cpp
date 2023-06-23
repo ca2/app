@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "session.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/manual_reset_event.h"
@@ -148,7 +148,7 @@ namespace axis
    void session::process_init()
    {
 
-      INFORMATION("axis::session::process_init");
+      information() << "axis::session::process_init";
 
       //auto estatus = 
       
@@ -163,7 +163,7 @@ namespace axis
 
 
 
-      INFORMATION("axis::session::process_init success");
+      information() << "axis::session::process_init success";
 
       //return ::success;
 
@@ -228,7 +228,7 @@ namespace axis
    //      {
 
    //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
-   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
+   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carou e o Lucio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
    //         handle_exception(pe);
 
@@ -819,13 +819,13 @@ namespace axis
    //   if (!estatus || !m_puser)
    //   {
 
-   //      ERROR(".4");
+   //      error() <<".4";
 
    //      return false;
 
    //   }
 
-   //   INFORMATION("end");
+   //   information() << "end";
    //   return true;
 
    //}
@@ -1112,13 +1112,13 @@ namespace axis
 
       //if(m_pdatabase == nullptr)
       //{
-      //   TRACE("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   TRACE("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
       //   return false;
       //}
 

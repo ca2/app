@@ -3,7 +3,7 @@
 //
 // Design and implementation by
 // - Petr Pytelka (pyta@lightcomp.com)
-// - Hervé Drolon (drolon@infonie.fr)
+// - Herveh Drolon (drolon@infonie.fr)
 // - Mihail Naydenov (mnaydenov@users.sourceforge.net)
 //
 // This file is part of FreeImage 3
@@ -145,7 +145,7 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 	}
 
 	// build the crop option
-	sprintf(crop, "%greekdeltax%d+%d+%d", *right - *left, *bottom - *top, *left, *top);
+	sprintf(crop, "%Δx%d+%d+%d", *right - *left, *bottom - *top, *left, *top);
 
 	return true;
 }

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-07 11:35 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-11-07 11:35 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "netserver/_netserver.h"
 #include "_networking.h"
@@ -201,10 +201,10 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
    strHtml += "</head>";
    strHtml += "<body style=\"font-family:'Fira Code', monospace;\">";
    strHtml += "<h1>";
-   strHtml += "🌌 🌍 [ ca2/C++/Windows ] Creating Simple Local Webserver";
+   strHtml += "MilkyWayUnicodeCharacter EarthUnicodeCharacter [ ca2/C++/Windows ] Creating Simple Local Webserver";
    strHtml += "</h1>";
    strHtml += "<h4><a href=\"https://ca2.software/camilo\">cs</a><a href=\"https://ca2.io\">&lt;3</a><a href=\"https://thomasbs.com/\">tbs</a>!!</h4>";
-   strHtml += "&lt;3TBS - ∞ - " + pdatetime->international().get_date_time() + "- +∞ - CA2(THWOASONE)";
+   strHtml += "&lt;3TBS - InfinityUnicodeCharacter - " + pdatetime->international().get_date_time() + "- +InfinityUnicodeCharacter - CA2(THWOASONE)";
    strHtml += "</body>";
    strHtml += "</html>";
 

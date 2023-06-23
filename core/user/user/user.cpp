@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "font_list.h"
 #include "tree.h"
 #include "user.h"
@@ -345,7 +345,7 @@ namespace core
 
       //   //m_result.add(estatus);
 
-      //   ERROR("Failed to initialize html");
+      //   error() <<"Failed to initialize html";
 
       //   return estatus;
 
@@ -362,7 +362,7 @@ namespace core
 
       //}
 
-      TRACE("::user::application::initialize");
+      information("::user::application::initialize");
 
 //      auto pxml = psystem->xml();
 //
@@ -795,7 +795,7 @@ namespace core
    pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
    {
 
-      //__UNREFERENCED_PARAMETER(puiOwner);
+      //UNREFERENCED_PARAMETER(puiOwner);
 
       //auto pbox = pparticle->__create_new < ::userex::message_box >();
 
@@ -849,9 +849,9 @@ namespace core
    i32 user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie)
    {
 
-      __UNREFERENCED_PARAMETER(pszMatter);
-      __UNREFERENCED_PARAMETER(point);
-      __UNREFERENCED_PARAMETER(puie);
+      UNREFERENCED_PARAMETER(pszMatter);
+      UNREFERENCED_PARAMETER(point);
+      UNREFERENCED_PARAMETER(puie);
 
       return 1;
 
@@ -1022,7 +1022,7 @@ namespace core
 
    {
 
-      __UNREFERENCED_PARAMETER(pszPathName);
+      UNREFERENCED_PARAMETER(pszPathName);
 
 
    }
@@ -1526,7 +1526,7 @@ namespace core
    void user::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      __UNREFERENCED_PARAMETER(pcommand);
+      UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -1660,7 +1660,7 @@ namespace core
    //bool user::impl_set_os_desktop_theme(string strTheme)
    //{
 
-   //   __UNREFERENCED_PARAMETER(strTheme);
+   //   UNREFERENCED_PARAMETER(strTheme);
 
    //   return true;
 
@@ -1803,7 +1803,7 @@ namespace core
 //   bool user::impl_set_os_desktop_theme(string strTheme)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(strTheme);
+//      UNREFERENCED_PARAMETER(strTheme);
 //
 //      return true;
 //
@@ -1849,7 +1849,7 @@ namespace core
 //   bool user::impl_set_os_desktop_theme(string strTheme)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(strTheme);
+//      UNREFERENCED_PARAMETER(strTheme);
 //
 //      return true;
 //
@@ -1892,7 +1892,7 @@ namespace core
 //   bool user::impl_set_os_desktop_theme(string strTheme)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(strTheme);
+//      UNREFERENCED_PARAMETER(strTheme);
 //
 //      return true;
 //
@@ -2020,7 +2020,7 @@ namespace core
    void user::on_file_manager_open(::filemanager::data * pdata, ::file::item_array & itema)
    {
 
-      __UNREFERENCED_PARAMETER(pdata);
+      UNREFERENCED_PARAMETER(pdata);
 
       //m_pdocs->m_ptemplate_html->open_document_file(get_app(), itema[0]->get_user_path());
 

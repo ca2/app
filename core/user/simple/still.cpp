@@ -61,11 +61,11 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
          image_source imagesource(picon);
          
-         auto iMinimumDimension = this->get_client_size().minimum();
+         auto minimum_dimension = this->get_client_size().minimum();
          
-         ::size_i32 size(iMinimumDimension, iMinimumDimension);
+         ::size_f64 size(minimum_dimension);
 
-         rectangle_f64 rectangle(::point_i32(), size);
+         rectangle_f64 rectangle(::point_f64(), size);
 
          image_drawing_options imagedrawingoptions(rectangle);
 

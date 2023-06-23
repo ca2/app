@@ -1,4 +1,4 @@
-// Created by camilo on 2022-06-23 20:53 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-06-23 20:53 <3ThomasBorregaardSoerensen!!
 #include "framework.h"
 #include "holder.h"
 

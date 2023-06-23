@@ -1,7 +1,8 @@
-﻿#pragma once
+#pragma once
 
 
-class colorref_array;
+class color_array;
+class image32_array;
 
 
 namespace draw2d
@@ -58,13 +59,13 @@ namespace draw2d
    class matrix;
 
 
-   CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
+   CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);
 
 
 } // namespace draw2d
 
 
-CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
+CLASS_DECL_AURA void vertical_swap_copy_image32_swap_red_blue(::color32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc);
 
 
 

@@ -31,9 +31,9 @@ public:
   /** Makes intersection of current and
       the passed bit array (bitwize AND) */
   void intersect_bit_array(bit_array &);
-  /** Adds bit array from the passed byte stream. */
+  /** Adds bit array from the passed ::u8 stream. */
   void add_bit_array(char*, i32);
-  /** Clears bit array from the passed byte stream. */
+  /** Clears bit array from the passed ::u8 stream. */
   void clear_bit_array(char*, i32);
   /** Returns bit value at position @ca pos. */
   bool get_bit(i32 pos) const;

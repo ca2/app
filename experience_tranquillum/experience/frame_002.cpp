@@ -1,6 +1,7 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/graphics.h"
 #include "frame_002.h"
+#include "acme/graphics/draw2d/image32.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
 #include "base/user/experience/dock_manager.h"
@@ -21,17 +22,6 @@
 #define GRIP_CENTER_SMALL_CX 7
 #define GRIP_CENTER_LARGE_CY 36
 #define GRIP_CENTER_SMALL_CY 7
-
-
-color32_t SetAValue(byte a, color32_t color32)
-{
-
-   return argb(a, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32));
-
-}
-
-
-
 
 
 namespace experience_tranquillum
@@ -257,7 +247,7 @@ SizingNone:;
       else if(estyle == ::user::StyleLightBlue)
       {
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, {});//m_colorMoveableBorderDkShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
          Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
@@ -306,14 +296,14 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -321,7 +311,7 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
       }

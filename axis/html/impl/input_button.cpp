@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_button.h"
 #include "acme/primitive/data/listener.h"
 #include "aura/user/user/button.h"
@@ -143,7 +143,7 @@ namespace html
       void input_button::on_change_layout(html_data * pdata)
       {
 
-         __UNREFERENCED_PARAMETER(pdata);
+         UNREFERENCED_PARAMETER(pdata);
 
          m_pbutton->place(m_box);
 

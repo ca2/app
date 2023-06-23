@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-01 23:26 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-01 23:26 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/parallelization/mutex.h"
 

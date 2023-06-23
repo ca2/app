@@ -81,12 +81,12 @@ typedef ::i32    LCSGAMUTMATCH;
 #define ICM_QUERYMATCH                  7
 
 /* Macros to retrieve CMYK values from a color32_t */
-#define GetKValue(cmyk)      ((byte)(cmyk))
-#define GetYValue(cmyk)      ((byte)((cmyk)>> 8))
-#define GetMValue(cmyk)      ((byte)((cmyk)>>16))
-#define GetCValue(cmyk)      ((byte)((cmyk)>>24))
+#define GetKValue(cmyk)      ((::u8)(cmyk))
+#define GetYValue(cmyk)      ((::u8)((cmyk)>> 8))
+#define GetMValue(cmyk)      ((::u8)((cmyk)>>16))
+#define GetCValue(cmyk)      ((::u8)((cmyk)>>24))
 
-#define CMYK(c,m,y,k)       ((color32_t)((((byte)(k)|((::u16)((byte)(y))<<8))|(((::u32)(byte)(m))<<16))|(((::u32)(byte)(c))<<24)))
+#define CMYK(c,m,y,k)       ((color32_t)((((::u8)(k)|((::u16)((::u8)(y))<<8))|(((::u32)(::u8)(m))<<16))|(((::u32)(::u8)(c))<<24)))
 
 typedef long            FXPT16DOT16,*LPFXPT16DOT16;
 typedef long            FXPT2DOT30,*LPFXPT2DOT30;
@@ -127,9 +127,9 @@ typedef struct tagBITMAP
 
 ////#include <pshpack1.h>
 //typedef struct tagRGBTRIPLE {
-//   byte    rgbtBlue;
-//   byte    rgbtGreen;
-//   byte    rgbtRed;
+//   ::u8    rgbtBlue;
+//   ::u8    rgbtGreen;
+//   ::u8    rgbtRed;
 //} RGBTRIPLE,*PRGBTRIPLE,*NPRGBTRIPLE,*LPRGBTRIPLE;
 ////#include "poppack.h"
 
@@ -161,17 +161,17 @@ typedef CIEXYZTRIPLE    *LPCIEXYZTRIPLE;
 //typedef ::u32   *LPCOLORREF;
 
 typedef struct tagRGBQUAD {
-   byte    rgbBlue;
-   byte    rgbGreen;
-   byte    rgbRed;
-   byte    rgbReserved;
+   ::u8    rgbBlue;
+   ::u8    rgbGreen;
+   ::u8    rgbRed;
+   ::u8    rgbReserved;
 } RGBQUAD, * LPRGBQUAD;
 
 typedef struct tagPALETTEENTRY {
-   byte        peRed;
-   byte        peGreen;
-   byte        peBlue;
-   byte        peFlags;
+   ::u8        peRed;
+   ::u8        peGreen;
+   ::u8        peBlue;
+   ::u8        peFlags;
 } PALETTEENTRY,*PPALETTEENTRY,*LPPALETTEENTRY;
 
 /* Logical Palette */
@@ -193,14 +193,14 @@ struct  tagLOGFONTA
    ::i32      lfEscapement;
    ::i32      lfOrientation;
    ::i32      lfWeight;
-   byte      lfItalic;
-   byte      lfUnderline;
-   byte      lfStrikeOut;
-   byte      lfCharSet;
-   byte      lfOutPrecision;
-   byte      lfClipPrecision;
-   byte      lfQuality;
-   byte      lfPitchAndFamily;
+   ::u8      lfItalic;
+   ::u8      lfUnderline;
+   ::u8      lfStrikeOut;
+   ::u8      lfCharSet;
+   ::u8      lfOutPrecision;
+   ::u8      lfClipPrecision;
+   ::u8      lfQuality;
+   ::u8      lfPitchAndFamily;
    char      lfFaceName[LF_FACESIZE];
 };
 
@@ -212,14 +212,14 @@ struct  tagLOGFONTA
 //   ::i32      lfEscapement;
 //   ::i32      lfOrientation;
 //   ::i32      lfWeight;
-//   byte      lfItalic;
-//   byte      lfUnderline;
-//   byte      lfStrikeOut;
-//   byte      lfCharSet;
-//   byte      lfOutPrecision;
-//   byte      lfClipPrecision;
-//   byte      lfQuality;
-//   byte      lfPitchAndFamily;
+//   ::u8      lfItalic;
+//   ::u8      lfUnderline;
+//   ::u8      lfStrikeOut;
+//   ::u8      lfCharSet;
+//   ::u8      lfOutPrecision;
+//   ::u8      lfClipPrecision;
+//   ::u8      lfQuality;
+//   ::u8      lfPitchAndFamily;
 //   unichar   lfFaceName[LF_FACESIZE];
 //};
 
@@ -323,15 +323,15 @@ typedef struct tagTEXTMETRIca
    ::i32        tmOverhang;
    ::i32        tmDigitizedAspectX;
    ::i32        tmDigitizedAspectY;
-   byte        tmFirstChar;
-   byte        tmLastChar;
-   byte        tmDefaultChar;
-   byte        tmBreakChar;
-   byte        tmItalic;
-   byte        tmUnderlined;
-   byte        tmStruckOut;
-   byte        tmPitchAndFamily;
-   byte        tmCharSet;
+   ::u8        tmFirstChar;
+   ::u8        tmLastChar;
+   ::u8        tmDefaultChar;
+   ::u8        tmBreakChar;
+   ::u8        tmItalic;
+   ::u8        tmUnderlined;
+   ::u8        tmStruckOut;
+   ::u8        tmPitchAndFamily;
+   ::u8        tmCharSet;
 } TEXTMETRIca,*PTEXTMETRIca,*NPTEXTMETRIca,*LPTEXTMETRIca;
 typedef struct tagTEXTMETRICW
 {
@@ -350,11 +350,11 @@ typedef struct tagTEXTMETRICW
    WCHAR       tmLastChar;
    WCHAR       tmDefaultChar;
    WCHAR       tmBreakChar;
-   byte        tmItalic;
-   byte        tmUnderlined;
-   byte        tmStruckOut;
-   byte        tmPitchAndFamily;
-   byte        tmCharSet;
+   ::u8        tmItalic;
+   ::u8        tmUnderlined;
+   ::u8        tmStruckOut;
+   ::u8        tmPitchAndFamily;
+   ::u8        tmCharSet;
 } TEXTMETRICW,*PTEXTMETRICW,*NPTEXTMETRICW,*LPTEXTMETRICW;
 #ifdef UNICODE
 typedef TEXTMETRICW TEXTMETRIC;
@@ -377,7 +377,7 @@ typedef struct tagPELARRAY
    ::i32        paYCount;
    ::i32        paXExt;
    ::i32        paYExt;
-   byte        paRGBs;
+   ::u8        paRGBs;
 } PELARRAY,*PPELARRAY,*NPPELARRAY,*LPPELARRAY;
 
 /* Logical Brush (or Pattern) */
@@ -447,11 +447,11 @@ typedef LPEXTLOGPEN HPEN;
 #define AD_COUNTERCLOCKWISE 1
 #define AD_CLOCKWISE        2
 
-#define rgb(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
+#define rgb(r,g,b)          ((color32_t)(((::u8)(r)|((::u16)((::u8)(g))<<8))|(((::u32)(::u8)(b))<<16)))
 
-#define GetRValue(rgb)      (__LOBYTE(rgb))
-#define GetGValue(rgb)      (__LOBYTE(((::u16)(rgb)) >> 8))
-#define GetBValue(rgb)      (__LOBYTE((rgb)>>16))
+#define GetRValue(rgb)      (lower_u8(rgb))
+#define GetGValue(rgb)      (lower_u8(((::u16)(rgb)) >> 8))
+#define GetBValue(rgb)      (lower_u8((rgb)>>16))
 
 /* Background Modes */
 #define TRANSPARENT         1
@@ -672,10 +672,10 @@ typedef struct _GRADIENT_RECT
 
 typedef struct _BLENDFUNCTION
 {
-   byte   BlendOp;
-   byte   BlendFlags;
-   byte   SourceConstantAlpha;
-   byte   AlphaFormat;
+   ::u8   BlendOp;
+   ::u8   BlendFlags;
+   ::u8   SourceConstantAlpha;
+   ::u8   AlphaFormat;
 }BLENDFUNCTION,*PBLENDFUNCTION;
 
 

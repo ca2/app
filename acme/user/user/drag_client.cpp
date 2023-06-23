@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSørensen
+// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "drag_client.h"
 #include "drag.h"
@@ -109,7 +109,7 @@ namespace user
             if (pdrag->m_eelement == e_element_resize)
             {
 
-               INFORMATION("drag_on_button_down element_resize");
+               information() << "drag_on_button_down element_resize";
 
             }
 
@@ -168,8 +168,6 @@ namespace user
             {
 
                m_pdragCurrent->m_bDrag = true;
-
-               auto pointDrag = pmouse->m_point - m_pdragCurrent->m_sizeLButtonDownOffset;
 
                drag_shift(m_pdragCurrent);
 

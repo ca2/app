@@ -14,16 +14,16 @@ inline strsize string_get_length(const ::ansi_character* psz) noexcept { return 
 inline strsize string_safe_length(const ::ansi_character* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
 
 
-using BLOCK = ::range < ::byte * >;
-//using BLOCK = array_range < ::range < ::byte * > >;
+using BLOCK = ::range < ::u8 * >;
+//using BLOCK = array_range < ::range < ::u8 * > >;
 //struct CLASS_DECL_ACME BLOCK
 //{
 //
-//   byte *                     m_pbegin;
+//   ::u8 *                     m_pbegin;
 //   ::count                    m_iSize;
 //
 //
-//   memsize length_in_bytes() const { return sizeof(::byte) * m_iSize; }
+//   memsize length_in_bytes() const { return sizeof(::u8) * m_iSize; }
 //
 //};
 
@@ -59,7 +59,7 @@ struct CLASS_DECL_ACME block :
       this->m_begin = block.m_begin;
       this->m_end = block.m_end;
    }
-   block(const range < ::byte * > & range);
+   block(const range < ::u8 * > & range);
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const atom & atom);
@@ -67,21 +67,21 @@ struct CLASS_DECL_ACME block :
    block(const char(&sz)[c])
    {
 
-      this->m_begin = (byte *)(sz);
-      this->m_end = (byte *)(this->m_begin + c);
+      this->m_begin = (::u8 *)(sz);
+      this->m_end = (::u8 *)(this->m_begin + c);
 
    }
    template < ::count c >
-   block(const byte(&ba)[c])
+   block(const ::u8(&ba)[c])
    {
 
-      this->m_begin = (byte *) ba;
-      this->m_end = (byte *) (this->m_begin + c);
+      this->m_begin = (::u8 *) ba;
+      this->m_end = (::u8 *) (this->m_begin + c);
 
    }
    block(const ::ansi_character * psz)
    {
-      this->m_begin = (::byte *) psz;
+      this->m_begin = (::u8 *) psz;
       this->m_end = this->m_begin + ::string_safe_length(psz);
    }
    //block(const ::scoped_string  & scopedstr);
@@ -99,9 +99,9 @@ struct CLASS_DECL_ACME block :
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
-   block(const void * begin, const void * end) : BLOCK((const ::byte *)begin, (const ::byte *)end) {}
+   block(const void * begin, const void * end) : BLOCK((const ::u8 *)begin, (const ::u8 *)end) {}
    template < primitive_integral INTEGRAL >
-   block(const void * data, INTEGRAL count) : BLOCK((::byte *) data, count) { }
+   block(const void * data, INTEGRAL count) : BLOCK((::u8 *) data, count) { }
 
    //block & operator = (const block & block) 
    //{
@@ -123,8 +123,8 @@ struct CLASS_DECL_ACME block :
    //void * get_data() { return m_pbegin; }
    //const void * get_data() const { return m_pbegin; }
    //memsize get_size() const { return m_iSize; }
-   //const ::byte * data () const { return (const  ::byte *) m_pbegin;  }
-   //::byte * data() { return (::byte *)m_pbegin; }
+   //const ::u8 * data () const { return (const  ::u8 *) m_pbegin;  }
+   //::u8 * data() { return (::u8 *)m_pbegin; }
    //::count size() const { return (::count)m_iSize; }
 
 
@@ -164,7 +164,7 @@ struct CLASS_DECL_ACME block :
    }
 
    template < strsize c >
-   block & operator = (const byte(&ba)[c])
+   block & operator = (const ::u8(&ba)[c])
    {
 
       if (this->size() < c)
@@ -198,7 +198,7 @@ struct CLASS_DECL_ACME block :
    }
 
    template < strsize c >
-   block & operator >>(byte(&ba)[c])
+   block & operator >>(::u8(&ba)[c])
    {
 
       if (this->size() < c)
@@ -279,9 +279,9 @@ struct CLASS_DECL_ACME block :
 
    inline memsize _find(const ::block& blockFind, memsize start = 0) const
    {
-      return ((::byte*)_memory_find(
-         as_pointer<::byte>() + start, size() - start,
-         blockFind.begin(), blockFind.size())) - as_pointer <::byte>();
+      return ((::u8*)_memory_find(
+         as_pointer<::u8>() + start, size() - start,
+         blockFind.begin(), blockFind.size())) - as_pointer <::u8>();
 
    }
 
@@ -294,10 +294,10 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   ::byte & first_byte(::index i = 0){return this->m_begin[i];}
-   ::byte first_byte(::index i = 0)const{return this->m_begin[i];}
-   ::byte & last_byte(::index i = -1){return this->m_end[i];}
-   ::byte last_byte(::index i = -1)const{return this->m_end[i];}
+   ::u8 & first_byte(::index i = 0){return this->m_begin[i];}
+   ::u8 first_byte(::index i = 0)const{return this->m_begin[i];}
+   ::u8 & last_byte(::index i = -1){return this->m_end[i];}
+   ::u8 last_byte(::index i = -1)const{return this->m_end[i];}
 
 };
 
@@ -328,7 +328,7 @@ public:
 
 
 template <  >
-class GET_BLOCK_TYPE< ::byte >
+class GET_BLOCK_TYPE< ::u8 >
 {
 public:
 

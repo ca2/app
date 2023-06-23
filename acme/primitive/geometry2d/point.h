@@ -73,8 +73,8 @@ public:
 //   point_type(::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
 //   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
 //   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
-//   //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) __u32x(u), (UNIT_TYPE)__u32y(u)) {}
-//   //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
+//   //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) u32_x(u), (UNIT_TYPE)u32_y(u)) {}
+//   //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)u64_x(u), (UNIT_TYPE)u64_y(u)) {}
 //   //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
 //
 //
@@ -240,11 +240,11 @@ public:
 //   inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
 
 
-//   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() + shift.greekdeltay); return *this; }
-//   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.greekdeltax); this->y() = (UNIT_TYPE)(this->y() - shift.greekdeltay); return *this; }
+//   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.Δx); this->y() = (UNIT_TYPE)(this->y() + shift.Δy); return *this; }
+//   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.Δx); this->y() = (UNIT_TYPE)(this->y() - shift.Δy); return *this; }
 //
-//   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.greekdeltax), (UNIT_TYPE)(this->y() + shift.greekdeltay) }; }
-//   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.greekdeltax), (UNIT_TYPE)(this->y() - shift.greekdeltay) }; }
+//   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.Δx), (UNIT_TYPE)(this->y() + shift.Δy) }; }
+//   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.Δx), (UNIT_TYPE)(this->y() - shift.Δy) }; }
 
 
 
@@ -317,7 +317,8 @@ public:
    }
    
    
-   void expand_bounding_box(point_type & top_left, point_type & bottom_right)
+   template < primitive_point POINT >
+   void expand_bounding_box(POINT & top_left, POINT & bottom_right) const
    {
       
       expand_minimum_maximum(top_left.x(), bottom_right.x(), this->x());
@@ -327,15 +328,18 @@ public:
    }
    
    
-   static void expand_bounding_box(point_type & top_left, point_type & bottom_right, const point_type * ppoint, ::count count)
+   template < primitive_point POINT >
+   static void expand_bounding_box(POINT & top_left, POINT & bottom_right, const point_type * ppoint, ::count count)
    {
 
-      for (::index i = 0; i < count; i++)
+      while(count > 0)
       {
          
-         expand_minimum_maximum(top_left.x(), top_left.x(), ppoint->x());
+         ppoint->expand_bounding_box(top_left, bottom_right);
          
-         expand_minimum_maximum(top_left.y(), top_left.y(), ppoint->y());
+         count--;
+         
+         ppoint++;
 
       }
 
@@ -348,28 +352,24 @@ public:
 
 
 
-//inline auto __point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
-inline auto __point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
-inline auto __point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
+//inline auto u32_point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
+inline auto u32_point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)u32_x(u), (::i32)u32_y(u)); }
+inline auto u64_point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)u64_x(u), (::i32)u64_y(u)); }
 
 
-//inline auto __point_i64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
-inline auto __point_i64(const ::u32 u) noexcept { return ::point_i64((i64)__u32x(u), (i64)__u32y(u)); }
-inline auto __point_i64(const ::u64 u) noexcept { return ::point_i64((i64)__u64x(u), (i64)__u64y(u)); }
+//inline auto u32_point_i64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
+inline auto u32_point_i64(const ::u32 u) noexcept { return ::point_i64((i64)u32_x(u), (i64)u32_y(u)); }
+inline auto u64_point_i64(const ::u64 u) noexcept { return ::point_i64((i64)u64_x(u), (i64)u64_y(u)); }
 
 
 //inline auto __point_f32(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
-inline auto __point_f32(const ::u32 u) noexcept { return ::point_f32((float)__u32x(u), (float)__u32y(u)); }
-inline auto __point_f32(const ::u64 u) noexcept { return ::point_f32((float)__u64x(u), (float)__u64y(u)); }
+inline auto __point_f32(const ::u32 u) noexcept { return ::point_f32((float)u32_x(u), (float)u32_y(u)); }
+inline auto __point_f32(const ::u64 u) noexcept { return ::point_f32((float)u64_x(u), (float)u64_y(u)); }
 
 
 //inline auto __point_f64(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
-inline auto __point_f64(const ::u32 u) noexcept { return ::point_f64((double)__u32x(u), (double)__u32y(u)); }
-inline auto __point_f64(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
-
-
-
-
+inline auto __point_f64(const ::u32 u) noexcept { return ::point_f64((double)u32_x(u), (double)u32_y(u)); }
+inline auto __point_f64(const ::u64 u) noexcept { return ::point_f64((double)u64_x(u), (double)u64_y(u)); }
 
 
 inline bool is_same(const ::point_f64& p1, const ::point_f64& p2, double dTolerance)
@@ -386,10 +386,6 @@ inline bool is_different(const ::point_f64& p1, const ::point_f64& p2, double dT
    return !is_same(p1, p2, dTolerance);
 
 }
-
-
-
-
 
 
 template < primitive_number NUMBER1, primitive_number NUMBER2 >

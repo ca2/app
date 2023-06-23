@@ -1,4 +1,4 @@
-﻿// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSørensen!!
+// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "scroll_data.h"
 #include "vertical_scroll_base.h"
@@ -22,7 +22,7 @@ namespace user
 
       m_pscrolldataVertical->m_bScroll = false;
       m_pscrolldataVertical->m_iPage = 0;
-      m_pscrolldataVertical->m_iLine = 0;
+      m_pscrolldataVertical->m_iLine = 60;
       m_pscrolldataVertical->m_bScrollEnable = true;
 
    }
@@ -53,7 +53,7 @@ namespace user
    void vertical_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient = client_rectangle();
+      ::rectangle_i32 rectangleClient = raw_rectangle();
 
       //scroll_bar_get_client_rect(rectangleClient);
 
@@ -158,7 +158,17 @@ namespace user
             if (pscroll->m_ecommand == e_scroll_command_line_up)
             {
 
-               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - m_pscrolldataVertical->m_iLine));
+               auto Δ = m_pscrolldataVertical->m_iLine;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
+
+            }
+            else if (pscroll->m_ecommand == e_scroll_command_wheel_up)
+            {
+
+               auto Δ = m_pscrolldataVertical->m_iWheel;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_up)
@@ -179,6 +189,14 @@ namespace user
                auto iLine = m_pscrolldataVertical->m_iLine;
 
                set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + iLine));
+
+            }
+            else if (pscroll->m_ecommand == e_scroll_command_wheel_down)
+            {
+
+               auto Δ = m_pscrolldataVertical->m_iWheel;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + Δ));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
@@ -239,12 +257,12 @@ namespace user
 
       ::pointer<::message::mouse_wheel>pmousewheel(pmessage);
 
-      auto greekdelta = pmousewheel->m_greekdelta;
+      auto Δ = pmousewheel->m_Δ;
 
-      if (greekdelta > 0)
+      if (Δ > 0)
       {
 
-         for (; greekdelta > 0; greekdelta -= 120)
+         for (; Δ > 0; Δ -= 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_up);
@@ -255,7 +273,7 @@ namespace user
       else
       {
 
-         for (; greekdelta < 0; greekdelta += 120)
+         for (; Δ < 0; Δ += 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_down);

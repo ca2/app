@@ -1,4 +1,4 @@
-﻿// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSørensen!!
+// Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -158,7 +158,7 @@ inline i32 unicode_index_length(const ::ansi_character * pszUtf8, ::i32 & len)
 
    i32 ch = 0;
 
-   byte c;
+   ::u8 c;
 
    len = 0;
 
@@ -895,7 +895,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 //
 //   i32 ch = 0;
 //
-//   byte c;
+//   ::u8 c;
 //
 //   char extraBytesToRead = utf8_e(*pszUtf8);
 //

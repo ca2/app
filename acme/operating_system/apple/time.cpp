@@ -2,8 +2,8 @@
 //  time.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 15/10/21.
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 15/10/21.
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 //#include <mach/mach_init.h>

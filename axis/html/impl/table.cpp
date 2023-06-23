@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "table.h"
 #include "table_row.h"
 #include "acme/primitive/data/listener.h"
@@ -273,7 +273,7 @@ namespace html
       void table::layout_phase2(html_data * pdata)
       {
 
-         __UNREFERENCED_PARAMETER(pdata);
+         UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -281,7 +281,7 @@ namespace html
       void table::layout_phase3(html_data * pdata)
       {
 
-         __UNREFERENCED_PARAMETER(pdata);
+         UNREFERENCED_PARAMETER(pdata);
 
          move_to(pdata);
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
  
 
 //#include "acme/platform/acme.h"
@@ -499,7 +499,7 @@ void Free_check_pointer_in_cpp(void * p)
 
    //}
 
-   if ((byte *)0x0000000200000020 == ((byte *)p))
+   if ((::u8 *)0x0000000200000020 == ((::u8 *)p))
    {
 
       simple_debug_print("found it?!");
@@ -733,7 +733,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
       }
 
    }
-   if ((byte *) 0x0000000200000020 == ((byte *)pParam))
+   if ((::u8 *) 0x0000000200000020 == ((::u8 *)pParam))
    {
 
       debug_break();
@@ -829,7 +829,7 @@ public:
 
 
    plex_heap *    m_pheapNext;
-   byte           m_data; // first data byte of this ::payload length structure
+   ::u8           m_data; // first data ::u8 of this ::payload length structure
 
 
    void * data() { return &m_data; }
@@ -889,7 +889,7 @@ void plex_heap::FreeDataChain()     // free this one and links
    while (::is_set(pheap))
    {
 
-      byte * pbytes = (byte *) pheap;
+      ::u8 * pbytes = (::u8 *) pheap;
 
       auto pheapNext = pheap->m_pheapNext;
 
@@ -949,11 +949,11 @@ void plex_heap_alloc_sync::NewBlock()
 
       pnodeNext = pnode;
 
-      pnode = (node *) &((byte *) pnode)[nAllocSize];
+      pnode = (node *) &((::u8 *) pnode)[nAllocSize];
 
    }
 
-   if ((byte *)0x0000000200000020 == ((byte *)pnodeNext))
+   if ((::u8 *)0x0000000200000020 == ((::u8 *)pnodeNext))
    {
 
       debug_break();

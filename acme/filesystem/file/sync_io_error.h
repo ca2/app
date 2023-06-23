@@ -1,4 +1,4 @@
-// Created by camilo on 2022-10-21 23:41 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-21 23:41 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -34,7 +34,7 @@ class CLASS_DECL_ACME sync_io_error
    bool none() const { return get_sync_io_error() == 0; }
 
 
-   operator bool() const { return get_sync_io_error() != 0; }
+   explicit operator bool() const { return get_sync_io_error() != 0; }
 
 };
 

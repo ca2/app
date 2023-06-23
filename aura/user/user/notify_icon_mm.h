@@ -2,8 +2,8 @@
 //  user_notify_icon_mm.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 3/17/16.
-//  Copyright © 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 3/17/16.
+//  Copyright (c) 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
 #ifndef user_notify_icon_mm_h

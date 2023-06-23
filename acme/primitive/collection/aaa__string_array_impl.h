@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/primitive/primitive/property_set.h"
@@ -177,7 +177,7 @@
 ////      iLength = strlen(lpszN);
 ////#endif
 ////
-////      lpszN = (char *)((byte *)lpszN) + iLength + sizeof(char);
+////      lpszN = (char *)((::u8 *)lpszN) + iLength + sizeof(char);
 ////
 ////   }
 ////

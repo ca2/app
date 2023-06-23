@@ -1,5 +1,14 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+template < primitive_number NUMBER1, primitive_number NUMBER2 >
+void cast_copy(NUMBER1 & n1, NUMBER2 n2)
+{
+   
+   n1 = (NUMBER1) n2;
+   
+}
 
 
 template < typename A, typename B >
@@ -65,7 +74,7 @@ constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CH
 
 
 /// initially for __utosz_internal and __utosz
-/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSørensen!!
+/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
 template < typename TYPE >
 void reverse(TYPE * begin, TYPE * end)
 {
@@ -126,7 +135,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 //#ifdef DEEP_DEBUG
 //
-//   byte* pbyte = (byte*)p;
+//   ::u8* pbyte = (::u8*)p;
 //
 //   if (bReadWrite)
 //   {
@@ -134,9 +143,9 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //      for (::index i = 0; i < size; i++)
 //      {
 //
-//         ::byte& b = *pbyte;
+//         ::u8& b = *pbyte;
 //
-//         b++; // tests read/write of byte b
+//         b++; // tests read/write of ::u8 b
 //
 //         b--; // restablish it
 //
@@ -151,9 +160,9 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //      for (::index i = 0; i < size; i++)
 //      {
 //
-//         ::byte& b = *pbyte;
+//         ::u8& b = *pbyte;
 //
-//         sum += b; // tests read of byte b
+//         sum += b; // tests read of ::u8 b
 //
 //      }
 //
@@ -186,8 +195,8 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen)
 //{
 //
-//   return (((byte*)pszSrc) <= ((byte*)pszDst) && ((byte*)pszSrc) + srclen > ((byte*)pszDst))
-//      || (((byte*)pszDst) <= ((byte*)pszSrc) && ((byte*)pszDst) + srclen > ((byte*)pszSrc));
+//   return (((::u8*)pszSrc) <= ((::u8*)pszDst) && ((::u8*)pszSrc) + srclen > ((::u8*)pszDst))
+//      || (((::u8*)pszDst) <= ((::u8*)pszSrc) && ((::u8*)pszDst) + srclen > ((::u8*)pszSrc));
 //
 //}
 //
@@ -833,60 +842,48 @@ template < primitive_XYDim XYDim, typename X, typename Y, typename W, typename H
 inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 {
 
-   rectTarget.X = (decltype(rectTarget.X))x;
-   rectTarget.Y = (decltype(rectTarget.Y))y;
-   rectTarget.Width = (decltype(rectTarget.Width))w;
-   rectTarget.Height = (decltype(rectTarget.Height))h;
+   cast_copy(rectTarget.X, x);
+   cast_copy(rectTarget.Y, y);
+   cast_copy(rectTarget.Width, w);
+   cast_copy(rectTarget.Height, h);
 
    return rectTarget;
 
 }
 
 
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-void copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   rect1.left = (decltype(RECT_TYPE1::left))rect2.left;
-   rect1.top = (decltype(RECT_TYPE1::top))rect2.top;
-   rect1.right = (decltype(RECT_TYPE1::right))rect2.right;
-   rect1.bottom = (decltype(RECT_TYPE1::bottom))rect2.bottom;
-
-}
-
-
-template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
-void copy(RECTANGLE & rectangle, const XYDim & xydim)
-{
-
-   rectangle.left = (decltype(RECTANGLE::left))xydim.X;
-   rectangle.top = (decltype(RECTANGLE::top))xydim.Y;
-   rectangle.right = (decltype(RECTANGLE::right))(xydim.X + xydim.Width);
-   rectangle.bottom = (decltype(RECTANGLE::bottom))(xydim.Y + xydim.Height);
-
-}
+//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+//{
+//
+//   cast_copy(rectangle1.left    , rectangle2.left    );
+//   cast_copy(rectangle1.top     , rectangle2.top     );
+//   cast_copy(rectangle1.right   , rectangle2.right   );
+//   cast_copy(rectangle1.bottom  , rectangle2.bottom  );
+//
+//}
 
 
 template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
-void copy(RECTANGLE & rect1, const XYDIM  & xydim)
+void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
 {
 
-   rect1.left = (decltype(RECTANGLE::left))xydim.x();
-   rect1.top = (decltype(RECTANGLE::top))xydim.y();
-   rect1.right = (decltype(RECTANGLE::right))(xydim.x() + xydim.width);
-   rect1.bottom = (decltype(RECTANGLE::bottom))(xydim.y() + xydim.height);
+   cast_copy(rectangle.left     , xydim.x);
+   cast_copy(rectangle.top      , xydim.y);
+   cast_copy(rectangle.right    , xydim.x + xydim.width);
+   cast_copy(rectangle.bottom   , xydim.y + xydim.height);
 
 }
 
 
-template < primitive_origin_size RECTANGLE1, primitive_rectangle RECTANGLE2 >
-void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+template < primitive_origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
+void copy(ORIGIN_SIZE & originsize, const RECTANGLE & rectangle)
 {
 
-   rectangle1.origin.x = (const ::std::decay_t < decltype(rectangle1.origin.x) > &)rectangle2.left;
-   rectangle1.origin.y = (const ::std::decay_t < decltype(rectangle1.origin.y) > &)rectangle2.top;
-   rectangle1.size.width = (const ::std::decay_t < decltype(rectangle1.size.width) > &)(rectangle2.right - rectangle2.left);
-   rectangle1.size.height = (const ::std::decay_t < decltype(rectangle1.size.height) > &)(rectangle2.bottom - rectangle2.top);
+   cast_copy(originsize.origin.x      , rectangle.left);
+   cast_copy(originsize.origin.y      , rectangle.top);
+   cast_copy(originsize.size.width    , rectangle.right - rectangle.left);
+   cast_copy(originsize.size.height   , rectangle.bottom - rectangle.top);
 
 }
 
@@ -895,10 +892,10 @@ template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle1.left = (decltype(RECTANGLE1::left))rectangle2.origin.x;
-   rectangle1.top = (decltype(RECTANGLE1::top))rectangle2.origin.y;
-   rectangle1.right = (decltype(RECTANGLE1::right))(rectangle2.origin.x - rectangle2.size.width);
-   rectangle1.bottom = (decltype(RECTANGLE1::bottom))(rectangle2.origin.y - rectangle2.size.height);
+   cast_copy(rectangle1.left    , rectangle2.origin.x);
+   cast_copy(rectangle1.top     , rectangle2.origin.y);
+   cast_copy(rectangle1.right   , rectangle2.origin.x + rectangle2.size.width);
+   cast_copy(rectangle1.bottom  , rectangle2.origin.y + rectangle2.size.height);
 
 }
 
@@ -927,4 +924,137 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 // }
 
 
+
+
+
+
+
+template < primitive_XY POINT1, primitive_point POINT2 >
+void copy(POINT1 point1, const POINT2 & point2)
+{
+
+   cast_copy(point1.X, point2.x());
+   cast_copy(point1.Y, point2.y());
+
+}
+
+
+template < primitive_point POINT1, primitive_XY POINT2 >
+void copy(POINT1 & point1, const POINT2 & point2)
+{
+
+   cast_copy(point1.x(), point2.X);
+   cast_copy(point1.y(), point2.Y);
+
+}
+
+
+template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
+{
+
+   cast_copy(rectangle1.left, rectangle2.left);
+   cast_copy(rectangle1.top, rectangle2.top);
+   cast_copy(rectangle1.right, rectangle2.right);
+   cast_copy(rectangle1.bottom, rectangle2.bottom);
+
+}
+
+
+template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+void copy(XYDim & xydim, const RECTANGLE & rectangle)
+{
+
+   cast_copy(xydim.X, rectangle.left);
+   cast_copy(xydim.Y, rectangle.top);
+   cast_copy(xydim.Width, rectangle.right - rectangle.left);
+   cast_copy(xydim.Height, rectangle.bottom - rectangle.top);
+
+}
+
+
+template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+void copy(RECTANGLE & rectangle, const XYDim & xydim)
+{
+
+   cast_copy(rectangle.left, xydim.X);
+   cast_copy(rectangle.top, xydim.Y);
+   cast_copy(rectangle.right, xydim.X + xydim.Width);
+   cast_copy(rectangle.bottom, xydim.Y + xydim.Height);
+
+}
+
+
+template < primitive_xydim XYDIM, primitive_rectangle RECTANGLE >
+void copy(XYDIM & xydim, const RECTANGLE & rectangle)
+{
+
+   cast_copy(xydim.x, rectangle.left);
+   cast_copy(xydim.y, rectangle.top);
+   cast_copy(xydim.width, rectangle.right - rectangle.left);
+   cast_copy(xydim.height, rectangle.bottom - rectangle.top);
+
+}
+
+
+template < primitive_XYDim XYDim1, primitive_XYDim XYDim2 >
+void copy(XYDim1 & xydim1, const XYDim2 & xydim2)
+{
+
+   cast_copy(xydim1.X, xydim2.X);
+   cast_copy(xydim1.Y, xydim2.Y);
+   cast_copy(xydim1.Width, xydim2.Width);
+   cast_copy(xydim1.Height, xydim2.Height);
+
+}
+
+
+template < primitive_point POINT1, primitive_point POINT2 >
+void copy(POINT1 & point1, const POINT2 & point2)
+{
+
+   cast_copy(point1.x(), point2.x());
+   cast_copy(point1.y(), point2.y());
+
+}
+
+
+template < primitive_point POINT1, raw_primitive_point POINT2 >
+void copy(POINT1 & point1, const POINT2 & point2)
+{
+
+   cast_copy(point1.x(), point2.x());
+   cast_copy(point1.y(), point2.y());
+
+}
+
+
+template < raw_primitive_point POINT1, primitive_point POINT2 >
+void copy(POINT1 & point1, const POINT2 & point2)
+{
+
+   cast_copy(point1.x, point2.x());
+   cast_copy(point1.y, point2.y());
+
+}
+
+
+template < primitive_point POINT, primitive_size SIZE >
+void copy(POINT & point, const SIZE & size)
+{
+
+   cast_copy(point.x(), size.cx());
+   cast_copy(point.y(), size.cy());
+
+}
+
+
+template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
+void copy(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
+{
+
+   cast_copy(size1.cx(), size2.cx());
+   cast_copy(size1.cy(), size2.cy());
+
+}
 

@@ -1,8 +1,8 @@
-﻿//
+//
 //  font_sink.cpp
 //  nanoui
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/04/22 05:06
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 06/04/22 05:06
 //
 #include "framework.h"
 #include "font_sink.h"

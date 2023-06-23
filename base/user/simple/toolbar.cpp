@@ -1647,7 +1647,7 @@ void simple_toolbar::_001DiscardImageList()
 void simple_toolbar::_001SetImageList(::pointer<::image_list>imagelist)
 {
 
-   __UNREFERENCED_PARAMETER(imagelist);
+   UNREFERENCED_PARAMETER(imagelist);
 
    /*
 
@@ -1767,12 +1767,12 @@ void simple_toolbar::_001OnImageListAttrib()
 //
 //   }
 //
-//   if (ptoolitem->m_fsStyle != (byte)LOWORD(nStyle) || ptoolitem->m_fsState != (byte)HIWORD(nStyle))
+//   if (ptoolitem->m_fsStyle != (::u8)LOWORD(nStyle) || ptoolitem->m_fsState != (::u8)HIWORD(nStyle))
 //   {
 //
-//      ptoolitem->m_fsStyle = (byte)LOWORD(nStyle);
+//      ptoolitem->m_fsStyle = (::u8)LOWORD(nStyle);
 //
-//      ptoolitem->m_fsState = (byte)HIWORD(nStyle);
+//      ptoolitem->m_fsState = (::u8)HIWORD(nStyle);
 //
 //      m_bDelayedButtonLayout = true;
 //
@@ -1885,32 +1885,32 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
       str = ptoolitem->m_str;
 
-      index greekdeltax, greekdeltaxNext;
+      index Δx, ΔxNext;
 
       if (ptoolitem->m_estyle & e_tool_item_style_separator)
       {
 
-         greekdeltax = sizeSeparator.cx();
+         Δx = sizeSeparator.cx();
 
-         greekdeltaxNext = greekdeltax;
+         ΔxNext = Δx;
 
       }
       else
       {
 
-         greekdeltax = rectangleItemPad.left;
+         Δx = rectangleItemPad.left;
 
          if (ptoolitem->m_pimage->is_set())
          {
 
-            greekdeltax += ptoolitem->m_pimage->height();
+            Δx += ptoolitem->m_pimage->height();
 
          }
 
          if (str.has_char() && ptoolitem->m_pimage->is_set())
          {
 
-            greekdeltax += iImageSpacing;
+            Δx += iImageSpacing;
 
          }
 
@@ -1919,19 +1919,19 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
             size_f64 size = pgraphics->get_text_extent(str);
 
-            greekdeltax = (index)  (size.cx() + EXTRA_TEXT_CX);
+            Δx = (index)  (size.cx() + EXTRA_TEXT_CX);
 
          }
 
-         greekdeltax += rectangleItemPad.right; // +sPress.cx();
+         Δx += rectangleItemPad.right; // +sPress.cx();
 
-         greekdeltaxNext = greekdeltax - CX_OVERLAP;
+         ΔxNext = Δx - CX_OVERLAP;
 
       }
 
       bool bFound = false;
 
-      if (x + greekdeltax > nWidth - rectangleBorder.right)
+      if (x + Δx > nWidth - rectangleBorder.right)
       {
 
          for (index iItemHere = iItem; iItemHere >= 0; iItemHere--)
@@ -2040,7 +2040,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
          bFirstInRow = false;
 
-         x += greekdeltaxNext;
+         x += ΔxNext;
 
       }
 
@@ -2410,9 +2410,9 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //    | TBIF_SIZE;
             // ::u32 uID = GetItemID(i);
             // GetToolBarCtrl().GetButtonInfo(uId, &buttona);
-            // FORMATTED_TRACE("BUTTON.m_atom = %d\n", buttona.m_atom  );
-            // FORMATTED_TRACE("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
-            // FORMATTED_TRACE("BUTTON.cx() = %d\n", buttona.cx() );
+            // information("BUTTON.m_atom = %d\n", buttona.m_atom  );
+            // information("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
+            // information("BUTTON.cx() = %d\n", buttona.cx() );
 
          }
 
@@ -2732,5 +2732,7 @@ int simple_toolbar::get_image_spacing()
    return i;
 
 }
+
+
 
 

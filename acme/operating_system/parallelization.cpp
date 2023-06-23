@@ -118,4 +118,16 @@ string get_task_name(::task * ptask)
 }
 
 
+CLASS_DECL_ACME string current_task_name()
+{
+
+   auto ptask = ::get_task();
+
+   ::string strTaskName = ::get_task_name(ptask);
+
+   return strTaskName;
+
+}
+
+
 

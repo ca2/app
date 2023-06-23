@@ -1,8 +1,8 @@
-﻿//
+//
 //  apex_application_ptra.cpp
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/11/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/11/18.
 //
 #include "framework.h"
 #include "application_array.h"

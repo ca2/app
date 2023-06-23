@@ -17,7 +17,7 @@ namespace ftp
       virtual ::u32 GetLocalStreamSize() const = 0;
       virtual void SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream) = 0;
       virtual void OnBytesReceived(const memory& /*vBuffer*/, long /*lReceivedBytes*/) {}
-      virtual void OnPreBytesSend(byte* /*pszBuffer*/, memsize /*bufferSize*/, memsize& /*bytesToSend*/) {}
+      virtual void OnPreBytesSend(::u8* /*pszBuffer*/, memsize /*bufferSize*/, memsize& /*bytesToSend*/) {}
    };
 
 

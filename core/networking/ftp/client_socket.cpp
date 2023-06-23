@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //
 // The official specification of the File Transfer Protocol (FTP) is the RFC 959.
 // Most of the documentation are taken from this RFC.
@@ -999,7 +999,7 @@ namespace ftp
       {
          string strMessage;
          strMessage.format("could not bind to address %s %d", strIp.c_str(), iPort);
-         TRACE(strMessage);
+         information(strMessage);
          //message_box(nullptr, strMessage);
          return false;
       }
@@ -1996,7 +1996,7 @@ auto tickStart = ::time::now();
    /// This command may be required by some servers to reserve sufficient storage
    /// to accommodate the memory_new file to be transferred.
    /// @lparam[in] iReserveBytes The argument shall be a decimal integer representing
-   ///                          the number of bytes (using the logical byte size_i32) of
+   ///                          the number of bytes (using the logical ::u8 size_i32) of
    ///                          storage to be reserved for the file. For files sent
    ///                          with record or page structure a maximum record or page
    ///                          size_i32 (in logical bytes) might also be necessary; this

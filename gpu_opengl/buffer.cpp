@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "buffer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
@@ -47,7 +47,7 @@ namespace opengl
          cx, cy,
          GL_RGBA,
          GL_UNSIGNED_BYTE,
-         m_pimage->m_pcolorrefRaw);
+         m_pimage->m_pimage32Raw);
       
       //m_pimage->mult_alpha();
       
@@ -59,7 +59,7 @@ namespace opengl
          GL_BGRA,
          GL_UNSIGNED_BYTE,
          cx * cy * 4,
-         m_pimage->m_pcolorrefRaw);
+         m_pimage->m_pimage32Raw);
 
       int iError = glGetError();
 
@@ -70,7 +70,7 @@ namespace opengl
 
       }
 
-      memset(m_pimage->m_pcolorrefRaw, 127, cx * cy * 4 / 8);
+      memset(m_pimage->m_pimage32Raw, 127, cx * cy * 4 / 8);
 
 #endif
       
@@ -97,12 +97,12 @@ namespace opengl
 //         m_pimage->m_size.cx(), m_pimage->m_size.cy(),
 //         GL_BGRA,
 //         GL_UNSIGNED_BYTE,
-//         m_pimage->m_pcolorrefRaw);
+//         m_pimage->m_pimage32Raw);
       
       glTexImage2D(GL_TEXTURE_2D, 0, 0, 0,
                    m_pimage->m_size.cx(), m_pimage->m_size.cy(),
                    GL_RGBA, GL_UNSIGNED_BYTE,
-                   m_pimage->m_pcolorrefRaw);
+                   m_pimage->m_pimage32Raw);
 
    }
 

@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/01/2022 16:16 <3ThomasBorregaardSørensen!!
+// Created by camilo on 31/01/2022 16:16 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "window.h"
@@ -19,6 +19,7 @@
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/exception/interface_only.h"
+
 
 
 nano_window::nano_window()
@@ -49,8 +50,6 @@ nano_window::~nano_window()
    acmesystem()->m_pnano->m_nanowindowa.erase_item(this);
 
 }
-
-
 
 
 void nano_window::on_initialize_particle()

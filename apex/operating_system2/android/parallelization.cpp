@@ -135,7 +135,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 
                   lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                   lpMsg->wParam        = 0;
-                  lpMsg->lParam        = __MAKE_LONG(e.xbutton.x_root, e.xbutton.y_root);
+                  lpMsg->lParam        = make_i32(e.xbutton.x_root, e.xbutton.y_root);
 
                }
 
@@ -168,7 +168,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                lpMsg->wParam        = e.xkey.keycode;
-               lpMsg->lParam        = __MAKE_LONG(0, e.xkey.keycode);
+               lpMsg->lParam        = make_i32(0, e.xkey.keycode);
 
 
 
@@ -179,7 +179,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                lpMsg->message       = e_message_mouse_move;
                lpMsg->wParam        = 0;
-               lpMsg->lParam        = __MAKE_LONG(e.xmotion.x_root, e.xmotion.y_root);
+               lpMsg->lParam        = make_i32(e.xmotion.x_root, e.xmotion.y_root);
 
                bRet                 = true;
 

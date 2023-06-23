@@ -28,8 +28,8 @@
 
 #define TAG CLIENT_TAG("windows")
 
-#define GET_X_LPARAM(lParam) ((::u3216) (lParam & 0xFFFF))
-#define GET_Y_LPARAM(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
+// #define i32_x(lParam) ((::u3216) (lParam & 0xFFFF))
+// #define i32_y(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
 
 /* RemoteApp Core Protocol Extension */
 
@@ -333,8 +333,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				xPos = i32_x(lParam) + railWindow->x;
+//				yPos = i32_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
 //
 //				if (input)
@@ -347,8 +347,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				xPos = i32_x(lParam) + railWindow->x;
+//				yPos = i32_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_BUTTON1;
 //
 //				if (input)
@@ -361,8 +361,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				xPos = i32_x(lParam) + railWindow->x;
+//				yPos = i32_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
 //
 //				if (input)
@@ -375,8 +375,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				xPos = i32_x(lParam) + railWindow->x;
+//				yPos = i32_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_BUTTON2;
 //
 //				if (input)
@@ -389,8 +389,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				xPos = i32_x(lParam) + railWindow->x;
+//				yPos = i32_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_MOVE;
 //
 //				if (input)

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -21,7 +21,7 @@ CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::scoped_stri
 
 
 
-#define __output_debug_string TRACE
+#define __output_debug_string information
 
 // turn on/off tracking for a i16 while
 CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);

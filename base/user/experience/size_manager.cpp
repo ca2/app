@@ -680,7 +680,7 @@ namespace experience
 
          pframewindow->place(rectangleParentClient);
 
-         FORMATTED_TRACE("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
+         information("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
 
          //pframewindow->display();
 
@@ -701,7 +701,7 @@ namespace experience
 
             rectangleBorder -= rectangleAfter.top_left();
 
-            pframewindow->set_need_redraw(rectangleBorder);
+            pframewindow->set_need_redraw({rectangleBorder});
 
          }
 
@@ -782,7 +782,7 @@ namespace experience
    void size_manager::NotifyFramework(enum_frame eframe)
    {
 
-      __UNREFERENCED_PARAMETER(eframe);
+      UNREFERENCED_PARAMETER(eframe);
 
    }
 
@@ -821,7 +821,6 @@ namespace experience
 
 
 } // namespace experience
-
 
 
 CLASS_DECL_BASE::count get_top_left_oriented_damaged_areas_by_resizing(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld)

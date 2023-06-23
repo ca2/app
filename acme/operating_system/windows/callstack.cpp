@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/platform/_synchronization.h"
@@ -138,14 +138,54 @@ namespace acme
 
       auto process = GetCurrentProcess();
 
+      ::string_array stra;
+
+      strsize maximum_line_length = 0;
+
+      for (auto i = 0; i < frames; ++i)
+      {
+
+         IMAGEHLP_LINE imagehlp_line{ .SizeOfStruct = sizeof(IMAGEHLP_LINE) };
+
+         DWORD dwDisplacement = 0;
+
+         SymGetLineFromAddr64(process, (DWORD64)(stack[i]), &dwDisplacement, &imagehlp_line);
+
+         ::string strLine;
+
+         strLine.format("%s (%d)", imagehlp_line.FileName, imagehlp_line.LineNumber);
+
+         if (strLine.length() > maximum_line_length)
+         {
+
+            maximum_line_length = strLine.length();
+
+         }
+
+         stra.add(strLine);
+
+      }
+
       for (auto i = 0; i < frames; ++i)
       {
 
          SymFromAddr(process, (DWORD64)(stack[i]), 0, psymbolinfo);
 
-         string strLine;
+         IMAGEHLP_LINE imagehlp_line{.SizeOfStruct =sizeof(IMAGEHLP_LINE)};
 
-         strLine.format("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
+         ::string strPrefix;
+
+         strPrefix = stra[i];
+
+         ::string strSpacing;
+
+         strSpacing.assign(' ', maximum_line_length - strPrefix.length());
+
+         strPrefix += strSpacing;
+
+         ::string strLine;
+
+         strLine.format("%s : %02d : %s\n", strPrefix.c_str(), frames - i - 1, psymbolinfo->Name);
 
          strCallstack += strLine;
 

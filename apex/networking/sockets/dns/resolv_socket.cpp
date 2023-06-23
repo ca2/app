@@ -1,4 +1,4 @@
-﻿/** \file resolv_socket.cpp
+/** \file resolv_socket.cpp
  **   \date  2005-03-24
  **   \author grymse@alhem.net
 **/
@@ -164,7 +164,7 @@ namespace sockets
 
          m_data = pa.getrest();
 
-         INFORMATION(" *** resolv_socket server; query="<< m_query <<", data="<< m_data );
+         information() << " *** resolv_socket server; query="<< m_query <<", data="<< m_data ;
 
          // %! check cache
 
@@ -180,30 +180,30 @@ namespace sockets
          //      if (time(nullptr) - acmesystem()->networking()->m_resolvtimeout[m_query][m_data] < 3600) // ttl
          //      {
 
-         //         INFORMATION(" *** Returning cache for ["<< m_query <<"]["<< m_data <<"] = '"<< result <<"'");
+         //         information() << " *** Returning cache for ["<< m_query <<"]["<< m_data <<"] = '"<< result <<"'";
 
-         //         INFORMATION("Cached");
+         //         information() << "Cached";
          //         if (result.is_empty()) /* failed */
          //         {
-         //            WARNING("Failed");
+         //            warning() <<"Failed";
          //            SetCloseAndDelete();
          //            return;
          //         }
          //         else if (m_query == "gethostbyname")
          //         {
-         //            INFORMATION("A: " << result);
+         //            information() << "A: " << result;
          //            SetCloseAndDelete();
          //            return;
          //         }
          //         else if (m_query == "gethostbyname2")
          //         {
-         //            INFORMATION("AAAA: " << result);
+         //            information() << "AAAA: " << result;
          //            SetCloseAndDelete();
          //            return;
          //         }
          //         else if (m_query == "gethostbyaddr")
          //         {
-         //            INFORMATION("Name: " << result);
+         //            information() << "Name: " << result;
          //            SetCloseAndDelete();
          //            return;
          //         }
@@ -218,7 +218,7 @@ namespace sockets
       }
       string key = pa.getword();
       string value = pa.getrest();
-      INFORMATION(" *** resolv_socket response;  "<< key <<": "<< value);
+      information() << " *** resolv_socket response;  "<< key <<": "<< value;
 
       if (key == "Cached")
       {
@@ -226,7 +226,7 @@ namespace sockets
       }
       else if (key == "Failed" && m_parent)
       {
-         INFORMATION(" ************ Resolve failed");
+         information() << " ************ Resolve failed";
 //         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
 //         {
 //            m_parent -> OnResolveFailed(m_resolv_id);
@@ -236,7 +236,7 @@ namespace sockets
          //{
 
          //   single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
-         //   INFORMATION(" *** Update cache for ["<< m_query <<"]["<< m_data <<"] = '"<< value <<"'");
+         //   information() << " *** Update cache for ["<< m_query <<"]["<< m_data <<"] = '"<< value <<"'";
          //   acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
          //   acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          //}
@@ -252,7 +252,7 @@ namespace sockets
          if (!m_cached)
          {
             //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
-            //INFORMATION(" *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'");
+            //information() << " *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'";
             //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
             //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
@@ -270,7 +270,7 @@ namespace sockets
          if (!m_cached)
          {
             //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
-            //INFORMATION(" *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'");
+            //information() << " *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'";
             //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
             //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
@@ -288,7 +288,7 @@ namespace sockets
          if (!m_cached)
          {
             //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
-            //INFORMATION(" *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'");
+            //information() << " *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'";
             //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
             //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
@@ -299,7 +299,7 @@ namespace sockets
 
    void resolv_socket::OnDetached()
    {
-      INFORMATION(" *** resolv_socket::OnDetached(); query="<<m_query<<", data="<<m_data);
+      information() << " *** resolv_socket::OnDetached(); query="<<m_query<<", data="<<m_data;
       if (m_query == "gethostbyname")
       {
          //struct in_addr sa;
@@ -310,13 +310,13 @@ namespace sockets
          //   
          //   m_paddressdepartment->convert(ip, sa);
          //   
-         //   INFORMATION("A: " << ip);
+         //   information() << "A: " << ip;
 
          //}
          //else
          //{
 
-         //   INFORMATION("Failed");
+         //   information() << "Failed";
 
          //}
          
@@ -333,13 +333,13 @@ namespace sockets
          //   
          //   m_paddressdepartment->convert(ip, sa);
          //   
-         //   INFORMATION("AAAA: " + ip);
+         //   information() << "AAAA: " + ip;
 
          //}
          //else
          //{
 
-         //   INFORMATION("Failed");
+         //   information() << "Failed";
 
          //}
          
@@ -354,13 +354,13 @@ namespace sockets
          //if (!m_paddressdepartment->reverse(name, address))
          //{
 
-         //   INFORMATION("Failed: convert to sockaddr_in failed");
+         //   information() << "Failed: convert to sockaddr_in failed";
          //
          //}
          //else
          //{
 
-         //   INFORMATION("Name: " << name);
+         //   information() << "Name: " << name;
 
          //}
 
@@ -370,7 +370,7 @@ namespace sockets
 
          string msg = "Unknown query type: " + m_query;
 
-         INFORMATION("OnDetached " << msg);
+         information() << "OnDetached " << msg;
 
          print("Unknown\n\n");
 
@@ -444,7 +444,7 @@ namespace sockets
          {
             //single_lock lock(&acmesystem()->networking()->m_pmutexResolvCache, true);
             //string value;
-            //INFORMATION(" *** Update cache for ["<< m_query <<"][" << m_data << "] = '"<<value<<"'");
+            //information() << " *** Update cache for ["<< m_query <<"][" << m_data << "] = '"<<value<<"'";
             //acmesystem()->networking()->m_resolvcache[m_query][m_data] = value;
             //acmesystem()->networking()->m_resolvtimeout[m_query][m_data] = time(nullptr);
          }

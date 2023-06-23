@@ -747,7 +747,7 @@ void thread::run()
    if (m_bSimpleMessageLoop)
    {
 
-      INFORMATION("running thread with simple message loop");
+      information() << "running thread with simple message loop";
 
    }
 
@@ -860,7 +860,7 @@ bool thread::pump_message()
       if (m_strDebugType.contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 
@@ -907,13 +907,13 @@ bool thread::pump_message()
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFORMATION("filemanager");
+            //information() << "filemanager";
 
          }
 
-         CATEGORY_INFORMATION(appmsg, __type_name(this) << " thread::pump_message - Received e_message_quit.");
+         information()(e_trace_category_appmsg) << __type_name(this) << " thread::pump_message - Received e_message_quit.";
 
-         INFORMATION(__type_name(this) << " thread::pump_message - Received e_message_quit.");
+         information() << __type_name(this) << " thread::pump_message - Received e_message_quit.";
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -927,7 +927,7 @@ bool thread::pump_message()
          if (m_message.m_atom == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
          {
 
-            INFORMATION("notify_icon");
+            information() << "notify_icon";
 
          }
 
@@ -944,7 +944,7 @@ bool thread::pump_message()
       if (m_strDebugType.contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 
@@ -962,7 +962,7 @@ bool thread::pump_message()
    catch(...)
    {
 
-      INFORMATION("... exception");
+      information() << "... exception";
 
    }
 
@@ -1042,9 +1042,9 @@ bool thread::raw_pump_message()
 
          }
 
-         CATEGORY_INFORMATION(appmsg, "xx" << strType << " thread::raw_pump_message - Received e_message_quit");
+         information()(e_trace_category_appmsg) << "xx" << strType << " thread::raw_pump_message - Received e_message_quit";
 
-         INFORMATION("xx" << strType << " thread::raw_pump_message - Received e_message_quit.");
+         information() << "xx" << strType << " thread::raw_pump_message - Received e_message_quit.";
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -1128,7 +1128,7 @@ bool thread::process_thread_message(::message::message * pmessage)
    catch (...)
    {
 
-      INFORMATION("application::process_thread_message : ::extended::status processing application thread message (...)");
+      information() << "application::process_thread_message : ::extended::status processing application thread message (...)";
 
    }
 
@@ -1166,7 +1166,7 @@ bool thread::process_thread_message(::message::message * pmessage)
 //
 //      process_window_procedure_exception(pe, pusermessage);
 //
-//      TRACE("application::process_window_message : ::extended::status processing window message (const ::exception & )");
+//      information("application::process_window_message : ::extended::status processing window message (const ::exception & )");
 //
 //      if (!handle_exception(pe))
 //      {
@@ -1181,7 +1181,7 @@ bool thread::process_thread_message(::message::message * pmessage)
 //   catch (...)
 //   {
 //
-//      TRACE("application::process_window_message : ::extended::status processing window message (...)");
+//      information("application::process_window_message : ::extended::status processing window message (...)");
 //
 //   }
 //
@@ -1709,7 +1709,7 @@ bool thread::task_get_run() const
 void thread::message_queue_message_handler(::message::message * pmessage)
 {
 
-   __UNREFERENCED_PARAMETER(pmessage);
+   UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -1910,7 +1910,7 @@ void thread::main()
          //if(is_verbose_log())
          //{
 
-         //   ERROR("thread::main : " << exception.m_strMessage);
+         //   error() <<"thread::main : " << exception.m_strMessage;
 
          //}
 
@@ -2430,7 +2430,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //   if(pthread_equal((pthread_t) m_htask, (pthread_t) m_itask))
 //   {
 //
-//      INFORMATION("create_thread success");
+//      information() << "create_thread success";
 //
 //   }
 //
@@ -2672,7 +2672,7 @@ void thread::__os_initialize()
 
 //#ifndef WINDOWS
 //
-//   INFORMATION("init_thread : " << __type_name(this));
+//   information() << "init_thread : " << __type_name(this);
 //
 //#endif
 
@@ -3226,7 +3226,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 //      else
 //      {
 //
-//         TRACE("thread::set_os_data failed to duplicate handle");
+//         information("thread::set_os_data failed to duplicate handle");
 //
 //      }
 //
@@ -3644,7 +3644,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (strWaiting.has_char())
 ////            {
 ////
-////               FORMATTED_TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
+////               information("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 ////
 ////            }
 ////
@@ -4273,7 +4273,7 @@ bool thread::process_message()
       if(m_nDisablePumpCount != 0)
       {
 
-         CATEGORY_INFORMATION(appmsg, "Error: thread::pump_message called when not permitted.");
+         information()(e_trace_category_appmsg) << "Error: thread::pump_message called when not permitted.";
 
       }
 
@@ -4520,7 +4520,7 @@ bool thread::do_events()
 
 ///
 /// Single step the thread message queue.
-/// \author tst Camilo Sasuke Thomas Borregaard Sørensen
+/// \author tst Camilo Sasuke Thomas Borregaard Soerensen
 ///
 
 void thread::kick_thread()

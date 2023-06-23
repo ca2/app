@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "userfs.h"
 #include "tree.h"
 #include "list.h"
@@ -88,7 +88,7 @@ namespace core
    void user::userfs_process_init()
    {
 
-      INFORMATION("start");
+      information() << "start";
 
       //m_puserfs = create_userfs();
 
@@ -99,7 +99,7 @@ namespace core
       //if (!estatus)
       //{
 
-      //   ERROR(".1");
+      //   error() <<".1";
 
       //   m_result.add(estatus);
 
@@ -111,7 +111,7 @@ namespace core
 
       //m_puserfs->construct(this);
 
-      INFORMATION("ok");
+      information() << "ok";
 
       //return ::success;
 
@@ -121,7 +121,7 @@ namespace core
    void user::userfs_init1()
    {
 
-      INFORMATION("start");
+      information() << "start";
 
       //auto estatus =
       
@@ -132,13 +132,13 @@ namespace core
 
       //   m_result.add(estatus);
 
-      //   ERROR(".1");
+      //   error() <<".1";
 
       //   return estatus;
 
       //}
 
-      INFORMATION("ok");
+      information() << "ok";
 
       //return ::success;
 

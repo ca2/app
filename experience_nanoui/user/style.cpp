@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
@@ -623,11 +623,11 @@ namespace experience_nanoui
 
       }
 
-      ptab->defer_handle_auto_hide_tabs(false);
+      //ptab->defer_handle_auto_hide_tabs(false);
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_pdcextension->get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
+      ptab->m_pgraphicsextension->get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
 
       if(ptab->get_data()->m_bVertical)
       {
@@ -645,13 +645,11 @@ namespace experience_nanoui
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_i32 size;
+            ::size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics,str, size);
-
-
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics,str, size);
 
             if(ppane->m_pimage->is_set())
             {
@@ -710,7 +708,7 @@ namespace experience_nanoui
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left       = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
+         ptab->get_data()->m_rectangleTabClient.left       = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
          ptab->get_data()->m_rectangleTabClient.top        = ptab->get_data()->m_rectangleTab.top;
          ptab->get_data()->m_rectangleTabClient.right      = rectangleClient.right;
          ptab->get_data()->m_rectangleTabClient.bottom     = ptab->get_data()->m_rectangleTab.bottom;
@@ -744,11 +742,11 @@ namespace experience_nanoui
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            size_i32 size;
+            size_f64 size;
 
-            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
+            ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage.ok())
             {
@@ -836,7 +834,7 @@ namespace experience_nanoui
          rectangle_i32 & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
-         bool bTabbedClient = ptab->m_bShowTabs;
+         bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
          rectangleTabClient.left = ptab->get_data()->m_rectangleTab.left;
          rectangleTabClient.top = bTabbedClient ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
@@ -915,13 +913,13 @@ namespace experience_nanoui
                if (is_dark_mode())
                {
 
-                  return ::color::color(80, 80, 80, 127);
+                  return ::rgba(80, 80, 80, 127);
 
                }
                else
                {
 
-                  return ::color::color(255, 255, 255, 127);
+                  return ::rgba(255, 255, 255, 127);
 
                }
 
@@ -940,13 +938,13 @@ namespace experience_nanoui
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return ::rgba(255, 255, 255, 127);
 
                   }
                   else
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return ::rgba(80, 80, 80, 127);
 
                   }
 
@@ -957,13 +955,13 @@ namespace experience_nanoui
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 255);
+                     return ::rgba(80, 80, 80, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::rgba(255, 255, 255, 255);
 
                   }
 
@@ -979,13 +977,13 @@ namespace experience_nanoui
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return ::rgba(80, 80, 80, 127);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return ::rgba(255, 255, 255, 127);
 
                   }
 
@@ -996,13 +994,13 @@ namespace experience_nanoui
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::rgba(255, 255, 255, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(80, 80, 80, 255);
+                     return ::rgba(80, 80, 80, 255);
 
                   }
 
@@ -1038,13 +1036,13 @@ namespace experience_nanoui
                if (estate & ::user::e_state_selected)
                {
 
-                  return ::color::color(127, 0, 0, 0);
+                  return ::rgba(127, 0, 0, 0);
 
                }
                else
                {
 
-                  return ::color::color(0, 0, 0, 0);
+                  return ::rgba(0, 0, 0, 0);
 
                }
 
@@ -1055,13 +1053,13 @@ namespace experience_nanoui
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 230, 230, 230);
+                  return ::rgba(255, 230, 230, 230);
 
                }
                else
                {
 
-                  return ::color::color(255, 40, 40, 40);
+                  return ::rgba(255, 40, 40, 40);
 
                }
 
@@ -1077,7 +1075,7 @@ namespace experience_nanoui
                if(estate & ::user::e_state_hover)
                {
 
-                  return ::color::color(255, 120, 150, 200);
+                  return ::rgba(255, 120, 150, 200);
 
                }
                else
@@ -1086,13 +1084,13 @@ namespace experience_nanoui
                   if (is_dark_mode())
                   {
 
-                     return ::color::color(255, 230, 230, 230);
+                     return ::rgba(255, 230, 230, 230);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 40, 40, 40);
+                     return ::rgba(255, 40, 40, 40);
 
                   }
 
@@ -1102,7 +1100,7 @@ namespace experience_nanoui
             else if (eelement == ::e_element_item_background)
             {
 
-               return ::color::color(0, 0, 0, 0);
+               return ::rgba(0, 0, 0, 0);
 
             }
 
@@ -1119,13 +1117,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return ::rgba(255, 255, 255, 255);
 
             }
             else
             {
 
-               return ::color::color(255, 0, 0, 0);
+               return ::rgba(255, 0, 0, 0);
 
             }
 
@@ -1141,13 +1139,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return ::rgba(255, 255, 255, 255);
 
             }
             else
             {
 
-               return ::color::color(255, 0, 0, 0);
+               return ::rgba(255, 0, 0, 0);
 
             }
 
@@ -1158,13 +1156,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return ::rgba(255, 255, 255, 255);
 
             }
             else
             {
 
-               return ::color::color(255, 0, 0, 0);
+               return ::rgba(255, 0, 0, 0);
 
             }
 
@@ -1175,13 +1173,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 210, 210, 200);
+               return ::rgba(255, 210, 210, 200);
 
             }
             else
             {
 
-               return ::color::color(255, 90, 90, 80);
+               return ::rgba(255, 90, 90, 80);
 
             }
 
@@ -1191,13 +1189,13 @@ namespace experience_nanoui
       else if (eelement == ::e_element_scrollbar)
       {
 
-         return ::color::color(100, 192, 192, 192);
+         return ::rgba(100, 192, 192, 192);
 
       }
       else if (eelement == ::e_element_scrollbar_trackbar)
       {
 
-         return ::color::color(160, 140, 140, 140);
+         return ::rgba(160, 140, 140, 140);
 
       }
       else if (eelement == ::e_element_item_text)
@@ -1209,13 +1207,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 130, 130, 130);
+               return ::rgba(255, 130, 130, 130);
 
             }
             else
             {
 
-               return ::color::color(255, 192, 192, 192);
+               return ::rgba(255, 192, 192, 192);
 
             }
 
@@ -1226,13 +1224,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 230, 230, 230);
+               return ::rgba(255, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(255, 40, 40, 40);
+               return ::rgba(255, 40, 40, 40);
 
             }
 
@@ -1251,13 +1249,13 @@ namespace experience_nanoui
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 150, 150, 150);
+                  return ::rgba(255, 150, 150, 150);
 
                }
                else
                {
 
-                  return ::color::color(255, 160, 160, 160);
+                  return ::rgba(255, 160, 160, 160);
 
                }
 
@@ -1268,13 +1266,13 @@ namespace experience_nanoui
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 110, 110, 110);
+                  return ::rgba(255, 110, 110, 110);
 
                }
                else
                {
 
-                  return ::color::color(255, 200, 200, 200);
+                  return ::rgba(255, 200, 200, 200);
 
                }
 
@@ -1290,13 +1288,13 @@ namespace experience_nanoui
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 130, 130, 130);
+                  return ::rgba(255, 130, 130, 130);
 
                }
                else
                {
 
-                  return ::color::color(255, 180, 180, 180);
+                  return ::rgba(255, 180, 180, 180);
 
                }
 
@@ -1307,13 +1305,13 @@ namespace experience_nanoui
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 80, 80, 80);
+                  return ::rgba(255, 80, 80, 80);
 
                }
                else
                {
 
-                  return ::color::color(255, 255, 255, 255);
+                  return ::rgba(255, 255, 255, 255);
 
                }
 
@@ -1331,13 +1329,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 130, 130, 130);
+               return ::rgba(255, 130, 130, 130);
 
             }
             else
             {
 
-               return ::color::color(255, 192, 192, 192);
+               return ::rgba(255, 192, 192, 192);
 
             }
 
@@ -1348,13 +1346,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 230, 230, 230);
+               return ::rgba(255, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(255, 40, 40, 40);
+               return ::rgba(255, 40, 40, 40);
 
             }
 
@@ -1370,13 +1368,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 130, 130, 130);
+               return ::rgba(255, 130, 130, 130);
 
             }
             else
             {
 
-               return ::color::color(255, 192, 192, 192);
+               return ::rgba(255, 192, 192, 192);
 
             }
 
@@ -1387,13 +1385,13 @@ namespace experience_nanoui
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 230, 230, 230);
+               return ::rgba(255, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(255, 40, 40, 40);
+               return ::rgba(255, 40, 40, 40);
 
             }
 
@@ -1409,13 +1407,13 @@ namespace experience_nanoui
             if (estate & ::user::e_state_hover)
             {
 
-               return ::color::color(127, 120, 120, 120);
+               return ::rgba(127, 120, 120, 120);
 
             }
             else
             {
 
-               return ::color::color(127, 80, 80, 80);
+               return ::rgba(127, 80, 80, 80);
 
             }
 
@@ -1426,13 +1424,13 @@ namespace experience_nanoui
             if (estate & ::user::e_state_hover)
             {
 
-               return ::color::color(127, 230, 230, 230);
+               return ::rgba(127, 230, 230, 230);
 
             }
             else
             {
 
-               return ::color::color(127, 210, 210, 210);
+               return ::rgba(127, 210, 210, 210);
 
             }
 
@@ -1446,13 +1444,13 @@ namespace experience_nanoui
          if (is_dark_mode())
          {
 
-            return ::color::color(255, 50, 50, 50);
+            return ::rgba(255, 50, 50, 50);
 
          }
          else
          {
 
-            return ::color::color(255, 40, 40, 40);
+            return ::rgba(255, 40, 40, 40);
 
          }
 
@@ -1470,7 +1468,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangleClient = pscrollbar->client_rectangle();
 
-      if (colorBackground.alpha != 0)
+      if (colorBackground.has_opacity())
       {
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1480,7 +1478,7 @@ namespace experience_nanoui
          if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          {
 
-            colorBackground.alpha = 255;
+            colorBackground.set_opaque();
 
          }
 
@@ -1488,13 +1486,11 @@ namespace experience_nanoui
 
       }
 
-      ::rectangle_i32 rectangleTrack;
-
-      pscrollbar->GetTrackRect(rectangleTrack, pgraphics);
+      auto rectangleTrack = pscrollbar->get_track_rectangle(pgraphics);
 
       ::rectangle_i32 rectangleWindow;
 
-      pscrollbar->window_rectangle(rectangleWindow);
+      rectangleWindow = pscrollbar->window_rectangle();
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 
@@ -1572,7 +1568,7 @@ namespace experience_nanoui
 
          //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
 
-         byte uchAlpha;
+         ::u8 uchAlpha;
 
          if (pbar->is_true("tracking_fade_in"))
          {
@@ -1630,7 +1626,7 @@ namespace experience_nanoui
          if (bSimple)
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
+            int iSize = rectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
 
             rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
@@ -1650,7 +1646,7 @@ namespace experience_nanoui
          else
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation);
+            int iSize = rectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
             rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
@@ -1711,7 +1707,9 @@ namespace experience_nanoui
 
       pgraphics->set(pbar->m_pbrushDraw);
 
-      pgraphics->rectangle(pbar->m_rectangleA);
+      auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient, pgraphics);
+
+      pgraphics->rectangle(rectangleA);
 
       ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
@@ -1721,34 +1719,46 @@ namespace experience_nanoui
 
       pgraphics->set(pbar->m_pbrushDraw);
 
-      pgraphics->rectangle(pbar->m_rectangleB);
+      auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient, pgraphics);
 
-      ::rectangle_i32 rectangle;
+      pgraphics->rectangle(rectangleB);
+
+      ::status < ::rectangle_i32 > rectangle;
 
       if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
-         pbar->GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+         rectangle = pbar->get_pageA_rectangle(rectangleClient, rectangleTrack, pgraphics);
 
-         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
+         if (rectangle)
+         {
 
-         pgraphics->set(pbar->m_pbrushDraw);
+            pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
-         pgraphics->fill_rectangle(rectangle);
+            pgraphics->set(pbar->m_pbrushDraw);
+
+            pgraphics->fill_rectangle(rectangle);
+
+         }
 
       }
       else if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageB)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 
-         pbar->GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+         auto rectangle = pbar->get_pageB_rectangle(rectangleClient, rectangleTrack, pgraphics);
 
-         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
+         if(rectangle)
+         {
 
-         pgraphics->set(pbar->m_pbrushDraw);
+            pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
-         pgraphics->fill_rectangle(rectangle);
+            pgraphics->set(pbar->m_pbrushDraw);
+
+            pgraphics->fill_rectangle(rectangle);
+
+         }
 
       }
 
@@ -1760,13 +1770,17 @@ namespace experience_nanoui
 
       pgraphics->set(ppenArrow);
 
-      pgraphics->polyline(pbar->m_pointaA, 3);
+      auto arrowA = pbar->get_arrowA(rectangleClient, pgraphics);
+
+      pgraphics->polyline(arrowA);
 
       ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
       pgraphics->set(ppenArrow);
 
-      pgraphics->polyline(pbar->m_pointaB, 3);
+      auto arrowB = pbar->get_arrowA(rectangleClient, pgraphics);
+
+      pgraphics->polyline(arrowB);
 
       return true;
 

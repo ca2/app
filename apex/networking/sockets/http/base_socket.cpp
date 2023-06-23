@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base_socket.h"
 #include "apex/constant/idpool.h"
 //#include "apex/networking/sockets/_sockets.h"
@@ -97,7 +97,7 @@ namespace sockets
 
       http_socket::OnHeaderComplete();
 
-      INFORMATION(strProtocol << "://" << strHost << strRequestUri);
+      information() << strProtocol << "://" << strHost << strRequestUri;
 
       string strTest(strHost);
 
@@ -116,34 +116,34 @@ namespace sockets
       if(m_request.attr("request_uri").as_string().find_index("/passthrough/") >= 0)
       {
          
-         INFORMATION("Passthrough");
+         information() << "Passthrough";
 
       }
 
       if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header("user_agent").as_string());
+         information() << "user-agent: " << m_request.header("user_agent").as_string();
 
       }
       else
       {
 
-         //INFORMATION("user-agent: ():[" << m_addressRemote.get_string() << "]");
+         //information() << "user-agent: ():[" << m_addressRemote.get_string() << "]";
 
       }
 
       if(m_request.headers().has_property("from"))
       {
 
-         INFORMATION("from: " + m_request.header("from"));
+         information() << "from: " + m_request.header("from");
 
       }
 
       if(m_request.headers().has_property("accept-language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").as_string().c_str());
+         information("accept-language: %s", m_request.header("accept-language").as_string().c_str());
 
       }
 
@@ -175,19 +175,19 @@ namespace sockets
       // parse form data / query_string and cookie header if available
       m_request.ParseBody(m_pcontext->m_papexcontext);
 
-      //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").string());
-      //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").string());
-      //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
+      //information("http version: %s\n", m_request.attr("http_version").string());
+      //information("connection: %s\n", m_request.header("connection").string());
+      //information("keepalive: %s\n", m_b_keepalive ? "true" : "false");
       /*   if(string_ends(m_request.attr("http_version").string(), "/1.1")
             && m_request.header("connection").string().case_insensitive_order("close") != 0)
          {
             m_b_keepalive = true;
-         TRACE(" ***    keepalive: true\n");
+         information(" ***    keepalive: true\n");
          }
          else
          {
             m_b_keepalive = false;
-            TRACE(" *** keepalive: false\n");
+            information(" *** keepalive: false\n");
          }*/
 
       // prepare page
@@ -262,18 +262,18 @@ namespace sockets
    void http_base_socket::OnWriteComplete()
    {
       //Debug deb("http_base_socket::OnTransferLimit");
-      //TRACE("\n");
-      //TRACE("http_base_socket::OnTransferLimit\n");
+      //information("\n");
+      //information("http_base_socket::OnTransferLimit\n");
       //   char msg[32768];
       OnResponseComplete();
       //if (!m_b_keepalive)
       //{
-      //   //TRACE("SetCloseAndDelete\n");
+      //   //information("SetCloseAndDelete\n");
       //   SetCloseAndDelete();
       //}
       //else
       //{
-      //   //TRACE("keep-alive\n");
+      //   //information("keep-alive\n");
       //}
    }
 

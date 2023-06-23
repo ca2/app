@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "composite.h"
 #include "acme/filesystem/file/status.h"
 

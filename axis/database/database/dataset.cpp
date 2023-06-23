@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "dataset.h"
 #include "database.h"
 #include "field.h"
@@ -556,7 +556,7 @@ namespace database
       if (!query(pszQuery))
       {
 
-         TRACE("database::query_items::query failed");
+         information("database::query_items::query failed");
 
          return false;
 
@@ -592,7 +592,7 @@ namespace database
       if (!query(pszQuery))
       {
 
-         TRACE("database::query_items::query failed");
+         information("database::query_items::query failed");
 
          return false;
 
@@ -633,7 +633,7 @@ namespace database
       if (!query(pszQuery))
       {
 
-         TRACE("database::query_items::query failed");
+         information("database::query_items::query failed");
 
          return false;
 

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-02-14 10:51 PM <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-02-14 10:51 PM <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -11,12 +11,12 @@ CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const voi
 inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
 {
 
-   const ::byte* cur;
+   const ::u8* cur;
 
-   const ::byte* last;
+   const ::u8* last;
 
-   const ::byte* cl = (const ::byte*)l;
-   const ::byte* cs = (const ::byte*)s;
+   const ::u8* cl = (const ::u8*)l;
+   const ::u8* cs = (const ::u8*)s;
 
    /* the last position where its possible to find "s" in "l" */
    last = cl + l_len - s_len;

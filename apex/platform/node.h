@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 19/01/2021. <33TBS!!
 //
 
@@ -122,6 +122,9 @@ namespace apex
 
 
       virtual ::string get_host_name();
+
+
+      void load_character_set_default_sample_text() override;
 
 
    };

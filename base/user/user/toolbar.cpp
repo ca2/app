@@ -298,7 +298,7 @@ namespace user
       m_rectangleBorder.top = (::i32)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom);
       if (m_rectangleBorder.top < 0)
       {
-         FORMATTED_TRACE("Warning: toolbar::SetHeight(%d) is smaller than button.",
+         information("Warning: toolbar::SetHeight(%d) is smaller than button.",
             nHeight);
          m_rectangleBorder.bottom += m_rectangleBorder.top;
          m_rectangleBorder.top = 0;  // will clip at bottom
@@ -794,15 +794,15 @@ namespace user
    //   //      if (pData[i].fsState & e_toolbar_button_hidden)
    //   //         continue;
    //   //      GetButtonText(i, str);
-   //   //      index greekdeltax, dxNext;
+   //   //      index Δx, dxNext;
    //   //      if (pData[i].fsStyle & TBSTYLE_SEP)
    //   //      {
-   //   //         greekdeltax = pData[i].iBitmap;
-   //   //         dxNext = greekdeltax;
+   //   //         Δx = pData[i].iBitmap;
+   //   //         dxNext = Δx;
    //   //      }
    //   //      else if (!str.is_empty())
    //   //      {
-   //   //         greekdeltax = m_sizeButton.cx();
+   //   //         Δx = m_sizeButton.cx();
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
    //   //         //         str = (const unichar *) pData[i].iString;
@@ -812,16 +812,16 @@ namespace user
    //   //         str,
    //   //         (index) str.length(),
    //   //         &size);
-   //   //         greekdeltax += size.cx();
-   //   //         dxNext = greekdeltax - CX_OVERLAP;
+   //   //         Δx += size.cx();
+   //   //         dxNext = Δx - CX_OVERLAP;
    //   //      }
    //   //      else
    //   //      {
-   //   //         greekdeltax = m_sizeButton.cx();
-   //   //         dxNext = greekdeltax - CX_OVERLAP;
+   //   //         Δx = m_sizeButton.cx();
+   //   //         dxNext = Δx - CX_OVERLAP;
    //   //      }
    //
-   //   //      if (x + greekdeltax > nWidth)
+   //   //      if (x + Δx > nWidth)
    //   //      {
    //   //         bool bFound = false;
    //   //         for (index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
@@ -1123,11 +1123,11 @@ namespace user
       //
       //               GetToolBarCtrl().GetButtonInfo(uId, &buttona);
       //
-      //               FORMATTED_TRACE("BUTTON.idCommand = %d\n", buttona.idCommand);
+      //               information("BUTTON.idCommand = %d\n", buttona.idCommand);
       //
-      //               FORMATTED_TRACE("BUTTON.fsStyle = %d\n", buttona.fsStyle);
+      //               information("BUTTON.fsStyle = %d\n", buttona.fsStyle);
       //
-      //               FORMATTED_TRACE("BUTTON.cx() = %d\n", buttona.cx() );
+      //               information("BUTTON.cx() = %d\n", buttona.cx() );
       //
       //            }
       //
@@ -1249,8 +1249,8 @@ namespace user
    ////      ::memory_copy(&save, &button, sizeof(save));
    ////      button.idCommand = nID;
    ////      button.iBitmap = iImage;
-   ////      button.fsStyle = (byte)LOWORD(nStyle);
-   ////      button.fsState = (byte)HIWORD(nStyle);
+   ////      button.fsStyle = (::u8)LOWORD(nStyle);
+   ////      button.fsState = (::u8)HIWORD(nStyle);
    ////      if (__memcmp(&save, &button, sizeof(save)) != 0)
    ////      {
    ////         _SetButton(nIndex, &button);
@@ -1513,7 +1513,7 @@ namespace user
    void toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
       //if (m_bDelayedButtonLayout)
       //{
@@ -1634,7 +1634,7 @@ namespace user
 
    void toolbar::_001OnSysColorChange(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // re-color bitmap for toolbar
 //      if (m_hInstImageWell != nullptr && m_hbmImageWell != nullptr)
       {
@@ -2080,7 +2080,6 @@ namespace user
 
 
 } // namespace user
-
 
 
 user_toolbar_command::user_toolbar_command(::particle * pparticle)

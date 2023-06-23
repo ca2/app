@@ -1,8 +1,8 @@
-﻿//
+//
 //  account_account.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
 #include "framework.h"
 #include "department.h"
@@ -244,7 +244,7 @@ namespace account
 //
 //      ::u32 dwGetFontopusEnd= ::time::now();
 //
-//      FORMATTED_TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
+//      information("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //
 //      return strFontopusServer;
 //

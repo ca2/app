@@ -128,7 +128,7 @@ namespace universal_windows
    //::file::path dir_system::usersystemappdata(::particle * pparticle, const ::string & strPrefix)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pparticle);
+   //   UNREFERENCED_PARAMETER(pparticle);
 
    //   return appdata() / strPrefix;
 
@@ -163,7 +163,7 @@ namespace universal_windows
    //::file::path dir_system::default_os_user_path_prefix(::particle * pparticle)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pparticle);
+   //   UNREFERENCED_PARAMETER(pparticle);
 
    //   return "CurrentUser";
 

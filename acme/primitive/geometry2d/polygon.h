@@ -4,6 +4,7 @@
 //#include "_collection.h"
 //#include "_geometry2d.h"
 #include "point_array.h"
+#include "rectangle.h"
 
 
 template < primitive_number NUMBER >
@@ -392,7 +393,9 @@ const ::rectangle_type < NUMBER > & polygon_type < NUMBER >::bounding_rect() con
 
       ((polygon_type *)this)->m_bDirtyBoundingRect = false;
       
-      ::get_bounding_box(((polygon_type *)this)->m_rectangleBounding, *this);
+      ((polygon_type *)this)->m_rectangleBounding.maximum_minimum();
+      
+      ((polygon_type *)this)->expand_bounding_box(((polygon_type *)this)->m_rectangleBounding.top_left(), ((polygon_type *)this)->m_rectangleBounding.bottom_right());
 
 //      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x();
 //      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y();
@@ -489,12 +492,12 @@ bool polygon_type < NUMBER >::overlaps(const polygon_type & polygon) const
 
 
 template < primitive_number NUMBER >
-polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polygon_type & polygon_i32) const
+polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polygon_type & polygon) const
 {
 
    ::count c1 = this->get_count();
 
-   ::count c2 = polygon_i32.get_count();
+   ::count c2 = polygon.get_count();
 
    polygon_type polygonResult;
 
@@ -505,7 +508,7 @@ polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polyg
       for (int i = 0; i < c1; i++)
       {
 
-         if (polygon_i32.polygon_contains(this->element_at(i)))
+         if (polygon.contains(this->element_at(i)))
          {
 
             polygonResult.tolerance_add_unique(0.001, this->element_at(i));
@@ -517,10 +520,10 @@ polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polyg
       for (int i = 0; i < c2; i++)
       {
 
-         if (this->polygon_contains(polygon_i32[i]))
+         if (this->contains(polygon[i]))
          {
 
-            polygonResult.tolerance_add_unique(0.001, polygon_i32[i]);
+            polygonResult.tolerance_add_unique(0.001, polygon[i]);
 
          }
 
@@ -529,7 +532,7 @@ polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polyg
       for (int i = 0; i < this->get_count(); i++)
       {
 
-         get_intersection_points(polygonResult, i % *this, (i + 1) % *this, polygon_i32);
+         get_intersection_points(polygonResult, i % *this, (i + 1) % *this, polygon);
 
       }
 

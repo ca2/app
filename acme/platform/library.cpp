@@ -201,18 +201,18 @@ namespace acme
       //catch(...)
       //{
 
-         //ERROR("acme::library::open Failed to open library " << ( bCa2Path ? " (ca2 path)" : "") << " with errors " << m_strMessage);
+         //error() <<"acme::library::open Failed to open library " << ( bCa2Path ? " (ca2 path)" : "") << " with errors " << m_strMessage;
 
          //return false;
 
       //}
 
-      //INFORMATION("acme::library::open success : " << m_strMessage);
+      //information() << "acme::library::open success : " << m_strMessage;
       
       if(is_verbose_log())
       {
       
-         FORMATTED_INFORMATION("acme::library::open success : %s", m_strName.c_str());
+         information("acme::library::open success : %s", m_strName.c_str());
          
       }
 
@@ -489,12 +489,7 @@ namespace acme
                   if(is_verbose_log())
                   {
 
-                     if (acmesystem()->m_etracelevel <= e_trace_level_information)
-                     {
-
-                        output_debug_string("Closing library : " + m_strName + "\n");
-
-                     }
+                     information() <<  "Closing library : " << m_strName << "\n";
 
                   }
 
@@ -859,7 +854,7 @@ namespace acme
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
-   //   __UNREFERENCED_PARAMETER(ida);
+   //   UNREFERENCED_PARAMETER(ida);
 
    //}
 
@@ -901,20 +896,20 @@ namespace acme
 
       string strName = m_strName;
 
-      //INFORMATION("library::create_factory \""+strName+"\": starting...");
+      //information() << "library::create_factory \""+strName+"\": starting...";
 
       //auto pfactory = factory(strName);
 
       //if (!pfactory)
       //{
 
-      //   FORMATTED_INFORMATION("library::create_factory factory(\"%s\") failed!!", strName.c_str());
+      //   information("library::create_factory factory(\"%s\") failed!!", strName.c_str());
 
       //   throw ::exception(error_wrong_state);
 
       //}
 
-      //INFORMATION("library::create_factory factory(\""+strName+"\") succeeded!!");
+      //information() << "library::create_factory factory(\""+strName+"\") succeeded!!";
 
       if (!m_pfnFactory)
       {
@@ -923,18 +918,18 @@ namespace acme
 
          strFactoryFunction = strName + "_factory";
 
-         //INFORMATION("library::create_factory factory function not initialized!!");
-         //INFORMATION("library::create_factory factory function name: \"" << strFactoryFunction << "\"");
+         //information() << "library::create_factory factory function not initialized!!";
+         //information() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
 
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 
          if (::is_null((const void *) pfnFactory))
          {
 
-            FORMATTED_WARNING("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
+            warning("library::create_factory factory function: \"%s\" doesn't exist!!!", strFactoryFunction.c_str());
 
-            FORMATTED_WARNING("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
-            FORMATTED_WARNING("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
+            warning("Is _factory.cpp included in the project \"%s\"???", strName.c_str());
+            warning("Does it contain the implementation of factory function \"%s\"???", strFactoryFunction.c_str());
 
             string strDetails;
 
@@ -952,7 +947,7 @@ namespace acme
 
       m_pfnFactory(pfactory);
 
-      FORMATTED_INFORMATION("%s_factory succeeded!",strName.c_str());
+      information("%s_factory succeeded!",strName.c_str());
 
       //return pfactory;
 

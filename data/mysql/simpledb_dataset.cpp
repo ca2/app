@@ -51,7 +51,7 @@ namespace simpledb
    }
    /*if (!handle())
    {
-      TRACE("sqlite::set::exec: No Database Connection");
+      information("sqlite::set::exec: No Database Connection");
       m_strQueryErrorMessage = "No Database Connection";
       m_strDatabaseErrorMessage = "No Database Connection";
       return false;
@@ -136,7 +136,7 @@ namespace simpledb
          {
             m_strQueryErrorMessage = errmsg;
             m_strDatabaseErrorMessage = db->getErrorMsg();
-            FORMATTED_TRACE("sqlite::set::exec: Error %s, %s", errmsg, db->getErrorMsg());
+            information("sqlite::set::exec: Error %s, %s", errmsg, db->getErrorMsg());
             return false;
          }
       }
@@ -480,7 +480,7 @@ namespace simpledb
 
    string set::sql_consume_join_on(const char * & pszSql)
    {
-      __UNREFERENCED_PARAMETER(pszSql);
+      UNREFERENCED_PARAMETER(pszSql);
       return "";
    }
 
@@ -604,31 +604,31 @@ namespace simpledb
 
    bool set::query(const ::string &query)
    {
-      __UNREFERENCED_PARAMETER(query);
+      UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
       {
-         TRACE("set::query: base is not Defined");
+         information("set::query: base is not Defined");
          m_strQueryErrorMessage = "base is not defined";
          m_strDatabaseErrorMessage = "base is not defined";
          return false;
       }
       if(dynamic_cast<base*>(db) == nullptr)
       {
-         TRACE("set::query: base is not valid");
+         information("set::query: base is not valid");
          m_strQueryErrorMessage = "base is not valid";
          m_strDatabaseErrorMessage = "base is not valid";
          return false;
       }
       /*      if(dynamic_cast<base*>(db)->getHandle() == nullptr)
             {
-               TRACE("set::query: No base connection");
+               information("set::query: No base connection");
                m_strQueryErrorMessage = "No base Connection";
                m_strDatabaseErrorMessage = "No base Connection";
                return false;
             }
             if(ansi_count_compare("select",query,6) != 0)
             {
-               TRACE("set::query: Must be select SQL");
+               information("set::query: Must be select SQL");
                return false;
             }
 
@@ -647,7 +647,7 @@ namespace simpledb
             {
                //m_strQueryErrorMessage = errmsg;
                //m_strDatabaseErrorMessage = db->getErrorMsg();
-               //FORMATTED_TRACE("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
+               //information("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
                //return false;
             }*/
       return false;
@@ -761,7 +761,7 @@ namespace simpledb
 
    long set::nextid(const ::string &seq_name)
    {
-      __UNREFERENCED_PARAMETER(seq_name);
+      UNREFERENCED_PARAMETER(seq_name);
       /*      if(handle())
                return db->nextid(seq_name);
             else*/

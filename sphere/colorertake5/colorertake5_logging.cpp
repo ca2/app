@@ -6,7 +6,7 @@
 namespace colorertake5
 {
 
-   static const char *levelNames[] = {"QUIET","ERROR","WARN","TRACE","INFO"};
+   static const char *levelNames[] = {"QUIET","ERROR","WARN","information","INFO"};
 
    // base_editor, text_parser_impl, TPCache
    // ParserFactory, BaseEditorNative, NSC:JHRCParser:getRegion

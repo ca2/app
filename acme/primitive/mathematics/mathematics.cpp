@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
 #include <time.h>
@@ -125,7 +125,7 @@ namespace mathematics
 //         if (CryptSetKeyParam(
 //            m_hOriginalKey,
 //            KP_MODE,
-//            (byte*)& dwMode,
+//            (::u8*)& dwMode,
 //            0))
 //         {
 //            //debug_print("Key Parameters set. \n");
@@ -241,7 +241,7 @@ namespace mathematics
 //         critical_section_lock lock(&m_criticalsection);
 //
 //
-//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (byte*)p);
+//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (::u8*)p);
 //
 //      }
 //
@@ -622,7 +622,7 @@ namespace apex
       i32 CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::integral_millisecond() / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::i64_millisecond() / 100) % 5000) % 1000;
 
       }
 

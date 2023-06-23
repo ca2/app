@@ -143,7 +143,7 @@ namespace freedesktoplinux
 
             strMessage.format("Category \"%s\"has not been found", strCategoryParam.c_str());
 
-            TRACE(strMessage);
+            information(strMessage);
 
          }
 

@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/01/2022 16:06 <3ThomasBorregaardSørensen!!
+// Created by camilo on 31/01/2022 16:06 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "brush.h"
@@ -32,7 +32,7 @@ namespace windows
 
          destroy();
 
-         m_hgdiobj = ::CreateSolidBrush(m_color.get_COLORREF());
+         m_hgdiobj = ::CreateSolidBrush(win32_COLORREF(m_color));
 
          m_bModified = false;
 

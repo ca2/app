@@ -8,27 +8,16 @@
 
 
 #include "aura/graphics/write_text/drawer.h"
-
-
 #include "aura/graphics/image/drawer.h"
-
-
 #include "aura/graphics/image/source.h"
-
-
-#include "acme/primitive/geometry2d/collection.h"
-
-
+//#include "acme/primitive/geometry2d/collection.h"
+#include "acme/primitive/geometry2d/angle.h"
 #include "region.h"
-
-
 #include "bitmap.h"
-
-
 #include "matrix.h"
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 //#include "acme/primitive/geometry2d/ellipse.h"
@@ -48,6 +37,9 @@ namespace draw2d
 {
 
 
+   class clip;
+   class clip_group;
+   class clip_item;
    class graphics;
    class palette;
    class host;
@@ -463,10 +455,11 @@ namespace draw2d
       
 
       
-      virtual void add_clipping_shapes(const pointer_array < ::draw2d::region > & regiona);
+      //virtual void add_clipping_shapes(const pointer_array < ::draw2d::region > & regiona);
       virtual void reset_clip();
-
-      virtual void set_clipping(::draw2d::region * pregion);
+      
+      
+      //virtual void set_clipping(::draw2d::region * pregion);
       
       virtual void intersect_clip(const ::rectangle_f64 & rectangle_f64);
       virtual void intersect_clip(const ::ellipse_f64 & ellipse);
@@ -481,12 +474,23 @@ namespace draw2d
       // (initially created for clipping).
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
+      virtual void _clip(bool bAdd);
       virtual void _intersect_clip();
+      virtual void _eo_clip();
       //virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
-      virtual void _add_clipping_shape(::draw2d::region * pregion);
-      virtual void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion);
-      virtual void _add_clipping_shape(const ::ellipse_f64 & ellipse, ::draw2d::region * pregion);
-      virtual void _add_clipping_shape(const ::polygon_f64 & polygon, ::draw2d::region * pregion);
+
+      virtual void intersect_clip(const clip & clip);
+      virtual void intersect_clip(const clip_group & clipgroup);
+      virtual void _add_clip_item(clip_item * pclipitem);
+    
+      /// If it is "simple" shape (not combine_item) it
+      /// calls add_shape on the item and returns true.
+      /// Otherwise (if it is "complex" shape, a combine_item)
+      /// it returns false.
+      virtual bool _add_simple_shape(::geometry2d::item * pitem);
+      virtual void _add_shape(const ::rectangle_f64 & rectangle);
+      virtual void _add_shape(const ::ellipse_f64 & ellipse);
+      virtual void _add_shape(const ::polygon_f64 & polygon);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);
@@ -562,6 +566,7 @@ namespace draw2d
       virtual void arc(const ::rectangle_f64 & rectangle, ::angle_f64 start, ::angle_f64 extends);
       
       
+      virtual void polyline(const ::point_f64_array & pointa);
       virtual void polyline(const ::point_f64 * ppoints,count nCount);
 
 
@@ -578,7 +583,7 @@ namespace draw2d
       //virtual i32 GetArcDirectdion();
       //virtual i32 SetArcDirectdion(i32 nArcDirectdion);
 
-      virtual void polydraw(const ::point_f64 * ppoints, const byte* pTypes,count nCount);
+      virtual void polydraw(const ::point_f64 * ppoints, const ::u8* pTypes,count nCount);
 
       virtual void polyline_to(const ::point_f64 * ppoints, ::count nCount);
       virtual void poly_polyline(const ::point_f64 * ppoints, const int * pPolyPoints, ::count nCount);
@@ -662,6 +667,8 @@ namespace draw2d
 
       virtual void rectangle(const ::rectangle_f64 & rectangle);
 
+      virtual void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width);
+
       virtual void draw_rectangle(const ::rectangle_f64 & rectangle);
       virtual void draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen);
 
@@ -671,7 +678,7 @@ namespace draw2d
       virtual void fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
       virtual void fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
 
-      virtual void color_blend_3dRect(const rectangle_i32& rectangleParam, const ::color::color& colorTopLeft, const ::opacity & opacityTopLeft, const ::color::color& color, const ::opacity& opacityBottomRight);
+      virtual void color_blend_3dRect(const rectangle_i32& rectangleParam, const ::color::color& colorTopLeft, const class ::opacity & opacityTopLeft, const ::color::color& color, const class ::opacity& opacityBottomRight);
 
       //virtual void color_blend(const ::rectangle_i32& rectangle, const ::color::color& color, const ::opacity & opacity);
 
@@ -958,7 +965,7 @@ namespace draw2d
 //*/
 
       //// Scolorolling Functions
-      //virtual void ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_f64 &  pRectScoloroll, const ::rectangle_f64 &  lpRectClip,
+      //virtual void ScrollDC(i32 Δx, i32 Δy, const ::rectangle_f64 &  pRectScoloroll, const ::rectangle_f64 &  lpRectClip,
 
       //                      ::draw2d::region* pregionUpdate, ::rectangle_f64 * pRectUpdate);
 
@@ -1040,7 +1047,7 @@ namespace draw2d
 //      virtual void PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 &  pBounds);
 //
 //#endif
-      virtual void AddMetaFileComment(::u32 nDataSize, const byte* pCommentData);
+      virtual void AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData);
       // can be used for enhanced metafiles only
 
       virtual void abort_path();
@@ -1054,7 +1061,7 @@ namespace draw2d
       virtual void widen_path();
       virtual float GetMiterLimit();
       virtual void SetMiterLimit(float fMiterLimit);
-//      virtual i32 GetPath(::point_f64 * ppoint, byte * pTypes, count nCount);
+//      virtual i32 GetPath(::point_f64 * ppoint, ::u8 * pTypes, count nCount);
 
       virtual void SelectClipPath(i32 nMode);
 

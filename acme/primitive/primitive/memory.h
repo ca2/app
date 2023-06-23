@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "memory_base.h"
@@ -18,8 +18,8 @@
 
 //       m_memory.m_bOwn = false;
 //       m_memory.m_preadonlymemory = this;
-//       m_memory.m_pbStorage = (byte *) p;
-//       m_memory.m_pdata = (byte *) p;
+//       m_memory.m_pbStorage = (::u8 *) p;
+//       m_memory.m_pdata = (::u8 *) p;
 //       m_memory.m_cbStorage = size;
 //       m_memory.m_iSize = size;
 
@@ -64,9 +64,9 @@ public:
    ~memory() override;
 
 
-   virtual byte * impl_alloc(memsize dwAllocation) override;
-   virtual byte * impl_realloc(void * pdata, memsize dwAllocation) override;
-   virtual void impl_free(byte * pdata) override;
+   virtual ::u8 * impl_alloc(memsize dwAllocation) override;
+   virtual ::u8 * impl_realloc(void * pdata, memsize dwAllocation) override;
+   virtual void impl_free(::u8 * pdata) override;
 
    using memory_base::operator =;
    using memory_base::operator +=;

@@ -215,7 +215,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      //FATAL("exception on select "<< err <<" "<<  bsd_socket_error(err));
+      //fatal() <<"exception on select "<< err <<" "<<  bsd_socket_error(err);
 
 #endif
 
@@ -300,7 +300,7 @@ namespace sockets
    //i32 base_socket::close_socket(socket_id s)
    //{
 
-   //   __UNREFERENCED_PARAMETER(s);
+   //   UNREFERENCED_PARAMETER(s);
 
    //   return 0;
 
@@ -327,7 +327,7 @@ namespace sockets
    point = getprotobyname( strProtocol );
    if (!point_i32)
    {
-   FATAL("getprotobyname" << Errno << ", " << bsd_socket_error(Errno));
+   fatal() <<"getprotobyname" << Errno << ", " << bsd_socket_error(Errno);
    SetCloseAndDelete();
    throw ::exception(::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
@@ -338,7 +338,7 @@ namespace sockets
    s = ::base_socket(af, iType, protno);
    if (s == INVALID_SOCKET)
    {
-   FATAL("base_socket" << Errno << ", " << bsd_socket_error(Errno));
+   fatal() <<"base_socket" << Errno << ", " << bsd_socket_error(Errno);
    SetCloseAndDelete();
    throw ::exception(::exception(string("base_socket() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
@@ -494,7 +494,7 @@ namespace sockets
    ipaddr_t l = 0;
    if(m_bIpv6)
    {
-   WARNING("GetRemoteIP4", 0, "get ipv4 address for ipv6 base_socket");
+   warning() <<"GetRemoteIP4", 0, "get ipv4 address for ipv6 base_socket";
    }
    if(m_addressRemote.m_p != nullptr)
    {
@@ -510,7 +510,7 @@ namespace sockets
    {
    if(!m_bIpv6)
    {
-   WARNING("GetRemoteIP6", 0, "get ipv6 address for ipv4 base_socket");
+   warning() <<"GetRemoteIP6", 0, "get ipv6 address for ipv4 base_socket";
    }
    struct sockaddr_in6 fail;
    if (m_addressRemote.m_p != nullptr)
@@ -547,7 +547,7 @@ namespace sockets
 //      int n = ioctlsocket(m_socket, FIONBIO, &l);
 //      if (n != 0)
 //      {
-//         INFORMATION("ioctlsocket(FIONBIO) " << Errno);
+//         information() << "ioctlsocket(FIONBIO) " << Errno;
 //         return false;
 //      }
 //      return true;
@@ -556,7 +556,7 @@ namespace sockets
 //      {
 //         if (fcntl(m_socket, F_SETFL, O_NONBLOCK) == -1)
 //         {
-//            ERROR("fcntl(F_SETFL, O_NONBLOCK) " << Errno << " " << bsd_socket_error(Errno));
+//            error() <<"fcntl(F_SETFL, O_NONBLOCK) " << Errno << " " << bsd_socket_error(Errno);
 //            return false;
 //         }
 //      }
@@ -564,7 +564,7 @@ namespace sockets
 //      {
 //         if (fcntl(m_socket, F_SETFL, 0) == -1)
 //         {
-//            ERROR("fcntl(F_SETFL, 0)" << Errno << " " << bsd_socket_error(Errno));
+//            error() <<"fcntl(F_SETFL, 0)" << Errno << " " << bsd_socket_error(Errno);
 //            return false;
 //         }
 //      }
@@ -582,8 +582,8 @@ namespace sockets
    //bool base_socket::SetNonblocking(bool bNb, socket_id s)
    //{
 
-   //   __UNREFERENCED_PARAMETER(bNb);
-   //   __UNREFERENCED_PARAMETER(s);
+   //   UNREFERENCED_PARAMETER(bNb);
+   //   UNREFERENCED_PARAMETER(s);
 
    //   return false;
 
@@ -601,7 +601,7 @@ namespace sockets
    //      {
    //      if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
    //      {
-   //      ERROR("fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno);
+   //      error() <<"fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno;
    //      return false;
    //      }
    //      }
@@ -609,7 +609,7 @@ namespace sockets
    //      {
    //      if (fcntl(s, F_SETFL, 0) == -1)
    //      {
-   //      ERROR("fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno);
+   //      error() <<"fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno;
    //      return false;
    //      }
    //      }
@@ -689,7 +689,7 @@ namespace sockets
    ::networking::port_t base_socket::GetPort()
    {
 
-      WARNING("GetPort only implemented for listen_socket");
+      warning() <<"GetPort only implemented for listen_socket";
 
       return base_socket_composite()->GetPort();
 
@@ -849,7 +849,7 @@ namespace sockets
 
       /*      if (!ad.IsValid())
       {
-      ERROR("SetClientRemoteAddress", 0, "remote address not valid");
+      error() <<"SetClientRemoteAddress", 0, "remote address not valid";
       }*/
 
       //m_paddressRemoteClient = paddress;
@@ -864,7 +864,7 @@ namespace sockets
 
       /*      if (m_addressRemoteClient.m_p == nullptr)
       {
-      ERROR("GetClientRemoteAddress", 0, "remote address not yet set");
+      error() <<"GetClientRemoteAddress", 0, "remote address not yet set";
       }*/
 
       //return m_addressRemoteClient;
@@ -1098,7 +1098,7 @@ namespace sockets
    void base_socket::OnSocks4Connect()
    {
 
-      INFORMATION("Use with tcp_socket only");
+      information() << "Use with tcp_socket only";
 
       base_socket_composite()->OnSocks4Connect();
 
@@ -1107,7 +1107,7 @@ namespace sockets
 
    void base_socket::OnSocks4ConnectFailed()
    {
-      INFORMATION("Use with tcp_socket only");
+      information() << "Use with tcp_socket only";
 
       base_socket_composite()->OnSocks4ConnectFailed();
 
@@ -1116,7 +1116,7 @@ namespace sockets
 
    bool base_socket::OnSocks4Read()
    {
-      INFORMATION("Use with tcp_socket only");
+      information() << "Use with tcp_socket only";
       return base_socket_composite()->OnSocks4Read();
    }
 //
@@ -1367,7 +1367,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_OPTIONS)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_OPTIONS)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1377,7 +1377,7 @@ namespace sockets
 //
 //#else
 //
-//      INFORMATION("ip option not available, IP_OPTIONS");
+//      information() << "ip option not available, IP_OPTIONS";
 //
 //      return false;
 //
@@ -1400,7 +1400,7 @@ namespace sockets
       if (setsockopt(get_socket_id(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_PKTINFO) " << Errno << ", " << bsd_socket_error(Errno));
+         fatal() <<"setsockopt(IPPROTO_IP, IP_PKTINFO) " << Errno << ", " << bsd_socket_error(Errno);
 
          return false;
 
@@ -1428,7 +1428,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_RECVTOS) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_RECVTOS) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1456,7 +1456,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_RECVTTL) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_RECVTTL) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1485,7 +1485,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_RECVOPTS) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_RECVOPTS) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1513,7 +1513,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_RETOPTS) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_RETOPTS) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1536,7 +1536,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
 //      {
 //      
-//         FATAL("setsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1569,13 +1569,13 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), IPPROTO_IP, IP_TOS, (char *)&tos, &len) == -1)
 //      {
 //      
-//         FATAL("getsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //
 //#else
 //
-//      INFORMATION("ip option not available: IP_TOS");
+//      information() << "ip option not available: IP_TOS";
 //
 //#endif
 //
@@ -1592,7 +1592,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_TTL, (char *)&ttl, sizeof(ttl)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1602,7 +1602,7 @@ namespace sockets
 //
 //#else
 //
-//      INFORMATION("ip option not available: IP_TTL");
+//      information() << "ip option not available: IP_TTL";
 //
 //      return false;
 //
@@ -1625,13 +1625,13 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), IPPROTO_IP, IP_TTL, (char *)&ttl, &len) == -1)
 //      {
 //
-//         FATAL("getsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //
 //#else
 //
-//      INFORMATION("ip option not available: IP_TTL");
+//      information() << "ip option not available: IP_TTL";
 //
 //#endif
 
@@ -1654,7 +1654,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_HDRINCL, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_HDRINCL) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_HDRINCL) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1664,7 +1664,7 @@ namespace sockets
 //
 //#else
 //
-//      INFORMATION("ip option not available: IP_HDRINCL");
+//      information() << "ip option not available: IP_HDRINCL";
 //
 //      return false;
 //
@@ -1687,7 +1687,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), IPPROTO_IP, IP_RECVERR, (char *)&optval, sizeof(optval)) == -1)
       //{
 
-      //   FATAL("setsockopt(IPPROTO_IP, IP_RECVERR)" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(IPPROTO_IP, IP_RECVERR)" << Errno << ", " << bsd_socket_error(Errno);
 
       //   return false;
 
@@ -1712,7 +1712,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), IPPROTO_IP, IP_MTU_DISCOVER, (char *)&optval, sizeof(optval)) == -1)
       //{
 
-      //   FATAL("setsockopt(IPPROTO_IP, IP_MTU_DISCOVER) " << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(IPPROTO_IP, IP_MTU_DISCOVER) " << Errno << ", " << bsd_socket_error(Errno);
 
       //   return false;
 
@@ -1739,7 +1739,7 @@ namespace sockets
       //if (getsockopt(get_socket_id(), IPPROTO_IP, IP_MTU, (char *)&mtu, &len) == -1)
       //{
 
-      //   FATAL("getsockopt(IPPROTO_IP, IP_MTU) " << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"getsockopt(IPPROTO_IP, IP_MTU) " << Errno << ", " << bsd_socket_error(Errno);
 
       //}
 
@@ -1762,7 +1762,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), IPPROTO_IP, IP_ROUTER_ALERT, (char *)&optval, sizeof(optval)) == -1)
       //{
    
-      //   FATAL("setsockopt(IPPROTO_IP, IP_ROUTER_ALERT) " << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(IPPROTO_IP, IP_ROUTER_ALERT) " << Errno << ", " << bsd_socket_error(Errno);
    
       //   return false;
 
@@ -1785,7 +1785,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1795,7 +1795,7 @@ namespace sockets
 //
 //#else
 //
-//      INFORMATION("ip option not available: IP_MULTICAST_TTL");
+//      information() << "ip option not available: IP_MULTICAST_TTL";
 //
 //      return false;
 //
@@ -1816,7 +1816,7 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, &len) == -1)
 //      {
 //
-//         FATAL("getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //
@@ -1841,7 +1841,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1871,7 +1871,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
 //      {
 //
-//         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1900,7 +1900,7 @@ namespace sockets
 ////      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
 ////      {
 ////
-////         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+////         fatal() <<"setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
 ////
 ////         return false;
 ////
@@ -1930,7 +1930,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
 //      {
 //      
-//         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -1959,7 +1959,7 @@ namespace sockets
 ////      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
 ////      {
 ////
-////         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+////         fatal() <<"setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
 ////
 ////         return false;
 ////
@@ -1996,7 +1996,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_REUSEADDR)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_REUSEADDR)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2026,7 +2026,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_KEEPALIVE)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_KEEPALIVE)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2058,7 +2058,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2083,7 +2083,7 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), SOL_SOCKET, SO_ACCEPTCONN, (char *)&value, &len) == -1)
 //      {
 //
-//         FATAL("getsockopt(SOL_SOCKET, SO_ACCEPTCONN)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(SOL_SOCKET, SO_ACCEPTCONN)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //
@@ -2110,7 +2110,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BSDCOMPAT, (char *)&optval, sizeof(optval)) == -1)
       //{
 
-      //   FATAL("setsockopt(SOL_SOCKET, SO_BSDCOMPAT)" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(SOL_SOCKET, SO_BSDCOMPAT)" << Errno << ", " << bsd_socket_error(Errno);
 
       //   return false;
 
@@ -2132,7 +2132,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
       //{
 
-      //   FATAL("setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << Errno << ", " << bsd_socket_error(Errno);
 
       //   return false;
 
@@ -2155,7 +2155,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_BROADCAST)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_BROADCAST)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2185,7 +2185,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_DEBUG, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_DEBUG)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_DEBUG)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2217,7 +2217,7 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), SOL_SOCKET, SO_ERROR, (char *)&value, &len) == -1)
 //      {
 //
-//         FATAL("getsockopt(SOL_SOCKET, SO_ERROR)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(SOL_SOCKET, SO_ERROR)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //
@@ -2242,7 +2242,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_DONTROUTE, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_DONTROUTE)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_DONTROUTE)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2275,7 +2275,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_LINGER, (char *)&stl, sizeof(stl)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_LINGER)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_LINGER)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2305,7 +2305,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_OOBINLINE, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_OOBINLINE)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_OOBINLINE)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2336,7 +2336,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_PASSCRED, (char *)&optval, sizeof(optval)) == -1)
       //{
       //
-      //   FATAL("setsockopt(SOL_SOCKET, SO_PASSCRED)" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(SOL_SOCKET, SO_PASSCRED)" << Errno << ", " << bsd_socket_error(Errno);
       //   
       //   return false;
 
@@ -2357,7 +2357,7 @@ namespace sockets
       if (setsockopt(get_socket_id(), SOL_SOCKET, SO_PEERCRED, (char *)&ucr, sizeof(ucr)) == -1)
       {
       
-         FATAL("setsockopt(SOL_SOCKET, SO_PEERCRED)" << Errno << ", " << bsd_socket_error(Errno));
+         fatal() <<"setsockopt(SOL_SOCKET, SO_PEERCRED)" << Errno << ", " << bsd_socket_error(Errno);
          
          return false;
 
@@ -2380,7 +2380,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
       //{
       //
-      //   FATAL("setsockopt(SOL_SOCKET, SO_PRIORITY)" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(SOL_SOCKET, SO_PRIORITY)" << Errno << ", " << bsd_socket_error(Errno);
       //   
       //   return false;
 
@@ -2401,7 +2401,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_RCVLOWAT, (char *)&x, sizeof(x)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_RCVLOWAT)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_RCVLOWAT)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2429,7 +2429,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_SNDLOWAT, (char *)&x, sizeof(x)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_SNDLOWAT)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_SNDLOWAT)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2457,7 +2457,7 @@ namespace sockets
 ////      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) == -1)
 ////      {
 ////
-////         FATAL("setsockopt(SOL_SOCKET, SO_RCVTIMEO)" << Errno << ", " << bsd_socket_error(Errno));
+////         fatal() <<"setsockopt(SOL_SOCKET, SO_RCVTIMEO)" << Errno << ", " << bsd_socket_error(Errno);
 ////
 ////         return false;
 ////
@@ -2485,7 +2485,7 @@ namespace sockets
 ////      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) == -1)
 ////      {
 ////
-////         FATAL("setsockopt(SOL_SOCKET, SO_SNDTIMEO)" << Errno << ", " << bsd_socket_error(Errno));
+////         fatal() <<"setsockopt(SOL_SOCKET, SO_SNDTIMEO)" << Errno << ", " << bsd_socket_error(Errno);
 ////
 ////         return false;
 ////
@@ -2513,7 +2513,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_RCVBUF, (char *)&x, sizeof(x)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2544,7 +2544,7 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), SOL_SOCKET, SO_RCVBUF, (char *)&value, &len) == -1)
 //      {
 //
-//         FATAL("getsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //
@@ -2569,7 +2569,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
       //{
 
-      //   FATAL("setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno);
       //   
       //   return false;
 
@@ -2590,7 +2590,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_SNDBUF, (char *)&x, sizeof(x)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2622,7 +2622,7 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), SOL_SOCKET, SO_SNDBUF, (char *)&value, &len) == -1)
 //      {
 //
-//         FATAL("getsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //
@@ -2647,7 +2647,7 @@ namespace sockets
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
       //{
 
-      //   FATAL("setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno));
+      //   fatal() <<"setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno);
       //   
       //   return false;
 
@@ -2672,7 +2672,7 @@ namespace sockets
 //      if (setsockopt(get_socket_id(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
 //      {
 //
-//         FATAL("setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //         return false;
 //
@@ -2696,7 +2696,7 @@ namespace sockets
 //      if (getsockopt(get_socket_id(), SOL_SOCKET, SO_TYPE, (char *)&value, &len) == -1)
 //      {
 //
-//         FATAL("getsockopt(SOL_SOCKET, SO_TYPE)" << Errno << ", " << bsd_socket_error(Errno));
+//         fatal() <<"getsockopt(SOL_SOCKET, SO_TYPE)" << Errno << ", " << bsd_socket_error(Errno);
 //
 //      }
 //

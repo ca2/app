@@ -1,4 +1,4 @@
-﻿// get_mem_info2 from debug.h by camilo on 2022-11-07 01:53 <3ThomasBorregaardSørensen!!
+// get_mem_info2 from debug.h by camilo on 2022-11-07 01:53 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -168,9 +168,6 @@ namespace windows
 
 
 } // namespace windows
-
-
-
 
 
 

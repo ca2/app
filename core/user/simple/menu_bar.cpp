@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/simple/toolbar.h"
 #include "menu_bar.h"
 #include "acme/constant/message.h"
@@ -130,7 +130,7 @@ bool simple_menu_bar::pre_create_window(::user::system * pusersystem)
     //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 3, (LPARAM) this);
     //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 4, pnmtb->iItem);
 
-    TRACE("MenuBarV033::OnDropDown simple_menu_bar::_track_popup_menu % d\n", pnmtb->iItem);
+    information("MenuBarV033::OnDropDown simple_menu_bar::_track_popup_menu % d\n", pnmtb->iItem);
 
     _track_popup_menu(pnmtb->iItem);
 
@@ -164,7 +164,7 @@ void simple_menu_bar::route_command(::message::command * pcommand, bool bRouteTo
 bool simple_menu_bar::_track_popup_menu(index iItem)
 {
 
-   INFORMATION("simple_menu_bar::_track_popup_menu" << iItem);
+   information() << "simple_menu_bar::_track_popup_menu" << iItem;
    
    m_iTracking = iItem;
    m_pitemPressed = __new(::item(::e_element_item, iItem));
@@ -217,7 +217,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.as_i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
+   information() << "simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.as_i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam;
 
    return simple_toolbar::pre_translate_message(pmessage);
 
@@ -266,7 +266,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   __UNREFERENCED_PARAMETER(wParam);
+//   UNREFERENCED_PARAMETER(wParam);
 //
 //   MESSAGE * pmsg = (MESSAGE *)lParam;
 //
@@ -281,7 +281,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //
-//         FORMATTED_TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x(), point.y());
+//         information("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x(), point.y());
 //
 //         //::point_i32 point(xPos, yPos);
 //
@@ -310,7 +310,7 @@ bool simple_menu_bar::_track_popup_menu(const ::point_i32 & point)
 
    //   if (m_itemHitTest.is_valid_item(m_iTopMenuCount) && item != m_iTracking)
    //   {
-   //      TRACE("simple_menu_bar::OnMouseMove simple_menu_bar::_track_popup_menu % d\n", item.m_iItem);
+   //      information("simple_menu_bar::OnMouseMove simple_menu_bar::_track_popup_menu % d\n", item.m_iItem);
    //      //            SendMessage(e_message_key_down, VK_ESCAPE);
    //      //            if(m_iTracking >= 0)
    //      //          {
@@ -422,8 +422,8 @@ void simple_menu_bar::_001OnMenuChar(::message::message * pmessage)
 
 void simple_menu_bar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler)
 {
-   __UNREFERENCED_PARAMETER(pTarget);
-   __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+   UNREFERENCED_PARAMETER(pTarget);
+   UNREFERENCED_PARAMETER(bDisableIfNoHndler);
    return;
    /*   tool_command state;
       state.m_pOther = this;
@@ -461,8 +461,8 @@ void simple_menu_bar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool
 
 // index simple_menu_bar::OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
 // {
-//    __UNREFERENCED_PARAMETER(nparam);
-//    __UNREFERENCED_PARAMETER(oparam);
+//    UNREFERENCED_PARAMETER(nparam);
+//    UNREFERENCED_PARAMETER(oparam);
 //    if(mparam == MX_APPLANGUAGE)
 //    {
 //       ReloadMenuBar();

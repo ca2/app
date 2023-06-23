@@ -1,4 +1,4 @@
-﻿///TBS__<3tbs
+///TBS__<3tbs
 #pragma once
 
 
@@ -27,18 +27,6 @@ namespace filemanager
 
 
 } // namespace filemanager
-
-
-//#include "base/user/user/document.h"
-//
-//
-//#include "base/user/user/impact.h"
-//
-//
-//#include "base/user/simple/frame_window.h"
-
-
-
 
 
 

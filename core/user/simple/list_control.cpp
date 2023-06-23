@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/primitive/data/listener.h"
 #include "core/user/simple/list_control.h"
 #include "core/user/simple/list_data.h"
@@ -132,7 +132,7 @@ bool simple_list_control::erase_item(::user::range & range)
 
 void simple_list_control::install_message_routing(::channel * pchannel)
 {
-   __UNREFERENCED_PARAMETER(pchannel);
+   UNREFERENCED_PARAMETER(pchannel);
    ::user::list::install_message_routing(pchannel);
 }
 

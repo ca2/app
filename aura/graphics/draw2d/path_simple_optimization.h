@@ -1,9 +1,17 @@
-// From path.h by camilo on 2022-06-25 22:31 <3ThomasBorregaardS�rensen!!
+// From path.h by camilo on 2022-06-25 22:31 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "path_optimization.h"
 #include "acme/primitive/geometry2d/_collection.h"
+
+
+namespace geometry2d
+{
+
+   class item;
+
+} // namespace geometry2d
 
 
 namespace draw2d
@@ -16,9 +24,9 @@ namespace draw2d
    public:
 
       
-      int                                 m_iTopic = 0;
-      int                                 m_iTopicLines = 0;
-      int                                 m_iClose = 0;
+      int                                 m_iTopic;
+      int                                 m_iTopicLines;
+      int                                 m_iClose;
       ::point_f64_array                   m_pointa;
       ::pointer < ::geometry2d::item >    m_pitemTopic;
 

@@ -44,7 +44,7 @@ namespace experience_tranquillum
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -148,7 +148,7 @@ namespace experience_tranquillum
 
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32)));
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
 
@@ -234,18 +234,17 @@ namespace experience_tranquillum
 
       ::color::color color;
 
-      color.set_rgb(color32);
+      color = color32;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
 
-      color.set_rgb(color32);
+      color = color32;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
 
-      color.set_rgb(color32);
+      color = color32;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -316,10 +315,10 @@ namespace experience_tranquillum
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
       m_ppenText1->create_solid(1, argb(255, 255, 255, 255));
-      m_ppenFace1->create_solid(1, opaque(crButtonFace));
-      m_ppenHilight1->create_solid(1, opaque(crButtonHilite));
-      m_ppenShadow1->create_solid(1, opaque(crButtonShadow));
-      m_ppenDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
+      m_ppenFace1->create_solid(1, crButtonFace.opaque());
+      m_ppenHilight1->create_solid(1, crButtonHilite.opaque());
+      m_ppenShadow1->create_solid(1, crButtonShadow.opaque());
+      m_ppenDkShadow1->create_solid(1, crButtonDarkShadow.opaque());
       m_colorDkShadow = crButtonDarkShadow;
       m_colorFrameBorder = argb(255, 0, 0, 0);
 
@@ -804,7 +803,7 @@ namespace experience_tranquillum
    void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

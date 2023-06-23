@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "control_box.h"
 #include "frame_window.h"
 #include "frame.h"
@@ -209,7 +209,7 @@ namespace experience
          if (top_level()->layout().is_moving())
          {
 
-            //TRACE("experience control_box : top level is moving : ignoring e_message_timer");
+            //information("experience control_box : top level is moving : ignoring e_message_timer");
 
             return;
 
@@ -217,7 +217,7 @@ namespace experience
          else if (top_level()->layout().is_sizing())
          {
 
-            //TRACE("experience control_box : top level is sizing : ignoring e_message_timer");
+            //information("experience control_box : top level is sizing : ignoring e_message_timer");
 
             return;
 

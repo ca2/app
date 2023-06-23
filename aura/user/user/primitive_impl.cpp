@@ -210,9 +210,9 @@ namespace user
 
    //   }
 
-   //   __UNREFERENCED_PARAMETER(nIDFirst);
+   //   UNREFERENCED_PARAMETER(nIDFirst);
 
-   //   __UNREFERENCED_PARAMETER(nIDLast);
+   //   UNREFERENCED_PARAMETER(nIDLast);
 
    //   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
@@ -762,9 +762,9 @@ namespace user
       case ::message::e_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x() = GET_X_LPARAM(lparam);
+         pmessage->m_point.x() = i32_x(lparam);
 
-         pmessage->m_point.y() = GET_Y_LPARAM(lparam);
+         pmessage->m_point.y() = i32_y(lparam);
       }
       break;
       case ::message::e_prototype_move:
@@ -864,9 +864,9 @@ namespace user
 
          pmessage->m_point = lparam.point();
 
-         pmessage->m_greekdelta = second_i16(wparam);
+         pmessage->m_Δ = second_i16(wparam);
 
-         _raw_client_to_screen(pmessage->m_point);
+         //_raw_client_to_screen(pmessage->m_point);
 
       }
       break;
@@ -876,7 +876,7 @@ namespace user
 
          pmessage->m_nType = static_cast <::u32> (wparam);
 
-         pmessage->m_size = ::size_i32(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+         pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
       }
       break;
       case ::message::e_prototype_activate:
@@ -1258,7 +1258,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw, bool bAscendants)
+   void primitive_impl::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    {
 
 
@@ -1841,13 +1841,13 @@ namespace user
       if (m_puserinteraction->layout().is_moving())
       {
          
-         TRACE("moving: skip walk pre translate tree");
+         information("moving: skip walk pre translate tree");
 
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
          
-         TRACE("sizing: skip walk pre translate tree");
+         information("sizing: skip walk pre translate tree");
 
       }
       else
@@ -2058,7 +2058,7 @@ namespace user
 
       start_destroying_window();
 
-      //FORMATTED_TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
+      //information("destroy_impl_only DestroyWindow %d", bOk != false);
 
       //return bOk;
 
@@ -2228,7 +2228,7 @@ namespace user
    void primitive_impl::set_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      __UNREFERENCED_PARAMETER(pprimitiveimpl);
+      UNREFERENCED_PARAMETER(pprimitiveimpl);
 
       //return ::error_failed;
 
@@ -2238,7 +2238,7 @@ namespace user
    void primitive_impl::erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      __UNREFERENCED_PARAMETER(pprimitiveimpl);
+      UNREFERENCED_PARAMETER(pprimitiveimpl);
 
    }
 
@@ -2483,7 +2483,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 
@@ -2511,7 +2511,7 @@ namespace user
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
 
       }
 
@@ -2528,7 +2528,7 @@ namespace user
    void primitive_impl::show_task(bool bShow)
    {
 
-      __UNREFERENCED_PARAMETER(bShow);
+      UNREFERENCED_PARAMETER(bShow);
 
    }
 

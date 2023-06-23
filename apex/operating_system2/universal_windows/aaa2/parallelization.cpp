@@ -1,4 +1,4 @@
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// THIS CODE AND log_information( IS PROVIDED "AS IS" WITHOUT WARRANTY OF
 // ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
@@ -70,7 +70,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 //htask_t start_thread(u32 ( * pfn)(void *), void * pv, int iPriority)
 //{
 //
-//   __UNREFERENCED_PARAMETER(iPriority);
+//   UNREFERENCED_PARAMETER(iPriority);
 //
 //   return create_thread(pfn, pv);
 //

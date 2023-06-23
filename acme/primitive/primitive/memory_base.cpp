@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/exception/no_memory.h"
 #include "acme/filesystem/file/file.h"
 //#include "acme/memory/_memory.h"
@@ -58,7 +58,7 @@ memory_base & memory_base::prefix_der_length()
    if(msb < 7)
    {
       move_and_grow(1);
-      data()[0] = (byte)(size() - 1);
+      data()[0] = (::u8)(size() - 1);
    }
    else
    {
@@ -164,21 +164,21 @@ void memory_base::set_size(memsize dwNewLength)
 }
 
 
-byte * memory_base::impl_alloc(memsize dwAllocation)
+::u8 * memory_base::impl_alloc(memsize dwAllocation)
 {
 
    return nullptr;
 
 }
 
-byte * memory_base::impl_realloc(void * pdata, memsize dwAllocation)
+::u8 * memory_base::impl_realloc(void * pdata, memsize dwAllocation)
 {
 
    return nullptr;
 
 }
 
-void memory_base::impl_free(byte * pdata)
+void memory_base::impl_free(::u8 * pdata)
 {
 
 }
@@ -211,9 +211,9 @@ void memory_base::allocate_internal(memsize sizeNew)
 
    }
 
-   byte * pOldStorage = this->storage_begin();
+   ::u8 * pOldStorage = this->storage_begin();
 
-   byte * pNewStorage = nullptr;
+   ::u8 * pNewStorage = nullptr;
 
    memsize sizeOld = this->size();
 
@@ -222,7 +222,7 @@ void memory_base::allocate_internal(memsize sizeNew)
    if(::is_null(pOldStorage) || !this->m_bOwner || this->m_bReadOnly)
    {
 
-      pNewStorage = (byte *) impl_alloc(sizeNewStorage);
+      pNewStorage = (::u8 *) impl_alloc(sizeNewStorage);
 
       if (pOldStorage && (!this->m_bOwner || this->m_bReadOnly))
       {
@@ -700,7 +700,7 @@ string memory_base::as_utf8() const
 #ifdef ANDROID
       //for (index i = 2; i < storage.size(); i += 2)
       //{
-      //   byte b = storage.data()[i];
+      //   ::u8 b = storage.data()[i];
       //   storage.data()[i] = storage.data()[i + 1];
       //   storage.data()[i + 1] = b;
       //}
@@ -1040,7 +1040,7 @@ void memory_base::set_data(void *pdata, memsize uiSize)
 }
 
 
-void memory_base::set(byte b, memsize iStart, memsize uiSize)
+void memory_base::set(::u8 b, memsize iStart, memsize uiSize)
 {
 
    if (uiSize + iStart > size())
@@ -1547,7 +1547,7 @@ void memory_base::transfer(memsize offset, bool bGrow)
 
 }
 
-void memory_base::append(byte b)
+void memory_base::append(::u8 b)
 {
 
    append(&b, 1);
@@ -1635,7 +1635,7 @@ void memory_base::assign(const void * pdata, memsize iStart, memsize iCount)
 
    set_size(iCount);
 
-   ::memory_copy(data(), &((byte *)pdata)[iStart], (size_t)iCount);
+   ::memory_copy(data(), &((::u8 *)pdata)[iStart], (size_t)iCount);
 
 }
 
@@ -1893,10 +1893,10 @@ memsize memory_base::length() const
 }
 
 
-::particle * memory_base::clone() const
+::particle_pointer memory_base::clone() const
 {
 
-   auto pmemory = memory_new memory();
+   auto pmemory = ((::particle *)this)->__create_new < ::memory >();
 
    pmemory->copy_from(this);
 
@@ -1905,7 +1905,7 @@ memsize memory_base::length() const
 }
 
 
-byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
+::u8* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 {
 
    auto iFind = find_line_prefix_index(blockPrefix, iStart);
@@ -2004,7 +2004,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
    set_size(iNewSize);
 
-   auto pdata = (byte*)data();
+   auto pdata = (::u8*)data();
 
    if (iNewLen != iOldLen)
    {
@@ -2074,10 +2074,10 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
 
 
-byte * memory_base::find(const ::block & block, ::index iStart) const
+::u8 * memory_base::find(const ::block & block, ::index iStart) const
 {
 
-   return (byte *)memory_find(data() + iStart, size() - iStart, (byte *)block.data(), block.size());
+   return (::u8 *)memory_find(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
 
 }
 
@@ -2085,7 +2085,7 @@ byte * memory_base::find(const ::block & block, ::index iStart) const
 ::index memory_base::find_index(char ch, ::index iStart) const
 {
 
-   auto p = memory_find(data() + iStart, size() - iStart, (byte *)&ch, 1);
+   auto p = memory_find(data() + iStart, size() - iStart, (::u8 *)&ch, 1);
 
    if (!p)
    {
@@ -2094,7 +2094,7 @@ byte * memory_base::find(const ::block & block, ::index iStart) const
 
    }
 
-   return ((byte *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 
@@ -2111,15 +2111,15 @@ byte * memory_base::find(const ::block & block, ::index iStart) const
 
    }
 
-   return ((byte *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 
 
-byte * memory_base::rear_find(const ::block & block, ::index iStart) const
+::u8 * memory_base::rear_find(const ::block & block, ::index iStart) const
 {
 
-   return (byte *)reverse_memmem(data() + iStart, size() - iStart, (byte *)block.data(), block.size());
+   return (::u8 *)reverse_memmem(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
 
 }
 
@@ -2136,15 +2136,15 @@ byte * memory_base::rear_find(const ::block & block, ::index iStart) const
 
    }
 
-   return ((byte *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 
 
-byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::index iStart) const
+::u8 * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::index iStart) const
 {
 
-   return (byte *)reverse_byte_not_in_block(data() + iStart, size() - iStart, (byte *)block.data(), block.size());
+   return (::u8 *)reverse_byte_not_in_block(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
 
 }
 
@@ -2161,7 +2161,7 @@ byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::inde
 
    }
 
-   return ((byte *)p) - data();
+   return ((::u8 *)p) - data();
 
 }
 

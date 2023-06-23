@@ -26,7 +26,17 @@ namespace aqua
    }
 
 
-   void audio::play_audio(::file::file * pfile, bool bSynch)
+   void audio::play_audio(const ::payload& payloadFile, bool bSynch)
+   {
+
+      auto pfile = file() -> get_reader(payloadFile);
+
+      _play_audio(pfile, bSynch);
+
+   }
+
+
+   void audio::_play_audio(::file::file * pfile, bool bSynch)
    {
 
       throw ::interface_only();
@@ -86,7 +96,7 @@ namespace aqua
    ::pointer<::text_to_speech::speaker>audio::create_text_to_speech_speaker(const ::string & strImplementation)
    {
 
-      __UNREFERENCED_PARAMETER(strImplementation);
+      UNREFERENCED_PARAMETER(strImplementation);
 
       throw ::interface_only();
 

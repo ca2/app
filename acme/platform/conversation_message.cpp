@@ -1,9 +1,9 @@
-﻿//
+//
 //  conversation_message.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 01/Oct/22. 00:59
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 01/Oct/22. 00:59
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 #include "conversation_message.h"

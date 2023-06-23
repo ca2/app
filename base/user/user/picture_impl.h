@@ -1,4 +1,4 @@
-﻿// From picture.cpp by camilo on 2022-09-04 01:23 <3ThomasBorregaardSørensen!!
+// From picture.cpp by camilo on 2022-09-04 01:23 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -6,7 +6,9 @@
 //#include "aura/graphics/draw2d/region.h"
 //#include "aura/graphics/image/fastblur.h"
 //#include "aura/user/user/drawable.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/polygon.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace user

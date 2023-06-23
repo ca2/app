@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "acme/platform/application.h"
 #include "apex/platform/system.h"
@@ -666,8 +666,8 @@ namespace aura
 //   string context::http_get(const string& strUrl, ::property_set& set)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(strUrl);
-//      __UNREFERENCED_PARAMETER(set);
+//      UNREFERENCED_PARAMETER(strUrl);
+//      UNREFERENCED_PARAMETER(set);
 //
 //      return "";
 //
@@ -1021,7 +1021,7 @@ namespace aura
    }
 
 
-   ::image_pointer context::create_image(const ::size_i32 & size, const color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   ::image_pointer context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_pcontext->__create < ::image >();
@@ -1041,7 +1041,7 @@ namespace aura
 
          pimage->map();
 
-         copy_colorref(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
+         copy_image32(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
 
       }
 

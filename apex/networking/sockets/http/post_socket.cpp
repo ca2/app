@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "post_socket.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/string/str.h"
@@ -89,7 +89,7 @@ namespace sockets
 
 //#ifdef BSD_STYLE_SOCKETS
 //
-//         FATAL("AddFile " << Errno << bsd_socket_error(Errno));
+//         fatal() <<"AddFile " << Errno << bsd_socket_error(Errno);
 //
 //#endif
 
@@ -134,7 +134,7 @@ namespace sockets
 
                payload.propset().get_network_payload(strBody);
 
-               INFORMATION("JSON BODY: " << strBody);
+               information() << "JSON BODY: " << strBody;
 
                string strContentType = inheader("content-type");
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -140,7 +140,7 @@ public:
    //    //inline bool has_char() const noexcept { return !this->is_empty(); }
    //    inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->size() + i; }
    //
-   //    operator ::block() const { return {(::byte *) c_str(), this->length_in_bytes()}; }
+   //    operator ::block() const { return {(::u8 *) c_str(), this->length_in_bytes()}; }
    //
    //    inline CHARACTER character_at(strsize i) const { return this->data()[i]; }
 

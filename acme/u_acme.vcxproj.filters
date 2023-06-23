@@ -233,6 +233,12 @@
     <Filter Include="Source Files\primitive\time">
       <UniqueIdentifier>{881c9292-2e02-419b-9b57-fdafb10e5b91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\NewFilter1">
+      <UniqueIdentifier>{41eeca4c-8261-4db0-8fa0-7dbc5b85ff5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\os_impl">
+      <UniqueIdentifier>{d13e4c7a-f361-472d-9567-a5f1b50293ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -334,13 +340,7 @@
     <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
       <Filter>Source Files\memory\os_alloc</Filter>
     </ClCompile>
-    <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\_.cpp">
@@ -662,9 +662,6 @@
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\geometry.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry2d\shape.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
     <ClCompile Include="primitive\mathematics\_.cpp">
@@ -1090,9 +1087,6 @@
     <ClCompile Include="memory\memory.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\_shape.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\enumerator.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
@@ -1208,9 +1202,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\url.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\read_only_memory.cpp">
@@ -1359,6 +1350,39 @@
     </ClCompile>
     <ClCompile Include="operating_system\dostime.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\application.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\main_window.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\size.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\region.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\item.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image32_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\write_text_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\print_formatting.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace_statement.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3632,6 +3656,15 @@
     </ClInclude>
     <ClInclude Include="operating_system\dostime.h">
       <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\main_window.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_base.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/user/user/scroll_base.h"
@@ -26,7 +26,7 @@ namespace user
       ::pointer<::data::tree_item_ptr_array>    m_pitemptraSelected;
       ::data::tree_item *                       m_pitemHover;
 
-      ::pointer<::draw2d::graphics_extension>   m_pdcextension;
+      ::pointer<::draw2d::graphics_extension>   m_pgraphicsextension;
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;
@@ -53,8 +53,8 @@ namespace user
       bool                                      m_bHoverStart;
       class ::time                              m_timeHoverStart;
       class ::time                              m_timeHoverEnd;
-      byte                                      m_uchHoverAlpha;
-      byte                                      m_uchHoverAlphaInit;
+      ::u8                                      m_uchHoverAlpha;
+      ::u8                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
       manual_reset_event                        m_evOpen;
       ptr_array < ::data::tree_item >           m_treeitemaExpand;

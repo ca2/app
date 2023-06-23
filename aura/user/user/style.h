@@ -94,8 +94,8 @@ namespace user
       virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 
 
-
-      virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics) override;
+      ::rectangle_i32 simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction) override;
+      bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics) override;
 
       //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
 

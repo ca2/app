@@ -93,7 +93,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 
    }
 
-   FORMATTED_INFORMATION("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
+   information("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
 
    return 0;
 
@@ -3457,7 +3457,7 @@ void wm_full_screen(oswindow w, const ::rectangle_f64 & rectangle)
 CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 {
 
-   __UNREFERENCED_PARAMETER(bDock);
+   UNREFERENCED_PARAMETER(bDock);
 
 }
 

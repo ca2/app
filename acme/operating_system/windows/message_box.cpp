@@ -1,4 +1,4 @@
-// Created by camilo on 2021-01-21 14:57 <3ThomasBorregaardSørensen
+// Created by camilo on 2021-01-21 14:57 <3ThomasBorregaardSorensen
 // Help from http://www.winprog.org/tutorial/simple_window.html
 #include "framework.h"
 #include "acme/_operating_system.h"

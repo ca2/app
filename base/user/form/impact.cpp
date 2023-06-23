@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "document.h"
 #include "impact.h"
 #include "acme/constant/happening.h"
@@ -100,7 +100,7 @@ namespace user
    bool form_impact::Navigate(const ::string & pszUrl)
    {
 
-      __UNREFERENCED_PARAMETER(pszUrl);
+      UNREFERENCED_PARAMETER(pszUrl);
 
       return false;
 

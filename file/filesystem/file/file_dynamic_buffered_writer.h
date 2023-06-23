@@ -30,14 +30,14 @@ namespace file
          return _size; 
       }
       
-      const byte *GetBuffer() const
+      const ::u8 *GetBuffer() const
       {
          return _buffer; 
       }
 
       void CopyToBuffer(byte_buffer &dest) const;
       
-      byte *GetBufPtrForWriting(size_t addSize);
+      ::u8 *GetBufPtrForWriting(size_t addSize);
       
       void UpdateSize(size_t addSize)
       {

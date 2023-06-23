@@ -28,7 +28,7 @@ namespace prompt
    void primary_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(ptopic);
+      UNREFERENCED_PARAMETER(ptopic);
 
    }
 
@@ -88,7 +88,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  FORMATTED_TRACE("error %s", psz);
+                  information("error %s", psz);
 
                   bOk = false;
 
@@ -182,7 +182,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  FORMATTED_TRACE("error %s", psz);
+                  information("error %s", psz);
 
                   bOk = false;
 
@@ -229,7 +229,7 @@ namespace prompt
 
    void primary_impact::_001OnEditCopy(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       clipboard_copy();
    }
 
@@ -242,7 +242,7 @@ namespace prompt
 
    void primary_impact::_001OnEditPaste(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       clipboard_paste();
    }
 

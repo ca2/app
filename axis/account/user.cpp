@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "user.h"
 #include "department.h"
 #include "credentials.h"
@@ -251,7 +251,7 @@ namespace account
       if(!is_authenticated())
       {
 
-         ERROR("User not logged in!");
+         error() <<"User not logged in!";
 
          return;
 

@@ -27,7 +27,7 @@ namespace message
    //
    //   //auto s = sizeof(pfn);
    //
-   //   auto ptrptr = (byte*)&pfn;
+   //   auto ptrptr = (::u8*)&pfn;
    //
    //   m_chunkMemberFunction.assign(ptrptr + get_member_function_offset(), get_member_function_size());
    //

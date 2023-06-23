@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "memory_base.h"
 #include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/string/base64.h"
@@ -121,7 +121,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 //
 //   m_iSize = (iSize + 1) * 3 / 4;
 //
-//   m_pdata = (byte *) memory_allocate(m_iSize);
+//   m_pdata = (::u8 *) memory_allocate(m_iSize);
 //
 //   ::base64 base64;
 //
@@ -142,7 +142,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 
 
 
-block::block(const range < ::byte * > & range) :
+block::block(const range < ::u8 * > & range) :
    block(range.begin(), range.end())
 {
 

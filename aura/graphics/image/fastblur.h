@@ -6,6 +6,10 @@
 //
 #pragma once
 
+
+#include "acme/primitive/geometry2d/size.h"
+
+
 #if (defined(_WIN32) && !defined(_M_ARM)) && OSBIT == 32
 #define VECTOR3_SSE 1
 #else
@@ -251,7 +255,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
 
 //#include "acme/primitive/collection/numeric_array.h"
 ////#include "acme/primitive/primitive/object.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace draw2d
@@ -293,7 +297,7 @@ namespace draw2d
       byte_array           m_uchaB;
       byte_array           m_uchaA;
       byte_array           m_uchaDiv;
-      u32_array            m_uia;
+      ::array < rgba_t >   m_rgbaa;
       i64_array            m_iaVmin;
       i64_array            m_iaVmax;
 
@@ -312,8 +316,8 @@ namespace draw2d
       virtual void blur(::image * pimage);
 
 
-      void do_fastblur(u32 * pdata,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup);
-      void do_fastblur(u32 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
+      void do_fastblur(image32_t * pdata,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup);
+      void do_fastblur(image32_t * pdata,i32 w,i32 h,rgba_t * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
 #if VECTOR3_SSE
       void do_boxblur(vector4 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
       void do_stackblur(vector4 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);

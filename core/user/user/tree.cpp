@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree.h"
 #include "tree_data.h"
 #include "acme/constant/message.h"
@@ -114,7 +114,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   _ERROR(pcreate, "Error creating tree data at ::user::tree::on_message_create");
+      //   pcreate->error() << "Error creating tree data at ::user::tree::on_message_create";
 
       //   return;
 
@@ -127,7 +127,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   _ERROR(pcreate, "Error creating image list at ::user::tree::on_message_create");
+      //   pcreate->error() << "Error creating image list at ::user::tree::on_message_create";
 
       //   return;
 
@@ -140,7 +140,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   _ERROR(pcreate, "Error creating image list (2) at ::user::tree::on_message_create");
+      //   pcreate->error() << "Error creating image list (2) at ::user::tree::on_message_create";
 
       //   return;
 
@@ -241,7 +241,7 @@ namespace user
          if (tickElapsed > 50_ms)
          {
 
-            //WARNING("tree drawing took more than 50ms");
+            //warning() <<"tree drawing took more than 50ms";
 
          }
 
@@ -293,7 +293,7 @@ namespace user
                if (m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
-                  m_uchHoverAlpha = (byte)(m_uchHoverAlphaInit + dwCurve);
+                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit + dwCurve);
             }
          }
          else
@@ -321,7 +321,7 @@ namespace user
                if (m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
-                  m_uchHoverAlpha = (byte)(m_uchHoverAlphaInit - dwCurve);
+                  m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit - dwCurve);
             }
          }
 
@@ -373,7 +373,7 @@ namespace user
                if (tickElapsed > 20_ms)
                {
 
-                  //WARNING("tree item drawing took more than 20ms");
+                  //warning() <<"tree item drawing took more than 20ms";
 
                }
 
@@ -399,7 +399,7 @@ namespace user
          if (tickElapsed > 50_ms)
          {
 
-            //WARNING("tree drawing took more than 50ms");
+            //warning() <<"tree drawing took more than 50ms";
 
          }
 
@@ -449,7 +449,7 @@ namespace user
          if (ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::e_tree_item_state_expandable)
          {
 
-            _001GetItemElementRect(rectangle, data, e_tree_element_expand_box);
+            _001GetItemElementRect(&rectangle, data, e_tree_element_expand_box);
 
             i32 iImage;
 
@@ -477,11 +477,11 @@ namespace user
       if (elapsed > 2_ms)
       {
 
-         //WARNING("tree item drawing section took more than 2ms");
+         //warning() <<"tree item drawing section took more than 2ms";
 
       }
 
-      //FORMATTED_TRACE("(1)TreeItemElapsed %d", ::time.elapsed());
+      //information("(1)TreeItemElapsed %d", ::time.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 
@@ -542,7 +542,7 @@ namespace user
          if (iImage >= 0 && pimagelistItem && pimagelistItem->m_pimage.ok())
          {
 
-            if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
+            if (_001GetItemElementRect(&rectangle, data, e_tree_element_image))
             {
 
                pimagelistItem->draw(data.m_pdc, iImage, rectangle.top_left(), 0);
@@ -557,7 +557,7 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if (strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
+      if (strItem.has_char() && _001GetItemElementRect(&rectangle, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer pbrushText;
@@ -1053,7 +1053,7 @@ namespace user
 
       //::data::simple_lock lock(pitem->m_pitem);
 
-      __UNREFERENCED_PARAMETER(bLayout);
+      UNREFERENCED_PARAMETER(bLayout);
 
       auto pointOffset = get_context_offset();
 

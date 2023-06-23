@@ -11,7 +11,7 @@ int main(int argc char ** argv)
     fd = open(pDevice, O_RDWR);
     if(fd == -1)
     {
-        printf("FORMATTED_ERROR Opening %s\n", pDevice);
+        printf("error Opening %s\n", pDevice);
         return -1;
     }
 

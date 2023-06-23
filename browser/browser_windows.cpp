@@ -26,8 +26,8 @@
 //                      char * lpCmdLine,
 //                      int nCmdShow)
 //{
-//   __UNREFERENCED_PARAMETER(hPrevInstance);
-//   __UNREFERENCED_PARAMETER(lpCmdLine);
+//   UNREFERENCED_PARAMETER(hPrevInstance);
+//   UNREFERENCED_PARAMETER(lpCmdLine);
 
 int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
                                       HINSTANCE hPrevInstance,
@@ -77,8 +77,8 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
 //                      char * lpCmdLine,
 //                      int nCmdShow)
 //{
-//   __UNREFERENCED_PARAMETER(hPrevInstance);
-//   __UNREFERENCED_PARAMETER(lpCmdLine);
+//   UNREFERENCED_PARAMETER(hPrevInstance);
+//   UNREFERENCED_PARAMETER(lpCmdLine);
 
 int cef_main(HINSTANCE hInstance, HWND hwnd, ::rectangle_i32 rectangle_i32)
 {

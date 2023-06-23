@@ -69,7 +69,7 @@ namespace simpledb
 
    /*if (!handle())
    {
-      TRACE("sqlite::dataset::exec: No Database Connection");
+      information("sqlite::dataset::exec: No Database Connection");
       m_strQueryErrorMessage = "No Database Connection";
       m_strDatabaseErrorMessage = "No Database Connection";
       return false;
@@ -154,7 +154,7 @@ namespace simpledb
          {
             m_strQueryErrorMessage = errmsg;
             m_strDatabaseErrorMessage = db->getErrorMsg();
-            FORMATTED_TRACE("sqlite::dataset::exec: Error %s, %s", errmsg, db->getErrorMsg());
+            information("sqlite::dataset::exec: Error %s, %s", errmsg, db->getErrorMsg());
             return false;
          }
       }
@@ -498,7 +498,7 @@ namespace simpledb
 
    string dataset::sql_consume_join_on(const char * & pszSql)
    {
-      __UNREFERENCED_PARAMETER(pszSql);
+      UNREFERENCED_PARAMETER(pszSql);
       return "";
    }
 
@@ -622,31 +622,31 @@ namespace simpledb
 
    bool dataset::query(const ::string &query)
    {
-      __UNREFERENCED_PARAMETER(query);
+      UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
       {
-         TRACE("dataset::query: database is not Defined");
+         information("dataset::query: database is not Defined");
          m_strQueryErrorMessage = "database is not defined";
          m_strDatabaseErrorMessage = "database is not defined";
          return false;
       }
       if(dynamic_cast<database*>(db) == nullptr)
       {
-         TRACE("dataset::query: database is not valid");
+         information("dataset::query: database is not valid");
          m_strQueryErrorMessage = "database is not valid";
          m_strDatabaseErrorMessage = "database is not valid";
          return false;
       }
       /*      if(dynamic_cast<database*>(db)->getHandle() == nullptr)
             {
-               TRACE("dataset::query: No database connection");
+               information("dataset::query: No database connection");
                m_strQueryErrorMessage = "No database Connection";
                m_strDatabaseErrorMessage = "No database Connection";
                return false;
             }
             if(ansi_count_compare("select",query,6) != 0)
             {
-               TRACE("dataset::query: Must be select SQL");
+               information("dataset::query: Must be select SQL");
                return false;
             }
 
@@ -665,7 +665,7 @@ namespace simpledb
             {
                //m_strQueryErrorMessage = errmsg;
                //m_strDatabaseErrorMessage = db->getErrorMsg();
-               //FORMATTED_TRACE("dataset::query: Error: %s, %s", errmsg, db->getErrorMsg());
+               //information("dataset::query: Error: %s, %s", errmsg, db->getErrorMsg());
                //return false;
             }*/
       return false;
@@ -779,7 +779,7 @@ namespace simpledb
 
    long dataset::nextid(const ::string &seq_name)
    {
-      __UNREFERENCED_PARAMETER(seq_name);
+      UNREFERENCED_PARAMETER(seq_name);
       /*      if(handle())
                return db->nextid(seq_name);
             else*/

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"
@@ -62,7 +62,7 @@ namespace user
    void split_layout::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
@@ -318,9 +318,9 @@ namespace user
          //   synchronous_lock synchronouslock(this->synchronization());
          //   //critical_section_lock synchronouslock(m_pmutex);
          //   {
-         //      //      FORMATTED_TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
+         //      //      information("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
-         //      //      FORMATTED_TRACE("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
+         //      //      information("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
 
 
 
@@ -348,8 +348,8 @@ namespace user
          //      {
          //         bMove = nPos != (i32) m_splitbara[m_iIndex]->m_dwPosition;
          //      }
-         //      FORMATTED_TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
-         //      FORMATTED_TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
+         //      information("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
+         //      information("split_layout::RelayChildEvent nPos %d\n", nPos);
          //      if(bMove)
          //      {
 
@@ -1051,9 +1051,9 @@ namespace user
    void split_layout::SetPaneFixedSize(index iIndex, const ::size_i32 & size)
    {
 
-      __UNREFERENCED_PARAMETER(iIndex);
+      UNREFERENCED_PARAMETER(iIndex);
 
-      __UNREFERENCED_PARAMETER(size);
+      UNREFERENCED_PARAMETER(size);
 
       ASSERT(iIndex >= 0);
 
@@ -1200,8 +1200,8 @@ namespace user
 //            synchronous_lock synchronouslock(this->synchronization());
 //
 //            {
-//               FORMATTED_TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
-//               FORMATTED_TRACE("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
+//               information("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
+//               information("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
 //
 //
 //               i32 nPos;
@@ -1357,7 +1357,7 @@ namespace user
 
       auto colorBackground = get_color(pstyle, e_element_background);
 
-      if (colorBackground.alpha > 0)
+      if (colorBackground.m_u8Opacity > 0)
       {
 
          ::rectangle_i32 rectangleClient;

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "interaction.h"
@@ -45,7 +45,7 @@ namespace user
       ~check_box() override;
 
       
-      ::particle * clone() const override;
+      ::particle_pointer clone() const override;
 
 
       enum_element get_default_element() override;

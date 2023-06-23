@@ -2,7 +2,7 @@
 //  macos_main.h
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 8/2/15.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 8/2/15.
 //
 //
 

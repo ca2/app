@@ -456,15 +456,15 @@ namespace dynamic_source
 
                pinstance->dprint("str");
 
-               TRACE("Error: exception * at script_manager::handle run");
+               information("Error: exception * at script_manager::handle run");
 
-               FORMATTED_TRACE("%s", str.c_str());
+               information("%s", str.c_str());
 
             }
             catch (...)
             {
 
-               TRACE("Error: Exception at script_manager::handle run");
+               information("Error: Exception at script_manager::handle run");
 
             }
 
@@ -479,13 +479,13 @@ namespace dynamic_source
          catch (const ::exception&)
          {
 
-            TRACE("Error: exception at script_manager::handle main_finalize");
+            information("Error: exception at script_manager::handle main_finalize");
 
          }
          catch (...)
          {
 
-            TRACE("Error: Exception at script_manager::handle main_finalize");
+            information("Error: Exception at script_manager::handle main_finalize");
 
          }
 
@@ -523,11 +523,11 @@ namespace dynamic_source
       //   }
       //   catch (const ::exception&)
       //   {
-      //      TRACE("Error: exception at script_manager::handle destroy pinstance");
+      //      information("Error: exception at script_manager::handle destroy pinstance");
       //   }
       //   catch (...)
       //   {
-      //      TRACE("Error: Exception at script_manager::handle destroy pinstance");
+      //      information("Error: Exception at script_manager::handle destroy pinstance");
       //   }
       //   __check_pending_releases(pinst2);
 
@@ -540,11 +540,11 @@ namespace dynamic_source
       //}
       //catch (const ::exception&)
       //{
-      //   TRACE("Error: exception at script_manager::handle destroy pinstance");
+      //   information("Error: exception at script_manager::handle destroy pinstance");
       //}
       //catch (...)
       //{
-      //   TRACE("Error: Exception at script_manager::handle destroy pinstance");
+      //   information("Error: Exception at script_manager::handle destroy pinstance");
       //}
 
       //auto pmain2 = pmain.m_p;
@@ -792,10 +792,10 @@ namespace dynamic_source
       u32 dwSize = GetDllDirectory(nullptr, nullptr);
       buf = memory_new char[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
-      TRACE(buf);
+      information(buf);
       //SetDllDirectory(buf);
       GetDllDirectory(dwSize + 1024, buf);
-      TRACE(buf);
+      information(buf);
       del*/
 
       //auto pcontext = get_context();

@@ -86,7 +86,7 @@ namespace sockets
       ,m_bTryingReconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
-      __UNREFERENCED_PARAMETER(osize);
+      UNREFERENCED_PARAMETER(osize);
    }
 #ifdef _MSC_VER
 #pragma warning(default:4355)
@@ -199,13 +199,13 @@ namespace sockets
    {
       /*      if (!ad.IsValid())
             {
-               FATAL(log_this, "open", 0, "Invalid ::networking::address");
+               fatal() <<log_this, "open", 0, "Invalid ::networking::address";
                SetCloseAndDelete();
                return false;
             }*/
       /*      if (socket_handler()->get_count() >= FD_SETSIZE)
             {
-               FATAL(log_this, "open", 0, "no space left in fd_set");
+               fatal() <<log_this, "open", 0, "no space left in fd_set";
                SetCloseAndDelete();
                return false;
             }*/
@@ -328,7 +328,7 @@ namespace sockets
                else
                {
                   string strError = bsd_socket_error(iError);
-                  FATAL(log_this, "connect: failed", iError, bsd_socket_error(iError));
+                  fatal() <<log_this, "connect: failed", iError, bsd_socket_error(iError);
                   SetCloseAndDelete();
                   ::closesocket(s);
                   return false;
@@ -397,7 +397,7 @@ namespace sockets
 
    void tcp_socket::OnResolved(int atom, ::networking::address * addr)
    {
-      FORMATTED_TRACE("tcp_socket::OnResolved atom %d addr %x port %d\n", atom, addr.get_display_number(), addr.get_service_number());
+      information("tcp_socket::OnResolved atom %d addr %x port %d\n", atom, addr.get_display_number(), addr.get_service_number());
       if (atom == m_resolver_id)
       {
          if(open(addr))
@@ -409,13 +409,13 @@ namespace sockets
          }
          else
          {
-            FATAL(log_this, "OnResolved", 0, "Resolver failed");
+            fatal() <<log_this, "OnResolved", 0, "Resolver failed";
             SetCloseAndDelete();
          }
       }
       else
       {
-         FATAL(log_this, "OnResolved", atom, "Resolver returned wrong job atom");
+         fatal() <<log_this, "OnResolved", atom, "Resolver returned wrong job atom";
          SetCloseAndDelete();
       }
    }
@@ -440,7 +440,7 @@ namespace sockets
          }
          else
          {
-            FATAL(log_this, "OnResolved", atom, "Resolver returned wrong job atom");
+            fatal() <<log_this, "OnResolved", atom, "Resolver returned wrong job atom";
             SetCloseAndDelete();
          }
       }*/
@@ -511,7 +511,7 @@ namespace sockets
       //{
       //   if(IsCloseAndDelete())
       //   {
-      //      TRACE("Close and delete set");
+      //      information("Close and delete set");
       //   }
       //   else if(asyncStatus == ::winrt::Windows::Foundation::AsyncStatus::Completed)
       //   {
@@ -596,7 +596,7 @@ namespace sockets
             return;
          }
 #ifdef BSD_STYLE_SOCKETS
-         FATAL(log_this, "tcp: connect failed", err, bsd_socket_error(err));
+         fatal() <<log_this, "tcp: connect failed", err, bsd_socket_error(err);
 #endif
          Set(false, false); // no more monitoring because connection failed
 
@@ -861,7 +861,7 @@ namespace sockets
 
    void tcp_socket::OnSocks4ConnectFailed()
    {
-      WARNING("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection");
+      warning() <<"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection";
       if (!socket_handler()->Socks4TryDirect())
       {
          set_connecting(false);
@@ -913,13 +913,13 @@ namespace sockets
             case 91:
             case 92:
             case 93:
-               FATAL(log_this, "OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed");
+               fatal() <<log_this, "OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed";
                set_connecting(false);
                SetCloseAndDelete();
                OnConnectFailed();
                break;
             default:
-               FATAL(log_this, "OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response");
+               fatal() <<log_this, "OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response";
                SetCloseAndDelete();
                break;
             }
@@ -946,7 +946,7 @@ namespace sockets
             {
                if (m_ssl_ctx)
                {
-         TRACE("SSL Context already initialized - closing socket\n");
+         information("SSL Context already initialized - closing socket\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -958,7 +958,7 @@ namespace sockets
       /*       m_ssl = SSL_new(m_ssl_ctx);
              if (!m_ssl)
              {
-       TRACE(" m_ssl is nullptr\n");
+       information(" m_ssl is nullptr\n");
                 SetCloseAndDelete(true);
                 return;
              }
@@ -966,7 +966,7 @@ namespace sockets
              m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
              if (!m_sbio)
              {
-       TRACE(" m_sbio is nullptr\n");
+       information(" m_sbio is nullptr\n");
                 SetCloseAndDelete(true);
                 return;
              }
@@ -989,7 +989,7 @@ namespace sockets
       /*      {
                if (m_ssl_ctx)
                {
-         TRACE("SSL Context already initialized - closing socket\n");
+         information("SSL Context already initialized - closing socket\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1001,7 +1001,7 @@ namespace sockets
                m_ssl = SSL_new(m_ssl_ctx);
                if (!m_ssl)
                {
-         TRACE(" m_ssl is nullptr\n");
+         information(" m_ssl is nullptr\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1009,7 +1009,7 @@ namespace sockets
                m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
                if (!m_sbio)
                {
-         TRACE(" m_sbio is nullptr\n");
+         information(" m_sbio is nullptr\n");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1103,7 +1103,7 @@ namespace sockets
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_connect", -1, "Connection failed");
-         FORMATTED_TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
+         information("SSL_connect() failed - closing socket, return code: %d\n",r);
                      SetSSLNegotiate(false);
                      SetCloseAndDelete(true);
                      OnSSLConnectFailed();
@@ -1145,7 +1145,7 @@ namespace sockets
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_accept", -1, "Connection failed");
-         FORMATTED_TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
+         information("SSL_accept() failed - closing socket, return code: %d\n",r);
                      SetSSLNegotiate(false);
                      SetCloseAndDelete(true);
                      OnSSLAcceptFailed();
@@ -1166,7 +1166,7 @@ namespace sockets
 
    void tcp_socket::InitSSLServer()
    {
-//      FATAL(log_this, "InitSSLServer", 0, "You MUST implement your own InitSSLServer method");
+//      fatal() <<log_this, "InitSSLServer", 0, "You MUST implement your own InitSSLServer method";
       //    SetCloseAndDelete();
    }
 
@@ -1175,7 +1175,7 @@ namespace sockets
    {
       /*      if (GetSocket() == INVALID_SOCKET) // this could happen
             {
-               WARNING("socket::close", 0, "file descriptor invalid");
+               warning() <<"socket::close", 0, "file descriptor invalid";
                return 0;
             }
             int n;
@@ -1194,7 +1194,7 @@ namespace sockets
             {
                if (n)
                {
-                  WARNING("read() after shutdown", n, "bytes read");
+                  warning() <<"read() after shutdown", n, "bytes read";
                }
             }
          #ifdef HAVE_OPENSSL
@@ -1216,14 +1216,14 @@ namespace sockets
    SSL_CTX *tcp_socket::GetSslContext()
    {
       if (!m_ssl_ctx)
-         WARNING("GetSslContext", 0, "SSL Context is nullptr; check InitSSLServer/InitSSLClient");
+         warning() <<"GetSslContext", 0, "SSL Context is nullptr; check InitSSLServer/InitSSLClient";
       return m_ssl_ctx;
    }
 
    SSL *tcp_socket::GetSsl()
    {
       if (!m_ssl)
-         WARNING("GetSsl", 0, "SSL is nullptr; check InitSSLServer/InitSSLClient");
+         warning() <<"GetSsl", 0, "SSL is nullptr; check InitSSLServer/InitSSLClient";
       return m_ssl;
    }
 #endif
@@ -1299,11 +1299,11 @@ namespace sockets
 
    void tcp_socket::OnOptions(int family, int type, int protocol, SOCKET s)
    {
-      __UNREFERENCED_PARAMETER(family);
-      __UNREFERENCED_PARAMETER(type);
-      __UNREFERENCED_PARAMETER(protocol);
-      __UNREFERENCED_PARAMETER(s);
-      //TRACE("socket::OnOptions()\n");
+      UNREFERENCED_PARAMETER(family);
+      UNREFERENCED_PARAMETER(type);
+      UNREFERENCED_PARAMETER(protocol);
+      UNREFERENCED_PARAMETER(s);
+      //information("socket::OnOptions()\n");
 #ifdef SO_NOSIGPIPE
       _SetSoNosigpipe(s, true);
 #endif
@@ -1325,7 +1325,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_TCP, TCP_NODELAY, (char *)&optval, sizeof(optval)) == -1)
       {
-         FATAL(log_this, "setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, bsd_socket_error(Errno));
+         fatal() <<log_this, "setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, bsd_socket_error(Errno);
          return false;
       }
       return true;
@@ -1340,7 +1340,7 @@ namespace sockets
    void tcp_socket::on_connection_timeout()
    {
       
-      FATAL(log_this, "connect", -1, "connect timeout");
+      fatal() <<log_this, "connect", -1, "connect timeout";
 
       m_estatus = ::error_timeout;
 
@@ -1417,7 +1417,7 @@ namespace sockets
       // errno valid here?
       int err = SoError();
 #ifdef BSD_STYLE_SOCKETS
-      FATAL(log_this, "exception on select", err, bsd_socket_error(err));
+      fatal() <<log_this, "exception on select", err, bsd_socket_error(err);
 #endif
       SetCloseAndDelete();
    }

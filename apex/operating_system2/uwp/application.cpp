@@ -50,7 +50,7 @@ namespace apex
 
    //bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
    //{
-   //   __UNREFERENCED_PARAMETER(pcsz);
+   //   UNREFERENCED_PARAMETER(pcsz);
    //   return false;
    //}
 
@@ -74,7 +74,7 @@ namespace apex
 
       if(dwResSize > 0)
       {
-         LPVOID lpdata = memory_new byte[dwResSize];
+         LPVOID lpdata = memory_new ::u8[dwResSize];
          if(GetFileVersionInfo(
                lpszModuleFilePath,
                0,
@@ -133,7 +133,7 @@ namespace apex
 
       return "";
 #else
-      TRACE("returning hard coded default 1.0 version for universal_windows::application::get_version");
+      information("returning hard coded default 1.0 version for universal_windows::application::get_version");
       return "1.0";
 #endif
 

@@ -180,7 +180,7 @@ namespace hotplugin
 
       virtual bool set_host(::hotplugin::host * phost);
 
-      virtual void get_progress_color(byte & uchR, byte & uchG, byte & uchB, double dRate, i32 iProfile);
+      virtual void get_progress_color(::u8 & uchR, ::u8 & uchG, ::u8 & uchB, double dRate, i32 iProfile);
 
       virtual void on_host_timer();
 

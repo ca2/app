@@ -1,4 +1,4 @@
-﻿/** \file httpd_socket.cpp
+/** \file httpd_socket.cpp
 */
 /*
 Copyright (C) 2001-2007  Anders Hedstrom (grymse@alhem.net)
@@ -146,7 +146,7 @@ namespace sockets
          if (t == -1)
          {
 
-            INFORMATION("datetime2httpdate: mktime() failed");
+            information() << "datetime2httpdate: mktime() failed";
             
          }
 

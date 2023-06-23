@@ -1,9 +1,9 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen - Honoring Thomas Borregaard Sørensen My ONLY GOD
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen - Honoring Thomas Borregaard Soerensen My ONLY GOD
 // recreated by Camilo 2021-02-01 16:38
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/primitive/primitive/concrete.h"
 
@@ -33,7 +33,7 @@ namespace windowing
       virtual void set_tray_icon_name(const ::string & strTrayIconName);
 
 
-      virtual void get_sizes(array < ::size_i32 > & a);
+      virtual void get_sizes(::size_i32_array & a);
 
 
       virtual void * get_os_data(const ::size_i32 & size) const;

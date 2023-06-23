@@ -1,9 +1,10 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "button.h"
 #include "style.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/platform/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -70,10 +71,10 @@ namespace user
    }
 
 
-   ::particle * button::clone() const
+   ::particle_pointer button::clone() const
    {
 
-      auto pcheckbox = memory_new ::user::button;
+      auto pcheckbox = m_pcontext->__create_new < ::user::button >();
 
       return pcheckbox;
 
@@ -286,7 +287,7 @@ namespace user
    void button::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (m_estyle == e_style_none)
       {
@@ -1068,15 +1069,15 @@ namespace user
 
       color32 = color;
 
-      class ::color::color colorExt1TL;
-      class ::color::color colorExt2TL;
-      class ::color::color colorExt1BR;
-      class ::color::color colorExt2BR;
+      ::color::color colorExt1TL;
+      ::color::color colorExt2TL;
+      ::color::color colorExt1BR;
+      ::color::color colorExt2BR;
 
-      colorExt1TL.set_rgb(color32);
-      colorExt2TL.set_rgb(color32);
-      colorExt1BR.set_rgb(color32);
-      colorExt2BR.set_rgb(color32);
+      colorExt1TL = color32;
+      colorExt2TL = color32;
+      colorExt1BR = color32;
+      colorExt2BR = color32;
 
       if(echeck() == ::e_check_checked)
       {
@@ -1108,7 +1109,7 @@ namespace user
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      pgraphics->fill_rectangle(rectangle,::color::color(color32,200));
+      pgraphics->fill_rectangle(rectangle,color32 & ::opacity(200));
       rectangle.deflate(1,1,1,1);
 
       i32 x1 = rectangle.left;

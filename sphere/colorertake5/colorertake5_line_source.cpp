@@ -15,13 +15,13 @@ namespace colorertake5
 
    void line_source::startJob(index lno)
    {
-      __UNREFERENCED_PARAMETER(lno);
+      UNREFERENCED_PARAMETER(lno);
    }
 
 
    void line_source::endJob(index lno)
    {
-      __UNREFERENCED_PARAMETER(lno);
+      UNREFERENCED_PARAMETER(lno);
    }
 
 

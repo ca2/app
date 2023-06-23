@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 /* Copyright 2012 William Woodall and John Harrison */
 #include "acme/platform/serial.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -236,7 +236,7 @@ namespace serial
 
             }
 
-            break; // timeout occured on reading 1 byte
+            break; // timeout occured on reading 1 ::u8
 
          }
 
@@ -830,7 +830,7 @@ namespace serial
 //bytes_read;
 //if (bytes_read == 0)
 //{
-//break; // Timeout occured on reading 1 byte
+//break; // Timeout occured on reading 1 ::u8
 //}
 //if (string(reinterpret_cast
 // <const char *>
@@ -889,7 +889,7 @@ namespace serial
 //               string(reinterpret_cast<const char *> (buffer_ + start_of_line),
 //                      read_so_far - start_of_line));
 //         }
-//         break; // Timeout occured on reading 1 byte
+//         break; // Timeout occured on reading 1 ::u8
 //      }
 //      if (string(reinterpret_cast<const char *>
 //                 (buffer_ + read_so_far - eol_len), eol_len) == eol)

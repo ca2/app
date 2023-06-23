@@ -2,8 +2,8 @@
 //  user_shell_ios.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 30/12/16.
-//  Copyright © 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 30/12/16.
+//  Copyright (c) 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
 #include "framework.h"
@@ -1748,7 +1748,7 @@ pacmedirectory->is(strPath))
 //
 //      {
 //         
-//         if (colorref_get_a_value(crBk) != 255)
+//         if (color32_u8_opacity(crBk) != 255)
 //         {
 //
 //            crBk = 0;
@@ -1816,7 +1816,7 @@ pacmedirectory->is(strPath))
 //
 //      {
 //
-//         if (colorref_get_a_value(crBk) != 255)
+//         if (color32_u8_opacity(crBk) != 255)
 //         {
 //
 //            crBk = 0;
@@ -1885,7 +1885,7 @@ pacmedirectory->is(strPath))
 //
 //            ::image_pointer pimage;
 //            pimage = create_image({iSize,  iSize});
-//            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
+//            pimage->Fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //            m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
@@ -1901,10 +1901,10 @@ pacmedirectory->is(strPath))
 //            size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
 //            ::image_pointer pimage;
 //            pimage = create_image(s);
-//            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
+//            pimage->Fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //            pimage->get_graphics()->draw(::point_i32(), d.size(), d.get_graphics());
-//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx(), d.size().cy(), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx(), d.size().cy(), argb(123, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk)));
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //            m_pimagelist[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

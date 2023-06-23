@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 CLASS_DECL_ACME ::e_status get_last_status();

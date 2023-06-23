@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
@@ -1253,7 +1253,7 @@ namespace aura
    //void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
-   //   __UNREFERENCED_PARAMETER(nCode);
+   //   UNREFERENCED_PARAMETER(nCode);
 
    //}
 
@@ -1355,7 +1355,7 @@ namespace aura
    //void application::term_thread()
    //{
 
-   //   INFORMATION("aura::application::term_thread");
+   //   information() << "aura::application::term_thread";
 
    //   m_timeHeartBeat.Now();
 
@@ -1378,7 +1378,7 @@ namespace aura
 //   void application::pre_run()
 //   {
 //
-//      INFORMATION("aura::application::pre_run");
+//      information() << "aura::application::pre_run";
 //
 //      try
 //      {
@@ -1436,7 +1436,7 @@ namespace aura
 //
 //         }
 //
-//         INFORMATION("aura::application::pre_run success");
+//         information() << "aura::application::pre_run success";
 //
 //         return true;
 //
@@ -1450,7 +1450,7 @@ namespace aura
 //      catch (...)
 //      {
 //
-//         INFORMATION("aura::application::pre_run exception.4");
+//         information() << "aura::application::pre_run exception.4";
 //
 //      }
 //
@@ -1593,7 +1593,7 @@ namespace aura
    void application::pos_run()
    {
 
-      INFORMATION("aura::application::pos_run");
+      information() << "aura::application::pos_run";
 
       try
       {
@@ -1608,7 +1608,7 @@ namespace aura
       catch (...)
       {
 
-         INFORMATION("aura::application::pos_run exception.4");
+         information() << "aura::application::pos_run exception.4";
 
       }
 
@@ -1838,7 +1838,7 @@ retry_license:
 
       }
 
-      INFORMATION("initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId);
+      information() << "initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId;
 
       //return true;
 
@@ -1942,10 +1942,10 @@ retry_license:
       //}
 
 
-      INFORMATION("axis::application::process_init");
+      information() << "axis::application::process_init";
 
 
-      INFORMATION("aura::application::process_init success");
+      information() << "aura::application::process_init success";
 
 
       //return true;
@@ -1976,7 +1976,7 @@ retry_license:
 //
 //      }
 //
-//      INFORMATION("aura::application::init_application");
+//      information() << "aura::application::init_application";
 //
 //      //m_bAuraInitializeInstance = true;
 //
@@ -2111,7 +2111,7 @@ retry_license:
       //   //if (!estatus)
       //   //{
 
-      //   //   INFORMATION("ERROR: context_image required but missing.");
+      //   //   information() << "ERROR: context_image required but missing.";
 
       //   //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
@@ -2135,7 +2135,7 @@ retry_license:
       //    //if (!estatus)
       //    //{
 
-      //    //   INFORMATION("ERROR: context_image required but missing.");
+      //    //   information() << "ERROR: context_image required but missing.";
 
       //    //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
@@ -2146,7 +2146,7 @@ retry_license:
       // }
 
 
-      INFORMATION("start");
+      information() << "start";
 
       m_timeHeartBeat.Now();
 
@@ -2517,7 +2517,7 @@ retry_license:
    ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    ////{
 
-   ////   __UNREFERENCED_PARAMETER(timeTimeOut);
+   ////   UNREFERENCED_PARAMETER(timeTimeOut);
 
    ////   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
 
@@ -2586,8 +2586,8 @@ retry_license:
    //void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
    //{
-   //   __UNREFERENCED_PARAMETER(context);
-   //   __UNREFERENCED_PARAMETER(pcsz);
+   //   UNREFERENCED_PARAMETER(context);
+   //   UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -2596,8 +2596,8 @@ retry_license:
    //void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
    //{
-   //   __UNREFERENCED_PARAMETER(context);
-   //   __UNREFERENCED_PARAMETER(pcsz);
+   //   UNREFERENCED_PARAMETER(context);
+   //   UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -2883,8 +2883,8 @@ retry_license:
    //void application::play_audio(::payload payloadFile, bool bSynch)
    //{
 
-   //   __UNREFERENCED_PARAMETER(payloadFile);
-   //   __UNREFERENCED_PARAMETER(bSynch);
+   //   UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(bSynch);
 
    //}
 //
@@ -3129,8 +3129,8 @@ retry_license:
 //         output_debug_string("Could not create or open a registrty key\n");
 //         return 0;
 //      }
-//      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-//      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content-type.c_str(), ::u32 (content-type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+//      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (::u8*)content-type.c_str(), ::u32 (content-type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
 //      RegCloseKey(hkey);
 //
 //
@@ -3142,7 +3142,7 @@ retry_license:
 //         output_debug_string("Could not create or open a registrty key\n");
 //         return 0;
 //      }
-//      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
 //
@@ -3153,7 +3153,7 @@ retry_license:
 //         output_debug_string("Could not create or open a registrty key\n");
 //         return 0;
 //      }
-//      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
+//      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
 //      wstring wstr(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()) / "spa_register.txt");
@@ -3407,7 +3407,7 @@ retry_license:
 
          }
 
-         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this));
+         information() << "::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this);
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3465,7 +3465,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this));
+            information() << "::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this);
 
          }
 
@@ -3479,7 +3479,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this));
+            information() << "::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this);
 
          }
 
@@ -3704,7 +3704,7 @@ retry_license:
    //     if (pmsg->m_atom == 126)
    //     {
 
-   //        INFORMATION("e_message_display_change");
+   //        information() << "e_message_display_change";
 
    //     }
 
@@ -4775,7 +4775,7 @@ retry_license:
       
       string strSchema;
 
-      FORMATTED_INFORMATION("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+      information("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
       
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 
@@ -4963,9 +4963,9 @@ retry_license:
 
    //   //::pointer<::user::message>pusermessage(pmessage);
 
-   //   __UNREFERENCED_PARAMETER(code);
+   //   UNREFERENCED_PARAMETER(code);
 
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
 
    //}
@@ -5115,8 +5115,8 @@ retry_license:
    //bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
-   //   __UNREFERENCED_PARAMETER(payloadFile);
-   //   __UNREFERENCED_PARAMETER(nIDSTitle);
+   //   UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(nIDSTitle);
 
    //   return false;
 
@@ -5275,8 +5275,8 @@ retry_license:
    //bool application::on_open_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pdocument);
-   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(pdocument);
+   //   UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
@@ -5285,8 +5285,8 @@ retry_license:
    //bool application::on_save_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pdocument);
-   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   UNREFERENCED_PARAMETER(pdocument);
+   //   UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
@@ -5624,9 +5624,9 @@ namespace aura
    //lresult application::GetPaintMsgProc(i32 nCode, wparam wParam, lparam lParam)
    //{
 
-   //   __UNREFERENCED_PARAMETER(nCode);
-   //   __UNREFERENCED_PARAMETER(wParam);
-   //   __UNREFERENCED_PARAMETER(lParam);
+   //   UNREFERENCED_PARAMETER(nCode);
+   //   UNREFERENCED_PARAMETER(wParam);
+   //   UNREFERENCED_PARAMETER(lParam);
 
    //   return 0;
 
@@ -5636,9 +5636,9 @@ namespace aura
    bool application::CreateFileFromRawResource(::u32 nID, const ::string & pcszType, const ::string & pcszFilePath)
    {
 
-      __UNREFERENCED_PARAMETER(nID);
-      __UNREFERENCED_PARAMETER(pcszType);
-      __UNREFERENCED_PARAMETER(pcszFilePath);
+      UNREFERENCED_PARAMETER(nID);
+      UNREFERENCED_PARAMETER(pcszType);
+      UNREFERENCED_PARAMETER(pcszFilePath);
 
       return false;
 
@@ -5651,7 +5651,7 @@ namespace aura
 //   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pmsg);
+//      UNREFERENCED_PARAMETER(pmsg);
 //
 //
 //      return false;
@@ -5663,7 +5663,7 @@ namespace aura
 //   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pXevent);
+//      UNREFERENCED_PARAMETER(pXevent);
 //
 //      return false;
 //
@@ -5674,7 +5674,7 @@ namespace aura
    void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
 
-      __UNREFERENCED_PARAMETER(pcommand);
+      UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -5683,10 +5683,10 @@ namespace aura
 
    //{
 
-   //   __UNREFERENCED_PARAMETER(nID);
-   //   __UNREFERENCED_PARAMETER(pcszType);
+   //   UNREFERENCED_PARAMETER(nID);
+   //   UNREFERENCED_PARAMETER(pcszType);
 
-   //   __UNREFERENCED_PARAMETER(storage);
+   //   UNREFERENCED_PARAMETER(storage);
 
    //   return false;
 
@@ -5718,7 +5718,7 @@ namespace aura
 //
 //   void application::EnableModelessEx(bool bEnable)
 //   {
-//      __UNREFERENCED_PARAMETER(bEnable);
+//      UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //      UNUSED(bEnable);
 //#endif
@@ -5824,7 +5824,7 @@ namespace aura
    ::count count = (len + 1) / 2;
    memory.set_size(count);
    index i = 0;
-   byte b;
+   ::u8 b;
    while(*pszHex != '\0')
    {
    char ch = (char) tolower(*pszHex);
@@ -5875,9 +5875,9 @@ namespace aura
 
    for(index i = 0; i < count; i++)
    {
-   *psz++ = ::hex::lower_from((byte) ((memory.get_data()[i] >> 4) & 0xf));
+   *psz++ = ::hex::lower_from((::u8) ((memory.get_data()[i] >> 4) & 0xf));
 
-   *psz++ = ::hex::lower_from((byte) (memory.get_data()[i] & 0xf));
+   *psz++ = ::hex::lower_from((::u8) (memory.get_data()[i] & 0xf));
 
    }
    strHex.ReleaseBuffer(count * 2);
@@ -6147,7 +6147,7 @@ namespace aura
 //      //                  pData->szPolicyName,
 //      //                  nullptr,
 //      //                  &dwType,
-//      //                  (byte*)&dwValue,
+//      //                  (::u8*)&dwValue,
 //      //                  &dwDataLen))
 //      //         {
 //      //            if (dwType == REG_DWORD)
@@ -6199,7 +6199,7 @@ namespace aura
 
    /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
    {
-   __UNREFERENCED_PARAMETER(nMaxMRU);
+   UNREFERENCED_PARAMETER(nMaxMRU);
    ASSERT_VALID(this);
 
    // 0 by default means not set
@@ -6360,8 +6360,8 @@ namespace aura
    //
    //   void application::WinHelp(uptr dwData, ::u32 nCmd)
    //   {
-   //      __UNREFERENCED_PARAMETER(dwData);
-   //      __UNREFERENCED_PARAMETER(nCmd);
+   //      UNREFERENCED_PARAMETER(dwData);
+   //      UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -6376,9 +6376,9 @@ namespace aura
    //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
    //   {
    //
-   //      __UNREFERENCED_PARAMETER(dwData);
+   //      UNREFERENCED_PARAMETER(dwData);
    //
-   //      __UNREFERENCED_PARAMETER(nCmd);
+   //      UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -6390,8 +6390,8 @@ namespace aura
    //
    //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
    //   {
-   //      __UNREFERENCED_PARAMETER(dwData);
-   //      __UNREFERENCED_PARAMETER(nCmd);
+   //      UNREFERENCED_PARAMETER(dwData);
+   //      UNREFERENCED_PARAMETER(nCmd);
    //      //   ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
@@ -6414,7 +6414,7 @@ namespace aura
 //   void application::DevModeChange(char * pDeviceName)
 //
 //   {
-//      __UNREFERENCED_PARAMETER(pDeviceName);
+//      UNREFERENCED_PARAMETER(pDeviceName);
 //
 //
 //#ifdef WINDOWS
@@ -6444,7 +6444,7 @@ namespace aura
    //bool application::final_handle_exception(const ::exception & e)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pexception);
+   //   UNREFERENCED_PARAMETER(pexception);
 
    //   if (!is_system())
    //   {
@@ -6465,8 +6465,8 @@ namespace aura
 
    /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
    {
-   __UNREFERENCED_PARAMETER(pszLink);
-   __UNREFERENCED_PARAMETER(pszTarget);
+   UNREFERENCED_PARAMETER(pszLink);
+   UNREFERENCED_PARAMETER(pszTarget);
    return false;
    }
    */
@@ -6645,7 +6645,7 @@ namespace aura
 
    //void application::UpdatePrinterSelection(bool bForceDefaults)
    //{
-   //   __UNREFERENCED_PARAMETER(bForceDefaults);
+   //   UNREFERENCED_PARAMETER(bForceDefaults);
    //}
 
 
@@ -6660,9 +6660,9 @@ namespace aura
 //   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(hDevNames);
-//      __UNREFERENCED_PARAMETER(hDevMode);
-//      __UNREFERENCED_PARAMETER(bFreeOld);
+//      UNREFERENCED_PARAMETER(hDevNames);
+//      UNREFERENCED_PARAMETER(hDevMode);
+//      UNREFERENCED_PARAMETER(bFreeOld);
 //      throw ::interface_only();
 //
 //   }
@@ -6776,7 +6776,7 @@ namespace aura
 //
 //   void application::DoEnableModeless(bool bEnable)
 //   {
-//      __UNREFERENCED_PARAMETER(bEnable);
+//      UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //      UNUSED(bEnable);
 //#endif
@@ -6862,7 +6862,7 @@ namespace aura
 
    void application::SetRegistryKey(::u32 nIDRegistryKey)
    {
-      //__UNREFERENCED_PARAMETER(nIDRegistryKey);
+      //UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
       //throw ::interface_only();
       ///*char szRegistryKey[256];
@@ -6959,7 +6959,7 @@ namespace aura
    u32 dwCount = sizeof(u32);
    ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
-   (byte *)&dwValue, &dwCount);
+   (::u8 *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
    if (lResult == ERROR_SUCCESS)
    {
@@ -7005,7 +7005,7 @@ namespace aura
    ASSERT(dwType == REG_SZ);
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
-   (byte *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
+   (::u8 *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
    strValue.ReleaseBuffer();
    }
    RegCloseKey(hSecKey);
@@ -7037,7 +7037,7 @@ namespace aura
 
    bool application::GetProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
-   byte** ppData, ::u32* pBytes)
+   ::u8** ppData, ::u32* pBytes)
    {
    ASSERT(pszSection != nullptr);
 
@@ -7068,7 +7068,7 @@ namespace aura
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = memory_new byte[*pBytes];
+   *ppData = memory_new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -7096,10 +7096,10 @@ namespace aura
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = memory_new byte[*pBytes];
+   *ppData = memory_new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
-   (*ppData)[i/2] = (byte)
+   (*ppData)[i/2] = (::u8)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
    return true;
@@ -7123,7 +7123,7 @@ namespace aura
    return false;
    ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
-   (byte *)&nValue, sizeof(nValue));
+   (::u8 *)&nValue, sizeof(nValue));
    RegCloseKey(hSecKey);
    return lResult == ERROR_SUCCESS;
    }
@@ -7179,7 +7179,7 @@ namespace aura
    return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (byte *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
+   (::u8 *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
 
    RegCloseKey(hSecKey);
    }
@@ -7197,7 +7197,7 @@ namespace aura
 
    bool application::WriteProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
-   byte * pData, ::u32 nBytes)
+   ::u8 * pData, ::u32 nBytes)
    {
    ASSERT(pszSection != nullptr);
 
@@ -7512,9 +7512,9 @@ namespace aura
    //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
    //{
    //
-   //   __UNREFERENCED_PARAMETER(propertyset);
+   //   UNREFERENCED_PARAMETER(propertyset);
    //
-   //   __UNREFERENCED_PARAMETER(pszMatter);
+   //   UNREFERENCED_PARAMETER(pszMatter);
    //
    //   return "";
 
@@ -7547,7 +7547,7 @@ namespace aura
 //   {
 //      OSVERSIONINFOEX osvi;
 //      DWORDLONG dwlConditionMask = 0;
-//      byte op = VER_GREATER_EQUAL;
+//      ::u8 op = VER_GREATER_EQUAL;
 //
 //      // Initialize the OSVERSIONINFOEX structure.
 //
@@ -7751,7 +7751,7 @@ namespace aura
    void application::on_application_signal(::message::message* pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -7775,9 +7775,9 @@ namespace aura
    i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie)
    {
 
-      __UNREFERENCED_PARAMETER(pszMatter);
-      __UNREFERENCED_PARAMETER(point);
-      __UNREFERENCED_PARAMETER(puie);
+      UNREFERENCED_PARAMETER(pszMatter);
+      UNREFERENCED_PARAMETER(point);
+      UNREFERENCED_PARAMETER(puie);
 
       return 1;
 
@@ -7903,7 +7903,7 @@ namespace aura
    //oswindow application::get_ca2_app_wnd(const ::string & psz)
    //{
 
-   //   __UNREFERENCED_PARAMETER(psz);
+   //   UNREFERENCED_PARAMETER(psz);
 
    //   return nullptr;
 

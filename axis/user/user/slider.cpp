@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "slider.h"
 #include "acme/constant/message.h"
 #include "aura/message/user.h"
@@ -38,7 +38,7 @@ namespace user
 
       pmessage->previous();
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -207,7 +207,7 @@ namespace user
 
       client_rectangle(rectangleClient);
 
-      byte bAlpha1 = (byte) (128.0* get_alpha());
+      ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
       pgraphics->fill_rectangle(rectangleClient, argb(bAlpha1, 250,255,255));
 
@@ -215,7 +215,7 @@ namespace user
 
       get_slider_rect(rectangle);
 
-      byte bAlpha = (byte) (220.0* get_alpha());
+      ::u8 bAlpha = (::u8) (220.0* get_alpha());
 
       pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180), 1.0);
       rectangle.deflate(1,1);

@@ -331,7 +331,7 @@ namespace linux
 //
 //#if(_WIN32_WINNT >= 0x0500)
 //
-//      virtual bool SetLayeredWindowAttributes(color32_t crKey, byte bAlpha, ::u32 dwFlags);
+//      virtual bool SetLayeredWindowAttributes(color32_t crKey, ::u8 bAlpha, ::u32 dwFlags);
 //      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT32 *pptDst, SIZE32 *psize,
 //                                       ::draw2d::graphics * pDCSrc, POINT32 *pptSrc, color32_t crKey, BLENDFUNCTION *pblend, ::u32 dwFlags);
 //
@@ -339,7 +339,7 @@ namespace linux
 //
 //#if(_WIN32_WINNT >= 0x0501)
 //
-//      virtual bool GetLayeredWindowAttributes(color32_t *pcrKey, byte *pbAlpha, ::u32 *pdwFlags) const;
+//      virtual bool GetLayeredWindowAttributes(color32_t *pcrKey, ::u8 *pbAlpha, ::u32 *pdwFlags) const;
 //
 //#endif   // _WIN32_WINNT >= 0x0501
 //
@@ -429,7 +429,7 @@ namespace linux
 //      //      virtual CScrollBar* GetScrollBarCtrl(i32 nBar) const;
 //      // return sibling scrollbar control (or nullptr if none)
 //
-//      virtual i32 ScrollWindowEx(i32 greekdeltax, i32 greekdeltay,
+//      virtual i32 ScrollWindowEx(i32 Δx, i32 Δy,
 //                                 const rectangle & pRectScroll, const rectangle & lpRectClip,
 //
 //                                 ::draw2d::region* prgnUpdate, RECT32 * pRectUpdate, ::u32 flags);

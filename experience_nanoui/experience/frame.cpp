@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -14,6 +14,7 @@
 namespace experience_nanoui
 {
 
+
    frame::frame()
    {
 
@@ -25,7 +26,7 @@ namespace experience_nanoui
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
-      m_rectangleClient.set(0, 0, 0, 0);
+      //m_rectangleClient.set(0, 0, 0, 0);
 
    }
 
@@ -64,7 +65,7 @@ namespace experience_nanoui
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -98,7 +99,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangleScreen;
 
-      pframewindow->best_monitor(rectangleScreen);
+      pframewindow->best_monitor(&rectangleScreen);
 
       ::image_pointer pimage1;
 
@@ -169,10 +170,10 @@ namespace experience_nanoui
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, byte bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
-      pgraphics->fill_rectangle(rectangle, ::color::color(color32, bAlpha));
+      pgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
 
    }
 
@@ -289,7 +290,7 @@ namespace experience_nanoui
 
    //frame::enum_element operator++(frame::enum_element & eelement, i32 i)
    //{
-   //   __UNREFERENCED_PARAMETER(i);
+   //   UNREFERENCED_PARAMETER(i);
    //   return (frame::enum_element) (*((i32*)&eelement))++;
    //}
 
@@ -371,20 +372,20 @@ namespace experience_nanoui
 
       ::color::color color;
 
-      color.set_rgb(colorMoveableBorder);
+      color = colorMoveableBorder;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
-      m_colorMoveableBorderHilight.alpha = 255;
+      m_colorMoveableBorderHilight.set_opaque();
 
-      color.set_rgb(colorMoveableBorder);
+      color = colorMoveableBorder;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
-      m_colorMoveableBorderShadow.alpha = 255;
+      m_colorMoveableBorderShadow.set_opaque();
 
-      color.set_rgb(colorMoveableBorder);
+      color = colorMoveableBorder;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-      m_colorMoveableBorderDkShadow.alpha = 255;
+      m_colorMoveableBorderDkShadow.set_opaque();
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -717,7 +718,7 @@ namespace experience_nanoui
 
          string str;
 
-         pframewindow->get_window_text(str);
+         str = pframewindow->get_window_text();
 
          if(pframewindow->is_active_window())
          {
@@ -772,7 +773,7 @@ namespace experience_nanoui
 
          string wstrWindowText;
 
-         pframewindow->get_window_text(wstrWindowText);
+         wstrWindowText = pframewindow->get_window_text();
 
          pgraphics->set_text_color(m_colorCaptionText);
 
@@ -789,7 +790,7 @@ namespace experience_nanoui
    void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

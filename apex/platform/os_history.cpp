@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "os_history.h"
 #include "shell_launcher.h"
 

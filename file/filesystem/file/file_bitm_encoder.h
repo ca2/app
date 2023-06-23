@@ -1,4 +1,4 @@
-// BitmEncoder.h -- the Most Significant Bit of byte is First
+// BitmEncoder.h -- the Most Significant Bit of ::u8 is First
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
@@ -16,7 +16,7 @@ namespace file
       {
          TOutByte m_Stream;
          u32 m_BitPos;
-         byte m_CurByte;
+         ::u8 m_CurByte;
       public:
          bool Create(u32 bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(writer *outStream) { m_Stream.SetStream(outStream);}
@@ -40,13 +40,13 @@ namespace file
             {
                if (numBits < m_BitPos)
                {
-                  m_CurByte |= ((byte)value << (m_BitPos -= numBits));
+                  m_CurByte |= ((::u8)value << (m_BitPos -= numBits));
                   return;
                }
                numBits -= m_BitPos;
                u32 newBits = (value >> numBits);
                value -= (newBits << numBits);
-               m_Stream.WriteByte((byte)(m_CurByte | newBits));
+               m_Stream.WriteByte((::u8)(m_CurByte | newBits));
                m_BitPos = 8;
                m_CurByte = 0;
             }

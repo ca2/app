@@ -76,9 +76,6 @@ namespace graphics
 
       auto pitem = get_buffer_item();
 
-
-
-
       buffer_size_and_position(pitem);
 
       if (!m_bDibIsHostingBuffer)
@@ -320,15 +317,15 @@ namespace graphics
       //
       //         auto pdata = pimageScreen->get_data();
       //
-      //         byte * p = (byte *)pdata;
+      //         ::u8 * p = (::u8 *)pdata;
       //
-      //         byte r = p[0];
+      //         ::u8 r = p[0];
       //
-      //         byte g = p[1];
+      //         ::u8 g = p[1];
       //
-      //         byte b = p[2];
+      //         ::u8 b = p[2];
       //
-      //         byte a = p[3];
+      //         ::u8 a = p[3];
       //
       //         //::output_debug_string("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
       //

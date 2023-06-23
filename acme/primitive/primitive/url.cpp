@@ -1,4 +1,4 @@
-﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSørensen!!
+// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "url.h"
 //#include "as_string.h"
@@ -412,7 +412,7 @@ namespace url
          if(not_found(pStart))
          {
 
-//xxx            FORMATTED_TRACE("invalid url %s", pszUrl);
+//xxx            information("invalid url %s", pszUrl);
 
             pStart = strUrl.begin();
 

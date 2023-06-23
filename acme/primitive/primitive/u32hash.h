@@ -1,11 +1,11 @@
-﻿//
+//
 //  u32hash.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/11/22.
-//  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 29/11/22.
+//  Copyright (c) 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-//  Refactoring by camilo on 2023-01-09 10:32 <3ThomasBorregaardSørensen!!
+//  Refactoring by camilo on 2023-01-09 10:32 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
@@ -28,7 +28,7 @@ struct u32hash
    constexpr u32hash(FLOATING f) : u32hash(&f, sizeof(f)) { }
    template < typename T >
    constexpr u32hash(const ::pointer < T > & t) : u32hash(t.m_p) { }
-   constexpr u32hash(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((byte*&)p)++; }
+   constexpr u32hash(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((::u8*&)p)++; }
 
 
    constexpr ::u32hash operator + (::u32hash u) 

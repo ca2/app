@@ -16,7 +16,7 @@
 
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
-void my_munmap(void * pcolorref,HANDLE hfile);
+void my_munmap(void * pimage32,HANDLE hfile);
 void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size_i32);
 #endif
 
@@ -368,7 +368,7 @@ namespace hotplugin
 
    }
 
-   void plugin::get_progress_color(byte & uchR, byte & uchG, byte & uchB, double dRate, i32 iProfile)
+   void plugin::get_progress_color(::u8 & uchR, ::u8 & uchG, ::u8 & uchB, double dRate, i32 iProfile)
    {
       double dH = dRate; // blue ==> red => green
       double dL;
@@ -514,12 +514,12 @@ namespace hotplugin
          dG      = (dCMin + dG * dCAdd);
          dB      = (dCMin + dB * dCAdd);
 
-         /*uchR      = (byte) ftol(dR * 255.0);
-         uchG      = (byte) ftol(dG * 255.0);
-         uchB      = (byte) ftol(dB * 255.0);*/
-         uchR      = (byte) (dR * 255.0);
-         uchG      = (byte) (dG * 255.0);
-         uchB      = (byte) (dB * 255.0);
+         /*uchR      = (::u8) ftol(dR * 255.0);
+         uchG      = (::u8) ftol(dG * 255.0);
+         uchB      = (::u8) ftol(dB * 255.0);*/
+         uchR      = (::u8) (dR * 255.0);
+         uchG      = (::u8) (dG * 255.0);
+         uchB      = (::u8) (dB * 255.0);
 
       }
 

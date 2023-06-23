@@ -1,4 +1,4 @@
-//Created on bare metal machine at miami by camilo remotely from ca2 on 2021-10-10 05:00 PM BRT <3ThomasBorregaardSørensen!! Thomas Likes number 5!!
+//Created on bare metal machine at miami by camilo remotely from ca2 on 2021-10-10 05:00 PM BRT <3ThomasBorregaardSorensen!! Thomas Likes number 5!!
 #pragma once
 
 

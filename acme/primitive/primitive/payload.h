@@ -2,8 +2,8 @@
 
 
 #include "type.h"
-#include  "acme/primitive/datetime/earth_time.h"
-#include  "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/datetime/file_time.h"
 #include "acme/graphics/draw2d/color.h"
 #include "ptr.h"
 #include "acme/memory/memory.h"
@@ -59,7 +59,7 @@ public:
       atom                                   m_atom;
       type                                   m_type;
       bool                                   m_b;
-      bool * m_pb;
+      bool *                                 m_pb;
       ::i8                                   m_i8;
       ::u8                                   m_u8;
       ::i16                                  m_i16;
@@ -202,7 +202,7 @@ public:
    {
       m_etype = e_type_new;
       //operator = (p.m_p);
-      _set_element((T*) p.m_p);
+      _set_element((::particle*) p.m_p);
    }
 
    template < class T >

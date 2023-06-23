@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "parallelization.h"
 //#include "api.h"
 ////#include "acme/exception/exception.h"

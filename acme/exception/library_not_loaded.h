@@ -1,4 +1,4 @@
-// Created by camilo on 2022-02-05 21:31 <3ThomasBorregaardS�rensen!! (Thomas likes number 5 : day 5)
+// Created by camilo on 2022-02-05 21:31 <3ThomasBorregaardSorensen!! (Thomas likes number 5 : day 5)
 #pragma once
 
 

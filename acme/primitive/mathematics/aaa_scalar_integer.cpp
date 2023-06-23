@@ -1,4 +1,4 @@
-﻿// From template to class by camilo on 2022-11-17 04:48 ILoveYouThomasBorregaardSørensen!!
+// From template to class by camilo on 2022-11-17 04:48 ILoveYouThomasBorregaardSorensen!!
 #include "framework.h"
 #include "scalar.h"
 ////#include "acme/exception/exception.h"
@@ -7,7 +7,7 @@
 bool scalar_source::get_integer_scalar_minimum(enum_scalar escalar, ::integer& i)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    //i = 0; // by default
 
@@ -19,7 +19,7 @@ bool scalar_source::get_integer_scalar_minimum(enum_scalar escalar, ::integer& i
 bool scalar_source::get_integer_scalar(enum_scalar escalar,::integer & i)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    //i = 1; // by default
 
@@ -31,7 +31,7 @@ bool scalar_source::get_integer_scalar(enum_scalar escalar,::integer & i)
 bool scalar_source::get_integer_scalar_maximum(enum_scalar escalar, ::integer& i)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
    // i = 1; // by default
 
@@ -43,10 +43,10 @@ bool scalar_source::get_integer_scalar_maximum(enum_scalar escalar, ::integer& i
 bool scalar_source::listener::on_set_integer_scalar(scalar_source* psource, enum_scalar escalar, ::integer iValue, int iFlags)
 {
 
-   __UNREFERENCED_PARAMETER(psource);
-   __UNREFERENCED_PARAMETER(escalar);
-   __UNREFERENCED_PARAMETER(iValue);
-   __UNREFERENCED_PARAMETER(iFlags);
+   UNREFERENCED_PARAMETER(psource);
+   UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(iValue);
+   UNREFERENCED_PARAMETER(iFlags);
 
    return false;
 
@@ -240,11 +240,11 @@ bool scalar_source::contains_integer_scalar(enum_scalar escalar, ::integer iValu
 bool scalar_source::on_set_integer_scalar(enum_scalar escalar,::integer iValue,int iFlags)
 {
 
-   __UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(escalar);
 
-   __UNREFERENCED_PARAMETER(iValue);
+   UNREFERENCED_PARAMETER(iValue);
 
-   __UNREFERENCED_PARAMETER(iFlags);
+   UNREFERENCED_PARAMETER(iFlags);
 
    // does nothing by default.
 
@@ -257,7 +257,7 @@ bool scalar_source::on_set_integer_scalar(enum_scalar escalar,::integer iValue,i
 //void scalar_source::get_scalar_minimum(enum_scalar escalar,::integer & i)
 //{
 //
-//   __UNREFERENCED_PARAMETER(escalar);
+//   UNREFERENCED_PARAMETER(escalar);
 //
 //   i = 0; // by default
 //
@@ -266,7 +266,7 @@ bool scalar_source::on_set_integer_scalar(enum_scalar escalar,::integer iValue,i
 //void scalar_source < ::integer > ::get_scalar(enum_scalar escalar,::integer & i)
 //{
 //
-//   __UNREFERENCED_PARAMETER(escalar);
+//   UNREFERENCED_PARAMETER(escalar);
 //
 //   i = 1; // by default
 //
@@ -275,7 +275,7 @@ bool scalar_source::on_set_integer_scalar(enum_scalar escalar,::integer iValue,i
 //void scalar_source < ::integer > ::get_scalar_maximum(enum_scalar escalar,::integer & i)
 //{
 //
-//   __UNREFERENCED_PARAMETER(escalar);
+//   UNREFERENCED_PARAMETER(escalar);
 //
 //   i = 1; // by default
 //

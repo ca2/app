@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system/error_code.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/function.h"
@@ -22,7 +22,7 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-CLASS_DECL_ACME ::i64 integral_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
 
    return ::time::now().integral_nanosecond();
@@ -118,20 +118,20 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 
 }
 
-
-namespace color
-{
-
-
-   ::u32 color::get_COLORREF() const
-   {
-
-      return RGB(red, green, blue);
-   
-   }
-
-
-} // namespace color
+//
+//namespace color
+//{
+//
+//
+//   ::u32 color::u32_COLORREF() const
+//   {
+//
+//      return RGB(red, green, blue);
+//   
+//   }
+//
+//
+//} // namespace color
 
 
 namespace windows

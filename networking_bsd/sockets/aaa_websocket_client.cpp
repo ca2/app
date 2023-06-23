@@ -141,7 +141,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    m.set_size(length);
 
-   u8 * frame = (byte*)m.get_data();
+   u8 * frame = (::u8*)m.get_data();
 
    frame[0] = 0x80 | fin;
 
@@ -436,9 +436,9 @@ namespace networking_bsd
 
    //   m_emethod = http_method_get;
 
-   //   __UNREFERENCED_PARAMETER(host);
+   //   UNREFERENCED_PARAMETER(host);
 
-   //   __UNREFERENCED_PARAMETER(port);
+   //   UNREFERENCED_PARAMETER(port);
 
    //}
 
@@ -480,7 +480,7 @@ namespace networking_bsd
       if (m_eping == ping_sent_ping && m_durationLastPing.elapsed() > m_durationClientPingTimeout)
       {
 
-         INFORMATION("PING TIMEOUT!!");
+         information() << "PING TIMEOUT!!";
 
          SetCloseAndDelete();
 
@@ -813,7 +813,7 @@ namespace networking_bsd
 
          //str += strLine + "\r\n";
 
-         //FORMATTED_TRACE("%s", strLine);
+         //information("%s", strLine);
 
          m_memResponse.append(buf, len);
 

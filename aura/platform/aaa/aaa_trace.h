@@ -208,11 +208,11 @@ public:
 #define __trace_logger(trace_context) trace_logger(__FUNCTION__, __FILE__, __LINE__, trace_object(trace_context))
 
 
-#undef TRACE
+#undef information
 #undef _S_TRACE
 
 
-#define TRACE __trace_logger(ALOG_CONTEXT)
+#define information __trace_logger(ALOG_CONTEXT)
 #define _S_TRACE __trace_logger(_S_ALOG_CONTEXT)
 
 
@@ -342,10 +342,10 @@ namespace aura
 
 
 
-      //CLASS_DECL_AURA void __cdecl TRACE(const ::string & pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl TRACE(const unichar * pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl TRACE(uptr dwCategory,::u32 nLevel, const ::string & pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl TRACE(uptr dwCategory,::u32 nLevel,const unichar * pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(const ::string & pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(const unichar * pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,::u32 nLevel, const ::string & pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,::u32 nLevel,const unichar * pszFormat,...);
 
    } // namespace trace
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include  "apex/_.h"
@@ -7,13 +7,7 @@
 #include "_constant.h"
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
-
-
-#include "acme/primitive/geometry2d/_collection.h"
-
-
-#include "acme/primitive/mathematics/c_number.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 CLASS_DECL_ACME ::critical_section * children_critical_section();
@@ -428,20 +422,10 @@ class thumbnail_dc;               // Virtual DC for print thumbnail
 class mini_dock_frame_window;
 
 
-
-
 CLASS_DECL_AURA ::user::e_mouse user_key_to_user_mouse(::user::e_key ekeyButton);
 
 
-
-struct size_parent_layout
-{
-
-   ::rectangle_i32      m_rectangle;     // parent client rectangle (trim as appropriate)
-   ::size_i32           m_sizeTotal;     // total size on each side as on_layout proceeds
-   bool                 m_bStretch;      // should stretch to fill all space
-
-};
+struct size_parent_layout;
 
 
 

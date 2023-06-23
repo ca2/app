@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "interaction_impl.h"
@@ -359,7 +359,7 @@ namespace user
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFORMATION("filemanager");
+            //information() << "filemanager";
 
          }
 
@@ -378,11 +378,11 @@ namespace user
             if (m_strDebugType.contains("filemanager"))
             {
 
-               //INFORMATION("filemanager");
+               //information() << "filemanager";
 
             }
 
-            CATEGORY_INFORMATION(appmsg, __type_name(this) << " thread::pump_message - Received e_message_quit.\n");
+            information()(e_trace_category_appmsg) << __type_name(this) << " thread::pump_message - Received e_message_quit.\n";
 
             //::output_debug_string(__type_name(this)) << " thread::pump_message - Received e_message_quit.\n");
 
@@ -436,13 +436,13 @@ namespace user
                if (m_strDebugType.contains("notify_icon"))
                {
 
-                  INFORMATION("notify_icon");
+                  information() << "notify_icon";
 
                }
                else if (m_strDebugType.contains("main_frame"))
                {
 
-                  INFORMATION("main_frame");
+                  information() << "main_frame";
 
                }
 
@@ -466,7 +466,7 @@ namespace user
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFORMATION("filemanager");
+            //information() << "filemanager";
 
          }
 
@@ -491,7 +491,7 @@ namespace user
       catch (...)
       {
 
-         INFORMATION("... exception");
+         information() << "... exception";
 
       }
 
@@ -554,7 +554,7 @@ namespace user
                         if (strType.case_insensitive_contains("filemanager"))
                         {
 
-                           //INFORMATION("filemanager");
+                           //information() << "filemanager";
 
                         }
 
@@ -616,13 +616,13 @@ namespace user
       catch(const ::exception & exception)
       {
          
-         ERROR("Exception Reached Thread Loop" << exception.m_strMessage << exception.m_strDetails);
+         error() <<"Exception Reached Thread Loop" << exception.m_strMessage << exception.m_strDetails;
 
       }
       catch(...)
       {
          
-         ERROR("Exception Reached Thread Loop");
+         error() <<"Exception Reached Thread Loop";
 
       }
 
@@ -834,7 +834,7 @@ namespace user
 
       ASSERT_VALID(this);
 
-      INFORMATION("user::thread::run");
+      information() << "user::thread::run";
 
       if (m_strDebugType.contains("main_frame"))
       {
@@ -921,7 +921,7 @@ namespace user
                if (m_strDebugType.contains("filemanager"))
                {
 
-                  //INFORMATION("filemanager");
+                  //information() << "filemanager";
 
                }
 
@@ -980,7 +980,7 @@ namespace user
       if (m_strDebugType.contains("filemanager"))
       {
 
-         //INFORMATION("filemanager");
+         //information() << "filemanager";
 
       }
 
@@ -1129,7 +1129,7 @@ namespace user
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFORMATION("filemanager");
+            //information() << "filemanager";
 
          }
 
@@ -1155,7 +1155,7 @@ namespace user
 
       if (m_pimpl && m_pimpl->m_puserinteraction && m_pimpl->m_puserinteraction->m_strName.contains("notify_icon"))
       {
-         INFORMATION("notify_icon");
+         information() << "notify_icon";
       }
 
       synchronous_lock synchronouslock(this->synchronization());

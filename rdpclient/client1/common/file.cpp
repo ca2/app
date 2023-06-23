@@ -47,7 +47,7 @@
 
 //#define DEBUG_CLIENT_FILE	1
 
-static byte BOM_UTF16_LE[2] = { 0xFF, 0xFE };
+static ::u8 BOM_UTF16_LE[2] = { 0xFF, 0xFE };
 static WCHAR CR_LF_STR_W[] = { '\r', '\n', '\0' };
 
 #define INVALID_INTEGER_VALUE		0xFFFFFFFF
@@ -490,7 +490,7 @@ static BOOL freerdp_client_parse_rdp_file_option_ascii(rdpFile* file, char* opti
 	return freerdp_client_add_option(file, option);
 }
 
-static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const byte* buffer, size_t size)
+static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const ::u8* buffer, size_t size)
 {
 	int index;
 	int length;
@@ -570,7 +570,7 @@ next_line:
 	return true;
 }
 
-static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const byte* buffer, size_t size)
+static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const ::u8* buffer, size_t size)
 {
 	int index;
 	int length;
@@ -649,7 +649,7 @@ next_line:
 	return true;
 }
 
-BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const byte* buffer, size_t size)
+BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const ::u8* buffer, size_t size)
 {
 	if (size < 2)
 		return false;
@@ -663,7 +663,7 @@ BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const byte* buffer, siz
 BOOL freerdp_client_parse_rdp_file(rdpFile* file, const ::string & name)
 {
 	BOOL status;
-	byte* buffer;
+	::u8* buffer;
 	FILE* fp = nullptr;
 	size_t read_size;
 	long int filesize;
@@ -683,7 +683,7 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const ::string & name)
 		return false;
 	}
 
-	buffer = (byte*) malloc(filesize + 2);
+	buffer = (::u8*) malloc(filesize + 2);
 	if (!buffer)
 	{
 		fclose(fp);
@@ -799,8 +799,8 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const ::string & name, B
 		{
 			ConvertToUnicode(CP_UTF8, 0, buffer, length, &unicodestr, 0);
 
-			/* Write multi-byte header */
-			if (fwrite(BOM_UTF16_LE, sizeof(byte), 2, fp) != 2 ||
+			/* Write multi-::u8 header */
+			if (fwrite(BOM_UTF16_LE, sizeof(::u8), 2, fp) != 2 ||
 					fwrite(unicodestr, 2, length, fp) != length)
 			{
 				free(buffer);
@@ -967,7 +967,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 
 	if (~((size_t) file->LoadBalanceInfo))
 	{
-		settings->LoadBalanceInfo = (byte*) _strdup(file->LoadBalanceInfo);
+		settings->LoadBalanceInfo = (::u8*) _strdup(file->LoadBalanceInfo);
 		if (!settings->LoadBalanceInfo)
 			return false;
 		settings->LoadBalanceInfoLength = (int) strlen((char*) settings->LoadBalanceInfo);
@@ -984,7 +984,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 *
 		 * Values:
 		 *
-		 * 0: If server authentication fails, connect to the computer without warning (Connect and don’t warn me).
+		 * 0: If server authentication fails, connect to the computer without warning (Connect and don't warn me).
 		 * 1: If server authentication fails, do not establish a connection (Do not connect).
 		 * 2: If server authentication fails, show a warning and allow me to connect or refuse the connection (Warn me).
 		 * 3: No authentication requirement is specified.

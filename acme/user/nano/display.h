@@ -1,10 +1,10 @@
-﻿//
-// Created by camilo on 12/04-April/2022. 22:07 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 12/04-April/2022. 22:07 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 ////#include "acme/primitive/primitive/object.h"
 
 

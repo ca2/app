@@ -2,8 +2,8 @@
 //  _string_base_meta_data.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 08/06/22.
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 08/06/22.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //  as _impl_string_meta_data.h from _impl_string_base.h by
 //  camilo on 2023-03-07 15:05 BRT <3ThomasBorregaardSorensen!!
 //

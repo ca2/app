@@ -2,9 +2,9 @@
 //  windows_time.cpp
 //  acme
 //
-//  Created by Camilo Sasuke <3 Thomas Borregaard Sørensen on 14/02/22.
+//  Created by Camilo Sasuke <3 Thomas Borregaard Soerensen on 14/02/22.
 //  14:35
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 #include "windows_time.h"
@@ -454,7 +454,7 @@ PLARGE_INTEGER Time)
 {
    ::i32 bias;
 
-//xxx    TRACE("(%point, %point_i32)\n", LocalTime, SystemTime);
+//xxx    information("(%point, %point_i32)\n", LocalTime, SystemTime);
 
    bias = TIME_GetBias();
    SystemTime->QuadPart = LocalTime->QuadPart + bias * (::i64)TICKSPERSEC;
@@ -479,7 +479,7 @@ NTSTATUS RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
 {
    ::i32 bias;
 
-//xxx    TRACE("(%point, %point_i32)\n", SystemTime, LocalTime);
+//xxx    information("(%point, %point_i32)\n", SystemTime, LocalTime);
 
    bias = TIME_GetBias();
    LocalTime->QuadPart = SystemTime->QuadPart - bias * (::i64)TICKSPERSEC;
@@ -823,7 +823,7 @@ static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
    start = minimum;
    tm = localtime(&start);
    *is_dst = !tm->tm_isdst;
-// xxx    FORMATTED_TRACE("starting date isdst %d, %s", !*is_dst, ctime(&start));
+// xxx    information("starting date isdst %d, %s", !*is_dst, ctime(&start));
 
    while (minimum <= maximum)
    {
@@ -862,25 +862,25 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 
    memory_set(tzi, 0, sizeof(*tzi));
 
-//xxx    FORMATTED_TRACE("tz data will be valid through year %d\n", tm->tm_year + 1900);
+//xxx    information("tz data will be valid through year %d\n", tm->tm_year + 1900);
    current_year = tm->tm_year;
 
    tm->tm_isdst = 0;
    tm->tm_mday = 1;
    tm->tm_mon = tm->tm_hour = tm->tm_min = tm->tm_sec = tm->tm_wday = tm->tm_yday = 0;
    year_start = mktime(tm);
-//xxx    FORMATTED_TRACE("year_start: %s", ctime(&year_start));
+//xxx    information("year_start: %s", ctime(&year_start));
 
    tm->tm_mday = tm->tm_wday = tm->tm_yday = 0;
    tm->tm_mon = 12;
    tm->tm_hour = 23;
    tm->tm_min = tm->tm_sec = 59;
    year_end = mktime(tm);
-//xxx    FORMATTED_TRACE("year_end: %s", ctime(&year_end));
+//xxx    information("year_end: %s", ctime(&year_end));
 
    tm = gmtime(&year_start);
    tzi->Bias = (::i32)(mktime(tm) - year_start) / 60;
-//xxx    FORMATTED_TRACE("bias: %d\n", tzi->Bias);
+//xxx    information("bias: %d\n", tzi->Bias);
 
    tmp = find_dst_change(year_start, year_end, &is_dst);
    if (is_dst)
@@ -894,18 +894,18 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    else
       iStandard = tmp;
 
-//xxx    FORMATTED_TRACE("Standard: %s", ctimeiStandardstd));
-//xxx    FORMATTED_TRACE("dlt: %s", ctime(&dlt));
+//xxx    information("Standard: %s", ctimeiStandardstd));
+//xxx    information("dlt: %s", ctime(&dlt));
 
    if (dlt == iStandard || !dlt || !iStandard)
    {
-//xxx   TRACE("there is no daylight saving rules in this time zone\n");
+//xxx   information("there is no daylight saving rules in this time zone\n");
    }
    else
    {
       tmp = dlt - tzi->Bias * 60;
       tm = gmtime(&tmp);
-//xxx   FORMATTED_TRACE("dlt gmtime: %s", asctime(tm));
+//xxx   information("dlt gmtime: %s", asctime(tm));
 
       tzi->DaylightBias = -60;
       tzi->DaylightDate.wYear = tm->tm_year + 1900;
@@ -917,7 +917,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
       tzi->DaylightDate.wSecond = tm->tm_sec;
       tzi->DaylightDate.wMilliseconds = 0;
 
-//xxx        FORMATTED_TRACE("daylight (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
+//xxx        information("daylight (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
 //xxx            tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth,
 //xxx            tzi->DaylightDate.wYear, tzi->DaylightDate.wDayOfWeek,
 //xxx            tzi->DaylightDate.wHour, tzi->DaylightDate.wMinute,
@@ -926,7 +926,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 
       tmp = iStandard - tzi->Bias * 60 - tzi->DaylightBias * 60;
       tm = gmtime(&tmp);
-//xxx        FORMATTED_TRACE("Standard gmtime: %s", asctime(tm));
+//xxx        information("Standard gmtime: %s", asctime(tm));
 
       tzi->StandardBias = 0;
       tzi->StandardDate.wYear = tm->tm_year + 1900;
@@ -938,7 +938,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
       tzi->StandardDate.wSecond = tm->tm_sec;
       tzi->StandardDate.wMilliseconds = 0;
 
-//xxx        FORMATTED_TRACE("standard (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
+//xxx        information("standard (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
 //xxx            tzi->StandardDate.wDay, tzi->StandardDate.wMonth,
 //xxx            tzi->StandardDate.wYear, tzi->StandardDate.wDayOfWeek,
 //xxx            tzi->StandardDate.wHour, tzi->StandardDate.wMinute,
@@ -1029,7 +1029,7 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
    if (!settimeofday(&tv, nullptr)) /* 0 is OK, -1 is error */
       return STATUS_SUCCESS;
    //tm_t = sec;
-   // xxx FORMATTED_ERROR("Cannot set time to %s, time adjustment %ld: %s\n",
+   // xxx error("Cannot set time to %s, time adjustment %ld: %s\n",
    // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
    if (errno == EPERM)
       return STATUS_PRIVILEGE_NOT_HELD;

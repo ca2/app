@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "text_stream.h"
 #include "exception.h"
 
@@ -268,7 +268,7 @@ namespace file
 
       //void exception::dump(dump_context& dumpcontext) const
       //{
-      //   __UNREFERENCED_PARAMETER(dumpcontext);
+      //   UNREFERENCED_PARAMETER(dumpcontext);
       //   //matter::dump(dumpcontext);
 
       //   /*   dumpcontext << "m_cause = ";
@@ -428,7 +428,7 @@ namespace file
 //
 //      ::acme::application* papp = ::get_app();
 //
-//      TRACE(strFormat);
+//      information(strFormat);
 //
 //#endif // __DEBUG
 //

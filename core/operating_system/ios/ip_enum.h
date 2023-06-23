@@ -2,7 +2,7 @@
 //  ios_ip_enum.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/09/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 07/09/17.
 //
 //
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "listing.h"
 #include "enumerator.h"
 #include "acme/platform/scoped_restore.h"
@@ -130,22 +130,19 @@ namespace file
 
       ASSERT(path.m_iDir >= 0);
 
+      bool bMatches = true;
+
       if (m_straPattern.has_element())
       {
 
-         if (!matches_wildcard_criteria_ci(m_straPattern, path.name()))
-         {
-
-            return;
-
-         }
+         bMatches = matches_wildcard_criteria_ci(m_straPattern, path.name());
 
       }
 
       if (path.m_iDir == 1)
       {
 
-         if (m_eflag & ::file::e_flag_folder)
+         if (m_eflag & ::file::e_flag_folder && bMatches)
          {
 
             add(path);
@@ -184,7 +181,7 @@ namespace file
       else if (path.m_iDir == 0)
       {
 
-         if (m_eflag & ::file::e_flag_file)
+         if (m_eflag & ::file::e_flag_file && bMatches)
          {
 
             add(path);
@@ -271,7 +268,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
       if (strValue.case_insensitive_begins("resident"))
       {
 
-         output_debug_string("resident*");
+         //output_debug_string("resident*");
 
       }
 

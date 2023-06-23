@@ -20,6 +20,7 @@
 
 #include "_constant.h"
 #include "types.h"
+#include "acme/primitive/geometry2d/angle.h"
 
 
 namespace nano2d
@@ -335,6 +336,8 @@ namespace nano2d
 
 		// Creates new rectangle shaped sub-path.
 		virtual void rectangle(float x, float y, float w, float h);
+
+		virtual void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color & color, int width);
 
 		// Creates new rounded rectangle shaped sub-path.
 		virtual void rounded_rectangle(float x, float y, float w, float h, float r);

@@ -2,7 +2,7 @@
 //  user_mouse.hpp
 //  base
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 14/08/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 14/08/17.
 //
 //
 #pragma once
@@ -10,7 +10,7 @@
 
 //#include "acme/primitive/primitive/particle.h"
 //#include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/point.h"
 
 
 namespace user
@@ -61,6 +61,10 @@ namespace user
       void clear_middle_button_pressed() { m_ebuttonstate &= ::user::e_button_state_middle; }
       void clear_x1_button_pressed() { m_ebuttonstate &= ::user::e_button_state_x1; }
       void clear_x2_button_pressed() { m_ebuttonstate &= ::user::e_button_state_x2; }
+
+      
+      ::user::mouse & operator = (const ::user::mouse & mouse);
+
 
    };
 

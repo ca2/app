@@ -417,8 +417,8 @@ pacmedirectory->ca2roaming() / "home";
    ::file::path dir_context::time_square(const ::string & strPrefix, const ::string & strSuffix)
    {
 
-      __UNREFERENCED_PARAMETER(strPrefix);
-      __UNREFERENCED_PARAMETER(strSuffix);
+      UNREFERENCED_PARAMETER(strPrefix);
+      UNREFERENCED_PARAMETER(strSuffix);
       return time() / "time";
 
    }
@@ -530,7 +530,7 @@ pacmedirectory->ca2roaming() / "home";
 
                string strError = get_last_error_message(dwError);
 
-               FORMATTED_TRACE("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
+               information("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
 
                //m_isdirmap.set(stra[i], false, 0);
 
@@ -645,7 +645,7 @@ try1:;
    //::file::path dir_context::usersystemappdata(const ::string & strPrefix)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pparticle);
+   //   UNREFERENCED_PARAMETER(pparticle);
 
    //   return appdata() / strPrefix;
 
@@ -680,7 +680,7 @@ try1:;
    //::file::path dir_context::default_os_user_path_prefix()
    //{
 
-   //   __UNREFERENCED_PARAMETER(pparticle);
+   //   UNREFERENCED_PARAMETER(pparticle);
 
    //   return "CurrentUser";
 

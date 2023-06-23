@@ -2,7 +2,7 @@
 //  apple_time.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 01/10/17.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 01/10/17.
 //
 
 #include "framework.h"
@@ -38,14 +38,14 @@ CLASS_DECL_ACME ::i64 _get_nanosecond()
 
 void utc_timespec(timespec * ptimespec);
 
-CLASS_DECL_ACME ::i64 integral_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
    
    struct timespec timespec;
 
    utc_timespec(&timespec);
 
-    return timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec;
+   return timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec;
 
 }
 

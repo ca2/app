@@ -28,15 +28,15 @@ namespace datetime
       void clock::_001OnDraw(::draw2d::graphics * pgraphics)
       {
    
-         __UNREFERENCED_PARAMETER(pgraphics);
+         UNREFERENCED_PARAMETER(pgraphics);
 
       }
 
 
       void clock::GetRect(::rectangle_i32 * lprect, enum_element eelement)
       {
-         __UNREFERENCED_PARAMETER(lprect);
-         __UNREFERENCED_PARAMETER(eelement);
+         UNREFERENCED_PARAMETER(lprect);
+         UNREFERENCED_PARAMETER(eelement);
       }
 
 
@@ -73,7 +73,7 @@ namespace datetime
       }
 
 
-      enum_element clock::hit_test(const point_i32 & point)
+      enum_element clock::hit_test(const point_i32 & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
@@ -98,7 +98,7 @@ namespace datetime
 
          ::rectangle_i32 rectangle;
 
-         GetRect(rectangle, eelement);
+         GetRect(&rectangle, eelement);
 
          return rectangle.contains(pt) != false;
 

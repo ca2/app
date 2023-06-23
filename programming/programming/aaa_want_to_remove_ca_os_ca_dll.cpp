@@ -5,7 +5,7 @@ extern "C" int APIENTRY
 DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 {
    // erase this if you use lpReserved
-   __UNREFERENCED_PARAMETER(lpReserved);
+   UNREFERENCED_PARAMETER(lpReserved);
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
@@ -15,7 +15,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       /* initialize client library */
       if(mysql_library_init(0,nullptr,nullptr))
       {
-         TRACE("mysql_library_init() failed\n");
+         information("mysql_library_init() failed\n");
          return false;
       }
 #endif

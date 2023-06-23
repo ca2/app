@@ -31,13 +31,13 @@
 
 #define TAG CLIENT_TAG("windows")
 
-HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, byte* data, byte** pdata)
+HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, ::u8* data, ::u8** pdata)
 {
 	HDC hdc;
 	int negHeight;
 	HBITMAP bitmap;
 	BITMAPINFO bmi;
-	byte* cdata = nullptr;
+	::u8* cdata = nullptr;
 
 	/**
 	 * See: http://msdn.microsoft.com/en-us/library/dd183376
@@ -72,7 +72,7 @@ HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, byte* data
 	return bitmap;
 }
 
-wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, byte* data)
+wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, ::u8* data)
 {
 	HDC hdc;
 /*	wfBitmap* pimage;
@@ -148,12 +148,12 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //}
 //
 //void wf_Bitmap_Decompress(wfContext* wfc, rdpBitmap* bitmap,
-//		byte* data, int width, int height, int bpp, int length, BOOL compressed, int codecId)
+//		::u8* data, int width, int height, int bpp, int length, BOOL compressed, int codecId)
 //{
 //	int status;
 //	::u3216 size;
-//	byte* pSrcData;
-//	byte* pDstData;
+//	::u8* pSrcData;
+//	::u8* pDstData;
 //	::u32 SrcSize;
 //	::u32 SrcFormat;
 //	::u32 bytesPerPixel;
@@ -162,9 +162,9 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //	size = width * height * 4;
 //
 //	if (!bitmap->data)
-//		bitmap->data = (byte*) _aligned_malloc(size, 16);
+//		bitmap->data = (::u8*) _aligned_malloc(size, 16);
 //	else
-//		bitmap->data = (byte*) _aligned_realloc(bitmap->data, size, 16);
+//		bitmap->data = (::u8*) _aligned_realloc(bitmap->data, size, 16);
 //
 //	pSrcData = data;
 //	SrcSize = (::u32) length;
@@ -222,14 +222,14 @@ void wf_Pointer_New(wfContext* wfc, rdpPointer* pointer)
 {
 	HCURSOR hCur;
 	ICONINFO info;
-	byte *data;
+	::u8 *data;
 
 	info.fIcon = false;
 	info.xHotspot = pointer->xPos;
 	info.yHotspot = pointer->yPos;
 	if (pointer->xorBpp == 1)
 	{
-		data = (byte*) malloc(pointer->lengthAndMask + pointer->lengthXorMask);
+		data = (::u8*) malloc(pointer->lengthAndMask + pointer->lengthXorMask);
 		CopyMemory(data, pointer->andMaskData, pointer->lengthAndMask);
 		CopyMemory(data + pointer->lengthAndMask, pointer->xorMaskData, pointer->lengthXorMask);
 		info.hbmMask = CreateBitmap(pointer->width, pointer->height * 2, 1, 1, data);
@@ -238,11 +238,11 @@ void wf_Pointer_New(wfContext* wfc, rdpPointer* pointer)
 	}
 	else
 	{
-		data = (byte*) malloc(pointer->lengthAndMask);
+		data = (::u8*) malloc(pointer->lengthAndMask);
 //		freerdp_bitmap_flip(pointer->andMaskData, data, (pointer->width + 7) / 8, pointer->height);
 		info.hbmMask = CreateBitmap(pointer->width, pointer->height, 1, 1, data);
 		free(data);
-		data = (byte*) malloc(pointer->lengthXorMask);
+		data = (::u8*) malloc(pointer->lengthXorMask);
 		//freerdp_image_flip(pointer->xorMaskData, data, pointer->width, pointer->height, pointer->xorBpp);
 		info.hbmColor = CreateBitmap(pointer->width, pointer->height, 1, pointer->xorBpp, data);
 		free(data);

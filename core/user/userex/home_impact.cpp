@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "home_impact.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -11,16 +11,16 @@
 
 //#if defined(__APPLE__)
 //#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
-//#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
-//#define COLORREF_get_r_value(color32) colorref_get_r_value(color32)
-//#define COLORREF_get_g_value(color32) colorref_get_g_value(color32)
-//#define COLORREF_get_b_value(color32) colorref_get_b_value(color32)
+//#define COLORREF_get_a_value(color32) color32_u8_opacity(color32)
+//#define COLORREF_get_r_value(color32) color32_u8_red(color32)
+//#define COLORREF_get_g_value(color32) color32_u8_green(color32)
+//#define COLORREF_get_b_value(color32) color32_u8_blue(color32)
 //#else
 //#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
-//#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
-//#define COLORREF_get_r_value(color32) colorref_get_b_value(color32)
-//#define COLORREF_get_g_value(color32) colorref_get_g_value(color32)
-//#define COLORREF_get_b_value(color32) colorref_get_r_value(color32)
+//#define COLORREF_get_a_value(color32) color32_u8_opacity(color32)
+//#define COLORREF_get_r_value(color32) color32_u8_blue(color32)
+//#define COLORREF_get_g_value(color32) color32_u8_green(color32)
+//#define COLORREF_get_b_value(color32) color32_u8_red(color32)
 //#endif
 
 
@@ -127,7 +127,7 @@ namespace userex
    void home_impact::on_message_show_window(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
    }

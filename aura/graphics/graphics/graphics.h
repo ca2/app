@@ -1,8 +1,10 @@
-﻿#pragma once
+#pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 ////#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/geometry2d/point.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 

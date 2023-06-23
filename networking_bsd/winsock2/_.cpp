@@ -1,4 +1,4 @@
-// Created by camilo on 2022-09-10 13:40 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-09-10 13:40 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 
 
@@ -13,9 +13,9 @@ static bool g_bWsaStartup = false;
 CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
 {
 
-   byte byteHi = 2;
+   ::u8 byteHi = 2;
 
-   byte byteLo = 2;
+   ::u8 byteLo = 2;
 
    if (!g_bWsaStartup)
    {
@@ -36,7 +36,7 @@ CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
 
    }
 
-   if (__LOBYTE(g_wsadata.wVersion) < byteHi || (__LOBYTE(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
+   if (lower_u8(g_wsadata.wVersion) < byteHi || (lower_u8(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
    {
 
       output_debug_string("Could not find a usable version of Winsock.dll!\n");

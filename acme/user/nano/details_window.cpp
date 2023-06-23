@@ -1,11 +1,11 @@
 //
-// Created by camilo on 06/02/2022 12:17 <3ThomasBorregaardSørensen!!
+// Created by camilo on 06/02/2022 12:17 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "details_window.h"
 #include "window_implementation.h"
 #include "button.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 //#include "acme/operating_system.h"
 
 

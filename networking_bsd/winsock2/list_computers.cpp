@@ -1,4 +1,4 @@
-﻿// Created by Camilo on 2023-01-31 05:45 <3ThomasBorregaardSørensen!!
+// Created by Camilo on 2023-01-31 05:45 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "../networking.h"
 #include "../address.h"

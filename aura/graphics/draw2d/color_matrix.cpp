@@ -107,7 +107,7 @@ color_matrix & color_matrix::saturation(double r, double g, double b, double s)
 color_matrix & color_matrix::opacity(class ::opacity opacity)
 {
 
-   d4 = opacity.get_opacity_rate();
+   d4 = opacity.f32_opacity();
 
    return *this;
 

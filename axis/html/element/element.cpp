@@ -427,7 +427,9 @@ namespace html
 
             if (m_pimpl->m_margin.left > 1.0f)
             {
-               TRACE("margin-left greater than 1.0f");
+
+               information("margin-left greater than 1.0f");
+
             }
 
          }
@@ -467,7 +469,7 @@ namespace html
    void element::implement_phase2(html_data * phtmldata)
    {
 
-      __UNREFERENCED_PARAMETER(phtmldata);
+      UNREFERENCED_PARAMETER(phtmldata);
 
    }
 
@@ -1250,7 +1252,7 @@ namespace html
    void element::parse_attributes(html_data * phtmldata, ::ansi_range & range)
    {
 
-      __UNREFERENCED_PARAMETER(phtmldata);
+      UNREFERENCED_PARAMETER(phtmldata);
 
       char chQuote;
 
@@ -1902,7 +1904,7 @@ namespace html
    //}
 
 
-   ::color::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
+   ::color::color element::get_color(::user::style * pstyle, ::css::enum_plain_color ecolor)
    {
 
       ::color::color color;

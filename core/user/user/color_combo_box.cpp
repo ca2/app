@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "color_combo_box.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
@@ -231,7 +231,7 @@ namespace user
 
       //auto pmouse = pmessage->m_union.m_pmouse;
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if (!::is_set(m_pitemHover))
       {
@@ -252,7 +252,7 @@ namespace user
 
       //auto pmouse = pmessage->m_union.m_pmouse;
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       m_pitemHover = nullptr;
 
@@ -390,7 +390,7 @@ namespace user
 
          ::color::color color(m_hls);
 
-         color.alpha = 255;
+         color.set_opaque();
 
          ::draw2d::brush_pointer pbrush(e_create, this);
 
@@ -446,7 +446,7 @@ namespace user
 
          rEdit.deflate(rectanglePadding);
 
-         pgraphics->fill_rectangle(rEdit, color.get_rgba());
+         pgraphics->fill_rectangle(rEdit, color);
 
       }
 
@@ -458,7 +458,7 @@ namespace user
 
       ::color::color color(get_color(pstyle, estate));
 
-      if (!color)
+      if (color.is_transparent())
       {
 
          color = argb(210, 230, 230, 230);

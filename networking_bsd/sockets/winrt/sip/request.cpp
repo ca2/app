@@ -43,12 +43,12 @@ namespace sip
 
    void request::InitBody( memsize sz )
    {
-      __UNREFERENCED_PARAMETER(sz);
+      UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
          m_file = std::auto_ptr<IFile>(memory_new MemFile);
    DEBUG_ONLY(   else
-         TRACE("Body data file already opened\n");*/
+         information("Body data file already opened\n");*/
    }
 
 

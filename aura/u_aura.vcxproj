@@ -106,6 +106,7 @@
     <ClInclude Include="graphics\draw2d\object.h" />
     <ClInclude Include="graphics\draw2d\palette.h" />
     <ClInclude Include="graphics\draw2d\path.h" />
+    <ClInclude Include="graphics\draw2d\path_optimization.h" />
     <ClInclude Include="graphics\draw2d\path_shape.h" />
     <ClInclude Include="graphics\draw2d\path_simple_optimization.h" />
     <ClInclude Include="graphics\draw2d\pen.h" />
@@ -123,6 +124,16 @@
     <ClInclude Include="graphics\draw2d\_visual_impl.h" />
     <ClInclude Include="graphics\draw3d\ortho.h" />
     <ClInclude Include="graphics\draw3d\_draw3d.h" />
+    <ClInclude Include="graphics\gpu\aaaa_gpu.h" />
+    <ClInclude Include="graphics\gpu\approach.h" />
+    <ClInclude Include="graphics\gpu\buffer.h" />
+    <ClInclude Include="graphics\gpu\context.h" />
+    <ClInclude Include="graphics\gpu\object.h" />
+    <ClInclude Include="graphics\gpu\program.h" />
+    <ClInclude Include="graphics\gpu\render.h" />
+    <ClInclude Include="graphics\gpu\shader.h" />
+    <ClInclude Include="graphics\gpu\_.h" />
+    <ClInclude Include="graphics\gpu\_constant.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\graphics\buffer.h" />
     <ClInclude Include="graphics\graphics\console.h" />
@@ -370,11 +381,6 @@
     </ClCompile>
     <ClCompile Include="game\estamira.cpp" />
     <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="gpu\gpu\approach.cpp" />
-    <ClCompile Include="gpu\gpu\buffer.cpp" />
-    <ClCompile Include="gpu\gpu\context.cpp" />
-    <ClCompile Include="gpu\gpu\program.cpp" />
-    <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\alpha.cpp" />
     <ClCompile Include="graphics\draw2d\api.cpp" />
     <ClCompile Include="graphics\draw2d\bitmap.cpp" />
@@ -432,14 +438,21 @@
     <ClCompile Include="graphics\draw2d\object.cpp" />
     <ClCompile Include="graphics\draw2d\palette.cpp" />
     <ClCompile Include="graphics\draw2d\path.cpp" />
+    <ClCompile Include="graphics\draw2d\path_optimization.cpp" />
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp" />
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />
     <ClCompile Include="graphics\draw2d\region.cpp" />
-    <ClCompile Include="graphics\draw2d\region_item.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
+    <ClCompile Include="graphics\gpu\approach.cpp" />
+    <ClCompile Include="graphics\gpu\buffer.cpp" />
+    <ClCompile Include="graphics\gpu\context.cpp" />
+    <ClCompile Include="graphics\gpu\object.cpp" />
+    <ClCompile Include="graphics\gpu\program.cpp" />
+    <ClCompile Include="graphics\gpu\render.cpp" />
+    <ClCompile Include="graphics\gpu\shader.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
     <ClCompile Include="graphics\graphics\buffer.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />
@@ -451,6 +464,7 @@
     <ClCompile Include="graphics\image\context_image.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
     <ClCompile Include="graphics\image\drawer.cpp" />
+    <ClCompile Include="graphics\image\drawing.cpp" />
     <ClCompile Include="graphics\image\dynamic.cpp" />
     <ClCompile Include="graphics\image\extension.cpp" />
     <ClCompile Include="graphics\image\fastblur.cpp" />
@@ -476,7 +490,6 @@
     <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp" />
     <ClCompile Include="graphics\write_text\font_list.cpp" />
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp" />
     <ClCompile Include="graphics\write_text\glyph.cpp" />
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />
@@ -762,7 +775,6 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -770,8 +782,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -779,7 +789,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -787,7 +796,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">
     <GenerateManifest>false</GenerateManifest>
@@ -795,8 +803,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -804,7 +810,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">
     <GenerateManifest>false</GenerateManifest>
@@ -812,7 +817,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -820,8 +824,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -830,31 +832,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -870,27 +858,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -905,31 +883,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -945,26 +909,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">
     <ClCompile>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -978,27 +933,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|arm'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1013,22 +958,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">
     <ClCompile>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1043,31 +983,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -1083,28 +1009,19 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
-      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <MapFileName>
+      </MapFileName>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

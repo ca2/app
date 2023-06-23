@@ -1,5 +1,5 @@
 //
-// Created by camilo on 26/11/2020. CamiloSasukeThomasBorregaardSørensen
+// Created by camilo on 26/11/2020. CamiloSasukeThomasBorregaardSorensen
 //
 #include "framework.h"
 #include "os_theme_colors.h"

@@ -2,16 +2,17 @@
 
 
 #include "interaction_layout.h"
-#include "prodevian.h"
+//#include "prodevian.h"
 #include "drawable.h"
 #include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
 #include "acme/primitive/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
+#include "acme/primitive/geometry2d/shift.h"
 #include "acme/primitive/time/frequency.h"
 #include "acme/user/user/e_window_flag.h"
-#include "apex/database/key.h"
+//#include "apex/database/key.h"
 #include "apex/message/command.h"
 #include "apex/user/primitive.h"
 
@@ -234,7 +235,7 @@ namespace user
 
       bool                                         m_bVisualChanged;
 
-      // <3ThomasBorreggardSørensen_!!
+      // <3ThomasBorreggardSoerensen_!!
       ::pointer<::matter>                          m_pmatterCommandHandler;
 
       ::user::interaction::enum_updown             m_eupdown;
@@ -314,8 +315,8 @@ namespace user
       string                                       m_strInteractionTag;
 
       ::index                                      m_iIndex;
-      ::size_i32                                   m_sizeRestoreBroad;
-      ::size_i32                                   m_sizeRestoreCompact;
+      ::rectangle_i32                              m_rectangleRestoreBroad;
+      ::rectangle_i32                              m_rectangleRestoreCompact;
       enumeration < enum_non_client >              m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
@@ -775,7 +776,7 @@ namespace user
       virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_layout(bool bAscendants = true);
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw = {}, bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {},  ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
@@ -838,6 +839,8 @@ namespace user
       // Client Rect : e_layout_design : Design/_001OnDraw time
       virtual void input_client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
 
+      virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design);
 
       virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
@@ -1352,6 +1355,7 @@ namespace user
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -1543,6 +1547,7 @@ namespace user
       void drag_release_capture() override;
       void drag_set_cursor(::user::drag * pdrag) override;
 
+      virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
 
       void _001OnTimer(::timer* ptimer) override;
       void on_timer(::timer* ptimer) override;
@@ -1757,12 +1762,12 @@ namespace user
       }
       static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
       {
-         __UNREFERENCED_PARAMETER(pinteraction);
+         UNREFERENCED_PARAMETER(pinteraction);
          return nullptr;
       }
 #endif
 
-      //// <3ThomasBorregaardSørensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
+      //// <3ThomasBorregaardSorensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
       void handle_command(const ::atom& atom) override;
 
       virtual bool has_command_handler(::message::command* pcommand) override;
@@ -1924,7 +1929,9 @@ namespace user
 
       virtual ::size_i32 get_window_minimum_size();
 
-      virtual ::size_i32 get_window_normal_stored_size();
+      virtual ::rectangle_i32 get_window_normal_stored_rectangle();
+      virtual ::rectangle_i32 get_window_broad_stored_rectangle();
+      virtual ::rectangle_i32 get_window_compact_stored_rectangle();
 
 
       virtual void UpDownTargetAttach(::user::interaction* pupdown);
@@ -2095,6 +2102,7 @@ namespace user
 
       virtual bool has_pending_redraw_flags() override;
 
+      virtual bool is_window_resizing();
 
       virtual void set_bitmap_source(const string & strBitmapFileTitle) override;
       virtual void clear_bitmap_source() override;

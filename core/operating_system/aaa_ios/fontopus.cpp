@@ -102,10 +102,10 @@ namespace account
 
 
 
-   byte brate(double dRate, double dMin, double dMax)
+   ::u8 brate(double dRate, double dMin, double dMax)
    {
 
-      return (byte)(dRate * (dMax - dMin) + dMin);
+      return (::u8)(dRate * (dMax - dMin) + dMin);
 
    }
 
@@ -326,10 +326,10 @@ namespace account
       {
          double dRate = (double)i / (double)iCount;
          dRate = 1.0 - dRate;
-         byte a1 = brate(1.0 - dRate, 23, 90);
-         byte r1 = brate(dRate, 23, 127);
-         byte g1 = brate(dRate, 23, 127);
-         byte b1 = brate(dRate, 23, 127);
+         ::u8 a1 = brate(1.0 - dRate, 23, 90);
+         ::u8 r1 = brate(dRate, 23, 127);
+         ::u8 g1 = brate(dRate, 23, 127);
+         ::u8 b1 = brate(dRate, 23, 127);
          p.create_solid(g, argb(a1, r1, g1, b1));
          g.draw_line(rectangleWindow.left, i, rectangleWindow.right, i, p);
 
@@ -672,7 +672,7 @@ namespace account
       int iCount = rectangleWindow.width();
       int jCount = rectangleWindow.height();
 
-      byte * p = (byte *) m_bitmap.m_pdata;
+      ::u8 * p = (::u8 *) m_bitmap.m_pdata;
 
       for (i = 0; i < iCount; i++)
       {

@@ -22,7 +22,7 @@
 //   void _os_process_user_theme(string strTheme)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(strTheme);
+//      UNREFERENCED_PARAMETER(strTheme);
 //
 //   }
 //

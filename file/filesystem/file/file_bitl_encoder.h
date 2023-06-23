@@ -1,4 +1,4 @@
-// BitlEncoder.h -- the Least Significant Bit of byte is First
+// BitlEncoder.h -- the Least Significant Bit of ::u8 is First
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
@@ -15,7 +15,7 @@ namespace file
       {
          TOutByte m_Stream;
          u32 m_BitPos;
-         byte m_CurByte;
+         ::u8 m_CurByte;
       public:
          bool Create(u32 bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(writer *outStream) { m_Stream.SetStream(outStream); }
@@ -51,13 +51,13 @@ namespace file
                   return;
                }
                numBits -= m_BitPos;
-               m_Stream.WriteByte((byte)(m_CurByte | (value << (8 - m_BitPos))));
+               m_Stream.WriteByte((::u8)(m_CurByte | (value << (8 - m_BitPos))));
                value >>= m_BitPos;
                m_BitPos = 8;
                m_CurByte = 0;
             }
          }
-         void WriteByte(byte b) { m_Stream.WriteByte(b);}
+         void WriteByte(::u8 b) { m_Stream.WriteByte(b);}
       };
 
       typedef CLASS_DECL_CA2_FILE encoder < out_buffer > out_buffer_encoder;

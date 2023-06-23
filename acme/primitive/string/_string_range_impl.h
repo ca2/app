@@ -1,4 +1,4 @@
-// From _string_base_impl.h by camilo on 2012-12-18 17:04 <3ThomasBorregaardSørensen!!
+// From _string_base_impl.h by camilo on 2012-12-18 17:04 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

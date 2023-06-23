@@ -1,11 +1,11 @@
-﻿// Created by camilo on 2022-04-25 20:42 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-04-25 20:42 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "glm/vec2.hpp"
 #include "glm/vec3.hpp"
 #include "acme/primitive/geometry3d/location.h"
-#include "aura/gpu/gpu/object.h"
+#include "aura/graphics/gpu/object.h"
 
 
 namespace opengl

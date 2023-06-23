@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "place_holder.h"
 #include "acme/constant/message.h"
 #include "aura/user/user/window_util.h"
@@ -461,7 +461,7 @@ namespace user
    void place_holder::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -469,7 +469,7 @@ namespace user
    void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

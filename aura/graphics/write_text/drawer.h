@@ -1,8 +1,8 @@
-﻿// Created by camilo on 2021-06-08 02:26 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:26 BRT <3ThomasBorregaardSorensen__!!
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 ////#include "acme/primitive/primitive/object.h"
 
 

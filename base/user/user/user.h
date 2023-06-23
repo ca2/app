@@ -1,9 +1,10 @@
-﻿#pragma once
+#pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "axis/user/user/user.h"
 #include "base/user/user/document_manager_container.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 class keyboard;

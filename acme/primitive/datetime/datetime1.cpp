@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/_operating_system.h"
 #include <time.h>
 
@@ -68,7 +68,7 @@ namespace datetime
 //      static atom idCalendarHour("calendar:hour");
 //      static atom idCalendarHours("calendar:hours");
 //      static atom idCalendarNow("calendar:now");
-//      __UNREFERENCED_PARAMETER(pparticle);
+//      UNREFERENCED_PARAMETER(pparticle);
 //      value time;
 //      time.m_bSpan = true;
 //      string str(pszSpanExpression);
@@ -152,11 +152,11 @@ namespace datetime
 //
 //            if(bAdd)
 //            {
-//               TRACE("strtotime: invalid char +");
+//               information("strtotime: invalid char +");
 //            }
 //            else if(bMinus)
 //            {
-//               TRACE("strtotime: invalid char + on Minus state");
+//               information("strtotime: invalid char + on Minus state");
 //            }
 //
 //#endif
@@ -172,11 +172,11 @@ namespace datetime
 //
 //            if(bAdd)
 //            {
-//               TRACE("strtotime: invalid char - on add state");
+//               information("strtotime: invalid char - on add state");
 //            }
 //            else if(bMinus)
 //            {
-//               TRACE("strtotime: invalid char - on Minus state");
+//               information("strtotime: invalid char - on Minus state");
 //            }
 //
 //#endif

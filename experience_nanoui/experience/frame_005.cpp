@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_005.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -290,7 +290,7 @@ namespace experience_nanoui
       else if (m_pframewindow->m_estyle == ::user::StyleLightBlue)
       {
          rectangleA.deflate(1, 1, 1, 1);
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
+         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, ::color::transparent);//m_colorMoveableBorderDkShadow);
 
          rectangleA.deflate(1, 1, 1, 1);
          Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
@@ -304,7 +304,7 @@ namespace experience_nanoui
          ::rectangle_i32 rectangle;
          GetBorderRect(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
       }
       else
       {

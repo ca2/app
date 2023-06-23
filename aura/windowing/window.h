@@ -5,7 +5,8 @@
 
 #include "apex/message/channel.h"
 #include "acme/primitive/collection/osdata_array.h"
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
 
 
 namespace windowing
@@ -120,7 +121,7 @@ namespace windowing
 
       virtual void exit_iconify();
 
-      virtual void full_screen(const::rectangle_i32 & rectangle = nullptr);
+      virtual void full_screen(const::rectangle_i32 & rectangle = {});
 
       virtual void exit_full_screen();
 

@@ -254,8 +254,8 @@ namespace colorertake5
 
    PairMatch * base_editor::getEnwrappedPairMatch(i32 lineNo, i32 pos)
    {
-      __UNREFERENCED_PARAMETER(lineNo);
-      __UNREFERENCED_PARAMETER(pos);
+      UNREFERENCED_PARAMETER(lineNo);
+      UNREFERENCED_PARAMETER(pos);
       return nullptr;
    }
 

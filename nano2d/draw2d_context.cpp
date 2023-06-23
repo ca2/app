@@ -1,7 +1,8 @@
-// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "draw2d_context.h"
 #include "acme/platform/context.h"
+#include "acme/primitive/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
@@ -974,6 +975,14 @@ namespace nano2d
    }
 
 
+   void draw2d_context::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width)
+   {
+
+      m_pgraphics->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
+
+   }
+
+
    int draw2d_context::create_image(const ::scoped_string& scopedstrFilename, int imageFlags)
    {
 
@@ -985,7 +994,7 @@ namespace nano2d
    int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
-      return m_pgraphics->m_pcontext->context_image()->create_image_integer(w, h, (const ::color32_t *)data, iScan);
+      return m_pgraphics->m_pcontext->context_image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
 
    }
 
@@ -1043,7 +1052,7 @@ namespace nano2d
 
       pimage->map();
 
-      copy_colorref(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const color32_t *)data);
+      copy_image32(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const image32_t *)data);
 
    }
 

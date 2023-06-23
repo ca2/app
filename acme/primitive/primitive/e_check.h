@@ -1,4 +1,4 @@
-﻿// From echeck.h by camilo on 2022-10-08 18:34 <3ThomasBorregaardSørensen!!
+// From echeck.h by camilo on 2022-10-08 18:34 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -7,7 +7,7 @@
 //  echeck.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/02/20.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 29/02/20.
 //
 #pragma once
 

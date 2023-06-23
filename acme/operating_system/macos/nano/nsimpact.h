@@ -2,9 +2,9 @@
 //  nsview.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 02/02/22.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 02/02/22.
 //  09:10
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
 //

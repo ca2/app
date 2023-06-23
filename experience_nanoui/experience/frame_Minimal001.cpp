@@ -257,7 +257,7 @@ SizingNone:;
 
          //auto psystem = acmesystem()->m_paurasystem;
 
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
       }
       /*else if(m_pframewindow->m_estyle == StyleLightBlue)
@@ -295,7 +295,7 @@ SizingNone:;
 
          GetBorderRect(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle( rectangle, ::color::color(crMoveableBorder, 127));
+         pgraphics->fill_rectangle( rectangle, crMoveableBorder & 0.5_opacity);
 
       }
 
@@ -1167,11 +1167,11 @@ SizingNone:;
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow), 1.0);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace.opaque(), crButtonDarkShadow.opaque(), 1.0);
 
       rectangle.deflate(1, 1);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonHilite), opaque(crButtonShadow), 1.0);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite.opaque(), crButtonShadow.opaque(), 1.0);
 
       rectangle.deflate(1, 1);
 
@@ -1179,7 +1179,7 @@ SizingNone:;
 
       //rectangle.bottom--;
 
-      pgraphics->fill_rectangle(rectangle, opaque(crButtonFace));
+      pgraphics->fill_rectangle(rectangle, crButtonFace.opaque());
 
    }
 
@@ -1455,7 +1455,7 @@ SizingNone:;
 //
 //         auto psystem = acmesystem()->m_paurasystem;
 //
-//         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+//         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 //
 //      }
 //      /*else if(m_pframewindow->m_estyle == StyleLightBlue)
@@ -1493,7 +1493,7 @@ SizingNone:;
 //
 //         GetBorderRect(rectangleClient, &rectangle, eside);
 //
-//         pgraphics->fill_rectangle( rectangle, ::color::color(crMoveableBorder, 127));
+//         pgraphics->fill_rectangle( rectangle, crMoveableBorder & 0.5_opacity);
 //
 //      }
 //
@@ -2365,11 +2365,11 @@ SizingNone:;
 //
 //      auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 //
-//      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow));
+//      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace.opaque(), crButtonDarkShadow.opaque());
 //
 //      rectangle.deflate(1, 1);
 //
-//      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonHilite), opaque(crButtonShadow));
+//      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite.opaque(), crButtonShadow.opaque());
 //
 //      rectangle.deflate(1, 1);
 //
@@ -2377,7 +2377,7 @@ SizingNone:;
 //
 //      rectangle.bottom--;
 //
-//      pgraphics->fill_rectangle(rectangle, opaque(crButtonFace));
+//      pgraphics->fill_rectangle(rectangle, crButtonFace.opaque());
 //
 //   }
 //

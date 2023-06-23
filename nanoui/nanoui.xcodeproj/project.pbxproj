@@ -86,7 +86,6 @@
 		9A3CA73527EAE8F1009ADCD2 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
 		9A3CA73627EAE8F1009ADCD2 /* Screen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
 		9A3CA73727EAE8F1009ADCD2 /* PopupButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopupButton.h; sourceTree = "<group>"; };
-		9A3CA73927EAE8F1009ADCD2 /* Icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Icons.h; sourceTree = "<group>"; };
 		9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
 		9A3CA73B27EAE8F1009ADCD2 /* Popup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
 		9A3CA74227EAE8F1009ADCD2 /* ToolButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolButton.h; sourceTree = "<group>"; };
@@ -113,7 +112,6 @@
 		9A3CA7D627EAE8F3009ADCD2 /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
 		9A3CA7D827EAE8F3009ADCD2 /* Canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		9A3CA7DB27EAE8F3009ADCD2 /* Slider.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Slider.cpp; sourceTree = "<group>"; };
-		9A3CA7E627EAE8F3009ADCD2 /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
 		9A3CA7F527EAE8F3009ADCD2 /* MessageDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDialog.h; sourceTree = "<group>"; };
 		9A3CA7F627EAE8F3009ADCD2 /* VScrollPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VScrollPanel.h; sourceTree = "<group>"; };
 		9A3CA7FC27EAE8F4009ADCD2 /* FormHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormHelper.h; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 				9A3CA7D527EAE8F3009ADCD2 /* framework.h */,
 				9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */,
 				9A3CA7B027EAE8F2009ADCD2 /* Graph.h */,
-				9A3CA73927EAE8F1009ADCD2 /* Icons.h */,
 				9A29773529E87DC800502330 /* ImageImpact.cpp */,
 				9A29773629E87DC800502330 /* ImageImpact.h */,
 				9A3CA7C527EAE8F2009ADCD2 /* ImagePanel.cpp */,
@@ -226,7 +223,6 @@
 				9A3CA70A27EAE8F0009ADCD2 /* Theme.h */,
 				9A3CA74227EAE8F1009ADCD2 /* ToolButton.h */,
 				9A3CA72227EAE8F0009ADCD2 /* traits.h */,
-				9A3CA7E627EAE8F3009ADCD2 /* vector.h */,
 				9A3CA70C27EAE8F0009ADCD2 /* VScrollPanel.cpp */,
 				9A3CA7F627EAE8F3009ADCD2 /* VScrollPanel.h */,
 				9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */,
@@ -472,7 +468,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -569,7 +564,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

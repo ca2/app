@@ -1,4 +1,4 @@
-// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSørensen!!
+// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "horizontal_scroll_base.h"
 #include "scroll_data.h"

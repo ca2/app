@@ -48,14 +48,14 @@ public:
           mModel = sm;
         };
   nsSMState NextState(char c){
-    //for each byte we get its class , if it is first byte, we also get byte length
+    //for each ::u8 we get its class , if it is first ::u8, we also get ::u8 length
     PR::u32 byteCls = GETCLASS(c);
     if (mCurrentState == eStart)
     { 
       mCurrentBytePos = 0; 
       mCurrentCharLen = mModel->charLenTable[byteCls];
     }
-    //from byte's class and stateTable, we get its next state
+    //from ::u8's class and stateTable, we get its next state
     mCurrentState=(nsSMState)GETFROMPCK(mCurrentState*(mModel->classFactor)+byteCls,
                                        mModel->stateTable);
     mCurrentBytePos++;

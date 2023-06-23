@@ -94,8 +94,8 @@ void term_cairo_mutex()
 //
 //   xxdebug_box("draw2d_cairo.dll DllMain (0)","box",e_message_box_ok);
 //
-//   __UNREFERENCED_PARAMETER(hInstance);
-//   __UNREFERENCED_PARAMETER(lpReserved);
+//   UNREFERENCED_PARAMETER(hInstance);
+//   UNREFERENCED_PARAMETER(lpReserved);
 //
 //
 //   //openssl_DllMain(hInstance, dwReason, lpReserved);

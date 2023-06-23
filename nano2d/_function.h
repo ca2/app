@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-09-08 22:16 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-09-08 22:16 <3ThomasBorregaardSorensen!!
 //
 
 //**
@@ -113,7 +113,7 @@ namespace nano2d
 //
 //struct NVGpoint {
 //   float x, y;
-//   float greekdeltax, greekdeltay;
+//   float Δx, Δy;
 //   float len;
 //   float dmx, dmy;
 //   unsigned char flags;

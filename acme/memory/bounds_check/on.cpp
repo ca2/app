@@ -6,7 +6,7 @@ void os_alloc_check_bounds(u8 * point_i32)
 
 	uptr * pinteraction = (uptr *)point_i32;
 
-	byte a[256];
+	::u8 a[256];
 
 	zero(a);
 

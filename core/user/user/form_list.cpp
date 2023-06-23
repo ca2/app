@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form_list.h"
 #include "list_column.h"
 #include "list_column_array.h"
@@ -931,7 +931,7 @@ namespace user
       //if (!validate.Validate(str, pinteraction))
       //{
 
-      //   // que tal um balão para indicar o erro
+      //   // que tal um balao para indicar o erro
 
       //   return false;
 
@@ -1096,16 +1096,16 @@ namespace user
    bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::atom & atom, lresult & iResult)
    {
 
-      __UNREFERENCED_PARAMETER(pDesktopWnd);
-      __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(atom);
-      __UNREFERENCED_PARAMETER(iResult);
+      UNREFERENCED_PARAMETER(pDesktopWnd);
+      UNREFERENCED_PARAMETER(nHitTest);
+      UNREFERENCED_PARAMETER(atom);
+      UNREFERENCED_PARAMETER(iResult);
       return false;
    }
 
    //void form_list::_001OnNotify(::message::message * pmessage)
    //{
-   //   __UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
    //}
 
    void form_list::_001OnTimer(::timer * ptimer)
@@ -1115,7 +1115,7 @@ namespace user
 
    void form_list::_001OnMessageNotify(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // linux na verdade revamp
       /*
       lresult = user::NotifyRetContinue;
@@ -2212,7 +2212,7 @@ namespace user
 
          }
 
-         pinteraction = ::clone(pinteractionTemplate);
+         pinteraction = pinteractionTemplate->clone();
 
          if (::is_set(pinteraction))
          {

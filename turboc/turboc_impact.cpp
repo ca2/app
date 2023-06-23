@@ -165,7 +165,7 @@ namespace turboc
 
    void impact::on_update(::aura::impact * pSender, e_update eupdate, object* pupdate)
    {
-      __UNREFERENCED_PARAMETER(ptopic);
+      UNREFERENCED_PARAMETER(ptopic);
    }
 
    bool impact::in_anime()
@@ -343,7 +343,7 @@ namespace turboc
       if(m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         byte uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
+         ::u8 uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
 
          ::rectangle_i32 rectangleClient;
 
@@ -519,8 +519,8 @@ namespace turboc
 
             //          ::u32 dwTime2= ::time::now();
 
-            //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//            FORMATTED_TRACE("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
+            //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//            information("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
 
          }
 
@@ -570,8 +570,8 @@ namespace turboc
 
 //            ::u32 dwTime2= ::time::now();
 
-            //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            //FORMATTED_TRACE("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //information("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //information("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
          }
 
@@ -590,7 +590,7 @@ namespace turboc
       }
       else
       {
-         TRACE("XXX123546");
+         information("XXX123546");
       }
 
    }
@@ -610,7 +610,7 @@ namespace turboc
 
          color32_t color32;
 
-         byte a,r,g,b,rm,gm,bm;
+         ::u8 a,r,g,b,rm,gm,bm;
 
 /*         int h = (pimage->height() / 3) * 3;
 
@@ -621,10 +621,10 @@ namespace turboc
             for(int j = 0; j < w; j+=3)
             {
 /*               color32 = pimage->get_data()[i * pimage->width() + j];
-               a = colorref_get_a_value(color32);
-               r = colorref_get_r_value(color32);
-               g = colorref_get_g_value(color32);
-               b = colorref_get_b_value(color32);
+               a = color32_u8_opacity(color32);
+               r = color32_u8_red(color32);
+               g = color32_u8_green(color32);
+               b = color32_u8_blue(color32);
                rm = (g + b) / 4;
                gm = (r + b) / 4;
                bm = (r + g) / 4;

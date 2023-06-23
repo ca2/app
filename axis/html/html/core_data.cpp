@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "core_data.h"
 #include "data.h"
 #include "acme/constant/id.h"
@@ -646,7 +646,7 @@ namespace html
    void core_data::on_image_loaded(image* pimage)
    {
 
-      __UNREFERENCED_PARAMETER(pimage);
+      UNREFERENCED_PARAMETER(pimage);
 
       if (m_puserinteraction != nullptr)
       {
@@ -891,7 +891,7 @@ namespace html
       
       property_set_replace(str);
       
-      FORMATTED_TRACE("%s", str.c_str());
+      information("%s", str.c_str());
       
       if (str.has_char())
       {

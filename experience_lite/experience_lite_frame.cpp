@@ -58,7 +58,7 @@
             void frame::_001OnBeforeSize(const ::rectangle_i32 & rectangle)
             {
 
-               __UNREFERENCED_PARAMETER(rectangle);
+               UNREFERENCED_PARAMETER(rectangle);
 
             }
 
@@ -69,7 +69,7 @@
             void frame::OnMove(::pointer<::user::interaction>pframewindow)
             {
 
-               __UNREFERENCED_PARAMETER(pframewindow);
+               UNREFERENCED_PARAMETER(pframewindow);
 
             }
 
@@ -157,12 +157,12 @@
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, byte bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, ::u8 bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
                g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-               Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32)));
+               Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
                pgraphics->color_blend(lprect, color32, bAlpha);
@@ -229,7 +229,7 @@
 
             frame::enum_element operator++(frame::enum_element & eelement, i32 i)
             {
-               __UNREFERENCED_PARAMETER(i);
+               UNREFERENCED_PARAMETER(i);
                return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
@@ -689,7 +689,7 @@
             void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
             {
 
-               __UNREFERENCED_PARAMETER(pgraphics);
+               UNREFERENCED_PARAMETER(pgraphics);
 
             }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "container.h"
 #include "listener.h"
 
@@ -41,7 +41,7 @@ namespace data
 
    void data_container::on_update_data(i32 iHint)
    {
-      __UNREFERENCED_PARAMETER(iHint);
+      UNREFERENCED_PARAMETER(iHint);
    }
 
 

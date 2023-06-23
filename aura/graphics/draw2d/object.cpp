@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "object.h"
 #include "lock.h"
 #include "device_lock.h"
@@ -31,7 +31,7 @@ namespace draw2d
 //   void object::dump(dump_context& dumpcontext) const
 //   {
 //
-//      __UNREFERENCED_PARAMETER(dumpcontext);
+//      UNREFERENCED_PARAMETER(dumpcontext);
 //
 //      throw ::interface_only();
 //
@@ -59,24 +59,24 @@ namespace draw2d
    }
 
 
-   bool object::CreateStockObject(i32 nIndex)
-   {
-
-      throw ::interface_only();
-
-      return false;
-
-   }
-
-
-   bool object::UnrealizeObject()
-   {
-
-      throw ::interface_only();
-
-      return false;
-
-   }
+//   bool object::CreateStockObject(i32 nIndex)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool object::UnrealizeObject()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return false;
+//
+//   }
 
 
  /*  void* object::get_os_data(::draw2d::graphcis* pgraphics, ::index i)
@@ -97,38 +97,38 @@ namespace draw2d
 }*/
 
    
-   ::u32 object::GetObjectType() const
-   {
-      
-      throw ::interface_only();
-      
-      return 0;
-
-   }
-
-   
-   bool object::operator==(const object & obj) const
-   {
-      
-      __UNREFERENCED_PARAMETER(obj);
-
-      throw ::interface_only();
-
-      return false;
-
-   }
-
-
-   bool object::operator!=(const object & obj) const
-   {
-
-      __UNREFERENCED_PARAMETER(obj);
-
-      throw ::interface_only();
-
-      return false;
-
-   }
+//   ::u32 object::GetObjectType() const
+//   {
+//      
+//      throw ::interface_only();
+//      
+//      return 0;
+//
+//   }
+//
+//   
+//   bool object::operator==(const object & obj) const
+//   {
+//      
+//      UNREFERENCED_PARAMETER(obj);
+//
+//      throw ::interface_only();
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool object::operator!=(const object & obj) const
+//   {
+//
+//      UNREFERENCED_PARAMETER(obj);
+//
+//      throw ::interface_only();
+//
+//      return false;
+//
+//   }
 
 
    void object::defer_update(::draw2d::graphics* pgraphics, ::i8 i) const

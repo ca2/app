@@ -259,7 +259,7 @@ db_str_set::~db_str_set()
 // true if deleted
 bool db_str_set::erase(const ::string & lpKey)
 {
-   __UNREFERENCED_PARAMETER(lpKey);
+   UNREFERENCED_PARAMETER(lpKey);
    return false;
 }
 
@@ -439,7 +439,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
 
       string strSql = "REPLACE INTO fun_user_str_set PAYLOAD('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', '" + m_pcore->m_pmysqldbUser->escape(lpcsz) + "')";
 
-      TRACE(strSql);
+      information(strSql);
 
       return m_pcore->m_pmysqldbUser->query(strSql) != nullptr;
 

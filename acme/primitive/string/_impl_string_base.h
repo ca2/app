@@ -2,8 +2,8 @@
 //  _string_base_impl.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 08/06/22.
-//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 08/06/22.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 
@@ -2662,7 +2662,7 @@ inline void string_base < ITERATOR_TYPE >::set_at(strsize iChar, CHARACTER ch)
 //
 //
 //template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE >::string_base(Array <byte >^ a)
+//string_base < ITERATOR_TYPE >::string_base(Array <::u8 >^ a)
 //{
 //
 //   *this = string_base < ITERATOR_TYPE >((const ::ansi_character *) a->begin(), a->Length);

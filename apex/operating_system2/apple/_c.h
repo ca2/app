@@ -2,7 +2,7 @@
 //  _c.h
 //  apex
 //
-//  Created by Camilo Sasuke on 2021-12-29 15:14 BRT <3ThomasBorregaardSørensen!!
+//  Created by Camilo Sasuke on 2021-12-29 15:14 BRT <3ThomasBorregaardSorensen!!
 //
 
 // C++ include

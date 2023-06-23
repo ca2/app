@@ -97,7 +97,7 @@ namespace hotplugin
 
       {
 
-         byte uchR,uchG,uchB;
+         ::u8 uchR,uchG,uchB;
          auto pbrush = __create < ::draw2d::brush > ();
          get_progress_color(uchR,uchG,uchB,dRate,0);
          pbrush->create_solid(argb(184,uchR,uchG,uchB));

@@ -1,4 +1,4 @@
-// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSørensen!!
+// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -125,7 +125,34 @@ public:
 
    virtual void put_contents(const ::file::path & path, const memory_base & memory);
    virtual void put_contents(const ::file::path & path, const scoped_string & contents);
-   virtual void put_lines(const ::file::path& path, const ::string_array& straLines);
+
+   template < typename CONTAINER >
+   inline void put_lines(const ::file::path & path, const CONTAINER & container)
+   {
+
+      ::string str;
+
+      for (auto & line : container)
+      {
+
+         str += line;
+
+#ifdef WINDOWS_DESKTOP
+
+         str += "\r\n";
+
+#else
+
+         str += "\n";
+
+#endif
+
+      }
+
+      put_block(path, str);
+
+   }
+
    virtual void as_memory(memory_base & memory, const ::file::path & path, memsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    //virtual memsize as_memory(const ::file::path & path, void * p, memsize s);
    virtual memory as_memory(const ::file::path & path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);

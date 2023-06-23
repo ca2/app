@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "mesh_data.h"
 #include "acme/primitive/data/listener.h"
 
@@ -82,7 +82,7 @@ namespace user
 
    ::count mesh_data::_001GetGroupMetaItemCount(index iGroup)
    {
-      __UNREFERENCED_PARAMETER(iGroup);
+      UNREFERENCED_PARAMETER(iGroup);
       return 0;
    }
 
@@ -90,7 +90,7 @@ namespace user
    void mesh_data::_001OnDeleteRange(::user::range & range)
    {
 
-      __UNREFERENCED_PARAMETER(range);
+      UNREFERENCED_PARAMETER(range);
 
    }
 

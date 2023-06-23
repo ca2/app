@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
 #include "acme/filesystem/file/file.h"
@@ -564,9 +564,9 @@ namespace text
 
    //         }
 
-   //         if(newlen >= m_iMaxSize) // extra 1 byte
+   //         if(newlen >= m_iMaxSize) // extra 1 ::u8
    //         {
-   //            m_iMaxSize = newlen + 1024; // extra 1 byte plus 1023
+   //            m_iMaxSize = newlen + 1024; // extra 1 ::u8 plus 1023
    //            if (comparison::ge(m_iMaxSize, sizeof(m_szAlloca)))
    //            {
    //               if(m_szMerge == m_szAlloca || !m_bOwn)

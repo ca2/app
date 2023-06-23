@@ -1,8 +1,8 @@
-﻿//
+//
 //  font_enumeration_item.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 01/03/22.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 01/03/22.
 //  23:02
 ///
 #pragma once

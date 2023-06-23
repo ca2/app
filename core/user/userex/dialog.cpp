@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/user/user/interaction.h"
 #include "base/user/form/document.h"
 #include "base/user/form/impact.h"
@@ -104,7 +104,7 @@ bool dialog::show(const ::string & pszMatter)
 
       str.format("Could not show dialog %s", pszMatter.c_str());
 
-      TRACE(str);
+      information(str);
 
       return false;
 

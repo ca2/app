@@ -74,7 +74,7 @@ bool windows_image_from_bitmap_source(::image * pimage, IWICBitmapSource * piCon
 
    ::u32 uArea;
 
-   byte * pData;
+   ::u8 * pData;
 
    hr = piLock->GetDataPointer(&uiArea, &pData);
 
@@ -96,7 +96,7 @@ bool windows_image_from_bitmap_source(::image * pimage, IWICBitmapSource * piCon
 
    pimage->map();
 
-   ::copy_colorref(pimage->get_data(), uiWidth, uiHeight, pimage->scan_size(), (color32_t *)pData, cbStride);
+   ::copy_image32(pimage->get_data(), uiWidth, uiHeight, pimage->scan_size(), (color32_t *)pData, cbStride);
 
    return true;
 
@@ -144,7 +144,9 @@ bool imaging::load_image(::particle * pparticle, ::image * pimage, const ::memor
 
       comptr < IWICBitmapDecoder > piDecoder;
 
-      hr = piFactory->CreateDecoderFromStream(piStream, 0, WICDecodeMetadataCacheOnLoad, &piDecoder); // jpeg,png:OK, bmp:88982f50のエラーになる, iconもエラー
+      // jpeg,png:OK, 
+      //bmp:88982f50のエラーになる, iconもエラー
+      hr = piFactory->CreateDecoderFromStream(piStream, 0, WICDecodeMetadataCacheOnLoad, &piDecoder);
 
       if (FAILED(hr))
       {
@@ -611,7 +613,7 @@ bool node_save_image(IStream * pstream, const ::image * pimage, ::save_image * p
 //
 //   pcr = (color32_t *)m.get_data();
 //
-//   ::draw2d::vertical_swap_copy_colorref(pimage->width(), pimage->height(), pcr,
+//   ::draw2d::vertical_swap_copy_image32(pimage->width(), pimage->height(), pcr,
 //                                         pimage->scan_size(), pimage->get_data(), pimage->scan_size());
 //
 //#endif
@@ -625,7 +627,7 @@ bool node_save_image(IStream * pstream, const ::image * pimage, ::save_image * p
          if (SUCCEEDED(hr))
          {
 
-            hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight*pimage->scan_size(), (byte *)pcr);
+            hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight*pimage->scan_size(), (::u8 *)pcr);
 
          }
 
@@ -644,7 +646,7 @@ bool node_save_image(IStream * pstream, const ::image * pimage, ::save_image * p
                  GUID_WICPixelFormat32bppBGRA,
                  pimage->scan_size(),
                  pimage->scan_size() * pimage->height(),
-                 (byte *)pcr,
+                 (::u8 *)pcr,
                  &pbitmap
                  );
 

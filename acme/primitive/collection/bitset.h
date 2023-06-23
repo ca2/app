@@ -11,7 +11,7 @@ template<i32>
 
 template<>
 	struct _Bitset_base <8>
-	{	// eight-byte bitset
+	{	// eight-::u8 bitset
 	typedef u64 _Ty;
 	};
 

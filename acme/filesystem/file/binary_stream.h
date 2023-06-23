@@ -1,10 +1,10 @@
-﻿#pragma once
+#pragma once
 
 
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/payload.h"
-//#include "stream.h"
+#include "stream.h"
 
 
 template < typename FILE >
@@ -369,7 +369,7 @@ public:
 
 
 
-   binary_stream & operator >>(bool & b) { byte byte; raw_read(byte); b = byte ? true : false; return *this; }
+   binary_stream & operator >>(bool & b) { ::u8 u8; raw_read(u8); b = u8 ? true : false; return *this; }
    binary_stream & operator >>(char & ch) {
       raw_read(ch); return *this;
    }
@@ -434,8 +434,8 @@ public:
    // void save_var_type(::enum_type etype);
 
    /* void getline(char * sz, strsize n);
-   ::byte get_byte();
-   ::byte peek_byte();*/
+   ::u8 get_byte();
+   ::u8 peek_byte();*/
 
    // filesize get_position();
    // filesize seek_from_begin(filesize position);
@@ -1855,9 +1855,9 @@ public:
    //}
 
 
-   ::byte get_byte()
+   ::u8 get_byte()
    {
-      ::byte b = 0;
+      ::u8 b = 0;
       if (m_pfile->read(&b, 1) != 1)
       {
 
@@ -1868,7 +1868,7 @@ public:
    }
 
 
-   ::byte peek_byte()
+   ::u8 peek_byte()
    {
 
       return m_pfile->peek_byte();

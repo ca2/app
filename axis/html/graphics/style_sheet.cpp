@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style_sheet.h"
 #include "aura/user/user/interaction.h"
 #include "axis/html/graphics/style.h"

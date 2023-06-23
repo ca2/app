@@ -98,7 +98,7 @@ CLASS_DECL_CORE int_bool GetCursorPos(::point_i32 * lppoint)
 CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 {
 
-   __UNREFERENCED_PARAMETER(bDock);
+   UNREFERENCED_PARAMETER(bDock);
 
 }
 

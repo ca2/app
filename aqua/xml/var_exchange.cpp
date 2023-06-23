@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "var_exchange.h"
 #include "output_tree.h"
 #include "document.h"

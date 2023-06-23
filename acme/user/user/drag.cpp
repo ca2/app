@@ -1,4 +1,4 @@
-// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSørensen
+// Created by camilo on 2021-01-22 06:11 AM <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "acme/user/user/mouse.h"
 //#include "acme/handler/item.h"
@@ -42,8 +42,10 @@ namespace user
       m_bDrag = false;
 
       m_pointLButtonDown = m_pmouse->m_point;
+      
+      m_pointInitial = pointDrag;
 
-      m_sizeLButtonDownOffset = m_pointLButtonDown - pointDrag;
+      //m_sizeLButtonDownOffset = m_pointLButtonDown - pointDrag;
 
    }
 
@@ -63,7 +65,9 @@ namespace user
    ::point_i32 drag::point() const
    {
 
-      auto pointDrag = m_pmouse->m_point - m_sizeLButtonDownOffset;
+      //auto pointDrag = m_pmouse->m_point - m_sizeLButtonDownOffset;
+
+      auto pointDrag = m_pmouse->m_point;
 
       return pointDrag;
 

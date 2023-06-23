@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/messagedialog.cpp -- Simple "OK" or "Yes/No"-style modal dialogs
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -84,6 +84,8 @@ namespace nanoui
          });
       center();
       request_focus();
+      set_need_redraw();
+      post_redraw();
    }
 
 

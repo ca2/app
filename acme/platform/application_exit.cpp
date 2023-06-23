@@ -1,4 +1,4 @@
-// Created on 2021-07-08 13:18 BRT <3ThomasBorregaardSørensen!!
+// Created on 2021-07-08 13:18 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "application_exit.h"
 #include "acme/platform/application.h"
@@ -29,7 +29,7 @@ void application_exit::request_exit_application()
 
    }
 
-   INFORMATION("application_exit request_exit_application");
+   information() <<  "application_exit request_exit_application";
 
    m_bProcessingApplicationExitRequest = true;
 

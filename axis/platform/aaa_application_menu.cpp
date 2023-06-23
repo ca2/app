@@ -2,7 +2,7 @@
 //  aura_application_menu.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 13/11/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 13/11/18.
 //
 
 #include "framework.h"

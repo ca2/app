@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
@@ -201,7 +201,7 @@ namespace userex
 
                   synchronouslock.lock();
 
-                  TRACE("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
+                  information("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
                   m_plisting->erase_at(i);
 
@@ -213,7 +213,7 @@ namespace userex
 
                synchronouslock.lock();
 
-               TRACE("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
+               information("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
                m_plisting->erase_at(i);
 

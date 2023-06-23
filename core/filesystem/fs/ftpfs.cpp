@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "ftpnet.h"
 #include "ftp_file.h"
 #include "ftpfs.h"
@@ -402,8 +402,8 @@ int ftpfs::is_dir(const ::file::path & path)
 
 bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 {
-   __UNREFERENCED_PARAMETER(pszDst);
-   __UNREFERENCED_PARAMETER(pszSrc);
+   UNREFERENCED_PARAMETER(pszDst);
+   UNREFERENCED_PARAMETER(pszSrc);
    return true;
 }
 

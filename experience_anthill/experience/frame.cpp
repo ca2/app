@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "control_box.h"
 #include "base/user/experience/frame_window.h"
@@ -39,7 +39,7 @@ namespace experience_anthill
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      __UNREFERENCED_PARAMETER(pframewindow);
+      UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -85,7 +85,7 @@ namespace experience_anthill
 
       ::rectangle_i32 rectangleScreen;
 
-      pframewindow->best_monitor(rectangleScreen);
+      pframewindow->best_monitor(&rectangleScreen);
 
       ::image_pointer pimage1;
 
@@ -172,7 +172,7 @@ namespace experience_anthill
 
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32)));
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
@@ -341,10 +341,10 @@ namespace experience_anthill
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
       m_ppenText1->create_solid(1, argb(255, 255, 255, 255));
-      m_ppenFace1->create_solid(1, opaque(crButtonFace));
-      m_ppenHilight1->create_solid(1, opaque(crButtonHilite));
-      m_ppenShadow1->create_solid(1, opaque(crButtonShadow));
-      m_ppenDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
+      m_ppenFace1->create_solid(1, crButtonFace.opaque());
+      m_ppenHilight1->create_solid(1, crButtonHilite.opaque());
+      m_ppenShadow1->create_solid(1, crButtonShadow.opaque());
+      m_ppenDkShadow1->create_solid(1, crButtonDarkShadow.opaque());
       m_colorDkShadow = crButtonDarkShadow;
       m_colorFrameBorder = argb(255, 0, 0, 0);
 
@@ -706,7 +706,7 @@ namespace experience_anthill
    void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

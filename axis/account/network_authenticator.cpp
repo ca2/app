@@ -1,8 +1,8 @@
-﻿//
+//
 //  account_network_credentials.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
 #include "framework.h"
 #include "network_authenticator.h"
@@ -170,7 +170,7 @@ namespace account
       if(strHost.is_empty())
       {
 
-         TRACE("Host is missing. Has pre_login been called and succeeded?");
+         information("Host is missing. Has pre_login been called and succeeded?");
 
          throw ::exception(error_authentication_missing_host);
 
@@ -202,7 +202,7 @@ namespace account
 
       auto tickGetLoginEnd = ::time::now();
 
-      INFORMATION("NetLogin: Get Login Millis = " << (tickGetLoginEnd - tickGetLoginBeg).integral_second());
+      information() << "NetLogin: Get Login Millis = " << (tickGetLoginEnd - tickGetLoginBeg).integral_second();
 
       string strPass;
 
@@ -267,9 +267,9 @@ namespace account
 
       pcredentials->m_estatusHttp = set["get_status"].estatus();
 
-      INFORMATION("login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << tickTimeProfile1.elapsed().integral_millisecond());
+      information() << "login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << tickTimeProfile1.elapsed().integral_millisecond();
 
-      INFORMATION("NetLogin: Authentication Millis = " << tickAuthBeg.elapsed().integral_millisecond());
+      information() << "NetLogin: Authentication Millis = " << tickAuthBeg.elapsed().integral_millisecond();
 
       //return ::success;
 
@@ -335,7 +335,7 @@ namespace account
 
       auto timeEnd = ::time::now();
 
-      INFORMATION(set["http_get_serial"].as_string() << "> get_account_login HTTP GET time = " << (timeEnd - timeStart).integral_millisecond());
+      information() << set["http_get_serial"].as_string() << "> get_account_login HTTP GET time = " << (timeEnd - timeStart).integral_millisecond();
 
       strNode.trim();
 
@@ -485,7 +485,7 @@ namespace account
 //
 //      ::u32 tickEnd= ::time::now();
 //
-//      FORMATTED_TRACE("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
+//      information("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //
 //   }
 //   catch(...)

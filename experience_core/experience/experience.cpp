@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 #include "aura/windowing/windowing.h"
 #include "experience.h"

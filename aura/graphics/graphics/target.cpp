@@ -1,5 +1,5 @@
 // Created by camilo on 2021-01-29 14:13 <3ThomasBS_!!
-// From animated_wallpaper to graphics::target by camilo on 2022-05-12 17:41 <3ThomasBorregaardSørensen!!
+// From animated_wallpaper to graphics::target by camilo on 2022-05-12 17:41 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "target.h"
 

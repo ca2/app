@@ -3,7 +3,7 @@
 //  acme
 //
 //  Created by Camilo Sasuke on 2021-05-21 12:58 BRT <3ThomasBS_!!
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

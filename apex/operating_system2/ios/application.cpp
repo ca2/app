@@ -44,7 +44,7 @@ namespace apex
 
 //   bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 //   {
-//      __UNREFERENCED_PARAMETER(pcsz);
+//      UNREFERENCED_PARAMETER(pcsz);
 //      return false;
 //   }
 //
@@ -382,7 +382,7 @@ namespace apex
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(bShow);
+//      UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 //
@@ -417,7 +417,7 @@ namespace apex
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(bShow);
+//      UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 
@@ -427,7 +427,7 @@ namespace apex
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(bShow);
+//      UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 

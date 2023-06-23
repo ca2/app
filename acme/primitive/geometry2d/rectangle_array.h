@@ -17,6 +17,7 @@ public:
 
    
    using array < ::rectangle_type < NUMBER > >::array;
+   rectangle_array_base(const rectangle_array_base & a) noexcept : array < ::rectangle_type < NUMBER > > (a) { }
    rectangle_array_base(rectangle_array_base && a) noexcept : array < ::rectangle_type < NUMBER > >(::transfer(a)) { }
 
    
@@ -102,12 +103,23 @@ void rectangle_array_base < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 template < primitive_number NUMBER >
 ::rectangle_type < NUMBER > rectangle_array_base < NUMBER >::union_rect()
 {
+   
+   if(this->is_empty())
+   {
+      
+      return {};
+      
+   }
 
    ::rectangle_type < NUMBER > rectangleUnion(0, 0, 0, 0);
 
-   for (i32 i = 0; i < this->get_size(); i++)
+   rectangleUnion = this->first();
+
+   for (i32 i = 1; i < this->get_size(); i++)
    {
+      
       rectangleUnion.unite(rectangleUnion, this->element_at(i));
+      //this->element_at(i).expand_bounding_box(rectangleUnion.top_left(), rectangleUnion.bottom_right());
    }
 
    return rectangleUnion;

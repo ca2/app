@@ -1,17 +1,17 @@
-﻿// Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include "_memory.h"
 
 
 //#ifdef WINDOWS
 /*
-* Find the first occurrence of the byte string s in byte string l.
+* Find the first occurrence of the ::u8 string s in ::u8 string l.
 */
 
 const void * memory_find(const void * l, memsize l_len, const void * s, memsize s_len)
 {
-   const ::byte* cl = (const ::byte*)l;
-   const ::byte* cs = (const ::byte*)s;
+   const ::u8* cl = (const ::u8*)l;
+   const ::u8* cs = (const ::u8*)s;
 
    /* we need something to compare */
    if (l_len == 0 || s_len == 0)
@@ -63,7 +63,7 @@ void * reverse_memchr(const void * l, int ch, size_t l_len)
 
 
 /*
-* Find the last occurrence of the byte string s in byte string l.
+* Find the last occurrence of the ::u8 string s in ::u8 string l.
 */
 
 void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len)

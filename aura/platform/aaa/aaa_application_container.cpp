@@ -123,7 +123,7 @@ void application_container::request_exit()
                else
                {
 
-                  FORMATTED_TRACE("Waiting France Exit of %s", typeid(pappItem.m_p).name());
+                  information("Waiting France Exit of %s", typeid(pappItem.m_p).name());
 
                   j++;
 
@@ -203,7 +203,7 @@ application_array application_container::get_applicationa()
 ::pointer<::aura::application>application_container::instantiate_application(const ::string & pszAppId, ::request * prequest)
 {
 
-   INFORMATION("aura::application::instantiate_application");
+   information() << "aura::application::instantiate_application";
 
    ::pointer<::aura::application>papp;
 
@@ -233,7 +233,7 @@ application_array application_container::get_applicationa()
          if (::auraacmesystem()->acmeapplication()->m_strAppId != strAppId)
          {
 
-            TRACE("Wrong papp Data Type");
+            information("Wrong papp Data Type");
 
             return nullptr;
 
@@ -433,7 +433,7 @@ application_array application_container::get_applicationa()
    if (!papp->on_start_application())
    {
 
-      TRACE("One or more errors occurred during on_start_application execution.");
+      information("One or more errors occurred during on_start_application execution.");
 
    }
 

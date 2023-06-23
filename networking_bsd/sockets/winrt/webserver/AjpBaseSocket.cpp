@@ -35,7 +35,7 @@ namespace sockets
       Method[HTTP_METHOD_POST] = "POST";
       Method[HTTP_METHOD_PUT] = "PUT";
       Method[HTTP_METHOD_DELETE] = "DELETE";
-      Method[HTTP_METHOD_TRACE] = "TRACE";
+      Method[HTTP_METHOD_TRACE] = "information";
       Method[HTTP_METHOD_PROPFIND] = "PROPFIND";
       Method[HTTP_METHOD_PROPPATCH] = "PROPPATCH";
       Method[HTTP_METHOD_MKCOL] = "MKCOL";
@@ -98,13 +98,13 @@ namespace sockets
 
    void AjpBaseSocket::OnRawData(char *buf, memsize sz)
    {
-   FORMATTED_TRACE("OnRawData: %d bytes\n", sz);
+   information("OnRawData: %d bytes\n", sz);
       memsize ptr = 0;
       while (true)
       {
          memsize left = sz - ptr;
-   FORMATTED_TRACE(" left: %d bytes\n", left);
-   FORMATTED_TRACE(" state: %d\n", m_state);
+   information(" left: %d bytes\n", left);
+   information(" state: %d\n", m_state);
          switch (m_state)
          {
          case 0:

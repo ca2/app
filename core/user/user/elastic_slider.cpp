@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "elastic_slider.h"
 #include "mesh.h"
 #include "acme/constant/message.h"
@@ -42,7 +42,7 @@ namespace user
    void elastic_slider::on_message_create(::message::message * pmessage)
    {
     
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       
       SetTimer(333, 50_ms, nullptr);
 
@@ -119,7 +119,7 @@ namespace user
 
    void elastic_slider::on_message_mouse_move(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 //      auto pmouse = pmessage->m_union.m_pmouse;
    }
 
@@ -233,7 +233,7 @@ namespace user
       
       client_rectangle(rectangleClient);
 
-      byte bAlpha = (byte) (128.0 * get_alpha());
+      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 250, 255, 255));
 

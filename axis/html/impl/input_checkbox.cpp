@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_checkbox.h"
 #include "acme/constant/id.h"
 #include "acme/primitive/data/listener.h"
@@ -196,7 +196,7 @@ namespace html
       void input_checkbox::on_change_layout(html_data * pdata)
       {
 
-         __UNREFERENCED_PARAMETER(pdata);
+         UNREFERENCED_PARAMETER(pdata);
 
          m_pcheckbox->place(m_box);
 

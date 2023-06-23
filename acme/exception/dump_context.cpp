@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "dump_context.h"
 //
 //
@@ -8,7 +8,7 @@
 //inline i32 _stprintf_s(char * pszBuffer, i32 iBufferLen, const ::scoped_string & scopedstrFormat, ...)
 //{
 //
-//   __UNREFERENCED_PARAMETER(iBufferLen);
+//   UNREFERENCED_PARAMETER(iBufferLen);
 //
 //   va_list args;
 //
@@ -500,7 +500,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 ////// Formatted output
 ////
-////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, byte* pby, i32 nBytes, i32 nWidth)
+////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, ::u8* pby, i32 nBytes, i32 nWidth)
 ////// do a simple hex-dump (8 per line) to a dump_context
 //////  the "pszLine" is a string to print at the start of each line
 //////    (%lx should be used to expand the current address)

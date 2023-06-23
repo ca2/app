@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "time.h"
 ////#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/datetime/system_time.h"
@@ -49,7 +49,7 @@ CLASS_DECL_ACME void preempt(const class time & time)
       preempt_millisecond(time.integral_millisecond());
 
    }
-   else if (time >= 20_µs)
+   else if (time >= 20_μs)
    {
 
       preempt_microsecond(time.integral_microsecond());

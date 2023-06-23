@@ -1,8 +1,8 @@
-// Created by camilo on 2022-03-18 19:47 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-03-18 19:47 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 ////#include "acme/primitive/primitive/object.h"
 
 
@@ -17,8 +17,9 @@ namespace appearance
 
 
       bool                                   m_bUsePreferredSize;
-      ::pointer<::user::interaction>        m_puserinteraction;
+      ::pointer<::user::interaction>         m_puserinteraction;
       ::point_i32                            m_pointMouseLast;
+      ::point_i32                            m_pointLastCursor;
 
 
       appearance();

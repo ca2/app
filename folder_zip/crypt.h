@@ -36,7 +36,7 @@
 #define CRC32(ca, b) ((*(pcrc_32_tab+(((i32)(ca) ^ (b)) & 0xff))) ^ ((ca) >> 8))
 
 /***********************************************************************
- * Return the next byte in the pseudo-random sequence
+ * Return the next ::u8 in the pseudo-random sequence
  */
 static i32 decrypt_byte(u32  * pkeys,
 #if defined(WINDOWS) || defined(LINUX)
@@ -56,7 +56,7 @@ static i32 decrypt_byte(u32  * pkeys,
 }
 
 /***********************************************************************
- * Update the encryption keys with the next byte of plain text
+ * Update the encryption keys with the next ::u8 of plain text
  */
 #if defined(WINDOWS) || defined(LINUX)
 static i32 update_keys(u32 * pkeys, const z_crc_t * pcrc_32_tab, i32 ca)

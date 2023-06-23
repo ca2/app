@@ -149,7 +149,7 @@ namespace sockets
       if (m_socket == INVALID_SOCKET) // this could happen
       {
 
-         WARNING("base_socket::close", 0, "file descriptor invalid");
+         warning() <<"base_socket::close", 0, "file descriptor invalid";
 
          throw ::exception(error_io);
 

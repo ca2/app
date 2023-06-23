@@ -1,4 +1,4 @@
-﻿// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
+// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -134,7 +134,7 @@ namespace acme
       ::pointer<::text::table>                                        m_ptexttable;
 
 
-      enum_trace_level                                                  m_etracelevel;
+      //enum_trace_level                                                  m_etracelevel;
       class ::time                                                        m_timeMainStart;
       //class ::time                                                        m_timeAfterApplicationFirstRequest;
       bool                                                              m_bIsReadyForUserInteraction;
@@ -147,8 +147,6 @@ namespace acme
       ::pointer<::dir_system>                                           m_pdirsystem;
       ::pointer<::file_system>                                          m_pfilesystem;
 
-
-      ::pointer < logger >                                              m_plogger;
 
 
       system();
@@ -492,6 +490,7 @@ namespace acme
       //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
       virtual void get_public_internet_domain_extension_list(string_array & stra);
+      virtual ::string fetch_public_internet_domain_extension_list_text();
 
       virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
       
@@ -598,9 +597,6 @@ namespace acme
 
 
    };
-
-
-
 
 
 

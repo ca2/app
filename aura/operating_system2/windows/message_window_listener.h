@@ -16,7 +16,7 @@ namespace user
    {
    public:
 
-      virtual void message_window_message_handler(::message::message * pmessage) { __UNREFERENCED_PARAMETER(pmessage); }
+      virtual void message_window_message_handler(::message::message * pmessage) { UNREFERENCED_PARAMETER(pmessage); }
 
       virtual void install_message_window_routing(::channel* pchannel) {}
 

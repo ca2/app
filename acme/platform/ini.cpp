@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 2022-10-23 23:49 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 2022-10-23 23:49 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "ini.h"

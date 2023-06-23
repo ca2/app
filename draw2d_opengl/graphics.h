@@ -271,7 +271,7 @@ namespace draw2d_opengl
       //i32 GetArcDirection() const;
       //i32 SetArcDirection(i32 nArcDirection);
 
-      //void polydraw(const ::point_f64* lpPoints, const byte* lpTypes,::count nCount);
+      //void polydraw(const ::point_f64* lpPoints, const ::u8* lpTypes,::count nCount);
       void polyline_to(const ::point_f64 * lpPoints,::count nCount);
       void poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints,::count nCount);
 
@@ -435,7 +435,7 @@ namespace draw2d_opengl
 //      bool DrawFrameControl(const ::rectangle_i32 & rectangle,::u32 nType,::u32 nState);
 
       // Scrolling Functions
-      //bool ScrollDC(i32 greekdeltax, i32 greekdeltay, const ::rectangle_i32 & lpRectScroll, const ::rectangle_i32 & lpRectClip,
+      //bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_i32 & lpRectScroll, const ::rectangle_i32 & lpRectClip,
         //            ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate);
 
       // font Functions
@@ -482,7 +482,7 @@ namespace draw2d_opengl
       // MetaFile Functions
       //bool PlayMetaFile(HMETAFILE hMF);
       //bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_i32 & lpBounds);
-      //bool AddMetaFileComment(::u32 nDataSize, const byte* pCommentData);
+      //bool AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData);
       // can be used for enhanced metafiles only
 
       // Path Functions
@@ -582,7 +582,7 @@ namespace draw2d_opengl
       void is_valid_update_window_thread() override;
 
 
-      void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion) override;
+      //void _add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion) override;
 
 
       void on_begin_draw() override;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -521,9 +521,9 @@ namespace user
 
                rectangleSel.inflate(5, 5);
 
-               ::color::color crBorder = 0;
+               ::color::color crBorder = color::transparent;
 
-               ::color::color crSel = 0;
+               ::color::color crSel = color::transparent;
 
                bool bSel;
 

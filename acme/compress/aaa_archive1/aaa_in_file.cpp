@@ -328,7 +328,7 @@ namespace zip
    {
       if(m_strFileName.is_empty())
          return false;
-      byte buf[1024];
+      ::u8 buf[1024];
       memsize iRead;
       while((iRead = read(buf,sizeof(buf))) > 0)
       {
@@ -341,7 +341,7 @@ namespace zip
    bool in_file::dump(memory & m)
    {
 
-      byte buf[1024];
+      ::u8 buf[1024];
 
       memsize iRead;
 
@@ -380,9 +380,9 @@ namespace zip
    void in_file::write(const void * pdata,memsize nCount)
 
    {
-      __UNREFERENCED_PARAMETER(pdata);
+      UNREFERENCED_PARAMETER(pdata);
 
-      __UNREFERENCED_PARAMETER(nCount);
+      UNREFERENCED_PARAMETER(nCount);
       //ASSERT_VALID(this);
       ASSERT(get_zip_file() != nullptr);
 
@@ -450,7 +450,7 @@ namespace zip
 
          i32 iRead;
 
-         byte pbBuf[1024];
+         ::u8 pbBuf[1024];
 
          while(iRemain > 0)
          {

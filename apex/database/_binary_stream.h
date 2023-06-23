@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-15 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-15 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -52,7 +52,7 @@
 //      if (::is_null(m_pdataserver))
 //      {
 //
-//         FORMATTED_WARNING("Data server is null trying to binary_get key=\"%s\".", key.m_strDataKey.c_str());
+//         warning("Data server is null trying to binary_get key=\"%s\".", key.m_strDataKey.c_str());
 //
 //         return false;
 //

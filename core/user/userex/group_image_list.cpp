@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "group_image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"

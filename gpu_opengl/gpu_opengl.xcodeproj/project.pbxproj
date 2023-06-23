@@ -39,6 +39,7 @@
 		9A8B64E624CCAAFC00A93185 /* context_fbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B64E424CCAAFC00A93185 /* context_fbo.cpp */; };
 		9A8B64E724CCAAFC00A93185 /* context_fbo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8B64E524CCAAFC00A93185 /* context_fbo.h */; };
 		9A8B64F724CCEBBF00A93185 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8B64F624CCEBBF00A93185 /* CoreGraphics.framework */; };
+		9ADDBC322A4159F700C53EEB /* libglad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADDBC192A41594200C53EEB /* libglad.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
+		};
+		9ADDBC182A41594200C53EEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9ADDBC122A41594200C53EEB /* glad.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9ADDBC0B2A41590A00C53EEB;
+			remoteInfo = glad;
+		};
+		9ADDBC302A4159E500C53EEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9ADDBC122A41594200C53EEB /* glad.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9ADDBC0A2A41590A00C53EEB;
+			remoteInfo = glad;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -133,6 +148,7 @@
 		9A8B64F624CCEBBF00A93185 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9ADD666526B6264900D11298 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9ADD666926B6266800D11298 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		9ADDBC122A41594200C53EEB /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = ../../../port/graphics3d/glad/glad.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADDBC322A4159F700C53EEB /* libglad.dylib in Frameworks */,
 				9A6A479B2660E6E2004ED97A /* libacme.dylib in Frameworks */,
 				9A6A479D2660E6E2004ED97A /* libapex.dylib in Frameworks */,
 				9A8B64F724CCEBBF00A93185 /* CoreGraphics.framework in Frameworks */,
@@ -225,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				9A8B647224CBEAE400A93185 /* aura.xcodeproj */,
+				9ADDBC122A41594200C53EEB /* glad.xcodeproj */,
 				9A204A2E2433C68300D45614 /* gpu_opengl */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
 				9A574B9916AAB906000CC4EF /* Products */,
@@ -247,6 +265,14 @@
 				9A8B647924CBEAE400A93185 /* libaura.dylib */,
 				9A8B647B24CBEAE400A93185 /* libios_aura.a */,
 				9A8B647D24CBEAE400A93185 /* aura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9ADDBC132A41594200C53EEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9ADDBC192A41594200C53EEB /* libglad.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -321,6 +347,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9ADDBC312A4159E500C53EEB /* PBXTargetDependency */,
 				9A8B647F24CBEAED00A93185 /* PBXTargetDependency */,
 			);
 			name = gpu_opengl;
@@ -358,6 +385,10 @@
 					ProductGroup = 9A8B647324CBEAE400A93185 /* Products */;
 					ProjectRef = 9A8B647224CBEAE400A93185 /* aura.xcodeproj */;
 				},
+				{
+					ProductGroup = 9ADDBC132A41594200C53EEB /* Products */;
+					ProjectRef = 9ADDBC122A41594200C53EEB /* glad.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -388,6 +419,13 @@
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
 			remoteRef = 9A8B647C24CBEAE400A93185 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9ADDBC192A41594200C53EEB /* libglad.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libglad.dylib;
+			remoteRef = 9ADDBC182A41594200C53EEB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -447,6 +485,11 @@
 			isa = PBXTargetDependency;
 			name = aura;
 			targetProxy = 9A8B647E24CBEAED00A93185 /* PBXContainerItemProxy */;
+		};
+		9ADDBC312A4159E500C53EEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = glad;
+			targetProxy = 9ADDBC302A4159E500C53EEB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -607,7 +650,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -621,7 +663,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -694,7 +735,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -708,7 +748,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

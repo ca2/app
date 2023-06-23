@@ -2,8 +2,8 @@
 //  text_to_speech_client.hpp
 //  aqua
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 25/11/21. 22:48
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 25/11/21. 22:48
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 

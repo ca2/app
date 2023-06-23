@@ -1,4 +1,4 @@
-﻿// From datetime to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSørensen!!
+// From datetime to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSorensen!!
 #include "framework.h" // from "base/apex/.h"
 #include "datetime.h"
 ////#include "acme/exception/exception.h"
@@ -255,7 +255,7 @@ namespace datetime
 
       }
 
-      __UNREFERENCED_PARAMETER(iPath);
+      UNREFERENCED_PARAMETER(iPath);
 
       ::earth::time time(timeParam);
 
@@ -1363,11 +1363,11 @@ namespace datetime
 
             if (bAdd)
             {
-               INFORMATION("strtotime: invalid char +");
+               information() << "strtotime: invalid char +";
             }
             else if (bMinus)
             {
-               INFORMATION("strtotime: invalid char + on Minus state");
+               information() << "strtotime: invalid char + on Minus state";
             }
 
 #endif
@@ -1384,13 +1384,13 @@ namespace datetime
             if (bAdd)
             {
                
-               INFORMATION("strtotime: invalid char - on add state");
+               information() << "strtotime: invalid char - on add state";
 
             }
             else if (bMinus)
             {
                
-               INFORMATION("strtotime: invalid char - on Minus state");
+               information() << "strtotime: invalid char - on Minus state";
 
             }
 

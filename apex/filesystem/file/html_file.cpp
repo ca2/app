@@ -47,7 +47,7 @@ void html_file::raw_print(const ::string& str)
 void html_file::printf(string str, ...)
 {
 
-   __UNREFERENCED_PARAMETER(str);
+   UNREFERENCED_PARAMETER(str);
 
    throw ::interface_only();
 
@@ -57,7 +57,7 @@ void html_file::printf(string str, ...)
 void html_file::printstr(string str, ...)
 {
 
-   __UNREFERENCED_PARAMETER(str);
+   UNREFERENCED_PARAMETER(str);
 
    throw ::interface_only();
 
@@ -81,7 +81,7 @@ void html_file::trace(void*, const ::scoped_string & scopedstr)
 void html_file::dprint(const ::scoped_string & scopedstr)
 {
 
-   __UNREFERENCED_PARAMETER(scopedstr);
+   UNREFERENCED_PARAMETER(scopedstr);
 
    throw ::interface_only();
 

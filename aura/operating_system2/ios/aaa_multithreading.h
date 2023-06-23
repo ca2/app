@@ -2,7 +2,7 @@
 //  ca_os_thread.h
 //  ca
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 6/26/13.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 6/26/13.
 //
 //
 

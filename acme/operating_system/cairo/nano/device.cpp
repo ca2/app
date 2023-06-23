@@ -1,8 +1,9 @@
 //
-// Created by camilo on 31/01/2022 20:15 <3ThomasBorregaardSørensen!! Thomas Likes number 5!!
+// Created by camilo on 31/01/2022 20:15 <3ThomasBorregaardSorensen!! Thomas Likes number 5!!
 //
 #include "framework.h"
 #include "device.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/user/nano/brush.h"
 #include "acme/user/nano/font.h"
 #include "acme/user/nano/pen.h"
@@ -142,14 +143,14 @@ namespace cairo
    }
 
 
-   void nano_device::rectangle_f64(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen)
+   void nano_device::rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen)
    {
 
       cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_NONE);
 
       int iWidth = pnanopen ? pnanopen->m_iWidth : 0;
 
-      if(iWidth > 0 || pnanobrush && pnanobrush->m_color)
+      if(iWidth > 0 || (pnanobrush && pnanobrush->m_color.has_opacity()))
       {
 
          cairo_rectangle(m_pdc,
@@ -160,7 +161,7 @@ namespace cairo
 
       }
 
-      if (pnanobrush && pnanobrush->m_color)
+      if (pnanobrush && pnanobrush->m_color.has_opacity())
       {
 
          _set_source(pnanobrush->m_color);
@@ -243,7 +244,7 @@ namespace cairo
    void nano_device::_set_source(const ::color::color & color)
    {
 
-      cairo_set_source_rgba(m_pdc, color.dr(), color.dg(), color.db(), color.da());
+      cairo_set_source_rgba(m_pdc, __expand_f64_rgba(color));
 
    }
 

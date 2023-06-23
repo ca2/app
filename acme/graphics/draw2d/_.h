@@ -1,10 +1,12 @@
 #pragma once
 
 
-using color32_t = unsigned int;
+struct color32_t;
+
+struct image32_t;
 
 
-inline byte clampAndConvert(double v)
+inline ::u8 clampAndConvert(double v)
 {
 
 
@@ -12,7 +14,7 @@ inline byte clampAndConvert(double v)
       return 0;
    if (v > 255)
       return 255;
-   return (byte)(v);
+   return (::u8)(v);
 
 
 }

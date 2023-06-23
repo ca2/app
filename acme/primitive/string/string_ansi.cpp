@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <stdio.h>
 //#include "string.h"
 
@@ -129,7 +129,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   FORMATTED_TRACE(::acme::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   information(::acme::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::output_debug_string("fixed_string_log::OnAllocateSpill");
 }
 
@@ -138,7 +138,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   FORMATTED_TRACE(::acme::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   information(::acme::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::output_debug_string("fixed_string_log::OnReallocateSpill");
 }
 
@@ -798,7 +798,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//string::string(Array <byte > ^ a):
+//string::string(Array <::u8 > ^ a):
 //   string(::str::GetDefaultManager())
 //{
 //   //      if( !CheckImplicitLoad( pszSrc ) )

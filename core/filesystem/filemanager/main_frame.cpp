@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "main_frame.h"
 #include "document.h"
 #include "base/user/user/impact.h"
@@ -26,7 +26,7 @@ namespace filemanager
    void main_frame::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 
    }

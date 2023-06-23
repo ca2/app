@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "department.h"
 #include "experience.h"
 #include "frame.h"
@@ -269,7 +269,7 @@ namespace base
    void user::initialize1_experience()
    {
 
-      INFORMATION("start");
+      information() << "start";
 
       //auto estatus = 
       
@@ -280,7 +280,7 @@ namespace base
 
       //   //m_result.add(estatus);
 
-      //   ERROR(".1");
+      //   error() <<".1";
 
       //   return estatus;
 
@@ -297,13 +297,13 @@ namespace base
 
       //   //m_result.add(estatus);
 
-      //   ERROR(".2");
+      //   error() <<".2";
 
       //   return estatus;
 
       //}
 
-      INFORMATION("ok");
+      information() << "ok";
 
       //return ::success;
 

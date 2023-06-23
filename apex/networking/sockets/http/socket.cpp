@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "socket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/primitive/primitive/url.h"
@@ -436,8 +436,8 @@ namespace sockets
 
    bool http_socket::http_filter_response_header(string &strKey, string_array &straValue)
    {
-      __UNREFERENCED_PARAMETER(strKey);
-      __UNREFERENCED_PARAMETER(straValue);
+      UNREFERENCED_PARAMETER(strKey);
+      UNREFERENCED_PARAMETER(straValue);
       return true;
    }
 
@@ -463,7 +463,7 @@ namespace sockets
 
          msg += "Host: " + strHost + "\r\n";
 
-         INFORMATION("Host: " << strHost);
+         information() << "Host: " << strHost;
 
       }
 
@@ -514,9 +514,9 @@ namespace sockets
             string strValue = straValue[j];
             //         strLine = ;
             msg += strKey + ": " + strValue + "\r\n";
-            //FORMATTED_TRACE("%s: %s", strKey, strValue);
+            //information("%s: %s", strKey, strValue);
          }
-         //TRACE(strTrace + "\n");
+         //information(strTrace + "\n");
       }
 
       for (auto &pcookie: m_response.cookies())
@@ -708,7 +708,7 @@ namespace sockets
 //#ifndef UNIVERSAL_WINDOWS
 //
 //
-//         WARNING("url_this",-1,"SSL not available");
+//         warning() <<"url_this",-1,"SSL not available";
 //
 //#endif
 //
@@ -753,7 +753,7 @@ namespace sockets
       //http_socket::OnHeader(key, value);
       /*if(key.case_insensitive_order("user-agent") == 0)
       {
-         FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+         information("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
       if (key == "cookie")
       {

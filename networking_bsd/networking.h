@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
+// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #pragma once
 
 
@@ -107,7 +107,7 @@ namespace networking_bsd
 
       ::pointer<::sockets_bsd::SSLInitializer>           m_psslinit;
 
-      byte                                               m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+      ::u8                                               m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
 #if defined(BSD_STYLE_SOCKETS)
       ::sockets_bsd::ssl_client_context_map              m_clientcontextmap;

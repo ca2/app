@@ -1141,7 +1141,7 @@ pacmedirectory->system() / "user" / "databin.bin";
    /*void crypto::free_rsa_key(::pointer<::crypto::rsa>prsa)
    {
 
-      __UNREFERENCED_PARAMETER(prsa);
+      UNREFERENCED_PARAMETER(prsa);
 
    }*/
 
@@ -1408,7 +1408,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       if (i < 0 || i >(1024 * 1024))
       {
 
-         FORMATTED_TRACE("%s", strError.c_str());
+         information("%s", strError.c_str());
 
       }
 
@@ -1439,7 +1439,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       if (i < 0 || i >(1024 * 1024))
       {
 
-         FORMATTED_TRACE("%s", strError.c_str());
+         information("%s", strError.c_str());
 
       }
 
@@ -1466,7 +1466,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       if (i < 0 || i >(1024 * 1024))
       {
 
-         FORMATTED_TRACE("%s", strError.c_str());
+         information("%s", strError.c_str());
 
       }
 
@@ -1496,7 +1496,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       if (i < 0 || i >(1024 * 1024))
       {
 
-         FORMATTED_TRACE("%s", strError.c_str());
+         information("%s", strError.c_str());
 
       }
 
@@ -1525,7 +1525,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       if (i < 0 || i >(1024 * 1024))
       {
 
-         FORMATTED_TRACE("%s", strError.c_str());
+         information("%s", strError.c_str());
 
       }
 
@@ -1639,7 +1639,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       if (i < 0 || i >(1024 * 1024))
       {
 
-         FORMATTED_TRACE("%s", strError.c_str());
+         information("%s", strError.c_str());
 
       }
 
@@ -1668,7 +1668,7 @@ pacmedirectory->system() / "user" / "databin.bin";
       if (i < 0 || i >(1024 * 1024))
       {
 
-         FORMATTED_TRACE("%s", strError.c_str());
+         information("%s", strError.c_str());
 
       }
 

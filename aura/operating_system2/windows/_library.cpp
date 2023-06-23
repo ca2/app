@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #undef ERROR
 #include <WinSock2.h>
 //#include "acme/operating_system.h"
@@ -438,7 +438,7 @@ void __node_aura_pos_term()
 //
 //      // get the Windows version.
 //
-//      ::u32 dwWindowsMajorVersion = (::u32)(__LOBYTE(LOWORD(dwVersion)));
+//      ::u32 dwWindowsMajorVersion = (::u32)(lower_u8(LOWORD(dwVersion)));
 //      ::u32 dwWindowsMinorVersion = (::u32)(HIBYTE(LOWORD(dwVersion)));
 //
 //      // get the build number.

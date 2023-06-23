@@ -1,8 +1,8 @@
-﻿//
+//
 //  property_object.h
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 02/06/19.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 02/06/19.
 //
 #pragma once
 
@@ -71,11 +71,11 @@ public:
 
 
 
-//#ifdef GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS
+//#ifdef GCC_PORKBARBECUE_AND_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS
 //
-//   inline GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & _routine_array(const ::atom& atom);
+//   inline GCC_PORKBARBECUE_AND_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & _routine_array(const ::atom& atom);
 //
-//   inline GGCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & ::procedure_array(const ::atom & atom);
+//   inline GGCC_PORKBARBECUE_AND_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & ::procedure_array(const ::atom & atom);
 //
 //#else
 

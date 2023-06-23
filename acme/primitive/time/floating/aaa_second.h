@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 2021-10-05 12:41 BRT <3ThomasBorregaardS�rensen!![ THE ONE GOD ]
+//
+// Created by camilo on 2021-10-05 12:41 BRT <3ThomasBorregaardSorensen!![ THE ONE GOD ]
 //
 //
 //

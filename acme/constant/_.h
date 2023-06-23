@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 04/12/2020. <3Tbs, Mummi and bilbo!!
 //
 #pragma once
@@ -15,7 +15,18 @@
 //#include "_enumeration.h"
 
 
+enum enum_start_reference
+{
+
+   e_start_reference,
+
+};
+
+
 enum enum_font_awesome : ::i32;
+
+
+enum enum_character_set : ::i32;
 
 
 enum enum_zero_initialize
@@ -77,7 +88,7 @@ enum enum_image_type
 
 
 
-#include "_mathematics.h"
+//#include "_mathematics.h"
 
 
 #include "_geometry.h"

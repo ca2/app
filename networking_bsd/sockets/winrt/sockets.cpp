@@ -137,8 +137,8 @@ namespace sockets
 
    //void sockets::http_config_proxy(const ::scoped_string & scopedstrUrl, http_tunnel * psocket)
    //{
-   //   __UNREFERENCED_PARAMETER(pszUrl);
-   //   //__UNREFERENCED_PARAMETER(psocket);
+   //   UNREFERENCED_PARAMETER(pszUrl);
+   //   //UNREFERENCED_PARAMETER(psocket);
    //   //throw ::not_implemented();
    //   psocket->m_bDirect = true;
    //}

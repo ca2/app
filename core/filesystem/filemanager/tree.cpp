@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree.h"
 #include "document.h"
 #include "data.h"
@@ -733,7 +733,7 @@ namespace filemanager
    void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      __UNREFERENCED_PARAMETER(pitem);
+      UNREFERENCED_PARAMETER(pitem);
 
    }
 
@@ -856,7 +856,7 @@ namespace filemanager
    void tree::on_bind_user_tree(::user::tree * pusertree)
    {
 
-      __UNREFERENCED_PARAMETER(pusertree);
+      UNREFERENCED_PARAMETER(pusertree);
 
    }
 

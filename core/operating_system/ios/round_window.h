@@ -2,7 +2,7 @@
 //  round_window.h
 //  os
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 6/8/13.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 6/8/13.
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 

@@ -290,16 +290,16 @@ namespace user
 
                if (i == 0)
                {
-                  w = sizea[0].cx() - x;
-                  x = sizea[0].cx();
+                  w = (::index) (sizea[0].cx() - x);
+                  x = (::index) (sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
 
                }
                else
                {
-                  w = sizea[i - 1].cx() - x;
-                  x = sizea[i - 1].cx();
+                  w = (::index) (sizea[i - 1].cx() - x);
+                  x = (::index) (sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
@@ -460,8 +460,8 @@ namespace user
       void list::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast)
    {
 
-      //__UNREFERENCED_PARAMETER(iItemFirst);
-      //__UNREFERENCED_PARAMETER(iItemLast);
+      //UNREFERENCED_PARAMETER(iItemFirst);
+      //UNREFERENCED_PARAMETER(iItemLast);
 
       index iGroup;
 
@@ -585,7 +585,7 @@ namespace user
 
       ::rectangle_i32 rectangleIntersect;
 
-      rectangleClient.offset(get_context_offset());
+      //rectangleClient.offset(get_context_offset());
 
       bool bHoverFont = false;
 
@@ -692,9 +692,9 @@ namespace user
             if (tickElapsed > 100_ms)
             {
 
-               INFORMATION("drawing took " << tickElapsed.integral_millisecond() << "!!");
-               INFORMATION("drawing took more than 100ms to complete!!");
-               INFORMATION("");
+               information() << "drawing took " << tickElapsed.integral_millisecond() << "!!";
+               information() << "drawing took more than 100ms to complete!!";
+               information() << "";
 
                // let's try to reproduce the offending scenario
                //_001DrawItem(m_pdrawlistitem);
@@ -886,7 +886,7 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            color.alpha = 90;
+            color.m_u8Opacity = 90;
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectangleItem, color);
 
@@ -993,7 +993,7 @@ namespace user
    void list::on_message_size(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -1009,7 +1009,7 @@ namespace user
 
       auto rect1 = client_rectangle();
 
-      if (!rect1)
+      if (rect1.is_empty())
       {
 
          return;
@@ -1104,7 +1104,7 @@ namespace user
    bool list::_001OnUpdateItemCount(u32 dwFlags)
    {
       
-      __UNREFERENCED_PARAMETER(dwFlags);
+      UNREFERENCED_PARAMETER(dwFlags);
 
       auto pointOffset = get_context_offset();
 
@@ -2089,11 +2089,11 @@ namespace user
    bool list::_001HitTest_(const ::point_i32 & point, index &iItem, index &iSubItem, index&iListItem, ::user::mesh::enum_element &eelement)
    {
 
-      __UNREFERENCED_PARAMETER(point);
-      __UNREFERENCED_PARAMETER(iItem);
-      __UNREFERENCED_PARAMETER(iSubItem);
-      __UNREFERENCED_PARAMETER(iListItem);
-      __UNREFERENCED_PARAMETER(eelement);
+      UNREFERENCED_PARAMETER(point);
+      UNREFERENCED_PARAMETER(iItem);
+      UNREFERENCED_PARAMETER(iSubItem);
+      UNREFERENCED_PARAMETER(iListItem);
+      UNREFERENCED_PARAMETER(eelement);
 
       return false;
 
@@ -2137,11 +2137,11 @@ namespace user
    bool list::_001DisplayHitTest(const ::point_i32 & point, index& iItem, index& iSubItem, index& iListItem, ::user::mesh::enum_element &eelement)
    {
 
-      __UNREFERENCED_PARAMETER(point);
-      __UNREFERENCED_PARAMETER(iItem);
-      __UNREFERENCED_PARAMETER(iSubItem);
-      __UNREFERENCED_PARAMETER(iListItem);
-      __UNREFERENCED_PARAMETER(eelement);
+      UNREFERENCED_PARAMETER(point);
+      UNREFERENCED_PARAMETER(iItem);
+      UNREFERENCED_PARAMETER(iSubItem);
+      UNREFERENCED_PARAMETER(iListItem);
+      UNREFERENCED_PARAMETER(eelement);
 
       return false;
 
@@ -2188,7 +2188,7 @@ namespace user
 
       ::rectangle_i32 rectangleMargin;
 
-      get_margin_rect(rectangleMargin);
+      get_margin_rect(&rectangleMargin);
 
       auto iLeft = (index)-pointOffset.x() - (rectangleMargin.left * 2);
 
@@ -3494,7 +3494,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            bool bShouldStartDrag = d_distance(point, m_pointLButtonDown1) > m_dItemHeight;
+            bool bShouldStartDrag = f64_distance(point, m_pointLButtonDown1) > m_dItemHeight;
 
             if (bShouldStartDrag)
             {
@@ -4030,7 +4030,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            bool bShouldStartDrag = d_distance(point, m_pointLButtonDown1) > m_dItemHeight;
+            bool bShouldStartDrag = f64_distance(point, m_pointLButtonDown1) > m_dItemHeight;
 
             if (bShouldStartDrag)
             {
@@ -4305,7 +4305,7 @@ namespace user
    bool list::on_right_click(::item * pitem)
    {
 
-      __UNREFERENCED_PARAMETER(pitem);
+      UNREFERENCED_PARAMETER(pitem);
 
       return false;
 
@@ -4586,9 +4586,9 @@ namespace user
 
    {
 
-      __UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(wparam);
 
-      __UNREFERENCED_PARAMETER(lparam);
+      UNREFERENCED_PARAMETER(lparam);
 
 
       for (index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
@@ -4637,9 +4637,9 @@ namespace user
 
    {
 
-      __UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(wparam);
 
-      __UNREFERENCED_PARAMETER(lparam);
+      UNREFERENCED_PARAMETER(lparam);
 
 
       _001OnHeaderCtrlTrack(0, 0);
@@ -4670,9 +4670,9 @@ namespace user
 
    {
 
-      __UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(wparam);
 
-      __UNREFERENCED_PARAMETER(lparam);
+      UNREFERENCED_PARAMETER(lparam);
 
 
       //    for(index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
@@ -5660,13 +5660,13 @@ namespace user
          {
             if (i == 0)
             {
-               x = sizea[0].cx();
-               y += sizea[0].cy();
+               x = (::index) (sizea[0].cx());
+               y += (::index) (sizea[0].cy());
             }
             else
             {
-               x = sizea[i - 1].cx();
-               y += sizea[i - 1].cy();
+               x = (::index) (sizea[i - 1].cx());
+               y += (::index) (sizea[i - 1].cy());
             }
          }
       }
@@ -5822,7 +5822,7 @@ namespace user
 
          m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
-         cx += size.cx();
+         cx += (::index) (size.cx());
 
       }
 
@@ -6110,7 +6110,7 @@ namespace user
 
    bool list::_001OnRemoveItem(index iItem)
    {
-      __UNREFERENCED_PARAMETER(iItem);
+      UNREFERENCED_PARAMETER(iItem);
       return false;
    }
 
@@ -6164,7 +6164,7 @@ namespace user
    index list::_001StrictToDisplay(index iStrict)
    {
 
-      __UNREFERENCED_PARAMETER(iStrict);
+      UNREFERENCED_PARAMETER(iStrict);
 
       return -1;
 
@@ -6343,9 +6343,9 @@ namespace user
 
       auto tickIn = ::time::now();
 
-      TRACE("list::Filter1Step");
+      information("list::Filter1Step");
 
-      INFORMATION("tickIn = " << tickIn.integral_millisecond());
+      information() << "tickIn = " << tickIn.integral_millisecond();
 
       if (!m_bFilter1)
       {
@@ -6436,8 +6436,8 @@ namespace user
 
       //auto tickOut = ::time::now();
 
-      //INFORMATION("tickOut = " << integral_millisecond(tickOut));
-      //INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));
+      //information() << "tickOut = " << integral_millisecond(tickOut);
+      //information() << "(delta) = " << integral_millisecond(tickOut - tickIn);
 
       //return m_nItemCount != iItemCount;
 
@@ -6663,7 +6663,7 @@ namespace user
    i32 list::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn)
    {
 
-      __UNREFERENCED_PARAMETER(iColumn);
+      UNREFERENCED_PARAMETER(iColumn);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -6703,7 +6703,7 @@ namespace user
    void list::_OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -6928,7 +6928,7 @@ namespace user
 
       return ::user::mesh::data_get_sort_id(eview);
 
-      //__UNREFERENCED_PARAMETER(eview);
+      //UNREFERENCED_PARAMETER(eview);
       //switch(m_eview)
       //{
       //case impact_grid:
@@ -7279,7 +7279,7 @@ namespace user
 
    void list::_001OnListImpactAutoArrange(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       auto_arrange(!get_auto_arrange());
    }
 
@@ -7435,7 +7435,7 @@ namespace user
    ::count list::_001GetGroupItemCount(index iGroup)
    {
       
-      __UNREFERENCED_PARAMETER(iGroup);
+      UNREFERENCED_PARAMETER(iGroup);
 
       return -1;
 
@@ -7569,7 +7569,7 @@ namespace user
 //         catch (...)
 //         {
 //
-//            TRACE("Exception : ::list::_001OnClip");
+//            information("Exception : ::list::_001OnClip");
 //
 //         }
 //

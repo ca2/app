@@ -1,12 +1,11 @@
-﻿//
-// Created by camilo on 31/01/2022 16:00 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 31/01/2022 16:00 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
 
 #include "acme/user/nano/object.h"
-#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
-#include "acme/_operating_system.h"
+#include "acme/_win32_gdi.h"
 
 
 namespace windows

@@ -2,7 +2,7 @@
 //  acme_malloc.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 26/11/17. tbs in <3
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 26/11/17. tbs in <3
 //
 #pragma once
 

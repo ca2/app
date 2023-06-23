@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "request.h"
 //#include "apex/id.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -47,12 +47,12 @@ namespace http
    // --------------------------------------------------------------------------------------
    void request::InitBody( memsize sz )
    {
-      __UNREFERENCED_PARAMETER(sz);
+      UNREFERENCED_PARAMETER(sz);
       m_pmemfileBody->set_size(0);
       /*if (!m_file.get())
          m_file = ::pointer<IFile>e>(memory_new MemFile);
       DEBUG_ONLY(   else
-         TRACE("Body data file already opened\n");*/
+         information("Body data file already opened\n");*/
    }
 
 

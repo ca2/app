@@ -1042,7 +1042,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////::rectangle_i64;
 ////::rectangle_f64;
 //
-//typedef uchar      byte;
+//typedef uchar      ::u8;
 //
 //struct ::point_i64;
 //struct ::size_i64;
@@ -1450,25 +1450,25 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 ////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
-////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
-////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
+////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)u32_x(u), (::i32)u32_y(u)); }
+////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)u64_x(u), (::i32)u64_y(u)); }
 ////inline auto ::point_i32(const ::size_i32 & size) noexcept { return ::point_i32(size.cx(), size.cy()); }
 ////
 ////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
-////inline auto __point64(const ::u32 u) noexcept { return ::point_i64((i64)__u32x(u), (i64)__u32y(u)); }
-////inline auto __point64(const ::u64 u) noexcept { return ::point_i64((i64)__u64x(u), (i64)__u64y(u)); }
+////inline auto __point64(const ::u32 u) noexcept { return ::point_i64((i64)u32_x(u), (i64)u32_y(u)); }
+////inline auto __point64(const ::u64 u) noexcept { return ::point_i64((i64)u64_x(u), (i64)u64_y(u)); }
 ////inline auto __point64(const ::size_i64 & size) noexcept { return ::point_i64(size.cx(), size.cy()); }
 ////
 ////
 ////inline auto __pointf(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
-////inline auto __pointf(const ::u32 u) noexcept { return ::point_f32((float)__u32x(u), (float)__u32y(u)); }
-////inline auto __pointf(const ::u64 u) noexcept { return ::point_f32((float)__u64x(u), (float)__u64y(u)); }
+////inline auto __pointf(const ::u32 u) noexcept { return ::point_f32((float)u32_x(u), (float)u32_y(u)); }
+////inline auto __pointf(const ::u64 u) noexcept { return ::point_f32((float)u64_x(u), (float)u64_y(u)); }
 ////inline auto __pointf(const ::size_f32 & size) noexcept { return ::point_f32(size.cx(), size.cy()); }
 ////
 ////
 ////inline auto __pointd(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
-////inline auto __pointd(const ::u32 u) noexcept { return ::point_f64((double)__u32x(u), (double)__u32y(u)); }
-////inline auto __pointd(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
+////inline auto __pointd(const ::u32 u) noexcept { return ::point_f64((double)u32_x(u), (double)u32_y(u)); }
+////inline auto __pointd(const ::u64 u) noexcept { return ::point_f64((double)u64_x(u), (double)u64_y(u)); }
 ////inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size.cx(), size.cy()); }
 //
 ////#ifdef UNIVERSAL_WINDOWS
@@ -1817,6 +1817,18 @@ class polygon_type;
 template < primitive_number NUMBER >
 class poly_polygon_type;
 
+template < primitive_number NUMBER >
+class point_array_base;
+
+template < primitive_number NUMBER >
+class size_array_base;
+
+template < primitive_number NUMBER >
+class rectangle_array_base;
+
+template < primitive_number NUMBER >
+class lines_base;
+
 
 using point_i32 = point_type < ::i32 >;
 using point_i64 = point_type < ::i64 >;
@@ -1870,6 +1882,30 @@ using poly_polygon_i32 = poly_polygon_type < ::i32 >;
 using poly_polygon_i64 = poly_polygon_type < ::i64 >;
 using poly_polygon_f32 = poly_polygon_type < ::f32 >;
 using poly_polygon_f64 = poly_polygon_type < ::f64 >;
+
+
+using point_i32_array = point_array_base < ::i32 >;
+using point_i64_array = point_array_base < ::i64 >;
+using point_f32_array = point_array_base < ::f32 >;
+using point_f64_array = point_array_base < ::f64 >;
+
+
+using size_i32_array = size_array_base < ::i32 >;
+using size_i64_array = size_array_base < ::i64 >;
+using size_f32_array = size_array_base < ::f32 >;
+using size_f64_array = size_array_base < ::f64 >;
+
+
+using rectangle_i32_array = rectangle_array_base < ::i32 >;
+using rectangle_i64_array = rectangle_array_base < ::i64 >;
+using rectangle_f32_array = rectangle_array_base < ::f32 >;
+using rectangle_f64_array = rectangle_array_base < ::f64 >;
+
+
+using lines_i32 = lines_base < ::i32 >;
+using lines_i64 = lines_base < ::i64 >;
+using lines_f32 = lines_base < ::f32 >;
+using lines_f64 = lines_base < ::f64 >;
 
 
 

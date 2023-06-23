@@ -1,80 +1,61 @@
-﻿// Created by Camilo on 2021-10-04 12:06 BRT <3ThomasBorregaardSørensen!!
+// Created by Camilo on 2021-10-04 12:06 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
-
-#include "acme/filesystem/file/text_stream.h"
-// #include "acme/primitive/string/string.h"
+//
+//#include "acme/filesystem/file/text_stream.h"
+//// #include "acme/primitive/string/string.h"
+//
+//
+#include "acme/filesystem/file/print_formatting.h"
 
 
 class logger;
 
 
 class CLASS_DECL_ACME tracer :
-   public string_stream
+   public print_formatting
 {
 public:
 
 
-   ::acme::context *          m_pcontext;
-   enum_trace_level           m_etracelevel;
-   enum_trace_category        m_etracecategory;
-   const char *               m_pszFunction;
-   const char *               m_pszFile;
-   int                        m_iLine;
-   logger *                   m_plogger;
+   //::acme::context *           m_pcontext;
+   ::pointer < ::logger >          m_plogger;
 
 
-   tracer(::acme::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory = e_trace_category_general, const ::ansi_character * pszFunction = nullptr, const ::ansi_character * pszFile = nullptr, int iLine = -1, logger * plogger = nullptr) :
-      m_pcontext(pcontext),
-      m_etracelevel(etracelevel),
-      m_etracecategory(etracecategory),
-      m_pszFunction(pszFunction),
-      m_pszFile(pszFile),
-      m_iLine(iLine),
-      m_plogger(plogger)
-   {
-
-   }
+   tracer();
+   ~tracer();
 
 
-   ~tracer()
-   {
+   //void format_output_arguments(const ::ansi_character * psz, va_list & arguments)
+   //{
 
-      flush();
+   //   string str;
 
-   }
+   //   str.format_arguments(psz, arguments);
 
+   //   operator << (str);
 
-   void format_output_arguments(const ::ansi_character * psz, va_list & arguments)
-   {
-
-      string str;
-
-      str.format_arguments(psz, arguments);
-
-      operator << (str);
-
-   }
+   //}
 
 
-   tracer & format_output(const ::ansi_character * psz, ...)
-   {
+   //tracer & format_output(const ::ansi_character * psz, ...)
+   //{
 
-      va_list arguments;
+   //   va_list arguments;
 
-      va_start(arguments, psz);
+   //   va_start(arguments, psz);
 
-      string str;
+   //   string str;
 
-      str.format_arguments(psz, arguments);
+   //   str.format_arguments(psz, arguments);
 
-      operator << (str);
+   //   operator << (str);
 
-      va_end(arguments);
+   //   va_end(arguments);
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
    //template < typename STRINGABLE >
@@ -121,22 +102,22 @@ public:
 //   tracer & operator << (const INTEGRAL integral) { return operator << (::as_string(integral)); }
 //
 //
-   void flush();
+   virtual void flush(trace_statement & tracestatement);
 
 
 };
 
 
-CLASS_DECL_ACME void trace_log_information(const ::ansi_character * psz, ...);
-CLASS_DECL_ACME void trace_log_warning(const ::ansi_character * psz, ...);
-CLASS_DECL_ACME void trace_log_error(const ::ansi_character * psz, ...);
-CLASS_DECL_ACME void trace_log_fatal(const ::ansi_character * psz, ...);
+//CLASS_DECL_ACME void trace_log_information() << const ::ansi_character * psz, ...;
+//CLASS_DECL_ACME void trace_log_warning() << const ::ansi_character * psz, ...;
+//CLASS_DECL_ACME void trace_log_error() << const ::ansi_character * psz, ...;
+//CLASS_DECL_ACME void trace_log_fatal() << const ::ansi_character * psz, ...;
 
-
-CLASS_DECL_ACME tracer trace_log_information();
-CLASS_DECL_ACME tracer trace_log_warning();
-CLASS_DECL_ACME tracer trace_log_error();
-CLASS_DECL_ACME tracer trace_log_fatal();
-
-
-
+//
+//CLASS_DECL_ACME ::trace_statement log_statement();
+////CLASS_DECL_ACME trace_statement trace_log_warning() << ;
+////CLASS_DECL_ACME trace_statement trace_log_error() << ;
+////CLASS_DECL_ACME trace_statement trace_log_fatal() << ;
+//
+//
+//

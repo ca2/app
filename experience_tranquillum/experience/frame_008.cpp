@@ -246,8 +246,7 @@ SizingNone:
                //imaging.color_blend(
                   pgraphics->fill_rectangle(
                                     rectangle,
-                                    ::color::color(crMoveableBorder,
-                                    0.5));
+                                    crMoveableBorder & ::opacity(0.5));
             }
             else
             {
@@ -259,8 +258,7 @@ SizingNone:
 
                pgraphics->fill_rectangle(
                                     rectangle,
-                                    ::color::color(crMoveableBorder,
-                                    127));
+                                    crMoveableBorder & ::opacity(127));
 
                ::rectangle_i32 rectangleClientB = rectangleA;
 

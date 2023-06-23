@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "file.h"
 #include "folder.h"
 ////#include "acme/exception/exception.h"
@@ -197,7 +197,7 @@ memsize file::read(void * p, ::memsize s)
    //   ASSERT_VALID(this);
    ASSERT(m_pfolder->m_unzfile != nullptr);
 
-   auto data = (::byte *) p;
+   auto data = (::u8 *) p;
 
    if (s == 0)
       return 0;   // avoid Win32 "nullptr-read"
@@ -219,7 +219,7 @@ void file::write(const void * p, ::memsize s)
 {
 
    return;
-     /* byte buf[1024];
+     /* ::u8 buf[1024];
       i32 iRead;
       if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
@@ -246,7 +246,7 @@ void file::write(const void * p, ::memsize s)
    //   str.replace("\\", "/");
    //   if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
    //      return;
-   //   byte buf[1024];
+   //   ::u8 buf[1024];
    //   i32 iRead;
    //   if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
    //      return;
@@ -358,7 +358,7 @@ void file::write(const void * p, ::memsize s)
 
          i32 iRead;
 
-         byte pbBuf[1024];
+         ::u8 pbBuf[1024];
 
          while (iRemain > 0)
          {
@@ -421,8 +421,8 @@ void file::write(const void * p, ::memsize s)
 //
 //voidpf fileopen_file_func (voidpf opaque, const char* filename, i32 mode)
 //{
-//   __UNREFERENCED_PARAMETER(mode);
-//   __UNREFERENCED_PARAMETER(filename);
+//   UNREFERENCED_PARAMETER(mode);
+//   UNREFERENCED_PARAMETER(filename);
 //   ::zip::file * pzipfile = (::zip::file *) opaque;
 //   file_pointer  pfile = pzipfile->m_pfile;
 //   return (voidpf) pfile;
@@ -433,7 +433,7 @@ void file::write(const void * p, ::memsize s)
 //}
 //uptr  filewrite_file_func (voidpf opaque, voidpf stream, const void * buf, uptr size)
 //{
-//   __UNREFERENCED_PARAMETER(stream);
+//   UNREFERENCED_PARAMETER(stream);
 //   ::zip::file * pzipfile = (::zip::file *) opaque;
 //   file_pointer  pfile = pzipfile->m_pfile;
 //   pfile->write(buf, size);
@@ -441,7 +441,7 @@ void file::write(const void * p, ::memsize s)
 //}
 //long   filetell_file_func (voidpf opaque, voidpf stream)
 //{
-//   __UNREFERENCED_PARAMETER(stream);
+//   UNREFERENCED_PARAMETER(stream);
 //   ::zip::file * pzipfile = (::zip::file *) opaque;
 //   file_pointer  pfile = pzipfile->m_pfile;
 //   return (long) pfile->get_position();
@@ -449,7 +449,7 @@ void file::write(const void * p, ::memsize s)
 //
 //long   fileseek_file_func (voidpf opaque, voidpf stream, uptr offset, i32 origin)
 //{
-//   __UNREFERENCED_PARAMETER(stream);
+//   UNREFERENCED_PARAMETER(stream);
 //   ::zip::file * pzipfile = (::zip::file *) opaque;
 //   file_pointer  pfile = pzipfile->m_pfile;
 //   if(pfile->seek(offset, (::enum_seek) origin) == 0xffffffff)
@@ -461,8 +461,8 @@ void file::write(const void * p, ::memsize s)
 //
 //i32    fileclose_file_func (voidpf opaque, voidpf stream)
 //{
-//   __UNREFERENCED_PARAMETER(opaque);
-//   __UNREFERENCED_PARAMETER(stream);
+//   UNREFERENCED_PARAMETER(opaque);
+//   UNREFERENCED_PARAMETER(stream);
 ////      ::zip::file * pzipfile = (::zip::file *) opaque;
 ////      file_pointer  pfile = pzipfile->m_pfile;
 //   return 1;
@@ -470,8 +470,8 @@ void file::write(const void * p, ::memsize s)
 //
 //i32 c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
 //{
-//   __UNREFERENCED_PARAMETER(opaque);
-//   __UNREFERENCED_PARAMETER(stream);
+//   UNREFERENCED_PARAMETER(opaque);
+//   UNREFERENCED_PARAMETER(stream);
 ////      ::zip::file * pzipfile = (::zip::file *) opaque;
 ////      file_pointer  pfile = pzipfile->m_pfile;
 //   //return spfile->IsValid() ? 0 : 1;

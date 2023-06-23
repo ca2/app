@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2023-02-07 20:55 BRT <3ThomasBorregaardSorensen!!
+// Created by camilo on 2023-02-07 20:55 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -19,7 +19,7 @@ constexpr unsigned long long int operator "" _η(unsigned long long int i)
 }
 
 
-constexpr long double operator "" _µ(long double d)
+constexpr long double operator "" _μ(long double d)
 {
 
    return d / (1'000.0 * 1'000.0);
@@ -27,7 +27,7 @@ constexpr long double operator "" _µ(long double d)
 }
 
 
-constexpr unsigned long long int operator "" _µ(unsigned long long int i)
+constexpr unsigned long long int operator "" _μ(unsigned long long int i)
 {
 
    return i / (1'000 * 1'000);

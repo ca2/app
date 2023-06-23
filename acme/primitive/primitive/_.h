@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/user/user/_constant.h"
@@ -44,7 +44,7 @@ namespace acme
 #define NETWORK_PAYLOAD_DEFAULT_EXTENSION ".\x6ason"
 
 
-// Created by camilo on 2022-11-07 22:00 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-07 22:00 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

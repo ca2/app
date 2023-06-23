@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "session.h"
 #include "system.h"
@@ -68,7 +68,7 @@ namespace base
 //      //}
 //      //catch (...)
 //      //{
-//      //   TRACE("system::~system: Potentially catastrophical error : error disabling simple factory_item request");
+//      //   information("system::~system: Potentially catastrophical error : error disabling simple factory_item request");
 //      //}
 //
 //      if (g_p == this)

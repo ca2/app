@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "draw2d_context.h"
 #include "acme/platform/context.h"
@@ -1032,7 +1032,7 @@ namespace nano2d
 
       pimage->map();
 
-      copy_colorref(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const color32_t *)data);
+      copy_image32(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const color32_t *)data);
 
    }
 

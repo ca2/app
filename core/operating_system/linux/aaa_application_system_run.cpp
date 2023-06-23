@@ -28,9 +28,9 @@ void CLASS_DECL_CORE __cdecl _ca2_purecall()
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
 
-   __UNREFERENCED_PARAMETER(uiCode);
+   UNREFERENCED_PARAMETER(uiCode);
 
-   __UNREFERENCED_PARAMETER(ppointers);
+   UNREFERENCED_PARAMETER(ppointers);
 
 }
 

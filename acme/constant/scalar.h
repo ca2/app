@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-17 04:17 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-17 04:17 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -38,7 +38,7 @@ enum enum_scalar_flags
 };
 
 
-enum enum_number : ::byte
+enum enum_number : ::u8
 {
 
    e_number_none,

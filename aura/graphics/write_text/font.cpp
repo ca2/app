@@ -1,6 +1,7 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "font.h"
 #include "acme/exception/interface_only.h"
+#include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
@@ -43,7 +44,7 @@ namespace write_text
 //   void font::dump(dump_context & dumpcontext) const
 //   {
 //
-//      __UNREFERENCED_PARAMETER(dumpcontext);
+//      UNREFERENCED_PARAMETER(dumpcontext);
 //
 //      throw ::interface_only();
 //
@@ -69,8 +70,6 @@ namespace write_text
       m_bItalic = bItalic;
       m_bUnderline = bUnderline;
       m_bStrikeout = bStrikeOut;
-
-      m_mapText.clear();
 
       set_modified();
 
@@ -242,14 +241,14 @@ namespace write_text
    string font::get_sample_text(::draw2d::graphics * pgraphics)
    {
 
-      auto ecs = get_character_set(pgraphics);
+      auto echaracterset = get_character_set(pgraphics);
 
-      string str = get_sample_text(ecs);
+      string strSampleText = acmenode()->get_character_set_default_sample_text(echaracterset);
 
-      if (str.has_char())
+      if (strSampleText.has_char())
       {
 
-         return str;
+         return strSampleText;
 
       }
 
@@ -446,9 +445,9 @@ namespace write_text
 //   {
 //
 //
-//      __UNREFERENCED_PARAMETER(piCharsPositions);
+//      UNREFERENCED_PARAMETER(piCharsPositions);
 
-//      __UNREFERENCED_PARAMETER(iCharsPositions);
+//      UNREFERENCED_PARAMETER(iCharsPositions);
 //      SetDC(pgraphics);
 //      SelectFont();
 //
@@ -726,13 +725,6 @@ namespace write_text
 
    void font::destroy()
    {
-
-      for (auto & text : m_mapText.payloads())
-      {
-
-         text.m_bSize = false;
-
-      }
 
    }
 

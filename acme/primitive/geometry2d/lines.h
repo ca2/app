@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "point_array.h"
+#include "contains.h"
+
+
 template < primitive_number NUMBER >
 class lines_base :
    virtual public point_array_base < NUMBER >
@@ -39,7 +43,6 @@ public:
 
       }
 
-
       if (segment_contains(this->first(), this->last(), point, epsilon))
       {
 
@@ -65,6 +68,15 @@ public:
 
    }
 
+
+   lines_base & operator = (const lines_base & lines)
+   {
+
+      point_array_base < NUMBER >::operator =(lines);
+
+      return * this;
+
+   }
 
 };
 
@@ -99,4 +111,6 @@ lines_base < NUMBER >::~lines_base()
 {
 
 }
+
+
 

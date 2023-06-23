@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/data/listener.h"
@@ -56,7 +56,7 @@ void simple_printer_list_impact::on_message_create(::message::message * pmessage
 
 //#ifdef WINDOWS_DESKTOP
 //   PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);
-//   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, (byte *) infoa, cbNeeded, &cbNeeded, &cbReturned);
+//   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, (::u8 *) infoa, cbNeeded, &cbNeeded, &cbReturned);
 //
 //   string_array stra;
 //

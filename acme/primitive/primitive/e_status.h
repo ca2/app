@@ -1,8 +1,8 @@
-﻿//
+//
 //  estatus.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/02/20.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 29/02/20.
 //
 #pragma once
 
@@ -58,7 +58,7 @@ public:
    
    //bool operator !() const { return failed();}
 
-   SAFE_BOOL_OPERATOR(e_status);
+   constexpr explicit operator bool() const noexcept { return this->ok(); }
 
    constexpr bool ok() const { return succeeded(); }
 

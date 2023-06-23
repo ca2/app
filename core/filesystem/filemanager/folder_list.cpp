@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "data.h"
 #include "document.h"
 #include "folder_list.h"
@@ -89,7 +89,7 @@ namespace filemanager
 
    void folder_list::_001OnCancelMode(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // trans   ::user::impact::OnCancelMode();
 
       // TODO: add your message handler code here
@@ -289,9 +289,9 @@ namespace filemanager
 //   void folder_list::FolderArray::clear(LPITEMIDLIST piidlPreserve1, LPITEMIDLIST piidlPreserve2)
 //
 //   {
-//      __UNREFERENCED_PARAMETER(piidlPreserve1);
+//      UNREFERENCED_PARAMETER(piidlPreserve1);
 //
-//      __UNREFERENCED_PARAMETER(piidlPreserve2);
+//      UNREFERENCED_PARAMETER(piidlPreserve2);
 //
 //      //Folder folder;
 //
@@ -377,7 +377,7 @@ namespace filemanager
       if (filemanager_data()->is_topic())
       {
 
-         ::color32_t color32 = 0;
+         ::color32_t color32 = ::color::transparent;
 
          if (filemanager_document()->m_emode == ::userfs::e_mode_saving)
          {

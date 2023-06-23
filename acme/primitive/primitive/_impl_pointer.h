@@ -1,5 +1,5 @@
 //
-// Created by camilo on 23/12/2022 01:30 <3ThomasBorregaardSørensen!!
+// Created by camilo on 23/12/2022 01:30 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
@@ -563,47 +563,47 @@ inline bool operator !=(const ::pointer<T1>& t1, const ::pointer<T2> t2)
 //}
 
 
-template < typename TYPE >
-inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p)
-{
+//template < typename TYPE >
+//inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p)
+//{
+//
+//   if (!p)
+//   {
+//
+//      return p;
+//
+//   }
+//
+//   auto pelement = p->clone();
+//
+//   if(__pointer_is_null(pelement))
+//   {
+//
+//      throw_exception(error_failed);
+//
+//   }
+//
+//   auto pNew = dynamic_cast < TYPE * > (pelement);
+//
+//   if(__pointer_is_null(pNew))
+//   {
+//
+//      throw_exception(error_wrong_type);
+//
+//   }
+//
+//   return ::pointer_transfer(pNew);
+//
+//}
 
-   if (!p)
-   {
 
-      return p;
-
-   }
-
-   auto pelement = p->clone();
-
-   if(__pointer_is_null(pelement))
-   {
-
-      throw_exception(error_failed);
-
-   }
-
-   auto pNew = dynamic_cast < TYPE * > (pelement);
-
-   if(__pointer_is_null(pNew))
-   {
-
-      throw_exception(error_wrong_type);
-
-   }
-
-   return ::pointer_transfer(pNew);
-
-}
-
-
-template < typename TYPE >
-inline ::pointer<TYPE>& clone(::pointer<TYPE> & p)
-{
-
-   return p = ::clone((const ::pointer<TYPE>&) p);
-
-}
+//template < typename TYPE >
+//inline ::pointer<TYPE>& clone(::pointer<TYPE> & p)
+//{
+//
+//   return p = ::clone((const ::pointer<TYPE>&) p);
+//
+//}
 
 
 template < typename TYPE >
@@ -870,12 +870,12 @@ template<typename T>
 inline bool not_found(const pointer < T >& p);
 
 
-template<typename TDST, typename TSRC>
-inline ::pointer<TDST>& clone(::pointer<TDST>dst, const ::pointer<TSRC>rc);
+//template<typename TDST, typename TSRC>
+//inline ::pointer<TDST>& clone(::pointer<TDST>dst, const ::pointer<TSRC>rc);
 
 
-template<typename T>
-inline pointer < T > clone(const pointer < T >& t);
+//template<typename T>
+//inline pointer < T > clone(const pointer < T >& t);
 
 
 template<class POINTER_TYPE>

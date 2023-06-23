@@ -2,7 +2,7 @@
 //  apex_application_menu.hpp
 //  apex
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 13/11/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 13/11/18.
 //
 #pragma once
 

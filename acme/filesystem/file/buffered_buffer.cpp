@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "buffered_file.h"
 //////#include "acme/exception/exception.h"
 //#include "acme/primitive/comparison/compare.h"
@@ -154,7 +154,7 @@ namespace file
    memsize buffered_file:: read(void * p, ::memsize s)
    {
 
-      auto data = (::byte *) p;
+      auto data = (::u8 *) p;
 
       if (::is_null(data) || s <= 0)
       {
@@ -276,7 +276,7 @@ namespace file
    void buffered_file::write(const void * p, ::memsize s)
    {
 
-      auto data = (const ::byte *)p;
+      auto data = (const ::u8 *)p;
 
       memsize uiWrite = 0;
 
@@ -326,7 +326,7 @@ namespace file
    }
 
 
-   void buffered_file::put_byte_back(::byte byte)
+   void buffered_file::put_byte_back(::u8 u8)
    {
 
       m_uiPosition--;
@@ -338,7 +338,7 @@ namespace file
 
       }
 
-      m_storage.data()[m_uiPosition] = (::u8) byte;
+      m_storage.data()[m_uiPosition] = (::u8) u8;
 
    }
 

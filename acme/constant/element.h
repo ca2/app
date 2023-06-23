@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-10-23 14:16 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-23 14:16 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
@@ -110,6 +110,7 @@ enum enum_element : ::i64
    e_element_start,
    e_element_reset,
    e_element_cancel,
+   e_element_music_key,
 
 };
 

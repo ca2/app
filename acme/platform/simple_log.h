@@ -26,7 +26,7 @@ public:
    ~simple_log() override;
 
 
-   void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) override;
+   void print(trace_statement & tracestatement) override;
 
 
 };

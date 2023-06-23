@@ -28,7 +28,7 @@ public:
 
 
    ::pointer<xfplayer_impact_line_selection>       m_pselection;
-   byte *                                          m_lpBitmapData;
+   ::u8 *                                          m_lpBitmapData;
    ::pointer<::draw2d::graphics_extension>         m_pgraphicsextension;
 
    index                                           m_iLinkHoverIndex;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/gpu/gpu/program.h"
+#include "aura/graphics/gpu/program.h"
 
 
 namespace opengl

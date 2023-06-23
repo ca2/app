@@ -1,8 +1,9 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/memory/del.h"
 
+struct create_new_t {};
 
 enum e_new_array
 {
@@ -22,6 +23,13 @@ public:
    {
 
       m_p = nullptr;
+      //m_bArray = false;
+
+   }
+   auto_pointer(create_new_t)
+   {
+
+      m_p = new T;
       //m_bArray = false;
 
    }

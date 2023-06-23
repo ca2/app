@@ -25,7 +25,9 @@ void * aligned_memory_allocate(memsize size, memsize align)
    if(g_pheap == nullptr)
    {
 
-      void * p = system_heap_alloc(sizeProvision);
+      //void * p = system_heap_alloc(sizeProvision);
+
+      void* p = ::malloc(sizeProvision);
 
       if (p == nullptr)
       {
@@ -74,7 +76,9 @@ void * unaligned_memory_allocate(memsize size)
    if (g_pheap == nullptr)
    {
 
-      void* p = system_heap_alloc(sizeProvision);
+      //void* p = system_heap_alloc(sizeProvision);
+
+      void* p = ::malloc(sizeProvision);
 
       if (p == nullptr)
       {
@@ -114,16 +118,16 @@ void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * s
 
    void * paligned;
 
-   __UNREFERENCED_PARAMETER(nBlockUse);
-   __UNREFERENCED_PARAMETER(szFileName);
-   __UNREFERENCED_PARAMETER(nLine);
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
 
    align = align <= 0 ? ALIGN_BYTE_COUNT : align;
 
    auto sizeProvision = heap_memory_aligned_provision_get_size(size, (int) align);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    if(g_pheap == nullptr)
    {
 
@@ -286,11 +290,11 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
 
    }
 
-   byte blockuse = pheapmemory->m_blockuse;
+   ::u8 blockuse = pheapmemory->m_blockuse;
 
    memsize sizeOld = pheapmemory->m_size;
 
-   byte align = pheapmemory->m_align;
+   ::u8 align = pheapmemory->m_align;
 
    void * p = heap_memory_base_get(pmemory);
 
@@ -319,9 +323,12 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
    else if(blockuse == 128) // aligned
    {
 
-      p = system_heap_realloc(
-         p,
-         (size_t)heap_memory_aligned_provision_get_size(size, align));
+      //p = system_heap_realloc(
+        // p,
+         //(size_t)heap_memory_aligned_provision_get_size(size, align));
+      p = ::realloc(
+            p,
+            (size_t)heap_memory_aligned_provision_get_size(size, align));
 
    }
    else if(blockuse == 129) // unaligned
@@ -329,7 +336,10 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
 
       //TODO: to do the dbg version
 
-      p = system_heap_realloc(
+      //p = system_heap_realloc(
+      //   p,
+      //   (size_t)heap_memory_unaligned_provision_get_size(size));
+      p = ::realloc(
          p,
          (size_t)heap_memory_unaligned_provision_get_size(size));
 
@@ -478,7 +488,9 @@ void _memory_free_debug(void * pmemory, i32 iBlockType)
    else if(pheapmemory->m_blockuse == 128)
    {
 
-      system_heap_free(p);
+      //system_heap_free(p);
+
+      ::free(p);
 
    }
    else if(pheapmemory->m_blockuse == 129)
@@ -486,7 +498,9 @@ void _memory_free_debug(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      system_heap_free(p);
+      //system_heap_free(p);
+
+      ::free(p);
 
    }
    else if(pheapmemory->m_blockuse == 2)

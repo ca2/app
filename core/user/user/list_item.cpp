@@ -1,4 +1,4 @@
-// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSørensen!! 
+// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
@@ -315,7 +315,7 @@ namespace user
 
                //m_plist->m_pimageTime->div_alpha(rect2->top_left(), rect2->size());
 
-               m_pitem->m_pmesh->m_plist->m_pimageTime->channel_multiply(::color::e_channel_alpha, m_pitem->m_pmesh->m_plist->m_pimageSpot, rect2);
+               m_pitem->m_pmesh->m_plist->m_pimageTime->channel_multiply(::color::e_channel_opacity, m_pitem->m_pmesh->m_plist->m_pimageSpot, rect2);
 
                //m_plist->m_pimageTime->mult_alpha(rect2->top_left(), rect2->size());
 
@@ -358,7 +358,7 @@ namespace user
             //{
 
             //   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::point_i32(), 0);
-            //   auto pcolorref = pimageDebug->get_data();
+            //   auto pimage32 = pimageDebug->get_data();
             //   output_debug_string("imageDebug");
 
             //}
@@ -462,9 +462,9 @@ namespace user
 
          ::color::color color;
 
-         color.set_COLORREF(m_colorText);
+         color = m_colorText;
 
-         color.alpha = color.alpha / 3;
+         color.rate_opacity(1.0 / 3.0);
 
          if (color != pbrushText->m_color)
          {

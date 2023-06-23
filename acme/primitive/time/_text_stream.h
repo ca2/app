@@ -1,9 +1,9 @@
-﻿//
+//
 //  _text_stream.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2022-11-09 14:30 BRT.
-//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 2022-11-09 14:30 BRT.
+//  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #pragma once
 
@@ -56,7 +56,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_microsecond& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "µs", integral.m_i);
+//   textstream.append_format("%" PRId64 "μs", integral.m_i);
 //
 //   return textstream;
 //

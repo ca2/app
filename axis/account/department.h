@@ -1,8 +1,8 @@
-﻿//
+//
 //  account_account.hpp
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
 #pragma once
 

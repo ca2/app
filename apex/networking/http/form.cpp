@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "form.h"
 //#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/file/file.h"
@@ -59,7 +59,7 @@ namespace http
 
       //::text_stream is(infil);
 
-      __UNREFERENCED_PARAMETER(sizeContentLength);
+      UNREFERENCED_PARAMETER(sizeContentLength);
 
       strsize extra = 2;
 
@@ -366,7 +366,7 @@ namespace http
 
          //strsize len = str.length();
 //         strsize clen = content-length;
-         //FORMATTED_TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
+         //information("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_network_arguments(strNetworkArguments);
 
       }

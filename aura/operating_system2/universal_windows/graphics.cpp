@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 
 

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-05 18:28 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-12-05 18:28 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -79,7 +79,7 @@
 //   //template <std::size_t c>
 //   //array_range(const ITEM(&begin)[c]) : range(begin, begin + c, false) {}
 //
-//   memsize length_in_bytes() const { return ::is_set(this->begin()) ? maximum(0, (const ::byte *)(const ITEM * )this->end() - (const ::byte *)(const ITEM *)this->begin()) : 0; }
+//   memsize length_in_bytes() const { return ::is_set(this->begin()) ? maximum(0, (const ::u8 *)(const ITEM * )this->end() - (const ::u8 *)(const ITEM *)this->begin()) : 0; }
 //
 //
 //
@@ -91,7 +91,7 @@
 //
 //      this->m_begin = (iterator)block.begin();
 //
-//      this->m_end = (iterator)((::byte *)this->begin() + block.length_in_bytes() / this->item_size());
+//      this->m_end = (iterator)((::u8 *)this->begin() + block.length_in_bytes() / this->item_size());
 //
 //
 //   }

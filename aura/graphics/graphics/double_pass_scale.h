@@ -1,4 +1,4 @@
-﻿#ifndef _2_PASS_SCALE_H_
+#ifndef _2_PASS_SCALE_H_
 #define _2_PASS_SCALE_H_
 
 #include <math.h>
@@ -21,7 +21,7 @@ typedef struct
    double * matrix;
 } LineContribType;               // Contribution information for an entire line (row or column)
 
-typedef int_bool (*ProgressAnbAbortCallBack)(byte bPercentComplete);
+typedef int_bool (*ProgressAnbAbortCallBack)(::u8 bPercentComplete);
 
 template <class FilterClass>
 class C2PassScale
@@ -48,12 +48,13 @@ public:
    //::u32        uNewWidth,
    //::u32        uNewHeight);
 
-   ::color32_t *  Scale (
-   ::color32_t *  pDstImage,
+   ::image32_t *  Scale (
+   ::image32_t *  pDstImage,
+      color_indexes indexes, 
    ::u32          uNewWidth,
    ::u32          uNewHeight,
    ::u32          uNewScan,
-   ::color32_t *  pOrigImage,
+   ::image32_t *  pOrigImage,
    ::u32          uOrigWidth,
    ::u32          uOrigHeight,
    ::u32          uOrigScan
@@ -71,34 +72,38 @@ private:
 
    LineContribType *CalcContributions (    ::u32    uLineSize,
                                            ::u32    uSrcSize,
-                                           double  dScale);
-
-   void ScaleRow (::color32_t*pSrc,
+                                          double  dScale);
+ 
+   void ScaleRow (::image32_t *pSrc,
+      ::color_indexes indexes, 
                    ::u32                uSrcWidth,
-      ::color32_t*pRes,
+      ::image32_t*pRes,
                    ::u32                uResWidth,
                    ::u32                uRow,
                    LineContribType    *Contrib);
 
-   void HorizScale (::color32_t*pSrc,
+   void HorizScale (::image32_t *pSrc,
+      color_indexes indexes,
                        ::u32                uSrcWidth,
                        ::u32                uSrcHeight,
-      ::color32_t*pDst,
+      ::image32_t*pDst,
                        ::u32                uResWidth,
                        ::u32                uResHeight);
 
-   void ScaleCol (::color32_t*pSrc,
+   void ScaleCol (::image32_t *pSrc,
+      color_indexes indexes,
                    ::u32                uSrcWidth,
-      ::color32_t*pRes,
+      ::image32_t *pRes,
                    ::u32                uResWidth,
                    ::u32                uResHeight,
                    ::u32                uCol,
                    LineContribType    *Contrib);
 
-   void VertScale (::color32_t*pSrc,
+   void VertScale (::image32_t *pSrc,
+      color_indexes indexes,
                        ::u32                uSrcWidth,
                        ::u32                uSrcHeight,
-      ::color32_t*pDst,
+      ::image32_t*pDst,
                        ::u32                uResWidth,
                        ::u32                uResHeight);
 };
@@ -228,46 +233,48 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
 template <class FilterClass>
 void
 C2PassScale<FilterClass>::
-ScaleRow (::color32_t*pSrc,
+ScaleRow (::image32_t*pSrc,
+   ::color_indexes indexes,
             ::u32                uSrcWidth,
-   ::color32_t*pRes,
+   ::image32_t*pRes,
             ::u32                uResWidth,
             ::u32                uRow,
             LineContribType    *Contrib)
 {
-   ::color32_t*pSrcRow = &(pSrc[uRow * uSrcWidth]);
-   ::color32_t*pDstRow = &(pRes[uRow * uResWidth]);
+   ::image32_t*pSrcRow = &(pSrc[uRow * uSrcWidth]);
+   ::image32_t*pDstRow = &(pRes[uRow * uResWidth]);
    for (::u32 x = 0; x < uResWidth; x++)
    {
       // Loop through row
-      byte r = 0;
-      byte g = 0;
-      byte b = 0;
+      ::u8 r = 0;
+      ::u8 g = 0;
+      ::u8 b = 0;
       int iLeft = Contrib->ContribRow[x].Left;    // Retrieve left boundries
       int iRight = Contrib->ContribRow[x].Right;  // Retrieve right boundries
       for (int i = iLeft; i <= iRight; i++)
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         r += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(red(pSrcRow[i])));
-         g += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(green(pSrcRow[i])));
-         b += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(blue(pSrcRow[i])));
+         r += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_red(indexes)));
+         g += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_green(indexes)));
+         b += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_blue(indexes)));
       }
-      pDstRow[x] = rgb(r,g,b); // Place result in destination pixel
+      pDstRow[x].assign(rgb(r, g, b), indexes); // Place result in destination pixel
    }
 }
 
 template <class FilterClass>
 void
 C2PassScale<FilterClass>::
-HorizScale (::color32_t*pSrc,
+HorizScale (::image32_t*pSrc,
+   color_indexes indexes,
                 ::u32                uSrcWidth,
                 ::u32                uSrcHeight,
-   ::color32_t*pDst,
+   ::image32_t*pDst,
                 ::u32                uResWidth,
                 ::u32                uResHeight)
 {
-//   TRACE ("Performing horizontal scaling...\n");
+//   information ("Performing horizontal scaling...\n");
    if (uResWidth == uSrcWidth)
    {
       // No scaling required, just copy
@@ -283,7 +290,7 @@ HorizScale (::color32_t*pSrc,
          //
          // Progress and report callback supplied
          //
-         if (!m_Callback (byte(double(u) / double (uResHeight) * 50.0)))
+         if (!m_Callback (::u8(double(u) / double (uResHeight) * 50.0)))
          {
             //
             // User wished to abort now
@@ -295,6 +302,7 @@ HorizScale (::color32_t*pSrc,
       }
 
       ScaleRow (  pSrc,
+                  indexes,
                   uSrcWidth,
                   pDst,
                   uResWidth,
@@ -307,9 +315,10 @@ HorizScale (::color32_t*pSrc,
 template <class FilterClass>
 void
 C2PassScale<FilterClass>::
-ScaleCol (::color32_t*pSrc,
+ScaleCol (::image32_t*pSrc,
+   color_indexes indexes,
             ::u32                uSrcWidth,
-   ::color32_t*pRes,
+   ::image32_t*pRes,
             ::u32                uResWidth,
             ::u32                uResHeight,
             ::u32                uCol,
@@ -318,21 +327,21 @@ ScaleCol (::color32_t*pSrc,
    for (::u32 y = 0; y < uResHeight; y++)
    {
       // Loop through column
-      byte r = 0;
-      byte g = 0;
-      byte b = 0;
+      ::u8 r = 0;
+      ::u8 g = 0;
+      ::u8 b = 0;
       int iLeft = Contrib->ContribRow[y].Left;    // Retrieve left boundries
       int iRight = Contrib->ContribRow[y].Right;  // Retrieve right boundries
       for (int i = iLeft; i <= iRight; i++)
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         ::color::color pCurSrc = pSrc[i * uSrcWidth + uCol];
-         r += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(red(pCurSrc)));
-         g += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(green(pCurSrc)));
-         b += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(blue(pCurSrc)));
+         ::color::color pCurSrc = pSrc[i * uSrcWidth + uCol].color(indexes);
+         r += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_red()));
+         g += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_green()));
+         b += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_blue()));
       }
-      pRes[y * uResWidth + uCol] = rgb (r,g,b);   // Place result in destination pixel
+      pRes[y * uResWidth + uCol].assign(rgb(r, g, b), indexes);   // Place result in destination pixel
    }
 }
 
@@ -340,14 +349,15 @@ ScaleCol (::color32_t*pSrc,
 template <class FilterClass>
 void
 C2PassScale<FilterClass>::
-VertScale (::color32_t*pSrc,
+VertScale (::image32_t*pSrc,
+   color_indexes indexes,
             ::u32                uSrcWidth,
             ::u32                uSrcHeight,
-   ::color32_t*pDst,
+   ::image32_t*pDst,
             ::u32                uResWidth,
             ::u32                uResHeight)
 {
-//   TRACE ("Performing vertical scaling...");
+//   information ("Performing vertical scaling...");
 
    if (uSrcHeight == uResHeight)
    {
@@ -364,7 +374,7 @@ VertScale (::color32_t*pSrc,
          //
          // Progress and report callback supplied
          //
-         if (!m_Callback (byte(double(u) / double (uResWidth) * 50.0) + 50))
+         if (!m_Callback (::u8(double(u) / double (uResWidth) * 50.0) + 50))
          {
             //
             // User wished to abort now
@@ -375,6 +385,7 @@ VertScale (::color32_t*pSrc,
          }
       }
       ScaleCol (  pSrc,
+         indexes,
                   uSrcWidth,
                   pDst,
                   uResWidth,
@@ -428,14 +439,15 @@ VertScale (::color32_t*pSrc,
 //}
 
 template <class FilterClass>
-::color32_t *
+::image32_t *
 C2PassScale<FilterClass>::
 Scale (
-::color32_t *pDstImage,
+::image32_t *pDstImage,
+color_indexes indexes,
 ::u32        uNewWidth,
 ::u32        uNewHeight,
 ::u32        uNewScan,
-::color32_t *pOrigImage,
+::image32_t *pOrigImage,
 ::u32        uOrigWidth,
 ::u32        uOrigHeight,
 ::u32 uOrigScan)
@@ -444,19 +456,20 @@ Scale (
    // Scale source image horizontally into temporary image
    m_bCanceled = false;
 
-   acme::malloc < ::color32_t * > pTemp;
+   acme::malloc < ::image32_t * > pTemp;
 
-   pTemp.alloc(sizeof(::color32_t) * uNewWidth * uOrigHeight);
+   pTemp.alloc(sizeof(::image32_t) * uNewWidth * uOrigHeight);
 
    {
 
-      ::acme::malloc < ::color32_t* > pOrig;
+      ::acme::malloc < ::image32_t* > pOrig;
 
-      pOrig.alloc(sizeof(::color32_t) * uOrigWidth * uOrigHeight);
+      pOrig.alloc(sizeof(::image32_t) * uOrigWidth * uOrigHeight);
 
-      ::copy_colorref(pOrig, uOrigWidth, uOrigHeight, uOrigWidth * sizeof(::color32_t), pOrigImage, uOrigScan);
+      ::copy_image32(pOrig, uOrigWidth, uOrigHeight, uOrigWidth * sizeof(::image32_t), pOrigImage, uOrigScan);
 
       HorizScale(pOrig,
+         indexes,
                  uOrigWidth,
                  uOrigHeight,
                  pTemp,
@@ -474,11 +487,12 @@ Scale (
 
    {
 
-      ::acme::malloc < ::color32_t * > pDest;
+      ::acme::malloc < ::image32_t * > pDest;
 
-      pDest.alloc(sizeof(::color32_t) * uNewWidth * uNewHeight);
+      pDest.alloc(sizeof(::image32_t) * uNewWidth * uNewHeight);
       // Scale temporary image vertically into result image
       VertScale(pTemp,
+         indexes,
                 uNewWidth,
                 uOrigHeight,
                 pDest,
@@ -492,7 +506,7 @@ Scale (
 
       }
 
-      ::copy_colorref(pDstImage, uNewWidth, uNewHeight, uNewScan, pDest, uNewWidth * sizeof(::color32_t));
+      ::copy_image32(pDstImage, uNewWidth, uNewHeight, uNewScan, pDest, uNewWidth * sizeof(::image32_t));
 
    }
 

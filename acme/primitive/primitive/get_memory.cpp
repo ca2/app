@@ -25,7 +25,7 @@ get_memory::get_memory(const block & block) :
 
 // VOID * NOT const!!
 get_memory::get_memory(/* NOTTTT const!!!!! */ void * p, memsize s) : 
-   m_block((::byte *)p, ((::byte *)p) + s), m_pmemory(nullptr)
+   m_block((::u8 *)p, ((::u8 *)p) + s), m_pmemory(nullptr)
 { 
 
 }

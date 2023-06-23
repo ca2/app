@@ -1,5 +1,5 @@
 // From design/text_format/user_text_format_object.cpp by camilo on
-// 2022-09-04 00:17 <3ThomasBorregaardSørensen!!
+// 2022-09-04 00:17 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "text_format_object.h"
 #include "aura/graphics/draw2d/graphics.h"

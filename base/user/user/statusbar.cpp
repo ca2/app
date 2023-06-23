@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "statusbar.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
@@ -129,7 +129,7 @@ namespace user
          {
             /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                         {
-                           TRACE(trace_category_appmsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
+                           information(trace_category_appmsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                               pSBP->strId);
                            bResult = false;
                            break;
@@ -640,7 +640,7 @@ namespace user
    void status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
 
       UpdateAllPanes(false, true);
 
@@ -991,19 +991,19 @@ namespace user
 
    //void status_bar::SetPaneInfo(i32 nIndex, i32 iId, ::u32 nStyle, i32 cxWidth)
    //{
-   //   __UNREFERENCED_PARAMETER(nIndex);
-   //   __UNREFERENCED_PARAMETER(iId);
-   //   __UNREFERENCED_PARAMETER(nStyle);
-   //   __UNREFERENCED_PARAMETER(cxWidth);
+   //   UNREFERENCED_PARAMETER(nIndex);
+   //   UNREFERENCED_PARAMETER(iId);
+   //   UNREFERENCED_PARAMETER(nStyle);
+   //   UNREFERENCED_PARAMETER(cxWidth);
    //   //SetPaneInfo(nIndex, iId, nStyle, cxWidth);
    //}
 
    //void status_bar::SetPaneInfo(i32 nIndex, const ::string & pszId, ::u32 nStyle, i32 cxWidth)
    //{
-   //   __UNREFERENCED_PARAMETER(nIndex);
-   //   __UNREFERENCED_PARAMETER(pszId);
-   //   __UNREFERENCED_PARAMETER(nStyle);
-   //   __UNREFERENCED_PARAMETER(cxWidth);
+   //   UNREFERENCED_PARAMETER(nIndex);
+   //   UNREFERENCED_PARAMETER(pszId);
+   //   UNREFERENCED_PARAMETER(nStyle);
+   //   UNREFERENCED_PARAMETER(cxWidth);
    //   //SetPaneInfo(nIndex, pszId, nStyle, cxWidth);
    //}
 

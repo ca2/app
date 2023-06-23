@@ -1,4 +1,4 @@
-﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSørensen!!
+// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

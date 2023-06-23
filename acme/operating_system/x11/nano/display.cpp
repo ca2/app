@@ -1,6 +1,6 @@
 
 //
-// Created by camilo on 21/02/2022 23:15 <3ThomasBorregaardSørensen!!
+// Created by camilo on 21/02/2022 23:15 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "display.h"
@@ -442,7 +442,7 @@ namespace x11
 
       }
 
-      INFORMATION("Finished display::message_loop for nano::display");
+      information() << "Finished display::message_loop for nano::display";
 
    }
 

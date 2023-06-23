@@ -53,7 +53,7 @@ namespace nanoui
    void VScrollPanel::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
-      Widget::perform_layout(pcontext);
+      ///Widget::perform_layout(pcontext);
 
       if (m_children.empty())
       {
@@ -71,9 +71,19 @@ namespace nanoui
 
       Widget* pwidgetPanel = m_children[0];
 
+      if (m_size.cx() > 0)
+      {
+
+         pwidgetPanel->m_size.cx() = m_size.cx() - 12;
+
+      }
+
       auto size = pwidgetPanel->preferred_size(pcontext, bRecalcTextSize);
 
       m_fTotalHeight = (float)size.cy();
+
+
+      pwidgetPanel->m_size = size;
 
       //if (m_fTotalHeight > pwidgetPanel->m_size.cy())
       //{
@@ -298,6 +308,7 @@ namespace nanoui
 
       }
 
+
       {
          ::nano2d::guard guard(pcontext);
          //pcontext->save();
@@ -322,6 +333,8 @@ namespace nanoui
          //  pcontext->restore();
 
       }
+
+
 
       if (m_fTotalHeight <= m_size.cy())
       {
@@ -353,6 +366,7 @@ namespace nanoui
       pcontext->fill_paint(paint);
 
       pcontext->fill();
+
 
 
    }

@@ -1,4 +1,4 @@
-// Camilo Sasuke Thomas Borregaard Sørensen 2020-04-15 // from ewindowflag
+// Camilo Sasuke Thomas Borregaard Soerensen 2020-04-15 // from ewindowflag
 #pragma once
 
 

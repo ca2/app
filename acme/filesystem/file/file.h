@@ -55,13 +55,13 @@ namespace file
 
       virtual bool is_in_memory_file() const;
       
-      virtual ::byte * full_data_begin();
+      virtual ::u8 * full_data_begin();
 
-      virtual ::byte * full_data_end();
+      virtual ::u8 * full_data_end();
 
-      virtual const ::byte * full_data_begin() const;
+      virtual const ::u8 * full_data_begin() const;
 
-      virtual const ::byte * full_data_end() const;
+      virtual const ::u8 * full_data_end() const;
 
       
       inline ::block full_data(memsize start = 0, memsize count = -1)
@@ -85,13 +85,13 @@ namespace file
       inline bool full_data_is_set() const { return ::is_set(full_data_begin()); }
 
 
-      virtual ::byte * data_begin();
+      virtual ::u8 * data_begin();
 
-      virtual ::byte * data_end();
+      virtual ::u8 * data_end();
 
-      virtual const ::byte * data_begin() const;
+      virtual const ::u8 * data_begin() const;
 
-      virtual const ::byte * data_end() const;
+      virtual const ::u8 * data_end() const;
 
       
       inline ::block data(memsize start = 0, memsize count = -1)
@@ -186,14 +186,14 @@ namespace file
       //virtual int get();
       //virtual int peek();
       virtual bool read(char * pch);
-      virtual bool read(byte * puch);
+      virtual bool read(::u8 * puch);
       virtual bool peek(char * pch);
-      virtual bool peek(byte * puch);
+      virtual bool peek(::u8 * puch);
       //virtual int sgetc();
       //virtual int sbumpc();
 
       virtual int peek_byte(); // 0-255 - -1 if eof otherwise exception?
-      virtual void put_byte_back(::byte b);
+      virtual void put_byte_back(::u8 b);
 
       virtual int get_u8(); // 0-255 - -1 if eof otherwise exception?
       inline u8 get_u8_unbounded() { return get_u8(); }

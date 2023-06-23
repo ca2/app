@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "__wide.h"
 #include "acme/primitive/primitive/memory.h"
 

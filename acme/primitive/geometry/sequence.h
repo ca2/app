@@ -6,7 +6,7 @@
     All rights reserved. Use of this source code is governed by a
     BSD-style license that can be found in the LICENSE.txt file.
 */
-// Merge with estamira/particle/vec4:linear_random
+// Merge with estamira/particle/vec4:minimum_maximum_rand
 #pragma once
 
 
@@ -19,10 +19,6 @@
 
 
 
-
-
-
-struct no_initialize_t {};
 
 template < primitive_number COORDINATE, size_t t_iSize >
 struct sequence_type
@@ -256,18 +252,6 @@ struct sequence_type
       c.d() = a.d()*((UNIT_TYPE)1.0 - t) + b.d()*t;
    }
 
-
-
-   inline sequence_type linear_random(const sequence_type &sequence) const
-   {
-
-      return sequence_type(
-             linear_random(this->a(), sequence.a()),
-             linear_random(this->b(), sequence.b()),
-             linear_random(this->c(), sequence.c()),
-             linear_random(this->d(), sequence.d()));
-
-   }
 
    sequence_type operator-() const
    {

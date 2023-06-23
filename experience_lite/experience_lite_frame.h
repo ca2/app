@@ -103,7 +103,7 @@
 
                virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect);
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, byte bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, ::u8 bAlpha);
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 

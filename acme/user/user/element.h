@@ -1,9 +1,11 @@
-﻿// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 #pragma once
 
 
 #include "command_update_target.h"
 #include "conversation.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 
 
@@ -453,7 +455,7 @@ namespace user
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = {}, bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags);
@@ -664,7 +666,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::rectangle_i32& rectangleScreenNeedRedraw = {}, bool bAscendants = true);
+      virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaScreenNeedRedraw = {}, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);

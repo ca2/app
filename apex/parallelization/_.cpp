@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
@@ -964,7 +964,7 @@ void thread_ptra::destroy()
       if (pthreadItem != ptask && pthreadItem != nullptr)
       {
 
-         FORMATTED_INFORMATION("thread_ptra::get_count_except_current_thread \"%s\"", __type_name(pthreadItem).c_str());
+         information("thread_ptra::get_count_except_current_thread \"%s\"", __type_name(pthreadItem).c_str());
 
          c++;
 

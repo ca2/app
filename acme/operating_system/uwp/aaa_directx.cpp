@@ -432,7 +432,7 @@ namespace universal_windows
          {
             // i1;
             //  return;
-            TRACE("directx_base::CreateWindowSizeDependentResources(1) DXGI_ERROR_INVALID_CALL");
+            information("directx_base::CreateWindowSizeDependentResources(1) DXGI_ERROR_INVALID_CALL");
          }
          else
          {

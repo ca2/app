@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 ////#include "axis/html/html_lite/_.h"
 //#endif
@@ -45,7 +45,7 @@ namespace html
       //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pparticle);
       __construct_new(m_pentitysolver);
 
-      m_clrInvalid = 0xffffffff;
+      m_clrInvalid = color::white;
       m_percentMax = USHRT_MAX;
 
       /** 28 system colors */
@@ -229,8 +229,8 @@ namespace html
    {
       string str(psz);
       str.replace_with("&amp;"     , "&"     );
-      str.replace_with( "&quot;"   , "\""    ); // quando ENT_NOQUOTES n縊 est・definida.
-      str.replace_with("&#039;"    , "'"     ); // apenas quando ENT_QUOTES est・definida.
+      str.replace_with( "&quot;"   , "\""    ); // when ENT_NOQUOTES isn't defined
+      str.replace_with("&#039;"    , "'"     ); // only when ENT_QUOTES is defined
       str.replace_with("&lt;"      , "<"     );
       str.replace_with("&gt;"     ,  ">"     );
       return str;
@@ -265,7 +265,7 @@ namespace html
          }
          else if (iChar == '\'')
          {
-            str += "&#039;"; // apenas quando ENT_QUOTES est・definida.
+            str += "&#039;"; // only when ENT_QUOTES is defined.
          }
          else if (iChar == '<')
          {
@@ -317,7 +317,7 @@ namespace html
          }
          else if (iChar == '\'')
          {
-            str += "&#039;"; // apenas quando ENT_QUOTES est・definida.
+            str += "&#039;"; // only when ENT_QUOTES is defined.
          }
          else if (iChar == '<')
          {
@@ -687,7 +687,7 @@ namespace html
 
       atom idConcatFallback = (atom)(::string(id1) + id2);
 
-      INFORMATION("atom not pre setup concat html " << idConcatFallback.m_str);
+      information() << "atom not pre setup concat html " << idConcatFallback.m_str;
 
       return idConcatFallback;
 

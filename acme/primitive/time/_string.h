@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //
 //inline ::string as_string(const ::integral_second & time)

@@ -280,7 +280,7 @@ namespace universal_windows
 
       key1.QueryValue("DefaultConnectionSettings", mem);
 
-      bAutoDetect = (((byte *) mem.get_data())[8] & 0x08) != 0;
+      bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
 
 #else
 
@@ -585,7 +585,7 @@ namespace universal_windows
    bool os_context::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
    {
 
-      TRACE("file_association_set_shell_open_command NOT IMPLEMENTED!!");
+      information("file_association_set_shell_open_command NOT IMPLEMENTED!!");
 
       return false;
 
@@ -595,7 +595,7 @@ namespace universal_windows
    bool os_context::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
-      TRACE("file_association_get_shell_open_command NOT IMPLEMENTED!!");
+      information("file_association_get_shell_open_command NOT IMPLEMENTED!!");
       
       return false;
 

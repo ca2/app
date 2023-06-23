@@ -103,7 +103,7 @@ namespace draw2d_gdiplus
 
    void printer::document_properties::initialize_document_properties(::draw2d_gdiplus::printer * pprinter, DEVMODE * pdevmode)
    {
-      __UNREFERENCED_PARAMETER(pdevmode);
+      UNREFERENCED_PARAMETER(pdevmode);
       if (m_pdevmode != nullptr)
          return false;
       if (m_hdc != nullptr)

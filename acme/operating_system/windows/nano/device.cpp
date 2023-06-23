@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 31/01/2022.
 //
 #include "framework.h"
@@ -6,6 +6,8 @@
 #include "brush.h"
 #include "font.h"
 #include "pen.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -56,9 +58,13 @@ namespace windows
                           ::nano_font * pnanofont)
    {
 
-      SetBkColor(m_hdc, pnanobrushBack->m_color.get_COLORREF());
+      COLORREF colorrefBackgroundColor = win32_COLORREF(pnanobrushBack->m_color);
 
-      SetTextColor(m_hdc, pnanobrushText->m_color.get_COLORREF());
+      SetBkColor(m_hdc, colorrefBackgroundColor);
+
+      COLORREF colorrefTextColor = win32_COLORREF(pnanobrushText->m_color);
+
+      SetTextColor(m_hdc, colorrefTextColor);
 
       SetBkMode(m_hdc, OPAQUE);
 

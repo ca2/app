@@ -174,6 +174,8 @@
 		9A94EBD929E327E400C8C249 /* statusbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E73529E22B3300C8C249 /* statusbar.cpp */; };
 		9AD1183124F51CE500177261 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1183024F51CE500177261 /* libaura.dylib */; };
 		9AD1183224F51CEC00177261 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1182324F51C4100177261 /* libaxis.dylib */; };
+		9AF178E72A2FDF4000F2AEFA /* tab_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D3F132A2E2A360081052F /* tab_graphics.cpp */; };
+		9AF178E82A2FDF4100F2AEFA /* tab_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D3F132A2E2A360081052F /* tab_graphics.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,7 +259,6 @@
 		9A1D5D982751A98B003D9B5F /* dock_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dock_manager.h; sourceTree = "<group>"; };
 		9A1D5D992751A98B003D9B5F /* button.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 		9A1D5D9A2751A98B003D9B5F /* size_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = size_manager.h; sourceTree = "<group>"; };
-		9A1D5D9B2751A98B003D9B5F /* _experience.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _experience.h; sourceTree = "<group>"; };
 		9A1D5D9C2751A98B003D9B5F /* size_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = size_manager.cpp; sourceTree = "<group>"; };
 		9A1D5D9D2751A98B003D9B5F /* move_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = move_manager.cpp; sourceTree = "<group>"; };
 		9A1D5D9E2751A98B003D9B5F /* menu_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = menu_manager.cpp; sourceTree = "<group>"; };
@@ -400,6 +401,7 @@
 		9A5ECD2328CCC1620084D354 /* tab_drop_target_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_drop_target_window.cpp; sourceTree = "<group>"; };
 		9A615C3928B1C5BD00377F68 /* tab_document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab_document.h; sourceTree = "<group>"; };
 		9A615C3A28B1C5BD00377F68 /* tab_document.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_document.cpp; sourceTree = "<group>"; };
+		9A6D3F132A2E2A360081052F /* tab_graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_graphics.cpp; sourceTree = "<group>"; };
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
 		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -520,8 +522,8 @@
 				9A1D5E282751A98C003D9B5F /* menu */,
 				9A1D5E1E2751A98C003D9B5F /* simple */,
 				9A1D5DA22751A98B003D9B5F /* user */,
-				9A1D5E352751A98C003D9B5F /* prelude.h */,
 				9A1D5E362751A98C003D9B5F /* _.h */,
+				9A1D5E352751A98C003D9B5F /* prelude.h */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -530,7 +532,6 @@
 			isa = PBXGroup;
 			children = (
 				9A1D5DA12751A98B003D9B5F /* _.h */,
-				9A1D5D9B2751A98B003D9B5F /* _experience.h */,
 				9A1D5D8C2751A98B003D9B5F /* button.cpp */,
 				9A1D5D992751A98B003D9B5F /* button.h */,
 				9A1D5D902751A98B003D9B5F /* control_box.cpp */,
@@ -650,6 +651,7 @@
 				9A1D5DD12751A98C003D9B5F /* tab_pane.h */,
 				9A1D5DFE2751A98C003D9B5F /* tab.cpp */,
 				9A1D5E152751A98C003D9B5F /* tab.h */,
+				9A6D3F132A2E2A360081052F /* tab_graphics.cpp */,
 				9A1D5DFA2751A98C003D9B5F /* toolbar.cpp */,
 				9A1D5E032751A98C003D9B5F /* toolbar.h */,
 				9A1D5DFC2751A98C003D9B5F /* user.cpp */,
@@ -755,12 +757,12 @@
 		9A979D5028C827660013DC54 /* form */ = {
 			isa = PBXGroup;
 			children = (
+				9A979D5628C827660013DC54 /* _.h */,
 				9A979D5128C827660013DC54 /* impact.h */,
 				9A979D5228C827660013DC54 /* update_hint.h */,
 				9A979D5328C827660013DC54 /* impact.cpp */,
 				9A979D5428C827660013DC54 /* document.h */,
 				9A979D5528C827660013DC54 /* document.cpp */,
-				9A979D5628C827660013DC54 /* _.h */,
 			);
 			path = form;
 			sourceTree = "<group>";
@@ -998,6 +1000,7 @@
 				9A5ECD1728CCC01F0084D354 /* impact.cpp in Sources */,
 				9A93B6EA2846EB33005ACD11 /* control_box.cpp in Sources */,
 				9A5ECD2528CCC1B40084D354 /* picture_impl.cpp in Sources */,
+				9AF178E82A2FDF4100F2AEFA /* tab_graphics.cpp in Sources */,
 				9A93B6EB2846EB33005ACD11 /* department.cpp in Sources */,
 				9A93B6EC2846EB33005ACD11 /* dock_manager.cpp in Sources */,
 				9A93B6ED2846EB33005ACD11 /* experience_updown.cpp in Sources */,
@@ -1076,6 +1079,7 @@
 				9A1D5F512751B58A003D9B5F /* user.cpp in Sources */,
 				9A1D5F1B2751B569003D9B5F /* frame.cpp in Sources */,
 				9A1D5F1C2751B569003D9B5F /* menu_manager.cpp in Sources */,
+				9AF178E72A2FDF4000F2AEFA /* tab_graphics.cpp in Sources */,
 				9A1D5F0F2751B537003D9B5F /* idpool.cpp in Sources */,
 				9A1D5F112751B537003D9B5F /* application.cpp in Sources */,
 				9A5ECCFF28CCBF360084D354 /* item.cpp in Sources */,
@@ -1226,7 +1230,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -1324,7 +1327,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/../operating_system/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

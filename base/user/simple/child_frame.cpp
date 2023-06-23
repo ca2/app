@@ -78,7 +78,7 @@ void simple_child_frame::route_command(::message::command * pcommand, bool bRout
 void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
-   __UNREFERENCED_PARAMETER(pgraphics);
+   UNREFERENCED_PARAMETER(pgraphics);
 
 
 }

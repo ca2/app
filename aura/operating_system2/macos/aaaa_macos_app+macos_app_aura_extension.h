@@ -2,7 +2,7 @@
 //  macos_app+macos_app_aura_extension.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 30/09/22 12:01
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 30/09/22 12:01
 //
 
 #import "acme/operating_system/macos/nano/app.h"

@@ -2,7 +2,7 @@
 //  apple_debug.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/01/18.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 06/01/18.
 //
 #include "debug.h"
 #include "ns_exception.h"

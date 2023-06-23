@@ -44,7 +44,7 @@ extern int open_printer (int port);
 #define close_printer(fd)	close(fd)
 extern ssize_t write_printer (int fd, const ::string &buf);
 #endif // __linux__
-extern int biosprint (int cmd, int byte, int port);
+extern int biosprint (int cmd, int ::u8, int port);
 #endif /* __DJGPP__    */
 
 enum

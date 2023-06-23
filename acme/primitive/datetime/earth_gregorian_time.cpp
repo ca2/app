@@ -1,5 +1,5 @@
-﻿//
-// Created by camilo on 2022-10-23 21:38 <3ThomasBorregaardSørensen!!
+//
+// Created by camilo on 2022-10-23 21:38 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "earth_gregorian_time.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "input_text.h"
 #include "aura/user/user/check_box.h"
 #include "axis/html/element/element.h"
@@ -187,7 +187,7 @@ namespace html
       void input_text::on_change_layout(html_data * pdata)
       {
 
-         __UNREFERENCED_PARAMETER(pdata);
+         UNREFERENCED_PARAMETER(pdata);
 
          m_pedit->place(m_box);
 

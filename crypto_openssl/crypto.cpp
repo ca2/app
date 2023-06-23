@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "crypto.h"
 #include "rsa.h"
 #include "initializer.h"
@@ -1093,7 +1093,7 @@ namespace crypto_openssl
 //      /*void crypto::free_rsa_key(::pointer<::crypto::rsa>prsa)
 //      {
 //
-//         __UNREFERENCED_PARAMETER(prsa);
+//         UNREFERENCED_PARAMETER(prsa);
 //
 //      }*/
 //

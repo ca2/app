@@ -54,7 +54,7 @@ namespace opengl
          
          auto errString = opengl_error_string(eerror);
 
-         FORMATTED_TRACE("error %d \"%s\"", eerror, errString);
+         information("error %d \"%s\"", eerror, errString);
 
          return ::error_failed;
 
@@ -323,13 +323,13 @@ namespace opengl
 
          const char * pszLog = infoLog;
 
-         strSummary.format("FORMATTED_ERROR::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
+         strSummary.format("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 
          throw ::exception(error_failed, "Shader Compilation Error", strSummary);
 
       }
 
-      INFORMATION(strSummary);
+      information() << strSummary;
 
       //return estatus;
 
@@ -358,13 +358,13 @@ namespace opengl
 
          glGetProgramInfoLog(program, sizeof(infoLog), NULL, infoLog);
 
-         strSummary.format("FORMATTED_ERROR::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
+         strSummary.format("error::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
          throw ::exception(error_failed);
 
       }
 
-      INFORMATION(strSummary);
+      information() << strSummary;
 
       //return estatus;
 

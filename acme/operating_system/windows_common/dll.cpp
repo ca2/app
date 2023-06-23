@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
@@ -200,7 +200,7 @@ void module_output_debug_string_w(hinstance hinstance, const WCHAR * pwszPrefix 
 int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved)
 {
 
-   __UNREFERENCED_PARAMETER(pReserved);
+   UNREFERENCED_PARAMETER(pReserved);
 
    //if (iLibMainDebugBox & e_library_main_any)
    //{

@@ -1,9 +1,9 @@
-﻿//
+//
 //  _.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 21/09/20.
-//  Copyright © 2020 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 21/09/20.
+//  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
 #include "acme/platform/system_setup.h"

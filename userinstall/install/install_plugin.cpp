@@ -15,12 +15,12 @@
 #endif
 
 
-#ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lp)                        ((i32)(i16)LOWORD(lp))
-#endif
-#ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lp)                        ((i32)(i16)HIWORD(lp))
-#endif
+// #ifndef i32_x
+// #define i32_x(lp)                        ((i32)(i16)LOWORD(lp))
+// #endif
+// #ifndef i32_y
+// #define i32_y(lp)                        ((i32)(i16)HIWORD(lp))
+// #endif
 
 
 
@@ -850,7 +850,7 @@ run_install:
       {
          //::u32 dwTime3= ::time::now();
 
-         //FORMATTED_TRACE("eval1 %d",dwTime3 - dwTime1);
+         //information("eval1 %d",dwTime3 - dwTime1);
 
          //if(ensure_tx(::hotplugin::message_paint, (void *) &lprect, sizeof(lprect)))
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
@@ -858,7 +858,7 @@ run_install:
 
             //::u32 dwTime5= ::time::now();
 
-            //FORMATTED_TRACE("ensure_tx %d",dwTime5 - dwTime3);
+            //information("ensure_tx %d",dwTime5 - dwTime3);
 
             if(m_phost->m_pbasecomposer->m_bSendActivationState)
             {
@@ -948,14 +948,14 @@ run_install:
 
             //::u32 dwTime7= ::time::now();
 
-            //FORMATTED_TRACE("focus_update %d",dwTime7 - dwTime5);
+            //information("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
             //::u32 dwTime9= ::time::now();
 
-            //FORMATTED_TRACE("blend %d",dwTime9 - dwTime7);
+            //information("blend %d",dwTime9 - dwTime7);
 
 
             return;
@@ -1652,7 +1652,7 @@ restart:
          else
          {
 
-            // TRACE("probably very healthly ignoring install::plugin::set_window_position");
+            // information("probably very healthly ignoring install::plugin::set_window_position");
 
          }
 

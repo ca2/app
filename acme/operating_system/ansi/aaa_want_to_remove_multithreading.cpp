@@ -980,7 +980,7 @@
 ////htask_t start_thread(::u32(WINAPI * pfn)(LPVOID),LPVOID pv,i32 iPriority)
 ////{
 ////
-////   __UNREFERENCED_PARAMETER(iPriority);
+////   UNREFERENCED_PARAMETER(iPriority);
 ////
 ////   return create_thread(NULL,0,pfn,pv,0,NULL);
 ////

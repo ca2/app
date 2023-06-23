@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "image_manager.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/list.h"
@@ -20,8 +20,8 @@ namespace user
 
    bool image_manager::Initialize(::particle * pparticle, ::u32 uaMenuV003Map [][2])
    {
-      __UNREFERENCED_PARAMETER(pparticle);
-      __UNREFERENCED_PARAMETER(uaMenuV003Map);
+      UNREFERENCED_PARAMETER(pparticle);
+      UNREFERENCED_PARAMETER(uaMenuV003Map);
       throw ::interface_only();
 
       return true;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "acme/exception/extended_status.h"
 #include "acme/filesystem/file/item_array.h"
@@ -237,7 +237,7 @@ namespace aura
    void session::process_init()
    {
 
-      INFORMATION("aura::session::process_init");
+      information() << "aura::session::process_init";
 
       //auto estatus = 
       
@@ -256,7 +256,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   INFORMATION("acme::str_context Failed to Allocate!!");
+      //   information() << "acme::str_context Failed to Allocate!!";
 
       //   return estatus;
 
@@ -271,9 +271,9 @@ namespace aura
 
       }
 
-      INFORMATION("acme::str_context Succeeded to Allocate!!");
+      information() << "acme::str_context Succeeded to Allocate!!";
 
-      INFORMATION("aura::session::process_init success");
+      information() << "aura::session::process_init success";
 
       //return ::success;
 
@@ -1487,7 +1487,7 @@ namespace aura
    //}
 
 
-   ::color::color session::get_default_color(u64 u)
+   ::color::color session::get_default_color(color::color color)
    {
 
       return argb(255, 255, 255, 255);
@@ -1756,7 +1756,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create ifs");
+      //      information("Failed to create ifs");
 
       //   }
 
@@ -1772,7 +1772,7 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create remotefs");
+      //      information("Failed to create remotefs");
 
       //   }
 
@@ -1798,18 +1798,18 @@ namespace aura
 
       //      m_result.add(estatus);
 
-      //      TRACE("Failed to create fsdata");
+      //      information("Failed to create fsdata");
 
       //   }
 
       //}
 
-      INFORMATION(".2");
+      information() << ".2";
 
       if (acmeapplication()->m_bUser)
       {
 
-         INFORMATION("success");
+         information() << "success";
 
          //auto psetup = system_setup::get_first(::system_setup::flag_object_user);
 
@@ -1841,13 +1841,13 @@ namespace aura
 
             output_debug_string("\nFailed to __construct_new(m_puser)");
 
-            ERROR(".4");
+            error() <<".4";
 
             return;
 
          }
 
-         INFORMATION("end");
+         information() << "end";
 
          m_puser->init1();
 
@@ -1983,7 +1983,7 @@ namespace aura
 
       //}
 
-      INFORMATION("aura::session::init2 .1");
+      information() << "aura::session::init2 .1";
 
       //if (psystem->m_bUser)
       //{
@@ -2232,7 +2232,7 @@ namespace aura
    void session::launch_app(const ::string & psz)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -2240,7 +2240,7 @@ namespace aura
    void session::install_app(const ::string & psz)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -2329,7 +2329,7 @@ namespace aura
    bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
    {
 
-      __UNREFERENCED_PARAMETER(pdata);
+      UNREFERENCED_PARAMETER(pdata);
 
       if (itema.get_size() > 0)
       {
@@ -2356,13 +2356,13 @@ namespace aura
 
       //if(m_pdatabase == nullptr)
       //{
-      //   TRACE("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   TRACE("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
       //   return false;
       //}
 

@@ -11,7 +11,7 @@
 #define SMTP_QPENCODE_TRAILING_SOFT 2
 
 inline bool __QPDecode(
-   byte * pbSrcData,
+   ::u8 * pbSrcData,
    int nSrcLen,
    char * szDest,
    int * pnDestLen,
@@ -44,7 +44,7 @@ inline bool __QPDecode(
             szBuf[2] = '\0';
             char * tmp = nullptr;
             ASSERT(szDest < szDestEnd);
-            *szDest++ = (byte)strtoul(szBuf, &tmp, 16);
+            *szDest++ = (::u8)strtoul(szBuf, &tmp, 16);
             nWritten++;
             nRead += 2;
             continue;

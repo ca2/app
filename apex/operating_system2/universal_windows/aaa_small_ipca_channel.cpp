@@ -40,7 +40,7 @@
       //bool tx::open(const ::scoped_string & scopedstrChannel, launcher * plauncher)
       //{
 
-      //   __UNREFERENCED_PARAMETER(plauncher);
+      //   UNREFERENCED_PARAMETER(plauncher);
 
       //   if (m_strBaseChannel.has_char())
       //      close();

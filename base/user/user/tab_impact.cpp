@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -100,7 +100,7 @@ namespace user
    void tab_impact::on_message_set_focus(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
       if(get_impact_uie() != nullptr)
       {
@@ -470,7 +470,7 @@ namespace user
    void tab_impact::_001DropTargetWindowRelay(::user::tab * pchannel)
    {
 
-      __UNREFERENCED_PARAMETER(pchannel);
+      UNREFERENCED_PARAMETER(pchannel);
 
       set_need_redraw();
 
@@ -480,7 +480,7 @@ namespace user
    void tab_impact::_001DropTargetWindowFinalize(::user::tab * pchannel)
    {
 
-      __UNREFERENCED_PARAMETER(pchannel);
+      UNREFERENCED_PARAMETER(pchannel);
 
       if(m_pdroptargetwindow != nullptr)
       {
@@ -517,10 +517,12 @@ namespace user
 
       auto ptabdata = get_data();
 
-      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+      //::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
 
-      ::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
+      //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
 
+      ::user::impact_data * pimpactdata = get_impact_data(atom, true);
+      
       if (pimpactdata == nullptr)
       {
 
@@ -831,7 +833,8 @@ namespace user
    ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
-      if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      //if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
+      if (get_impact_data(atom, true) == nullptr)
       {
 
          return nullptr;
@@ -1123,7 +1126,7 @@ namespace user
 
 #ifdef VERBOSE_LOG               
 
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
+               information()(e_trace_category_prodevian) << "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n";
 
 #endif
 

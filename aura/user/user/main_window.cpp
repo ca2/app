@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "main_window.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
@@ -25,6 +25,8 @@ namespace user
 
    main_window::main_window()
    {
+
+      m_flagNonClient -= e_non_client_focus_rect;
 
       m_bEnableDragClient = true;
 
@@ -145,7 +147,7 @@ namespace user
 
          auto sizeMinimum = frame::get_window_minimum_size();
 
-         auto rectangleClient = const_layout().state(e_layout_sketch).client_rect();
+         auto rectangleClient = const_layout().state(e_layout_sketch).raw_rectangle();
 
          auto sizeFrame = rectangleClient.size();
 

@@ -6,8 +6,9 @@
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-#include "apex/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
 
 
@@ -33,6 +34,8 @@ namespace write_text
    {
 
       ::acme::department::on_initialize_particle();
+
+      m_pparticleFontTextMapSynchronization = acmenode()->create_mutex();
 
 #ifdef ANDROID
 

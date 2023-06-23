@@ -1,5 +1,5 @@
 //
-// Created by camilo on 30/12/2021 18:51 BRT <3ThomasBorregaardSørensen""
+// Created by camilo on 30/12/2021 18:51 BRT <3ThomasBorregaardSorensen""
 //
 #pragma once
 
@@ -29,8 +29,8 @@ namespace write_text
       bool           m_bItalic;
       bool           m_bUnderlined;
       bool           m_bStruckOut;
-      byte           m_uchPitchAndFamily;
-      byte           m_uchCharSet;
+      ::u8           m_uchPitchAndFamily;
+      ::u8           m_uchCharSet;
 
 
       double get_line_spacing() const

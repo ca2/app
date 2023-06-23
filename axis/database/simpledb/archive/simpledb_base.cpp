@@ -87,7 +87,7 @@ namespace simpledb
 
    long database::nextid(const ::string & sname)
    {
-      __UNREFERENCED_PARAMETER(sname);
+      UNREFERENCED_PARAMETER(sname);
       if (!active)
          return DB_UNEXPECTED_RESULT;
       /*i32 atom;

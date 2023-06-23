@@ -1,5 +1,5 @@
-﻿//
-// Alignment and Orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSørensen!!
+//
+// Alignment and Orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSorensen!!
 //
 	//
 // Copyright (c) 2013 Mikko Mononen memon@inside.org
@@ -303,7 +303,7 @@ namespace nano2d
 
 	//struct point {
 	//	float x, y;
-	//	float greekdeltax, greekdeltay;
+	//	float Δx, Δy;
 	//	float len;
 	//	float dmx, dmy;
 	//	unsigned char flags;

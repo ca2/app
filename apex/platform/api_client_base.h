@@ -1,4 +1,4 @@
-﻿// From api_client.h by camilo on 2023-02-01 19:08 PM <3ThomasBorregaardSørensen!! & Mummi!!
+// From api_client.h by camilo on 2023-02-01 19:08 PM <3ThomasBorregaardSorensen!! & Mummi!!
 #pragma once
 
 

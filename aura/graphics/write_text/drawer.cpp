@@ -1,4 +1,4 @@
-// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSorensen__!!
 #include "framework.h"
 #include "drawer.h"
 #include "text_out.h"
@@ -7,7 +7,7 @@
 #include "font.h"
 #include "acme/exception/interface_only.h"
 //#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace write_text
@@ -480,19 +480,19 @@ namespace write_text
       if (ealign & (e_align_vertical_center | e_align_bottom))
       {
 
-         double greekdeltay = (h - cy);
+         double Δy = (h - cy);
 
          if (ealign & e_align_vertical_center)
          {
 
-            greekdeltay /= 2.0;
+            Δy /= 2.0;
 
          }
 
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.y() += greekdeltay;
+            ptextout->m_point.y() += Δy;
 
          }
 

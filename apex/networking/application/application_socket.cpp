@@ -1,4 +1,4 @@
-﻿// cs<3tbs!! 2020-11-28 21:16 BRT
+// cs<3tbs!! 2020-11-28 21:16 BRT
 #include "framework.h"
 #include "application_socket.h"
 #include "acme/parallelization/event.h"

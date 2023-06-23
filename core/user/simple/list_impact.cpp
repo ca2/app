@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/handler/item.h"
 #include "core/user/simple/list_impact.h"
 

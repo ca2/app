@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "decoder_plugin.h"
 #include "decoder.h"
 #include "acme/parallelization/event.h"
@@ -80,7 +80,7 @@ namespace multimedia
 
       //   ::e_status estatus = m_pfactory;
 
-      //   INFORMATION("LoadLibrary failed to open library " << strTitle << estatus << as_string(estatus));
+      //   information() << "LoadLibrary failed to open library " << strTitle << estatus << as_string(estatus);
 
       //   return m_pfactory;
 

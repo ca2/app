@@ -5,6 +5,7 @@
 #include "font.h"
 #include "brush.h"
 #include "image.h"
+#include "color.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/mathematics/mathematics.h"
@@ -180,8 +181,8 @@ namespace draw2d_opengl
    {
 
       if (draw2d_opengl()->m_atomClass == 0) {
-         TRACE("MS GDI - RegisterClass failed\n");
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("MS GDI - RegisterClass failed\n");
+         information("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -212,8 +213,8 @@ namespace draw2d_opengl
 
       if (window == nullptr) 
       {
-         TRACE("MS GDI - CreateWindow failed\n");
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("MS GDI - CreateWindow failed\n");
+         information("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -224,8 +225,8 @@ namespace draw2d_opengl
       HDC hdc = GetDC(window);
       if (hdc == nullptr)
       {
-         TRACE("MS GDI - GetDC failed\n");
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("MS GDI - GetDC failed\n");
+         information("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -242,24 +243,24 @@ namespace draw2d_opengl
       chosenformat = ChoosePixelFormat(hdc, &pixformat);
       if (chosenformat == 0) 
       {
-         TRACE("MS GDI - ChoosePixelFormat failed\n");
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("MS GDI - ChoosePixelFormat failed\n");
+         information("last-error code: %d\n", GetLastError());
          return false;
       }
 
       bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
       if (!spfok) 
       {
-         TRACE("MS GDI - SetPixelFormat failed\n");
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("MS GDI - SetPixelFormat failed\n");
+         information("last-error code: %d\n", GetLastError());
          return false;
       }
 
       HGLRC hglrcTime = wglCreateContext(hdc);
       if (hglrcTime == nullptr)
       {
-         TRACE("MS WGL - wglCreateContext failed\n");
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("MS WGL - wglCreateContext failed\n");
+         information("last-error code: %d\n", GetLastError());
          ReleaseDC(m_hwnd, m_hdc);
          return false;
       }
@@ -267,8 +268,8 @@ namespace draw2d_opengl
       bool okMakeCurrent = wglMakeCurrent(hdc, hglrcTime);
       if (!okMakeCurrent)
       {
-         TRACE("MS WGL - wglMakeCurrent failed\n");
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+         information("MS WGL - wglMakeCurrent failed\n");
+         information("last-error code: %d\n", GetLastError());
          return false;
       }
       //glfwInit();
@@ -285,7 +286,7 @@ namespace draw2d_opengl
       if (!gladLoadWGL(hdc))
       {
          // Problem: glewInit failed, something is seriously wrong.
-         FORMATTED_TRACE("gladLoadWGL failed");
+         information("gladLoadWGL failed");
          //return false;
          //throw resource_exception();
 
@@ -463,7 +464,7 @@ namespace draw2d_opengl
    //      //   catch(...)
    //      //   {
 
-   //      //      TRACE("graphics::SelectObject(HGDIOBJ) OBJ_BITMAP : Failed to delete plusplus::Graphics");
+   //      //      information("graphics::SelectObject(HGDIOBJ) OBJ_BITMAP : Failed to delete plusplus::Graphics");
 
    //      //   }
 
@@ -486,11 +487,15 @@ namespace draw2d_opengl
    //   return nullptr;
    //}
 
+   
    color32_t graphics::GetNearestColor(color32_t crColor) const
    {
+      
       //return ::GetNearestColor(m_hdc, crColor);
-      return 0;
+      return color::transparent;
+
    }
+
 
    ::u32 graphics::RealizePalette()
    {
@@ -898,7 +903,7 @@ namespace draw2d_opengl
    //   //   bool bOk = false;
 
    //   //   BITMAPINFO info;
-   //   //   color32_t * pcolorref;
+   //   //   color32_t * pimage32;
 
    //   //   ZeroMemory(&info, sizeof (BITMAPINFO));
 
@@ -910,7 +915,7 @@ namespace draw2d_opengl
    //   //   info.bmiHeader.biCompression   = BI_RGB;
    //   //   info.bmiHeader.biSizeImage     = cx * cy * 4;
 
-   //   //   HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **) &pcolorref, nullptr, 0);
+   //   //   HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **) &pimage32, nullptr, 0);
 
    //   //   HDC hdc = ::CreateCompatibleDC(nullptr);
 
@@ -949,8 +954,8 @@ namespace draw2d_opengl
 
    //   //      int area = cx * cy;
 
-   //   //      color32_t * pc = pcolorref;
-   //   //      byte * pA = &((byte *) pcolorref)[3];
+   //   //      color32_t * pc = pimage32;
+   //   //      ::u8 * pA = &((::u8 *) pimage32)[3];
 
    //   //      for(int i = 0; i < area; i++)
    //   //      {
@@ -970,8 +975,8 @@ namespace draw2d_opengl
    //   //      if(bAllZeroAlpha && bTheres::u32)
    //   //      {
 
-   //   //         pc = pcolorref;
-   //   //         pA = &((byte *)pcolorref)[3];
+   //   //         pc = pimage32;
+   //   //         pA = &((::u8 *)pimage32)[3];
 
    //   //         for(int i = 0; i < area; i++)
    //   //         {
@@ -989,7 +994,7 @@ namespace draw2d_opengl
    //   //      try
    //   //      {
 
-   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (byte *) pcolorref);
+   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (::u8 *) pimage32);
 
    //   //         bOk = m_pgraphics->DrawImage(&b, x, y, 0, 0, cx, cy, plusplus::UnitPixel) == plusplus::Ok;
 
@@ -1795,7 +1800,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetPixel(m_hdc, x, y);
-      return 0;
+      return color::transparent;
 
    }
 
@@ -1804,7 +1809,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetPixel(m_hdc, point.x(), point.y());
-      return 0;
+      return color::transparent;
 
    }
 
@@ -1812,7 +1817,7 @@ namespace draw2d_opengl
    ::color::color graphics::SetPixel(double x, double y, ::color::color crColor)
    {
       
-      return 0;
+      return color::transparent;
 
    }
 
@@ -2096,13 +2101,13 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::ScrollDC(double greekdeltax, double greekdeltay,
+   //bool graphics::ScrollDC(double Δx, double Δy,
    //                        const ::rectangle_f64 & lpRectScroll,const ::rectangle_f64 & rectangleClip,
    //                        ::draw2d::region* pRgnUpdate, ::rectangle_f64 * lpRectUpdate)
    //{
    //   
    //   // ASSERT(m_hdc != nullptr);
-   //   //return ::ScrollDC(m_hdc,greekdeltax,greekdeltay,&rectangleClip,
+   //   //return ::ScrollDC(m_hdc,Δx,Δy,&rectangleClip,
    //     //                &rectangleClip, (HRGN)pRgnUpdate->get_os_data(), lpRectUpdate) != false;
    //   return 0;
 
@@ -2582,7 +2587,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::GetPath(::point_f64 * lpPoints, byte * lpTypes, ::count nCount)
+   //void graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, ::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -2680,7 +2685,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::AddMetaFileComment(::u32 nDataSize, const byte* pCommentData)
+   //void graphics::AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GdiComment(m_hdc, nDataSize, pCommentData) != false;
@@ -2828,7 +2833,7 @@ namespace draw2d_opengl
 ////         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x() - xDest), maximum(0, m_pointAlphaBlend.y() - yDest)),
 ////                         m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x()), maximum(0, yDest - m_pointAlphaBlend.y())), size);
 ////
-////         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
+////         imageWork.channel_multiply(::color::e_channel_opacity, imageWork4);
 ////
 ////
 ////         keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2955,7 +2960,7 @@ namespace draw2d_opengl
          imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x() - xDest), maximum(0, m_pointAlphaBlend.y() - yDest)),
             m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x()), maximum(0, yDest - m_pointAlphaBlend.y())), size);
 
-         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
+         imageWork.channel_multiply(::color::e_channel_opacity, imageWork4);
 
 
          keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -3011,7 +3016,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetDCBrushColor(m_hdc);
-      return 0;
+      return color::transparent;
    }
 
 
@@ -3019,7 +3024,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetDCBrushColor(m_hdc, crColor);
-      return 0;
+      return color::transparent;
 
    }
 
@@ -3028,7 +3033,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetDCPenColor(m_hdc);
-      return 0;
+      return color::transparent;
 
 
    }
@@ -3038,7 +3043,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetDCPenColor(m_hdc, crColor);
-      return 0;
+      return color::transparent;
 
    }
 
@@ -3411,7 +3416,7 @@ namespace draw2d_opengl
    //   //catch(...)
    //   //{
 
-   //   //   TRACE("graphics::Detach : Failed to delete plusplus::Graphics");
+   //   //   information("graphics::Detach : Failed to delete plusplus::Graphics");
 
    //   //}
 
@@ -3486,7 +3491,7 @@ namespace draw2d_opengl
       //   if(!bDeleted)
       //   {
 
-      //      TRACE("graphics::DeleteDC : Failed to delete GDI device context");
+      //      information("graphics::DeleteDC : Failed to delete GDI device context");
 
       //   }
 
@@ -3504,7 +3509,7 @@ namespace draw2d_opengl
       //   catch(...)
       //   {
 
-      //      TRACE("graphics::DeleteDC : Failed to delete plusplus::Graphics");
+      //      information("graphics::DeleteDC : Failed to delete plusplus::Graphics");
 
       //   }
 
@@ -3572,7 +3577,7 @@ namespace draw2d_opengl
 //      /*      hdc_map* pMap = ::windows_definition::MapHDC();
 //            if (pMap != nullptr && pMap->lookup_permanent(m_hdc) == this)
 //            {
-//               TRACE(trace_category_appmsg, 0, "Cannot set Output hDC on Attached graphics.\n");
+//               information(trace_category_appmsg, 0, "Cannot set Output hDC on Attached graphics.\n");
 //               ASSERT(false);
 //            }*/
 //#endif
@@ -3592,7 +3597,7 @@ namespace draw2d_opengl
 //      /*      hdc_map* pMap = ::windows_definition::MapHDC();
 //            if (pMap != nullptr && pMap->lookup_permanent(m_hdc) == this)
 //            {
-//               TRACE(trace_category_appmsg, 0, "Cannot Release Output hDC on Attached graphics.\n");
+//               information(trace_category_appmsg, 0, "Cannot Release Output hDC on Attached graphics.\n");
 //               ASSERT(false);
 //            }*/
 //#endif
@@ -4342,7 +4347,7 @@ namespace draw2d_opengl
    //   return nResult;
    //}
 
-   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const byte* lpTypes, ::count nCount)
+   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const ::u8* lpTypes, ::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -4913,7 +4918,7 @@ namespace draw2d_opengl
 //      //// Set size_i32 to load glyphs as
 //      //FT_Set_Pixel_Sizes(face, 0, 48);
 //
-//      //// Disable byte-alignment restriction
+//      //// Disable ::u8-alignment restriction
 //      //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 //
 //      //// Load first 128 characters of ASCII set
@@ -5060,8 +5065,9 @@ namespace draw2d_opengl
    {
 
       ::opengl::line(point1.x(), point1.y(), point2.x(), point2.y(), (float)(ppen->m_dWidth),
-         ppen->m_color.red/255.f, ppen->m_color.green / 255.f, ppen->m_color.blue / 255.f,
-         ppen->m_color.alpha / 255.f, 0.f, 0.f, true);
+         ppen->m_color.f32_red(), ppen->m_color.f32_green(),
+         ppen->m_color.f32_blue(),
+         ppen->m_color.f32_opacity(), 0.f, 0.f, true);
 
       /*glLineWidth(ppen->m_dWidth);
 
@@ -5412,7 +5418,7 @@ namespace draw2d_opengl
    //   //   catch(...)
    //   //   {
 
-   //   //      TRACE("graphics::attach : Failed to delete plusplus::Graphics");
+   //   //      information("graphics::attach : Failed to delete plusplus::Graphics");
 
    //   //   }
 
@@ -5747,11 +5753,11 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
-   {
+   //void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ::draw2d::region * pregion)
+   //{
 
 
-   }
+   //}
 
    //void graphics::on_begin_draw(oswindow wnd, const ::size_i32 & sz)
    void graphics::on_begin_draw()

@@ -1080,32 +1080,21 @@ pacmedirectory->create("/ca2core");
       if (acmeapplication()->m_bCrypto)
       {
 
-         try
-         {
+         auto & pfactoryCrypto = factory("crypto", "openssl");
 
-            auto & pfactoryCrypto = factory("crypto", "openssl");
+         //if (!pfactoryCrypto)
+         //{
 
-            //if (!pfactoryCrypto)
-            //{
+         //   WARNING("Could not open crypto openssl plugin.");
 
-            //   WARNING("Could not open crypto openssl plugin.");
+         //   //return pfactoryCrypto;
 
-            //   //return pfactoryCrypto;
+         //}
 
-            //}
+         pfactoryCrypto->merge_to_global_factory();
 
-            pfactoryCrypto->merge_to_global_factory();
-
-            //estatus = 
-            pfactoryCrypto->__construct(this, m_pcrypto);
-
-         }
-         catch (...)
-         {
-
-            FORMATTED_ERROR("No crypto library!!");
-
-         }
+         //estatus = 
+         pfactoryCrypto->__construct(this, m_pcrypto);
 
       }
 

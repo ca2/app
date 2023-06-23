@@ -141,7 +141,7 @@ void nano_message_box::calculate_size()
 void nano_message_box::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
    
-   conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strTitle);
+   conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
 
    calculate_size();
 

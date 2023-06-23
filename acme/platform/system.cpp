@@ -13,6 +13,7 @@
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
+#include "acme/exception/library_not_loaded.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -893,6 +894,18 @@ void system::call_init_system()
       init_system();
       
    }
+   //catch (::library_not_loaded & librarynotloaded)
+   //{
+
+   //   string strMoreDetails;
+
+   //   strMoreDetails = "caught at system::call_init_system";
+
+   //   m_pnode->report_exception_to_user(this, librarynotloaded, strMoreDetails);
+
+   //   m_estatus = librarynotloaded.m_estatus;
+
+   //}
    catch (::exception & exception)
    {
       
@@ -900,7 +913,7 @@ void system::call_init_system()
       
       string strMoreDetails;
       
-      strMoreDetails = "caught at system::call_init_system";
+      strMoreDetails = "Fatal error during program initialization.";
       
       m_pnode->report_exception_to_user(this, exception, strMoreDetails);
       

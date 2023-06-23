@@ -2097,7 +2097,9 @@ return false;
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
-      exception_message_box(exception, strMoreDetails);
+      auto psequencer = exception_message_box(exception, strMoreDetails);
+
+      psequencer->do_synchronously();
 
    }
 

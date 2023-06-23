@@ -807,7 +807,7 @@ pacmedirectory->create("/ca2core");
 
          if (status != errAuthorizationSuccess)
          {
-            information("Error Creating Initial Authorization: %d", status);
+            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
 
             return false;
 
@@ -830,7 +830,7 @@ pacmedirectory->create("/ca2core");
          if (status != errAuthorizationSuccess)
          {
 
-            information("Copy Rights Unsuccessful: %d", status);
+            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
 
             return false;
 
@@ -880,7 +880,7 @@ pacmedirectory->create("/ca2core");
       //if(!estatus)
       //{
 
-      //   error() <<"failed to initialize file-system";
+      //   ERROR("failed to initialize file-system");
 
       //   return estatus;
 
@@ -892,13 +892,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   error() <<"failed to initialize dir-system";
+      //   ERROR("failed to initialize dir-system");
 
       //   return false;
 
       //}
 
-      ///information() << "apex::session::process_init .3";
+      ///INFORMATION("apex::session::process_init .3");
 
       //estatus = 
       m_pfilesystem->init_system();
@@ -1034,7 +1034,7 @@ pacmedirectory->create("/ca2core");
             //if(!estatus)
             //{
 
-               //warning() <<"failed to process_init ::apex::log trace";
+               //WARNING("failed to process_init ::apex::log trace");
 
             //}
 
@@ -1080,32 +1080,21 @@ pacmedirectory->create("/ca2core");
       if (acmeapplication()->m_bCrypto)
       {
 
-         try
-         {
+         auto & pfactoryCrypto = factory("crypto", "openssl");
 
-            auto & pfactoryCrypto = factory("crypto", "openssl");
+         //if (!pfactoryCrypto)
+         //{
 
-            //if (!pfactoryCrypto)
-            //{
+         //   WARNING("Could not open crypto openssl plugin.");
 
-            //   warning() <<"Could not open crypto openssl plugin.";
+         //   //return pfactoryCrypto;
 
-            //   //return pfactoryCrypto;
+         //}
 
-            //}
+         pfactoryCrypto->merge_to_global_factory();
 
-            pfactoryCrypto->merge_to_global_factory();
-
-            //estatus = 
-            pfactoryCrypto->__construct(this, m_pcrypto);
-
-         }
-         catch (...)
-         {
-
-            error("No crypto library!!");
-
-         }
+         //estatus = 
+         pfactoryCrypto->__construct(this, m_pcrypto);
 
       }
 
@@ -1150,7 +1139,7 @@ pacmedirectory->create("/ca2core");
 
          bool bMatterFromResource = false;
 
-         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sorensen.dedicatory");
+         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
 
          if (pfile)
          {
@@ -1202,13 +1191,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   fatal() <<"axis::application::process_init .2";
+      //   FATAL("axis::application::process_init .2");
 
       //   return false;
 
       //}
 
-      //information() << "start";
+      //INFORMATION("start");
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1240,7 +1229,7 @@ pacmedirectory->create("/ca2core");
 //
 //#endif // LINUX
 
-      //information() << "success";
+      //INFORMATION("success");
 
 //      return true;
 
@@ -2221,7 +2210,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      information() << strPrint;
+      INFORMATION(strPrint);
 
       if (iReportType == _CRT_ASSERT)
       {
@@ -2244,9 +2233,9 @@ pacmedirectory->create("/ca2core");
    bool system::assert_failed_line(const ::string& pszFileName, i32 iLine)
 
    {
-      UNREFERENCED_PARAMETER(pszFileName);
+      __UNREFERENCED_PARAMETER(pszFileName);
 
-      UNREFERENCED_PARAMETER(iLine);
+      __UNREFERENCED_PARAMETER(iLine);
       return false;
    }
 
@@ -2254,9 +2243,9 @@ pacmedirectory->create("/ca2core");
    bool system::on_assert_failed_line(const ::string& pszFileName, i32 iLine)
 
    {
-      UNREFERENCED_PARAMETER(pszFileName);
+      __UNREFERENCED_PARAMETER(pszFileName);
 
-      UNREFERENCED_PARAMETER(iLine);
+      __UNREFERENCED_PARAMETER(iLine);
       return true;
    }
 
@@ -2326,7 +2315,7 @@ pacmedirectory->create("/ca2core");
 
       //   //}
 
-      //   information(strMessage);
+      //   TRACE(strMessage);
 
       //}
 
@@ -2671,7 +2660,7 @@ pacmedirectory->create("/ca2core");
    void system::install_progress_add_up(int iAddUp)
    {
 
-      UNREFERENCED_PARAMETER(iAddUp);
+      __UNREFERENCED_PARAMETER(iAddUp);
 
    }
 
@@ -2899,27 +2888,27 @@ pacmedirectory->create("/ca2core");
    //
    //      if(!strcmp(pszLibrary,"app_core_rdpclient"))
    //      {
-   //         information() << "reach";
+   //         INFORMATION("reach");
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         information() << "reach app_core_hello_multiverse";
+   //         INFORMATION("reach app_core_hello_multiverse");
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
    //      {
-   //         information() << "reach experience_lite";
+   //         INFORMATION("reach experience_lite");
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         information() << "reach app_core_hello_multiverse";
+   //         INFORMATION("reach app_core_hello_multiverse");
    //      }
    //
    //      if(!library.open(pszLibrary, true))
    //      {
-   //         information() << "::system::map_application_library Failed to open library :" << pszLibrary;
+   //         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
    //         return false;
    //      }
    //
@@ -4458,7 +4447,7 @@ namespace apex
    void system::discard_to_factory(::pointer<object>pca)
    {
 
-      UNREFERENCED_PARAMETER(pca);
+      __UNREFERENCED_PARAMETER(pca);
 
    }
 
@@ -5161,15 +5150,15 @@ string get_bundle_app_library_name();
    // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
 
 
-   //void system::get_public_internet_domain_extension_list(string_array& stra)
-   //{
+   void system::get_public_internet_domain_extension_list(string_array& stra)
+   {
 
-   //   //auto estatus = 
-   //   ::acme::system::get_public_internet_domain_extension_list(stra);
+      //auto estatus = 
+      ::acme::system::get_public_internet_domain_extension_list(stra);
 
-   //   //return estatus;
+      //return estatus;
 
-   //}
+   }
 
 
    void system::system_main()
@@ -5199,7 +5188,7 @@ string get_bundle_app_library_name();
          //if (!pfactoryCrypto)
          //{
 
-         //   warning() <<"Could not open crypto openssl plugin.";
+         //   WARNING("Could not open crypto openssl plugin.");
 
          //   //return pfactoryCrypto;
 
@@ -5240,23 +5229,7 @@ string get_bundle_app_library_name();
    }
 
 
-   ::string system::fetch_public_internet_domain_extension_list_text()
-   {
-
-      //throw interface_only();
-
-      ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
-
-      ::string str = file()->as_string(pathPublicDomainExtensionList);
-
-      return str;
-
-   }
-
-
-
 } // namespace apex
-
 
 
 

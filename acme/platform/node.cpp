@@ -293,7 +293,7 @@ namespace acme
       {
          
          psystem->init_task();
-         
+
          psystem->m_pacmesession->init_task();
 
          psystem->m_pacmeapplication->init_task();
@@ -306,6 +306,8 @@ namespace acme
          }
          else
          {
+
+            psystem->system_main();
 
             auto prequest = __create_new < ::request >();
 

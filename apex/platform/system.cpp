@@ -1402,8 +1402,7 @@ pacmedirectory->create("/ca2core");
       //else
       //{
 
-         ///if (!
-         acmesession()->branch_synchronously();
+      acmesession()->branch_synchronously();
          //{
 
          //   output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");

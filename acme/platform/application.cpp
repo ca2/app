@@ -348,6 +348,29 @@ namespace acme
 
       }
 
+      if (m_bConsole)
+      {
+
+         if (m_bSession.undefined())
+         {
+
+            m_bSession = false;
+
+         }
+
+      }
+      else // !m_bConsole
+      {
+
+         if (m_bSession.undefined())
+         {
+
+            m_bSession = true;
+
+         }
+
+      }
+
       //string strAppId = acmeapplication()->m_strAppId;
 
    }

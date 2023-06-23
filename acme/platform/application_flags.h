@@ -16,6 +16,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    ::tristate                       m_bLocalization;
    ::tristate                       m_bNetworking;
    ::tristate                       m_bConsole;
+   ::tristate                       m_bSession;
    ::tristate                       m_bCreateAppShorcut;
    ::tristate                       m_bDraw2d;
    ::tristate                       m_bWriteText;

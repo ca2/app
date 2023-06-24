@@ -62,7 +62,7 @@
 
 #define INFO_LAYOUT_DISPLAY
 
-
+#define DEBUG_LEVEL 1
 
 
 //template < typename R >
@@ -2606,10 +2606,10 @@ namespace user
 
 #if DEBUG_LEVEL > 0
 
-      if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
+      if (get_parent() == nullptr)
       {
 
-         information() << "Parent is Null. Display Request -> normal";
+         information() << "Top Level Window. Display Request -> normal";
 
       }
 
@@ -2774,10 +2774,12 @@ namespace user
 #endif
 
 #if DEBUG_LEVEL > 0
-         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
+
+         if (get_parent() == nullptr
+         && m_econtroltype != e_control_type_button)
          {
 
-            information() << "Parent is Null. Display Request -> hide";
+            information() << "Top Level Window. Display Request -> hide";
 
          }
 

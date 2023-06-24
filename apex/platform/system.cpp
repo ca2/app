@@ -5151,13 +5151,15 @@ string get_bundle_app_library_name();
    // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
 
 
-   void system::get_public_internet_domain_extension_list(string_array& stra)
+   ::string system::fetch_public_internet_domain_extension_list_text()
    {
 
       //auto estatus = 
-      ::acme::system::get_public_internet_domain_extension_list(stra);
+      ///::acme::system::get_public_internet_domain_extension_list(stra);
 
       //return estatus;
+
+      return {};
 
    }
 

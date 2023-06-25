@@ -290,6 +290,7 @@ namespace file
 
    
    CLASS_DECL_ACME void set_no_cache(::payload& payload);
+   CLASS_DECL_ACME bool get_no_cache(const ::payload & payload);
 
 
  } // namespace file

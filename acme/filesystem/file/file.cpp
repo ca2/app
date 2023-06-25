@@ -1440,6 +1440,25 @@ namespace file
 
    }
 
+   
+   CLASS_DECL_ACME bool get_no_cache(const ::payload & payload)
+   {
+
+      if (payload.get_type() == e_type_property_set)
+      {
+
+         return payload["nocache"].is_true();
+
+      }
+      else
+      {
+
+         return payload.file_path_reference().flags() & ::file::e_flag_bypass_cache;
+
+      }
+
+   }
+
 
    void file::put_lines(const string_array& stra)
    {

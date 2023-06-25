@@ -3185,7 +3185,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    domain.create(purl->get_server(path));
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
+   //bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
+
+   bool bSaveCache = !::file::get_no_cache(payloadFile);
 
    ::file::path pathCache;
 
@@ -3223,6 +3225,20 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
       pathCache.replace_with("_/", "://");
 #endif
       pathCache = dir()->cache() / (pathCache + ".cache");
+
+      if (exists(pathCache))
+      {
+
+         auto pfile = get_reader(pathCache);
+
+         if (pfile.ok())
+         {
+
+            return pfile;
+
+         }
+
+      }
 
    }
 

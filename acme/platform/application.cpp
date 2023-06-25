@@ -315,7 +315,9 @@ namespace acme
       if (m_bResource.undefined())
       {
 
-         m_bResource = !m_bConsole;
+         //m_bResource = !m_bConsole;
+
+         m_bResource = true;
 
       }
 

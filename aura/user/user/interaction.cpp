@@ -1409,24 +1409,24 @@ namespace user
    void interaction::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function,  bool bAscendants)
    {
       
-      //if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
-      {
-         
-         
-         information() << "set_need_redraw while resize";
-         
-         if(rectangleaNeedRedraw.size() > 0)
-         {
-            
-            auto r = rectangleaNeedRedraw[0];
-            
-            information("%d,%d  %d,%d", r.left, r.top, r.width(), r.height());
-            
-         }
-         
-         information() << acmenode()->get_callstack();
-         
-      }
+//      if(m_pdragCurrent && m_pdragCurrent->m_eelement == e_element_resize)
+//      {
+//
+//
+//         information() << "set_need_redraw while resize";
+//
+//         if(rectangleaNeedRedraw.size() > 0)
+//         {
+//
+//            auto r = rectangleaNeedRedraw[0];
+//
+//            information("%d,%d  %d,%d", r.left, r.top, r.width(), r.height());
+//
+//         }
+//
+//         information() << acmenode()->get_callstack();
+//
+//      }
 
       auto * pinteraction = get_wnd();
 
@@ -4973,6 +4973,13 @@ namespace user
 
       if (!is_this_visible(e_layout_design))
       {
+
+         if(::is_null(get_parent()))
+         {
+
+            information("Top Level Window is NOT visible.");
+
+         }
 
          if (type.name_contains("experience"))
          {

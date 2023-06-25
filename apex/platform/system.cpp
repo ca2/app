@@ -1391,7 +1391,12 @@ pacmedirectory->create("/ca2core");
       //else
       //{
 
-      acmesession()->branch_synchronously();
+      if (acmeapplication()->m_bSession)
+      {
+
+         acmesession()->branch_synchronously();
+
+      }
          //{
 
          //   output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
@@ -1412,9 +1417,14 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto psession = acmesession();
+      if (acmeapplication()->m_bSession)
+      {
 
-      psession->m_ptextcontext->defer_ok(m_ptexttable);
+         auto psession = acmesession();
+
+         psession->m_ptextcontext->defer_ok(m_ptexttable);
+
+      }
 
 
       //if(!::application::init2())
@@ -5162,6 +5172,17 @@ string get_bundle_app_library_name();
       return {};
 
    }
+
+
+   //void system::get_public_internet_domain_extension_list(string_array& stra)
+   //{
+
+   ////   //auto estatus = 
+   ////   ::acme::system::get_public_internet_domain_extension_list(stra);
+
+   //   ///return estatus;
+
+   //}
 
 
    void system::system_main()

@@ -13,6 +13,7 @@
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
 #include "acme/constant/idpool.h"
+#include "acme/exception/library_not_loaded.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -1012,8 +1013,13 @@ namespace acme
    void system::init2()
    {
 
-      //return ::success;
-      create_session();
+      if (acmeapplication()->m_bSession)
+      {
+       
+         //return ::success;
+         create_session();
+
+      }
 
    }
 

@@ -293,8 +293,13 @@ namespace acme
       {
          
          psystem->init_task();
-         
-         psystem->m_pacmesession->init_task();
+
+         if (psystem->m_pacmeapplication->m_bSession)
+         {
+
+            psystem->m_pacmesession->init_task();
+
+         }
 
          psystem->m_pacmeapplication->init_task();
 

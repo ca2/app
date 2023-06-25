@@ -5308,7 +5308,7 @@ namespace user
             _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
 
-            information() << "graphics::on_begin_draw";
+            //information() << "graphics::on_begin_draw";
 
             slGraphics.unlock();
 

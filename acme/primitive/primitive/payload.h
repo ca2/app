@@ -200,9 +200,11 @@ public:
    template < class T >
    payload(const ::pointer < T > & p)
    {
+
       m_etype = e_type_new;
-      //operator = (p.m_p);
-      _set_element((::particle*) p.m_p);
+      
+      _set_element(p.m_pparticle);
+
    }
 
    template < class T >

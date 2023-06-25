@@ -31,6 +31,13 @@ namespace aqua
 
       auto pfile = file() -> get_reader(payloadFile);
 
+      if (pfile.nok())
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
       _play_audio(pfile, bSynch);
 
    }

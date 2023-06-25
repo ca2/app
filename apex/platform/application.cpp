@@ -4383,18 +4383,23 @@ namespace apex
 
       matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-      auto psession = acmesession();
-
-      auto ptextcontext = psession->text_context();
-
-      for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+      if (acmeapplication()->m_bSession)
       {
 
-         string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+         auto psession = acmesession();
 
-         string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+         auto ptextcontext = psession->text_context();
 
-         matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+         for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+         {
+
+            string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+
+            string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+
+            matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+
+         }
 
       }
 

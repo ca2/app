@@ -1013,8 +1013,13 @@ namespace acme
    void system::init2()
    {
 
-      //return ::success;
-      create_session();
+      if (acmeapplication()->m_bSession)
+      {
+       
+         //return ::success;
+         create_session();
+
+      }
 
    }
 

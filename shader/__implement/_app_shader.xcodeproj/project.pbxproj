@@ -29,11 +29,11 @@
 		9A46D3E326785E7E000B22D0 /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D3BF26785E7D000B22D0 /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3E526785E7E000B22D0 /* libwrite_text_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A47852660E5DE004ED97A /* libwrite_text_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96B12785387B00B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96AA278537A900B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A71BCA22A46CC6300F9FC3D /* libapp_shader.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D2C32678453B000B22D0 /* libapp_shader.dylib */; };
 		9A7F3F48274D5D9000D914CC /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D3BA26785E7D000B22D0 /* libaqua.dylib */; };
 		9A7F3F49274D5DC400D914CC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A47712660E5B3004ED97A /* libaura.dylib */; };
 		9A842C55271BD6BD00C64F6F /* libapp_shader.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D2C32678453B000B22D0 /* libapp_shader.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A86606829668701000C82F0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86606729668701000C82F0 /* application.cpp */; };
-		9A8AC31828B32142003CA265 /* libgpu_opengl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8AC31128B320F0003CA265 /* libgpu_opengl.dylib */; };
 		9A8AC31928B32142003CA265 /* libgpu_opengl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8AC31128B320F0003CA265 /* libgpu_opengl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8C4E022783C27D000C8587 /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8C4DFE2783C24F000C8587 /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8C4E032783C287000C8587 /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8C4DFF2783C24F000C8587 /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -290,11 +290,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A71BCA22A46CC6300F9FC3D /* libapp_shader.dylib in Frameworks */,
 				9A7F3F49274D5DC400D914CC /* libaura.dylib in Frameworks */,
 				9A7F3F48274D5D9000D914CC /* libaqua.dylib in Frameworks */,
 				9A46D3C026785E7D000B22D0 /* libacme.dylib in Frameworks */,
 				9A46D3C826785E7D000B22D0 /* libapex.dylib in Frameworks */,
-				9A8AC31828B32142003CA265 /* libgpu_opengl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

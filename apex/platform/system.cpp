@@ -2211,7 +2211,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      INFORMATION(strPrint);
+      information(strPrint);
 
       if (iReportType == _CRT_ASSERT)
       {
@@ -2229,25 +2229,27 @@ pacmedirectory->create("/ca2core");
    }
 
 
-
-
    bool system::assert_failed_line(const ::string& pszFileName, i32 iLine)
-
    {
-      __UNREFERENCED_PARAMETER(pszFileName);
 
-      __UNREFERENCED_PARAMETER(iLine);
+      UNREFERENCED_PARAMETER(pszFileName);
+
+      UNREFERENCED_PARAMETER(iLine);
+
       return false;
+
    }
 
 
    bool system::on_assert_failed_line(const ::string& pszFileName, i32 iLine)
-
    {
-      __UNREFERENCED_PARAMETER(pszFileName);
 
-      __UNREFERENCED_PARAMETER(iLine);
+      UNREFERENCED_PARAMETER(pszFileName);
+
+      UNREFERENCED_PARAMETER(iLine);
+
       return true;
+
    }
 
 
@@ -2410,9 +2412,6 @@ pacmedirectory->create("/ca2core");
       //return ::success;
 
    }
-
-
-
 
 
    void system::appa_load_string_table()
@@ -2661,7 +2660,7 @@ pacmedirectory->create("/ca2core");
    void system::install_progress_add_up(int iAddUp)
    {
 
-      __UNREFERENCED_PARAMETER(iAddUp);
+      UNREFERENCED_PARAMETER(iAddUp);
 
    }
 
@@ -4448,7 +4447,7 @@ namespace apex
    void system::discard_to_factory(::pointer<object>pca)
    {
 
-      __UNREFERENCED_PARAMETER(pca);
+      UNREFERENCED_PARAMETER(pca);
 
    }
 

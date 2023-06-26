@@ -102,7 +102,13 @@ namespace factory
        if (!pfactoryitem)
        {
 
-          throw_exception(error_no_factory, "Factory hasn't creator for type \"" + __type_name<ORIGIN_TYPE>() + "\"");
+          ::string strMessage;
+
+          strMessage = "Factory hasn't creator for type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+
+          warning (strMessage);
+
+          throw_exception(error_no_factory, strMessage);
 
        }
 
@@ -111,7 +117,13 @@ namespace factory
        if (!pparticle)
        {
 
-          throw_exception(error_no_memory, "Couldn't create_particle for type \"" + __type_name<ORIGIN_TYPE>() + "\"");
+          ::string strMessage;
+
+          strMessage = "Couldn't create_particle for type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+
+          warning (strMessage);
+
+          throw_exception(error_no_memory, strMessage);
 
        }
 
@@ -120,7 +132,13 @@ namespace factory
        if (!p)
        {
 
-          throw_exception(error_wrong_type, "Created element is not of the base type \"" + __type_name<ORIGIN_TYPE>() + "\"");
+          ::string strMessage;
+
+          strMessage = "Created element is not of the base type \"" + __type_name<ORIGIN_TYPE>() + "\"";
+
+          warning (strMessage);
+
+          throw_exception(error_wrong_type, strMessage);
 
        }
 

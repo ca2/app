@@ -699,8 +699,6 @@ void simple_frame_window::initialize_frame_window_experience()
    if (m_pframe.is_set())
    {
 
-      //return true;
-
       return;
 
    }
@@ -719,8 +717,6 @@ void simple_frame_window::initialize_frame_window_experience()
    }
    catch (...)
    {
-
-      //return error_failed;
 
    }
 

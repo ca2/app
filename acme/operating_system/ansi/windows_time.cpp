@@ -899,7 +899,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 
    if (dlt == iStandard || !dlt || !iStandard)
    {
-//xxx   information("there is no daylight saving rules in this time zone\n");
+//xxx   information("there is no daylight saving rules in this time zone");
    }
    else
    {

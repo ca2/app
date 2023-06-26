@@ -329,7 +329,7 @@ pacmedirectory->is(strPath))
       if (string_ends_ci(imagekey.m_strPath, ".sln"))
       {
             
-         output_debug_string("test");
+         infomration("test");
 
       }
 

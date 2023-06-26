@@ -54,7 +54,7 @@ void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, con
 
    strMessage.format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), ::string(scopedstr).c_str());
 
-   output_debug_string(strMessage);
+   infomration(strMessage);
 
 }
 
@@ -89,7 +89,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //
 //   strMessage.format("-%c- %s %s\n", e_trace_level_char(elevel), strTag.c_str(), psz);
 //
-//   output_debug_string(strMessage);
+//   infomration(strMessage);
 //
 //}
 //
@@ -101,7 +101,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //{
 //
 ////   os_trace(e_trace_level_information, "simple_debug_string", psz);
-//   output_debug_string(psz);
+//   infomration(psz);
 //
 //}
 
@@ -128,7 +128,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //}
 
 
-//CLASS_DECL_ACME void output_debug_string(const ::scoped_string & scopedstr)
+//CLASS_DECL_ACME void infomration(const ::scoped_string & scopedstr)
 //{
 //
 //
@@ -145,7 +145,7 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
    if (strTitle.is_empty())
    {
 
-      output_debug_string("ERRORMSG: " + strMessage + "\n");
+      infomration("ERRORMSG: " + strMessage + "\n");
 
    }
    else
@@ -153,7 +153,7 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
 
       strTitle.make_upper();
 
-      output_debug_string("\nERROR: \"" + strTitle + "\"\nMSG: " + strMessage + "\n\n");
+      infomration("\nERROR: \"" + strTitle + "\"\nMSG: " + strMessage + "\n\n");
 
    }
 
@@ -175,7 +175,7 @@ void format_output_debug_string(const char* pszFormat, ...)
 
    va_end(argList);
 
-   ::output_debug_string(str);
+   ::infomration(str);
 
 }
 

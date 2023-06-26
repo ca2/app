@@ -213,7 +213,7 @@ namespace factory
     //      if (p && __type_name(p)) == strText
     //      {
 
-    //         ::output_debug_string("loading into existing matter of same class type (1)");
+    //         ::infomration("loading into existing matter of same class type (1)");
 
     //      }
     //      else
@@ -224,7 +224,7 @@ namespace factory
     //         if (!p)
     //         {
 
-    //            ::output_debug_string("defer_new failed (1.1)");
+    //            ::infomration("defer_new failed (1.1)");
 
     //            stream.set_fail_bit();
 
@@ -232,7 +232,7 @@ namespace factory
     //         else if (__type_name(p)) != strText
     //         {
 
-    //            ::output_debug_string("allocated matter type is different from streamed matter type (1.2)");
+    //            ::infomration("allocated matter type is different from streamed matter type (1.2)");
 
     //            stream.set_fail_bit();
 
@@ -249,7 +249,7 @@ namespace factory
     //      if (p && atom == __type_name(p))
     //      {
 
-    //         ::output_debug_string("loading into existing matter of same class type (2)");
+    //         ::infomration("loading into existing matter of same class type (2)");
 
     //      }
     //      else
@@ -260,13 +260,13 @@ namespace factory
     //         if (!p)
     //         {
 
-    //            ::output_debug_string("stream::alloc_object_from_text failed (2.1)");
+    //            ::infomration("stream::alloc_object_from_text failed (2.1)");
 
     //         }
     //         else if (__type_name(p)) != atom.to_string()
     //         {
 
-    //            ::output_debug_string("allocated matter type is different from streamed matter type (2.2)");
+    //            ::infomration("allocated matter type is different from streamed matter type (2.2)");
 
     //            stream.set_fail_bit();
 

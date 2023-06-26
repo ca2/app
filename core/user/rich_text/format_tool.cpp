@@ -254,9 +254,7 @@ namespace user
 
       auto pbrushBk = __create < ::draw2d::brush > ();
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       pbrushBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));

@@ -352,7 +352,7 @@ namespace user
          else
          {
 
-            ::output_debug_string("parent has other Topic Submenu");
+            ::infomration("parent has other Topic Submenu");
 
          }
 
@@ -888,9 +888,7 @@ namespace user
       if (crBackground.is_translucent())
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 

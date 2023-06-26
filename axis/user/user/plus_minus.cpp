@@ -200,9 +200,7 @@ namespace user
 
       int wPadding = 10;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int iM = rectangleClient.center().x();
 

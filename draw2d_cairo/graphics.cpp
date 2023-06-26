@@ -122,7 +122,7 @@ string_to_string * g_pmapFontPath;
 //
 //         if (wcsicmp(lplf->lfFaceName, L"Gulim") == 0)
 //         {
-//            output_debug_string("Gulim");
+//            infomration("Gulim");
 //         }
 //         pc->m_csa.add(::draw2d::wingdi_get_cs(lplf->lfCharSet));
 //
@@ -6374,7 +6374,7 @@ namespace draw2d_cairo
 
       cairo_scale(m_pdc, rx, ry);
 
-      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * π);
 
       cairo_scale(m_pdc, 1.0 / rx, 1.0 / ry);
 
@@ -6840,7 +6840,7 @@ namespace draw2d_cairo
 //    if (str == "TakaoPGothic")
 //    {
 //
-//        output_debug_string("searching TakaoPGothic");
+//        infomration("searching TakaoPGothic");
 //
 //    }
 //
@@ -6860,7 +6860,7 @@ namespace draw2d_cairo
 //        if (str == "TakaoPGothic")
 //        {
 //
-//            output_debug_string("searching TakaoPGothic");
+//            infomration("searching TakaoPGothic");
 //
 //        }
 //

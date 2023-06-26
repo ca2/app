@@ -1385,7 +1385,7 @@ namespace linux
          if(iDebugmessage_handlerTime > 20)
          {
 
-            ::output_debug_string("interaction_impl::message handler flooded?\n");
+            ::infomration("interaction_impl::message handler flooded?\n");
 
          }
          else
@@ -2315,7 +2315,7 @@ namespace linux
 ////               else
 ////               {
 ////
-////                  output_debug_string("window is locked for drawing update");
+////                  infomration("window is locked for drawing update");
 ////
 ////                  fflush(stdout);
 ////

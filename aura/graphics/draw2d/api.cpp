@@ -289,7 +289,7 @@ namespace draw2d
       //if (!estatus)
       //{
 
-      //   output_debug_string("::object::destroy returned error at ::draw2d::api::destroy");
+      //   infomration("::object::destroy returned error at ::draw2d::api::destroy");
 
       //}
 

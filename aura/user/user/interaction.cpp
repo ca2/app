@@ -65,6 +65,35 @@
 #define DEBUG_LEVEL 1
 
 
+CLASS_DECL_AURA ::rectangle_i32 bounding_box(::item * pitem)
+{
+
+   if(::is_null(pitem))
+   {
+
+      return {};
+
+   }
+   else if(::is_set(pitem->m_ppath))
+   {
+
+      ::rectangle_f64 rectangleBounding;
+
+      pitem->m_ppath->get_bounding_box(rectangleBounding);
+
+      return rectangleBounding;
+
+   }
+   else
+   {
+
+      return pitem->m_rectangle;
+
+   }
+
+
+}
+
 //template < typename R >
 //inline int contained_vertex_count(const R & rContains, const R & rContained)
 //{
@@ -506,7 +535,23 @@ namespace user
       if (on_set_position(point, elayout))
       {
 
-         m_layout.m_statea[elayout].m_point = point;
+         if(::is_null(get_parent()))
+         {
+
+            int x = point.x();
+
+            int y = point.y();
+
+            if(x < 100 || y < 100)
+            {
+
+               information("user::interaction set_position x or y < 100 (%d, %d)", x, y);
+
+            }
+
+         }
+
+         m_layout.m_statea[elayout].set_visual_state_origin(point);
 
       }
 
@@ -578,7 +623,7 @@ namespace user
       if (bOnSetSize && bOnSetPosition)
       {
 
-         m_layout.m_statea[elayout].m_point = point;
+         m_layout.m_statea[elayout].set_visual_state_origin(point);
 
          m_layout.m_statea[elayout].m_size = size;
 
@@ -599,7 +644,14 @@ namespace user
       if (on_set_position(point, elayout))
       {
 
-         m_layout.m_statea[elayout].m_point = point;
+         if(::is_null(get_parent()))
+         {
+
+            information("::user::interaction::set_right");
+
+         }
+
+         m_layout.m_statea[elayout].set_visual_state_origin(point);
 
       }
 
@@ -616,7 +668,7 @@ namespace user
       if (on_set_position(point, elayout))
       {
 
-         m_layout.m_statea[elayout].m_point = point;
+         m_layout.m_statea[elayout].m_point2 = point;
 
       }
 
@@ -646,12 +698,12 @@ namespace user
          else
          {
 
-            //output_debug_string("control_box::on_set_size(" + as_string(size) + ")");
+            //infomration("control_box::on_set_size(" + as_string(size) + ")");
 
             //if (size.cx() > 500)
             //{
 
-            //   output_debug_string("size.cx() > 500");
+            //   infomration("size.cx() > 500");
 
             //}
 
@@ -2206,7 +2258,7 @@ namespace user
          if (emessage == e_message_key_down)
          {
 
-            ::output_debug_string("e_message_key_down");
+            ::infomration("e_message_key_down");
 
          }
 
@@ -2636,7 +2688,7 @@ namespace user
    void interaction::display_zoomed()
    {
 
-      output_debug_string("\ne_display_zoomed\n");
+      infomration("\ne_display_zoomed\n");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -2740,7 +2792,7 @@ namespace user
    void interaction::display_notify_icon()
    {
 
-      output_debug_string("\ne_display_notify_icon\n");
+      infomration("\ne_display_notify_icon\n");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -2803,7 +2855,7 @@ namespace user
       else if (edisplay == e_display_full_screen)
       {
 
-         output_debug_string("e_display_full_screen");
+         infomration("e_display_full_screen");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -2953,7 +3005,7 @@ namespace user
       if (type.name_contains("main_frame"))
       {
 
-         output_debug_string("main_frame on_message_destroy");
+         infomration("main_frame on_message_destroy");
 
       }
 
@@ -3185,7 +3237,7 @@ namespace user
             || get_wnd()->m_pprimitiveimpl->has_destroying_flag())
          {
 
-            output_debug_string("destroying os window");
+            infomration("destroying os window");
 
          }
          else
@@ -3557,7 +3609,7 @@ namespace user
             else
             {
 
-               output_debug_string("Parent being destroyed");
+               infomration("Parent being destroyed");
 
             }
 
@@ -3623,7 +3675,7 @@ namespace user
       if (type.name_contains("simple_scroll_bar"))
       {
 
-         output_debug_string("simple_scroll_bar::user_interaction_on_destroy");
+         infomration("simple_scroll_bar::user_interaction_on_destroy");
 
       }
 
@@ -3648,7 +3700,7 @@ namespace user
             if (type.name_contains("auraclick::impact"))
             {
 
-               output_debug_string("auraclick::impact");
+               infomration("auraclick::impact");
 
             }
 
@@ -4009,7 +4061,7 @@ namespace user
             while (pinteraction != nullptr)
             {
 
-               pinteraction->client_rectangle(rectangleClient);
+               rectangleClient = pinteraction->client_rectangle();
 
                pinteraction->client_to_host()(rectangleClient);
 
@@ -4114,9 +4166,9 @@ namespace user
                if (timeElapsed > 100_ms)
                {
 
-                  output_debug_string("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
-                  output_debug_string("\ndrawing took more than 100ms to complete!!");
-                  output_debug_string("\n");
+                  infomration("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
+                  infomration("\ndrawing took more than 100ms to complete!!");
+                  infomration("\n");
 
                   // let's trye to see what happened?
                   //_001OnNcDraw(pgraphics);
@@ -4170,7 +4222,7 @@ namespace user
                if (type.name_contains("font_list"))
                {
 
-                  output_debug_string(type + "\n");
+                  infomration(type + "\n");
 
                }
 
@@ -4297,7 +4349,7 @@ namespace user
 
             ::rectangle_i32 rectangleDraw;
 
-            client_rectangle(rectangleDraw);
+            rectangleDraw = client_rectangle();
 
             pgraphics->m_rectangleDraw = rectangleDraw;
 
@@ -4357,9 +4409,9 @@ namespace user
 
          //string strType = __type_name(this);
 
-         //         output_debug_string("\n" + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
-         //       output_debug_string("\ndrawing took more than 3ms to complete!!");
-         //     output_debug_string("\n");
+         //         infomration("\n" + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
+         //       infomration("\ndrawing took more than 3ms to complete!!");
+         //     infomration("\n");
 
       }
 
@@ -4502,7 +4554,7 @@ namespace user
                   if (pinteraction->has_destroying_flag() || !pinteraction->is_window())
                   {
 
-                     ::output_debug_string("trying to draw window being destroyed");
+                     ::infomration("trying to draw window being destroyed");
 
                      continue;
 
@@ -4573,7 +4625,7 @@ namespace user
                      //   //   if(strType.contains("hello_multiverse") && strType.contains("frame"))
                      //   //   {
 
-                     //   //      output_debug_string(".");
+                     //   //      infomration(".");
 
                      //   //   }
 
@@ -4592,7 +4644,7 @@ namespace user
                catch (...)
                {
 
-                  information("\n\nException thrown while drawing user::interaction\n\n");
+                  information("Exception thrown while drawing user::interaction");
 
                }
 
@@ -4899,25 +4951,25 @@ namespace user
       if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
       {
 
-         // output_debug_string("app_veriwell_keyboard::main_frame");
+         // infomration("app_veriwell_keyboard::main_frame");
 
       }
       else if (type.name_contains("plain_edit"))
       {
 
-         //output_debug_string("plain_edit");
+         //infomration("plain_edit");
 
       }
       //      else if (strType.case_insensitive_contains("font_list"))
       //      {
       //
-      //         output_debug_string("font_list");
+      //         infomration("font_list");
       //
       //      }
       else if (type.name_contains("combo_box"))
       {
 
-         //output_debug_string("combo_box");
+         //infomration("combo_box");
 
       }
 
@@ -4938,7 +4990,7 @@ namespace user
          //      else if (type.name_contains("list_box"))
          //      {
          //
-         //         output_debug_string("list_box");
+         //         infomration("list_box");
          //
          //      }
 
@@ -4994,37 +5046,37 @@ namespace user
                if (strTag == "button_close")
                {
 
-                  output_debug_string("button_close not visible\n");
+                  infomration("button_close not visible\n");
 
                }
                else if (strTag == "button_maximize")
                {
 
-                  output_debug_string("button_maximize not visible\n");
+                  infomration("button_maximize not visible\n");
 
                }
                else if (strTag == "button_minimize")
                {
 
-                  output_debug_string("button_minimize not visible\n");
+                  infomration("button_minimize not visible\n");
 
                }
                else if (strTag == "button_restore")
                {
 
-                  output_debug_string("button_restore not visible\n");
+                  infomration("button_restore not visible\n");
 
                }
                else if (strTag == "button_dock")
                {
 
-                  output_debug_string("button_dock not visible\n");
+                  infomration("button_dock not visible\n");
 
                }
                else if (strTag == "button_transparent_frame")
                {
 
-                  output_debug_string("button_transparent_frame not visible\n");
+                  infomration("button_transparent_frame not visible\n");
 
                }
 
@@ -5046,20 +5098,20 @@ namespace user
       //      if (type.name_contains("list_box"))
    //      {
    //
-   //         output_debug_string("list_box");
+   //         infomration("list_box");
    //
    //      }
 
          //      if(m_strInteractionTag.case_insensitive_begins("button_"))
          //      {
          //
-         //         output_debug_string("drawing: " + m_strInteractionTag + "\n");
+         //         infomration("drawing: " + m_strInteractionTag + "\n");
          //
          //      }
          //      else if(m_strInteractionTag.case_insensitive_begins("control_box"))
          //      {
          //
-         //         output_debug_string("-------- drawing: " + m_strInteractionTag + "\n");
+         //         infomration("-------- drawing: " + m_strInteractionTag + "\n");
          //
          //      }
 
@@ -5209,12 +5261,12 @@ namespace user
          //         if (type.name_contains("waven::impact"))
          //         {
          //
-         //            output_debug_string("waven::impact");
+         //            infomration("waven::impact");
          //         }
                   //         else if(strType.case_insensitive_contains("menu_list_impact"))
                   //         {
                   //
-                  //            output_debug_string("menu_list_impact");
+                  //            infomration("menu_list_impact");
                   //
                   //         }
                   //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
@@ -5367,7 +5419,7 @@ namespace user
          //if (color32_u8_red(crBackground) != 255)
          //{
 
-         //   output_debug_string("no full red");
+         //   infomration("no full red");
 
          //}
 
@@ -5393,7 +5445,7 @@ namespace user
          //if (color32_u8_red(crBackground) != 255)
          //{
 
-         //   output_debug_string("no full red");
+         //   infomration("no full red");
 
          //}
 
@@ -5423,14 +5475,14 @@ namespace user
          if (iDrawControlBackgroundCounter >= 2)
          {
 
-            output_debug_string("draw_control_background_counter >= 2");
+            infomration("draw_control_background_counter >= 2");
 
          }
 
          if (iNcDraw0FillCounter <= 0)
          {
 
-            output_debug_string("nc_draw_0_fill_counter <= 0");
+            infomration("nc_draw_0_fill_counter <= 0");
 
          }
 
@@ -6417,9 +6469,7 @@ namespace user
    rectangle_i32 interaction::screen_rect()
    {
 
-      ::rectangle_i32 rectangle;
-
-      client_rectangle(rectangle);
+      auto rectangle = client_rectangle();
 
       client_to_screen()(rectangle);
 
@@ -7172,7 +7222,7 @@ namespace user
       if (pmessage->m_atom == e_message_key_down)
       {
 
-         output_debug_string("::user::interaction::post e_message_key_down");
+         infomration("::user::interaction::post e_message_key_down");
 
       }
 
@@ -8789,7 +8839,7 @@ namespace user
       if (type.name_contains("main_frame"))
       {
 
-         output_debug_string("main_frame start_destroying_window\n");
+         infomration("main_frame start_destroying_window\n");
 
       }
 
@@ -8982,7 +9032,7 @@ namespace user
       if (type.name_contains("main_frame"))
       {
 
-         output_debug_string("main_frame post_non_client_destroy");
+         infomration("main_frame post_non_client_destroy");
 
       }
 
@@ -10089,7 +10139,7 @@ namespace user
       if (type.name_contains("control_box"))
       {
 
-         output_debug_string("control_box design_reposition");
+         infomration("control_box design_reposition");
 
       }
 
@@ -10106,13 +10156,13 @@ namespace user
       if (type.name_contains("list_box"))
       {
 
-         output_debug_string("list_box reposition");
+         infomration("list_box reposition");
 
       }
       else if (type.name_contains("_001"))
       {
 
-         output_debug_string("_001 reposition");
+         infomration("_001 reposition");
 
       }
 
@@ -10237,9 +10287,7 @@ namespace user
       if (puserinteractionpointeraChild)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          auto children = puserinteractionpointeraChild->m_interactiona;
 
@@ -10415,7 +10463,7 @@ namespace user
       if (type.name_contains("list_box"))
       {
 
-         ::output_debug_string("list_box");
+         ::infomration("list_box");
 
       }
 
@@ -11210,7 +11258,7 @@ namespace user
       //         //
       //         //#endif
       //         //
-      //         output_debug_string("blocking setting window state to iconic (1)");
+      //         infomration("blocking setting window state to iconic (1)");
       //
       //      }
       //      else
@@ -11366,7 +11414,8 @@ namespace user
 
       order(e_zorder_top);
 
-      layout().sketch() = rectangle_i32_dimension(x, y, cx, cy);
+      layout().sketch().set_visual_state_origin({x, y});
+      layout().sketch().m_size = { cx, cy };
 
       display(e_display_normal);
 
@@ -12114,31 +12163,31 @@ namespace user
       //if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
       //{
 
-      //   //output_debug_string("app_veriwell_keyboard::main_frame");
+      //   //infomration("app_veriwell_keyboard::main_frame");
 
       //}
       ////      else if (strType.contains("main_frame"))
       ////      {
       ////
-      ////         output_debug_string("main_frame");
+      ////         infomration("main_frame");
       ////
       ////      }
       ////      else if (strType.contains("place_holder"))
       ////      {
       ////
-      ////         output_debug_string("place_holder");
+      ////         infomration("place_holder");
       ////
       ////      }
       ////   else if (strType.contains("combo_box"))
       ////   {
       ////
-      ////      output_debug_string("combo_box");
+      ////      infomration("combo_box");
       ////
       ////   }
       ////   else if (strType.contains("list_box"))
       ////   {
       ////
-      ////      output_debug_string("list_box");
+      ////      infomration("list_box");
       ////
       ////   }
 
@@ -12396,7 +12445,7 @@ namespace user
          if (bDisplay)
          {
 
-            //output_debug_string(as_string(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
+            //infomration(as_string(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
 
          }
 
@@ -13656,7 +13705,7 @@ namespace user
    void interaction::get_child_rect(::rectangle_i32 & rectangle)
    {
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
    }
 
@@ -14737,8 +14786,16 @@ namespace user
          _synchronous_lock synchronouslock(this->synchronization());
 
          auto & layoutstate = layout().m_statea[elayout];
+
+         if(::is_null(get_parent()))
+         {
+
+            information("user::interaction::place (x,y)(%d,%d)", rectangle.left, rectangle.top);
+
+         }
          
-         layoutstate = rectangle;
+         layoutstate.set_visual_state_origin(rectangle.top_left());
+         layoutstate.m_size = rectangle.size();
 
       }
 
@@ -15064,47 +15121,45 @@ namespace user
    void interaction::input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    {
 
-      client_rectangle(rectangle, elayout);
+      rectangle = client_rectangle(elayout);
 
    }
 
 
-   void interaction::raw_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
-   {
-
-      const_layout().state(elayout).raw_rectangle(rectangle);
-
-   }
+//   void interaction::raw_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
+//   {
+//
+//      const_layout().state(elayout).raw_rectangle(rectangle);
+//
+//   }
 
 
    ::rectangle_i32 interaction::raw_rectangle(enum_layout elayout)
    {
 
-      ::rectangle_i32 r;
-
-      raw_rectangle(r, elayout);
+      auto r = const_layout().state(elayout).raw_rectangle();
 
       return r;
 
    }
 
 
-   void interaction::client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
-   {
-
-      raw_rectangle(rectangle);
-
-      rectangle += get_parent_accumulated_scroll();
-
-   }
+//   void interaction::client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
+//   {
+//
+//      raw_rectangle(rectangle);
+//
+//      rectangle += get_parent_accumulated_scroll();
+//
+//   }
 
 
    ::rectangle_i32 interaction::client_rectangle(enum_layout elayout)
    {
 
-      ::rectangle_i32 r;
+      auto r = raw_rectangle();
 
-      client_rectangle(r, elayout);
+      r += get_parent_accumulated_scroll();
 
       return r;
 
@@ -15148,7 +15203,7 @@ namespace user
       if (get_parent() != nullptr)
       {
 
-         get_parent()->client_rectangle(rectangleNew);
+         rectangleNew = get_parent()->client_rectangle();
 
          iMatchingMonitor = 0;
 
@@ -16123,9 +16178,7 @@ namespace user
    size_f64 interaction::get_total_size()
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.size();
 
@@ -16156,9 +16209,7 @@ namespace user
    size_f64 interaction::get_page_size()
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.size();
 
@@ -16315,7 +16366,7 @@ namespace user
       //      if(strType.contains("main_frame"))
       //      {
       //      
-      //         output_debug_string("main_frame interaction::on_message_show_window\n");
+      //         infomration("main_frame interaction::on_message_show_window\n");
       //         
       //      }
 
@@ -16415,14 +16466,29 @@ namespace user
    ::draw2d::graphics_pointer interaction::get_internal_draw2d_graphics()
    {
 
-      if (::is_null(m_pinteractionimpl))
+      auto pinteractionHost = get_wnd();
+
+      if (::is_null(pinteractionHost))
       {
+
+         information("interaction::get_internal_draw2d_graphics ::is_null(pinteractionHost)");
 
          return nullptr;
 
       }
 
-      auto & pdraw2dgraphics = m_pinteractionimpl->m_pdraw2dgraphics;
+      auto pinteractionimpl = pinteractionHost->m_pinteractionimpl;
+
+      if(::is_null(pinteractionimpl))
+      {
+
+         information("interaction::get_internal_draw2d_graphics ::is_null(pinteractionimpl)");
+
+         return nullptr;
+
+      }
+
+      auto & pdraw2dgraphics = pinteractionimpl->m_pdraw2dgraphics;
 
       defer_graphics(pdraw2dgraphics);
 
@@ -17341,7 +17407,7 @@ namespace user
    //         //if (bVoidSending)
    //         //{
 
-   //         //   output_debug_string("void sending :: defer_notify_mouse_move");
+   //         //   infomration("void sending :: defer_notify_mouse_move");
 
    //         //}
    //         //else
@@ -17632,9 +17698,7 @@ namespace user
    ::size_f64 interaction::get_client_size()
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.size();
 
@@ -17668,9 +17732,7 @@ namespace user
    int interaction::client_width()
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.width();
 
@@ -17680,9 +17742,7 @@ namespace user
    int interaction::client_height()
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.height();
 
@@ -17696,7 +17756,7 @@ namespace user
       // classes and it has the side effect of warning at debug output log
       // the default resize_to_fit implementation is being called.
 
-      ::output_debug_string("default resize_to_fit doesn't do anything\n");
+      ::infomration("default resize_to_fit doesn't do anything\n");
 
 
    }
@@ -17851,7 +17911,7 @@ namespace user
    bool interaction::scroll_bar_get_client_rect(::rectangle_i32 & rectangle)
    {
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
       rectangle.right += get_final_y_scroll_bar_width();
 
@@ -18106,7 +18166,7 @@ namespace user
       //      if (type.name_contains("list_box"))
       //      {
       //
-      //         output_debug_string("prodevian_redraw list_box");
+      //         infomration("prodevian_redraw list_box");
       //
       //      }
 
@@ -18277,7 +18337,7 @@ namespace user
 
       auto pszType = typeid(*this).name();
 
-      ::output_debug_string("interaction::on_message_left_button_down " + ::string(pszType));
+      ::infomration("interaction::on_message_left_button_down " + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -18553,7 +18613,7 @@ namespace user
 
       auto pszType = typeid(*this).name();
 
-      ::output_debug_string("interaction::on_message_left_button_up " + ::string(pszType));
+      ::infomration("interaction::on_message_left_button_up " + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -18828,7 +18888,7 @@ namespace user
 
       auto pszType = typeid(*this).name();
 
-      ::output_debug_string("interaction::on_message_left_button_double_click" + ::string(pszType));
+      ::infomration("interaction::on_message_left_button_double_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -19356,7 +19416,7 @@ namespace user
          if (type.name_contains("button"))
          {
 
-            //output_debug_string("button");
+            //infomration("button");
 
          }
 
@@ -19514,6 +19574,8 @@ namespace user
       if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
 
+         information("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
+
          auto pitemOldHover = m_pitemHover;
 
          g_iMouseHoverCount++;
@@ -19531,22 +19593,53 @@ namespace user
 
          ::rectangle_i32_array rectanglea;
 
-         if (::is_item_set(pitemOldHover) && should_redraw_on_hover(pitemOldHover))
+         if (::is_item_set(pitemOldHover))
          {
 
-            rectanglea.add(pitemOldHover->m_rectangle);
+            information("user::interaction::update_hover is_item_set(pitemOldHover)");
+
+            if(should_redraw_on_hover(pitemOldHover))
+            {
+
+               information("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
+
+               ::rectangle_i32 rectangleBounding = ::bounding_box(pitemOldHover);
+
+               rectanglea.add(rectangleBounding);
+
+            }
 
          }
 
-         if (::is_item_set(pitemHitTest) && should_redraw_on_hover(pitemHitTest))
+         if (::is_item_set(pitemHitTest))
          {
 
-            rectanglea.add(pitemHitTest->m_rectangle);
+            information("user::interaction::update_hover is_item_set(pitemHitTest)");
+
+            if(should_redraw_on_hover(pitemHitTest))
+            {
+
+               information("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
+
+               ::rectangle_i32 rectangleBounding = ::bounding_box(pitemHitTest);
+
+               rectanglea.add(rectangleBounding);
+
+            }
 
          }
 
          if (rectanglea.has_element())
          {
+
+            information("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
+
+            for(auto & rectangle : rectanglea)
+            {
+
+               information() << "user::interaction::update_hover set_need_redraw" << rectangle;
+
+            }
             
             set_need_redraw(rectanglea);
 
@@ -20176,7 +20269,7 @@ namespace user
          //         if(iCount > 1)
          //         {
          //
-         //            output_debug_string("drawing 2nd, 3rd, nth item");
+         //            infomration("drawing 2nd, 3rd, nth item");
          //
          //         }
 
@@ -21298,7 +21391,7 @@ namespace user
 
          }
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          return true;
 
@@ -21313,7 +21406,7 @@ namespace user
 
          }
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = maximum(rectangle.left, rectangle.right - 25);
          rectangle.top = maximum(rectangle.top, rectangle.bottom - 25);
@@ -21331,9 +21424,7 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          //i32 iMargin = rectangleClient.height() / 8;
          i32 iMargin = 0;
@@ -21357,9 +21448,7 @@ namespace user
       else if (eelement == e_element_combo_edit)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          ::rectangle_i32 rectangleDropDown;
 
@@ -21381,7 +21470,7 @@ namespace user
       else if (eelement == e_element_close_button)
       {
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = rectangle.right - 32;
 
@@ -21393,7 +21482,7 @@ namespace user
       else if (eelement == e_element_maximize_button)
       {
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = rectangle.right - 64;
 
@@ -21407,7 +21496,7 @@ namespace user
       else if (eelement == e_element_minimize_button)
       {
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = rectangle.right - 96;
 
@@ -21421,7 +21510,7 @@ namespace user
       else if (eelement == e_element_close_icon)
       {
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = rectangle.right - 48;
 
@@ -21433,7 +21522,7 @@ namespace user
       else if (eelement == e_element_switch_button)
       {
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = rectangle.right - 48;
 
@@ -21445,7 +21534,7 @@ namespace user
       else if (eelement == e_element_maximize_icon)
       {
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = rectangle.right - 96;
 
@@ -21459,7 +21548,7 @@ namespace user
       else if (eelement == e_element_minimize_icon)
       {
 
-         client_rectangle(rectangle);
+         rectangle = client_rectangle();
 
          rectangle.left = rectangle.right - 144;
 

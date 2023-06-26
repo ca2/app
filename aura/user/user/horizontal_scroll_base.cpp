@@ -52,9 +52,9 @@ namespace user
    void horizontal_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
+      auto rectangleClient = ::user::interaction::client_rectangle();
 
-      ::user::interaction::client_rectangle(rectangleClient);
+      //::user::interaction::client_rectangle(rectangleClient);
 
       defer_create_horizontal_scroll_bar();
 
@@ -242,9 +242,7 @@ namespace user
 
       m_pscrolldataHorizontal->m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::i32 iTotalHeight = (::i32)sizeTotal.cy();
 
@@ -280,9 +278,7 @@ namespace user
 
       m_pscrolldataHorizontal->m_bScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll;
 
-      ::rectangle_i32 rectangleScroll;
-
-      client_rectangle(rectangleScroll);
+      auto rectangleScroll = client_rectangle();
 
       m_pscrolldataHorizontal->m_iPage = rectangleScroll.width();
 

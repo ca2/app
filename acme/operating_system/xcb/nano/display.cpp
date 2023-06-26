@@ -135,7 +135,7 @@ namespace xcb
          if(eatom == ::x11::e_atom_net_active_window)
          {
 
-            ::output_debug_string("e_atom_net_active_window");
+            ::infomration("e_atom_net_active_window");
 
          }
 
@@ -497,13 +497,13 @@ namespace xcb
       // if (pevent->response_type == XCB_CONFIGURE_NOTIFY)
       // {
 
-      //    output_debug_string("ConfigureNotify");
+      //    infomration("ConfigureNotify");
 
       // }
       // else if (pevent->response_type == XCB_BUTTON_PRESS)
       // {
 
-      //    output_debug_string("ButtonPress");
+      //    infomration("ButtonPress");
 
       // }
 
@@ -905,7 +905,7 @@ namespace xcb
             {
 
 
-               output_debug_string("kick_idle\n");
+               infomration("kick_idle\n");
 
             }
 

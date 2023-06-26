@@ -1347,7 +1347,7 @@ bool particle::_wait(const class time & timeWait)
 //   //if (milliseconds < 1'000'000'000)
 //   //{
 //
-//   //   output_debug_string("milliseconds < 1'000'000'000");
+//   //   infomration("milliseconds < 1'000'000'000");
 //
 //   //}
 //
@@ -1373,7 +1373,7 @@ bool particle::_wait(const class time & timeWait)
 //
 //         pmutex->m_strThread = ::task_get_name();
 //         pmutex->m_itask = ::get_current_itask();
-//         ::output_debug_string("");
+//         ::infomration("");
 //
 //      }
 //

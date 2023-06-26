@@ -180,7 +180,7 @@ namespace programming
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         output_debug_string("failed to setup visual studio environment " + as_string(estatus.as_i64()));
+//         infomration("failed to setup visual studio environment " + as_string(estatus.as_i64()));
 //
 //      }
 //

@@ -81,7 +81,7 @@ template < typename FILE >
    }
    else
    {
-      output_debug_string("corruption... non fatal... partially recoverable...");
+      infomration("corruption... non fatal... partially recoverable...");
    }
 
    return stream;

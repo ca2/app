@@ -435,7 +435,7 @@ namespace http
 
       //output_error_message("What?!", nullptr, e_message_box_ok);
 
-      output_debug_string("What?!");
+      infomration("What?!");
 
       string strUrl = locale_schema_url(scopedstrUrl, scopedstrLocale, scopedstrSchema);
 

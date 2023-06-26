@@ -427,9 +427,7 @@ namespace user
 
       m_pscrolldataVertical->m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::i32 iTotalHeight = (::i32)sizeTotal.cy();
 
@@ -465,9 +463,7 @@ namespace user
 
       m_pscrolldataVertical->m_bScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll;
 
-      ::rectangle_i32 rectangleScroll;
-
-      client_rectangle(rectangleScroll);
+      auto rectangleScroll = client_rectangle();
 
       m_pscrolldataVertical->m_iPage = rectangleScroll.height();
 

@@ -415,7 +415,7 @@ namespace freedesktoplinux
 //
 //      ::file::path path = get_file_path();
 //
-//      output_debug_string("\nlinux::interaction_impl::set_window_text");
+//      infomration("\nlinux::interaction_impl::set_window_text");
 //
 //      fflush(stdout);
 //

@@ -75,7 +75,7 @@ public:
 
    
    //void raw_rectangle(::rectangle_i32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-   void client_rectangle(::rectangle_i32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    virtual bool is_application_main_window();

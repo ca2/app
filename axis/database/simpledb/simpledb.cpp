@@ -192,7 +192,7 @@ namespace simpledb
             else
             {
 
-               output_debug_string("");
+               infomration("");
 
             }
 

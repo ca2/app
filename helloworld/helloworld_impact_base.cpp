@@ -99,9 +99,7 @@ auto m_timeRoll = ::time::now();
 
       defer_check_on_draw_layout();
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
          return;
@@ -198,10 +196,10 @@ auto m_timeRoll = ::time::now();
 
       //char sz[512];
 
-      //::output_debug_string("impact:");
+      //::infomration("impact:");
       //::ansi_from_u64(sz, microsecond, 10);
-      //::output_debug_string(sz);
-      //::output_debug_string(", ");
+      //::infomration(sz);
+      //::infomration(", ");
 
       //image d(e_create);
 
@@ -256,9 +254,7 @@ pacmedirectory->system() / "obs.png");
          int iFactor = 2;
          int iMult = 1 << iFactor;
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          size_i32 s = rectangleClient.size();
 

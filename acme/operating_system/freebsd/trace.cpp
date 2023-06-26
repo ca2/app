@@ -18,7 +18,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
       if (!UnpackDDElParam(WM_DDE_EXECUTE, pMsg->lParam,
          &nDummy, (uptr*)&hCommands))
       {
-//         ::output_debug_string(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
+//         ::infomration(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
   //          pMsg->lParam);
          return;
       }
@@ -28,7 +28,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
       ENSURE_THROW(pszCommands != nullptr, ::windows_definition::ThrowMemoryException() );
 
-//      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", pszPrefix, pszCommands);
+//      ::infomration(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", pszPrefix, pszCommands);
 
       ::GlobalUnlock(hCommands);
    }
@@ -40,7 +40,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
       if (!UnpackDDElParam(WM_DDE_ADVISE, pMsg->lParam,
          (uptr*)&hAdvise, &nItem))
       {
-//         ::output_debug_string(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
+//         ::infomration(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
 //            pMsg->lParam);
        return;
       }
@@ -155,7 +155,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
 //         //pusermessage->m_wparam, pusermessage->m_lparam);
 //#else
-//    //  ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
+//    //  ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
 ////         pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
 //  //       pusermessage->m_wparam, pusermessage->m_lparam);
@@ -164,12 +164,12 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   else
 //   {
 //#ifdef OS64BIT
-////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
+////      ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
 //  //       pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
 //    //     pusermessage->m_wparam, pusermessage->m_lparam);
 //#else
-////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+////      ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
 //  //       pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
 //    //     pusermessage->m_wparam, pusermessage->m_lparam);
@@ -269,7 +269,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
 //    //     pMsg->wParam, pMsg->lParam);
 //#else
-////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
+////      ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
 //  //       pszPrefix, lpmsg->hwnd, pszMsgName,
 
 //    //     pmsg->wParam, lpmsg->lParam);
@@ -279,12 +279,12 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   else
 //   {
 //#ifdef WIN64
-//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
+//      //::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
 //        // pszPrefix, pMsg->hwnd, pszMsgName,
 
 //         //pMsg->wParam, pMsg->lParam);
 //#else
-//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+//      //::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
 //        // pszPrefix, lpmsg->hwnd, pszMsgName,
 
 //         //pmsg->wParam, lpmsg->lParam);

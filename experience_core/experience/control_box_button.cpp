@@ -95,7 +95,7 @@ namespace experience_core
             crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
          }
-         else if (hover_item().is_set())
+         else if (is_mouse_hover())
          {
 
             pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);

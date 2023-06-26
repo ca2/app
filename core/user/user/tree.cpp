@@ -251,9 +251,7 @@ namespace user
 
          auto timeStart = ::time::now();
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -1271,9 +1269,7 @@ namespace user
 
       ::user::interaction::on_layout(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
       {
@@ -1435,9 +1431,7 @@ namespace user
    i32 tree::_001CalcCurrentImpactWidth()
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::count iCount = _001GetVisibleItemCount();
 
@@ -1635,7 +1629,7 @@ namespace user
          if (spitema.find_first(pitem) >= 0)
          {
 
-            //output_debug_string("what!?!");
+            //infomration("what!?!");
 
             break;
 
@@ -1722,7 +1716,7 @@ namespace user
          if (treeitema.find_first(ptreeitem) >= 0)
          {
 
-            //output_debug_string("what!!?");
+            //infomration("what!!?");
 
             break;
 

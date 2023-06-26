@@ -1266,7 +1266,7 @@ namespace user
 
                   ASSERT(false);
 
-                  output_debug_string("unexpected: iLenSpan != iLenMeasure");
+                  infomration("unexpected: iLenSpan != iLenMeasure");
 
                }
 

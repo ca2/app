@@ -1764,7 +1764,7 @@ namespace aura
       //if (!on_install())
       //{
 
-      //   ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+      //   ::infomration("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 
@@ -2947,7 +2947,7 @@ retry_license:
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      output_debug_string(strFile);
+////      infomration(strFile);
 ////
 ////#elif defined(WINDOWS)
 ////
@@ -3126,7 +3126,7 @@ retry_license:
 //      // 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
 //      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
 //      {
-//         output_debug_string("Could not create or open a registrty key\n");
+//         infomration("Could not create or open a registrty key\n");
 //         return 0;
 //      }
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
@@ -3139,7 +3139,7 @@ retry_license:
 //      // HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
 //      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
 //      {
-//         output_debug_string("Could not create or open a registrty key\n");
+//         infomration("Could not create or open a registrty key\n");
 //         return 0;
 //      }
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
@@ -3150,7 +3150,7 @@ retry_license:
 //
 //      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
 //      {
-//         output_debug_string("Could not create or open a registrty key\n");
+//         infomration("Could not create or open a registrty key\n");
 //         return 0;
 //      }
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));

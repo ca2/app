@@ -206,9 +206,7 @@ namespace hellobase
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if(rectangleClient.area() <= 0)
          return;

@@ -47,7 +47,7 @@ HANDLE dup_handle(HANDLE h)
 //
 //   if (!ReadProcessMemory(handleProcess, (PCHAR)&ppeb->ProcessParameters, &pparam1, sizeof(PRTL_USER_PROCESS_PARAMETERS), nullptr) || pparam1 == nullptr)
 //   {
-//      ::output_debug_string("Could not read the address of ProcessParameters!\n");
+//      ::infomration("Could not read the address of ProcessParameters!\n");
 //      return "";
 //   }
 //
@@ -56,7 +56,7 @@ HANDLE dup_handle(HANDLE h)
 //
 //   if (!ReadProcessMemory(handleProcess, (PCHAR)&pparam1->CommandLine, &ustrCommandLine, sizeof(ustrCommandLine), nullptr))
 //   {
-//      ::output_debug_string("Could not read CommandLine!\n");
+//      ::infomration("Could not read CommandLine!\n");
 //      return "";
 //   }
 //
@@ -65,7 +65,7 @@ HANDLE dup_handle(HANDLE h)
 //   /* read the command line */
 //   if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, nullptr))
 //   {
-//      ::output_debug_string("Could not read the command line string!\n");
+//      ::infomration("Could not read the command line string!\n");
 //      return "";
 //   }
 //   commandLineContents[ustrCommandLine.Length / sizeof(WCHAR)] = L'\0';

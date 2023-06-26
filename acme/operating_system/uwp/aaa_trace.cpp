@@ -11,7 +11,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       if (!UnpackDDElParam(WM_DDE_EXECUTE, pMsg->lParam,
                            &nDummy, (uptr*)&hCommands))
       {
-//         ::output_debug_string(::acme::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
+//         ::infomration(::acme::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
          //          pMsg->lParam);
          return;
       }
@@ -19,7 +19,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
 
       const char * lpszCommands = (const char *)::GlobalLock(hCommands);
       ENSURE_THROW(lpszCommands != nullptr, throw ::exception(error_no_memory));
-//      ::output_debug_string(::acme::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
+//      ::infomration(::acme::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
       ::GlobalUnlock(hCommands);
    }
    else if (pMsg->message == WM_DDE_ADVISE)
@@ -30,7 +30,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       if (!UnpackDDElParam(WM_DDE_ADVISE, pMsg->lParam,
                            (uptr*)&hAdvise, &nItem))
       {
-//         ::output_debug_string(::acme::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
+//         ::infomration(::acme::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
 //            pMsg->lParam);
          return;
       }

@@ -44,8 +44,14 @@ namespace user
       layout_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; return *this; }
       layout_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; return *this; }
 
-      bool operator == (const layout_state & windowstate) const { return !memcmp(this, &windowstate, sizeof(layout_state)); }
-      bool operator != (const layout_state & windowstate) const { return !operator == (windowstate); }
+      bool operator == (const layout_state & state) const
+      {
+         return
+         this->m_zorder == state.m_zorder
+         && this->m_eactivation == state.m_eactivation
+         && visual_state::operator == (state);
+      }
+      //bool operator != (const layout_state & windowstate) const { return !operator == (windowstate); }
 
       layout_state & copy_size(layout_state & windowstate)
       {
@@ -59,7 +65,7 @@ namespace user
       layout_state & copy_position(layout_state & windowstate)
       {
 
-         m_point = windowstate.m_point;
+         m_point2 = windowstate.m_point2;
 
          return *this;
 

@@ -262,7 +262,7 @@ namespace graphics
 
          m_iCurrentBuffer = 1;
 
-         //output_debug_string("buffer_lock_round_swap_key_buffers (1)\n");
+         //infomration("buffer_lock_round_swap_key_buffers (1)\n");
 
       }
       else
@@ -270,7 +270,7 @@ namespace graphics
 
          m_iCurrentBuffer = 0;
 
-         //output_debug_string("buffer_lock_round_swap_key_buffers (0)\n");
+         //infomration("buffer_lock_round_swap_key_buffers (0)\n");
 
       }
 
@@ -327,7 +327,7 @@ namespace graphics
       //
       //         ::u8 a = p[3];
       //
-      //         //::output_debug_string("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
+      //         //::infomration("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
       //
       //      }
 

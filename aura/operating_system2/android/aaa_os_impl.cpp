@@ -25,7 +25,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
    if (g_psystem == nullptr)
    {
 
-      output_debug_string("android_fill_plasma : aura_system is null");
+      infomration("android_fill_plasma : aura_system is null");
 
       return;
 
@@ -36,7 +36,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
    if (psession == nullptr)
    {
 
-      output_debug_string("android_fill_plasma : context_session is null");
+      infomration("android_fill_plasma : context_session is null");
 
       return;
 
@@ -47,7 +47,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
    if (puserinteraction == nullptr)
    {
 
-      output_debug_string("android_fill_plasma : Host Window is null");
+      infomration("android_fill_plasma : Host Window is null");
 
       return;
 
@@ -56,7 +56,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
    if (puserinteraction->m_pinteractionimpl == nullptr)
    {
 
-      output_debug_string("android_fill_plasma : Host Window impl is null");
+      infomration("android_fill_plasma : Host Window impl is null");
 
       return;
 
@@ -74,7 +74,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
    if(pbuffer == nullptr)
    {
 
-      output_debug_string("android_fill_plasma : double_buffer is null");
+      infomration("android_fill_plasma : double_buffer is null");
 
       return;
 
@@ -87,7 +87,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
    if (!::is_ok(pimage))
    {
 
-      output_debug_string("android_fill_plasma : image is null or empty");
+      infomration("android_fill_plasma : image is null or empty");
 
       return;
 

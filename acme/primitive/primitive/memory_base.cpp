@@ -2030,7 +2030,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       memcpy(ptarget, psource, c);
 
-      output_debug_string(" ");
+      infomration(" ");
 
    }
 

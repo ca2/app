@@ -140,9 +140,9 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //      str.format("%s wparam=0x%" PRIxPTR " lparam=0x%" PRIxPTR, get_message_text(message, true).c_str(), wparam, lparam);
 //
-//      output_debug_string(str);
+//      infomration(str);
 //
-//      output_debug_string("-");
+//      infomration("-");
 //
 //   }
 
@@ -156,9 +156,9 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //      str.format("%s %" PRIxPTR " %" PRIxPTR, strMessageText.c_str(), wparam, lparam);
 //
-//      output_debug_string(str);
+//      infomration(str);
 //
-//      output_debug_string("-");
+//      infomration("-");
 //
 //   }
 
@@ -169,18 +169,18 @@ CLASS_DECL_ACME void debug_debug_reference()
 
    auto network_payload1 = ref.get_network_payload();
 
-   output_debug_string(network_payload1);
+   infomration(network_payload1);
 
    ref.m_bTest1 = false;
    ref.m_strText1 = ref.get_network_payload();
 
    auto network_payload2 = ref.get_network_payload();
 
-   output_debug_string(network_payload2);
+   infomration(network_payload2);
 
-   output_debug_string("debug_debug_reference end");
+   infomration("debug_debug_reference end");
 
-   output_debug_string("-");
+   infomration("-");
 
 }
 //void property_object::add_trait(::i64 i)

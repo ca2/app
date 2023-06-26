@@ -183,7 +183,7 @@ namespace experience_anthill
          if (m_estockicon == e_stock_icon_restore)
          {
 
-            output_debug_string("restore button is being shown");
+            infomration("restore button is being shown");
 
          }
 

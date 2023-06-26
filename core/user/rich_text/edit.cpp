@@ -200,7 +200,7 @@ namespace user
             if(pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
-               output_debug_string("Window winning focus is own font format tool");
+               infomration("Window winning focus is own font format tool");
 
                return;
 

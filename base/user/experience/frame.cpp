@@ -819,7 +819,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = pframewindow->::user::interaction::client_rectangle();
 
       if (rectangleClient.is_empty())
       {
@@ -1067,13 +1067,13 @@ namespace experience
       {
 
 
-         output_debug_string("frame::get_window_client_rect file");
+         infomration("frame::get_window_client_rect file");
 
       }
 
       ::rectangle_i32 rectangleClient;
 
-      m_pframewindow->::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = m_pframewindow->::user::interaction::client_rectangle();
 
       if (!calculate_window_client_rect(&rectangleClient))
       {
@@ -1143,7 +1143,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = pframewindow->::user::interaction::client_rectangle();
 
       //calc_window_client_rect(m_rectangleClient, rectangleClient);
 
@@ -1644,7 +1644,7 @@ namespace experience
    void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      m_pframewindow->::user::interaction::client_rectangle(rectangle);
+      rectangle = m_pframewindow->::user::interaction::client_rectangle();
 
    }
 

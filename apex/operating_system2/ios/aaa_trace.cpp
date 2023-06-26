@@ -26,7 +26,7 @@
  if (!UnpackDDElParam(WM_DDE_EXECUTE, pMsg->lParam,
  &nDummy, (uptr*)&hCommands))
  {
- //         ::output_debug_string(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
+ //         ::infomration(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
  //          pMsg->lParam);
  return;
  }
@@ -34,7 +34,7 @@
 
  const char * lpszCommands = (const char *)::GlobalLock(hCommands);
  ENSURE_THROW(lpszCommands != nullptr, ::windows_definition::ThrowMemoryException() );
- //      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
+ //      ::infomration(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
  ::GlobalUnlock(hCommands);
  }
  else if (pMsg->message == WM_DDE_ADVISE)
@@ -45,7 +45,7 @@
  if (!UnpackDDElParam(WM_DDE_ADVISE, pMsg->lParam,
  (uptr*)&hAdvise, &nItem))
  {
- //         ::output_debug_string(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
+ //         ::infomration(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
  //            pMsg->lParam);
  return;
  }
@@ -144,7 +144,7 @@
 //      // lpszPrefix, pusermessage->m_hwnd, lpszMsgName,
 //      //pusermessage->m_wparam, pusermessage->m_lparam);
 //#else
-//      //  ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
+//      //  ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
 //      //         lpszPrefix, pusermessage->m_hwnd, lpszMsgName,
 //      //       pusermessage->m_wparam, pusermessage->m_lparam);
 //#endif
@@ -152,11 +152,11 @@
 //   else
 //   {
 //#ifdef _WIN64
-//      //      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
+//      //      ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
 //      //       lpszPrefix, pusermessage->m_hwnd, lpszMsgName,
 //      //     pusermessage->m_wparam, pusermessage->m_lparam);
 //#else
-//      //      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+//      //      ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
 //      //       lpszPrefix, pusermessage->m_hwnd, lpszMsgName,
 //      //     pusermessage->m_wparam, pusermessage->m_lparam);
 //#endif
@@ -227,7 +227,7 @@
 //      //       lpszPrefix, pMsg->hwnd, lpszMsgName,
 //      //     pMsg->wParam, pMsg->lParam);
 //#else
-//      //      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
+//      //      ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
 //      //       lpszPrefix, lpmsg->hwnd, lpszMsgName,
 //      //     lpmsg->wParam, lpmsg->lParam);
 //#endif
@@ -235,11 +235,11 @@
 //   else
 //   {
 //#ifdef WIN64
-//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
+//      //::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
 //      // lpszPrefix, pMsg->hwnd, lpszMsgName,
 //      //pMsg->wParam, pMsg->lParam);
 //#else
-//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+//      //::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
 //      // lpszPrefix, lpmsg->hwnd, lpszMsgName,
 //      //lpmsg->wParam, lpmsg->lParam);
 //#endif

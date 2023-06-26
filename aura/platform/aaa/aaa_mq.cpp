@@ -243,25 +243,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxwave_player");
+//            infomration("xxCLOSED_MQ xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxout");
+//            infomration("xxCLOSED_MQ xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
+//            infomration("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
+//            infomration("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
 //
 //         }
 //
@@ -289,25 +289,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxwave_player");
+//            infomration("notxxbCreate xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxout");
+//            infomration("notxxbCreate xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxoutput_thread");
+//            infomration("notxxbCreate xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxmultimedia::*");
+//            infomration("notxxbCreate xx__get_mq from xxmultimedia::*");
 //
 //         }
 //

@@ -1468,7 +1468,7 @@ void CScriptVar::trace(string indentStr, const string &name)
               getString().c_str(),
               getFlagsAsString().c_str());
 
-   ::output_debug_string(str);
+   ::infomration(str);
 
    string indent = indentStr+" ";
 
@@ -2379,7 +2379,7 @@ CScriptVarLink *tinyjs::axis(bool &execute)
             lhs = realLhs;
          }
          else
-            information("Trying to assign to an un-named type\n");
+            information("Trying to assign to an un-named type");
       }
 
       i32 op = l->tk;
@@ -2620,7 +2620,7 @@ void tinyjs::statement(bool &execute)
          if (resultVar)
             resultVar->replaceWith(result);
          else
-            information("RETURN statement, but not in a function.\n");
+            information("RETURN statement, but not in a function.");
          execute = false;
       }
       CLEAN(result);
@@ -2632,7 +2632,7 @@ void tinyjs::statement(bool &execute)
       if (execute)
       {
          if (funcVar->name == TINYJS_TEMP_NAME)
-            information("Functions defined at statement-level are meant to have a name\n");
+            information("Functions defined at statement-level are meant to have a name");
          else
             scopes.last()->addChildNoDup(funcVar->name, funcVar->payload);
       }

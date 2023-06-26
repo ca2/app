@@ -431,7 +431,7 @@ int g_iDebug_post_thread_msg_time;
 //   if (msg.message == e_message_quit)
 //   {
 //
-//      output_debug_string("e_message_quit thread");
+//      infomration("e_message_quit thread");
 //
 //   }
 //

@@ -501,8 +501,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 /*void simple_menu_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
-   ::rectangle_i32 rectangleClient;
-   client_rectangle(rectangleClient);
+   auto rectangleClient = client_rectangle();
    class imaging & imaging = psystem->imaging();
    if(m_iHover >= -1)
    {
@@ -609,8 +608,7 @@ index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
 
          return iItem;
    }
-   ::rectangle_i32 rectangleClient;
-   client_rectangle(rectangleClient);
+   auto rectangleClient = client_rectangle();
    if(rectangleClient.contains(*ppoint))
 
       return -1;

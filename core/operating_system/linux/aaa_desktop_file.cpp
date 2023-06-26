@@ -422,7 +422,7 @@ pacmedirectory->home() / "bin" / strName;
 
       ::file::path path = get_file_path(papp);
 
-      output_debug_string("\nlinux::interaction_impl::set_window_text");
+      infomration("\nlinux::interaction_impl::set_window_text");
 
       fflush(stdout);
 
@@ -444,7 +444,7 @@ pacmedirectory->home() / "bin" / strName;
                      (const unsigned char*) (const ::string &) path,
                      path.get_length());
 
-      output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
+      infomration("\nlinux::interaction_impl::bamf_set_icon END");
 
       fflush(stdout);
 

@@ -689,7 +689,7 @@ namespace sockets
    {
       if (s == INVALID_SOCKET)
       {
-         information("AddList:  invalid_socket\n");
+         information("AddList:  invalid_socket");
          return;
       }
       socket_id_list& ref =
@@ -714,7 +714,7 @@ namespace sockets
       }
       // erase
       ref.erase(s);
-      //information("/AddList\n");
+      //information("/AddList");
    }
 
 

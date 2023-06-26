@@ -216,9 +216,7 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -679,7 +677,7 @@ namespace user
             else if (!m_plistbox->const_layout().sketch().is_screen_visible())
             {
 
-               //output_debug_string("test");
+               //infomration("test");
 
             }
 
@@ -830,9 +828,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       m_plistbox->m_dItemHeight = minimum(24, rectangleClient.height());
 
@@ -891,9 +887,7 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::e_unit_pixel;

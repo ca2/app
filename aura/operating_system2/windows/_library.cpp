@@ -100,7 +100,7 @@
 //    if(FAILED(hr))
 //    {
 
-//       ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//       ::infomration("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 
 //       return false;
 
@@ -238,7 +238,7 @@ void __node_aura_pos_term()
    //if (acmesystem()->is_verbose())
    //{
 
-   //   output_debug_string(L"aura terminating!\n");
+   //   infomration(L"aura terminating!\n");
 
    //}
 

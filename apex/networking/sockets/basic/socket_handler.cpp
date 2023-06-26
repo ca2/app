@@ -60,7 +60,7 @@ namespace sockets
 
       g_interlockedcountsocket_idHandler++;
 
-      ::output_debug_string("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountsocket_idHandler) + ")\n");
+      ::infomration("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountsocket_idHandler) + ")\n");
 
    }
 
@@ -1998,7 +1998,7 @@ namespace sockets
    //     //if (which_one == e_list_close)
    //     //{
 
-   //     //   //INFO(output_debug_string("list_close");
+   //     //   //INFO(infomration("list_close");
    //     //}
    //     //return;
    //  //}
@@ -2034,7 +2034,7 @@ namespace sockets
    //  //if (which_one == e_list_close)
    //  //{
 
-   //  //   //INFO(output_debug_string("list_close");
+   //  //   //INFO(infomration("list_close");
    //  //}
    //  //return;
    ////}

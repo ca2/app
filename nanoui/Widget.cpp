@@ -984,7 +984,7 @@ namespace nanoui
          else
          {
 
-            //         output_debug_string("optimized");
+            //         infomration("optimized");
 
          }
 
@@ -1225,7 +1225,7 @@ namespace nanoui
       if (pbutton)
       {
 
-         output_debug_string("Button contains");
+         infomration("Button contains");
 
       }
 

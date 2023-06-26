@@ -40,7 +40,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 // non-DEBUG_ALLOC version that assume everything is OK
 #define __enable_memory_tracking(bTrack) false
 #define __enable_memory_leak_override(bEnable) true
-#define __output_debug_string(psz) ::output_debug_string(psz)
+#define __output_debug_string(psz) ::infomration(psz)
 
 
 

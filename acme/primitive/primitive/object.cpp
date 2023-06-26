@@ -146,7 +146,7 @@ string object::as_string() const
 //
 //         string strMessage = "what is this? : " + __type_name(m_preferencea->last());
 //
-//         output_debug_string(strMessage);
+//         infomration(strMessage);
 //
 //      }
 //
@@ -855,14 +855,14 @@ void object::run()
 //   if (string(m_atom).contains("::rx"))
 //   {
 //
-//      output_debug_string("::rx destroy");
+//      infomration("::rx destroy");
 //
 //   }
 //
 //   if (string(m_atom).contains("::interprocess::communication"))
 //   {
 //
-//      output_debug_string("::interprocess::communication destroy");
+//      infomration("::interprocess::communication destroy");
 //
 //   }
 //
@@ -949,13 +949,13 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      ::output_debug_string("task added to prodevian\n");
+      ::infomration("task added to prodevian\n");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      ::output_debug_string("task added to user::thread\n");
+      ::infomration("task added to user::thread\n");
 
    }
 
@@ -1006,7 +1006,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      ::output_debug_string("task added to user::thread\n");
+      ::infomration("task added to user::thread\n");
 
    }
 
@@ -1015,7 +1015,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
 
-      ::output_debug_string("not a child");
+      ::infomration("not a child");
 
    }
 
@@ -1937,7 +1937,7 @@ void object::task_erase(::task* ptask)
          if (strThreadThis == "app_veriwell_keyboard::application")
          {
 
-            output_debug_string("app_veriwell_keyboard::application");
+            infomration("app_veriwell_keyboard::application");
 
          }
 
@@ -2741,7 +2741,7 @@ void object::initialize(::particle * pparticle)
    //      if (m_pobjrefdbg->m_iStep == 39)
    //      {
    //
-   //         output_debug_string("session");
+   //         infomration("session");
    //
    //      }
    //

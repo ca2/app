@@ -324,7 +324,7 @@ namespace android
 
          strMessage.format("%s\n\nSystem Error Code: %d",strLastError.c_str(),dwLastError);
 
-         information("Warning: Window creation failed: get_last_error returned:\n");
+         information("Warning: Window creation failed: get_last_error returned:");
 
          information("%s\n", strMessage.c_str());
 
@@ -381,7 +381,7 @@ namespace android
 
       }
 
-      output_debug_string("android_interaction_impl send e_message_create");
+      infomration("android_interaction_impl send e_message_create");
 
       m_puserinteraction->send_message(e_message_create, 0, (LPARAM)&cs);
 
@@ -416,7 +416,7 @@ namespace android
 
    //   m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-   //   output_debug_string("android_interaction_impl m_spgraphics alloc");
+   //   infomration("android_interaction_impl m_spgraphics alloc");
 
    //   //m_spgraphics.create(this);
 
@@ -432,9 +432,9 @@ namespace android
 
    //   m_puserinteraction->send_message(e_message_show_window, 1);
 
-   //   output_debug_string("android_interaction_impl on _create_window");
+   //   infomration("android_interaction_impl on _create_window");
 
-   //   output_debug_string("android_interaction_impl initialize (width=" + as_string(width(pinitialize->m_rectangle)) + ",height=" + as_string(height(pinitialize->m_rectangle)) + ")");
+   //   infomration("android_interaction_impl initialize (width=" + as_string(width(pinitialize->m_rectangle)) + ",height=" + as_string(height(pinitialize->m_rectangle)) + ")");
 
    //   return true;
 
@@ -4588,7 +4588,7 @@ namespace android
    bool interaction_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
-      output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
+      infomration("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
       psystem->operating_system_driver::get().m_bHideKeyboard = true;
 
@@ -4599,7 +4599,7 @@ namespace android
    bool interaction_impl::keyboard_focus_OnChildKillFocus()
    {
 
-      output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
+      infomration("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
       psystem->operating_system_driver::get().m_bHideKeyboard = true;
 

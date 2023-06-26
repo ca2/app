@@ -1098,7 +1098,7 @@ namespace user
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         pholder->client_rectangle(rectangleFrame);
+         rectangleFrame = pholder->client_rectangle();
 
       }
       else
@@ -1112,7 +1112,7 @@ namespace user
 
       set_display(e_display_none);
 
-      output_debug_string("\nm_bLayoutEnable false");
+      infomration("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
@@ -2683,13 +2683,13 @@ namespace user
 //      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
 //      {
 //
-//         //::output_debug_string("app_veriwell_keyboard::main_frame");
+//         //::infomration("app_veriwell_keyboard::main_frame");
 //
 //      }
 //      else if(type.name_contains("simple_child_frame"))
 //      {
 //
-//         //::output_debug_string("simple_child_frame");
+//         //::infomration("simple_child_frame");
 //
 //      }
 //

@@ -16,13 +16,13 @@ int_bool WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      ::output_debug_string("app_core_helloworld.dll :: initializing!\n");
+      ::infomration("app_core_helloworld.dll :: initializing!\n");
 
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {
 
-      ::output_debug_string("app_core_helloworld.dll :: terminating!\n");
+      ::infomration("app_core_helloworld.dll :: terminating!\n");
 
    }
 

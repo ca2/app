@@ -863,7 +863,7 @@ Window * x11_window_list(Display *disp, unsigned long * len)
    if (XGetWindowProperty(disp,XDefaultRootWindow(disp),prop,0,1024,False,XA_WINDOW,
                           &type,&form,len,&remain,&list) != Success)
    {
-      output_debug_string("winlist() -- GetWinProp");
+      infomration("winlist() -- GetWinProp");
       return nullptr;
    }
 
@@ -2996,7 +2996,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    g_pobjectaExtendedEventListener.release();
 
-   output_debug_string("x11_thread end thread");
+   infomration("x11_thread end thread");
 
 }
 
@@ -3168,7 +3168,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
    && e.xclient.message_type == g_atomKickIdle)
    {
 
-      output_debug_string("\nkick idle received\n");
+      infomration("\nkick idle received\n");
 
       return true;
 
@@ -3229,19 +3229,19 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                         if(pinteraction->m_iMouseMoveSkipCount == 2)
                         {
 
-                           //output_debug_string("\nmmv>skip 2!");
+                           //infomration("\nmmv>skip 2!");
 
                         }
                         else if(pinteraction->m_iMouseMoveSkipCount == 5)
                         {
 
-                           //output_debug_string("\nmmv>Skip 5!!!");
+                           //infomration("\nmmv>Skip 5!!!");
 
                         }
                         else if(pinteraction->m_iMouseMoveSkipCount == 10)
                         {
 
-                           //output_debug_string("\nmmv>SKIP 10 !!!!!!!!!");
+                           //infomration("\nmmv>SKIP 10 !!!!!!!!!");
 
                         }
 
@@ -3954,13 +3954,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         if(wFocus == e.xfocus.window)
 //         {
 //
-//            output_debug_string("A\n");
+//            infomration("A\n");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("B " + as_string(wFocus));
+//            infomration("B " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -3969,13 +3969,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         if(wFocus == g_windowFocus)
 //         {
 //
-//            output_debug_string("C\n");
+//            infomration("C\n");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("D " + as_string(wFocus));
+//            infomration("D " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -4046,7 +4046,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
    break;
    default:
    {
-      output_debug_string("axis_x11 case default:");
+      infomration("axis_x11 case default:");
    }
    }
 

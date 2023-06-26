@@ -872,7 +872,7 @@ Window * x11_window_list(Display *disp, unsigned long * len)
    if (XGetWindowProperty(disp,XDefaultRootWindow(disp),prop,0,1024,False,XA_WINDOW,
                           &type,&form,len,&remain,&list) != Success)
    {
-      output_debug_string("winlist() -- GetWinProp");
+      infomration("winlist() -- GetWinProp");
       return nullptr;
    }
 
@@ -3158,7 +3158,7 @@ bool x11_message_handler(XEvent * pevent)
 
 #endif
 
-      output_debug_string("x11_thread end thread");
+      infomration("x11_thread end thread");
 
       return false;
 
@@ -3316,7 +3316,7 @@ bool x11_message_loop_step()
 
 #endif
 
-      output_debug_string("x11_thread end thread");
+      infomration("x11_thread end thread");
 
       return false;
 
@@ -3500,7 +3500,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    && e.xclient.message_type == g_atomKickIdle)
    {
 
-      output_debug_string("\nkick idle received\n");
+      infomration("\nkick idle received\n");
 
       return true;
 
@@ -3561,19 +3561,19 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                         if(pinteraction->m_iMouseMoveSkipCount == 2)
                         {
 
-                           //output_debug_string("\nmmv>skip 2!");
+                           //infomration("\nmmv>skip 2!");
 
                         }
                         else if(pinteraction->m_iMouseMoveSkipCount == 5)
                         {
 
-                           //output_debug_string("\nmmv>Skip 5!!!");
+                           //infomration("\nmmv>Skip 5!!!");
 
                         }
                         else if(pinteraction->m_iMouseMoveSkipCount == 10)
                         {
 
-                           //output_debug_string("\nmmv>SKIP 10 !!!!!!!!!");
+                           //infomration("\nmmv>SKIP 10 !!!!!!!!!");
 
                         }
 
@@ -4016,7 +4016,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(e.xbutton.button == Button1)
          {
 
-            ::output_debug_string("ButtonPress::Button1\n");
+            ::infomration("ButtonPress::Button1\n");
 
             msg.message = e_message_left_button_down;
 
@@ -4047,7 +4047,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(e.xbutton.button == Button1)
          {
 
-            ::output_debug_string("ButtonRelease::Button1\n");
+            ::infomration("ButtonRelease::Button1\n");
 
             msg.message = e_message_left_button_up;
 
@@ -4378,7 +4378,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    case FocusIn:
    {
 
-      ::output_debug_string("FocusIn\n");
+      ::infomration("FocusIn\n");
 
       msg.message       = e_message_set_focus;
 
@@ -4402,13 +4402,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //         if(wFocus == e.xfocus.window)
 //         {
 //
-//            output_debug_string("A\n");
+//            infomration("A\n");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("B " + as_string(wFocus));
+//            infomration("B " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -4417,13 +4417,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //         if(wFocus == g_windowFocus)
 //         {
 //
-//            output_debug_string("C\n");
+//            infomration("C\n");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("D " + as_string(wFocus));
+//            infomration("D " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -4455,7 +4455,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    case FocusOut:
    {
 
-      ::output_debug_string("FocusOut\n");
+      ::infomration("FocusOut\n");
 
       auto oswindow = msg.hwnd;
 
@@ -4496,7 +4496,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    break;
    default:
    {
-      output_debug_string("axis_x11 case default:");
+      infomration("axis_x11 case default:");
    }
    }
 
@@ -5314,20 +5314,20 @@ bool post_ui_message(const MESSAGE & message)
    if(message.message == e_message_quit)
    {
 
-      output_debug_string("e_message_quit thread");
+      infomration("e_message_quit thread");
 
    }
 
    if(message.message == e_message_left_button_down)
    {
 
-      output_debug_string("post_ui_message::e_message_left_button_down\n");
+      infomration("post_ui_message::e_message_left_button_down\n");
 
    }
    else if(message.message == e_message_left_button_up)
    {
 
-      output_debug_string("post_ui_message::e_message_left_button_up\n");
+      infomration("post_ui_message::e_message_left_button_up\n");
 
    }
 

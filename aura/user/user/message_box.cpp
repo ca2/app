@@ -512,9 +512,7 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto pstyle = get_style(pgraphics);
 

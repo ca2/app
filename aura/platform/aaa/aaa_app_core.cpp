@@ -242,7 +242,7 @@ void app_core::system_init()
 
       //string str = ::str::consume_quoted_value(psz);
 
-      //output_debug_string(str);
+      //infomration(str);
 
    }
 
@@ -522,13 +522,13 @@ void app_core::system_init()
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->system() / strAppId / "output_debug_string.txt" ;
+pacmedirectory->system() / strAppId / "infomration.txt" ;
 
    ::file::path pathGlobalOutputDebugString =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->config() / "output_debug_string.txt" ;
+pacmedirectory->config() / "infomration.txt" ;
 
    ::aura::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
@@ -764,13 +764,13 @@ void app_core::system_end()
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
          sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          ::duration i::durationsTotal = tickEnd - m_durationStart;
 
          sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::durationsTotal.m_i);
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          int i::durations = i::durationsTotal.m_i % 1000;
@@ -807,43 +807,43 @@ void app_core::system_end()
 
          }
 
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|  %s", szTime);
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n-------------------------------------------------------------------------------------------- - ");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
+         ::infomration(szTimeMessage);
          printf("%s", szTimeMessage);
 
          if (file_exists_raw(szEllapsed))
@@ -1657,7 +1657,7 @@ void app_core::system_proc()
 //   catch (...)
 //   {
 //
-//      output_debug_string("exception:app_core:run");
+//      infomration("exception:app_core:run");
 //
 //      estatus = error_exception;
 //
@@ -1910,7 +1910,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::output_debug_string("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               ::infomration("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -1932,7 +1932,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::output_debug_string("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+               ::infomration("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -1943,7 +1943,7 @@ bool app_core::has_aura_application_factory() const
 //          if (!plibrary->is_opened())
 //          {
 //
-//             ::output_debug_string("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+//             ::infomration("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
 //
 //             return nullptr;
 //
@@ -1952,14 +1952,14 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::output_debug_string("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               ::infomration("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
             //if (!plibrary->open_ca2_library())
             //{
 
-            //::output_debug_string("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+            //::infomration("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
 
             //return nullptr;
 
@@ -1968,11 +1968,11 @@ bool app_core::has_aura_application_factory() const
             //if (is_verbose())
             //{
 
-            //   ::output_debug_string("\n\n\n|(5)----");
-            //   ::output_debug_string("| app : " + strAppId + "\n");
-            //   ::output_debug_string("|\n");
-            //   ::output_debug_string("|\n");
-            //   ::output_debug_string("|----");
+            //   ::infomration("\n\n\n|(5)----");
+            //   ::infomration("| app : " + strAppId + "\n");
+            //   ::infomration("|\n");
+            //   ::infomration("|\n");
+            //   ::infomration("|----");
 
             //}
 
@@ -1989,11 +1989,11 @@ bool app_core::has_aura_application_factory() const
 
       papp = library.get_new_application(::auraacmesystem()->get_session(), strAppId);
 
-      ::output_debug_string("\n\n\n|(4)----");
-      ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
+      ::infomration("\n\n\n|(4)----");
+      ::infomration("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+      ::infomration("|\n");
+      ::infomration("|\n");
+      ::infomration("|----");
 
    }
 
@@ -2019,22 +2019,22 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      ::output_debug_string("\n\n\n|(3)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
+      ::infomration("\n\n\n|(3)----");
+      ::infomration("| app : " + strAppId + "\n");
+      ::infomration("|\n");
+      ::infomration("|\n");
+      ::infomration("|----");
 
    }
 
    if (is_verbose())
    {
 
-      ::output_debug_string("\n\n\n|(2)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
+      ::infomration("\n\n\n|(2)----");
+      ::infomration("| app : " + strAppId + "\n");
+      ::infomration("|\n");
+      ::infomration("|\n");
+      ::infomration("|----");
 
    }
 
@@ -2060,11 +2060,11 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      ::output_debug_string("\n\n\n|(1)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
+      ::infomration("\n\n\n|(1)----");
+      ::infomration("| app : " + strAppId + "\n");
+      ::infomration("|\n");
+      ::infomration("|\n");
+      ::infomration("|----");
 
    }
 

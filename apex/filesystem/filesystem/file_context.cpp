@@ -1353,7 +1353,7 @@ void file_context::calculate_main_resource_memory()
          if (!m_pfolderResource)
          {
 
-            output_debug_string("m_pfolderResource is null? Why?");
+            infomration("m_pfolderResource is null? Why?");
 
          }
 
@@ -1428,7 +1428,7 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
-   ::output_debug_string(strPath);
+   ::infomration(strPath);
 
    fflush(stdout);
 
@@ -1461,14 +1461,14 @@ void file_context::calculate_main_resource_memory()
    if(strPath.contains("256"))
    {
 
-      output_debug_string("contains 256");
+      infomration("contains 256");
 
       fflush(stdout);
 
       if(pfileOutput.nok())
       {
 
-         output_debug_string("output file nok");
+         infomration("output file nok");
 
          fflush(stdout);
 
@@ -1936,7 +1936,7 @@ void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
 //   if (file == nullptr)
 //   {
 //
-//      //output_debug_string("test");
+//      //infomration("test");
 //
 //      throw ::exception(::exception("file::file_context::transfer Could not transfer file, could not open source file"));
 //
@@ -3477,7 +3477,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    if (path.contains("yesno.xhtml"))
    {
 
-      output_debug_string("file_context::get_file yesno.xhtml");
+      infomration("file_context::get_file yesno.xhtml");
 
    }
 

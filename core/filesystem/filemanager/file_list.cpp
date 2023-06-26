@@ -1181,7 +1181,7 @@ namespace filemanager
             //if (spitem->m_strName.case_insensitive_contains("aaa."))
             //{
 
-            //   output_debug_string("test filemanager file_list");
+            //   infomration("test filemanager file_list");
 
             //}
 

@@ -162,7 +162,7 @@ namespace user
             //string str;
             //str.format("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i);
 
-            //output_debug_string(str);
+            //infomration(str);
 
             if (!m_pdragCurrent->m_bDrag)
             {

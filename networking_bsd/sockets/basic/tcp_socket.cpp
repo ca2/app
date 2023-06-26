@@ -1684,7 +1684,7 @@ namespace sockets_bsd
       //   if(m_ssl_ctx)
       //   {
 
-      //      information("SSL Context already initialized - closing socket\n");
+      //      information("SSL Context already initialized - closing socket");
 
       //      SetCloseAndDelete(true);
 
@@ -2018,7 +2018,7 @@ namespace sockets_bsd
 
 //                  auto last_error = networking_last_error();
 
-                  // output_debug_string("");
+                  // infomration("");
                 
                }
 
@@ -2775,7 +2775,7 @@ namespace sockets_bsd
       UNREFERENCED_PARAMETER(type);
       UNREFERENCED_PARAMETER(protocol);
 
-      //information("socket::OnOptions()\n");
+      //information("socket::OnOptions()");
       
 #ifdef SO_NOSIGPIPE
       

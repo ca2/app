@@ -294,7 +294,7 @@ namespace axis
 ////
 ////            dappy(__type_name(this) + " : on_run failure : " + as_string(m_iErrorCode));
 ////
-////            ::output_debug_string("application::main on_run termination failure\n");
+////            ::infomration("application::main on_run termination failure\n");
 ////
 ////         }
 //

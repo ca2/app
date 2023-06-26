@@ -78,13 +78,13 @@ namespace aura
 
          str.format(pszFormat, args);
 
-         ::output_debug_string(str);
+         ::infomration(str);
 
          /*
          if(pmodule != nullptr)
          pmodule->DebugReport(_CRT_WARN, nullptr, 0, nullptr, pszFormat, ptr);
          else
-         output_debug_string(szBuf);
+         infomration(szBuf);
          */
 
       }
@@ -117,7 +117,7 @@ namespace aura
 
          str.format(pszFmt, args);
 
-         ::output_debug_string(str);
+         ::infomration(str);
 
       }
 
@@ -449,7 +449,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    strMessage += "\n";
 
-   output_debug_string(strMessage);
+   infomration(strMessage);
 
 }
 

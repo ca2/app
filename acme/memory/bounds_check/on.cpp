@@ -13,13 +13,13 @@ void os_alloc_check_bounds(u8 * point_i32)
 	if (__memcmp(&point[sizeof(uptr)], a, sizeof(a)) != 0)
 	{
 
-		output_debug_string("memory corruption before allocation");
+		infomration("memory corruption before allocation");
 
 	}
 	if (__memcmp(&point[sizeof(uptr) + 256 + *pinteraction], a, sizeof(a)) != 0)
 	{
 
-		output_debug_string("memory corruption after allocation");
+		infomration("memory corruption after allocation");
 
 	}
 

@@ -10,7 +10,7 @@ _In_opt_ const char * pOutputString
 )
 {
 
-   ::output_debug_string(wstring(pOutputString));
+   ::infomration(wstring(pOutputString));
 
 
 }
@@ -23,7 +23,7 @@ _In_opt_ const ::wide_character * pOutputString
 )
 {
 
-   ::output_debug_string(pOutputString);
+   ::infomration(pOutputString);
 
 
 }

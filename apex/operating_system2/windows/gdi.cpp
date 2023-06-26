@@ -55,7 +55,7 @@
 //
 //   {
 //
-//      output_debug_string("got log font");
+//      infomration("got log font");
 //   }
 //
 //

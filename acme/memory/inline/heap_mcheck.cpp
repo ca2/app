@@ -54,7 +54,7 @@ void * aligned_memory_allocate(size_t size, memsize align)
       if (heap_memory::aligned_provision_get_size(size) == 831
             && heap_memory::aligned_provision_get_size(size) < 1024)
       {
-         //output_debug_string("*");
+         //infomration("*");
       }
 
       void * pusermessage = g_pheap->_alloc(heap_memory::aligned_provision_get_size(size, align));
@@ -655,7 +655,7 @@ void memory_free_debug(void * pmemory, i32 iBlockType)
    else
    {
 
-      ::output_debug_string("wrong free");
+      ::infomration("wrong free");
 
    }
 #endif

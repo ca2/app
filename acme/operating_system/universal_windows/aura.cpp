@@ -419,7 +419,7 @@ string key_to_char(wparam wparam, lparam lparam)
 //
 //      }
 //
-//      ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//      ::infomration("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 //      return false;
 //
@@ -447,7 +447,7 @@ bool __node_aura_pre_init()
          if(FAILED(hresult))
          {
 
-            output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init\n");
+            infomration("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init\n");
 
             return false;
 
@@ -457,7 +457,7 @@ bool __node_aura_pre_init()
       else
       {
 
-         output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init\n");
+         infomration("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init\n");
 
          return false;
 

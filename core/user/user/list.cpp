@@ -579,9 +579,7 @@ namespace user
    void list::_001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst, index iItemLast)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectangleIntersect;
 
@@ -1040,9 +1038,7 @@ namespace user
       if (m_eview == impact_icon)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          index iIconSize;
 
@@ -1234,9 +1230,7 @@ namespace user
          else
          {
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             auto pitem = get_item(0);
 
@@ -2251,9 +2245,7 @@ namespace user
 
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (point.x() < 0
                || point.x() > rectangleClient.right
@@ -2324,9 +2316,7 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (m_bTopText)
          {
@@ -2447,9 +2437,7 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (m_bTopText)
          {
@@ -2753,9 +2741,7 @@ namespace user
       else if (m_eview == impact_list)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (m_bTopText)
          {
@@ -2819,9 +2805,7 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (rectangleClient.is_empty())
          {
@@ -3516,9 +3500,7 @@ namespace user
             if (m_eview == impact_icon)
             {
 
-               ::rectangle_i32 rectangleClient;
-
-               client_rectangle(rectangleClient);
+               auto rectangleClient = client_rectangle();
 
                index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
@@ -5592,9 +5574,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.intersect(rectangleClient, item.m_rectangleItem) != 0;
 
@@ -5648,8 +5628,7 @@ namespace user
       ::size_f64_array sizea;
 
       m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
-      ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
       index x = 0;
       index right = rectangleClient.right;
       index y = 0;
@@ -7064,9 +7043,7 @@ namespace user
          if (m_rangeSelection.get_item_count() > 0)
          {
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 

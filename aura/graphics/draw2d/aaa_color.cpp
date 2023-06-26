@@ -338,15 +338,15 @@ void color::get_hls(double & h, double & l, double & s) const
 
    if(dHParam > 1.0)
    {
-      ::output_debug_string("dHParam > 1.0");
+      ::infomration("dHParam > 1.0");
    }
    if(dLParam > 1.0)
    {
-      ::output_debug_string("dLParam > 1.0");
+      ::infomration("dLParam > 1.0");
    }
    if(dSParam > 1.0)
    {
-      ::output_debug_string("dSParam > 1.0");
+      ::infomration("dSParam > 1.0");
    }
    */
 }
@@ -1100,7 +1100,7 @@ CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbqu
       if (colorrefa[i] == argb(255, 255, 255, 255))
       {
 
-         output_debug_string("completely white");
+         infomration("completely white");
 
       }
 

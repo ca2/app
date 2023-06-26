@@ -449,7 +449,7 @@
 //   //catch (...)
 //   //{
 //
-//   //   ::output_debug_string("exception release strdup(typeid(*p).name())\n");
+//   //   ::infomration("exception release strdup(typeid(*p).name())\n");
 //
 //   //}
 //
@@ -464,8 +464,8 @@
 //   catch (...)
 //   {
 //
-//      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
-//      ::output_debug_string("exception release pca = nullptr; \n");
+//      //::infomration("exception release pca = nullptr; (" + string(atom) + ")\n");
+//      ::infomration("exception release pca = nullptr; \n");
 //
 //   }
 //
@@ -478,8 +478,8 @@
 //   catch (...)
 //   {
 //
-//      //::output_debug_string("exception release p->release() (" + string(atom) + ")\n");
-//      ::output_debug_string("exception release p->release() \n");
+//      //::infomration("exception release p->release() (" + string(atom) + ")\n");
+//      ::infomration("exception release p->release() \n");
 //
 //   }
 //
@@ -494,7 +494,7 @@
 //   //   catch (...)
 //   //   {
 //   //
-//   //      ::output_debug_string("exception release ::free(pszType)\n");
+//   //      ::infomration("exception release ::free(pszType)\n");
 //   //
 //   //   }
 //   //

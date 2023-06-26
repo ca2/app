@@ -21,11 +21,11 @@ namespace dynamic_source
       ::text::international::locale_schema * pls = m_set["locale_schema"].cast < ::text::international::locale_schema > ();
       if(pls != nullptr)
       {
-         ::output_debug_string("locale_schema.m_atomLocale=" + pls->m_atomLocale);
+         ::infomration("locale_schema.m_atomLocale=" + pls->m_atomLocale);
       }
       if(m_set.has_property("rsa_n"))
       {
-         ::output_debug_string("rsa_n");
+         ::infomration("rsa_n");
       }
    }
 

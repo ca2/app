@@ -15,10 +15,12 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/platform/scoped_restore.h"
+#include "acme/user/user/_text_stream.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
@@ -637,13 +639,13 @@ namespace user
          if (m_pwindow)
          {
 
-            output_debug_string("window created");
+            infomration("window created");
 
          }
          else
          {
 
-            output_debug_string("window not created");
+            infomration("window not created");
 
          }
 
@@ -785,13 +787,13 @@ namespace user
                if (m_pwindow)
                {
 
-                  output_debug_string("window created");
+                  infomration("window created");
 
                }
                else
                {
 
-                  output_debug_string("window not created");
+                  infomration("window not created");
 
                }
 
@@ -1306,7 +1308,7 @@ namespace user
    //   if (pmouse->m_atom == e_message_left_button_up)
    //   {
 
-   //      ::output_debug_string("lbutton_up");
+   //      ::infomration("lbutton_up");
 
    //   }
 
@@ -1374,7 +1376,7 @@ namespace user
    //      if (pmouse->m_atom == e_message_left_button_up)
    //      {
 
-   //         ::output_debug_string("lbutton_up");
+   //         ::infomration("lbutton_up");
 
    //      }
 
@@ -1409,7 +1411,7 @@ namespace user
    //      if (pmouse->m_atom == e_message_left_button_up)
    //      {
 
-   //         ::output_debug_string("lbutton_up");
+   //         ::infomration("lbutton_up");
 
    //      }
 
@@ -1764,7 +1766,7 @@ namespace user
       //      if (strType.contains("main_frame"))
       //      {
       //
-      //         output_debug_string("main_frame");
+      //         infomration("main_frame");
       //
       //      }
 
@@ -1918,7 +1920,7 @@ namespace user
       if (strType.contains("main_frame"))
       {
 
-         output_debug_string("main_frame user::interaction_impl::destroy_window");
+         infomration("main_frame user::interaction_impl::destroy_window");
 
       }
 
@@ -2063,13 +2065,13 @@ namespace user
       else if (pmessage->m_atom == e_message_left_button_down)
       {
 
-         output_debug_string("linux::interaction_impl::e_message_left_button_down\n");
+         infomration("linux::interaction_impl::e_message_left_button_down\n");
 
       }
       else if (pmessage->m_atom == e_message_left_button_up)
       {
 
-         output_debug_string("linux::interaction_impl::e_message_left_button_up\n");
+         infomration("linux::interaction_impl::e_message_left_button_up\n");
 
       }
       else if (pmessage->m_atom == e_message_mouse_move)
@@ -2111,7 +2113,7 @@ namespace user
       //         if(iDebugmessage_handlerTime > 20)
       //         {
       //
-      //            ::output_debug_string("interaction_impl::message handler flooded?\n");
+      //            ::infomration("interaction_impl::message handler flooded?\n");
       //
       //         }
       //         else
@@ -2375,7 +2377,7 @@ namespace user
             //            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
             //            {
             //
-            //               output_debug_string("different capture (1)");
+            //               infomration("different capture (1)");
             //
             //            }
 
@@ -2389,7 +2391,7 @@ namespace user
          //            if(g_puserinteractionMouseCapture123 != puserinteractionMouse)
          //            {
          //
-         //               output_debug_string("different capture (2)");
+         //               infomration("different capture (2)");
          //
          //            }
          //
@@ -2405,7 +2407,7 @@ namespace user
          {
 
 
-            ::output_debug_string("left_button_down (A)");
+            ::infomration("left_button_down (A)");
 
          }
 
@@ -2422,14 +2424,14 @@ namespace user
          {
 
 
-            ::output_debug_string("left_button_down");
+            ::infomration("left_button_down");
 
          }
          else if (pmouse->m_atom == e_message_left_button_up)
          {
 
 
-            ::output_debug_string("left_button_up");
+            ::infomration("left_button_up");
 
          }
 
@@ -2445,7 +2447,7 @@ namespace user
          //            if (strUserInteractionType.case_insensitive_contains("button"))
          //            {
          //
-         //               output_debug_string("mouse_move::userinteraction=button");
+         //               infomration("mouse_move::userinteraction=button");
          //
          //            }
          //            else
@@ -2634,7 +2636,7 @@ namespace user
          if (strType.case_insensitive_contains("list_box"))
          {
 
-            ::output_debug_string("list_box e_message_left_button_down");
+            ::infomration("list_box e_message_left_button_down");
 
          }
 
@@ -2661,7 +2663,7 @@ namespace user
          if (strType.case_insensitive_contains("list_box"))
          {
 
-            ::output_debug_string("list_box e_message_non_client_left_button_down");
+            ::infomration("list_box e_message_non_client_left_button_down");
 
          }
 
@@ -2702,7 +2704,7 @@ namespace user
             if (strType.case_insensitive_contains("list_box"))
             {
 
-               //::output_debug_string("list_box e_message_mouse_move");
+               //::infomration("list_box e_message_mouse_move");
 
             }
 
@@ -2746,13 +2748,13 @@ namespace user
          if (strType.case_insensitive_contains("button"))
          {
 
-            output_debug_string("mouse transfer on button");
+            infomration("mouse transfer on button");
 
          }
          else if (strType.case_insensitive_contains("tab"))
          {
 
-            output_debug_string("mouse transfer on tab");
+            infomration("mouse transfer on tab");
 
          }
 
@@ -3421,7 +3423,7 @@ namespace user
 
    //   oswindow w = ::set_capture(get_handle());
 
-   //   output_debug_string("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
+   //   infomration("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
    //   auto psession = get_session();
 
@@ -3998,7 +4000,7 @@ namespace user
       if(m_bDoingGraphics)
       {
        
-         output_debug_string("set_need_redraw on doing graphics");
+         infomration("set_need_redraw on doing graphics");
          
       }
       
@@ -4661,11 +4663,11 @@ namespace user
 
                m_pcsDisplay = memory_new(critical_section);
 
-               output_debug_string("interaction_impl m_pgraphics alloc");
+               infomration("interaction_impl m_pgraphics alloc");
 
                update_graphics_resources();
 
-               output_debug_string("interaction_impl on _create_window");
+               infomration("interaction_impl on _create_window");
 
             }
 
@@ -5069,7 +5071,7 @@ namespace user
       //      if (strType.contains("list_box"))
       //      {
       //
-      //         output_debug_string("list_box");
+      //         infomration("list_box");
       //
       //      }
 
@@ -5334,7 +5336,7 @@ namespace user
                            //for(index i = 0; i < iSeverity * 20; i++)
                            //{
 
-               output_debug_string("m_pgraphics->on_begin_draw FAILED (1)\n");
+               infomration("m_pgraphics->on_begin_draw FAILED (1)\n");
 
                //}
 
@@ -5436,7 +5438,7 @@ namespace user
                if (m_puserinteraction->has_finishing_flag())
                {
 
-                  output_debug_string("::user::interaction_impl set_finish");
+                  infomration("::user::interaction_impl set_finish");
 
                }
                else
@@ -5558,7 +5560,7 @@ namespace user
 
       auto elapsed = timeStart.elapsed();
 
-      output_debug_string("_001UpdateBuffer " + as_string(elapsed.floating_millisecond().m_d) + "ms\n");
+      infomration("_001UpdateBuffer " + as_string(elapsed.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -5718,7 +5720,7 @@ namespace user
 
          bool bGraphicsSet = m_pgraphics.is_set();
 
-         output_debug_string("_001UpdateScreen list_box");
+         infomration("_001UpdateScreen list_box");
 
       }
 
@@ -6266,7 +6268,7 @@ namespace user
    bool interaction_impl::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
    {
 
-      output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
+      infomration("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
       //      auto pwindowing = windowing();
       //
@@ -6302,7 +6304,7 @@ namespace user
    bool interaction_impl::keyboard_focus_OnChildKillFocus()
    {
 
-      output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
+      infomration("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
       auto pwindowing = windowing();
 
@@ -6819,25 +6821,92 @@ namespace user
 
       }
 
+      information() << "Design.state != Window.state";
+
       auto eactivationOutput = stateOutput.activation();
 
       auto eactivationWindow = stateWindow.activation();
+
+      if(eactivationOutput != eactivationWindow)
+      {
+
+         information() << "Design.activation != Window.activation" << (iptr) eactivationOutput.m_eenum << ", " << (iptr) eactivationWindow.m_eenum;
+
+      }
+      else
+      {
+
+         information() << "Design.activation == Window.activation";
+
+      }
 
       auto edisplayOutput = stateOutput.display();
 
       auto edisplayWindow = stateWindow.display();
 
+      if(edisplayOutput != edisplayWindow)
+      {
+
+         information() << "Design.display != Window.display" << edisplayOutput << ", " << edisplayWindow;
+
+      }
+      else
+      {
+
+         information() << "Design.display == Window.display";
+
+      }
+
       auto pointOutput = stateOutput.origin();
 
       auto pointWindow = stateWindow.origin();
+
+      if(pointOutput != pointWindow)
+      {
+
+         information() << "Design.point != Window.point" << pointOutput << ", " << pointWindow;
+
+      }
+      else
+      {
+
+         information() << "Design.point == Window.point";
+
+      }
 
       auto sizeOutput = stateOutput.size();
 
       auto sizeWindow = stateWindow.size();
 
+      if(sizeOutput != sizeWindow)
+      {
+
+         information() << "Design.size != Window.size" << sizeOutput << ", " << sizeWindow;
+
+      }
+      else
+      {
+
+         information() << "Design.size == Window.size";
+
+      }
+
       auto zOutput = stateOutput.zorder();
 
       auto zWindow = stateWindow.zorder();
+
+      if(zOutput != zWindow)
+      {
+
+         information() << "Design.zorder != Window.zorder" << zOutput << ", " << zWindow;
+
+      }
+      else
+      {
+
+         information() << "Design.zorder == Window.zorder";
+
+      }
 
       bool shouldGetVisible = ::is_screen_visible(edisplayOutput);
 
@@ -6887,7 +6956,7 @@ namespace user
       //if(m_sizeDrawn != sizeOutput)
       //{
 
-      //   output_debug_string("blank borders (1), drawing extrapoation (1) or cut border (1)??\n");
+      //   infomration("blank borders (1), drawing extrapoation (1) or cut border (1)??\n");
 
       //}
 
@@ -7128,7 +7197,7 @@ namespace user
 
          ::point_i32 pointBottomRight = pointOutput + sizeOutput;
 
-         //output_debug_string("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
+         //infomration("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
 
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
@@ -7260,7 +7329,7 @@ namespace user
          if (pimplFocus == this)
          {
 
-            output_debug_string("optimized out a set_keyboard_focus");
+            infomration("optimized out a set_keyboard_focus");
 
          }
          else
@@ -7498,6 +7567,19 @@ namespace user
 
       auto window_origin = layout.window().origin();
 
+      information() << "interaction_impl::on_message_reposition pmove->m_point " << pmove->m_point;
+
+      information() << "interaction_impl::on_message_reposition window_origin " << window_origin;
+
+      information() << "interaction_impl::on_message_reposition sketch_origin " << sketch_origin;
+
+      if(pmove->m_point.x() == 0)
+      {
+
+         information() << "interaction_impl::on_message_reposition x is zero";
+
+      }
+
       m_puserinteraction->set_position(pmove->m_point, e_layout_window);
 
       if (window_origin != sketch_origin)
@@ -7680,7 +7762,7 @@ namespace user
 
          m_puserinteraction->destroy_window();
 
-         output_debug_string("destroy_window");
+         infomration("destroy_window");
 
       }
 

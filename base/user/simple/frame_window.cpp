@@ -314,7 +314,7 @@ void simple_frame_window::install_message_routing(::channel* pchannel)
 void simple_frame_window::task_save_window_placement()
 {
 
-   ::output_debug_string("_task_save_window_rect start\n");
+   ::infomration("_task_save_window_rect start\n");
 
    auto ptask = ::get_task();
 
@@ -375,7 +375,7 @@ void simple_frame_window::task_save_window_placement()
 
    }
 
-   ::output_debug_string("_task_save_window_rect end\n");
+   ::infomration("_task_save_window_rect end\n");
 
 }
 
@@ -1075,7 +1075,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    if (pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
+      infomration("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
 
       //defer_set_icon();
 
@@ -1083,7 +1083,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
+      infomration("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
 
    }
 
@@ -1240,7 +1240,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
    if (__type_name(this).case_insensitive_contains("child_frame"))
    {
 
-      output_debug_string("%child_frame%\n");
+      infomration("%child_frame%\n");
 
    }
 
@@ -2024,7 +2024,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
    if (puiParent != nullptr && (pholder = puiParent).is_set())
    {
 
-      pholder->client_rectangle(rectangleFrame);
+      rectangleFrame = pholder->client_rectangle();
 
    }
 
@@ -2380,9 +2380,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
       || psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       pgraphics->fill_rectangle(rectangleClient, rgb(0, 0, 0));
 
@@ -2699,9 +2697,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
 //      class imaging & imaging = psystem->imaging();
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       //rectangleClient.offset(rectangleClient.top_left());
 
@@ -2863,10 +2859,10 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-void simple_frame_window::client_rectangle(::rectangle_i32& rectangle, ::user::enum_layout elayout)
+::rectangle_i32 simple_frame_window::client_rectangle(::user::enum_layout elayout)
 {
 
-   ::experience::frame_window::client_rectangle(rectangle, elayout);
+   return ::experience::frame_window::client_rectangle(elayout);
 
 }
 
@@ -3501,7 +3497,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                         //if(strType.contains("pane_impact"))
                         //{
 
-                          // output_debug_string("paneimpact\n");
+                          // infomration("paneimpact\n");
 
                         //}
 

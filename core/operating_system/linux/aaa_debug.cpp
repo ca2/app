@@ -146,7 +146,7 @@ va_list *Arguments
 
 
 
-VOID WINAPI output_debug_string(const ::string & pOutputString)
+VOID WINAPI infomration(const ::string & pOutputString)
 {
 
    if(::aura::g_bOutputDebugString)
@@ -170,13 +170,13 @@ VOID WINAPI output_debug_string(const ::string & pOutputString)
 
 
 
-VOID WINAPI output_debug_string(const ::wide_character * pOutputString)
+VOID WINAPI infomration(const ::wide_character * pOutputString)
 {
 
    if(::aura::g_bOutputDebugString)
    {
 
-      output_debug_string(string(pOutputString));
+      infomration(string(pOutputString));
 
    }
 

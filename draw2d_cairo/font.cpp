@@ -218,7 +218,7 @@ namespace draw2d_cairo
       else
       {
 
-         ::output_debug_string("Warning: No ::user::interaction font scaler!\n");
+         ::infomration("Warning: No ::user::interaction font scaler!\n");
 
       }
 

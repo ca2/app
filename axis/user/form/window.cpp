@@ -1442,7 +1442,7 @@ throw_todo();
    void form_window::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
-      pinteraction->client_rectangle(rectangle);
+      rectangle = pinteraction->client_rectangle();
 
    }
 

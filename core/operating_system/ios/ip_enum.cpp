@@ -50,7 +50,7 @@ namespace ios
       if (phostent->h_length != 4)
       {
          
-         information("IP address returned is not 32 bits !!\n");
+         information("IP address returned is not 32 bits !!");
          
          return false;
          

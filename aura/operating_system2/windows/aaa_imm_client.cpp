@@ -135,7 +135,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
    if (pmessage->m_atom == WM_INPUTLANGCHANGE)
    {
 
-      ::output_debug_string("WM_INPUTLANGCHANGE");
+      ::infomration("WM_INPUTLANGCHANGE");
 
       //get_wnd()->pred([this]()
       //   {
@@ -151,7 +151,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
       //
       //      //SendMessage(ImmGetDefaultIMEWnd(get_handle()), WM_IME_CONTROL, IMC_OPENSTATUSWINDOW, 0);
 
-      //      //   output_debug_string("window already open");
+      //      //   infomration("window already open");
 
       //      //}
 
@@ -179,7 +179,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
       if (pmessage->m_lparam == 0)
       {
 
-         ::output_debug_string("\nWM_IME_COMPOSITION Cancellation...");
+         ::infomration("\nWM_IME_COMPOSITION Cancellation...");
 
          if (m_strImeComposition.has_char())
          {
@@ -194,12 +194,12 @@ void imm_client::_001OnIme(::message::message * pmessage)
       else
       {
 
-         ::output_debug_string("\nWM_IME_COMPOSITION " + as_string((::i64) pusermessage->m_lparam.m_lparam));
+         ::infomration("\nWM_IME_COMPOSITION " + as_string((::i64) pusermessage->m_lparam.m_lparam));
 
          if ((pmessage->m_lparam & GCS_RESULTSTR) != 0)
          {
 
-            ::output_debug_string("\nWM_IME_COMPOSITION Result String... ");
+            ::infomration("\nWM_IME_COMPOSITION Result String... ");
 
             imm_context imm(this);
 
@@ -214,7 +214,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
             }
 
-            ::output_debug_string("\nWM_IME_COMPOSITION Compositeh String Length = " + as_string(strComposition.length()));
+            ::infomration("\nWM_IME_COMPOSITION Compositeh String Length = " + as_string(strComposition.length()));
 
             on_text_composition(strComposition);
 
@@ -225,7 +225,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
          if ((pmessage->m_lparam & GCS_COMPSTR) != 0)
          {
 
-            ::output_debug_string("\nWM_IME_COMPOSITION Compositing... ");
+            ::infomration("\nWM_IME_COMPOSITION Compositing... ");
 
             imm_context imm(this);
 
@@ -233,7 +233,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
             strComposition = imm.get_string(GCS_COMPSTR);
 
-            ::output_debug_string("\nGCS_COMPSTR \"" + strComposition + "\"");
+            ::infomration("\nGCS_COMPSTR \"" + strComposition + "\"");
 
             wstring wstrComposition;
 
@@ -244,7 +244,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
                strComposition = imm.get_string(GCS_COMPREADSTR);
 
-               ::output_debug_string("\nGCS_COMPREADSTR \"" + strComposition + "\"");
+               ::infomration("\nGCS_COMPREADSTR \"" + strComposition + "\"");
 
             }
 
@@ -287,31 +287,31 @@ void imm_client::_001OnIme(::message::message * pmessage)
       if (pusermessage->m_wparam == IMN_SETCANDIDATEPOS)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_SETCANDIDATEPOS");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_SETCANDIDATEPOS");
 
       }
       else if (pusermessage->m_wparam == IMN_SETCOMPOSITIONFONT)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_SETCOMPOSITIONFONT");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_SETCOMPOSITIONFONT");
 
       }
       else if (pusermessage->m_wparam == IMN_SETCOMPOSITIONWINDOW)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_SETCOMPOSITIONWINDOW");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_SETCOMPOSITIONWINDOW");
 
       }
       else if (pusermessage->m_wparam == IMN_SETSTATUSWINDOWPOS)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_SETSTATUSWINDOWPOS");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_SETSTATUSWINDOWPOS");
 
       }
       else if (pusermessage->m_wparam == IMN_OPENCANDIDATE)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_OPENCANDIDATE");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_OPENCANDIDATE");
 
          m_bImeCandidateOpened = true;
 
@@ -319,7 +319,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
       else if (pusermessage->m_wparam == IMN_CHANGECANDIDATE)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_CHANGECANDIDATE");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_CHANGECANDIDATE");
 
          m_bImeCandidateOpened = true;
 
@@ -327,7 +327,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
       else if (pusermessage->m_wparam == IMN_CLOSECANDIDATE)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_CLOSECANDIDATE");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_CLOSECANDIDATE");
 
          m_bImeCandidateOpened = false;
 
@@ -335,19 +335,19 @@ void imm_client::_001OnIme(::message::message * pmessage)
       else if (pusermessage->m_wparam == IMN_OPENSTATUSWINDOW)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_OPENSTATUSWINDOW");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_OPENSTATUSWINDOW");
 
       }
       else if (pusermessage->m_wparam == IMN_CLOSESTATUSWINDOW)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_CLOSESTATUSWINDOW");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_CLOSESTATUSWINDOW");
 
       }
       else if (pusermessage->m_wparam == IMN_SETSTATUSWINDOWPOS)
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " "IMN_SETSTATUSWINDOWPOS");
+         infomration("\n" "WM_IME_NOTIFY" " > " "IMN_SETSTATUSWINDOWPOS");
 
       }
       else if (pusermessage->m_wparam == IMN_SETCONVERSIONMODE)
@@ -428,13 +428,13 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
          }
 
-         output_debug_string(str);
+         infomration(str);
 
       }
       else
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " + as_string((::i64)pusermessage->m_wparam) + "    ");
+         infomration("\n" "WM_IME_NOTIFY" " > " + as_string((::i64)pusermessage->m_wparam) + "    ");
 
       }
 
@@ -590,7 +590,7 @@ int imm_client::on_text_composition_message(int iMessage)
       //      if (ImmSetCompositionFontW(imm, &lf))
       //      {
 
-      //         output_debug_string("set ime composition font (Unicode) pos");
+      //         infomration("set ime composition font (Unicode) pos");
 
       //      }
 
@@ -602,7 +602,7 @@ int imm_client::on_text_composition_message(int iMessage)
 
       if (::ImmSetCompositionWindow(imm, &com))
       {
-         output_debug_string("set ime composition window pos");
+         infomration("set ime composition window pos");
       }
 
       CANDIDATEFORM can = {};
@@ -614,7 +614,7 @@ int imm_client::on_text_composition_message(int iMessage)
       if (::ImmSetCandidateWindow(imm, &can))
       {
 
-         output_debug_string("set ime candidate window pos");
+         infomration("set ime candidate window pos");
 
       }
 

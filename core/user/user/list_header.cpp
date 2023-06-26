@@ -753,7 +753,7 @@ namespace user
       //   if (strType.case_insensitive_contains("control_box"))
       //   {
 
-      //      output_debug_string("control box on clip");
+      //      infomration("control box on clip");
 
       //   }
 
@@ -902,9 +902,7 @@ namespace user
    {
 
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectangleUpdate(rectangleClient);
 

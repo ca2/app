@@ -193,7 +193,7 @@ namespace experience
       else
       {
 
-         output_debug_string(".");
+         infomration(".");
 
       }
 
@@ -540,7 +540,7 @@ namespace experience
          rectangle.left = rectangle.right - sizeButton.cx();
 if(rectangle.left > 400)
 {
-   output_debug_string("rectangle.left > 400");
+   infomration("rectangle.left > 400");
    
 }
          if (pbutton)
@@ -593,9 +593,7 @@ if(rectangle.left > 400)
 
       reset_layout(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int iWidth = rectangleClient.width();
 
@@ -1133,11 +1131,9 @@ if(rectangle.left > 400)
    void control_box::on_message_size(::message::message * pmessage)
    {
 
-      ::rectangle_i32 rectangleClient;
+      auto rectangleClient = client_rectangle();
 
-      client_rectangle(rectangleClient);
-
-      output_debug_string("rectangleClient");
+      infomration("rectangleClient");
 
    }
 

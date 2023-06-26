@@ -295,7 +295,7 @@ namespace user
             if (pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
-               output_debug_string("Window winning focus is own font format tool");
+               infomration("Window winning focus is own font format tool");
 
                return;
 
@@ -728,7 +728,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   output_debug_string("no full red");
+         //   //   infomration("no full red");
 
          //   //}
 
@@ -752,7 +752,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   output_debug_string("no full red");
+         //   //   infomration("no full red");
 
          //   //}
 
@@ -784,9 +784,7 @@ namespace user
        //  else
        //  {
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             pgraphics->fill_rectangle(rectangleClient, argb(40, 255, 255, 255));
 

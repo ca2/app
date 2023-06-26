@@ -1541,9 +1541,7 @@ namespace user
 
       xEnd = index(plain_edit_get_line_extent(pgraphics, iLine, iLineLength));
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto xContext = get_context_offset().x();
 
@@ -1738,9 +1736,7 @@ namespace user
 
       int iBorder = 4;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int xVisibleStart = m_pointScroll.x();
 
@@ -1881,7 +1877,7 @@ namespace user
                if (pmouse->m_point.x() < rectangleWindow.left - 30)
                {
 
-                  output_debug_string("test06");
+                  infomration("test06");
 
                }
 
@@ -6344,7 +6340,7 @@ namespace user
 
       ::point_i32 point((::i32)x, (::i32)y);
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
       rectangle.left = (::i32)x;
 
@@ -6425,7 +6421,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::output_debug_string("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         ::infomration("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -6497,7 +6493,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::output_debug_string("Current Text: " + strText + "\n");
+         ::infomration("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 
@@ -8257,7 +8253,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::output_debug_string("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
+      ::infomration("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 

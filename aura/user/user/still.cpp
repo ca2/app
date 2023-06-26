@@ -615,9 +615,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::size_f64 sizeText = _001CalculateFittingSize(pgraphics);
 
@@ -691,9 +689,7 @@ namespace user
    void still::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::color::color colorBackground;
 
@@ -910,9 +906,7 @@ namespace user
 
       auto strWindowText = get_window_text();
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
 
       //if (pstyle == nullptr)
@@ -1160,7 +1154,7 @@ namespace user
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
    }
 

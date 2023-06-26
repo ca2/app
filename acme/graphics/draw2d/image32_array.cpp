@@ -66,7 +66,7 @@ image32_array::~image32_array()
 //         if (colorrefa[i] == argb(255, 255, 255, 255))
 //         {
 //
-//            output_debug_string("completely white");
+//            infomration("completely white");
 //
 //         }
 //

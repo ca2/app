@@ -306,7 +306,7 @@ namespace graphics
       if (iGot < 0)
       {
 
-         output_debug_string("NOT DRAWING? <<---- search and bp here !imageBuffer2 ");
+         infomration("NOT DRAWING? <<---- search and bp here !imageBuffer2 ");
 
       }
 

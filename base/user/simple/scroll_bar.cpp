@@ -308,7 +308,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    ::rectangle_i32 rectangleClient;
 
-   client_rectangle(rectangleClient);
+   rectangleClient = client_rectangle();
 
    ::size_i32 sizeTrack;
 
@@ -431,7 +431,7 @@ bool simple_scroll_bar::GetTrackClientRect(::rectangle_i32 * prectangle, ::draw2
 
    ::rectangle_i32 rectangleClient;
 
-   client_rectangle(rectangleClient);
+   rectangleClient = client_rectangle();
 
    if(m_eorientation == e_orientation_horizontal)
    {
@@ -472,7 +472,7 @@ i32 simple_scroll_bar::GetTrackSize(::size_i32 &size, ::draw2d::graphics_pointer
 
    ::rectangle_i32 rectangleClient;
 
-   client_rectangle(rectangleClient);
+   rectangleClient = client_rectangle();
 
    if(m_eorientation == e_orientation_horizontal)
    {
@@ -569,7 +569,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point, ::draw2d::graph
 
    ::rectangle_i32 rectangleClient;
 
-   client_rectangle(rectangleClient);
+   rectangleClient = client_rectangle();
 
    auto pstyle = get_style(pgraphics);
 
@@ -663,7 +663,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
    ::rectangle_i32 rectangleClient;
-   client_rectangle(rectangleClient);
+   rectangleClient = client_rectangle();
    //::size_i32 size = rectangleClient.size();
 
    //int iArrowForce = 4;
@@ -1572,7 +1572,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::rectangle_i32 rectangleClient;
 
-   client_rectangle(rectangleClient);
+   rectangleClient = client_rectangle();
 
    pgraphics->fill_rectangle(rectangleClient, colorBackground);
 

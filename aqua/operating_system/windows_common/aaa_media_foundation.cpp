@@ -17,7 +17,7 @@ namespace windows
 		if (FAILED(hr))
 		{
 
-			output_debug_string("MEDIA FOUNDATION: Resources couldn't be started\n");
+			infomration("MEDIA FOUNDATION: Resources couldn't be started\n");
 
 		}
 
@@ -32,7 +32,7 @@ namespace windows
 		if (FAILED(hr))
 		{
 
-			output_debug_string("MEDIA FOUNDATION: Resources couldn't be released\n");
+			infomration("MEDIA FOUNDATION: Resources couldn't be released\n");
 
 		}
 

@@ -181,7 +181,7 @@ namespace draw2d_opengl
    {
 
       if (draw2d_opengl()->m_atomClass == 0) {
-         information("MS GDI - RegisterClass failed\n");
+         information("MS GDI - RegisterClass failed");
          information("last-error code: %d\n", GetLastError());
          return false;
       }
@@ -213,7 +213,7 @@ namespace draw2d_opengl
 
       if (window == nullptr) 
       {
-         information("MS GDI - CreateWindow failed\n");
+         information("MS GDI - CreateWindow failed");
          information("last-error code: %d\n", GetLastError());
          return false;
       }
@@ -225,7 +225,7 @@ namespace draw2d_opengl
       HDC hdc = GetDC(window);
       if (hdc == nullptr)
       {
-         information("MS GDI - GetDC failed\n");
+         information("MS GDI - GetDC failed");
          information("last-error code: %d\n", GetLastError());
          return false;
       }
@@ -243,7 +243,7 @@ namespace draw2d_opengl
       chosenformat = ChoosePixelFormat(hdc, &pixformat);
       if (chosenformat == 0) 
       {
-         information("MS GDI - ChoosePixelFormat failed\n");
+         information("MS GDI - ChoosePixelFormat failed");
          information("last-error code: %d\n", GetLastError());
          return false;
       }
@@ -251,7 +251,7 @@ namespace draw2d_opengl
       bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
       if (!spfok) 
       {
-         information("MS GDI - SetPixelFormat failed\n");
+         information("MS GDI - SetPixelFormat failed");
          information("last-error code: %d\n", GetLastError());
          return false;
       }
@@ -259,7 +259,7 @@ namespace draw2d_opengl
       HGLRC hglrcTime = wglCreateContext(hdc);
       if (hglrcTime == nullptr)
       {
-         information("MS WGL - wglCreateContext failed\n");
+         information("MS WGL - wglCreateContext failed");
          information("last-error code: %d\n", GetLastError());
          ReleaseDC(m_hwnd, m_hdc);
          return false;
@@ -268,7 +268,7 @@ namespace draw2d_opengl
       bool okMakeCurrent = wglMakeCurrent(hdc, hglrcTime);
       if (!okMakeCurrent)
       {
-         information("MS WGL - wglMakeCurrent failed\n");
+         information("MS WGL - wglMakeCurrent failed");
          information("last-error code: %d\n", GetLastError());
          return false;
       }
@@ -944,7 +944,7 @@ namespace draw2d_opengl
    //   //   if(!::DrawIconEx(hdc,0,0,(HICON)picon->m_picon,cx,cy,istepIfAniCur,nullptr,DI_IMAGE | DI_MASK))
    //   //   {
 
-   //   //      output_debug_string("nok");
+   //   //      infomration("nok");
    //   //   }
    //   //   else
    //   //   {

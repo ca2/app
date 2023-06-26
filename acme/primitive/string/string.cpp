@@ -136,7 +136,7 @@ CLASS_DECL_ACME ::string _(const ::string & str)
 CLASS_DECL_ACME void foo123()
 {
 
-   ::output_debug_string("foo123");
+   ::infomration("foo123");
 
 }
 

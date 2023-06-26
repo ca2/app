@@ -102,7 +102,7 @@ namespace user
    void main_window::input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    {
       
-      client_rectangle(rectangle);
+      rectangle = client_rectangle(elayout);
    
       if(is_top_level() && ::is_set(m_pwindow))
       {

@@ -226,9 +226,7 @@ namespace user
 
       draw_framing(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
 
       auto pointScroll = get_context_offset();
@@ -485,9 +483,7 @@ namespace user
    void mesh::_001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst,index iItemLast)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectangleVisible(rectangleClient);
 
@@ -611,9 +607,7 @@ namespace user
 
       range & rangeHighlight = m_rangeHighlight;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (pdrawitem->m_iItem < 0)
       {
@@ -1046,9 +1040,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          ::size_i32 sizePage = rectangleClient.size();
 
@@ -1090,9 +1082,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          ::size_i32 sizePage = rectangleClient.size();
 
@@ -1199,9 +1189,7 @@ namespace user
          else
          {
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             sizeTotal.cy() = rectangleClient.height();
 
@@ -1805,9 +1793,7 @@ namespace user
 
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if(point.x() < 0
                || point.x() > rectangleClient.right
@@ -1867,8 +1853,7 @@ namespace user
          if(m_dItemHeight <= 0)
             return false;
 
-         ::rectangle_i32 rectangleClient;
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
          if(m_bTopText)
          {
             rectangleClient.top += m_rectangleTopText.height();
@@ -1915,8 +1900,7 @@ namespace user
       {
          /*if(_001GetColumnCount() == 0)
             return false;
-         */::rectangle_i32 rectangleClient;
-         client_rectangle(rectangleClient);
+         */auto rectangleClient = client_rectangle();
          if(m_bTopText)
          {
             rectangleClient.top += m_rectangleTopText.height();
@@ -2237,8 +2221,7 @@ namespace user
       }
       else if(m_eview == impact_list)
       {
-         ::rectangle_i32 rectangleClient;
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
          if(m_bTopText)
          {
             rectangleClient.top += m_rectangleTopText.height();
@@ -2276,8 +2259,7 @@ namespace user
       {
 //         if(m_flags.has(flag_auto_arrange) || m_piconlayout->m_iWidth <= 0)
          {
-            ::rectangle_i32 rectangleClient;
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
             if(m_bTopText)
             {
                rectangleClient.top += m_rectangleTopText.height();
@@ -4104,9 +4086,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.intersect(rectangleClient,item.m_rectangleItem) != 0;
 
@@ -4185,9 +4165,7 @@ namespace user
 
       m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       index x = 0;
       index right = rectangleClient.right;
@@ -6367,9 +6345,7 @@ namespace user
       if(m_eview == impact_grid && m_dItemHeight > 0)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          //auto pointScroll = get_context_offset();
 

@@ -71,7 +71,7 @@ namespace acme
 
          string strLastError = ::windows::last_error_message(dwLastError);
 
-         ::output_debug_string(strLastError);
+         ::infomration(strLastError);
 
       }
       catch (...)

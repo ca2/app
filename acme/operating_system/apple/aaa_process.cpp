@@ -548,26 +548,26 @@ namespace apple
 
 //      int uid = getuid();
 
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
+      ::infomration("---\n");
 
 //      int i = setuid(0);
 
@@ -706,7 +706,7 @@ auto tickStart = ::duration::now();
          iRead =(int) fread(sz,1,1024, pipe);
          if(iRead >0)
          {
-            ::output_debug_string(sz);
+            ::infomration(sz);
          }
          else if(iRead <= 0)
          {

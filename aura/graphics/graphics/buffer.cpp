@@ -157,7 +157,7 @@ namespace graphics
 //         if (strType.contains("list_box"))
 //         {
 //
-//            output_debug_string("list_box");
+//            infomration("list_box");
 //
 //         }
 

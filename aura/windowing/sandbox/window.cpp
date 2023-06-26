@@ -721,7 +721,7 @@ namespace sandbox_windowing
 
    //   ::file::path path = pnode->get_desktop_file_path(papp);
 
-   //   output_debug_string("\nfreebsd::interaction_impl::set_window_text");
+   //   infomration("\nfreebsd::interaction_impl::set_window_text");
 
    //   fflush(stdout);
 
@@ -743,7 +743,7 @@ namespace sandbox_windowing
    //      (const unsigned char *)(const char *)path,
    //      path.get_length());
 
-   //   output_debug_string("\nfreebsd::interaction_impl::bamf_set_icon END");
+   //   infomration("\nfreebsd::interaction_impl::bamf_set_icon END");
 
    //   fflush(stdout);
 
@@ -1809,7 +1809,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const char *)path,
       //   path.get_length());
 
-      //output_debug_string("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //infomration("\nfreebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -1990,20 +1990,20 @@ namespace sandbox_windowing
    //   if (message.m_atom == e_message_quit)
    //   {
 
-   //      output_debug_string("e_message_quit thread");
+   //      infomration("e_message_quit thread");
 
    //   }
 
    //   if (message.m_atom == e_message_left_button_down)
    //   {
 
-   //      output_debug_string("post_ui_message::e_message_left_button_down\n");
+   //      infomration("post_ui_message::e_message_left_button_down\n");
 
    //   }
    //   else if (message.m_atom == e_message_left_button_up)
    //   {
 
-   //      output_debug_string("post_ui_message::e_message_left_button_up\n");
+   //      infomration("post_ui_message::e_message_left_button_up\n");
 
    //   }
 
@@ -2385,7 +2385,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const char *)path,
       //   path.get_length());
 
-      //output_debug_string("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //infomration("\nfreebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -3424,7 +3424,7 @@ namespace sandbox_windowing
                   if (strType.contains("menu"))
                   {
 
-                     output_debug_string("menu");
+                     infomration("menu");
 
                   }
 

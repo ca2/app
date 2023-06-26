@@ -164,9 +164,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
    if(get_html_data() != nullptr)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if(rectangleClient.area() > 0)
       {
@@ -221,7 +219,7 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 
    ::rectangle_i32 rectangleClient;
 
-   client_rectangle(rectangleClient);
+   rectangleClient = client_rectangle();
 
    box = rectangleClient;
 

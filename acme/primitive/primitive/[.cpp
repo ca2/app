@@ -6125,13 +6125,13 @@ void var_skip_network_payload(const char *& pszJson, const ::ansi_character * ps
    else if (*pszJson == ']')
    {
 
-      ::output_debug_string("");
+      ::infomration("");
 
    }
    else if (*pszJson == '\0')
    {
 
-      ::output_debug_string("");
+      ::infomration("");
 
    }
    else
@@ -6231,7 +6231,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    else if (*pszJson == ']')
    {
 
-      ::output_debug_string("");
+      ::infomration("");
 
       //pszJson++;
 
@@ -6239,7 +6239,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    else if (*pszJson == '\0')
    {
 
-      ::output_debug_string("");
+      ::infomration("");
 
    }
    else
@@ -6379,12 +6379,12 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    }
    else if (*pszJson == ']')
    {
-      ::output_debug_string("");
+      ::infomration("");
       return ::e_type_new;
    }
    else if (*pszJson == '\0')
    {
-      ::output_debug_string("");
+      ::infomration("");
       return ::e_type_new;
    }
    else

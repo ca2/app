@@ -154,7 +154,7 @@ gdb_check(void)
 //}
 
 
-void output_debug_string(const scoped_string & str)
+void infomration(const scoped_string & str)
 {
 
    if(::acme::g_bOutputDebugString)
@@ -176,13 +176,13 @@ void output_debug_string(const scoped_string & str)
 }
 
 
-void output_debug_string(const ::wide_character * pOutputString)
+void infomration(const ::wide_character * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)
    {
 
-      output_debug_string(string(pOutputString));
+      infomration(string(pOutputString));
 
    }
 

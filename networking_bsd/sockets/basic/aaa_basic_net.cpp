@@ -662,7 +662,7 @@
 ////   catch (const ::exception & e)
 ////   {
 ////
-////      output_debug_string(e.m_strMessage);
+////      infomration(e.m_strMessage);
 ////
 ////      return false;
 ////

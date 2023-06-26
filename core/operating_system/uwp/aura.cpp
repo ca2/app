@@ -361,7 +361,7 @@ bool defer_co_initialize_ex(bool bMultiThread)
 
       }
 
-      ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+      ::infomration("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 
       return false;
 

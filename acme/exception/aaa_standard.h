@@ -58,19 +58,16 @@
 
 #else
 
-#include <signal.h>
-#include <ucontext.h>
 
-
-#if OSBIT == 64
-
-#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 3000
-
-#else
-
-#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 0
-
-#endif
+//#if OSBIT == 64
+//
+//#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 3000
+//
+//#else
+//
+//#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 0
+//
+//#endif
 
 #endif
 
@@ -87,10 +84,10 @@ public:
 #ifdef WINDOWS
    //EXCEPTION_POINTERS * m_ppointers;
 #else
-   i32            m_iSignal;
-   void *      m_psiginfo;
+   i32               m_iSignal;
+   void *            m_psiginfo;
 #ifndef ANDROID
-   ucontext_t     m_ucontext;
+   ucontext_t        m_ucontext;
 #endif
 #endif
 
@@ -129,17 +126,7 @@ public:
 
 #else
 
-   standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP,
-                      void * caller_address = nullptr) :
-      ::exception(error_exception, nullptr, nullptr, iSkip, caller_address),
-      m_iSignal(iSignal),
-      m_psiginfo(siginfodup(psiginfo)),
-      m_ucontext(*((::ucontext_t *)pc))
-   {
-
-      /*_ASSERTE(psiginfo != 0);*/
-
-   }
+   standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = -1, void * caller_address = nullptr);
 
 #endif
 
@@ -198,44 +185,8 @@ typedef struct _sig_ucontext
 
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
-      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
-#ifdef LINUX
-#ifdef _LP64
-         standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
-#else
-         ::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip)
-#endif
-#else
-#ifdef _LP64
-      
-#ifdef __arm64__
-         standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__pc)
-#else
-      standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
-#endif
-#else
-#ifdef SOLARIS
-         ::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.gregs[EIP])
-#elif defined(APPLE_IOS)
-         ::callstack(3, (void *) nullptr)
-#else
-         //::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip)
-#endif
-#endif
-#endif
-//         ::exception(),
-         //       ::standard_exception(pparticle, signal, psiginfo, pc)
-      {
 
-      }
-
-      /*       sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
-
-             void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
-
-             str += "signal " + ansi_string_from_i64(sig_num) +
-                       +" (" + ansi_string_from_i64(sig_num) + "), address is "  +
-                       itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
+      standard_access_violation (i32 signal, void * psiginfo, void * pc);
 
 #else
 

@@ -414,7 +414,6 @@ public:
 
    virtual bool is_hidden() const;
 
-
    //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 

@@ -436,7 +436,7 @@ namespace integration
                //write(1, buff, size);
             }
 
-            ::output_debug_string(strPathName + "\n");
+            ::infomration(strPathName + "\n");
 
          }
          next:

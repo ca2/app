@@ -41,7 +41,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //   if(g_bWindowingOutputDebugString)
 //   {
 //
-//      output_debug_string(pszDebugString);
+//      infomration(pszDebugString);
 //
 //      fflush(stdout);
 //

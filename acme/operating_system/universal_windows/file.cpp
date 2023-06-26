@@ -308,7 +308,7 @@ string file_module_path_dup()
 // //    HMODULE hModule = GetModuleHandle(_T("acme.dll"));
 // //    if(!hModule)
 // //    {
-// //       output_debug_string(L"GetModuleHandle(_T(\"acme.dll\")); failed");
+// //       infomration(L"GetModuleHandle(_T(\"acme.dll\")); failed");
 // //       return 0;
 // //    }
 // //    string csFilePath;
@@ -484,7 +484,7 @@ string file_module_path_dup()
 // //    PNtQuerySystemInformation NtQuerySystemInformation = (PNtQuerySystemInformation)GetProcAddress(hModule,"NtQuerySystemInformation");
 // //    if(0 == NtQuerySystemInformation)
 // //    {
-// //       output_debug_string(L"Getting proc of NtQuerySystemInformation failed");
+// //       infomration(L"Getting proc of NtQuerySystemInformation failed");
 // //       return;
 // //    }
 
@@ -539,7 +539,7 @@ string file_module_path_dup()
 // //          {
 // //             string csError;
 // //             csError.Format("Query hang for handle %d",(i32)pSysHandleInformation->Handles[g_CurrentIndex - 1].wValue);
-// //             output_debug_string(csError);
+// //             infomration(csError);
 // //             TerminateThread(ThreadHandle,0);
 // //             CloseHandle(ThreadHandle);
 // //             ThreadHandle = 0;
@@ -611,7 +611,7 @@ string file_module_path_dup()
 // //                // Get the drive name from the dos device name
 // //                if(!GetDrive((LPCTSTR)stHandle.tcDeviceName,csFileName,true))
 // //                {
-// //                   output_debug_string(L"GetDrive failed");
+// //                   infomration(L"GetDrive failed");
 // //                }
 // //                csFileName += (LPCTSTR)stHandle.tcFileName;
 // //             }

@@ -414,11 +414,11 @@ auto tick2 = ::time::now();
          string str2;
          str2.format("| time for calculating box blur : %d\b",dw3);
 
-         output_debug_string("/-----------------------------------------\n");
-         output_debug_string("| \n");
-         output_debug_string(str1);
-         output_debug_string(str2);
-         output_debug_string("| \n");
+         infomration("/-----------------------------------------\n");
+         infomration("| \n");
+         infomration(str1);
+         infomration(str2);
+         infomration("| \n");
 
          ::aura::application * papp = m_p->get_app();
          information("/--------------------------------");
@@ -531,11 +531,11 @@ auto tickC1 = ::time::now();
             string str2;
             str2.format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond());
 
-            output_debug_string("/-----------------------------------------\n");
-            output_debug_string("| \n");
-            output_debug_string(str1);
-            output_debug_string(str2);
-            output_debug_string("| \n");
+            infomration("/-----------------------------------------\n");
+            infomration("| \n");
+            infomration(str1);
+            infomration(str2);
+            infomration("| \n");
 
             //::aura::application * papp = pimage->get_app();
             information() << "/--------------------------------";
@@ -624,11 +624,11 @@ auto tick2 = ::time::now();
       string str2;
       str2.format("| time for calculating fast blur : %d\b",dw3);
 
-      output_debug_string("/-----------------------------------------\n");
-      output_debug_string("| \n");
-      output_debug_string(str1);
-      output_debug_string(str2);
-      output_debug_string("| \n");
+      infomration("/-----------------------------------------\n");
+      infomration("| \n");
+      infomration(str1);
+      infomration(str2);
+      infomration("| \n");
 
       ::aura::application * papp = m_p->get_app();
       information("/--------------------------------");

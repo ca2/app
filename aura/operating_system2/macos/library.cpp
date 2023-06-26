@@ -66,11 +66,11 @@
 //
 //   }
 //
-//   ::output_debug_string("\n\nGoing to dlopen: \"" + strPath + "\"");
+//   ::infomration("\n\nGoing to dlopen: \"" + strPath + "\"");
 //
 //   path = ::file::path(::get_exe_path()).folder() / strPath;
 //
-//   ::output_debug_string("\nFirst path to try: \"" + path + "\"");
+//   ::infomration("\nFirst path to try: \"" + path + "\"");
 //
 //   void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 //
@@ -150,7 +150,7 @@
 //
 //   }
 //
-//   ::output_debug_string("\n" + strMessage + "\n\n");
+//   ::infomration("\n" + strMessage + "\n\n");
 //
 //   return plibrary;
 //
@@ -222,7 +222,7 @@
 //
 //   }
 //
-//   ::output_debug_string("\n\n" + strMessage + "\n\n");
+//   ::infomration("\n\n" + strMessage + "\n\n");
 //
 //   return plibrary;
 //

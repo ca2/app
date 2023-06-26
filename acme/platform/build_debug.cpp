@@ -59,7 +59,7 @@ void acme_auto_debug_teste()
 
          wstr3 = str3;
 
-         output_debug_string("strstr");
+         infomration("strstr");
 
       }
 
@@ -104,7 +104,7 @@ void acme_auto_debug_teste()
 //   catch(...)
 //   {
 //   }
-//   ::output_debug_string(g_strDebugPuts);
+//   ::infomration(g_strDebugPuts);
 
 }
 

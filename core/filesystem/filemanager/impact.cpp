@@ -261,9 +261,7 @@ namespace filemanager
 
                set_position(1, 56);
 
-               ::rectangle_i32 rectangleClient;
-
-               client_rectangle(rectangleClient);
+               auto rectangleClient = client_rectangle();
 
                set_need_layout();
 

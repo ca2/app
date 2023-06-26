@@ -258,7 +258,7 @@ namespace freedesktop
    void file_not_ok()
    {
 
-      ::output_debug_string("matter icon nok");
+      ::infomration("matter icon nok");
 
       ::fflush(stdout);
 
@@ -317,7 +317,7 @@ namespace freedesktop
 
       ::file::path pathModuleIcon256 = pathModule / (strName + "-256.png");
 
-      ::output_debug_string("\npathModuleIcon256=" + pathModuleIcon256 + "\n");
+      ::infomration("\npathModuleIcon256=" + pathModuleIcon256 + "\n");
 
       ::fflush(stdout);
 
@@ -484,7 +484,7 @@ namespace freedesktop
 //
 //      ::file::path path = get_file_path();
 //
-//      output_debug_string("\nlinux::interaction_impl::set_window_text");
+//      infomration("\nlinux::interaction_impl::set_window_text");
 //
 //      fflush(stdout);
 //

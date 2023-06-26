@@ -218,7 +218,7 @@
 //
 //   }
 //
-//   ::output_debug_string(strMessage + "\n\n");
+//   ::infomration(strMessage + "\n\n");
 //
 //   return plibrary;
 //
@@ -273,7 +273,7 @@
 //
 //   }
 //
-//   ::output_debug_string("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+//   ::infomration("\n\nGoing to touch library (1) " + string(strPath) + "\n");
 //
 //   ::file::path path;
 //
@@ -442,7 +442,7 @@
 //
 //   }
 //
-//   ::output_debug_string(strMessage + "\n\n");
+//   ::infomration(strMessage + "\n\n");
 //
 //   return plibrary;
 //
@@ -493,7 +493,7 @@
 //
 //   }
 //
-//   ::output_debug_string("\n" + strMessage + "\n\n");
+//   ::infomration("\n" + strMessage + "\n\n");
 //
 //   return p;
 //

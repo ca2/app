@@ -104,7 +104,7 @@ void term_cairo_mutex()
 //   if(dwReason == DLL_PROCESS_ATTACH)
 //   {
 //
-//      output_debug_string(L"draw2d_cairo.dll initializing!\n");
+//      infomration(L"draw2d_cairo.dll initializing!\n");
 //
 //      xxdebug_box("draw2d_cairo.dll DllMain","box",e_message_box_ok);
 //
@@ -139,7 +139,7 @@ void term_cairo_mutex()
 //      }
 //
 //
-//      output_debug_string(L"draw2d_cairo.dll terminating!\n");
+//      infomration(L"draw2d_cairo.dll terminating!\n");
 //
 //
 //   }

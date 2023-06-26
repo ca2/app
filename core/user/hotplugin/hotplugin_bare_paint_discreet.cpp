@@ -46,9 +46,7 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       pgraphics->rectangle(rectangleClient);
 

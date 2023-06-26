@@ -616,7 +616,7 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::output_debug_string("exception release p = nullptr; \n");
+//      ::infomration("exception release p = nullptr; \n");
 //
 //   }
 //
@@ -629,7 +629,7 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::output_debug_string("exception release pparticle->release() \n");
+//      ::infomration("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -667,7 +667,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::output_debug_string("exception release pparticle->release() \n");
+//      ::infomration("exception release pparticle->release() \n");
 //
 //   }
 //

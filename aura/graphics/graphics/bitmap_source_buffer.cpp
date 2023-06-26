@@ -55,7 +55,7 @@ namespace graphics
          //if (!estatus)
          //{
 
-         //   ::output_debug_string("no memory map for the graphics buffer");
+         //   ::infomration("no memory map for the graphics buffer");
          //   //return estatus;
 
          //   estatus = ::success;

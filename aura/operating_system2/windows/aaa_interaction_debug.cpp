@@ -20,7 +20,7 @@ bool __windows_message_bypass(oswindow oswindow, const ::atom & atom, wparam wpa
 
          //str.format("\n%s", get_message_text(message, true).c_str());
 
-         //output_debug_string(str);
+         //infomration(str);
 
          #ifdef WINDOWS_DESKTOP
 
@@ -49,7 +49,7 @@ namespace windows
       //if (message == e_message_mouse_move)
       //{
 
-      //   //output_debug_string("mm.");
+      //   //infomration("mm.");
 
       //   lresult = ::DefWindowProcW(oswindow, message, wparam, lparam);
 
@@ -59,7 +59,7 @@ namespace windows
       //else if (message == e_message_set_cursor)
       //{
 
-      //   //output_debug_string("sc.");
+      //   //infomration("sc.");
 
       //   lresult = ::DefWindowProcW(oswindow, message, wparam, lparam);
 
@@ -69,7 +69,7 @@ namespace windows
       //else if (message == e_message_non_client_hittest)
       //{
 
-      //   //output_debug_string("ht.");
+      //   //infomration("ht.");
 
       //   lresult = ::DefWindowProcW(oswindow, message, wparam, lparam);
 

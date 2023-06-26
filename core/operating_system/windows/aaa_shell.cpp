@@ -165,7 +165,7 @@ namespace windows
 
       //   strIconLocation = pcontext->m_papexcontext->dir()->matter("aura.ico");
 
-      //   output_debug_string("aura.ico");
+      //   infomration("aura.ico");
 
       //   return -1;
 
@@ -970,7 +970,7 @@ pacmedirectory->is(strPath))
       if (string_ends_ci(imagekey.m_strPath, ".sln"))
       {
 
-         //output_debug_string("test .sln");
+         //infomration("test .sln");
 
       }
 
@@ -1147,7 +1147,7 @@ pacmedirectory->is(strPath))
 
             ::u32 dwLastError = ::GetLastError();
 
-            output_debug_string("LastError = " + as_string(dwLastError));
+            infomration("LastError = " + as_string(dwLastError));
 
          }
 

@@ -93,7 +93,7 @@ namespace aura
    session::~session()
    {
 
-      output_debug_string("aura::session::~session()");
+      infomration("aura::session::~session()");
 
    }
 
@@ -813,7 +813,7 @@ namespace aura
 ////      //      if (pkeyboardfocusOld != nullptr)
 ////      //      {
 ////
-////      //         output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+////      //         infomration("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 ////
 ////      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 ////      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -978,7 +978,7 @@ namespace aura
 //      //      if (pkeyboardfocusOld != nullptr)
 //      //      {
 //
-//      //         output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//      //         infomration("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 //      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -1136,7 +1136,7 @@ namespace aura
 //      //      if (pkeyboardfocusOld != nullptr)
 //      //      {
 //
-//      //         output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//      //         infomration("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 //      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -1821,7 +1821,7 @@ namespace aura
          //   if(!estatus)
          //   {
 
-         //      output_debug_string("\nFailed to __construct(m_puser)");
+         //      infomration("\nFailed to __construct(m_puser)");
 
          //   }
 
@@ -1839,7 +1839,7 @@ namespace aura
          if (!m_puser)
          {
 
-            output_debug_string("\nFailed to __construct_new(m_puser)");
+            infomration("\nFailed to __construct_new(m_puser)");
 
             error() <<".4";
 
@@ -2356,13 +2356,13 @@ namespace aura
 
       //if(m_pdatabase == nullptr)
       //{
-      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB");
       //   return false;
       //}
 

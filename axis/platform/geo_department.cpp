@@ -601,9 +601,9 @@ namespace geo
 
       string strSunset(timeSunset.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
 
-      output_debug_string("sunrise:" + strSunrise + "\n");
+      infomration("sunrise:" + strSunrise + "\n");
 
-      output_debug_string("sunset:" + strSunset + "\n");
+      infomration("sunset:" + strSunset + "\n");
 
       return true;
 

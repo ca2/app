@@ -30,7 +30,7 @@ CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
    if (g_iWsaStartupError != 0)
    {
 
-      output_debug_string("Failed to initialize Winsock.dll!\n");
+      infomration("Failed to initialize Winsock.dll!\n");
 
       return false;
 
@@ -39,7 +39,7 @@ CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
    if (lower_u8(g_wsadata.wVersion) < byteHi || (lower_u8(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
    {
 
-      output_debug_string("Could not find a usable version of Winsock.dll!\n");
+      infomration("Could not find a usable version of Winsock.dll!\n");
 
       WSACleanup();
 
@@ -51,7 +51,7 @@ CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
 
 #ifdef DEBUG
 
-      output_debug_string("The Winsock 2.2 dll was found. OK.\n");
+      infomration("The Winsock 2.2 dll was found. OK.\n");
 
 #endif
 

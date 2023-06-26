@@ -839,10 +839,10 @@ namespace user
       // Client Rect : e_layout_design : Design/_001OnDraw time
       virtual void input_client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
 
-      virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      //virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design);
 
-      virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      //virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
 
 

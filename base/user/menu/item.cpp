@@ -44,9 +44,9 @@ namespace user
    menu_item::~menu_item()
    {
 
-      output_debug_string("menu_item::~menu_item (1)");
-      output_debug_string("menu_item::~menu_item (2)");
-      output_debug_string("menu_item::~menu_item (3)");
+      infomration("menu_item::~menu_item (1)");
+      infomration("menu_item::~menu_item (2)");
+      infomration("menu_item::~menu_item (3)");
 
    }
 

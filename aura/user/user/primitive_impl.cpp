@@ -385,7 +385,7 @@ namespace user
 //      if (strType.contains("list_box"))
 //      {
 //
-//         output_debug_string("list_box");
+//         infomration("list_box");
 //
 //      }
 
@@ -829,7 +829,7 @@ namespace user
 //         if ((pmessage->m_ebuttonstate & 0x80000000) == (0x80000000))
 //         {
 //
-//            output_debug_string("(m_ebuttonstate & 0x80000000) == (0x80000000)");
+//            infomration("(m_ebuttonstate & 0x80000000) == (0x80000000)");
 //
 //         }
 
@@ -1957,7 +1957,7 @@ namespace user
          //
          //         str.format("creating fast timer: %d\n", nEllapse);
          //
-         //         ::output_debug_string(str);
+         //         ::infomration(str);
 
       }
 

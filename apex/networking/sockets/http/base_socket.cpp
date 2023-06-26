@@ -107,7 +107,7 @@ namespace sockets
          if (strTest.find_index('.') > 0)
          {
 
-            output_debug_string("!!!!!!!!!! -> " + strTest + "\n");
+            infomration("!!!!!!!!!! -> " + strTest + "\n");
 
          }
 
@@ -182,12 +182,12 @@ namespace sockets
             && m_request.header("connection").string().case_insensitive_order("close") != 0)
          {
             m_b_keepalive = true;
-         information(" ***    keepalive: true\n");
+         information(" ***    keepalive: true");
          }
          else
          {
             m_b_keepalive = false;
-            information(" *** keepalive: false\n");
+            information(" *** keepalive: false");
          }*/
 
       // prepare page
@@ -262,18 +262,18 @@ namespace sockets
    void http_base_socket::OnWriteComplete()
    {
       //Debug deb("http_base_socket::OnTransferLimit");
-      //information("\n");
-      //information("http_base_socket::OnTransferLimit\n");
+      //information("");
+      //information("http_base_socket::OnTransferLimit");
       //   char msg[32768];
       OnResponseComplete();
       //if (!m_b_keepalive)
       //{
-      //   //information("SetCloseAndDelete\n");
+      //   //information("SetCloseAndDelete");
       //   SetCloseAndDelete();
       //}
       //else
       //{
-      //   //information("keep-alive\n");
+      //   //information("keep-alive");
       //}
    }
 

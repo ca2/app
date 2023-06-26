@@ -444,7 +444,7 @@ namespace user
       ////if(puserinteractionpointeraChild->interaction_count() >= 2)
       ////{
 
-      ////   output_debug_string("place_holder with more than one child : what?!?!");
+      ////   infomration("place_holder with more than one child : what?!?!");
 
       ////}
 

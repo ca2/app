@@ -966,7 +966,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
          path.m_iSize = -1;
          stra.add(path);
 
-         //output_debug_string("flood for you: dir::ls ----> " + path);
+         //infomration("flood for you: dir::ls ----> " + path);
 
       }
 
@@ -1235,7 +1235,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
          //if (stra.has_elements() && stra.last() == "teste")
          //{
-         //   output_debug_string("teste");
+         //   infomration("teste");
          //}
 
          if(!FindNextFileW(hFind, &FindFileData))

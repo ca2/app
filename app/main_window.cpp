@@ -67,9 +67,7 @@ namespace app_app
 
       m_dDrawOnlyMainRectangles = false;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.is_empty())
       {
@@ -288,7 +286,7 @@ namespace app_app
          if (m_iCloseButtonDraw > 1)
          {
 
-            //::output_debug_string("output");
+            //::infomration("output");
 
          }
 

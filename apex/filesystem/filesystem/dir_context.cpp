@@ -1161,7 +1161,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 bool dir_context::name_is(const ::file::path& strPath)
 {
 
-   //output_debug_string(strPath);
+   //infomration(strPath);
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
@@ -2086,7 +2086,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
    if (patha[0].contains("yesno.xhtml"))
    {
 
-      output_debug_string("matter_from_locator yesno.xhtml");
+      infomration("matter_from_locator yesno.xhtml");
 
    }
 

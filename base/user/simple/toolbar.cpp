@@ -248,9 +248,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //}
 
-   ::rectangle_i32 rectangleClient;
-
-   client_rectangle(rectangleClient);
+   auto rectangleClient = client_rectangle();
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -925,7 +923,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 //            if(rectangle.width() > 10000)
                //          {
 
-               //           output_debug_string("width > 10000");
+               //           infomration("width > 10000");
 
                //         index_element_rectangle(iItem, rectangle, element_image);
 
@@ -1240,7 +1238,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (m_dwCtrlStyle & TBSTYLE_ALIGN_CENTER)
    {
 
-      output_debug_string("please_center_align");
+      infomration("please_center_align");
 
       if (m_pitema->has_elements())
       {

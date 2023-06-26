@@ -1937,7 +1937,7 @@ namespace core
    //i32 application::sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
    //{
 
-   //   ::output_debug_string("\n\napp_message_box: " + string(pszMessage) + "\n\n");
+   //   ::infomration("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 
    //   if (&Session == nullptr || psession->user() == nullptr)
    //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);

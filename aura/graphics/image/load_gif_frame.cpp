@@ -82,7 +82,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //      else
 //   //      {
 //
-//   //         output_debug_string("non zero alpha");
+//   //         infomration("non zero alpha");
 //
 //   //      }
 //
@@ -248,7 +248,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //         else
 //         {
 //
-//            output_debug_string("non zero alpha");
+//            infomration("non zero alpha");
 //
 //         }
 //
@@ -343,7 +343,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
          if (bA != 255)
          {
 
-            output_debug_string("test255");
+            infomration("test255");
          }
          pimage32[y*w + x].assign(argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255), pimageCanvas->color_indexes());
 

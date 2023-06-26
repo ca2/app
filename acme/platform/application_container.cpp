@@ -485,7 +485,7 @@ namespace acme
    //            {
    //
    //               //output_error_message("papp \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
-   //               output_debug_string("papp \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+   //               infomration("papp \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
    //
    //               return nullptr;
    //

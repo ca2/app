@@ -82,7 +82,7 @@ void prop_id_debug(::particle * pparticle);
 //      if(m_atom.is_empty())
 //      {
 //
-//         output_debug_string("\nHI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
+//         infomration("\nHI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
 //         m_atom = property.m_atom;
 //
 //      }
@@ -1849,7 +1849,7 @@ void on_property_construct(property * pproperty)
 
 #if DEBUG_PROPERTY_COUNT
 
-   output_debug_string("prop" + as_string(g_interlockedcountProperty.operator i64()) + "\n");
+   infomration("prop" + as_string(g_interlockedcountProperty.operator i64()) + "\n");
 
    on_property_construct2();
 
@@ -1877,14 +1877,14 @@ void on_property_destruct(property* pproperty)
    if (g_propertya.get_size() % 100 == 0)
    {
 
-      output_debug_string("PROPS("+as_string(g_propertya.get_size())+")\n");
+      infomration("PROPS("+as_string(g_propertya.get_size())+")\n");
 
       int iCount = 250;
 
       for (auto p : g_propertya)
       {
 
-         output_debug_string("prop(\"" + p->m_atom.to_string() + "\")=\""+p->to_string()+"\";\n");
+         infomration("prop(\"" + p->m_atom.to_string() + "\")=\""+p->to_string()+"\";\n");
 
          iCount--;
 

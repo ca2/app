@@ -194,7 +194,7 @@ namespace filemanager
       if (ptopic->m_atom == ID_OPEN_DOCUMENT)
       {
 
-         output_debug_string("filemanager::main_impact ::update_open_document");
+         infomration("filemanager::main_impact ::update_open_document");
 
       }
 

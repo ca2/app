@@ -42,7 +42,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = ::user::interaction::client_rectangle();
 
       if (rectangleClient.area() <= 0)
       {
@@ -225,7 +225,7 @@ namespace experience
 
 
          ::rectangle_i32 rectangle;
-         ::user::interaction::client_rectangle(rectangle);
+         rectangle = ::user::interaction::client_rectangle();
       }
 
 
@@ -237,7 +237,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = ::user::interaction::client_rectangle();
 
       __defer_construct(m_pregion);
       

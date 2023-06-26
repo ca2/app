@@ -965,7 +965,7 @@ namespace user
          if (strType.contains("form"))
          {
 
-            output_debug_string("form");
+            infomration("form");
 
          }
 

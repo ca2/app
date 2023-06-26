@@ -1343,7 +1343,7 @@ namespace apex
    //////
    //////            dappy(__type_name(this) + " : on_run failure : " + as_string(m_iErrorCode));
    //////
-   //////            ::output_debug_string("application::main on_run termination failure\n");
+   //////            ::infomration("application::main on_run termination failure\n");
    //////
    //////         }
    ////
@@ -1799,7 +1799,7 @@ namespace apex
 
             //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
-            output_debug_string(strMessage + m_strAppName);
+            infomration(strMessage + m_strAppName);
 
             information() << "apex::application::init_application exit";
 
@@ -2534,7 +2534,7 @@ namespace apex
       on_install();
       //{
 
-      //   ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+      //   ::infomration("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 
@@ -4670,7 +4670,7 @@ namespace apex
 
       //#ifdef UNIVERSAL_WINDOWS
       //
-      //      output_debug_string(strFile);
+      //      infomration(strFile);
       //
       //#elif defined(WINDOWS)
       //

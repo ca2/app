@@ -947,6 +947,9 @@ list(APPEND library_source
         user/nano/window_implementation.h
         user/nano/window_interface.cpp
         user/nano/window_interface.h
+        user/user/_string.cpp
+        user/user/_string.h
+        user/user/_text_stream.h
         user/user/check.cpp
         user/user/check.h
         user/user/conversation.cpp
@@ -1214,8 +1217,8 @@ list(APPEND library_source
         exception/exception2.h
         exception/exit.cpp
         exception/exit.h
-        exception/standard.cpp
-        exception/standard.h
+        #exception/standard.cpp
+        #exception/standard.h
         exception/translator.h
         exception/trap.h
         filesystem/_impl.h
@@ -1896,6 +1899,7 @@ if (LINUX)
             operating_system/linux/root_tools.cpp
             operating_system/linux/root_tools.h
             operating_system/linux/simple_app.cpp
+            operating_system/linux/standard_exception.h
             operating_system/linux/system.cpp
             operating_system/linux/thread.cpp
             #operating_system/linux/thread.h

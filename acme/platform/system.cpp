@@ -639,7 +639,7 @@ namespace acme
    //   if (!m_ptracelog)
    //   {
 
-   //      ::output_debug_string(psz);
+   //      ::infomration(psz);
 
    //      return;
 
@@ -2379,7 +2379,7 @@ namespace acme
             if (acmeapplication()->m_bVerbose)
             {
 
-               ::output_debug_string("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               ::infomration("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -2396,7 +2396,7 @@ namespace acme
 
                //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
 
-               output_debug_string("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + "ca2");
+               infomration("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + "ca2");
 
 #endif
 
@@ -2407,7 +2407,7 @@ namespace acme
             if (acmeapplication()->m_bVerbose)
             {
 
-               ::output_debug_string("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+               ::infomration("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -2418,7 +2418,7 @@ namespace acme
             //          if (!plibrary->is_opened())
             //          {
             //
-            //             ::output_debug_string("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+            //             ::infomration("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
             //
             //             return nullptr;
             //
@@ -2427,7 +2427,7 @@ namespace acme
             if (acmeapplication()->m_bVerbose)
             {
 
-               ::output_debug_string("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               ::infomration("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
@@ -2443,7 +2443,7 @@ namespace acme
                if (!papp)
                {
 
-                  ::output_debug_string("\n\n::apex::session::get_new_application\n...but this memory_new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  ::infomration("\n\n::apex::session::get_new_application\n...but this memory_new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -2456,11 +2456,11 @@ namespace acme
                //
                //         }
 
-               ::output_debug_string("\n\n\n|(4)----");
-               ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
-               ::output_debug_string("|\n");
-               ::output_debug_string("|\n");
-               ::output_debug_string("|----");
+               ::infomration("\n\n\n|(4)----");
+               ::infomration("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
+               ::infomration("|\n");
+               ::infomration("|\n");
+               ::infomration("|----");
 
             }
 
@@ -2492,22 +2492,22 @@ namespace acme
       //   if (is_verbose())
       //   {
       //
-      //      ::output_debug_string("\n\n\n|(3)----");
-      //      ::output_debug_string("| app : " + strAppId + "\n");
-      //      ::output_debug_string("|\n");
-      //      ::output_debug_string("|\n");
-      //      ::output_debug_string("|----");
+      //      ::infomration("\n\n\n|(3)----");
+      //      ::infomration("| app : " + strAppId + "\n");
+      //      ::infomration("|\n");
+      //      ::infomration("|\n");
+      //      ::infomration("|----");
       //
       //   }
       //
       //   if (is_verbose())
       //   {
       //
-      //      ::output_debug_string("\n\n\n|(2)----");
-      //      ::output_debug_string("| app : " + strAppId + "\n");
-      //      ::output_debug_string("|\n");
-      //      ::output_debug_string("|\n");
-      //      ::output_debug_string("|----");
+      //      ::infomration("\n\n\n|(2)----");
+      //      ::infomration("| app : " + strAppId + "\n");
+      //      ::infomration("|\n");
+      //      ::infomration("|\n");
+      //      ::infomration("|----");
       //
       //   }
       //
@@ -2515,11 +2515,11 @@ namespace acme
       //   if (is_verbose())
       //   {
       //
-      //      ::output_debug_string("\n\n\n|(1)----");
-      //      ::output_debug_string("| app : " + strAppId + "\n");
-      //      ::output_debug_string("|\n");
-      //      ::output_debug_string("|\n");
-      //      ::output_debug_string("|----");
+      //      ::infomration("\n\n\n|(1)----");
+      //      ::infomration("| app : " + strAppId + "\n");
+      //      ::infomration("|\n");
+      //      ::infomration("|\n");
+      //      ::infomration("|----");
       //
       //   }
 
@@ -2783,13 +2783,13 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 //
 //         //   int iDialogResult = pfuture->m_var;
 //
-//         //   ::output_debug_string("result " + as_string(iDialogResult));
+//         //   ::infomration("result " + as_string(iDialogResult));
 //
 //         //}
 //
 //         //throw ::exception(error_failed, strMessage + "\n\nCould not open required library.");
 //
-//         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
+//         ::infomration("The application library for appid \"" + strAppId + "\" wasn't loaded.");
 //
 //      }
 //

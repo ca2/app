@@ -81,7 +81,7 @@ string imm_context::_get_candidate(int iList)
 
       ::u32 dw = GetLastError();
 
-      output_debug_string("error " + as_string(dw));
+      infomration("error " + as_string(dw));
 
    }
 

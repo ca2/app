@@ -113,18 +113,18 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      ptab->client_rectangle(rcClient);
+      rcClient = ptab->client_rectangle();
       
       if(rcClient.is_empty())
       {
          
-         output_debug_string("style::_001TabOnDrawSchema01 Tab Client Rect is empty\n");
+         infomration("style::_001TabOnDrawSchema01 Tab Client Rect is empty\n");
          
          return true;
          
       }
       
-      //output_debug_string("style::_001TabOnDrawSchema01\n");
+      //infomration("style::_001TabOnDrawSchema01\n");
 
       auto pstyle = ptab->get_style(pgraphics);
 
@@ -1253,7 +1253,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      ptab->client_rectangle(rcClient);
+      rcClient = ptab->client_rectangle();
 
       if (pdata->m_bVertical)
       {
@@ -1304,7 +1304,7 @@ namespace experience_core
 //            if (strType.contains("form"))
 //            {
 //
-//               output_debug_string("form");
+//               infomration("form");
 //
 //            }
 

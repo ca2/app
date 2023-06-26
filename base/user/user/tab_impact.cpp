@@ -641,7 +641,7 @@ namespace user
 
             string strType =  typeid(*p1).name();
 
-            output_debug_string("the type is " + strType);
+            infomration("the type is " + strType);
             
          }
 
@@ -663,7 +663,7 @@ namespace user
          && m_pimpactdataOld->m_atom != OPTIONS_IMPACT)
       {
 
-         output_debug_string("::user::e_flag_hide_on_kill_focus");
+         infomration("::user::e_flag_hide_on_kill_focus");
 
          m_pimpactdataOld->m_pplaceholder->hide();
 
@@ -719,7 +719,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      m_pimpactdata->m_pplaceholder->client_rectangle(rectangleClient);
+      rectangleClient = m_pimpactdata->m_pplaceholder->client_rectangle();
 
       if (!rectangleTabClient.is_empty())
       {

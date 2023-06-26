@@ -67,7 +67,7 @@ namespace sockets
    socket_thread::socket_thread()
    {
 
-      ::output_debug_string(::as_string(g_iSocketThread++) + " - memory_new socket_thread\n");
+      ::infomration(::as_string(g_iSocketThread++) + " - memory_new socket_thread\n");
 
    }
 
@@ -108,7 +108,7 @@ namespace sockets
    socket_thread::~socket_thread()
    {
 
-      ::output_debug_string("--->>>>>socket_thread::~SOCKET_thread\n");
+      ::infomration("--->>>>>socket_thread::~SOCKET_thread\n");
 
    }
 
@@ -188,7 +188,7 @@ namespace sockets
       //if (phandler.get() != m_psocket->m_psockethandler.get())
       //{
 
-      //   //   ::output_debug_string("");
+      //   //   ::infomration("");
 
       //   //}
       //   //else

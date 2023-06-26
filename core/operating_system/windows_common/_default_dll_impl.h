@@ -16,22 +16,22 @@ int_bool WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID pReserved)
    //{
    //case DLL_PROCESS_ATTACH:
    //{
-   //   ::output_debug_string("hash_sha1.dll DLL_PROCESS_ATTACH");
+   //   ::infomration("hash_sha1.dll DLL_PROCESS_ATTACH");
    //}
    //break;
    //case DLL_THREAD_ATTACH:
    //{
-   //   ::output_debug_string("hash_sha1.dll DLL_THREAD_ATTACH");
+   //   ::infomration("hash_sha1.dll DLL_THREAD_ATTACH");
    //}
    //break;
    //case DLL_THREAD_DETACH:
    //{
-   //   ::output_debug_string("hash_sha1.dll DLL_THREAD_DETACH");
+   //   ::infomration("hash_sha1.dll DLL_THREAD_DETACH");
    //}
    //break;
    //case DLL_PROCESS_DETACH:
    //{
-   //   ::output_debug_string("hash_sha1.dll DLL_PROCESS_DETACH");
+   //   ::infomration("hash_sha1.dll DLL_PROCESS_DETACH");
    //}
    //break;
    //}

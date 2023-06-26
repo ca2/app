@@ -468,9 +468,7 @@ namespace account
       */
 
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       m_plogin->place(rectangleClient);
 

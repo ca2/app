@@ -76,7 +76,7 @@ task::~task()
    auto strThreadName = ::task_get_name();
    auto itask = ::get_current_itask();
 
-   ::output_debug_string("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
+   ::infomration("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
 
 #endif
 
@@ -773,13 +773,13 @@ void task::init_task()
    if (__type_name(this).contains("synth_thread"))
    {
 
-      output_debug_string("synth_thread thread::thread_proc");
+      infomration("synth_thread thread::thread_proc");
 
    }
    else if (__type_name(this).case_insensitive_ends("out"))
    {
 
-      output_debug_string("synth_thread thread::out");
+      infomration("synth_thread thread::out");
 
    }
 

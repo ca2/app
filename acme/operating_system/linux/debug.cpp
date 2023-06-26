@@ -218,7 +218,7 @@ i32 gdb_check()
 //}
 
 
-void output_debug_string(const ::scoped_string & scopedstr)
+void infomration(const ::scoped_string & scopedstr)
 {
 
    if(::acme::acme::g_pacme->m_bOutputDebugString)
@@ -240,13 +240,13 @@ void output_debug_string(const ::scoped_string & scopedstr)
 }
 
 
-void output_debug_string(const ::wide_character * pOutputString)
+void infomration(const ::wide_character * pOutputString)
 {
 
    if(::acme::acme::g_pacme->m_bOutputDebugString)
    {
 
-      output_debug_string(string(pOutputString));
+      infomration(string(pOutputString));
 
    }
 

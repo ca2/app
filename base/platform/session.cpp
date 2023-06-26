@@ -21,7 +21,7 @@ namespace base
    session::~session()
    {
 
-      output_debug_string("aura::session::~session()");
+      infomration("aura::session::~session()");
 
    }
 

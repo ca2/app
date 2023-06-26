@@ -628,7 +628,7 @@ namespace aura
       if (!pfactory)
       {
 
-         output_debug_string("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
+         infomration("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
 
          return pfactory;
 
@@ -725,14 +725,14 @@ namespace aura
       //{
 
       //   printf("%s", "\n\nApplication Information\n");
-      //   output_debug_string("\n\nApplication Information\n");
+      //   infomration("\n\nApplication Information\n");
 
       //   int iPid;
 
       //   iPid = ::get_current_process_id();
 
       //   printf("%s", ("Process PID: " + as_string(iPid) + "\n").c_str());
-      //   output_debug_string("Process PID: " + as_string(iPid) + "\n");
+      //   infomration("Process PID: " + as_string(iPid) + "\n");
 
       //}
 
@@ -1032,10 +1032,10 @@ namespace aura
 
       //}
 
-      ////output_debug_string("CommonAppData (matter) : " + dir()->commonappdata()  + "\n");
-      ////output_debug_string("commonappdata (matter) : " + dir()->commonappdata() + "\n");
-      ////output_debug_string("Common App Data (matter) : " + dir()->commonappdata() + "\n");
-      ////output_debug_string("common app data (matter) : " + dir()->commonappdata() + "\n");
+      ////infomration("CommonAppData (matter) : " + dir()->commonappdata()  + "\n");
+      ////infomration("commonappdata (matter) : " + dir()->commonappdata() + "\n");
+      ////infomration("Common App Data (matter) : " + dir()->commonappdata() + "\n");
+      ////infomration("common app data (matter) : " + dir()->commonappdata() + "\n");
 
       //__construct_new(m_pcrypto);
 
@@ -1086,7 +1086,7 @@ namespace aura
          //else
          //{
 
-         //   output_debug_string("ERROR: Failed to initialize draw2d library.");
+         //   infomration("ERROR: Failed to initialize draw2d library.");
 
          //   ///estatus = (const ::extended::status &) m_pfactoryDraw2d;
 
@@ -1329,7 +1329,7 @@ namespace aura
 
       }
 
-      //output_debug_string("No draw2d pluging available!!.");
+      //infomration("No draw2d pluging available!!.");
       if (pfactoryDraw2d)
       {
 
@@ -2928,11 +2928,11 @@ namespace aura
 ////
 ////      ::file::path pathCa2Module = dir()->ca2module();
 ////
-////      ::output_debug_string("\n\n::aura::system::find_applications_to_cache\n\n");
+////      ::infomration("\n\n::aura::system::find_applications_to_cache\n\n");
 ////
-////      ::output_debug_string("ca2 module folder : " + pathCa2Module);
+////      ::infomration("ca2 module folder : " + pathCa2Module);
 ////
-////      ::output_debug_string("\n\n\n");
+////      ::infomration("\n\n\n");
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////
@@ -2953,7 +2953,7 @@ namespace aura
 ////               continue;
 ////            }
 ////
-////            ::output_debug_string("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+////            ::infomration("library("+as_string(i)+") : " + strLibraryId+"\n\n");
 ////
 ////            map_application_library(strLibraryId);
 ////
@@ -3019,14 +3019,14 @@ namespace aura
 //
 //      if(!library.open(pszLibrary, true))
 //      {
-//         ::output_debug_string("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
+//         ::infomration("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
 //         return false;
 //      }
 //
 //      if(!library.open_ca2_library())
 //      {
 //
-//         ::output_debug_string("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+//         ::infomration("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
 //
 //         return false;
 //
@@ -4287,7 +4287,7 @@ namespace aura
 //
 //         strParam = " -c '" + strCmd + "'";
 //
-//         output_debug_string(strParam);
+//         infomration(strParam);
 //
 //         call_async(shell, strParam, pathDir, e_display_default, false);
 //
@@ -5807,7 +5807,7 @@ namespace aura
 ////      if(f != nullptr)
 ////      {
 ////
-////         output_debug_string("linux_g_direct_term entry point_i32 not found at basecore library");
+////         infomration("linux_g_direct_term entry point_i32 not found at basecore library");
 ////
 ////         (*f)();
 ////

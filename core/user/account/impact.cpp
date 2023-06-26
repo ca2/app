@@ -139,9 +139,7 @@ namespace account
       int h;
       int w;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       /*
       if (m_bSelfLayout)

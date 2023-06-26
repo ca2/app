@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      ::point_i32                            m_point;
+      ::point_i32                            m_point2;
       ::size_i32                             m_size;
       ::e_display                            m_edisplay;
       ::e_appearance                         m_eappearance;
@@ -25,6 +25,9 @@ namespace user
 
 
       visual_state() { }
+
+
+      void set_visual_state_origin(const ::point_i32 & point){m_point2= point;}
 
 
       ::e_display display() const { return m_edisplay; }
@@ -40,20 +43,20 @@ namespace user
       visual_state & operator -= (const enum_appearance & eappearance);
       visual_state & operator ^= (const enum_appearance & eappearance);
 
-      ::point_i32 origin() const { return m_point; }
-      ::point_i32 & origin() { return m_point; }
+      ::point_i32 origin() const { return m_point2; }
+      //::point_i32 & origin() { return m_point; }
 
       ::size_i32 size() const { return m_size; }
       ::size_i32 & size() { return m_size; }
 
-      template < primitive_rectangle RECTANGLE >
-      visual_state & operator = (const RECTANGLE & rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
+      //template < primitive_rectangle RECTANGLE >
+      //visual_state & operator = (const RECTANGLE & rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
 
-      ::i32 left() const { return m_point.x(); }
-      ::i32 & left() { return m_point.x(); }
+      ::i32 left() const { return m_point2.x(); }
+      //::i32 & left() { return m_point.x(); }
 
-      ::i32 top() const { return m_point.y(); }
-      ::i32 & top() { return m_point.y(); }
+      ::i32 top() const { return m_point2.y(); }
+      //::i32 & top() { return m_point.y(); }
 
       ::i32 width() const { return m_size.cx(); }
       ::i32 & width() { return m_size.cx(); }
@@ -61,16 +64,24 @@ namespace user
       ::i32 height() const { return m_size.cy(); }
       ::i32 & height() { return m_size.cy(); }
 
-      bool operator == (const visual_state & visualstate) const { return !memcmp(this, &visualstate, sizeof(visual_state)); }
-      bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }
+      bool operator == (const visual_state & state) const
+      {
+         return
+         m_point2 == state.m_point2
+         && m_size == state.m_size
+         && m_edisplay == state.m_edisplay
+         && m_eappearance == state.m_eappearance;
+         //return !memcmp(this, &visualstate, sizeof(visual_state));
+      }
+      //bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }
 
       auto raw_rectangle() const { return ::rectangle_i32(m_size); }
-      void raw_rectangle(::rectangle_i32 & rect) const { rect = raw_rectangle(); }
+      //void raw_rectangle(::rectangle_i32 & rect) const { rect = raw_rectangle(); }
 
-      auto parent_raw_rectangle() const { return ::rectangle_i32(m_point, m_size); }
-      void parent_raw_rectangle(::rectangle_i32 & rect) const { rect = parent_raw_rectangle(); }
+      auto parent_raw_rectangle() const { return ::rectangle_i32(m_point2, m_size); }
+      //void parent_raw_rectangle(::rectangle_i32 & rect) const { rect = parent_raw_rectangle(); }
 
-      void bottom_right(const ::point_i32 & point) { m_size = point - m_point; }
+      void bottom_right(const ::point_i32 & point) { m_size = point - m_point2; }
 
 
    };

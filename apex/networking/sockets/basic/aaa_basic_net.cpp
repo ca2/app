@@ -662,7 +662,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //   catch (const ::exception & e)
 //   {
 //
-//      output_debug_string(e.m_strMessage);
+//      infomration(e.m_strMessage);
 //
 //      return false;
 //

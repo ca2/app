@@ -281,8 +281,8 @@ namespace sockets
 
    void sip_base_client_socket::SendResponse()
    {
-      information("\n");
-      information("SendResponse\n");
+      information("");
+      information("SendResponse");
       string msg;
       string strLine;
       string strTrace;

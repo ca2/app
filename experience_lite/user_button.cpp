@@ -173,7 +173,7 @@ namespace user
          if (m_estockicon == stock_icon_restore)
          {
 
-            output_debug_string("restore button is being shown");
+            infomration("restore button is being shown");
 
          }
 
@@ -186,9 +186,7 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       m_spregion->create_oval(rectangleClient);
 

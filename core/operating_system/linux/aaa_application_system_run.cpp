@@ -127,7 +127,7 @@ void sn_start_context()
 //   if (!psystem->begin_synch())
 //   {
 //
-//      output_debug_string("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
+//      infomration("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
 //
 //      return error_failed;
 //

@@ -281,9 +281,7 @@ namespace user
 
       y += 10;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int w = rectangleClient.width() - x * 2;
 
@@ -389,9 +387,7 @@ namespace user
 
       pimage1 = m_pimageMem;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
       {
@@ -672,9 +668,7 @@ namespace user
    void menu_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
          return;

@@ -117,8 +117,7 @@ namespace user
       if(m_scalar.is_null())
          return;
 
-      ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
@@ -214,9 +213,7 @@ namespace user
    ::item_pointer step_slider::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.width() == 0)
       {

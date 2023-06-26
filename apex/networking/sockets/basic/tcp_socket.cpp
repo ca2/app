@@ -1356,7 +1356,7 @@ return true;
       //   if(m_ssl_ctx)
       //   {
 
-      //      information("SSL Context already initialized - closing socket\n");
+      //      information("SSL Context already initialized - closing socket");
 
       //      SetCloseAndDelete(true);
 
@@ -1682,7 +1682,7 @@ return true;
 
       //            auto last_error = networking_last_error();
 
-      //            // output_debug_string("");
+      //            // infomration("");
       //          
       //         }
 
@@ -2307,7 +2307,7 @@ return true;
 ////      UNREFERENCED_PARAMETER(type);
 ////      UNREFERENCED_PARAMETER(protocol);
 ////      UNREFERENCED_PARAMETER(s);
-////      //information("socket::OnOptions()\n");
+////      //information("socket::OnOptions()");
 ////#ifdef SO_NOSIGPIPE
 ////      SetSoNosigpipe(true);
 ////#endif

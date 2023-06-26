@@ -130,7 +130,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
 ()nFixedChars;
 ()pData;
 //   information(::acme::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
-::output_debug_string("fixed_string_log::OnAllocateSpill");
+::infomration("fixed_string_log::OnAllocateSpill");
 }
 
 void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChars,const string_data* pData ) noexcept
@@ -139,7 +139,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ()nFixedChars;
 ()pData;
 //   information(::acme::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
-::output_debug_string("fixed_string_log::OnReallocateSpill");
+::infomration("fixed_string_log::OnReallocateSpill");
 }
 
 */

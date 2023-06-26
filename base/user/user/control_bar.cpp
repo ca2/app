@@ -533,8 +533,7 @@ namespace user
    {
       // get interaction_impl DC that is clipped to the non-client area
       /* trans   CWindowDC spgraphics(this);
-         ::rectangle_i32 rectangleClient;
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
          ::rectangle_i32 rectangleWindow;
          window_rectangle(rectangleWindow);
          screen_to_client(rectangleWindow);
@@ -558,7 +557,7 @@ namespace user
 
       // get interaction_impl DC that is clipped to the non-client area
       ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      rectangleClient = client_rectangle();
       ::rectangle_i32 rectangleWindow;
       window_rectangle(rectangleWindow);
       screen_to_client()(rectangleWindow);
@@ -923,7 +922,7 @@ namespace user
       // paint inside client area
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
       DrawBorders(pgraphics, rectangle);
 

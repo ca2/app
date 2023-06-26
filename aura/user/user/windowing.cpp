@@ -105,7 +105,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//      ::output_debug_string("::user::g_pmapImpl erased oswindow");
+//      ::infomration("::user::g_pmapImpl erased oswindow");
 //
 //#endif
 //
@@ -116,7 +116,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//      ::output_debug_string("::user::g_pmapImpl erased pimpl->m_oswindow");
+//      ::infomration("::user::g_pmapImpl erased pimpl->m_oswindow");
 //
 //#endif
 //
@@ -127,7 +127,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//      ::output_debug_string("::user::g_pmapHandle erased pimpl");
+//      ::infomration("::user::g_pmapHandle erased pimpl");
 //
 //#endif
 //
@@ -160,7 +160,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//         ::output_debug_string("::user::g_pmapImpl erased oswindow");
+//         ::infomration("::user::g_pmapImpl erased oswindow");
 //
 //#endif
 //
@@ -177,7 +177,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//         ::output_debug_string("psystem->m_pwindowmap erased oswindow");
+//         ::infomration("psystem->m_pwindowmap erased oswindow");
 //
 //#endif
 //

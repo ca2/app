@@ -271,7 +271,7 @@ namespace user
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
 //
-//         output_debug_string("list_box");
+//         infomration("list_box");
 //
 //      }
 
@@ -474,7 +474,7 @@ namespace user
          // if (bHasProdevian)
          // {
 
-         //    output_debug_string("has_prodevian");
+         //    infomration("has_prodevian");
 
          // }
 //
@@ -504,7 +504,7 @@ namespace user
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
-//               output_debug_string("list_box");
+//               infomration("list_box");
 //
 //            }
 
@@ -726,7 +726,7 @@ namespace user
          {
 
             // todo display average from last 10 or so frame drawing time and not for every each single offending sample
-            // output_debug_string("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
+            // infomration("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
 
             m_timeNextScreenUpdate += timeFrame;
 
@@ -743,7 +743,7 @@ namespace user
             if (timeToWaitForNextFrame > 1_s)
             {
 
-               //output_debug_string("what?!?!\n");
+               //infomration("what?!?!\n");
 
                timeToWaitForNextFrame = 500_ms;
 
@@ -802,7 +802,7 @@ namespace user
             if (timeEndWait - timeStartWait > 100_ms)
             {
 
-               output_debug_string("Waited more than 100ms to go display drawn frame at screen?!?!\n");
+               infomration("Waited more than 100ms to go display drawn frame at screen?!?!\n");
 
             }
 
@@ -911,7 +911,7 @@ namespace user
       
       timeUpdateScreenPost.Now();
 
-      output_debug_string("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+      infomration("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
 
 #endif
 
@@ -934,7 +934,7 @@ namespace user
 
       auto e2 = timeUpdateScreenPost.elapsed();
 
-      output_debug_string("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+      infomration("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1144,7 +1144,7 @@ namespace user
 
          static ::time timeLast;
 
-         output_debug_string("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+         infomration("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1225,7 +1225,7 @@ namespace user
          if(strType.case_insensitive_contains("list_box"))
          {
 
-            output_debug_string("We're on the list_box update_screen");
+            infomration("We're on the list_box update_screen");
 
          }
          
@@ -1302,9 +1302,9 @@ namespace user
       if (m_timeDuringUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //infomration("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //infomration("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
 
@@ -1313,9 +1313,9 @@ namespace user
       if (m_timeOufOfUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //infomration("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //infomration("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
       

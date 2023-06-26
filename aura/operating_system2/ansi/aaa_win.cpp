@@ -28,7 +28,7 @@ format_message(
 
 VOID
 WINAPI
-output_debug_string(
+infomration(
                    const char * pOutputString
 
                    )
@@ -49,14 +49,14 @@ output_debug_string(
 
 VOID
 WINAPI
-output_debug_string(
+infomration(
                    const ::wide_character * pOutputString
 
                    )
 {
 
 
-    output_debug_string(string(pOutputString));
+    infomration(string(pOutputString));
 
 
 

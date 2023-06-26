@@ -124,7 +124,7 @@ namespace universal_windows
          if (FAILED(hr))
          {
 
-            output_debug_string("finished drawing with errors");
+            infomration("finished drawing with errors");
 
          }
 

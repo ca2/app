@@ -228,7 +228,7 @@ namespace networking_bsd
          FREE(pAddresses);
       }
 
-      ::output_debug_string(strLog);
+      ::infomration(strLog);
 
       return addressa;
 

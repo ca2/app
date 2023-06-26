@@ -130,7 +130,7 @@
 ////      {
 ////         if(m_iAlloc > 1024 * 1024)
 ////         {
-////            ::output_debug_string("strange string buffer usage");
+////            ::infomration("strange string buffer usage");
 ////         }
 ////         m_psz = (char *)memory_reallocate(m_psz,m_iAlloc);
 ////      }

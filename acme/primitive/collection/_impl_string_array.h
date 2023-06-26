@@ -4535,7 +4535,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 inline void string_array_base < Type, RawType, m_etypeContainer > ::debug_output(::index iStart, ::count inCountLastOut)
 {
 
-::output_debug_string(implode(STR_NEWLINE, iStart, inCountLastOut));
+::infomration(implode(STR_NEWLINE, iStart, inCountLastOut));
 
 }
 

@@ -67,9 +67,7 @@ namespace user
    void menu_interaction::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (m_atom == "separator")
       {

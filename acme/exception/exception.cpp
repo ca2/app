@@ -332,7 +332,7 @@ void __cdecl __clearerr_s(FILE *stream)
 //         for (auto& str : stra)
 //         {
 //
-//            output_debug_string(str);
+//            infomration(str);
 //
 //         }
 //

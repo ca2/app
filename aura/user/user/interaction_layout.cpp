@@ -253,7 +253,7 @@ namespace user
 //      else if (edisplay == e_display_zoomed)
 //      {
 //
-//         output_debug_string("e_display_zoomed");
+//         infomration("e_display_zoomed");
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
@@ -275,7 +275,7 @@ namespace user
 //      else if (edisplay == e_display_full_screen)
 //      {
 //
-//         output_debug_string("e_display_full_screen");
+//         infomration("e_display_full_screen");
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
@@ -473,7 +473,9 @@ namespace user
    void interaction_layout::set_initial_dim(const ::point_i32 & p, const ::size_i32 & s)
    {
 
-      sketch() = ::rectangle_i32(p, s);
+      sketch().set_visual_state_origin(p);
+
+      sketch().m_size = s;
 
       design() = sketch();
 

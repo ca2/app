@@ -1171,7 +1171,7 @@ ret:
       //if (!estatus)
       //{
 
-      //   output_debug_string("\nFailed to __construct_new(m_pfs)");
+      //   infomration("\nFailed to __construct_new(m_pfs)");
 
       //   m_result.add(estatus);
 
@@ -1350,7 +1350,7 @@ ret:
 
          //output_error_message("Could not initialize Local data central");
 
-         output_debug_string("Could not initialize Local data central");
+         infomration("Could not initialize Local data central");
 
          //return false;
 
@@ -1652,13 +1652,13 @@ namespace apex
 
       //if(m_pdatabase == nullptr)
       //{
-      //   information("VmpLightApp::init_instance failed to instatiate LightDB\n");
+      //   information("VmpLightApp::init_instance failed to instatiate LightDB");
       //   return false;
       //}
 
       //if(!m_pdatabase->Initialize())
       //{
-      //   information("VmpLightApp::init_instance failed to initialize LightDB\n");
+      //   information("VmpLightApp::init_instance failed to initialize LightDB");
       //   return false;
       //}
 

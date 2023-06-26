@@ -358,9 +358,9 @@ namespace apex
 
       //xxdebug_box("box1", "box1", e_message_box_icon_information);
    //
-     // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "output_debug_string.txt" ;
+     // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "infomration.txt" ;
 
-      //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "output_debug_string.txt" ;
+      //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "infomration.txt" ;
 
       //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
@@ -622,13 +622,13 @@ namespace apex
       {
 
          printf("%s", "\n\nApplication Information\n");
-         output_debug_string("\n\nApplication Information\n");
+         infomration("\n\nApplication Information\n");
 
          auto iPid = acmenode()->current_process_identifier();
 
          printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
-         output_debug_string("Process PID: " + ::as_string(iPid) + "\n");
+         infomration("Process PID: " + ::as_string(iPid) + "\n");
 
       }
 
@@ -1025,7 +1025,7 @@ pacmedirectory->create("/ca2core");
       //
       //         strCurrentWorkingDirectory = get_current_directory_name();
       //
-      //         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //         ::infomration("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
       //
       //      }
 
@@ -1367,7 +1367,7 @@ pacmedirectory->create("/ca2core");
 
       //   //output_error_message("Failed to allocate get_session()!!");
 
-      //   output_debug_string("Failed to allocate get_session()!!");
+      //   infomration("Failed to allocate get_session()!!");
 
       //   return estatus;
 
@@ -1399,7 +1399,7 @@ pacmedirectory->create("/ca2core");
       }
          //{
 
-         //   output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+         //   infomration("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
 
          //   return false;
 
@@ -2825,11 +2825,11 @@ pacmedirectory->create("/ca2core");
    ////
    ////      ::file::path pathCa2Module = dir()->ca2module();
    ////
-   ////      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
+   ////      ::infomration("\n\n::apex::system::find_applications_to_cache\n\n");
    ////
-   ////      ::output_debug_string("ca2 module folder : " + pathCa2Module);
+   ////      ::infomration("ca2 module folder : " + pathCa2Module);
    ////
-   ////      ::output_debug_string("\n\n\n");
+   ////      ::infomration("\n\n\n");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
@@ -2850,7 +2850,7 @@ pacmedirectory->create("/ca2core");
    ////               continue;
    ////            }
    ////
-   ////            ::output_debug_string("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+   ////            ::infomration("library("+as_string(i)+") : " + strLibraryId+"\n\n");
    ////
    ////            map_application_library(strLibraryId);
    ////
@@ -2923,7 +2923,7 @@ pacmedirectory->create("/ca2core");
    //      //if(!library.open_library())
    //      //{
    //
-   //      //   ::output_debug_string("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+   //      //   ::infomration("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
    //
    //      //   return false;
    //
@@ -4088,7 +4088,7 @@ pacmedirectory->create("/ca2core");
 
          strParam = " -c '" + strCmd + "'";
 
-         output_debug_string(strParam);
+         infomration(strParam);
 
          auto psystem = acmesystem();
 

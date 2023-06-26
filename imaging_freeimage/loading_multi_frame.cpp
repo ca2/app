@@ -218,7 +218,7 @@ namespace imaging_freeimage
                      if (!freeimage_load_imagea_frame(pimageCompose, pframea, iFrame, pfi))
                      {
 
-                        output_debug_string("failed to load page image");
+                        infomration("failed to load page image");
 
                      }
 
@@ -313,7 +313,7 @@ namespace imaging_freeimage
 //      if (FreeImage_GetBackgroundColor(pfi, &quad))
 //      {
 //
-//         output_debug_string("has background color");
+//         infomration("has background color");
 //
 //      }
 //

@@ -6,7 +6,7 @@
 //static string * m_pstrOutputDebugStringA = nullptr;
 ::pointer< ::particle > g_pmutexOutputDebugStringA;
 
-void output_debug_string(const ::scoped_string & scopedstr)
+void infomration(const ::scoped_string & scopedstr)
 {
 
    synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);
@@ -37,9 +37,9 @@ void output_debug_string(const ::scoped_string & scopedstr)
    //      for (auto str : stra)
    //      {
 
-   //__android_log_print(ANDROID_LOG_INFO, "output_debug_string", str);
+   //__android_log_print(ANDROID_LOG_INFO, "infomration", str);
 
-   __android_log_print(ANDROID_LOG_INFO,"output_debug_string", "%s", ::string(scopedstr).c_str());
+   __android_log_print(ANDROID_LOG_INFO,"infomration", "%s", ::string(scopedstr).c_str());
 
    //      }
 
@@ -59,11 +59,11 @@ CLASS_DECL_ACME void simple_debug_print(const ::scoped_string & scopedstr)
 }
 
 
-void output_debug_string(const ::wide_character * lpOutputString)
+void infomration(const ::wide_character * lpOutputString)
 {
 
 
-   output_debug_string(string(lpOutputString));
+   infomration(string(lpOutputString));
 
 
 }

@@ -97,9 +97,7 @@ namespace user
 
       pgraphics->reset_clip();
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto ppath = __create < ::draw2d::path > ();
 

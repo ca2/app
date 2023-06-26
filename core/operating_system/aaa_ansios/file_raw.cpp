@@ -111,7 +111,7 @@
 //   if (lRead != lLen)
 //   {
 //
-//      output_debug_string("file_beg_contents_raw: error writing to file.");
+//      infomration("file_beg_contents_raw: error writing to file.");
 //
 //   }
 //

@@ -89,7 +89,7 @@ void message_queue::post_message(const MESSAGE & message)
    if (message.m_atom == e_message_quit)
    {
 
-      ::output_debug_string("message_queue::post_message e_message_quit\n");
+      ::infomration("message_queue::post_message e_message_quit\n");
 
    }
 

@@ -170,9 +170,9 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle_i32 rectangleClient;
+      //::rectangle_i32 rectangleClient;
 
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int w = rectangleClient.width();
 
@@ -314,9 +314,7 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int w = rectangleClient.width();
 
@@ -539,9 +537,7 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int iMinimumDimension = maximum(rectangleClient.minimum_dimension() -1, 1);
 

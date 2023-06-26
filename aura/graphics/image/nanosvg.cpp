@@ -19,7 +19,7 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
    if (rast == nullptr)
    {
 
-      output_debug_string("Could not init rasterizer.\n");
+      infomration("Could not init rasterizer.\n");
 
       return false;
 

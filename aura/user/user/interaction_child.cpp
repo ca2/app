@@ -487,7 +487,7 @@ namespace user
          //if (message == e_message_key_down)
          //{
 
-         //   output_debug_string("\n Key Down Event ");
+         //   infomration("\n Key Down Event ");
 
          //}
 
@@ -854,7 +854,7 @@ namespace user
       if (pinteraction != nullptr)
       {
 
-         output_debug_string("::user::interaction_child::keyboard_focus_OnKillFocus() (1) \n");
+         infomration("::user::interaction_child::keyboard_focus_OnKillFocus() (1) \n");
 
          return pinteraction->keyboard_focus_OnChildKillFocus();
 

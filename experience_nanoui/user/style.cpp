@@ -898,7 +898,7 @@ namespace experience_nanoui
 //            if (strType.contains("form"))
 //            {
 //
-//               output_debug_string("form");
+//               infomration("form");
 //
 //            }
 

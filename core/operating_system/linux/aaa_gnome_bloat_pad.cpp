@@ -184,7 +184,7 @@ void apex_application_run(const ::string & pszAppName, const ::string & pszProgN
    if(g_papexapplication == nullptr)
    {
 
-      output_debug_string("Failed to initialize GtkApplication (gtk_application_new return nullptr)");
+      infomration("Failed to initialize GtkApplication (gtk_application_new return nullptr)");
 
       return;
 

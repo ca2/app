@@ -946,7 +946,7 @@ namespace sockets
             {
                if (m_ssl_ctx)
                {
-         information("SSL Context already initialized - closing socket\n");
+         information("SSL Context already initialized - closing socket");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -958,7 +958,7 @@ namespace sockets
       /*       m_ssl = SSL_new(m_ssl_ctx);
              if (!m_ssl)
              {
-       information(" m_ssl is nullptr\n");
+       information(" m_ssl is nullptr");
                 SetCloseAndDelete(true);
                 return;
              }
@@ -966,7 +966,7 @@ namespace sockets
              m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
              if (!m_sbio)
              {
-       information(" m_sbio is nullptr\n");
+       information(" m_sbio is nullptr");
                 SetCloseAndDelete(true);
                 return;
              }
@@ -989,7 +989,7 @@ namespace sockets
       /*      {
                if (m_ssl_ctx)
                {
-         information("SSL Context already initialized - closing socket\n");
+         information("SSL Context already initialized - closing socket");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1001,7 +1001,7 @@ namespace sockets
                m_ssl = SSL_new(m_ssl_ctx);
                if (!m_ssl)
                {
-         information(" m_ssl is nullptr\n");
+         information(" m_ssl is nullptr");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1009,7 +1009,7 @@ namespace sockets
                m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
                if (!m_sbio)
                {
-         information(" m_sbio is nullptr\n");
+         information(" m_sbio is nullptr");
                   SetCloseAndDelete(true);
                   return;
                }
@@ -1303,7 +1303,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(type);
       UNREFERENCED_PARAMETER(protocol);
       UNREFERENCED_PARAMETER(s);
-      //information("socket::OnOptions()\n");
+      //information("socket::OnOptions()");
 #ifdef SO_NOSIGPIPE
       _SetSoNosigpipe(s, true);
 #endif

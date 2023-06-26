@@ -633,7 +633,7 @@ void thread::thread_loop()
 //            if (!bShouldRun)
 //            {
 //
-//               output_debug_string("session_shouldn't_run?");
+//               infomration("session_shouldn't_run?");
 //
 //            }
 //
@@ -659,7 +659,7 @@ void thread::thread_loop()
 //               if (!bShouldRun)
 //               {
 //
-//                  output_debug_string("session_shouldn't_run?");
+//                  infomration("session_shouldn't_run?");
 //
 //               }
 //
@@ -672,19 +672,19 @@ void thread::thread_loop()
 //            if(strType.contains("wave_player"))
 //            {
 //
-//               output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
+//               infomration("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
 //
 //            }
 //            else if(strType.case_insensitive_ends("out"))
 //            {
 //
-//               output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
+//               infomration("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
 //
 //            }
 //            else if(strType.contains("output_thread"))
 //            {
 //
-//               output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
+//               infomration("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
 //
 //            }
 
@@ -699,7 +699,7 @@ void thread::thread_loop()
          handle_exception(e);
          //{
 
-         //   output_debug_string("exception occurred (2.1)");
+         //   infomration("exception occurred (2.1)");
 
          //   break;
 
@@ -709,7 +709,7 @@ void thread::thread_loop()
       catch (...)
       {
 
-         output_debug_string("exception occurred (2.2)");
+         infomration("exception occurred (2.2)");
 
          break;
 
@@ -898,7 +898,7 @@ bool thread::pump_message()
             if (!bShouldRun)
             {
 
-               output_debug_string("session_shouldn't_run?");
+               infomration("session_shouldn't_run?");
 
             }
 
@@ -1005,7 +1005,7 @@ bool thread::raw_pump_message()
       if(strType.contains("output_thread"))
       {
 
-         //output_debug_string("\nOUTPUT_THREAD thread::raw_pump_message");
+         //infomration("\nOUTPUT_THREAD thread::raw_pump_message");
 
       }
 
@@ -1018,25 +1018,25 @@ bool thread::raw_pump_message()
             if(strType.contains("wave_player"))
             {
 
-               output_debug_string("!xxGetMessage !xxpump_message xxthread::run from wave_player");
+               infomration("!xxGetMessage !xxpump_message xxthread::run from wave_player");
 
             }
             else if(strType.case_insensitive_ends("out"))
             {
 
-               output_debug_string("!xxGetMessage !xxpump_message xxthread::run from out");
+               infomration("!xxGetMessage !xxpump_message xxthread::run from out");
 
             }
             else if(strType.contains("output_thread"))
             {
 
-               output_debug_string("!xxGetMessage !xxpump_message xxthread::run from output_thread");
+               infomration("!xxGetMessage !xxpump_message xxthread::run from output_thread");
 
             }
             else
             {
 
-               output_debug_string("!xxGetMessage !xxpump_message xxthread::run from multimedia::*");
+               infomration("!xxGetMessage !xxpump_message xxthread::run from multimedia::*");
 
             }
 
@@ -1080,7 +1080,7 @@ bool thread::raw_pump_message()
    catch (...)
    {
 
-      output_debug_string("xxcatch... xx" + strType + "xxraw_pump_message");
+      infomration("xxcatch... xx" + strType + "xxraw_pump_message");
 
    }
 
@@ -1197,7 +1197,7 @@ bool thread::defer_pump_message()
       if(m_message.m_atom == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + ::as_string((u64)::get_current_itask()) + ")\n\n\n");
+         ::infomration("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + ::as_string((u64)::get_current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -1297,19 +1297,19 @@ void thread::post_quit()
    if (string(__type_name(this)).contains("output_thread"))
    {
 
-      output_debug_string("output_thread ::thread::post_quit");
+      infomration("output_thread ::thread::post_quit");
 
    }
    else if (string(__type_name(this)).contains("synth_thread"))
    {
 
-      output_debug_string("synth_thread ::thread::post_quit");
+      infomration("synth_thread ::thread::post_quit");
 
    }
    else if (string(__type_name(this)).contains("audio::out"))
    {
 
-      output_debug_string("out ::thread::post_quit");
+      infomration("out ::thread::post_quit");
 
    }
 
@@ -1445,7 +1445,7 @@ bool thread::post_quit_message(int nExitCode)
 //      if(strType == "user::shell::thread")
 //      {
 //
-//         ::output_debug_string("user::shell::thread");
+//         ::infomration("user::shell::thread");
 //
 //      }
 //
@@ -1536,7 +1536,7 @@ void thread::task_erase(::task * ptask)
          if (strThreadThis == "app_veriwell_keyboard::application")
          {
 
-            output_debug_string("app_veriwell_keyboard::application");
+            infomration("app_veriwell_keyboard::application");
 
          }
 
@@ -1564,7 +1564,7 @@ void thread::destroy()
    if (m_strTaskName.contains("main_frame"))
    {
 
-      output_debug_string("I am main_frame xxpost_quit at " + strType + "\n");
+      infomration("I am main_frame xxpost_quit at " + strType + "\n");
 
    }
 
@@ -1574,7 +1574,7 @@ void thread::destroy()
       if (strType.contains("shell_thread"))
       {
 
-         output_debug_string("I am shell_thread xxpost_quit at " + strType + "\n");
+         infomration("I am shell_thread xxpost_quit at " + strType + "\n");
 
       }
 
@@ -1585,49 +1585,49 @@ void thread::destroy()
       if (strType.contains("wave_player"))
       {
 
-         output_debug_string("I am wave_player xxpost_quit from wave_player\n");
+         infomration("I am wave_player xxpost_quit from wave_player\n");
 
       }
       else if (strType.case_insensitive_ends("out"))
       {
 
-         output_debug_string("I am out xxpost_quit from out\n");
+         infomration("I am out xxpost_quit from out\n");
 
       }
       else if (strType.contains("output_thread"))
       {
 
-         output_debug_string("I am output xxpost_quit from output_thread\n");
+         infomration("I am output xxpost_quit from output_thread\n");
 
       }
       else if (strType.contains("synth_thread"))
       {
 
-         output_debug_string("I am synth_thread xxpost_quit from synth_thread\n");
+         infomration("I am synth_thread xxpost_quit from synth_thread\n");
 
       }
       else if (strType == "multimedia::audio_core_audio::out")
       {
 
-         ::output_debug_string("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
+         ::infomration("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
 
       }
       else if (strType == "multimedia::audio::out")
       {
 
-         ::output_debug_string("I am audio::out xxpost_quit from multimedia::audio::out\n");
+         ::infomration("I am audio::out xxpost_quit from multimedia::audio::out\n");
 
       }
       else if (strType == "multimedia::wave::player")
       {
 
-         ::output_debug_string("I am wave::player xxpost_quit from multimedia::wave::player\n");
+         ::infomration("I am wave::player xxpost_quit from multimedia::wave::player\n");
 
       }
       else
       {
 
-         ::output_debug_string("I am multimedia:: xxpost_quit from multimedia::*\n");
+         ::infomration("I am multimedia:: xxpost_quit from multimedia::*\n");
 
       }
 
@@ -1635,7 +1635,7 @@ void thread::destroy()
    else if (strType == "::apex::system")
    {
 
-      ::output_debug_string("I am system xxpost_quit from ::apex::system\n");
+      ::infomration("I am system xxpost_quit from ::apex::system\n");
 
    }
 
@@ -1653,7 +1653,7 @@ void thread::destroy()
    //   //if(!estatus)
    //   //{
 
-   //   //   output_debug_string("release_composite2 failed");
+   //   //   infomration("release_composite2 failed");
 
    //   //}
 
@@ -2618,13 +2618,13 @@ void thread::__priority_and_affinity()
       if (bOk)
       {
 
-         //output_debug_string("successfully set thread affinity mask");
+         //infomration("successfully set thread affinity mask");
 
       }
       else
       {
 
-         output_debug_string("failed to set thread affinity mask");
+         infomration("failed to set thread affinity mask");
 
       }
 
@@ -2719,7 +2719,7 @@ void thread::task_osinit()
       if (__type_name(this).case_insensitive_contains("out"))
       {
 
-         output_debug_string("out");
+         infomration("out");
 
       }
 
@@ -3018,13 +3018,13 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    if (atom == MESSAGE_CLOSE)
    {
 
-      output_debug_string("thread::post_message MESSAGE_CLOSE");
+      infomration("thread::post_message MESSAGE_CLOSE");
 
    }
    else if (atom == e_message_branch)
    {
 
-      output_debug_string("thread::post_message e_message_branch");
+      infomration("thread::post_message e_message_branch");
 
    }
 
@@ -3041,14 +3041,14 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
          if (strType.case_insensitive_contains("::application"))
          {
 
-            output_debug_string("application_shouldn't_run?");
+            infomration("application_shouldn't_run?");
 
             auto bShouldRun = task_get_run();
 
             if (!bShouldRun)
             {
 
-               output_debug_string("application_shouldn't_run?");
+               infomration("application_shouldn't_run?");
 
             }
 
@@ -3061,7 +3061,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
             if (!bShouldRun)
             {
 
-               output_debug_string("session_shouldn't_run?");
+               infomration("session_shouldn't_run?");
 
             }
 
@@ -3074,7 +3074,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
             if (!bShouldRun)
             {
 
-               output_debug_string("session_shouldn't_run?");
+               infomration("session_shouldn't_run?");
 
             }
 
@@ -3303,19 +3303,19 @@ void thread::on_task_init()
 //   if(strType.contains("wave_player"))
 //   {
 //
-//      output_debug_string("I am xxthread::main from wave_player");
+//      infomration("I am xxthread::main from wave_player");
 //
 //   }
 //   else if(strType.case_insensitive_ends("out"))
 //   {
 //
-//      output_debug_string("I am xxthread::main from out");
+//      infomration("I am xxthread::main from out");
 //
 //   }
 //   else if(strType.contains("output_thread"))
 //   {
 //
-//      output_debug_string("I am xxthread::main from output_thread");
+//      infomration("I am xxthread::main from output_thread");
 //
 //   }
 //
@@ -3356,26 +3356,26 @@ void thread::on_task_init()
 //   catch(...)
 //   {
 //
-//      output_debug_string("exception occurred");
+//      infomration("exception occurred");
 //
 //   }
 //
 //   if(strType.contains("wave_player"))
 //   {
 //
-//      output_debug_string("after run xxthread::main from wave_player");
+//      infomration("after run xxthread::main from wave_player");
 //
 //   }
 //   else if(strType.case_insensitive_ends("out"))
 //   {
 //
-//      output_debug_string("after run xxthread::main from out");
+//      infomration("after run xxthread::main from out");
 //
 //   }
 //   else if(strType.contains("output_thread"))
 //   {
 //
-//      output_debug_string("after run xxthread::main from output_thread");
+//      infomration("after run xxthread::main from output_thread");
 //
 //   }
 //
@@ -3426,7 +3426,7 @@ message_queue* thread::_get_message_queue()
    if(pmq->m_bQuit)
    {
 
-      output_debug_string("WHAT?!?!WHAT?!?!WHAT?!?!BornQuitting?!?!");
+      infomration("WHAT?!?!WHAT?!?!WHAT?!?!BornQuitting?!?!");
 
    }
 
@@ -3550,13 +3550,13 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////      if (strTypeName == "user::shell")
 ////      {
 ////
-////         output_debug_string("user::shell::finish");
+////         infomration("user::shell::finish");
 ////
 ////      }
 ////      else if (strTypeName == "apex::system")
 ////      {
 ////
-////         output_debug_string("apex::system::finish");
+////         infomration("apex::system::finish");
 ////
 ////      }
 ////
@@ -3565,7 +3565,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////      if (strTypeName.case_insensitive_contains("app_app::window"))
 ////      {
 ////
-////         output_debug_string("set_finish at app_window");
+////         infomration("set_finish at app_window");
 ////
 ////      }
 ////
@@ -3667,7 +3667,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (!bShouldRun)
 ////            {
 ////
-////               output_debug_string("session_shouldn't_run?");
+////               infomration("session_shouldn't_run?");
 ////
 ////            }
 ////
@@ -3680,7 +3680,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            if (!bShouldRun)
 ////            {
 ////
-////               output_debug_string("application_shouldn't_run?");
+////               infomration("application_shouldn't_run?");
 ////
 ////            }
 ////
@@ -3767,7 +3767,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 //      else
 //      {
 //
-//         ::output_debug_string("!m_bMessageThread");
+//         ::infomration("!m_bMessageThread");
 //
 //      }
 //
@@ -3854,7 +3854,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          auto lasterror = ::GetLastError();
 
-         ::output_debug_string("Last Error : " + ::as_string(lasterror) + "\n");
+         ::infomration("Last Error : " + ::as_string(lasterror) + "\n");
 
          auto estatus = ::windows::last_error_status(lasterror);
 
@@ -3864,7 +3864,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       else if (iRet == 0)
       {
 
-         ::output_debug_string("GetMessage returned 0");
+         ::infomration("GetMessage returned 0");
 
          msg.message = WM_QUIT;
 
@@ -3872,13 +3872,13 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       else if(msg.message == e_message_quit)
       {
 
-         ::output_debug_string("e_message_quit");
+         ::infomration("e_message_quit");
 
       }
       else if (msg.message == e_message_destroy_window)
       {
 
-         ::output_debug_string("e_message_destroy_window");
+         ::infomration("e_message_destroy_window");
 
       }
 
@@ -4394,7 +4394,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 
       ::e_status estatus = ::get_last_status();
 
-      output_debug_string("thread::SetThreadPriority LastError = " + ::as_string(estatus));
+      infomration("thread::SetThreadPriority LastError = " + ::as_string(estatus));
 
    }
 

@@ -59,7 +59,7 @@ int __node_is_debugger_attached()
 
 
 
-void output_debug_string(const ::scoped_string & scopedstrOutputString)
+void infomration(const ::scoped_string & scopedstrOutputString)
 {
    
    fwrite(scopedstrOutputString.begin(), 1, scopedstrOutputString.size(), stdout);

@@ -414,7 +414,7 @@ namespace dynamic_source
          if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
          {
 
-            output_debug_string("resident");
+            infomration("resident");
 
          }
 

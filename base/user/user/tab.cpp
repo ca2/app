@@ -1676,7 +1676,7 @@ namespace user
    void tab::set_current_tab_by_index(::index iIndex)
    {
       
-      output_debug_string("tab::set_current_tab_by_index start\n");
+      infomration("tab::set_current_tab_by_index start\n");
 
       synchronous_lock lock(get_data()->synchronization());
 
@@ -1704,7 +1704,7 @@ namespace user
          
       }
       
-      output_debug_string("tab::set_current_tab_by_index end\n");
+      infomration("tab::set_current_tab_by_index end\n");
       
    }
 
@@ -2968,7 +2968,7 @@ namespace user
       else
       {
 
-         information("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .\n");
+         information("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .");
 
       }
 

@@ -36,7 +36,7 @@ void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString)
    if(g_bWindowingOutputDebugString)
    {
 
-      output_debug_string(scopedstrDebugString);
+      infomration(scopedstrDebugString);
 
       fflush(stdout);
 

@@ -26,7 +26,7 @@ void task_set_name(htask_t htask, const char * psz)
    if(!pthread_setname_np((pthread_t) htask, psz))
    {
 
-       output_debug_string("pthread_setname_np Failed\n");
+       infomration("pthread_setname_np Failed\n");
 
    }
 

@@ -457,7 +457,7 @@ namespace x11
       else if (pevent->type == UnmapNotify)
       {
 
-         output_debug_string("UnmapNotify");
+         infomration("UnmapNotify");
 
       }
       else if (pevent->type == MapNotify)
@@ -502,7 +502,7 @@ namespace x11
       else if (pevent->type == PropertyNotify)
       {
 
-         output_debug_string("PropertyNotify");
+         infomration("PropertyNotify");
 
       }
       else if (pevent->type == KeyPress)

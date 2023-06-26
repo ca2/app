@@ -250,7 +250,7 @@ namespace userex
 
       ::rectangle_i32 rectangleColors;
 
-      client_rectangle(rectangleColors);
+      rectangleColors = client_rectangle();
 
       //if (!m_bCompact)
       //{

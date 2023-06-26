@@ -762,7 +762,7 @@ namespace userex
 
       ::rectangle_i32 rC;
 
-      client_rectangle(rC);
+      rC = client_rectangle();
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -939,7 +939,7 @@ namespace userex
 
       ::rectangle_i32 rectangleColors;
 
-      client_rectangle(rectangleColors);
+      rectangleColors = client_rectangle();
 
       if(!m_bCompact)
       {

@@ -383,7 +383,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         client_rectangle(rectangleImpact);
+         rectangleImpact = client_rectangle();
 
          rectangleImpact.offset(m_pointScroll);
 

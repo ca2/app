@@ -342,7 +342,7 @@ SizingNone:;
 
 
       ::rectangle_i32 rectangleClient;
-      pframewindow->client_rectangle(rectangleClient);
+      rectangleClient = pframewindow->client_rectangle();
 
       string str;
 

@@ -371,7 +371,7 @@ namespace user
 
       ::rectangle_i32 rectangleIntersect;
 
-      client_rectangle(rectangleClient);
+      rectangleClient = client_rectangle();
 
       bool bHoverFont = false;
 
@@ -1547,7 +1547,7 @@ namespace user
 
          ::rectangle_i32 rectangleScroll;
 
-         client_rectangle(rectangleScroll);
+         rectangleScroll = client_rectangle();
 
          if(m_dItemHeight == 0)
          {
@@ -1575,7 +1575,7 @@ namespace user
          
          ::rectangle_i32 rectangleImpact;
 
-         client_rectangle(rectangleImpact);
+         rectangleImpact = client_rectangle();
 
          const ::size_i32 & sizeItem = get_item_size();
 
@@ -1587,8 +1587,8 @@ namespace user
       {
          
          ::rectangle_i32 rectangleImpact;
-         
-         client_rectangle(rectangleImpact);
+
+         rectangleImpact = client_rectangle();
          
          if(m_dItemHeight == 0.)
          {
@@ -1630,7 +1630,7 @@ namespace user
       ::rectangle_i32 rectangleItem;
       ::rectangle_i32 rectangleIntersect;
       ::rectangle_i32 rectangleUpdate;
-      client_rectangle(rectangleUpdate);
+      rectangleUpdate = client_rectangle();
       auto pitem = get_item(iItemFirst);
       if(iItemFirst >= 0)
       {

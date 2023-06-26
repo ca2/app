@@ -141,7 +141,7 @@ namespace userex
 
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
       auto pframewindow = m_mapframe[idImpact];
 

@@ -281,7 +281,7 @@ SizingNone:;
          
          ::rectangle_i32 rectangleClient;
 
-         m_pframewindow->client_rectangle(rectangleClient);
+         rectangleClient = m_pframewindow->client_rectangle();
 
          rectangleClient.deflate(2, 2, 2, 2);
 

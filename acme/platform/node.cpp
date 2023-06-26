@@ -2764,9 +2764,11 @@ return false;
    int node::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut)
    {
 
-      throw interface_only();
+      trace_function tracefunction = std_inline_log();
 
-      return -1;
+      tracefunction.m_timeTimeout  = timeOut;
+
+      return command_system(scopedstr, tracefunction);
 
    }
 

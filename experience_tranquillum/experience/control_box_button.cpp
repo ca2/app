@@ -53,7 +53,7 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = ::user::interaction::client_rectangle();
 
       if (rectangleClient.area() <= 0)
          return;

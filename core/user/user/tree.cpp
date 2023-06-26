@@ -1421,7 +1421,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
       return (::count)(rectangle.height() / _001GetItemHeight() - 1);
 

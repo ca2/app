@@ -196,7 +196,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
       rectangle.left = xLast;
 

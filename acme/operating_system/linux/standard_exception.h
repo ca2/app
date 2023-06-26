@@ -1,0 +1,8 @@
+//
+// Created by camilo on 25/06/23.
+//
+
+#ifndef MAIN_STANDARD_EXCEPTION_H
+#define MAIN_STANDARD_EXCEPTION_H
+
+#endif //MAIN_STANDARD_EXCEPTION_H

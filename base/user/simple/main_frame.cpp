@@ -28,22 +28,6 @@ simple_main_frame::~simple_main_frame()
 }
 
 
-//void simple_main_frame::assert_ok() const
-//{
-//
-//   simple_frame_window::assert_ok();
-//
-//}
-//
-//
-//void simple_main_frame::dump(dump_context & dumpcontext) const
-//{
-//
-//   simple_frame_window::dump(dumpcontext);
-//
-//}
-
-
 void simple_main_frame::install_message_routing(::channel * pchannel)
 {
 
@@ -115,18 +99,4 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 }
 
 
-//bool simple_main_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pcontext)
-//{
-//
-//   if (m_bExplicitTranslucency)
-//   {
-//
-//      etranslucency = m_etranslucency;
-//
-//      return true;
-//
-//   }
-//
-//   return ::user::style::get_translucency(etranslucency, eelement, pcontext);
-//
-//}
+

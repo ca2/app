@@ -19574,7 +19574,7 @@ namespace user
       if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
 
-         information("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
+         //information("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
 
          auto pitemOldHover = m_pitemHover;
 

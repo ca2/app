@@ -28,10 +28,10 @@ public:
    using iterator = typename BASE_SET::iterator;
    using const_iterator = typename BASE_SET::const_iterator;
 
-   using key_iterator = ::element1_list_iterator < node * >;
-   using value_iterator = ::element2_list_iterator < node * >;
-   using const_key_iterator = typename key_iterator::const_iterator;
-   using const_value_iterator = typename value_iterator::const_iterator;
+   using item_iterator = ::element1_list_iterator < node * >;
+   using payload_iterator = ::element2_list_iterator < node * >;
+   using const_item_iterator = typename item_iterator::const_iterator;
+   using const_payload_iterator = typename payload_iterator::const_iterator;
 
 
    //using iterator_struct = BASE_SET::iterator_struct;
@@ -332,10 +332,10 @@ public:
    //void Empty();
 
    
-   inline auto keys() { return ::range<key_iterator>(*(key_iterator *)&this->begin(), *(key_iterator *)&this->end()); }
-   inline auto values() { return ::range<value_iterator>(*(value_iterator *)&this->begin(), *(value_iterator *)&this->end()); }
-   inline auto keys() const { return ::range<const_key_iterator>(*(key_iterator *)&this->begin(), *(key_iterator *)&this->end()); }
-   inline auto values() const { return ::range<const_value_iterator>(*(value_iterator *)&this->begin(), *(value_iterator *)&this->end()); }
+   inline auto items() { return ::range<item_iterator>(*(item_iterator *)&this->begin(), *(item_iterator *)&this->end()); }
+   inline auto payloads() { return ::range<payload_iterator>(*(payload_iterator *)&this->begin(), *(payload_iterator *)&this->end()); }
+   inline auto items() const { return ::range<const_item_iterator>(*(item_iterator *)&this->begin(), *(item_iterator *)&this->end()); }
+   inline auto payloads() const { return ::range<const_payload_iterator>(*(payload_iterator *)&this->begin(), *(payload_iterator *)&this->end()); }
 
 
    //inline auto keys() const { return ::range<const_key_iterator>(*(const_key_iterator*)&this->begin(), *(const_key_iterator*)&this->end()); }

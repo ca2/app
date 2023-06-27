@@ -13,9 +13,6 @@
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -178,16 +175,10 @@
     <ClCompile Include="user\simple\printer_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\status_bar.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\tab_control.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\tab_impact.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\toolbar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\tree_impact.cpp">
@@ -292,9 +283,6 @@
     <ClCompile Include="user\user\mesh_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\statusbar.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\step_slider.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -368,9 +356,6 @@
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\menu_frame.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\menu_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\message_box.cpp">
@@ -466,6 +451,15 @@
     </ClCompile>
     <ClCompile Include="user\simple\still.cpp">
       <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\save_as_button_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\save_as_edit_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\save_as_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1391,6 +1385,15 @@
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_impact.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\save_as_edit_impact.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\save_as_button_impact.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

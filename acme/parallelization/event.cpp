@@ -889,7 +889,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *)this)->wait({ e_zero });
+      return ((event *)this)->wait({ e_zero }).ok();
 
    }
 

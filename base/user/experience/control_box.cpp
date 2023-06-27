@@ -1131,7 +1131,7 @@ if(rectangle.left > 400)
    void control_box::on_message_size(::message::message * pmessage)
    {
 
-      auto rectangleClient = client_rectangle();
+      //auto rectangleClient = client_rectangle();
 
       information("rectangleClient");
 

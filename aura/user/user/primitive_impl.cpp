@@ -791,7 +791,7 @@ namespace user
 
          pmessage->m_ecommand = (enum_scroll_command)(i16)lower_u16(wparam);
 
-         pmessage->m_nPos = (i16)HIWORD(wparam);
+         pmessage->m_nPos = (i16)upper_u16(wparam);
 
       }
       break;
@@ -910,7 +910,7 @@ namespace user
 
          }
 
-         pmessage->m_bMinimized = HIWORD(wparam) != false;
+         pmessage->m_bMinimized = upper_u16(wparam) != false;
 
          //}
 

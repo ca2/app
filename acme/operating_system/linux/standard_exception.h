@@ -27,14 +27,15 @@
 
 
 #include <signal.h>
-#include <ucontext.h>
+//#include <ucontext.h>
 
 
 
 #if defined(ANDROID)
 
 #include <signal.h>
-#include <ucontext.h>
+//#ifndef
+//#include <ucontext.h>
 
 
 #if OSBIT == 64

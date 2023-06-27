@@ -1543,7 +1543,7 @@ namespace user
    bool interaction::needs_to_draw(::draw2d::graphics *pgraphics, const ::rectangle_i32 &rectangleNeedsToDraw)
    {
 
-      return true;
+      //return true;
 
       if (get_host_window()->has_prodevian())
       {

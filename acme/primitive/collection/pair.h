@@ -106,6 +106,14 @@ public: \
    inline T2 && transfer_element2() { return ::transfer(MEMBER2); } \
    inline CONST_TYPE1 && transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
    inline CONST_TYPE2 && transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+   inline T1 & key() { return MEMBER1; } \
+   inline T2 & value() { return MEMBER2; } \
+   inline CONST_TYPE1 & key() const { return (CONST_TYPE1 &) MEMBER1; } \
+   inline CONST_TYPE2 & value() const { return (CONST_TYPE2 &) MEMBER2; } \
+   inline T1 && transfer_key() { return ::transfer(MEMBER1); } \
+   inline T2 && transfer_value() { return ::transfer(MEMBER2); } \
+   inline CONST_TYPE1 && transfer_key() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+   inline CONST_TYPE2 && transfer_value() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
 \
 \
    PAIR() {} \

@@ -31,7 +31,7 @@ template<class T> struct is_const_struct : false_type {};
 template<class T> struct is_const_struct<const T> : true_type {};
 
 template < class T >
-inline constexpr bool is_const = is_const_struct < T >::payload;
+inline constexpr bool is_const = is_const_struct < T >::value;
 
 
 template<class T> struct is_reference_struct : false_type {};
@@ -39,7 +39,7 @@ template<class T> struct is_reference_struct<T &> : true_type {};
 template<class T> struct is_reference_struct<T &&> : true_type {};
 
 template < class T >
-inline constexpr bool is_reference = is_reference_struct < T >::payload;
+inline constexpr bool is_reference = is_reference_struct < T >::value;
 
 
 template<typename TYPE>
@@ -299,7 +299,7 @@ template<class T, std::size_t N>
 struct is_array_struct<T[N]> : true_type {};
 
 template<class T>
-inline constexpr bool is_array = is_array_struct < T >::payload;
+inline constexpr bool is_array = is_array_struct < T >::value;
 
 
 namespace detail
@@ -373,7 +373,7 @@ struct is_function_struct : ::integral_constant<
 > {};
 
 template<typename T>
-inline constexpr bool is_function = is_function_struct < T >::payload;
+inline constexpr bool is_function = is_function_struct < T >::value;
 
 
 //// primary template
@@ -884,7 +884,7 @@ class lparam;
 class time;
 class timer_callback;
 namespace message { class message; }
-class payload;
+class value;
 struct block;
 class property_set;
 class particle;

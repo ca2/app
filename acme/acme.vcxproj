@@ -1158,6 +1158,7 @@
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
+    <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="console.h" />

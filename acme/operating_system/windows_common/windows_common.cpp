@@ -62,7 +62,7 @@ CLASS_DECL_ACME ::i64 i64_nanosecond()
 //}
 //
 
-void information(const ::scoped_string & str)
+void output_debug_string(const ::scoped_string & str)
 {
 
    ::wstring wstr(str);
@@ -106,7 +106,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 
    strError.format("\nError Message:\n%s\n\n", strErrorMessage.c_str());
 
-   ::information(strError);
+   ::output_debug_string(strError);
 
 }
 

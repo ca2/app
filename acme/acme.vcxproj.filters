@@ -4354,6 +4354,9 @@
     <ClCompile Include="filesystem\file\write_text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\_string.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

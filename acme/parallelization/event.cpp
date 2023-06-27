@@ -405,7 +405,7 @@ bool event::ResetEvent()
       if(m_handle == NULL)
       {
 
-         ::information(L"error reset event (1)");
+         ::information("error reset event (1)");
 
          return false;
 
@@ -417,7 +417,7 @@ bool event::ResetEvent()
    catch(...)
    {
 
-      ::information(L"error reset event (2)");
+      ::information("error reset event (2)");
 
    }
 

@@ -101,7 +101,7 @@ namespace windows
       if (::GetObjectW(hfont, sizeof(logFont), pLogFont))
       {
 
-         information("got log font");
+         ::information("got log font");
 
       }
 

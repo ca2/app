@@ -244,7 +244,7 @@ namespace graphics
       if (is_ipc_copy_enabled())
       {
 
-         if (!ipc_copy(get_screen_item()->m_pimage))
+         if (!ipc_copy(get_screen_item()->m_pimage2))
          {
 
             return false;

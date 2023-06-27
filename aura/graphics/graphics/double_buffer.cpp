@@ -41,14 +41,14 @@ namespace graphics
       m_bufferitema.set_size(2);
 
       __construct_new(m_bufferitema[0]);
-      __construct(m_bufferitema[0]->m_pimage);
+      __construct(m_bufferitema[0]->m_pimage2);
       __construct(m_bufferitema[0]->m_pmutex);
-      m_bufferitema[0]->m_pimage->m_atom = 0;
+      m_bufferitema[0]->m_pimage2->m_atom = 0;
 
       __construct_new(m_bufferitema[1]);
-      __construct(m_bufferitema[1]->m_pimage);
+      __construct(m_bufferitema[1]->m_pimage2);
       __construct(m_bufferitema[1]->m_pmutex);
-      m_bufferitema[1]->m_pimage->m_atom = 1;
+      m_bufferitema[1]->m_pimage2->m_atom = 1;
 
       //return estatus;
 
@@ -81,7 +81,7 @@ namespace graphics
       if (!m_bDibIsHostingBuffer)
       {
 
-         auto & pimage = pitem->m_pimage;
+         auto & pimage = pitem->m_pimage2;
 
          auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
 
@@ -277,9 +277,9 @@ namespace graphics
       if(!is_single_buffer_mode())
       {
 
-         auto pimageNewScreen = get_screen_item()->m_pimage;
+         auto pimageNewScreen = get_screen_item()->m_pimage2;
 
-         auto pimageNewBuffer = get_buffer_item()->m_pimage;
+         auto pimageNewBuffer = get_buffer_item()->m_pimage2;
 
          if (pimageNewBuffer->size() == pimageNewScreen->size())
          {
@@ -356,8 +356,8 @@ namespace graphics
    void double_buffer::destroy_buffer()
    {
 
-      m_bufferitema[0]->m_pimage.release();
-      m_bufferitema[1]->m_pimage.release();
+      m_bufferitema[0]->m_pimage2.release();
+      m_bufferitema[1]->m_pimage2.release();
 
    }
 

@@ -55,7 +55,7 @@ namespace graphics
       virtual bool update_screen() override;
 
       //virtual ::particle * get_draw_lock() override;
-      virtual buffer_item * on_begin_draw() override;
+      buffer_item * on_begin_draw() override;
 
       // synchronous_lock screen synchronization first...
       virtual buffer_item * get_screen_item() override;

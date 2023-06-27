@@ -25,6 +25,14 @@ namespace graphics
 {
 
 
+   ::draw2d::graphics_pointer buffer_item::g()
+   {
+      
+      return m_pgraphics ? m_pgraphics.m_p : m_pimage2->g();
+   
+   }
+
+
    graphics::graphics()
    {
 
@@ -165,7 +173,7 @@ namespace graphics
    //}
 
 
-   buffer_item * graphics::on_begin_draw()
+   ::graphics::buffer_item * graphics::on_begin_draw()
    {
 
       return nullptr;
@@ -279,7 +287,7 @@ namespace graphics
 
       _synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
 
-      return get_screen_item()->m_pimage->_001GetTopLeftWeightedOpaqueArea(0, rect);
+      return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
 
    }
 

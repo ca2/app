@@ -105,9 +105,9 @@ namespace user
    bool form_control::OnCommand(wparam wparam,lparam lparam)
    {
 
-      ::u32 uNotificationCode = second_u16(wparam);
+      ::u32 uNotificationCode = upper_u16(wparam);
 
-      ::atom atom(first_u16(wparam));
+      ::atom atom(lower_u16(wparam));
 
       ::pointer<::user::interaction>pinteraction = get_child_by_id(atom);
 

@@ -25,6 +25,7 @@ constexpr ::u8 lower_u8(::iptr i) { return (::u8)(i & 0xff); }
 constexpr ::u8 upper_u8(::iptr i) { return (::u8)((i >> 8) & 0xff); }
 constexpr ::u16 lower_u16(::iptr i) { return (::u16)(i & 0xffff); }
 constexpr ::u16 upper_u16(::iptr i) { return (::u16)((i >> 16) & 0xffff); }
+constexpr ::i16 upper_i16(::iptr i) { return (::i16)((i >> 16) & 0xffff); }
 constexpr ::u32 lower_u32(::u64 u) { return (::u32)(u); }
 constexpr ::u32 upper_u32(::u64 u) { return (::u32)((u >> 32) & 0xffffffff); }
 

@@ -1054,9 +1054,6 @@
     <ClCompile Include="exception\serialization.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\standard.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="platform\acme.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1383,6 +1380,12 @@
     </ClCompile>
     <ClCompile Include="platform\trace_statement.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\mouse.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_string.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

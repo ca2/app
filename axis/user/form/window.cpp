@@ -127,9 +127,9 @@ namespace user
    bool form_window::OnCommand(wparam wparam, lparam lparam)
    {
 
-      ::u32 uNotificationCode = second_u16(wparam);
+      ::u32 uNotificationCode = upper_u16(wparam);
 
-      ::atom atom(first_u16(wparam));
+      ::atom atom(lower_u16(wparam));
 
       auto pinteraction = get_child_by_id(atom);
 

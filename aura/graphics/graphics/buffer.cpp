@@ -142,7 +142,7 @@ namespace graphics
    //}
 
 
-   buffer_item * buffer::on_begin_draw()
+   ::graphics::buffer_item * buffer::on_begin_draw()
    {
 
       auto pitem = get_buffer_item();

@@ -720,9 +720,9 @@ namespace user
 
             pmessage->m_nChar = static_cast<::u32>(wparam);
 
-            pmessage->m_nRepCnt = first_u16(lparam);
+            pmessage->m_nRepCnt = lower_u16(lparam);
 
-            pmessage->m_nFlags = HIWORD(lparam);
+            pmessage->m_nFlags = upper_u16(lparam);
 
             pmessage->m_iVirtualKey = (int)wparam;
 
@@ -789,7 +789,7 @@ namespace user
 
          //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(i16)first_u16(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(i16)lower_u16(wparam);
 
          pmessage->m_nPos = (i16)HIWORD(wparam);
 
@@ -860,11 +860,11 @@ namespace user
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ebuttonstate = (::user::enum_button_state) first_u16(wparam);
+         pmessage->m_ebuttonstate = (::user::enum_button_state) lower_u16(wparam);
 
          pmessage->m_point = lparam.point();
 
-         pmessage->m_Δ = second_i16(wparam);
+         pmessage->m_Δ = upper_i16(wparam);
 
          //_raw_client_to_screen(pmessage->m_point);
 
@@ -889,7 +889,7 @@ namespace user
 
             //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_eactivate = (enum_activate)(first_u16(wparam));
+         pmessage->m_eactivate = (enum_activate)(lower_u16(wparam));
 
          if (lparam == 0)
          {

@@ -1109,7 +1109,7 @@ namespace user
 
       }
 
-      return m_pgraphics->get_screen_item()->m_pimage->pixel(x - origin.x(), y - origin.y());
+      return m_pgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
 
    }
 
@@ -5323,7 +5323,7 @@ namespace user
 
             }
 
-            ::pointer < ::draw2d::graphics > pgraphics = pbufferitem->m_pimage->g();
+            ::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
 
             //#ifdef UNIVERSAL_WINDOWS
             if (::is_null(pgraphics) || pgraphics->nok())
@@ -7977,7 +7977,7 @@ namespace user
 
       m_puserinteraction->screen_to_client()(rectangle);
 
-      return rectangle.area() - pitem->m_pimage->get_rgba_area(colorTransparent, rectangle);
+      return rectangle.area() - pitem->m_pimage2->get_rgba_area(colorTransparent, rectangle);
 
    }
 
@@ -8007,7 +8007,7 @@ namespace user
 
       m_puserinteraction->window_rectangle(rectangle);
 
-      return rectangle.area() - pitem->m_pimage->get_rgba_area(colorTransparent);
+      return rectangle.area() - pitem->m_pimage2->get_rgba_area(colorTransparent);
 
    }
 
@@ -8032,7 +8032,7 @@ namespace user
 
       }
 
-      auto pimage = pitem->m_pimage;
+      auto pimage = pitem->m_pimage2;
 
       if (::is_null(pimage))
       {
@@ -8239,7 +8239,7 @@ namespace user
 
       //synchronous_lock synchronouslock(pitem->m_pmutex);
 
-      auto pimageSource = pitem->m_pimage;
+      auto pimageSource = pitem->m_pimage2;
 
       pimageSource->map();
 

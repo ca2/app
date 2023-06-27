@@ -454,7 +454,7 @@ namespace message
    ::u32 mouse_activate::GetHitTest()
    {
 
-      return first_u16(m_lparam);
+      return lower_u16(m_lparam);
 
    }
 
@@ -462,7 +462,7 @@ namespace message
    ::u32 mouse_activate::get_message()
    {
 
-      return second_u16(m_lparam);
+      return upper_u16(m_lparam);
 
    }
 
@@ -653,7 +653,7 @@ namespace message
    ::u32 mouse_wheel::GetFlags()
    {
 
-      return first_u16(m_wparam);
+      return lower_u16(m_wparam);
 
    }
 
@@ -669,7 +669,7 @@ namespace message
    point_i32 mouse_wheel::GetPoint()
    {
 
-      return point_i32(x_i16(m_lparam), y_i16(m_lparam));
+      return point_i32(i32_x(m_lparam), i32_y(m_lparam));
 
    }
 

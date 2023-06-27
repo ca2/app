@@ -757,5 +757,8 @@
     <ClCompile Include="user\simple\toolbar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\tab_graphics.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

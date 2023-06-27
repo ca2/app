@@ -32,7 +32,25 @@ public:
    polygon_type(polygon_type&& polygon_i32);
    ~polygon_type();
 
-   void set_rect(const ::rectangle_type < NUMBER > & rectangle);
+   template < primitive_rectangle RECTANGLE >
+   polygon_type & operator = (const RECTANGLE & rectangle)
+   {
+
+      m_rectangleBounding = rectangle;
+
+      this->set_size(4);
+
+      this->element_at(0) = m_rectangleBounding.top_left();
+      this->element_at(1) = m_rectangleBounding.top_right();
+      this->element_at(2) = m_rectangleBounding.bottom_right();
+      this->element_at(3) = m_rectangleBounding.bottom_left();
+
+      m_bDirty = false;
+      m_bDirtyBoundingRect = false;
+
+      return *this;
+
+   }
 
 
    void check_dirty()
@@ -363,23 +381,23 @@ polygon_type < NUMBER >::~polygon_type()
 }
 
 
-template < primitive_number NUMBER >
-void polygon_type < NUMBER >::set_rect(const ::rectangle_type < NUMBER > & rectangle)
-{
-
-   m_rectangleBounding = rectangle;
-
-   this->set_size(4);
-
-   this->element_at(0) = m_rectangleBounding.top_left();
-   this->element_at(1) = m_rectangleBounding.top_right();
-   this->element_at(2) = m_rectangleBounding.bottom_right();
-   this->element_at(3) = m_rectangleBounding.bottom_left();
-
-   m_bDirty = false;
-   m_bDirtyBoundingRect = false;
-
-}
+//template < primitive_number NUMBER >
+//void polygon_type < NUMBER >::set_rect(const ::rectangle_type < NUMBER > & rectangle)
+//{
+//
+//   m_rectangleBounding = rectangle;
+//
+//   this->set_size(4);
+//
+//   this->element_at(0) = m_rectangleBounding.top_left();
+//   this->element_at(1) = m_rectangleBounding.top_right();
+//   this->element_at(2) = m_rectangleBounding.bottom_right();
+//   this->element_at(3) = m_rectangleBounding.bottom_left();
+//
+//   m_bDirty = false;
+//   m_bDirtyBoundingRect = false;
+//
+//}
 
 
 template < primitive_number NUMBER >

@@ -6,7 +6,7 @@
 //static string * m_pstrOutputDebugStringA = nullptr;
 ::pointer< ::particle > g_pmutexOutputDebugStringA;
 
-void information(const ::scoped_string & scopedstr)
+void output_debug_string(const ::scoped_string & scopedstr)
 {
 
    synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);
@@ -59,11 +59,11 @@ CLASS_DECL_ACME void simple_debug_print(const ::scoped_string & scopedstr)
 }
 
 
-void information(const ::wide_character * lpOutputString)
+void output_debug_string(const ::wide_character * lpOutputString)
 {
 
 
-   information(string(lpOutputString));
+   ::output_debug_string(string(lpOutputString));
 
 
 }

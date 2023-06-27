@@ -4688,7 +4688,7 @@ namespace user
 
       pfiledialog->m_filedialogfiltera = filedialogfiltera;
 
-      pfiledialog->m_function = [this, function](auto pdialog)
+      pfiledialog->m_function = [function](auto pdialog)
       {
 
 
@@ -4718,7 +4718,7 @@ namespace user
 
       auto pfiledialog = acmenode()->node_file_dialog();
 
-      pfiledialog->m_function = [this, function](auto pdialog)
+      pfiledialog->m_function = [function](auto pdialog)
       {
 
 
@@ -4749,7 +4749,7 @@ namespace user
 
       auto pfiledialog = acmenode()->node_file_dialog();
 
-      pfiledialog->m_function = [this, function](auto pdialog)
+      pfiledialog->m_function = [function](auto pdialog)
       {
 
 

@@ -88,9 +88,6 @@
     <ClCompile Include="exception\translator.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\standard.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\serialization.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -643,15 +640,6 @@
     <ClCompile Include="primitive\geometry2d\_.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\_shape.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry2d\geometry.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry2d\shape.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\geometry3d\box.cpp">
       <Filter>Source Files\primitive\geometry3d</Filter>
     </ClCompile>
@@ -1090,9 +1078,6 @@
     <ClCompile Include="primitive\primitive\url.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\object_meta.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -1176,6 +1161,12 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\geometry.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace_statement.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

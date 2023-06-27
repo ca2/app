@@ -328,7 +328,7 @@ namespace std
 
 
    template < typename A, typename B >
-   ALIENATED_ANDROID_ANARCHY tuple_size< ::pair < A, B > > : integral_constant<size_t, 2> {};
+   ALIENATED_ANDROID_ANARCHY tuple_size< ::pair < A, B > > : ::integral_constant<size_t, 2> {};
 
 } //namespace std
 

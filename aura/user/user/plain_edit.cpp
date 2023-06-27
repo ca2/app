@@ -4060,7 +4060,7 @@ namespace user
 
          Δy += dLineHeight;
 
-         iOffset += m_iaLineLength[iLine];
+         //iOffset += m_iaLineLength[iLine];
 
       }
 
@@ -4148,7 +4148,7 @@ namespace user
 
          lim2 = x;
 
-         lim = lim2;
+         //lim = lim2;
 
          int iMid = (lim2 - lim1) * 3 / 4;
 

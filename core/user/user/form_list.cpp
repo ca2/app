@@ -479,7 +479,7 @@ namespace user
          else
          {
 
-            bSameControl = true;
+            //bSameControl = true;
 
             _001SaveEdit(_001GetEditControl());
 

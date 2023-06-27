@@ -1800,7 +1800,7 @@ namespace axis
 
          strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
-         pszRequestUrl = strRequestUrl;
+         //pszRequestUrl = strRequestUrl;
 
       }
 

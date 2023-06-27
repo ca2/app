@@ -2316,21 +2316,26 @@ namespace sockets_bsd
       SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS) ;
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
       // session atom
-      int iSetSessionResult = -1;
+      //int iSetSessionResult = -1;
       u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
 
       if (context.length())
       {
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-                                                            (const uchar *) (const char *) context,
-                                                            minimum((u32) context.length(), uSessionIdMaxLen));
+         //iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+         //                                                   (const uchar *) (const char *) context,
+         //                                                   minimum((u32) context.length(), uSessionIdMaxLen));
 
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+                                                            (const uchar *)(const char *)context,
+                                                            minimum((u32)context.length(), uSessionIdMaxLen));
       }
       else
       {
 
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-                                                            (const uchar *) "--is_empty--", 9);
+         // iSetSessionResult =
+
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+                                                           (const uchar *)"--is_empty--", 9);
       }
 
       if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))

@@ -264,7 +264,7 @@ namespace user
                rectangle.top = ::i32(y - pointScroll.y());
                if(i == 0)
                {
-                  w = (::index) (sizea[0].cx() - x);
+                  //w = (::index) (sizea[0].cx() - x);
                   x = (::index) (sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
@@ -272,7 +272,7 @@ namespace user
                }
                else
                {
-                  w = (::index) (sizea[i - 1].cx() - x);
+                  //w = (::index) (sizea[i - 1].cx() - x);
                   x = (::index) (sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;

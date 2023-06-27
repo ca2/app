@@ -228,7 +228,7 @@ namespace html
 
                      strLine += " ";
 
-                     iLastSpace = strLine.length();
+                     //iLastSpace = strLine.length();
 
                   }
 

@@ -94,7 +94,7 @@ bool simple_list_control::erase_item(::user::item_range & range)
       if(!m_psimplelistdata->erase_item(iItem))
       {
 
-         bOk = false;
+//         bOk = false;
 
       }
 

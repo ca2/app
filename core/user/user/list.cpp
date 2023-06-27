@@ -290,7 +290,7 @@ namespace user
 
                if (i == 0)
                {
-                  w = (::index) (sizea[0].cx() - x);
+                  //w = (::index) (sizea[0].cx() - x);
                   x = (::index) (sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
@@ -298,7 +298,7 @@ namespace user
                }
                else
                {
-                  w = (::index) (sizea[i - 1].cx() - x);
+                  //w = (::index) (sizea[i - 1].cx() - x);
                   x = (::index) (sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
@@ -1042,18 +1042,18 @@ namespace user
 
          //index iIconSize;
 
-         if (m_pcolumna->get_count() > 0)
-         {
+         //if (m_pcolumna->get_count() > 0)
+         //{
 
-            iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         //   iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            iIconSize = 32;
+         //   iIconSize = 32;
 
-         }
+         //}
 
       }
 
@@ -4632,16 +4632,16 @@ namespace user
 
       //index width;
 
-      for (i = 0; i < m_pcolumna->get_count(); i++)
-      {
+      //for (i = 0; i < m_pcolumna->get_count(); i++)
+      //{
 
-         str.format("list_column[%d].width", i);
+      //   str.format("list_column[%d].width", i);
 
-         width = m_pcolumna->element_at(i)->m_iWidth;
+      //   //width = m_pcolumna->element_at(i)->m_iWidth;
 
-         //datastream()->set(str, width);
+      //   //datastream()->set(str, width);
 
-      }
+      //}
 
       return true;
 

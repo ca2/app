@@ -41,7 +41,7 @@ namespace html
    }
 
 
-   class value * base::get_value()
+   ::html::value * base::get_value()
    {
 
       ASSERT(get_type() == type_value);

@@ -6,6 +6,7 @@ namespace html
 
 
    class tag;
+   class value;
 
 
    class base
@@ -27,13 +28,12 @@ namespace html
 
       virtual type get_type() = 0;
 
-      class tag * get_parent();
 
-      class tag * get_tag();
+      ::html::tag * get_parent();
 
-      class value * get_value();
+      ::html::tag * get_tag();
 
-
+      ::html::value * get_value();
 
 
    };

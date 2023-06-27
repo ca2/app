@@ -630,7 +630,7 @@ namespace user
             else if (!m_plist->is_this_screen_visible())
             {
 
-               //infomration("test");
+               //information("test");
 
             }
 
@@ -727,7 +727,7 @@ namespace user
 
          //      m_plist->m_durationLastHide -= 300;
 
-         //      infomration("asking to show too soon!! not going to show!!");
+         //      information("asking to show too soon!! not going to show!!");
 
          //      return;
 
@@ -1659,7 +1659,7 @@ namespace user
    void combo_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      //infomration("\nCOMBO_BOX: DOUBLE CLICK\n");
+      //information("\nCOMBO_BOX: DOUBLE CLICK\n");
 
       on_message_left_button_down(pmessage);
 

@@ -49,11 +49,11 @@
 //void dump_context::output_string(const ::scoped_string & scopedstr)
 //{
 //
-//   //// use C-runtime/infomration when m_p is nullptr
+//   //// use C-runtime/information when m_p is nullptr
 //   //if (!m_p)
 //   //{
 //
-//   //   ::infomration(psz);
+//   //   ::information(psz);
 //
 //   //   return;
 //

@@ -243,25 +243,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            infomration("xxCLOSED_MQ xx__get_mq from xxwave_player");
+//            information("xxCLOSED_MQ xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            infomration("xxCLOSED_MQ xx__get_mq from xxout");
+//            information("xxCLOSED_MQ xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            infomration("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
+//            information("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            infomration("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
+//            information("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
 //
 //         }
 //
@@ -289,25 +289,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            infomration("notxxbCreate xx__get_mq from xxwave_player");
+//            information("notxxbCreate xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            infomration("notxxbCreate xx__get_mq from xxout");
+//            information("notxxbCreate xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            infomration("notxxbCreate xx__get_mq from xxoutput_thread");
+//            information("notxxbCreate xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            infomration("notxxbCreate xx__get_mq from xxmultimedia::*");
+//            information("notxxbCreate xx__get_mq from xxmultimedia::*");
 //
 //         }
 //

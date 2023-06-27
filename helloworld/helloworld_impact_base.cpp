@@ -196,10 +196,10 @@ auto m_timeRoll = ::time::now();
 
       //char sz[512];
 
-      //::infomration("impact:");
+      //::information("impact:");
       //::ansi_from_u64(sz, microsecond, 10);
-      //::infomration(sz);
-      //::infomration(", ");
+      //::information(sz);
+      //::information(", ");
 
       //image d(e_create);
 

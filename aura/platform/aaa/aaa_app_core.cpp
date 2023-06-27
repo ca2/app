@@ -242,7 +242,7 @@ void app_core::system_init()
 
       //string str = ::str::consume_quoted_value(psz);
 
-      //infomration(str);
+      //information(str);
 
    }
 
@@ -522,13 +522,13 @@ void app_core::system_init()
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->system() / strAppId / "infomration.txt" ;
+pacmedirectory->system() / strAppId / "information.txt" ;
 
    ::file::path pathGlobalOutputDebugString =          auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->config() / "infomration.txt" ;
+pacmedirectory->config() / "information.txt" ;
 
    ::aura::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
@@ -764,13 +764,13 @@ void app_core::system_end()
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
          sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          ::duration i::durationsTotal = tickEnd - m_durationStart;
 
          sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::durationsTotal.m_i);
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          int i::durations = i::durationsTotal.m_i % 1000;
@@ -807,43 +807,43 @@ void app_core::system_end()
 
          }
 
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|  %s", szTime);
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n|");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n-------------------------------------------------------------------------------------------- - ");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          sprintf(szTimeMessage, "\n");
-         ::infomration(szTimeMessage);
+         ::information(szTimeMessage);
          printf("%s", szTimeMessage);
 
          if (file_exists_raw(szEllapsed))
@@ -1657,7 +1657,7 @@ void app_core::system_proc()
 //   catch (...)
 //   {
 //
-//      infomration("exception:app_core:run");
+//      information("exception:app_core:run");
 //
 //      estatus = error_exception;
 //
@@ -1910,7 +1910,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::infomration("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               ::information("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -1932,7 +1932,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::infomration("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+               ::information("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -1943,7 +1943,7 @@ bool app_core::has_aura_application_factory() const
 //          if (!plibrary->is_opened())
 //          {
 //
-//             ::infomration("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+//             ::information("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
 //
 //             return nullptr;
 //
@@ -1952,14 +1952,14 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               ::infomration("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               ::information("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
             //if (!plibrary->open_ca2_library())
             //{
 
-            //::infomration("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+            //::information("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
 
             //return nullptr;
 
@@ -1968,11 +1968,11 @@ bool app_core::has_aura_application_factory() const
             //if (is_verbose())
             //{
 
-            //   ::infomration("\n\n\n|(5)----");
-            //   ::infomration("| app : " + strAppId + "\n");
-            //   ::infomration("|\n");
-            //   ::infomration("|\n");
-            //   ::infomration("|----");
+            //   ::information("\n\n\n|(5)----");
+            //   ::information("| app : " + strAppId + "\n");
+            //   ::information("|\n");
+            //   ::information("|\n");
+            //   ::information("|----");
 
             //}
 
@@ -1989,11 +1989,11 @@ bool app_core::has_aura_application_factory() const
 
       papp = library.get_new_application(::auraacmesystem()->get_session(), strAppId);
 
-      ::infomration("\n\n\n|(4)----");
-      ::infomration("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-      ::infomration("|\n");
-      ::infomration("|\n");
-      ::infomration("|----");
+      ::information("\n\n\n|(4)----");
+      ::information("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+      ::information("|\n");
+      ::information("|\n");
+      ::information("|----");
 
    }
 
@@ -2019,22 +2019,22 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      ::infomration("\n\n\n|(3)----");
-      ::infomration("| app : " + strAppId + "\n");
-      ::infomration("|\n");
-      ::infomration("|\n");
-      ::infomration("|----");
+      ::information("\n\n\n|(3)----");
+      ::information("| app : " + strAppId + "\n");
+      ::information("|\n");
+      ::information("|\n");
+      ::information("|----");
 
    }
 
    if (is_verbose())
    {
 
-      ::infomration("\n\n\n|(2)----");
-      ::infomration("| app : " + strAppId + "\n");
-      ::infomration("|\n");
-      ::infomration("|\n");
-      ::infomration("|----");
+      ::information("\n\n\n|(2)----");
+      ::information("| app : " + strAppId + "\n");
+      ::information("|\n");
+      ::information("|\n");
+      ::information("|----");
 
    }
 
@@ -2060,11 +2060,11 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      ::infomration("\n\n\n|(1)----");
-      ::infomration("| app : " + strAppId + "\n");
-      ::infomration("|\n");
-      ::infomration("|\n");
-      ::infomration("|----");
+      ::information("\n\n\n|(1)----");
+      ::information("| app : " + strAppId + "\n");
+      ::information("|\n");
+      ::information("|\n");
+      ::information("|----");
 
    }
 

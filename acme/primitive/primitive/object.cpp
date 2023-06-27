@@ -146,7 +146,7 @@ string object::as_string() const
 //
 //         string strMessage = "what is this? : " + __type_name(m_preferencea->last());
 //
-//         infomration(strMessage);
+//         information(strMessage);
 //
 //      }
 //
@@ -855,14 +855,14 @@ void object::run()
 //   if (string(m_atom).contains("::rx"))
 //   {
 //
-//      infomration("::rx destroy");
+//      information("::rx destroy");
 //
 //   }
 //
 //   if (string(m_atom).contains("::interprocess::communication"))
 //   {
 //
-//      infomration("::interprocess::communication destroy");
+//      information("::interprocess::communication destroy");
 //
 //   }
 //
@@ -949,13 +949,13 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      ::infomration("task added to prodevian\n");
+      ::information("task added to prodevian\n");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      ::infomration("task added to user::thread\n");
+      ::information("task added to user::thread\n");
 
    }
 
@@ -1006,7 +1006,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      ::infomration("task added to user::thread\n");
+      ::information("task added to user::thread\n");
 
    }
 
@@ -1015,7 +1015,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
 
-      ::infomration("not a child");
+      ::information("not a child");
 
    }
 
@@ -1937,7 +1937,7 @@ void object::task_erase(::task* ptask)
          if (strThreadThis == "app_veriwell_keyboard::application")
          {
 
-            infomration("app_veriwell_keyboard::application");
+            information("app_veriwell_keyboard::application");
 
          }
 
@@ -2741,7 +2741,7 @@ void object::initialize(::particle * pparticle)
    //      if (m_pobjrefdbg->m_iStep == 39)
    //      {
    //
-   //         infomration("session");
+   //         information("session");
    //
    //      }
    //

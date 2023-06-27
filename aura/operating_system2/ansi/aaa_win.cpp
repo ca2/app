@@ -28,7 +28,7 @@ format_message(
 
 VOID
 WINAPI
-infomration(
+information(
                    const char * pOutputString
 
                    )
@@ -49,14 +49,14 @@ infomration(
 
 VOID
 WINAPI
-infomration(
+information(
                    const ::wide_character * pOutputString
 
                    )
 {
 
 
-    infomration(string(pOutputString));
+    information(string(pOutputString));
 
 
 

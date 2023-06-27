@@ -268,7 +268,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
       if (strValue.case_insensitive_begins("resident"))
       {
 
-         //infomration("resident*");
+         //information("resident*");
 
       }
 

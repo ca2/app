@@ -55,7 +55,7 @@ void matter::trace_last_status()
 extern "C"
 void o_debug_string(const ::scoped_string & scopedstr)
 {
-   infomration(scopedstr);
+   information(scopedstr);
 }
 
 
@@ -255,7 +255,7 @@ void simple_log::print(trace_statement & tracestatement)
 
       }
 
-      ::infomration(str);
+      ::output_debug_string(str);
 
    }
 
@@ -343,7 +343,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    strMessage += "\n";
 
-   infomration(strMessage);
+   information(strMessage);
 
 }
 

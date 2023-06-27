@@ -247,7 +247,7 @@ namespace draw2d
    //      else if(m_iClose <= 1)
    //      {
    //
-   //         infomration("filling opened path?");
+   //         information("filling opened path?");
    //
    ////         if(m_pointa.size() >= 2)
    ////         {

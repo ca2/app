@@ -1377,7 +1377,7 @@ mutex::~mutex()
 //
 //   m_strThread.empty();
 //   m_itask = -1;
-//   ::infomration("");
+//   ::information("");
 //
 //#endif
 //

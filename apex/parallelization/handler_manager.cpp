@@ -146,7 +146,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
          loop();
 
-         ::infomration("handler_manager::async fork finished!!");
+         ::information("handler_manager::async fork finished!!");
 
       });
       

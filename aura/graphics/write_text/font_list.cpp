@@ -480,7 +480,7 @@ namespace write_text
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
 
-            infomration("test05");
+            information("test05");
 
          }
 

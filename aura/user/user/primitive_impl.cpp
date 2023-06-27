@@ -370,7 +370,7 @@ namespace user
    }
 
 
-   void primitive_impl::on_graphics(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!m_puserinteraction)
@@ -385,13 +385,13 @@ namespace user
 //      if (strType.contains("list_box"))
 //      {
 //
-//         infomration("list_box");
+//         information("list_box");
 //
 //      }
 
       windowing_output_debug_string("\ninteraction_impl_base::_001Print");
 
-      m_puserinteraction->on_graphics(pgraphics);
+      m_puserinteraction->_000CallOnDraw(pgraphics);
 
    }
 
@@ -829,7 +829,7 @@ namespace user
 //         if ((pmessage->m_ebuttonstate & 0x80000000) == (0x80000000))
 //         {
 //
-//            infomration("(m_ebuttonstate & 0x80000000) == (0x80000000)");
+//            information("(m_ebuttonstate & 0x80000000) == (0x80000000)");
 //
 //         }
 
@@ -1957,7 +1957,7 @@ namespace user
          //
          //         str.format("creating fast timer: %d\n", nEllapse);
          //
-         //         ::infomration(str);
+         //         ::information(str);
 
       }
 

@@ -576,7 +576,7 @@ plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
          if (palloc->m_iAllocSize == 16384)
          {
 
-            //::infomration(".");
+            //::information(".");
 
          }
 
@@ -668,7 +668,7 @@ void * plex_heap_alloc_sync::Alloc()
       //if (m_nAllocSize == 128)
       //{
 
-      //   infomration("plex_heap_alloc_sync::Alloc 128");
+      //   information("plex_heap_alloc_sync::Alloc 128");
 
       //}
 
@@ -728,7 +728,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
       if ((u & 0xff000000) == 00)
       {
-         //infomration("");
+         //information("");
 
       }
 
@@ -753,7 +753,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    else if (pParam == g_pDebugPointer)
    {
 
-      //infomration("test");
+      //information("test");
 
    }
 

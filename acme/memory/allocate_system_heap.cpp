@@ -208,7 +208,7 @@ void system_heap_free(void * p)
       catch (...)
       {
 
-         ::infomration("system_heap_free : Failed to free memory");
+         ::information("system_heap_free : Failed to free memory");
 
       }
 

@@ -84,13 +84,13 @@ void * system::operating_system_library_open(const ::file::path & pathParam, str
 
    }
 
-   //::infomration("\n\nGoing to dlopen: \"" + strPath + "\"");
+   //::information("\n\nGoing to dlopen: \"" + strPath + "\"");
    
    auto pathModuleFolder = ::get_module_folder();
 
    path = pathModuleFolder / strPath;
 
-   //::infomration("\nFirst path to try: \"" + path + "\"");
+   //::information("\nFirst path to try: \"" + path + "\"");
 
    void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 
@@ -165,7 +165,7 @@ finished:
       if(has_verbose_flag())
       {
          
-         ::infomration("\n" + strMessage + "\n\n");
+         ::information("\n" + strMessage + "\n\n");
          
       }
 
@@ -175,7 +175,7 @@ finished:
 
       strMessage = "__node_library_open : Failed with : " + strMessage;
       
-      ::infomration("\n" + strMessage + "\n\n");
+      ::information("\n" + strMessage + "\n\n");
 
    }
 
@@ -236,7 +236,7 @@ void * system::operating_system_library_open_ca2(const ::file::path & pathParam,
       if(has_verbose_flag())
       {
          
-         ::infomration("\n\n" + strMessage + "\n\n");
+         ::information("\n\n" + strMessage + "\n\n");
          
       }
       
@@ -250,7 +250,7 @@ void * system::operating_system_library_open_ca2(const ::file::path & pathParam,
 
       strMessage = "__node_library_open_ca2 : " + strPath + " with the error: \"" + strError + "\"";
 
-      ::infomration("\n\n" + strMessage + "\n\n");
+      ::information("\n\n" + strMessage + "\n\n");
 
    }
 

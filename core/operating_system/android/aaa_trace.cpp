@@ -52,7 +52,7 @@ void __trace_message(const ::string & lpszPrefix, LPMESSAGE lpmsg)
       //       lpszPrefix, pMsg->hwnd, lpszMsgName,
       //     pMsg->wParam, pMsg->lParam);
 #else
-//      ::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
+//      ::information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
       //       lpszPrefix, lpmsg->hwnd, lpszMsgName,
       //     lpmsg->wParam, lpmsg->lParam);
 #endif
@@ -60,11 +60,11 @@ void __trace_message(const ::string & lpszPrefix, LPMESSAGE lpmsg)
    else
    {
 #ifdef WIN64
-      //::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
+      //::information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
       // lpszPrefix, pMsg->hwnd, lpszMsgName,
       //pMsg->wParam, pMsg->lParam);
 #else
-      //::infomration(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+      //::information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
       // lpszPrefix, lpmsg->hwnd, lpszMsgName,
       //lpmsg->wParam, lpmsg->lParam);
 #endif

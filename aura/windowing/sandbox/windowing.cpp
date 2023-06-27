@@ -111,7 +111,7 @@ namespace sandbox_windowing
       ////      if(!pdisplay)
       ////      {
       ////
-      ////         infomration("\nFailed to __create < ::windowing::display > at windowing_x11::windowing::initialize");
+      ////         information("\nFailed to __create < ::windowing::display > at windowing_x11::windowing::initialize");
       ////
       ////         return ::error_no_factory;
       ////
@@ -124,7 +124,7 @@ namespace sandbox_windowing
       ////      if(!estatus)
       ////      {
       ////
-      ////         infomration("\nFailed to initialize_display at windowing_x11::windowing::initialize");
+      ////         information("\nFailed to initialize_display at windowing_x11::windowing::initialize");
       ////
       ////         return estatus;
       ////
@@ -148,7 +148,7 @@ namespace sandbox_windowing
       //      if(!estatus)
       //      {
       //
-      //         infomration("\nFailed to m_pdisplay->open at windowing_x11::windowing::initialize");
+      //         information("\nFailed to m_pdisplay->open at windowing_x11::windowing::initialize");
       //
       //         return estatus;
       //

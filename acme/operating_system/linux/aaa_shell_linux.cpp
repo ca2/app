@@ -706,7 +706,7 @@ pacmedirectory->is(strPath))
          if (string_ends_ci(imagekey.m_strPath, ".sln"))
          {
             
-            // infomration("test .sln");
+            // information("test .sln");
 
          }
 

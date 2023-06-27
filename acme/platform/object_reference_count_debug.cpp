@@ -82,7 +82,7 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
          if (strType == "pacman::game")
          {
 
-            infomration("pacman::game");
+            information("pacman::game");
 
          }
 
@@ -106,7 +106,7 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
          if (strType == "pacman::game")
          {
 
-            infomration("pacman::game");
+            information("pacman::game");
 
          }
          else if (strType.case_insensitive_contains("session"))
@@ -115,7 +115,7 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
 //            if (m_pobjrefdbg->m_iStep == 39)
 //            {
 //
-//               infomration("session");
+//               information("session");
 //
 //            }
 
@@ -175,12 +175,12 @@ void matter::check_pending_releases()
    if (m_pobjrefdbg->m_itema.has_element())
    {
 
-      ::infomration("\nThere are pending releases (m_countReference=" + as_string(m_countReference) + "):\n");
+      ::information("\nThere are pending releases (m_countReference=" + as_string(m_countReference) + "):\n");
 
       try
       {
 
-         ::infomration("For " + __type_name() + "(" + string(debug_note()) + ")\n");
+         ::information("For " + __type_name() + "(" + string(debug_note()) + ")\n");
 
       }
       catch (...)
@@ -202,7 +202,7 @@ void matter::check_pending_releases()
          try
          {
 
-            ::infomration(::str::pad(as_string(iIndex), 4, " ", ::str::pad_left) + ": " + ::str::pad(as_string(iStep), 4, " ", ::str::pad_left) + ": " + str + "\n");
+            ::information(::str::pad(as_string(iIndex), 4, " ", ::str::pad_left) + ": " + ::str::pad(as_string(iStep), 4, " ", ::str::pad_left) + ": " + str + "\n");
 
          }
          catch (...)
@@ -213,7 +213,7 @@ void matter::check_pending_releases()
 
       }
 
-      ::infomration("-------------------\n\n");
+      ::information("-------------------\n\n");
 
    }
 

@@ -320,7 +320,7 @@ namespace folder_zip
          if (pathFile.contains("-256.png"))
          {
 
-            ::infomration("-256.png");
+            ::information("-256.png");
 
          }
 
@@ -385,7 +385,7 @@ namespace folder_zip
    void didnt_locate_file(const char * pszFile)
    {
 
-      ::infomration("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+      ::information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
       ::fflush(stdout);
 

@@ -535,8 +535,6 @@ namespace experience_tranquillum
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-
-
       if (!m_pframewindow->layout().is_full_screen()
          && !m_pframewindow->layout().is_zoomed()
          && !m_pframewindow->layout().is_iconic()

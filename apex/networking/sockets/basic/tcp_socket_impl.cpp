@@ -1560,7 +1560,7 @@
 //
 //      //            auto last_error = networking_last_error();
 //
-//      //            // infomration("");
+//      //            // information("");
 //      //          
 //      //         }
 //

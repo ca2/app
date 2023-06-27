@@ -135,13 +135,13 @@ namespace windowing
          if(pmessagePost->m_atom==e_message_vscroll)
          {
 
-            ::infomration("vscroll");
+            ::information("vscroll");
 
          }
          else if(pmessagePost->m_atom == e_message_text_composition)
          {
 
-            ::infomration("message text composition");
+            ::information("message text composition");
 
          }
 

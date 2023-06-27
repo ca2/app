@@ -63,7 +63,7 @@ int main(int argc, char * argv[], char ** envp)
       if(!estatusEnd)
       {
          
-         infomration("error(s) while finishing system");
+         information("error(s) while finishing system");
          
          
       }

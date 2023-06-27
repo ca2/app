@@ -11,7 +11,7 @@ html_impact::html_impact()
 
    auto pform = m_pform;
 
-   infomration("html_impact::on_message_create");
+   information("html_impact::on_message_create");
 
 }
 
@@ -97,7 +97,7 @@ void html_impact::on_message_create(::message::message * pmessage)
 
    auto pform = m_pform;
 
-   infomration("html_impact::on_message_create");
+   information("html_impact::on_message_create");
 
 }
 

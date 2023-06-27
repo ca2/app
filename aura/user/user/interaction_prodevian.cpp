@@ -271,7 +271,7 @@ namespace user
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
 //
-//         infomration("list_box");
+//         information("list_box");
 //
 //      }
 
@@ -474,7 +474,7 @@ namespace user
          // if (bHasProdevian)
          // {
 
-         //    infomration("has_prodevian");
+         //    information("has_prodevian");
 
          // }
 //
@@ -504,7 +504,7 @@ namespace user
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
-//               infomration("list_box");
+//               information("list_box");
 //
 //            }
 
@@ -726,7 +726,7 @@ namespace user
          {
 
             // todo display average from last 10 or so frame drawing time and not for every each single offending sample
-            // infomration("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
+            // information("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
 
             m_timeNextScreenUpdate += timeFrame;
 
@@ -743,7 +743,7 @@ namespace user
             if (timeToWaitForNextFrame > 1_s)
             {
 
-               //infomration("what?!?!\n");
+               //information("what?!?!\n");
 
                timeToWaitForNextFrame = 500_ms;
 
@@ -802,7 +802,7 @@ namespace user
             if (timeEndWait - timeStartWait > 100_ms)
             {
 
-               infomration("Waited more than 100ms to go display drawn frame at screen?!?!\n");
+               information("Waited more than 100ms to go display drawn frame at screen?!?!\n");
 
             }
 
@@ -911,7 +911,7 @@ namespace user
       
       timeUpdateScreenPost.Now();
 
-      infomration("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+      information("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
 
 #endif
 
@@ -934,7 +934,7 @@ namespace user
 
       auto e2 = timeUpdateScreenPost.elapsed();
 
-      infomration("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+      information("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1144,7 +1144,7 @@ namespace user
 
          static ::time timeLast;
 
-         infomration("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+         information("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1225,7 +1225,7 @@ namespace user
          if(strType.case_insensitive_contains("list_box"))
          {
 
-            infomration("We're on the list_box update_screen");
+            information("We're on the list_box update_screen");
 
          }
          
@@ -1302,9 +1302,9 @@ namespace user
       if (m_timeDuringUpdateScreen > 60_ms)
       {
 
-         //infomration("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //information("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //infomration("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //information("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
 
@@ -1313,9 +1313,9 @@ namespace user
       if (m_timeOufOfUpdateScreen > 60_ms)
       {
 
-         //infomration("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //information("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //infomration("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //information("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
       

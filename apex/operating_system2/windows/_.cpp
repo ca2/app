@@ -93,7 +93,7 @@ CLASS_DECL_APEX i32 __cdecl _memory_type(const void* p);
 ////    if(FAILED(hr))
 ////    {
 //
-////       ::infomration("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+////       ::information("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 ////       return false;
 //
@@ -151,7 +151,7 @@ bool __node_apex_pos_term()
    if (is_verbose())
    {
 
-      infomration(L"apex terminating!\n");
+      information(L"apex terminating!\n");
 
    }
 

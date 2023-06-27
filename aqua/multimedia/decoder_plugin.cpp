@@ -97,7 +97,7 @@ namespace multimedia
 //      if (m_lpfnNewDecoder != nullptr)
 //      {
 //
-//         infomration("Got decoder creator function \"" + strFunction + "\" (" + as_string((iptr)m_lpfnNewDecoder) + ")");
+//         information("Got decoder creator function \"" + strFunction + "\" (" + as_string((iptr)m_lpfnNewDecoder) + ")");
 //
 //      }
 //      else
@@ -108,7 +108,7 @@ namespace multimedia
 //         if (m_lpfnNewDecoder != nullptr)
 //         {
 //
-//            infomration("Got decoder creator function \"" + m_strNewDecoder + "\" (" + as_string((iptr)m_lpfnNewDecoder) + ")");
+//            information("Got decoder creator function \"" + m_strNewDecoder + "\" (" + as_string((iptr)m_lpfnNewDecoder) + ")");
 //
 //         }
 //         else
@@ -116,7 +116,7 @@ namespace multimedia
 //
 //            m_plibrary->close();
 //
-//            infomration("\"" + m_strNewDecoder + "\" function not found in library " + string(pszTitle));
+//            information("\"" + m_strNewDecoder + "\" function not found in library " + string(pszTitle));
 //
 //            return false;
 //

@@ -148,7 +148,7 @@ struct heap_memory
          if(((::u8 *)&m_paddingBefore[16])[m_size + i] != 0)
          {
 
-//            ::infomration("*&!@");
+//            ::information("*&!@");
 
          }
 
@@ -237,7 +237,7 @@ void * aligned_memory_allocate(memsize size, memsize align)
       if (heap_memory::aligned_provision_get_size(size) == 831
             && heap_memory::aligned_provision_get_size(size) < 1024)
       {
-         infomration("*");
+         information("*");
       }
 
       void * pusermessage = g_pheap->_alloc(heap_memory::aligned_provision_get_size(size, align));
@@ -838,7 +838,7 @@ void memory_free_debug(void * pmemory, i32 iBlockType)
    else
    {
 
-      ::infomration("wrong free");
+      ::information("wrong free");
 
    }
 #endif

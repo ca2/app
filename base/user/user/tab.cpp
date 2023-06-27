@@ -1676,7 +1676,7 @@ namespace user
    void tab::set_current_tab_by_index(::index iIndex)
    {
       
-      infomration("tab::set_current_tab_by_index start\n");
+      information("tab::set_current_tab_by_index start\n");
 
       synchronous_lock lock(get_data()->synchronization());
 
@@ -1704,7 +1704,7 @@ namespace user
          
       }
       
-      infomration("tab::set_current_tab_by_index end\n");
+      information("tab::set_current_tab_by_index end\n");
       
    }
 

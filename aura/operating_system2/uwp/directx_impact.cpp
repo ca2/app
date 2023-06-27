@@ -344,7 +344,7 @@ namespace universal_windows
    
       CoreTextRange range = args->Range;
 
-      ::infomration("range" + as_string(range.StartCaretPosition) + "," + as_string(range.EndCaretPosition) +"\n");
+      ::information("range" + as_string(range.StartCaretPosition) + "," + as_string(range.EndCaretPosition) +"\n");
 
       wide_string newText = args->Text;
 
@@ -568,7 +568,7 @@ namespace universal_windows
       if (args->WindowActivationState == ::winrt::Windows::UI::Core::CoreWindowActivationState::Deactivated)
       {
 
-         ::infomration("Deactivated");
+         ::information("Deactivated");
 
          //auto puserinteractionHost = Sess(acmesystem()).host();
 
@@ -586,7 +586,7 @@ namespace universal_windows
    void impact::CoreWindow_CoreWindowClosed(::winrt::Windows::UI::Core::CoreWindow ^ sender, ::winrt::Windows::UI::Core::CoreWindowEventArgs ^ args)
    {
 
-      ::infomration("window closed");
+      ::information("window closed");
 
    }
 

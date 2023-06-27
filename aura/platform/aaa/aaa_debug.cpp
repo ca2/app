@@ -21,17 +21,17 @@ void debug_object_event_promisse_predicate()
    //::object * po = memory_new object();
 
    //// 2 arguments
-   //o.treat(ok, po, [&](auto & result) { infomration("o += ok..."); return success; } };
+   //o.treat(ok, po, [&](auto & result) { information("o += ok..."); return success; } };
 
    //// 3 arguments
-   //o += { ok, id_text, [&](auto & result) { infomration("o += ok, id_text ..."); return ::success; } };
+   //o += { ok, id_text, [&](auto & result) { information("o += ok, id_text ..."); return ::success; } };
 
 
    //::pointer<::object>pparticle;
 
    //KEEP(pparticle, nullptr);
    ////   // 4 arguments
-   ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); infomration("o += ok, id_text, &o ...");  } };
+   ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); information("o += ok, id_text, &o ...");  } };
 
 
 }

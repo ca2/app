@@ -984,7 +984,7 @@ namespace nanoui
          else
          {
 
-            //         infomration("optimized");
+            //         information("optimized");
 
          }
 
@@ -1225,7 +1225,7 @@ namespace nanoui
       if (pbutton)
       {
 
-         infomration("Button contains");
+         information("Button contains");
 
       }
 

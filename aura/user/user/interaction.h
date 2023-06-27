@@ -1348,8 +1348,8 @@ namespace user
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;

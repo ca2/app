@@ -72,7 +72,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
       //else
       //{
 
-      //   infomration("non zero alpha");
+      //   information("non zero alpha");
 
       //}
 

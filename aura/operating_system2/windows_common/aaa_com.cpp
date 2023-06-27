@@ -41,7 +41,7 @@ bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE)
    if (FAILED(hr))
    {
 
-      ::infomration("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+      ::information("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 
       return false;
 

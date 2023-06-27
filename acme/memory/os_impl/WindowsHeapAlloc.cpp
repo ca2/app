@@ -59,7 +59,7 @@ void operating_system_memory_free(void* p)
 
       DWORD dwError = ::GetLastError();
 
-      ::infomration("system_heap_free : Failed to free memory");
+      ::information("system_heap_free : Failed to free memory");
 
    }
 
@@ -76,7 +76,7 @@ memsize operating_system_memory_size(void* p)
    if (s == (SIZE_T)-1)
    {
 
-      ::infomration("os_impl_size : Failed to get memory size_i32");
+      ::information("os_impl_size : Failed to get memory size_i32");
 
    }
 

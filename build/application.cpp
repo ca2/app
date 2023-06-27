@@ -146,13 +146,13 @@ namespace app_build
 
 #ifdef _DEBUG
 
-      infomration("_DEBUG build? (basis)");
+      information("_DEBUG build? (basis)");
 
       ASSERT(false);
 
 #else
 
-      infomration("RELEASE build? (stage)");
+      information("RELEASE build? (stage)");
 
       ASSERT(false);
 
@@ -198,7 +198,7 @@ namespace app_build
 
       }
 
-      infomration("\nfinished hellomultiverse::on_request");
+      information("\nfinished hellomultiverse::on_request");
 
    }
 
@@ -262,11 +262,11 @@ void hellomultiverse_debugging()
 
       strXX = strOh + "123" + as_string(15.59) + "%";
 
-      infomration(strXX);
+      information(strXX);
 
    }
 
-   infomration(pszFree);
+   information(pszFree);
 
 }
 

@@ -1047,7 +1047,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#ifdef FUNCTION_TRACE
 //
-//   infomration(str);
+//   information(str);
 //
 //#endif
 //
@@ -1257,7 +1257,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#ifdef FUNCTION_TRACE
 //
-//   infomration(str);
+//   information(str);
 //
 //#endif
 //

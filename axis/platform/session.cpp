@@ -80,7 +80,7 @@ namespace axis
    session::~session()
    {
 
-      infomration("axis::session::~session()");
+      information("axis::session::~session()");
 
    }
 
@@ -379,7 +379,7 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::infomration("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
+//                        ::information("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
 //
 //                     }
 //
@@ -399,7 +399,7 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::infomration("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+//                        ::information("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
 //
 //                     }
 //
@@ -407,7 +407,7 @@ namespace axis
 //   //               if (!plibrary->is_opened())
 //   //               {
 //   //
-//   //                  ::infomration("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+//   //                  ::information("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
 //   //
 //   //                  return nullptr;
 //   //
@@ -416,14 +416,14 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::infomration("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+//                        ::information("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
 //
 //                     }
 //
 //                     if (!plibrary->open_ca2_library())
 //                     {
 //
-//                        ::infomration("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+//                        ::information("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
 //
 //                        return nullptr;
 //
@@ -432,11 +432,11 @@ namespace axis
 //                     if (is_verbose())
 //                     {
 //
-//                        ::infomration("\n\n\n|(5)----");
-//                        ::infomration("| app : " + strAppId + "\n");
-//                        ::infomration("|\n");
-//                        ::infomration("|\n");
-//                        ::infomration("|----");
+//                        ::information("\n\n\n|(5)----");
+//                        ::information("| app : " + strAppId + "\n");
+//                        ::information("|\n");
+//                        ::information("|\n");
+//                        ::information("|----");
 //
 //                     }
 //
@@ -457,11 +457,11 @@ namespace axis
 //
 //            papp = library.get_new_application(this, strAppId);
 //
-//            ::infomration("\n\n\n|(4)----");
-//            ::infomration("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-//            ::infomration("|\n");
-//            ::infomration("|\n");
-//            ::infomration("|----");
+//            ::information("\n\n\n|(4)----");
+//            ::information("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+//            ::information("|\n");
+//            ::information("|\n");
+//            ::information("|----");
 //
 //         }
 //
@@ -489,22 +489,22 @@ namespace axis
 //      if (is_verbose())
 //      {
 //
-//         ::infomration("\n\n\n|(3)----");
-//         ::infomration("| app : " + strAppId + "\n");
-//         ::infomration("|\n");
-//         ::infomration("|\n");
-//         ::infomration("|----");
+//         ::information("\n\n\n|(3)----");
+//         ::information("| app : " + strAppId + "\n");
+//         ::information("|\n");
+//         ::information("|\n");
+//         ::information("|----");
 //
 //      }
 //
 //      if (is_verbose())
 //      {
 //
-//         ::infomration("\n\n\n|(2)----");
-//         ::infomration("| app : " + strAppId + "\n");
-//         ::infomration("|\n");
-//         ::infomration("|\n");
-//         ::infomration("|----");
+//         ::information("\n\n\n|(2)----");
+//         ::information("| app : " + strAppId + "\n");
+//         ::information("|\n");
+//         ::information("|\n");
+//         ::information("|----");
 //
 //      }
 //
@@ -523,11 +523,11 @@ namespace axis
 //      if (is_verbose())
 //      {
 //
-//         ::infomration("\n\n\n|(1)----");
-//         ::infomration("| app : " + strAppId + "\n");
-//         ::infomration("|\n");
-//         ::infomration("|\n");
-//         ::infomration("|----");
+//         ::information("\n\n\n|(1)----");
+//         ::information("| app : " + strAppId + "\n");
+//         ::information("|\n");
+//         ::information("|\n");
+//         ::information("|----");
 //
 //      }
 //

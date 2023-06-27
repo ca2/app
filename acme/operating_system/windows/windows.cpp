@@ -490,7 +490,7 @@ void __node_acme_pos_term()
    //if (is_verbose())
    //{
 
-   //   infomration(L"acme terminating!\n");
+   //   information(L"acme terminating!\n");
 
    //}
 

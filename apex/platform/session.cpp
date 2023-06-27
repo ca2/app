@@ -1171,7 +1171,7 @@ ret:
       //if (!estatus)
       //{
 
-      //   infomration("\nFailed to __construct_new(m_pfs)");
+      //   information("\nFailed to __construct_new(m_pfs)");
 
       //   m_result.add(estatus);
 
@@ -1350,7 +1350,7 @@ ret:
 
          //output_error_message("Could not initialize Local data central");
 
-         infomration("Could not initialize Local data central");
+         information("Could not initialize Local data central");
 
          //return false;
 

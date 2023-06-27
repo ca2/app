@@ -143,7 +143,7 @@ void file_beg_contents_raw(const ::string & path, const ::string & psz)
    if (lRead != lLen)
    {
 
-      infomration("file_beg_contents_raw: error writing to file.");
+      information("file_beg_contents_raw: error writing to file.");
 
    }
 

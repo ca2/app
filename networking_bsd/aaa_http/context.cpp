@@ -410,7 +410,7 @@ namespace http
 
       //output_error_message("What?!", nullptr, e_message_box_ok);
 
-      infomration("What?!");
+      information("What?!");
 
       string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
 

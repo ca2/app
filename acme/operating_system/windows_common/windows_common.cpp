@@ -36,7 +36,7 @@ CLASS_DECL_ACME ::i64 i64_nanosecond()
 }
 
 
-//void infomration(const ::ansi_character * psz)
+//void information(const ::ansi_character * psz)
 //{
 //
 //#ifdef WINDOWS
@@ -62,7 +62,7 @@ CLASS_DECL_ACME ::i64 i64_nanosecond()
 //}
 //
 
-void infomration(const ::scoped_string & str)
+void information(const ::scoped_string & str)
 {
 
    ::wstring wstr(str);
@@ -106,7 +106,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 
    strError.format("\nError Message:\n%s\n\n", strErrorMessage.c_str());
 
-   ::infomration(strError);
+   ::information(strError);
 
 }
 

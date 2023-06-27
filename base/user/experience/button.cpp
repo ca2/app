@@ -66,7 +66,7 @@ namespace experience
       else
       {
 
-         infomration("experience::button");
+         information("experience::button");
 
       }
 
@@ -100,7 +100,7 @@ namespace experience
 //         if (__type_name(this).case_insensitive_contains("control_box"))
 //         {
 //
-//            infomration("control_box");
+//            information("control_box");
 //
 //         }
 //

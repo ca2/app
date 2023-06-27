@@ -91,10 +91,10 @@
 //
 //
 //
-//void infomration(const ::wide_character * pOutputString)
+//void information(const ::wide_character * pOutputString)
 //{
 //
-//   infomration(string(pOutputString));
+//   information(string(pOutputString));
 //
 //}
 //

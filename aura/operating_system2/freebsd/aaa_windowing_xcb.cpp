@@ -334,7 +334,7 @@ bool xcb_message_handler(xcb_generic_event_t * pevent)
 //
 //#endif
 
-      infomration("x11_thread end thread");
+      information("x11_thread end thread");
 
       return false;
 
@@ -493,7 +493,7 @@ bool xcb_message_loop_step()
 //
 //#endif
 
-      infomration("x11_thread end thread");
+      information("x11_thread end thread");
 
       return false;
 
@@ -766,7 +766,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, xcb_generic_event_t * peve
    break;
    default:
    {
-      infomration("axis_x11 case default:");
+      information("axis_x11 case default:");
    }
    }
 

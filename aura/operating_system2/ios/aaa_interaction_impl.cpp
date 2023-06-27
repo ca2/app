@@ -2027,7 +2027,7 @@ namespace ios
 ////                                               if(delta1 < frameNanos || (delta2 > 0 && delta2 < 10000000000LL))
 ////                                               {
 ////
-////                                                  infomration("opt_out set need redraw");
+////                                                  information("opt_out set need redraw");
 ////
 ////                                               }
 ////                                               else
@@ -2060,7 +2060,7 @@ namespace ios
 ////
 ////                                      }
 ////
-////                                      infomration("m_pthreadDraw has finished!");
+////                                      information("m_pthreadDraw has finished!");
 ////
 ////                                   });
 ////
@@ -2150,7 +2150,7 @@ namespace ios
 ////
 ////                                          }
 ////
-////                                          infomration("m_pthreadDraw has finished!");
+////                                          information("m_pthreadDraw has finished!");
 ////
 ////                                          m_pthreadProDevian.release();
 ////

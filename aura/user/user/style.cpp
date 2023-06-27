@@ -965,7 +965,7 @@ namespace user
          if (strType.contains("form"))
          {
 
-            infomration("form");
+            information("form");
 
          }
 

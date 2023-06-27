@@ -205,7 +205,7 @@ void heap_memory_check_padding_after(struct heap_memory* pheapmemory)
       if (ppaddingAfter[i] != 0)
       {
 
-         //            ::infomration("*&!@");
+         //            ::information("*&!@");
 
       }
 

@@ -944,7 +944,7 @@ namespace draw2d_opengl
    //   //   if(!::DrawIconEx(hdc,0,0,(HICON)picon->m_picon,cx,cy,istepIfAniCur,nullptr,DI_IMAGE | DI_MASK))
    //   //   {
 
-   //   //      infomration("nok");
+   //   //      information("nok");
    //   //   }
    //   //   else
    //   //   {

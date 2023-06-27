@@ -96,7 +96,7 @@ string_to_string * g_pmapFontPath;
 //
 //         if (wcsicmp(lplf->lfFaceName, L"Gulim") == 0)
 //         {
-//            infomration("Gulim");
+//            information("Gulim");
 //         }
 //         pc->m_csa.add(::draw2d::wingdi_get_cs(lplf->lfCharSet));
 //
@@ -6642,7 +6642,7 @@ namespace draw2d_cairo
 //    if (str == "TakaoPGothic")
 //    {
 //
-//        infomration("searching TakaoPGothic");
+//        information("searching TakaoPGothic");
 //
 //    }
 //
@@ -6662,7 +6662,7 @@ namespace draw2d_cairo
 //        if (str == "TakaoPGothic")
 //        {
 //
-//            infomration("searching TakaoPGothic");
+//            information("searching TakaoPGothic");
 //
 //        }
 //

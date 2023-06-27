@@ -77,7 +77,7 @@
 //
 //VOID
 //WINAPI
-//infomration(
+//information(
 //const char * lpOutputString
 //)
 //{
@@ -95,13 +95,13 @@
 //
 //VOID
 //WINAPI
-//infomration(
+//information(
 //const ::wide_character * lpOutputString
 //)
 //{
 //
 //
-//   infomration(string(lpOutputString));
+//   information(string(lpOutputString));
 //
 //
 //}

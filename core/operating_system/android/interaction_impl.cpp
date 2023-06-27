@@ -381,7 +381,7 @@ namespace android
 
       }
 
-      infomration("android_interaction_impl send e_message_create");
+      information("android_interaction_impl send e_message_create");
 
       m_puserinteraction->send_message(e_message_create, 0, (LPARAM)&cs);
 
@@ -416,7 +416,7 @@ namespace android
 
    //   m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-   //   infomration("android_interaction_impl m_spgraphics alloc");
+   //   information("android_interaction_impl m_spgraphics alloc");
 
    //   //m_spgraphics.create(this);
 
@@ -432,9 +432,9 @@ namespace android
 
    //   m_puserinteraction->send_message(e_message_show_window, 1);
 
-   //   infomration("android_interaction_impl on _create_window");
+   //   information("android_interaction_impl on _create_window");
 
-   //   infomration("android_interaction_impl initialize (width=" + as_string(width(pinitialize->m_rectangle)) + ",height=" + as_string(height(pinitialize->m_rectangle)) + ")");
+   //   information("android_interaction_impl initialize (width=" + as_string(width(pinitialize->m_rectangle)) + ",height=" + as_string(height(pinitialize->m_rectangle)) + ")");
 
    //   return true;
 
@@ -4588,7 +4588,7 @@ namespace android
    bool interaction_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
-      infomration("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
+      information("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
       psystem->operating_system_driver::get().m_bHideKeyboard = true;
 
@@ -4599,7 +4599,7 @@ namespace android
    bool interaction_impl::keyboard_focus_OnChildKillFocus()
    {
 
-      infomration("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
+      information("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
       psystem->operating_system_driver::get().m_bHideKeyboard = true;
 

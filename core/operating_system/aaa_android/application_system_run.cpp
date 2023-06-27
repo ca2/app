@@ -77,7 +77,7 @@ string ca2_command_line()
 //   if (!psystem->begin_synch())
 //   {
 //
-//      infomration("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
+//      information("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
 //
 //      return ::error_failed;
 //

@@ -105,7 +105,7 @@ struct heap_memory
          if(((::u8 *)&m_paddingBefore[16])[m_size + i] != 0)
          {
 
-//            ::infomration("*&!@");
+//            ::information("*&!@");
 
          }
 
@@ -193,7 +193,7 @@ void * aligned_memory_allocate(memsize size, memsize align)
             && heap_memory::aligned_provision_get_size(size) < 1024)
       {
 
-         infomration("*");
+         information("*");
 
       }
 
@@ -825,7 +825,7 @@ void _memory_free_debug(void * pmemory, i32 iBlockType)
    else
    {
 
-      ::infomration("wrong free");
+      ::information("wrong free");
 
    }
 

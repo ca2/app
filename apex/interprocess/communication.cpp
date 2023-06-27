@@ -342,7 +342,7 @@ namespace interprocess
       if (strApp == "app-core/clockverse")
       {
 
-         ::infomration("app-core/clockverse");
+         ::information("app-core/clockverse");
 
       }
 

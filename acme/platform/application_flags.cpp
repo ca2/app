@@ -766,7 +766,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //   //string str = ::str::consume_quoted_value(psz);
 //
-//   //   //infomration(str);
+//   //   //information(str);
 //
 //   //}
 //
@@ -1049,9 +1049,9 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //xxdebug_box("box1", "box1", e_message_box_icon_information);
 ////
-//  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "infomration.txt" ;
+//  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "information.txt" ;
 //
-//   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "infomration.txt" ;
+//   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "information.txt" ;
 //
 //   //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 //
@@ -1251,13 +1251,13 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 ////
 ////         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i);
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         ::time i::timesTotal = tickEnd - m_timeStart;
 ////
 ////         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::timesTotal.m_i);
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         int i::times = i::timesTotal.m_i % 1000;
@@ -1294,43 +1294,43 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////         }
 ////
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n|");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n|  %s", szTime);
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n|");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n|");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n-------------------------------------------------------------------------------------------- - ");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         sprintf(szTimeMessage, "\n");
-////         ::infomration(szTimeMessage);
+////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         if (file_exists_raw(szEllapsed))
@@ -1555,7 +1555,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////   catch (...)
 ////   {
 ////
-////      infomration("exception:app_core:run");
+////      information("exception:app_core:run");
 ////
 ////      estatus = error_exception;
 ////

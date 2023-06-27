@@ -169,13 +169,13 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
 #ifdef _DEBUG
 
-      infomration("_DEBUG build? (basis)");
+      information("_DEBUG build? (basis)");
 
       ASSERT(false);
 
 #else
 
-      infomration("RELEASE build? (stage)");
+      information("RELEASE build? (stage)");
 
       ASSERT(false);
 
@@ -199,7 +199,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
       }
 
-      infomration("\nfinished browser::on_request");
+      information("\nfinished browser::on_request");
 
    }
 

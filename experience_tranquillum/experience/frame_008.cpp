@@ -343,12 +343,6 @@ SizingNone:
 
             auto eborder = pmovemanager->GetBorderMask();
 
-            //auto rectangleMargin = get_margin_rect();
-
-            //auto pframewindow = m_pframewindow;
-
-            //auto estyle = pframewindow->m_estyle;
-
             ::rectangle_i32 rectangleA(rectangleClient);
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);

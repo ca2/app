@@ -70,7 +70,7 @@ namespace sockets_bsd
 
       g_interlockedcountSocketHandler++;
 
-      ::infomration("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
+      ::information("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
 
    }
 
@@ -2249,7 +2249,7 @@ end_processing_adding:
          //if (which_one == e_list_close)
          //{
 
-         //   //INFO(infomration("list_close");
+         //   //INFO(information("list_close");
          //}
          //return;
       //}
@@ -2285,7 +2285,7 @@ end_processing_adding:
       //if (which_one == e_list_close)
       //{
 
-      //   //INFO(infomration("list_close");
+      //   //INFO(information("list_close");
       //}
       //return;
    //}

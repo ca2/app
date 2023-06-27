@@ -872,7 +872,7 @@ Window * x11_window_list(Display *disp, unsigned long * len)
    if (XGetWindowProperty(disp,XDefaultRootWindow(disp),prop,0,1024,False,XA_WINDOW,
                           &type,&form,len,&remain,&list) != Success)
    {
-      infomration("winlist() -- GetWinProp");
+      information("winlist() -- GetWinProp");
       return nullptr;
    }
 
@@ -3158,7 +3158,7 @@ bool x11_message_handler(XEvent * pevent)
 
 #endif
 
-      infomration("x11_thread end thread");
+      information("x11_thread end thread");
 
       return false;
 
@@ -3316,7 +3316,7 @@ bool x11_message_loop_step()
 
 #endif
 
-      infomration("x11_thread end thread");
+      information("x11_thread end thread");
 
       return false;
 
@@ -3500,7 +3500,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    && e.xclient.message_type == g_atomKickIdle)
    {
 
-      infomration("\nkick idle received\n");
+      information("\nkick idle received\n");
 
       return true;
 
@@ -3561,19 +3561,19 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                         if(pinteraction->m_iMouseMoveSkipCount == 2)
                         {
 
-                           //infomration("\nmmv>skip 2!");
+                           //information("\nmmv>skip 2!");
 
                         }
                         else if(pinteraction->m_iMouseMoveSkipCount == 5)
                         {
 
-                           //infomration("\nmmv>Skip 5!!!");
+                           //information("\nmmv>Skip 5!!!");
 
                         }
                         else if(pinteraction->m_iMouseMoveSkipCount == 10)
                         {
 
-                           //infomration("\nmmv>SKIP 10 !!!!!!!!!");
+                           //information("\nmmv>SKIP 10 !!!!!!!!!");
 
                         }
 
@@ -4016,7 +4016,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(e.xbutton.button == Button1)
          {
 
-            ::infomration("ButtonPress::Button1\n");
+            ::information("ButtonPress::Button1\n");
 
             msg.message = e_message_left_button_down;
 
@@ -4047,7 +4047,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(e.xbutton.button == Button1)
          {
 
-            ::infomration("ButtonRelease::Button1\n");
+            ::information("ButtonRelease::Button1\n");
 
             msg.message = e_message_left_button_up;
 
@@ -4378,7 +4378,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    case FocusIn:
    {
 
-      ::infomration("FocusIn\n");
+      ::information("FocusIn\n");
 
       msg.message       = e_message_set_focus;
 
@@ -4402,13 +4402,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //         if(wFocus == e.xfocus.window)
 //         {
 //
-//            infomration("A\n");
+//            information("A\n");
 //
 //         }
 //         else
 //         {
 //
-//            infomration("B " + as_string(wFocus));
+//            information("B " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -4417,13 +4417,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //         if(wFocus == g_windowFocus)
 //         {
 //
-//            infomration("C\n");
+//            information("C\n");
 //
 //         }
 //         else
 //         {
 //
-//            infomration("D " + as_string(wFocus));
+//            information("D " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -4455,7 +4455,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    case FocusOut:
    {
 
-      ::infomration("FocusOut\n");
+      ::information("FocusOut\n");
 
       auto oswindow = msg.hwnd;
 
@@ -4496,7 +4496,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    break;
    default:
    {
-      infomration("axis_x11 case default:");
+      information("axis_x11 case default:");
    }
    }
 
@@ -5314,20 +5314,20 @@ bool post_ui_message(const MESSAGE & message)
    if(message.message == e_message_quit)
    {
 
-      infomration("e_message_quit thread");
+      information("e_message_quit thread");
 
    }
 
    if(message.message == e_message_left_button_down)
    {
 
-      infomration("post_ui_message::e_message_left_button_down\n");
+      information("post_ui_message::e_message_left_button_down\n");
 
    }
    else if(message.message == e_message_left_button_up)
    {
 
-      infomration("post_ui_message::e_message_left_button_up\n");
+      information("post_ui_message::e_message_left_button_up\n");
 
    }
 

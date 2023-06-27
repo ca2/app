@@ -1112,7 +1112,7 @@ namespace user
 
       set_display(e_display_none);
 
-      infomration("\nm_bLayoutEnable false");
+      information("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
@@ -2683,13 +2683,13 @@ namespace user
 //      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
 //      {
 //
-//         //::infomration("app_veriwell_keyboard::main_frame");
+//         //::information("app_veriwell_keyboard::main_frame");
 //
 //      }
 //      else if(type.name_contains("simple_child_frame"))
 //      {
 //
-//         //::infomration("simple_child_frame");
+//         //::information("simple_child_frame");
 //
 //      }
 //
@@ -2794,6 +2794,8 @@ namespace user
 
    void frame_window::_001OnNcDraw(::draw2d::graphics_pointer &pgraphics)
    {
+
+      //return;
 
       auto pstyle = get_style(pgraphics);
 

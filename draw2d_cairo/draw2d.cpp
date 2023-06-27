@@ -1357,7 +1357,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      //infomration("No write_text pluging available!!.");
+//      //information("No write_text pluging available!!.");
 //      return error_failed;
 //
 //      //destroy:

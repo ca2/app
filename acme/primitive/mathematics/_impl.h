@@ -83,7 +83,7 @@ inline bool clip_convert(T1& t1, const T2& t2)
 
       t1 = ::numeric_info < T1 >::get_maximum_value();
 
-      infomration("\nclip::assign maximum clipped");
+      information("\nclip::assign maximum clipped");
 
       return false;
 
@@ -94,7 +94,7 @@ inline bool clip_convert(T1& t1, const T2& t2)
 
       t1 = ::numeric_info < T1 >::get_minimum_value();
 
-      infomration("\nclip::assign minimum clipped");
+      information("\nclip::assign minimum clipped");
 
       return false;
 
@@ -114,7 +114,7 @@ inline T1 clip_convert(const T2& t2)
    if (::comparison::gt(t2, ::numeric_info < T1 >::get_maximum_value()))
    {
 
-      infomration("\nclip::convert maximum clipped");
+      information("\nclip::convert maximum clipped");
 
       return ::numeric_info < T1 >::get_maximum_value();
 
@@ -123,7 +123,7 @@ inline T1 clip_convert(const T2& t2)
    if (::comparison::lt(t2, ::numeric_info < T1 >::get_minimum_value()))
    {
 
-      infomration("\nclip::convert minimum clipped");
+      information("\nclip::convert minimum clipped");
 
       return ::numeric_info < T1 >::get_minimum_value();
 
@@ -143,7 +143,7 @@ inline bool clip_convert_add(T1& t1, const T2& t2)
    if (!convert(t1, t))
    {
 
-      infomration(" (convert_add)");
+      information(" (convert_add)");
 
    }
 
@@ -172,7 +172,7 @@ inline bool clip_convert_multiply(T1& t1, const T2& t2)
    if (!clip_convert(t1, t))
    {
 
-      infomration(" (convert_multiply)");
+      information(" (convert_multiply)");
 
    }
 
@@ -191,7 +191,7 @@ inline bool clip_convert_divide(T1& t1, const T2& t2)
    if (!clip_convert(t1, t))
    {
 
-      infomration(" (convert_divide)");
+      information(" (convert_divide)");
 
    }
 

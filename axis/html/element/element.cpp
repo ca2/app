@@ -412,7 +412,7 @@ namespace html
                if (m_strClass == "field")
                {
 
-                  infomration("field");
+                  information("field");
 
                }
                m_pstyle->get_surround_box("html_padding", "", phtmldata, this, m_pimpl->m_padding);
@@ -614,7 +614,7 @@ namespace html
          if (iExtraCy > 0)
          {
 
-            infomration("extra_cy > 0");
+            information("extra_cy > 0");
 
          }
 

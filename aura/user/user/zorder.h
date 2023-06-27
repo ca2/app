@@ -32,8 +32,6 @@ public:
 
    bool is_set() const;
 
-   bool operator != (const zorder & zorder) const;
-
    bool operator == (const zorder & zorder) const;
 
    bool operator < (const zorder & zorder) const;

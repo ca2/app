@@ -4,6 +4,7 @@
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/keep.h"
+#include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "aura/platform/application.h"
@@ -381,18 +382,32 @@ namespace user
          )
       {
 
-         //         if(bInitialFramePosition)
-         //         {
-         //
-         //            display( edisplay);
-         //
-         //         }
+         ::e_display edisplayForRestore = edisplay;
 
-                  //place(windowrectangle.m_rectangleWindow);
+         information() << "user::box::LoadWindowRectangle " << edisplay;
+
+         switch(edisplayForRestore)
+         {
+            case e_display_compact:
+               place(windowrectangle.m_rectangleCompact);
+               break;
+            case e_display_broad:
+               place(windowrectangle.m_rectangleBroad);
+               break;
+            default:
+               place(windowrectangle.m_rectangleNormal);
+               edisplayForRestore = e_display_normal;
+               break;
+
+         }
+
+         display(edisplayForRestore);
+
+         auto rectangleWindow = window_rectangle();
+
+         good_restore(nullptr, rectangleWindow, true, e_activation_default, e_zorder_top, edisplayForRestore);
 
          display(edisplay);
-
-         return true;
 
       }
       else if (is_docking_appearance(edisplay)

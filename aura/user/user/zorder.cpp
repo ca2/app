@@ -136,13 +136,6 @@ bool zorder::is_set() const
 }
 
 
-bool zorder::operator != (const zorder & zorder) const
-{
-
-   return !operator ==(zorder);
-
-}
-
 int zorder::get_sort_ezorder() const
 {
 

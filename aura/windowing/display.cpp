@@ -839,7 +839,7 @@ namespace windowing
       //   if (edisplayPrevious & e_display_bottom)
       //      strP += "B";
 
-      //   ::infomration(
+      //   ::information(
       //      "w" + as_string(rectangleWorkspace.left) + ","
       //      + as_string(rectangleWorkspace.top) + ","
       //      + as_string(rectangleWorkspace.right) + ","

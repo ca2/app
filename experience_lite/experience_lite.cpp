@@ -17,7 +17,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
    {
 
 
-      ::infomration(L"experience_lite.dll :: initializing!\n");
+      ::information(L"experience_lite.dll :: initializing!\n");
 
 
    }
@@ -25,7 +25,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
    {
 
 
-      ::infomration(L"experience_lite.dll :: terminating!\n");
+      ::information(L"experience_lite.dll :: terminating!\n");
 
 
    }

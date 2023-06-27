@@ -435,7 +435,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //      }
 //
-//      ::infomration("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//      ::information("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 //      return false;
 //

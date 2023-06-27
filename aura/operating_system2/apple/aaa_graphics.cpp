@@ -400,7 +400,7 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
    if (colorSpace == nullptr)
    {
 
-      infomration("CreateARGBBitmapContext: Error allocating color space\n");
+      information("CreateARGBBitmapContext: Error allocating color space\n");
 
       return nullptr;
 
@@ -411,7 +411,7 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
    //   if (bitmapData == nullptr)
    //   {
    //
-   //      infomration("CreateARGBBitmapContext: Memory not allocated!");
+   //      information("CreateARGBBitmapContext: Memory not allocated!");
    //
    //      CGColorSpaceRelease( colorSpace );
    //
@@ -440,7 +440,7 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
    //
    //      free (bitmapData);
    //
-   //      infomration("CreateARGBBitmapContext: Context not created!");
+   //      information("CreateARGBBitmapContext: Context not created!");
    //
    //   }
 

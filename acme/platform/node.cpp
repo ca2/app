@@ -1008,13 +1008,13 @@ namespace acme
       if (m_bDarkMode)
       {
 
-         ::infomration("background_color :: Dark\n");
+         ::information("background_color :: Dark\n");
 
       }
       else
       {
 
-         ::infomration("background_color :: Lite\n");
+         ::information("background_color :: Lite\n");
 
       }
 

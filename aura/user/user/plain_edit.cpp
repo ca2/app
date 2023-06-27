@@ -1877,7 +1877,7 @@ namespace user
                if (pmouse->m_point.x() < rectangleWindow.left - 30)
                {
 
-                  infomration("test06");
+                  information("test06");
 
                }
 
@@ -6421,7 +6421,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::infomration("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         ::information("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -6493,7 +6493,7 @@ namespace user
 
          _001GetText(strText);
 
-         ::infomration("Current Text: " + strText + "\n");
+         ::information("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 
@@ -8253,7 +8253,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::infomration("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
+      ::information("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 

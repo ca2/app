@@ -253,7 +253,7 @@ namespace user
 //      else if (edisplay == e_display_zoomed)
 //      {
 //
-//         infomration("e_display_zoomed");
+//         information("e_display_zoomed");
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
@@ -275,7 +275,7 @@ namespace user
 //      else if (edisplay == e_display_full_screen)
 //      {
 //
-//         infomration("e_display_full_screen");
+//         information("e_display_full_screen");
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //

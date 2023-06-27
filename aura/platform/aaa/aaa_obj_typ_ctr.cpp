@@ -31,7 +31,7 @@ void object_type_counter_increment(::particle * pparticle)
       if (i % 128 == 0)
       {
 
-         infomration("OMG too much of this: " + as_string(psz) + " (" + as_string(i) + ")\n");
+         information("OMG too much of this: " + as_string(psz) + " (" + as_string(i) + ")\n");
 
       }
 

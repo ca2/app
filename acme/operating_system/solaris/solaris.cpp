@@ -53,9 +53,9 @@ void sleep(::u32 dwMillis)
 
 
 
-void infomration(const ::scoped_string & scopedstr)
+void information(const ::scoped_string & scopedstr)
 {
 
-   infomration(psz);
+   information(psz);
 
 }

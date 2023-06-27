@@ -103,13 +103,13 @@ namespace hellobase
 
 #ifdef _DEBUG
 
-      infomration("_DEBUG build? (basis)");
+      information("_DEBUG build? (basis)");
 
       ASSERT(false);
 
 #else
 
-      infomration("RELEASE build? (stage)");
+      information("RELEASE build? (stage)");
 
       ASSERT(false);
 
@@ -125,7 +125,7 @@ namespace hellobase
       }
 
 
-      infomration("\nfinished hellobase::on_request");
+      information("\nfinished hellobase::on_request");
 
    }
 

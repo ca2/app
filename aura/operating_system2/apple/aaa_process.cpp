@@ -552,26 +552,26 @@ namespace apple
 
 //      int uid = getuid();
 
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
-      ::infomration("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
 
 //      int i = setuid(0);
 
@@ -710,7 +710,7 @@ auto tickStart = ::duration::now();
          iRead =(int) fread(sz,1,1024, pipe);
          if(iRead >0)
          {
-            ::infomration(sz);
+            ::information(sz);
          }
          else if(iRead <= 0)
          {

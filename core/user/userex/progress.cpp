@@ -189,7 +189,7 @@ namespace userex
       //
       ////            release();
       //
-      //         infomration("finished");
+      //         information("finished");
       //
       //      });
 

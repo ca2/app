@@ -1067,7 +1067,7 @@ namespace experience
       {
 
 
-         infomration("frame::get_window_client_rect file");
+         information("frame::get_window_client_rect file");
 
       }
 

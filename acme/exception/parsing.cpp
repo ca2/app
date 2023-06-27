@@ -6,7 +6,7 @@ parsing_exception::parsing_exception(const ::scoped_string & scopedstrMessage) :
    ::exception(error_parsing, scopedstrMessage)
 {
 
-   infomration("parsing_exception");
+   information("parsing_exception");
 
 }
 
@@ -77,7 +77,7 @@ network_payload_parsing_exception::network_payload_parsing_exception(const ::sco
    parsing_exception(scopedstrMessage)
 {
 
-   infomration("parsing_exception");
+   information("parsing_exception");
 
 }
 

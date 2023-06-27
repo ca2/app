@@ -168,7 +168,7 @@ namespace universal_windows
          else
          {
 
-            infomration("finished drawing with errors");
+            information("finished drawing with errors");
 
          }
 

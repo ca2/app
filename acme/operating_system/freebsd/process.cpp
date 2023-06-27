@@ -56,7 +56,7 @@
 //      if(strExe.case_insensitive_ends("_app_core_clockverse"))
 //      {
 //
-//         ::infomration("app-core/clockverse");
+//         ::information("app-core/clockverse");
 //
 //      }
 //
@@ -76,7 +76,7 @@
 //      if(strExe.case_insensitive_ends("_app_core_clockverse"))
 //      {
 //
-//         ::infomration("app-core/clockverse");
+//         ::information("app-core/clockverse");
 //
 //      }
 //
@@ -522,7 +522,7 @@
 //      atom_array node::module_path_get_pid(const ::scoped_string & scopedstr)
 //      {
 //
-//         ::infomration("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+//         ::information("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
 //
 //         atom_array ia;
 //
@@ -554,14 +554,14 @@
 //
 //               //if(iPid == 22912)
 //               //{
-//               //infomration("22912");
+//               //information("22912");
 //               //}
 //               ::file::path path = module_path_from_pid(iPid);
 //
 //               if (path.has_char())
 //               {
 //
-//                  //infomration(path + "\n");
+//                  //information(path + "\n");
 //
 //               }
 //

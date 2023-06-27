@@ -44,7 +44,7 @@ string FormatMessageFromSystem(u32 dwError)
 extern "C"
 void o_debug_string(const ::string & psz)
 {
-   infomration(psz);
+   information(psz);
 }
 
 

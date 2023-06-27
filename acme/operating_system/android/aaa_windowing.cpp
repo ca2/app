@@ -1188,7 +1188,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 // void android_key_down(int keyCode, int iUni)
 // {
 
-//    infomration("here???555");
+//    information("here???555");
 
 //    android_key(e_message_key_down, keyCode, iUni);
 
@@ -1202,7 +1202,7 @@ int g_iAndroidBufferSize = -2;
 void android_audio_parameters(int iSampleRate, int iBufferSize)
 {
 
-   infomration("here???555.1");
+   information("here???555.1");
 
    g_iAndroidSampleRate = iSampleRate;
 
@@ -1219,7 +1219,7 @@ void _android_size(float xScreen, float yScreen, float aPok, float yBitmap);
 void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 {
 
-   infomration("android_on_size\n");
+   information("android_on_size\n");
 
    if (::get_context_system() == nullptr)
    {
@@ -1246,7 +1246,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 // 
 // void android_key_up(int keyCode, int iUni)
 // {
-//    infomration("here???444");
+//    information("here???444");
 
 //    android_key(e_message_key_up, keyCode, iUni);
 
@@ -1258,7 +1258,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 {
 
-   infomration("here???333");
+   information("here???333");
 
    if (0x80000000 & iUni)
    {
@@ -1330,7 +1330,7 @@ void _android_on_text(string str);
 void android_on_text(enum_os_text etext, const wchar_t * pwch, size_t len)
 {
 
-   infomration("here???222");
+   information("here???222");
 
    string strText(pwch, len);
 

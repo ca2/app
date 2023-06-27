@@ -66,11 +66,11 @@ void * __node_library_open(const ::string & pszPath, string & strMessage)
 
    }
 
-   ::infomration("\n\nGoing to dlopen: \"" + strPath + "\"");
+   ::information("\n\nGoing to dlopen: \"" + strPath + "\"");
 
    path = ::file::path(::get_exe_path()).folder() / strPath;
 
-   ::infomration("\nFirst path to try: \"" + path + "\"");
+   ::information("\nFirst path to try: \"" + path + "\"");
 
    void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 
@@ -150,7 +150,7 @@ finished:
 
    }
 
-   ::infomration("\n" + strMessage + "\n\n");
+   ::information("\n" + strMessage + "\n\n");
 
    return plibrary;
 
@@ -222,7 +222,7 @@ void * __node_library_open_ca2(const ::string & pszPath, string & strMessage)
 
    }
 
-   ::infomration("\n\n" + strMessage + "\n\n");
+   ::information("\n\n" + strMessage + "\n\n");
 
    return plibrary;
 

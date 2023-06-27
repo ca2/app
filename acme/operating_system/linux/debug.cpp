@@ -218,7 +218,7 @@ i32 gdb_check()
 //}
 
 
-void infomration(const ::scoped_string & scopedstr)
+void output_debug_string(const ::scoped_string & scopedstr)
 {
 
    if(::acme::acme::g_pacme->m_bOutputDebugString)
@@ -240,17 +240,17 @@ void infomration(const ::scoped_string & scopedstr)
 }
 
 
-void infomration(const ::wide_character * pOutputString)
-{
-
-   if(::acme::acme::g_pacme->m_bOutputDebugString)
-   {
-
-      infomration(string(pOutputString));
-
-   }
-
-}
+//void output_debug_string(const ::wide_character * pOutputString)
+//{
+//
+//   if(::acme::acme::g_pacme->m_bOutputDebugString)
+//   {
+//
+//      output_debug_string(string(pOutputString));
+//
+//   }
+//
+//}
 
 
 ////CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;

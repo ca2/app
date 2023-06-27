@@ -46,7 +46,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if (::apexacmesystem() == nullptr)
    {
 
-      infomration("android_fill_plasma : apex_system is null");
+      information("android_fill_plasma : apex_system is null");
 
       return;
 
@@ -55,7 +55,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if (::apexacmesystem()->get_session() == nullptr)
    {
 
-      infomration("android_fill_plasma : context_session is null");
+      information("android_fill_plasma : context_session is null");
 
       return;
 
@@ -64,7 +64,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if (::apexacmesystem()->get_session()->m_puserinteractionHost == nullptr)
    {
 
-      infomration("android_fill_plasma : Host Window is null");
+      information("android_fill_plasma : Host Window is null");
 
       return;
 
@@ -73,7 +73,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if (::apexacmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
    {
 
-      infomration("android_fill_plasma : Host Window impl is null");
+      information("android_fill_plasma : Host Window impl is null");
 
       return;
 
@@ -82,7 +82,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if (::apexacmesystem()->get_session()->m_puserinteractionHost->get_window_graphics() == nullptr)
    {
 
-      //   infomration("android_fill_plasma : get_window_graphics returned null");
+      //   information("android_fill_plasma : get_window_graphics returned null");
 
       return;
 
@@ -93,7 +93,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if(pbuffer == nullptr)
    {
 
-      infomration("android_fill_plasma : double_buffer is null");
+      information("android_fill_plasma : double_buffer is null");
 
       return;
 
@@ -108,7 +108,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    if (!::is_ok(pimage))
    {
 
-      infomration("android_fill_plasma : image is null or empty");
+      information("android_fill_plasma : image is null or empty");
 
       return;
 
@@ -139,7 +139,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    pdata,
    image_stride);
 
-   //infomration("android_fill_plasma OK (area="+as_string(pbuffer->m_spimageBuffer.area())+")");
+   //information("android_fill_plasma OK (area="+as_string(pbuffer->m_spimageBuffer.area())+")");
 
 }
 

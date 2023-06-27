@@ -753,7 +753,7 @@ namespace user
       //   if (strType.case_insensitive_contains("control_box"))
       //   {
 
-      //      infomration("control box on clip");
+      //      information("control box on clip");
 
       //   }
 

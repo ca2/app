@@ -310,7 +310,7 @@ bool synchronization::_wait(const class ::wait & wait)
    //if (milliseconds < 1'000'000'000)
    //{
 
-   //   infomration("milliseconds < 1'000'000'000");
+   //   information("milliseconds < 1'000'000'000");
 
    //}
 
@@ -336,7 +336,7 @@ bool synchronization::_wait(const class ::wait & wait)
 
          pmutex->m_strThread = ::task_get_name();
          pmutex->m_itask = ::get_current_itask();
-         ::infomration("");
+         ::information("");
 
       }
 

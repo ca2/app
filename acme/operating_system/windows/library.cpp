@@ -217,7 +217,7 @@ namespace acme
 
       strMessage = "node_library_open Success opening " + path;
 
-      ::infomration(strMessage + "\n\n");
+      ::information(strMessage + "\n\n");
 
       return plibrary;
 
@@ -272,7 +272,7 @@ namespace acme
 
       }
 
-      ::infomration("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+      ::information("\n\nGoing to touch library (1) " + string(strPath) + "\n");
 
       ::file::path path;
 
@@ -441,7 +441,7 @@ namespace acme
 
       }
 
-      ::infomration(strMessage + "\n\n");
+      ::information(strMessage + "\n\n");
 
       return plibrary;
 
@@ -492,7 +492,7 @@ namespace acme
 
       }
 
-      ::infomration("\n" + strMessage + "\n\n");
+      ::information("\n" + strMessage + "\n\n");
 
       return p;
 

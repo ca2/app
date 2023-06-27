@@ -118,7 +118,7 @@ namespace sockets
       SendRequest();
       if(m_file.is_set())
       {
-         ::infomration("Sending " + ::as_string(m_content_length)+ " bytes");
+         ::information("Sending " + ::as_string(m_content_length)+ " bytes");
          memsize n;
          if(m_transferprogressfunction)
          {

@@ -193,7 +193,7 @@ namespace experience
       else
       {
 
-         infomration(".");
+         information(".");
 
       }
 
@@ -540,7 +540,7 @@ namespace experience
          rectangle.left = rectangle.right - sizeButton.cx();
 if(rectangle.left > 400)
 {
-   infomration("rectangle.left > 400");
+   information("rectangle.left > 400");
    
 }
          if (pbutton)
@@ -1133,7 +1133,7 @@ if(rectangle.left > 400)
 
       auto rectangleClient = client_rectangle();
 
-      infomration("rectangleClient");
+      information("rectangleClient");
 
    }
 

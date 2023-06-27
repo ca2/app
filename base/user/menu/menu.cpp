@@ -352,7 +352,7 @@ namespace user
          else
          {
 
-            ::infomration("parent has other Topic Submenu");
+            ::information("parent has other Topic Submenu");
 
          }
 

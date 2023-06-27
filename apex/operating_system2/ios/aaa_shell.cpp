@@ -219,7 +219,7 @@ namespace ios
 
       if (string_ends_ci(imagekey.m_strPath, ".sln"))
       {
-         infomration("test");
+         information("test");
       }
 
       auto pimage48 = __create_image({48,  48});
@@ -1579,7 +1579,7 @@ pacmedirectory->is(strPath))
 //
 //      if (string_ends_ci(imagekey.m_strPath, ".sln"))
 //      {
-//         infomration("test");
+//         information("test");
 //      }
 //
 //      ::image_pointer pimage48;

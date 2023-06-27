@@ -17,7 +17,7 @@ namespace windows
 		if (FAILED(hr))
 		{
 
-			infomration("MEDIA FOUNDATION: Resources couldn't be started\n");
+			information("MEDIA FOUNDATION: Resources couldn't be started\n");
 
 		}
 
@@ -32,7 +32,7 @@ namespace windows
 		if (FAILED(hr))
 		{
 
-			infomration("MEDIA FOUNDATION: Resources couldn't be released\n");
+			information("MEDIA FOUNDATION: Resources couldn't be released\n");
 
 		}
 

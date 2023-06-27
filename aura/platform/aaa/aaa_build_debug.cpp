@@ -58,7 +58,7 @@ void aura_auto_debug_teste()
 
          wstr3 = str3;
 
-         infomration("strstr");
+         information("strstr");
 
       }
 
@@ -103,7 +103,7 @@ void aura_auto_debug_teste()
 //   catch(...)
 //   {
 //   }
-//   ::infomration(g_strDebugPuts);
+//   ::information(g_strDebugPuts);
 
 }
 

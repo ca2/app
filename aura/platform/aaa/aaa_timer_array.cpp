@@ -35,7 +35,7 @@ namespace aura
 //
 //         str.format("creating fast timer: %d\n", nEllapse);
 //
-//         ::infomration(str);
+//         ::information(str);
 
       }
 

@@ -187,7 +187,7 @@ namespace dynamic_source
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         infomration("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
+//         information("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
 //
 //      }
 //
@@ -309,7 +309,7 @@ namespace dynamic_source
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
 
-         ::infomration("compile auth3.ds");
+         ::information("compile auth3.ds");
 
       }
 
@@ -407,7 +407,7 @@ namespace dynamic_source
 
          string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
-         ::infomration("Ops");
+         ::information("Ops");
 
       }
 
@@ -1290,7 +1290,7 @@ namespace dynamic_source
 //         { \r\n \
 // \r\n \
 // \r\n \
-//             ::infomration(\"netnode_desktop script initializing : " + strCppPath + "!\\n\"); \r\n \
+//             ::information(\"netnode_desktop script initializing : " + strCppPath + "!\\n\"); \r\n \
 // \r\n \
 // \r\n \
 //         } \r\n \
@@ -1298,7 +1298,7 @@ namespace dynamic_source
 //         { \r\n \
 // \r\n \
 // \r\n \
-//            ::infomration(\"netnode_desktop script terminating : " + strCppPath + "!\\n\"); \r\n \
+//            ::information(\"netnode_desktop script terminating : " + strCppPath + "!\\n\"); \r\n \
 // \r\n \
 // \r\n \
 //         } \r\n \
@@ -2942,13 +2942,13 @@ ch_else:
             catch (const ::parsing_exception & )
             {
 
-               infomration("script_compiler::parse_pstr_set");
+               information("script_compiler::parse_pstr_set");
 
             }
             catch (const ::exception & )
             {
 
-               infomration("script_compiler::parse_pstr_set");
+               information("script_compiler::parse_pstr_set");
 
             }
             catch(...)

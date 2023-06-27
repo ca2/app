@@ -956,7 +956,7 @@ namespace apex
 
          //message_box(strMessage);
 
-         infomration(strMessage);
+         information(strMessage);
 
          return nullptr;
 

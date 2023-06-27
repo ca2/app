@@ -652,7 +652,7 @@ namespace exception
 
          if (!dwModBase)
          {
-         //::infomration("engine::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
+         //::information("engine::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
          return;
          if (bRetry)
          {
@@ -1050,7 +1050,7 @@ namespace exception
       if (!::SymInitialize(hprocess, 0, true))
       {
          ::u32 dw = ::GetLastError();
-         infomration("Last Error = " + as_string(dw));
+         information("Last Error = " + as_string(dw));
          ASSERT(0);
 
          //load_modules();
@@ -1284,7 +1284,7 @@ namespace exception
 
          //         char sz[200];
          //         sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
-         //         ::infomration(sz);
+         //         ::information(sz);
 
          if (-1 == SuspendThread(pcontext->m_papexcontext->thread))
          {

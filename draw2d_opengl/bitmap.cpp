@@ -575,7 +575,7 @@ namespace draw2d_opengl
          glReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
          e = glGetError();
 
-         infomration("error " + as_string((int)e));
+         information("error " + as_string((int)e));
 
       }
 

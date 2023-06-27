@@ -174,7 +174,7 @@ void object::process_exit_status(const ::e_status & estatus)
       //      if (m_pobjrefdbg->m_iStep == 39)
       //      {
       //
-      //         infomration("session");
+      //         information("session");
       //
       //      }
       //

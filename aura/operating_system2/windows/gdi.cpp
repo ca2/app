@@ -58,7 +58,7 @@ CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp);
 //
 //   {
 //
-//      infomration("got log font");
+//      information("got log font");
 //   }
 //
 //

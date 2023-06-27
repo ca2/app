@@ -218,7 +218,7 @@
 //
 //   }
 //
-//   ::infomration(strMessage + "\n\n");
+//   ::information(strMessage + "\n\n");
 //
 //   return plibrary;
 //
@@ -273,7 +273,7 @@
 //
 //   }
 //
-//   ::infomration("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+//   ::information("\n\nGoing to touch library (1) " + string(strPath) + "\n");
 //
 //   ::file::path path;
 //
@@ -442,7 +442,7 @@
 //
 //   }
 //
-//   ::infomration(strMessage + "\n\n");
+//   ::information(strMessage + "\n\n");
 //
 //   return plibrary;
 //
@@ -493,7 +493,7 @@
 //
 //   }
 //
-//   ::infomration("\n" + strMessage + "\n\n");
+//   ::information("\n" + strMessage + "\n\n");
 //
 //   return p;
 //

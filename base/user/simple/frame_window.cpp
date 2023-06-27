@@ -314,7 +314,7 @@ void simple_frame_window::install_message_routing(::channel* pchannel)
 void simple_frame_window::task_save_window_placement()
 {
 
-   ::infomration("_task_save_window_rect start\n");
+   ::information("_task_save_window_rect start\n");
 
    auto ptask = ::get_task();
 
@@ -375,7 +375,7 @@ void simple_frame_window::task_save_window_placement()
 
    }
 
-   ::infomration("_task_save_window_rect end\n");
+   ::information("_task_save_window_rect end\n");
 
 }
 
@@ -1071,7 +1071,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    if (pshow->m_bShow)
    {
 
-      infomration("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
+      information("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
 
       //defer_set_icon();
 
@@ -1079,7 +1079,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    else
    {
 
-      infomration("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
+      information("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
 
    }
 
@@ -1236,7 +1236,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
    if (__type_name(this).case_insensitive_contains("child_frame"))
    {
 
-      infomration("%child_frame%\n");
+      information("%child_frame%\n");
 
    }
 
@@ -3493,7 +3493,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                         //if(strType.contains("pane_impact"))
                         //{
 
-                          // infomration("paneimpact\n");
+                          // information("paneimpact\n");
 
                         //}
 

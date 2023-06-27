@@ -677,7 +677,7 @@ namespace user
             else if (!m_plistbox->const_layout().sketch().is_screen_visible())
             {
 
-               //infomration("test");
+               //information("test");
 
             }
 

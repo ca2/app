@@ -171,13 +171,13 @@ int xinerama_get_screen_size(int& width, int& height)
 
       rectaMonitor[iMonitor] = rectangleMonitor;
 
-      infomration(as_string(rectangleMonitor.left));
+      information(as_string(rectangleMonitor.left));
 
-      infomration(as_string(rectangleMonitor.top));
+      information(as_string(rectangleMonitor.top));
 
-      infomration(as_string(rectangleMonitor.right));
+      information(as_string(rectangleMonitor.right));
 
-      infomration(as_string(rectangleMonitor.bottom));
+      information(as_string(rectangleMonitor.bottom));
 
    }
 
@@ -192,13 +192,13 @@ int xinerama_get_screen_size(int& width, int& height)
    for(auto & rectangleItem: rectaMonitor)
    {
 
-      infomration(as_string(rectangleItem.left));
+      information(as_string(rectangleItem.left));
 
-      infomration(as_string(rectangleItem.top));
+      information(as_string(rectangleItem.top));
 
-      infomration(as_string(rectangleItem.right));
+      information(as_string(rectangleItem.right));
 
-      infomration(as_string(rectangleItem.bottom));
+      information(as_string(rectangleItem.bottom));
 
    }
 
@@ -217,9 +217,9 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, ::rectangle_i32
 
    index iOrdered = rectaOrdered.predicate_find_first([&](auto & rectangleMonitorSorted) { return rectangleMonitorSorted == *prectRet; });
 
-   infomration(as_string(iJustForComparison));
+   information(as_string(iJustForComparison));
 
-   infomration(as_string(iOrdered));
+   information(as_string(iOrdered));
 
    return iOrdered;
 
@@ -262,7 +262,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_
 
    }
 
-   infomration(as_string(iOrdered));
+   information(as_string(iOrdered));
 
    return iOrdered;
 

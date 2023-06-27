@@ -107,7 +107,7 @@ namespace sockets
          if (strTest.find_index('.') > 0)
          {
 
-            infomration("!!!!!!!!!! -> " + strTest + "\n");
+            information("!!!!!!!!!! -> " + strTest + "\n");
 
          }
 

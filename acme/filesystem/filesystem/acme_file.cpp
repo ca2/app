@@ -23,7 +23,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 void trace_last_error()
 {
 
-   infomration("trace_last_error::todo");
+   information("trace_last_error::todo");
 
 }
 acme_file::acme_file()

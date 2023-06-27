@@ -81,7 +81,7 @@ template < typename FILE >
    }
    else
    {
-      infomration("corruption... non fatal... partially recoverable...");
+      information("corruption... non fatal... partially recoverable...");
    }
 
    return stream;

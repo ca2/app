@@ -67,7 +67,7 @@ namespace draw2d
 //         if (colora[i] == argb(255, 255, 255, 255))
 //         {
 //
-//            infomration("colora_from_quada  completely white");
+//            information("colora_from_quada  completely white");
 //
 //         }
 

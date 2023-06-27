@@ -278,7 +278,7 @@ namespace user
       virtual void _task_transparent_mouse_event();
 
 
-      virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);

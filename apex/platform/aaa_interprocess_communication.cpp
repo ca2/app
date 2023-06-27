@@ -139,7 +139,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
    if(strApp == "app-core/clockverse")
    {
 
-      ::infomration("app-core/clockverse");
+      ::information("app-core/clockverse");
 
    }
 

@@ -261,7 +261,7 @@ namespace imaging_freeimage
          if (tmp.case_insensitive_ends(".gif"))
          {
 
-            infomration("GIF!!");
+            information("GIF!!");
 
          }
 

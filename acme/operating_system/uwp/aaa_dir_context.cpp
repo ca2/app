@@ -323,7 +323,7 @@ pacmedirectory->roaming() / "home";
 
    bool dir_context::name_is(const ::file::path & str)
    {
-      //infomration(str);
+      //information(str);
       strsize iLast = str.length() - 1;
       while(iLast >= 0)
       {

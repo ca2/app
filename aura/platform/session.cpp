@@ -93,7 +93,7 @@ namespace aura
    session::~session()
    {
 
-      infomration("aura::session::~session()");
+      information("aura::session::~session()");
 
    }
 
@@ -813,7 +813,7 @@ namespace aura
 ////      //      if (pkeyboardfocusOld != nullptr)
 ////      //      {
 ////
-////      //         infomration("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+////      //         information("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 ////
 ////      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 ////      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -978,7 +978,7 @@ namespace aura
 //      //      if (pkeyboardfocusOld != nullptr)
 //      //      {
 //
-//      //         infomration("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//      //         information("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 //      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -1136,7 +1136,7 @@ namespace aura
 //      //      if (pkeyboardfocusOld != nullptr)
 //      //      {
 //
-//      //         infomration("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//      //         information("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
 //      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
@@ -1821,7 +1821,7 @@ namespace aura
          //   if(!estatus)
          //   {
 
-         //      infomration("\nFailed to __construct(m_puser)");
+         //      information("\nFailed to __construct(m_puser)");
 
          //   }
 
@@ -1839,7 +1839,7 @@ namespace aura
          if (!m_puser)
          {
 
-            infomration("\nFailed to __construct_new(m_puser)");
+            information("\nFailed to __construct_new(m_puser)");
 
             error() <<".4";
 

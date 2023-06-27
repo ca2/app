@@ -306,7 +306,7 @@ namespace graphics
       if (iGot < 0)
       {
 
-         infomration("NOT DRAWING? <<---- search and bp here !imageBuffer2 ");
+         information("NOT DRAWING? <<---- search and bp here !imageBuffer2 ");
 
       }
 

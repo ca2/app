@@ -1629,7 +1629,7 @@ namespace user
          if (spitema.find_first(pitem) >= 0)
          {
 
-            //infomration("what!?!");
+            //information("what!?!");
 
             break;
 
@@ -1716,7 +1716,7 @@ namespace user
          if (treeitema.find_first(ptreeitem) >= 0)
          {
 
-            //infomration("what!!?");
+            //information("what!!?");
 
             break;
 

@@ -123,7 +123,7 @@ namespace nanoui
 
          float fScroll = y_coordinate_vertical_scroll(p.y());
 
-         infomration("drag:point=" + as_string(p.y()) + ",rate=" + as_string(fScroll) + "\n");
+         information("drag:point=" + as_string(p.y()) + ",rate=" + as_string(fScroll) + "\n");
 
          if (is_different(fScroll, m_fScroll, 0.00001))
          {

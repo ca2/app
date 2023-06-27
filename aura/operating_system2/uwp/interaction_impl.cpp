@@ -1044,7 +1044,7 @@ namespace universal_windows
             if (pusermessage->m_atom == e_message_left_button_up)
             {
 
-               infomration("e_message_left_button_up");
+               information("e_message_left_button_up");
 
             }
 
@@ -6067,18 +6067,18 @@ namespace universal_windows
 
          m_pframeworkview->m_resizemanager->NotifyLayoutCompleted();
 
-         ::infomration("interaction_impl::on_after_graphical_update NotifyLayoutCompleted\n");
+         ::information("interaction_impl::on_after_graphical_update NotifyLayoutCompleted\n");
 
          if (m_pframeworkview->m_directx->m_bCoreWindowVisible)
          {
 
-            ::infomration("WindowVisible\n");
+            ::information("WindowVisible\n");
 
          }
          else
          {
 
-            ::infomration("WindowNotVisible\n");
+            ::information("WindowNotVisible\n");
 
          }
 
@@ -6206,7 +6206,7 @@ namespace universal_windows
       ::user::interaction_impl::_001UpdateScreen();
 
       //alskdjfh++;
-      //::infomration("::universal_windows::interaction_impl::_001UpdateScreen " + as_string(alskdjfh) + "\n");
+      //::information("::universal_windows::interaction_impl::_001UpdateScreen " + as_string(alskdjfh) + "\n");
 
       //if (m_frameworkview)
       //{

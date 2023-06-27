@@ -572,7 +572,7 @@ Window * x11_window_list(Display *disp, unsigned long * len)
    if (XGetWindowProperty(disp,XDefaultRootWindow(disp),prop,0,1024,False,XA_WINDOW,
                           &type,&form,len,&remain,&list) != Success)
    {
-      infomration("winlist() -- GetWinProp");
+      information("winlist() -- GetWinProp");
       return nullptr;
    }
 
@@ -2345,7 +2345,7 @@ bool post_ui_message(const MESSAGE & message)
    if(message.message == e_message_quit)
    {
 
-      infomration("e_message_quit thread");
+      information("e_message_quit thread");
 
    }
 
@@ -2406,7 +2406,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
       if(g_tickLastMouseMove.elapsed() < 5)
       {
 
-         //infomration("\n.optimized");
+         //information("\n.optimized");
 
       }
       else
@@ -2500,19 +2500,19 @@ bool x11_process_message(Display * pdisplay)
                   if(pinteraction->m_iMouseMoveSkipCount == 2)
                   {
 
-                     //infomration("\nmmv>skip 2!");
+                     //information("\nmmv>skip 2!");
 
                   }
                   else if(pinteraction->m_iMouseMoveSkipCount == 5)
                   {
 
-                     //infomration("\nmmv>Skip 5!!!");
+                     //information("\nmmv>Skip 5!!!");
 
                   }
                   else if(pinteraction->m_iMouseMoveSkipCount == 10)
                   {
 
-                     //infomration("\nmmv>SKIP 10 !!!!!!!!!");
+                     //information("\nmmv>SKIP 10 !!!!!!!!!");
 
                   }
 
@@ -2905,13 +2905,13 @@ bool x11_process_message(Display * pdisplay)
 //         if(wFocus == e.xfocus.window)
 //         {
 //
-//            infomration("A\n");
+//            information("A\n");
 //
 //         }
 //         else
 //         {
 //
-//            infomration("B " + as_string(wFocus));
+//            information("B " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -2920,13 +2920,13 @@ bool x11_process_message(Display * pdisplay)
 //         if(wFocus == g_windowFocus)
 //         {
 //
-//            infomration("C\n");
+//            information("C\n");
 //
 //         }
 //         else
 //         {
 //
-//            infomration("D " + as_string(wFocus));
+//            information("D " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -2995,7 +2995,7 @@ bool x11_process_message(Display * pdisplay)
    break;
    default:
    {
-      infomration("axis_x11 case default:");
+      information("axis_x11 case default:");
    }
    }
 

@@ -1164,7 +1164,7 @@ namespace experience_lite
       if (!bOk)
       {
 
-         infomration("\nUnknown color: code=" + as_string((int) ecolor));
+         information("\nUnknown color: code=" + as_string((int) ecolor));
 
       }
 

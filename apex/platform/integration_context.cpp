@@ -436,7 +436,7 @@ namespace integration
                //write(1, buff, size);
             }
 
-            ::infomration(strPathName + "\n");
+            ::information(strPathName + "\n");
 
          }
          next:

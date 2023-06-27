@@ -88,7 +88,7 @@ namespace graphics
    //
    //   //      str.format("animated_wallpaper::update_wallpaper drawimage %0.3fms\n", time.elapsed().floating_microsecond() / 1'000.0);
    //
-   //   //      infomration(str);
+   //   //      information(str);
    //
    //   //      {
    //
@@ -103,7 +103,7 @@ namespace graphics
    //
    //   //         str.format("animated_wallpaper::update_wallpaper on_image_updating %0.3fms\n", time.elapsed().floating_microsecond() / 1'000.0);
    //
-   //   //         infomration(str);
+   //   //         information(str);
    //
    //   //      }
    //

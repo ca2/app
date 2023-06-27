@@ -1045,7 +1045,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    auto dt = t2 - t1;
 
-   infomration("file_as_memory time "+::as_string(dt.floating_millisecond()) + "ms");
+   information("file_as_memory time "+::as_string(dt.floating_millisecond()) + "ms");
 
    const ::ansi_character * psz = (const char *)memory.data();
 

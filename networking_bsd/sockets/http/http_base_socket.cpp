@@ -101,7 +101,7 @@ namespace sockets
          if (strTest.find('.') > 0)
          {
 
-            infomration("!!!!!!!!!! -> " + strTest + "\n");
+            information("!!!!!!!!!! -> " + strTest + "\n");
 
          }
 

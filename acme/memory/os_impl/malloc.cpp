@@ -59,14 +59,14 @@ void check_bounds(u8 * p)
    if (memory_order(&p[sizeof(uptr)], a, sizeof(a)) != 0)
    {
 
-      infomration("memory corruption before allocation");
+      information("memory corruption before allocation");
 
    }
 
    if (memory_order(&p[sizeof(uptr) + 256 + *pinteraction], a, sizeof(a)) != 0)
    {
 
-      infomration("memory corruption after allocation");
+      information("memory corruption after allocation");
 
    }
 

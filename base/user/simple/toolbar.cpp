@@ -923,7 +923,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 //            if(rectangle.width() > 10000)
                //          {
 
-               //           infomration("width > 10000");
+               //           information("width > 10000");
 
                //         index_element_rectangle(iItem, rectangle, element_image);
 
@@ -1238,7 +1238,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (m_dwCtrlStyle & TBSTYLE_ALIGN_CENTER)
    {
 
-      infomration("please_center_align");
+      information("please_center_align");
 
       if (m_pitema->has_elements())
       {

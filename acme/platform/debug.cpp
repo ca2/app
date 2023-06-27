@@ -18,17 +18,17 @@ void debug_object_event_promisse_predicate()
    //::matter * po = memory_new matter();
 
    //// 2 arguments
-   //o.treat(ok, po, [&](auto & result) { infomration("o += ok..."); return success; } };
+   //o.treat(ok, po, [&](auto & result) { information("o += ok..."); return success; } };
 
    //// 3 arguments
-   //o += { ok, id_text, [&](auto & result) { infomration("o += ok, id_text ..."); return ::success; } };
+   //o += { ok, id_text, [&](auto & result) { information("o += ok, id_text ..."); return ::success; } };
 
 
    //::pointer<::matter>pparticle;
 
    //KEEP(pparticle, nullptr);
    ////   // 4 arguments
-   ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); infomration("o += ok, id_text, &o ...");  } };
+   ////   o += { ok, id_text, [&](auto pparticle) { ASSERT(pparticle == &o); information("o += ok, id_text, &o ...");  } };
 
 
 }
@@ -134,7 +134,7 @@ CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 
    str.format_arguments(pszFormat, args);
 
-   ::infomration(str);
+   ::information(str);
 
    va_end(args);
 

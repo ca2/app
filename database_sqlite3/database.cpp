@@ -397,7 +397,7 @@ namespace sqlite
 //            if(pszErrorMessage != nullptr)
 //            {
 //
-//               infomration(pszErrorMessage);
+//               information(pszErrorMessage);
 //            }
 //            //throw ::exception(::database::exception(get_error_message()));
 //         }

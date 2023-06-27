@@ -696,12 +696,12 @@ namespace networking_bsd
 
                   m_strWebSocketProtocol  = outheader("sec-websocket-protocol");
 
-                  infomration("\n\nnow : websocket\n");
+                  information("\n\nnow : websocket\n");
 
                   if (m_strWebSocketProtocol.has_char())
                   {
 
-                     infomration("Sec-WebSocket-Protocol: "+ m_strWebSocketProtocol +"\n");
+                     information("Sec-WebSocket-Protocol: "+ m_strWebSocketProtocol +"\n");
 
                   }
 
@@ -873,7 +873,7 @@ namespace networking_bsd
             strOut1 += "wsdata:   " + strHexa + "   <--\n";
             strOut1 += "wschar:   " + strChar + "   <--\n..\n.\n";
 
-            infomration(strOut1);
+            information(strOut1);
 
 #endif
 
@@ -980,7 +980,7 @@ namespace networking_bsd
                if (m_opcode == e_opcode::CONTINUATION)
                {
 
-                  infomration("test03");
+                  information("test03");
 
                }
 
@@ -1009,7 +1009,7 @@ namespace networking_bsd
                else
                {
 
-                  ::infomration("ws_buffering");
+                  ::information("ws_buffering");
 
                }
 
@@ -1060,7 +1060,7 @@ namespace networking_bsd
             else
             {
 
-               infomration("ERR: Got unexpected WebSocket message.\n");
+               information("ERR: Got unexpected WebSocket message.\n");
 
                SetCloseAndDelete();
 

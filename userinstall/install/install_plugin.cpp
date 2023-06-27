@@ -1020,7 +1020,7 @@ run_install:
 
       if(m_bLogin)
       {
-         //::infomration("m_bLogin");
+         //::information("m_bLogin");
          //get_login().draw(pgraphics);
       }
       else if (psystem->install().is_installing_ca2())
@@ -1060,7 +1060,7 @@ run_install:
       }
       else
       {
-         //::infomration("Neither");
+         //::information("Neither");
       }
 
 #ifdef WINDOWS
@@ -1094,7 +1094,7 @@ run_install:
       else
       {
 
-         //::infomration("m_bLogin || !bInstallingCa2");
+         //::information("m_bLogin || !bInstallingCa2");
       }
 
 

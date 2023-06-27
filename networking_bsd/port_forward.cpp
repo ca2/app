@@ -305,7 +305,7 @@ namespace net
 
       //message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
 
-      ::infomration(tempStr + "Change Detected in Number of Port Mappings");
+      ::information(tempStr + "Change Detected in Number of Port Mappings");
 
 	   return S_OK;
    }
@@ -323,7 +323,7 @@ namespace net
 
       //message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
 
-      infomration(tempStr+ "Change Detected in External IP Address");
+      information(tempStr+ "Change Detected in External IP Address");
 
 	   return S_OK;
    }

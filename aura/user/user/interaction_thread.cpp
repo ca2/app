@@ -384,7 +384,7 @@ namespace user
 
             information()(e_trace_category_appmsg) << __type_name(this) << " thread::pump_message - Received e_message_quit.\n";
 
-            //::infomration(__type_name(this)) << " thread::pump_message - Received e_message_quit.\n");
+            //::information(__type_name(this)) << " thread::pump_message - Received e_message_quit.\n");
 
             m_nDisablePumpCount++; // application must die
             // Note: prevents calling message loop things in 'exit_thread'
@@ -396,7 +396,7 @@ namespace user
          if(m_message.m_atom == e_message_left_button_down)
          {
 
-            infomration("pump_message e_message_left_button_down");
+            information("pump_message e_message_left_button_down");
 
          }
 
@@ -417,13 +417,13 @@ namespace user
          if(m_message.m_atom == e_message_left_button_down)
          {
 
-            ::infomration("::user::thread::LBUTTONDOWN\n");
+            ::information("::user::thread::LBUTTONDOWN\n");
 
          }
          else if(m_message.m_atom == e_message_left_button_up)
          {
 
-            ::infomration("::user::thread::LBUTTONUP\n");
+            ::information("::user::thread::LBUTTONUP\n");
 
          }
 
@@ -516,13 +516,13 @@ namespace user
          else if(msg.m_atom == e_message_left_button_down)
          {
 
-            ::infomration("e_message_left_button_down");
+            ::information("e_message_left_button_down");
 
          }
          else if(msg.m_atom == e_message_left_button_up)
          {
 
-            ::infomration("e_message_left_button_up");
+            ::information("e_message_left_button_up");
 
          }
 
@@ -572,13 +572,13 @@ namespace user
                         if(msg.m_atom == e_message_left_button_down)
                         {
 
-                           ::infomration("e_message_left_button_down");
+                           ::information("e_message_left_button_down");
 
                         }
                         else if(msg.m_atom == e_message_left_button_up)
                         {
 
-                           ::infomration("e_message_left_button_up");
+                           ::information("e_message_left_button_up");
 
                         }
 
@@ -590,7 +590,7 @@ namespace user
                            if(pmessage->m_atom == e_message_left_button_down)
                            {
 
-                              ::infomration("e_message_left_button_down");
+                              ::information("e_message_left_button_down");
 
                            }
 
@@ -839,7 +839,7 @@ namespace user
       if (m_strDebugType.contains("main_frame"))
       {
 
-         infomration("xxthread::run from main_frame");
+         information("xxthread::run from main_frame");
 
       }
 
@@ -928,7 +928,7 @@ namespace user
                if (m_strDebugType.contains("main_frame"))
                {
 
-                  infomration("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
+                  information("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
 
                }
 
@@ -973,7 +973,7 @@ namespace user
       if (m_strDebugType.contains("main_frame"))
       {
 
-         infomration("ending xxthread::run from main_frame");
+         information("ending xxthread::run from main_frame");
 
       }
 

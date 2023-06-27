@@ -663,7 +663,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
          }
 
 
-         infomration("UnmapNotify");
+         information("UnmapNotify");
 
       }
       else if (event_type == XCB_MAP_NOTIFY)
@@ -727,7 +727,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
          }
 
-         //infomration("PropertyNotify");
+         //information("PropertyNotify");
 
       }
       else if (event_type == XCB_KEY_PRESS)
@@ -916,7 +916,7 @@ void nano_window::_update_window()
 //
 //   }
 //
-//   infomration("nano_window::message_loop exit");
+//   information("nano_window::message_loop exit");
 //
 //}
 

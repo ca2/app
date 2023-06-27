@@ -1527,7 +1527,7 @@ void draw2d::emboss_predicate(
 
       }
 
-      //infomration("No write_text pluging available!!.");
+      //information("No write_text pluging available!!.");
       if (pfactoryWriteText)
       {
 

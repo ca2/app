@@ -259,7 +259,7 @@ pacmedirectory->system() / "log.txt"))
 
             strCaption = "Assertion Failed";
 
-            infomration(wstring(str));
+            information(wstring(str));
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
@@ -277,7 +277,7 @@ pacmedirectory->system() / "log.txt"))
 
          char buf[2048];
          vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
-         infomration(wstring(buf));
+         information(wstring(buf));
 
       }
 
@@ -373,7 +373,7 @@ pacmedirectory->system() / "log.txt"))
 
             str += "\n";
 
-            infomration(str);
+            information(str);
 
          }
 
@@ -545,7 +545,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
          print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
 
-         infomration("\n" + m_strLogPath + "\n");
+         information("\n" + m_strLogPath + "\n");
 
 #if !defined(UNIVERSAL_WINDOWS)
 
@@ -593,9 +593,9 @@ skip_further_possible_recursive_impossible_logging_in_file:
          try
          {
 #ifdef ANDROID
-            ::infomration(stra[i]);
+            ::information(stra[i]);
 #else
-            ::infomration(strLine);
+            ::information(strLine);
 #endif
 
             if(m_bTrace && m_pfile)

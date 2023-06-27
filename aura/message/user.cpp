@@ -402,7 +402,7 @@ namespace message
    //   if((m_nFlags & 0x80000000) == (0x80000000))
    //   {
 
-   //      infomration("(m_nFlags & 0x80000000) == (0x80000000)");
+   //      information("(m_nFlags & 0x80000000) == (0x80000000)");
 
    //   }
 

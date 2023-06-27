@@ -538,7 +538,7 @@ uptr virtualkey_to_code(::winrt::Windows::System::VirtualKey e)
 //      if(psystem->m_error.get_exit_code() != 0)
 //      {
 //
-//         ::infomration(L"application::main on_run termination failure");
+//         ::information(L"application::main on_run termination failure");
 //
 //      }
 //

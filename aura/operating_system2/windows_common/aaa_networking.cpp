@@ -26,7 +26,7 @@ bool defer_init_winsock()
    if (g_iWsaStartupError != 0)
    {
 
-      infomration("Failed to initialize Winsock.dll!\n");
+      information("Failed to initialize Winsock.dll!\n");
 
       return false;
 
@@ -35,7 +35,7 @@ bool defer_init_winsock()
    if (lower_u8(g_wsadata.wVersion) < byteHi || (lower_u8(g_wsadata.wVersion) == byteHi && HIBYTE(g_wsadata.wVersion) < 2))
    {
 
-      infomration("Could not find a usable version of Winsock.dll!\n");
+      information("Could not find a usable version of Winsock.dll!\n");
 
       WSACleanup();
 
@@ -47,7 +47,7 @@ bool defer_init_winsock()
 
 #ifdef _DEBUG
 
-      infomration("The Winsock 2.2 dll was found. OK.\n");
+      information("The Winsock 2.2 dll was found. OK.\n");
 
 #endif
 

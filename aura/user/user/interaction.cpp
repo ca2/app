@@ -5670,12 +5670,12 @@ return strClass;
 
 
 
-         if (colorBackground.m_u8Opacity != 127)
-         {
-
-            information() << "Opacity: " << (::u32) colorBackground.u8_opacity();
-
-         }
+//         if (colorBackground.m_u8Opacity != 127)
+//         {
+//
+//            information() << "Opacity: " << (::u32) colorBackground.u8_opacity();
+//
+//         }
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -15011,12 +15011,12 @@ return strClass;
 
          auto &layoutstate = layout().m_statea[elayout];
 
-         if (::is_null(get_parent()))
-         {
-
-            information("user::interaction::place (x,y)(%d,%d)", rectangle.left, rectangle.top);
-
-         }
+//         if (::is_null(get_parent()))
+//         {
+//
+//            information("user::interaction::place (x,y)(%d,%d)", rectangle.left, rectangle.top);
+//
+//         }
 
          layoutstate.set_visual_state_origin(rectangle.top_left());
          layoutstate.m_size = rectangle.size();

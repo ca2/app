@@ -680,7 +680,7 @@ namespace experience
 
          pframewindow->place(rectangleParentClient);
 
-         information("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
+         //information("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
 
          //pframewindow->display();
 

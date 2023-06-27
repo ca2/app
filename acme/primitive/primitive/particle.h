@@ -316,24 +316,24 @@ public:
    //virtual void trace_log_fatal() << const ::ansi_character * pszFormat, ...;
 
 
-   virtual class tracer & tracer();
+   virtual class tracer & tracer() const;
 
 
-   virtual ::trace_statement log_statement();
+   virtual ::trace_statement log_statement() const;
 
 
    //virtual trace_statement trace(enum_trace_level etracelevel);
 
 
-   virtual ::trace_statement information();
-   virtual ::trace_statement warning();
-   virtual ::trace_statement error();
-   virtual ::trace_statement fatal();
+   virtual ::trace_statement information() const;
+   virtual ::trace_statement warning() const;
+   virtual ::trace_statement error() const;
+   virtual ::trace_statement fatal() const;
 
-   virtual void information(const ::ansi_character * pszFormat, ...);
-   virtual void warning(const ::ansi_character * pszFormat, ...);
-   virtual void error(const ::ansi_character * pszFormat, ...);
-   virtual void fatal(const ::ansi_character * pszFormat, ...);
+   virtual void information(const ::ansi_character * pszFormat, ...) const;
+   virtual void warning(const ::ansi_character * pszFormat, ...) const;
+   virtual void error(const ::ansi_character * pszFormat, ...) const;
+   virtual void fatal(const ::ansi_character * pszFormat, ...) const;
 
    //virtual trace_statement trace_log_warning() << ;
    //virtual trace_statement trace_log_error() << ;

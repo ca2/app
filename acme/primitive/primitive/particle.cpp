@@ -756,7 +756,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 
 
-class tracer & particle::tracer()
+class tracer & particle::tracer() const
 {
 
    auto ptask = get_task();
@@ -773,15 +773,15 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::log_statement()
+::trace_statement particle::log_statement() const
 {
 
-   return ::transfer(trace_statement(tracer())(this));
+   return ::transfer(trace_statement(tracer())((::particle *) this));
 
 }
 
 
-::trace_statement particle::information()
+::trace_statement particle::information() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_information));
@@ -789,7 +789,7 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::warning()
+::trace_statement particle::warning() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_warning));
@@ -797,7 +797,7 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::error()
+::trace_statement particle::error() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_error));
@@ -805,7 +805,7 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::fatal()
+::trace_statement particle::fatal() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
@@ -813,8 +813,7 @@ class tracer & particle::tracer()
 }
 
 
-
-void particle::information(const ::ansi_character * pszFormat, ...)
+void particle::information(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -836,7 +835,7 @@ void particle::information(const ::ansi_character * pszFormat, ...)
 }
 
 
-void particle::warning(const ::ansi_character * pszFormat, ...)
+void particle::warning(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -858,7 +857,7 @@ void particle::warning(const ::ansi_character * pszFormat, ...)
 }
 
 
-void particle::error(const ::ansi_character * pszFormat, ...)
+void particle::error(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -880,7 +879,7 @@ void particle::error(const ::ansi_character * pszFormat, ...)
 }
 
 
-void particle::fatal(const ::ansi_character * pszFormat, ...)
+void particle::fatal(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;

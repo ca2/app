@@ -5730,21 +5730,23 @@ namespace user
          if (m_puserinteraction->layout().is_this_screen_visible())
          {
 
-            //CINFO(prodevian)("going to update_window (1)");
+//            //CINFO(prodevian)("going to update_window (1)");
+//
+//            auto puserinteraction = m_puserinteraction.m_p;
+//
+//            int* pi = (int*)puserinteraction;
+//
+//            auto& i = *pi;
+//
+//            //monitor_pointer(puserinteraction);
+//
+//            auto& iStateCount = m_puserinteraction->layout().m_iStateCount;
+//
+//            monitor_pointer(&iStateCount);
+//
+//            m_pgraphics->update_screen();
 
-            auto puserinteraction = m_puserinteraction.m_p;
-
-            int* pi = (int*)puserinteraction;
-
-            auto& i = *pi;
-
-            //monitor_pointer(puserinteraction);
-
-            auto& iStateCount = m_puserinteraction->layout().m_iStateCount;
-
-            monitor_pointer(&iStateCount);
-
-            m_pgraphics->update_screen();
+            m_pwindow->update_screen();
 
             //m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
 
@@ -7576,18 +7578,18 @@ namespace user
 
       auto window_origin = layout.window().origin();
 
-      information() << "interaction_impl::on_message_reposition pmove->m_point " << pmove->m_point;
+      //information() << "interaction_impl::on_message_reposition pmove->m_point " << pmove->m_point;
 
-      information() << "interaction_impl::on_message_reposition window_origin " << window_origin;
+      //information() << "interaction_impl::on_message_reposition window_origin " << window_origin;
 
-      information() << "interaction_impl::on_message_reposition sketch_origin " << sketch_origin;
+      //information() << "interaction_impl::on_message_reposition sketch_origin " << sketch_origin;
 
-      if(pmove->m_point.x() == 0)
-      {
+      //if(pmove->m_point.x() == 0)
+      //{
 
-         information() << "interaction_impl::on_message_reposition x is zero";
+      //  information() << "interaction_impl::on_message_reposition x is zero";
 
-      }
+      //}
 
       m_puserinteraction->set_position(pmove->m_point, e_layout_window);
 

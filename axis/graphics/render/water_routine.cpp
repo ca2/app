@@ -301,18 +301,18 @@ namespace draw2d
       i32 left, top, right, bottom;
 
       i32 *newptr;
-      i32 *oldptr;
+      //i32 *oldptr;
 
       // set up the pointers
       if(page == 0)
       {
          newptr = &m_iHeightField1[0];
-         oldptr = &m_iHeightField2[0];
+         //oldptr = &m_iHeightField2[0];
       }
       else
       {
          newptr = &m_iHeightField2[0];
-         oldptr = &m_iHeightField1[0];
+         //oldptr = &m_iHeightField1[0];
       }
 
       rquad = radius * radius;
@@ -348,18 +348,18 @@ namespace draw2d
       i32 cx, cy;
       i32 left, top, right, bottom;
       i32 *newptr;
-      i32 *oldptr;
+      //i32 *oldptr;
 
       // set up the pointers
       if(page == 0)
       {
          newptr = &m_iHeightField1[0];
-         oldptr = &m_iHeightField2[0];
+       //  oldptr = &m_iHeightField2[0];
       }
       else
       {
          newptr = &m_iHeightField2[0];
-         oldptr = &m_iHeightField1[0];
+         //oldptr = &m_iHeightField1[0];
       }
 
       if(x<0) x = 1+radius+ rand()%(m_iWidth-2*radius-1);
@@ -392,18 +392,18 @@ namespace draw2d
       i32 square;
       i32 radsquare = radius * radius;
       i32 *newptr;
-      i32 *oldptr;
+      //i32 *oldptr;
 
       // set up the pointers
       if(page == 0)
       {
          newptr = &m_iHeightField1[0];
-         oldptr = &m_iHeightField2[0];
+         //oldptr = &m_iHeightField2[0];
       }
       else
       {
          newptr = &m_iHeightField2[0];
-         oldptr = &m_iHeightField1[0];
+         //oldptr = &m_iHeightField1[0];
       }
       //  radsquare = (radius*radius) << 8;
       radsquare = (radius*radius);
@@ -444,18 +444,18 @@ namespace draw2d
       i32 radsquare = radius * radius;
       float length = float((1024.0/(float)radius)*(1024.0/(float)radius));
       i32 *newptr;
-      i32 *oldptr;
+      //i32 *oldptr;
 
       // set up the pointers
       if(page == 0)
       {
          newptr = &m_iHeightField1[0];
-         oldptr = &m_iHeightField2[0];
+         //oldptr = &m_iHeightField2[0];
       }
       else
       {
          newptr = &m_iHeightField2[0];
-         oldptr = &m_iHeightField1[0];
+         //oldptr = &m_iHeightField1[0];
       }
 
       if(x<0) x = 1+radius+ rand()%(m_iWidth-2*radius-1);

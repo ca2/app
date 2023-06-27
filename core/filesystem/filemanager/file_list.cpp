@@ -1117,11 +1117,11 @@ namespace filemanager
 
       i32 iMaxSize;
 
-      iMaxSize = 1000;
+      //iMaxSize = 1000;
 
-      i32 iSize;
+      //i32 iSize;
 
-      iSize = 0;
+      //iSize = 0;
 
       m_pathaStrictOrder.erase_all();
 
@@ -1307,7 +1307,7 @@ namespace filemanager
       for (i = 0; i < iCount; i++)
       {
 
-         index iControl;
+         //index iControl;
 
          ::atom atom = 1000 + i;
 
@@ -1319,7 +1319,7 @@ namespace filemanager
             //pinteraction->m_type = __type(::user::button);
             pinteraction->m_atom = atom;
             pinteraction->add_function(user::e_control_function_action);
-            iControl = _001AddControl(pinteraction);
+            _001AddControl(pinteraction);
 
          }
 

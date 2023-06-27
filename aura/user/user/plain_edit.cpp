@@ -4040,7 +4040,7 @@ namespace user
 
       dLineHeight = m_dLineHeight;
 
-      strsize iOffset = 0;
+      //strsize iOffset = 0;
 
       string_array stra;
 
@@ -4102,7 +4102,7 @@ namespace user
 
       }
 
-      i32 lim = 0;
+      //i32 lim = 0;
 
       //bool bFound = false;
 

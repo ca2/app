@@ -275,7 +275,7 @@ namespace user
 
          index iNewStart = 0;
 
-         index w;
+         //index w;
 
          for (index i = 0; i < sizea.get_size(); i++)
          {
@@ -1040,7 +1040,7 @@ namespace user
 
          auto rectangleClient = client_rectangle();
 
-         index iIconSize;
+         //index iIconSize;
 
          if (m_pcolumna->get_count() > 0)
          {
@@ -4630,7 +4630,7 @@ namespace user
 
       index i;
 
-      index width;
+      //index width;
 
       for (i = 0; i < m_pcolumna->get_count(); i++)
       {

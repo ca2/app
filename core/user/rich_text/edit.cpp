@@ -427,7 +427,7 @@ namespace user
             
             get_parent()->screen_to_client()(rectangleWindow);
 
-            rectangleWindow = rectangleWindow;
+            //rectangleWindow = rectangleWindow;
 
             point += rectangleWindow.top_left();
 

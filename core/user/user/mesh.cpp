@@ -253,7 +253,7 @@ namespace user
          double y = m_dItemHeight;
          index iStart = 0;
          index iNewStart = 0;
-         index w;
+         //index w;
          for(index i = 0; i < sizea.get_size(); i++)
          {
 

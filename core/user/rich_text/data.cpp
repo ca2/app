@@ -1168,7 +1168,7 @@ namespace user
 
          update_span_cache(m_spana);
 
-         bool bLineWrap = false;
+         //bool bLineWrap = false;
 
          auto rectangle = get_drawing_rect();
 
@@ -1176,9 +1176,9 @@ namespace user
 
          int x = (int) rectangle.left;
 
-         int xLast = x;
+         //int xLast = x;
 
-         bool bFirstParagraph = true;
+         //bool bFirstParagraph = true;
 
          auto plinea = __new(pointer_array < line >);
 
@@ -2045,7 +2045,7 @@ namespace user
 
          //m_iSelEnd = sel_char(*plinea, m_iSelEnd3, m_ebiasEnd);
 
-         bool bNeedRedraw = false;
+         //bool bNeedRedraw = false;
 
          strsize iSelBeg = m_iSelBeg;
 

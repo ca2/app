@@ -86,7 +86,7 @@ bool simple_list_control::erase_item(i32 iItem)
 bool simple_list_control::erase_item(::user::item_range & range)
 {
    
-   bool bOk = true;
+   //bool bOk = true;
    
    for(::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
    {

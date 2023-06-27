@@ -4873,7 +4873,7 @@ namespace draw2d
 
       double dNewY;
 
-      bool bLastLine = false;
+      //bool bLastLine = false;
 
       bool bEnd = false;
 
@@ -4889,7 +4889,7 @@ namespace draw2d
          if(dNewY + sz.cy() > rectangle.bottom)
          {
 
-            bLastLine = true;
+            //bLastLine = true;
 
 
             str = strSource;

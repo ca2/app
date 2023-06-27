@@ -195,7 +195,7 @@ namespace html
 
          m_cxMax = (float) size.cx();
 
-         strsize iLastSpace = 0;
+         //strsize iLastSpace = 0;
 
          char ch;
 

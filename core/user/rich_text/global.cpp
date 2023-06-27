@@ -84,7 +84,7 @@ namespace user
 
          }
 
-         box * pboxLast = nullptr;
+         //box * pboxLast = nullptr;
 
          index iLine = 0;
 
@@ -124,7 +124,7 @@ namespace user
 
          }
 
-         box * pboxLast = nullptr;
+         //box * pboxLast = nullptr;
 
          index iLine = 0;
 
@@ -209,7 +209,7 @@ namespace user
 
          }
 
-         box* pboxLast = nullptr;
+         //box* pboxLast = nullptr;
 
          index iLine = 0;
 

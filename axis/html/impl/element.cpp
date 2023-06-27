@@ -743,7 +743,7 @@ namespace html
 
 
          ::html::impl::cell* pcell = dynamic_cast <::html::impl::cell*> (this);
-         float iTableBorder = 0;
+         //float iTableBorder = 0;
          if (pcell != nullptr)
          {
             if (pcell->get_table()->m_iBorder > 0)

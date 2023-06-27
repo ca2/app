@@ -522,7 +522,7 @@ namespace user
       //::u32 uBaseFlags = SWP_NOZORDER;
       ::u32 uBaseFlags = 0;
 
-      ::u32 uFlags = uBaseFlags;
+      //::u32 uFlags = uBaseFlags;
 
       m_splitbara.set_size(iSplitBarCount);
 

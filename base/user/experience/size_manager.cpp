@@ -435,8 +435,8 @@ namespace experience
    void size_manager::size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking)
    {
 
-      bool bSize = true;
-
+      //    bool bSize = true;
+//
       ::rectangle_i32 rectangleWindow;
 
       ::rectangle_i32 rectangleMonitor;
@@ -451,7 +451,7 @@ namespace experience
          rectangleWindow.left = point.x() +1;
          rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
          rectangleWindow.right = m_rectangleWindowOrigin.right;
-         bSize = !rectangleWindow.is_empty();
+         //bSize = !rectangleWindow.is_empty();
          if(rectangleWindow.width() < sizeMin.cx())
          {
             rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx();
@@ -608,10 +608,10 @@ namespace experience
          }
          rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx());
       }
-      else
-      {
-         bSize = false;
-      }
+      //else
+      //{
+      //   bSize = false;
+      //}
 
       move_window(m_pframewindow, rectangleWindow);
 

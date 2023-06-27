@@ -343,14 +343,14 @@ namespace sockets
 
             auto & strFile = response().m_strFile;
 
-            ::filesize iInputFileSize = 0;
+            //::filesize iInputFileSize = 0;
 
             if (strFile.has_char())
             {
 
                auto pfileIn = file()->get_reader(strFile);
 
-               iInputFileSize = pfileIn->size();
+               //iInputFileSize = pfileIn->size();
 
                acmesystem()->compress(pfile, pfileIn, "zlib");
 
@@ -362,7 +362,7 @@ namespace sockets
 
                response().file()->seek_to_begin();
 
-               iInputFileSize = response().file()->size();
+               //iInputFileSize = response().file()->size();
 
                acmesystem()->compress(pfile, response().file(), "zlib");
 
@@ -596,7 +596,7 @@ namespace sockets
          if (prangea->get_count() > 1)
          {
             
-            memsize uTotal = 0;
+            //memsize uTotal = 0;
             
             memory mem;
             
@@ -660,7 +660,7 @@ namespace sockets
                      uRead = mem.size();
                   }
                   uRead = preader->read(mem(0,uRead));
-                  uTotal += uRead;
+                  //uTotal += uRead;
                   if (uRead == 0)
                      break;
                   pfile->write(mem(0, uRead));
@@ -685,7 +685,7 @@ namespace sockets
          else
          {
             
-            memsize uTotal = 0;
+            //memsize uTotal = 0;
             
             memory mem;
             
@@ -736,7 +736,7 @@ namespace sockets
                   
                   uRead = preader->read(mem(0, uRead));
                   
-                  uTotal += uRead;
+                  //uTotal += uRead;
 
                   if (uRead == 0)
                   {

@@ -1382,20 +1382,20 @@ auto tick2 = ::time::now();
 
       }
 
-      int dir;
+//      int dir;
 
-      if(bottomup)
-      {
+      //if(bottomup)
+      //{
 
-         dir = -1;
+      //   dir = -1;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         dir = 1;
+      //   dir = 1;
 
-      }
+      //}
 
       int workstride = w * sizeof(u32);
 

@@ -894,7 +894,7 @@ namespace user
 
             get_parent()->screen_to_client()(rectangleWindow);
 
-            rectangleWindow = rectangleWindow;
+            //rectangleWindow = rectangleWindow;
 
             point += rectangleWindow.top_left();
 
@@ -1925,14 +1925,14 @@ namespace user
 
                      }
 
-                     i32 iCode = pkey->m_nFlags & 0xff;
+                     //i32 iCode = pkey->m_nFlags & 0xff;
 
-                     if (bShift)
-                     {
+                     //if (bShift)
+                     //{
 
-                        iCode |= 0x80000000;
+                     //   iCode |= 0x80000000;
 
-                     }
+                     //}
 
                      //str = psession->keyboard().process_key(pkey);
                                           //str = psession->keyboard().process_key(pkey);

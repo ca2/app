@@ -2624,10 +2624,10 @@ void imaging::blur_32CC_r2(::image * pimageDst, ::image * pimageSrc)
    //   i32 max3x2 = (maxx1 - 5) * 4;
    ///   i32 max3x3 = (maxx1 - 2) * 4;
    //   i32 w = cx * 3;
-   u32 dwR;
-   u32 dwG;
-   u32 dwB;
-   u32 dwA;
+   //u32 dwR;
+   //u32 dwG;
+   //u32 dwB;
+   //u32 dwA;
 
    i32 yL = 2;
    i32 yU = maxy1 - 2;
@@ -2661,10 +2661,10 @@ void imaging::blur_32CC_r2(::image * pimageDst, ::image * pimageSrc)
 
 
 
-         dwR = 0;
-         dwG = 0;
-         dwB = 0;
-         dwA = 0;
+         //dwR = 0;
+         //dwG = 0;
+         //dwB = 0;
+         //dwA = 0;
          pSource2[0] = pSource1;
 
 
@@ -3154,7 +3154,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
    u32 dwI;
 
    i32 x,y;
-   i32 x2;
+   //i32 x2;
    i32 x3;
    i32 iFilterXLowerBound;
    i32 iFilterXUpperBound;
@@ -3223,7 +3223,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
 
          x = xL;
-         x2 = x - iFilterHalfW;
+         //x2 = x - iFilterHalfW;
          x3 = x * 4;
          for(; x <= xU; x++,x3+=4)
          {
@@ -3451,7 +3451,7 @@ void imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimage
    u32 dwI;
 
    i32 x,y;
-   i32 x2;
+   //i32 x2;
    i32 x3;
    i32 iFilterXLowerBound;
    i32 iFilterXUpperBound;
@@ -3520,7 +3520,7 @@ void imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimage
 
 
          x = xL;
-         x2 = x - iFilterHalfW;
+         //x2 = x - iFilterHalfW;
          x3 = x * 4;
          for(; x <= xU; x++,x3+=4)
          {
@@ -4708,7 +4708,7 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
    UNREFERENCED_PARAMETER(ySrc);
    i32 iFilterWidth = 2 * 2 + 1;
    i32 iFilterHeight = 2 * 2 + 1;
-   i32 divisor = iFilterWidth * iFilterHeight;
+   //i32 divisor = iFilterWidth * iFilterHeight;
    ::u8 *pSource;
 
 
@@ -4721,7 +4721,7 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
    ::u8 *pDestination;
 
 
-   ::u8 *pFilter;
+   //::u8 *pFilter;
 
    ::u8 * pFilterData = memory_new ::u8[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
@@ -4793,7 +4793,7 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
 
    u32 bMin3 = bMin * 3;
 
-   divisor = (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin);
+   //divisor = (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin);
 
    bool bSpread;
 
@@ -4818,7 +4818,7 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
 
 
 
-         pFilter = pFilterData;
+         //pFilter = pFilterData;
 
 
          dwR = 0;
@@ -5101,7 +5101,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iFilterHalfW  = iRadius;
    i32 iFilterHalfH  = iRadius;
    i32 iFilterArea   = iFilterW * iFilterH;
-   i32 divisor       = iFilterW * iFilterH;
+   //i32 divisor       = iFilterW * iFilterH;
    ::u8 *pSource;
 
 
@@ -5456,7 +5456,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    y2 = yL - iFilterHalfWidth;
 
-   divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
+   //divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
    for(; y1 < yU;)
    {
@@ -6069,7 +6069,7 @@ i32      iSize)
 
 
    i32 y1 = yL;
-   i32 y2 = yL - iFilterHalfWidth;
+   //i32 y2 = yL - iFilterHalfWidth;
    i32 x1;
    i32 x2;
 
@@ -6172,7 +6172,7 @@ i32      iSize)
          x2 += iSize3;
       }
       y1 += iSize;
-      y2 += iSize;
+      //y2 += iSize;
       pSource         += cySrc;
 
 

@@ -229,8 +229,7 @@ void timer_task::run()
 
    const auto intervalTime = 100_ms;
 
-
-   auto [countDecisecondSleep, remainderDecisecondSleep] = waitSleep.count_and_remainder(intervalTime);
+      auto [countDecisecondSleep, remainderDecisecondSleep] = waitSleep.count_and_remainder(intervalTime);
 
    while (true)
    {

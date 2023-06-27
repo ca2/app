@@ -6635,14 +6635,14 @@ namespace user
 
       }
 
-      ::windowing::window* pwindowGainingFocusIfAny = nullptr;
+      //::windowing::window* pwindowGainingFocusIfAny = nullptr;
 
-      if (pprimitiveimplGainingFocusIfAny)
-      {
+      //if (pprimitiveimplGainingFocusIfAny)
+      //{
 
-         pwindowGainingFocusIfAny = pprimitiveimplGainingFocusIfAny->window();
+      //   pwindowGainingFocusIfAny = pprimitiveimplGainingFocusIfAny->window();
 
-      }
+      //}
 
       m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
 
@@ -7153,7 +7153,7 @@ namespace user
       //         }
 
 
-      bool bHasSetWindowPosition = false;
+      //bool bHasSetWindowPosition = false;
 
       if (shouldGetVisible
          //#ifdef WINDOWS_DESKTOP

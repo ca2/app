@@ -255,26 +255,26 @@ namespace graphics
 
       }
 
-      int iAge;
+      //int iAge;
 
-      if (iGot < 0)
-      {
+      //if (iGot < 0)
+      //{
 
-         iAge = -1;
+      //   //iAge = -1;
 
-      }
-      else if (iGot <= m_iDone)
-      {
+      //}
+      //else if (iGot <= m_iDone)
+      //{
 
-         iAge = (int)(m_iDone - iGot);
+      //   //iAge = (int)(m_iDone - iGot);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         iAge = (int)(m_bufferitema.size() - iGot + m_iDone);
+      //   //iAge = (int)(m_bufferitema.size() - iGot + m_iDone);
 
-      }
+      //}
 
 #ifdef EXTRALOG
 

@@ -287,7 +287,7 @@ namespace html
 
 //         float cx = m_iCellSpacing;
 
-         float cy = m_iCellSpacing;
+         //float cy = m_iCellSpacing;
 
          float x = m_box.left + m_iCellSpacing + m_border.left + m_margin.left;
 

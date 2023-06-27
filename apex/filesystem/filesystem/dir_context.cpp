@@ -2170,14 +2170,14 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    m_pcontext->m_papexcontext->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
 
-   ::text::context * ptextcontext = nullptr;
+   //::text::context * ptextcontext = nullptr;
 
-   if (acmeapplication()->m_bSession)
-   {
+   //if (acmeapplication()->m_bSession)
+   //{
 
-      ptextcontext = acmesession()->text_context();
+   //   ptextcontext = acmesession()->text_context();
 
-   }
+   //}
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {

@@ -1867,20 +1867,20 @@ namespace http
 
       ::pointer<::apex::application>pappAgent = papp;
 
-      i32 iPort;
+      //i32 iPort;
 
-      if (strProtocol == "https")
-      {
+      //if (strProtocol == "https")
+      //{
 
-         iPort = 443;
+      //   iPort = 443;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         iPort = 80;
+      //   iPort = 80;
 
-      }
+      //}
 
       string strVersion;
       
@@ -1947,16 +1947,16 @@ namespace http
 
       }
 
-      bool bPost;
+      //bool bPost;
 
-      bool bPut;
+      //bool bPut;
 
       if (set["put"].cast < ::file::file >() || set("http_method") == "PUT")
       {
 
-         bPost = false;
+         //bPost = false;
 
-         bPut = true;
+         //bPut = true;
 
          auto psocketPut = pobjectCreator->__create_new < ::sockets::http_put_socket>();
 
@@ -1972,9 +1972,9 @@ namespace http
       else if (set["post"].propset().has_element() || set("http_method") == "POST")
       {
 
-         bPost = true;
+         //bPost = true;
 
-         bPut = false;
+         //bPut = false;
 
          auto psocketPost = pobjectCreator->__create_new < ::sockets::http_post_socket >();
 
@@ -1997,9 +1997,9 @@ namespace http
       else
       {
 
-         bPost = false;
+         //bPost = false;
 
-         bPut = false;
+         //bPut = false;
 
          auto psocketGet = pobjectCreator->__create_new < ::http::get_socket>();
 

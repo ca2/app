@@ -1996,17 +1996,17 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
    u8* psrc2;
 
-   u8* palf2;
+   //u8* palf2;
 
-   int x1;
-   int x2;
-   int y1;
-   int y2;
+   //int x1;
+   //int x2;
+   //int y1;
+   //int y2;
 
-   x1 = pointDstAlf.x();
-   x2 = pimageAlf->width() + x1;
-   y1 = pointDstAlf.y();
-   y2 = pimageAlf->height() + y1;
+   //x1 = pointDstAlf.x();
+   //x2 = pimageAlf->width() + x1;
+   //y1 = pointDstAlf.y();
+   //y2 = pimageAlf->height() + y1;
 
 
    //int a;
@@ -2018,7 +2018,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
       psrc2 = (u8*)&psrc[scanSrc * y];
 
-      palf2 = (u8*)&palf[scanAlf * y];
+      //palf2 = (u8*)&palf[scanAlf * y];
 
       for (int x = 0; x < xEnd; x++)
       {
@@ -2066,7 +2066,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
          psrc2 += 4;
 
-         palf2 += 4;
+         //palf2 += 4;
 
 
       }

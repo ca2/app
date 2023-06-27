@@ -1290,17 +1290,17 @@ inline bool polygon_contains_alternate(const POINT1 * ppPolygon, i32 iCount, con
 //   r[1] = a[1];
 //}
 
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
-
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::add(point, pointOffset); return point; }
-
-template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
-
-template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::add(rectangle, point); return rectangle; }
+//template < primitive_point POINT, primitive_point POINT2 >
+//inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
+//
+//template < primitive_point POINT, primitive_point POINT2 >
+//inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::add(point, pointOffset); return point; }
+//
+//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
+//
+//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::add(rectangle, point); return rectangle; }
 
 
 

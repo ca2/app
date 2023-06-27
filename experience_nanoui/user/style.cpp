@@ -82,7 +82,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rcClient;
 
-      ptab->client_rectangle(rcClient);
+      rcClient = ptab->client_rectangle();
 
       auto pstyle = ptab->get_style(pgraphics);
 
@@ -861,7 +861,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rcClient;
 
-      ptab->client_rectangle(rcClient);
+      rcClient = ptab->client_rectangle();
 
       if(ptab->get_data()->m_bVertical)
       {

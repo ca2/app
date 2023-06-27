@@ -60,6 +60,7 @@ list(APPEND library_references
         apex
         aqua
         aura
+        glad
         )
 
 

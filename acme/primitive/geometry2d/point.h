@@ -215,11 +215,11 @@ public:
    template < primitive_size SIZE >
    inline point_type& operator -=(const SIZE& size) noexcept { this->x() = (UNIT_TYPE)(this->x() - size.cx()); this->y() = (UNIT_TYPE)(this->y() - size.cy()); return *this; }
 
-//   template < primitive_point POINT >
-//   inline point_type& operator +=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() + point.x()); this->y() = (UNIT_TYPE)(this->y() + point.y()); return *this; }
-//
-//   template < primitive_point POINT >
-//   inline point_type& operator -=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() - point.x()); this->y() = (UNIT_TYPE)(this->y() - point.y()); return *this; }
+   template < primitive_point POINT >
+   inline point_type& operator +=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() + point.x()); this->y() = (UNIT_TYPE)(this->y() + point.y()); return *this; }
+
+   template < primitive_point POINT >
+   inline point_type& operator -=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() - point.x()); this->y() = (UNIT_TYPE)(this->y() - point.y()); return *this; }
 
    template < primitive_number NUMBER1 >
    inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator+(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x() + sequence.a(), this->y() + sequence.b()); }

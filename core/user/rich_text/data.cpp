@@ -1299,9 +1299,9 @@ namespace user
 
                x = (int) rectangle.left;
 
-               xLast = x;
+               //xLast = x;
 
-               bLineWrap = false;
+               //bLineWrap = false;
 
                ealign = pspan->m_ealignNewLine;
 
@@ -1331,7 +1331,7 @@ namespace user
 
                //pline->add(pbox);
 
-               bFirstParagraph = false;
+               //bFirstParagraph = false;
 
             }
 
@@ -2102,7 +2102,7 @@ namespace user
 
             m_iSelBeg = iSelBeg;
 
-            bNeedRedraw = true;
+            //bNeedRedraw = true;
 
          }
 
@@ -2111,7 +2111,7 @@ namespace user
 
             m_iSelEnd = iSelEnd;
 
-            bNeedRedraw = true;
+            //bNeedRedraw = true;
 
          }
 

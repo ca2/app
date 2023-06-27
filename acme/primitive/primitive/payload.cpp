@@ -7041,13 +7041,13 @@ void payload::consume_identifier(::ansi_range & range)
 
 void payload::consume_number(::ansi_range & range)
 {
-   bool bSigned = false;
+   //bool bSigned = false;
    bool bFloat = false;
    range.consume_spaces(0);
    const ::ansi_character * pszStart = range.m_begin;
    if(*range.m_begin == '-')
    {
-      bSigned = true;
+      //bSigned = true;
       range.m_begin++;
    }
    if(*range.m_begin == '.')
@@ -7065,7 +7065,7 @@ void payload::consume_number(::ansi_range & range)
       bFloat = true;
       if(*range.m_begin == '-')
       {
-         bSigned = true;
+         //bSigned = true;
          range.m_begin++;
       }
       if(*range.m_begin == '.')
@@ -7094,7 +7094,7 @@ void payload::consume_number(::ansi_range & range)
       bFloat = true;
       if(*range.m_begin == '-')
       {
-         bSigned = true;
+         //bSigned = true;
          range.m_begin++;
       }
       if(*range.m_begin == '.')
@@ -7150,7 +7150,7 @@ end:
 
       //if (bSigned)
       //{
-
+      //   
       //   i = -i;
 
       //}

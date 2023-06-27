@@ -550,7 +550,7 @@ namespace user
 
          CalcSplitBarRect(i, rectangleBar);
 
-         uFlags = uBaseFlags;
+         //uFlags = uBaseFlags;
 
          if (bIsWindowVisible)
          {

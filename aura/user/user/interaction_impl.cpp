@@ -7226,7 +7226,7 @@ namespace user
          // else
          {
 
-            bHasSetWindowPosition = m_pwindow->on_set_window_position(
+            m_pwindow->on_set_window_position(
                zorderNew,
                pointOutput.x(),
                pointOutput.y(),

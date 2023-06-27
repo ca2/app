@@ -300,13 +300,13 @@ namespace html
 
          }
 
-         for (i32 i = 0; i < m_rowptra.get_size(); i++)
-         {
+         //for (i32 i = 0; i < m_rowptra.get_size(); i++)
+         //{
 
-            //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;
-            cy += m_rowptra[i]->m_box.height() + m_iCellSpacing;
+         //   //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;
+         //   cy += m_rowptra[i]->m_box.height() + m_iCellSpacing;
 
-         }
+         //}
 
 
 

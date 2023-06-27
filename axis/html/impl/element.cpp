@@ -744,13 +744,13 @@ namespace html
 
          ::html::impl::cell* pcell = dynamic_cast <::html::impl::cell*> (this);
          //float iTableBorder = 0;
-         if (pcell != nullptr)
-         {
-            if (pcell->get_table()->m_iBorder > 0)
-            {
-               iTableBorder = pcell->get_table()->m_iBorder + 1;
-            }
-         }
+         //if (pcell != nullptr)
+         //{
+         //   if (pcell->get_table()->m_iBorder > 0)
+         //   {
+         //      iTableBorder = pcell->get_table()->m_iBorder + 1;
+         //   }
+         //}
 
          string str = m_pelemental->m_strBody;
 

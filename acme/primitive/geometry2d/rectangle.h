@@ -381,11 +381,11 @@ public:
    }
 //   bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
-//   template < primitive_point POINT >
-//   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x(), point.y()); }
-//
-//   template < primitive_size SIZE >
-//   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx(), size.cy()); }
+   template < primitive_point POINT >
+   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x(), point.y()); }
+
+   template < primitive_size SIZE >
+   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx(), size.cy()); }
 
    rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }
@@ -415,8 +415,8 @@ public:
 //   inline rectangle_type operator-(const SHIFT_I32 & shift) noexcept { return { (UNIT_TYPE)(this->left - shift.Δx), (UNIT_TYPE)(this->top - shift.Δy), (UNIT_TYPE)(this->right - shift.Δx), (UNIT_TYPE)(this->bottom - shift.Δy) }; }
 
 
-   //template < primitive_point POINT >
-   //rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x(), point.y()); }
+   template < primitive_point POINT >
+   rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x(), point.y()); }
 
    template < primitive_size SIZE >
    rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract(*this, -size.cx(), -size.cy()); }

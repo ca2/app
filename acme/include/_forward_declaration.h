@@ -14,7 +14,7 @@ template <class TYPE, TYPE t >
 struct integral_constant
 {
 
-   inline static constexpr TYPE payload = t;
+   inline static constexpr TYPE value = t;
 
 };
 

@@ -4628,7 +4628,7 @@ namespace user
 
       string str;
 
-      index i;
+      //index i;
 
       //index width;
 

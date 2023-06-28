@@ -1115,7 +1115,7 @@ namespace filemanager
 
       pathParentEx = filemanager_path();
 
-      i32 iMaxSize;
+      //i32 iMaxSize;
 
       //iMaxSize = 1000;
 

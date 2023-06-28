@@ -17,6 +17,28 @@ m_ucontext(*((::ucontext_t *)pc))
 }
 
 
+#if defined(ANDROID) || defined(RASPBERRYPIOS)
+
+
+standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+      ::standard_exception(signal, psiginfo, pc)
+   {
+
+   }
+
+
+#elif defined(FREEBSD_UNIX)
+
+
+standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+   standard_exception(signal, psiginfo, pc, 3, (void *) pc)
+{
+
+
+}
+
+
+#elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
 
 
 #ifdef LINUX
@@ -48,6 +70,8 @@ standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc
 {
 
 }
+
+#endif
 
 /*       sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
 

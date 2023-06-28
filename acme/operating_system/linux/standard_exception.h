@@ -177,34 +177,14 @@ typedef struct _sig_ucontext
 class standard_access_violation : public standard_exception
 {
 public:
-#if defined(ANDROID) || defined(RASPBERRYPIOS)
 
-
-   standard_access_violation (i32 signal, void * psiginfo, void * pc) :
-         ::standard_exception(signal, psiginfo, pc)
-      {
-
-      }
-
-#elif defined(FREEBSD_UNIX)
-   standard_access_violation (i32 signal, void * psiginfo, void * pc) :
-         standard_exception(signal, psiginfo, pc, 3, (void *) pc)
-      {
-
-      }
-
-
-#elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
 
    standard_access_violation (i32 signal, void * psiginfo, void * pc);
 
-#else
-
-
-
-public:
-#endif
 };
+
+
+
 #if defined(ANDROID) || defined(RASPBERRYPIOS)
 
 class standard_sigfpe : public standard_exception

@@ -1878,7 +1878,6 @@ if (LINUX)
             operating_system/linux/debug.h
             operating_system/linux/dumpinit.cpp
             operating_system/linux/error.cpp
-            operating_system/linux/exception.cpp
             operating_system/linux/file.cpp
             operating_system/linux/file.h
             operating_system/linux/file_lock.cpp
@@ -1899,6 +1898,7 @@ if (LINUX)
             operating_system/linux/root_tools.cpp
             operating_system/linux/root_tools.h
             operating_system/linux/simple_app.cpp
+            operating_system/linux/standard_exception.cpp
             operating_system/linux/standard_exception.h
             operating_system/linux/system.cpp
             operating_system/linux/thread.cpp

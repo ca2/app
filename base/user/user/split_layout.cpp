@@ -520,7 +520,7 @@ namespace user
       ::pointer<::user::interaction>puserinteraction;
 
       //::u32 uBaseFlags = SWP_NOZORDER;
-      ::u32 uBaseFlags = 0;
+      ////::u32 uBaseFlags = 0;
 
       //::u32 uFlags = uBaseFlags;
 

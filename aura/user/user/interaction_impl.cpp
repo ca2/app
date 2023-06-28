@@ -25,6 +25,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/windowing/monitor.h"
+#include "aura/windowing/placement_log.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
@@ -7544,7 +7545,7 @@ namespace user
       //
       //      }
 
-      ::pointer<::message::reposition>pmove(pmessage);
+      ::pointer<::message::reposition>preposition(pmessage);
 
       //      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
       //      {
@@ -7564,13 +7565,13 @@ namespace user
       //      if(!bLayered)
       //      {
       //
-      //         m_puserinteraction->layout().sketch().origin() = pmove->m_point;
+      //         m_puserinteraction->layout().sketch().origin() = preposition->m_point;
       //
-      //         m_puserinteraction->screen_origin() = pmove->m_point;
+      //         m_puserinteraction->screen_origin() = preposition->m_point;
       //
       //      }
 
-               //m_pwindow->m_point = pmove->m_point;
+               //m_pwindow->m_point = preposition->m_point;
 
       auto& layout = m_puserinteraction->const_layout();
 
@@ -7578,25 +7579,25 @@ namespace user
 
       auto window_origin = layout.window().origin();
 
-      //information() << "interaction_impl::on_message_reposition pmove->m_point " << pmove->m_point;
+      //information() << "interaction_impl::on_message_reposition preposition->m_point " << preposition->m_point;
 
       //information() << "interaction_impl::on_message_reposition window_origin " << window_origin;
 
       //information() << "interaction_impl::on_message_reposition sketch_origin " << sketch_origin;
 
-      //if(pmove->m_point.x() == 0)
+      //if(preposition->m_point.x() == 0)
       //{
 
       //  information() << "interaction_impl::on_message_reposition x is zero";
 
       //}
 
-      m_puserinteraction->set_position(pmove->m_point, e_layout_window);
+      m_puserinteraction->set_position(preposition->m_point, e_layout_window);
 
-      if (window_origin != sketch_origin)
+      if (!m_pwindow->placement_log()->has_recent(preposition->m_point))
       {
 
-         m_puserinteraction->set_position(pmove->m_point, e_layout_sketch);
+         m_puserinteraction->set_position(preposition->m_point, e_layout_sketch);
 
          m_puserinteraction->set_reposition();
 
@@ -7613,7 +7614,7 @@ namespace user
 
       //}
 
-      //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
+      //m_puserinteraction->layout().sketch().origin() = preposition->m_point;
 
       //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
       //{
@@ -7702,9 +7703,7 @@ namespace user
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 
-      if (!m_puserinteraction->is_window_resizing()
-          && (m_puserinteraction->const_layout().sketch().size()
-         != m_puserinteraction->const_layout().window().size()))
+      if (!m_pwindow->placement_log()->has_recent(psize->m_size))
       {
 
          m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
@@ -7732,7 +7731,7 @@ namespace user
 
          //}
 
-         //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
+         //m_puserinteraction->layout().sketch().origin() = preposition->m_point;
 
          //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          //{

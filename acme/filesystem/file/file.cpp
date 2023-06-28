@@ -1453,7 +1453,7 @@ namespace file
       else
       {
 
-         return payload.file_path_reference().flags() & ::file::e_flag_bypass_cache;
+         return payload.as_file_path().flags() & ::file::e_flag_bypass_cache;
 
       }
 

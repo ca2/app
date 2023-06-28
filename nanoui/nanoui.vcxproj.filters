@@ -220,5 +220,8 @@
     <ClInclude Include="FloatBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImageButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

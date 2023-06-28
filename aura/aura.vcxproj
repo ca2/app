@@ -812,6 +812,7 @@
     <ClCompile Include="windowing\menu_command.cpp" />
     <ClCompile Include="windowing\menu_item.cpp" />
     <ClCompile Include="windowing\monitor.cpp" />
+    <ClCompile Include="windowing\placement_log.cpp" />
     <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
@@ -1157,6 +1158,7 @@
     <ClInclude Include="windowing\menu_item.h" />
     <ClInclude Include="windowing\message_box.h" />
     <ClInclude Include="windowing\monitor.h" />
+    <ClInclude Include="windowing\placement_log.h" />
     <ClInclude Include="windowing\simple_ui_display.h" />
     <ClInclude Include="windowing\text_editor_interface.h" />
     <ClInclude Include="windowing\window.h" />

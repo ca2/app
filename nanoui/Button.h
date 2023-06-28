@@ -90,6 +90,11 @@ namespace nanoui
       /// The callback issued for all types of buttons.
       ::function<void()> m_callback;
 
+      ::image_pointer m_pimageNormal;
+      ::image_pointer m_pimagePressed;
+      ::image_pointer m_pimageDisabled;
+      ::image_pointer m_pimageFocus;
+
       /// The callback issued for toggle buttons.
       ::function<void(bool)> m_change_callback;
 

@@ -1,6 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
+#include "placement_log.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
@@ -188,6 +189,16 @@ namespace windowing
    //   return false;
 
    //}
+   
+   
+   class placement_log * window::placement_log()
+   {
+
+      __defer_construct_new(m_pplacementlog);
+
+      return m_pplacementlog;
+
+   }
 
 
    double window::get_top_margin()
@@ -1180,7 +1191,7 @@ namespace windowing
    }
 
 
-   bool window::_set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   bool window::_set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide, ::u32 nOverrideFlags)
    {
 
       return true;

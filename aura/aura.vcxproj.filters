@@ -678,6 +678,9 @@
     <ClCompile Include="graphics\gpu\shader.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
+    <ClCompile Include="windowing\placement_log.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1699,6 +1702,9 @@
     </ClInclude>
     <ClInclude Include="graphics\draw2d\clip.h">
       <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\placement_log.h">
+      <Filter>Header Files\windowing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

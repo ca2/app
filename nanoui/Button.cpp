@@ -274,11 +274,6 @@ namespace nanoui
    void Button::draw(::nano2d::context* pcontext)
    {
 
-      Widget::draw(pcontext);
-
-      ::color::color colorGradientTop = m_ptheme->m_colorButtonGradientUnfocused;
-      ::color::color colorGradientBottom = m_ptheme->m_colorButtonGradientBottomUnfocused;
-
       bool bPressed = false;
 
       if (m_flags & ToggleButton || m_flags & RadioButton)
@@ -293,6 +288,47 @@ namespace nanoui
          bPressed = screen()->m_pwidgetMouseDown == this;
 
       }
+
+
+      if (m_pimageNormal.ok())
+      {
+
+         if (!m_bEnabled && m_pimageDisabled.ok())
+         {
+
+            pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimageDisabled);
+
+         }
+         else if (m_bMouseHover && m_pimageFocus.ok())
+         {
+
+            pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimageFocus);
+
+         }
+         else if (bPressed && m_pimagePressed.ok())
+         {
+
+            pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimagePressed);
+
+         }
+         else
+         {
+
+            pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimageNormal);
+
+         }
+
+         return;
+
+      }
+
+      Widget::draw(pcontext);
+
+      
+
+      ::color::color colorGradientTop = m_ptheme->m_colorButtonGradientUnfocused;
+      ::color::color colorGradientBottom = m_ptheme->m_colorButtonGradientBottomUnfocused;
+
 
       if (bPressed || (m_bMouseHover && (m_flags & ContextMenuButton)))
       {

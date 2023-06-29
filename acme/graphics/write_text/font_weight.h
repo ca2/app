@@ -2,34 +2,39 @@
 #pragma once
 
 
-
 namespace write_text
 { 
 
 
    class font_weight
    {
-   public:
+   protected:
 
 
       enum_font_weight        m_efontweight;
+      /// m_iFontWeight maybe "fraction" of a font weight
       ::i16                   m_iFontWeight;
+
+
+   public:
 
 
       font_weight() :
          m_efontweight(e_font_weight_normal),
-         m_iFontWeight(-1)
+         m_iFontWeight(e_font_weight_normal)
       {
 
 
       }
+
 
       font_weight(enum_font_weight efontweight) : 
          m_efontweight(efontweight), 
-         m_iFontWeight(-1)
+         m_iFontWeight(efontweight)
       {
 
       }
+
 
       font_weight(int iFontWeight)
       {
@@ -106,73 +111,13 @@ namespace write_text
       }
 
 
+      constexpr enum_font_weight efontweight() const { return m_efontweight; }
+      constexpr ::i32 i32() const { return m_iFontWeight; }
 
 
-      constexpr operator enum_font_weight() const
-      {
+      constexpr operator enum_font_weight() const { return efontweight(); }
+      constexpr operator ::i32() const { return i32(); }
 
-         if (m_iFontWeight <= 0)
-         {
-
-            return m_efontweight;
-
-         }
-         else if (m_iFontWeight <= 150)
-         {
-
-            return e_font_weight_thin;
-
-         }
-         else if (m_iFontWeight <= 250)
-         {
-
-            return e_font_weight_extra_light;
-
-         }
-         else if (m_iFontWeight <= 350)
-         {
-
-            return e_font_weight_light;
-
-         }
-         else if (m_iFontWeight <= 450)
-         {
-
-            return e_font_weight_normal;
-
-         }
-         else if (m_iFontWeight <= 550)
-         {
-
-            return e_font_weight_medium;
-
-         }
-         else if (m_iFontWeight <= 650)
-         {
-
-            return e_font_weight_semibold;
-
-         }
-         else if (m_iFontWeight <= 750)
-         {
-
-            return e_font_weight_bold;
-
-         }
-         else if (m_iFontWeight <= 850)
-         {
-
-            return e_font_weight_extra_bold;
-
-         }
-         else
-         {
-
-            return e_font_weight_heavy;
-
-         }
-
-      }
 
       constexpr ::std::weak_ordering operator <=>(const enum_font_weight efontweight) const
       {
@@ -194,100 +139,34 @@ namespace write_text
 
 
       template < primitive_integral INTEGRAL >
+      constexpr ::std::strong_ordering operator <=>(const INTEGRAL iFontWeight) const
+      {
+
+         return m_iFontWeight <=> iFontWeight;
+
+      }
+
+
+      template < primitive_integral INTEGRAL >
       void set_font_weight(INTEGRAL iFontWeight)
       {
       
-         if (iFontWeight <= 0)
-         {
-
-            m_efontweight = e_font_weight_dont_care;
-
-         }
-         else if (iFontWeight == 100)
-         {
-
-            m_efontweight = e_font_weight_thin;
-
-         }
-         else if (iFontWeight == 200)
-         {
-
-            m_efontweight = e_font_weight_extra_light;
-
-         }
-         else if (iFontWeight == 300)
-         {
-
-            m_efontweight = e_font_weight_light;
-
-         }
-         else if (iFontWeight == 400)
-         {
-
-            m_efontweight = e_font_weight_normal;
-
-         }
-         else if (iFontWeight == 500)
-         {
-
-            m_efontweight = e_font_weight_medium;
-
-         }
-         else if (iFontWeight == 600)
-         {
-
-            m_efontweight = e_font_weight_semibold;
-
-         }
-         else if (iFontWeight == 700)
-         {
-
-            m_efontweight = e_font_weight_bold;
-
-         }
-         else if (iFontWeight == 800)
-         {
-
-            m_efontweight= e_font_weight_extra_bold;
-
-         }
-         else if (iFontWeight == 900)
-         {
-
-            m_efontweight = e_font_weight_heavy;
-
-         }
-         else
-         {
-
-            m_efontweight = e_font_weight_dont_care;
-
-         }
-
-         if(m_efontweight == e_font_weight_dont_care)
-         {
-
-            m_iFontWeight = iFontWeight;
-
-         }
-         else
-         {
-
-            m_iFontWeight = -1;
-
-         }
+         m_efontweight = sink(iFontWeight);
+         m_iFontWeight = maximum(minimum(32767, iFontWeight), -1);
 
       }
+
 
       font_weight & operator = (enum_font_weight efontweight)
       {
 
          m_efontweight = efontweight;
-         m_iFontWeight = -1;
+         m_iFontWeight = efontweight;
 
          return *this;
 
       }
+
 
       template < primitive_integral INTEGRAL >
       font_weight & operator = (INTEGRAL iFontWeight)
@@ -303,3 +182,6 @@ namespace write_text
 
 
 } // namespace write_text
+
+
+

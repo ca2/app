@@ -743,6 +743,7 @@
     <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
     <ClInclude Include="exception\assert.h" />
     <ClInclude Include="exception\bad_file_format.h" />
+    <ClInclude Include="exception\bad_unit_exception.h" />
     <ClInclude Include="exception\callstack.h" />
     <ClInclude Include="exception\call_stack.h" />
     <ClInclude Include="exception\cancel.h" />
@@ -841,6 +842,10 @@
     <ClInclude Include="primitive\mathematics\numeric.h" />
     <ClInclude Include="primitive\mathematics\trigonometry.h" />
     <ClInclude Include="primitive\mathematics\_constant.h" />
+    <ClInclude Include="primitive\primitive\integral_byte.h" />
+    <ClInclude Include="primitive\primitive\targeted_unit.h" />
+    <ClInclude Include="primitive\primitive\_SI.h" />
+    <ClInclude Include="primitive\primitive\_unit.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />

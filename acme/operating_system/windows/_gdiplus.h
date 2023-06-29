@@ -18,14 +18,14 @@ constexpr Gdiplus::REAL gdiplus_font_size(const write_text::font_size & fontsize
 constexpr Gdiplus::Unit gdiplus_font_unit(const write_text::font_size & fontsize)
 {
 
-   switch (fontsize.m_eunit)
+   switch (fontsize.eunit())
    {
    case e_unit_pixel:
       return Gdiplus::UnitPixel;
    case e_unit_point:
       return Gdiplus::UnitPoint;
    default:
-      throw fontsize.m_eunit;
+      throw fontsize.eunit();
    }
 
 }

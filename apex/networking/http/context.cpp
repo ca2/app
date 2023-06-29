@@ -8,6 +8,7 @@
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
+#include "acme/primitive/primitive/_text_stream.h"
 #include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"

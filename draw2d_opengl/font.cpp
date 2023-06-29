@@ -96,11 +96,11 @@ namespace draw2d_opengl
 
          ((font *)this)->m_baseFont = glGenLists(256);								// Storage For 256 Characters
 
-         ((font *)this)->m_hfont = CreateFont((int) (-m_dFontSize),							// Height Of Font
+         ((font *)this)->m_hfont = CreateFont((int) (-m_fontsize.operator i64()),							// Height Of Font
             0,								// Width Of Font
             0,								// Angle Of Escapement
             0,								// Orientation Angle
-            m_iFontWeight,						// Font Weight
+            m_fontweight,						// Font Weight
             m_bItalic ? true : false,							// Italic
             m_bUnderline ? true : false,							// Underline
             m_bStrikeout ? true : false,							// Strikeout
@@ -109,7 +109,7 @@ namespace draw2d_opengl
             CLIP_DEFAULT_PRECIS,			// Clipping Precision
             ANTIALIASED_QUALITY,			// Output Quality
             FF_DONTCARE | DEFAULT_PITCH,		// Family And Pitch
-            wstring(m_strFontFamilyName));				// Font Name
+            wstring(m_pfontfamily->family_name(this));				// Font Name
 
          ::SelectObject(m_hdcFont, m_hfont);							// Selects The Font We Created
 

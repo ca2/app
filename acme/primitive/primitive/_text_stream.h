@@ -3,15 +3,32 @@
 
 
 template < typename FILE >
-text_stream < FILE >& text_stream < FILE >::operator <<(const ::atom& atom)
+write_text_stream < FILE >& operator << (write_text_stream < FILE > & textstream, const ::atom& atom)
 {
 
-   operator <<(atom.string());
+   textstream << atom.as_string();
 
    return *this;
 
 }
 
+
+template < typename FILE >
+write_text_stream < FILE > & operator <<(write_text_stream < FILE > & textstream, integral_byte integralbyte)
+{
+
+   textstream.print_string_copy(integralbyte);
+
+   if (textstream.fmtflags() & ::file::separated)
+   {
+
+      textstream.print(textstream.m_chSeparator);
+
+   }
+
+   return textstream;
+
+}
 
 
 

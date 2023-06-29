@@ -352,7 +352,6 @@ public:
 //
 //    }
 
-    write_text_stream& operator <<(integral_byte integralbyte);
 //    {
 //
 //       print_string_copy(integralbyte);

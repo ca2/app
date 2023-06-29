@@ -376,22 +376,6 @@ void write_text_stream < FILE >::print_string_copy(const T& t)
 }
 
 
-template < typename FILE >
-write_text_stream < FILE > & write_text_stream < FILE >::operator <<(integral_byte integralbyte)
-{
-
-   print_string_copy(integralbyte);
-
-   if (this->fmtflags() & ::file::separated)
-   {
-
-      print(m_chSeparator);
-
-   }
-
-   return *this;
-
-}
 
  //write_text_stream& operator <<(i32 i)
  //{

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "font.h"
+#include "acme/exception/bad_unit_exception.h"
 #include "acme/exception/interface_only.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -287,13 +288,13 @@ namespace write_text
    double font::get_pixel_font_height(::draw2d::graphics * pgraphics)
    {
 
-      if (m_fontsize.m_eunit == ::e_unit_point)
+      if (m_fontsize.eunit() == ::e_unit_point)
       {
 
          return (::f64) m_fontsize * pgraphics->get_dpiy() / 72.0;
 
       }
-      else if (m_fontsize.m_eunit == ::e_unit_pixel)
+      else if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
          return m_fontsize;
@@ -302,7 +303,7 @@ namespace write_text
       else
       {
 
-         throw m_fontsize.m_eunit;
+         throw ::bad_unit_exception< enum_unit >(m_fontsize.eunit());
 
       }
 

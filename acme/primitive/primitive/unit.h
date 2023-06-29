@@ -1,178 +1,12 @@
 // Created by camilo on 2023-02-07 20:55 BRT <3ThomasBorregaardSorensen!!
 #pragma once
 
-#pragma warning( disable : 4455) // literal suffix identifiers that do not start with an underscore are reserved
-
-
-constexpr long double operator "" η(long double d)
-{
-
-   return d / (1'000.0 * 1'000.0 * 1'000.0);
-
-}
-
-
-constexpr unsigned long long int operator "" η(unsigned long long int i)
-{
-
-   return i / (1'000 * 1'000 * 1'000);
-
-}
-
-
-constexpr long double operator "" μ(long double d)
-{
-
-   return d / (1'000.0 * 1'000.0);
-
-}
-
-
-constexpr unsigned long long int operator "" μ(unsigned long long int i)
-{
-
-   return i / (1'000 * 1'000);
-
-}
-
-
-constexpr long double operator ""m(long double d)
-{
-
-   return d / 1'000.0;
-
-}
-
-
-constexpr unsigned long long operator "" m(unsigned long long i)
-{
-
-   return i / 1'000;
-
-}
-
-
-class integral_byte
-{
-public:
-
-
-   memsize m_memsize;
-
-
-   constexpr integral_byte(memsize memsize = 1) :
-      m_memsize(memsize)
-   {
-
-
-   }
-
-   operator memsize() const { return m_memsize; }
-
-
-};
-
-
-constexpr integral_byte operator ""KiB(long double d)
-{
-
-   return (memsize) (1024.0 * d);
-
-}
-
-
-constexpr integral_byte operator ""KiB(unsigned long long i)
-{
-
-   return (memsize) (i << 10);
-
-}
-
-
-constexpr long double operator ""k(long double d)
-{
-
-   return 1000.0 * d;
-
-}
-
-
-constexpr unsigned long long operator ""k(unsigned long long i)
-{
-
-   return 1'000 * i;
-
-}
-
-
-constexpr integral_byte operator ""MiB(long double d)
-{
-
-   return (memsize)(1024.0 * 1024.0 * d);
-
-}
-
-
-constexpr integral_byte operator ""MiB(unsigned long long i)
-{
-
-   return (memsize)(i << 20);
-
-}
-
-
-constexpr long double operator ""M(long double d)
-{
-
-   return 1'000.0 * 1'000.0 * d;
-
-}
-
-
-constexpr unsigned long long operator ""M(unsigned long long i)
-{
-
-   return 1'000 * 1'000 * i;
-
-}
-
-
-constexpr integral_byte operator ""GiB(long double d)
-{
-
-   return (memsize) (1'024.0 * 1'024.0 * 1'024.0 * d);
-
-}
-
-
-constexpr integral_byte operator ""GiB(unsigned long long i)
-{
-
-   return (memsize) (i << 30);
-
-}
-
-
-constexpr long double operator ""G(long double d)
-{
-
-   return 1'000.0 * 1'000.0 * 1'000.0 * d;
-
-}
-
-
-constexpr unsigned long long operator ""G(unsigned long long i)
-{
-
-   return 1'000 * 1'000 * 1'000 * i;
-
-}
-
 
 template < typename ENUM >
 class unit_base
 {
-public:
+protected:
+
 
    union
    {
@@ -186,6 +20,10 @@ public:
 
    ENUM        m_eunit;
    bool        m_bFloating : 1;
+
+
+public:
+
 
    constexpr unit_base() 
    {
@@ -230,8 +68,13 @@ public:
    constexpr void set_floating() {  m_bFloating = true; }
    constexpr void clear_floating() { m_bFloating = false; }
 
-   constexpr operator ::i64() const { return is_floating() ? (::i64) m_f64 : m_i64; }
-   constexpr operator ::f64() const { return is_floating() ? m_f64 : (::f64) m_i64; }
+   constexpr ::i64 i64() const { return is_floating() ? (::i64)m_f64 : m_i64; }
+   constexpr ::f64 f64() const { return is_floating() ? m_f64 : (::f64)m_i64; }
+   constexpr ENUM eunit() const { return m_eunit; }
+
+   constexpr operator ::i64() const { return i64(); }
+   constexpr operator ::f64() const { return f64(); }
+   constexpr operator ENUM() const { return eunit(); }
 
    //template < primitive_integral INTEGRAL >
    //constexpr unit_base & operator = (INTEGRAL i) { m_i64 = (::i64)i; clear_floating(); return *this; }
@@ -283,107 +126,6 @@ public:
 
 };
 
-
-template < typename ENUM, ENUM t_unitaAllow[] >
-class targeted_unit :
-   public unit_base < ENUM >
-{
-public:
-
-
-   constexpr targeted_unit() :
-      unit_base<ENUM>(0, t_unitaAllow[0]) 
-   {
-   
-   }
-
-   template < primitive_integral INTEGRAL >
-   constexpr targeted_unit(INTEGRAL i, ENUM eunit) : 
-      unit_base<ENUM>(i, eunit) 
-   {
-      assert_allowed(eunit); 
-   }
-
-   template < primitive_floating FLOATING >
-   constexpr targeted_unit(FLOATING f, ENUM eunit) : 
-      unit_base<ENUM>(f, eunit)
-   {
-      assert_allowed(eunit); 
-   }
-
-   constexpr targeted_unit(const unit_base <ENUM > & unit) : 
-      unit_base<ENUM>(unit)
-   { 
-      assert_allowed(this->m_eunit); 
-   }
-
-
-   constexpr static void assert_allowed(ENUM eunit) 
-   {
-      if (!is_allowed(eunit)) 
-         throw eunit; 
-   }
-
-   constexpr static bool is_allowed(ENUM eunit)
-   {
-
-      eunit = (ENUM) (eunit & ~INT_MIN);
-      
-      auto pallow = t_unitaAllow; 
-      
-      while (*pallow != e_unit_none)
-      {
-         
-         if (*pallow == eunit)
-         {
-
-            return true;
-
-         }
-
-         pallow++;
-
-      } 
-      
-      return false;
-
-   }
-
-
-   template < primitive_floating FLOATING >
-   constexpr targeted_unit & operator = (FLOATING f)
-   {
-      
-      unit_base <ENUM >::operator = (f);
-      
-      assert_allowed(this->m_eunit); 
-      
-      return *this;
-
-   }
-
-
-   constexpr targeted_unit & operator = (const unit_base <ENUM> & unit) 
-   {
-      
-      unit_base <ENUM >::operator =(unit);  
-      
-      assert_allowed(this->m_eunit); 
-      
-      return *this; 
-   
-   }
-
-   constexpr void set_unit(ENUM eunit)
-   { 
-      
-      assert_allowed(eunit); 
-      
-      this->m_eunit = eunit; 
-   
-   }
-
-};
 
 
 using unit = unit_base < enum_unit >;

@@ -109,7 +109,7 @@ namespace draw2d_opengl
             CLIP_DEFAULT_PRECIS,			// Clipping Precision
             ANTIALIASED_QUALITY,			// Output Quality
             FF_DONTCARE | DEFAULT_PITCH,		// Family And Pitch
-            wstring(m_pfontfamily->family_name(this));				// Font Name
+            wstring(m_pfontfamily->family_name(this)));				// Font Name
 
          ::SelectObject(m_hdcFont, m_hfont);							// Selects The Font We Created
 

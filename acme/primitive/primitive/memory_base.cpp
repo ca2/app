@@ -447,7 +447,7 @@ void memory_base::append_file(::file::file * pfileIn,memsize uiBufferSize)
    if (uiBufferSize <= 0)
    {
 
-      uiBufferSize = 1_MiB;
+      uiBufferSize = 1MiB;
 
    }
 

@@ -5,6 +5,7 @@
 enum enum_orientation
 {
 
+   e_orientation_none = -1,
    e_orientation_horizontal = 0,
    e_orientation_vertical = 1,
    e_orientation_z = 2,

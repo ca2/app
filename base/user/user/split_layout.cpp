@@ -433,12 +433,12 @@ namespace user
    }
 
 
-   void split_layout::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void split_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       bool bIsWindowVisible = is_this_visible();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(e_layout_sketch);
 
       if (rectangleClient.is_empty())
       {

@@ -2256,7 +2256,7 @@ namespace user
    }
 
 
-   void frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       __task_guard(m_bInRecalcLayout);

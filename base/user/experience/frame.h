@@ -142,7 +142,7 @@ namespace experience
 
       virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
 
       virtual ::pointer<control_box>get_control_box();

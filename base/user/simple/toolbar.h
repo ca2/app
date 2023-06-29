@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/graphics/write_text/font_size.h"
 #include "base/user/user/toolbar.h"
 
 class image_list;
@@ -21,7 +22,7 @@ public:
    ::rectangle_i32                m_rectangleItemPad;
    //bool                       m_bTransparentBackground;
    bool                    m_bSimpleLayout;
-   double                  m_dFontSize;
+   ::write_text::font_size       m_fontsize;
 
    ::size_i32                  m_sizeButton;
    ::size_i32                  m_sizeImage;
@@ -48,6 +49,8 @@ public:
    virtual ::size_i32 get_separator_size();
    virtual ::rectangle_i32 get_bar_border();
    virtual ::rectangle_i32 get_item_pad();
+
+   virtual ::f64 get_pixel_font_size() const;
 
    //bool create(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, atom nID = "__IDW_TOOLBAR");
    //using ::user::interaction::create_window_ex;

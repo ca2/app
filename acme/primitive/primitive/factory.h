@@ -285,8 +285,8 @@ namespace factory
 //   }
 
 
-   template < typename ORIGIN_TYPE >
-   inline ::pointer<factory_item_interface>& get_factory_item();
+   //template < typename ORIGIN_TYPE >
+   //inline ::pointer<factory_item_interface>& get_factory_item();
 //   {
 //
 //      //static auto atom = get_atom<ORIGIN_TYPE>();

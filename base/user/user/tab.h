@@ -168,7 +168,9 @@ namespace user
 
       virtual void get_title(int iPane,string_array & stra);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void layout_pane(index iPane, bool bDisplay = false);
 

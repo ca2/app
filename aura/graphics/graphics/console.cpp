@@ -9,6 +9,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/write_text/font.h"
+#include "aura/graphics/write_text/font_family.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/context.h"
 
@@ -194,15 +195,7 @@ namespace graphics
 
       m_pcontext->__construct(m_pimage->g()->m_pfont);
 
-#ifdef LINUX
-
-      m_pimage->g()->m_pfont->create_pixel_font("Ubuntu Mono", m_sizeTile.cy() * 0.92);
-
-#else
-
-      m_pimage->g()->m_pfont->create_pixel_font("Lucida Console", m_sizeTile.cy() * 0.92);
-
-#endif
+      m_pimage->g()->m_pfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy() * 0.92, e_unit_pixel));
 
       SetScreenColor(e_dos_color_background_black);
 

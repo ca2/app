@@ -719,6 +719,13 @@ namespace user
 
       pmessage->previous();
 
+      if (size(e_layout_sketch).is_empty())
+      {
+
+         set_size({ 24, 24 });
+
+      }
+
       m_linkedpropertyCheck = fetch_property(m_atom, true);
 
    }

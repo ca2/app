@@ -82,7 +82,7 @@ namespace user
       void set_position(index iIndex, i32 nPos);
       void set_position_rate(index iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
       
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
       i32 GetMaxPos();

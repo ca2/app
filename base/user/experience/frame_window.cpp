@@ -1238,11 +1238,13 @@ namespace experience
    }
 
 
-   void frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!is_frame_experience_enabled())
       {
+
+         ::user::frame_window::on_perform_top_down_layout(pgraphics);
 
          return;
 
@@ -1251,7 +1253,7 @@ namespace experience
       if (m_pframe != nullptr)
       {
 
-         m_pframe->on_layout(pgraphics);
+         m_pframe->on_perform_top_down_layout(pgraphics);
 
       }
 

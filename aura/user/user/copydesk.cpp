@@ -55,7 +55,7 @@ namespace user
       
       auto pwritetext = pdraw2d->write_text();
 
-      m_pfont = pwritetext->point_font(pnode->font_name(e_font_sans), 14.0);
+      m_pfont = pwritetext->font(e_font_sans, 14pt);
 
       //return true;
 

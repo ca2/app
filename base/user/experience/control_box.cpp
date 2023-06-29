@@ -380,7 +380,7 @@ namespace experience
 
          m_pfontMarlett.create(this);
 
-         m_pfontMarlett->create_pixel_font("Marlett", 16.0);
+         m_pfontMarlett->create_font("Marlett", 16px);
 
       }
 
@@ -574,7 +574,7 @@ if(rectangle.left > 400)
    }
 
 
-   void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleWindow;

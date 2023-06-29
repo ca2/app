@@ -250,6 +250,32 @@ namespace user
    }
 
 
+   bool frame::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
+      if(m_bNeedPerformLayout)
+      {
+            
+         return true;
+
+      }
+
+      if (size(e_layout_sketch) != size(e_layout_design))
+      {
+
+         return true;
+
+
+      }
+
+      return false;
+
+   }
+
+
+
    ::user::interaction* frame::get_active_impact()
    {
 

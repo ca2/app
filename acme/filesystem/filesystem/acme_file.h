@@ -111,7 +111,7 @@ public:
    
    virtual bool _memory_map_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc);
    
-   virtual void _read_write_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc, ::memsize buffer_size = 1_MiB);
+   virtual void _read_write_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc, ::memsize buffer_size = 1MiB);
 
 
    virtual class ::time modification_time(const ::file::path & path);

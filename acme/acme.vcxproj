@@ -804,6 +804,8 @@
     <ClInclude Include="graphics\image\color_indexes.h" />
     <ClInclude Include="graphics\image\_.h" />
     <ClInclude Include="graphics\image\_configuration.h" />
+    <ClInclude Include="graphics\write_text\font_size.h" />
+    <ClInclude Include="graphics\write_text\font_weight.h" />
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
@@ -832,6 +834,7 @@
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
+    <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />

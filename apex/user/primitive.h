@@ -195,7 +195,7 @@ namespace user
       virtual void on_configuration_change(::user::primitive * pprimitiveSource);
 
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_reposition() override;
       void on_show_window() override;
 

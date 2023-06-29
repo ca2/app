@@ -125,7 +125,7 @@ namespace sockets
             m_transferprogressfunction(0.0, 0, m_content_length);
          }
          ::memory memory;
-         memory.set_size(32_KiB);
+         memory.set_size(32KiB);
          m_file->seek_to_begin();
          memsize total = 0;
          while ((n = m_file->read(memory.data(), memory.size())) > 0)

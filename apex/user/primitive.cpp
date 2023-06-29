@@ -2332,12 +2332,12 @@ namespace user
    }
 
 
-   void primitive::on_layout(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void primitive::on_reposition()

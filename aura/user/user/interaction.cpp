@@ -202,6 +202,8 @@ namespace user
       m_bLoadingWindowRectangle = false;
 
 
+      m_bAutoResize = false;
+
       m_bVisualChanged = false;
 
 
@@ -230,6 +232,8 @@ namespace user
       m_bToolWindow = false;
       m_bMessageWindow = false;
       m_bCompositedFrameWindow = false;
+
+      m_bOnDraw = true;
 
       m_bEdgeGestureDisableTouchWhenFullscreen = false;
       m_bVisible = false;
@@ -353,7 +357,11 @@ namespace user
 
       m_bUpdateVisual = false;
 
+      m_bNeedPerformLayout = false;
+
       m_bNeedLayout = false;
+
+
 
       //m_bLockSketchToDesign = false;
 
@@ -1450,10 +1458,10 @@ namespace user
    }
 
 
-   void interaction::set_need_layout(bool bAscendants)
+   void interaction::set_need_layout()
    {
 
-      m_bNeedLayout = true;
+      m_bNeedPerformLayout = true;
 
    }
 
@@ -5191,6 +5199,13 @@ return strClass;
 
       scoped_restore(pgraphics->m_puserinteraction);
 
+      if (should_perform_layout(pgraphics))
+      {
+
+         perform_layout(pgraphics);
+
+      }
+
       pgraphics->m_puserinteraction = this;
 
       auto phostwindow = this->get_host_window();
@@ -5436,88 +5451,93 @@ return strClass;
 
       }
 
-      pgraphics->m_dFontFactor = 1.0;
-
-      try
+      if (m_bOnDraw)
       {
 
-         auto type = __object_type(*this);
+         pgraphics->m_dFontFactor = 1.0;
+
+         try
+         {
+
+            auto type = __object_type(*this);
 
 
-         //if (pgraphics->m_bDraw)
-         //{
+            //if (pgraphics->m_bDraw)
+            //{
 
 #ifdef __DEBUG
 
-         auto timeStart = ::time::now();
+            auto timeStart = ::time::now();
 
 #endif //__DEBUG
 
-         //{
+            //{
 
-         //   auto pinteraction = get_wnd();
+            //   auto pinteraction = get_wnd();
 
-         //   if (pinteraction)
-         //   {
+            //   if (pinteraction)
+            //   {
 
-         //}
+            //}
 
-         //}
+            //}
 
-         _001OnNcClip(pgraphics);
+            _001OnNcClip(pgraphics);
 
-         //auto pstyle = get_style(pgraphics);
+            //auto pstyle = get_style(pgraphics);
 
-         _001OnNcDraw(pgraphics);
-
-
+            _001OnNcDraw(pgraphics);
 
 
-         //         if (type.name_contains("waven::impact"))
-         //         {
-         //
-         //            information("waven::impact");
-         //         }
-         //         else if(strType.case_insensitive_contains("menu_list_impact"))
-         //         {
-         //
-         //            information("menu_list_impact");
-         //
-         //         }
-         //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
-         //   {
 
-         //      set_context_org(pgraphics);
 
-         //   }
+            //         if (type.name_contains("waven::impact"))
+            //         {
+            //
+            //            information("waven::impact");
+            //         }
+            //         else if(strType.case_insensitive_contains("menu_list_impact"))
+            //         {
+            //
+            //            information("menu_list_impact");
+            //
+            //         }
+            //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
+            //   {
 
-         //}
-         ////         ::point_i32 pointParentOffset = get_parent_context_offset();
-         ////
-         ////         pgraphics->offset_origin(-pointParentOffset.x(), -pointParentOffset.y());
-         {
+            //      set_context_org(pgraphics);
 
-            ::draw2d::save_context savecontext(pgraphics);
+            //   }
 
-            try
+            //}
+            ////         ::point_i32 pointParentOffset = get_parent_context_offset();
+            ////
+            ////         pgraphics->offset_origin(-pointParentOffset.x(), -pointParentOffset.y());
             {
 
-               _001DrawThis(pgraphics);
+               ::draw2d::save_context savecontext(pgraphics);
 
-            }
-            catch (...)
-            {
+               try
+               {
 
-               information() << "Exception: interaction::_000OnDraw _001DrawThis %s"
-                             << __object_type(*this).as_string();
+                  _001DrawThis(pgraphics);
+
+               }
+               catch (...)
+               {
+
+                  information() << "Exception: interaction::_000OnDraw _001DrawThis %s"
+                     << __object_type(*this).as_string();
+
+               }
 
             }
 
          }
+         catch (...)
+         {
 
-      }
-      catch (...)
-      {
+         }
 
       }
 
@@ -9392,7 +9412,7 @@ return strClass;
       else
       {
 
-         input_client_rectangle(sizeparentlayout.m_rectangle);
+         input_client_rectangle(sizeparentlayout.m_rectangle, e_layout_sketch);
 
       }
 
@@ -11137,8 +11157,98 @@ return strClass;
 
    }
 
+   
+   bool interaction::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   {
 
-   void interaction::on_layout(::draw2d::graphics_pointer &pgraphics)
+      UNREFERENCED_PARAMETER(pgraphics);
+
+      return m_bNeedPerformLayout;
+
+   }
+
+
+   void interaction::perform_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      m_bNeedPerformLayout = false;
+
+      try
+      {
+
+         on_perform_top_down_layout(pgraphics);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      if (m_puserinteractionpointeraChild)
+      {
+
+         for (auto & puserinteraction : m_puserinteractionpointeraChild->interactiona())
+         {
+
+            try
+            {
+
+               puserinteraction->perform_layout(pgraphics);
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
+
+      }
+
+      try
+      {
+
+         on_perform_layout(pgraphics);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+   
+
+   void interaction::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (m_bExtendOnParent)
+      {
+
+         auto sizeParent = get_parent()->size(::user::e_layout_sketch);
+
+         auto sizeThis = size(::user::e_layout_sketch);
+
+         if (sizeThis != sizeParent)
+         {
+
+            set_size(sizeParent);
+
+         }
+
+      }
+
+   }
+
+   
+   void interaction::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+   }
+
+
+   void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       layout_tooltip();
@@ -15393,7 +15503,7 @@ return strClass;
    ::rectangle_i32 interaction::client_rectangle(enum_layout elayout)
    {
 
-      auto r = raw_rectangle();
+      auto r = raw_rectangle(elayout);
 
       r += get_parent_accumulated_scroll();
 
@@ -17933,66 +18043,66 @@ return strClass;
    }
 
 
-   ::size_f64 interaction::get_size()
+   ::size_f64 interaction::get_size(enum_layout elayout)
    {
 
       ::rectangle_i32 rectangleWindow;
 
-      window_rectangle(rectangleWindow);
+      window_rectangle(rectangleWindow, elayout);
 
       return rectangleWindow.size();
 
    }
 
 
-   ::size_f64 interaction::get_client_size()
+   ::size_f64 interaction::get_client_size(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(elayout);
 
       return rectangleClient.size();
 
    }
 
 
-   int interaction::width()
+   int interaction::width(enum_layout elayout)
    {
 
       ::rectangle_i32 rectangleWindow;
 
-      window_rectangle(rectangleWindow);
+      window_rectangle(rectangleWindow, elayout);
 
       return rectangleWindow.width();
 
    }
 
 
-   int interaction::height()
+   int interaction::height(enum_layout elayout)
    {
 
       ::rectangle_i32 rectangleWindow;
 
-      window_rectangle(rectangleWindow);
+      window_rectangle(rectangleWindow, elayout);
 
       return rectangleWindow.height();
 
    }
 
 
-   int interaction::client_width()
+   int interaction::client_width(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(elayout);
 
       return rectangleClient.width();
 
    }
 
 
-   int interaction::client_height()
+   int interaction::client_height(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(elayout);
 
       return rectangleClient.height();
 

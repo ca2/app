@@ -71,7 +71,7 @@ simple_toolbar::simple_toolbar()
 
    m_rectangleItemPad.set(-1);
 
-   m_dFontSize = 1.0;
+   m_fontsize = 1.0;
 
    // lakic
    m_sizeSpacing.cx() = 8;
@@ -260,7 +260,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set(get_font(pstyle));
 
-   m_dFontSize = pgraphics->m_pfont->m_dFontSize;
+   m_fontsize = pgraphics->m_pfont->m_fontsize;
 
    //auto iHover = _001GetHoverItem();
 
@@ -492,7 +492,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
    pgraphics->set_font(this, ::e_element_none);
 
-   m_dFontSize = pgraphics->m_pfont->m_dFontSize;
+   m_fontsize = pgraphics->m_pfont->m_fontsize;
 
    int iImageSpacing = get_image_spacing();
 
@@ -718,7 +718,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    pgraphics->set_font(this, ::e_element_none);
 
-   m_dFontSize = pgraphics->m_pfont->m_dFontSize;
+   m_fontsize = pgraphics->m_pfont->m_fontsize;
 
    auto estyle = tool_item_style(iItem);
 
@@ -969,7 +969,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       pgraphics->set_font(this, ::e_element_none);
 
-      m_dFontSize = pgraphics->m_pfont->m_dFontSize;
+      m_fontsize = pgraphics->m_pfont->m_fontsize;
 
       auto pbrushText = __create < ::draw2d::brush > ();
 
@@ -1845,7 +1845,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    pgraphics->set_font(this, ::e_element_none);
 
-   m_dFontSize = pgraphics->m_pfont->m_dFontSize;
+   m_fontsize = pgraphics->m_pfont->m_fontsize;
 
    int iImageSpacing = get_image_spacing();
 
@@ -2588,28 +2588,28 @@ rectangle_i32 simple_toolbar::get_item_pad()
    if (rectangle.left < 0)
    {
 
-      rectangle.left = (::i32)(m_dFontSize / 3);
+      rectangle.left = (::i32)(get_pixel_font_size() / 3);
 
    }
 
    if (rectangle.right < 0)
    {
 
-      rectangle.right = (::i32) (m_dFontSize / 3);
+      rectangle.right = (::i32) (get_pixel_font_size() / 3);
 
    }
 
    if (rectangle.top < 0)
    {
 
-      rectangle.top = (::i32) (m_dFontSize / 3);
+      rectangle.top = (::i32) (get_pixel_font_size() / 3);
 
    }
 
    if (rectangle.bottom < 0)
    {
 
-      rectangle.bottom = (::i32) (m_dFontSize / 3);
+      rectangle.bottom = (::i32) (get_pixel_font_size() / 3);
 
    }
 
@@ -2626,29 +2626,66 @@ rectangle_i32 simple_toolbar::get_bar_border()
    if (rectangle.left < 0)
    {
 
-      rectangle.left = (::i32) (m_dFontSize / 3);
+      rectangle.left = (::i32) (get_pixel_font_size() / 3);
 
    }
    if (rectangle.right < 0)
    {
 
-      rectangle.right = (::i32) (m_dFontSize / 3);
+      rectangle.right = (::i32) (get_pixel_font_size() / 3);
 
    }
    if (rectangle.top < 0)
    {
 
-      rectangle.top = (::i32) (m_dFontSize / 3);
+      rectangle.top = (::i32) (get_pixel_font_size() / 3);
 
    }
    if (rectangle.bottom < 0)
    {
 
-      rectangle.bottom = (::i32)(m_dFontSize / 3);
+      rectangle.bottom = (::i32)(get_pixel_font_size() / 3);
 
    }
 
    return rectangle;
+
+}
+
+
+::f64 simple_toolbar::get_pixel_font_size() const
+{
+
+   if (m_fontsize.m_eunit == e_unit_pixel)
+   {
+
+      return m_fontsize;
+
+   }
+   else if (m_fontsize.m_eunit == e_unit_point)
+   {
+
+      // TODO
+
+      return m_fontsize;
+
+   }
+   else if (m_fontsize.m_eunit == e_unit_rate)
+   {
+
+      // TODO
+
+      return m_fontsize.operator f64() * 12.0;
+
+   }
+   else
+   {
+
+      throw m_fontsize.m_eunit;
+
+      return 0.0;
+
+   }
 
 }
 
@@ -2696,14 +2733,14 @@ size_i32 simple_toolbar::get_separator_size()
    if (s.cx() < 0)
    {
 
-      s.cx() = ::i32(m_dFontSize * 2 / 3);
+      s.cx() = ::i32(get_pixel_font_size() * 2.0 / 3.0);
 
    }
 
    if (s.cy() < 0)
    {
 
-      s.cy() = ::i32(m_dFontSize * 2 / 3);
+      s.cy() = ::i32(get_pixel_font_size() * 2 / 3);
 
    }
 
@@ -2723,7 +2760,7 @@ int simple_toolbar::get_image_spacing()
    if (i < 0)
    {
 
-      i = (int)(m_dFontSize / 4);
+      i = (int)(get_pixel_font_size() / 4);
 
    }
 

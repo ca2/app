@@ -15,13 +15,13 @@ namespace write_text
    public:
 
 
-      index             m_iSerial;
-      index             m_iUpdateId;
-      int               m_iBaseSize;
-      int_array         m_iaSize;
-      ::rectangle_i32   m_rectangleClient;
-      int               m_iUpdatedCount;
-      bool              m_bLayoutStillIntersect;
+      index                   m_iSerial;
+      index                   m_iUpdateId;
+      int                     m_iBaseSize;
+      ::i32_array             m_iaSize;
+      ::rectangle_i32         m_rectangleClient;
+      int                     m_iUpdatedCount;
+      bool                    m_bLayoutStillIntersect;
 
 
    };

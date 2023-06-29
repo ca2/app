@@ -89,7 +89,7 @@ namespace filemanager
       //}
       m_pfont.create(this);
 
-      m_pfont->create_pixel_font("Verdana", 14);
+      m_pfont->create_font("Verdana", 14px);
 
       m_strLevelUp.empty();
       m_setToolbar[::userfs::e_mode_normal] = "matter://filemanager_toolbar.xml";

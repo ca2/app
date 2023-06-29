@@ -159,7 +159,7 @@ namespace experience
       bool IsHoverActive();
       void set_dock_mask(e_dock emask);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_reposition() override;
       void ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent);
       void FrameWnd(::user::interaction * pframewindow);

@@ -127,7 +127,7 @@ namespace graphics
 
       //estatus = 
       
-      m_pmemorymap->open_path(path, false, true, true, 128_MiB);
+      m_pmemorymap->open_path(path, false, true, true, 128MiB);
 
       //if (!estatus)
       //{

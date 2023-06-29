@@ -2187,12 +2187,12 @@ namespace user
    }
 
 
-   void element::on_layout(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void element::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void element::on_reposition()

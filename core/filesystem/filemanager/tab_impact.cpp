@@ -257,7 +257,7 @@ namespace filemanager
 
             }
 
-            pimpact->set_need_layout(true);
+            pimpact->set_need_layout();
 
          }
 

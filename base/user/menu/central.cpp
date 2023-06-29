@@ -175,11 +175,7 @@ namespace user
       __construct_new(m_pimagelistBlend);
       __construct_new(m_pimagelistHueLight);
 
-      auto psystem = acmesystem()->m_pbasesystem;
-
-      auto pnode = psystem->node();
-
-      VERIFY(m_pfontMenu->create_point_font(pnode->font_name(e_font_sans), 11));
+      VERIFY(m_pfontMenu->create_font(e_font_sans, 11pt));
 
 //#ifdef WINDOWS_DESKTOP
 //      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))

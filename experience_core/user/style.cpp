@@ -53,7 +53,7 @@ namespace experience_core
 
          auto pnode = acmenode();
 
-         m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12, e_font_weight_normal);
+         m_pfont->create_font(e_font_sans_ui, 12pt, e_font_weight_normal);
 
       }
 
@@ -113,7 +113,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->client_rectangle();
+      rcClient = ptab->client_rectangle(::user::e_layout_sketch);
       
       if(rcClient.is_empty())
       {
@@ -1085,7 +1085,7 @@ namespace experience_core
 
          pdata->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_sketch);
 
          pdata->m_rectangleTab.left = rectangleClient.left;
          pdata->m_rectangleTab.top = rectangleClient.top;
@@ -1115,7 +1115,7 @@ namespace experience_core
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_sketch);
          //ptab->client_rectangle(rectangleClient);
          int x = rectangleClient.left;
 
@@ -1253,7 +1253,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->client_rectangle();
+      rcClient = ptab->client_rectangle(::user::e_layout_sketch);
 
       if (pdata->m_bVertical)
       {

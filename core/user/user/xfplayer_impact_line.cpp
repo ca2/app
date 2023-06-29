@@ -843,7 +843,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
       *m_pfontPrefix = *m_pfont;
 
-      m_pfontPrefix->m_dFontSize *= 0.5;
+      m_pfontPrefix->m_fontsize *= 0.5;
 
 
    }

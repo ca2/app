@@ -84,6 +84,13 @@ namespace user
 
       //}
 
+      if (m_bAutoResize)
+      {
+
+         information("m_bAutoResize");
+
+      }
+
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
@@ -534,6 +541,7 @@ namespace user
 
    }
 
+
    void still::on_message_create(::message::message * pmessage)
    {
 
@@ -564,7 +572,6 @@ namespace user
 
       }
 
-
    }
 
 
@@ -573,26 +580,26 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      ::pointer<::write_text::font>pfont;
+      //::pointer<::write_text::font>pfont;
 
-      auto pstyle = get_style(pgraphics);
+      //auto pstyle = get_style(pgraphics);
 
-      if (m_pfont)
-      {
+      //if (m_pfont)
+      //{
 
-         pfont = m_pfont;
+      //   pfont = m_pfont;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         pfont = get_font(pstyle, ::e_element_none);
+      //   pfont = get_font(pstyle, ::e_element_none);
 
-      }
+      //}
 
       ::string strWindowText = get_window_text();
 
-      if(strWindowText.is_empty() || ::is_null(pfont))
+      if(strWindowText.is_empty())
       {
 
          if(m_ptextouta)
@@ -606,7 +613,9 @@ namespace user
 
       }
 
-      auto pOsData = pfont->get_os_data(pgraphics, 0);
+      pgraphics->set_font(this, ::e_element_none);
+
+      auto pOsData = pgraphics->get_current_font()->get_os_data(pgraphics, 0);
 
       if(m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
       {
@@ -615,21 +624,9 @@ namespace user
 
       }
 
+      auto pstyle = get_style(pgraphics);
+
       auto rectangleClient = client_rectangle();
-
-      ::size_f64 sizeText = _001CalculateFittingSize(pgraphics);
-
-      ::rectangle_i32 rectangle;
-
-      rectangle.left = (::i32) (rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
-
-      rectangle.top = (::i32) (rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
-
-      rectangle.right = (::i32) (rectangle.left + sizeText.cx());
-
-      rectangle.bottom = (::i32) (rectangle.top + sizeText.cy());
-
-      m_rectangleText = rectangle;
 
       ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, m_ealignText);
 
@@ -646,11 +643,95 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleClient, pfont, ealign, etextwrap);
+      pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleClient, pgraphics->get_current_font(), ealign, etextwrap);
 
       m_ptextouta->m_strLast = strWindowText;
 
       m_ptextouta->m_pLastOsData = pOsData;
+
+      //if (m_bAutoResize)
+      //{
+
+      //   set_size(m_rectangleText.size());
+
+      //}
+
+   }
+
+
+   void still::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (m_bAutoResize)
+      {
+
+         synchronous_lock synchronouslock(this->synchronization());
+
+         //::pointer<::write_text::font>pfont;
+
+         //auto pstyle = get_style(pgraphics);
+
+         //if (m_pfont)
+         //{
+
+         //   pfont = m_pfont;
+
+         //}
+         //else
+         //{
+
+         //   pfont = get_font(pstyle, ::e_element_none);
+
+         //}
+
+         ::string strWindowText = get_window_text();
+
+         if (strWindowText.is_empty())
+         {
+
+            if (m_ptextouta)
+            {
+
+               m_ptextouta = nullptr;
+
+            }
+
+            return;
+
+         }
+
+         pgraphics->set_font(this, ::e_element_none);
+
+         auto pOsData = pgraphics->get_current_font()->get_os_data(pgraphics, 0);
+
+         if (m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
+         {
+
+            return;
+
+         }
+
+         auto rectangleClient = client_rectangle();
+
+         ::size_f64 sizeText = _001CalculateFittingSize(pgraphics);
+
+         ::rectangle_i32 rectangle;
+
+         rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
+
+         rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
+
+         rectangle.right = (::i32)(rectangle.left + sizeText.cx());
+
+         rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+
+         //m_rectangleText = rectangle;
+
+         set_width((::i32)ceil(sizeText.cx()));
+
+         set_height((::i32)ceil(sizeText.cy()));
+
+      }
 
    }
 
@@ -779,14 +860,18 @@ namespace user
 //
 //      rectangleClient.top += 3;
 
-      ::rectangle_i32 rectangleText = m_rectangleText;
+      //::rectangle_i32 rectangleText = m_rectangleText;
+
+      auto rectangleText = client_rectangle();
 
       //      string str = utf8_to_unicode(str);
 
       if (m_pimage->is_ok())
       {
+         
          ::rectangle_i32 rectangleDib;
-         rectangleDib = m_rectangleText;
+
+         rectangleDib = rectangleText;
          rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
          rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
          //m_pimage->to(pgraphics, rectangleDib);

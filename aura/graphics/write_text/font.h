@@ -1,10 +1,13 @@
 #pragma once
 
 
-#include "aura/graphics/draw2d/object.h"
-#include "acme/primitive/geometry2d/size.h"
 #include "_constant.h"
 #include "text_metric.h"
+#include "font_family.h"
+#include "acme/graphics/write_text/font_size.h"
+#include "acme/graphics/write_text/font_weight.h"
+#include "acme/primitive/geometry2d/size.h"
+#include "aura/graphics/draw2d/object.h"
 
 
 //#include "acme/primitive/geometry2d/_geometry2d.h"
@@ -30,6 +33,7 @@
 namespace write_text
 {
 
+   
 
 #define WRITE_TEXT_TEXT_METRIC_INDEX 7
 
@@ -58,13 +62,14 @@ namespace write_text
       };
 
 
-      string                        m_strFontFamilyName;
+      //string                        m_strFontFamilyName;
+      font_family_pointer           m_pfontfamily;
       ::file::path                  m_path;
       font_descriptor               m_fontdescriptor;
-      double                        m_dFontSize;
+      //double                        m_dFontSize;
       double                        m_dFontWidth;
-      ::draw2d::enum_unit           m_eunitFontSize;
-      i32                           m_iFontWeight;
+      font_size                     m_fontsize;
+      font_weight                   m_fontweight;
       bool                          m_bItalic;
       bool                          m_bUnderline;
       bool                          m_bStrikeout;
@@ -87,30 +92,30 @@ namespace write_text
       
       virtual void create_text_metrics(::draw2d::graphics * pgraphics);
 
-      virtual bool create_pixel_font(
-      const ::string & strFacename,
-      double dSize,
-      i32 iWeight = 400,
+      virtual bool create_font(
+      const font_family_pointer & pfontfamily,
+      const font_size & fontsize,
+      const font_weight & fontweight = e_font_weight_normal,
       bool bItalic = false,
       bool bUnderline = false,
       bool bStrikeOut = false,
       double dWidth = 1.0);
 
-      virtual bool create_point_font(
-      const ::string & strFacename,
-      double dSize,
-      i32 iWeight = 400,
-      bool bItalic = false,
-      bool bUnderline = false,
-      bool bStrikeOut = false,
-      double dWidth = 1.0);
+      //virtual bool create_point_font(
+      //const font_family_pointer & pfontfamily,
+      //double dSize,
+      //i32 iWeight = 400,
+      //bool bItalic = false,
+      //bool bUnderline = false,
+      //bool bStrikeOut = false,
+      //double dWidth = 1.0);
 
       void destroy() override;
 
       font & operator = (const font & font);
 
       virtual void set_family_name(const ::string & pszFamilyName);
-      virtual void set_size(double dSize, ::draw2d::enum_unit = ::draw2d::e_unit_point);
+      virtual void set_size(const font_size & fontsize);
       virtual void set_bold(bool bBold = true);
       virtual void set_italic(bool bItalic = true);
       virtual void set_underline(bool bUnderline = true);

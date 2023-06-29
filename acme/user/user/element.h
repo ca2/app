@@ -267,7 +267,7 @@ namespace user
       virtual void on_configuration_change(::user::element * pprimitiveSource);
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
       virtual void on_show_window();
 

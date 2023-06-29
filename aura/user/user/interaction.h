@@ -164,15 +164,19 @@ namespace user
       bool                                         m_bCustomWindowProc;
       bool                                         m_bControlExCommandEnabled;
 
+      
+
       bool                                         m_bIdBound;
       bool                                         m_bOverdraw;
       bool                                         m_bFullScreen;
       bool                                         m_bModal;
 
       bool                                         m_bNeedRedraw;
+      bool                                         m_bNeedPerformLayout;
       bool                                         m_bNeedLayout;
       bool                                         m_bReposition;
       bool                                         m_bUpdatingVisual;
+      bool                                         m_bOnDraw;
 
       bool                                         m_bUpdateVisual;
       bool                                         m_bMouseMovePending;
@@ -274,6 +278,7 @@ namespace user
       ::user::frame *                           m_puserframeTopLevel;
       ::user::frame *                           m_puserframeParent;
       ::windowing::window *                     m_pwindow;
+      bool                                      m_bAutoResize;
 
 
       ::rectangle_f64                               m_rectangleClip;
@@ -774,7 +779,7 @@ namespace user
 
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
-      virtual void set_need_layout(bool bAscendants = true);
+      virtual void set_need_layout();
       //void set_need_layout() { m_bNeedLayout = true; }
       void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {},  ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
@@ -1207,7 +1212,11 @@ namespace user
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual bool should_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition() override;
       virtual void on_show_window() override;
       virtual void _on_show_window();
@@ -2087,14 +2096,14 @@ namespace user
       virtual bool on_right_click(::item * pitem);
 
 
-      virtual int width();
-      virtual int height();
+      virtual int width(enum_layout elayout = e_layout_design);
+      virtual int height(enum_layout elayout = e_layout_design);
 
-      virtual int client_width();
-      virtual int client_height();
+      virtual int client_width(enum_layout elayout = e_layout_design);
+      virtual int client_height(enum_layout elayout = e_layout_design);
 
-      virtual ::size_f64 get_size();
-      virtual ::size_f64 get_client_size();
+      virtual ::size_f64 get_size(enum_layout elayout = e_layout_design);
+      virtual ::size_f64 get_client_size(enum_layout elayout = e_layout_design);
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
 

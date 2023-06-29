@@ -316,7 +316,7 @@ namespace user
    }
 
 
-   void place_holder::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
@@ -328,7 +328,7 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(e_layout_sketch);
 
       if (rectangleClient.is_empty())
       {

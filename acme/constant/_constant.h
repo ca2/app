@@ -1072,3 +1072,21 @@ namespace library
 
 } // namespace library
 
+
+
+enum enum_unit :
+   ::i32
+{
+
+   e_unit_rate = (::i32) - 1,
+
+   e_unit_none = 0,
+
+   e_unit_pixel,
+   e_unit_point,
+   e_unit_em,
+
+
+};
+
+

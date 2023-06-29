@@ -335,11 +335,11 @@ namespace account
 
          float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = acmesystem()->m_paurasystem;
 
-         auto pnode = psystem->node();
+         //auto pnode = psystem->node();
 
-         f->create_point_font(pnode->font_name(e_font_sans_ex), fHeight * 1.0);
+         f->create_font(e_font_sans_ex, ::write_text::font_size(fHeight, e_unit_point));
 
          pgraphics->set(f);
 

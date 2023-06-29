@@ -16,6 +16,8 @@ namespace user
 
 
       linked_property   m_linkedpropertyCheck;
+      ::function < void(::user::check *) >     m_callbackOnCheck;
+
 
 
       check();

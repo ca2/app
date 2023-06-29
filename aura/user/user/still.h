@@ -21,7 +21,7 @@ namespace user
       //::rectangle_i32                   m_rectanglePadding;
       ::e_align                           m_ealignText;
       enum_still                          m_estill;
-      ::rectangle_i32                     m_rectangleText;
+      //::rectangle_i32                     m_rectangleText;
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::draw2d::icon_pointer              m_picon;
@@ -114,7 +114,7 @@ namespace user
 
       ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
-
+      void on_perform_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 

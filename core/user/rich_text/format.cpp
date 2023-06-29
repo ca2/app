@@ -283,10 +283,12 @@ namespace user
 
             }
 
-            m_pfont->create_point_font(m_strFontFamily, dFontSize,
-                                      m_bBold ? e_font_weight_bold : e_font_weight_normal,
-                                      m_bItalic,
-                                      m_bUnderline);
+            m_pfont->create_font(
+               m_strFontFamily, 
+               write_text::font_size(dFontSize, e_unit_point),
+               m_bBold ? e_font_weight_bold : e_font_weight_normal,
+               m_bItalic,
+               m_bUnderline);
 
             m_bUpdated = true;
 

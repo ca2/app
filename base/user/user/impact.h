@@ -1,10 +1,11 @@
 #pragma once
 
 
-//#define WM_VIEW (WM_USER + 1023)
+//#define WM_IMPACT (WM_USER + 1023)
 #include "aura/user/user/box.h"
 #include "impact_data.h"
 #include "document.h"
+#include "acme/primitive/collection/_impl_factory.h"
 
 
 namespace user
@@ -116,14 +117,14 @@ namespace user
 
       virtual void initialize_impact(::user::document * pdocument);
 
-      template < class VIEW >
-      ::pointer<VIEW>create_impact(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      template < class IMPACT >
+      ::pointer<IMPACT>create_impact(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
-      template < class VIEW >
-      ::pointer<VIEW>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      template < class IMPACT >
+      ::pointer<IMPACT>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
-      template < class VIEW >
-      ::pointer<VIEW>create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
+      template < class IMPACT >
+      ::pointer<IMPACT>create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
 
       ::pointer<::user::interaction>create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
 
@@ -238,31 +239,40 @@ namespace user
 
 
 
-   template < class VIEW >
-   inline ::pointer<VIEW>impact::create_impact(::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   template < class IMPACT >
+   inline ::pointer<IMPACT>impact::create_impact(::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
+      
+      auto & factoryitem = factory()->get_factory_item<IMPACT>();
+      
+      if (!factoryitem)
+      {
 
-      return create_impact(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+         factoryitem = __new(::factory::factory_item< IMPACT, IMPACT >());
+
+      }
+
+      return create_impact(__type(IMPACT), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 
 
-   template < class VIEW >
-   inline ::pointer<VIEW>impact::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   template < class IMPACT >
+   inline ::pointer<IMPACT>impact::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
-      return create_impact < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
+      return create_impact < IMPACT >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 
 
-   template < class VIEW >
-   inline ::pointer<VIEW>impact::create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
+   template < class IMPACT >
+   inline ::pointer<IMPACT>impact::create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
    {
 
       pimpactdata->m_puserinteraction.release();
 
-      return create_impact < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
+      return create_impact < IMPACT >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
 
    }
 

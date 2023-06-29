@@ -719,6 +719,7 @@
     <ClCompile Include="graphics\write_text\fonts.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp" />
+    <ClCompile Include="graphics\write_text\font_family.cpp" />
     <ClCompile Include="graphics\write_text\font_list.cpp" />
     <ClCompile Include="graphics\write_text\glyph.cpp" />
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
@@ -952,9 +953,11 @@
     <ClInclude Include="graphics\write_text\fonts.h" />
     <ClInclude Include="graphics\write_text\font_enumeration.h" />
     <ClInclude Include="graphics\write_text\font_enumeration_item.h" />
+    <ClInclude Include="graphics\write_text\font_family.h" />
     <ClInclude Include="graphics\write_text\font_list.h" />
     <ClInclude Include="graphics\write_text\font_list_data.h" />
     <ClInclude Include="graphics\write_text\font_list_item.h" />
+    <ClInclude Include="graphics\write_text\font_size.h" />
     <ClInclude Include="graphics\write_text\glyph.h" />
     <ClInclude Include="graphics\write_text\glyph_set.h" />
     <ClInclude Include="graphics\write_text\text.h" />
@@ -1077,6 +1080,7 @@
     <ClInclude Include="user\user\button.h" />
     <ClInclude Include="user\user\call_message_handler_task.h" />
     <ClInclude Include="user\user\check_box.h" />
+    <ClInclude Include="user\user\aaa_control.h" />
     <ClInclude Include="user\user\control_descriptor.h" />
     <ClInclude Include="user\user\control_event_listener.h" />
     <ClInclude Include="user\user\copydesk.h" />

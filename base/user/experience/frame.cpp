@@ -230,7 +230,7 @@ namespace experience
    }
 
 
-   void frame::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto pframewindow = m_pframewindow;

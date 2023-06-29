@@ -279,6 +279,9 @@
     <Filter Include="Header Files\primitive\geometry">
       <UniqueIdentifier>{6128342c-5077-4706-928f-0864361f9904}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\write_text">
+      <UniqueIdentifier>{6739a4c3-d9e6-48bd-a191-af850c1f156a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3199,6 +3202,15 @@
     </ClInclude>
     <ClInclude Include="primitive\mathematics\trigonometry.h">
       <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_gdiplus.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_weight.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_size.h">
+      <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

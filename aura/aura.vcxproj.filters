@@ -681,6 +681,9 @@
     <ClCompile Include="windowing\placement_log.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\write_text\font_family.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1705,6 +1708,15 @@
     </ClInclude>
     <ClInclude Include="windowing\placement_log.h">
       <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_family.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_size.h">
+      <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

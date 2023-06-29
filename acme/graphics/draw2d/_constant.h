@@ -19,7 +19,11 @@ enum enum_image_selection
 enum enum_font
 {
 
+   e_font_none,
+
    e_font_default,
+
+   e_font_with_family_name,
 
    e_font_sans,
    e_font_sans_ui,
@@ -230,14 +234,7 @@ namespace draw2d
    };
 
 
-   enum enum_unit
-   {
 
-      e_unit_pixel,
-      e_unit_point,
-      e_unit_em
-
-   };
 
 
    enum enum_pen

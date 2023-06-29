@@ -484,7 +484,7 @@ namespace write_text
 
          }
 
-         pbox->m_pfont->create_pixel_font(str, pfontlistdata->m_iaSize[iBox]);
+         pbox->m_pfont->create_font(str, font_size(pfontlistdata->m_iaSize[iBox], e_unit_pixel));
 
          ::draw2d::lock draw2dlock(this);
 

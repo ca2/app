@@ -53,7 +53,7 @@ namespace user
 
          virtual bool get_item_rect(::rectangle_i32 * prectangle, index i) override;
 
-         virtual bool get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement) override;
+         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement) override;
 
          virtual ::size_f64 get_size() override;
 

@@ -28,7 +28,7 @@ namespace experience_tranquillum
 
       void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside);
 
-      void GetBorderRect(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * prectangle, enum_border eside);
+      void GetBorderRectangle(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * prectangle, enum_border eside);
 
       void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient);
 

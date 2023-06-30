@@ -126,14 +126,14 @@ namespace experience_nanoui
 
          iTab++;
 
-         if (!ptab->get_element_rect(iTab, rectangle, ::e_element_tab))
+         if (!ptab->get_element_rectangle(iTab, rectangle, ::e_element_tab))
          {
 
             continue;
 
          }
 
-         if (!ptab->get_element_rect(iTab, rectangleBorder, ::e_element_border))
+         if (!ptab->get_element_rectangle(iTab, rectangleBorder, ::e_element_border))
          {
 
             continue;
@@ -154,15 +154,15 @@ namespace experience_nanoui
 
          }
 
-         if(!ptab->get_element_rect(iTab,rectangleClient, ::e_element_client))
+         if(!ptab->get_element_rectangle(iTab,rectangleClient, ::e_element_client))
             continue;
 
-         bool bTextRect = ptab->get_element_rect(iTab, rectangleText, ::e_element_text);
+         bool bTextRect = ptab->get_element_rectangle(iTab, rectangleText, ::e_element_text);
 
          if(ptab->get_data()->m_bVertical)
          {
 
-            if(ptab->get_element_rect(iTab,rectangleIcon, ::e_element_icon))
+            if(ptab->get_element_rectangle(iTab,rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -286,7 +286,7 @@ namespace experience_nanoui
          else
          {
 
-            if(ptab->get_element_rect(iTab,rectangleIcon, ::e_element_icon))
+            if(ptab->get_element_rectangle(iTab,rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -428,7 +428,7 @@ namespace experience_nanoui
 
          }
 
-         if(ptab->get_element_rect(iTab,rectangleClose, ::e_element_close_tab_button))
+         if(ptab->get_element_rectangle(iTab,rectangleClose, ::e_element_close_tab_button))
          {
 
             pgraphics->set_font(ptab, ::e_element_close_tab_button);
@@ -463,14 +463,14 @@ namespace experience_nanoui
       if(bScroll)
       {
 
-         if(ptab->get_element_rect(-1,rectangleScroll, ::e_element_tab_near_scroll))
+         if(ptab->get_element_rectangle(-1,rectangleScroll, ::e_element_tab_near_scroll))
          {
 
             pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
 
          }
 
-         if(ptab->get_element_rect(-1,rectangleScroll, ::e_element_tab_far_scroll))
+         if(ptab->get_element_rectangle(-1,rectangleScroll, ::e_element_tab_far_scroll))
          {
 
             pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));

@@ -245,7 +245,7 @@
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(lpcrectClient, rectangle, eside);
+                  GetBorderRectangle(lpcrectClient, rectangle, eside);
 
 
 
@@ -257,7 +257,7 @@
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(lpcrectClient, rectangle, eside);
+                  GetBorderRectangle(lpcrectClient, rectangle, eside);
 
 
 
@@ -285,7 +285,7 @@
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectangleClient, &rectangle, eside);
+                  GetBorderRectangle(rectangleClient, &rectangle, eside);
 
 
 
@@ -384,14 +384,14 @@
 
             }
 
-            void frame_Minimal001::GetBorderRect(const ::rectangle_i32 &lpcrectClient, ::rectangle_i32 * lprect, enum_border eside)
+            void frame_Minimal001::GetBorderRectangle(const ::rectangle_i32 &lpcrectClient, ::rectangle_i32 * lprect, enum_border eside)
             {
 
                ::rectangle_i32 rectangleBig(lpcrectClient);
 
                ::rectangle_i32 rectangleSmall;
 
-               get_window_client_rect(&rectangleSmall);
+               get_window_client_rectangle(&rectangleSmall);
 
                ::rectangle_i32 rectangle;
 

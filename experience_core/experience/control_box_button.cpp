@@ -207,9 +207,16 @@ namespace experience_core
    void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(::user::e_layout_layout);
 
-      __defer_construct(m_pregion);
+      if (rectangleClient.is_empty())
+      {
+
+         return;
+
+      }
+
+      __construct(m_pregion);
       
       ::ellipse_f64 ellipse;
       

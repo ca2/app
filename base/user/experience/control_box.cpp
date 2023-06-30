@@ -577,26 +577,23 @@ if(rectangle.left > 400)
    void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleWindow;
-
-      m_pframewindow->window_rectangle(rectangleWindow);
+      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_sketch);
 
       ::rectangle_i32 rectangleParent(rectangleWindow);
 
-      m_pframewindow->screen_to_client()(rectangleParent);
+      m_pframewindow->screen_to_client(::user::e_layout_sketch)(rectangleParent);
 
       ::rectangle_i32 rectangle;
 
-      window_rectangle(rectangle);
+      window_rectangle(rectangle, ::user::e_layout_sketch);
 
-      m_pframewindow->screen_to_client()(rectangle);
+      m_pframewindow->screen_to_client(::user::e_layout_sketch)(rectangle);
 
       reset_layout(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(::user::e_layout_sketch);
 
       int iWidth = rectangleClient.width();
-
 
       rectangle.left = iWidth;
 
@@ -617,7 +614,6 @@ if(rectangle.left > 400)
       _layout_button(e_button_transparent_frame, rectangle);
 
       _layout_button(e_button_dock, rectangle);
-
 
    }
 
@@ -951,10 +947,9 @@ if(rectangle.left > 400)
    void control_box::reset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      int iDefaultButtonSize = calc_button_size(pgraphics);
+      int iDefaultButtonSize = calculate_button_size(pgraphics);
 
-      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize,iDefaultButtonSize);
-
+      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize, iDefaultButtonSize);
 
    }
 
@@ -982,7 +977,7 @@ if(rectangle.left > 400)
    }
 
 
-   i32 control_box::calc_button_size(::draw2d::graphics_pointer & pgraphics)
+   i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto dFontHeight = m_pfontMarlett->get_height(pgraphics);
@@ -1018,10 +1013,10 @@ if(rectangle.left > 400)
    }
 
 
-   i32 control_box::calc_control_box_width(::draw2d::graphics_pointer & pgraphics)
+   i32 control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_iDefaultButtonSize = calc_button_size(pgraphics);
+      m_iDefaultButtonSize = calculate_button_size(pgraphics);
 
       int iWidth = 0;
 

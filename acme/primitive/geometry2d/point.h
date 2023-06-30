@@ -182,12 +182,12 @@ public:
    template < primitive_point POINT >
    inline bool operator==(const POINT & point) const noexcept { return (this->x() == (UNIT_TYPE) point.x() && this->y() == (UNIT_TYPE) point.y()); }
 
-   template < primitive_point POINT >
-   inline bool operator!=(const POINT & point) const noexcept { return (this->x() != (UNIT_TYPE) point.x() || this->y() != (UNIT_TYPE) point.y()); }
+   //template < primitive_point POINT >
+   //inline bool operator!=(const POINT & point) const noexcept { return (this->x() != (UNIT_TYPE) point.x() || this->y() != (UNIT_TYPE) point.y()); }
 
 
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(this); }
-   inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_null(this); }
+   //inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_null(this); }
 
    template < primitive_number NUMBER1 >
    point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 n) const

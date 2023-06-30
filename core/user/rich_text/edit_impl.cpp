@@ -569,7 +569,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement)
+      bool edit_impl::get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement)
       {
 
          if (eelement == ::e_element_icon)

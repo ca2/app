@@ -239,7 +239,7 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          //auto psystem = acmesystem()->m_paurasystem;
 
@@ -251,7 +251,7 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
 
 
@@ -279,7 +279,7 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
@@ -382,14 +382,14 @@ namespace experience_nanoui
 
    }
 
-   void frame_001::GetBorderRect(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
+   void frame_001::GetBorderRectangle(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
    {
 
       ::rectangle_i32 rectangleBig(rectangleClient);
 
       ::rectangle_i32 rectangleSmall;
 
-      get_window_client_rect(&rectangleSmall);
+      get_window_client_rectangle(&rectangleSmall);
 
       ::rectangle_i32 rectangle;
 

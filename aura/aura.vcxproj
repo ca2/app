@@ -781,6 +781,7 @@
     <ClCompile Include="user\user\prodevian.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
+    <ClCompile Include="user\user\redraw.cpp" />
     <ClCompile Include="user\user\run_application.cpp" />
     <ClCompile Include="user\user\scroll.cpp" />
     <ClCompile Include="user\user\scroll_bar.cpp" />
@@ -1115,12 +1116,14 @@
     <ClInclude Include="user\user\prodevian.h" />
     <ClInclude Include="user\user\progress.h" />
     <ClInclude Include="user\user\range.h" />
+    <ClInclude Include="user\user\redraw.h" />
     <ClInclude Include="user\user\run_application.h" />
     <ClInclude Include="user\user\scroll.h" />
     <ClInclude Include="user\user\scroll_bar.h" />
     <ClInclude Include="user\user\scroll_base.h" />
     <ClInclude Include="user\user\scroll_data.h" />
     <ClInclude Include="user\user\scroll_info.h" />
+    <ClInclude Include="user\user\aaa_set_need_redraw.h" />
     <ClInclude Include="user\user\shell.h" />
     <ClInclude Include="user\user\still.h" />
     <ClInclude Include="user\user\style.h" />

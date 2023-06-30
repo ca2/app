@@ -18,7 +18,7 @@ namespace experience
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
       ::pointer<::experience::frame>               m_pframe;
-      ::rectangle_i32                              m_rectanglePending;
+      //::rectangle_i32                              m_rectanglePending;
       bool                                         m_bEnableFrameExperience;
 
       bool                                         m_bFullScreenReturn;
@@ -169,9 +169,9 @@ namespace experience
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(::u32 uFlags);
 
-      void GetRegionClientRect(::rectangle_i32 * prectangle);
+      void GetRegionClientRectangle(::rectangle_i32 * prectangle);
 
-      void get_draw_client_rect(::rectangle_i32 * prectangle);
+      void get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
 
       void relay_event(::message::message * pmessage);

@@ -161,7 +161,7 @@ namespace user
 
       ::rectangle_i32 rectangleText;
 
-      get_element_rect(rectangleText, e_element_text);
+      get_element_rectangle(rectangleText, e_element_text);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -196,7 +196,7 @@ namespace user
 
       ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       i32 cx = rectangleDropDown.width() / 3;
 
@@ -239,7 +239,7 @@ namespace user
 
       ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       ::rectangle_i32 rectangleDropIn(rectangleDropDown);
 
@@ -476,7 +476,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
+   bool combo_box::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
 
    {
 
@@ -487,7 +487,7 @@ namespace user
 
       }
 
-      return interaction::get_element_rect(rectangle, eelement);
+      return interaction::get_element_rectangle(rectangle, eelement);
 
    }
 
@@ -497,7 +497,7 @@ namespace user
 
       ::rectangle_i32 rectangleElement;
 
-      if(get_element_rect(rectangleElement, e_element_drop_down))
+      if(get_element_rectangle(rectangleElement, e_element_drop_down))
       {
 
          if (rectangleElement.contains(point))

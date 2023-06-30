@@ -401,7 +401,7 @@ namespace experience
 
       auto pointCursor = pmouse->m_point;
 
-      auto rectangleWindow = m_pframewindow->screen_rect();
+      auto rectangleWindow = m_pframewindow->screen_rectangle();
 
       auto pointDockOrigin = pointCursor;
 

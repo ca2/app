@@ -177,7 +177,7 @@ namespace experience_tranquillum
 
 
 
-   bool frame::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       switch (eelement)
@@ -559,7 +559,7 @@ namespace experience_tranquillum
 
          //auto time2 = ::time::now();
 
-         if (get_element_rect(rectangleIcon, e_element_top_left_icon))
+         if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -589,7 +589,7 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleGrip;
 
-         if (get_element_rect(rectangleGrip, e_element_move_grip_minimal))
+         if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
             int i = 0;
@@ -745,7 +745,7 @@ namespace experience_tranquillum
 
          rectangle -= rectangle.top_left();
 
-         if (get_element_rect(rectangleIcon, e_element_top_left_icon))
+         if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;

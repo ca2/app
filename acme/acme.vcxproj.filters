@@ -4384,6 +4384,9 @@
     <ClCompile Include="user\user\_string.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\geometry2d\rectangle_array.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

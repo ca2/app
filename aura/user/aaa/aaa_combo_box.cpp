@@ -148,7 +148,7 @@ namespace user
 
       ::rectangle_f64 rectangleText;
 
-      get_element_rect(rectangleText, e_element_text);
+      get_element_rectangle(rectangleText, e_element_text);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -164,7 +164,7 @@ namespace user
 
       ::rectangle_f64 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       i32 cx = rectangleDropDown.width() / 3;
 
@@ -209,7 +209,7 @@ namespace user
 
       ::rectangle_f64 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       ::rectangle_f64 rectangleDropIn(rectangleDropDown);
 
@@ -436,7 +436,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECT32 * prect, enum_element eelement)
+   bool combo_box::get_element_rectangle(RECT32 * prect, enum_element eelement)
 
    {
 
@@ -447,7 +447,7 @@ namespace user
 
       }
 
-      return interaction::get_element_rect(prect, eelement);
+      return interaction::get_element_rectangle(prect, eelement);
 
 
    }
@@ -458,7 +458,7 @@ namespace user
 
       ::rectangle_f64 rectangleElement;
 
-      if(get_element_rect(rectangleElement, e_element_drop_down))
+      if(get_element_rectangle(rectangleElement, e_element_drop_down))
       {
 
          if (rectangleElement.contains(item.m_pointHitTest))

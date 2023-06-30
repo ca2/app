@@ -120,22 +120,22 @@ namespace experience
 
       
       
-      virtual bool calculate_window_client_rect(::rectangle_i32 * prectangle);
+      virtual bool calculate_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
-      virtual bool get_window_client_rect(::rectangle_i32 * prectangle);
+      virtual bool get_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
-      virtual bool get_draw_client_rect(::rectangle_i32 * prectangle);
+      virtual bool get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
 
       //virtual void calc_window_client_rect(::rectangle_i32 * prectangle, const rectangle_i32 & lprectWindow);
 
 
-      virtual bool get_element_rect(::rectangle_i32 & rectangle, ::enum_element eelement);
+      virtual bool get_element_rectangle(::rectangle_i32 & rectangle, ::enum_element eelement);
 
 
-      virtual void get_parent_rect(::rectangle_i32 & rectangle);
+      virtual void get_parent_rectangle(::rectangle_i32 & rectangle);
 
-      virtual rectangle_i32 get_margin_rect();
+      virtual rectangle_i32 get_margin_rectangle();
       virtual rectangle_i32 get_caption_text_padding();
       virtual i32 get_caption_height();
       virtual void calculate_caption_height(::draw2d::graphics_pointer & pgraphics);

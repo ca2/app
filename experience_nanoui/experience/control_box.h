@@ -30,7 +30,7 @@ namespace experience_nanoui
          void _001OnTimer(::timer * ptimer) override;
 
 
-         i32 calc_button_size(::draw2d::graphics_pointer & pgraphics) override;
+         i32 calculate_button_size(::draw2d::graphics_pointer & pgraphics) override;
          ::rectangle_i32 get_button_margin(::experience::enum_button ebutton) override;
 
 

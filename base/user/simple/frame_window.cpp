@@ -1609,7 +1609,7 @@ void simple_frame_window::ActivateFrame(::e_display edisplay)
 }
 
 
-void simple_frame_window::GetBorderRect(::rectangle_i32* prectangle)
+void simple_frame_window::GetBorderRectangle(::rectangle_i32* prectangle)
 {
 
    *prectangle = m_rectangleBorder;
@@ -2396,6 +2396,8 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
    //if (!is_frame_experience_enabled())
    //{
+
+   auto pointOffset = pgraphicsParam->origin();
 
       ::user::frame_window::_000OnDraw(pgraphicsParam);
 

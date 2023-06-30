@@ -39,7 +39,7 @@ namespace user
 
       //class layout_state *                      m_pstate;
       //class layout_state                        m_statea[5];
-      class layout_state                        m_statea[5];
+      class layout_state                        m_statea[7];
       //struct layout_state                     m_stateRequest2;
       //struct layout_state                     m_stateProcess2;
       //struct layout_state                     m_stateOffScreen;
@@ -47,16 +47,16 @@ namespace user
       //struct layout_state                     m_stateEventScreen;
 
 
-      enumeration < enum_flag >                          m_eflag;
-      bool                                      m_bFillParent;
-      ::rectangle_i32                                    m_rectangleHint;
-      ::rectangle_i32                                    m_rectanglePadding;
-      int                                       m_iCellPadding;
-      ::size_i32                                    m_sizeSpan;
+      enumeration < enum_flag >                    m_eflag;
+      bool                                         m_bFillParent;
+      ::rectangle_i32                              m_rectangleHint;
+      ::rectangle_i32                              m_rectanglePadding;
+      int                                          m_iCellPadding;
+      ::size_i32                                   m_sizeSpan;
       ::size_f64                                   m_sizeWeight;
 
 
-      class ::time                                      m_timeLastSketchToDesign;
+      class ::time                                 m_timeLastLadingToLayout;
       enum_layout_experience                       m_elayoutexperience;
 
 
@@ -180,10 +180,12 @@ namespace user
 
       inline class layout_state& state(enum_layout elayout) { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
       inline class layout_state& sketch() { return state(e_layout_sketch); }
+      inline class layout_state& lading() { return state(e_layout_lading); }
+      inline class layout_state& layout() { return state(e_layout_layout); }
       inline class layout_state& design() { return state(e_layout_design); }
       inline class layout_state& normal() { return state(e_layout_normal); }
       inline class layout_state& output() { return state(e_layout_output); }
-      inline class layout_state & window() { return state(e_layout_window); }
+      inline class layout_state& window() { return state(e_layout_window); }
       virtual void set_initial_dim(const ::point_i32 & p, const ::size_i32 & s);
 
       inline void set_appearance(e_appearance eappearance) { sketch() = eappearance; }
@@ -197,9 +199,17 @@ namespace user
 
    public:
       
+      
       inline const class layout_state& state(enum_layout elayout) const { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
 
+      
       inline const class layout_state& sketch() const { return state(e_layout_sketch); }
+
+
+      inline const class layout_state& lading() const { return state(e_layout_lading); }
+
+
+      inline const class layout_state& layout() const { return state(e_layout_layout); }
 
 
       inline const class layout_state& design() const { return state(e_layout_design); }

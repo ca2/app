@@ -47,6 +47,8 @@ namespace user
    {
 
       e_layout_sketch, // layouting request ("staging area")
+      e_layout_lading, // layouting request ("staging area")
+      e_layout_layout, // to layout
       e_layout_design, // ready to process
       //      layout_bitmap, // drawn/ready sketch
       e_layout_output, // screen output 

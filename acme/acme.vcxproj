@@ -1069,6 +1069,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="primitive\geometry2d\rectangle_array.cpp" />
     <ClCompile Include="primitive\geometry2d\region.cpp" />
     <ClCompile Include="primitive\geometry2d\item.cpp" />
     <ClCompile Include="primitive\geometry2d\size.cpp" />

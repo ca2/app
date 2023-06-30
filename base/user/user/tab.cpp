@@ -986,7 +986,7 @@ namespace user
    //}
 
 
-   bool tab::get_element_rect(::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
+   bool tab::get_element_rectangle(::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       point_i32 ptOffset(0,0);
@@ -1111,7 +1111,7 @@ namespace user
       if(eelement == e_element_border)
       {
 
-         if (!get_element_rect(iIndex, rectangle, e_element_tab))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_tab))
          {
 
             return false;
@@ -1127,7 +1127,7 @@ namespace user
       if(eelement == e_element_client)
       {
 
-         if (!get_element_rect(iIndex, rectangle, e_element_border))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_border))
          {
 
             return false;
@@ -1150,7 +1150,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iIndex, rectangle, e_element_client))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_client))
          {
 
             return false;
@@ -1167,7 +1167,7 @@ namespace user
       else if(eelement == e_element_text)
       {
 
-         if (!get_element_rect(iIndex, rectangle, e_element_client))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_client))
          {
 
             return false;
@@ -1217,7 +1217,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iIndex, rectangle, e_element_client))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_client))
          {
 
             return false;
@@ -1396,7 +1396,7 @@ namespace user
          else
          {
 
-            if (get_element_rect(-1, rectangleScroll, ::e_element_tab_near_scroll))
+            if (get_element_rectangle(-1, rectangleScroll, ::e_element_tab_near_scroll))
             {
 
                if (rectangleScroll.contains(pointCursor))
@@ -1408,7 +1408,7 @@ namespace user
 
             }
 
-            if (get_element_rect(-1, rectangleScroll, ::e_element_tab_far_scroll))
+            if (get_element_rectangle(-1, rectangleScroll, ::e_element_tab_far_scroll))
             {
 
                if (rectangleScroll.contains(pointCursor))
@@ -1438,7 +1438,7 @@ namespace user
 
             ::rectangle_i32 rectangleText;
 
-            if(get_element_rect(iIndex, rectangleText, e_element_text))
+            if(get_element_rectangle(iIndex, rectangleText, e_element_text))
             {
 
                if(rectangleText.contains(point))
@@ -1468,7 +1468,7 @@ namespace user
 
          }
 
-         if(get_element_rect(iIndex, rectangle, e_element_close_tab_button) )
+         if(get_element_rectangle(iIndex, rectangle, e_element_close_tab_button) )
          {
 
             if(rectangle.contains(point))
@@ -1480,7 +1480,7 @@ namespace user
 
          }
 
-         if(get_element_rect(iIndex, rectangle, e_element_tab))
+         if(get_element_rectangle(iIndex, rectangle, e_element_tab))
          {
 
             if(rectangle.contains(point))

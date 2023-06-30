@@ -4,6 +4,7 @@
 #include "primitive_impl.h"
 #include "window_util.h"
 #include "interaction.h"
+#include "redraw.h"
 #include "acme/primitive/collection/list.h"
 #include "acme/primitive/geometry2d/_collection.h"
 
@@ -64,16 +65,6 @@ namespace user
 {
 
 
-   class redraw :
-   public ::particle
-   {
-   public:
-
-      
-      ::rectangle_i32_array               m_rectanglea;
-      ::array < ::function <void() > >    m_functiona;
-      
-   };
 
    class prodevian;
    class thread;
@@ -176,15 +167,12 @@ namespace user
       ::size_i32                                m_sizeDrawnBuffer;
 
 //      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
-      ::pointer_array < redraw >                m_redrawa;
+      ::pointer_array < redraw_item >           m_redrawitema;
 
       ::pointer < ::user::interaction >                     m_puiLastLButtonDown;
       ::pointer < ::item >                                  m_pitemLButtonDown;
 
       bool                                      m_bDoingGraphics;
-      bool                                      m_bUpdateBuffer; // internal offscreen buffer
-      bool                                      m_bUpdateScreen; // screen buffer
-      bool                                      m_bUpdateWindow; // window frame
 
 
       ::size_i32                                m_sizeLastBuffer;
@@ -196,6 +184,10 @@ namespace user
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
+
+
+      //virtual void sketch_to_layout(::graphics::buffer_item * pbufferitem);
+
 
       virtual void set_prodevian_frames_per_second(::frequency frequencyProdevianFramesPerSecond);
       virtual void set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond);
@@ -752,6 +744,9 @@ namespace user
       virtual void start_window_visual() override;
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
+      void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+      //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
 
@@ -776,6 +771,8 @@ namespace user
 
       virtual void set_finish(::particle * pparticle);
 
+
+      void top_down_prefix() override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -820,7 +817,7 @@ namespace user
       virtual void on_visual_applied();
 
       void set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
-      virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
+      //virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
 

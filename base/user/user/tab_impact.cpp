@@ -1076,25 +1076,25 @@ namespace user
    void tab_impact::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bUpdateBuffer = false;
+      //bool bUpdateBuffer = false;
 
-      bool bUpdateWindow = false;
+      //bool bUpdateWindow = false;
 
-      sketch_to_design(bUpdateBuffer, bUpdateWindow);
+      //layout_to_design(bUpdateBuffer, bUpdateWindow);
 
-      if (!is_this_visible())
+      //if (!is_this_visible())
+      //{
+
+      //   return;
+
+      //}
+
+      if (m_bLadingToLayout)
       {
 
-         return;
+         m_bLadingToLayout = false;
 
-      }
-
-      if (m_bSketchToDesignLayout)
-      {
-
-         m_bSketchToDesignLayout = false;
-
-         design_layout(pgraphics);
+         layout_layout(pgraphics);
 
       }
 

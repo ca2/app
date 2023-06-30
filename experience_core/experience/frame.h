@@ -54,6 +54,8 @@ namespace experience_core
 
       virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
 
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+
       //virtual ::color::color get_style_moveable_border_color(::user::enum_style estyle);
 
       void OnMove(::pointer<::user::interaction>pframewindow) override;
@@ -70,7 +72,7 @@ namespace experience_core
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rect(::rectangle_i32 & lprect, enum_element eelement) override;
+      bool get_element_rectangle(::rectangle_i32 & lprect, enum_element eelement) override;
 
       //bool _001HitTest(const ::point_i32 &point, enum_element &eelementParam) override;
 

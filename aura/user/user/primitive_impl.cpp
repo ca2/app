@@ -118,6 +118,21 @@ namespace user
    }
 
 
+   void primitive_impl::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      m_puserinteraction->_000CallOnDraw(pgraphics);
+
+   }
+
+
+   void primitive_impl::top_down_prefix()
+   {
+
+      m_puserinteraction->top_down_prefix();
+
+   }
+
 
    void primitive_impl::set_need_layout()
    {
@@ -364,88 +379,96 @@ namespace user
    //}
 
 
-   void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
+
+      m_puserinteraction->_001OnTopNcClip(pgraphics);
 
    }
 
 
-   void primitive_impl::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      string strType = __type_name(m_puserinteraction);
-
-//      if (strType.contains("list_box"))
+//   void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (!m_puserinteraction)
 //      {
 //
-//         information("list_box");
+//         return;
 //
 //      }
-
-      windowing_output_debug_string("\ninteraction_impl_base::_001Print");
-
-      m_puserinteraction->_000CallOnDraw(pgraphics);
-
-   }
-
-
-   void primitive_impl::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->_000CallOnDraw(pgraphics);
-
-      }
-
-   }
-
-
-   void primitive_impl::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->_001DrawThis(pgraphics);
-
-      }
-
-   }
-
-
-   void primitive_impl::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->_001DrawChildren(pgraphics);
-
-      }
-
-   }
-
-
-   void primitive_impl::draw_control_background(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->draw_control_background(pgraphics);
-
-      }
-
-   }
+//
+//      string strType = __type_name(m_puserinteraction);
+//
+////      if (strType.contains("list_box"))
+////      {
+////
+////         information("list_box");
+////
+////      }
+//
+//      windowing_output_debug_string("\ninteraction_impl_base::_001Print");
+//
+//      m_puserinteraction->_000CallOnDraw(pgraphics);
+//
+//   }
+//
+//
+//   void primitive_impl::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->_000CallOnDraw(pgraphics);
+//
+//      }
+//
+//   }
+//
+//
+//   void primitive_impl::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->_001DrawThis(pgraphics);
+//
+//      }
+//
+//   }
+//
+//
+//   void primitive_impl::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->_001DrawChildren(pgraphics);
+//
+//      }
+//
+//   }
+//
+//
+//   void primitive_impl::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->draw_control_background(pgraphics);
+//
+//      }
+//
+//   }
 
 
    void primitive_impl::set_origin(::draw2d::graphics_pointer & pgraphics)
@@ -1940,9 +1963,7 @@ namespace user
    void primitive_impl::get_rect_normal(::rectangle_i32 * prectangle)
    {
 
-      *prectangle = m_puserinteraction->screen_rect();
-
-      //return true;
+      *prectangle = m_puserinteraction->screen_rectangle();
 
    }
 

@@ -1419,7 +1419,7 @@ namespace windowing
 
          ::rectangle_i32 rectangle;
 
-         rectangle = pinteraction->screen_rect();
+         rectangle = pinteraction->screen_rectangle(::user::e_layout_lading);
 
          return get_best_workspace(nullptr, rectangle);
 

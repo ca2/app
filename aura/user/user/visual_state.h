@@ -43,6 +43,20 @@ namespace user
       visual_state & operator -= (const enum_appearance & eappearance);
       visual_state & operator ^= (const enum_appearance & eappearance);
 
+
+      visual_state & operator = (const visual_state & visualstate)
+      {
+         
+         m_point2 = visualstate.m_point2;
+         m_size = visualstate.m_size;
+         m_edisplay = visualstate.m_edisplay;
+         m_eappearance = visualstate.m_eappearance;
+         m_bProdevian = visualstate.m_bProdevian;
+
+         return *this;
+
+      }
+
       ::point_i32 origin() const { return m_point2; }
       //::point_i32 & origin() { return m_point; }
 

@@ -241,7 +241,7 @@ SizingNone:;
             
          ::rectangle_i32 rectangle;
             
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
@@ -267,7 +267,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
             
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(0.5));
             
@@ -279,11 +279,11 @@ SizingNone:;
 
          rectangleClient.deflate(1, 1);
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(200));
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          ::rectangle_i32 rectangleClientB = rectangleA;
 
@@ -413,14 +413,14 @@ SizingNone:;
    }
    
 
-   void frame_002::GetBorderRect(
+   void frame_002::GetBorderRectangle(
    const ::rectangle_i32 & rectangleClient,
    ::rectangle_i32 * lprect,
    enum_border eside)
    {
       ::rectangle_i32 rectangleBig(rectangleClient);
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rect(&rectangleSmall);
+      get_window_client_rectangle(&rectangleSmall);
       ::rectangle_i32 rectangle;
       if(eside == e_border_top)
       {

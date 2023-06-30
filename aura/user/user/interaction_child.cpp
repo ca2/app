@@ -759,6 +759,14 @@ namespace user
    }
 
 
+   //void interaction_child::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ::user::primitive_impl::_000CallOnDraw(pgraphics);
+
+   //}
+
+
    void interaction_child::set_origin(::draw2d::graphics_pointer & pgraphics)
    {
 

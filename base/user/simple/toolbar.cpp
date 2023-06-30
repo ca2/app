@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "toolbar.h"
 #include "acme/constant/message.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/bad_unit_exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"
@@ -2656,13 +2656,13 @@ rectangle_i32 simple_toolbar::get_bar_border()
 ::f64 simple_toolbar::get_pixel_font_size() const
 {
 
-   if (m_fontsize.m_eunit == e_unit_pixel)
+   if (m_fontsize.eunit() == e_unit_pixel)
    {
 
       return m_fontsize;
 
    }
-   else if (m_fontsize.m_eunit == e_unit_point)
+   else if (m_fontsize.eunit() == e_unit_point)
    {
 
       // TODO
@@ -2670,18 +2670,18 @@ rectangle_i32 simple_toolbar::get_bar_border()
       return m_fontsize;
 
    }
-   else if (m_fontsize.m_eunit == e_unit_rate)
+   else if (m_fontsize.eunit() == e_unit_rate)
    {
 
       // TODO
 
-      return m_fontsize.operator f64() * 12.0;
+      return m_fontsize.f64() * 12.0;
 
    }
    else
    {
 
-      throw m_fontsize.m_eunit;
+      throw bad_unit_exception<enum_unit>(m_fontsize.eunit());
 
       return 0.0;
 

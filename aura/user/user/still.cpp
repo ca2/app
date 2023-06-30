@@ -659,7 +659,7 @@ namespace user
    }
 
 
-   void still::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool still::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_bAutoResize)
@@ -696,7 +696,7 @@ namespace user
 
             }
 
-            return;
+            return false;
 
          }
 
@@ -707,7 +707,7 @@ namespace user
          if (m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
          {
 
-            return;
+            return false;
 
          }
 
@@ -731,7 +731,11 @@ namespace user
 
          set_height((::i32)ceil(sizeText.cy()));
 
+         return true;
+
       }
+
+      return false;
 
    }
 

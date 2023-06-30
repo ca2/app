@@ -1005,7 +1005,7 @@ namespace experience_tranquillum
 
          iTab++;
 
-         if (!ptab->get_element_rect(iTab, rectangle, ::e_element_tab))
+         if (!ptab->get_element_rectangle(iTab, rectangle, ::e_element_tab))
          {
 
             continue;
@@ -1034,14 +1034,14 @@ namespace experience_tranquillum
 
          pgraphics->fill_rectangle(rectangle);
 
-         if (!ptab->get_element_rect(iTab, rectangleBorder, ::e_element_border))
+         if (!ptab->get_element_rectangle(iTab, rectangleBorder, ::e_element_border))
          {
 
             continue;
 
          }
 
-         if (!ptab->get_element_rect(iTab, rectangleClient, ::e_element_client))
+         if (!ptab->get_element_rectangle(iTab, rectangleClient, ::e_element_client))
          {
 
             continue;
@@ -1051,7 +1051,7 @@ namespace experience_tranquillum
          if (ptab->get_data()->m_bVertical)
          {
 
-            if (ptab->get_element_rect(iTab, rectangleIcon, ::e_element_icon))
+            if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1182,7 +1182,7 @@ namespace experience_tranquillum
 
             // Horizontal
 
-            if (ptab->get_element_rect(iTab, rectangleIcon, ::e_element_icon))
+            if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1326,7 +1326,7 @@ namespace experience_tranquillum
          if (true)
          {
 
-            if (ptab->get_element_rect(iTab, rectangleText, ::e_element_text))
+            if (ptab->get_element_rectangle(iTab, rectangleText, ::e_element_text))
             {
 
                _001OnTabPaneDrawTitle(pane, ptab, pgraphics, rectangleText, pbrushText, estate);
@@ -1338,7 +1338,7 @@ namespace experience_tranquillum
          if (true)
          {
 
-            if (ptab->get_element_rect(iTab, rectangleClose, ::e_element_close_tab_button))
+            if (ptab->get_element_rectangle(iTab, rectangleClose, ::e_element_close_tab_button))
             {
 
                pgraphics->set_font(ptab, ::e_element_close_tab_button);

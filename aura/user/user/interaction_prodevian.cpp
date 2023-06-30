@@ -187,10 +187,10 @@ namespace user
 
                _synchronous_lock synchronouslock(pimpl->synchronization());
 
-               if(pimpl->m_redrawa.has_element())
+               if(pimpl->m_redrawitema.has_element())
                {
 
-                  auto iRequestsRemaining = pimpl->m_redrawa.size();
+                  auto iRequestsRemaining = pimpl->m_redrawitema.size();
 
                   information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
 
@@ -658,7 +658,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         if (m_pimpl->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
+         if (m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
          {
 
             m_puserinteraction->m_bUpdateVisual = false;
@@ -674,7 +674,7 @@ namespace user
 
       }
 
-      bool bWait = ((m_pimpl->m_bUpdateWindow || m_pimpl->m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
+      bool bWait = ((m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
 
       if (bWait)
       {
@@ -1010,11 +1010,11 @@ namespace user
 
       m_bRedraw = bRedraw;
 
-      m_pimpl->m_bUpdateBuffer = false;
+      m_puserinteraction->m_bUpdateBuffer = false;
 
-      m_pimpl->m_bUpdateScreen = false;
+      m_puserinteraction->m_bUpdateScreen = false;
 
-      m_pimpl->m_bUpdateWindow = false;
+      m_puserinteraction->m_bUpdateWindow = false;
 
       //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 

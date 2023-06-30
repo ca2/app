@@ -70,7 +70,7 @@ namespace experience_nanoui
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rect(::rectangle_i32 & rectangle, enum_element eelement) override;
+      bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement) override;
 
       //bool experience_frame_hit_test(const ::point_i32 &point, enum_element &eelementParam) override;
 

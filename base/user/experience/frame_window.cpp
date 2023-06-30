@@ -635,22 +635,22 @@ namespace experience
    }
 
 
-   void frame_window::GetRegionClientRect(::rectangle_i32 * prectangle)
+   void frame_window::GetRegionClientRectangle(::rectangle_i32 * prectangle)
    {
 
       ASSERT(m_pframe != nullptr);
 
-      m_pframe->get_window_client_rect(prectangle);
+      m_pframe->get_window_client_rectangle(prectangle);
 
    }
 
 
-   void frame_window::get_draw_client_rect(::rectangle_i32 * prectangle)
+   void frame_window::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
    {
 
       ASSERT(m_pframe != nullptr);
 
-      m_pframe->get_window_client_rect(prectangle);
+      m_pframe->get_window_client_rectangle(prectangle, elayout);
 
    }
 
@@ -2004,7 +2004,7 @@ namespace experience
       else
       {
 
-         rectangle = screen_rect();
+         rectangle = screen_rectangle();
 
       }
 

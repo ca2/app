@@ -447,7 +447,7 @@ namespace user
 
       r.offset_y((rectangleMonitor.height() - r.height()) * 2 / 5);
 
-      if (r != this->screen_rect())
+      if (r != this->screen_rectangle())
       {
 
          place(r);

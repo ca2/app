@@ -83,7 +83,7 @@ public:
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(const ::rectangle_i32 & rectangle) override;
-   void GetBorderRect(::rectangle_i32 * prectangle) override;
+   void GetBorderRectangle(::rectangle_i32 * prectangle) override;
 
    ::color::color get_border_main_body_color() override;
 

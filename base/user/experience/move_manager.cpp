@@ -244,7 +244,7 @@ namespace experience
       else if (bApply)
       {
 
-         auto rectangleRequest = m_pframewindow->screen_rect();
+         auto rectangleRequest = m_pframewindow->screen_rectangle();
 
          //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
 

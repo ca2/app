@@ -113,7 +113,7 @@ namespace experience_nanoui
    }
 
 
-   i32 control_box::calc_button_size(::draw2d::graphics_pointer & pgraphics)
+   i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       return 26;

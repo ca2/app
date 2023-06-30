@@ -233,7 +233,7 @@
                return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(::rectangle_i32 * lprect, enum_element eelement)
+            bool frame::get_element_rectangle(::rectangle_i32 * lprect, enum_element eelement)
             {
                switch (eelement)
                {
@@ -277,7 +277,7 @@
                      eelement < ElementEnd;
                      eelement++)
                {
-                  get_element_rect(rectangle, eelement);
+                  get_element_rectangle(rectangle, eelement);
                   if (rectangle.contains(point))
                   {
                      eelementParam = eelement;
@@ -553,7 +553,7 @@
 
                   ::rectangle_i32 rectangleIcon;
 
-                  if (get_element_rect(rectangleIcon, e_element_top_left_icon))
+                  if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
                   {
 
                      ::draw2d::icon * picon = m_pframewindow->m_picon;
@@ -569,7 +569,7 @@
 
                   ::rectangle_i32 rectangleGrip;
 
-                  if (get_element_rect(rectangleGrip, e_element_move_grip_minimal))
+                  if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
                   {
 
                      int i = 0;
@@ -650,7 +650,7 @@
 
                   rectangle_i32 -= rectangle.top_left();
 
-                  if (get_element_rect(rectangleIcon, e_element_top_left_icon))
+                  if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
                   {
 
                      ::draw2d::icon * picon = m_pframewindow->m_picon;

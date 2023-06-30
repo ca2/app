@@ -147,21 +147,21 @@ namespace user
 
          iIndex++;
 
-         if (!get_element_rect(iIndex, rectangle, ::e_element_tab))
+         if (!get_element_rectangle(iIndex, rectangle, ::e_element_tab))
          {
 
             continue;
 
          }
 
-         if (!get_element_rect(iIndex, rectangleBorder, ::e_element_border))
+         if (!get_element_rectangle(iIndex, rectangleBorder, ::e_element_border))
          {
 
             continue;
 
          }
 
-         if (!get_element_rect(iIndex, rectangleClient, ::e_element_client))
+         if (!get_element_rectangle(iIndex, rectangleClient, ::e_element_client))
          {
 
             continue;
@@ -171,7 +171,7 @@ namespace user
          if (get_data()->m_bVertical)
          {
 
-            if (get_element_rect(iIndex, rectangleIcon, ::e_element_icon))
+            if (get_element_rectangle(iIndex, rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -279,7 +279,7 @@ namespace user
          else
          {
 
-            if (get_element_rect(iIndex, rectangleIcon, ::e_element_icon))
+            if (get_element_rectangle(iIndex, rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -394,7 +394,7 @@ namespace user
 
             ::pointer<::base::style>pbasestyle = pstyle;
 
-            if (pbasestyle && get_element_rect(iIndex, rectangleText, ::e_element_text))
+            if (pbasestyle && get_element_rectangle(iIndex, rectangleText, ::e_element_text))
             {
 
                pbasestyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectangleText, pbrushText, estate);
@@ -406,7 +406,7 @@ namespace user
          if (true)
          {
 
-            if (get_element_rect(iIndex, rectangleClose, ::e_element_close_tab_button))
+            if (get_element_rectangle(iIndex, rectangleClose, ::e_element_close_tab_button))
             {
 
                pgraphics->set(get_font(pstyle, e_element_close_tab_button));
@@ -475,17 +475,17 @@ namespace user
 
          }
 
-         if (!get_element_rect(iVisiblePane, rectangle, e_element_tab))
+         if (!get_element_rectangle(iVisiblePane, rectangle, e_element_tab))
             continue;
 
-         if (!get_element_rect(iVisiblePane, rectangleBorder, e_element_border))
+         if (!get_element_rectangle(iVisiblePane, rectangleBorder, e_element_border))
          {
 
             continue;
 
          }
 
-         if (!get_element_rect(iVisiblePane, rectangleClient, e_element_client))
+         if (!get_element_rectangle(iVisiblePane, rectangleClient, e_element_client))
          {
 
             continue;
@@ -495,7 +495,7 @@ namespace user
          if (get_data()->m_bVertical)
          {
 
-            if (get_element_rect(iVisiblePane, rectangleIcon, e_element_icon))
+            if (get_element_rectangle(iVisiblePane, rectangleIcon, e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -576,7 +576,7 @@ namespace user
          else
          {
 
-            if (get_element_rect(iVisiblePane, rectangleIcon, e_element_icon))
+            if (get_element_rectangle(iVisiblePane, rectangleIcon, e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -650,7 +650,7 @@ namespace user
 
          }
 
-         if (get_element_rect(iVisiblePane, rectangleText, e_element_text))
+         if (get_element_rectangle(iVisiblePane, rectangleText, e_element_text))
          {
 
             pgraphics->set(pbrushText);
@@ -659,7 +659,7 @@ namespace user
 
          }
 
-         if (get_element_rect(iVisiblePane, rectangleClose, e_element_close_tab_button))
+         if (get_element_rectangle(iVisiblePane, rectangleClose, e_element_close_tab_button))
          {
 
             pgraphics->set(get_font(pstyle, e_element_close_tab_button));

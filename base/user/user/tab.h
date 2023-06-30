@@ -163,7 +163,7 @@ namespace user
       virtual enum_position DragHitTest(const ::point_i32 & point);
       virtual void GetDragRect(::rectangle_i32 & rectangle, enum_position eposition);
 
-      virtual bool get_element_rect(::index iTab, ::rectangle_i32 & rectangle, enum_element eelement);
+      virtual bool get_element_rectangle(::index iTab, ::rectangle_i32 & rectangle, enum_element eelement);
 
 
       virtual void get_title(int iPane,string_array & stra);

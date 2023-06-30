@@ -2405,10 +2405,16 @@ namespace user
    }
 
 
-   void element::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
-   {
+   //void element::sketch_to_layout()
+   //{
 
-   }
+   //}
+
+
+   //void element::layout_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
+   //{
+
+   //}
 
 
    void element::_001UpdateWindow()
@@ -4486,10 +4492,16 @@ namespace user
 
 
 
-   void element::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   void element::set_need_redraw(
+      const ::rectangle_i32_array & rectangleaNeedRedraw,
+      ::draw2d::graphics * pgraphics,
+      function<void()> function, 
+      bool bAscendants)
    {
 
       UNREFERENCED_PARAMETER(rectangleaNeedRedraw);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(function);
       UNREFERENCED_PARAMETER(bAscendants);
 
    }

@@ -12,6 +12,8 @@
 #include "aura/graphics/image/source.h"
 //#include "acme/primitive/geometry2d/collection.h"
 #include "acme/primitive/geometry2d/angle.h"
+#include "acme/primitive/geometry2d/shift.h"
+#include "aura/user/user/redraw.h"
 #include "region.h"
 #include "bitmap.h"
 #include "matrix.h"
@@ -94,6 +96,8 @@ namespace draw2d
 
    protected:
       enum_alpha_mode                        m_ealphamode;
+
+
    public:
       enum_fill_mode                         m_efillmode;
       enum_smooth_mode                          m_esmoothmode;
@@ -117,7 +121,10 @@ namespace draw2d
       //::e_status                             m_estatus;
       //::e_status                             m_estatusLast;
 
-      ::rectangle_i32_array                  m_rectangleaNeedRedraw;
+      ::pointer < ::graphics::graphics >     m_pgraphicsgraphics;
+      ::pointer < ::graphics::buffer_item >  m_pgraphicsbufferitem;
+
+      ::pointer < ::user::redraw >           m_puserredraw;
 
       graphics();
       ~graphics() override;
@@ -194,6 +201,7 @@ namespace draw2d
       ::size_i32 image_source_size() const override;
 
 
+      ::user::redraw * user_redraw();
       //#ifdef UNIVERSAL_WINDOWS
       //
       //
@@ -266,6 +274,11 @@ namespace draw2d
       virtual ::draw2d::brush *    get_current_brush();
       virtual ::draw2d::palette *  get_current_palette();
       virtual ::draw2d::bitmap *   get_current_bitmap();
+
+
+
+
+
 
       // for bidi and mirrored localization
       virtual u32 GetLayout();

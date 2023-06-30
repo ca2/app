@@ -82,6 +82,10 @@ namespace user
       virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
 
 
+      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+
+
+      virtual void top_down_prefix();
       //virtual bool check_need_layout();
       //virtual void clear_need_layout();
       virtual void set_need_layout();
@@ -277,13 +281,13 @@ namespace user
 
       virtual void _task_transparent_mouse_event();
 
-
-      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcClip(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      //virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual ::user::interaction * get_wnd();

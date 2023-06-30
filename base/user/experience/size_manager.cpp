@@ -6,7 +6,6 @@
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
-CLASS_DECL_BASE::count get_top_left_oriented_damaged_areas_by_resizing(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld);
 
 namespace experience
 {
@@ -623,94 +622,15 @@ namespace experience
    void size_manager::move_window(::user::interaction * pframewindow, const ::rectangle_i32 & rectangle)
    {
 
-      auto rectangleWindow = rectangle;
+      pframewindow->place(rectangle);
 
-      auto sizeMin = GetMinSize();
+      //auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter, rectangleBefore);
 
-      if (rectangleWindow.width() < sizeMin.cx() || rectangleWindow.height() < sizeMin.cy())
-      {
+      //pframewindow->set_need_redraw(rectangleaCertainlyDamaged);
 
-         return;
+      //pframewindow->set_need_layout();
 
-      }
-
-      ::rectangle_i32 rectangleWindowNow = m_pframewindow->window_rectangle(::user::e_layout_sketch);
-
-      if (rectangleWindowNow == rectangleWindow)
-      {
-
-         return;
-
-      }
-
-      {
-
-         //::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
-
-         if (m_pframewindow->layout().is_zoomed())
-         {
-
-            m_pframewindow->display(e_display_normal);
-
-         }
-
-         ::rectangle_i32 rectangleBefore;
-
-         pframewindow->window_rectangle(rectangleBefore);
-
-         ::rectangle_i32 rectangleAfter = rectangleWindow;
-
-         ::rectangle_i32 rectangleParentClient = rectangleAfter;
-
-         if (m_pframewindow->get_parent() != nullptr)
-         {
-
-            m_pframewindow->get_parent()->screen_to_client()(rectangleParentClient);
-
-         }
-
-         ::rectangle_i32 rectangleTotal;
-
-         rectangleTotal.unite(rectangleBefore, rectangleAfter);
-
-         m_pframewindow->m_rectanglePending.unite(rectangleBefore, rectangleAfter);
-
-         m_pframewindow->m_pframe->set_need_redraw_frame(::user::e_layout_design);
-
-
-         pframewindow->place(rectangleParentClient);
-
-         //information("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
-
-         //pframewindow->display();
-
-         pframewindow->set_need_layout();
-
-         //pframewindow->set_need_redraw();
-
-         m_pframewindow->m_pframe->set_need_redraw_frame(::user::e_layout_sketch);
-
-         ::rectangle_i32 rectangleaBorders[4];
-
-         auto c = get_top_left_oriented_damaged_areas_by_resizing(rectangleaBorders, rectangleAfter, rectangleBefore);
-
-         for (::index i = 0; i < c; i++)
-         {
-
-            auto rectangleBorder = rectangleaBorders[i];
-
-            rectangleBorder -= rectangleAfter.top_left();
-
-            pframewindow->set_need_redraw({rectangleBorder});
-
-         }
-
-
-      }
-
-      pframewindow->post_redraw();
-
-
+      //pframewindow->post_redraw();
 
    }
 
@@ -821,49 +741,5 @@ namespace experience
 
 
 } // namespace experience
-
-
-CLASS_DECL_BASE::count get_top_left_oriented_damaged_areas_by_resizing(::rectangle_i32 * rectanglea, const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld)
-{
-
-   if (rectangleOld.contains(rectangleNew))
-   {
-
-      return 0;
-
-   }
-
-   auto rectangleBefore = rectangleOld;
-
-   rectangleBefore.move_to(rectangleNew.top_left());
-
-   ::count c = 0;
-
-   // Right
-   rectanglea[c] = rectangleNew;
-   rectanglea[c].left = rectangleBefore.right;
-   rectanglea[c].bottom = ::minimum(rectangleBefore.bottom, rectangleNew.bottom);
-
-   if (rectanglea[c].is_set())
-   {
-
-      c++;
-
-   }
-
-   // Bottom
-   rectanglea[c] = rectangleNew;
-   rectanglea[c].top = rectangleBefore.bottom;
-
-   if (rectanglea[c].is_set())
-   {
-
-      c++;
-
-   }
-
-   return c;
-
-}
 
 

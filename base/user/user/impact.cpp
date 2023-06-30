@@ -29,6 +29,8 @@ namespace user
 
       m_bEmptyAreaIsClientArea = false;
 
+      //m_bExtendOnParent = true;
+
    }
 
 

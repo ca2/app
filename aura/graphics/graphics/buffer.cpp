@@ -149,44 +149,7 @@ namespace graphics
 
       buffer_size_and_position(pitem);
 
-      ///if (buffer_size() != sizeWindow)
-      {
-
-         string strType = __type_name(m_pimpl->m_puserinteraction);
-
-//         if (strType.contains("list_box"))
-//         {
-//
-//            information("list_box");
-//
-//         }
-
-         update_buffer(pitem);
-
-         //if (!)
-         //{
-
-         //   return nullptr;
-
-         //}
-
-         if (!m_pimpl->m_puserinteraction)
-         {
-
-            return nullptr;
-
-         }
-
-         //ASSERT(buffer_size() == sizeWindow);
-
-         //if (m_pimpl->m_puserinteraction->m_ewindowflag & window_flag_ipc_copy)
-         //{
-
-         //   defer_initialize_ipc_copy();
-
-         //}
-
-      }
+      update_buffer(pitem);
 
       return pitem;
 

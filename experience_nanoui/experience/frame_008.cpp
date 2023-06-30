@@ -245,7 +245,7 @@ SizingNone:;
       {
 
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleA, &rectangle, eside);
+         GetBorderRectangle(rectangleA, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder.opaque());//m_colorMoveableBorderDkShadow);
 
@@ -273,7 +273,7 @@ SizingNone:;
 
             ::rectangle_i32 rectangle;
                      
-            GetBorderRect(rectangleClient, &rectangle, eside);
+            GetBorderRectangle(rectangleClient, &rectangle, eside);
                      
             pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
@@ -287,7 +287,7 @@ SizingNone:;
                   
          ::rectangle_i32 rectangle;
                   
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
                   
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
                   
@@ -297,7 +297,7 @@ SizingNone:;
                   
          ::rectangle_i32 rectangle;
                   
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
                   
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
@@ -497,7 +497,7 @@ SizingNone:;
    }
 
 
-   void frame_008::GetBorderRect(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
+   void frame_008::GetBorderRectangle(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
    {
       ::rectangle_i32 rectangleBig(rectangleClient);
 

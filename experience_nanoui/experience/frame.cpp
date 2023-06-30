@@ -294,7 +294,7 @@ namespace experience_nanoui
    //   return (frame::enum_element) (*((i32*)&eelement))++;
    //}
 
-   bool frame::get_element_rect(::rectangle_i32 & rect, enum_element eelement)
+   bool frame::get_element_rectangle(::rectangle_i32 & rect, enum_element eelement)
    {
       switch(eelement)
       {
@@ -354,7 +354,7 @@ namespace experience_nanoui
 //                     eelement < ElementEnd;
 //                     eelement++)
 //               {
-//                  get_element_rect(rectangle, eelement);
+//                  get_element_rectangle(rectangle, eelement);
 //                  if(rectangle.contains(point))
 //                  {
 //                     eelementParam = eelement;
@@ -659,7 +659,7 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangleIcon;
 
-         if(get_element_rect(rectangleIcon, e_element_top_left_icon))
+         if(get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -681,7 +681,7 @@ namespace experience_nanoui
 
          ::rectangle_i32 rectangleGrip;
 
-         if(get_element_rect(rectangleGrip, e_element_move_grip_minimal))
+         if(get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
             int i = 0;
@@ -749,7 +749,7 @@ namespace experience_nanoui
 
          rectangle -= rectangle.top_left();
 
-         if(get_element_rect(rectangleIcon, e_element_top_left_icon))
+         if(get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             auto pdrawicon = m_pframewindow->get_draw_icon();

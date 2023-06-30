@@ -9,7 +9,7 @@ namespace user
    interaction_layout::interaction_layout()
    {
 
-      m_iStateCount = 5;
+      m_iStateCount = sizeof(m_statea) / sizeof(m_statea[0]);
 
       //m_pstate = nullptr;
 

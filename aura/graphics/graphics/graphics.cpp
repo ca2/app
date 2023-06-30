@@ -115,44 +115,19 @@ namespace graphics
    }
 
 
-   void graphics::buffer_size_and_position(buffer_item * pitem)
+   void graphics::buffer_size_and_position(buffer_item * pbufferitem)
    {
 
-      if (::is_null(m_pimpl))
+      if (::is_null(m_pimpl) || ::is_null(m_pimpl->m_puserinteraction))
       {
 
          return;
 
       }
 
-      if (!m_pimpl->m_puserinteraction)
-      {
+      pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
-         return;
-
-      }
-
-
-
-      //buffer_item * pitem = get_buffer_item();
-
-      pitem->m_point = m_pimpl->m_puserinteraction->const_layout().design().origin();
-
-      pitem->m_size = m_pimpl->m_puserinteraction->const_layout().design().size();
-
-//      if(d.m_size.cx() == 1)
-//      {
-//
-//         printf("cx=1");
-//
-//      }
-//      else
-//      {
-//         printf("cx!=1");
-//
-//      }
-
-      //return d.m_size;
+      pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();
 
    }
 

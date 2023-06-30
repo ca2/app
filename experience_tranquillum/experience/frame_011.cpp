@@ -250,7 +250,7 @@ SizingNone:;
             || estyle == ::user::StyleTranslucidLightGreen)
       {
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
@@ -274,7 +274,7 @@ SizingNone:;
          Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorder, colorMoveableBorder);
 
          //::rectangle_i32 rectangle;
-         //GetBorderRect(rectangleClient, &rectangle, eside);
+         //GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(pgraphics,
@@ -285,7 +285,7 @@ SizingNone:;
       else
       {
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
@@ -426,7 +426,7 @@ SizingNone:;
 
    }
 
-   void frame_011::GetBorderRect(
+   void frame_011::GetBorderRectangle(
    const ::rectangle_i32 & rectangleClient,
 
    ::rectangle_i32 * prectangle,
@@ -436,7 +436,7 @@ SizingNone:;
       ::rectangle_i32 rectangleBig(rectangleClient);
 
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rect(&rectangleSmall);
+      get_window_client_rectangle(&rectangleSmall);
       ::rectangle_i32 rectangle;
       if (eside == e_border_top)
       {

@@ -405,7 +405,7 @@ namespace user
 
          ::rectangle_i32 rEdit;
 
-         get_element_rect(rEdit, e_element_combo_edit);
+         get_element_rectangle(rEdit, e_element_combo_edit);
 
          {
 
@@ -452,7 +452,7 @@ namespace user
 
       ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       ::rectangle_i32 rectangleDropIn(rectangleDropDown);
 

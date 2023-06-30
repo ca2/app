@@ -125,7 +125,7 @@ namespace user
 
 
       virtual void SetBorderRect(const ::rectangle_i32 & rectangle);
-      virtual void GetBorderRect(::rectangle_i32 * prectangle);
+      virtual void GetBorderRectangle(::rectangle_i32 * prectangle);
 
       virtual bool _001IsFrameWnd();
 

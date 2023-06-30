@@ -62,6 +62,68 @@ namespace experience_core
    }
 
 
+   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::experience::frame::on_perform_top_down_layout(pgraphics);
+
+      auto pointBottomRight = m_pframewindow->const_layout().layout().raw_rectangle().bottom_right();
+
+      auto pointLastBottomRight = m_pframewindow->const_layout().design().raw_rectangle().bottom_right();
+
+      if (pointBottomRight != pointLastBottomRight)
+      {
+
+         auto pointInnerBottomRight = pointBottomRight - ::size_i32(9, 9);
+
+         auto pointInnerLastBottomRight = pointLastBottomRight - ::size_i32(9, 9);
+
+         auto pointMinimumInnerBottomRight = pointInnerBottomRight.minimum(pointInnerLastBottomRight);
+
+         ::rectangle_i32 rectangleLeft;
+
+         rectangleLeft.left = 0;
+         rectangleLeft.right = pointBottomRight.x();
+         rectangleLeft.top = 0;
+         rectangleLeft.bottom = 7;
+
+         pgraphics->user_redraw()->set_need_redraw(rectangleLeft);
+
+         ::rectangle_i32 rectangleTop;
+
+         rectangleTop.left = 0;
+         rectangleTop.right = 7;
+         rectangleTop.top = 0;
+         rectangleTop.bottom = pointBottomRight.y();
+
+         pgraphics->user_redraw()->set_need_redraw(rectangleTop);
+
+         ::rectangle_i32 rectangleRight;
+
+         rectangleRight.left = pointMinimumInnerBottomRight.a();
+         rectangleRight.right = pointBottomRight.x();
+         rectangleRight.top = 0;
+         rectangleRight.bottom = pointBottomRight.y();
+
+         rectangleRight.normalize();
+
+         pgraphics->user_redraw()->set_need_redraw(rectangleRight);
+
+         ::rectangle_i32 rectangleBottom;
+
+         rectangleBottom.left = 0;
+         rectangleBottom.right = pointBottomRight.x();
+         rectangleBottom.top = pointMinimumInnerBottomRight.b();
+         rectangleBottom.bottom = pointBottomRight.y();
+
+         rectangleBottom.normalize();
+
+         pgraphics->user_redraw()->set_need_redraw(rectangleBottom);
+     
+      }
+
+   }
+
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
@@ -289,7 +351,7 @@ namespace experience_core
 
 
 
-   bool frame::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       switch(eelement)
@@ -351,7 +413,7 @@ namespace experience_core
 //                     eelement < ElementEnd;
 //                     eelement++)
 //               {
-//                  get_element_rect(rectangle, eelement);
+//                  get_element_rectangle(rectangle, eelement);
 //                  if(rectangle.contains(point))
 //                  {
 //                     eelementParam = eelement;
@@ -656,7 +718,7 @@ namespace experience_core
 
          ::rectangle_i32 rectangleIcon;
 
-         if(get_element_rect(rectangleIcon, e_element_top_left_icon))
+         if(get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -678,7 +740,7 @@ namespace experience_core
 
          ::rectangle_i32 rectangleGrip;
 
-         if(get_element_rect(rectangleGrip, e_element_move_grip_minimal))
+         if(get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
             int i = 0;
@@ -746,7 +808,7 @@ namespace experience_core
 
          rectangle -= rectangle.top_left();
 
-         if(get_element_rect(rectangleIcon, e_element_top_left_icon))
+         if(get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             auto pdrawicon = m_pframewindow->get_draw_icon();

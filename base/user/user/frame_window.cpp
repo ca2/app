@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   void frame_window::GetBorderRect(::rectangle_i32 * prectangle)
+   void frame_window::GetBorderRectangle(::rectangle_i32 * prectangle)
    {
 
       UNREFERENCED_PARAMETER(prectangle);

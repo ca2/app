@@ -467,7 +467,7 @@ namespace nano2d
 
          pfont->m_path = "matter://font/truetype/Roboto-Bold.ttf";
 
-         pfont->m_fontweight = ::e_font_weight_bold;
+         pfont->m_fontweight = e_font_weight_bold;
 
          pfont->set_modified();
 
@@ -477,7 +477,7 @@ namespace nano2d
 
          pfont->m_path = "matter://font/truetype/Roboto-Regular.ttf";
 
-         pfont->m_fontweight = ::e_font_weight_normal;
+         pfont->m_fontweight = e_font_weight_normal;
 
          pfont->set_modified();
 
@@ -487,7 +487,7 @@ namespace nano2d
 
          pfont->m_path = "matter://font/truetype/Inconsolata-Regular.ttf";
 
-         pfont->m_fontweight = ::e_font_weight_normal;
+         pfont->m_fontweight = e_font_weight_normal;
 
          pfont->set_modified();
 
@@ -497,7 +497,7 @@ namespace nano2d
 
          pfont->m_path = "matter://font/truetype/FontAwesome-Solid.ttf";
 
-         pfont->m_fontweight = ::e_font_weight_normal;
+         pfont->m_fontweight = e_font_weight_normal;
 
          pfont->set_modified();
 
@@ -505,9 +505,9 @@ namespace nano2d
       else
       {
 
-         pfont->m_pfontfamily = ::write_text::font_family_pointer(strFont);
+         pfont->m_pfontfamily = strFont;
 
-         pfont->m_fontweight = ::e_font_weight_normal;
+         pfont->m_fontweight = e_font_weight_normal;
 
          pfont->set_modified();
 
@@ -519,7 +519,8 @@ namespace nano2d
    void __font_size(::write_text::font * pfont, float size)
    {
 
-      pfont->m_fontsize = ::write_text::font_size(size * 0.8, ::e_unit_pixel);
+      pfont->m_fontsize = size * 0.8px;
+      //pfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
       pfont->set_modified();
 
    }

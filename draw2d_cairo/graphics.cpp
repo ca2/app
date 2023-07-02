@@ -276,15 +276,15 @@ namespace draw2d_cairo
 
       //}
 
-      auto psystem = acmesystem();
+      //auto psystem = acmesystem();
 
-      auto pnode = psystem->node();
+      //auto pnode = psystem->node();
 
       m_pfont.create(this);
 
-      m_pfont->m_strFontFamilyName = pnode->font_name(e_font_sans);
+      m_pfont->m_pfontfamily = e_font_sans;
 
-      m_pfont->m_dFontSize = 12.0;
+      m_pfont->m_fontsize = 12pt;
 
 //      return estatus;
 
@@ -1976,7 +1976,7 @@ namespace draw2d_cairo
 
       }
 
-      if (pfont->m_dFontSize <= 0.0 || pfont->m_dFontWidth <= 0.0)
+      if (pfont->m_fontsize.is_null_or_negative() || pfont->m_dFontWidth <= 0.0)
       {
 
          throw ::exception(error_null_pointer);

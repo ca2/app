@@ -15454,6 +15454,16 @@ return strClass;
    }
 
 
+   void interaction::place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   {
+
+      auto rectangle = ::rectangle_f32_dimension(x, y, w, h);
+
+      place(rectangle, elayout, pgraphics);
+
+   }
+
+
 //   void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
 //   {
 //

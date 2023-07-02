@@ -1108,7 +1108,7 @@ namespace nanoui
 
       }
 
-      screen()->m_puserinteraction->set_need_redraw({rectangleInteraction}, function);
+      screen()->m_puserinteraction->set_need_redraw({rectangleInteraction}, nullptr, function);
 
    }
 

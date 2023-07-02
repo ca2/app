@@ -4,8 +4,10 @@
 
 #include "acme/exception/bad_unit_exception.h"
 
+/// struct some_allowed_units { static ENUM * allowed_units() {...} }
 
-template < typename ENUM, ENUM t_unitaAllow[] >
+
+template < typename ENUM, typename allowed_units >
 class targeted_unit :
    public unit_base < ENUM >
 {
@@ -13,7 +15,7 @@ public:
 
 
    constexpr targeted_unit() :
-      unit_base<ENUM>(0, t_unitaAllow[0])
+      unit_base<ENUM>(0, allowed_units::allowed_units()[0])
    {
 
    }
@@ -54,21 +56,23 @@ public:
    constexpr static bool is_allowed(ENUM eunit)
    {
 
-      eunit = (ENUM)(eunit & ~INT_MIN);
+      ::index i = 0;
 
-      auto pallow = t_unitaAllow;
+      auto pallowed = allowed_units::allowed_units();
 
-      while (*pallow != e_unit_none)
+      ENUM eallowed;
+
+      while ((eallowed = *pallowed) != e_unit_none)
       {
 
-         if (*pallow == eunit)
+         if (eallowed == eunit)
          {
 
             return true;
 
          }
 
-         pallow++;
+         pallowed++;
 
       }
 

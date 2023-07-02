@@ -8362,7 +8362,7 @@ void payload::null()
    else if (m_etype == e_type_path)
    {
 
-      return *m_ppath;
+      return (::file::path&)* m_ppath;
 
    }
 

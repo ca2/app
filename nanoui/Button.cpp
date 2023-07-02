@@ -184,6 +184,10 @@ namespace nanoui
 
             screen()->m_pwidgetMouseDown = this;
 
+            set_need_redraw();
+
+            post_redraw();
+
          }
          else 
          {
@@ -299,16 +303,16 @@ namespace nanoui
             pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimageDisabled);
 
          }
-         else if (m_bMouseHover && m_pimageFocus.ok())
-         {
-
-            pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimageFocus);
-
-         }
          else if (bPressed && m_pimagePressed.ok())
          {
 
             pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimagePressed);
+
+         }
+         else if (m_bMouseHover && m_pimageFocus.ok())
+         {
+
+            pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimageFocus);
 
          }
          else

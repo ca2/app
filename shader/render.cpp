@@ -444,11 +444,11 @@ namespace app_shader
 
             pfont.create(this);
 
-            auto pnode = acmesystem()->m_paurasystem->node();
+            //auto pnode = acmesystem()->m_paurasystem->node();
 
-            auto strFontName = pnode->font_name(e_font_sans_ui);
+            //auto strFontName = pnode->font_name(e_font_sans_ui);
 
-            pfont->create_point_font(strFontName, 12.0);
+            pfont->create_font(e_font_sans_ui, 12pt);
 
             m_pimageLabel.defer_create(::particle::m_pcontext);
 
@@ -575,7 +575,7 @@ namespace app_shader
 
             auto strFontName = pnode->font_name(e_font_sans_ui);
 
-            pfont->create_point_font(strFontName, 12.0);
+            pfont->create_font(e_font_sans_ui, 12pt);
 
             m_pimageError.defer_create(::particle::m_pcontext);
 

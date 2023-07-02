@@ -253,7 +253,9 @@ namespace draw2d_cairo
 
       auto pcairographics = __graphics(pgraphics);
 
-      FT_Face ftface = pcairographics->ftface(m_strFontFamilyName, m_iFontWeight, m_bItalic);
+      FT_Face ftface = pcairographics->ftface(
+         m_pfontfamily->family_name(pgraphics),
+         m_fontweight.i32(), m_bItalic);
 
       if (!ftface)
       {
@@ -289,7 +291,10 @@ namespace draw2d_cairo
 
       cairo_font_weight_t weight = get_cairo_font_weight();
 
-      cairo_font_face_t* pfontface = cairo_toy_font_face_create(m_strFontFamilyName, slant, weight);
+      cairo_font_face_t* pfontface = cairo_toy_font_face_create(
+         m_pfontfamily->family_name(this),
+         slant, 
+         weight);
 
       cairo_status_t status = cairo_font_face_status(pfontface);
 
@@ -329,7 +334,7 @@ namespace draw2d_cairo
    cairo_font_weight_t font::get_cairo_font_weight()
    {
 
-      if (m_iFontWeight >= 700)
+      if (m_fontweight.i32() >= 700)
       {
 
          return CAIRO_FONT_WEIGHT_BOLD;

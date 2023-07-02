@@ -124,12 +124,33 @@ public:
 
    }
 
+
+   template < primitive_floating FLOATING >
+   inline unit_base operator * (FLOATING f) const
+   {
+
+      unit_base < ENUM > unitResult(f * this->f64(), this->eunit());
+
+      return unitResult;
+
+   }
+
+
 };
 
 
+template < primitive_floating FLOATING, typename ENUM >
+inline unit_base < ENUM > operator * (FLOATING f, const unit_base < ENUM > & unit)
+{
+
+   unit_base < ENUM > unitResult(unit.operator ::f64() * f, unit.eunit());
+
+   return unitResult;
+
+}
+
 
 using unit = unit_base < enum_unit >;
-
 
 
 constexpr auto operator ""px(unsigned long long i)

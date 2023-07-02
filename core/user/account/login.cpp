@@ -191,17 +191,17 @@ namespace account
 
       y += h1 + pad;
 
-      m_peditPassword->set_placement(x1,y,w2,h1);
+      m_peditPassword->place(x1,y,w2,h1);
       m_peditPassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
       y += pad + h1 + pad;
 
-      m_pbutton->set_placement(x1,y,w2,h1 * 3);
+      m_pbutton->place(x1,y,w2,h1 * 3);
       m_pbutton->display(::e_display_normal, e_activation_no_activate);
 
-      m_pbuttonClose->set_placement(w - 36,12,24,24);
+      m_pbuttonClose->place(w - 36,12,24,24);
       m_pbuttonClose->display(::e_display_normal, e_activation_no_activate);
 
    }
@@ -520,7 +520,7 @@ namespace account
       int stdw = 800;
       int stdh = 177 + 23 + 1140;
 
-      set_placement(0,0,stdw,stdh);
+      place(0,0,stdw,stdh);
 
       m_peditUser->set_keyboard_focus();
 

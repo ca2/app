@@ -312,7 +312,7 @@ namespace user
             for (auto & pbox : *pline)
             {
 
-               rBox.maximum(pbox->m_rectangleDevice);
+               rBox.unite(pbox->m_rectangleDevice);
 
                yLast = pbox->m_rectangleHitTest.top;
 

@@ -156,7 +156,7 @@ list(APPEND library_source
         user/user/impact_kit.h
         user/user/impact_system.cpp
         user/user/impact_system.h
-        user/user/impact_update_hint.h
+        #user/user/impact_update_hint.h
         #user/user/main_frame.h
         user/user/margin.cpp
         user/user/margin.h

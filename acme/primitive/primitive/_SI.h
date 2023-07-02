@@ -2,7 +2,7 @@
 #pragma once
 
 
-constexpr long double operator "" η(long double d)
+constexpr long double operator ""_η(long double d)
 {
 
    return d / (1'000.0 * 1'000.0 * 1'000.0);
@@ -10,7 +10,7 @@ constexpr long double operator "" η(long double d)
 }
 
 
-constexpr unsigned long long int operator "" η(unsigned long long int i)
+constexpr unsigned long long int operator ""_η(unsigned long long int i)
 {
 
    return i / (1'000 * 1'000 * 1'000);
@@ -18,7 +18,7 @@ constexpr unsigned long long int operator "" η(unsigned long long int i)
 }
 
 
-constexpr long double operator "" μ(long double d)
+constexpr long double operator ""_μ(long double d)
 {
 
    return d / (1'000.0 * 1'000.0);
@@ -26,7 +26,7 @@ constexpr long double operator "" μ(long double d)
 }
 
 
-constexpr unsigned long long int operator "" μ(unsigned long long int i)
+constexpr unsigned long long int operator ""_μ(unsigned long long int i)
 {
 
    return i / (1'000 * 1'000);
@@ -34,7 +34,7 @@ constexpr unsigned long long int operator "" μ(unsigned long long int i)
 }
 
 
-constexpr long double operator ""m(long double d)
+constexpr long double operator ""_m(long double d)
 {
 
    return d / 1'000.0;
@@ -42,7 +42,7 @@ constexpr long double operator ""m(long double d)
 }
 
 
-constexpr unsigned long long operator "" m(unsigned long long i)
+constexpr unsigned long long operator ""_m(unsigned long long i)
 {
 
    return i / 1'000;
@@ -50,8 +50,7 @@ constexpr unsigned long long operator "" m(unsigned long long i)
 }
 
 
-
-constexpr long double operator ""k(long double d)
+constexpr long double operator ""_k(long double d)
 {
 
    return 1000.0 * d;
@@ -59,14 +58,14 @@ constexpr long double operator ""k(long double d)
 }
 
 
-constexpr unsigned long long operator ""k(unsigned long long i)
+constexpr unsigned long long operator ""_k(unsigned long long i)
 {
 
    return 1'000 * i;
 
 }
 
-constexpr long double operator ""M(long double d)
+constexpr long double operator ""_M(long double d)
 {
 
    return 1'000.0 * 1'000.0 * d;
@@ -74,7 +73,7 @@ constexpr long double operator ""M(long double d)
 }
 
 
-constexpr unsigned long long operator ""M(unsigned long long i)
+constexpr unsigned long long operator ""_M(unsigned long long i)
 {
 
    return 1'000 * 1'000 * i;
@@ -82,7 +81,7 @@ constexpr unsigned long long operator ""M(unsigned long long i)
 }
 
 
-constexpr long double operator ""G(long double d)
+constexpr long double operator ""_G(long double d)
 {
 
    return 1'000.0 * 1'000.0 * 1'000.0 * d;
@@ -90,7 +89,7 @@ constexpr long double operator ""G(long double d)
 }
 
 
-constexpr unsigned long long operator ""G(unsigned long long i)
+constexpr unsigned long long operator ""_G(unsigned long long i)
 {
 
    return 1'000 * 1'000 * 1'000 * i;

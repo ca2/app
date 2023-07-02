@@ -745,7 +745,7 @@ namespace user
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+      void defer_draw(::draw2d::graphics_pointer & pgraphics) override;
       //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;

@@ -100,6 +100,10 @@ namespace write_text
       bool bUnderline = false,
       bool bStrikeOut = false,
       double dWidth = 1.0);
+      
+      
+      virtual ::string family_name();
+      
 
       //virtual bool create_point_font(
       //const font_family_pointer & pfontfamily,

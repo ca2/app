@@ -157,8 +157,8 @@ namespace file
       memsize defer_write(const void * dataToWrite, memsize amountToWrite) override;
       
       
-      virtual void write(::file::readable * preader, memsize uiBufferSize = 16MiB);
-      virtual void write_from_beginning(::file::streamable * preader, memsize uiBufSize = 16MiB);
+      virtual void write(::file::readable * preader, memsize uiBufferSize = 16_MiB);
+      virtual void write_from_beginning(::file::streamable * preader, memsize uiBufSize = 16_MiB);
 
       //void write(const void* pdata, memsize nCount) override;
 

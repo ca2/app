@@ -120,7 +120,7 @@ public:
    void write(const void * p, ::memsize s) override;
 
 
-   void write(::file::readable * pfileIn, memsize uiBufSize = 16MiB) override;
+   void write(::file::readable * pfileIn, memsize uiBufSize = 16_MiB) override;
 
    void put_byte_back(::u8 u8) override;
 

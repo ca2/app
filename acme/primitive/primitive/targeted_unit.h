@@ -113,6 +113,55 @@ public:
       this->m_eunit = eunit;
 
    }
+   
+   
+   template < primitive_floating FLOATING >
+   targeted_unit & operator *= (FLOATING f)
+   {
+
+      unit_base < ENUM >::operator *=(f);
+
+      return *this;
+
+   }
+   
+   
+   template < primitive_floating FLOATING >
+   targeted_unit & operator /= (FLOATING f)
+   {
+
+      unit_base < ENUM >::operator /=(f);
+
+      return *this;
+
+   }
+   
+
+   template < primitive_floating FLOATING >
+   targeted_unit operator * (FLOATING f) const
+   {
+      
+      auto unit = *this;
+
+      unit *= f;
+
+      return unit;
+
+   }
+   
+   
+   template < primitive_floating FLOATING >
+   targeted_unit operator / (FLOATING f) const
+   {
+
+      auto unit = *this;
+
+      unit /= f;
+
+      return *this;
+
+   }
+   
 
 };
 

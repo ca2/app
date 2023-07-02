@@ -12,7 +12,7 @@ namespace write_text
 
 
    font::font() :
-      m_fontsize(12pt)
+      m_fontsize(12_pt)
    {
 
       m_bCacheLayout = true;
@@ -737,6 +737,21 @@ namespace write_text
 //      spgraphics->DeleteDC();
 //
 //   }
+
+
+   ::string font::family_name()
+   {
+      
+      if(!m_pfontfamily)
+      {
+         
+         return {};
+         
+      }
+      
+      return m_pfontfamily->family_name(this);
+      
+   }
 
    void font::destroy()
    {

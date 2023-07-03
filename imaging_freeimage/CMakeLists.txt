@@ -33,10 +33,18 @@ list(TRANSFORM static_library_references PREPEND static_)
 
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
@@ -52,7 +60,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freeimage)
 
 
-elseif (FREEBSD)
+elseif (${FREEBSD})
 
 
     #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
@@ -67,7 +75,7 @@ elseif (FREEBSD)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-elseif (LINUX)
+elseif (${LINUX})
 
 
     #if(USE_PKGCONFIG)

@@ -8,28 +8,28 @@
 CLASS_DECL_ACME ::string & copy(::string & str, const integral_byte & memsize)
 {
 
-   if (memsize < 1KiB)
+   if (memsize < 1_KiB)
    {
 
       str.format("%d bytes", memsize);
 
    }
-   else if (memsize < 1MiB)
+   else if (memsize < 1_MiB)
    {
 
-      str.format("%0.2f KiB", (double)memsize / (double)(1KiB));
+      str.format("%0.2f KiB", (double)memsize / (double)(1_KiB));
 
    }
-   else if (memsize < 1GiB)
+   else if (memsize < 1_GiB)
    {
 
-      str.format("%0.2f MB", (double)memsize / (double)(1MiB));
+      str.format("%0.2f MB", (double)memsize / (double)(1_MiB));
 
    }
    else
    {
 
-      str.format("%0.2f GB", (double)memsize / (double)(1GiB));
+      str.format("%0.2f GB", (double)memsize / (double)(1_GiB));
 
    }
 

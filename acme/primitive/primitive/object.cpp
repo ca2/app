@@ -6,7 +6,7 @@
 #if OBJECT_REFERENCE_COUNT_DEBUG
 #include "acme/platform/obj_ref_debug_impl.h"
 #endif
-#include "acme/constant/idpool.h"
+//#include "acme/constant/idpool.h"
 //#include "acme/primitive/text/_.h"
 #include "acme/primitive/primitive/set_bit.h"
 //#include "acme/primitive/string/hex.h"

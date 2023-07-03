@@ -49,7 +49,7 @@ namespace acme
       static acme * g_pacme;
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
       ::critical_section m_criticalsectionTz;
 
@@ -153,7 +153,7 @@ namespace acme
 
       class ::time start_nanosecond();
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
       ::critical_section* tz_critical_section() { return &m_criticalsectionTz; }
 

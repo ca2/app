@@ -742,7 +742,7 @@ list(APPEND windowing_source
         #windowing/xrender.cpp
         )
 
-#if (LINUX)
+#if (${LINUX})
 #
 #    list(APPEND library_source
 #            operating_system/linux/_.h
@@ -833,7 +833,7 @@ list(APPEND windowing_source
 #endif ()
 #
 #
-#if (FREEBSD)
+#if (${FREEBSD})
 #
 #    list(APPEND library_source
 #            operating_system/freebsd/_.h
@@ -1323,10 +1323,18 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 
 set_target_properties(aura PROPERTIES LINKER_LANGUAGE CXX)
@@ -1338,7 +1346,7 @@ if (MSVC)
     target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")
     target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
     target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
-elseif (LINUX OR FREEBSD)
+elseif (${LINUX} OR ${FREEBSD})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)

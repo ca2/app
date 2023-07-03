@@ -33,7 +33,7 @@ if (WIN32)
 endif ()
 
 
-if (LINUX OR FREEBSD)
+if (${LINUX} OR ${FREEBSD})
     list(APPEND library_source
             context_egl.cpp
             context_egl.h
@@ -64,7 +64,7 @@ list(APPEND library_references
         )
 
 
-if (LINUX OR FREEBSD)
+if (${LINUX} OR ${FREEBSD})
 
     list(APPEND library_references
             aura_posix
@@ -75,10 +75,18 @@ endif ()
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 set_target_properties(gpu_opengl PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -93,7 +101,7 @@ if (MSVC)
     target_link_libraries(gpu_opengl PRIVATE ${library_references})
 
 
-elseif (LINUX OR FREEBSD)
+elseif (${LINUX} OR ${FREEBSD})
 
 
     if (USE_PKGCONFIG)

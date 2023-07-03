@@ -6,7 +6,7 @@ project(_app_integration CXX)
 add_executable(${PROJECT_NAME} application.cpp)
 
 
-if(LINUX OR FREEBSD)
+if(${LINUX} OR ${FREEBSD})
 #
 #   add_custom_command(
 #      COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
@@ -49,7 +49,7 @@ if (MSVC)
    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
 
-elseif(LINUX OR FREEBSD)
+elseif(${LINUX} OR ${FREEBSD})
 
    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
    #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)

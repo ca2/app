@@ -154,20 +154,20 @@ gdb_check(void)
 //}
 
 
-void information(const scoped_string & str)
+void output_debug_string(const scoped_string & scopedstrFormat)
 {
 
-   if(::acme::g_bOutputDebugString)
+   //if(::acme::g_bOutputDebugString)
    {
 
-      if(strstr(pOutputString, "font_list"))
+      if(scopedstrFormat == "font_list")
       {
 
          printf("a");
 
       }
 
-      printf("%s", pOutputString);
+      printf("%s", ::string(scopedstrFormat).c_str());
 
       fflush(stdout);
 
@@ -176,10 +176,10 @@ void information(const scoped_string & str)
 }
 
 
-void information(const ::wide_character * pOutputString)
+void output_debug_string(const ::wide_character * pOutputString)
 {
 
-   if(::acme::g_bOutputDebugString)
+   //if(::acme::g_bOutputDebugString)
    {
 
       information(string(pOutputString));

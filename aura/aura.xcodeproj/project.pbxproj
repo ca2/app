@@ -315,6 +315,12 @@
 		9A75C6AA283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
 		9A75C6AB283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
 		9A78F32428E75E9D007F62C0 /* plain_text_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F32328E75E9D007F62C0 /* plain_text_tree.cpp */; };
+		9A797B662A53896600261F46 /* redraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A797B642A53896600261F46 /* redraw.cpp */; };
+		9A797B672A53896600261F46 /* redraw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A797B652A53896600261F46 /* redraw.h */; };
+		9A797B6A2A5389CD00261F46 /* placement_log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A797B682A5389CD00261F46 /* placement_log.cpp */; };
+		9A797B6B2A5389CD00261F46 /* placement_log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A797B692A5389CD00261F46 /* placement_log.h */; };
+		9A797B6E2A538A0A00261F46 /* font_family.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A797B6C2A538A0A00261F46 /* font_family.cpp */; };
+		9A797B6F2A538A0A00261F46 /* font_family.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A797B6D2A538A0A00261F46 /* font_family.h */; };
 		9A85D3852A2FEAD900116726 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85D3832A2FEAD800116726 /* _.h */; };
 		9A85D3862A2FEAD900116726 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85D3842A2FEAD800116726 /* _constant.h */; };
 		9A865FC329661CC5000C82F0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A865FC229661CC5000C82F0 /* _.cpp */; };
@@ -755,6 +761,12 @@
 		9A75C6A4283D6E6400EC37F2 /* devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = devices.cpp; sourceTree = "<group>"; };
 		9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_listener.cpp; sourceTree = "<group>"; };
 		9A78F32328E75E9D007F62C0 /* plain_text_tree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plain_text_tree.cpp; sourceTree = "<group>"; };
+		9A797B642A53896600261F46 /* redraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = redraw.cpp; sourceTree = "<group>"; };
+		9A797B652A53896600261F46 /* redraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redraw.h; sourceTree = "<group>"; };
+		9A797B682A5389CD00261F46 /* placement_log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = placement_log.cpp; sourceTree = "<group>"; };
+		9A797B692A5389CD00261F46 /* placement_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = placement_log.h; sourceTree = "<group>"; };
+		9A797B6C2A538A0A00261F46 /* font_family.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_family.cpp; sourceTree = "<group>"; };
+		9A797B6D2A538A0A00261F46 /* font_family.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_family.h; sourceTree = "<group>"; };
 		9A85D3832A2FEAD800116726 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A85D3842A2FEAD800116726 /* _constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A85D3892A2FEEED00116726 /* size_parent_layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = size_parent_layout.h; sourceTree = "<group>"; };
@@ -1401,6 +1413,8 @@
 				9A2273C127CF07810042BAC2 /* font_enumeration_item.h */,
 				9A8FCD762651AFAB00C0D8A1 /* font_enumeration.cpp */,
 				9A8FCD792651AFAB00C0D8A1 /* font_enumeration.h */,
+				9A797B6C2A538A0A00261F46 /* font_family.cpp */,
+				9A797B6D2A538A0A00261F46 /* font_family.h */,
 				9AE6378926700C19005F3412 /* font_list_data.h */,
 				9AE6378A26700C19005F3412 /* font_list_item.h */,
 				9A8FCD752651AFAB00C0D8A1 /* font_list.cpp */,
@@ -1508,6 +1522,8 @@
 				9A922FF527EACA3A00B5A78D /* progress.h */,
 				9A922FFE27EACA3A00B5A78D /* range.cpp */,
 				9A92300127EACA3A00B5A78D /* range.h */,
+				9A797B642A53896600261F46 /* redraw.cpp */,
+				9A797B652A53896600261F46 /* redraw.h */,
 				9A979D8828C82B1C0013DC54 /* run_application.cpp */,
 				9A979D8728C82B1C0013DC54 /* run_application.h */,
 				9A92302627EACA3B00B5A78D /* scroll_bar.cpp */,
@@ -1691,6 +1707,8 @@
 				9AC2CEAF2653455600CC8096 /* message_box.h */,
 				9AC2CEAC2653455600CC8096 /* monitor.cpp */,
 				9AC2CEB72653455600CC8096 /* monitor.h */,
+				9A797B682A5389CD00261F46 /* placement_log.cpp */,
+				9A797B692A5389CD00261F46 /* placement_log.h */,
 				9AC2CEA52653455600CC8096 /* simple_ui_display.h */,
 				9A9B9B2F28483DC3005CA950 /* text_editor_interface.cpp */,
 				9A9B9B3028483DC3005CA950 /* text_editor_interface.h */,
@@ -1853,6 +1871,7 @@
 				9A1E1D7722F0AF69004243B8 /* device_context.h in Headers */,
 				9A8FCD992651AFAB00C0D8A1 /* _.h in Headers */,
 				9A750F95282B90B700C4861B /* scroll_bar.h in Headers */,
+				9A797B6F2A538A0A00261F46 /* font_family.h in Headers */,
 				9A8FCD8F2651AFAB00C0D8A1 /* font_enumeration.h in Headers */,
 				9A750F80282B90B700C4861B /* tool_window.h in Headers */,
 				9A3764832409BF0C002D15D3 /* path.h in Headers */,
@@ -1942,6 +1961,7 @@
 				9A376ACF2409C2DD002D15D3 /* _impl.h in Headers */,
 				9AC2CEDD2653455600CC8096 /* _component.h in Headers */,
 				9A3764A52409BF0C002D15D3 /* api.h in Headers */,
+				9A797B672A53896600261F46 /* redraw.h in Headers */,
 				9ADDBC012A4025DC00C53EEB /* _.h in Headers */,
 				9A2489E12453417F00F23D28 /* timer.h in Headers */,
 				9A92313B27EACF2100B5A78D /* _.h in Headers */,
@@ -2020,6 +2040,7 @@
 				9AC2CEEA2653455600CC8096 /* exception.h in Headers */,
 				9A979D9828C82B1C0013DC54 /* visual_state.h in Headers */,
 				9A979D8D28C82B1C0013DC54 /* text_composition_client.h in Headers */,
+				9A797B6B2A5389CD00261F46 /* placement_log.h in Headers */,
 				9A1FB51628712FAC0042849A /* holder.h in Headers */,
 				9AC2CEDC2653455600CC8096 /* cursor.h in Headers */,
 				9A750F64282B90B600C4861B /* copydesk.h in Headers */,
@@ -2355,6 +2376,7 @@
 				9A92316C27EAE40F00B5A78D /* plain_edit.cpp in Sources */,
 				9AE245DD27F1227A00B849D0 /* host.cpp in Sources */,
 				9A92316D27EAE41000B5A78D /* plain_text_data.cpp in Sources */,
+				9A797B6A2A5389CD00261F46 /* placement_log.cpp in Sources */,
 				9A9B9B3128483DC3005CA950 /* text_editor_interface.cpp in Sources */,
 				9A92316E27EAE41000B5A78D /* primitive_impl.cpp in Sources */,
 				9A92316F27EAE41000B5A78D /* progress.cpp in Sources */,
@@ -2389,6 +2411,7 @@
 				9A3764902409BF0C002D15D3 /* color_matrix.cpp in Sources */,
 				9ADDBBF62A4025DC00C53EEB /* object.cpp in Sources */,
 				9AD19A102512B8CB00B4C44A /* timer.cpp in Sources */,
+				9A797B6E2A538A0A00261F46 /* font_family.cpp in Sources */,
 				9A979D6F28C82ACE0013DC54 /* drawable.cpp in Sources */,
 				9A92313A27EACF2100B5A78D /* gif_antialias_8bit.cpp in Sources */,
 				9A5498662A2C00320052BAB6 /* holdee.cpp in Sources */,
@@ -2412,6 +2435,7 @@
 				9AC2CEF22653455600CC8096 /* windowing.cpp in Sources */,
 				9A92312027EACF2100B5A78D /* dynamic.cpp in Sources */,
 				9A24865B2452C49000F23D28 /* draw_context.cpp in Sources */,
+				9A797B662A53896600261F46 /* redraw.cpp in Sources */,
 				9A87FF08284B8D6F0084AA05 /* target.cpp in Sources */,
 				9A3764D92409BF0C002D15D3 /* graphics.cpp in Sources */,
 				9A3764B02409BF0C002D15D3 /* bitmap.cpp in Sources */,

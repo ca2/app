@@ -1354,6 +1354,7 @@ list(APPEND library_source
         operating_system/posix/callstack.cpp
         operating_system/posix/mq_base.h
         operating_system/posix/time.h
+        operating_system/pthread/pthread_np.cpp
         operating_system/process.cpp
         operating_system/solaris/linux_internal.h
         operating_system/solaris/solaris.h
@@ -1820,7 +1821,7 @@ if (WIN32 OR UWP)
 
 endif ()
 
-if (LINUX OR FREEBSD)
+if (${LINUX} OR ${FREEBSD})
 
     list(APPEND library_source
             operating_system/cairo/nano/_nano.cpp
@@ -1856,7 +1857,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-if (LINUX)
+if (${LINUX})
     list(APPEND library_source
             operating_system/linux/
             operating_system/linux/_.cpp
@@ -2191,7 +2192,7 @@ if (SOLARIS)
 endif ()
 
 
-if (FREEBSD)
+if (${FREEBSD})
     list(APPEND library_source
             #operating_system/freebsd/console.cpp
             operating_system/freebsd/dumpinit.cpp
@@ -2295,7 +2296,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
 endif ()
 
 
-if (LINUX OR FREEBSD)
+if (${LINUX} OR ${FREEBSD})
 
 
     list(APPEND library_source
@@ -2306,7 +2307,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-if (LINUX OR FREEBSD)
+if (${LINUX} OR ${FREEBSD})
 
 
     list(APPEND library_source
@@ -2317,16 +2318,14 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source} operating_system/pthread/pthread_np.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-if (NOT DEFINED NO_PRECOMPILED_HEADER)
+if (NOT ${NO_PRECOMPILED_HEADER})
 
     target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
 
@@ -2347,7 +2346,7 @@ if (MSVC)
     target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (LINUX OR FREEBSD)
+elseif (${LINUX} OR ${FREEBSD})
 
     #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
@@ -2362,7 +2361,7 @@ elseif (LINUX OR FREEBSD)
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
-    if (FREEBSD)
+    if (${FREEBSD})
         list(APPEND system_libraries z dl pthread iconv execinfo)
     else ()
         list(APPEND system_libraries z dl pthread idn)
@@ -2401,7 +2400,7 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
 
-#if(LINUX)
+#if(${LINUX})
 #set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/binary/x64/basis/")
 #add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
 #set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/binary/x64/basis/")

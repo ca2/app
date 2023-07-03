@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
-
+#include "acme/platform/system.h"
 #include "acme/user/nano/display.h"
 
 #define bitset freebsd_bitset
@@ -8,7 +8,7 @@
 #include <sys/cpuset.h>
 #undef bitset
 #include <pthread_np.h>
-
+#include <signal.h>
 
 #include <sys/time.h>
 #define ITIMER_REAL      0
@@ -16,29 +16,29 @@
 #define ITIMER_PROF      2
 
 
-void task_set_name(htask_t htask, const char * psz)
-{
+//void task_set_name(htask_t htask, const char * psz)
+//{
 
 //   string strName(psz);
 
   // thread_name_abbreviate(strName, 15);
 
-   if(!pthread_setname_np((pthread_t) htask, psz))
-   {
+  // if(!pthread_setname_np((pthread_t) htask, psz))
+   //{
 
-       information("pthread_setname_np Failed\n");
+     //  information("pthread_setname_np Failed\n");
 
-   }
+   //}
 
-}
+//}
 
 
-void task_set_name(const char * psz)
-{
+//void task_set_name(const char * psz)
+//{
 
-   return task_set_name((htask_t) pthread_self(), psz);
+  // return task_set_name((htask_t) pthread_self(), psz);
 
-}
+//}
 
 
 // void __node_init_cross_windows_threading()

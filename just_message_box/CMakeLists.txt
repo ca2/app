@@ -24,10 +24,18 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 
 set_target_properties(app_just_message_box PROPERTIES LINKER_LANGUAGE CXX)
@@ -43,7 +51,7 @@ if (MSVC)
     add_dependencies(app_just_message_box draw2d_gdiplus)
 
 
-elseif(LINUX)
+elseif(${LINUX})
 
     target_link_libraries(app_just_message_box PRIVATE ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)

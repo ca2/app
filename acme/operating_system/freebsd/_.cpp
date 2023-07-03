@@ -87,7 +87,7 @@ int get_proc_cpuinfo_core_count()
       while(fgets(str, sizeof str, fp))
       {
 
-         if( !__memcmp(str, "handler", 9) )
+         if(memory_order(str, "handler", 9) == 0)
          {
 
             procCount++;
@@ -124,7 +124,7 @@ int get_proc_cpuinfo_core_count()
 // }
 
 
-::time os_get_system_update_poll_time(const ::atom & atom)
+class ::time os_get_system_update_poll_time(const ::atom & atom)
 {
 
    if(atom == id_operating_system_user_theme_change)

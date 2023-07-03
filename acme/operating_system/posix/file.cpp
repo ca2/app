@@ -1167,7 +1167,7 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
     pstatus->m_attribute = 0;
 
 
-#if defined(ANDROID) || defined(LINUX)
+#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD)
 
     ::copy(&pstatus->m_timeModification, &pst->st_mtim);
     ::copy(&pstatus->m_timeAccess, &pst->st_atim);

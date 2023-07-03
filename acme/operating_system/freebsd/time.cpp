@@ -26,11 +26,11 @@ CLASS_DECL_ACME ::i64 i64_nanosecond()
    {
 
       //error
-      return integral_nanosecond(0);
+      return 0;
 
    }
 
-   return integral_nanosecond(ts.tv_sec * 1'000'000'000 + ts.tv_nsec);
+   return ts.tv_sec * 1'000'000'000 + ts.tv_nsec;
 
 #endif
 

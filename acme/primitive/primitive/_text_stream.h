@@ -8,7 +8,7 @@ write_text_stream < FILE >& operator << (write_text_stream < FILE > & textstream
 
    textstream << atom.as_string();
 
-   return *this;
+   return textstream;
 
 }
 

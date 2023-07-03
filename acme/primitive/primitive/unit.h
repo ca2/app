@@ -82,6 +82,13 @@ public:
    //constexpr unit_base & operator = (INTEGRAL i) { m_i64 = (::i64)i; clear_floating(); return *this; }
 
    
+   bool operator ==(const unit_base & unit) const
+   {
+      
+      return m_i64 == unit.m_i64 && m_eunit == unit.m_eunit;
+      
+   }
+   
    template < primitive_floating FLOATING >
    constexpr unit_base & operator = (FLOATING f)
    { 

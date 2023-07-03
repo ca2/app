@@ -448,7 +448,7 @@ namespace app_shader
 
             //auto strFontName = pnode->font_name(e_font_sans_ui);
 
-            pfont->create_font(e_font_sans_ui, 12pt);
+            pfont->create_font(e_font_sans_ui, 12_pt);
 
             m_pimageLabel.defer_create(::particle::m_pcontext);
 
@@ -575,7 +575,7 @@ namespace app_shader
 
             auto strFontName = pnode->font_name(e_font_sans_ui);
 
-            pfont->create_font(e_font_sans_ui, 12pt);
+            pfont->create_font(e_font_sans_ui, 12_pt);
 
             m_pimageError.defer_create(::particle::m_pcontext);
 

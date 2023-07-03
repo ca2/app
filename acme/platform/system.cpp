@@ -12,7 +12,7 @@
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
-#include "acme/constant/idpool.h"
+//#include "acme/constant/idpool.h"
 #include "acme/exception/library_not_loaded.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"

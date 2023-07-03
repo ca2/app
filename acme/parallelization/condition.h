@@ -5,7 +5,6 @@
 
 
 #include "condition_variable.h"
-#include "acme/primitive/primitive/particle.h"
 
 
 class CLASS_DECL_ACME condition :

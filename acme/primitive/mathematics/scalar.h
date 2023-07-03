@@ -3,7 +3,7 @@
 
 
 #include "acme/constant/scalar.h"
-// #include "acme/primitive/string/string.h"
+
 
 
 //using real = ::f64;
@@ -420,7 +420,7 @@ inline string get_default_integer_scalar_format()
 //} // namespace str
 
 
-#include "acme/primitive/primitive/particle.h"
+
 #include "acme/primitive/primitive/atom.h"
 
 

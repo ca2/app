@@ -94,7 +94,7 @@ list(APPEND library_source
         constant/code_page.h
         constant/earth.h
         constant/element.h
-        constant/idpool.cpp
+        #constant/idpool.cpp
         constant/library.h
         constant/message_box.h
         #context_glx.cpp
@@ -1194,7 +1194,7 @@ list(APPEND library_source
         constant/context.h
         constant/future.h
         constant/id.h
-        constant/idpool.h
+        #constant/idpool.h
         constant/impact.h
         constant/message.h
         constant/routine.h

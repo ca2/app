@@ -4,7 +4,7 @@
 #include "_iterator.h"
 #include "allocator.h"
 #include "acme/platform/common.h"
-#include "acme/primitive/primitive/particle.h"
+
 
 //using tiny_index_array = tiny_array <::index>;
 

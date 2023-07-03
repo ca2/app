@@ -1,3 +1,4 @@
+#include "framework.h"
 #if defined(LINUX) || defined(FREEBSD)
 #include <malloc.h>
 #endif

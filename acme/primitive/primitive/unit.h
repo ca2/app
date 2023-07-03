@@ -148,12 +148,10 @@ public:
    template < primitive_floating FLOATING >
    unit_base operator * (FLOATING f) const
    {
-      
-      auto unit = *this;
 
-      unit *= f;
+      unit_base < ENUM > unitResult(this->f64() * f, this->eunit());
 
-      return unit;
+      return unitResult;
 
    }
    
@@ -162,23 +160,9 @@ public:
    unit_base operator / (FLOATING f) const
    {
 
-      auto unit = *this;
-
-      unit /= f;
+      unit_base < ENUM > unitResult(this->f64() / f, this->eunit());
 
       return *this;
-
-   }
-
-
-
-   template < primitive_floating FLOATING >
-   inline unit_base operator * (FLOATING f) const
-   {
-
-      unit_base < ENUM > unitResult(f * this->f64(), this->eunit());
-
-      return unitResult;
 
    }
 

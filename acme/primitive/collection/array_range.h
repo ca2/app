@@ -4,7 +4,7 @@
 
 #include "iterator.h"
 #include "range.h"
-#include "array_range.h"
+//#include "array_range.h"
 #include "acme/primitive/mathematics/numeric.h"
 
 //

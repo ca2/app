@@ -139,7 +139,7 @@ inline i64 mkint(i64 ll)
 //#define minimum(a, b) ((a) < (b) ? (a) : (b))
 
 template < typename A, typename B >
-constexpr auto minimum_non_negative(A a, B b)
+constexpr largest_type < A, B > minimum_non_negative(A a, B b)
 {
 
    if(a < (A) 0)
@@ -148,13 +148,13 @@ constexpr auto minimum_non_negative(A a, B b)
       if (b < (B) 0)
       {
 
-         return minimum(a, b);
+         return (largest_type < A, B >) minimum(a, b);
 
       }
       else 
       {
 
-         return (A) b;
+         return (largest_type < A, B >) b;
 
       }
 
@@ -162,13 +162,13 @@ constexpr auto minimum_non_negative(A a, B b)
    else if(b < (B) 0)
    {
       
-      return a;
+      return (largest_type < A, B >) a;
 
    }
    else 
    {
 
-      return minimum(a, b);
+      return (largest_type < A, B >) minimum(a, b);
 
    }
 

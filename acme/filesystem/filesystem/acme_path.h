@@ -2,9 +2,6 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
-
-
 class CLASS_DECL_ACME acme_path :
    virtual public particle
 {

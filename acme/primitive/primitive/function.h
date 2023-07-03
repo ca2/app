@@ -6,9 +6,8 @@
 
 #include "acme/primitive/primitive/ptr.h"
 
-#include "acme/primitive/primitive/particle.h"
+#include  "acme/primitive/primitive/particle.h"
 
-//#include "acme/parallelization/wait.h"
 
 enum enum_use
 {

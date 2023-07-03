@@ -3,7 +3,7 @@
 #include "task.h"
 #include "task_flag.h"
 #include "acme/constant/id.h"
-// #include "acme/primitive/string/string.h"
+
 //#include "acme/primitive/collection/string_array.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/platform/acme.h"

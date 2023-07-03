@@ -821,7 +821,7 @@ namespace experience_tranquillum
 
       rectangle.offset(-rectangle.top_left());
 
-      rectangle.deflate(get_margin_rect());
+      rectangle.deflate(get_margin_rectangle());
 
    }
 

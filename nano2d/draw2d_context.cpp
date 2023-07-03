@@ -519,7 +519,7 @@ namespace nano2d
    void __font_size(::write_text::font * pfont, float size)
    {
 
-      pfont->m_fontsize = size * 0.8px;
+      pfont->m_fontsize = size * 0.8_px;
       //pfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
       pfont->set_modified();
 

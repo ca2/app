@@ -2397,7 +2397,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
    //if (!is_frame_experience_enabled())
    //{
 
-   auto pointOffset = pgraphicsParam->origin();
+   //auto pointOffset = pgraphicsParam->origin();
 
       ::user::frame_window::_000OnDraw(pgraphicsParam);
 

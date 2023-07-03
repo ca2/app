@@ -53,7 +53,7 @@ namespace experience_core
 
          auto pnode = acmenode();
 
-         m_pfont->create_font(e_font_sans_ui, 12pt, e_font_weight_normal);
+         m_pfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
 
       }
 

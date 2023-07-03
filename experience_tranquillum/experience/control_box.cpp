@@ -90,7 +90,7 @@ namespace experience_tranquillum
 
       //m_pfontMarlett->create_point_font("Marlett", 20);
 
-      m_pfontMarlett->create_font("Marlett", 20pt);
+      m_pfontMarlett->create_font("Marlett", 20_pt);
       
    }
 

@@ -74,7 +74,7 @@ namespace user
       if(pwritetext)
       {
 
-         m_pfont = pwritetext->font(e_font_sans_ui, 12pt);
+         m_pfont = pwritetext->font(e_font_sans_ui, 12_pt);
          
       }
 

@@ -329,7 +329,7 @@ namespace experience_anthill
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-         auto rectangle = get_margin_rect();
+         auto rectangle = get_margin_rectangle();
 
 
          for (index i = 0; i < 11; i++)

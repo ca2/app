@@ -67,7 +67,7 @@ namespace user
 
       //auto strFontName = pnode->font_name(e_font_sans_ex);
 
-      m_pfont->create_font(e_font_sans_ex, 12pt);
+      m_pfont->create_font(e_font_sans_ex, 12_pt);
 
    }
 

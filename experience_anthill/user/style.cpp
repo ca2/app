@@ -48,11 +48,11 @@ namespace experience_anthill
 
       __defer_construct(m_pfont);
 
-      auto psystem = acmesystem()->m_paurasystem;
+//      auto psystem = acmesystem()->m_paurasystem;
+//
+//      auto pnode = psystem->node();
 
-      auto pnode = psystem->node();
-
-      m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12.0);
+      m_pfont->create_font(e_font_sans_ui, 12_pt);
 
    }
 
@@ -1447,13 +1447,13 @@ namespace experience_anthill
             if (estate & ::user::e_state_selected)
             {
 
-               pfont->m_iFontWeight = 800;
+               pfont->m_fontweight = e_font_weight_bold;
 
             }
             else
             {
 
-               pfont->m_iFontWeight = 400;
+               pfont->m_fontweight = e_font_weight_normal;
 
             }
 

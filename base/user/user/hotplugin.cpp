@@ -126,7 +126,7 @@ namespace hotplugin
 
       ::write_text::font_pointer f(e_create, pgraphics.m_p);
 
-      f->create_font("Calibri", 18px);
+      f->create_font("Calibri", 18_px);
 
       rectangleBar.left += 4;
 

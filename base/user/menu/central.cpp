@@ -175,7 +175,7 @@ namespace user
       __construct_new(m_pimagelistBlend);
       __construct_new(m_pimagelistHueLight);
 
-      VERIFY(m_pfontMenu->create_font(e_font_sans, 11pt));
+      VERIFY(m_pfontMenu->create_font(e_font_sans, 11_pt));
 
 //#ifdef WINDOWS_DESKTOP
 //      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))

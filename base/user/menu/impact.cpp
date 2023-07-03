@@ -204,11 +204,11 @@ namespace user
 
       m_pfontTitle.create(this);
 
-      m_pfontTitle->create_font(e_font_sans_ui, 14pt, 800);
+      m_pfontTitle->create_font(e_font_sans_ui, 14_pt, 800);
 
       m_pfont.create(this);
 
-      m_pfont->create_font(e_font_sans_ui, 14pt, 400);
+      m_pfont->create_font(e_font_sans_ui, 14_pt, 400);
 
       if (get_typed_parent<::user::split_impact>() != nullptr)
       {
@@ -267,7 +267,7 @@ namespace user
 
       ::status < ::rectangle_i32 > rectangleMenuItem;
 
-      int iHeight = (int) ( m_pfontTitle->m_fontsize.operator f64() * 1.25 + 20);
+      int iHeight = (int) ( m_pfontTitle->m_fontsize.f64() * 1.25 + 20);
 
       int x = 10;
 

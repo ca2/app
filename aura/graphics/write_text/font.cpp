@@ -291,13 +291,13 @@ namespace write_text
       if (m_fontsize.eunit() == ::e_unit_point)
       {
 
-         return (::f64) m_fontsize * pgraphics->get_dpiy() / 72.0;
+         return m_fontsize.f64() * pgraphics->get_dpiy() / 72.0;
 
       }
       else if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         return m_fontsize;
+         return m_fontsize.f64();
 
       }
       else

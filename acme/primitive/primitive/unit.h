@@ -70,6 +70,8 @@ public:
 
    constexpr ::i64 i64() const { return is_floating() ? (::i64)m_f64 : m_i64; }
    constexpr ::f64 f64() const { return is_floating() ? m_f64 : (::f64)m_i64; }
+   constexpr ::i32 i32() const { return (::i32) this->i64(); }
+   constexpr ::f32 f32() const { return (::f32) this->f64(); }
    constexpr ENUM eunit() const { return m_eunit; }
 
 //   constexpr operator ::i64() const { return i64(); }
@@ -174,7 +176,7 @@ template < primitive_floating FLOATING, typename ENUM >
 inline unit_base < ENUM > operator * (FLOATING f, const unit_base < ENUM > & unit)
 {
 
-   unit_base < ENUM > unitResult(unit.operator ::f64() * f, unit.eunit());
+   unit_base < ENUM > unitResult(unit.f64() * f, unit.eunit());
 
    return unitResult;
 

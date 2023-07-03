@@ -2659,7 +2659,7 @@ rectangle_i32 simple_toolbar::get_bar_border()
    if (m_fontsize.eunit() == e_unit_pixel)
    {
 
-      return m_fontsize;
+      return m_fontsize.f64();
 
    }
    else if (m_fontsize.eunit() == e_unit_point)
@@ -2667,7 +2667,7 @@ rectangle_i32 simple_toolbar::get_bar_border()
 
       // TODO
 
-      return m_fontsize;
+      return m_fontsize.f64();
 
    }
    else if (m_fontsize.eunit() == e_unit_rate)

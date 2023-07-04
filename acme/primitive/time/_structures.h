@@ -5,7 +5,23 @@
 //#include "acme/primitive/comparison/compare.h"
 
 
-struct TIME { ::i64 m_iSecond; ::i64 m_iNanosecond; };
+struct posix_time
+{
+
+   ::i64    m_iPosixTime;
+
+};
+
+
+struct nanosecond
+{
+
+   ::i64    m_iNanosecond;
+
+};
+
+
+struct TIME { posix_time m_posixtime; nanosecond m_nanosecond; };
 
 struct FREQUENCY { double m_dHertz; };
 

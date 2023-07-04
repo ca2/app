@@ -1,43 +1,29 @@
 #pragma once
 
 
-inline ::ansi_character * ansi_dup(const ::ansi_character * psz) { return _strdup(psz); }
+CLASS_DECL_ACME ::ansi_character * ansi_dup(const ::ansi_character * psz) ;
 
-inline strsize ansi_len(const ::ansi_character * psz) { return strlen(psz); }
+CLASS_DECL_ACME strsize ansi_len(const ::ansi_character * psz);
 
-inline ::ansi_character * ansi_cat(::ansi_character * pszDst, const ::ansi_character * psz) { return strcat(pszDst, psz); }
+CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const ::ansi_character * psz) ;
 
-inline ::ansi_character * ansi_cpy(::ansi_character * pszDst, const ::ansi_character * psz) { return strcpy(pszDst, psz); }
+CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const ::ansi_character * psz) ;
 
-inline ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const ::ansi_character * psz, strsize len) { return strncpy(pszDst, psz, len); }
+CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const ::ansi_character * psz, strsize len) ;
 
-inline const ::ansi_character * ansi_chr(const ::ansi_character * psz1, ::ansi_character ch) { return strchr(psz1, ch); }
+CLASS_DECL_ACME const ::ansi_character * ansi_chr(const ::ansi_character * psz1, ::ansi_character ch) ;
 
-inline ::ansi_character * ansi_pbrk(::ansi_character * psz, const ::ansi_character * pszCharsToFind) { return strpbrk(psz, pszCharsToFind); }
+CLASS_DECL_ACME ::ansi_character * ansi_pbrk(::ansi_character * psz, const ::ansi_character * pszCharsToFind) ;
 
+CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
 
-inline ::ansi_character * ansi_tok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state)
-{
+CLASS_DECL_ACME const ::ansi_character * ansi_rchr(const ::ansi_character * psz1, ::ansi_character ch);
 
-#if defined(WINDOWS)
+CLASS_DECL_ACME int ansi_cmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
-    return strtok_s(psz, sep, state);
+CLASS_DECL_ACME int ansi_ncmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 
-#else
-
-    return strtok_r(psz, sep, state);
-
-#endif
-
-}
-
-inline const ::ansi_character * ansi_rchr(const ::ansi_character * psz1, ::ansi_character ch) { return strrchr(psz1, ch); }
-
-inline int ansi_cmp(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strcmp(psz1, psz2); }
-
-inline int ansi_ncmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return strncmp(psz1, psz2, s); }
-
-inline const ::ansi_character * ansi_str(const ::ansi_character * psz, const ::ansi_character * pszFind) { return strstr(psz, pszFind); }
+CLASS_DECL_ACME const ::ansi_character * ansi_str(const ::ansi_character * psz, const ::ansi_character * pszFind);
 
 inline ::ansi_character ansi_tolower(::ansi_character ch) { return __ansitolower(ch); }
 
@@ -78,17 +64,16 @@ inline const ::ansi_character * ansi_istr(const ::ansi_character * psz, const ::
 
 //inline ::ansi_character * i64tostr(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase) { return __i64toansi(u, buf, iBase, edigitcase); }
 
-inline int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strcmp(psz1, psz2); }
-
-inline int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return strncmp(psz1, psz2, s); }
+CLASS_DECL_ACME int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz2);
+CLASS_DECL_ACME int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 
 CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
 CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 
-inline strsize ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strspn(psz1, psz2); }
+CLASS_DECL_ACME strsize ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2) ;
 
-inline strsize ansi_cspn(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strcspn(psz1, psz2); }
+CLASS_DECL_ACME strsize ansi_cspn(const ::ansi_character * psz1, const ::ansi_character * psz2) ;
 
 
 

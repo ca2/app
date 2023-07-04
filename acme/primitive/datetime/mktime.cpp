@@ -276,7 +276,7 @@ extern "C"
       }
 #endif
 
-      if(TIME_T_MAX / INT_MAX / 366 / 24 / 60 / 60 < 3)
+      if((TIME_T_MAX / INT_MAX / 366 / 24 / 60 / 60) < (3))
       {
          /* time_t isn't large enough to rule out overflows in ydhms_tm_diff,
          so check for major overflows.  A gross check suffices,

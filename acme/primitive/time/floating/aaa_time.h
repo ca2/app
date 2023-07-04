@@ -38,7 +38,7 @@
 //   }
 //
 //
-//   inline floating_time update_elapsed(const floating_time & timeStop = e_now)
+//   inline floating_time update_elapsed(const floating_time & timeStop = now_t{})
 //   {
 //
 //      auto elapsed = timeStop - *this;

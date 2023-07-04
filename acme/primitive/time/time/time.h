@@ -40,7 +40,7 @@ public:
    }
 
 
-   time(enum_now)
+   time(now_t)
    {
 
       Now();
@@ -48,10 +48,10 @@ public:
    }
 
 
-   constexpr time(enum_infinite)
+   constexpr time(infinite_t)
    {
 
-      *this = ::time::infinity();
+      Infinite();
 
    }
 
@@ -168,11 +168,18 @@ public:
 
 
    //static inline class ::time first();
-  [[nodiscard]] static inline class ::time now() { return e_now; }
+   [[nodiscard]] static inline class ::time now() { return now_t{}; }
 
    inline bool is_past() const { return now() > *this; }
 
-   inline class ::time & Now();
+   class ::time & Now();
+
+   constexpr inline class ::time & Infinite()
+   {
+
+      return *this = infinity();
+
+   }
      
 
    inline class time elapsed() const { return elapsed(now()); }
@@ -298,7 +305,7 @@ public:
    
    //inline bool timeout(const class time & time);
    
-   inline time remaining(const class time & time, const class time & timeNow = e_now);
+   inline time remaining(const class time & time, const class time & timeNow = now_t{});
 
 
    constexpr  class ::time wait() const;

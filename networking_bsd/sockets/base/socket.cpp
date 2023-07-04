@@ -73,7 +73,7 @@ namespace sockets_bsd
    base_socket::base_socket() :
       m_bDelete(false)
       ,m_bCloseAndDelete(false)
-      ,m_timeCreate(time(nullptr))
+      , m_timeCreate(now_t{})
       ,m_psocketParent(nullptr)
       ,m_bDisableRead(false)
       ,m_bConnected(false)

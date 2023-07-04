@@ -37,7 +37,7 @@ namespace sockets
       //, m_maxsock(0)
       , m_iPreviousError(-1)
       //,m_errcnt(0)
-      , m_tlast(0)
+      , m_tlast({ posix_time_t{}, 0 })
       //, m_socks4_port(0)
       , m_bTryDirect(false)
       //, m_resolv_id(0)

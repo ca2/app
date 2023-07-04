@@ -43,7 +43,7 @@ namespace earth
 
       constexpr time() noexcept;
 
-      inline time(enum_now) noexcept { m_posixtime = now().m_posixtime; }
+      inline time(now_t) noexcept { m_posixtime = now().m_posixtime; }
 
       constexpr time(const time &time);
 

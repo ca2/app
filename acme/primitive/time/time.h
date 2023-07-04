@@ -8,7 +8,7 @@ inline DURATION now()
 
    throw "interface_only";
 
-   return e_now;
+   return now_t{};
 
 }
 

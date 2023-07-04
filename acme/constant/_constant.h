@@ -887,24 +887,24 @@ enum enum_zero
 };
 
 
-enum enum_now
-{
+//enum enum_now
+//{
+//
+//
+//   now_t{},
+//
+//
+//};
 
-
-   e_now,
-
-
-};
-
-
-enum enum_infinite
-{
-
-
-   e_infinite,
-
-
-};
+//
+//enum enum_infinite
+//{
+//
+//
+//   e_infinite,
+//
+//
+//};
 
 
 enum enum_normalize

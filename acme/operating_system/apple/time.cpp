@@ -89,9 +89,9 @@ class ::time & time::Now()
       
    }
 
-   m_iSecond = timespec.tv_sec;
+   m_posixtime.m_iSecond = timespec.tv_sec;
 
-   m_iNanosecond = timespec.tv_nsec;
+   m_nanosecond.m_iNanosecond = timespec.tv_nsec;
    
    return *this;
    

@@ -137,7 +137,7 @@ namespace datetime
       i32 get_weekday(i32 year, i32 month, i32 day);
 
 
-      i64 strtotime(const ::text::context * pcontext, const ::string & str, time_t time,i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      i64 strtotime(const ::text::context * pcontext, const ::string & str, posix_time time,i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
       i64 strtotime(const ::text::context * pcontext, const ::string & str, i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
 
       
@@ -151,7 +151,7 @@ namespace datetime
       string get_month_str(const ::text::context * pcontext,i32 iMonth);
       string get_short_month_str(const ::text::context * pcontext,i32 iMonth);
 
-      static time_t s_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      static posix_time s_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear, const ::earth::time_shift& timezone = ::earth::time_shift::none());
 
       inline class  international& international() { return *m_pinternational; }
       //inline class str& str() { return* m_pstr; }

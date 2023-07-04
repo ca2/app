@@ -976,15 +976,15 @@ mutex::~mutex()
 //
 //            ::time d;
 //
-//            d.m_iSecond = abs_time.tv_sec + wait.m_d;
+//            d.m_posixtime.m_iSecond = abs_time.tv_sec + wait.m_d;
 //
-//            d.m_iNanosecond = abs_time.tv_nsec + fmod(wait.m_d, 1.0) * 1'000'000'000;
+//            d.m_nanosecond.m_iNanosecond = abs_time.tv_nsec + fmod(wait.m_d, 1.0) * 1'000'000'000;
 //
 //            d.normalize();
 //
-//            abs_time.tv_sec = d.m_iSecond;
+//            abs_time.tv_sec = d.m_posixtime.m_iSecond;
 //
-//            abs_time.tv_nsec = d.m_iNanosecond;
+//            abs_time.tv_nsec = d.m_nanosecond.m_iNanosecond;
 //
 //            bFirst = false;
 //
@@ -1060,15 +1060,15 @@ mutex::~mutex()
 //
 //      ::time d;
 //
-//      d.m_iSecond = abs_time.tv_sec + (::i64) (wait.m_d);
+//      d.m_posixtime.m_iSecond = abs_time.tv_sec + (::i64) (wait.m_d);
 //
-//      d.m_iNanosecond = abs_time.tv_nsec + (fmod(wait.m_d, 1.0) * 1'000'000'000);
+//      d.m_nanosecond.m_iNanosecond = abs_time.tv_nsec + (fmod(wait.m_d, 1.0) * 1'000'000'000);
 //
 //      d.normalize();
 //
-//      abs_time.tv_sec = d.m_iSecond;
+//      abs_time.tv_sec = d.m_posixtime.m_iSecond;
 //
-//      abs_time.tv_nsec = d.m_iNanosecond;
+//      abs_time.tv_nsec = d.m_nanosecond.m_iNanosecond;
 //
 //      int rc = pthread_mutex_timedlock (m_pmutex, &abs_time);
 //

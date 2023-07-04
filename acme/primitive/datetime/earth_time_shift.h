@@ -8,7 +8,7 @@ namespace earth
 {
 
 
-   class time_shift
+   class CLASS_DECL_ACME time_shift
    {
    public:
 
@@ -26,19 +26,7 @@ namespace earth
 
       }
 
-      static inline time_shift local()
-      {
-
-         time_t zero = 0;
-
-         const tm *lt = localtime(&zero);
-
-         int unaligned = lt->tm_sec + (lt->tm_min + (lt->tm_hour * 60)) * 60;
-
-         return {(double) (lt->tm_mon ? unaligned - 24 * 60 * 60 : unaligned)};
-
-      }
-
+      static time_shift local();
 
       operator double &() { return m_d; }
 

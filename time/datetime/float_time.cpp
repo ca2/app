@@ -1130,9 +1130,9 @@ namespace datetime
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 #ifdef APPLEOS
-inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
+inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDest)
 #else
-inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
+inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDest)
 #endif
 {
     struct tm ttm;

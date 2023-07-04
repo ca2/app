@@ -155,7 +155,7 @@ inline file_time_set get_file_time_set(const ::file::path & path)
 //CLASS_DECL_ACME file_time __file_time(const ::earth::time & time);
 
 
-//time_t __time(const file_time & file_time);
+//posix_time __time(const file_time & file_time);
 
 
 

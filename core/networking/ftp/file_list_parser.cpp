@@ -58,7 +58,7 @@ namespace ftp
 
       tm tm = { 0 };
 
-      time_t t = time(nullptr);
+      posix_time t = time(nullptr);
 
       gmtime_r(&t, &tm);
 
@@ -167,7 +167,7 @@ namespace ftp
       return lResult * 86400;
    }
 
-   long file_list_parser::GetYear(time_t time) const
+   long file_list_parser::GetYear(posix_time time) const
    {
       long lDay = static_cast<long>(time / 86400L);
 
@@ -227,7 +227,7 @@ namespace ftp
    long file_list_parser::GuessTAI(long lMonth, long lMDay)
    {
       ///////////////////////////*/*/*/*/
-      time_t now = ::time(nullptr) - m_tmBase;
+      posix_time now = ::time(nullptr) - m_tmBase;
 
       if (m_lCurrentYear == -1)
       {

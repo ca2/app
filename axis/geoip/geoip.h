@@ -28,14 +28,14 @@ typedef struct GeoIPTag {
    uchar *index_cache;
    u32 *databaseSegments;
    char databaseType;
-   time_t mtime;
+   posix_time mtime;
    i32 flags;
    off_t   size;
    char record_length;
    i32 charset; /* 0 iso-8859-1 1 utf8 */
    i32 record_iter; /* used in GeoIP_next_record */
    i32 netmask; /* netmask of last lookup - set using depth in _GeoIP_seek_record */
-   time_t last_mtime_check;
+   posix_time last_mtime_check;
 } GeoIP;
 
 

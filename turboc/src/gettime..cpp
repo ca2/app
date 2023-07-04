@@ -32,7 +32,7 @@ void
 gettime (struct time *timep)
 {
   struct tm *ModTime;
-  time_t t;
+  posix_time t;
   time (&t);
   ModTime = localtime (&t);
   timep->ti_hund = 0;

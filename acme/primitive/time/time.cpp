@@ -84,11 +84,11 @@
 CLASS_DECL_ACME class time random(const class time & d1, const class time & d2)
 {
 
-   auto iSeconds = random(d1.m_iSecond, d2.m_iSecond);
+   auto iSeconds = random(d1.m_posixtime.m_iSecond, d2.m_posixtime.m_iSecond);
 
    class ::time time(iSeconds, random(
-      (::i64)(((::i64)iSeconds > d1.m_iSecond) ? 0 : d1.m_iNanosecond),
-      (::i64)(((::i64)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
+      (::i64)(((::i64)iSeconds > d1.m_posixtime.m_iSecond) ? 0 : d1.m_nanosecond.m_iNanosecond),
+      (::i64)(((::i64)iSeconds < d2.m_posixtime.m_iSecond) ? 999'999'999 : d2.m_nanosecond.m_iNanosecond)));
 
    return time;
 
@@ -130,7 +130,10 @@ void time::fset(long double d, double dNano)
 
    dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
 
-   raw_set((time_t)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (long)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
+   raw_set(
+      posix_time({ posix_time_t{}, (::i64)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))) }),
+      nanosecond({nanosecond_t{}, (long)fmod(dNano, 1000.0 * 1000.0 * 1000.0)})
+   );
 
 }
 
@@ -138,7 +141,9 @@ void time::fset(long double d, double dNano)
 void time::fset(long double d)
 {
 
-   raw_set((time_t)floor(d), (long)(fmod(d, 1.0) * 1'000'000'000.0));
+   raw_set(
+      posix_time{ posix_time_t{}, (::i64)floor(d) },
+      nanosecond{ nanosecond_t{}, (long)(fmod(d, 1.0) * 1'000'000'000.0) });
 
 }
 

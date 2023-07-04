@@ -8522,7 +8522,7 @@ bool payload::is_false() const
    case e_type_patom:
       return !m_patom || m_patom->is_empty() || *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || *m_patom == "0";
    case e_type_earth_time:
-      return !m_earthtime.m_time;
+      return !m_earthtime.m_posixtime.m_iSecond;
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -8709,7 +8709,7 @@ bool payload::is_set_false() const
    case e_type_patom:
       return !m_patom || m_patom->is_empty()|| *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || m_patom->case_insensitive_order("0") == 0;
    case e_type_earth_time:
-      return !m_earthtime.m_time;
+      return !m_earthtime.m_posixtime.m_iSecond;
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -9037,7 +9037,7 @@ void unit_test_primitive_var_acme_block()
 ::earth::time payload::as_earth_time () const
 {
 
-   return as_i64();
+   return posix_time{ posix_time_t{}, as_i64() };
 
 }
 
@@ -9064,7 +9064,7 @@ void unit_test_primitive_var_acme_block()
 
       set_type(e_type_time, false);
 
-      m_earthtime = i;
+      m_earthtime.m_posixtime.m_iSecond = i;
 
 
    }

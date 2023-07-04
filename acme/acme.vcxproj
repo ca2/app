@@ -1057,6 +1057,7 @@
     <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp" />
+    <ClCompile Include="primitive\datetime\earth_time_shift.cpp" />
     <ClCompile Include="primitive\datetime\file_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />

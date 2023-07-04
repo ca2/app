@@ -27,7 +27,7 @@ inline const ::ansi_character * __ansichr(const ::ansi_character * psz1, ::ansi_
 
 inline ::ansi_character * __ansipbrk(::ansi_character * psz, const ::ansi_character * pszCharsToFind);
 
-inline ::ansi_character * __ansitok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
+CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
 
 inline const ::ansi_character * __ansirchr(const ::ansi_character * psz1, ::ansi_character ch);
 

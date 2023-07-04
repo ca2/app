@@ -1229,7 +1229,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////      char szTimeMessage[2108];
 ////
-////      ::time_t timet = ::time(nullptr);
+////      ::posix_time timet = ::time(nullptr);
 ////
 ////      tm t;
 ////
@@ -1338,7 +1338,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////            char szUTCTime[2048];
 ////
-////            time_t rawtime;
+////            posix_time rawtime;
 ////
 ////            struct tm* g;
 ////

@@ -214,7 +214,7 @@ void get_system_time_as_file_time(file_time_t* pfile_time)
 //}
 
 
-void file_time_to_earth_time(time_t* ptime, const file_time_t* pfile_time, i32 nDST)
+void file_time_to_earth_time(posix_time* ptime, const file_time_t* pfile_time, i32 nDST)
 {
 
    system_time_t systemtime{};
@@ -298,9 +298,9 @@ CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* 
 
    nanoseconds -= EPOCH_DIFFERENCE_NANOS;
 
-   ptime->m_iSecond = nanoseconds / 1'000'000'000;
+   ptime->m_posixtime.m_iSecond = nanoseconds / 1'000'000'000;
 
-   ptime->m_iNanosecond = nanoseconds % 1'000'000'000;
+   ptime->m_nanosecond.m_iNanosecond = nanoseconds % 1'000'000'000;
 
 }
 
@@ -309,10 +309,21 @@ CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* 
 CLASS_DECL_ACME void time_to_file_time(file_time_t* pfiletime, const class ::time * ptime)
 {
 
-   uint64_t nanoseconds = ptime->m_iNanosecond + ptime->m_iSecond * 1'000'000'000;
+   uint64_t nanoseconds = ptime->m_nanosecond.m_iNanosecond + ptime->m_posixtime.m_iSecond * 1'000'000'000;
 
    nanoseconds += EPOCH_DIFFERENCE_NANOS;
 
    *pfiletime = nanoseconds / 100;
 
 }
+
+
+
+
+posix_time::posix_time(now_t):
+   m_iSecond(time(nullptr))
+{
+
+
+}
+

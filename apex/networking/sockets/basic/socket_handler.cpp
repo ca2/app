@@ -37,7 +37,7 @@ namespace sockets
       //, m_maxsock(0)
       , m_iPreviousError(-1)
       //,m_errcnt(0)
-      , m_tlast(0)
+      , m_tlast({ posix_time_t{}, 0 })
       //, m_socks4_port(0)
       , m_bTryDirect(false)
       //, m_resolv_id(0)
@@ -910,7 +910,7 @@ namespace sockets
 //                 
 //                 // Out-Of-Band data
 //                 // recv with MSG_OOB
-//                 //time_t tnow = time(nullptr);
+//                 //posix_time tnow = time(nullptr);
 //
 //                 if (ppairsocket_id->m_psocket->has_timed_out())
 //                 {
@@ -1025,7 +1025,7 @@ namespace sockets
 //     if (m_socketidlistTimeout.get_size())
 //     {
 //        
-//        time_t tnow = time(nullptr);
+//        posix_time tnow = time(nullptr);
 //
 //        if (tnow != m_tlast)
 //        {

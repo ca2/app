@@ -2964,27 +2964,31 @@ namespace http
    }
 
 
-   string context::gmdate(time_t t)
+   string context::gmdate(posix_time t)
    {
 
-      if (t == 0)
+      if (t.m_iSecond == 0)
       {
 
-         t = ::time(nullptr);
+         t.m_iSecond = ::time(nullptr);
 
       }
 
       struct tm tp;
 
+      time_t time(t.m_iSecond);
+
 #ifdef _WIN32
 
-      ::memory_copy(&tp, gmtime(&t), sizeof(tp));
+      ::memory_copy(&tp, gmtime(&time), sizeof(tp));
 
 #else
 
-      gmtime_r(&t, &tp);
+      gmtime_r(&time, &tp);
 
 #endif
+
+      t.m_iSecond = time;
 
       const char * days[7] = { "Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"

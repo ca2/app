@@ -410,10 +410,10 @@ PLARGE_INTEGER Time)
  */
 ::i32 TIME_GetBias(void)
 {
-   static time_t last_utc;
+   static posix_time last_utc;
    static ::i32 last_bias;
    ::i32 ret;
-   time_t utc;
+   posix_time utc;
 
    utc = time( nullptr );
 
@@ -722,7 +722,7 @@ WINULONG NtGetTickCount(void)
 static i32 weekday_to_mday(i32 year, i32 day, i32 mon, i32 day_of_week)
 {
    struct tm date;
-   time_t tmp;
+   posix_time tmp;
    i32 wday, mday;
 
    /* find first day in the month matching week day of the date */
@@ -815,9 +815,9 @@ static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 
 */
 
 
-static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
+static posix_time find_dst_change(posix_time minimum, posix_time maximum, i32 *is_dst)
 {
-   time_t start;
+   posix_time start;
    struct tm *tm;
 
    start = minimum;
@@ -827,7 +827,7 @@ static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
 
    while (minimum <= maximum)
    {
-      time_t pos = (minimum + maximum) / 2;
+      posix_time pos = (minimum + maximum) / 2;
       tm = localtime(&pos);
 
       if (tm->tm_isdst != *is_dst)
@@ -843,7 +843,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    static RTL_TIME_ZONE_INFORMATION cached_tzi;
    static i32 current_year = -1;
    struct tm *tm;
-   time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
+   posix_time year_start, year_end, tmp, dlt = 0, iStandard = 0;
    i32 is_dst, current_is_dst;
 
    critical_section_lock ml(::acme::acme::g_pacme->tz_critical_section());
@@ -1009,7 +1009,7 @@ NTSTATUS RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzinfo )
 NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 {
    struct timeval tv;
-   //time_t tm_t;
+   //posix_time tm_t;
    ::u32 sec, oldsec;
    LARGE_INTEGER tm;
 
@@ -1215,7 +1215,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * psystemtime)
 }
 
 
-void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time)
+void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time)
 {
 
    SYSTEMTIME systemtime;

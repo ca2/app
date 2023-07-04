@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "httpd_socket.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/primitive/string/base64.h"
 
 
@@ -105,7 +106,7 @@ namespace sockets
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
-         m_response.header("Content-length") = (i64) mem.size();
+         m_response.header("Content-length") = (i64)mem.size();
          m_response.header("content-type") = type;
          //      m_response.header("Last-modified") = m_start;
          SendResponse();
@@ -120,11 +121,11 @@ namespace sockets
    string httpd_socket::datetime2httpdate(const string & dt)
    {
       struct tm tp;
-      time_t t;
-      const char *days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
-      const char *months[] = { "Jan","Feb","Mar","Apr","May","Jun",
+      posix_time t;
+      const char * days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+      const char * months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                                "Jul","Aug","Sep","Oct","Nov","Dec"
-                             };
+      };
       i32 i;
       char s[40];
 
@@ -132,30 +133,30 @@ namespace sockets
 
       if (dt.length() == 19)
       {
-         tp.tm_year = atoi(dt.substr(0,4)) - 1900;
-         i = atoi(dt.substr(5,2)) - 1;
+         tp.tm_year = atoi(dt.substr(0, 4)) - 1900;
+         i = atoi(dt.substr(5, 2)) - 1;
          tp.tm_mon = i >= 0 ? i : 0;
-         tp.tm_mday = atoi(dt.substr(8,2));
-         tp.tm_hour = atoi(dt.substr(11,2));
-         tp.tm_min = atoi(dt.substr(14,2));
-         tp.tm_sec = atoi(dt.substr(17,2));
+         tp.tm_mday = atoi(dt.substr(8, 2));
+         tp.tm_hour = atoi(dt.substr(11, 2));
+         tp.tm_min = atoi(dt.substr(14, 2));
+         tp.tm_sec = atoi(dt.substr(17, 2));
          tp.tm_wday = 0;
          tp.tm_yday = 0;
          tp.tm_isdst = 0;
-         t = mktime(&tp);
-         if (t == -1)
+         t.m_iSecond = mktime(&tp);
+         if (t.m_iSecond == -1)
          {
 
             information() << "datetime2httpdate: mktime() failed";
-            
+
          }
 
-         sprintf(s,"%s, %02d %s %d %02d:%02d:%02d GMT",
+         sprintf(s, "%s, %02d %s %d %02d:%02d:%02d GMT",
                  days[tp.tm_wday],
                  tp.tm_mday,
                  months[tp.tm_mon],
                  tp.tm_year + 1900,
-                 tp.tm_hour,tp.tm_min,tp.tm_sec);
+                 tp.tm_hour, tp.tm_min, tp.tm_sec);
       }
       else
       {
@@ -167,20 +168,23 @@ namespace sockets
 
    string httpd_socket::GetDate()
    {
-      time_t t = time(nullptr);
-      struct tm tp;
-#ifdef _WIN32
-      ::memory_copy(&tp, localtime(&t), sizeof(tp));
-#else
-      localtime_r(&t, &tp);
-#endif
+
+      ::earth::gregorian::time time;
+
+      time.Now(::earth::time_shift::local());
+
       char slask[40]; // yyyy-mm-dd hh:mm:ss
-      sprintf(slask,"%d-%02d-%02d %02d:%02d:%02d",
-              tp.tm_year + 1900,
-              tp.tm_mon + 1,
-              tp.tm_mday,
-              tp.tm_hour,tp.tm_min,tp.tm_sec);
+
+      sprintf(slask, "%d-%02d-%02d %02d:%02d:%02d",
+              time.m_iYear,
+              time.m_iMonth + 1,
+              time.m_iDay,
+              time.m_iHour,
+              time.m_iMinute, 
+              time.m_iSecond);
+
       return slask;
+
    }
 
 

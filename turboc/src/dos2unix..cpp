@@ -96,11 +96,11 @@ char *day_l[] =
   { "Nedele", "Pondeli", "Utery", "Streda", "Ctvrtek", "Patek", "Sobota", };
 #endif // 0
 
-time_t
+posix_time
 dostounix (struct date *d, struct time *t)
 {
   struct tm utm, *ptm;
-  time_t the_time = time (0);
+  posix_time the_time = time (0);
 
   ptm = localtime (&the_time);
   memory_set (&utm, N_C, sizeof (struct tm));
@@ -117,7 +117,7 @@ dostounix (struct date *d, struct time *t)
 }
 
 void
-unixtodos (time_t the_time, struct date *d, struct time *t)
+unixtodos (posix_time the_time, struct date *d, struct time *t)
 {
   struct tm utm, *ptm;
 
@@ -135,7 +135,7 @@ unixtodos (time_t the_time, struct date *d, struct time *t)
 }
 
 void
-unixdos_time (time_t the_time, struct time *t)
+unixdos_time (posix_time the_time, struct time *t)
 {
   struct date d;
 
@@ -144,7 +144,7 @@ unixdos_time (time_t the_time, struct time *t)
 }
 
 void
-unixdos_date (time_t the_time, struct date *d)
+unixdos_date (posix_time the_time, struct date *d)
 {
   struct time t;
 

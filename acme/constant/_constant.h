@@ -344,12 +344,6 @@ constexpr int trace_level_letter(enum_trace_level etracelevel)
 }
 
 
-//inline FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace_level etracelevelInformation = e_trace_level_information)
-//{
-//
-//   return etracelevel <= etracelevelInformation ? stdout : stderr;
-//
-//}
 
 
 //enum  : i64
@@ -893,24 +887,24 @@ enum enum_zero
 };
 
 
-enum enum_now
-{
+//enum enum_now
+//{
+//
+//
+//   now_t{},
+//
+//
+//};
 
-
-   e_now,
-
-
-};
-
-
-enum enum_infinite
-{
-
-
-   e_infinite,
-
-
-};
+//
+//enum enum_infinite
+//{
+//
+//
+//   e_infinite,
+//
+//
+//};
 
 
 enum enum_normalize

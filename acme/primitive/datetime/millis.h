@@ -7,7 +7,7 @@ inline millis operator +(const ::millis& millis1, const ::millis& millis2);
 enum enum_now
 {
 
-   e_now,
+   now_t{},
 
 };
 

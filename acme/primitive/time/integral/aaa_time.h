@@ -24,10 +24,10 @@
 //
 //   inline integral_time & Now();
 //
-//   static inline integral_time now() { return e_now; }
+//   static inline integral_time now() { return now_t{}; }
 //
 //
-//   inline integral_time elapsed(const integral_time & timeStop = ::e_now) const
+//   inline integral_time elapsed(const integral_time & timeStop = ::now_t{}) const
 //   {
 //
 //      return typename INTEGRAL_TIME_TYPE::BASE_TYPE(timeStop.m_i - this->m_i);

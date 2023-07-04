@@ -273,7 +273,7 @@ namespace simpledb
 
             ::earth::time timeListing(pdatetime->from_string(ptextcontext, strListingTime));
 
-            if (timeListing.abs_diff(e_now) > 5_s)
+            if (timeListing.abs_diff(now_t{}) > 5_s)
             {
 
                return false;

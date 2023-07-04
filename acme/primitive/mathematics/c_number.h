@@ -187,10 +187,10 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 class time;
 
 
-class microsecond;
+//class microsecond;
 
 
-class nanosecond;
+//class nanosecond;
 
 
 class time;

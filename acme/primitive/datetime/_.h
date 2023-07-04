@@ -54,7 +54,7 @@ class system_time;
 //}
 //
 //// seconds since Epoch in UTC
-//inline time_t make_utc_time(struct tm const *t)
+//inline posix_time make_utc_time(struct tm const *t)
 //{
 //
 //   int year = t->tm_year + 1900;
@@ -88,9 +88,9 @@ class system_time;
 //
 //   int days_since_epoch = days_from_1970(year) + day_of_year;
 //
-//   time_t seconds_in_day = 3600 * 24;
+//   posix_time seconds_in_day = 3600 * 24;
 //
-//   time_t result = seconds_in_day * days_since_epoch + 3600 * t->tm_hour + 60 * t->tm_min + t->tm_sec;
+//   posix_time result = seconds_in_day * days_since_epoch + 3600 * t->tm_hour + 60 * t->tm_min + t->tm_sec;
 //
 //   return result;
 //
@@ -124,13 +124,13 @@ namespace datetime
 
 } // namespace datetime;
 
-#ifdef WINDOWS
-
-
-extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp);
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//extern "C" CLASS_DECL_ACME posix_time timegm(struct tm *tmp);
+//
+//
+//#endif
 
 
 extern "C" CLASS_DECL_ACME int c_localtime_offset();
@@ -161,7 +161,7 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 //#ifdef WINDOWS
 //
 //
-//extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp);
+//extern "C" CLASS_DECL_ACME posix_time timegm(struct tm *tmp);
 //
 //
 //#endif

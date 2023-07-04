@@ -91,6 +91,7 @@ inline bool character_isalpha(::ansi_character ansich) noexcept;
 inline bool character_isalnum(::ansi_character ansich) noexcept;
 inline bool character_isdigit(::ansi_character ansich) noexcept;
 inline bool character_isspace(::ansi_character ansich) noexcept;
+inline bool character_isupper(::ansi_character ansich) noexcept;
 
 
 inline ::ansi_character * string_uppercase(::ansi_character * psz, strsize size) noexcept;

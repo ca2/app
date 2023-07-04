@@ -113,15 +113,15 @@ extern "C"
 
 
 //   static struct tm *my_localtime_r __P((const time_t *,struct tm *));
-   static struct tm *
-      my_localtime_r(const time_t * t,struct tm * tp)
-   {
-      struct tm *l = localtime(t);
-      if(! l)
-         return 0;
-      *tp = *l;
-      return tp;
-   }
+   //static struct tm *
+   //   my_localtime_r(const time_t * t,struct tm * tp)
+   //{
+   //   struct tm *l = localtime(t);
+   //   if(! l)
+   //      return 0;
+   //   *tp = *l;
+   //   return tp;
+   //}
 
 
    /* Yield the difference between (YEAR-YDAY HOUR:minimum:SEC) and (*TP),

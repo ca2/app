@@ -24,7 +24,7 @@ inline ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const
       if (address_overlaps(pszDst, pszSrc, srclen * sizeof(::ansi_character)))
       {
 
-         memmove(pszDst, pszSrc, srclen * sizeof(::ansi_character));
+         memory_transfer(pszDst, pszSrc, srclen * sizeof(::ansi_character));
 
       }
       else

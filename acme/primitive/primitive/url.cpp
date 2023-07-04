@@ -458,7 +458,7 @@ namespace url
 
          ch = strCandidate[i];
 
-         if(isalpha((uchar) ch))
+         if(__ansicharisalpha((uchar) ch))
             i++;
          else if(ch == '.')
             i++;

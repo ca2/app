@@ -466,7 +466,7 @@ namespace allocator
       inline static void copy(TYPE * pdst, const TYPE * psrc)
       {
 
-         memmove(pdst, psrc, sizeof(TYPE));
+         memory_transfer(pdst, psrc, sizeof(TYPE));
 
       }
 
@@ -474,7 +474,7 @@ namespace allocator
       inline static void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
       {
 
-         memmove(pdst, psrc, sizeof(TYPE) * c);
+         memory_transfer(pdst, psrc, sizeof(TYPE) * c);
 
       }
 
@@ -636,7 +636,7 @@ namespace allocator
       inline static void copy(TYPE * pdst, const TYPE * psrc)
       {
 
-         memmove(pdst, psrc, sizeof(TYPE));
+         memory_transfer(pdst, psrc, sizeof(TYPE));
 
       }
 
@@ -644,7 +644,7 @@ namespace allocator
       inline static void copy_count(TYPE * pdst, const TYPE * psrc, ::count c)
       {
 
-         memmove(pdst, psrc, sizeof(TYPE) * c);
+         memory_transfer(pdst, psrc, sizeof(TYPE) * c);
 
       }
 

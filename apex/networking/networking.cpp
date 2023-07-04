@@ -173,7 +173,7 @@ namespace networking
       string dst;
       for (i32 i = 0; i < src.length(); i++)
       {
-         if (src[i] == '%' && isxdigit((uchar)(src[i + 1])) && isxdigit((uchar)(src[i + 2])))
+         if (src[i] == '%' && __ansicharishexadecimal((uchar)(src[i + 1])) && __ansicharishexadecimal((uchar)(src[i + 2])))
          {
             char c1 = src[++i];
             char c2 = src[++i];

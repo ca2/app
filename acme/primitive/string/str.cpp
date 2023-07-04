@@ -3118,7 +3118,7 @@ i64 str::to_i64(const ::string & str)
 
    u64 u = 0;
 
-   for (; i < str.length() && isdigit(str[i]); i++)
+   for (; i < str.length() && character_isdigit(str[i]); i++)
    {
 
       u = u * 10 + str[i] - 48;
@@ -3176,7 +3176,7 @@ u64 str::to_u64(const ::string & str)
 
    u64 u = 0;
 
-   for (; i < str.length() && isdigit(str[i]); i++)
+   for (; i < str.length() && character_isdigit(str[i]); i++)
    {
       u = u * 10 + str[i] - 48;
    }

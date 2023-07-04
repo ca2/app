@@ -39,9 +39,9 @@ inline int ansi_ncmp(const ::ansi_character * psz1, const ::ansi_character * psz
 
 inline const ::ansi_character * ansi_str(const ::ansi_character * psz, const ::ansi_character * pszFind) { return strstr(psz, pszFind); }
 
-inline ::ansi_character ansi_tolower(::ansi_character ch) { return tolower(ch); }
+inline ::ansi_character ansi_tolower(::ansi_character ch) { return __ansitolower(ch); }
 
-inline ::ansi_character ansi_toupper(::ansi_character ch) { return toupper(ch); }
+inline ::ansi_character ansi_toupper(::ansi_character ch) { return __ansitoupper(ch); }
 
 #ifdef WINDOWS
 

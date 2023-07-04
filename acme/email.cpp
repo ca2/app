@@ -36,7 +36,7 @@ inline bool __QPDecode(
       if (ch == '=')
       {
          //if the next character is a digit or a character, convert
-         if ((nRead < (nSrcLen - 1)) && (isdigit(static_cast<unsigned char>(*pbSrcData)) || isalpha(static_cast<unsigned char>(*pbSrcData))))
+         if ((nRead < (nSrcLen - 1)) && (__ansicharisdigit(static_cast<unsigned char>(*pbSrcData)) || __ansicharisalpha(static_cast<unsigned char>(*pbSrcData))))
          {
             char szBuf[5];
             szBuf[0] = *pbSrcData++;

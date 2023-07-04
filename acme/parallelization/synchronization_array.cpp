@@ -175,7 +175,7 @@ void synchronization_array::erase(::particle * pparticle)
 
       auto iIndex = m_hsyncaCache.erase(handle);
 
-      ::memmove(&m_byteaSyncIndex[iIndex], &m_byteaSyncIndex[iIndex + 1], m_hsyncaCache.get_count() - 1);
+      ::memory_transfer(&m_byteaSyncIndex[iIndex], &m_byteaSyncIndex[iIndex + 1], m_hsyncaCache.get_count() - 1);
 
    }
 

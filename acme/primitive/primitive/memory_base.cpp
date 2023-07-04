@@ -2015,7 +2015,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       auto c = abs(iNewLen - iOldLen);
 
-      memmove(ptarget, psource, iOldSize - iStart - iNewLen);
+      memory_transfer(ptarget, psource, iOldSize - iStart - iNewLen);
 
    }
 

@@ -747,7 +747,7 @@ public:
          
       }
       
-      ::memmove((CHARACTER *) this->m_begin, range.m_begin, range.size());
+      ::memory_transfer((CHARACTER *) this->m_begin, range.m_begin, range.size());
          
       release_buffer(range.size());
 

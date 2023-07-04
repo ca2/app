@@ -3,8 +3,8 @@
 
 
 
-inline ::ansi_character               __ansicharlowered(i32 i);
-inline ::ansi_character               __ansicharuppered(i32 i);
+inline ::ansi_character       __ansicharlowered(i32 i);
+inline ::ansi_character       __ansicharuppered(i32 i);
 inline i32                    __ansicharisdigit(i32 i);
 inline i32                    __ansicharisalpha(i32 i);
 inline i32                    __ansicharisalnum(i32 i);
@@ -41,7 +41,7 @@ inline ::ansi_character __ansitolower(::ansi_character ch);
 
 inline ::ansi_character __ansitoupper(::ansi_character ch);
 
-inline ::ansi_character __ansiisdigit(::ansi_character ch);
+//inline ::ansi_character __ansiisdigit(::ansi_character ch);
 
 inline ::ansi_character * __ansilwr(::ansi_character * psz);
 

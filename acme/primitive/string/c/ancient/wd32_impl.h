@@ -22,7 +22,7 @@ inline ::wd32_character * overlap_safe_wd32ncpy(::wd32_character * pszDst, const
       if (address_overlaps(pszDst, pszSrc, srclen * sizeof(::wd32_character)))
       {
 
-         memmove(pszDst, pszSrc, srclen * sizeof(::wd32_character));
+         memory_transfer(pszDst, pszSrc, srclen * sizeof(::wd32_character));
 
       }
       else

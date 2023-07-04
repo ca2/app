@@ -23,7 +23,7 @@ inline ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const
       if (address_overlaps(pszDst, pszSrc, srclen * sizeof(::wd16_character)))
       {
 
-         memmove(pszDst, pszSrc, srclen * sizeof(::wd16_character));
+         memory_transfer(pszDst, pszSrc, srclen * sizeof(::wd16_character));
 
       }
       else

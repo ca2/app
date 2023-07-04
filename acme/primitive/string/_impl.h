@@ -612,12 +612,12 @@ template < typename ITERATOR_TYPE >
          if (p[1] == '\\')
          {
 
-            memmove(p, p + 1, pend - p);
+            memory_transfer(p, p + 1, pend - p);
          }
          else if (p[1] == '\"')
          {
 
-            memmove(p, p + 1, pend - p);
+            memory_transfer(p, p + 1, pend - p);
 
          }
 
@@ -1914,7 +1914,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
 
         prev_escape = nullptr;
 
-        order = tolower(*r.m_begin) <=> tolower(*rangeCompare.m_begin);
+        order = __ansitolower(*r.m_begin) <=> __ansitolower(*rangeCompare.m_begin);
 
         if (order != 0)
         {

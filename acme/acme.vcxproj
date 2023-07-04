@@ -908,11 +908,13 @@
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
     <ClCompile Include="operating_system\main_window.cpp" />
+    <ClCompile Include="operating_system\memory.cpp" />
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
+    <ClCompile Include="operating_system\string.cpp" />
     <ClCompile Include="operating_system\summary.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />

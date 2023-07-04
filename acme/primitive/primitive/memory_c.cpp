@@ -35,7 +35,7 @@ CLASS_DECL_ACME void* memory_transfer(void * dst, const void * src, memsize iSiz
 
    }
 
-   return memmove(dst, src, (size_t) iSize);
+   return memory_transfer(dst, src, (size_t) iSize);
 
 }
 

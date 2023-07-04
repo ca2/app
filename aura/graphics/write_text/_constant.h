@@ -12,12 +12,14 @@ enum enum_font_weight : ::i16
    e_font_weight_thin = 100,
    e_font_weight_extra_light = 200,
    e_font_weight_light = 300,
+   e_font_weight_semi_light = 350,
    e_font_weight_normal = 400,
    e_font_weight_medium = 500,
    e_font_weight_semibold = 600,
    e_font_weight_bold = 700,
    e_font_weight_extra_bold = 800,
    e_font_weight_heavy = 900,
+   e_font_weight_ultra_black = 950,
 
 };
 

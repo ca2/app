@@ -65,10 +65,16 @@ namespace write_text
             return e_font_weight_extra_light;
 
          }
-         else if (iFontWeight <= 350)
+         else if (iFontWeight <= 325)
          {
 
             return e_font_weight_light;
+
+         }
+         else if (iFontWeight <= 375)
+         {
+
+            return e_font_weight_semi_light;
 
          }
          else if (iFontWeight <= 450)
@@ -101,10 +107,16 @@ namespace write_text
             return e_font_weight_extra_bold;
 
          }
-         else
+         else if (iFontWeight <= 925)
          {
 
             return e_font_weight_heavy;
+
+         }
+         else
+         {
+
+            return e_font_weight_ultra_black;
 
          }
 
@@ -152,7 +164,7 @@ namespace write_text
       {
       
          m_efontweight = sink(iFontWeight);
-         m_iFontWeight = maximum(minimum(32767, iFontWeight), -1);
+         m_iFontWeight = maximum(minimum(I16_MAXIMUM, iFontWeight), -1);
 
       }
 

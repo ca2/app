@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "httpd_socket.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/primitive/string/base64.h"
 
 

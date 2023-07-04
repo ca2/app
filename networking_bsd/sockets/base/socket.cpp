@@ -78,7 +78,7 @@ namespace sockets_bsd
       ,m_bDisableRead(false)
       ,m_bConnected(false)
       ,m_bErasedByHandler(false)
-      ,m_timeClose(0)
+      , m_timeClose({ posix_time_t{}, 0 })
       ,m_bLost(false)
       ,m_bEnableSsl(false)
       ,m_bSsl(false)
@@ -370,7 +370,7 @@ namespace sockets_bsd
          if (bCloseAndDelete)
          {
 
-            m_timeClose = time(nullptr);
+            m_timeClose.Now();
 
          }
 

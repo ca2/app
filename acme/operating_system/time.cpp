@@ -316,3 +316,14 @@ CLASS_DECL_ACME void time_to_file_time(file_time_t* pfiletime, const class ::tim
    *pfiletime = nanoseconds / 100;
 
 }
+
+
+
+
+posix_time::posix_time(now_t):
+   m_iSecond(time(nullptr))
+{
+
+
+}
+

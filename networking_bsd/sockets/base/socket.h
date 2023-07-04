@@ -64,25 +64,25 @@ namespace sockets_bsd
       ::pointer<::networking::address>   m_paddressRemoteClient; ///< Address of last connect()
       file_pointer                        m_pfileTrafficMonitor;
 
-      bool                    m_b_chunked;
+      bool                       m_b_chunked;
 
 
-      ::pointer<::memory_file>  m_pmemfileInput;
+      ::pointer<::memory_file>   m_pmemfileInput;
       bool                       m_bEnd; // should finish by not sending no more writes
-      string                  m_strCat;
-      string                  m_strCipherList;
-      callback *              m_pcallback;
-      posix_time                  m_timeCreate; ///< time in seconds when this base_socket was created
-      bool                    m_bDisableRead; ///< Disable checking for read events
-      bool                    m_bConnected; ///< base_socket is connected (tcp/udp)
-      bool                    m_bLost; ///< connection lost
-      bool                    m_bErasedByHandler; ///< Set by handler before delete
-      posix_time                  m_timeClose; ///< time in seconds when ordered to close
-      int                     m_iBindPort;
-      bool                    m_bDelete; ///< Delete by handler flag
+      string                     m_strCat;
+      string                     m_strCipherList;
+      callback *                 m_pcallback;
+      ::earth::time              m_timeCreate; ///< time in seconds when this base_socket was created
+      bool                       m_bDisableRead; ///< Disable checking for read events
+      bool                       m_bConnected; ///< base_socket is connected (tcp/udp)
+      bool                       m_bLost; ///< connection lost
+      bool                       m_bErasedByHandler; ///< Set by handler before delete
+      ::earth::time              m_timeClose; ///< time in seconds when ordered to close
+      int                        m_iBindPort;
+      bool                       m_bDelete; ///< Delete by handler flag
       bool                       m_bCloseAndDelete; ///< close and delete flag
       ::sockets::base_socket *   m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      class ::time            m_timeLastRead;
+      class ::time               m_timeLastRead;
       class ::time            m_timeLastWrite;
       class ::time            m_timeConnectionStart; ///< Set by SetTimeout
       class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout

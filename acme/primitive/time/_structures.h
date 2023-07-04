@@ -6,7 +6,7 @@
 
 struct posix_time_t {};
 
-struct posix_time
+struct CLASS_DECL_ACME posix_time
 {
 
    ::i64    m_iSecond;
@@ -15,6 +15,7 @@ struct posix_time
    template < primitive_integral INTEGRAL >
    constexpr posix_time(posix_time_t, INTEGRAL iSecond) : m_iSecond(iSecond) {}
    constexpr posix_time(const posix_time &) = default;
+   posix_time(now_t);
 
    constexpr posix_time operator + (posix_time posixtime)  const
    {

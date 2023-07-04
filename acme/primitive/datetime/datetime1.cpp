@@ -534,15 +534,15 @@ namespace datetime
 //            }
 //            stra.add(strItem);
 //         }
-//         if(value.m_iSecond != 0)
+//         if(value.m_posixtime.m_iSecond != 0)
 //         {
-//            if(abs(value.m_iSecond) == 1)
+//            if(abs(value.m_posixtime.m_iSecond) == 1)
 //            {
-//               strItem.format("%d second",value.m_iSecond);
+//               strItem.format("%d second",value.m_posixtime.m_iSecond);
 //            }
 //            else
 //            {
-//               strItem.format("%d seconds",value.m_iSecond);
+//               strItem.format("%d seconds",value.m_posixtime.m_iSecond);
 //            }
 //            stra.add(strItem);
 //         }
@@ -632,7 +632,7 @@ extern "C"
 CLASS_DECL_ACME int c_localtime_offset()
 {
 
-   posix_time rawtime = time(nullptr);
+   time_t rawtime = time(nullptr);
 
    struct tm *ptm = gmtime(&rawtime);
 
@@ -640,7 +640,7 @@ CLASS_DECL_ACME int c_localtime_offset()
 
    ptm->tm_isdst = -1;
 
-   posix_time gmt = mktime(ptm);
+   time_t gmt = mktime(ptm);
 
    return (int)(rawtime - gmt);
 

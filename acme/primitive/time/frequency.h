@@ -132,7 +132,7 @@ template < primitive_floating FLOATING >
 constexpr ::frequency operator / (FLOATING d, const class time& time)
 {
 
-   auto nanosecond = (time.m_iSecond * 1'000'000'000.0 + time.m_iNanosecond);
+   auto nanosecond = (time.m_posixtime.m_iSecond * 1'000'000'000.0 + time.m_nanosecond.m_iNanosecond);
 
    return FREQUENCY{d * 1'000'000'000.0 / nanosecond};
 
@@ -143,7 +143,7 @@ template < primitive_integral INTEGRAL >
 constexpr ::frequency operator / (INTEGRAL i, const class time& time)
 {
 
-   auto nanosecond = (time.m_iSecond * 1'000'000'000 + time.m_iNanosecond);
+   auto nanosecond = (time.m_posixtime.m_iSecond * 1'000'000'000 + time.m_nanosecond.m_iNanosecond);
 
    return FREQUENCY{(double)(i * 1'000'000'000) / (double)nanosecond};
 

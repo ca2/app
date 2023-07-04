@@ -124,13 +124,13 @@ namespace datetime
 
 } // namespace datetime;
 
-#ifdef WINDOWS
-
-
-extern "C" CLASS_DECL_ACME posix_time timegm(struct tm *tmp);
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//extern "C" CLASS_DECL_ACME posix_time timegm(struct tm *tmp);
+//
+//
+//#endif
 
 
 extern "C" CLASS_DECL_ACME int c_localtime_offset();

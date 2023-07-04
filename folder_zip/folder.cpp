@@ -173,7 +173,7 @@ namespace folder_zip
 
       auto timeModification = pfile->modification_time();
 
-      ::earth::time earthtimeCreation(timeModification.m_iSecond);
+      ::earth::time earthtimeCreation(timeModification.m_posixtime.m_iSecond);
 
       zipfi.tmz_date.tm_hour = earthtimeCreation.hour();
       zipfi.tmz_date.tm_sec = earthtimeCreation.second();
@@ -415,8 +415,8 @@ namespace folder_zip
 
 #else
 
-      time.m_iSecond = dos_time_unix_time((dostime_t) dosDate);
-      time.m_iNanosecond = 0;
+      time.m_posixtime.m_iSecond = dos_time_unix_time((dostime_t) dosDate);
+      time.m_nanosecond.m_iNanosecond = 0;
 
 #endif
 
@@ -439,8 +439,8 @@ namespace folder_zip
 
       newdate.tm_isdst = -1;
 
-      time.m_iSecond = mktime(&newdate);
-      time.m_iNanosecond = 0;
+      time.m_posixtime.m_iSecond = mktime(&newdate);
+      time.m_nanosecond.m_iNanosecond = 0;
 
 #endif
 

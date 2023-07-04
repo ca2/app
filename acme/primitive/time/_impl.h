@@ -26,8 +26,8 @@ constexpr class time& time::operator = (const class time & time)
    if(this != &time)
    {
 
-      m_iSecond = time.m_iSecond;
-      m_iNanosecond = time.m_iNanosecond;
+      m_posixtime.m_iSecond = time.m_posixtime.m_iSecond;
+      m_nanosecond.m_iNanosecond = time.m_nanosecond.m_iNanosecond;
 
    }
 
@@ -39,8 +39,8 @@ constexpr class time& time::operator = (const class time & time)
 constexpr class ::time & time::operator = (const ::earth::time_span & timespan)
 {
 
-   m_iSecond = timespan.m_time;
-   m_iNanosecond = 0;
+   m_posixtime.m_iSecond = timespan.m_posixtime.m_iSecond;
+   m_nanosecond.m_iNanosecond = 0;
 
    return *this;
 

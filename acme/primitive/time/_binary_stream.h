@@ -10,8 +10,8 @@ template < typename FILE >
 inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const struct ::TIME & time)
 {
 
-   s << time.m_iSecond;
-   s << time.m_iNanosecond;
+   s << time.m_posixtime.m_iSecond;
+   s << time.m_nanosecond.m_iNanosecond;
 
    return s;
 
@@ -22,8 +22,8 @@ template < typename FILE >
 inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::TIME & time)
 {
 
-   s >> time.m_iSecond;
-   s >> time.m_iNanosecond;
+   s >> time.m_posixtime.m_iSecond;
+   s >> time.m_nanosecond.m_iNanosecond;
 
    return s;
 

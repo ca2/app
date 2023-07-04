@@ -209,7 +209,7 @@ namespace datetime
       
       ::earth::time time(year, month, day, 0, 0, 0);
 
-      return time.m_time;
+      return time.m_posixtime.m_iSecond;
 
    }
 
@@ -241,7 +241,7 @@ namespace datetime
 
       }
 
-      return time.get_time();
+      return time.get_time().m_iSecond;
 
    }
 
@@ -264,7 +264,7 @@ namespace datetime
 
       ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, str);
 
-      return val.get_time().get_time();
+      return val.get_time().get_time().m_iSecond;
 
    }
 
@@ -594,7 +594,10 @@ namespace datetime
 
       auto time = ::earth::make_utc_time(&tm);
 
-      return (posix_time) (time - (posix_time) timeshift.m_d);
+      return (posix_time)(time - posix_time{
+         posix_time_t{}, (::i64)timeshift.m_d
+      })
+      ;
 
 //#ifdef WINDOWS
 //

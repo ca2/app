@@ -16,15 +16,15 @@ namespace earth
 
 #ifdef WINDOWS
 
-      t.m_time = ::_time64(nullptr);
+      t.m_posixtime = { posix_time_t {}, ::_time64(nullptr) };
 
 #else
 
-      t.m_time = ::time(nullptr);
+      t.m_posixtime = { posix_time_t {},::time(nullptr) };
 
 #endif
 
-      t.m_timeshift = (double) iZoneOffset;
+      t.m_timeshift = (double) iZoneOffset.m_iSecond;
 
       return t;
 
@@ -39,7 +39,7 @@ namespace earth
 
 
    zonetime::zonetime(const zonetime & zonetime) noexcept :
-      time(zonetime.m_time),
+      time(zonetime.m_posixtime),
       m_timeshift(zonetime.m_timeshift)
    {
 
@@ -69,7 +69,7 @@ namespace earth
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
       atm.tm_isdst = 0;
 
-      m_time = ::earth::make_utc_time(&atm);
+      m_posixtime = ::earth::make_utc_time(&atm);
 
       /*
       Remember that:
@@ -79,11 +79,11 @@ namespace earth
       ENSURE( nHour >= 0 && nHour <= 23 );
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
-      ASSUME(m_time != -1);   */    // indicates an illegal input zonetime
-      if (m_time == -1)
+      ASSUME(m_posixtime != -1);   */    // indicates an illegal input zonetime
+      if (m_posixtime.m_iSecond == -1)
       {
          
-         throw ::exception(error_bad_argument);
+         throw ::exception(error_invalid_time_type);
 
       }
 
@@ -101,7 +101,7 @@ namespace earth
 
          struct tm tmTemp;
 
-         posix_time t = m_time;
+         time_t t = m_posixtime.m_iSecond;
 
          t += (::i32) m_timeshift;
 
@@ -109,7 +109,7 @@ namespace earth
 
          if (err != 0)
          {
-            return nullptr;    // indicates that m_time was not initialized!
+            return nullptr;    // indicates that m_posixtime was not initialized!
          }
 
          *ptm = tmTemp;
@@ -120,7 +120,7 @@ namespace earth
 
          struct tm * ptmTemp;
 
-         posix_time t = m_time;
+         posix_time t = m_posixtime;
 
          t += (posix_time) m_timeshift.m_d;
 
@@ -281,7 +281,7 @@ namespace earth
 
       ptm = GetZoneTm(&ttm);
 
-      return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
+      return { posix_time_t{}, ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0 };
 
    }
 

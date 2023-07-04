@@ -12,9 +12,9 @@ inline timespec __timespec(const class time & time)
    
    timespec time;
    
-   time.tv_sec = time.m_iSecond;
+   time.tv_sec = time.m_posixtime.m_iSecond;
    
-   time.tv_nsec = time.m_iNanosecond;
+   time.tv_nsec = time.m_nanosecond.m_iNanosecond;
    
    return time;
    

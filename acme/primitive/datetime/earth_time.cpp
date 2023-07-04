@@ -63,7 +63,7 @@ namespace earth
       //atm.tm_isdst = nDST;
 
 
-      m_time = make_utc_time(&atm) - (posix_time) timeshift.m_d;
+      m_posixtime = make_utc_time(&atm) - posix_time(posix_time_t{}, (::i64) timeshift.m_d);
 
 
       /*
@@ -74,8 +74,8 @@ namespace earth
       ENSURE( nHour >= 0 && nHour <= 23 );
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
-      ASSUME(m_time != -1);   */    // indicates an illegal input time
-      if(m_time == -1)
+      ASSUME(m_posixtime != -1);   */    // indicates an illegal input time
+      if(m_posixtime.m_iSecond == -1)
       {
 
          throw_exception(error_bad_argument);
@@ -117,20 +117,20 @@ namespace earth
 
 #ifdef WINDOWS
 
-      m_time = _mktime64(&atm);
+      m_posixtime.m_iSecond = _mktime64(&atm);
 
 #else
 
-      m_time = mktime(&atm);
+      m_posixtime.m_iSecond = mktime(&atm);
 
 #endif
 
-      ASSUME(m_time != -1);       // indicates an illegal input time
+      ASSUME(m_posixtime.m_iSecond != -1);       // indicates an illegal input time
 
-      if (m_time == -1)
+      if (m_posixtime.m_iSecond == -1)
       {
 
-         throw ::exception(error_bad_argument);
+         throw ::exception(error_invalid_time_type);
 
       }
 
@@ -145,17 +145,17 @@ namespace earth
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_earth_time((posix_time *)&m_time, &file_time.m_filetime);
+      file_time_to_earth_time((posix_time *)&m_posixtime, &file_time.m_filetime);
 
    }
 
 
-   struct tm* time::tm_struct(struct tm* ptm, const ::earth::time_shift & timeshift) const
+   struct tm * time::tm_struct(struct tm * ptm, const ::earth::time_shift & timeshift) const
    {
 
-      posix_time timeOffset = (posix_time) timeshift.m_d;
+      time_t timeOffset = (time_t) timeshift.m_d;
 
-      posix_time time = m_time + timeOffset;
+      time_t time = m_posixtime.m_iSecond + timeOffset;
 
       if (ptm != nullptr)
       {
@@ -168,7 +168,7 @@ namespace earth
 
          if (err != 0)
          {
-            return nullptr;    // indicates that m_time was not initialized!
+            return nullptr;    // indicates that m_posixtime was not initialized!
          }
 
          *ptm = tmTemp;
@@ -232,11 +232,11 @@ namespace earth
 //
 //         struct tm tmTemp;
 //
-//         errno_t err = _localtime64_s(&tmTemp, &m_time);
+//         errno_t err = _localtime64_s(&tmTemp, &m_posixtime);
 //
 //         if (err != 0)
 //         {
-//            return nullptr;    // indicates that m_time was not initialized!
+//            return nullptr;    // indicates that m_posixtime was not initialized!
 //         }
 //
 //         *ptm = tmTemp;
@@ -245,7 +245,7 @@ namespace earth
 //
 //#else
 //
-//         return localtime_r((posix_time *)&m_time, ptm);
+//         return localtime_r((posix_time *)&m_posixtime, ptm);
 //
 //#endif
 //
@@ -263,7 +263,7 @@ namespace earth
    posix_time time::get_time() const noexcept
    {
 
-       return m_time;
+       return m_posixtime;
 
    }
 
@@ -489,12 +489,12 @@ namespace earth
    time_span time::abs_diff(const class time & time) const
    {
 
-      return abs(time.m_time - m_time);
+      return posix_time({ posix_time_t{}, abs((time.m_posixtime - m_posixtime).m_iSecond) });
 
    }
 
 
-   posix_time time::time_of_day(const time_shift& timeshift) const noexcept
+   posix_time time::time_of_day(const time_shift & timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -503,7 +503,7 @@ namespace earth
 
       ptm = tm_struct(&ttm, timeshift);
 
-      return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
+      return { posix_time_t{}, (::i64)(ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0) };
 
    }
 
@@ -542,7 +542,7 @@ namespace earth
 
       string str;
 
-      auto timeUtc = time.m_time;
+      time_t timeUtc = time.m_posixtime.m_iSecond;
 
       timeUtc += (::i32)  (timeshift.m_d * 3600.0);
 
@@ -571,7 +571,7 @@ namespace earth
 
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
 
-      struct tm * ptmTemp = gmtime((posix_time *)&time.m_time);
+      struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
 
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
@@ -590,7 +590,7 @@ namespace earth
 
       struct tm ptmTemp;
 
-      errno_t err = _gmbtime64_s(&ptmTemp, &m_time);
+      errno_t err = _gmbtime64_s(&ptmTemp, &m_posixtime);
 
       if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
       {
@@ -606,7 +606,7 @@ namespace earth
 
       //#elif defined(ANDROID) || defined(SOLARIS)
       //
-      //      struct tm* ptmTemp = localtime(&m_time);
+      //      struct tm* ptmTemp = localtime(&m_posixtime);
       //
       //      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       //      {
@@ -642,7 +642,7 @@ namespace earth
 
    //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   //   struct tm * ptmTemp = gmtime((posix_time *)&time.m_time);
+   //   struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
 
    //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    //   {
@@ -655,7 +655,7 @@ namespace earth
 
    //   struct tm ptmTemp;
 
-   //   errno_t err = _gmtime64_s(&ptmTemp, &m_time);
+   //   errno_t err = _gmtime64_s(&ptmTemp, &m_posixtime);
 
    //   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
    //   {
@@ -666,7 +666,7 @@ namespace earth
 
    //#else
 
-   //   struct tm * ptmTemp = _gmtime64(&time.m_time);
+   //   struct tm * ptmTemp = _gmtime64(&time.m_posixtime);
 
    //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    //   {
@@ -715,7 +715,7 @@ namespace earth
 
       //throw ::not_implemented();
 
-      return 0;
+      return posix_time{ posix_time_t{}, 0 };
 
    }
 
@@ -727,7 +727,7 @@ namespace earth
 
       //throw_();
 
-      return 0;
+      return posix_time{ posix_time_t{}, 0 };
 
    }
 
@@ -771,7 +771,7 @@ namespace earth
 ////stream & operator <<(stream & os, ::earth::time & time)
 ////{
 ////
-////   os.write((i64) time.m_time);
+////   os.write((i64) time.m_posixtime);
 ////
 ////   return os;
 ////
@@ -797,7 +797,7 @@ namespace earth
 //stream & operator >>(stream & is, ::earth::time & rtime)
 //{
 //
-//   is.read((i64 &) rtime.m_time);
+//   is.read((i64 &) rtime.m_posixtime);
 //
 //   return is;
 //
@@ -901,7 +901,7 @@ CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
 //
 //   auto time = __time(*(FILETIME *)&file_time);
 //
-//   auto estatus = mkgmtime_from_filetime(time.m_time, file_time.m_filetime);
+//   auto estatus = mkgmtime_from_filetime(time.m_posixtime, file_time.m_filetime);
 //
 //   if (!estatus)
 //   {

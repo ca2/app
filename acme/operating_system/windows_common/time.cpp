@@ -11,14 +11,17 @@
 
 
 extern "C"
-struct tm * gmtime_r(const posix_time * timep, struct tm * result)
+struct tm * gmtime_r(const time_t * timep, struct tm * result)
 {
 
    if (gmtime_s(result, timep) != 0)
+   {
+
       return nullptr;
 
-   return result;
+   }
 
+   return result;
 
 }
 
@@ -134,12 +137,14 @@ void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystem
 //}
 
 
-void earth_time_to_system_time(system_time_t* psystemtime, const posix_time* ptime)
+CLASS_DECL_ACME void earth_time_to_system_time(system_time_t* psystemtime, const posix_time* ptime)
 {
    
    struct tm tm;
 
-   gmtime_r(ptime, &tm);
+   time_t time = ptime->m_iSecond;
+
+   gmtime_r(&time, &tm);
 
    copy(*psystemtime, tm);
 
@@ -368,9 +373,9 @@ class ::time & time::Now()
 
    }
 
-   m_iSecond = timespec.tv_sec;
+   m_posixtime.m_iSecond = timespec.tv_sec;
 
-   m_iNanosecond = timespec.tv_nsec;
+   m_nanosecond.m_iNanosecond = timespec.tv_nsec;
 
    return *this;
 

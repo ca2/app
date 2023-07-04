@@ -11,7 +11,7 @@ namespace earth
    CLASS_DECL_ACME time_shift time_shift::local()
    {
 
-      posix_time zero = 0;
+      time_t zero = 0;
 
       const tm * lt = localtime(&zero);
 

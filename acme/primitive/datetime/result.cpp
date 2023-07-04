@@ -87,18 +87,7 @@ namespace datetime
 
       ASSERT(!m_bSpan);
 
-      try
-      {
-
-         return ::earth::time(m_iYear, m_iMonth, m_iDay, m_iHour, m_iMinute, m_iSecond);
-
-      }
-      catch(...)
-      {
-
-         return -1;
-
-      }
+      return ::earth::time(m_iYear, m_iMonth, m_iDay, m_iHour, m_iMinute, m_iSecond);
 
    }
 

@@ -58,9 +58,9 @@ void nanosecond_timer::wait(const class time & time)
 
    struct timespec timespec;
 
-   timespec.tv_sec = (posix_time) time.m_iSecond;
+   timespec.tv_sec = (posix_time) time.m_posixtime.m_iSecond;
 
-   timespec.tv_nsec = (long) time.m_iNanosecond;
+   timespec.tv_nsec = (long) time.m_nanosecond.m_iNanosecond;
 
    ::nanosleep(&timespec, nullptr);
 

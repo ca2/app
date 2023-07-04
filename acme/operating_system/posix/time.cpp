@@ -108,8 +108,8 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 CLASS_DECL_ACME void copy(struct timespec * ptimespec, const class ::time * ptime)
 {
 
-   ptimespec->tv_sec = ptime->m_iSecond;
-   ptimespec->tv_nsec = ptime->m_iNanosecond;
+   ptimespec->tv_sec = ptime->m_posixtime.m_iSecond;
+   ptimespec->tv_nsec = ptime->m_nanosecond.m_iNanosecond;
 
 }
 
@@ -118,8 +118,8 @@ CLASS_DECL_ACME void copy(struct timespec * ptimespec, const class ::time * ptim
 CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespec)
 {
 
-   ptime->m_iSecond = ptimespec->tv_sec;
-      ptime->m_iNanosecond = ptimespec->tv_nsec;
+   ptime->m_posixtime.m_iSecond = ptimespec->tv_sec;
+      ptime->m_nanosecond.m_iNanosecond = ptimespec->tv_nsec;
 
 
 }

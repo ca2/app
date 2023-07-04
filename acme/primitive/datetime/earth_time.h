@@ -38,12 +38,12 @@ namespace earth
    public:
 
 
-      posix_time m_time;
+      posix_time        m_posixtime;
 
 
       constexpr time() noexcept;
 
-      inline time(enum_now) noexcept { m_time = now().m_time; }
+      inline time(enum_now) noexcept { m_posixtime = now().m_posixtime; }
 
       constexpr time(const time &time);
 
@@ -97,15 +97,15 @@ namespace earth
 
       constexpr bool operator==(time time) const noexcept;
 
-      constexpr bool operator!=(time time) const noexcept;
+      //constexpr bool operator!=(time time) const noexcept;
 
-      constexpr bool operator<(time time) const noexcept;
+      constexpr ::std::strong_ordering operator<=>(time time) const noexcept;
 
-      constexpr bool operator>(time time) const noexcept;
+      //constexpr bool operator>(time time) const noexcept;
 
-      constexpr bool operator<=(time time) const noexcept;
+      //constexpr bool operator<=(time time) const noexcept;
 
-      constexpr bool operator>=(time time) const noexcept;
+      //constexpr bool operator>=(time time) const noexcept;
 
       struct ::tm *tm_struct(struct ::tm *ptm, const ::earth::time_shift &timeshift = time_shift::none()) const;
 
@@ -145,49 +145,49 @@ namespace earth
 
    constexpr  bool time::operator==(time time) const noexcept
    {
-      return m_time == time.m_time;
+      return m_posixtime.m_iSecond == time.m_posixtime.m_iSecond;
 
    }
 
 
-   constexpr  bool time::operator!=(time time) const noexcept
+   //constexpr  bool time::operator!=(time time) const noexcept
+   //{
+
+   //   return m_posixtime != time.m_posixtime;
+
+   //}
+
+
+   constexpr ::std::strong_ordering time::operator<=>(time time) const noexcept
    {
 
-      return m_time != time.m_time;
+      return m_posixtime.m_iSecond <=> time.m_posixtime.m_iSecond;
 
    }
 
 
-   constexpr  bool time::operator<(time time) const noexcept
-   {
+   //constexpr  bool time::operator>(time time) const noexcept
+   //{
 
-      return m_time < time.m_time;
+   //   return m_posixtime > time.m_posixtime;
 
-   }
-
-
-   constexpr  bool time::operator>(time time) const noexcept
-   {
-
-      return m_time > time.m_time;
-
-   }
+   //}
 
 
-   constexpr  bool time::operator<=(time time) const noexcept
-   {
+   //constexpr  bool time::operator<=(time time) const noexcept
+   //{
 
-      return m_time <= time.m_time;
+   //   return m_posixtime <= time.m_posixtime;
 
-   }
+   //}
 
 
-   constexpr  bool time::operator>=(time time) const noexcept
-   {
+   //constexpr  bool time::operator>=(time time) const noexcept
+   //{
 
-      return m_time >= time.m_time;
+   //   return m_posixtime >= time.m_posixtime;
 
-   }
+   //}
 
 
 } // namespace earth
@@ -200,18 +200,18 @@ namespace earth
 {
 
 
-   constexpr  time_span time::operator-(time time) const noexcept
+   constexpr time_span time::operator-(time time) const noexcept
    {
 
-      return m_time - time.m_time;
+      return m_posixtime - time.m_posixtime;
 
    }
 
 
-   constexpr  ::earth::time time::operator-(time_span span) const noexcept
+   constexpr ::earth::time time::operator-(time_span span) const noexcept
    {
 
-      return m_time - span.m_time;
+      return m_posixtime - span.m_posixtime;
 
    }
 
@@ -219,27 +219,27 @@ namespace earth
    constexpr  ::earth::time time::operator+(time_span span) const noexcept
    {
 
-      return m_time + span.m_time;
+      return m_posixtime + span.m_posixtime;
 
    }
 
 
    constexpr  time::time() noexcept :
-      m_time(0)
+      m_posixtime({ posix_time_t{}, 0 })
    {
 
    }
 
 
    constexpr  time::time(const class time & time) :
-      m_time(time.m_time)
+      m_posixtime(time.m_posixtime)
    {
 
    }
 
 
    constexpr  time::time(posix_time time)  noexcept :
-      m_time(time)
+      m_posixtime(time)
    {
 
    }
@@ -249,7 +249,7 @@ namespace earth
    constexpr ::earth::time & time::operator=(const class time & time) noexcept
    {
 
-      m_time = time.m_time;
+      m_posixtime = time.m_posixtime;
 
       return *this;
 
@@ -259,7 +259,7 @@ namespace earth
    constexpr ::earth::time & time::operator+=(time_span span) noexcept
    {
 
-      m_time += span.GetTimeSpan();
+      m_posixtime += span.GetTimeSpan();
 
       return *this;
 
@@ -269,7 +269,7 @@ namespace earth
    constexpr ::earth::time & time::operator-=(time_span span) noexcept
    {
 
-      m_time -= span.GetTimeSpan();
+      m_posixtime -= span.GetTimeSpan();
 
       return *this;
 

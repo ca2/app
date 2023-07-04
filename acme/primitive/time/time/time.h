@@ -61,7 +61,7 @@ public:
 
    template < primitive_integer INTEGER >
    constexpr time(INTEGER iSecond)
-   :TIME{ .m_iSecond = (posix_time)iSecond, .m_iNanosecond = (long)0 }
+      : TIME{ .m_posixtime = {posix_time_t{}, (::i64)iSecond}, .m_nanosecond = {nanosecond_t{}, 0} }
    {
       
       
@@ -77,7 +77,7 @@ public:
 
    template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
    constexpr time(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
-      TIME{ .m_iSecond = (posix_time)iSecond, .m_iNanosecond = (long)iNanosecond }
+      TIME{ .m_posixtime = {posix_time_t{}, (::i64)iSecond}, .m_nanosecond = {nanosecond_t{}, (::i64)iNanosecond} }
    { }
 
 
@@ -92,9 +92,9 @@ public:
    template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
    constexpr time(enum_raw, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond)
    {
-         m_iSecond = iSecond;
+         m_posixtime.m_iSecond = iSecond;
 
-         m_iNanosecond = iNanosecond;
+         m_nanosecond.m_iNanosecond = iNanosecond;
    }
 
    template < primitive_integral INTEGRAL1 >
@@ -104,16 +104,16 @@ public:
    constexpr time(enum_normalize, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond)
    {
 
-      m_iSecond = iSecond + iNanosecond / 1'000'000'000;
+      m_posixtime.m_iSecond = iSecond + iNanosecond / 1'000'000'000;
 
-      m_iNanosecond = iNanosecond % 1'000'000'000;
+      m_nanosecond.m_iNanosecond = iNanosecond % 1'000'000'000;
       
-      while(m_iNanosecond < 0)
+      while(m_nanosecond.m_iNanosecond < 0)
       {
 
-         m_iSecond--;
+         m_posixtime.m_iSecond--;
 
-         m_iNanosecond += 1'000'000'000;
+         m_nanosecond.m_iNanosecond += 1'000'000'000;
 
       }
 
@@ -123,11 +123,11 @@ public:
    constexpr time(const ::TIME & time) : TIME(time) {}
 
 
-   constexpr void raw_set(posix_time iSeconds, long iNanoseconds = 0);
-   constexpr void set(posix_time iSeconds, long iNanoseconds);
+   constexpr void raw_set(posix_time posixtime, nanosecond nanosecond = { nanosecond_t{}, 0 });
+   constexpr void set(posix_time posixtime, nanosecond nanosecond);
    constexpr void set_null();
-   static constexpr time raw_create(posix_time iSeconds, long iNanoseconds);
-   static constexpr time create(posix_time iSeconds, long iNanoseconds);
+   static constexpr time raw_create(posix_time posixtime, nanosecond nanosecond);
+   static constexpr time create(posix_time posixtime, nanosecond nanosecond);
    static constexpr time create_null();
 
 
@@ -143,7 +143,7 @@ public:
    //inline bool is_infinity() const;
    constexpr bool is_infinite() const;
    //constexpr bool is_zero() const;
-   //constexpr bool is_set() const { return (m_iSecond >= 0 && m_iNanosecond > 0) || (m_iSecond > 0 && m_iNanosecond >= 0); }
+   //constexpr bool is_set() const { return (m_posixtime.m_iSecond >= 0 && m_nanosecond.m_iNanosecond > 0) || (m_posixtime.m_iSecond > 0 && m_nanosecond.m_iNanosecond >= 0); }
    constexpr static class ::time infinity();
    //inline static time pos_infinity();
    //constexpr static time zero();
@@ -151,7 +151,7 @@ public:
 
    //constexpr void infinite() {*this=infinity();}
    //void PosInfinity() {*this=pos_infinity();}
-   //constexpr void zero() { this->m_iSecond = 0; this->m_iNanosecond = 0; }
+   //constexpr void zero() { this->m_posixtime.m_iSecond = 0; this->m_nanosecond.m_iNanosecond = 0; }
    //constexpr void Null() { Zero(); }
 
    constexpr class ::time & operator = (const class time & time);
@@ -200,17 +200,17 @@ public:
 
    constexpr double ramp_up(const class time & timePeriod, const class time & time) const;
 
-   //inline class ::time operator - (const class time & time) const { return { e_normalize, m_iSecond - time.m_iSecond, m_iNanosecond - time.m_iNanosecond }; }
-   //inline class ::time operator + (const class time & time) const { return { e_normalize, m_iSecond + time.m_iSecond, m_iNanosecond + time.m_iNanosecond }; }
-   constexpr  class ::time & operator -= (const class time & time) { m_iSecond -= time.m_iSecond; m_iNanosecond -= time.m_iNanosecond; normalize();  return *this; }
-   constexpr  class ::time & operator += (const class time & time) { m_iSecond += time.m_iSecond; m_iNanosecond += time.m_iNanosecond; normalize();  return *this; }
+   //inline class ::time operator - (const class time & time) const { return { e_normalize, m_posixtime.m_iSecond - time.m_posixtime.m_iSecond, m_nanosecond.m_iNanosecond - time.m_nanosecond.m_iNanosecond }; }
+   //inline class ::time operator + (const class time & time) const { return { e_normalize, m_posixtime.m_iSecond + time.m_posixtime.m_iSecond, m_nanosecond.m_iNanosecond + time.m_nanosecond.m_iNanosecond }; }
+   constexpr  class ::time & operator -= (const class time & time) { m_posixtime.m_iSecond -= time.m_posixtime.m_iSecond; m_nanosecond.m_iNanosecond -= time.m_nanosecond.m_iNanosecond; normalize();  return *this; }
+   constexpr  class ::time & operator += (const class time & time) { m_posixtime.m_iSecond += time.m_posixtime.m_iSecond; m_nanosecond.m_iNanosecond += time.m_nanosecond.m_iNanosecond; normalize();  return *this; }
 
 
    template < primitive_floating FLOATING >
    constexpr class ::time operator / (FLOATING d) const
    {
 
-      auto nanosecond = (m_iSecond * 1'000'000'000.0 + m_iNanosecond) / d;
+      auto nanosecond = (m_posixtime.m_iSecond * 1'000'000'000.0 + m_nanosecond.m_iNanosecond) / d;
 
       return { e_raw, (::i64)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
 
@@ -221,7 +221,7 @@ public:
    constexpr class ::time operator * (FLOATING d) const
    {
 
-      auto nanosecond = (m_iSecond * 1'000'000'000.0 + m_iNanosecond) * d;
+      auto nanosecond = (m_posixtime.m_iSecond * 1'000'000'000.0 + m_nanosecond.m_iNanosecond) * d;
 
       return { e_raw, (::i64)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
 
@@ -232,7 +232,7 @@ public:
    constexpr class ::time operator / (INTEGRAL i) const
    {
 
-      auto nanosecond = (m_iSecond * 1'000'000'000 + m_iNanosecond) / i;
+      auto nanosecond = (m_posixtime.m_iSecond * 1'000'000'000 + m_nanosecond.m_iNanosecond) / i;
 
       return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
@@ -243,7 +243,7 @@ public:
    constexpr class ::time operator * (INTEGRAL i) const
    {
 
-      auto nanosecond = (m_iSecond * 1'000'000'000 + m_iNanosecond) * i;
+      auto nanosecond = (m_posixtime.m_iSecond * 1'000'000'000 + m_nanosecond.m_iNanosecond) * i;
 
       return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
@@ -340,39 +340,39 @@ public:
 
 
 
-   constexpr::i64 integral_day() const { return m_iSecond / 86'400; }
-   constexpr::i64 integral_hour() const { return m_iSecond / 3'600; }
-   constexpr::i64 integral_minute() const { return m_iSecond / 60; }
-   constexpr::i64 integral_second() const { return m_iSecond; }
-   constexpr::i64 integral_millisecond() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000; }
-   constexpr::i64 integral_microsecond() const { return m_iSecond * 1'000'000 + m_iNanosecond / 1'000; }
-   constexpr::i64 integral_nanosecond() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
+   constexpr::i64 integral_day() const { return m_posixtime.m_iSecond / 86'400; }
+   constexpr::i64 integral_hour() const { return m_posixtime.m_iSecond / 3'600; }
+   constexpr::i64 integral_minute() const { return m_posixtime.m_iSecond / 60; }
+   constexpr::i64 integral_second() const { return m_posixtime.m_iSecond; }
+   constexpr::i64 integral_millisecond() const { return m_posixtime.m_iSecond * 1'000 + m_nanosecond.m_iNanosecond / 1'000'000; }
+   constexpr::i64 integral_microsecond() const { return m_posixtime.m_iSecond * 1'000'000 + m_nanosecond.m_iNanosecond / 1'000; }
+   constexpr::i64 integral_nanosecond() const { return m_posixtime.m_iSecond * 1'000'000'000 + m_nanosecond.m_iNanosecond; }
 
 
    constexpr double floating_day() const { return floating_second() / 86'400.0; }
    constexpr double floating_hour() const { return floating_second() / 3'600.0; }
    constexpr double floating_minute() const { return floating_second() / 60.0; }
-   constexpr double floating_second() const { return (double)m_iSecond + ((double) m_iNanosecond / 1'000'000'000.0); }
+   constexpr double floating_second() const { return (double)m_posixtime.m_iSecond + ((double) m_nanosecond.m_iNanosecond / 1'000'000'000.0); }
    constexpr double floating_millisecond() const { return ((::f64)integral_nanosecond()) / 1'000'000.0; }
    constexpr double floating_microsecond() const { return ((::f64)integral_nanosecond()) / 1'000.0; }
    constexpr double floating_nanosecond() const { return (::f64)integral_nanosecond(); }
 
 
-   ::i32 millisecond() const { return (::i32) (m_iNanosecond / 1'000'000); }
+   ::i32 millisecond() const { return (::i32) (m_nanosecond.m_iNanosecond / 1'000'000); }
 
 
-   constexpr  bool operator == (const class time & time) const { return m_iSecond == time.m_iSecond && m_iNanosecond == time.m_iNanosecond; }
+   constexpr  bool operator == (const class time & time) const { return m_posixtime.m_iSecond == time.m_posixtime.m_iSecond && m_nanosecond.m_iNanosecond == time.m_nanosecond.m_iNanosecond; }
    //inline bool operator != (const class time & time) const { return !operator ==(time); }
    constexpr  ::std::strong_ordering operator <=> (const class time & time) const
    { 
       
-      auto order = m_iSecond <=> time.m_iSecond;
+      auto order = m_posixtime.m_iSecond <=> time.m_posixtime.m_iSecond;
 
-      return order != 0 ? order :  m_iNanosecond <=> time.m_iNanosecond; 
+      return order != 0 ? order :  m_nanosecond.m_iNanosecond <=> time.m_nanosecond.m_iNanosecond; 
 
    }
 
-   //inline bool operator <= (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond <= time.m_iNanosecond); }
+   //inline bool operator <= (const class time & time) const { return m_posixtime.m_iSecond < time.m_posixtime.m_iSecond || (m_posixtime.m_iSecond == time.m_posixtime.m_iSecond && m_nanosecond.m_iNanosecond <= time.m_nanosecond.m_iNanosecond); }
    //inline bool operator > (const class time & time) const { return !operator <=(time); }
    //inline bool operator >= (const class time & time) const { return !operator <=(time); }
    ::pair < ::count, time > count_and_remainder(const class time & time) const
@@ -390,11 +390,11 @@ public:
 
    constexpr time operator %(const class time & time) const;
    constexpr double operator /(const class time & time) const;
-   constexpr time operator +(const class time & time) const { return { e_normalize, this->m_iSecond + time.m_iSecond, this->m_iNanosecond + time.m_iNanosecond }; }
-   constexpr time operator -(const class time & time) const { return { e_normalize, this->m_iSecond - time.m_iSecond, this->m_iNanosecond - time.m_iNanosecond }; }
+   constexpr time operator +(const class time & time) const { return { e_normalize, this->m_posixtime.m_iSecond + time.m_posixtime.m_iSecond, this->m_nanosecond.m_iNanosecond + time.m_nanosecond.m_iNanosecond }; }
+   constexpr time operator -(const class time & time) const { return { e_normalize, this->m_posixtime.m_iSecond - time.m_posixtime.m_iSecond, this->m_nanosecond.m_iNanosecond - time.m_nanosecond.m_iNanosecond }; }
 
 
-   constexpr time operator -() const { return { e_raw, -m_iSecond, -m_iNanosecond }; }
+   constexpr time operator -() const { return { e_raw, -m_posixtime.m_iSecond, -m_nanosecond.m_iNanosecond}; }
 
 
 
@@ -874,9 +874,9 @@ public:
 //constexpr  time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 //{
 //
-//   m_iSecond = iSeconds;
+//   m_posixtime.m_iSecond = iSeconds;
 //
-//   m_iNanosecond = iNanoseconds;
+//   m_nanosecond.m_iNanosecond = iNanoseconds;
 //
 //}
 //
@@ -884,16 +884,16 @@ public:
 //constexpr  time::time(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 //{
 //
-//   m_iSecond = iSeconds + iNanoseconds / 1'000'000'000;
+//   m_posixtime.m_iSecond = iSeconds + iNanoseconds / 1'000'000'000;
 //
-//   m_iNanosecond = iNanoseconds % 1'000'000'000;
+//   m_nanosecond.m_iNanosecond = iNanoseconds % 1'000'000'000;
 //
-//   while(m_iNanosecond < 0)
+//   while(m_nanosecond.m_iNanosecond < 0)
 //   {
 //
-//      m_iSecond--;
+//      m_posixtime.m_iSecond--;
 //
-//      m_iNanosecond += 1'000'000'000;
+//      m_nanosecond.m_iNanosecond += 1'000'000'000;
 //
 //   }
 //
@@ -907,40 +907,40 @@ public:
 //}
 
 
-constexpr  void time::raw_set(posix_time iSeconds, long iNanoseconds)
+constexpr  void time::raw_set(posix_time posixtime, nanosecond nanosecond)
 {
 
-   m_iSecond = iSeconds;
+   m_posixtime = posixtime;
 
-   m_iNanosecond = iNanoseconds;
+   m_nanosecond = nanosecond;
 
 }
 
 
-constexpr  void time::set(posix_time iSeconds, long iNanoseconds)
+constexpr  void time::set(posix_time posixtime, nanosecond nanosecond)
 {
 
-   raw_set(iSeconds, iNanoseconds);
+   raw_set(posixtime, nanosecond);
 
    normalize();
 
 }
 
 
-constexpr  void time::set_null()
+constexpr void time::set_null()
 {
 
-   raw_set(0, 0);
+   raw_set({ posix_time_t{}, 0 }, { nanosecond_t{}, 0 });
 
 }
 
 
-constexpr  class ::time time::raw_create(posix_time iSeconds, long iNanoseconds)
+constexpr class ::time time::raw_create(posix_time posixtime, nanosecond nanosecond)
 {
 
    time time;
 
-   time.raw_set(iSeconds, iNanoseconds);
+   time.raw_set(posixtime, nanosecond);
 
    return time;
 
@@ -948,12 +948,12 @@ constexpr  class ::time time::raw_create(posix_time iSeconds, long iNanoseconds)
 
 
 
-constexpr  class ::time time::create(posix_time iSeconds, long iNanoseconds)
+constexpr  class ::time time::create(posix_time posixtime, nanosecond nanosecond)
 {
 
    time time;
 
-   time.set(iSeconds, iNanoseconds);
+   time.set(posixtime, nanosecond);
 
    return time;
 
@@ -975,7 +975,7 @@ constexpr  class ::time time::create_null()
 //inline bool time::is_pos_infinity() const
 //{
 //
-//   return m_iSecond == ::numeric_info < decltype(m_iSecond) > ::maximum();
+//   return m_posixtime.m_iSecond == ::numeric_info < decltype(m_posixtime.m_iSecond) > ::maximum();
 //
 //}
 //
@@ -983,7 +983,7 @@ constexpr  class ::time time::create_null()
 constexpr bool time::is_infinite() const
 {
 
-   return m_iSecond == ::numeric_info < decltype(m_iSecond) > ::maximum();
+   return m_posixtime.m_iSecond == ::numeric_info < decltype(m_posixtime.m_iSecond) > ::maximum();
 
 }
 
@@ -991,7 +991,7 @@ constexpr bool time::is_infinite() const
 //constexpr bool time::is_zero() const
 //{
 //
-//   return m_iSecond < 0 || (m_iSecond == 0 && m_iNanosecond <= 0);
+//   return m_posixtime.m_iSecond < 0 || (m_posixtime.m_iSecond == 0 && m_nanosecond.m_iNanosecond <= 0);
 //
 //}
 
@@ -1020,10 +1020,10 @@ constexpr  class ::time time::infinity()
 //}
 
 
-constexpr  posix_time time::GetTimeSpan() const
+constexpr posix_time time::GetTimeSpan() const
 {
 
-   return m_iSecond;
+   return m_posixtime;
 
 }
 
@@ -1031,7 +1031,7 @@ constexpr  posix_time time::GetTimeSpan() const
 //constexpr  time::operator bool() const
 //{
 //
-//   return m_iSecond != 0 || m_iNanosecond != 0;
+//   return m_posixtime.m_iSecond != 0 || m_nanosecond.m_iNanosecond != 0;
 //
 //}
 
@@ -1043,7 +1043,7 @@ CLASS_DECL_ACME class ::time random(const class ::time & d1, const class ::time 
 //inline class ::time time::wait() const
 //{
 //
-//   return is_infinite() ? ::time::infinite() : ::wait(m_iSecond, m_iNanosecond);
+//   return is_infinite() ? ::time::infinite() : ::wait(m_posixtime.m_iSecond, m_nanosecond.m_iNanosecond);
 //
 //}
 
@@ -1052,7 +1052,7 @@ template < primitive_floating FLOATING >
 class time operator * (FLOATING d, const class time & time)
 {
 
-   auto nanosecond = d * (time.m_iSecond * 1'000'000'000.0 + time.m_iNanosecond);
+   auto nanosecond = d * (time.m_posixtime.m_iSecond * 1'000'000'000.0 + time.m_nanosecond.m_iNanosecond);
 
    return { e_raw, (::i64)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
 
@@ -1063,7 +1063,7 @@ template < primitive_integral INTEGRAL >
 class time operator * (INTEGRAL i, const class time & time)
 {
 
-   auto nanosecond = i * (time.m_iSecond * 1'000'000'000 + time.m_iNanosecond);
+   auto nanosecond = i * (time.m_posixtime.m_iSecond * 1'000'000'000 + time.m_nanosecond.m_iNanosecond);
 
    return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
@@ -1114,8 +1114,8 @@ inline class time time::remaining(const class time & time, const class time & ti
 //constexpr struct ::timespec & copy(struct ::timespec & timespec, const class ::time & time)
 //{
 //
-//   timespec.tv_sec = (decltype(timespec.tv_sec))time.m_iSecond;
-//   timespec.tv_nsec = (decltype(timespec.tv_nsec))time.m_iNanosecond;
+//   timespec.tv_sec = (decltype(timespec.tv_sec))time.m_posixtime.m_iSecond;
+//   timespec.tv_nsec = (decltype(timespec.tv_nsec))time.m_nanosecond.m_iNanosecond;
 //
 //   return timespec;
 //
@@ -1238,20 +1238,20 @@ constexpr class time day_time(FLOATING f) { return { (FLOATING)(f * 86'400.0), (
 constexpr void time::normalize()
 {
 
-   m_iSecond += m_iNanosecond / SECOND_NANOS;
+   m_posixtime.m_iSecond += m_nanosecond.m_iNanosecond / SECOND_NANOS;
 
-   m_iNanosecond %= SECOND_NANOS;
+   m_nanosecond.m_iNanosecond %= SECOND_NANOS;
 
-   int iSecondSign = ::numeric::sign(m_iSecond);
+   int iSecondSign = ::numeric::sign(m_posixtime.m_iSecond);
 
-   int iNanosecondSign = ::numeric::sign(m_iNanosecond);
+   int iNanosecondSign = ::numeric::sign(m_nanosecond.m_iNanosecond);
 
    if (iSecondSign == -iNanosecondSign && iSecondSign != 0)
    {
 
-      m_iSecond -= iSecondSign;
+      m_posixtime.m_iSecond -= iSecondSign;
 
-      m_iNanosecond += iSecondSign * SECOND_NANOS;
+      m_nanosecond.m_iNanosecond += iSecondSign * SECOND_NANOS;
 
    }
 
@@ -1270,7 +1270,7 @@ constexpr void time::normalize()
 constexpr class ::time time::half() const
 {
 
-   auto nanosecond = (m_iSecond * 1'000'000'000 + m_iNanosecond);
+   auto nanosecond = (m_posixtime.m_iSecond * 1'000'000'000 + m_nanosecond.m_iNanosecond);
 
    auto iSecond = (::i64)(nanosecond / 1'000'000'000);
 
@@ -1285,15 +1285,15 @@ constexpr class ::time time::half() const
 constexpr class ::time & time::operator %= (const class time & time)
 {
 
-   auto nanosecondThis = m_iSecond * 1'000'000'000 + m_iNanosecond;
+   auto nanosecondThis = m_posixtime.m_iSecond * 1'000'000'000 + m_nanosecond.m_iNanosecond;
 
-   auto nanosecond = time.m_iSecond * 1'000'000'000 + time.m_iNanosecond;
+   auto nanosecond = time.m_posixtime.m_iSecond * 1'000'000'000 + time.m_nanosecond.m_iNanosecond;
 
    nanosecondThis %= nanosecond;
 
-   m_iSecond = nanosecondThis / 1'000'000'000;
+   m_posixtime.m_iSecond = nanosecondThis / 1'000'000'000;
 
-   m_iNanosecond = nanosecondThis % 1'000'000'000;
+   m_nanosecond.m_iNanosecond = nanosecondThis % 1'000'000'000;
 
    return *this;
 
@@ -1315,9 +1315,9 @@ constexpr class ::time time::operator % (const class time & time) const
 constexpr double time::operator / (const class time & time) const
 {
 
-   auto nanosecondThis = m_iSecond * 1'000'000'000 + m_iNanosecond;
+   auto nanosecondThis = m_posixtime.m_iSecond * 1'000'000'000 + m_nanosecond.m_iNanosecond;
 
-   auto nanosecond = time.m_iSecond * 1'000'000'000 + time.m_iNanosecond;
+   auto nanosecond = time.m_posixtime.m_iSecond * 1'000'000'000 + time.m_nanosecond.m_iNanosecond;
 
    return (double)nanosecondThis / (double)nanosecond;
 
@@ -1332,22 +1332,22 @@ constexpr void time::set(i64 i, enum_unit eunit)
    switch (eunit)
    {
    case unit_nanos:
-      raw_set(i / (1000 * 1000 * 1000), i % (1000 * 1000 * 1000));
+      raw_set({ posix_time_t{}, i / (1000 * 1000 * 1000) }, { nanosecond_t{}, i % (1000 * 1000 * 1000) });
       break;
    case unit_micros:
-      raw_set(i / (1000 * 1000), (i / 1000) % (1000 * 1000 * 1000));
+      raw_set({ posix_time_t{},i / (1000 * 1000) }, { nanosecond_t{},(i / 1000) % (1000 * 1000 * 1000) });
       break;
    case unit_millis:
-      raw_set(i / 1000, (i / (1000 * 1000)) % (1000 * 1000 * 1000));
+      raw_set({ posix_time_t{}, i / 1000 }, { nanosecond_t{},(i / (1000 * 1000)) % (1000 * 1000 * 1000) });
       break;
    case unit_seconds:
-      raw_set(i, 0);
+      raw_set({ posix_time_t{}, i }, { nanosecond_t{},0});
       break;
    case unit_minutes:
-      raw_set(i * 60, 0);
+      raw_set({ posix_time_t{},i * 60 },{ nanosecond_t{},0});
       break;
    case unit_hours:
-      raw_set(i * 60 * 60, 0);
+      raw_set({ posix_time_t{},i * 60 * 60 }, { nanosecond_t{}, 0 });
       break;
    default:
       throw_exception(error_bad_argument);

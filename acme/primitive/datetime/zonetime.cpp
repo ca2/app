@@ -1,13 +1,8 @@
 #include "framework.h"
 #include "zonetime.h"
-#if defined(LINUX)
-#include <time.h>
-#elif defined(__APPLE__)
-#include <time.h>
-#endif
-////#include "acme/exception/exception.h"
 #include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/primitive/string/str.h"
+#include <time.h>
 
 
 namespace earth

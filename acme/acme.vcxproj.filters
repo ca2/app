@@ -4393,6 +4393,9 @@
     <ClCompile Include="operating_system\string.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\datetime\earth_time_shift.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

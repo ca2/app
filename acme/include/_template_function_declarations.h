@@ -38,7 +38,7 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 CLASS_DECL_ACME i32 ansi_open(const ::scoped_string & scopedstr, i32 i);
 
-CLASS_DECL_ACME FILE* ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
+//CLASS_DECL_ACME FILE* ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
 
 CLASS_DECL_ACME int ansi_file_flag(int iFlag);
 

@@ -88,7 +88,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 using c_error_number = ::i32;
 
 CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error);
-CLASS_DECL_ACME void __cdecl __clearerr_s(FILE *stream);
+//CLASS_DECL_ACME void __clearerr_s(FILE *stream);
 
 
 
@@ -96,7 +96,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const ::ansi_character * pszFileName, 
 
 CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const ::ansi_character * pszFileName, i32 nLine);
 
-CLASS_DECL_ACME void __dump(const ::particle * pparticle);
+//CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 
 
 

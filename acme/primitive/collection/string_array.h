@@ -208,7 +208,7 @@ public:
     void make_lower();
     void make_upper();
 
-   auto & append_format(const CHARACTER * psz, ...)
+    auto & append_format(const CHARACTER * psz, ...)
    {
 
       va_list arguments;

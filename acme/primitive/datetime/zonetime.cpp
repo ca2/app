@@ -6,6 +6,7 @@
 #include <time.h>
 #endif
 ////#include "acme/exception/exception.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/primitive/string/str.h"
 
 
@@ -73,7 +74,7 @@ namespace earth
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
       atm.tm_isdst = 0;
 
-      m_time = make_utc_time(&atm);
+      m_time = ::earth::make_utc_time(&atm);
 
       /*
       Remember that:

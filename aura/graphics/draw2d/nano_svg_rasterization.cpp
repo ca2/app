@@ -10,7 +10,6 @@
 
 #include "acme/_start.h"
 
-
 #include "nanosvg.h"
 #define NANOSVGRAST_IMPLEMENTATION
 #include "nanosvgrast.h"

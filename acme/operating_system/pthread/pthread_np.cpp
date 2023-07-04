@@ -3,7 +3,15 @@
 // From Linux parallelization.cpp <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#if defined(FREEBSD)
+#undef _ANSI_SOURCE
+#undef _C99_SOURCE
+#undef _C11_SOURCE
+#endif
 #include <pthread_np.h>
+#if defined(FREEBSD)
+#include <sched.h>
+#endif
 
 
 int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)

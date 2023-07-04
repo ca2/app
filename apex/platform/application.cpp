@@ -2207,15 +2207,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-#if defined(ANDROID) || defined(WINDOWS) || defined(MACOS) || defined(LINUX)
-
       acmenode()->m_papexnode->on_create_app_shortcut(this);
-
-#else
-
-      throw todo();
-
-#endif
 
    }
 

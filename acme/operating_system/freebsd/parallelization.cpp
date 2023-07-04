@@ -2,6 +2,7 @@
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/display.h"
+#include "acme/platform/acme.h"
 
 #define bitset freebsd_bitset
 #include <sys/_cpuset.h>
@@ -53,30 +54,6 @@
 // }
 
 
-int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
-{
-
-   cpuset_t c;
-
-   CPU_ZERO(&c);
-
-   for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
-   {
-
-      if((1 << i) & dwThreadAffinityMask)
-      {
-
-         CPU_SET(i, &c);
-
-      }
-
-   }
-
-   pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
-
-   return 1;
-
-}
 
 
 
@@ -236,7 +213,7 @@ void main_asynchronous(const ::procedure & procedure)
 
     };
 
-    acmesystem()->windowing_post(predicate);
+    ::acme::acme::g_pacme->m_psubsystem->acmesystem()->windowing_post(predicate);
 
 }
 

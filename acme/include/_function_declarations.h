@@ -42,7 +42,7 @@ CLASS_DECL_ACME void ansi_unlink(const ::scoped_string & scopedstr);
 //CLASS_DECL_ACME::e_status get_last_status();
 
 
-#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID) && !defined(FREEBSD)
 
 int ftruncate(int file, filesize len);
 

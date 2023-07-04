@@ -5,6 +5,7 @@
 #include "acme/exception/not_implemented.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/datetime/_string.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
@@ -591,7 +592,7 @@ namespace datetime
       tm.tm_mday = iDay;
       tm.tm_year = iYear - 1900;
 
-      auto time = make_utc_time(&tm);
+      auto time = ::earth::make_utc_time(&tm);
 
       return (time_t) (time - (time_t) timeshift.m_d);
 
@@ -1526,7 +1527,7 @@ namespace datetime
                /*time_t now = _time64(nullptr);
                time_t nowUtc = mktime(gmtime(&now));
                time_t tDiff = difftime(nowUtc, now);*/
-               time = ::earth::time(make_utc_time(&atm));
+               time = ::earth::time(::earth::make_utc_time(&atm));
 
             }
             else

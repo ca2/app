@@ -19,7 +19,7 @@ inline ::ansi_character * ansi_pbrk(::ansi_character * psz, const ::ansi_charact
 inline ::ansi_character * ansi_tok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state)
 {
 
-#ifdef WINDOWS
+#if defined(WINDOWS)
 
     return strtok_s(psz, sep, state);
 
@@ -68,23 +68,9 @@ inline ::ansi_character * ansi_upr_s(::ansi_character * psz, strsize s) { __ansi
 inline const ::ansi_character * ansi_ichr(const ::ansi_character * psz1, ::ansi_character ch) { return __ansiichr(psz1, ch); }
 
 
-inline int ansi_icmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
-{
-#ifdef WINDOWS
-   return _stricmp(psz1, psz2);
-#else
-   return strcasecmp(psz1, psz2);
-#endif
-}
+CLASS_DECL_ACME int ansi_icmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
-inline int ansi_nicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
-{
-#ifdef WINDOWS
-   return _strnicmp(psz1, psz2, s);
-#else
-   return strncasecmp(psz1, psz2, s);
-#endif
-}
+CLASS_DECL_ACME int ansi_nicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 
 inline const ::ansi_character * ansi_istr(const ::ansi_character * psz, const ::ansi_character * pszFind) { return __ansiistr(psz, pszFind); }
 
@@ -96,23 +82,9 @@ inline int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz
 
 inline int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return strncmp(psz1, psz2, s); }
 
-inline int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2)
-{
-#ifdef WINDOWS
-   return _stricmp(psz1, psz2);
-#else
-   return strcasecmp(psz1, psz2);
-#endif
-}
+CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
-inline int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
-{
-#ifdef WINDOWS
-   return _strnicmp(psz1, psz2, s);
-#else
-   return strncasecmp(psz1, psz2, s);
-#endif
-}
+CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 
 inline strsize ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strspn(psz1, psz2); }
 
@@ -283,12 +255,12 @@ inline const ::wd32_character * wd32_str(const ::wd32_character * psz, const ::w
 inline const ::wide_character * wide_str(const ::wide_character * psz, const ::wide_character * pszFind) { return wd32_str(psz, pszFind); }
 
 inline ::wd16_character wd16_tolower(::wd16_character ch) { return __wd16tolower(ch); }
-inline ::wd32_character wd32_tolower(::wd32_character ch) { return towlower(ch); }
-inline ::wide_character wide_tolower(::wide_character ch) { return wd32_tolower(ch); }
+inline ::wd32_character wd32_tolower(::wd32_character ch) { return __wd32tolower(ch); }
+inline ::wide_character wide_tolower(::wide_character ch) { return __wd32tolower(ch); }
 
 inline ::wd32_character wd16_toupper(::wd16_character ch) { return __wd16toupper(ch); }
-inline ::wd32_character wd32_toupper(::wd32_character ch) { return towupper(ch); }
-inline ::wide_character wide_toupper(::wide_character ch) { return wd32_toupper(ch); }
+inline ::wd32_character wd32_toupper(::wd32_character ch) { return __wd32toupper(ch); }
+inline ::wide_character wide_toupper(::wide_character ch) { return __wd32toupper(ch); }
 
 
 inline ::wd16_character * wd16_lwr(::wd16_character * psz) { return __wd16lwr(psz); }

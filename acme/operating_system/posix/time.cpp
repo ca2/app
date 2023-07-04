@@ -1,4 +1,7 @@
 #include "framework.h"
+#ifdef FREEBSD
+#undef _C11_SOURCE
+#endif
 #include <time.h>
 #include <unistd.h>
 
@@ -118,6 +121,21 @@ CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespe
    ptime->m_iSecond = ptimespec->tv_sec;
       ptime->m_iNanosecond = ptimespec->tv_nsec;
 
+
+}
+
+
+
+
+
+
+
+bool microsecond_sleep::sleep(unsigned long usec)
+{
+
+   usleep((::u32)usec);
+
+   return true;
 
 }
 

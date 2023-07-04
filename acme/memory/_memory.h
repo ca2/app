@@ -5,7 +5,7 @@
 CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const void* s, memsize s_len);
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(FREEBSD)
 
 
 inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)

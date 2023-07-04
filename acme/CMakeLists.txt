@@ -2221,6 +2221,7 @@ if (${FREEBSD})
             operating_system/freebsd/exception_engine.cpp
             operating_system/freebsd/file.cpp
             operating_system/freebsd/file_lock.cpp
+
             #operating_system/freebsd/gdk.cpp
             operating_system/freebsd/graphics.cpp
             operating_system/freebsd/library.cpp
@@ -2233,6 +2234,8 @@ if (${FREEBSD})
             operating_system/freebsd/process.cpp
             operating_system/freebsd/process_pid.cpp
             operating_system/freebsd/simple_app.cpp
+            operating_system/freebsd/standard_exception.cpp
+            operating_system/freebsd/standard_exception.h
             operating_system/freebsd/time.cpp
             #operating_system/freebsd/user.cpp
             operating_system/freebsd/win_base.cpp
@@ -2318,7 +2321,7 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} operating_system/pthread/pthread_np.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source} operating_system/pthread/pthread_np.cpp operating_system/memory.cpp operating_system/string.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

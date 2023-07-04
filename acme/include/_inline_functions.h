@@ -551,20 +551,20 @@ inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** p
 
    long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
 
-   if(l > INT_MAX)
+   if(l > 0x7fffffff)
    {
 
       errno = ERANGE;
 
-      return INT_MAX;
+      return 0x7fffffff;
 
    }
-   else if(l < INT_MIN)
+   else if(l < 0x80000000)
    {
 
       errno = ERANGE;
 
-      return INT_MIN;
+      return 0x80000000;
 
    }
 
@@ -586,12 +586,12 @@ inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** p
 
    unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
 
-   if(ul > UINT_MAX)
+   if(ul > 0xffffffffu)
    {
 
       errno = ERANGE;
 
-      return UINT_MAX;
+      return 0xffffffffu;
 
    }
 

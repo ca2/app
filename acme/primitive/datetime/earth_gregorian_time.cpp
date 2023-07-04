@@ -25,14 +25,16 @@ namespace earth
 
          ::time_t time;
 
-   #ifdef WINDOWS
+//   #ifdef WINDOWS
+//
+//         time = _mkgmtime64(&tm);
+//
+//   #else
+//         time = timegm(&tm);
+//
+//   #endif
 
-         time = _mkgmtime64(&tm);
-
-   #else
-         time = timegm(&tm);
-
-   #endif
+         time = make_utc_time(&tm);
 
          return time;
 

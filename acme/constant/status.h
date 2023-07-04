@@ -29,7 +29,7 @@
 
 #define STATUS_RANGE_MULTIMEDIA MKSTATUS_RANGE(STATUS_RANGE_DATABASE)
 
-#define STATUS_FAILURE (INT_MIN)
+#define STATUS_FAILURE (0x80000000)
 
 #define INT_FAILURE_STATUS(iStatusRange) (((::i64)STATUS_FAILURE + (iStatusRange)))
 
@@ -49,7 +49,7 @@ enum enum_status : ::int64_t
 
    e_status_none = INT64_MIN,
 
-   e_status_process_result_negative_base = (::int64_t)INT_MIN - 1,
+   e_status_process_result_negative_base = (::int64_t)0x80000000 - 1,
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
    error_not_set,

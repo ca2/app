@@ -2,6 +2,8 @@
 #include "_freebsd.h"
 #include "acme/operating_system/ansi/binreloc.h"
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 
 string get_sys_temp_path()
@@ -123,3 +125,26 @@ char * get_current_dir_name()
 
 
 
+
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <errno.h>
+
+
+::file::path get_module_path()
+{
+
+   int mib[4];
+   mib[0] = CTL_KERN;
+   mib[1] = KERN_PROC;
+   mib[2] = KERN_PROC_PATHNAME;
+   mib[3] = -1;
+   char pathbuf[4096];
+   size_t cb = sizeof(pathbuf);
+   sysctl(mib, 4, pathbuf, &cb, NULL, 0);
+
+   return pathbuf;
+
+}

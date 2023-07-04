@@ -28,8 +28,8 @@ inline const ::ansi_character * ansi_istr(const ::ansi_character * psz, const ::
 //inline ::ansi_character * i64toansi(::u64 u, ::ansi_character * buf, int iBase);
 inline int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz2);
 inline int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
-inline int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
-inline int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
+CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
+CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
 inline strsize ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2);
 inline strsize ansi_cspn(const ::ansi_character * psz1, const ::ansi_character * psz2);
 

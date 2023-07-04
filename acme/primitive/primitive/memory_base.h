@@ -77,7 +77,7 @@ public:
    void _assign(const MEMORY & memory)
    {
 
-      memcpy(this, &memory, sizeof(MEMORY));
+      memory_copy(this, &memory, sizeof(MEMORY));
 
    }
 

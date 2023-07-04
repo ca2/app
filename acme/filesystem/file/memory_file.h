@@ -52,7 +52,7 @@ inline void inline_byte_array_copy(::u8 * target, const ::u8 * source, ::memsize
       *(::u64 *)target = *(::u64 *)source;
       break;
    default:
-      ::memcpy(target, source, s);
+      ::memory_copy(target, source, s);
       break;
    }
 

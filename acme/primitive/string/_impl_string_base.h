@@ -6866,11 +6866,11 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
       auto offset = pszTarget - rangeOld.begin();
 
-      memcpy(pLastNewEnd,rangeOld.begin(), offset * sizeof(CHARACTER));
+      memory_copy(pLastNewEnd,rangeOld.begin(), offset * sizeof(CHARACTER));
 
       pLastNewEnd += offset;
 
-      memcpy(pLastNewEnd, scopedstrNew.begin(), nReplacementLen * sizeof(CHARACTER));
+      memory_copy(pLastNewEnd, scopedstrNew.begin(), nReplacementLen * sizeof(CHARACTER));
 
       rangeOld.m_begin = pszTarget + nReplacedLen;
 
@@ -6878,7 +6878,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
    }
 
-   memcpy(pLastNewEnd,rangeOld.begin(), (rangeOld.end() - rangeOld.begin()) * sizeof(CHARACTER));
+   memory_copy(pLastNewEnd,rangeOld.begin(), (rangeOld.end() - rangeOld.begin()) * sizeof(CHARACTER));
 
    str.release_buffer(nNewLength);
 

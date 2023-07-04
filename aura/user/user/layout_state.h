@@ -122,7 +122,7 @@ namespace user
       index                      m_iWorkspace = 0;
 
       using memory_template < window_rectangle >::operator=;
-      bool operator == (const window_rectangle & rectangle) const {return !memcmp(this, &rectangle, sizeof(window_rectangle)); }
+      bool operator == (const window_rectangle & rectangle) const {return memory_order(this, &rectangle, sizeof(window_rectangle)) == 0; }
       bool operator != (const window_rectangle & rectangle) const {return !operator==(rectangle); }
 
    };

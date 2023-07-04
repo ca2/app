@@ -46,7 +46,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    void copy_application_flags(const APPLICATION_FLAGS& applicationflags)
    {
 
-      memcpy(this, &applicationflags, sizeof(APPLICATION_FLAGS));
+      memory_copy(this, &applicationflags, sizeof(APPLICATION_FLAGS));
 
    }
 

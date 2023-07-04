@@ -208,7 +208,7 @@ struct CLASS_DECL_ACME block :
 
       }
 
-      memcpy(ba, this->m_begin, c);
+      memory_copy(ba, this->m_begin, c);
 
       return *this;
 

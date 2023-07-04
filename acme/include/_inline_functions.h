@@ -540,66 +540,10 @@ inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** p
 }
 
 
-inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-#ifdef WINDOWS
-
-   return strtol(psz, (::ansi_character **) ppszEnd, iBase);
-
-#else
-
-   long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
-
-   if(l > I32_MAXIMUM)
-   {
-
-      errno = ERANGE;
-
-      return I32_MAXIMUM;
-
-   }
-   else if(l < I32_MINIMUM)
-   {
-
-      errno = ERANGE;
-
-      return I32_MINIMUM;
-
-   }
-
-   return (::i32) l;
-
-#endif
-
-}
+CLASS_DECL_ACME ::i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 
-inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-#ifdef WINDOWS
-
-   return strtoul(psz, (::ansi_character **) ppszEnd, iBase);
-
-#else
-
-   unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
-
-   if(ul > 0xffffffffu)
-   {
-
-      errno = ERANGE;
-
-      return 0xffffffffu;
-
-   }
-
-   return (::u32) ul;
-
-#endif
-
-}
+CLASS_DECL_ACME ::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 
 

@@ -150,7 +150,7 @@ public:
 
       auto iRead = minimum(s, this->m_end - m_iterator);
 
-      ::memcpy(p, m_iterator, iRead);
+      ::memory_copy(p, m_iterator, iRead);
 
       m_iterator += iRead;
 

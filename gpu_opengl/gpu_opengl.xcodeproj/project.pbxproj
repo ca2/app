@@ -22,6 +22,7 @@
 		9A6A479B2660E6E2004ED97A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A479A2660E6E2004ED97A /* libacme.dylib */; };
 		9A6A479D2660E6E2004ED97A /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A479C2660E6E2004ED97A /* libapex.dylib */; };
 		9A775D4B29AAAB28008FE15C /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A775D4A29AAAB28008FE15C /* libassimp.dylib */; };
+		9A7992F42A53A52900261F46 /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A797F462A53A11A00261F46 /* libassimp.dylib */; };
 		9A866075296689DE000C82F0 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A866073296689DD000C82F0 /* object.h */; };
 		9A866076296689DE000C82F0 /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A866074296689DE000C82F0 /* object.cpp */; };
 		9A8B646124CBE90100A93185 /* program.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8B645024CBE90000A93185 /* program.h */; };
@@ -39,7 +40,7 @@
 		9A8B64E624CCAAFC00A93185 /* context_fbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B64E424CCAAFC00A93185 /* context_fbo.cpp */; };
 		9A8B64E724CCAAFC00A93185 /* context_fbo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8B64E524CCAAFC00A93185 /* context_fbo.h */; };
 		9A8B64F724CCEBBF00A93185 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8B64F624CCEBBF00A93185 /* CoreGraphics.framework */; };
-		9ADDBC322A4159F700C53EEB /* libglad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADDBC192A41594200C53EEB /* libglad.dylib */; };
+		9ADDBC322A4159F700C53EEB /* glad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADDBC192A41594200C53EEB /* glad.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
+		};
+		9A797F452A53A11A00261F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A797F412A53A11900261F46 /* assimp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A797F3A2A53A0B600261F46;
+			remoteInfo = assimp;
+		};
+		9A797F492A53A13100261F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A797F412A53A11900261F46 /* assimp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A797F392A53A0B600261F46;
+			remoteInfo = assimp;
 		};
 		9A8B647824CBEAE400A93185 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -125,6 +140,7 @@
 		9A6A479A2660E6E2004ED97A /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A479C2660E6E2004ED97A /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A775D4A29AAAB28008FE15C /* libassimp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.dylib; path = "/Users/camilo/solution/main/source/app-simple/shader/__implement/../../../../../operating_system/storage-macos/library/libassimp.dylib"; sourceTree = "<absolute>"; };
+		9A797F412A53A11900261F46 /* assimp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = assimp.xcodeproj; path = ../../../port/graphics3d/assimp/assimp.xcodeproj; sourceTree = "<group>"; };
 		9A866073296689DD000C82F0 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		9A866074296689DE000C82F0 /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
 		9A8B645024CBE90000A93185 /* program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = program.h; sourceTree = "<group>"; };
@@ -174,7 +190,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ADDBC322A4159F700C53EEB /* libglad.dylib in Frameworks */,
+				9A7992F42A53A52900261F46 /* libassimp.dylib in Frameworks */,
+				9ADDBC322A4159F700C53EEB /* glad.dylib in Frameworks */,
 				9A6A479B2660E6E2004ED97A /* libacme.dylib in Frameworks */,
 				9A6A479D2660E6E2004ED97A /* libapex.dylib in Frameworks */,
 				9A8B64F724CCEBBF00A93185 /* CoreGraphics.framework in Frameworks */,
@@ -241,6 +258,7 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				9A797F412A53A11900261F46 /* assimp.xcodeproj */,
 				9A8B647224CBEAE400A93185 /* aura.xcodeproj */,
 				9ADDBC122A41594200C53EEB /* glad.xcodeproj */,
 				9A204A2E2433C68300D45614 /* gpu_opengl */,
@@ -259,6 +277,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A797F422A53A11900261F46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A797F462A53A11A00261F46 /* libassimp.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A8B647324CBEAE400A93185 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,7 +298,7 @@
 		9ADDBC132A41594200C53EEB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9ADDBC192A41594200C53EEB /* libglad.dylib */,
+				9ADDBC192A41594200C53EEB /* glad.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -347,6 +373,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A797F4A2A53A13100261F46 /* PBXTargetDependency */,
 				9ADDBC312A4159E500C53EEB /* PBXTargetDependency */,
 				9A8B647F24CBEAED00A93185 /* PBXTargetDependency */,
 			);
@@ -361,7 +388,8 @@
 		9A574B8F16AAB906000CC4EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1420;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					07B65772190F3CA2002DAADE = {
@@ -382,6 +410,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A797F422A53A11900261F46 /* Products */;
+					ProjectRef = 9A797F412A53A11900261F46 /* assimp.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A8B647324CBEAE400A93185 /* Products */;
 					ProjectRef = 9A8B647224CBEAE400A93185 /* aura.xcodeproj */;
 				},
@@ -400,6 +432,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A797F462A53A11A00261F46 /* libassimp.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libassimp.dylib;
+			remoteRef = 9A797F452A53A11A00261F46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A8B647924CBEAE400A93185 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -421,10 +460,10 @@
 			remoteRef = 9A8B647C24CBEAE400A93185 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9ADDBC192A41594200C53EEB /* libglad.dylib */ = {
+		9ADDBC192A41594200C53EEB /* glad.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libglad.dylib;
+			path = glad.dylib;
 			remoteRef = 9ADDBC182A41594200C53EEB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -480,6 +519,11 @@
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_gpu_opengl */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
+		};
+		9A797F4A2A53A13100261F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = assimp;
+			targetProxy = 9A797F492A53A13100261F46 /* PBXContainerItemProxy */;
 		};
 		9A8B647F24CBEAED00A93185 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -274,12 +274,12 @@ namespace file
 
 #ifdef WINDOWS
 
-         if (_stricmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+         if (ansi_icmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
             return true;
 
 #else
 
-         if (strcmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+         if (ansi_cmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
             return true;
 
 #endif

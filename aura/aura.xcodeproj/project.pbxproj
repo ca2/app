@@ -528,7 +528,6 @@
 		9AC2CED92653455600CC8096 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CEB02653455600CC8096 /* window.h */; };
 		9AC2CEDA2653455600CC8096 /* display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CEB12653455600CC8096 /* display.cpp */; };
 		9AC2CEDC2653455600CC8096 /* cursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CEB32653455600CC8096 /* cursor.h */; };
-		9AC2CEDD2653455600CC8096 /* _component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CEB42653455600CC8096 /* _component.h */; };
 		9AC2CEDE2653455600CC8096 /* display.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CEB52653455600CC8096 /* display.h */; };
 		9AC2CEE02653455600CC8096 /* monitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CEB72653455600CC8096 /* monitor.h */; };
 		9AC2CEE12653455600CC8096 /* keyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CEB82653455600CC8096 /* keyboard.h */; };
@@ -1019,7 +1018,6 @@
 		9AC2CEB02653455600CC8096 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		9AC2CEB12653455600CC8096 /* display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = display.cpp; sourceTree = "<group>"; };
 		9AC2CEB32653455600CC8096 /* cursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cursor.h; sourceTree = "<group>"; };
-		9AC2CEB42653455600CC8096 /* _component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _component.h; sourceTree = "<group>"; };
 		9AC2CEB52653455600CC8096 /* display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = display.h; sourceTree = "<group>"; };
 		9AC2CEB72653455600CC8096 /* monitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monitor.h; sourceTree = "<group>"; };
 		9AC2CEB82653455600CC8096 /* keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard.h; sourceTree = "<group>"; };
@@ -1680,7 +1678,6 @@
 				9ACFE55B28497F8700911485 /* sandbox */,
 				9AC2CECA2653455600CC8096 /* _.h */,
 				9AC2CEA32653455600CC8096 /* _impl.h */,
-				9AC2CEB42653455600CC8096 /* _component.h */,
 				9AC2CEBA2653455600CC8096 /* button.h */,
 				9AC2CEC82653455600CC8096 /* cursor_manager.cpp */,
 				9AC2CEA42653455600CC8096 /* cursor_manager.h */,
@@ -1959,7 +1956,6 @@
 				9A750F6E282B90B600C4861B /* shell.h in Headers */,
 				9A92312627EACF2100B5A78D /* list.h in Headers */,
 				9A376ACF2409C2DD002D15D3 /* _impl.h in Headers */,
-				9AC2CEDD2653455600CC8096 /* _component.h in Headers */,
 				9A3764A52409BF0C002D15D3 /* api.h in Headers */,
 				9A797B672A53896600261F46 /* redraw.h in Headers */,
 				9ADDBC012A4025DC00C53EEB /* _.h in Headers */,

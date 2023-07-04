@@ -172,26 +172,8 @@ public:
 
    inline bool is_past() const { return now() > *this; }
 
-   inline class ::time & Now()
-   { 
-      
-      struct timespec timespec; 
-      
-      if (timespec_get(&timespec, TIME_UTC) != TIME_UTC) 
-      {
-         
-         throw "timespec_get failed!!"; 
-         
-      }
-
-      m_iSecond = timespec.tv_sec;
-
-      m_iNanosecond = timespec.tv_nsec;
-      
-      return *this; 
-      
-   }
-   
+   inline class ::time & Now();
+     
 
    inline class time elapsed() const { return elapsed(now()); }
    constexpr class time elapsed(const class time & time ) const { return time - *this; }

@@ -20,7 +20,7 @@ inline char utf8_e(::u8 c);
 
 
 
-inline strsize utf8_len(const ::ansi_character * psz) { if (::is_null(psz)) return 0; return strlen(psz); }
+CLASS_DECL_ACME strsize utf8_len(const ::ansi_character * psz);
 
 
 const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError);

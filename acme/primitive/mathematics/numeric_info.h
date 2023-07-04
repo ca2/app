@@ -2,7 +2,7 @@
 
 
 #include <limits.h>
-#include <memory.h>
+//#include <memory.h>
 #include <float.h>
 
 

@@ -77,7 +77,7 @@
 
 #if defined(__cplusplus)
 
-#include <atomic>
+//#include <atomic>
 #include <initializer_list>
 #include <typeinfo>
 #include <tuple>

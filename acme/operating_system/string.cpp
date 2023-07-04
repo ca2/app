@@ -2,7 +2,9 @@
 // Created by camilo on Jul/4/2023.
 //
 #include "framework.h"
-
+#if defined(__APPLE__)
+#include <errno.h>
+#endif
 
 CLASS_DECL_ACME int ansi_icmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
@@ -32,7 +34,7 @@ CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_chara
 #endif
 }
 
-inline int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
+CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
 {
 #ifdef WINDOWS
    return _strnicmp(psz1, psz2, s);
@@ -41,6 +43,140 @@ inline int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * p
 #endif
 }
 
+
+CLASS_DECL_ACME i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+{
+
+#ifdef WINDOWS
+
+   return strtol(psz, (::ansi_character **) ppszEnd, iBase);
+
+#else
+
+   long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
+
+   if(l > I32_MAXIMUM)
+   {
+
+      errno = ERANGE;
+
+      return I32_MAXIMUM;
+
+   }
+   else if(l < I32_MINIMUM)
+   {
+
+      errno = ERANGE;
+
+      return I32_MINIMUM;
+
+   }
+
+   return (::i32) l;
+
+#endif
+
+}
+
+
+
+
+
+
+
+CLASS_DECL_ACME ::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+{
+
+#ifdef WINDOWS
+
+   return strtoul(psz, (::ansi_character **) ppszEnd, iBase);
+
+#else
+
+   unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
+
+   if(ul > 0xffffffffu)
+   {
+
+      errno = ERANGE;
+
+      return 0xffffffffu;
+
+   }
+
+   return (::u32) ul;
+
+#endif
+
+}
+
+
+
+
+
+
+
+
+
+
+CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz) noexcept
+{
+   
+   return strlen(psz);
+   
+   
+}
+
+
+
+CLASS_DECL_ACME strsize utf8_len(const ::ansi_character * psz)
+{
+   if (::is_null(psz)) return 0;
+   
+   return strlen(psz);
+   
+   
+}
+
+
+
+CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state)
+{
+
+   if (!psz)
+   {
+
+      psz = *state;
+
+      if (!psz)
+      {
+
+         return nullptr;
+
+      }
+
+   }
+
+   auto p = strpbrk(psz, sep);
+
+   if (p)
+   {
+
+      *p = (::ansi_character)(0);
+
+      *state = p + 1;
+
+   }
+   else
+   {
+
+      *state = nullptr;
+
+   }
+
+   return psz;
+
+}
 
 
 

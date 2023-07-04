@@ -30,7 +30,7 @@ inline ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const
       else
       {
 
-         strncpy(pszDst, pszSrc, srclen);
+         ansi_ncpy(pszDst, pszSrc, srclen);
 
       }
 
@@ -142,43 +142,7 @@ inline ::ansi_character * __ansipbrk(::ansi_character * psz, const ::ansi_charac
 
 
 
-inline ::ansi_character * __ansitok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state)
-{
-
-   if (!psz)
-   {
-
-      psz = *state;
-
-      if (!psz)
-      {
-
-         return nullptr;
-
-      }
-
-   }
-
-   auto p = strpbrk(psz, sep);
-
-   if (p)
-   {
-
-      *p = (::ansi_character)(0);
-
-      *state = p + 1;
-
-   }
-   else
-   {
-
-      *state = nullptr;
-
-   }
-
-   return psz;
-
-}
+CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
 
 
 

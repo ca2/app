@@ -119,7 +119,7 @@ namespace file
    inline void path_object::to_sz(char* sz, strsize len) const
    {
 
-      strncpy(sz, c_str(), len);
+      ansi_ncpy(sz, c_str(), len);
 
    }
 

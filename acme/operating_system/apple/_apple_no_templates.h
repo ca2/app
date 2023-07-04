@@ -37,7 +37,7 @@ void ns_main_async(dispatch_block_t block);
 
 void ns_main_sync(dispatch_block_t block);
 
-time_t _mkgmtime(struct tm * const);
+posix_time _mkgmtime(struct tm * const);
 
 
 

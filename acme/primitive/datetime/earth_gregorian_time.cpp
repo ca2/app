@@ -16,14 +16,14 @@ namespace earth
    {
 
 
-      time_t time::get_time_t()
+      posix_time time::get_time_t()
       {
 
          struct tm tm;
 
          get(&tm);
 
-         ::time_t time;
+         ::posix_time time;
 
 //   #ifdef WINDOWS
 //
@@ -150,7 +150,7 @@ namespace earth
       void time::set(const class ::time & time, const time_shift & timeshift)
       {
 
-         set({(time_t) time.m_iSecond }, time.m_iNanosecond, timeshift);
+         set({(posix_time) time.m_iSecond }, time.m_iNanosecond, timeshift);
 
       }
 

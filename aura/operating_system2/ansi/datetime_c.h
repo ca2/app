@@ -2,7 +2,7 @@
 
 
 extern "C"
-CLASS_DECL_AURA struct tm *gmtime_r(const time_t *timep,struct tm *result);
+CLASS_DECL_AURA struct tm *gmtime_r(const posix_time *timep,struct tm *result);
 
 
 #if defined(WINDOWS)

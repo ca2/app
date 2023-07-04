@@ -13,10 +13,10 @@
 #if 0
 
 
-extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp)
+extern "C" CLASS_DECL_ACME posix_time timegm(struct tm *tmp)
 {
 
-   static time_t gmtime_offset;
+   static posix_time gmtime_offset;
 
    tmp->tm_isdst = 0;
 
@@ -32,18 +32,18 @@ extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp)
 
 #ifdef ANDROID
 
-time_t timegm(tm * ptm)
+posix_time timegm(tm * ptm)
 {
 
-   time_t t1 = 60 * 60 * 24 * 2; // (sec * minimum * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC).
+   posix_time t1 = 60 * 60 * 24 * 2; // (sec * minimum * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC).
 
    tm tm1;
 
    gmtime_r(&t1,&tm1);
 
-   time_t t2 = mktime(&tm1); // in reverse in Brazil (UTC -3) 1970-01-03 03:00:00 +0000
+   posix_time t2 = mktime(&tm1); // in reverse in Brazil (UTC -3) 1970-01-03 03:00:00 +0000
 
-   time_t t3 = mktime(ptm); // now (in Brazil) direct (UTC -3)
+   posix_time t3 = mktime(ptm); // now (in Brazil) direct (UTC -3)
 
    return t3 - t2 + t1;
 
@@ -301,9 +301,9 @@ namespace datetime
 //               atm.tm_mon = set["month"].i32() - 1;        // tm_mon is 0 based
 //               atm.tm_year = set["year"].i32() - 1900;     // tm_year is 1900 based
 //               atm.tm_isdst = -1;
-//               /*time_t now = _time64(nullptr);
-//               time_t nowUtc = mktime(gmtime(&now));
-//               time_t tDiff = difftime(nowUtc, now);*/
+//               /*posix_time now = _time64(nullptr);
+//               posix_time nowUtc = mktime(gmtime(&now));
+//               posix_time tDiff = difftime(nowUtc, now);*/
 //#ifdef WINDOWS
 //               time = ::earth::time(_mkgmtime64(&atm));
 //#else
@@ -632,7 +632,7 @@ extern "C"
 CLASS_DECL_ACME int c_localtime_offset()
 {
 
-   time_t rawtime = time(nullptr);
+   posix_time rawtime = time(nullptr);
 
    struct tm *ptm = gmtime(&rawtime);
 
@@ -640,7 +640,7 @@ CLASS_DECL_ACME int c_localtime_offset()
 
    ptm->tm_isdst = -1;
 
-   time_t gmt = mktime(ptm);
+   posix_time gmt = mktime(ptm);
 
    return (int)(rawtime - gmt);
 

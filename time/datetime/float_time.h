@@ -149,12 +149,12 @@ namespace datetime
 
       float_time(FLOAT_DATE dtSrc) RELEASENOTHROW;
 #if defined(ANDROID)
-      float_time(time_t timeSrc) RELEASENOTHROW;
+      float_time(posix_time timeSrc) RELEASENOTHROW;
 #else
 #if !defined(APPLEOS)
       float_time(__time32_t timeSrc) RELEASENOTHROW;
 #endif
-      float_time(time_t timeSrc) RELEASENOTHROW;
+      float_time(posix_time timeSrc) RELEASENOTHROW;
 #endif
 
       float_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
@@ -202,12 +202,12 @@ namespace datetime
       
       float_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
 #if defined(ANDROID)
-      float_time& operator=(const time_t & timeSrc) RELEASENOTHROW;
+      float_time& operator=(const posix_time & timeSrc) RELEASENOTHROW;
 #else
 #ifndef APPLEOS
       float_time& operator=(const __time32_t& timeSrc) RELEASENOTHROW;
 #endif
-      float_time& operator=(const time_t& timeSrc) RELEASENOTHROW;
+      float_time& operator=(const posix_time& timeSrc) RELEASENOTHROW;
 #endif
 
       float_time& operator=(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
@@ -533,7 +533,7 @@ inline float_time::float_time(FLOAT_DATE dtSrc) RELEASENOTHROW :
 
 #if defined(ANDROID)
 
-inline float_time::float_time(time_t timeSrc) RELEASENOTHROW :
+inline float_time::float_time(posix_time timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
       *this = timeSrc;
@@ -549,7 +549,7 @@ inline float_time::float_time(__time32_t timeSrc) RELEASENOTHROW :
    }
 #endif
 
-inline float_time::float_time(time_t timeSrc) RELEASENOTHROW :
+inline float_time::float_time(posix_time timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
       *this = timeSrc;
@@ -669,10 +669,10 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 #if defined(ANDROID)
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-   bool GetAsSystemTimeHelper(const time_t & timeSrc, SYSTEMTIME& timeDest);
+   bool GetAsSystemTimeHelper(const posix_time & timeSrc, SYSTEMTIME& timeDest);
 #endif
 
-   inline float_time& float_time::operator=(const time_t & timeSrc) RELEASENOTHROW
+   inline float_time& float_time::operator=(const posix_time & timeSrc) RELEASENOTHROW
    {
 
 
@@ -696,7 +696,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
    }
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-   inline bool GetAsSystemTimeHelper(const time_t & timeSrc, SYSTEMTIME& timeDest)
+   inline bool GetAsSystemTimeHelper(const posix_time & timeSrc, SYSTEMTIME& timeDest)
    {
       struct tm ttm;
 
@@ -735,18 +735,18 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 #else
 #if !defined(_ATL_USE_WINAPI_FAMILY_DESKTOP_APP)
 #ifdef APPLEOS
-   inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest);
+   inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDest);
 #else
-   inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest);
+   inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDest);
 #endif
 #endif
 #ifndef APPLEOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
-      return operator=(static_cast<time_t>(timeSrc));
+      return operator=(static_cast<posix_time>(timeSrc));
    }
 #endif
-   inline float_time& float_time::operator=(const time_t& timeSrc) RELEASENOTHROW
+   inline float_time& float_time::operator=(const posix_time& timeSrc) RELEASENOTHROW
    {
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
@@ -769,9 +769,9 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 #ifdef APPLEOS
-   inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
+   inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDest)
 #else
-   inline bool GetAsSystemTimeHelper(const time_t& timeSrc, SYSTEMTIME& timeDest)
+   inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDest)
 #endif
    {
       struct tm ttm;

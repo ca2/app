@@ -63,7 +63,7 @@ namespace earth
 
          void set(const ::earth::time &time, const time_shift &timeshift);
 
-         ::time_t get_time_t();
+         ::posix_time get_time_t();
 
 
          inline void get(struct ::tm *ptm)
@@ -135,7 +135,7 @@ namespace earth
    }
 
 
-   inline time_t make_utc_time(tm const *t)
+   inline posix_time make_utc_time(tm const *t)
    {
       int year = t->tm_year + 1900;
       int month = t->tm_mon;
@@ -155,8 +155,8 @@ namespace earth
       int day_of_year = days_from_1jan(year,month,day);
       int days_since_epoch = days_from_1970(year) + day_of_year;
 
-      time_t seconds_in_day = 3600 * 24;
-      time_t result = seconds_in_day * days_since_epoch + 3600 * t->tm_hour + 60 * t->tm_min + t->tm_sec;
+      posix_time seconds_in_day = 3600 * 24;
+      posix_time result = seconds_in_day * days_since_epoch + 3600 * t->tm_hour + 60 * t->tm_min + t->tm_sec;
 
       return result;
 

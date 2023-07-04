@@ -115,7 +115,7 @@ namespace earth
    constexpr earth::time time::operator+(class ::time& time) const
    {
 
-      return { (time_t) ( this->m_time + time.m_iSecond) };
+      return { (posix_time) ( this->m_time + time.m_iSecond) };
 
    }
 

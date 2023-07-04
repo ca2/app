@@ -9,7 +9,7 @@ namespace earth
 {
 
 
-   ::earth::zonetime zonetime::get_current_time(time_t iZoneOffset) noexcept
+   ::earth::zonetime zonetime::get_current_time(posix_time iZoneOffset) noexcept
    {
 
       zonetime t;
@@ -47,7 +47,7 @@ namespace earth
    }
 
 
-   zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
+   zonetime::zonetime(posix_time zonetime, int iZoneOffset) noexcept :
       time(zonetime),
       m_timeshift((double)iZoneOffset)
    {
@@ -101,7 +101,7 @@ namespace earth
 
          struct tm tmTemp;
 
-         time_t t = m_time;
+         posix_time t = m_time;
 
          t += (::i32) m_timeshift;
 
@@ -120,9 +120,9 @@ namespace earth
 
          struct tm * ptmTemp;
 
-         time_t t = m_time;
+         posix_time t = m_time;
 
-         t += (time_t) m_timeshift.m_d;
+         t += (posix_time) m_timeshift.m_d;
 
          ptmTemp = gmtime(&t);
 
@@ -272,7 +272,7 @@ namespace earth
    }
 
 
-   time_t zonetime::GetZoneTimeOfDay() const noexcept
+   posix_time zonetime::GetZoneTimeOfDay() const noexcept
    {
 
       struct tm ttm;
@@ -323,7 +323,7 @@ namespace earth
 //   //char psz[32];
 //   //psz[0] = '\0';
 //
-//   ////   time_t tmp = zonetime.get_time();
+//   ////   posix_time tmp = zonetime.get_time();
 //   ////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
 //
 //   //errno_t err = 0;

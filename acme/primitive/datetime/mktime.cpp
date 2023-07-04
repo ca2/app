@@ -38,7 +38,7 @@ then it supports leap seconds; otherwise it probably doesn't.  */
 #endif
 
 #ifndef VMS
-//#include <sys/types.h>		/* Some systems define `time_t' here.  */
+//#include <sys/types.h>		/* Some systems define `posix_time' here.  */
 #else
 //#include <stddef.h>
 #endif
@@ -77,10 +77,10 @@ then it supports leap seconds; otherwise it probably doesn't.  */
 #endif
 
 #ifndef TIME_T_MIN
-#define TIME_T_MIN (::numeric_info < time_t >::minimum())
+#define TIME_T_MIN (::numeric_info < posix_time >::minimum())
 #endif
 #ifndef TIME_T_MAX
-#define TIME_T_MAX (::numeric_info < time_t >::maximum())
+#define TIME_T_MAX (::numeric_info < posix_time >::maximum())
 #endif
 
 #define TM_YEAR_BASE 1900
@@ -106,15 +106,15 @@ extern "C"
       {0,31,60,91,121,152,182,213,244,274,305,335,366}
    };
 
-//   static time_t ydhms_tm_diff __P((int,int,int,int,int,const struct tm *));
-//   time_t __mktime_internal __P((struct tm *,
-  // struct tm *(*) (const time_t *,struct tm *),
-    //  time_t *));
+//   static posix_time ydhms_tm_diff __P((int,int,int,int,int,const struct tm *));
+//   posix_time __mktime_internal __P((struct tm *,
+  // struct tm *(*) (const posix_time *,struct tm *),
+    //  posix_time *));
 
 
-//   static struct tm *my_localtime_r __P((const time_t *,struct tm *));
+//   static struct tm *my_localtime_r __P((const posix_time *,struct tm *));
    static struct tm *
-      my_localtime_r(const time_t * t,struct tm * tp)
+      my_localtime_r(const posix_time * t,struct tm * tp)
    {
       struct tm *l = localtime(t);
       if(! l)
@@ -129,14 +129,14 @@ extern "C"
    YEAR uses the same numbering as TM->tm_year.
    All values are in range, except possibly YEAR.
    If overflow occurs, yield the low order bits of the correct answer.  */
-   static time_t
+   static posix_time
       ydhms_tm_diff(int year,int yday,int hour,int minimum,int sec,const struct tm * tp)
    {
       /* Compute intervening leap days correctly even if year is negative.
-      Take care to avoid int overflow.  time_t overflow is OK, since
-      only the low order bits of the correct time_t answer are needed.
-      Don't convert to time_t until after all divisions are done, since
-      time_t might be unsigned.  */
+      Take care to avoid int overflow.  posix_time overflow is OK, since
+      only the low order bits of the correct posix_time answer are needed.
+      Don't convert to posix_time until after all divisions are done, since
+      posix_time might be unsigned.  */
       int a4 = (year >> 2) + (TM_YEAR_BASE >> 2) - ! (year & 3);
       int b4 = (tp->tm_year >> 2) + (TM_YEAR_BASE >> 2) - ! (tp->tm_year & 3);
       int a100 = a4 / 25 - (a4 % 25 < 0);
@@ -144,8 +144,8 @@ extern "C"
       int a400 = a100 >> 2;
       int b400 = b100 >> 2;
       int intervening_leap_days = (a4 - b4) - (a100 - b100) + (a400 - b400);
-      time_t years = year - (time_t)tp->tm_year;
-      time_t days = (365 * years + intervening_leap_days
+      posix_time years = year - (posix_time)tp->tm_year;
+      posix_time days = (365 * years + intervening_leap_days
          + (yday - tp->tm_yday));
       return (60 * (60 * (24 * days + (hour - tp->tm_hour))
          + (minimum - tp->tm_min))
@@ -153,10 +153,10 @@ extern "C"
    }
 
 
-   static time_t localtime_offset;
+   static posix_time localtime_offset;
 
-   /* Convert *TP to a time_t value.  */
-   //time_t
+   /* Convert *TP to a posix_time value.  */
+   //posix_time
    //mktime(tp)
    //struct tm *tp;
    //{
@@ -170,15 +170,15 @@ extern "C"
    //   return __mktime_internal(tp,my_localtime_r,&localtime_offset);
    //}
 
-   /* Convert *TP to a time_t value, inverting
+   /* Convert *TP to a posix_time value, inverting
    the monotonic and mostly-unit-linear conversion function CONVERT.
    Use *OFFSET to keep track of a guess at the offset of the result,
    compared to what the result would be for UTC without leap seconds.
    If *OFFSET's guess is correct, only one CONVERT call is needed.  */
-   time_t
-      __mktime_internal(struct tm *tp,struct tm *(*convert) (const time_t *,struct tm *),time_t *offset)
+   posix_time
+      __mktime_internal(struct tm *tp,struct tm *(*convert) (const posix_time *,struct tm *),posix_time *offset)
    {
-      time_t t,dt,t0;
+      posix_time t,dt,t0;
       struct tm tm;
 
       /* The maximum number of probes (calls to CONVERT) should be enough
@@ -205,7 +205,7 @@ extern "C"
 
       /* The other values need not be in range:
       the remaining code handles minor overflows correctly,
-      assuming int and time_t arithmetic wraps around.
+      assuming int and posix_time arithmetic wraps around.
       Major overflows are caught at the end.  */
 
       /* Calculate day of year from year, month, and day of month.
@@ -247,7 +247,7 @@ extern "C"
             probe some more, and switch to a memory_new time if found.
             The largest known fallback due to daylight savings is two hours:
             once, in Newfoundland, 1988-10-30 02:00 -> 00:00.  */
-            time_t ot = t - 2 * 60 * 60 * dst_diff;
+            posix_time ot = t - 2 * 60 * 60 * dst_diff;
             while(--remaining_probes != 0)
             {
                struct tm otm;
@@ -278,7 +278,7 @@ extern "C"
 
       if((TIME_T_MAX / INT_MAX / 366 / 24 / 60 / 60) < (3))
       {
-         /* time_t isn't large enough to rule out overflows in ydhms_tm_diff,
+         /* posix_time isn't large enough to rule out overflows in ydhms_tm_diff,
          so check for major overflows.  A gross check suffices,
          since if t has overflowed, it is off by a multiple of
          TIME_T_MAX - TIME_T_MIN + 1.  So ignore any component of
@@ -330,9 +330,9 @@ extern "C"
 
    static int
       check_result(tk,tmk,tl,tml)
-      time_t tk;
+      posix_time tk;
    struct tm tmk;
-   time_t tl;
+   posix_time tl;
    struct tm tml;
    {
       if(tk != tl || not_equal_tm(&tmk,&tml))
@@ -355,7 +355,7 @@ extern "C"
    {
       int status = 0;
       struct tm tm,tmk,tml;
-      time_t tk,tl;
+      posix_time tk,tl;
       char trailer;
 
       if((argc == 3 || argc == 4)
@@ -379,9 +379,9 @@ extern "C"
       }
       else if(argc == 4 || (argc == 5 && strcmp(argv[4],"-") == 0))
       {
-         time_t from = atol(argv[1]);
-         time_t by = atol(argv[2]);
-         time_t to = atol(argv[3]);
+         posix_time from = atol(argv[1]);
+         posix_time by = atol(argv[2]);
+         posix_time to = atol(argv[3]);
 
          if(argc == 4)
             for(tl = from; tl <= to; tl += by)

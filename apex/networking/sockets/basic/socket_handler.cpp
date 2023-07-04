@@ -910,7 +910,7 @@ namespace sockets
 //                 
 //                 // Out-Of-Band data
 //                 // recv with MSG_OOB
-//                 //time_t tnow = time(nullptr);
+//                 //posix_time tnow = time(nullptr);
 //
 //                 if (ppairsocket_id->m_psocket->has_timed_out())
 //                 {
@@ -1025,7 +1025,7 @@ namespace sockets
 //     if (m_socketidlistTimeout.get_size())
 //     {
 //        
-//        time_t tnow = time(nullptr);
+//        posix_time tnow = time(nullptr);
 //
 //        if (tnow != m_tlast)
 //        {

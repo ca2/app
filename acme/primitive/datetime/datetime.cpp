@@ -246,7 +246,7 @@ namespace datetime
    }
 
 
-   i64 datetime::strtotime(const ::text::context * pcontext, const string & str, time_t timeParam, i32 iPath, i32 & iPathCount, const ::earth::time_shift& timeshift)
+   i64 datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, i32 iPath, i32 & iPathCount, const ::earth::time_shift& timeshift)
    {
 
       if (str.trimmed().is_empty())
@@ -580,7 +580,7 @@ namespace datetime
 //   }
 //
 
-   time_t datetime::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::earth::time_shift& timeshift)
+   posix_time datetime::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::earth::time_shift& timeshift)
    {
 
       struct ::tm tm {};
@@ -594,7 +594,7 @@ namespace datetime
 
       auto time = ::earth::make_utc_time(&tm);
 
-      return (time_t) (time - (time_t) timeshift.m_d);
+      return (posix_time) (time - (posix_time) timeshift.m_d);
 
 //#ifdef WINDOWS
 //
@@ -609,7 +609,7 @@ namespace datetime
    }
 
 
-   //time_t datetime::s_utc_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear)
+   //posix_time datetime::s_utc_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear)
    //{
 
    //   struct ::tm tm;
@@ -1524,9 +1524,9 @@ namespace datetime
                atm.tm_mon = set["month"].as_i32() - 1;        // tm_mon is 0 based
                atm.tm_year = set["year"].as_i32() - 1900;     // tm_year is 1900 based
                atm.tm_isdst = -1;
-               /*time_t now = _time64(nullptr);
-               time_t nowUtc = mktime(gmtime(&now));
-               time_t tDiff = difftime(nowUtc, now);*/
+               /*posix_time now = _time64(nullptr);
+               posix_time nowUtc = mktime(gmtime(&now));
+               posix_time tDiff = difftime(nowUtc, now);*/
                time = ::earth::time(::earth::make_utc_time(&atm));
 
             }

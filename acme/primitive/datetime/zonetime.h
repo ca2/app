@@ -17,11 +17,11 @@ namespace earth
       time_shift     m_timeshift;
 
 
-      static zonetime get_current_time(time_t iZone) noexcept;
+      static zonetime get_current_time(posix_time iZone) noexcept;
 
       zonetime() noexcept;
       zonetime(const zonetime & zonetime) noexcept;
-      zonetime(time_t zonetime, int iZoneOffset) noexcept;
+      zonetime(posix_time zonetime, int iZoneOffset) noexcept;
       zonetime(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset);
 
 
@@ -36,7 +36,7 @@ namespace earth
       i32 GetZoneSecond() const noexcept;
       i32 GetZoneDayOfWeek() const noexcept; // 1 = Sunday, 7 = Saturday
 
-      time_t GetZoneTimeOfDay() const noexcept;
+      posix_time GetZoneTimeOfDay() const noexcept;
       i64 GetZoneDaySig() const noexcept;
 
 

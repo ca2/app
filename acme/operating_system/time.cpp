@@ -214,7 +214,7 @@ void get_system_time_as_file_time(file_time_t* pfile_time)
 //}
 
 
-void file_time_to_earth_time(time_t* ptime, const file_time_t* pfile_time, i32 nDST)
+void file_time_to_earth_time(posix_time* ptime, const file_time_t* pfile_time, i32 nDST)
 {
 
    system_time_t systemtime{};

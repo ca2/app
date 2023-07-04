@@ -71,12 +71,12 @@ namespace sockets
 //      string                  m_strCat;
 //      string                  m_strCipherList;
 //      callback *              m_pcallback;
-//      time_t                  m_timeCreate; ///< time in seconds when this base_socket was created
+//      posix_time                  m_timeCreate; ///< time in seconds when this base_socket was created
 //      bool                    m_bDisableRead; ///< Disable checking for read events
 //      bool                    m_bConnected; ///< base_socket is connected (tcp/udp)
 //      bool                    m_bLost; ///< connection lost
 //      bool                    m_bErasedByHandler; ///< Set by handler before delete
-//      time_t                  m_timeClose; ///< time in seconds when ordered to close
+//      posix_time                  m_timeClose; ///< time in seconds when ordered to close
 //      int                     m_iBindPort;
 //      bool                    m_bDelete; ///< Delete by handler flag
       //bool                    m_bCloseAndDelete; ///< close and delete flag
@@ -277,7 +277,7 @@ namespace sockets
       //bool SetNonblocking(bool, socket_id);
 
       /** Total lifetime of instance. */
-      virtual time_t Uptime();
+      virtual posix_time Uptime();
 
       /** Set address/port of last connect() call. */
       virtual void SetClientRemoteAddress(::networking::address * address);
@@ -382,7 +382,7 @@ namespace sockets
       virtual bool IsCloseAndDelete();
 
       /** Return number of seconds since base_socket was ordered to close. \sa SetCloseAndDelete */
-      virtual time_t TimeSinceClose();
+      virtual posix_time TimeSinceClose();
 
       /** Ignore read events for an output only base_socket. */
       virtual void DisableRead(bool x = true);

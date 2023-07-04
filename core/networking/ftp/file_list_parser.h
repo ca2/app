@@ -54,7 +54,7 @@ namespace ftp
    {
    public:
 
-      time_t        m_tmBase;       // time() value on this OS at the beginning of 1970 TAI
+      posix_time        m_tmBase;       // time() value on this OS at the beginning of 1970 TAI
       long          m_lCurrentYear; // approximation to current year
       static const char* m_Months[12];
 
@@ -78,7 +78,7 @@ namespace ftp
       bool CheckMonth(const ::scoped_string & scopedstr, const ::string & pszMonthName) const;
       int  GetMonth(const ::scoped_string & scopedstr) const;
       bool GetLong(const ::scoped_string & scopedstrLong, long& lResult) const;
-      long GetYear(time_t time) const;
+      long GetYear(posix_time time) const;
 
       long ToTAI(long lYear, long lMonth, long lMDay) const;
       long GuessTAI(long lMonth, long lMDay);

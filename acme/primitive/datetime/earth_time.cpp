@@ -17,7 +17,7 @@
 #include <time.h>
 
 
-void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time);
+void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time);
 
 
 namespace earth
@@ -63,7 +63,7 @@ namespace earth
       //atm.tm_isdst = nDST;
 
 
-      m_time = make_utc_time(&atm) - (time_t) timeshift.m_d;
+      m_time = make_utc_time(&atm) - (posix_time) timeshift.m_d;
 
 
       /*
@@ -145,7 +145,7 @@ namespace earth
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_earth_time((time_t *)&m_time, &file_time.m_filetime);
+      file_time_to_earth_time((posix_time *)&m_time, &file_time.m_filetime);
 
    }
 
@@ -153,9 +153,9 @@ namespace earth
    struct tm* time::tm_struct(struct tm* ptm, const ::earth::time_shift & timeshift) const
    {
 
-      time_t timeOffset = (time_t) timeshift.m_d;
+      posix_time timeOffset = (posix_time) timeshift.m_d;
 
-      time_t time = m_time + timeOffset;
+      posix_time time = m_time + timeOffset;
 
       if (ptm != nullptr)
       {
@@ -179,7 +179,7 @@ namespace earth
 
          struct tm * ptmTemp;
 
-         ptmTemp = gmtime((time_t *)&time);
+         ptmTemp = gmtime((posix_time *)&time);
 
          // gmtime can return nullptr
          if(ptmTemp == nullptr)
@@ -245,7 +245,7 @@ namespace earth
 //
 //#else
 //
-//         return localtime_r((time_t *)&m_time, ptm);
+//         return localtime_r((posix_time *)&m_time, ptm);
 //
 //#endif
 //
@@ -260,7 +260,7 @@ namespace earth
 //   }
 //
 
-   time_t time::get_time() const noexcept
+   posix_time time::get_time() const noexcept
    {
 
        return m_time;
@@ -494,7 +494,7 @@ namespace earth
    }
 
 
-   time_t time::time_of_day(const time_shift& timeshift) const noexcept
+   posix_time time::time_of_day(const time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -508,7 +508,7 @@ namespace earth
    }
 
 
-   //time_t time::GetGmtTimeOfDay() const noexcept
+   //posix_time time::GetGmtTimeOfDay() const noexcept
    //{
 
    //   struct tm ttm;
@@ -549,7 +549,7 @@ namespace earth
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
    #if OSBIT == 32
-      const time_t timet = (const time_t) timeUtc;
+      const posix_time timet = (const posix_time) timeUtc;
       struct tm * ptmTemp = gmtime(&timet);
       #else
       struct tm * ptmTemp = gmtime(&timeUtc);
@@ -571,7 +571,7 @@ namespace earth
 
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
 
-      struct tm * ptmTemp = gmtime((time_t *)&time.m_time);
+      struct tm * ptmTemp = gmtime((posix_time *)&time.m_time);
 
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
@@ -642,7 +642,7 @@ namespace earth
 
    //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   //   struct tm * ptmTemp = gmtime((time_t *)&time.m_time);
+   //   struct tm * ptmTemp = gmtime((posix_time *)&time.m_time);
 
    //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    //   {
@@ -748,7 +748,7 @@ namespace earth
 ////   char psz[32];
 ////   psz[0] = '\0';
 ////
-//////   time_t tmp = time.get_time();
+//////   posix_time tmp = time.get_time();
 //////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
 ////
 ////   errno_t err = 0;
@@ -896,7 +896,7 @@ CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
 //#define INTEL 1
 
 //
-//time_t __time(const file_time & file_time)
+//posix_time __time(const file_time & file_time)
 //{
 //
 //   auto time = __time(*(FILETIME *)&file_time);

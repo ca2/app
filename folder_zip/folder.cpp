@@ -40,7 +40,7 @@ BOOL WINAPI DosDateTimeToFileTime(WORD fatdate, WORD fattime, LPFILETIME ft) {
 #ifndef HAVE_TIMEGM
 
    struct tm * gtm;
-   time_t time1, time2;
+   posix_time time1, time2;
 #endif
 
    //TRACEN((printf("DosDateTimeToFileTime\n")))

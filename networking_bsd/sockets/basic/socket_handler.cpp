@@ -1160,7 +1160,7 @@ end_processing_adding:
                   
                   // Out-Of-Band data
                   // recv with MSG_OOB
-                  //time_t tnow = time(nullptr);
+                  //posix_time tnow = time(nullptr);
 
                   if (ppairSocket->m_psocket->has_timed_out())
                   {
@@ -1275,7 +1275,7 @@ end_processing_adding:
       if (m_socketlistTimeout.get_size())
       {
          
-         time_t tnow = time(nullptr);
+         posix_time tnow = time(nullptr);
 
          if (tnow != m_tlast)
          {

@@ -61,7 +61,7 @@ public:
 
    template < primitive_integer INTEGER >
    constexpr time(INTEGER iSecond)
-   :TIME{ .m_iSecond = (time_t)iSecond, .m_iNanosecond = (long)0 }
+   :TIME{ .m_iSecond = (posix_time)iSecond, .m_iNanosecond = (long)0 }
    {
       
       
@@ -77,7 +77,7 @@ public:
 
    template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
    constexpr time(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
-      TIME{ .m_iSecond = (time_t)iSecond, .m_iNanosecond = (long)iNanosecond }
+      TIME{ .m_iSecond = (posix_time)iSecond, .m_iNanosecond = (long)iNanosecond }
    { }
 
 
@@ -123,11 +123,11 @@ public:
    constexpr time(const ::TIME & time) : TIME(time) {}
 
 
-   constexpr void raw_set(time_t iSeconds, long iNanoseconds = 0);
-   constexpr void set(time_t iSeconds, long iNanoseconds);
+   constexpr void raw_set(posix_time iSeconds, long iNanoseconds = 0);
+   constexpr void set(posix_time iSeconds, long iNanoseconds);
    constexpr void set_null();
-   static constexpr time raw_create(time_t iSeconds, long iNanoseconds);
-   static constexpr time create(time_t iSeconds, long iNanoseconds);
+   static constexpr time raw_create(posix_time iSeconds, long iNanoseconds);
+   static constexpr time create(posix_time iSeconds, long iNanoseconds);
    static constexpr time create_null();
 
 
@@ -293,7 +293,7 @@ public:
    //class ::time operator % (const class time & time) const;
 
 
-   constexpr time_t GetTimeSpan() const;
+   constexpr posix_time GetTimeSpan() const;
 
    
    //inline bool timeout(const class time & time);
@@ -907,7 +907,7 @@ public:
 //}
 
 
-constexpr  void time::raw_set(time_t iSeconds, long iNanoseconds)
+constexpr  void time::raw_set(posix_time iSeconds, long iNanoseconds)
 {
 
    m_iSecond = iSeconds;
@@ -917,7 +917,7 @@ constexpr  void time::raw_set(time_t iSeconds, long iNanoseconds)
 }
 
 
-constexpr  void time::set(time_t iSeconds, long iNanoseconds)
+constexpr  void time::set(posix_time iSeconds, long iNanoseconds)
 {
 
    raw_set(iSeconds, iNanoseconds);
@@ -935,7 +935,7 @@ constexpr  void time::set_null()
 }
 
 
-constexpr  class ::time time::raw_create(time_t iSeconds, long iNanoseconds)
+constexpr  class ::time time::raw_create(posix_time iSeconds, long iNanoseconds)
 {
 
    time time;
@@ -948,7 +948,7 @@ constexpr  class ::time time::raw_create(time_t iSeconds, long iNanoseconds)
 
 
 
-constexpr  class ::time time::create(time_t iSeconds, long iNanoseconds)
+constexpr  class ::time time::create(posix_time iSeconds, long iNanoseconds)
 {
 
    time time;
@@ -1020,7 +1020,7 @@ constexpr  class ::time time::infinity()
 //}
 
 
-constexpr  time_t time::GetTimeSpan() const
+constexpr  posix_time time::GetTimeSpan() const
 {
 
    return m_iSecond;

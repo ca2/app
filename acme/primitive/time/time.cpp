@@ -130,7 +130,7 @@ void time::fset(long double d, double dNano)
 
    dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
 
-   raw_set((time_t)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (long)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
+   raw_set((posix_time)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (long)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
 
 }
 
@@ -138,7 +138,7 @@ void time::fset(long double d, double dNano)
 void time::fset(long double d)
 {
 
-   raw_set((time_t)floor(d), (long)(fmod(d, 1.0) * 1'000'000'000.0));
+   raw_set((posix_time)floor(d), (long)(fmod(d, 1.0) * 1'000'000'000.0));
 
 }
 

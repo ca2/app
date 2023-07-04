@@ -90,7 +90,7 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 //}
 //
 //
-////void system_time_to_earth_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+////void system_time_to_earth_time(posix_time* ptime, const system_time_t* psystemtime, i32 nDST)
 ////{
 ////
 ////   struct tm tm;

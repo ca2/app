@@ -38,7 +38,7 @@ namespace earth
    public:
 
 
-      time_t m_time;
+      posix_time m_time;
 
 
       constexpr time() noexcept;
@@ -47,7 +47,7 @@ namespace earth
 
       constexpr time(const time &time);
 
-      constexpr time(time_t time) noexcept;
+      constexpr time(posix_time time) noexcept;
 
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
            const time_shift &timeshift = time_shift::none());
@@ -109,7 +109,7 @@ namespace earth
 
       struct ::tm *tm_struct(struct ::tm *ptm, const ::earth::time_shift &timeshift = time_shift::none()) const;
 
-      time_t get_time() const noexcept;
+      posix_time get_time() const noexcept;
 
       i32 year(const time_shift &timeshift = time_shift::none()) const noexcept;
 
@@ -128,7 +128,7 @@ namespace earth
 
       time get_sunday(const time_shift &timeshift = time_shift::none()) const;
 
-      time_t time_of_day(const time_shift &timeshift = time_shift::none()) const noexcept;
+      posix_time time_of_day(const time_shift &timeshift = time_shift::none()) const noexcept;
 
       i64 day_sig(const time_shift &timeshift = time_shift::none()) const noexcept;
 
@@ -238,7 +238,7 @@ namespace earth
    }
 
 
-   constexpr  time::time(time_t time)  noexcept :
+   constexpr  time::time(posix_time time)  noexcept :
       m_time(time)
    {
 

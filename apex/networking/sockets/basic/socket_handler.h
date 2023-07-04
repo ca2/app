@@ -35,7 +35,7 @@ namespace sockets
       //fd_set                     m_efds; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
-      time_t                     m_tlast; ///< timeout control
+      posix_time                     m_tlast; ///< timeout control
 
       // state lists
       //socket_id_list                m_socketidlist; ///< Active file descriptor list

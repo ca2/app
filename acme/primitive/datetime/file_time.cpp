@@ -217,7 +217,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //   }
 //
 //
-//   void node::file_time_to_time(time_t * ptime, const file_time_t * pfile_time, i32 nDST)
+//   void node::file_time_to_time(posix_time * ptime, const file_time_t * pfile_time, i32 nDST)
 //   {
 //
 //      system_time_t systemtime;

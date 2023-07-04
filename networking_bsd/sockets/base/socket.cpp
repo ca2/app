@@ -636,7 +636,7 @@ namespace sockets_bsd
    {
    }
 
-   time_t base_socket::Uptime()
+   posix_time base_socket::Uptime()
    {
       return time(nullptr) - m_timeCreate;
    }
@@ -707,7 +707,7 @@ namespace sockets_bsd
    }
 
 
-   time_t base_socket::TimeSinceClose()
+   posix_time base_socket::TimeSinceClose()
    {
       return time(nullptr) - m_timeClose;
    }

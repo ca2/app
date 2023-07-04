@@ -2851,7 +2851,7 @@ namespace http
    }
 
 
-   string context::gmdate(time_t t)
+   string context::gmdate(posix_time t)
    {
 
       if (t == 0)

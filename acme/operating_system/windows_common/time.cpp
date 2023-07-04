@@ -11,7 +11,7 @@
 
 
 extern "C"
-struct tm * gmtime_r(const time_t * timep, struct tm * result)
+struct tm * gmtime_r(const posix_time * timep, struct tm * result)
 {
 
    if (gmtime_s(result, timep) != 0)
@@ -107,7 +107,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-void system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystemtime, i32 nDST)
 {
 
    struct tm tm;
@@ -134,7 +134,7 @@ void system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime
 //}
 
 
-void earth_time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
+void earth_time_to_system_time(system_time_t* psystemtime, const posix_time* ptime)
 {
    
    struct tm tm;
@@ -146,7 +146,7 @@ void earth_time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
 }
 
 
-CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const time_t* ptime)
+CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const posix_time* ptime)
 {
 
    system_time_t systemtime;

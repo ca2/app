@@ -1275,7 +1275,9 @@ end_processing_adding:
       if (m_socketlistTimeout.get_size())
       {
          
-         posix_time tnow = time(nullptr);
+         ::earth::time tnow(now_t{});
+         
+         //= time(nullptr);
 
          if (tnow != m_tlast)
          {
@@ -1473,7 +1475,7 @@ end_processing_adding:
 
                   // memory_new graceful ptcpsocket - flush and close timeout 5s
                   if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
-                        !ptcpsocket->IsSSL() && psocket->TimeSinceClose() < 5)
+                        !ptcpsocket->IsSSL() && psocket->TimeSinceClose().m_iSecond < 5)
                   {
 
                      //information() << " close(1)\n");

@@ -33,17 +33,18 @@ namespace earth
    }
 
    // it is in UTC by default?
-   class CLASS_DECL_ACME time
+   class CLASS_DECL_ACME time :
+      public posix_time
    {
    public:
 
 
-      posix_time        m_posixtime;
+      //posix_time        m_posixtime;
 
 
       constexpr time() noexcept;
 
-      inline time(now_t) noexcept { m_posixtime = now().m_posixtime; }
+      inline time(now_t) noexcept : posix_time(now_t{}) { }
 
       constexpr time(const time &time);
 
@@ -64,10 +65,15 @@ namespace earth
       static time now() noexcept;
 
       void Now() { *this = now(); }
+      void Null() { *this = posix_time({ posix_time_t{}, 0 }); }
 
 
       constexpr time &operator=(const time &time) noexcept;
 
+
+      bool is_null_or_positive() const { return m_iSecond >= 0; }
+
+      bool is_positive() const { return m_iSecond > 0; }
 
       time &operator+=(date_span span);
 
@@ -99,7 +105,7 @@ namespace earth
 
       //constexpr bool operator!=(time time) const noexcept;
 
-      constexpr ::std::strong_ordering operator<=>(time time) const noexcept;
+      constexpr ::std::strong_ordering operator<=>(::earth::time time) const noexcept;
 
       //constexpr bool operator>(time time) const noexcept;
 
@@ -145,7 +151,7 @@ namespace earth
 
    constexpr  bool time::operator==(time time) const noexcept
    {
-      return m_posixtime.m_iSecond == time.m_posixtime.m_iSecond;
+      return m_iSecond == time.m_iSecond;
 
    }
 
@@ -158,10 +164,10 @@ namespace earth
    //}
 
 
-   constexpr ::std::strong_ordering time::operator<=>(time time) const noexcept
+   constexpr ::std::strong_ordering time::operator<=>(::earth::time time) const noexcept
    {
 
-      return m_posixtime.m_iSecond <=> time.m_posixtime.m_iSecond;
+      return m_iSecond <=> time.m_iSecond;
 
    }
 
@@ -203,7 +209,7 @@ namespace earth
    constexpr time_span time::operator-(time time) const noexcept
    {
 
-      return m_posixtime - time.m_posixtime;
+      return posix_time::operator - (time);
 
    }
 
@@ -211,7 +217,7 @@ namespace earth
    constexpr ::earth::time time::operator-(time_span span) const noexcept
    {
 
-      return m_posixtime - span.m_posixtime;
+      return posix_time::operator - (span);
 
    }
 
@@ -219,38 +225,37 @@ namespace earth
    constexpr  ::earth::time time::operator+(time_span span) const noexcept
    {
 
-      return m_posixtime + span.m_posixtime;
+      return posix_time::operator + (span);
 
    }
 
 
-   constexpr  time::time() noexcept :
-      m_posixtime({ posix_time_t{}, 0 })
+   constexpr  time::time() noexcept// :
+      //posixtime({ posix_time_t{}, 0 })
    {
 
    }
 
 
    constexpr  time::time(const class time & time) :
-      m_posixtime(time.m_posixtime)
+      posix_time(time)
    {
 
    }
 
 
    constexpr  time::time(posix_time time)  noexcept :
-      m_posixtime(time)
+      posix_time(time)
    {
 
    }
 
 
-
    constexpr ::earth::time & time::operator=(const class time & time) noexcept
    {
 
-      m_posixtime = time.m_posixtime;
-
+      posix_time::operator =(time);
+      
       return *this;
 
    }
@@ -259,7 +264,7 @@ namespace earth
    constexpr ::earth::time & time::operator+=(time_span span) noexcept
    {
 
-      m_posixtime += span.GetTimeSpan();
+      posix_time::operator+=(span);
 
       return *this;
 
@@ -269,7 +274,7 @@ namespace earth
    constexpr ::earth::time & time::operator-=(time_span span) noexcept
    {
 
-      m_posixtime -= span.GetTimeSpan();
+      posix_time::operator -= (span);
 
       return *this;
 

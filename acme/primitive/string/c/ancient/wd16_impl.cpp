@@ -1,20 +1,18 @@
+#include "framework.h"
 
 
+CLASS_DECL_ACME ::wd16_character __wd16charlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
+CLASS_DECL_ACME ::wd16_character __wd16charuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
+CLASS_DECL_ACME i32 __wd16charisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
+CLASS_DECL_ACME i32 __wd16charisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
+CLASS_DECL_ACME i32 __wd16charisalnum(i32 i) { return wd16_char_isalpha(i) || wd16_char_isdigit(i); }
+CLASS_DECL_ACME i32 __wd16charisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
 
 
-
-inline ::wd16_character __wd16charlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
-inline ::wd16_character __wd16charuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
-inline i32 __wd16charisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
-inline i32 __wd16charisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
-inline i32 __wd16charisalnum(i32 i) { return wd16_char_isalpha(i) || wd16_char_isdigit(i); }
-inline i32 __wd16charisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
+CLASS_DECL_ACME i32 __wd16charishexadecimal(i32 i) { return wd16_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
-inline i32 __wd16charishexadecimal(i32 i) { return wd16_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
-
-
-inline ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const ::wd16_character * pszSrc, strsize srclen)
+CLASS_DECL_ACME ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const ::wd16_character * pszSrc, strsize srclen)
 {
 
    if (pszDst != pszSrc)
@@ -42,7 +40,7 @@ inline ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const
 
 
 
-inline strsize __wd16len(const ::wd16_character * psz)
+CLASS_DECL_ACME strsize __wd16len(const ::wd16_character * psz)
 {
 
    auto pszStart = psz;
@@ -54,7 +52,7 @@ inline strsize __wd16len(const ::wd16_character * psz)
 }
 
 
-inline ::wd16_character * __wd16cat(::wd16_character * pszTarget, const ::wd16_character * pszConcat)
+CLASS_DECL_ACME ::wd16_character * __wd16cat(::wd16_character * pszTarget, const ::wd16_character * pszConcat)
 {
 
    __wd16cpy(pszTarget + wd16_len(pszTarget), pszConcat);
@@ -64,7 +62,7 @@ inline ::wd16_character * __wd16cat(::wd16_character * pszTarget, const ::wd16_c
 }
 
 
-inline ::wd16_character * __wd16cpy(::wd16_character * pszDst, const ::wd16_character * pszSrc)
+CLASS_DECL_ACME ::wd16_character * __wd16cpy(::wd16_character * pszDst, const ::wd16_character * pszSrc)
 {
 
    auto pszStart = pszDst;
@@ -78,7 +76,7 @@ inline ::wd16_character * __wd16cpy(::wd16_character * pszDst, const ::wd16_char
 
 
 
-inline ::wd16_character * __wd16ncpy(::wd16_character * pszDst, const ::wd16_character * psz, strsize len)
+CLASS_DECL_ACME ::wd16_character * __wd16ncpy(::wd16_character * pszDst, const ::wd16_character * psz, strsize len)
 {
 
    auto pszStart = pszDst;
@@ -94,7 +92,7 @@ inline ::wd16_character * __wd16ncpy(::wd16_character * pszDst, const ::wd16_cha
 
 
 
-inline const ::wd16_character * __wd16chr(const ::wd16_character * psz, ::wd16_character ch)
+CLASS_DECL_ACME const ::wd16_character * __wd16chr(const ::wd16_character * psz, ::wd16_character ch)
 {
 
    while (*psz)
@@ -117,7 +115,7 @@ inline const ::wd16_character * __wd16chr(const ::wd16_character * psz, ::wd16_c
 
 
 
-inline ::wd16_character * __wd16pbrk(::wd16_character * psz, const ::wd16_character * pszFind)
+CLASS_DECL_ACME ::wd16_character * __wd16pbrk(::wd16_character * psz, const ::wd16_character * pszFind)
 {
 
    while (*psz)
@@ -149,7 +147,7 @@ inline ::wd16_character * __wd16pbrk(::wd16_character * psz, const ::wd16_charac
 
 
 
-inline ::wd16_character * __wd16tok_r(::wd16_character * psz, const ::wd16_character * sep, ::wd16_character ** state)
+CLASS_DECL_ACME ::wd16_character * __wd16tok_r(::wd16_character * psz, const ::wd16_character * sep, ::wd16_character ** state)
 {
 
    if (!psz)
@@ -190,7 +188,7 @@ inline ::wd16_character * __wd16tok_r(::wd16_character * psz, const ::wd16_chara
 
 
 
-inline const ::wd16_character * __wd16rchr(const ::wd16_character * psz, ::wd16_character ch)
+CLASS_DECL_ACME const ::wd16_character * __wd16rchr(const ::wd16_character * psz, ::wd16_character ch)
 {
 
    auto p = psz + __wd16len(psz) - 1;
@@ -215,7 +213,7 @@ inline const ::wd16_character * __wd16rchr(const ::wd16_character * psz, ::wd16_
 
 
 
-inline int __wd16cmp(const ::wd16_character * psz1, const ::wd16_character * psz2)
+CLASS_DECL_ACME int __wd16cmp(const ::wd16_character * psz1, const ::wd16_character * psz2)
 {
 
    int iCompare = 0;
@@ -237,7 +235,7 @@ inline int __wd16cmp(const ::wd16_character * psz1, const ::wd16_character * psz
 
 
 
-inline int __wd16ncmp(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s)
+CLASS_DECL_ACME int __wd16ncmp(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s)
 {
 
    int iCompare = 0;
@@ -262,7 +260,7 @@ inline int __wd16ncmp(const ::wd16_character * psz1, const ::wd16_character * ps
 
 
 
-inline const ::wd16_character * __wd16str(const ::wd16_character * psz, const ::wd16_character * pszFind)
+CLASS_DECL_ACME const ::wd16_character * __wd16str(const ::wd16_character * psz, const ::wd16_character * pszFind)
 {
 
    auto lenFind = __wd16len(pszFind);
@@ -304,14 +302,14 @@ inline const ::wd16_character * __wd16str(const ::wd16_character * psz, const ::
 }
 
 
-inline ::wd16_character __wd16tolower(::wd16_character ch)
+CLASS_DECL_ACME ::wd16_character __wd16tolower(::wd16_character ch)
 {
 
    return (ch >= (::wd16_character)L'A' && ch <= (::wd16_character)L'Z') ? (ch - (::wd16_character)L'A') + (::wd16_character)L'a' : ch;
 
 }
 
-inline ::wd16_character __wd16toupper(::wd16_character ch)
+CLASS_DECL_ACME ::wd16_character __wd16toupper(::wd16_character ch)
 {
 
    return (ch >= (::wd16_character)L'a' && ch <= (::wd16_character)L'z') ? (ch - (::wd16_character)L'a') + (::wd16_character)L'A' : ch;
@@ -319,7 +317,7 @@ inline ::wd16_character __wd16toupper(::wd16_character ch)
 }
 
 
-inline ::wd16_character * __wd16lwr(::wd16_character * psz)
+CLASS_DECL_ACME ::wd16_character * __wd16lwr(::wd16_character * psz)
 {
 
    auto p = psz;
@@ -338,7 +336,7 @@ inline ::wd16_character * __wd16lwr(::wd16_character * psz)
 }
 
 
-inline ::wd16_character * __wd16lwr_s(::wd16_character * psz, strsize s)
+CLASS_DECL_ACME ::wd16_character * __wd16lwr_s(::wd16_character * psz, strsize s)
 {
 
    auto p = psz;
@@ -359,7 +357,7 @@ inline ::wd16_character * __wd16lwr_s(::wd16_character * psz, strsize s)
 }
 
 
-inline ::wd16_character * __wd16upr(::wd16_character * psz)
+CLASS_DECL_ACME ::wd16_character * __wd16upr(::wd16_character * psz)
 {
 
    auto p = psz;
@@ -378,7 +376,7 @@ inline ::wd16_character * __wd16upr(::wd16_character * psz)
 }
 
 
-inline ::wd16_character * __wd16upr_s(::wd16_character * psz, strsize s)
+CLASS_DECL_ACME ::wd16_character * __wd16upr_s(::wd16_character * psz, strsize s)
 {
 
    auto p = psz;
@@ -398,7 +396,7 @@ inline ::wd16_character * __wd16upr_s(::wd16_character * psz, strsize s)
 
 }
 
-inline const ::wd16_character * __wd16ichr(const ::wd16_character * psz, ::wd16_character ch)
+CLASS_DECL_ACME const ::wd16_character * __wd16ichr(const ::wd16_character * psz, ::wd16_character ch)
 {
 
    ch = wd16_tolower(ch);
@@ -427,7 +425,7 @@ inline const ::wd16_character * __wd16ichr(const ::wd16_character * psz, ::wd16_
 
 
 
-inline int __wd16icmp(const ::wd16_character * psz1, const ::wd16_character * psz2)
+CLASS_DECL_ACME int __wd16icmp(const ::wd16_character * psz1, const ::wd16_character * psz2)
 {
 
    int iCompare = 0;
@@ -448,7 +446,7 @@ inline int __wd16icmp(const ::wd16_character * psz1, const ::wd16_character * ps
 }
 
 
-inline int __wd16nicmp(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s)
+CLASS_DECL_ACME int __wd16nicmp(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s)
 {
 
    int iCompare = 0;
@@ -473,7 +471,7 @@ inline int __wd16nicmp(const ::wd16_character * psz1, const ::wd16_character * p
 
 
 
-inline const ::wd16_character * __wd16istr(const ::wd16_character * psz, const ::wd16_character * pszFind)
+CLASS_DECL_ACME const ::wd16_character * __wd16istr(const ::wd16_character * psz, const ::wd16_character * pszFind)
 {
 
    auto lenFind = wd16_len(pszFind);
@@ -514,16 +512,16 @@ inline const ::wd16_character * __wd16istr(const ::wd16_character * psz, const :
 
 }
 
-inline int __wd16coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wd16_cmp(psz1, psz2); }
+CLASS_DECL_ACME int __wd16coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wd16_cmp(psz1, psz2); }
 
-inline int __wd16ncoll(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s) { return wd16_ncmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __wd16ncoll(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s) { return wd16_ncmp(psz1, psz2, s); }
 
-inline int __wd16icoll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wd16_icmp(psz1, psz2); }
+CLASS_DECL_ACME int __wd16icoll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wd16_icmp(psz1, psz2); }
 
-inline int __wd16nicoll(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s) { return wd16_nicmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __wd16nicoll(const ::wd16_character * psz1, const ::wd16_character * psz2, strsize s) { return wd16_nicmp(psz1, psz2, s); }
 
 
-inline strsize __wd16spn(const ::wd16_character * psz1, const ::wd16_character * psz2)
+CLASS_DECL_ACME strsize __wd16spn(const ::wd16_character * psz1, const ::wd16_character * psz2)
 {
 
    auto pszStart = psz1;
@@ -563,7 +561,7 @@ inline strsize __wd16spn(const ::wd16_character * psz1, const ::wd16_character *
 }
 
 
-inline strsize __wd16cspn(const ::wd16_character * psz1, const ::wd16_character * psz2)
+CLASS_DECL_ACME strsize __wd16cspn(const ::wd16_character * psz1, const ::wd16_character * psz2)
 {
 
    auto pszStart = psz1;
@@ -608,12 +606,12 @@ inline strsize __wd16cspn(const ::wd16_character * psz1, const ::wd16_character 
 
 
 
-inline strsize wd16_to_ansi_char_len(::wd16_character wch) { return utf_to_utf_length((char *)nullptr, &wch, 1); }
-inline void wd16_to_ansi_char(char * psz, ::wd16_character wch) { utf_to_utf(psz, &wch, 1); }
+CLASS_DECL_ACME strsize wd16_to_ansi_char_len(::wd16_character wch) { return utf_to_utf_length((char *)nullptr, &wch, 1); }
+CLASS_DECL_ACME void wd16_to_ansi_char(char * psz, ::wd16_character wch) { utf_to_utf(psz, &wch, 1); }
 
 
 
-inline void make_upper(::wd16_character * psz)
+CLASS_DECL_ACME void make_upper(::wd16_character * psz)
 {
 
    while (*psz)

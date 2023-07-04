@@ -11,7 +11,7 @@
 constexpr Gdiplus::REAL gdiplus_font_size(const write_text::font_size & fontsize)
 {
 
-   return (Gdiplus::REAL) (::f64) fontsize;
+   return (Gdiplus::REAL) (::f64) fontsize.f64();
 
 }
 

@@ -138,7 +138,7 @@ namespace ftp
       m_esize = size_unknown;
       m_filesize = -1;
       m_etimeModification = time_unknown;
-      m_timeModification = 0;
+      m_timeModification = posix_time{ posix_time_t{}, 0 };
       m_strAttributes.empty();
       m_strUID.empty();
       m_strGID.empty();

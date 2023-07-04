@@ -150,7 +150,7 @@ namespace earth
       void time::set(const class ::time & time, const time_shift & timeshift)
       {
 
-         set(::earth::time{time.m_posixtime}, timeshift);
+         set(::earth::time(time), timeshift);
 
       }
 

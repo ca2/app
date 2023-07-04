@@ -16,6 +16,7 @@ CLASS_DECL_ACME i32                    ansi_char_is_hexadecimal(i32 i);
 CLASS_DECL_ACME ::ansi_character * ansi_last_char(::ansi_character * psz);
 CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_character * psz);
 CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat);
+CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat, strsize n);
 CLASS_DECL_ACME ::ansi_character * ansi_copy(::ansi_character * psz, const ::ansi_character * cpy);
 CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const ::ansi_character * cpy, strsize len);
 CLASS_DECL_ACME strsize                ansi_length(const ::ansi_character * psz);

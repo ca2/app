@@ -1,21 +1,20 @@
+#include "framework.h"
 
 
 
 
+CLASS_DECL_ACME ::ansi_character __ansicharlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
+CLASS_DECL_ACME ::ansi_character __ansicharuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
+CLASS_DECL_ACME i32 __ansicharisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
+CLASS_DECL_ACME i32 __ansicharisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
+CLASS_DECL_ACME i32 __ansicharisalnum(i32 i) { return ansi_char_isalpha(i) || ansi_char_isdigit(i); }
+CLASS_DECL_ACME i32 __ansicharisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
 
 
-inline ::ansi_character __ansicharlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
-inline ::ansi_character __ansicharuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
-inline i32 __ansicharisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
-inline i32 __ansicharisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
-inline i32 __ansicharisalnum(i32 i) { return ansi_char_isalpha(i) || ansi_char_isdigit(i); }
-inline i32 __ansicharisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
+CLASS_DECL_ACME i32 __ansicharishexadecimal(i32 i) { return ansi_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
-inline i32 __ansicharishexadecimal(i32 i) { return ansi_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
-
-
-inline ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, strsize srclen)
+CLASS_DECL_ACME ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, strsize srclen)
 {
 
    if (pszDst != pszSrc)
@@ -43,7 +42,7 @@ inline ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const
 
 
 
-inline strsize __ansilen(const ::ansi_character * psz)
+CLASS_DECL_ACME strsize __ansilen(const ::ansi_character * psz)
 {
 
    auto pszStart = psz;
@@ -57,7 +56,7 @@ inline strsize __ansilen(const ::ansi_character * psz)
 
 
 
-inline ::ansi_character * __ansicpy(::ansi_character * pszDst, const ::ansi_character * pszSrc)
+CLASS_DECL_ACME ::ansi_character * __ansicpy(::ansi_character * pszDst, const ::ansi_character * pszSrc)
 {
 
    auto pszStart = pszDst;
@@ -71,7 +70,7 @@ inline ::ansi_character * __ansicpy(::ansi_character * pszDst, const ::ansi_char
 
 
 
-inline ::ansi_character * __ansincpy(::ansi_character * pszDst, const ::ansi_character * psz, strsize len)
+CLASS_DECL_ACME ::ansi_character * __ansincpy(::ansi_character * pszDst, const ::ansi_character * psz, strsize len)
 {
 
    auto pszStart = pszDst;
@@ -87,7 +86,7 @@ inline ::ansi_character * __ansincpy(::ansi_character * pszDst, const ::ansi_cha
 
 
 
-inline const ::ansi_character * __ansichr(const ::ansi_character * psz, ::ansi_character ch)
+CLASS_DECL_ACME const ::ansi_character * __ansichr(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    while (*psz)
@@ -110,7 +109,7 @@ inline const ::ansi_character * __ansichr(const ::ansi_character * psz, ::ansi_c
 
 
 
-inline ::ansi_character * __ansipbrk(::ansi_character * psz, const ::ansi_character * pszFind)
+CLASS_DECL_ACME ::ansi_character * __ansipbrk(::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
    while (*psz)
@@ -147,7 +146,7 @@ CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const ::a
 
 
 
-inline const ::ansi_character * __ansirchr(const ::ansi_character * psz, ::ansi_character ch)
+CLASS_DECL_ACME const ::ansi_character * __ansirchr(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    auto p = psz + __ansilen(psz) - 1;
@@ -172,7 +171,7 @@ inline const ::ansi_character * __ansirchr(const ::ansi_character * psz, ::ansi_
 
 
 
-inline int __ansicmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
+CLASS_DECL_ACME int __ansicmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    int iCompare = 0;
@@ -194,7 +193,7 @@ inline int __ansicmp(const ::ansi_character * psz1, const ::ansi_character * psz
 
 
 
-inline int __ansincmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
+CLASS_DECL_ACME int __ansincmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
 {
 
    int iCompare = 0;
@@ -219,7 +218,7 @@ inline int __ansincmp(const ::ansi_character * psz1, const ::ansi_character * ps
 
 
 
-inline const ::ansi_character * __ansistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
+CLASS_DECL_ACME const ::ansi_character * __ansistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
    auto lenFind = __ansilen(pszFind);
@@ -262,7 +261,7 @@ inline const ::ansi_character * __ansistr(const ::ansi_character * psz, const ::
 
 
 
-inline ::ansi_character __ansitolower(::ansi_character ch)
+CLASS_DECL_ACME ::ansi_character __ansitolower(::ansi_character ch)
 {
 
    return (ch >= (::ansi_character)L'A' && ch <= (::ansi_character)L'Z') ? (ch - (::ansi_character)L'A') + (::ansi_character)L'a' : ch;
@@ -270,7 +269,7 @@ inline ::ansi_character __ansitolower(::ansi_character ch)
 }
 
 
-inline ::ansi_character __ansitoupper(::ansi_character ch)
+CLASS_DECL_ACME ::ansi_character __ansitoupper(::ansi_character ch)
 {
 
    return (ch >= (::ansi_character)L'a' && ch <= (::ansi_character)L'z') ? (ch - (::ansi_character)L'a') + (::ansi_character)L'A' : ch;
@@ -278,7 +277,7 @@ inline ::ansi_character __ansitoupper(::ansi_character ch)
 }
 
 
-inline ::ansi_character __ansiisdigit(::ansi_character ch)
+CLASS_DECL_ACME ::ansi_character __ansiisdigit(::ansi_character ch)
 {
 
    return (ch >= (::ansi_character)L'0' && ch <= (::ansi_character)L'9');
@@ -286,7 +285,7 @@ inline ::ansi_character __ansiisdigit(::ansi_character ch)
 }
 
 
-inline ::ansi_character * __ansilwr(::ansi_character * psz)
+CLASS_DECL_ACME ::ansi_character * __ansilwr(::ansi_character * psz)
 {
 
    auto p = psz;
@@ -305,7 +304,7 @@ inline ::ansi_character * __ansilwr(::ansi_character * psz)
 }
 
 
-inline ::ansi_character * __ansilwr_s(::ansi_character * psz, strsize s)
+CLASS_DECL_ACME ::ansi_character * __ansilwr_s(::ansi_character * psz, strsize s)
 {
 
    auto p = psz;
@@ -326,7 +325,7 @@ inline ::ansi_character * __ansilwr_s(::ansi_character * psz, strsize s)
 }
 
 
-inline ::ansi_character * __ansiupr(::ansi_character * psz)
+CLASS_DECL_ACME ::ansi_character * __ansiupr(::ansi_character * psz)
 {
 
    auto p = psz;
@@ -345,7 +344,7 @@ inline ::ansi_character * __ansiupr(::ansi_character * psz)
 }
 
 
-inline ::ansi_character * __ansiupr_s(::ansi_character * psz, strsize s)
+CLASS_DECL_ACME ::ansi_character * __ansiupr_s(::ansi_character * psz, strsize s)
 {
 
    auto p = psz;
@@ -366,7 +365,7 @@ inline ::ansi_character * __ansiupr_s(::ansi_character * psz, strsize s)
 }
 
 
-inline const ::ansi_character * __ansiichr(const ::ansi_character * psz, ::ansi_character ch)
+CLASS_DECL_ACME const ::ansi_character * __ansiichr(const ::ansi_character * psz, ::ansi_character ch)
 {
 
    ch = ansi_tolower(ch);
@@ -395,7 +394,7 @@ inline const ::ansi_character * __ansiichr(const ::ansi_character * psz, ::ansi_
 
 
 
-inline int __ansiicmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
+CLASS_DECL_ACME int __ansiicmp(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    int iCompare = 0;
@@ -416,7 +415,7 @@ inline int __ansiicmp(const ::ansi_character * psz1, const ::ansi_character * ps
 }
 
 
-inline int __ansiincmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
+CLASS_DECL_ACME int __ansiincmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
 {
 
    int iCompare = 0;
@@ -441,7 +440,7 @@ inline int __ansiincmp(const ::ansi_character * psz1, const ::ansi_character * p
 
 
 
-inline const ::ansi_character * __ansiistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
+CLASS_DECL_ACME const ::ansi_character * __ansiistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
    auto lenFind = ansi_len(pszFind);
@@ -483,15 +482,15 @@ inline const ::ansi_character * __ansiistr(const ::ansi_character * psz, const :
 }
 
 
-inline int __ansicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansicmp(psz1, psz2); }
+CLASS_DECL_ACME int __ansicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansicmp(psz1, psz2); }
 
-inline int __ansincoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return __ansincmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __ansincoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return __ansincmp(psz1, psz2, s); }
 
-inline int __ansiicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansiicmp(psz1, psz2); }
+CLASS_DECL_ACME int __ansiicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansiicmp(psz1, psz2); }
 
-inline int __ansinicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return __ansiincmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __ansinicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return __ansiincmp(psz1, psz2, s); }
 
-inline strsize __ansispn(const ::ansi_character * psz1, const ::ansi_character * psz2)
+CLASS_DECL_ACME strsize __ansispn(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    auto pszStart = psz1;
@@ -531,7 +530,7 @@ inline strsize __ansispn(const ::ansi_character * psz1, const ::ansi_character *
 }
 
 
-inline strsize __ansicspn(const ::ansi_character * psz1, const ::ansi_character * psz2)
+CLASS_DECL_ACME strsize __ansicspn(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {
 
    auto pszStart = psz1;
@@ -571,7 +570,7 @@ inline strsize __ansicspn(const ::ansi_character * psz1, const ::ansi_character 
 }
 
 
-inline  ::ansi_character lower_char(i32 ch)
+CLASS_DECL_ACME  ::ansi_character lower_char(i32 ch)
 {
    if (ch >= 'A' && ch <= 'Z')
    {
@@ -581,7 +580,7 @@ inline  ::ansi_character lower_char(i32 ch)
 }
 
 
-inline ::ansi_character upper_char(i32 ch)
+CLASS_DECL_ACME ::ansi_character upper_char(i32 ch)
 {
    if (ch >= 'a' && ch <= 'z')
    {
@@ -595,7 +594,7 @@ inline ::ansi_character upper_char(i32 ch)
 
 
 
-inline void make_lower(::ansi_character * psz)
+CLASS_DECL_ACME void make_lower(::ansi_character * psz)
 {
 
    while (*psz)
@@ -607,7 +606,7 @@ inline void make_lower(::ansi_character * psz)
 }
 
 
-inline void make_upper(::ansi_character * psz)
+CLASS_DECL_ACME void make_upper(::ansi_character * psz)
 {
 
    while (*psz)

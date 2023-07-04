@@ -534,15 +534,15 @@ namespace datetime
 //            }
 //            stra.add(strItem);
 //         }
-//         if(value.m_posixtime.m_iSecond != 0)
+//         if(value.m_iSecond != 0)
 //         {
-//            if(abs(value.m_posixtime.m_iSecond) == 1)
+//            if(abs(value.m_iSecond) == 1)
 //            {
-//               strItem.format("%d second",value.m_posixtime.m_iSecond);
+//               strItem.format("%d second",value.m_iSecond);
 //            }
 //            else
 //            {
-//               strItem.format("%d seconds",value.m_posixtime.m_iSecond);
+//               strItem.format("%d seconds",value.m_iSecond);
 //            }
 //            stra.add(strItem);
 //         }

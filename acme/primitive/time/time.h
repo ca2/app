@@ -93,7 +93,7 @@ inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fm
 //inline floating_second_t::floating_second_t(const class time & time)
 //{
 //
-//   m_d = (double) time.m_posixtime.m_iSecond + ((double) time.m_nanosecond.m_iNanosecond / 1'000'000'000.0);
+//   m_d = (double) time.m_iSecond + ((double) time.m_iNanosecond / 1'000'000'000.0);
 //
 //}
 
@@ -101,8 +101,8 @@ inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fm
 //inline integral_second_t::integral_second_t(const class time & time)
 //{
 //
-//   //m_i = time.m_posixtime.m_iSecond + (time.m_nanosecond.m_iNanosecond > 500'000'000 ? 1 : 0);
+//   //m_i = time.m_iSecond + (time.m_iNanosecond > 500'000'000 ? 1 : 0);
 //
-//   m_i = time.m_posixtime.m_iSecond;
+//   m_i = time.m_iSecond;
 //
 //}

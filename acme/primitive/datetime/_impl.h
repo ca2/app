@@ -4,9 +4,9 @@
 //inline time& time::operator = (const class ::nanosecond & nanosecond)
 //{
 //
-//   m_posixtime.m_iSecond = nanosecond.m_i / 1'000'000'000;
+//   m_iSecond = nanosecond.m_i / 1'000'000'000;
 //
-//   m_nanosecond.m_iNanosecond = nanosecond.m_i % 1'000'000'000;
+//   m_iNanosecond = nanosecond.m_i % 1'000'000'000;
 //
 //   return *this;
 //
@@ -108,7 +108,7 @@ namespace earth
    constexpr ::std::strong_ordering time_span::operator <=>(const class ::time & time) const
    {
 
-      return m_posixtime.m_iSecond <=> time.integral_second();
+      return m_iSecond <=> time.integral_second();
 
    }
 
@@ -116,7 +116,7 @@ namespace earth
    constexpr earth::time time::operator+(class ::time& time) const
    {
 
-      return { posix_time({ posix_time_t {}, this->m_posixtime.m_iSecond + time.m_posixtime.m_iSecond }) };
+      return { posix_time({ posix_time_t {}, this->m_iSecond + time.m_iSecond }) };
 
    }
 

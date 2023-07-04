@@ -817,7 +817,7 @@
 //inline void __exchange(::binary_stream < FILE > & s, float & f) { s.default_exchange(f); }
 //inline void __exchange(::binary_stream < FILE > & s, double & d) { s.default_exchange(d); }
 //inline void __exchange(::binary_stream < FILE > & s, ::earth::time & time) { s.default_exchange(time.m_i); }
-//inline void __exchange(::binary_stream < FILE > & s, class ::time & time) { s.default_exchange(time.m_posixtime.m_iSecond); s.default_exchange(time.m_nanosecond.m_iNanosecond); }
+//inline void __exchange(::binary_stream < FILE > & s, class ::time & time) { s.default_exchange(time.m_iSecond); s.default_exchange(time.m_iNanosecond); }
 //inline void __exchange(::binary_stream < FILE > & s, const ::scoped_string & scopedstr) { s.write_only(psz); }
 //inline void __exchange(::binary_stream < FILE > & s, string & str) { s.default_exchange(str); }
 //inline void __exchange(::binary_stream < FILE > & s, ::file::path & path) { s.default_exchange(path); }

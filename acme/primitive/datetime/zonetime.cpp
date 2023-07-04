@@ -16,11 +16,11 @@ namespace earth
 
 #ifdef WINDOWS
 
-      t.m_posixtime = { posix_time_t {}, ::_time64(nullptr) };
+      t.m_iSecond = ::_time64(nullptr);
 
 #else
 
-      t.m_posixtime = { posix_time_t {},::time(nullptr) };
+      t.m_iSecond = ::time(nullptr);
 
 #endif
 
@@ -39,7 +39,7 @@ namespace earth
 
 
    zonetime::zonetime(const zonetime & zonetime) noexcept :
-      time(zonetime.m_posixtime),
+      time(zonetime),
       m_timeshift(zonetime.m_timeshift)
    {
 
@@ -69,7 +69,7 @@ namespace earth
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
       atm.tm_isdst = 0;
 
-      m_posixtime = ::earth::make_utc_time(&atm);
+      time::operator=(::earth::make_utc_time(&atm));
 
       /*
       Remember that:
@@ -80,7 +80,7 @@ namespace earth
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
       ASSUME(m_posixtime != -1);   */    // indicates an illegal input zonetime
-      if (m_posixtime.m_iSecond == -1)
+      if (m_iSecond == -1)
       {
          
          throw ::exception(error_invalid_time_type);
@@ -101,7 +101,7 @@ namespace earth
 
          struct tm tmTemp;
 
-         time_t t = m_posixtime.m_iSecond;
+         time_t t = m_iSecond;
 
          t += (::i32) m_timeshift;
 

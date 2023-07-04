@@ -23,9 +23,9 @@ inline char utf8_e(::u8 c);
 CLASS_DECL_ACME strsize utf8_len(const ::ansi_character * psz);
 
 
-const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError);
-const ::ansi_character * unicode_next(const ::ansi_character * psz);
-const ::ansi_character * unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg);
+inline const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError);
+inline const ::ansi_character * unicode_next(const ::ansi_character * psz);
+inline const ::ansi_character * unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg);
 
 
 CLASS_DECL_ACME strsize wd16_to_wd32_len(const ::wd16_character* pcwsz, strsize input_size = -1);
@@ -60,9 +60,6 @@ CLASS_DECL_ACME strsize wd16_to_ansi_len(const ::wd16_character* pwsz, strsize s
 CLASS_DECL_ACME strsize wd16_to_ansi(char* psz, const ::wd16_character* pwsz, strsize srclen = -11);
 
 CLASS_DECL_ACME char * wd16_to_ansi_dup(const ::wd16_character * input, strsize input_size);
-
-
-
 
 
 CLASS_DECL_ACME strsize utf32_len(const ::wd32_character* psz);

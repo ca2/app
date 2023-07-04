@@ -12844,7 +12844,7 @@ return strClass;
 
       }
 
-      bool bLading = sizeLading != sizeLayout || m_bNeedLayout;
+      bool bSize = sizeLading != sizeLayout || m_bNeedLayout;
 
       ::string strType = typeid(*this).name();
 
@@ -12857,7 +12857,7 @@ return strClass;
 
       m_bNeedLayout = false;
 
-      if (bLading)
+      if (bSize)
       {
 
          layout().layout().copy_size(layout().lading());
@@ -12885,12 +12885,12 @@ return strClass;
 
       }
 
-      if (bDisplay)
-      {
+      //if (bDisplay)
+      //{
 
-         layout().layout().copy_display(layout().lading());
+      //   layout().layout().copy_display(layout().lading());
 
-      }
+      //}
 
       bool bZorder = false;
 
@@ -12964,7 +12964,7 @@ return strClass;
 
       }
 
-      m_bUpdateVisual |= bDisplay || bZorder || bLading || bActivation;
+      m_bUpdateVisual |= bDisplay || bZorder || bSize || bActivation;
 
       if (!bUpdateBuffer && ::is_set(get_parent()))
       {
@@ -13014,7 +13014,7 @@ return strClass;
          //
          //         }
          //
-         if (bLading)
+         if (bSize)
          {
 
             //::pointer<::user::interaction_impl>pprimitiveimpl = m_pprimitiveimpl;

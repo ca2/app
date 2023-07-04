@@ -90,15 +90,15 @@ CLASS_DECL_ACME ::ansi_character character_toupper(::ansi_character ansich) noex
 
 
 
-inline ::ansi_character character_tolower(::ansi_character ansich) noexcept;
-inline ::ansi_character character_toupper(::ansi_character ansich) noexcept;
+CLASS_DECL_ACME ::ansi_character character_tolower(::ansi_character ansich) noexcept;
+CLASS_DECL_ACME ::ansi_character character_toupper(::ansi_character ansich) noexcept;
 
 
-inline bool character_isalpha(::ansi_character ansich) noexcept;
-inline bool character_isalnum(::ansi_character ansich) noexcept;
-inline bool character_isdigit(::ansi_character ansich) noexcept;
-inline bool character_isspace(::ansi_character ansich) noexcept;
-inline bool character_isupper(::ansi_character ansich) noexcept;
+CLASS_DECL_ACME bool character_isalpha(::ansi_character ansich) noexcept;
+CLASS_DECL_ACME bool character_isalnum(::ansi_character ansich) noexcept;
+CLASS_DECL_ACME bool character_isdigit(::ansi_character ansich) noexcept;
+CLASS_DECL_ACME bool character_isspace(::ansi_character ansich) noexcept;
+CLASS_DECL_ACME bool character_isupper(::ansi_character ansich) noexcept;
 
 
 CLASS_DECL_ACME ::ansi_character * string_uppercase(::ansi_character * psz, strsize size) noexcept;

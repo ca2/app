@@ -84,11 +84,11 @@
 CLASS_DECL_ACME class time random(const class time & d1, const class time & d2)
 {
 
-   auto iSeconds = random(d1.m_posixtime.m_iSecond, d2.m_posixtime.m_iSecond);
+   auto iSeconds = random(d1.m_iSecond, d2.m_iSecond);
 
    class ::time time(iSeconds, random(
-      (::i64)(((::i64)iSeconds > d1.m_posixtime.m_iSecond) ? 0 : d1.m_nanosecond.m_iNanosecond),
-      (::i64)(((::i64)iSeconds < d2.m_posixtime.m_iSecond) ? 999'999'999 : d2.m_nanosecond.m_iNanosecond)));
+      (::i64)(((::i64)iSeconds > d1.m_iSecond) ? 0 : d1.m_iNanosecond),
+      (::i64)(((::i64)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
 
    return time;
 

@@ -54,7 +54,7 @@ namespace ftp
    {
    public:
 
-      posix_time        m_tmBase;       // time() value on this OS at the beginning of 1970 TAI
+      ::earth::time        m_tmBase;       // time() value on this OS at the beginning of 1970 TAI
       long          m_lCurrentYear; // approximation to current year
       static const char* m_Months[12];
 

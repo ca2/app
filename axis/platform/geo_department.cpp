@@ -589,13 +589,13 @@ namespace geo
 
       v.parse_network_payload(pszJson);
 
-      ::earth::zonetime timeSunrise(v["sys"]["sunrise"].as_i64(), iTimeZone);
+      ::earth::zonetime timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_i64() }, iTimeZone);
 
-      ::earth::zonetime timeSunset(v["sys"]["sunset"].as_i64(), iTimeZone);
+      ::earth::zonetime timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_i64() }, iTimeZone);
 
-      iRise = (int)timeSunrise.GetZoneTimeOfDay();
+      iRise = (int)timeSunrise.GetZoneTimeOfDay().m_iSecond;
 
-      iSet = (int)timeSunset.GetZoneTimeOfDay();
+      iSet = (int)timeSunset.GetZoneTimeOfDay().m_iSecond;
 
       string strSunrise(timeSunrise.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
 

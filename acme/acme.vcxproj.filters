@@ -282,6 +282,15 @@
     <Filter Include="Header Files\graphics\write_text">
       <UniqueIdentifier>{6739a4c3-d9e6-48bd-a191-af850c1f156a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\string\c">
+      <UniqueIdentifier>{0038e0df-f8b8-4151-9288-981c77a849c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c\ancient">
+      <UniqueIdentifier>{1f629a9c-dcb1-4439-a101-a6e546af6c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c\extension">
+      <UniqueIdentifier>{c7ad3cc7-267d-4c13-b331-39ba820fb5f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3227,6 +3236,12 @@
     <ClInclude Include="primitive\primitive\targeted_unit.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\time\posix_time.h">
+      <Filter>Header Files\primitive\time\time</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\nanosecond.h">
+      <Filter>Header Files\primitive\time\time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4395,6 +4410,42 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\earth_time_shift.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\coupling_impl.cpp">
+      <Filter>Source Files\primitive\string\c</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\unicode_impl.cpp">
+      <Filter>Source Files\primitive\string\c</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\_str_impl.cpp">
+      <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

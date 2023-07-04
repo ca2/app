@@ -636,9 +636,12 @@ namespace sockets_bsd
    {
    }
 
+
    posix_time base_socket::Uptime()
    {
-      return time(nullptr) - m_timeCreate;
+
+      return m_timeCreate.elapsed();
+
    }
 
 
@@ -709,7 +712,9 @@ namespace sockets_bsd
 
    posix_time base_socket::TimeSinceClose()
    {
-      return time(nullptr) - m_timeClose;
+
+      return m_timeClose.elapsed();
+
    }
 
 

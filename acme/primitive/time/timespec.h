@@ -8,8 +8,8 @@
 constexpr struct ::timespec& copy(struct ::timespec& timespec, const class ::time& time)
 {
 
-   timespec.tv_sec = (decltype(timespec.tv_sec))time.m_posixtime.m_iSecond;
-   timespec.tv_nsec = (decltype(timespec.tv_nsec))time.m_nanosecond.m_iNanosecond;
+   timespec.tv_sec = (decltype(timespec.tv_sec))time.m_iSecond;
+   timespec.tv_nsec = (decltype(timespec.tv_nsec))time.m_iNanosecond;
 
    return timespec;
 
@@ -83,8 +83,8 @@ inline timespec& operator +=(timespec& timespec, const class time& time)
 
    return timespec += ::timespec
    {
-      .tv_sec = (decltype(::timespec::tv_sec)) time.m_posixtime.m_iSecond, 
-      .tv_nsec = (decltype(::timespec::tv_nsec)) time.m_nanosecond.m_iNanosecond
+      .tv_sec = (decltype(::timespec::tv_sec)) time.m_iSecond, 
+      .tv_nsec = (decltype(::timespec::tv_nsec)) time.m_iNanosecond
    };
 
 }

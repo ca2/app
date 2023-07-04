@@ -524,27 +524,6 @@ inline bool exists(const ::file::enum_type& etype)
 //
 
 
-inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
-
-}
-
-
-inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);
-
-}
-
-
-CLASS_DECL_ACME ::i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-
-
-CLASS_DECL_ACME ::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-
 
 
 //template < primitive_integral SECOND, primitive_integral NANOSECOND >

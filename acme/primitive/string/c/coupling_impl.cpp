@@ -1,4 +1,4 @@
-#pragma once
+#include "framework.h"
 
 
 CLASS_DECL_ACME ::ansi_character * ansi_dup(const ::ansi_character * psz) ;
@@ -158,11 +158,11 @@ inline int wide_nicmp(const ::wide_character * psz1, const ::wide_character * ps
 inline const ::wd16_character * wd16_istr(const ::wd16_character * psz, const ::wd16_character * pszFind) { return __wd16istr(psz, pszFind); }
 inline const ::wd32_character * wd32_istr(const ::wd32_character * psz, const ::wd32_character * pszFind) { return __wd32istr(psz, pszFind); }
 
-inline ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { return __u64towd16(u, buf, iBase, edigitcase); }
-inline ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { return __u64towd32(u, buf, iBase, edigitcase); }
+inline ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __u64towd16(u, buf, iBase, edigitcase, pend); }
+inline ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __u64towd32(u, buf, iBase, edigitcase, pend); }
 
-inline ::wd16_character * i64towd16(::i64 i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { return __i64towd16(i, buf, iBase, edigitcase); }
-inline ::wd32_character * i64towd32(::i64 i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { return __i64towd32(i, buf, iBase, edigitcase); }
+inline ::wd16_character * i64towd16(::i64 i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __i64towd16(i, buf, iBase, edigitcase, pend); }
+inline ::wd32_character * i64towd32(::i64 i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __i64towd32(i, buf, iBase, edigitcase, pend); }
 
 inline int wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wcscoll(psz1, psz2); }
 inline int wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32cmp(psz1, psz2); }

@@ -63,7 +63,7 @@ namespace earth
       //atm.tm_isdst = nDST;
 
 
-      m_posixtime = make_utc_time(&atm) - posix_time(posix_time_t{}, (::i64) timeshift.m_d);
+      time::operator=(make_utc_time(&atm) - posix_time(posix_time_t{}, (::i64) timeshift.m_d));
 
 
       /*
@@ -75,7 +75,7 @@ namespace earth
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
       ASSUME(m_posixtime != -1);   */    // indicates an illegal input time
-      if(m_posixtime.m_iSecond == -1)
+      if(m_iSecond == -1)
       {
 
          throw_exception(error_bad_argument);
@@ -117,17 +117,17 @@ namespace earth
 
 #ifdef WINDOWS
 
-      m_posixtime.m_iSecond = _mktime64(&atm);
+      m_iSecond = _mktime64(&atm);
 
 #else
 
-      m_posixtime.m_iSecond = mktime(&atm);
+      m_iSecond = mktime(&atm);
 
 #endif
 
-      ASSUME(m_posixtime.m_iSecond != -1);       // indicates an illegal input time
+      ASSUME(m_iSecond != -1);       // indicates an illegal input time
 
-      if (m_posixtime.m_iSecond == -1)
+      if (m_iSecond == -1)
       {
 
          throw ::exception(error_invalid_time_type);
@@ -145,7 +145,7 @@ namespace earth
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_earth_time((posix_time *)&m_posixtime, &file_time.m_filetime);
+      file_time_to_earth_time(this, &file_time.m_filetime);
 
    }
 
@@ -155,7 +155,7 @@ namespace earth
 
       time_t timeOffset = (time_t) timeshift.m_d;
 
-      time_t time = m_posixtime.m_iSecond + timeOffset;
+      time_t time = m_iSecond + timeOffset;
 
       if (ptm != nullptr)
       {
@@ -263,7 +263,7 @@ namespace earth
    posix_time time::get_time() const noexcept
    {
 
-       return m_posixtime;
+       return *this;
 
    }
 
@@ -489,7 +489,7 @@ namespace earth
    time_span time::abs_diff(const class time & time) const
    {
 
-      return posix_time({ posix_time_t{}, abs((time.m_posixtime - m_posixtime).m_iSecond) });
+      return posix_time({ posix_time_t{}, abs(m_iSecond - time.m_iSecond) });
 
    }
 
@@ -542,7 +542,7 @@ namespace earth
 
       string str;
 
-      time_t timeUtc = time.m_posixtime.m_iSecond;
+      time_t timeUtc = time.m_iSecond;
 
       timeUtc += (::i32)  (timeshift.m_d * 3600.0);
 

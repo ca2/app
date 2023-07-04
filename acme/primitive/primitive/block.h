@@ -11,7 +11,7 @@
 
 
 CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz) noexcept;
-inline strsize string_safe_length(const ::ansi_character* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+CLASS_DECL_ACME strsize string_safe_length(const ::ansi_character * psz) noexcept;
 
 
 using BLOCK = ::range < ::u8 * >;

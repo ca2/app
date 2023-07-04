@@ -39,7 +39,7 @@ namespace sockets_bsd
       fd_set                     m_efds; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
-      posix_time                     m_tlast; ///< timeout control
+      ::earth::time                 m_tlast; ///< timeout control
 
       // state lists
       socket_id_list                m_socketlist; ///< Active file descriptor list

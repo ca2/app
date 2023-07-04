@@ -6177,12 +6177,12 @@ namespace user
                //                        iChar = '\n';
                //                     if (bShift)
                //                     {
-               //                        iChar |= 0x80000000;
+               //                        iChar |= I32_MINIMUM;
                //                     }
                //                     i32 iCode = pkey->m_nFlags & 0xff;
                //                     if (bShift)
                //                     {
-               //                        iCode |= 0x80000000;
+               //                        iCode |= I32_MINIMUM;
                //                     }
                //
                //                     if (pkey->m_ekey >= ::user::e_key_a && pkey->m_ekey <= ::user::e_key_z)

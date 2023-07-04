@@ -510,7 +510,7 @@ enum enum_display
 {
 
 
-   e_display_undefined = MINI32,
+   e_display_undefined = I32_MINIMUM,
    e_display_notify_icon,
    e_display_default,
    //display_close,

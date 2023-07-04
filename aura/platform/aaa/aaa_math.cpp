@@ -192,8 +192,8 @@ CLASS_DECL_AURA  i32 rand_dup()
 
 i32 ftol(double d)
 {
-   i32 u = 0x7fffffff;
-   i32 l = 0x80000000;
+   i32 u = I32_MAXIMUM;
+   i32 l = I32_MINIMUM;
    double m;
    double delta;
    i32 i = 0;

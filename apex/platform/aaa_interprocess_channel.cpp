@@ -233,7 +233,7 @@ namespace interprocess_channel
    void caller::send(int message, void * pdata, int len, const duration & durationTimeout)
    {
 
-      if (message == 0x80000000)
+      if (message == I32_MINIMUM)
       {
 
          //return false;

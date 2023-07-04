@@ -47,7 +47,7 @@ typedef struct tagPOINT
 #define WHITENESS           (::u32)0x00FF0062 /* dest = WHITE                    */
 #if(WINVER >= 0x0500)
 
-#define NOMIRRORBITMAP               (::u32)0x80000000 /* Do not Mirror the bitmap in this call */
+#define NOMIRRORBITMAP               (::u32)I32_MINIMUM /* Do not Mirror the bitmap in this call */
 #define caPTUREBLT                   (::u32)0x40000000 /* Include layered windows */
 #endif /* WINVER >= 0x0500 */
 

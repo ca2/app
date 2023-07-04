@@ -2317,7 +2317,7 @@ typedef struct tagNCCALCSIZE_PARAMS
 #define TME_NONCLIENT   0x00000010
 //#endif /* WINVER >= 0x0500 */
 #define TME_QUERY       0x40000000
-#define TME_CANCEL      0x80000000
+#define TME_CANCEL      I32_MINIMUM
 
 
 #define HOVER_DEFAULT   0xFFFFFFFF

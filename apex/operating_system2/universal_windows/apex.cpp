@@ -389,7 +389,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //#else
 //
-//   return !(GetVersion() & 0x80000000);
+//   return !(GetVersion() & I32_MINIMUM);
 //
 //#endif
 //

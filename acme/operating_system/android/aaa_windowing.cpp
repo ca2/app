@@ -1260,7 +1260,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 
    information("here???333");
 
-   if (0x80000000 & iUni)
+   if (I32_MINIMUM & iUni)
    {
 
       return 0;

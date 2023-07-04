@@ -613,7 +613,7 @@ index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
 
       return -1;
    else
-      return 0x80000000;
+      return I32_MINIMUM;
 }*/
 
 /*void simple_menu_bar::_001Layout()

@@ -373,7 +373,7 @@ string key_to_char(wparam wparam, lparam lparam)
 //
 //#else
 //
-//   return !(GetVersion() & 0x80000000);
+//   return !(GetVersion() & I32_MINIMUM);
 //
 //#endif
 //

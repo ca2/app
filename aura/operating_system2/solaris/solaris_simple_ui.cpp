@@ -539,7 +539,7 @@ namespace os
 
       baState[uiKey & 0xff] = 0x80;
 
-      /*if((GetAsyncKeyState(::user::e_key_shift) & 0x80000000) != 0)
+      /*if((GetAsyncKeyState(::user::e_key_shift) & I32_MINIMUM) != 0)
       {
       baState[::user::e_key_shift] |= 0x80;
       }

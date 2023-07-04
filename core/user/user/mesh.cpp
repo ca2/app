@@ -1211,7 +1211,7 @@ namespace user
                sizeTotal.cx() = (::i32) minimum(
                        m_nItemCount * pitemFirst->m_pdrawlistitem->m_rectangleItem.width() * m_dItemHeight /
                        rectangleClient.height()
-                       + pitemFirst->m_pdrawlistitem->m_rectangleItem.width(), MAXI32);
+                       + pitemFirst->m_pdrawlistitem->m_rectangleItem.width(), I32_MAXIMUM);
 
             }
 

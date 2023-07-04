@@ -65,7 +65,7 @@ namespace interprocess
    //void caller::send(int message, void * pdata, int len, const class time & timeTimeout)
    //{
 
-   //   if (message == 0x80000000)
+   //   if (message == I32_MINIMUM)
    //   {
 
    //      //return false;

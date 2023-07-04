@@ -270,7 +270,7 @@ namespace universal_windows
 
       ::u32 dwBuild;
 
-      if (dwVersion < 0x80000000)              // Windows NT
+      if (dwVersion < I32_MINIMUM)              // Windows NT
          dwBuild = (::u32)(HIWORD(dwVersion));
       else if (dwWindowsMajorVersion < 4)      // Win32s
          dwBuild = (::u32)(HIWORD(dwVersion) & ~0x8000);
@@ -278,7 +278,7 @@ namespace universal_windows
          dwBuild =  0;
 
       bool bNativeUnicode;
-      if (dwVersion < 0x80000000)              // Windows NT
+      if (dwVersion < I32_MINIMUM)              // Windows NT
          bNativeUnicode = true;
       else if (dwWindowsMajorVersion < 4)      // Win32s
          bNativeUnicode = false;

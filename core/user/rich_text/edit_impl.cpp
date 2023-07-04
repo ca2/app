@@ -1921,7 +1921,7 @@ namespace user
                      if (bShift)
                      {
 
-                        iChar |= 0x80000000;
+                        iChar |= I32_MINIMUM;
 
                      }
 
@@ -1930,7 +1930,7 @@ namespace user
                      //if (bShift)
                      //{
 
-                     //   iCode |= 0x80000000;
+                     //   iCode |= I32_MINIMUM;
 
                      //}
 

@@ -19,7 +19,7 @@ namespace user
    shell::image_key::image_key()
       {
 
-         m_iIcon = 0x80000000;
+         m_iIcon = I32_MINIMUM;
 
       }
 
@@ -569,7 +569,7 @@ namespace user
       i32 shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
-         //i32 iImage = 0x80000000;
+         //i32 iImage = I32_MINIMUM;
 
          if (color32_u8_opacity(crBk) != 255)
          {
@@ -619,7 +619,7 @@ namespace user
             if (iImage == 0x80000001)
             {
 
-               iImage = 0x80000000;
+               iImage = I32_MINIMUM;
 
             }
 
@@ -693,7 +693,7 @@ namespace user
          //m_iThread = iThread;
 
          //return iImage;
-         return 0x80000000;
+         return I32_MINIMUM;
 
       }
 
@@ -722,7 +722,7 @@ namespace user
 
                synchronous_lock synchronouslock(m_pshell->mutex());
 
-               if (iImage & 0x80000000)
+               if (iImage & I32_MINIMUM)
                {
 
                   m_pshell->m_imagemap.erase_key(imagekey);

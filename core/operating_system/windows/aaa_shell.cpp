@@ -64,7 +64,7 @@ namespace windows
 //
 //#else
 //
-//         return 0x80000000;
+//         return I32_MINIMUM;
 //
 //#endif // WINDOWS_DESKTOP
 //
@@ -91,7 +91,7 @@ namespace windows
 
       }
 
-      int iImage = 0x80000000;
+      int iImage = I32_MINIMUM;
 
       i32 iType;
 
@@ -106,7 +106,7 @@ namespace windows
       default:
          // unexpected icon type
          ASSERT(false);
-         return 0x80000000;
+         return I32_MINIMUM;
       }
 
       string strFileParam(imagekey.m_strPath);
@@ -202,7 +202,7 @@ namespace windows
             if (wcscmp(wszPath, L"*") == 0)
             {
 
-               imagekey.m_iIcon = 0x80000000;
+               imagekey.m_iIcon = I32_MINIMUM;
 
                imagekey.set_extension(strFileParam);
 
@@ -253,7 +253,7 @@ namespace windows
                if (wcscmp(wszPath, L"*") == 0)
                {
 
-                  imagekey.m_iIcon = 0x80000000;
+                  imagekey.m_iIcon = I32_MINIMUM;
 
                   imagekey.set_extension(strFileParam);
 
@@ -311,7 +311,7 @@ namespace windows
                   if (wcscmp(wszPath, L"*") == 0)
                   {
 
-                     imagekey.m_iIcon = 0x80000000;
+                     imagekey.m_iIcon = I32_MINIMUM;
 
                      imagekey.set_path(strFileParam);
 
@@ -348,7 +348,7 @@ namespace windows
       ::file::path pathTarget;
 
       if (((FAILED(hrIconLocation) && FAILED(hrGetLocation))
-            || imagekey.m_iIcon == 0x80000000
+            || imagekey.m_iIcon == I32_MINIMUM
             || !pcontext->m_papexcontext->file()->exists(strIconLocation))
             && string_ends_ci(strFileParam, ".lnk"))
       {
@@ -397,7 +397,7 @@ namespace windows
 
       }
 
-      if (imagekey.m_iIcon == 0x80000000)
+      if (imagekey.m_iIcon == I32_MINIMUM)
       {
 
          if (imagekey.m_strShellThemePrefix.has_char())
@@ -860,7 +860,7 @@ pacmedirectory->is(strPath))
 
    {
 
-      i32 iImage = 0x80000000;
+      i32 iImage = I32_MINIMUM;
 
       if (string_begins_ci(imagekey.m_strPath, "uifs:"))
       {
@@ -1346,7 +1346,7 @@ pacmedirectory->is(strPath))
             if (hicon == nullptr && imagekey.m_iIcon == 0)
             {
 
-               hicon = (HICON)ExtractResourceIcon(strIconLocation, iSizeOut, iSizeOut, 0x80000000);
+               hicon = (HICON)ExtractResourceIcon(strIconLocation, iSizeOut, iSizeOut, I32_MINIMUM);
 
             }
 

@@ -98,7 +98,7 @@ namespace acme
          CFDataRef data = m.get_os_cf_data();
 
          SInt32 status = CFMessagePortSendRequest(m_port,
-                                  0x80000000,
+                                  I32_MINIMUM,
                                   data,
                                   durationTimeout.get_total_milliseconds() / 1000.0,
                                   durationTimeout.get_total_milliseconds() / 1000.0,
@@ -127,7 +127,7 @@ namespace acme
       bool tx::send(int message,void * pdata,int len,duration durationTimeout)
       {
 
-         if(message == 0x80000000)
+         if(message == I32_MINIMUM)
          {
             
             return false;
@@ -192,7 +192,7 @@ namespace acme
          
          rx * p = (rx*) info;
 
-         if(messageID == 0x80000000)
+         if(messageID == I32_MINIMUM)
          {
 
             memory m;

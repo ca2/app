@@ -6,7 +6,7 @@ enum enum_depth : ::i32
 {
 
    e_depth_none = 0,
-   e_depth_recursively = 0x7fffffff,
+   e_depth_recursively = I32_MAXIMUM,
 
 };
 

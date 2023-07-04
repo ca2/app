@@ -66,8 +66,8 @@ void message_queue::post_message(oswindow oswindow, const ::atom & atom, wparam 
    message.oswindow = oswindow;
    message.wParam = wparam;
    message.lParam = lparam;
-   message.pt.x() = 0x80000000;
-   message.pt.y() = 0x80000000;
+   message.pt.x() = I32_MINIMUM;
+   message.pt.y() = I32_MINIMUM;
 
    /* return */ post_message(message);
 

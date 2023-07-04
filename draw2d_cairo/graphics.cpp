@@ -284,7 +284,7 @@ namespace draw2d_cairo
 
       m_pfont->m_pfontfamily = e_font_sans;
 
-      m_pfont->m_fontsize = 12pt;
+      m_pfont->m_fontsize = 12_pt;
 
 //      return estatus;
 
@@ -3962,7 +3962,7 @@ namespace draw2d_cairo
 
       }
 
-      if (pfont->m_dFontSize <= 0.0 || pfont->m_dFontWidth <= 0.0)
+      if (pfont->m_fontsize.is_null_or_negative() || pfont->m_dFontWidth <= 0.0)
       {
 
          throw ::exception(error_wrong_state);
@@ -5433,12 +5433,12 @@ namespace draw2d_cairo
 
       float fDensity = fPreferredDensity;
 
-      if (pfontParam->m_eunitFontSize == ::draw2d::e_unit_pixel)
+      if (pfontParam->m_fontsize.eunit() == ::e_unit_pixel)
       {
 
          //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fDensity);
 
-         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity);
+         cairo_set_font_size(m_pdc, pfontParam->m_fontsize.f64() * fDensity);
 
       }
       else

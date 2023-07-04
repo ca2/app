@@ -2495,13 +2495,13 @@ retry_license:
    //   //else if (escalar == scalar_app_install_progress_min)
    //   //{
 
-   //   //   i = 0x7fffffff;
+   //   //   i = I32_MAXIMUM;
 
    //   //}
    //   //else if (escalar == scalar_app_install_progress_max)
    //   //{
 
-   //   //   i = 0x7fffffff;
+   //   //   i = I32_MAXIMUM;
 
    //   //}
    //   //else

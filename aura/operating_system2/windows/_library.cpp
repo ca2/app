@@ -289,7 +289,7 @@ void __node_aura_pos_term()
 //
 //#else
 //
-//   return !(GetVersion() & 0x80000000);
+//   return !(GetVersion() & I32_MINIMUM);
 //
 //#endif
 //
@@ -445,14 +445,14 @@ void __node_aura_pos_term()
 //
 //      ::u32 dwBuild;
 //
-//      if (dwVersion < 0x80000000)              // Windows NT
+//      if (dwVersion < I32_MINIMUM)              // Windows NT
 //         dwBuild = (::u32)(HIWORD(dwVersion));
 //      else if (dwWindowsMajorVersion < 4)      // Win32s
 //         dwBuild = (::u32)(HIWORD(dwVersion) & ~0x8000);
 //      else                                     // Windows Me/98/95
 //         dwBuild = 0;
 //
-//      if (dwVersion < 0x80000000)              // Windows NT
+//      if (dwVersion < I32_MINIMUM)              // Windows NT
 //         s_bNativeUnicode = true;
 //      else if (dwWindowsMajorVersion < 4)      // Win32s
 //         s_bNativeUnicode = false;

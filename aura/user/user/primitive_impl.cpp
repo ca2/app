@@ -849,10 +849,10 @@ namespace user
          _NEW_MESSAGE(::message::mouse);
          pmessage->m_ebuttonstate = (::user::enum_button_state ) wparam.m_number;
 
-//         if ((pmessage->m_ebuttonstate & 0x80000000) == (0x80000000))
+//         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
 //         {
 //
-//            information("(m_ebuttonstate & 0x80000000) == (0x80000000)");
+//            information("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
 //
 //         }
 

@@ -35,7 +35,7 @@ namespace user
    shell::image_key::image_key()
    {
 
-      m_iIcon = 0x80000000;
+      m_iIcon = I32_MINIMUM;
 
    }
 
@@ -707,7 +707,7 @@ namespace user
          if (iImage == 0x80000001)
          {
 
-            iImage = 0x80000000;
+            iImage = I32_MINIMUM;
 
          }
 
@@ -737,7 +737,7 @@ namespace user
 
       }
 
-      return 0x80000000;
+      return I32_MINIMUM;
 
    }
 
@@ -802,7 +802,7 @@ namespace user
 //
 ////         image_key imagekey(imagekeyParam);
 ////
-////         i32 iImage = 0x80000000;
+////         i32 iImage = I32_MINIMUM;
 //
 //      if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "uifs:"))
 //      {
@@ -974,7 +974,7 @@ namespace user
 
 //         image_key imagekey(imagekeyParam);
 //
-//         i32 iImage = 0x80000000;
+//         i32 iImage = I32_MINIMUM;
 
       if (strPath.case_insensitive_begins("uifs:"))
       {
@@ -1715,7 +1715,7 @@ namespace user
 
             synchronous_lock synchronouslock(this->synchronization());
 
-            if (m_pgetfileimage->m_iImage & 0x80000000)
+            if (m_pgetfileimage->m_iImage & I32_MINIMUM)
             {
 
                m_imagemap.erase_item(m_pgetfileimage->m_imagekey);

@@ -183,7 +183,7 @@ pacmedirectory->is(strPath))
    i32 shell::impl_get_file_image(const image_key & imagekey)
    {
 
-      i32 iImage = 0x80000000;
+      i32 iImage = I32_MINIMUM;
 
       if (string_begins_ci(imagekey.m_strPath, "uifs:"))
       {

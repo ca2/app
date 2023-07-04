@@ -93,7 +93,7 @@ namespace aura
       bool tx::send(i32 message,void * pdata,i32 len,::u32 tickTimeout)
       {
 
-         if(message == 0x80000000)
+         if(message == I32_MINIMUM)
             return false;
 
 
@@ -108,7 +108,7 @@ namespace aura
 
          data_struct data;
          data.mtype        = 15112000;
-         data.request      = 0x80000000;
+         data.request      = I32_MINIMUM;
          data.size_i32         = (i32)ansi_length(pszMessage);
 
          ::count cPos = 0;

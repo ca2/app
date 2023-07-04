@@ -67,7 +67,7 @@ namespace android
 
 #else
 
-      return 0x80000000;
+      return I32_MINIMUM;
 
 #endif // WINDOWS_DESKTOP
 
@@ -77,7 +77,7 @@ namespace android
    //i32 shell::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk)
 //      {
 //
-//         int iImage = 0x80000000;
+//         int iImage = I32_MINIMUM;
 //
 //         ::android::comptr < IShellFolder> lpsf;
 //
@@ -101,7 +101,7 @@ namespace android
 //         if (lpsf.is_null())
 //         {
 //
-//            return 0x80000000;
+//            return I32_MINIMUM;
 //
 //         }
 //
@@ -117,7 +117,7 @@ namespace android
 //         default:
 //            // unexpected icon type
 //            ASSERT(false);
-//            return 0x80000000;
+//            return I32_MINIMUM;
 //         }
 //
 //
@@ -146,7 +146,7 @@ namespace android
 //         }
 //
 //         wstring wstrPath;
-//         i32 iIcon = 0x80000000;
+//         i32 iIcon = I32_MINIMUM;
 //
 //         SHFILEINFOW shfi16;
 //         SHFILEINFOW shfi48;
@@ -181,7 +181,7 @@ namespace android
 //
 //                  auto pFind = strFilePath.rear_find('.');
 //
-//                  imagekey.m_iIcon = 0x80000000;
+//                  imagekey.m_iIcon = I32_MINIMUM;
 //                  imagekey.m_strExtension = (char*)&strFilePath[iFind+1];
 //                  imagekey.m_strPath = "";
 //
@@ -269,7 +269,7 @@ namespace android
 //               {
 //                  auto pFind = strFilePath.rear_find('.');
 //
-//                  imagekey.m_iIcon = 0x80000000;
+//                  imagekey.m_iIcon = I32_MINIMUM;
 //                  imagekey.m_strExtension = (char *)&strFilePath(pFind);
 //                  imagekey.m_strPath = "";
 //               }
@@ -308,7 +308,7 @@ namespace android
 //               {
 //                  auto pFind = strFilePath.rear_find('.');
 //
-//                  imagekey.m_iIcon = 0x80000000;
+//                  imagekey.m_iIcon = I32_MINIMUM;
 //                  imagekey.m_strExtension = (char *)&strFilePath(pFind);
 //                  imagekey.m_strPath = "";
 //               }
@@ -331,7 +331,7 @@ namespace android
 //
 //         }
 //
-//         if (bMaybeLink && imagekey.m_iIcon == 0x80000000)
+//         if (bMaybeLink && imagekey.m_iIcon == I32_MINIMUM)
 //         {
 //
 //            string strTarget;
@@ -361,7 +361,7 @@ namespace android
 //
 //            synchronouslock.unlock();
 //
-//            if (imagekey.m_iIcon == 0x80000000)
+//            if (imagekey.m_iIcon == I32_MINIMUM)
 //            {
 //
 //               if (wcslen(wszPath) > 0 && wcscmp(wszPath, L"*") != 0)
@@ -783,7 +783,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 
    //   char szPath[_MAX_PATH * 10];
    //   string strPath;
-   //   //   i32 iImage = 0x80000000;
+   //   //   i32 iImage = I32_MINIMUM;
 
    //   HICON hicon16 = nullptr;
    //   HICON hicon48 = nullptr;
@@ -804,7 +804,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 
 
 
-   //   i32 iIcon = 0x80000000;
+   //   i32 iIcon = I32_MINIMUM;
    //   ::u32 uFlags = 0;
 
    //   SHFILEINFO shfi16;
@@ -832,7 +832,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
    //         {
    //            auto pFind = strFilePath.rear_find('.');
 
-   //            imagekey.m_iIcon = 0x80000000;
+   //            imagekey.m_iIcon = I32_MINIMUM;
    //            imagekey.m_strExtension = (char*)&strFilePath[iFind];
    //            imagekey.m_strPath = "";
    //         }
@@ -846,7 +846,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
    //   }
    //   if (dir()->is(unicode_to_utf8(szFilePath)))
    //   {
-   //      if (imagekey.m_iIcon == 0x80000000)
+   //      if (imagekey.m_iIcon == I32_MINIMUM)
    //      {
    //         SHGetFileInfo(
    //            "foo",
@@ -1197,7 +1197,7 @@ pacmedirectory->is(strPath))
    i32 shell::get_image(per_fork * pfork, image_key imagekey, const ::wide_character * lpcszExtra, color32_t crBk)
    {
 
-      i32 iImage = 0x80000000;
+      i32 iImage = I32_MINIMUM;
 
       if (string_begins_ci(imagekey.m_strPath, "uifs:"))
       {
@@ -1508,7 +1508,7 @@ pacmedirectory->is(strPath))
    i32 shell::impl_get_file_image(const image_key& imagekey)
    {
 
-      i32 iImage = 0x80000000;
+      i32 iImage = I32_MINIMUM;
 
       //{
    /*        if (color32_u8_opacity(imagekey.m_cr) != 255)
@@ -1587,7 +1587,7 @@ pacmedirectory->is(strPath))
    i32 shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
    {
 
-      i32 iImage = 0x80000000;
+      i32 iImage = I32_MINIMUM;
 
       {
 

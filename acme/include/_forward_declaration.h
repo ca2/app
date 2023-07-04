@@ -1314,7 +1314,7 @@ namespace file
       e_type_file = e_type_exists | (1 << 2),
       e_type_file_or_folder = e_type_folder | e_type_file,
       e_type_element = e_type_exists | (1 << 3),
-      e_type_doesnt_exist = 0x80000000,
+      e_type_doesnt_exist = I32_MINIMUM,
 
    };
 

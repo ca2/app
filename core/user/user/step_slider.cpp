@@ -15,7 +15,7 @@ namespace user
    step_slider::step_slider()
    {
 
-      //m_iHover = 0x80000000;
+      //m_iHover = I32_MINIMUM;
       //m_pitemHover = false;
 
    }

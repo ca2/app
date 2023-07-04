@@ -2358,7 +2358,7 @@ namespace android
    }
 
 
-//#define SWP_IGNOREPALACEGUARD 0x80000000
+//#define SWP_IGNOREPALACEGUARD I32_MINIMUM
 //
 //   bool interaction_impl::set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 //   {

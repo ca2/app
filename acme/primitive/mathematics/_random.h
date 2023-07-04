@@ -55,7 +55,7 @@ inline ::largest_type < FLOATING1, FLOATING2 > random(const FLOATING1 & f1, cons
 
    random(u);
 
-   return (::largest_type < FLOATING1, FLOATING2 >) (((u * fRange) / (::largest_type < FLOATING1, FLOATING2 >)MAXU64) + fMin);
+   return (::largest_type < FLOATING1, FLOATING2 >) (((u * fRange) / (::largest_type < FLOATING1, FLOATING2 >)U64_MAXIMUM) + fMin);
 
 }
 

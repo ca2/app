@@ -11174,7 +11174,7 @@ GLAPI void APIENTRY glHintPGI (GLenum target, GLint mode);
 #define GL_TEXCOORD1_BIT_PGI              0x10000000
 #define GL_TEXCOORD2_BIT_PGI              0x20000000
 #define GL_TEXCOORD3_BIT_PGI              0x40000000
-#define GL_TEXCOORD4_BIT_PGI              0x80000000
+#define GL_TEXCOORD4_BIT_PGI              I32_MINIMUM
 #define GL_VERTEX23_BIT_PGI               0x00000004
 #define GL_VERTEX4_BIT_PGI                0x00000008
 #endif /* GL_PGI_vertex_hints */

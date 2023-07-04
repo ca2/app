@@ -2283,8 +2283,8 @@ CLASS_DECL_CORE int_bool PostMessage(oswindow oswindow, ::u32 Msg, WPARAM wParam
    message.message = Msg;
    message.wParam = wParam;
    message.lParam = lParam;
-   message.pt.x() = 0x80000000;
-   message.pt.y() = 0x80000000;
+   message.pt.x() = I32_MINIMUM;
+   message.pt.y() = I32_MINIMUM;
 
    return post_ui_message(message);
 

@@ -283,7 +283,7 @@ namespace ios
       while(nCount > 0)
       {
          
-         readNow = (size_t) minimum(0x7fffffff, nCount);
+         readNow = (size_t) minimum(I32_MAXIMUM, nCount);
          
          size_t iRead = ::read(m_iFile, &((::u8 *)lpBuf)[pos], readNow);
          
@@ -343,7 +343,7 @@ namespace ios
       while(nCount > 0)
       {
          
-         size_t iWrite = ::write(m_iFile, &((const ::u8 *)lpBuf)[pos], (size_t) minimum(0x7fffffff, nCount));
+         size_t iWrite = ::write(m_iFile, &((const ::u8 *)lpBuf)[pos], (size_t) minimum(I32_MAXIMUM, nCount));
          
          if(iWrite == -1)
          {

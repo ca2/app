@@ -391,7 +391,7 @@ namespace android
       memsize readNow;
       while(nCount > 0)
       {
-         readNow = (size_t) minimum(0x7fffffff, nCount);
+         readNow = (size_t) minimum(I32_MAXIMUM, nCount);
          i32 iRead = ::read(m_iFile, &((::u8 *)lpBuf)[pos], readNow);
          if(iRead < 0)
          {
@@ -429,7 +429,7 @@ namespace android
       memsize pos = 0;
       while(nCount > 0)
       {
-         i32 iWrite = ::write(m_iFile, &((const ::u8 *)lpBuf)[pos], (size_t) minimum(0x7fffffff, nCount));
+         i32 iWrite = ::write(m_iFile, &((const ::u8 *)lpBuf)[pos], (size_t) minimum(I32_MAXIMUM, nCount));
          if(iWrite < 0)
             ::file::throw_os_error( (::i32)::get_last_error(), m_strFileName);
          nCount -= iWrite;

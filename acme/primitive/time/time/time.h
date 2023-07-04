@@ -1017,7 +1017,7 @@ constexpr bool time::is_infinite() const
 constexpr  class ::time time::infinity()
 {
 
-   return {(::i64)MAXI64,(::i64)0};
+   return {(::i64)I64_MAXIMUM,(::i64)0};
 
 }
 
@@ -1025,7 +1025,7 @@ constexpr  class ::time time::infinity()
 //inline class ::time time::pos_infinity()
 //{
 //
-//   return {(::i64)MAXI64, (::i64)0};
+//   return {(::i64)I64_MAXIMUM, (::i64)0};
 //
 //}
 

@@ -462,7 +462,7 @@ extern "C" {
 //    number instead of a string.  This flag is only valid for the LCTypes
 //    beginning with LOCALE_I.
 //
-#define LOCALE_NOUSEROVERRIDE         0x80000000   // do not use user overrides
+#define LOCALE_NOUSEROVERRIDE         I32_MINIMUM   // do not use user overrides
 #define LOCALE_USE_CP_ACP             0x40000000   // use the system ACP
 
 //#if(WINVER >= 0x0400)

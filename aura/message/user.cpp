@@ -399,10 +399,10 @@ namespace message
 
    //   m_nFlags   = wparam;
 
-   //   if((m_nFlags & 0x80000000) == (0x80000000))
+   //   if((m_nFlags & I32_MINIMUM) == (I32_MINIMUM))
    //   {
 
-   //      information("(m_nFlags & 0x80000000) == (0x80000000)");
+   //      information("(m_nFlags & I32_MINIMUM) == (I32_MINIMUM)");
 
    //   }
 

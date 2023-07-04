@@ -49,8 +49,8 @@ int_bool message_queue::post_message(oswindow oswindow, ::u32 uMessage, WPARAM w
    message.message = uMessage;
    message.wParam = wParam;
    message.lParam = lParam;
-   message.pt.x() = 0x80000000;
-   message.pt.y() = 0x80000000;
+   message.pt.x() = I32_MINIMUM;
+   message.pt.y() = I32_MINIMUM;
 
    return post_message(message);
 

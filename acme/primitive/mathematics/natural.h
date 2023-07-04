@@ -84,7 +84,7 @@ inline bool less_than(u64 u, i32 i)
 
 inline i32 mkint(u32 u)
 {
-   if (u >= 0x7fffffff)
+   if (u >= I32_MAXIMUM)
       throw_cast_overflow();
    return (i32) u;
 }

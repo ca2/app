@@ -261,7 +261,7 @@ static float emscripten_refresh = 0;
    else if (pwidgetChild < 0x10000) n = 3;
    else if (pwidgetChild < 0x200000) n = 4;
    else if (pwidgetChild < 0x4000000) n = 5;
-   else if (pwidgetChild <= 0x7fffffff) n = 6;
+   else if (pwidgetChild <= I32_MAXIMUM) n = 6;
    seq[n] = '\0';
    switch (n) {
    case 6: seq[5] = 0x80 | (pwidgetChild & 0x3f); pwidgetChild = pwidgetChild >> 6; pwidgetChild |= 0x4000000; NANOUI_FALLTHROUGH

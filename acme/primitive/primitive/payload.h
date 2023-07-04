@@ -22,7 +22,7 @@ inline payload & copy(payload & payload, const class time & time);
 
 enum para_return
 {
-   e_fail = 0x80000000,
+   e_fail = I32_MINIMUM,
    s_success = 0
 };
 

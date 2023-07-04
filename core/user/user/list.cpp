@@ -1261,7 +1261,7 @@ namespace user
                             rectangleClient.left +
                             m_nItemCount * pitem->m_pdrawlistitem->m_rectangleItem.width() * m_dItemHeight /
                             rectangleClient.height()
-                            + pitem->m_pdrawlistitem->m_rectangleItem.width(), MAXI32);
+                            + pitem->m_pdrawlistitem->m_rectangleItem.width(), I32_MAXIMUM);
 
             }
 

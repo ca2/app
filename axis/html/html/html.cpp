@@ -68,7 +68,7 @@ namespace html
       m_namedcolor["infotext"] = __indexed_color(0x80000017);
       m_namedcolor["menu"] = __indexed_color(0x80000004);
       m_namedcolor["menutext"] = __indexed_color(0x80000007);
-      m_namedcolor["scrollbar"] = __indexed_color(0x80000000);
+      m_namedcolor["scrollbar"] = __indexed_color(I32_MINIMUM);
       m_namedcolor["threeddarkshadow"] = __indexed_color(0x80000015);
       m_namedcolor["threedface"] = __indexed_color(0x8000000F);
       m_namedcolor["threedhighlight"] = __indexed_color(0x80000014);

@@ -195,7 +195,7 @@ namespace papaya
       inline ::duration default_value < ::duration > ()
       {
          // estimate a delay of half of maximum ::duration positive value
-         return ::get_tick() - (MAXI64 >> 1);
+         return ::get_tick() - (I64_MAXIMUM >> 1);
 
       }
 
@@ -214,7 +214,7 @@ inline double __double(const ::duration & duration) { return (double) ::duration
 
 inline auto __pr(const ::duration & duration) { return ::duration.m_i; }
 
-inline u32 __os(const ::duration & duration) { return ::duration.m_i > (i64) MAXI32 ? U32_INFINITE_TIMEOUT : ::duration.m_i < 0 ? 0 : (u32) ::duration.m_i; }
+inline u32 __os(const ::duration & duration) { return ::duration.m_i > (i64) I32_MAXIMUM ? U32_INFINITE_TIMEOUT : ::duration.m_i < 0 ? 0 : (u32) ::duration.m_i; }
 
 inline ::i32 __i32(const ::duration & duration) { return (::i32) ::duration.m_i; }
 

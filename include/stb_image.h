@@ -1695,7 +1695,7 @@ stbi_inline static int stbi__jpeg_get_bit(stbi__jpeg * j)
    k = j->code_buffer;
    j->code_buffer <<= 1;
    --j->code_bits;
-   return k & 0x80000000;
+   return k & I32_MINIMUM;
 }
 
 // given a value that's at position X in the zigzag stream,
@@ -2453,7 +2453,7 @@ static void stbi__jpeg_reset(stbi__jpeg * j)
    j->nomore = 0;
    j->img_comp[0].dc_pred = j->img_comp[1].dc_pred = j->img_comp[2].dc_pred = 0;
    j->marker = STBI__MARKER_none;
-   j->todo = j->restart_interval ? j->restart_interval : 0x7fffffff;
+   j->todo = j->restart_interval ? j->restart_interval : I32_MAXIMUM;
    j->eob_run = 0;
    // no more than 1<<31 MCUs if no restart_interal? that's plenty safe,
    // since we don't even allow 1<<30 pixels

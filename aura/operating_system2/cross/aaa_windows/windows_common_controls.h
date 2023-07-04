@@ -370,7 +370,7 @@ typedef struct {
 #define TBIF_COMMAND            0x00000020
 #define TBIF_SIZE               0x00000040
 
-#define TBIF_BYINDEX            0x80000000 // this specifies that the wparam in Get/SetButtonInfo is an index, not atom
+#define TBIF_BYINDEX            I32_MINIMUM // this specifies that the wparam in Get/SetButtonInfo is an index, not atom
 
 typedef struct {
    ::u32 cbSize;

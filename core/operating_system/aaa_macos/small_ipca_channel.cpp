@@ -97,7 +97,7 @@ namespace aura
 
          SInt32 status =
          CFMessagePortSendRequest(m_port,
-                                  0x80000000,
+                                  I32_MINIMUM,
                                   data,
                                   sendTimeout,
                                   rcvimeout,
@@ -125,7 +125,7 @@ namespace aura
       bool tx::send(int message,void * pdata,int len,duration durationTimeout)
       {
 
-         if(message == 0x80000000)
+         if(message == I32_MINIMUM)
             return false;
 
 
@@ -191,7 +191,7 @@ namespace aura
          
          rx * prx = (rx*) info;
 
-         if(messageID == 0x80000000)
+         if(messageID == I32_MINIMUM)
          {
 
             memory m;

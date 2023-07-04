@@ -409,7 +409,7 @@
 //      //   //      return 0;
 //
 //      //   //   }
-//      //   //   else if(pcds->dwData == 0x80000000)
+//      //   //   else if(pcds->dwData == I32_MINIMUM)
 //      //   //   {
 //
 //      //   //      string strMessage((const ::string &)pcds->lpData,pcds->cbData);

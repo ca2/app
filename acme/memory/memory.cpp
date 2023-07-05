@@ -85,7 +85,7 @@ void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len
 
    /* special case where s_len == 1 */
    if (s_len == 1)
-      return _memory_find_u8((const void *)l, (int)*cs, l_len);
+      return (void *) _memory_find_u8((const void *)l, (int)*cs, l_len);
 
    /* the last position where its possible to find "s" in "l" */
    last = (char *)cl + l_len - s_len;

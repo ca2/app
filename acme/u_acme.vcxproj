@@ -1301,7 +1301,6 @@
   <ItemGroup>
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
-    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\io.cpp" />

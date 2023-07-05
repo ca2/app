@@ -146,9 +146,6 @@
     <Filter Include="Header Files\parallelization">
       <UniqueIdentifier>{4e75e734-1d14-43f9-9166-28f72447930c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{8f02c56f-9b11-45a1-9bdc-7f947da8920f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{2e5d8132-44fa-4147-bf82-2973b5663ea0}</UniqueIdentifier>
     </Filter>
@@ -348,9 +345,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="exception\cancel.cpp">
       <Filter>Source Files\exception</Filter>

@@ -557,7 +557,7 @@
     <ClInclude Include="primitive\datetime\earth_time_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\zonetime.h">
+    <ClInclude Include="primitive\datetime\earth_zone_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\_.h">
@@ -3254,6 +3254,9 @@
     <ClInclude Include="operating_system\posix\stdio_file.h">
       <Filter>Header Files\operating_system\posix</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\posix\time.h">
+      <Filter>Header Files\operating_system\posix</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3403,7 +3406,7 @@
     <ClCompile Include="primitive\datetime\earth_time_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\zonetime.cpp">
+    <ClCompile Include="primitive\datetime\earth_zone_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\array.cpp">
@@ -4457,6 +4460,9 @@
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\posix\stdio_file.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\time.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
   </ItemGroup>

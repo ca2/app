@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "zonetime.h"
+#include "earth_zone_time.h"
 #include "earth_gregorian_time.h"
 #include "acme/primitive/string/str.h"
 #include <time.h>
@@ -9,10 +9,10 @@ namespace earth
 {
 
 
-   ::earth::zonetime zonetime::get_current_time(posix_time iZoneOffset) noexcept
+   ::earth::zone_time zone_time::get_current_time(posix_time iZoneOffset) noexcept
    {
 
-      zonetime t;
+      zone_time t;
 
 #ifdef WINDOWS
 
@@ -31,31 +31,31 @@ namespace earth
    }
 
    
-   zonetime::zonetime() noexcept :
+   zone_time::zone_time() noexcept :
       time(0)
    {
 
    }
 
 
-   zonetime::zonetime(const zonetime & zonetime) noexcept :
-      time(zonetime),
-      m_timeshift(zonetime.m_timeshift)
+   zone_time::zone_time(const zone_time & zone_time) noexcept :
+      time(zone_time),
+      m_timeshift(zone_time.m_timeshift)
    {
 
 
    }
 
 
-   zonetime::zonetime(posix_time zonetime, int iZoneOffset) noexcept :
-      time(zonetime),
+   zone_time::zone_time(posix_time zone_time, int iZoneOffset) noexcept :
+      time(zone_time),
       m_timeshift((double)iZoneOffset)
    {
 
    }
 
 
-   zonetime::zonetime(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset)
+   zone_time::zone_time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset)
    {
 
        ::earth::gregorian::time gregoriantime;
@@ -90,7 +90,7 @@ namespace earth
       ENSURE( nHour >= 0 && nHour <= 23 );
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
-      ASSUME(m_posixtime != -1);   */    // indicates an illegal input zonetime
+      ASSUME(m_posixtime != -1);   */    // indicates an illegal input zone_time
       if (m_iSecond == -1)
       {
          
@@ -101,7 +101,7 @@ namespace earth
    }
 
 
-//   struct tm* zonetime::GetZoneTm(struct tm* ptm) const
+//   struct tm* zone_time::GetZoneTm(struct tm* ptm) const
 //   {
 //
 //      if (ptm != nullptr)
@@ -168,7 +168,7 @@ namespace earth
 //   }
 
 
-   i32 zonetime::GetZoneYear() const noexcept
+   i32 zone_time::GetZoneYear() const noexcept
    {
 
         auto time = get_zone_time();
@@ -178,7 +178,7 @@ namespace earth
    }
 
 
-   i32 zonetime::GetZoneMonth() const noexcept
+   i32 zone_time::GetZoneMonth() const noexcept
    {
 
        auto time = get_zone_time();
@@ -188,7 +188,7 @@ namespace earth
    }
 
 
-   i32 zonetime::GetZoneDay() const noexcept
+   i32 zone_time::GetZoneDay() const noexcept
    {
 
        {
@@ -202,7 +202,7 @@ namespace earth
    }
 
 
-   i32 zonetime::GetZoneHour() const noexcept
+   i32 zone_time::GetZoneHour() const noexcept
    {
 
        auto time = get_zone_time();
@@ -213,7 +213,7 @@ namespace earth
 
 
 
-   i32 zonetime::GetZoneMinute() const noexcept
+   i32 zone_time::GetZoneMinute() const noexcept
    {
 
        auto time = get_zone_time();
@@ -224,7 +224,7 @@ namespace earth
 
 
 
-   i32 zonetime::GetZoneSecond() const noexcept
+   i32 zone_time::GetZoneSecond() const noexcept
    {
 
        auto time = get_zone_time();
@@ -235,7 +235,7 @@ namespace earth
 
 
 
-   i32 zonetime::GetZoneDayOfWeek() const noexcept
+   i32 zone_time::GetZoneDayOfWeek() const noexcept
    {
 
        auto time = get_zone_time();
@@ -245,7 +245,7 @@ namespace earth
    }
 
 
-   string zonetime::FormatZone(string & str, const ::string & strFormat) const
+   string zone_time::FormatZone(string & str, const ::string & strFormat) const
    {
 
       str = strFormat;
@@ -262,7 +262,7 @@ namespace earth
    }
 
 
-   posix_time zonetime::GetZoneTimeOfDay() const noexcept
+   posix_time zone_time::GetZoneTimeOfDay() const noexcept
    {
 
        auto time = get_zone_time();
@@ -272,7 +272,7 @@ namespace earth
    }
 
 
-   i64 zonetime::GetZoneDaySig() const noexcept
+   i64 zone_time::GetZoneDaySig() const noexcept
    {
 
        auto time = get_zone_time();
@@ -282,7 +282,7 @@ namespace earth
    }
 
 
-   string zonetime::FormatZone(const ::string & strFormat)
+   string zone_time::FormatZone(const ::string & strFormat)
    {
    
       string str;
@@ -300,25 +300,25 @@ namespace earth
 //#ifdef __DEBUG
 //
 //
-//dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime zonetime)
+//dump_context & operator <<(dump_context & dumpcontext, ::earth::zone_time zone_time)
 //{
 //   //char psz[32];
 //   //psz[0] = '\0';
 //
-//   ////   posix_time tmp = zonetime.get_time();
+//   ////   posix_time tmp = zone_time.get_time();
 //   ////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
 //
 //   //errno_t err = 0;
 //
-//   //if ((err != 0) || (psz[0] == '\0') || (zonetime.get_time() == 0))
+//   //if ((err != 0) || (psz[0] == '\0') || (zone_time.get_time() == 0))
 //   //{
-//   //   dumpcontext << "::earth::zonetime(invalid #" << (iptr)zonetime.get_time() << ")";
+//   //   dumpcontext << "::earth::zone_time(invalid #" << (iptr)zone_time.get_time() << ")";
 //
 //   //   return dumpcontext;
 //   //}
 //
 //   //// format it
-//   //dumpcontext << "::earth::zonetime(\"" << psz << "\")";
+//   //dumpcontext << "::earth::zone_time(\"" << psz << "\")";
 //
 //   return dumpcontext;
 //}

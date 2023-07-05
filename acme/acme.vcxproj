@@ -837,6 +837,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
     <ClInclude Include="operating_system\posix\stdio_file.h" />
+    <ClInclude Include="operating_system\posix\time.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
@@ -917,6 +918,7 @@
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\posix\stdio_file.cpp" />
+    <ClCompile Include="operating_system\posix\time.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\string.cpp" />
@@ -1870,7 +1872,7 @@
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\earth_time.cpp" />
     <ClCompile Include="primitive\datetime\earth_time_span.cpp" />
-    <ClCompile Include="primitive\datetime\zonetime.cpp" />
+    <ClCompile Include="primitive\datetime\earth_zone_time.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />
     <ClCompile Include="primitive\geometry3d\box.cpp" />
@@ -1966,7 +1968,7 @@
     <ClInclude Include="primitive\datetime\date_span.h" />
     <ClInclude Include="primitive\datetime\earth_time.h" />
     <ClInclude Include="primitive\datetime\earth_time_span.h" />
-    <ClInclude Include="primitive\datetime\zonetime.h" />
+    <ClInclude Include="primitive\datetime\earth_zone_time.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
     <ClInclude Include="primitive\geometry2d\collection.h" />
     <ClInclude Include="primitive\geometry2d\geometry.h" />

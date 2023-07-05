@@ -77,3 +77,9 @@ public:
 
 
 CLASS_DECL_ACME ::pointer<stdio_file> stdio_open(::particle * pparticle, const ::file::path & path, const scoped_string & attrs, int iShare);
+
+
+CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
+
+
+

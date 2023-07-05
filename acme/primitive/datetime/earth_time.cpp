@@ -52,18 +52,18 @@ namespace earth
 #pragma warning (pop)
 
 
-      struct tm atm;
+      ::earth::gregorian::time gregoriantime;
 
-      atm.tm_sec = nSec;
-      atm.tm_min = nMin;
-      atm.tm_hour = nHour;
-      atm.tm_mday = nDay;
-      atm.tm_mon = nMonth - 1;        // tm_mon is 0 based
-      atm.tm_year = nYear - 1900;     // tm_year is 1900 based
+      gregoriantime.m_iSecond = nSec;
+      gregoriantime.m_iMinute = nMin;
+      gregoriantime.m_iHour = nHour;
+      gregoriantime.m_iDay = nDay;
+      gregoriantime.m_iMonth = nMonth - 1;        // tm_mon is 0 based
+      gregoriantime.m_iYear = nYear;
       //atm.tm_isdst = nDST;
 
 
-      time::operator=(make_utc_time(&atm) - posix_time(posix_time_t{}, (::i64) timeshift.m_d));
+      time::operator=(gregoriantime.make_utc_time() - posix_time(posix_time_t{}, (::i64) timeshift.m_d));
 
 
       /*
@@ -150,61 +150,61 @@ namespace earth
    }
 
 
-   struct tm * time::tm_struct(struct tm * ptm, const ::earth::time_shift & timeshift) const
-   {
-
-      time_t timeOffset = (time_t) timeshift.m_d;
-
-      time_t time = m_iSecond + timeOffset;
-
-      if (ptm != nullptr)
-      {
-
-#ifdef WINDOWS
-
-         struct tm tmTemp;
-
-         errno_t err = _gmtime64_s(&tmTemp, &time);
-
-         if (err != 0)
-         {
-            return nullptr;    // indicates that m_posixtime was not initialized!
-         }
-
-         *ptm = tmTemp;
-
-         return ptm;
-
-#else
-
-         struct tm * ptmTemp;
-
-         ptmTemp = gmtime((posix_time *)&time);
-
-         // gmtime can return nullptr
-         if(ptmTemp == nullptr)
-            return nullptr;
-
-         // but don't throw ::exception( exception or generate error...
-         // (reason for commenting out below, fat to be erased...)
-//         if(errno != 0)
-         //          return nullptr;
-
-         *ptm = *ptmTemp;
-
-         return ptm;
-
-#endif
-
-      }
-      else
-      {
-
-         return nullptr;
-
-      }
-
-   }
+//   struct tm * time::tm_struct(struct tm * ptm, const ::earth::time_shift & timeshift) const
+//   {
+//
+//      time_t timeOffset = (time_t) timeshift.m_d;
+//
+//      time_t time = m_iSecond + timeOffset;
+//
+//      if (ptm != nullptr)
+//      {
+//
+//#ifdef WINDOWS
+//
+//         struct tm tmTemp;
+//
+//         errno_t err = _gmtime64_s(&tmTemp, &time);
+//
+//         if (err != 0)
+//         {
+//            return nullptr;    // indicates that m_posixtime was not initialized!
+//         }
+//
+//         *ptm = tmTemp;
+//
+//         return ptm;
+//
+//#else
+//
+//         struct tm * ptmTemp;
+//
+//         ptmTemp = gmtime((posix_time *)&time);
+//
+//         // gmtime can return nullptr
+//         if(ptmTemp == nullptr)
+//            return nullptr;
+//
+//         // but don't throw ::exception( exception or generate error...
+//         // (reason for commenting out below, fat to be erased...)
+////         if(errno != 0)
+//         //          return nullptr;
+//
+//         *ptm = *ptmTemp;
+//
+//         return ptm;
+//
+//#endif
+//
+//      }
+//      else
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//   }
 
 
 //   struct tm* time::GetLocalTm(struct tm* ptm) const
@@ -271,13 +271,14 @@ namespace earth
    i32 time::year(const ::earth::time_shift & timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
-
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? (ptm->tm_year) + 1900 : 0 ;
+      return gregoriantime.m_iYear;
 
    }
 
@@ -285,13 +286,15 @@ namespace earth
    i32 time::month(const ::earth::time_shift& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iMonth+1;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_mon + 1 : 0;
 
    }
 
@@ -299,13 +302,16 @@ namespace earth
    i32 time::day(const ::earth::time_shift& timeshift) const noexcept
    {
 
-      struct tm ttm;
+      //struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iDay;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_mday : 0 ;
 
    }
 
@@ -313,13 +319,15 @@ namespace earth
    i32 time::hour(const ::earth::time_shift& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iHour;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_hour : -1 ;
 
    }
 
@@ -327,13 +335,15 @@ namespace earth
    i32 time::minute(const ::earth::time_shift& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iMinute;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_min : -1 ;
 
    }
 
@@ -341,13 +351,15 @@ namespace earth
    i32 time::second(const ::earth::time_shift& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iSecond;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_sec : -1 ;
 
    }
 
@@ -355,13 +367,15 @@ namespace earth
    i32 time::day_of_week(const ::earth::time_shift & timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iDayOfWeek;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_wday : 0 ;
 
    }
 
@@ -497,13 +511,16 @@ namespace earth
    posix_time time::time_of_day(const time_shift & timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+//       return gregoriantime.m_iYear;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return { posix_time_t{}, (::i64)(ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0) };
+      return { posix_time_t{}, (::i64)((gregoriantime.m_iHour * 3600) + (gregoriantime.m_iMinute * 60) + gregoriantime.m_iSecond) };
 
    }
 
@@ -525,13 +542,9 @@ namespace earth
    i64 time::day_sig(const time_shift& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
 
-      struct tm * ptm;
-
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
+      return ((gregoriantime.m_iYear - 1900) * 500) + (gregoriantime.m_iMonth * 40) + gregoriantime.m_iDay;
 
    }
 

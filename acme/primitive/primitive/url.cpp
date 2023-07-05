@@ -571,12 +571,12 @@ namespace url
    void url::set_param(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
    {
 
-      const ::ansi_character * pszQuery = strchr(strUrlParam, '?');
+      auto pszQuery = strUrlParam.find('?');
 
       string strKey = ::url::encode(strKeyParam);
       string strValue = ::url::encode(strParam);
 
-      strsize iLenUrl = strlen(strUrlParam);
+      strsize iLenUrl = ansi_len(strUrlParam);
       strsize iLenKey = strKey.length();
 
       string str;
@@ -585,11 +585,11 @@ namespace url
 
       if(pszQuery == nullptr)
       {
-         strcpy(psz, strUrlParam);
+         ansi_cpy(psz, strUrlParam);
          psz[iLenUrl] = '?';
-         strcpy(&psz[iLenUrl + 1], strKey);
+         ansi_cpy(&psz[iLenUrl + 1], strKey);
          psz[iLenUrl + 1 + iLenKey] = '=';
-         strcpy(&psz[iLenUrl + 1 + iLenKey + 1], strValue);
+         ansi_cpy(&psz[iLenUrl + 1 + iLenKey + 1], strValue);
          str.release_buffer(iLenUrl + iLenKey + strValue.length() + 2);
       }
       else
@@ -606,7 +606,7 @@ namespace url
          bool bInserted = false;
          while(true)
          {
-            pszQueryEnd = strchr(pszQuery + 1, '&');
+            pszQueryEnd = ansi_chr(pszQuery + 1, '&');
             if(ansi_count_compare(pszQuery, strKeyParam, iLenKey) == 0 && pszQuery[iLenKey] == '=')
             {
                if(!bRemove)
@@ -2313,7 +2313,7 @@ namespace url
 
       auto pszInput = (const char*)block.begin();
 
-      memset(pszEncoded, 0, block.size() * 5);
+      memory_set(pszEncoded, 0, block.size() * 5);
 
       while (*pszInput != '\0')
       {

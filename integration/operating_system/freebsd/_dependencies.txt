@@ -1,0 +1,6 @@
+app/draw2d_cairo
+app/experience_core
+app/imaging_freeimage
+operating-system-freebsd/node_freebsd
+operating-system-posix/windowing_x11
+operating-system-posix/write_text_pango

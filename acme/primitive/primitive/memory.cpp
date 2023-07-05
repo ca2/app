@@ -305,7 +305,7 @@ memory::~memory()
    if(dwAllocation < 0)
    {
 
-      printf("Negative");
+      output_debug_string("Negative");
 
    }
 
@@ -467,7 +467,7 @@ void memory::to_sz(char * sz, strsize len) const
 
    len = minimum(len - 1, size() - 1);
 
-   strncpy(sz, (const char *) data(), len);
+   ansi_ncpy(sz, (const char *) data(), len);
 
    sz[len] = '\0';
 

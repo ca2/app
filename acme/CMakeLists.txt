@@ -713,41 +713,41 @@ list(APPEND library_source
         #primitive/string/_.h
         primitive/string/_impl_string_base.h
         primitive/string/_impl_string_meta_data.h
-        primitive/string/c/extension/_impl.h
+        #primitive/string/c/extension/_impl.h
         primitive/string/c/encoding.h
         primitive/string/c/ancient/ansi.h
         primitive/string/c/coupling.h
         primitive/string/c/extension/wd32.h
-        primitive/string/c/ancient/_impl.h
+        #primitive/string/c/ancient/_impl.h
         primitive/string/c/extension/_.h
         primitive/string/c/_.h
-        primitive/string/c/extension/ansi_impl.h
+        primitive/string/c/extension/ansi_impl.cpp
         primitive/string/c/extension/ansi.h
-        primitive/string/c/extension/wd32_impl.h
-        primitive/string/c/extension/wd16_impl.h
+        primitive/string/c/extension/wd32_impl.cpp
+        primitive/string/c/extension/wd16_impl.cpp
         primitive/string/c/ancient/wd32.h
         primitive/string/c/unicode.h
         primitive/string/c/encoding_impl.h
         primitive/string/c/_impl.h
         primitive/string/c/ancient/_.h
-        primitive/string/c/coupling_impl.h
+        primitive/string/c/coupling_impl.cpp
         primitive/string/c/extension/wd16.h
         primitive/string/c/ancient/wd16.h
-        primitive/string/c/unicode_impl.h
-        primitive/string/c/ancient/ansi_impl.h
-        primitive/string/c/ancient/wd16_impl.h
-        primitive/string/c/ancient/wd32_impl.h
+        primitive/string/c/unicode_impl.cpp
+        primitive/string/c/ancient/ansi_impl.cpp
+        primitive/string/c/ancient/wd16_impl.cpp
+        primitive/string/c/ancient/wd32_impl.cpp
         primitive/string/sz/_.h
         primitive/string/sz/wd32.cpp
         primitive/string/sz/ansi.cpp
-        primitive/string/sz/wd32_impl.h
+        primitive/string/sz/wd32_impl.cpp
         primitive/string/sz/ansi.h
         primitive/string/sz/wd32.h
-        primitive/string/sz/wd16_impl.h
+        primitive/string/sz/wd16_impl.cpp
         primitive/string/sz/wd16.cpp
         primitive/string/sz/wd16.h
-        primitive/string/sz/ansi_impl.h
-        primitive/string/sz/_impl.h
+        primitive/string/sz/ansi_impl.cpp
+        #primitive/string/sz/_impl.h
         #primitive/string/__c_wd32_impl.h
         #primitive/string/__c_wide.h
         #primitive/string/__c_wide_impl.h
@@ -2321,7 +2321,7 @@ if (${LINUX} OR ${FREEBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} operating_system/pthread/pthread_np.cpp operating_system/memory.cpp operating_system/string.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source} operating_system/pthread/pthread_np.cpp operating_system/memory.cpp operating_system/string.cpp operating_system/posix/file.h operating_system/posix/error_number.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

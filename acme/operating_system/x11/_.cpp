@@ -19,13 +19,13 @@ void x11_check_status(int status, unsigned long window)
 {
    if (status == BadWindow)
    {
-      printf("window atom # 0x%lx does not exists!", window);
+      output_debug_string_format("window atom # 0x%lx does not exists!", window);
       //   exit(1);
    }
 
    if (status != Success)
    {
-      printf("XGetWindowProperty failed!");
+      output_debug_string("XGetWindowProperty failed!");
       // exit(2);
    }
 }

@@ -3,7 +3,7 @@
 #include "acme/_operating_system.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
 
 #include <time.h>
@@ -58,7 +58,7 @@ void nanosecond_timer::wait(const class time & time)
 
    struct timespec timespec;
 
-   timespec.tv_sec = (posix_time) time.m_iSecond;
+   timespec.tv_sec = (time_t) time.m_iSecond;
 
    timespec.tv_nsec = (long) time.m_iNanosecond;
 

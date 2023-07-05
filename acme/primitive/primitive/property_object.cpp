@@ -118,7 +118,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 
       strTitle1 += xxx;
 
-      printf("%s\n\n", strTitle1.c_str());
+      output_debug_string_format("%s\n\n", strTitle1.c_str());
 
    }
 
@@ -130,7 +130,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 
       strTitle1 += 'C' + strTitle2;
 
-      printf("%s\n\n", strTitle1.c_str());
+       output_debug_string_format("%s\n\n", strTitle1.c_str());
 
    }
 

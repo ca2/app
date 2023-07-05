@@ -1,6 +1,8 @@
 // Created from _unicode by camilo on 2022-11-07 09:23 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 
+#include <string.h>
+#include <wchar.h>
 
 //CLASS_DECL_ACME bool _str_safe_precmp(int & i, const ::ansi_character * pszA, const ::ansi_character * pszB)
 //{

@@ -12,6 +12,12 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 ////#include "acme/exception/exception.h"
+#ifdef FREEBSD
+#define __XSI_VISIBLE 700
+#define __BSD_VISIBLE 1
+#endif
+#include <sys/time.h>
+#include <errno.h>
 
 
 using WORD = ::u16;
@@ -410,10 +416,10 @@ PLARGE_INTEGER Time)
  */
 ::i32 TIME_GetBias(void)
 {
-   static posix_time last_utc;
+   static time_t last_utc;
    static ::i32 last_bias;
    ::i32 ret;
-   posix_time utc;
+   time_t utc;
 
    utc = time( nullptr );
 
@@ -722,7 +728,7 @@ WINULONG NtGetTickCount(void)
 static i32 weekday_to_mday(i32 year, i32 day, i32 mon, i32 day_of_week)
 {
    struct tm date;
-   posix_time tmp;
+   time_t tmp;
    i32 wday, mday;
 
    /* find first day in the month matching week day of the date */
@@ -815,9 +821,9 @@ static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 
 */
 
 
-static posix_time find_dst_change(posix_time minimum, posix_time maximum, i32 *is_dst)
+static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
 {
-   posix_time start;
+   time_t start;
    struct tm *tm;
 
    start = minimum;
@@ -827,7 +833,7 @@ static posix_time find_dst_change(posix_time minimum, posix_time maximum, i32 *i
 
    while (minimum <= maximum)
    {
-      posix_time pos = (minimum + maximum) / 2;
+      time_t pos = (minimum + maximum) / 2;
       tm = localtime(&pos);
 
       if (tm->tm_isdst != *is_dst)
@@ -843,7 +849,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    static RTL_TIME_ZONE_INFORMATION cached_tzi;
    static i32 current_year = -1;
    struct tm *tm;
-   posix_time year_start, year_end, tmp, dlt = 0, iStandard = 0;
+   time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
    i32 is_dst, current_is_dst;
 
    critical_section_lock ml(::acme::acme::g_pacme->tz_critical_section());
@@ -1009,7 +1015,7 @@ NTSTATUS RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzinfo )
 NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 {
    struct timeval tv;
-   //posix_time tm_t;
+   //time_t tm_t;
    ::u32 sec, oldsec;
    LARGE_INTEGER tm;
 
@@ -1223,7 +1229,7 @@ void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time)
    if (!FileTimeToSystemTime((FILETIME *) &file_time, &systemtime))
    {
 
-      time = 0;
+      time = {posix_time_t{}, 0};
 
       throw ::exception(::error_failed);
 
@@ -1240,11 +1246,11 @@ void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time)
 
 #ifdef WINDOWS
    
-   time = _mkgmtime64(&tm);
+   time.m_iSecond = _mkgmtime64(&tm);
 
 #else
 
-   time = timegm(&tm);
+   time.m_iSecond = timegm(&tm);
 
 #endif
 

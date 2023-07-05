@@ -43,7 +43,7 @@ void copy(payload * ppayload, const system_time_t * psystemtime)
 
    system_time_to_earth_time(&time, psystemtime);
 
-   ppayload->m_time.m_iSecond = time;
+   ppayload->m_time.m_iSecond = time.m_iSecond;
    ppayload->m_time.m_iNanosecond = 0;
 
 }

@@ -9,6 +9,7 @@
 
 #include "framework.h"
 
+#include <errno.h>
 
 #define GCVTBUFSIZE 2 * DBL_MAX_10_EXP + 33
 
@@ -80,10 +81,10 @@ int gcvt_dup(char *buf,int nchar,double arg,int ndigits)
 
    gcvt_internal(arg,ndigits,sz);
 
-   if(strlen(sz) > natural(nchar))
+   if(ansi_len(sz) > natural(nchar))
       return EINVAL;
 
-   strcpy(buf,sz);
+   ansi_cpy(buf,sz);
 
    return 0;
 

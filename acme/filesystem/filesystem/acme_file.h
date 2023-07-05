@@ -39,11 +39,10 @@ public:
 
 
    file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;
-   virtual file_pointer stdio_open(const ::file::path & path, const scoped_string & attrs, int iShare);
+
 
 
    //virtual string get_temp_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension);
-   virtual void write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
    virtual void append_wait(const ::file::path & pathFile, const block & block, const class time & time);
    virtual void append(const ::file::path & pathFile, const block & block);
 
@@ -51,7 +50,6 @@ public:
 
    //virtual void put_contents(const ::file::path & path, const scoped_string & contents);
    virtual filesize get_size(const ::file::path & path);
-   virtual filesize get_size(FILE * pfile);
    virtual filesize get_size_fd(int iFile);
 
 
@@ -91,7 +89,6 @@ public:
 
    virtual void set_size(const ::file::path & pathName, filesize iSize);
    virtual void set_size(int iFileDescriptor, filesize iSize);
-   virtual void set_size(FILE * pfile, filesize iSize);
 
 
    virtual void transfer(const ::file::path & pathNewName, const ::file::path & pathOldName);
@@ -190,7 +187,7 @@ public:
    virtual void append_wait(const ::string & strFile, const block & block, const class time & timeWait = ::time::infinity());
    //virtual bool file_append_wait(const ::string & strFile, const ::scoped_string & scopedstr, strsize s, const class ::time & millisTimeout = ::time::infinite());
 
-   virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
+   //virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 
 
    virtual bool _exists(const ::file::path & path);

@@ -1035,7 +1035,7 @@ bool task::has_message() const
 
    }
 
-   m_pszDebug = strdup(strId.c_str());
+   //m_pszDebug = strdup(strId.c_str());
 
 #endif
 

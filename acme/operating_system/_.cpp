@@ -27,18 +27,6 @@
 //}
 
 
-CLASS_DECL_ACME void destroy_pointer(FILE * p)
-{
-
-   if(::is_set(p))
-   {
-
-      fclose(p);
-
-   }
-
-}
-
 
 static PFN_factory g_pfnFactoryApp = nullptr;
 

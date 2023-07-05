@@ -33,7 +33,7 @@
 //
 
 #include "framework.h"
-//#include <math.h>
+#include <errno.h>
 
 //
 // cvt.c - IEEE floating p formatting routines for FreeBSD
@@ -126,10 +126,10 @@ int ccvt_dup(char *buf, int nchar, double arg,int ndigits,int *decpt,int *sign,i
 
    ccvt_internal(arg,ndigits,decpt,sign,sz,eflag);
 
-   if(strlen(sz) > natural(nchar))
+   if(ansi_len(sz) > natural(nchar))
       return EINVAL;
 
-   strcpy(buf,sz);
+   ansi_cpy(buf,sz);
 
    return 0;
 
@@ -159,10 +159,10 @@ int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign,
 
    ccvt_internal(arg,ndigits,decpt,sign,sz,MAX_PRECISION, pi);
 
-   if(strlen(sz) > natural(nchar))
+   if(ansi_len(sz) > natural(nchar))
       return EINVAL;
 
-   strcpy(buf,sz);
+   ansi_cpy(buf,sz);
 
    return 0;
 

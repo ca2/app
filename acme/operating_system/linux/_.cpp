@@ -152,7 +152,7 @@ class ::time os_get_system_update_poll_time(const ::atom & atom)
       //return 300_ms;
 
       //return 300_ms;
-      return e_zero;
+      return zero_t{};
 
    }
    else if(atom == id_operating_system_user_color_change)
@@ -161,11 +161,11 @@ class ::time os_get_system_update_poll_time(const ::atom & atom)
       // On Gnome you can?
       // ... hook to the gtk-theme-name property change event of GTK Settings default object
       //return 300_ms;
-      return e_zero;
+      return zero_t{};
 
    }
 
-   return e_zero;
+   return zero_t{};
 
 }
 

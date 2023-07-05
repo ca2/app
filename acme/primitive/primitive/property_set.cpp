@@ -11,7 +11,7 @@
 #include "acme/primitive/string/str.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 #include <locale.h>
 #endif
 
@@ -1133,7 +1133,7 @@ void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriO
 
    }
 
-   const char * pszNetworkArguments = strchr(scopedstrUriOrNetworkArguments.begin(), '?');
+   auto pszNetworkArguments = scopedstrUriOrNetworkArguments.find('?');
 
    if (::is_empty(pszNetworkArguments))
    {
@@ -1176,13 +1176,13 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
    while (true)
    {
 
-      pszArgumentEnd1 = strchr(pszArgument, '&');
+      pszArgumentEnd1 = ansi_chr(pszArgument, '&');
 
-      pszArgumentEnd2 = strchr(pszArgument, '?');
+      pszArgumentEnd2 = ansi_chr(pszArgument, '?');
 
       pszArgumentEnd = ::minimum_non_null(pszArgumentEnd1, pszArgumentEnd2);
 
-      pszKeyEnd = strchr(pszArgument, '=');
+      pszKeyEnd = ansi_chr(pszArgument, '=');
 
       if (pszArgumentEnd == nullptr)
       {

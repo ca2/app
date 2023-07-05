@@ -430,11 +430,15 @@ template < primitive_floating FLOATING >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
 {
 
-   char szFormat[32];
+    string strFormat;
 
-   snprintf(szFormat, sizeof(szFormat), "%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
+    strFormat.format("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
 
-   write_number(f, szFormat);
+//   char szFormat[32];
+//
+//   snprintf(szFormat, sizeof(szFormat), );
+
+   write_number(f, strFormat);
 
    if (this->fmtflags() & ::file::separated)
    {

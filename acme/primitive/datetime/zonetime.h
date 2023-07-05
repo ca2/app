@@ -25,8 +25,7 @@ namespace earth
       zonetime(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset);
 
 
-      struct tm* GetZoneTm(struct tm* ptm) const;
-
+      ::earth::gregorian::time get_zone_time() const;
 
       i32 GetZoneYear() const noexcept;
       i32 GetZoneMonth() const noexcept;

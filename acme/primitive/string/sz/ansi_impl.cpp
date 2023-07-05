@@ -1,8 +1,8 @@
 // Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 
-
-
+#include <string.h>
+#include <stdio.h>
 // CLASS_DECL_ACME  constexpr strsize     character_count_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize)((nCharLength) * sizeof(::ansi_character)); }
 // CLASS_DECL_ACME  constexpr strsize     byte_length_to_character_count(const_ansichar_trigger, memsize nByteLength) { return (::strsize)((nByteLength / sizeof(::ansi_character))); }
 // CLASS_DECL_ACME  constexpr strsize     null_terminated_character_count_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize)((nCharLength + 1) * sizeof(::ansi_character)); }

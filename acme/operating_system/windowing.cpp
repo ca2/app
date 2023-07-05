@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+#include <stdio.h>
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)

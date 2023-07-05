@@ -513,18 +513,6 @@ namespace file
 }
 
 
-::e_status set_last_errno_status()
-{
-
-   int iErrorNumber = errno;
-
-   auto estatus = errno_status(iErrorNumber);
-
-   set_last_status(estatus);
-
-   return estatus;
-
-}
 
 
 

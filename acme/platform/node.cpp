@@ -2589,7 +2589,7 @@ return false;
             if (*psz == '\\')
             {
 
-               memory_transfer(psz, psz + 1, strlen(psz));
+               memory_transfer(psz, psz + 1, ansi_len(psz));
 
                unicode_increment(psz);
 

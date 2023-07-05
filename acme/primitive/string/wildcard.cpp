@@ -110,7 +110,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
 
    }
 
-   if (strcmp(pszValue, pszCriteria) != 0)
+   if (ansi_cmp(pszValue, pszCriteria) != 0)
       return false;
 
    return true;

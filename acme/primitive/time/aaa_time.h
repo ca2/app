@@ -20,7 +20,7 @@ public:
    constexpr time(enum_no_initialize) {}
    constexpr time():time(0, 0) {}
    constexpr time(::i64 iSecond, ::i64 iNanosecond)  {m_iSecond = iSecond; m_iNanosecond = iNanosecond; normalize();}
-   constexpr time(enum_zero)  :time(0, 0) {}
+   constexpr time(zero_t)  :time(0, 0) {}
    time(double d) {m_iSecond = (::i64)d; m_iNanosecond = (::i64) ((d - floor(d)) * 1'000'000'000.0); normalize();}
    constexpr time(const class ::time& time)  {m_iSecond = time.m_iSecond; m_iNanosecond = time.m_iNanosecond;}
    constexpr time(const struct ::timespec& timespec)  {m_iSecond = timespec.tv_sec; m_iNanosecond = timespec.tv_nsec; normalize(); }

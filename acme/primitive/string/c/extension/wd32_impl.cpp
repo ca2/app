@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#include <wchar.h>
+#include <errno.h>
 
 CLASS_DECL_ACME ::wd32_character wd32_char_tolower(i32 i) { return __wd32tolower(i); }
 CLASS_DECL_ACME ::wd32_character wd32_char_toupper(i32 i) { return __wd32toupper(i); }

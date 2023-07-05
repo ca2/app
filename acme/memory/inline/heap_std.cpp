@@ -142,7 +142,7 @@ void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * s
 
       paligned = heap_memory_aligned(p, size, 130, (int)align, HEAP_ENUMERATE);
 
-      memset(paligned, 0, size);
+      memory_set(paligned, 0, size);
 
    }
    else

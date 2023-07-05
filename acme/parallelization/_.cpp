@@ -780,18 +780,18 @@ bool task_get_run()
 #ifdef PARALLELIZATION_PTHREAD
 
 
-CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex)
-{
-
-   pthread_mutexattr_t attribute;
-
-   pthread_mutexattr_init(&attribute);
-
-   pthread_mutexattr_settype(&attribute, PTHREAD_MUTEX_RECURSIVE);
-
-   return pthread_mutex_init(pmutex, &attribute);
-
-}
+//CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex)
+//{
+//
+//   pthread_mutexattr_t attribute;
+//
+//   pthread_mutexattr_init(&attribute);
+//
+//   pthread_mutexattr_settype(&attribute, PTHREAD_MUTEX_RECURSIVE);
+//
+//   return pthread_mutex_init(pmutex, &attribute);
+//
+//}
 
 
 #endif

@@ -43,18 +43,6 @@ namespace earth
 
          inline time(const class ::time &time, const time_shift &timeshift = time_shift::none());
 
-         inline void set(const struct ::tm *ptm, ::i64 iNanosecond = 0)
-         {
-
-            m_iNanoSecond = iNanosecond;
-            m_iSecond = ptm->tm_sec;
-            m_iMinute = ptm->tm_min;
-            m_iHour = ptm->tm_hour;
-            m_iDay = ptm->tm_mday;
-            m_iMonth = ptm->tm_mon;
-            m_iYear = ptm->tm_year + 1900;
-
-         }
 
 
          void set(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift);
@@ -66,17 +54,17 @@ namespace earth
          ::posix_time get_time_t();
 
 
-         inline void get(struct ::tm *ptm)
-         {
-
-            ptm->tm_sec = m_iSecond;
-            ptm->tm_min = m_iMinute;
-            ptm->tm_hour = m_iHour;
-            ptm->tm_mday = m_iDay;
-            ptm->tm_mon = m_iMonth;
-            ptm->tm_year = m_iYear - 1900;
-
-         }
+//         inline void get(struct ::tm *ptm)
+//         {
+//
+//            ptm->tm_sec = m_iSecond;
+//            ptm->tm_min = m_iMinute;
+//            ptm->tm_hour = m_iHour;
+//            ptm->tm_mday = m_iDay;
+//            ptm->tm_mon = m_iMonth;
+//            ptm->tm_year = m_iYear - 1900;
+//
+//         }
 
 
          void get(system_time_t *psystemtime);
@@ -89,6 +77,9 @@ namespace earth
 
 
          void Now(const time_shift &timeshift = time_shift::none());
+
+
+         posix_time make_utc_time() const;
 
 
       };
@@ -126,7 +117,7 @@ namespace earth
 
    CLASS_DECL_ACME ::i32 days_from_1jan(::i32 year, ::i32 month, ::i32 day);
 
-   CLASS_DECL_ACME posix_time make_utc_time(tm const * t);
+
 
 
 } // namespace earth

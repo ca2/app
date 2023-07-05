@@ -4,6 +4,9 @@
 #include "text_file.h"
 
 
+#include <stdio.h>
+
+
 class CLASS_DECL_ACME stdio_file:
    virtual public ::file::text_file
 {
@@ -73,3 +76,4 @@ public:
 
 
 
+CLASS_DECL_ACME ::pointer<stdio_file> stdio_open(::particle * pparticle, const ::file::path & path, const scoped_string & attrs, int iShare);

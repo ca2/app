@@ -36,7 +36,7 @@ namespace acme
 
       while (iSubString--)
       {
-         pszFullString = strchr(pszFullString, chSep);
+         pszFullString = ansi_chr(pszFullString, chSep);
 
          if (pszFullString == nullptr)
 
@@ -48,10 +48,10 @@ namespace acme
 
       }
 
-      const char* pchEnd = strchr(pszFullString, chSep);
+      const char* pchEnd = ansi_chr(pszFullString, chSep);
 
 
-      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (i32)(pchEnd - pszFullString);
+      strsize nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (i32)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);

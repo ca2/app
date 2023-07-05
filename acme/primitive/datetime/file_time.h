@@ -113,7 +113,7 @@ namespace earth
 {
 
    class time;
-   class zonetime;
+   class zone_time;
 
 } // namespace earth
 

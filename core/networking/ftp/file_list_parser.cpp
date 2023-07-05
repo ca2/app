@@ -229,7 +229,7 @@ namespace ftp
    long file_list_parser::GuessTAI(long lMonth, long lMDay)
    {
       ///////////////////////////*/*/*/*/
-      auto now = m_tmBase.elapsed().m_posixtime;
+      auto now = m_tmBase.elapsed().m_iSecond;
 
       if (m_lCurrentYear == -1)
       {

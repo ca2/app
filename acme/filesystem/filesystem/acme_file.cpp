@@ -20,12 +20,15 @@
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
+
 void trace_last_error()
 {
 
    information("trace_last_error::todo");
 
 }
+
+
 acme_file::acme_file()
 {
 

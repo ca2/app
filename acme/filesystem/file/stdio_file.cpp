@@ -24,7 +24,7 @@ stdio_file::stdio_file()
 stdio_file::~stdio_file()
 {
 
-   if(m_pfile != nullptr)
+   if (m_pfile != nullptr)
    {
 
       fclose(m_pfile);
@@ -58,13 +58,13 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 
    }
 
-   if(eopen & ::file::e_open_binary)
+   if (eopen & ::file::e_open_binary)
    {
 
       str += "b";
 
    }
-   else if(eopen & ::file::e_open_text)
+   else if (eopen & ::file::e_open_text)
    {
 
    }
@@ -85,14 +85,14 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 
 void stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
 {
-   
+
    m_path = path;
 
 #ifdef WINDOWS
 
    bool bTriedSetFileNormal = false;
 
-   try_again:
+try_again:
 
    wstring wstrPath(path);
 
@@ -166,7 +166,7 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
 
    int nFrom = SEEK_SET;
 
-   switch(eseek)
+   switch (eseek)
    {
    case ::e_seek_current:
       nFrom = SEEK_CUR;
@@ -193,8 +193,8 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
 #else
 
    int iFseekResult = fseek(m_pfile, offset, nFrom);
-   
-   if(iFseekResult != 0)
+
+   if (iFseekResult != 0)
    {
 
       throw_exception("fseek != 0");
@@ -248,7 +248,7 @@ memsize stdio_file::read(void * p, ::memsize s)
          throw_exception("fread: !feof and ferror");
 
          return 0;
-         
+
       }
 
    }
@@ -272,7 +272,7 @@ int stdio_file::get_u8()
 
    }
 
-   return (::u8) iChar;
+   return (::u8)iChar;
 
 }
 
@@ -293,7 +293,7 @@ int stdio_file::peek_byte()
 
    ::ungetc(iChar, m_pfile);
 
-   return (::u8) iChar;
+   return (::u8)iChar;
 
 }
 
@@ -314,7 +314,7 @@ void stdio_file::write(const void * p, ::memsize s)
 }
 
 
-void stdio_file::lock(filesize dwPos,filesize dwCount)
+void stdio_file::lock(filesize dwPos, filesize dwCount)
 {
 
    UNREFERENCED_PARAMETER(dwPos);
@@ -323,7 +323,7 @@ void stdio_file::lock(filesize dwPos,filesize dwCount)
 }
 
 
-void stdio_file::unlock(filesize dwPos,filesize dwCount)
+void stdio_file::unlock(filesize dwPos, filesize dwCount)
 {
 
    UNREFERENCED_PARAMETER(dwPos);
@@ -406,20 +406,20 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 ::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
 {
 
-    auto pfile = pparticle->m_pcontext->__create_new < ::stdio_file >();
+   auto pfile = pparticle->m_pcontext->__create_new < ::stdio_file >();
 
-    if (!pfile)
-    {
+   if (!pfile)
+   {
 
-        return pfile;
+      return pfile;
 
-    }
+   }
 
-    auto path = pparticle->acmepath()->defer_process_relative_path(pathParam);
+   auto path = pparticle->acmepath()->defer_process_relative_path(pathParam);
 
-    pfile->open(path, scopedstrAttrs, iShare);
+   pfile->open(path, scopedstrAttrs, iShare);
 
-    return pfile;
+   return pfile;
 
 }
 
@@ -428,71 +428,71 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-    auto pfile = m_pcontext->__create_new < stdio_file >();
+   auto pfile = m_pcontext->__create_new < stdio_file >();
 
-    if (bNoExceptionIfNotFound)
-    {
+   if (bNoExceptionIfNotFound)
+   {
 
-        pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
+      pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
 
-    }
+   }
 
-    auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
-    pfile->open(path, "rb", _SH_DENYNO);
+   pfile->open(path, "rb", _SH_DENYNO);
 
-    if (bNoExceptionIfNotFound)
-    {
+   if (bNoExceptionIfNotFound)
+   {
 
-        if (pfile->m_eflag & stdio_file::flag_file_not_found)
-        {
+      if (pfile->m_eflag & stdio_file::flag_file_not_found)
+      {
 
-            return {};
+         return {};
 
-        }
+      }
 
-    }
+   }
 
-    ::memory memory;
+   ::memory memory;
 
-    auto uSize = pfile->size();
+   auto uSize = pfile->size();
 
-    if(iReadAtMostByteCount < 0)
-    {
+   if (iReadAtMostByteCount < 0)
+   {
 
-        iReadAtMostByteCount = (strsize) uSize;
+      iReadAtMostByteCount = (strsize)uSize;
 
-    }
-    else
-    {
+   }
+   else
+   {
 
-        iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
+      iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
 
-    }
+   }
 
-    memory.set_size(iReadAtMostByteCount);
+   memory.set_size(iReadAtMostByteCount);
 
-    auto p = memory.data();
+   auto p = memory.data();
 
-    ::size_t iPos = 0;
+   ::size_t iPos = 0;
 
-    while (iReadAtMostByteCount - iPos > 0)
-    {
+   while (iReadAtMostByteCount - iPos > 0)
+   {
 
-        auto dwRead = pfile->read({ p + iPos, (size_t)iReadAtMostByteCount - iPos });
+      auto dwRead = pfile->read({ p + iPos, (size_t)iReadAtMostByteCount - iPos });
 
-        if (dwRead <= 0)
-        {
+      if (dwRead <= 0)
+      {
 
-            break;
+         break;
 
-        }
+      }
 
-        iPos += dwRead;
+      iPos += dwRead;
 
-    }
+   }
 
-    return memory;
+   return memory;
 
 }
 
@@ -500,29 +500,29 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
 memory acme_file::safe_get_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-    auto pfile = m_pcontext->__create_new < stdio_file >();
+   auto pfile = m_pcontext->__create_new < stdio_file >();
 
-    pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
+   pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
 
-    auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
-    pfile->open(path, "rb", _SH_DENYNO);
+   pfile->open(path, "rb", _SH_DENYNO);
 
-    if (bNoExceptionIfNotFound)
-    {
+   if (bNoExceptionIfNotFound)
+   {
 
-        if (pfile->m_eflag & stdio_file::flag_file_not_found)
-        {
+      if (pfile->m_eflag & stdio_file::flag_file_not_found)
+      {
 
-            return {};
+         return {};
 
-        }
+      }
 
-    }
+   }
 
-    auto memory = pfile->right_memory();
+   auto memory = pfile->right_memory();
 
-    return memory;
+   return memory;
 
 }
 
@@ -531,12 +531,12 @@ memory acme_file::safe_get_memory(const ::file::path & pathParam, strsize iReadA
 CLASS_DECL_ACME void destroy_pointer(FILE * p)
 {
 
-    if(::is_set(p))
-    {
+   if (::is_set(p))
+   {
 
-        fclose(p);
+      fclose(p);
 
-    }
+   }
 
 }
 
@@ -547,7 +547,7 @@ CLASS_DECL_ACME void destroy_pointer(FILE * p)
 CLASS_DECL_ACME FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace_level etracelevelInformation)
 {
 
-    return etracelevel <= etracelevelInformation ? stdout : stderr;
+   return etracelevel <= etracelevelInformation ? stdout : stderr;
 
 }
 
@@ -555,15 +555,15 @@ CLASS_DECL_ACME FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace
 CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation)
 {
 
-    auto predicate = [&](auto etracelevel, auto & str)
-    {
+   auto predicate = [&](auto etracelevel, auto & str)
+   {
 
-        ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
-                  ::string(str).c_str());
+      ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
+                ::string(str).c_str());
 
-    };
+   };
 
-    return predicate;
+   return predicate;
 
 }
 
@@ -573,18 +573,18 @@ CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInform
 
 
 
-void __cdecl __clearerr_s(FILE *stream)
+void __cdecl __clearerr_s(FILE * stream)
 {
 
 #ifdef WINDOWS
 
-    C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
+   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
 
 #else
 
-    clearerr(stream);
+   clearerr(stream);
 
-    C_RUNTIME_ERROR_CHECK(errno);
+   C_RUNTIME_ERROR_CHECK(errno);
 
 #endif
 
@@ -594,63 +594,63 @@ void __cdecl __clearerr_s(FILE *stream)
 ::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize)
 {
 
-    if(::is_null(pfile))
-    {
+   if (::is_null(pfile))
+   {
 
-        return error_null_pointer;
+      return error_null_pointer;
 
-    }
+   }
 
-    if(iBufferSize <= 0)
-    {
+   if (iBufferSize <= 0)
+   {
 
-        return error_bad_argument;
+      return error_bad_argument;
 
-    }
+   }
 
-    if(feof(pfile))
-    {
+   if (feof(pfile))
+   {
 
-        return ::success_end_of_file;
+      return ::success_end_of_file;
 
-    }
+   }
 
-    auto pszBuffer = str.get_buffer(iBufferSize);
+   auto pszBuffer = str.get_buffer(iBufferSize);
 
-    if(::is_null(pszBuffer))
-    {
+   if (::is_null(pszBuffer))
+   {
 
-        return error_resource;
+      return error_resource;
 
-    }
+   }
 
-    auto psz = fgets(pszBuffer, (int) iBufferSize, pfile);
+   auto psz = fgets(pszBuffer, (int)iBufferSize, pfile);
 
-    if(::is_null(psz))
-    {
+   if (::is_null(psz))
+   {
 
-        zero(pszBuffer, iBufferSize);
+      zero(pszBuffer, iBufferSize);
 
-        str.release_buffer();
+      str.release_buffer();
 
-        if(feof(pfile))
-        {
+      if (feof(pfile))
+      {
 
-            throw ::exception(::success_end_of_file);
+         throw ::exception(::success_end_of_file);
 
-        }
+      }
 
-        int iErrNo = errno;
+      int iErrNo = errno;
 
-        auto estatus = failed_errno_status(iErrNo);
+      auto estatus = failed_errno_status(iErrNo);
 
-        throw ::exception(estatus);
+      throw ::exception(estatus);
 
-    }
+   }
 
-    str.release_buffer();
+   str.release_buffer();
 
-    return ::success;
+   return ::success;
 
 }
 
@@ -658,35 +658,35 @@ void __cdecl __clearerr_s(FILE *stream)
 memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s)
 {
 
-    stdio_file file;
+   stdio_file file;
 
-    auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
-    file.open(path, "r", _SH_DENYNO);
+   file.open(path, "r", _SH_DENYNO);
 
-    auto iReadAtMostByteCount = s;
+   auto iReadAtMostByteCount = s;
 
-    ::u8 * psz = (::u8 *) p;
+   ::u8 * psz = (::u8 *)p;
 
-    ::size_t iPos = 0;
+   ::size_t iPos = 0;
 
-    while (iReadAtMostByteCount - iPos > 0)
-    {
+   while (iReadAtMostByteCount - iPos > 0)
+   {
 
-        auto dwRead = file.read({ psz + iPos, (size_t)iReadAtMostByteCount - iPos });
+      auto dwRead = file.read({ psz + iPos, (size_t)iReadAtMostByteCount - iPos });
 
-        if (dwRead <= 0)
-        {
+      if (dwRead <= 0)
+      {
 
-            break;
+         break;
 
-        }
+      }
 
-        iPos += dwRead;
+      iPos += dwRead;
 
-    }
+   }
 
-    return iPos;
+   return iPos;
 
 }
 
@@ -694,81 +694,81 @@ memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s
 void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, memsize iReadAtMostByteCount, bool bNoExceptionOnOpen)
 {
 
-    memory.set_size(0);
+   memory.set_size(0);
 
-    stdio_file file;
+   stdio_file file;
 
-    auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
-    try
-    {
+   try
+   {
 
-        file.open(path, "r", _SH_DENYNO);
+      file.open(path, "r", _SH_DENYNO);
 
-    }
-    catch(const ::exception & e)
-    {
+   }
+   catch (const ::exception & e)
+   {
 
-        if(bNoExceptionOnOpen)
-        {
+      if (bNoExceptionOnOpen)
+      {
 
-            return;
+         return;
 
-        }
+      }
 
-        throw e;
+      throw e;
 
-    }
-    catch(...)
-    {
+   }
+   catch (...)
+   {
 
-        if(bNoExceptionOnOpen)
-        {
+      if (bNoExceptionOnOpen)
+      {
 
-            return;
+         return;
 
-        }
+      }
 
-        throw ::exception(error_catch_all_exception);
+      throw ::exception(error_catch_all_exception);
 
-    }
+   }
 
-    auto iSize = file.size();
+   auto iSize = file.size();
 
-    if (iSize < 0)
-    {
+   if (iSize < 0)
+   {
 
-        memory.set_size(0);
+      memory.set_size(0);
 
-        return;
+      return;
 
-    }
+   }
 
-    iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, (::strsize)iSize);
+   iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, (::strsize)iSize);
 
-    memory.set_size(iReadAtMostByteCount);
+   memory.set_size(iReadAtMostByteCount);
 
-    filesize dwReadTotal = 0;
+   filesize dwReadTotal = 0;
 
-    while (dwReadTotal < iReadAtMostByteCount)
-    {
+   while (dwReadTotal < iReadAtMostByteCount)
+   {
 
-        auto dwRead = file.read(memory(dwReadTotal, (iReadAtMostByteCount - dwReadTotal)));
+      auto dwRead = file.read(memory(dwReadTotal, (iReadAtMostByteCount - dwReadTotal)));
 
-        if (dwRead <= 0)
-        {
+      if (dwRead <= 0)
+      {
 
-            break;
+         break;
 
-        }
+      }
 
-        dwReadTotal += dwRead;
+      dwReadTotal += dwRead;
 
-    }
+   }
 
-    memory.set_size((memsize) dwReadTotal);
+   memory.set_size((memsize)dwReadTotal);
 
-    //return ::success;
+   //return ::success;
 
 }
 
@@ -778,60 +778,60 @@ void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, 
 void acme_file::append_wait(const ::file::path & pathFile, const block & block, const class time & time)
 {
 
-    auto pacmedirectory = m_pacmedirectory;
+   auto pacmedirectory = m_pacmedirectory;
 
-    pacmedirectory->create(::file_path_folder(pathFile));
+   pacmedirectory->create(::file_path_folder(pathFile));
 
 
-    if (!pacmedirectory->is(::file_path_folder(pathFile)))
-    {
+   if (!pacmedirectory->is(::file_path_folder(pathFile)))
+   {
 
-        throw ::exception(error_path_not_found);
+      throw ::exception(error_path_not_found);
 
-    }
+   }
 
-    FILE * pfile = nullptr;
+   FILE * pfile = nullptr;
 
-    auto millisStart = ::time::now();
+   auto millisStart = ::time::now();
 
-    while (true)
-    {
+   while (true)
+   {
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
-        pfile = fopen(pathFile, "ab");
+      pfile = fopen(pathFile, "ab");
 
 #else
 
-        wstring wstr(pathFile);
+      wstring wstr(pathFile);
 
       pfile = _wfopen(wstr, L"ab");
 
 #endif
 
-        if (pfile != nullptr)
-        {
+      if (pfile != nullptr)
+      {
 
-            break;
+         break;
 
-        }
+      }
 
-        if (millisStart.elapsed() > time)
-        {
+      if (millisStart.elapsed() > time)
+      {
 
-            throw ::exception(error_timeout);
+         throw ::exception(error_timeout);
 
-        }
+      }
 
-        preempt(500_ms);
+      preempt(500_ms);
 
-    }
+   }
 
-    fwrite(block.begin(), block.size(), 1, pfile);
+   fwrite(block.begin(), block.size(), 1, pfile);
 
-    fclose(pfile);
+   fclose(pfile);
 
-    //return success;
+   //return success;
 
 }
 
@@ -848,76 +848,80 @@ void acme_file::append_wait(const ::file::path & pathFile, const block & block, 
 string acme_file::line(const ::file::path & pathParam, index iLine)
 {
 
-    string str;
+   string str;
 
-    auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = acmepath()->defer_process_relative_path(pathParam);
 
 #ifdef WINDOWS
 
-    FILE * file = _fsopen(path, "r", _SH_DENYNO);
+   FILE * file = _fsopen(path, "r", _SH_DENYNO);
 
 #else
 
-    FILE * file = fopen(path.c_str(), "r");
+   FILE * file = fopen(path.c_str(), "r");
 
 #endif
 
-    if (file == nullptr)
-    {
+   if (file == nullptr)
+   {
 
-        trace_last_error();
+      int iErrorNumber = errno;
 
-        throw ::exception(error_io);
+      auto estatus = errno_status(iErrorNumber);
 
-    }
+      auto error_code = errno_error_code(iErrorNumber);
 
-    int iChar;
+      throw ::file::exception(estatus, error_code, path);
 
-    string strLine;
+   }
 
-    int iLastChar = -1;
+   int iChar;
 
-    while (iLine >= 0)
-    {
+   string strLine;
 
-        iChar = fgetc(file);
+   int iLastChar = -1;
 
-        if (iChar == EOF)
-        {
+   while (iLine >= 0)
+   {
 
-            break;
+      iChar = fgetc(file);
 
-        }
+      if (iChar == EOF)
+      {
 
-        if (iChar == '\r')
-        {
+         break;
+
+      }
+
+      if (iChar == '\r')
+      {
+
+         iLine--;
+
+      }
+      else if (iChar == '\n')
+      {
+
+         if (iLastChar != '\r')
+         {
 
             iLine--;
 
-        }
-        else if (iChar == '\n')
-        {
+         }
 
-            if (iLastChar != '\r')
-            {
+      }
+      else if (iLine == 0)
+      {
 
-                iLine--;
+         str += (char)iChar;
 
-            }
+      }
 
-        }
-        else if (iLine == 0)
-        {
+      iLastChar = iChar;
 
-            str += (char)iChar;
+   }
 
-        }
-
-        iLastChar = iChar;
-
-    }
-
-    return str;
+   return str;
 
 }
 
@@ -925,57 +929,57 @@ string acme_file::line(const ::file::path & pathParam, index iLine)
 void acme_file::append_wait(const ::string & strFile, const block & block, const class time & time)
 {
 
-    m_pacmedirectory->create(::file_path_folder(strFile));
+   m_pacmedirectory->create(::file_path_folder(strFile));
 
-    if (!m_pacmedirectory->is(::file_path_folder(strFile)))
-    {
+   if (!m_pacmedirectory->is(::file_path_folder(strFile)))
+   {
 
-        throw ::exception(::error_not_a_directory);
+      throw ::exception(::error_not_a_directory);
 
-    }
+   }
 
-    wstring wstr(strFile);
+   wstring wstr(strFile);
 
-    FILE * pfile = nullptr;
+   FILE * pfile = nullptr;
 
-    auto millisStart = ::time::now();
+   auto millisStart = ::time::now();
 
-    while (true)
-    {
+   while (true)
+   {
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
-        pfile = fopen(strFile.c_str(), "ab");
+      pfile = fopen(strFile.c_str(), "ab");
 
 #else
 
-        pfile = _wfopen(wstr, L"ab");
+      pfile = _wfopen(wstr, L"ab");
 
 #endif
 
-        if (pfile != nullptr)
-        {
+      if (pfile != nullptr)
+      {
 
-            break;
+         break;
 
-        }
+      }
 
-        if (millisStart.elapsed() > time)
-        {
+      if (millisStart.elapsed() > time)
+      {
 
-            throw ::exception(error_timeout);
+         throw ::exception(error_timeout);
 
-        }
+      }
 
-        preempt(500_ms);
+      preempt(500_ms);
 
-    }
+   }
 
-    fwrite(block.data(), block.size(), 1, pfile);
+   fwrite(block.data(), block.size(), 1, pfile);
 
-    fclose(pfile);
+   fclose(pfile);
 
-    //return ::success;
+   //return ::success;
 
 }
 

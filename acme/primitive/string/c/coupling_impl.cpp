@@ -14,7 +14,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const ::
 
 CLASS_DECL_ACME const ::ansi_character * ansi_chr(const ::ansi_character * psz1, ::ansi_character ch) ;
 
-CLASS_DECL_ACME ::ansi_character * ansi_pbrk(::ansi_character * psz, const ::ansi_character * pszCharsToFind) ;
+CLASS_DECL_ACME ::ansi_character * ansi_pbrk(const ::ansi_character * psz, const ::ansi_character * pszCharsToFind) ;
 
 CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
 

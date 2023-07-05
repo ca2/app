@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/system.h"
+#include "acme/platform/trace.h"
 #include "acme/primitive/primitive/memory.h"
 
 

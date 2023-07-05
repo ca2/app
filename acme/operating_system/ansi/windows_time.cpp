@@ -12,6 +12,10 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 ////#include "acme/exception/exception.h"
+#ifdef FREEBSD
+#define __XSI_VISIBLE 700
+#endif
+#include <sys/time.h>
 
 
 using WORD = ::u16;
@@ -410,10 +414,10 @@ PLARGE_INTEGER Time)
  */
 ::i32 TIME_GetBias(void)
 {
-   static posix_time last_utc;
+   static time_t last_utc;
    static ::i32 last_bias;
    ::i32 ret;
-   posix_time utc;
+   time_t utc;
 
    utc = time( nullptr );
 
@@ -722,7 +726,7 @@ WINULONG NtGetTickCount(void)
 static i32 weekday_to_mday(i32 year, i32 day, i32 mon, i32 day_of_week)
 {
    struct tm date;
-   posix_time tmp;
+   time_t tmp;
    i32 wday, mday;
 
    /* find first day in the month matching week day of the date */

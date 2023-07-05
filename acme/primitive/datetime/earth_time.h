@@ -46,9 +46,9 @@ namespace earth
 
       inline time(now_t) noexcept : posix_time(now_t{}) { }
 
-      constexpr time(const time &time);
+      //constexpr time(const time &time);
 
-      constexpr time(posix_time time) noexcept;
+      constexpr time(const posix_time & time) noexcept;
 
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
            const time_shift &timeshift = time_shift::none());
@@ -112,8 +112,6 @@ namespace earth
       //constexpr bool operator<=(time time) const noexcept;
 
       //constexpr bool operator>=(time time) const noexcept;
-
-      struct ::tm *tm_struct(struct ::tm *ptm, const ::earth::time_shift &timeshift = time_shift::none()) const;
 
       posix_time get_time() const noexcept;
 
@@ -237,14 +235,14 @@ namespace earth
    }
 
 
-   constexpr  time::time(const class time & time) :
-      posix_time(time)
-   {
+//   constexpr  time::time(const class time & time) :
+//      posix_time(time)
+//   {
+//
+//   }
 
-   }
 
-
-   constexpr  time::time(posix_time time)  noexcept :
+   constexpr time::time(const posix_time & time) noexcept :
       posix_time(time)
    {
 

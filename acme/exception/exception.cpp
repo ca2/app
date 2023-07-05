@@ -147,50 +147,6 @@ string exception::get_consolidated_details() const
 }
 
 
-errno_t c_runtime_error_check(errno_t error)
-{
-
-   switch(error)
-   {
-   case ENOMEM:
-      throw ::exception(error_no_memory, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
-      break;
-   case EINVAL:
-   case ERANGE:
-      throw ::exception(error_bad_argument, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
-      break;
-#if defined(WINDOWS)
-   case STRUNCATE:
-#endif
-   case 0:
-      break;
-   default:
-      throw ::exception(error_bad_argument, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
-      break;
-   }
-   
-   return error;
-
-}
-
-
-void __cdecl __clearerr_s(FILE *stream)
-{
-
-#ifdef WINDOWS
-
-   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
-
-#else
-
-   clearerr(stream);
-
-   C_RUNTIME_ERROR_CHECK(errno);
-
-#endif
-
-}
-
 
 //
 //namespace exception

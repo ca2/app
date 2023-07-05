@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+#include <string.h>
 
 
 CLASS_DECL_ACME ::ansi_character ansi_char_tolower(i32 i) { return __ansitolower(i); }
@@ -33,7 +33,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 
    if (::is_null(cat)) return nullptr;
 
-   return strcat(psz, cat);
+   return ansi_cat(psz, cat);
 
 }
 

@@ -377,7 +377,7 @@ bool memory_file::read_string(memory_base & memory)
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = '\0';
 
-      const ::u8 * p = (const ::u8 *) strpbrk((const char*)(m_pbyte + m_position), "\r\n");
+      const ::u8 * p = (const ::u8 *) ansi_pbrk((const char*)(m_pbyte + m_position), "\r\n");
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = b;
 
@@ -613,7 +613,7 @@ memsize memory_file::erase_begin(void *pdata, memsize uiCount)
    if (pdata != nullptr)
    {
 
-      ::memcpy(pdata, full_data_begin(), (size_t)uiCount);
+      ::memory_copy(pdata, full_data_begin(), (size_t)uiCount);
 
    }
 

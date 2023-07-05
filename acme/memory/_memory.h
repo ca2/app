@@ -51,4 +51,48 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 #endif
 
 
+constexpr const void * _memory_find_u8(const void* l, int i, memsize len)
+{
+
+    auto u = (::u8) (*((::u32*)(&i)) & 0xff);
+
+    auto p = (const ::u8*)l;
+
+    while(len > 0)
+    {
+
+        if(*p == u)
+        {
+
+            return p;
+
+        }
+
+        p++;
+
+        len--;
+
+    }
+
+    return nullptr;
+
+}
+
+
+
+constexpr const void * memory_find_u8(const void* l, int i, memsize len)
+{
+
+    if(::is_null(l))
+    {
+
+        return nullptr;
+
+    }
+
+    return _memory_find_u8(l, i, len);
+
+}
+
+
 

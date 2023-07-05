@@ -15,6 +15,7 @@
 
 
 #include <signal.h>
+#include <errno.h>
 
 
 CLASS_DECL_ACME int_bool is_process_running(::u32 pid)

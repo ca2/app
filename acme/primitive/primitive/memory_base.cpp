@@ -1936,7 +1936,7 @@ memsize memory_base::length() const
 
    ::count cFindLength;
 
-   if (memcmp(data() + iStart, blockPrefix.data(), blockPrefix.size()) == 0)
+   if (memory_order(data() + iStart, blockPrefix.data(), blockPrefix.size()) == 0)
    {
 
       iFind = iStart;
@@ -1953,7 +1953,7 @@ memsize memory_base::length() const
 
       memoryFind[0] = '\n';
 
-      memcpy(memoryFind.data() + 1, blockPrefix.data(), blockPrefix.size());
+      memory_copy(memoryFind.data() + 1, blockPrefix.data(), blockPrefix.size());
 
       iFind = find_index(memoryFind, iStart + 1);
 
@@ -2028,7 +2028,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       auto c = blockSuffix.size();
 
-      memcpy(ptarget, psource, c);
+      memory_copy(ptarget, psource, c);
 
       information(" ");
 

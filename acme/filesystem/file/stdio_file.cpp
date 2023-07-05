@@ -8,6 +8,9 @@
 #include "acme/platform/system.h"
 
 
+#include <errno.h>
+
+
 stdio_file::stdio_file()
 {
 
@@ -393,6 +396,585 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
    auto errorcode = errno_error_code(iErrNo);
 
    throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstr);
+
+}
+
+
+
+::pointer <stdio_file> stdio_open(const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
+{
+
+    auto pfile = m_pcontext->__create_new < ::stdio_file >();
+
+    if (!pfile)
+    {
+
+        return pfile;
+
+    }
+
+    auto path = acmepath()->defer_process_relative_path(pathParam);
+
+    pfile->open(path, scopedstrAttrs, iShare);
+
+    return pfile;
+
+}
+
+
+
+memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+{
+
+    auto pfile = m_pcontext->__create_new < stdio_file >();
+
+    if (bNoExceptionIfNotFound)
+    {
+
+        pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
+
+    }
+
+    auto path = acmepath()->defer_process_relative_path(pathParam);
+
+    pfile->open(path, "rb", _SH_DENYNO);
+
+    if (bNoExceptionIfNotFound)
+    {
+
+        if (pfile->m_eflag & stdio_file::flag_file_not_found)
+        {
+
+            return {};
+
+        }
+
+    }
+
+    ::memory memory;
+
+    auto uSize = pfile->size();
+
+    if(iReadAtMostByteCount < 0)
+    {
+
+        iReadAtMostByteCount = (strsize) uSize;
+
+    }
+    else
+    {
+
+        iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
+
+    }
+
+    memory.set_size(iReadAtMostByteCount);
+
+    auto p = memory.data();
+
+    ::size_t iPos = 0;
+
+    while (iReadAtMostByteCount - iPos > 0)
+    {
+
+        auto dwRead = pfile->read({ p + iPos, (size_t)iReadAtMostByteCount - iPos });
+
+        if (dwRead <= 0)
+        {
+
+            break;
+
+        }
+
+        iPos += dwRead;
+
+    }
+
+    return memory;
+
+}
+
+
+memory acme_file::safe_get_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+{
+
+    auto pfile = m_pcontext->__create_new < stdio_file >();
+
+    pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
+
+    auto path = acmepath()->defer_process_relative_path(pathParam);
+
+    pfile->open(path, "rb", _SH_DENYNO);
+
+    if (bNoExceptionIfNotFound)
+    {
+
+        if (pfile->m_eflag & stdio_file::flag_file_not_found)
+        {
+
+            return {};
+
+        }
+
+    }
+
+    auto memory = pfile->right_memory();
+
+    return memory;
+
+}
+
+
+
+CLASS_DECL_ACME void destroy_pointer(FILE * p)
+{
+
+    if(::is_set(p))
+    {
+
+        fclose(p);
+
+    }
+
+}
+
+
+
+
+
+CLASS_DECL_ACME FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace_level etracelevelInformation)
+{
+
+    return etracelevel <= etracelevelInformation ? stdout : stderr;
+
+}
+
+
+
+CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation)
+{
+
+    auto predicate = [&](auto etracelevel, auto & str)
+    {
+
+        ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
+                  ::string(str).c_str());
+
+    };
+
+    return predicate;
+
+}
+
+
+
+
+
+
+
+void __cdecl __clearerr_s(FILE *stream)
+{
+
+#ifdef WINDOWS
+
+    C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
+
+#else
+
+    clearerr(stream);
+
+    C_RUNTIME_ERROR_CHECK(errno);
+
+#endif
+
+}
+
+
+::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize)
+{
+
+    if(::is_null(pfile))
+    {
+
+        return error_null_pointer;
+
+    }
+
+    if(iBufferSize <= 0)
+    {
+
+        return error_bad_argument;
+
+    }
+
+    if(feof(pfile))
+    {
+
+        return ::success_end_of_file;
+
+    }
+
+    auto pszBuffer = str.get_buffer(iBufferSize);
+
+    if(::is_null(pszBuffer))
+    {
+
+        return error_resource;
+
+    }
+
+    auto psz = fgets(pszBuffer, (int) iBufferSize, pfile);
+
+    if(::is_null(psz))
+    {
+
+        zero(pszBuffer, iBufferSize);
+
+        str.release_buffer();
+
+        if(feof(pfile))
+        {
+
+            throw ::exception(::success_end_of_file);
+
+        }
+
+        int iErrNo = errno;
+
+        auto estatus = failed_errno_status(iErrNo);
+
+        throw ::exception(estatus);
+
+    }
+
+    str.release_buffer();
+
+    return ::success;
+
+}
+
+
+memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s)
+{
+
+    stdio_file file;
+
+    auto path = acmepath()->defer_process_relative_path(pathParam);
+
+    file.open(path, "r", _SH_DENYNO);
+
+    auto iReadAtMostByteCount = s;
+
+    ::u8 * psz = (::u8 *) p;
+
+    ::size_t iPos = 0;
+
+    while (iReadAtMostByteCount - iPos > 0)
+    {
+
+        auto dwRead = file.read({ psz + iPos, (size_t)iReadAtMostByteCount - iPos });
+
+        if (dwRead <= 0)
+        {
+
+            break;
+
+        }
+
+        iPos += dwRead;
+
+    }
+
+    return iPos;
+
+}
+
+
+void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, memsize iReadAtMostByteCount, bool bNoExceptionOnOpen)
+{
+
+    memory.set_size(0);
+
+    stdio_file file;
+
+    auto path = acmepath()->defer_process_relative_path(pathParam);
+
+    try
+    {
+
+        file.open(path, "r", _SH_DENYNO);
+
+    }
+    catch(const ::exception & e)
+    {
+
+        if(bNoExceptionOnOpen)
+        {
+
+            return;
+
+        }
+
+        throw e;
+
+    }
+    catch(...)
+    {
+
+        if(bNoExceptionOnOpen)
+        {
+
+            return;
+
+        }
+
+        throw ::exception(error_catch_all_exception);
+
+    }
+
+    auto iSize = file.size();
+
+    if (iSize < 0)
+    {
+
+        memory.set_size(0);
+
+        return;
+
+    }
+
+    iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, (::strsize)iSize);
+
+    memory.set_size(iReadAtMostByteCount);
+
+    filesize dwReadTotal = 0;
+
+    while (dwReadTotal < iReadAtMostByteCount)
+    {
+
+        auto dwRead = file.read(memory(dwReadTotal, (iReadAtMostByteCount - dwReadTotal)));
+
+        if (dwRead <= 0)
+        {
+
+            break;
+
+        }
+
+        dwReadTotal += dwRead;
+
+    }
+
+    memory.set_size((memsize) dwReadTotal);
+
+    //return ::success;
+
+}
+
+
+
+
+void acme_file::append_wait(const ::file::path & pathFile, const block & block, const class time & time)
+{
+
+    auto pacmedirectory = m_pacmedirectory;
+
+    pacmedirectory->create(::file_path_folder(pathFile));
+
+
+    if (!pacmedirectory->is(::file_path_folder(pathFile)))
+    {
+
+        throw ::exception(error_path_not_found);
+
+    }
+
+    FILE * pfile = nullptr;
+
+    auto millisStart = ::time::now();
+
+    while (true)
+    {
+
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+
+        pfile = fopen(pathFile, "ab");
+
+#else
+
+        wstring wstr(pathFile);
+
+      pfile = _wfopen(wstr, L"ab");
+
+#endif
+
+        if (pfile != nullptr)
+        {
+
+            break;
+
+        }
+
+        if (millisStart.elapsed() > time)
+        {
+
+            throw ::exception(error_timeout);
+
+        }
+
+        preempt(500_ms);
+
+    }
+
+    fwrite(block.begin(), block.size(), 1, pfile);
+
+    fclose(pfile);
+
+    //return success;
+
+}
+
+
+filesize acme_file::get_size(FILE * pfile)
+{
+
+    return get_size_fd(fileno(pfile));
+
+}
+
+
+
+string acme_file::line(const ::file::path & pathParam, index iLine)
+{
+
+    string str;
+
+    auto path = acmepath()->defer_process_relative_path(pathParam);
+
+#ifdef WINDOWS
+
+    FILE * file = _fsopen(path, "r", _SH_DENYNO);
+
+#else
+
+    FILE * file = fopen(path.c_str(), "r");
+
+#endif
+
+    if (file == nullptr)
+    {
+
+        trace_last_error();
+
+        throw ::exception(error_io);
+
+    }
+
+    int iChar;
+
+    string strLine;
+
+    int iLastChar = -1;
+
+    while (iLine >= 0)
+    {
+
+        iChar = fgetc(file);
+
+        if (iChar == EOF)
+        {
+
+            break;
+
+        }
+
+        if (iChar == '\r')
+        {
+
+            iLine--;
+
+        }
+        else if (iChar == '\n')
+        {
+
+            if (iLastChar != '\r')
+            {
+
+                iLine--;
+
+            }
+
+        }
+        else if (iLine == 0)
+        {
+
+            str += (char)iChar;
+
+        }
+
+        iLastChar = iChar;
+
+    }
+
+    return str;
+
+}
+
+
+void acme_file::append_wait(const ::string & strFile, const block & block, const class time & time)
+{
+
+    m_pacmedirectory->create(::file_path_folder(strFile));
+
+    if (!m_pacmedirectory->is(::file_path_folder(strFile)))
+    {
+
+        throw ::exception(::error_not_a_directory);
+
+    }
+
+    wstring wstr(strFile);
+
+    FILE * pfile = nullptr;
+
+    auto millisStart = ::time::now();
+
+    while (true)
+    {
+
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+
+        pfile = fopen(strFile.c_str(), "ab");
+
+#else
+
+        pfile = _wfopen(wstr, L"ab");
+
+#endif
+
+        if (pfile != nullptr)
+        {
+
+            break;
+
+        }
+
+        if (millisStart.elapsed() > time)
+        {
+
+            throw ::exception(error_timeout);
+
+        }
+
+        preempt(500_ms);
+
+    }
+
+    fwrite(block.data(), block.size(), 1, pfile);
+
+    fclose(pfile);
+
+    //return ::success;
 
 }
 

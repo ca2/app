@@ -877,14 +877,14 @@ enum enum_no_initialize
 };
 
 
-enum enum_zero
-{
-
-
-   e_zero,
-
-
-};
+//enum zero_t
+//{
+//
+//
+//   zero_t{},
+//
+//
+//};
 
 
 //enum enum_now

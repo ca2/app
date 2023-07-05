@@ -12,6 +12,17 @@ namespace earth
 {
 
 
+    inline int32_t days_from_1jan(::i32 year, ::i32 month, ::i32 day)
+    {
+        static const int32_t days[2][12] =
+                {
+                        { 0,31,59,90,120,151,181,212,243,273,304,334},
+                        { 0,31,60,91,121,152,182,213,244,274,305,335}
+                };
+        return days[is_leap_year(year)][month - 1] + day - 1;
+    }
+
+
    namespace gregorian
    {
 
@@ -19,11 +30,11 @@ namespace earth
       posix_time time::get_time_t()
       {
 
-         struct tm tm;
-
-         get(&tm);
-
-         ::posix_time time;
+//         struct tm tm;
+//
+//         get(&tm);
+//
+//         ::posix_time time;
 
 //   #ifdef WINDOWS
 //
@@ -34,9 +45,11 @@ namespace earth
 //
 //   #endif
 
-         time = make_utc_time(&tm);
+         //time = make_utc_time(&tm);
 
-         return time;
+         //return time;
+
+         return make_utc_time();
 
       }
 
@@ -119,18 +132,6 @@ namespace earth
       }
 
 
-      void time::set(const ::earth::time & time, ::i64 iNanosecond, const time_shift & timeshift)
-      {
-
-         struct tm tm;
-
-         time.tm_struct(&tm, timeshift);
-
-         set(&tm, iNanosecond);
-
-      }
-
-
       void time::set(const ::earth::time & time, const time_shift & timeshift)
       {
 
@@ -155,48 +156,44 @@ namespace earth
       }
 
 
+       posix_time time::make_utc_time() const
+       {
+
+           int year = m_iYear;
+
+           int month = m_iMonth;
+
+           if (month > 11)
+           {
+               year += month / 12;
+               month %= 12;
+           }
+           else if (month < 0)
+           {
+               int years_diff = (-month + 11) / 12;
+               year -= years_diff;
+               month += 12 * years_diff;
+           }
+           month++;
+           int day = m_iDay;
+           int day_of_year = days_from_1jan(year, month, day);
+           int days_since_epoch = days_from_1970(year) + day_of_year;
+
+           ::i64 seconds_in_day = 3600 * 24;
+
+           ::i64 result = seconds_in_day * days_since_epoch + 3600 * m_iHour + 60 * m_iMinute + m_iSecond;
+
+           return {posix_time_t{}, result};
+
+       }
 
 
    } // namespace gregorian
 
 
-   inline int32_t days_from_1jan(::i32 year, ::i32 month, ::i32 day)
-   {
-      static const int32_t days[2][12] =
-      {
-              { 0,31,59,90,120,151,181,212,243,273,304,334},
-              { 0,31,60,91,121,152,182,213,244,274,305,335}
-      };
-      return days[is_leap_year(year)][month - 1] + day - 1;
-   }
 
 
-   posix_time make_utc_time(tm const * t)
-   {
-      int year = t->tm_year + 1900;
-      int month = t->tm_mon;
-      if (month > 11)
-      {
-         year += month / 12;
-         month %= 12;
-      }
-      else if (month < 0)
-      {
-         int years_diff = (-month + 11) / 12;
-         year -= years_diff;
-         month += 12 * years_diff;
-      }
-      month++;
-      int day = t->tm_mday;
-      int day_of_year = days_from_1jan(year, month, day);
-      int days_since_epoch = days_from_1970(year) + day_of_year;
 
-      posix_time seconds_in_day = { posix_time_t{}, 3600 * 24 };
-      posix_time result = { posix_time_t{}, seconds_in_day.m_iSecond * days_since_epoch + 3600 * t->tm_hour + 60 * t->tm_min + t->tm_sec };
-
-      return result;
-
-   }
 
 
 } // namespace earth

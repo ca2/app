@@ -60,7 +60,7 @@ static char ** g_envp;
 APPLICATION_FLAGS::APPLICATION_FLAGS()
 {
 
-   memset(this, 0, sizeof(APPLICATION_FLAGS));
+   memory_set(this, 0, sizeof(APPLICATION_FLAGS));
 
 }
 

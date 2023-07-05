@@ -2,6 +2,8 @@
 //#include "string.h"
 #include "international.h"
 ////#include "acme/exception/exception.h"
+#include <string.h>
+#include <wchar.h>
 
 
 strsize wd16_to_ansi_len(const ::wd16_character * pwsz, strsize inputsize)

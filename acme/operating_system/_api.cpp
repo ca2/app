@@ -7,7 +7,7 @@
 //
 #include "framework.h"
 
-
+#include <string.h>
 
 namespace posix
 {

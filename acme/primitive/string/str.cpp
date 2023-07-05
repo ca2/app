@@ -9,6 +9,7 @@
 #include "acme/primitive/string/str.h"
 //#include "string.h"
 #include <stdio.h>
+#include <string.h>
 
 
 #ifdef LINUX

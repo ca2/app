@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 
@@ -1202,6 +1203,5 @@ void copy(struct status * pst, const ::file::file_status * pstatus)
     
     
 }
-
 
 

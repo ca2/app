@@ -583,18 +583,18 @@ namespace datetime
    posix_time datetime::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::earth::time_shift& timeshift)
    {
 
-      struct ::tm tm {};
+       earth::gregorian::time time;
 
-      tm.tm_hour = iHour;
-      tm.tm_min = iMinute;
-      tm.tm_sec = iSecond;
-      tm.tm_mon = iMonth - 1;
-      tm.tm_mday = iDay;
-      tm.tm_year = iYear - 1900;
+       time.m_iHour = iHour;
+       time.m_iMinute = iMinute;
+       time.m_iSecond = iSecond;
+       time.m_iMonth = iMonth -1;
+       time.m_iDay = iDay;
+       time.m_iYear = iYear;
 
-      auto time = ::earth::make_utc_time(&tm);
+      auto posixtime = time.make_utc_time();
 
-      return (posix_time)(time - posix_time{
+      return (posix_time)(posixtime - posix_time{
          posix_time_t{}, (::i64)timeshift.m_d
       })
       ;
@@ -1518,19 +1518,26 @@ namespace datetime
                || strWord.case_insensitive_order("GMT") == 0)
             {
 
-               struct tm atm;
-
-               atm.tm_sec = set["second"].as_i32();
-               atm.tm_min = set["minute"].as_i32();
-               atm.tm_hour = set["hour"].as_i32();
-               atm.tm_mday = set["day"].as_i32();
-               atm.tm_mon = set["month"].as_i32() - 1;        // tm_mon is 0 based
-               atm.tm_year = set["year"].as_i32() - 1900;     // tm_year is 1900 based
-               atm.tm_isdst = -1;
-               /*posix_time now = _time64(nullptr);
-               posix_time nowUtc = mktime(gmtime(&now));
-               posix_time tDiff = difftime(nowUtc, now);*/
-               time = ::earth::time(::earth::make_utc_time(&atm));
+//               struct tm atm;
+//
+//               atm.tm_sec = set["second"].as_i32();
+//               atm.tm_min = set["minute"].as_i32();
+//               atm.tm_hour = set["hour"].as_i32();
+//               atm.tm_mday = set["day"].as_i32();
+//               atm.tm_mon = set["month"].as_i32() - 1;        // tm_mon is 0 based
+//               atm.tm_year = set["year"].as_i32() - 1900;     // tm_year is 1900 based
+//               atm.tm_isdst = -1;
+//               /*posix_time now = _time64(nullptr);
+//               posix_time nowUtc = mktime(gmtime(&now));
+//               posix_time tDiff = difftime(nowUtc, now);*/
+//               time = ::earth::time(::earth::make_utc_time(&atm));
+                time = ::earth::time(
+                        set["year"].as_i32(),
+                        set["month"].as_i32(),
+                        set["day"].as_i32(),
+                        set["hour"].as_i32(),
+                        set["minute"].as_i32(),
+                        set["second"].as_i32());
 
             }
             else
@@ -1542,7 +1549,7 @@ namespace datetime
                   set["day"].as_i32(),
                   set["hour"].as_i32(),
                   set["minute"].as_i32(),
-                  set["second"].as_i32());
+                  set["second"].as_i32(), ::earth::time_shift::local());
 
             }
 

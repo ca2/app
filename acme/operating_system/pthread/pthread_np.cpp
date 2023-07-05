@@ -14,6 +14,35 @@
 #endif
 
 
+#ifdef FREEBSD
+
+int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
+{
+
+    cpuset_t c;
+
+    CPU_ZERO(&c);
+
+    for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+    {
+
+        if((1 << i) & dwThreadAffinityMask)
+        {
+
+            CPU_SET(i, &c);
+
+        }
+
+    }
+
+    pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
+
+    return 1;
+
+}
+
+#else
+
 int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 {
 
@@ -38,3 +67,5 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
    return 1;
 
 }
+
+#endif

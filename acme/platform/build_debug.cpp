@@ -30,7 +30,8 @@ void teste_acme_cmp();
 void acme_auto_debug_teste()
 {
 
-   printf("\n\nvoid acme_auto_debug_teste()\n\n");
+   output_debug_string("\n\nvoid acme_auto_debug_teste()\n\n");
+
    {
 
       wd16_string wstr1;
@@ -47,11 +48,11 @@ void acme_auto_debug_teste()
 
          string str3("aaaabbbbccccddddaaaabbbbccccddddaaaabbbbccccddddaaaabbbbccccdddd");
 
-         printf("str1 %s", str1.c_str());
+         output_debug_string_format("str1 %s", str1.c_str());
 
-         printf("str2 %s", str2.c_str());
+         output_debug_string_format("str2 %s", str2.c_str());
 
-         printf("str3 %s", str3.c_str());
+         output_debug_string_format("str3 %s", str3.c_str());
 
          wstr1 = str1;
 

@@ -293,7 +293,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   }
 
-                  strcpy(&psz[iNewPosition], p);
+                  ansi_cpy(&psz[iNewPosition], p);
 
                   iLen -= p - &psz[iNewPosition];
 

@@ -17,7 +17,7 @@ namespace sz
 
       }
 
-      while((*psz != 0) && (strchr(scopedstrTrimmer, *psz) != nullptr))
+      while((*psz != 0) && scopedstrTrimmer.find(*psz) != nullptr)
       {
          
          unicode_increment(psz);

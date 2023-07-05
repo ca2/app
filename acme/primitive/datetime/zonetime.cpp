@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "zonetime.h"
-#include "acme/primitive/datetime/earth_gregorian_time.h"
+#include "earth_gregorian_time.h"
 #include "acme/primitive/string/str.h"
 #include <time.h>
 
@@ -58,18 +58,29 @@ namespace earth
    zonetime::zonetime(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset)
    {
 
+       ::earth::gregorian::time gregoriantime;
 
-      struct tm atm;
+       gregoriantime.m_iSecond = nSec;
+       gregoriantime.m_iMinute = nMin;
+       gregoriantime.m_iHour = nHour;
+       gregoriantime.m_iDay = nDay;
+       gregoriantime.m_iMonth = nMonth - 1;        // tm_mon is 0 based
+       gregoriantime.m_iYear = nYear;
+       //atm.tm_isdst = nDST;
 
-      atm.tm_sec = nSec;
-      atm.tm_min = nMin;
-      atm.tm_hour = nHour;
-      atm.tm_mday = nDay;
-      atm.tm_mon = nMonth - 1;        // tm_mon is 0 based
-      atm.tm_year = nYear - 1900;     // tm_year is 1900 based
-      atm.tm_isdst = 0;
+//      struct tm atm;
+//
+//      atm.tm_sec = nSec;
+//      atm.tm_min = nMin;
+//      atm.tm_hour = nHour;
+//      atm.tm_mday = nDay;
+//      atm.tm_mon = nMonth - 1;        // tm_mon is 0 based
+//      atm.tm_year = nYear - 1900;     // tm_year is 1900 based
+//      atm.tm_isdst = 0;
 
-      time::operator=(::earth::make_utc_time(&atm));
+      time::operator=(gregoriantime.make_utc_time());
+
+      m_timeshift.m_d = (double) iZoneOffset;
 
       /*
       Remember that:
@@ -90,83 +101,79 @@ namespace earth
    }
 
 
-   struct tm* zonetime::GetZoneTm(struct tm* ptm) const
-   {
-
-      if (ptm != nullptr)
-      {
-
-
-#ifdef WINDOWS
-
-         struct tm tmTemp;
-
-         time_t t = m_iSecond;
-
-         t += (::i32) m_timeshift;
-
-         errno_t err = _gmtime64_s(&tmTemp, &t);
-
-         if (err != 0)
-         {
-            return nullptr;    // indicates that m_posixtime was not initialized!
-         }
-
-         *ptm = tmTemp;
-
-         return ptm;
-
-#else
-
-         struct tm * ptmTemp;
-
-         posix_time t = m_posixtime;
-
-         t += (posix_time) m_timeshift.m_d;
-
-         ptmTemp = gmtime(&t);
-
-         // gmtime can return nullptr
-         if (ptmTemp == nullptr)
-         {
-
-            return nullptr;
-
-         }
-
-         // but don't throw ::exception( exception or generate error...
-         // (reason for commenting out below, fat to be erased...)
-         //         if(errno != 0)
-         //          return nullptr;
-
-         *ptm = *ptmTemp;
-
-         return ptm;
-
-#endif
-
-      }
-      else
-      {
-
-         return nullptr;
-
-      }
-
-
-   }
+//   struct tm* zonetime::GetZoneTm(struct tm* ptm) const
+//   {
+//
+//      if (ptm != nullptr)
+//      {
+//
+//
+//#ifdef WINDOWS
+//
+//         struct tm tmTemp;
+//
+//         time_t t = m_iSecond;
+//
+//         t += (::i32) m_timeshift;
+//
+//         errno_t err = _gmtime64_s(&tmTemp, &t);
+//
+//         if (err != 0)
+//         {
+//            return nullptr;    // indicates that m_posixtime was not initialized!
+//         }
+//
+//         *ptm = tmTemp;
+//
+//         return ptm;
+//
+//#else
+//
+//         struct tm * ptmTemp;
+//
+//         auto t = m_iSecond;
+//
+//         t += (::i64) m_timeshift.m_d;
+//
+//         ptmTemp = gmtime(&t);
+//
+//         // gmtime can return nullptr
+//         if (ptmTemp == nullptr)
+//         {
+//
+//            return nullptr;
+//
+//         }
+//
+//         // but don't throw ::exception( exception or generate error...
+//         // (reason for commenting out below, fat to be erased...)
+//         //         if(errno != 0)
+//         //          return nullptr;
+//
+//         *ptm = *ptmTemp;
+//
+//         return ptm;
+//
+//#endif
+//
+//      }
+//      else
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//
+//   }
 
 
    i32 zonetime::GetZoneYear() const noexcept
    {
 
-      struct tm ttm;
+        auto time = get_zone_time();
 
-      struct tm * ptm;
-
-      ptm = GetZoneTm(&ttm);
-
-      return ptm ? (ptm->tm_year) + 1900 : 0;
+        return time.m_iYear;
 
    }
 
@@ -174,13 +181,9 @@ namespace earth
    i32 zonetime::GetZoneMonth() const noexcept
    {
 
-      struct tm ttm;
+       auto time = get_zone_time();
 
-      struct tm * ptm;
-
-      ptm = GetZoneTm(&ttm);
-
-      return ptm ? ptm->tm_mon + 1 : 0;
+       return time.m_iMonth + 1;
 
    }
 
@@ -188,13 +191,13 @@ namespace earth
    i32 zonetime::GetZoneDay() const noexcept
    {
 
-      struct tm ttm;
+       {
 
-      struct tm * ptm;
+           auto time = get_zone_time();
 
-      ptm = GetZoneTm(&ttm);
+           return time.m_iDay;
 
-      return ptm ? ptm->tm_mday : 0;
+       }
 
    }
 
@@ -202,56 +205,43 @@ namespace earth
    i32 zonetime::GetZoneHour() const noexcept
    {
 
-      struct tm ttm;
+       auto time = get_zone_time();
 
-      struct tm * ptm;
-
-      ptm = GetZoneTm(&ttm);
-
-      return ptm ? ptm->tm_hour : -1;
+       return time.m_iHour;
 
    }
+
 
 
    i32 zonetime::GetZoneMinute() const noexcept
    {
 
-      struct tm ttm;
+       auto time = get_zone_time();
 
-      struct tm * ptm;
-
-      ptm = GetZoneTm(&ttm);
-
-      return ptm ? ptm->tm_min : -1;
+       return time.m_iMinute;
 
    }
+
 
 
    i32 zonetime::GetZoneSecond() const noexcept
    {
 
-      struct tm ttm;
+       auto time = get_zone_time();
 
-      struct tm * ptm;
-
-      ptm = GetZoneTm(&ttm);
-
-      return ptm ? ptm->tm_sec : -1;
+       return time.m_iSecond;
 
    }
+
 
 
    i32 zonetime::GetZoneDayOfWeek() const noexcept
    {
 
-      struct tm ttm;
+       auto time = get_zone_time();
 
-      struct tm * ptm;
+       return time.m_iDayOfWeek;
 
-      ptm = GetZoneTm(&ttm);
-
-      return ptm ? ptm->tm_wday + 1 : 0;
-      
    }
 
 
@@ -275,13 +265,9 @@ namespace earth
    posix_time zonetime::GetZoneTimeOfDay() const noexcept
    {
 
-      struct tm ttm;
+       auto time = get_zone_time();
 
-      struct tm * ptm;
-
-      ptm = GetZoneTm(&ttm);
-
-      return { posix_time_t{}, ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0 };
+      return { posix_time_t{}, (time.m_iHour * 3600) + (time.m_iMinute * 60) + time.m_iSecond };
 
    }
 
@@ -289,13 +275,9 @@ namespace earth
    i64 zonetime::GetZoneDaySig() const noexcept
    {
 
-      struct tm ttm;
+       auto time = get_zone_time();
 
-      struct tm * ptm;
-
-      ptm = GetZoneTm(&ttm);
-
-      return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
+      return ((time.m_iYear -1900) * 500) + (time.m_iMonth * 40) + time.m_iDay;
 
    }
 

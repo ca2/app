@@ -1,9 +1,10 @@
 // Created by camilo on 2021-09-13 00:13 BRT Thomas Month!! <3ThomasBS_!!
 #include "framework.h"
 #include "acme/_operating_system.h"
-//#define _GNU_SOURCE
+#define __BSD_VISIBLE 1
 #include <link.h>
 #include <dlfcn.h>
+#include <string.h>
 
 
 ::file::path dir_ca2_module()

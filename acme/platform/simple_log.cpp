@@ -86,7 +86,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    char * psz = str.get_buffer(iLen + 8);
 
-   strncpy(psz, scopedstrText, scopedstrText.size());
+   ansi_ncpy(psz, scopedstrText, scopedstrText.size());
 
    if (scopedstrFile.has_char())
    {

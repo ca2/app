@@ -711,7 +711,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    if(i > g_iMonitor - m_nAllocSize && i < g_iMonitor + m_nAllocSize)
    {
 
-      printf("MAKING FREE");
+      output_debug_string("MAKING FREE");
 
    }
 
@@ -862,7 +862,7 @@ plex_heap * plex_heap::create(plex_heap * & pheapHead, uptr nMax, uptr cbElement
    if((iptr) pheap > g_iMonitor - 8192 && (iptr) pheap < g_iMonitor + 8192)
    {
 
-      printf("MAKING FREE");
+      output_debug_string("MAKING FREE");
 
    }
 

@@ -147,7 +147,7 @@ const char * __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_s
 
    auto len = scopedstrSkip.size();
 
-   auto n = strncmp(scopedstr.begin(), scopedstrSkip.begin(), len);
+   auto n = ansi_ncmp(scopedstr.begin(), scopedstrSkip.begin(), len);
 
    if(n)
    {
@@ -572,7 +572,7 @@ void particle::on_sequence()
 strsize particle::sz_len() const
 {
 
-   return strlen(__type_name(this)) + 1;
+   return ansi_len(__type_name(this)) + 1;
 
 }
 
@@ -580,7 +580,7 @@ strsize particle::sz_len() const
 void particle::to_sz(char * sz, strsize len) const
 {
 
-   strncpy(sz, __type_name(this), len);
+   ansi_ncpy(sz, __type_name(this), len);
 
 }
 

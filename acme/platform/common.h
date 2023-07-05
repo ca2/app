@@ -7,7 +7,7 @@ using errno_t = int;
 
 
 CLASS_DECL_ACME errno_t c_runtime_error_check(errno_t error);
-CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
+//CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
 
 #define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 

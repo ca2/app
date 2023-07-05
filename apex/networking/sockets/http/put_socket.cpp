@@ -133,7 +133,7 @@ namespace sockets
             write(memory.data(), n);
             total+=n;
             double dRate=(double)total/(double)m_content_length;
-            ::format_output_debug_string("%0.2f%% %d of %d bytes\n",100.0*dRate, total, m_content_length);
+            ::output_debug_string_format("%0.2f%% %d of %d bytes\n",100.0*dRate, total, m_content_length);
             
             if(m_transferprogressfunction)
             {

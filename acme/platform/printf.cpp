@@ -7,7 +7,7 @@
 // 08/12/06 (mv)
 
 #include "framework.h"
-//#include <wchar.h>
+#include <wchar.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include "acme/parallelization/synchronous_lock.h"
@@ -22,6 +22,7 @@ i32 printf_dup(const char *format, ...)
 
    return ret;
 }
+
 
 i32 wprintf_dup(const ::wide_character *format, ...)
 {

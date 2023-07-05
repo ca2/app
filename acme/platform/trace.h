@@ -105,28 +105,4 @@ using trace_function = ::function < void(enum_trace_level, const ::scoped_string
 
 
 
-inline FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace_level etracelevelInformation = e_trace_level_information)
-{
-
-   return etracelevel <= etracelevelInformation ? stdout : stderr;
-
-}
-
-inline auto std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information)
-{
-
-   auto predicate = [&](auto etracelevel, auto & str)
-   {
-
-      ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
-                ::string(str).c_str());
-
-   };
-
-   return predicate;
-
-}
-
-
-
-
+CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information);

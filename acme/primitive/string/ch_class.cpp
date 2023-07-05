@@ -56,7 +56,7 @@ void * gen_ch_class_reference_tables()
          inverse = true;
          pos++;
       }
-      for(; __lt(pos, strlen(ccs)); pos++)
+      for(; __lt(pos, ansi_len(ccs)); pos++)
       {
          if(ccs[pos] == ']')
          {
@@ -94,7 +94,7 @@ void * gen_ch_class_reference_tables()
             prev_char = BAD_WCHAR;
             continue;
          }
-         if(ccs[pos] == '\\' && __lt(pos+1, strlen(ccs)))
+         if(ccs[pos] == '\\' && __lt(pos+1, ansi_len(ccs)))
          {
 //            i32 retEnd;
             prev_char = BAD_WCHAR;
@@ -150,11 +150,11 @@ void * gen_ch_class_reference_tables()
             continue;
          };
          // substract -[class]
-         if (__lt(pos+1, strlen(ccs)) && ccs[pos] == '-' && ccs[pos+1] == '[')
+         if (__lt(pos+1, ansi_len(ccs)) && ccs[pos] == '-' && ccs[pos+1] == '[')
          {
             strsize retEnd;
             ch_class * scc = createCharClass(ccs, pos+1, &retEnd);
-            if(retEnd == strlen(ccs))
+            if(retEnd == ansi_len(ccs))
                return nullptr;
             if(scc == nullptr)
             {
@@ -168,11 +168,11 @@ void * gen_ch_class_reference_tables()
             continue;
          }
          // intersect &&[class]
-         if (__lt(pos+2, strlen(ccs)) && ccs[pos] == '&' && ccs[pos+1] == '&' && ccs[pos+2] == '[')
+         if (__lt(pos+2, ansi_len(ccs)) && ccs[pos] == '&' && ccs[pos+1] == '&' && ccs[pos+2] == '[')
          {
             strsize retEnd;
             ch_class *scc = createCharClass(ccs, pos+2, &retEnd);
-            if(retEnd == strlen(ccs))
+            if(retEnd == ansi_len(ccs))
                return nullptr;
             if(scc == nullptr)
             {
@@ -202,7 +202,7 @@ void * gen_ch_class_reference_tables()
             continue;
          }
 
-         if(ccs[pos] == '-' && prev_char.has_char() && __lt(pos+1, strlen(ccs)) && ccs[pos+1] != ']')
+         if(ccs[pos] == '-' && prev_char.has_char() && __lt(pos+1, ansi_len(ccs)) && ccs[pos+1] != ']')
          {
 
             strsize retEnd;

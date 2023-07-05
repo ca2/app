@@ -807,6 +807,8 @@
     <ClInclude Include="graphics\image\_configuration.h" />
     <ClInclude Include="graphics\write_text\font_size.h" />
     <ClInclude Include="graphics\write_text\font_weight.h" />
+    <ClInclude Include="graphics\write_text\_.h" />
+    <ClInclude Include="graphics\_.h" />
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />

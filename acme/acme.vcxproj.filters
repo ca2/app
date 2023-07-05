@@ -3242,6 +3242,12 @@
     <ClInclude Include="primitive\time\nanosecond.h">
       <Filter>Header Files\primitive\time\time</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\_.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\_.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

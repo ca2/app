@@ -1246,11 +1246,11 @@ void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time)
 
 #ifdef WINDOWS
    
-   time = _mkgmtime64(&tm);
+   time.m_iSecond = _mkgmtime64(&tm);
 
 #else
 
-   time = timegm(&tm);
+   time.m_iSecond = timegm(&tm);
 
 #endif
 

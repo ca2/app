@@ -51,7 +51,7 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 #endif
 
 
-constexpr const void * _memory_find_u8(const void* l, int i, memsize len)
+inline const void * _memory_find_u8(const void* l, int i, memsize len)
 {
 
     auto u = (::u8) (*((::u32*)(&i)) & 0xff);

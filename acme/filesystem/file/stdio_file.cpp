@@ -552,7 +552,6 @@ CLASS_DECL_ACME FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace
 }
 
 
-
 CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation)
 {
 
@@ -837,12 +836,12 @@ void acme_file::append_wait(const ::file::path & pathFile, const block & block, 
 }
 
 
-filesize acme_file::get_size(FILE * pfile)
-{
-
-    return get_size_fd(fileno(pfile));
-
-}
+//filesize acme_file::get_size(FILE * pfile)
+//{
+//
+//    return get_size_fd(fileno(pfile));
+//
+//}
 
 
 

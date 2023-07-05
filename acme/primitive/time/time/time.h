@@ -44,6 +44,12 @@ public:
 
    }
 
+   constexpr time(zero_t) :
+      posix_time(zero_t{})
+   {
+
+   }
+
 
    time(now_t)
    {

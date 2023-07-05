@@ -12,6 +12,7 @@
 
 
 #include "acme/_operating_system.h"
+#include "acme/operating_system/posix/time.h"
 
 
 #include <time.h>
@@ -829,7 +830,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 
    struct tm * ptm;
 
-   ptm = time.tm_struct(&ttm);
+   ptm = tm_struct(&ttm, time);
 
    st.wDay = ptm->tm_mday;
    st.wDayOfWeek = ptm->tm_wday;

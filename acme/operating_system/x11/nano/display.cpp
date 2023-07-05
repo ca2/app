@@ -185,7 +185,7 @@ namespace x11
             if(XFetchName(display,  children[i], &name) > 0)
             {
 
-               int r = strcmp(needle, name);
+               int r = ansi_cmp(needle, name);
 
                XFree(name);
 

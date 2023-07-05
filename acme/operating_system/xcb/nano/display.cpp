@@ -614,7 +614,7 @@ namespace xcb
       if (xcb_connection_has_error(m_pconnection))
       {
 
-         fprintf(stderr, "ERROR: failed to connection to X server\n");
+         error("ERROR: failed to connection to X server");
 
          throw ::exception(error_failed);
 
@@ -720,7 +720,7 @@ namespace xcb
       if (!m_pdepth)
       {
 
-         fprintf(stderr, "ERROR: screen does not support 32 bit color depth\n");
+         error("ERROR: screen does not support 32 bit color depth");
 
          xcb_disconnect(m_pconnection);
 

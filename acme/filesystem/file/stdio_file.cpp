@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 #include <errno.h>
@@ -401,10 +402,10 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 
 
 
-::pointer <stdio_file> stdio_open(const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
+::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
 {
 
-    auto pfile = m_pcontext->__create_new < ::stdio_file >();
+    auto pfile = pparticle->m_pcontext->__create_new < ::stdio_file >();
 
     if (!pfile)
     {
@@ -413,7 +414,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 
     }
 
-    auto path = acmepath()->defer_process_relative_path(pathParam);
+    auto path = pparticle->acmepath()->defer_process_relative_path(pathParam);
 
     pfile->open(path, scopedstrAttrs, iShare);
 

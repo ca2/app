@@ -205,6 +205,8 @@ namespace file
       inline u64 get_u64_unbounded() { ::u64 u64; get_u64(u64); return u64; }
 
 
+      virtual bool unget_if(::ansi_character ch);
+
       inline filesize _right_size() { return this->right_size(); }
 
 

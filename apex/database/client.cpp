@@ -283,7 +283,7 @@ namespace database
 
       auto pmemoryfile = create_memory_file();
 
-      auto stream = __binary_stream(pmemoryfile);
+      binary_stream stream(pmemoryfile);
 
       stream << payload;
 
@@ -304,7 +304,7 @@ namespace database
 
       auto pmemoryfile = create_memory_file();
 
-      auto stream = __binary_stream(pmemoryfile);
+      binary_stream stream(pmemoryfile);
 
       stream << payload;
 
@@ -342,16 +342,16 @@ namespace database
       else
       {
 
-         ::memory_file memoryfile;
+         auto pmemoryfile = create_memory_file();
 
-         if (!m_pdataserver->_data_server_load(this, strKey, memoryfile.memory()))
+         if (!m_pdataserver->_data_server_load(this, strKey, pmemoryfile->memory()))
          {
 
             return false;
 
          }
 
-         auto stream = __binary_stream(&memoryfile);
+         binary_stream stream(pmemoryfile);
 
          try
          {

@@ -2,8 +2,7 @@
 #pragma once
 
 
-template < typename FILE >
-write_text_stream < FILE >& operator << (write_text_stream < FILE > & textstream, const ::atom& atom)
+inline write_text_stream & operator << (write_text_stream & textstream, const ::atom& atom)
 {
 
    textstream << atom.as_string();
@@ -13,8 +12,8 @@ write_text_stream < FILE >& operator << (write_text_stream < FILE > & textstream
 }
 
 
-template < typename FILE >
-write_text_stream < FILE > & operator <<(write_text_stream < FILE > & textstream, integral_byte integralbyte)
+
+inline write_text_stream  & operator <<(write_text_stream & textstream, integral_byte integralbyte)
 {
 
    textstream.print_string_copy(integralbyte);

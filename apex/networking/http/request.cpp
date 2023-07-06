@@ -12,7 +12,7 @@ namespace http
 
 
    request::request() :
-      m_ostream(m_pmemfileBody=__new(memory_file))
+      m_binarystreamOutput(m_pmemfileBody=__new(memory_file))
    {
 
    }
@@ -21,7 +21,7 @@ namespace http
    request::request(const request& src) :
       transaction(src),
       m_null(src.m_null),
-      m_ostream(m_pmemfileBody=src.m_pmemfileBody)
+      m_binarystreamOutput(m_pmemfileBody=src.m_pmemfileBody)
    {
 
    }

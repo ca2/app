@@ -4,11 +4,15 @@
 
 #include "acme/_operating_system.h"
 
+#if defined(FREEBSD)
+#define __BSD_VISIBLE 1
+#endif
 
 #include <fcntl.h>
 #include <sys/file.h>
 #undef USE_MISC
 #include <unistd.h>
+#include <errno.h>
 
 
 namespace file_lock

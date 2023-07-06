@@ -3,7 +3,13 @@
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/_operating_system.h"
+#if defined( FREEBSD)
+#define __XSI_VISIBLE 1
+#endif
 #include <errno.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 
 //#ifdef WINDOWS
@@ -14,7 +20,7 @@
 //#include <sys/stat.h>
 ////Copy file using mmap()
 //#include <sys/mman.h>
-#include <unistd.h>
+//#include <unistd.h>
 //#endif
 //
 //#include <fcntl.h>
@@ -23,7 +29,7 @@
 ////#define PACKAGE "mmap"
 ////#include <wchar.h>
 ////#include <fcntl.h>
-#include <sys/stat.h>
+//#include <sys/stat.h>
 //
 //
 ////void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);

@@ -595,23 +595,6 @@ void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priorit
 //{
 
 
-string task_get_name(htask_t htask)
-{
-
-   char szThreadName[32];
-
-   int error = pthread_getname_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
-
-   if (error)
-   {
-
-      return "";
-
-   }
-
-   return szThreadName;
-
-}
 
 
 #if !defined(__APPLE__)
@@ -654,40 +637,6 @@ using htask_t = void *;
 //
 
 
-void task_set_name(htask_t htask, const char * psz)
-{
-
-   //auto pthread = pthread_self();
-
-   //auto estatus = task_set_name(pthread, pszThreadName);
-
-#ifdef __APPLE__
-   
-      int error = pthread_setname_np(pszTaskName);
-
-#else
-
-   auto pthread = (pthread_t) htask;
-
-   string strName(psz);
-
-   thread_name_abbreviate(strName, 15);
-
-   int error = pthread_setname_np(pthread, strName);
-
-#endif
-   
-      if (error)
-      {
-   
-         throw ::exception(error_failed);
-   
-      }
-   
-      //return ::success;
-
-   
-}
 
 
 void task_set_name(const char * psz)

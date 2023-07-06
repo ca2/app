@@ -1,6 +1,9 @@
 #include "framework.h"
 //#include "ansios.h"
 #include <fcntl.h>
+#ifdef FREEBSD
+#define __XSI_VISIBLE 1
+#endif
 #include <sys/time.h>
 
 //void __clear_mq(const ::scoped_string & scopedstrDebug, bool bClose);

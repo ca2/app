@@ -2,6 +2,8 @@
 #include "acme/platform/system.h"
 #include <dlfcn.h>
 #include <link.h>
+#include <string.h>
+#include <errno.h>
 
 struct query_loaded_library
 {

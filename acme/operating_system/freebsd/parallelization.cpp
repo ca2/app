@@ -4,17 +4,20 @@
 #include "acme/user/nano/display.h"
 #include "acme/platform/acme.h"
 
+#if defined(FREEBSD)
+#define __XSI_VISIBLE 1
+#endif
 #define bitset freebsd_bitset
 #include <sys/_cpuset.h>
 #include <sys/cpuset.h>
 #undef bitset
 #include <pthread_np.h>
 #include <signal.h>
-
 #include <sys/time.h>
 #define ITIMER_REAL      0
 #define ITIMER_VIRTUAL   1
 #define ITIMER_PROF      2
+#include <errno.h>
 
 
 //void task_set_name(htask_t htask, const char * psz)
@@ -145,10 +148,10 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
          return -1;
       }
 
-      memset(&value, 0, sizeof value);
+      memory_set(&value, 0, sizeof value);
       value.it_value = timeout;
 
-      memset(&sa, 0, sizeof sa);
+      memory_set(&sa, 0, sizeof sa);
       sa.sa_sigaction = signal_ignore;
       sa.sa_flags = SA_SIGINFO;
       sigemptyset(&sa.sa_mask);

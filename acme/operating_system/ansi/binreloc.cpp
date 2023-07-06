@@ -19,6 +19,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
+#if defined(FREEBSD)
+#include <string.h>
+#endif
 
 
 #ifdef ENABLE_BINRELOC

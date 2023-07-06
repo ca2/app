@@ -301,9 +301,9 @@ CLASS_DECL_ACME struct tm * GetZoneTm(struct tm * ptm, const ::earth::zone_time 
 
    struct tm * ptmTemp;
 
-   auto t = m_iSecond;
+   auto t = zonetime.m_iSecond;
 
-   t += (::i64)m_timeshift.m_d;
+   t += (::i64)zonetime.m_timeshift.m_d;
 
    ptmTemp = gmtime(&t);
 

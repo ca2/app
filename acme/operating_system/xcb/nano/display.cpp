@@ -775,7 +775,7 @@ namespace xcb
          if (!estatus)
          {
 
-            fprintf(stderr, "ERROR: failed to create colormap\n");
+            output_error_message("ERROR: failed to create colormap");
 
             xcb_disconnect(m_pconnection);
 

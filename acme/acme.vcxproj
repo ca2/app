@@ -851,7 +851,8 @@
     <ClInclude Include="primitive\primitive\_SI.h" />
     <ClInclude Include="primitive\primitive\_unit.h" />
     <ClInclude Include="primitive\time\nanosecond.h" />
-    <ClInclude Include="primitive\time\posix_time.h" />
+    <ClInclude Include="primitive\time\time\posix_time.h" />
+    <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
@@ -1521,7 +1522,6 @@
     <ClInclude Include="primitive\time\frequency.h" />
     <ClInclude Include="primitive\time\integral\_.h" />
     <ClInclude Include="primitive\time\integral\_impl.h" />
-    <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\unit.h" />
     <ClInclude Include="primitive\time\time\_.h" />
     <ClInclude Include="primitive\time\_.h" />

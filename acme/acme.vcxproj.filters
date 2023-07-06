@@ -2387,9 +2387,6 @@
     <ClInclude Include="primitive\time\frequency.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\time\time\time.h">
-      <Filter>Header Files\primitive\time\time</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\time\time\_.h">
       <Filter>Header Files\primitive\time\time</Filter>
     </ClInclude>
@@ -3239,9 +3236,6 @@
     <ClInclude Include="primitive\primitive\targeted_unit.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\time\posix_time.h">
-      <Filter>Header Files\primitive\time\time</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\time\nanosecond.h">
       <Filter>Header Files\primitive\time\time</Filter>
     </ClInclude>
@@ -3256,6 +3250,12 @@
     </ClInclude>
     <ClInclude Include="operating_system\posix\time.h">
       <Filter>Header Files\operating_system\posix</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\time\posix_time.h">
+      <Filter>Header Files\primitive\time\time</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\time\time.h">
+      <Filter>Header Files\primitive\time\time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

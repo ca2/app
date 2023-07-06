@@ -33,11 +33,11 @@ namespace earth
 
 #ifdef WINDOWS
 
-      return time( ::_time64( nullptr ) ) ;
+      return posix_time({ posix_time_t{}, ::_time64(nullptr) });
 
 #else
 
-      return time( ::time( nullptr ) );
+      return posix_time({ posix_time_t{},  ::time(nullptr) });
 
 #endif
 

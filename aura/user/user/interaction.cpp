@@ -13041,6 +13041,13 @@ return strClass;
 
       }
 
+      if (bSize)
+      {
+
+         m_bNeedPerformLayout = true;
+
+      }
+
       if (bDeferDisplay || bPosition)
       {
 

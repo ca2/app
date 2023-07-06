@@ -52,6 +52,40 @@ struct CLASS_DECL_ACME posix_time
    }
 
 
+   template < primitive_integral INTEGRAL >
+   constexpr posix_time operator / (INTEGRAL i)  const
+   {
+      return { posix_time_t{}, m_iSecond / i };
+   }
+
+
+   bool operator ==(const ::posix_time & time) const
+   {
+
+      return m_iSecond == time.m_iSecond;
+
+   }
+
+   std::strong_ordering operator <=>(const ::posix_time & time) const
+   {
+
+      return m_iSecond <=> time.m_iSecond;
+
+   }
+
 };
+
+
+template < primitive_integral INTEGRAL >
+constexpr posix_time operator * (INTEGRAL i, const ::posix_time & time)
+{
+   return { posix_time_t{}, i * time.m_iSecond };
+}
+
+
+constexpr posix_time operator "" _posix_time(unsigned long long int u) {
+   return { posix_time_t{}, ::u16(u) };
+}
+
 
 

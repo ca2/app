@@ -9,7 +9,7 @@ namespace earth
 {
 
 
-   ::earth::zone_time zone_time::get_current_time(posix_time iZoneOffset) noexcept
+   ::earth::zone_time zone_time::get_current_time(time_shift timeshift) noexcept
    {
 
       zone_time t;
@@ -24,7 +24,7 @@ namespace earth
 
 #endif
 
-      t.m_timeshift = (double) iZoneOffset.m_iSecond;
+      t.m_timeshift = timeshift;
 
       return t;
 
@@ -47,9 +47,9 @@ namespace earth
    }
 
 
-   zone_time::zone_time(posix_time zone_time, int iZoneOffset) noexcept :
+   zone_time::zone_time(posix_time zone_time, time_shift timeshift) noexcept :
       time(zone_time),
-      m_timeshift((double)iZoneOffset)
+      m_timeshift(timeshift)
    {
 
    }

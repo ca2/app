@@ -873,11 +873,11 @@ public:
 //
 //
 //
-//inline binary_stream & operator >>(binary_stream & s, ::earth::zonetime & z);
+//inline binary_stream & operator >>(binary_stream & s, ::earth::zone_time & z);
 //
 //
 //
-//inline binary_stream & operator <<(binary_stream & s, const ::earth::zonetime & z);
+//inline binary_stream & operator <<(binary_stream & s, const ::earth::zone_time & z);
 //
 //
 //

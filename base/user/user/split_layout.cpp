@@ -391,10 +391,10 @@ namespace user
    }
 
 
-   i32 split_layout::GetMinPos()
+   i32 split_layout::GetMinPos(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(elayout);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
@@ -412,10 +412,10 @@ namespace user
    }
 
 
-   i32 split_layout::GetMaxPos()
+   i32 split_layout::GetMaxPos(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(elayout);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
@@ -438,7 +438,7 @@ namespace user
 
       bool bIsWindowVisible = is_this_visible();
 
-      auto rectangleClient = client_rectangle(e_layout_sketch);
+      auto rectangleClient = client_rectangle(e_layout_layout);
 
       if (rectangleClient.is_empty())
       {
@@ -447,7 +447,7 @@ namespace user
 
       }
 
-      i32 iDimension = get_normal_dimension();
+      i32 iDimension = get_normal_dimension(e_layout_layout);
 
       u32 dwPosition;
 
@@ -572,7 +572,7 @@ namespace user
 
          ::rectangle_i32 & rectangleClient = m_splitpanecompositea[i]->m_rectangleClient;
 
-         CalcPaneRect(i, rectanglePane);
+         CalcPaneRect(i, rectanglePane, e_layout_layout);
 
          pcomponent = m_splitpanecompositea.element_at(i);
 
@@ -773,22 +773,22 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(index iPane, ::rectangle_i32 & rectangle)
+   void split_layout::CalcPaneRect(index iPane, ::rectangle_i32 & rectangle, enum_layout elayout)
    {
 
-      i32 nMinPos = GetMinPos(iPane);
+      i32 nMinPos = GetMinPos(iPane, elayout);
 
-      i32 nMaxPos = GetMaxPos(iPane);
+      i32 nMaxPos = GetMaxPos(iPane, elayout);
 
-      CalcPaneRect(nMinPos, nMaxPos, rectangle);
+      CalcPaneRect(nMinPos, nMaxPos, rectangle, elayout);
 
    }
 
 
-   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, ::rectangle_i32 & rectangle)
+   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, ::rectangle_i32 & rectangle, enum_layout elayout)
    {
 
-      rectangle = client_rectangle();
+      rectangle = client_rectangle(elayout);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -814,10 +814,10 @@ namespace user
    }
 
 
-   i32 split_layout::get_normal_dimension()
+   i32 split_layout::get_normal_dimension(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(elayout);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -835,10 +835,10 @@ namespace user
    }
 
 
-   i32 split_layout::get_ortogonal_dimension()
+   i32 split_layout::get_ortogonal_dimension(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(elayout);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -856,7 +856,7 @@ namespace user
    }
 
 
-   void split_layout::CalcSplitBarRect(index iIndex, ::rectangle_i32 & rectangle)
+   void split_layout::CalcSplitBarRect(index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout)
    {
 
       ASSERT(iIndex >= 0);
@@ -888,7 +888,7 @@ namespace user
 
       }
 
-      rectangle = client_rectangle();
+      rectangle = client_rectangle(elayout);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -1054,13 +1054,13 @@ namespace user
    }
 
 
-   i32 split_layout::GetMinPos(index iPane)
+   i32 split_layout::GetMinPos(index iPane, enum_layout elayout)
    {
 
       if (get_split_count() <= 0 || iPane <= 0)
       {
 
-         return GetMinPos();
+         return GetMinPos(elayout);
 
       }
       else
@@ -1068,7 +1068,7 @@ namespace user
 
          ::rectangle_i32 rectangle;
 
-         CalcSplitBarRect(iPane - 1, rectangle);
+         CalcSplitBarRect(iPane - 1, rectangle, elayout);
 
          if(m_eorientationSplit == e_orientation_horizontal)
          {
@@ -1087,13 +1087,13 @@ namespace user
 
    }
 
-   i32 split_layout::GetMaxPos(index iPane)
+   i32 split_layout::GetMaxPos(index iPane, enum_layout elayout)
    {
 
       if (get_split_count() <= 0 || iPane >= get_split_count())
       {
 
-         return GetMaxPos();
+         return GetMaxPos(elayout);
 
       }
       else
@@ -1101,7 +1101,7 @@ namespace user
 
          ::rectangle_i32 rectangle;
 
-         CalcSplitBarRect(iPane, rectangle);
+         CalcSplitBarRect(iPane, rectangle, elayout);
 
          if(m_eorientationSplit == e_orientation_horizontal)
          {

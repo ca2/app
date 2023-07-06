@@ -4,6 +4,7 @@
 #include "type.h"
 #include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/time/time/posix_time.h"
 #include "acme/graphics/draw2d/color.h"
 #include "ptr.h"
 #include "acme/memory/memory.h"
@@ -59,7 +60,7 @@ public:
       atom                                   m_atom;
       type                                   m_type;
       bool                                   m_b;
-      bool *                                 m_pb;
+      bool * m_pb;
       ::i8                                   m_i8;
       ::u8                                   m_u8;
       ::i16                                  m_i16;
@@ -135,7 +136,7 @@ public:
       ::i64                                  m_all[3];
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;
-      ::function_common* m_pfunctioncommon;
+      ::function_common * m_pfunctioncommon;
 
    };
 
@@ -202,7 +203,7 @@ public:
    {
 
       m_etype = e_type_new;
-      
+
       _set_element(p.m_pparticle);
 
    }
@@ -212,7 +213,7 @@ public:
    {
       m_etype = e_type_new;
       //operator = (p.m_p);
-      _set_element((T*) p.m_p);
+      _set_element((T *)p.m_p);
    }
 
    //template < class T >
@@ -363,8 +364,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
    template < primitive_enum ENUM >
-   bool operator ==(ENUM e) const 
-   { 
+   bool operator ==(ENUM e) const
+   {
 
       if (m_etype == e_type_atom)
       {
@@ -379,8 +380,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
       }
 
-      return equals_enum(e); 
-   
+      return equals_enum(e);
+
    }
 
 
@@ -435,6 +436,16 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
    ::procedure get_procedure() const;
 
+
+   ::posix_time as_posix_time(::i64 iDefault = 0) const
+   {
+
+      return { posix_time_t{}, this->as_i64() };
+
+   }
+
+
+   ::posix_time as_time(const class ::time & timeDefault = {}) const;
 
    ::string as_string(const ::scoped_string & scopedstrOnNull) const;
    ::string as_string() const;

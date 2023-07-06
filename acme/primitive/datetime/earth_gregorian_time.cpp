@@ -112,16 +112,16 @@ namespace earth
       }
 
 
-      void time::Now(const time_shift & timeshift)
-      {
+      //void time::Now(const time_shift & timeshift)
+      //{
 
-         ::earth::time time;
+      //   ::earth::time time;
 
-         time.Now();
+      //   time.Now();
 
-         set(time, timeshift);
+      //   set(time, timeshift);
 
-      }
+      //}
 
 
       time::time(const ::earth::time & time, ::i64 iNanosecond, const time_shift & timeshift)

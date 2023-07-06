@@ -25,8 +25,8 @@ write_text_stream::write_text_stream()
 
 
 // // template < typename FILE >
-write_text_stream::write_text_stream(const ::pointer < ::string_buffer_base > & pstringbuffer) :
-   m_pstringbuffer(pstringbuffer)
+write_text_stream::write_text_stream(const ::file_pointer & pfile) :
+   m_pfile(pfile)
 {
 
    //set_ok_flag();
@@ -45,7 +45,7 @@ write_text_stream::write_text_stream(const write_text_stream & stream) :
    write_text_stream_struct(stream)
 {
 
-   m_pstringbuffer = stream.m_pstringbuffer;
+   m_pfile = stream.m_pfile;
 
 }
 
@@ -54,7 +54,7 @@ write_text_stream::write_text_stream(write_text_stream && stream) :
    write_text_stream_struct(stream)
 {
 
-   m_pstringbuffer = ::transfer(stream.m_pstringbuffer);
+   m_pfile = ::transfer(stream.m_pfile);
 }
 
 
@@ -219,7 +219,7 @@ void write_text_stream::new_line()
    if (this->fmtflags() & ::file::separated)
    {
 
-      m_pstringbuffer->unget_if(m_chSeparator);
+      m_pfile->unget_if(m_chSeparator);
 
    }
 
@@ -517,7 +517,7 @@ void write_text_stream::raw_print(const ::string & str)
 void write_text_stream::write(const void * psz, strsize s)
 {
 
-   m_pstringbuffer->write({psz, s});
+   m_pfile->write({psz, s});
 
 }
 
@@ -525,7 +525,7 @@ void write_text_stream::write(const void * psz, strsize s)
 void write_text_stream::print(const ::scoped_string & scopedstr)
 {
 
-   m_pstringbuffer->write(scopedstr);
+   m_pfile->write(scopedstr);
 
 }
 
@@ -602,7 +602,7 @@ void write_text_stream::print(const ::scoped_string & scopedstr)
 //void write_text_stream::print(const ::scoped_string & str)
 //{
 //
-//   m_pstringbuffer->write(str.as_block());
+//   m_pfile->write(str.as_block());
 //
 //}
 

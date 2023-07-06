@@ -19,7 +19,7 @@ public:
 
 
    string_stream();
-   string_stream(const ::pointer < string_buffer_base > & pstringbuffer);
+   string_stream(const ::file_pointer & pfile);
    string_stream(string_stream && stream);
    ~string_stream() override;
 

@@ -554,6 +554,16 @@ namespace file
    }
 
 
+   bool file::unget_if(::ansi_character ch)
+   {
+
+      throw ::exception(error_not_supported);
+
+      return false;
+
+   }
+
+
    bool file::read_string(string & str)
    {
 

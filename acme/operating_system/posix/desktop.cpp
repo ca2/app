@@ -5,6 +5,10 @@
 
 #include <sys/utsname.h>
 
+#if defined(FREEBSD)
+#include <strings.h>
+#endif
+
 
 ::user::enum_desktop g_edesktop = ::user::e_desktop_none;
 

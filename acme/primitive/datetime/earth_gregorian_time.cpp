@@ -27,7 +27,7 @@ namespace earth
    {
 
 
-      posix_time time::get_time_t()
+      posix_time time::get_posix_time()
       {
 
 //         struct tm tm;

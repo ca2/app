@@ -37,7 +37,7 @@
 
    utsname name;
 
-   memset(&name, 0, sizeof(utsname));
+   memory_set(&name, 0, sizeof(utsname));
 
    uname(&name);
 

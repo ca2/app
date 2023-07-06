@@ -527,3 +527,16 @@ CLASS_DECL_ACME void copy(::string& str, const ::exception& exception)
 
 
 
+
+
+inline write_text_stream & operator <<(write_text_stream & stream, const ::exception & exception)
+{
+
+   stream << exception.get_message();
+
+   return stream;
+
+}
+
+
+

@@ -23,7 +23,7 @@ inline ::f64 consume_floating(const char*& psz, const ::ansi_character * pszBegi
 
 
 class CLASS_DECL_ACME string_reference_stream :
-   public write_text_stream < string_reference_buffer >,
+   public write_text_stream,
    public string_reference_buffer
 {
 public:

@@ -637,6 +637,7 @@
     <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
+    <ClCompile Include="filesystem\file\string_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="filesystem\file\translatable.cpp" />
     <ClCompile Include="filesystem\file\write_text_stream.cpp" />

@@ -5,15 +5,15 @@
 //#include "acme/filesystem/file/text_stream.h"
 
 
-template < typename FILE >
-inline write_text_stream < FILE >& operator <<(write_text_stream < FILE >& stream, const ::exception& exception)
-{
-
-   stream << exception.get_message();
-
-   return stream;
-
-}
-
-
-
+//template < typename FILE >
+//inline write_text_stream < FILE >& operator <<(write_text_stream < FILE >& stream, const ::exception& exception)
+//{
+//
+//   stream << exception.get_message();
+//
+//   return stream;
+//
+//}
+//
+//
+//

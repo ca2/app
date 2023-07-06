@@ -746,12 +746,24 @@ namespace earth
    }
 
 
+   bool time::operator == (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) == time; 
+   
+   }
+
+
+   ::std::strong_ordering time::operator <=> (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) <=> time; 
+   
+   }
+
+
+
 } // namespace earth
-
-
-
-
-
 
 
 

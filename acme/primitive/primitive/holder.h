@@ -105,10 +105,5 @@ public:
 //using cairo_surface_holder = pointer_holder < cairo_surface_t* >;
 
 
-CLASS_DECL_ACME void destroy_pointer(FILE * p);
-
-
-using FILE_holder = holder < FILE * >;
-
 
 

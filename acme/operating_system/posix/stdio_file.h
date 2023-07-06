@@ -82,10 +82,13 @@ CLASS_DECL_ACME ::pointer<stdio_file> stdio_open(::particle * pparticle, const :
 ::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize = 1024);
 
 
-
-
-
 CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
 
 
+#include "acme/primitive/primitive/holder.h"
 
+
+CLASS_DECL_ACME void destroy_pointer(FILE * p);
+
+
+using FILE_holder = holder < FILE * >;

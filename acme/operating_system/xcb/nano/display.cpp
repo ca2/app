@@ -1297,7 +1297,7 @@ namespace xcb
 
       atoma.set_size(size / sizeof(xcb_atom_t));
 
-      memcpy(atoma.data(), patom, atoma.get_size_in_bytes());
+      memory_copy(atoma.data(), patom, atoma.get_size_in_bytes());
 
       return atoma;
 

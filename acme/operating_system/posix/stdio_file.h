@@ -77,3 +77,8 @@ public:
 
 
 CLASS_DECL_ACME ::pointer<stdio_file> stdio_open(::particle * pparticle, const ::file::path & path, const scoped_string & attrs, int iShare);
+
+
+::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize = 1024);
+
+

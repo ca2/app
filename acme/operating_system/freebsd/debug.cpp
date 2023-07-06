@@ -163,11 +163,11 @@ void output_debug_string(const scoped_string & scopedstrFormat)
       if(scopedstrFormat == "font_list")
       {
 
-         printf("a");
+         output_debug_string("a");
 
       }
 
-      printf("%s", ::string(scopedstrFormat).c_str());
+      output_debug_string_format("%s", ::string(scopedstrFormat).c_str());
 
       fflush(stdout);
 

@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
-#include <string.h>
+#include <stdio.h>
 
 
 string get_sys_temp_path()

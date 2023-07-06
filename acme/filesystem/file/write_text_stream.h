@@ -599,6 +599,9 @@ public:
 
     //::filesize get_position() const ;
     void write(const void* psz, strsize s);
+
+    //void print(const ::scoped_string & scopedstr);
+
 //    {
 //
 //       m_pfile->write(psz, s);
@@ -691,18 +694,6 @@ inline write_text_stream & write_text_stream::operator <<(UNSIGNED u)
 }
 
 
-// // template < typename FILE >
-template < typename T >
-inline void write_text_stream::print_string_copy(const T & t)
-{
-
-   ::string str;
-
-   ::copy(str, t);
-
-   print(str);
-
-}
 
 
 
@@ -733,38 +724,6 @@ inline write_text_stream & write_text_stream::operator <<(FLOATING f)
 }
 
 
-
-// // template < typename FILE >
-template < primitive_character CHARACTER2, strsize sizeMaximumLength >
-inline write_text_stream & write_text_stream::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
-{
-
-   if (this->fmtflags() & ::file::network_payload)
-   {
-
-      print("\"");
-
-   }
-
-   write(inlinestring.data(), inlinestring.size());
-
-   if (this->fmtflags() & ::file::network_payload)
-   {
-
-      print("\"");
-
-   }
-
-   if (this->fmtflags() & ::file::separated)
-   {
-
-      print(m_chSeparator);
-
-   }
-
-   return *this;
-
-}
 
 
 

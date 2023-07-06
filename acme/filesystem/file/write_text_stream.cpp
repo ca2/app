@@ -517,7 +517,15 @@ void write_text_stream::raw_print(const ::string & str)
 void write_text_stream::write(const void * psz, strsize s)
 {
 
-   m_pstringbuffer->write({ psz, s });
+   m_pstringbuffer->write({psz, s});
+
+}
+
+
+void write_text_stream::print(const ::scoped_string & scopedstr)
+{
+
+   m_pstringbuffer->write(scopedstr);
 
 }
 
@@ -591,12 +599,12 @@ void write_text_stream::write(const void * psz, strsize s)
 
 
 // // template < typename FILE >
-void write_text_stream::print(const ::scoped_string & str)
-{
-
-   m_pstringbuffer->write(str.as_block());
-
-}
+//void write_text_stream::print(const ::scoped_string & str)
+//{
+//
+//   m_pstringbuffer->write(str.as_block());
+//
+//}
 
 //
 //// // template < typename FILE >

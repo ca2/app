@@ -23,9 +23,9 @@ public:
    string_stream(string_stream && stream);
    ~string_stream() override;
 
-   virtual string_buffer * string_buffer();
+   virtual class string_buffer * string_buffer();
 
-      virtual ::string as_string() const;
+   virtual ::string as_string() const;
    virtual ::string & as_string();
 
 

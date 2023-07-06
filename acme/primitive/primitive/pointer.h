@@ -292,42 +292,7 @@ public:
 
 
    template < class T2 >
-   inline pointer & operator = (::pointer<T2>&& t)
-   {
-
-      auto pOld = m_p;
-
-      if (::is_set(t.m_p))
-      {
-
-         m_p = dynamic_cast <T *>(t.m_p);
-
-         m_pparticle = t.m_pparticle;
-
-         if (::is_set(m_p))
-         {
-
-            t.m_p = nullptr;
-
-            t.m_pparticle = nullptr;
-
-         }
-
-      }
-      else
-      {
-
-         m_p = nullptr;
-
-         m_pparticle = nullptr;
-
-      }
-
-      ::release(pOld);
-
-      return *this;
-
-   }
+   inline pointer & operator = (::pointer<T2>&& t);
 
 
    inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
@@ -364,12 +329,7 @@ public:
    }
 
 
-   inline bool ok() const
-   {
-
-      return is_set() && m_pparticle->is_ok();
-
-   }
+   inline bool ok() const;
 
 
    inline bool nok() const

@@ -2,9 +2,8 @@
 #include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
-
-
 #include "acme/_operating_system.h"
+#include <errno.h>
 
 
 //#ifdef WINDOWS

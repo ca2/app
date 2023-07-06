@@ -735,7 +735,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       //}
 
-      auto reader = __binary_stream(pfile);
+      binary_stream reader(pfile);
 
       //read(reader);
 

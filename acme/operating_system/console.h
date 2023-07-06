@@ -50,7 +50,7 @@ namespace console
       int                                          m_iTextColor;
 
 
-      console(::string_reference_buffer * pfile = nullptr);
+      console(const ::pointer < ::string_buffer_base > & pstringbuffer = nullptr);
       ~console() override;
 
 

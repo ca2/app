@@ -19,8 +19,8 @@ namespace console
 {
 
 
-   console::console(::string_reference_buffer * pfile) :
-      m_cout(pfile)
+   console::console(const ::pointer < ::string_buffer_base > & pstringbuffer) :
+      m_cout(pstringbuffer)
    {
 
 

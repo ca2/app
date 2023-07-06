@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include <stdio.h>
+
+
 CLASS_DECL_ACME FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace_level etracelevelInformation = e_trace_level_information);
 //{
 //

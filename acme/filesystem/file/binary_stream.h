@@ -7,14 +7,14 @@
 #include "stream.h"
 
 
-template < typename FILE >
-class binary_stream :
+//template < typename FILE >
+class CLASS_DECL_ACME binary_stream :
     virtual public stream_base
 {
 public:
 
 
-   FILE * m_pfile;
+   ::file::file * m_pfile;
 
 
    binary_stream() { m_pfile = nullptr; }

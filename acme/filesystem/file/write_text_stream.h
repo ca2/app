@@ -32,7 +32,7 @@ struct CLASS_DECL_ACME write_text_stream_struct
 };
 
 
-template < typename FILE >
+//template < typename FILE >
 class write_text_stream :
    public write_text_stream_struct
 {

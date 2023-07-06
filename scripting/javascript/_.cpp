@@ -267,7 +267,7 @@ bool isIDString(const ::string &strParam)
 
 void replace(string &str, char textFrom, const ::string &textTo)
 {
-   strsize sLen = strlen(textTo);
+   strsize sLen = ansi_len(textTo);
    strsize iPosition = str.find_index(textFrom);
    while (iPosition >= 0)
    {
@@ -308,7 +308,7 @@ string getJSString(const string &str)
       if (replace)
       {
          nStr = nStr.substr(0, i) + replaceWith + nStr.substr(i+1);
-         i += strlen(replaceWith)-1;
+         i += ansi_len(replaceWith)-1;
       }
    }
    return "\"" + nStr + "\"";
@@ -336,10 +336,10 @@ CScriptException::CScriptException(const string &exceptionText)
 
 CScriptLex::CScriptLex(const string &input)
 {
-   data = _strdup(input.c_str());
+   data = ansi_dup(input.c_str());
    dataOwned = true;
    dataStart = 0;
-   dataEnd = (i32) strlen(data);
+   dataEnd = (i32) ansi_len(data);
    reset();
 }
 

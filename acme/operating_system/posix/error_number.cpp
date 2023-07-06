@@ -2,7 +2,9 @@
 // Created by camilo on Jul/4/2023. 23:37:37 <3ThomasBorregaardSoresen!!
 //
 #include "framework.h"
-
+#if defined(FREEBSD)
+#include <errno.h>
+#endif
 
 
 errno_t c_runtime_error_check(errno_t error)

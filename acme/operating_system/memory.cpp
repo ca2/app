@@ -3,6 +3,9 @@
 // <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#if defined(LINUX) || defined(FREEBSD) || defined(__APPLE__)
+#include <string.h>
+#endif
 
 
 CLASS_DECL_ACME ::std::strong_ordering _memory_order(const void* p1, const void* p2, memsize size)

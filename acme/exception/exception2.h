@@ -17,28 +17,28 @@ do { \
 #endif // C_RUNTIME_ERRORCHECK_SPRINTF
 
 
-CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error)
-{
-    switch(error)
-    {
-        case ENOMEM:
-            throw ::exception(error_no_memory);
-            break;
-        case EINVAL:
-        case ERANGE:
-            throw ::exception(error_bad_argument);
-            break;
-#if defined(WINDOWS)
-        case STRUNCATE:
-#endif
-        case 0:
-            break;
-        default:
-            throw ::exception(error_bad_argument);
-            break;
-    }
-    return error;
-}
+CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error);
+//{
+//    switch(error)
+//    {
+//        case ENOMEM:
+//            throw ::exception(error_no_memory);
+//            break;
+//        case EINVAL:
+//        case ERANGE:
+//            throw ::exception(error_bad_argument);
+//            break;
+//#if defined(WINDOWS)
+//        case STRUNCATE:
+//#endif
+//        case 0:
+//            break;
+//        default:
+//            throw ::exception(error_bad_argument);
+//            break;
+//    }
+//    return error;
+//}
 
 
 

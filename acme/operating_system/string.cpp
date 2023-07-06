@@ -3,8 +3,11 @@
 //
 #include "framework.h"
 #include <string.h>
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(FREEBSD)
 #include <errno.h>
+#endif
+#if defined(FREEBSD)
+#include <strings.h>
 #endif
 
 CLASS_DECL_ACME int ansi_icmp(const ::ansi_character * psz1, const ::ansi_character * psz2)

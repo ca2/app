@@ -751,7 +751,7 @@ namespace xcb
       if (!m_pvisualtype)
       {
 
-         fprintf(stderr, "ERROR: screen does not support true Color\n");
+         output_error_message("ERROR: screen does not support true Color");
 
          xcb_disconnect(m_pconnection);
 

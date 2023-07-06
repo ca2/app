@@ -1,6 +1,8 @@
 #include "framework.h"
 #ifdef WINDOWS
 #include "_c_memory.h"
+#else
+#include <string.h>
 #endif
 ////#include "acme/exception/exception.h"
 

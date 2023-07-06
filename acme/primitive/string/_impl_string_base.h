@@ -3687,7 +3687,7 @@ inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_bas
 
       memory_transfer(pszBuffer + i + nInsertLength, pszBuffer + i, (nNewLength - i - nInsertLength + 1) * sizeof(CHARACTER));
 
-      memcpy(pszBuffer + i, str.begin(), nInsertLength * sizeof(CHARACTER));
+      memory_copy(pszBuffer + i, str.begin(), nInsertLength * sizeof(CHARACTER));
 
       release_buffer(nNewLength);
 

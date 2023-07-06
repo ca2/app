@@ -18,7 +18,7 @@ public:
    ~std_out_buffer() override;
 
 
-   void write(const void * pdata,memsize nCount);
+   void write(const void * pdata,memsize nCount) override;
 
 
 

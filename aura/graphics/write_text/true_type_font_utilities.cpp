@@ -98,7 +98,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
    for (int i = 0; i < ttOffsetTable.uNumOfTables; i++)
    {
       f->read({ e_as_block, &tblDir });
-      strncpy(csTemp.get_buffer(5), tblDir.szTag, 4);
+      ansi_ncpy(csTemp.get_buffer(5), tblDir.szTag, 4);
       csTemp.release_buffer(4);
       if (csTemp.case_insensitive_order("name") == 0)
       {

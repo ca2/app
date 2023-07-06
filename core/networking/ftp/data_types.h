@@ -455,7 +455,7 @@ namespace ftp
                zero(m_szCode);
                return false;
             }
-            strcpy(m_szCode, strCode);
+            ansi_cpy(m_szCode, strCode);
             return true;
          }
 

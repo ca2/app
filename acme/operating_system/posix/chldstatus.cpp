@@ -3,6 +3,7 @@
 #include "acme/primitive/collection/int_map.h"
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 
 struct chldstatus

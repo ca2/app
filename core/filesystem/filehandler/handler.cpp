@@ -220,7 +220,7 @@ namespace filehandler
 
       auto ptreeitem = m_ptree->get_base_item()->get_next();
 
-      if(strcmp(pszExtension, "*") == 0)
+      if(ansi_cmp(pszExtension, "*") == 0)
       {
 
          while(ptreeitem)

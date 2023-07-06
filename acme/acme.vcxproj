@@ -919,6 +919,7 @@
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
+    <ClCompile Include="operating_system\posix\error_number.cpp" />
     <ClCompile Include="operating_system\posix\stdio_file.cpp" />
     <ClCompile Include="operating_system\posix\time.cpp" />
     <ClCompile Include="operating_system\process.cpp" />

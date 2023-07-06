@@ -28,10 +28,10 @@ using scoped_string = scoped_ansi_string;
 using scoped_wstring = scoped_wide_string;
 
 
-//template < typename FILE >
+//// template < typename FILE >
 class binary_stream;
 
-//template < typename FILE >
+//// template < typename FILE >
 class write_text_stream;
 
 template < typename RESULT >

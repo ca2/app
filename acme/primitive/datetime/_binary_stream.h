@@ -7,8 +7,8 @@
 #include "earth_zonetime.h"
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time & z)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & s, ::earth::time & z)
 {
 
    s >> z.m_iSecond;
@@ -18,8 +18,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::time & z)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & s, const ::earth::time & z)
 {
 
    s << z.m_iSecond;
@@ -29,8 +29,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::earth::time_shift & timeshift)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & stream, const ::earth::time_shift & timeshift)
 {
 
    stream << timeshift.m_d;
@@ -40,8 +40,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::earth::time_shift & timeshift)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & stream, ::earth::time_shift & timeshift)
 {
 
    stream >> timeshift.m_d;
@@ -51,8 +51,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::e
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::datetime::time_zone & t)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & stream, const ::datetime::time_zone & t)
 {
 
    stream << t.m_strZone;
@@ -64,8 +64,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::datetime::time_zone & t)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & stream, ::datetime::time_zone & t)
 {
 
    stream >> t.m_strZone;
@@ -77,8 +77,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::d
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::zonetime & z)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & s, ::earth::zonetime & z)
 {
 
    s >> z.m_iSecond;
@@ -89,8 +89,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::zonetime & z)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & s, const ::earth::zonetime & z)
 {
 
    s << z.m_iSecond;

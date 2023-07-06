@@ -1,9 +1,9 @@
-// From file/binary_stream < FILE >.h by camilo on 2022-10-14 23:46 <3ThomasBorregaardSorensen!!
+// From file/binary_stream.h by camilo on 2022-10-14 23:46 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+inline binary_stream & operator <<(binary_stream & stream, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    ::count c = a.get_count();
@@ -29,7 +29,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 
 
 template < typename FILE, primitive_array ARRAY >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ARRAY & a)
+inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 {
 
    ::count c;
@@ -78,7 +78,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ARR
 
 
 template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+inline binary_stream & operator <<(binary_stream & stream, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    ::count c = a.get_count();
@@ -93,7 +93,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 
 
 template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+inline binary_stream & operator >>(binary_stream & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
 {
 
    ::count c;
@@ -125,7 +125,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::r
 
 
 template < typename FILE, class ITEM >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::pointer_array < ITEM > & itema)
+inline binary_stream & operator <<(binary_stream & stream, const ::pointer_array < ITEM > & itema)
 {
 
    ::count c = itema.get_count();
@@ -152,7 +152,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 
 
 template < typename FILE, class ITEM >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::pointer_array < ITEM > & itema)
+inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITEM > & itema)
 {
 
    ::count c;

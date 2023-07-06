@@ -1,12 +1,12 @@
-// From file/binary_stream < FILE >.h by camilo on 2022-10-15 00:07 <3ThomasBorregaardSorensen!!
+// From file/binary_stream.h by camilo on 2022-10-15 00:07 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "acme/primitive/collection/_array_binary_stream.h"
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::filehandler::item & item)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & s, const ::filehandler::item & item)
 {
 
    s << (::i32)item.m_etopictype;
@@ -19,8 +19,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::filehandler::item & item)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & s, ::filehandler::item & item)
 {
 
    s >> (int &)item.m_etopictype;

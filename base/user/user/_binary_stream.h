@@ -5,8 +5,8 @@
 #include "acme/filesystem/file/binary_stream.h"
 
 
-template < typename FILE >
-binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::user::picture & picture)
+// template < typename FILE >
+binary_stream & operator << (binary_stream & stream, const ::user::picture & picture)
 {
 
    if (stream.is_version(FIRST_VERSION))
@@ -29,8 +29,8 @@ binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::u
 
 }
 
-template < typename FILE >
-binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::user::picture & picture)
+// template < typename FILE >
+binary_stream & operator << (binary_stream & stream, const ::user::picture & picture)
 {
 
    picture.write(stream);
@@ -40,8 +40,8 @@ binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::u
 }
 
 
-template < typename FILE >
-binary_stream < FILE > & operator >> (binary_stream < FILE > & stream, ::user::picture & picture)
+// template < typename FILE >
+binary_stream & operator >> (binary_stream & stream, ::user::picture & picture)
 {
 
    if (stream.is_version(FIRST_VERSION))
@@ -66,8 +66,8 @@ binary_stream < FILE > & operator >> (binary_stream < FILE > & stream, ::user::p
 
 
 
-template < typename FILE >
-binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::user::picture::picture_impl & t)
+// template < typename FILE >
+binary_stream & operator << (binary_stream & stream, const ::user::picture::picture_impl & t)
 {
 
    stream << t.m_rectangle;
@@ -101,8 +101,8 @@ binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::u
 
 
 
-template < typename FILE >
-binary_stream < FILE > & operator >> (binary_stream < FILE > & stream, ::user::picture::picture_impl & t)
+// template < typename FILE >
+binary_stream & operator >> (binary_stream & stream, ::user::picture::picture_impl & t)
 {
 
    stream >> t.m_rectangle;

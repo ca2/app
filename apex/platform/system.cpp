@@ -2795,7 +2795,7 @@ pacmedirectory->create("/ca2core");
    ////      if(!pfile)
    ////         return false;
    ////
-   ////      ::binary_stream < FILE > is(pfile);
+   ////      ::binary_stream is(pfile);
    ////
    ////      is >> m_mapAppLibrary;
    ////

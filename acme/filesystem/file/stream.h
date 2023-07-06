@@ -1,8 +1,8 @@
 #pragma once
 
 
-//#define __EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), m_##xxx)
-//#define __TYPE_EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), t.m_##xxx)
+//#define __EXCHANGE(xxx) binary_stream.stream_exchange(__STRING(xxx), m_##xxx)
+//#define __TYPE_EXCHANGE(xxx) binary_stream.stream_exchange(__STRING(xxx), t.m_##xxx)
 
 //class payload_stream;
 
@@ -11,22 +11,22 @@
 // - Entry point_i32 convenience syntax sugar
 // - syntax sugar
 //template < typename TYPE >
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & binary_stream < FILE >, TYPE & t);
+//inline binary_stream & operator >> (binary_stream & binary_stream, TYPE & t);
 //
 //template < typename TYPE >
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & binary_stream < FILE >, const TYPE & t);
+//inline binary_stream & operator << (binary_stream & binary_stream, const TYPE & t);
 //
 //template < typename TYPE >
-//inline payload_stream & operator >> (payload_stream & binary_stream < FILE >, TYPE & t);
+//inline payload_stream & operator >> (payload_stream & binary_stream, TYPE & t);
 //
 //template < typename TYPE >
-//inline payload_stream & operator << (payload_stream & binary_stream < FILE >, const TYPE & t);
+//inline payload_stream & operator << (payload_stream & binary_stream, const TYPE & t);
 //
 //template < typename TYPE >
-//inline text_stream & operator >> (text_stream & binary_stream < FILE >, TYPE & t);
+//inline text_stream & operator >> (text_stream & binary_stream, TYPE & t);
 //
 //template < typename TYPE >
-//inline text_stream & operator << (text_stream & binary_stream < FILE >, const TYPE & t);
+//inline text_stream & operator << (text_stream & binary_stream, const TYPE & t);
 
 //template < typename TYPE >
 //inline ::file::file & operator >> (::file::file & file, TYPE & t);
@@ -37,97 +37,97 @@
 
 
 
- /*inline void __exchange(::binary_stream < FILE > & s, bool & b);
+ /*inline void __exchange(::binary_stream & s, bool & b);
 
 
- inline void __exchange(::binary_stream < FILE > & s, i8 & i);
- inline void __exchange(::binary_stream < FILE > & s, i16 & i);
- inline void __exchange(::binary_stream < FILE > & s, i32 & i);
- inline void __exchange(::binary_stream < FILE > & s, i64 & i);
- inline void __exchange(::binary_stream < FILE > & s, u8 & u);
- inline void __exchange(::binary_stream < FILE > & s, u16 & u);
- inline void __exchange(::binary_stream < FILE > & s, u32 & u);
- inline void __exchange(::binary_stream < FILE > & s, u64 & u);
+ inline void __exchange(::binary_stream & s, i8 & i);
+ inline void __exchange(::binary_stream & s, i16 & i);
+ inline void __exchange(::binary_stream & s, i32 & i);
+ inline void __exchange(::binary_stream & s, i64 & i);
+ inline void __exchange(::binary_stream & s, u8 & u);
+ inline void __exchange(::binary_stream & s, u16 & u);
+ inline void __exchange(::binary_stream & s, u32 & u);
+ inline void __exchange(::binary_stream & s, u64 & u);
 
 
- inline void __exchange(::binary_stream < FILE > & s, long & l);
+ inline void __exchange(::binary_stream & s, long & l);
 
 
- inline void __exchange(::binary_stream < FILE > & s, float & f);
- inline void __exchange(::binary_stream < FILE > & s, double & d);
- inline void __exchange(::binary_stream < FILE > & s, ::earth::time & time);
- inline void __exchange(::binary_stream < FILE > & s, const ::scoped_string & scopedstr);
- inline void __exchange(::binary_stream < FILE > & s, string & str);
- inline void __exchange(::binary_stream < FILE > & s, ::file::path & path);
- inline void __exchange(::binary_stream < FILE > & s, ::atom & atom);
- inline void __exchange(::binary_stream < FILE > & s, ::payload & payload);
- inline void __exchange(::binary_stream < FILE > & s, ::property & property);
- inline void __exchange(::binary_stream < FILE > & s, ::matter & matter);
+ inline void __exchange(::binary_stream & s, float & f);
+ inline void __exchange(::binary_stream & s, double & d);
+ inline void __exchange(::binary_stream & s, ::earth::time & time);
+ inline void __exchange(::binary_stream & s, const ::scoped_string & scopedstr);
+ inline void __exchange(::binary_stream & s, string & str);
+ inline void __exchange(::binary_stream & s, ::file::path & path);
+ inline void __exchange(::binary_stream & s, ::atom & atom);
+ inline void __exchange(::binary_stream & s, ::payload & payload);
+ inline void __exchange(::binary_stream & s, ::property & property);
+ inline void __exchange(::binary_stream & s, ::matter & matter);
 
 
- inline void __exchange(::binary_stream < FILE > & s, ::rectangle_i32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::rectangle_i64 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::rectangle_f32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::rectangle_f64 & rectangle);
+ inline void __exchange(::binary_stream & s, ::rectangle_i32 & rectangle);
+ inline void __exchange(::binary_stream & s, ::rectangle_i64 & rectangle);
+ inline void __exchange(::binary_stream & s, ::rectangle_f32 & rectangle);
+ inline void __exchange(::binary_stream & s, ::rectangle_f64 & rectangle);
 
 
- inline void __exchange(::binary_stream < FILE > & s, ::size_i32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::size_i64 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::size_f32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::size_f64 & rectangle);
+ inline void __exchange(::binary_stream & s, ::size_i32 & rectangle);
+ inline void __exchange(::binary_stream & s, ::size_i64 & rectangle);
+ inline void __exchange(::binary_stream & s, ::size_f32 & rectangle);
+ inline void __exchange(::binary_stream & s, ::size_f64 & rectangle);
 
 
- inline void __exchange(::binary_stream < FILE > & s, ::point_i32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::point_i64 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::point_f32 & rectangle);
- inline void __exchange(::binary_stream < FILE > & s, ::point_f64 & rectangle);
+ inline void __exchange(::binary_stream & s, ::point_i32 & rectangle);
+ inline void __exchange(::binary_stream & s, ::point_i64 & rectangle);
+ inline void __exchange(::binary_stream & s, ::point_f32 & rectangle);
+ inline void __exchange(::binary_stream & s, ::point_f64 & rectangle);
 
 
 template < typename OBJECT >
-inline void __exchange(::binary_stream < FILE > & s, ::pointer<OBJECT>& pparticle)
+inline void __exchange(::binary_stream & s, ::pointer<OBJECT>& pparticle)
 {
    __exchange(s, __typed_defer_create(pparticle));
 }
 
 
 template < typename BLOCK_TYPE >
-inline void __exchange(binary_stream < FILE > & s, memory_template < BLOCK_TYPE > & block);
+inline void __exchange(binary_stream & s, memory_template < BLOCK_TYPE > & block);
 
 template < typename ARRAY >
-inline void __exchange_array(::binary_stream < FILE > & s, const ARRAY & array) { __exchange_array(s, (ARRAY &)array); }
+inline void __exchange_array(::binary_stream & s, const ARRAY & array) { __exchange_array(s, (ARRAY &)array); }
 
 
-inline void __exchange(::binary_stream < FILE > & s, const ::file::path_array & patha) { __exchange_array(s, patha); }
-
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream < FILE > & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
+inline void __exchange(::binary_stream & s, const ::file::path_array & patha) { __exchange_array(s, patha); }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream < FILE > & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
+inline void __exchange(::binary_stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void __exchange(::binary_stream & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > &)array); }
 
 template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
-inline void __exchange(::binary_stream < FILE > & s, const ::numeric_array < TYPE, m_etypeContainer > & array) { __exchange_array(s, (::numeric_array < TYPE, m_etypeContainer > &) array); }
+inline void __exchange(::binary_stream & s, const ::numeric_array < TYPE, m_etypeContainer > & array) { __exchange_array(s, (::numeric_array < TYPE, m_etypeContainer > &) array); }
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream < FILE > & s, const ::string_array_base < Type, RawType, m_etypeContainer > & array) { __exchange_array(s, (::string_array_base < Type, RawType, m_etypeContainer > &) array); }
+inline void __exchange(::binary_stream & s, const ::string_array_base < Type, RawType, m_etypeContainer > & array) { __exchange_array(s, (::string_array_base < Type, RawType, m_etypeContainer > &) array); }
 
 template < typename ARRAY >
-inline void __exchange_save_array(::binary_stream < FILE > & s, ARRAY & array);
+inline void __exchange_save_array(::binary_stream & s, ARRAY & array);
 
 template < typename ARRAY >
-inline void __exchange_load_array(::binary_stream < FILE > & s, ARRAY & array);
+inline void __exchange_load_array(::binary_stream & s, ARRAY & array);
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream < FILE > & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
+inline void __exchange(::binary_stream & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream < FILE > & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
+inline void __exchange(::binary_stream & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array);
 
 template < typename TYPE, ::enum_type m_etypeContainer = e_type_element >
-inline void __exchange(::binary_stream < FILE > & s, ::numeric_array < TYPE, m_etypeContainer > & array);
+inline void __exchange(::binary_stream & s, ::numeric_array < TYPE, m_etypeContainer > & array);
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-inline void __exchange(::binary_stream < FILE > & s, ::string_array_base < Type, RawType, m_etypeContainer > & array);*/
+inline void __exchange(::binary_stream & s, ::string_array_base < Type, RawType, m_etypeContainer > & array);*/
 
 
 #define FIRST_VERSION 0
@@ -256,7 +256,7 @@ public:
 //   property_set_stream() : m_ppropertyset(nullptr) { }
 //   property_set_stream(property_set & set) : m_ppropertyset(&set) { }
 //
-//   virtual binary_stream < FILE > * branch(const ::atom & atom);
+//   virtual binary_stream * branch(const ::atom & atom);
 //
 //};
 //
@@ -273,7 +273,7 @@ public:
 //   payload_stream() : m_ppayload(nullptr) { }
 //   payload_stream(::payload & payload) : m_ppayload(&payload) { }
 //
-//   virtual binary_stream < FILE > * branch(const ::atom &);
+//   virtual binary_stream * branch(const ::atom &);
 //
 //
 //};
@@ -284,19 +284,19 @@ public:
 //public:
 //
 //
-//   ::pointer<binary_stream < FILE >>m_pstream;
+//   ::pointer<binary_stream>m_pstream;
 //
 //
-//   stream_stack(binary_stream < FILE > * pstream, const ::atom & atom);
+//   stream_stack(binary_stream * pstream, const ::atom & atom);
 //
 //
-//   binary_stream < FILE > & binary_stream < FILE >() { return *m_pstream; }
+//   binary_stream & binary_stream() { return *m_pstream; }
 //
 //
 //};
 //
 
-//class CLASS_DECL_ACME binary_stream < FILE > :
+//class CLASS_DECL_ACME binary_stream :
 //   public stream_meta,
 //   virtual public object
 //{
@@ -306,8 +306,8 @@ public:
 //   ::payload * m_pvarOptions;
 //
 //
-//   binary_stream < FILE >():m_pvarOptions(nullptr) {}
-//   ~binary_stream < FILE >() override;
+//   binary_stream():m_pvarOptions(nullptr) {}
+//   ~binary_stream() override;
 //
 //   inline ::payload & options();
 //
@@ -373,7 +373,7 @@ public:
 //
 //   virtual void set_length(filesize len);
 //
-//   // This number represents a following binary_stream < FILE > of data with this length.
+//   // This number represents a following binary_stream of data with this length.
 //   // So the extra bytes representing the variable length quantity are
 //   // neglectable and worth due the very fast variable length encoding.
 //   inline void write_buffer_length(::u64 u)
@@ -643,7 +643,7 @@ public:
 //
 //
 //   template < typename BASE_TYPE >
-//   inline binary_stream < FILE > & save_object(const BASE_TYPE * pparticle);
+//   inline binary_stream & save_object(const BASE_TYPE * pparticle);
 //
 //   template < typename BASE_TYPE >
 //   inline ::pointer<BASE_TYPE>load_object();
@@ -655,7 +655,7 @@ public:
 //};
 
 
-//stream_stack::stream_stack(binary_stream < FILE > * pstreamStack, const ::atom & atom)
+//stream_stack::stream_stack(binary_stream * pstreamStack, const ::atom & atom)
 //{
 //
 //   m_pstream = pstreamStack->branch(atom);
@@ -664,12 +664,12 @@ public:
 
 //
 //template < typename BASE_TYPE >
-//::pointer<BASE_TYPE>__load_object(binary_stream < FILE > & binary_stream < FILE >);
+//::pointer<BASE_TYPE>__load_object(binary_stream & binary_stream);
 //
 
 
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & os, binary_stream < FILE > & (*pfnSimpleOutput)(binary_stream < FILE > &))
+//inline binary_stream & operator << (binary_stream & os, binary_stream & (*pfnSimpleOutput)(binary_stream &))
 //{
 //
 //   (*pfnSimpleOutput)(os);
@@ -681,7 +681,7 @@ public:
 //{
 //
 //
-//   inline binary_stream < FILE > & endl(binary_stream < FILE > & os)
+//   inline binary_stream & endl(binary_stream & os)
 //   {
 //
 //      os.put('\n');
@@ -699,163 +699,163 @@ public:
 
 //
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, i32 & i) { s.read(i); return s; }
+//inline binary_stream & operator >> (binary_stream & s, i32 & i) { s.read(i); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, u32 & u) { s.read(u); return s; }
+//inline binary_stream & operator >> (binary_stream & s, u32 & u) { s.read(u); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, i64 & i) { s.read(i); return s; }
+//inline binary_stream & operator >> (binary_stream & s, i64 & i) { s.read(i); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, u64 & u) { s.read(u); return s; }
+//inline binary_stream & operator >> (binary_stream & s, u64 & u) { s.read(u); return s; }
 //
 //#ifdef __APPLE__
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, unsigned long & u) { s.read(u); return s; }
+//inline binary_stream & operator >> (binary_stream & s, unsigned long & u) { s.read(u); return s; }
 //
 //#endif
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, float & f) { s.read(f); return s; }
+//inline binary_stream & operator >> (binary_stream & s, float & f) { s.read(f); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, double & d) { s.read(d); return s; }
+//inline binary_stream & operator >> (binary_stream & s, double & d) { s.read(d); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::point_i32 & point) { s.read(point); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::point_i32 & point) { s.read(point); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::size_i32 & size) { s.read(size); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::size_i32 & size) { s.read(size); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::rectangle_i32 & rectangle) { s.read(rectangle); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::rectangle_i32 & rectangle) { s.read(rectangle); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::atom & atom) { s.read(atom); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::atom & atom) { s.read(atom); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::payload & payload) { s.read(payload); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::payload & payload) { s.read(payload); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, property & property) { s.read(property); return s; }
+//inline binary_stream & operator >> (binary_stream & s, property & property) { s.read(property); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, string & str) { s.read(str); return s; }
+//inline binary_stream & operator >> (binary_stream & s, string & str) { s.read(str); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, block & block) { s.read(block); return s; }
+//inline binary_stream & operator >> (binary_stream & s, block & block) { s.read(block); return s; }
 //
 /////template < typename BLOCK >
 
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, bool & b) { s.read(b); return s; }
+//inline binary_stream & operator >> (binary_stream & s, bool & b) { s.read(b); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, char & ch) { s.read(ch); return s; }
+//inline binary_stream & operator >> (binary_stream & s, char & ch) { s.read(ch); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, uchar & uch) { s.read(uch); return s; }
+//inline binary_stream & operator >> (binary_stream & s, uchar & uch) { s.read(uch); return s; }
 //
 //#if defined(WINDOWS)
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::wd16_character & wch) { s.read(wch); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::wd16_character & wch) { s.read(wch); return s; }
 //
 //#else
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::wd32_character & wch) { s.read(wch); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::wd32_character & wch) { s.read(wch); return s; }
 //
 //#endif
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, i8 & i) { s.read(i); return s; }
+//inline binary_stream & operator >> (binary_stream & s, i8 & i) { s.read(i); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, i16 & i) { s.read(i); return s; }
+//inline binary_stream & operator >> (binary_stream & s, i16 & i) { s.read(i); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, u16 & u) { s.read(u); return s; }
+//inline binary_stream & operator >> (binary_stream & s, u16 & u) { s.read(u); return s; }
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, e_set_loading) { s->set_loading(); return s; }
+//inline binary_stream & operator >> (binary_stream & s, e_set_loading) { s->set_loading(); return s; }
 //
 //template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
+//inline binary_stream & operator >>(binary_stream & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template <  typename TYPE >
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, pointer_array < TYPE > & a);
+//inline binary_stream & operator >>(binary_stream & s, pointer_array < TYPE > & a);
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::file::path & path);
+//inline binary_stream & operator >> (binary_stream & s, ::file::path & path);
 //
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, class ::time & class ::time);
+//inline binary_stream & operator >> (binary_stream & s, class ::time & class ::time);
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::file::path & path);
+//inline binary_stream & operator << (binary_stream & s, const ::file::path & path);
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::string & str) { s.write(str); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::string & str) { s.write(str); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, e_set_storing) { s->set_storing(); s; }
+//inline binary_stream & operator << (binary_stream & s, e_set_storing) { s->set_storing(); s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, char ch) { s.write(ch); return s; }
+//inline binary_stream & operator << (binary_stream & s, char ch) { s.write(ch); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, uchar uch) { s.write(uch); return s; }
+//inline binary_stream & operator << (binary_stream & s, uchar uch) { s.write(uch); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, i8 sh) { s.write(sh); return s; }
+//inline binary_stream & operator << (binary_stream & s, i8 sh) { s.write(sh); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, i16 sh) { s.write(sh); return s; }
+//inline binary_stream & operator << (binary_stream & s, i16 sh) { s.write(sh); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, u16 u) { s.write(u); return s; }
+//inline binary_stream & operator << (binary_stream & s, u16 u) { s.write(u); return s; }
 //
 //#ifdef WINDOWS
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, unichar wch) { s.write(wch); return s; }
+//inline binary_stream & operator << (binary_stream & s, unichar wch) { s.write(wch); return s; }
 //
 //#endif
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, bool b) { s.write(b); return s; }
+//inline binary_stream & operator << (binary_stream & s, bool b) { s.write(b); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, i32 i) { s.write(i); return s; }
+//inline binary_stream & operator << (binary_stream & s, i32 i) { s.write(i); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, u32 u) { s.write(u); return s; }
+//inline binary_stream & operator << (binary_stream & s, u32 u) { s.write(u); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, i64 i) { s.write(i); return s; }
+//inline binary_stream & operator << (binary_stream & s, i64 i) { s.write(i); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, u64 u) { s.write(u); return s; }
+//inline binary_stream & operator << (binary_stream & s, u64 u) { s.write(u); return s; }
 //
 //#if defined(__APPLE__)
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const unsigned long u) { s.write(u); return s; }
+//inline binary_stream & operator << (binary_stream & s, const unsigned long u) { s.write(u); return s; }
 //
 //#endif
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, float f) { s.write(f); return s; }
+//inline binary_stream & operator << (binary_stream & s, float f) { s.write(f); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, double d) { s.write(d); return s; }
+//inline binary_stream & operator << (binary_stream & s, double d) { s.write(d); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::point_i32 & point) { s.write(point); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::point_i32 & point) { s.write(point); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::rectangle_i32 &rectangle) { s.write(rectangle); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::rectangle_i32 &rectangle) { s.write(rectangle); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::size_i32 & size) { s.write(size); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::size_i32 & size) { s.write(size); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::scoped_string & scopedstr) { s.write(psz); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::scoped_string & scopedstr) { s.write(psz); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const atom & atom) { s.write(atom); return s; }
+//inline binary_stream & operator << (binary_stream & s, const atom & atom) { s.write(atom); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::payload & payload) { s.write(payload); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::payload & payload) { s.write(payload); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const property & property) { s.write(property); return s; }
+//inline binary_stream & operator << (binary_stream & s, const property & property) { s.write(property); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::particle * pparticle) { s.write(pparticle); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::particle * pparticle) { s.write(pparticle); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::matter & matter) { s.write(matter); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::matter & matter) { s.write(matter); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const block & block) { s.write(block); return s; }
+//inline binary_stream & operator << (binary_stream & s, const block & block) { s.write(block); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, e_str_flag eflag) { s.m_estrflag = (e_str_flag)((int)s.m_estrflag | (int)eflag); return s; }
+//inline binary_stream & operator << (binary_stream & s, e_str_flag eflag) { s.m_estrflag = (e_str_flag)((int)s.m_estrflag | (int)eflag); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::file::set_width & w) { s.width(w.m_width); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::file::set_width & w) { s.width(w.m_width); return s; }
 //
 
 
 //
 //template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
+//inline binary_stream & operator <<(binary_stream & s, const map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template < typename TYPE >
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const pointer_array < TYPE > & a);
+//inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a);
 //
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const class time & time);
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, class ::time & time);
+//inline binary_stream & operator <<(binary_stream & s, const class time & time);
+//inline binary_stream & operator >>(binary_stream & s, class ::time & time);
 
 
 
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, ::file::file * pfile);
+//inline binary_stream & operator << (binary_stream & s, ::file::file * pfile);
 //
 //
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, ::file_pointer & pfile)
+//inline binary_stream & operator << (binary_stream & s, ::file_pointer & pfile)
 //{
 //
 //   operator << (s, pfile.m_p);
@@ -865,40 +865,40 @@ public:
 //
 //
 //
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::time & time);
+//inline binary_stream & operator <<(binary_stream & s, const ::earth::time & time);
 ////
 ////
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time & time);
+//inline binary_stream & operator >>(binary_stream & s, ::earth::time & time);
 //
 //
 //
 //
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::zonetime & z);
+//inline binary_stream & operator >>(binary_stream & s, ::earth::zonetime & z);
 //
 //
 //
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::zonetime & z);
+//inline binary_stream & operator <<(binary_stream & s, const ::earth::zonetime & z);
 //
 //
 //
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time_shift & z);
+//inline binary_stream & operator >>(binary_stream & s, ::earth::time_shift & z);
 //
 //
 //
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::time_shift & z);
+//inline binary_stream & operator <<(binary_stream & s, const ::earth::time_shift & z);
 //
 //
 //
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::datetime::time_zone & z);
+//inline binary_stream & operator >>(binary_stream & s, ::datetime::time_zone & z);
 //
 //
 //
 //
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::datetime::time_zone & z);
+//inline binary_stream & operator <<(binary_stream & s, const ::datetime::time_zone & z);
 //
 //
 //template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
+//inline binary_stream & operator << (binary_stream & s, const point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
 //
 //   s << point.x();
@@ -911,7 +911,7 @@ public:
 //
 //
 //template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
+//inline binary_stream & operator >> (binary_stream & s, point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
 //   s >> point.x();
 //   s >> point.y();
@@ -921,7 +921,7 @@ public:
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
+//inline binary_stream & operator << (binary_stream & s, const size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
 //
 //   s << size.cx();
@@ -934,7 +934,7 @@ public:
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
+//inline binary_stream & operator >> (binary_stream & s, size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
 //   s >> size.cx();
 //   s >> size.cy();
@@ -942,14 +942,14 @@ public:
 //}
 //
 //
-////binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color::hls & hls);
+////binary_stream & operator >> (binary_stream & s, ::color::hls & hls);
 //
-////binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color::hls & hls);
+////binary_stream & operator >> (binary_stream & s, ::color::hls & hls);
 //
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
+//inline binary_stream & operator << (binary_stream & s, const rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
 //{
 //   
 //   s << rectangle.left;
@@ -963,7 +963,7 @@ public:
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
+//inline binary_stream & operator >> (binary_stream & s, rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
 //{
 //
 //   s >> rectangle.left;

@@ -3,7 +3,7 @@
 #include "_text_stream.h"
 
 
-template < typename FILE >
+// template < typename FILE >
 write_text_stream < FILE > & operator << (write_text_stream < FILE > & textstream, integral_byte integralbyte)
 {
 

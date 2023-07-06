@@ -2141,7 +2141,7 @@ namespace user
       }
 
 
-      //void data::write(::binary_stream < FILE > & stream) const
+      //void data::write(::binary_stream & stream) const
       //{
 
       //   synchronous_lock synchronouslock(this->synchronization());
@@ -2153,7 +2153,7 @@ namespace user
       //}
 
 
-      //void data::read(::binary_stream < FILE > & stream)
+      //void data::read(::binary_stream & stream)
       //{
 
       //   synchronous_lock synchronouslock(this->synchronization());

@@ -1062,7 +1062,7 @@ namespace user
    bool document::on_open_document(::file::file * pfile)
    {
 
-      //::binary_stream < FILE > reader(pfile);
+      //::binary_stream reader(pfile);
 
       //read(reader);
 
@@ -1121,7 +1121,7 @@ namespace user
 
       //{
 
-      //   ::binary_stream < FILE > writer(pfile);
+      //   ::binary_stream writer(pfile);
 
       //   write(writer);
 

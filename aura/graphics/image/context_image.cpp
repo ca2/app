@@ -818,7 +818,7 @@ void context_image::save_dib(const ::file::path & pathDib, image * pimage)
       if (pfile)
       {
 
-         //::binary_stream < FILE > writer(pfile);
+         //::binary_stream writer(pfile);
 
          //write(writer);
 

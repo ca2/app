@@ -2,8 +2,8 @@
 #pragma once
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::color::HLS & hls)
+// template < typename FILE >
+inline binary_stream & operator << (binary_stream & s, const ::color::HLS & hls)
 {
 
    s << hls.m_dH;
@@ -15,8 +15,8 @@ inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const :
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color::HLS & hls)
+// template < typename FILE >
+inline binary_stream & operator >> (binary_stream & s, ::color::HLS & hls)
 {
 
    s >> hls.m_dH;
@@ -28,8 +28,8 @@ inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::color::color & color)
+// template < typename FILE >
+inline binary_stream & operator << (binary_stream & s, const ::color::color & color)
 {
 
    s << color.m_u8Red;
@@ -42,8 +42,8 @@ inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const :
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color::color & color)
+// template < typename FILE >
+inline binary_stream & operator >> (binary_stream & s, ::color::color & color)
 {
 
    s >> color.m_u8Red;

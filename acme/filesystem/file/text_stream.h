@@ -39,7 +39,7 @@ public:
 
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //inline text_stream < FILE >::text_stream(const stream_base& stream)
 //{
 //
@@ -72,7 +72,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //inline write_text_stream < FILE >::~write_text_stream()
 //{
 //
@@ -80,7 +80,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //inline string write_text_stream < FILE >::read_string()
 //{
 //
@@ -93,7 +93,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //bool text_stream < FILE >::is_stream_null()
 //{
 //
@@ -102,7 +102,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //void text_stream < FILE >::destroy()
 //{
 //
@@ -115,7 +115,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //string text_stream < FILE >::as_string() const
 //{
 //
@@ -124,7 +124,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //bool text_stream < FILE >::is_stream_set()
 //{
 //
@@ -133,7 +133,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE>& text_stream < FILE >::operator >>(i8& ch)
 //{
 //
@@ -151,7 +151,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //void text_stream < FILE >::close()
 //{
 //
@@ -160,7 +160,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(bool b)
 //{
 //
@@ -182,7 +182,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(char ch)
 //{
 //
@@ -193,7 +193,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(uchar uch)
 //{
 //
@@ -204,7 +204,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(i16 i)
 //{
 //
@@ -215,7 +215,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(u16 u)
 //{
 //
@@ -228,7 +228,7 @@ public:
 //
 //#ifdef WINDOWS
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(unichar wch)
 //{
 //
@@ -241,7 +241,7 @@ public:
 //#endif
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //void text_stream < FILE >::print_number(const ::string& str)
 //{
 //
@@ -273,7 +273,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(i32 i)
 //{
 //
@@ -284,7 +284,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(u32 u)
 //{
 //
@@ -295,7 +295,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(i64 i)
 //{
 //
@@ -306,7 +306,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(u64 u)
 //{
 //
@@ -317,7 +317,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(float f)
 //{
 //
@@ -332,7 +332,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(double d)
 //{
 //
@@ -378,7 +378,7 @@ public:
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(const ::ansi_character * psz)
 //{
 //
@@ -401,7 +401,7 @@ public:
 //
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator <<(const ::string& str)
 //{
 //
@@ -414,7 +414,7 @@ public:
 //
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //void text_stream < FILE >::raw_print(const ::string& str)
 //{
 //
@@ -425,7 +425,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(bool& b)
 //{
 //
@@ -444,7 +444,7 @@ public:
 ////}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(char& ch)
 //{
 //
@@ -462,7 +462,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(uchar& uch)
 //{
 //
@@ -475,7 +475,7 @@ public:
 //
 //#ifdef WINDOWS
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(unichar& wch)
 //{
 //
@@ -489,7 +489,7 @@ public:
 //#endif
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(i16& sh)
 //{
 //
@@ -500,7 +500,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(u16& u)
 //{
 //
@@ -511,7 +511,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(i32& i)
 //{
 //
@@ -522,7 +522,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(u32& u)
 //{
 //
@@ -533,7 +533,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(i64& i)
 //{
 //
@@ -544,7 +544,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(u64& u)
 //{
 //
@@ -555,7 +555,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(float& f)
 //{
 //
@@ -566,7 +566,7 @@ public:
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(double& d)
 //{
 //
@@ -602,7 +602,7 @@ public:
 ////}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //text_stream < FILE >& text_stream < FILE >::operator >>(string& str)
 //{
 //
@@ -645,7 +645,7 @@ public:
 //}
 //
 //
-////template < typename FILE >
+////// template < typename FILE >
 ////text_stream < FILE > & text_stream < FILE >::operator >>(property_set& set)
 ////{
 ////
@@ -657,7 +657,7 @@ public:
 ////}
 //
 //
-////template < typename FILE >
+////// template < typename FILE >
 ////text_stream < FILE > & text_stream < FILE >::operator >>(::atom& atom)
 ////{
 ////
@@ -672,7 +672,7 @@ public:
 ////}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline  string text_stream < FILE >::get_location() const
 //{
 //
@@ -681,7 +681,7 @@ public:
 //}
 //
 //
-////template < typename FILE >
+////// template < typename FILE >
 ////inline ::filesize text_stream < FILE >::get_position() const
 ////{
 ////
@@ -690,7 +690,7 @@ public:
 ////}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline void text_stream < FILE >::write(const void* psz, strsize s)
 //{
 //
@@ -741,7 +741,7 @@ public:
 
 
 
-template < typename FILE >
+// template < typename FILE >
 inline auto __write_text_stream(FILE* pfile)
 {
 
@@ -750,7 +750,7 @@ inline auto __write_text_stream(FILE* pfile)
 }
 
 
-template < typename FILE >
+// template < typename FILE >
 inline auto __text_stream(const ::pointer<FILE>& pfile)
 {
 

@@ -351,11 +351,11 @@ CLASS_DECL_ACME void from_string(::wd32_character sz[n], const ::ansi_character 
 }
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //CLASS_DECL_ACME ::string as_string(const ::string_stream & strstream);
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //CLASS_DECL_ACME ::string as_string(const ::text_stream < FILE > & strstream);
 
 

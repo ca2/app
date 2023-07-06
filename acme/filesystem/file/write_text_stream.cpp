@@ -16,7 +16,7 @@ write_text_stream_struct::write_text_stream_struct()
 
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream::write_text_stream()
 {
 
@@ -24,7 +24,7 @@ write_text_stream::write_text_stream()
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream::write_text_stream(const ::pointer < ::string_buffer_base > & pstringbuffer) :
    m_pstringbuffer(pstringbuffer)
 {
@@ -59,7 +59,7 @@ write_text_stream::write_text_stream(write_text_stream && stream) :
 
 
 
-//// template < typename FILE >
+//// // template < typename FILE >
 //write_text_stream write_text_stream(const write_text_stream& stream) = delete;
 
 
@@ -71,7 +71,7 @@ write_text_stream::write_text_stream(const ::pointer < ::string_buffer_base > & 
 
 }
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream::~write_text_stream()
 {
 
@@ -121,7 +121,7 @@ write_text_stream::~write_text_stream()
 
 //}
 
-//// template < typename FILE >
+//// // template < typename FILE >
 //void write_text_stream::print(const ::string& str)
 //{
 //
@@ -129,9 +129,9 @@ write_text_stream::~write_text_stream()
 //
 //}
 
-// template < typename FILE >
+// // template < typename FILE >
 
-// template < typename FILE >
+// // template < typename FILE >
 
 /*template < typename TYPE >
 void number_exchange(TYPE& t)
@@ -185,7 +185,7 @@ void write_only(TYPE & t) { is_loading() ? throw_exception(error_io) : operator 
 template < typename TYPE >
 void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
-// template < typename FILE >
+// // template < typename FILE >
 void write_text_stream::append_format(const ::ansi_character * pszFormat, ...)
 {
 
@@ -212,7 +212,7 @@ void write_text_stream::append_format(const ::ansi_character * pszFormat, ...)
 //void close() {}
 
 
-// template < typename FILE >
+// // template < typename FILE >
 void write_text_stream::new_line()
 {
 
@@ -228,7 +228,7 @@ void write_text_stream::new_line()
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(bool b)
 {
 
@@ -257,7 +257,7 @@ write_text_stream & write_text_stream::operator <<(bool b)
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(char ch)
 {
 
@@ -275,7 +275,7 @@ write_text_stream & write_text_stream::operator <<(char ch)
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(enum_start_reference)
 {
 
@@ -284,7 +284,7 @@ write_text_stream & write_text_stream::operator <<(enum_start_reference)
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(uchar uch)
 {
 
@@ -305,7 +305,7 @@ write_text_stream & write_text_stream::operator <<(uchar uch)
 #ifdef WINDOWS
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(unichar wch)
 {
 
@@ -330,7 +330,7 @@ write_text_stream & write_text_stream::operator <<(unichar wch)
 #endif
 
 
-// template < typename FILE >
+// // template < typename FILE >
 
 //write_text_stream& operator <<(i32 i)
 //{
@@ -412,7 +412,7 @@ write_text_stream & write_text_stream::operator <<(unichar wch)
     // void write(const ::rectangle_i32 &rectangle) ;
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 {
 
@@ -444,7 +444,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(const ::string & str)
 {
 
@@ -453,7 +453,7 @@ write_text_stream & write_text_stream::operator <<(const ::string & str)
 }
 
 //text_stream & operator <<(const ::atom & atom) ;
-// template < typename FILE >
+// // template < typename FILE >
 write_text_stream & write_text_stream::operator <<(const ::scoped_string & scopedstr)
 {
 
@@ -494,7 +494,7 @@ write_text_stream & write_text_stream::operator <<(const ::scoped_string & scope
 // void network_payload_write(const ::matter & matter);
 
 
-// template < typename FILE >
+// // template < typename FILE >
 void write_text_stream::raw_print(const ::string & str)
 {
 
@@ -513,7 +513,7 @@ void write_text_stream::raw_print(const ::string & str)
 //::string get_location() const;
 
 //::filesize get_position() const ;
-// template < typename FILE >
+// // template < typename FILE >
 void write_text_stream::write(const void * psz, strsize s)
 {
 
@@ -549,7 +549,7 @@ void write_text_stream::write(const void * psz, strsize s)
 //};
 
 
-//// template < typename FILE >
+//// // template < typename FILE >
 //write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 //{
 //
@@ -581,7 +581,7 @@ void write_text_stream::write(const void * psz, strsize s)
 //}
 
 
-//// template < typename FILE >
+//// // template < typename FILE >
 //write_text_stream & write_text_stream::operator <<(const ::string & str)
 //{
 //
@@ -590,7 +590,7 @@ void write_text_stream::write(const void * psz, strsize s)
 //}
 
 
-// template < typename FILE >
+// // template < typename FILE >
 void write_text_stream::print(const ::scoped_string & str)
 {
 
@@ -599,7 +599,7 @@ void write_text_stream::print(const ::scoped_string & str)
 }
 
 //
-//// template < typename FILE >
+//// // template < typename FILE >
 //write_text_stream & write_text_stream::operator <<(const ::scoped_string & scopedstr)
 //{
 //
@@ -631,7 +631,7 @@ void write_text_stream::print(const ::scoped_string & str)
 //}
 //
 //
-//// template < typename FILE >
+//// // template < typename FILE >
 //template < primitive_character CHARACTER2, strsize sizeMaximumLength >
 //write_text_stream & write_text_stream::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 //{
@@ -663,7 +663,7 @@ void write_text_stream::print(const ::scoped_string & str)
 //
 //}
 ////text_stream & operator <<(const property_set& set) ;
-//// template < typename FILE >
+//// // template < typename FILE >
 //write_text_stream & write_text_stream::write(const TYPE& t)
 //{
 //
@@ -673,7 +673,7 @@ void write_text_stream::print(const ::scoped_string & str)
 //
 //// void network_payload_write(const ::matter & matter);
 //
-//// template < typename FILE >
+//// // template < typename FILE >
 //void write_text_stream::raw_print(const ::string& str)
 //{
 //

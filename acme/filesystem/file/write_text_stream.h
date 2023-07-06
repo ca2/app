@@ -36,7 +36,7 @@ struct CLASS_DECL_ACME write_text_stream_struct
 class string_buffer_base;
 
 
-//template < typename FILE >
+//// template < typename FILE >
 class CLASS_DECL_ACME write_text_stream :
    virtual public write_text_stream_struct
 {
@@ -672,7 +672,7 @@ inline write_text_stream & write_text_stream::operator <<(SIGNED i)
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 template < primitive_unsigned_not_8bit UNSIGNED >
 inline write_text_stream & write_text_stream::operator <<(UNSIGNED u)
 {
@@ -691,7 +691,7 @@ inline write_text_stream & write_text_stream::operator <<(UNSIGNED u)
 }
 
 
-// template < typename FILE >
+// // template < typename FILE >
 template < typename T >
 inline void write_text_stream::print_string_copy(const T & t)
 {
@@ -706,7 +706,7 @@ inline void write_text_stream::print_string_copy(const T & t)
 
 
 
-// template < typename FILE >
+// // template < typename FILE >
 template < primitive_floating FLOATING >
 inline write_text_stream & write_text_stream::operator <<(FLOATING f)
 {
@@ -734,7 +734,7 @@ inline write_text_stream & write_text_stream::operator <<(FLOATING f)
 
 
 
-// template < typename FILE >
+// // template < typename FILE >
 template < primitive_character CHARACTER2, strsize sizeMaximumLength >
 inline write_text_stream & write_text_stream::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 {
@@ -768,7 +768,7 @@ inline write_text_stream & write_text_stream::operator <<(const ::inline_string 
 
 
 
-// template < typename FILE >
+// // template < typename FILE >
 template < typename TYPE >
 inline write_text_stream & write_text_stream::write(const TYPE & t)
 {

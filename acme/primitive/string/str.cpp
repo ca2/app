@@ -4162,7 +4162,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //::string as_string(const ::text_stream < FILE > & strstream)
 //{
 //

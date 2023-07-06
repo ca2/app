@@ -529,7 +529,7 @@ namespace interprocess
 
       //memory_file memoryfile;
 
-      //binary_stream < FILE > stream(&memoryfile);
+      //binary_stream stream(&memoryfile);
 
       //stream << payloada;
 

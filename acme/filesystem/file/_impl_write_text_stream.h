@@ -20,7 +20,7 @@
 //    const char* m_pszEolSeparator = "\n";
 //#endif
 
-//template < typename FILE >
+//// template < typename FILE >
 //inline write_text_stream < FILE >::write_text_stream()
 //{
 //
@@ -28,7 +28,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline write_text_stream < FILE >::write_text_stream(FILE* pfile)
 //{
 //
@@ -47,10 +47,10 @@
 //
 //
 //
-////template < typename FILE >
+////// template < typename FILE >
 ////write_text_stream < FILE > write_text_stream(const write_text_stream& stream) = delete;
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE >::~write_text_stream()
 //{
 //
@@ -100,7 +100,7 @@
 //
 //    //}
 //
-////template < typename FILE >
+////// template < typename FILE >
 ////void write_text_stream < FILE >::print(const ::string& str)
 ////{
 ////
@@ -108,7 +108,7 @@
 ////
 ////}
 //
-//template < typename FILE >
+//// template < typename FILE >
 //template < primitive_number NUMBER >
 //void write_text_stream < FILE >::write_number(NUMBER number)
 //{
@@ -118,7 +118,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //template < primitive_number NUMBER >
 //void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_character * pszFormat)
 //{
@@ -179,7 +179,7 @@
 //    template < typename TYPE >
 //    void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 //
-// template < typename FILE >
+// // template < typename FILE >
 // void write_text_stream < FILE >::append_format(const ::ansi_character * pszFormat, ...)
 // {
 //
@@ -206,7 +206,7 @@
 //    //void close() {}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //void write_text_stream < FILE >::new_line()
 //{
 //
@@ -222,7 +222,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(bool b)
 //{
 //
@@ -251,7 +251,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(char ch)
 //{
 //
@@ -269,7 +269,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(enum_start_reference)
 //{
 //
@@ -278,7 +278,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(uchar uch)
 //{
 //
@@ -299,7 +299,7 @@
 //#ifdef WINDOWS
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(unichar wch)
 //{
 //
@@ -324,7 +324,7 @@
 //#endif
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //template < primitive_signed_not_8bit SIGNED >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(SIGNED i)
 //{
@@ -343,7 +343,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //template < primitive_unsigned_not_8bit UNSIGNED >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(UNSIGNED u)
 //{
@@ -362,7 +362,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //template < typename T >
 //void write_text_stream < FILE >::print_string_copy(const T& t)
 //{
@@ -425,7 +425,7 @@
 // //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //template < primitive_floating FLOATING >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
 //{
@@ -485,7 +485,7 @@
 //    // void write(const ::rectangle_i32 &rectangle) ;
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
 //{
 //
@@ -517,7 +517,7 @@
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::string & str)
 //    {
 //
@@ -526,7 +526,7 @@
 //    }
 //
 //    //text_stream & operator <<(const ::atom & atom) ;
-//    template < typename FILE >
+//    // template < typename FILE >
 //    write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
 //    {
 //
@@ -558,7 +558,7 @@
 //    }
 //
 //
-//    template < typename FILE >
+//    // template < typename FILE >
 //    template < primitive_character CHARACTER2, strsize sizeMaximumLength >
 //    write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 //    {
@@ -594,7 +594,7 @@
 //    //text_stream & operator <<(const property_set& set) ;
 //
 //
-//   template < typename FILE >
+//   // template < typename FILE >
 //    template < typename TYPE >
 //    write_text_stream < FILE > & write_text_stream < FILE >::write(const TYPE& t)
 //    {
@@ -606,7 +606,7 @@
 //    // void network_payload_write(const ::matter & matter);
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //void write_text_stream < FILE >::raw_print(const ::string& str)
 //    {
 //
@@ -625,7 +625,7 @@
 //    //::string get_location() const;
 //
 //    //::filesize get_position() const ;
-//    template < typename FILE >
+//    // template < typename FILE >
 //    void write_text_stream < FILE >::write(const void* psz, strsize s)
 //    {
 //
@@ -661,7 +661,7 @@
 ////};
 //
 //
-////template < typename FILE >
+////// template < typename FILE >
 ////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
 ////{
 ////
@@ -693,7 +693,7 @@
 ////}
 //
 //
-////template < typename FILE >
+////// template < typename FILE >
 ////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::string & str)
 ////{
 ////
@@ -702,7 +702,7 @@
 ////}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //void write_text_stream < FILE >::print(const ::scoped_string& str)
 //{
 //
@@ -711,7 +711,7 @@
 //}
 //
 ////
-////template < typename FILE >
+////// template < typename FILE >
 ////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
 ////{
 ////
@@ -743,7 +743,7 @@
 ////}
 ////
 ////
-////template < typename FILE >
+////// template < typename FILE >
 ////template < primitive_character CHARACTER2, strsize sizeMaximumLength >
 ////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 ////{
@@ -775,7 +775,7 @@
 ////
 ////}
 //////text_stream & operator <<(const property_set& set) ;
-////template < typename FILE >
+////// template < typename FILE >
 ////write_text_stream < FILE > & write_text_stream < FILE >::write(const TYPE& t)
 ////{
 ////
@@ -785,7 +785,7 @@
 ////
 ////// void network_payload_write(const ::matter & matter);
 ////
-////template < typename FILE >
+////// template < typename FILE >
 ////void write_text_stream < FILE >::raw_print(const ::string& str)
 ////{
 ////

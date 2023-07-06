@@ -6,7 +6,7 @@
 #include "acme/primitive/primitive/memory.h"
 
 
-//template < typename FILE >
+//// template < typename FILE >
 class CLASS_DECL_ACME binary_stream :
     virtual public stream_base
 {
@@ -1318,16 +1318,16 @@ virtual binary_stream & operator >>(::payload & payload);
 };
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //inline auto __binary_stream(FILE * pfile)
 //{
 //
-//   return binary_stream < FILE >(pfile);
+//   return binary_stream(pfile);
 //
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //inline auto __binary_stream(const ::pointer<FILE> & pfile)
 //{
 //

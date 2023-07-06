@@ -325,7 +325,7 @@ namespace user
       
 
 
-      //void format::write(::binary_stream < FILE > & stream) const
+      //void format::write(::binary_stream & stream) const
       //{
 
       //   stream.exchange("italic", m_bItalic);

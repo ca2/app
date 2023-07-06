@@ -38,7 +38,7 @@ namespace draw2d_cairo
    }
 
 
-   //void image::read(::binary_stream < FILE > & stream)
+   //void image::read(::binary_stream & stream)
    //{
 
    //   synchronous_lock ml(cairo_mutex());
@@ -57,7 +57,7 @@ namespace draw2d_cairo
    //}
 
 
-   //void image::write(::binary_stream < FILE > & stream) const
+   //void image::write(::binary_stream & stream) const
    //{
 
    //   synchronous_lock ml(cairo_mutex());

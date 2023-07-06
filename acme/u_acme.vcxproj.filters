@@ -236,6 +236,12 @@
     <Filter Include="Source Files\memory\os_impl">
       <UniqueIdentifier>{d13e4c7a-f361-472d-9567-a5f1b50293ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system\posix">
+      <UniqueIdentifier>{8fb2828f-9cf8-4bde-ac3d-9f0e7a4bff0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\posix">
+      <UniqueIdentifier>{1acda4d9-aede-4fcb-992e-2b5fd4508257}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -404,9 +410,6 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\memory_map.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\stdio_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\stream.cpp">
@@ -1381,6 +1384,9 @@
     <ClCompile Include="user\user\_string.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\posix\stdio_file.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -2254,9 +2260,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\status.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\stdio_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_stream1.h">
@@ -3662,6 +3665,9 @@
     </ClInclude>
     <ClInclude Include="platform\application_base.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\posix\stdio_file.h">
+      <Filter>Header Files\operating_system\posix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

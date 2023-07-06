@@ -682,6 +682,7 @@
     <ClInclude Include="operating_system\microsecond_sleep.h" />
     <ClInclude Include="operating_system\os_windowing2.h" />
     <ClInclude Include="operating_system\parallelization.h" />
+    <ClInclude Include="operating_system\posix\stdio_file.h" />
     <ClInclude Include="operating_system\process.h" />
     <ClInclude Include="operating_system\serial.h" />
     <ClInclude Include="operating_system\text.h" />
@@ -874,7 +875,6 @@
     <ClInclude Include="filesystem\file\serializable.h" />
     <ClInclude Include="filesystem\file\serialize.h" />
     <ClInclude Include="filesystem\file\status.h" />
-    <ClInclude Include="filesystem\file\stdio_file.h" />
     <ClInclude Include="filesystem\file\stream.h" />
     <ClInclude Include="filesystem\file\stream2.h" />
     <ClInclude Include="filesystem\file\string_buffer.h" />
@@ -1344,7 +1344,6 @@
     <ClCompile Include="filesystem\file\memory_map.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
     <ClCompile Include="filesystem\file\print_formatting.cpp" />
-    <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
@@ -1609,6 +1608,7 @@
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
+    <ClCompile Include="operating_system\posix\stdio_file.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\time.cpp" />

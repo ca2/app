@@ -740,23 +740,23 @@ public:
 //
 
 
+//
+//// template < typename FILE >
+//inline auto __write_text_stream(FILE* pfile)
+//{
+//
+//   return write_text_stream < FILE >(pfile);
+//
+//}
 
-// template < typename FILE >
-inline auto __write_text_stream(FILE* pfile)
-{
-
-   return write_text_stream < FILE >(pfile);
-
-}
-
-
-// template < typename FILE >
-inline auto __text_stream(const ::pointer<FILE>& pfile)
-{
-
-   return __text_stream(pfile.m_p);
-
-}
+//
+//// template < typename FILE >
+//inline auto __text_stream(const ::pointer<FILE>& pfile)
+//{
+//
+//   return __text_stream(pfile.m_p);
+//
+//}
 
 
 inline read_sz_stream::read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin) :

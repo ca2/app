@@ -80,7 +80,7 @@ inline const void * _memory_find_u8(const void* l, int i, memsize len)
 
 
 
-constexpr const void * memory_find_u8(const void* l, int i, memsize len)
+inline const void * memory_find_u8(const void* l, int i, memsize len)
 {
 
     if(::is_null(l))

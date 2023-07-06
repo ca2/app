@@ -884,7 +884,7 @@ namespace experience
       if (m_pframewindow->const_layout().is_this_screen_visible() && !is_iconic(m_pframewindow->const_layout().design().display()))
       {
 
-         get_control_box()->place(rectangleControlBox, ::user::e_layout_layout, pgraphics);
+         get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pgraphics);
 
       }
 

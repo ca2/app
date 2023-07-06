@@ -3121,12 +3121,14 @@ namespace xml
 
    }
 
+
    index_array node::get_indexed_path() const
    {
 
       return get_document()->get_child_indexed_path(this);
 
    }
+
 
    void node::get_indexed_path(index_array & iaPath) const
    {
@@ -3165,3 +3167,6 @@ namespace xml
 
 
 } // namespace xml
+
+
+

@@ -155,7 +155,7 @@ namespace database
 
       }
 
-      auto stream = __binary_stream(pmemoryfile);
+      binary_stream stream(pmemoryfile);
 
       ::payload payload;
 
@@ -171,7 +171,7 @@ namespace database
 
       auto pmemoryfile = create_memory_file();
 
-      auto stream = __binary_stream(pmemoryfile);
+      binary_stream stream(pmemoryfile);
 
       stream << payload;
 

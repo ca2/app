@@ -71,3 +71,5 @@ public:
 
 
 
+CLASS_DECL_ACME write_text_stream & operator <<(write_text_stream & stream, const ::exception & exception);
+

@@ -3,24 +3,30 @@
 
 
 #include "write_text_stream.h"
-#include "string_buffer.h"
+//#include "string_buffer.h"
+
+class string_buffer_base;
 
 
-class string_stream :
-   public write_text_stream < string_buffer >
+class CLASS_DECL_ACME string_stream :
+   virtual public write_text_stream
+   //public write_text_stream < string_buffer >
 {
 public:
 
 
-   string_buffer   m_stringbuffer;
+   //::pointer < string_buffer >   m_pstringbuffer;
 
 
-   string_stream() : write_text_stream(&m_stringbuffer) { }
-   string_stream(string_stream && stream) : m_stringbuffer(::transfer(stream.m_stringbuffer)), write_text_stream(&m_stringbuffer, ::transfer(stream)) { }
-   ~string_stream() {}
+   string_stream();
+   string_stream(const ::pointer < string_buffer_base > & pstringbuffer);
+   string_stream(string_stream && stream);
+   ~string_stream() override;
 
-   ::string as_string() const { return m_stringbuffer.m_strOwnStorage; }
-   ::string & as_string() { return m_stringbuffer.m_strOwnStorage; }
+   virtual class string_buffer * string_buffer();
+
+   virtual ::string as_string() const;
+   virtual ::string & as_string();
 
 
 };

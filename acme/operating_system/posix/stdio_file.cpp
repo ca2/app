@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "stdio_file.h"
+#include "acme/exception/exception2.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -982,6 +983,17 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
    //return ::success;
 
 }
+
+
+//CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream)
+//{
+//#ifdef WINDOWS
+//   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
+//#else
+//   ::clearerr(stream);
+//   C_RUNTIME_ERROR_CHECK(errno);
+//#endif
+//}
 
 
 

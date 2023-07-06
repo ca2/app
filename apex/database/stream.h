@@ -24,15 +24,15 @@ namespace database
       inline void set(const ::scoped_string & scopedstr, const TYPE & t)
       {
 
-         memory_file memoryfile;
+         auto pmemoryfile = create_memory_file();
 
-         auto stream = __binary_stream(&memoryfile);
+         binary_stream stream(pmemoryfile);
 
          stream.set_storing_flag();
 
          stream << t;
 
-         m_pclient->data_set_memory(scopedstr, memoryfile.memory());
+         m_pclient->data_set_memory(scopedstr, pmemoryfile->memory());
 
       }
 
@@ -41,18 +41,18 @@ namespace database
       inline bool get(const ::scoped_string & scopedstr, TYPE & t)
       {
 
-         memory_file memoryfile;
+         auto pmemoryfile = create_memory_file();
 
-         if (!m_pclient->data_get_memory(scopedstr, memoryfile.memory()))
+         if (!m_pclient->data_get_memory(scopedstr, pmemoryfile->memory()))
          {
 
             return false;
 
          }
 
-         memoryfile.seek_to_begin();
+         pmemoryfile->seek_to_begin();
 
-         auto stream = __binary_stream(&memoryfile);
+         binary_stream stream(pmemoryfile);
 
          stream.set_loading_flag();
 

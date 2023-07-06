@@ -2013,7 +2013,7 @@ void particle::destroy_os_data()
 
 
 
-//void particle::write(::binary_stream < FILE > & stream) const
+//void particle::write(::binary_stream & stream) const
 //{
 //
 //   throw interface_only();
@@ -2021,7 +2021,7 @@ void particle::destroy_os_data()
 //}
 //
 //
-//void particle::read(::binary_stream < FILE > & stream)
+//void particle::read(::binary_stream & stream)
 //{
 //
 //   throw interface_only();

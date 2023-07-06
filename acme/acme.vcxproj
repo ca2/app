@@ -637,6 +637,7 @@
     <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
+    <ClCompile Include="filesystem\file\string_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="filesystem\file\translatable.cpp" />
     <ClCompile Include="filesystem\file\write_text_stream.cpp" />
@@ -837,6 +838,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
     <ClInclude Include="operating_system\posix\stdio_file.h" />
+    <ClInclude Include="operating_system\posix\time.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
@@ -849,7 +851,8 @@
     <ClInclude Include="primitive\primitive\_SI.h" />
     <ClInclude Include="primitive\primitive\_unit.h" />
     <ClInclude Include="primitive\time\nanosecond.h" />
-    <ClInclude Include="primitive\time\posix_time.h" />
+    <ClInclude Include="primitive\time\time\posix_time.h" />
+    <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
@@ -917,6 +920,7 @@
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\posix\stdio_file.cpp" />
+    <ClCompile Include="operating_system\posix\time.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\string.cpp" />
@@ -1518,7 +1522,6 @@
     <ClInclude Include="primitive\time\frequency.h" />
     <ClInclude Include="primitive\time\integral\_.h" />
     <ClInclude Include="primitive\time\integral\_impl.h" />
-    <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\unit.h" />
     <ClInclude Include="primitive\time\time\_.h" />
     <ClInclude Include="primitive\time\_.h" />
@@ -1870,7 +1873,7 @@
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\earth_time.cpp" />
     <ClCompile Include="primitive\datetime\earth_time_span.cpp" />
-    <ClCompile Include="primitive\datetime\zonetime.cpp" />
+    <ClCompile Include="primitive\datetime\earth_zone_time.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />
     <ClCompile Include="primitive\geometry3d\box.cpp" />
@@ -1966,7 +1969,7 @@
     <ClInclude Include="primitive\datetime\date_span.h" />
     <ClInclude Include="primitive\datetime\earth_time.h" />
     <ClInclude Include="primitive\datetime\earth_time_span.h" />
-    <ClInclude Include="primitive\datetime\zonetime.h" />
+    <ClInclude Include="primitive\datetime\earth_zone_time.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
     <ClInclude Include="primitive\geometry2d\collection.h" />
     <ClInclude Include="primitive\geometry2d\geometry.h" />

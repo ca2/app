@@ -169,19 +169,21 @@ namespace sockets
    string httpd_socket::GetDate()
    {
 
-      ::earth::gregorian::time time;
+      ::earth::gregorian::time gregoriantime;
 
-      time.Now(::earth::time_shift::local());
+      auto timeNow = ::earth::time::now();
+
+      gregoriantime.set(timeNow, ::earth::time_shift::local());
 
       char slask[40]; // yyyy-mm-dd hh:mm:ss
 
       sprintf(slask, "%d-%02d-%02d %02d:%02d:%02d",
-              time.m_iYear,
-              time.m_iMonth + 1,
-              time.m_iDay,
-              time.m_iHour,
-              time.m_iMinute, 
-              time.m_iSecond);
+              gregoriantime.m_iYear,
+              gregoriantime.m_iMonth + 1,
+              gregoriantime.m_iDay,
+              gregoriantime.m_iHour,
+              gregoriantime.m_iMinute, 
+              gregoriantime.m_iSecond);
 
       return slask;
 

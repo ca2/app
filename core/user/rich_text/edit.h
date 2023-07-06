@@ -123,8 +123,8 @@ namespace user
 
          strsize _001GetTextLength() override;
 
-         //void write(::binary_stream < FILE > & stream) const override;
-         //void read(::binary_stream < FILE > & stream) override;
+         //void write(::binary_stream & stream) const override;
+         //void read(::binary_stream & stream) override;
 
          void _001GetSel(strsize & iBeg, strsize & iEnd) override;
          virtual void _001GetSelLineText(string & str);

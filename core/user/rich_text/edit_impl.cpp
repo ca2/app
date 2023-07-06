@@ -2047,7 +2047,7 @@ namespace user
       }
 
 
-      //void edit_impl::write(::binary_stream < FILE > & stream) const
+      //void edit_impl::write(::binary_stream & stream) const
       //{
 
       //   ::user::picture::write(stream);
@@ -2072,7 +2072,7 @@ namespace user
       //}
 
 
-      //void edit_impl::read(::binary_stream < FILE > & stream)
+      //void edit_impl::read(::binary_stream & stream)
       //{
 
       //   ::user::picture::read(stream);

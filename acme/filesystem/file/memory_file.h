@@ -324,13 +324,13 @@ public:
 
 
 //class CLASS_DECL_ACME memory_stream :
-//   public binary_stream < FILE >
+//   public binary_stream
 //{
 //public:
 //
 //
-//   memory_stream() : binary_stream < FILE >(__new(::memory_file)) {}
-//   memory_stream(::memory_base & memory) : binary_stream < FILE >(__new(::memory_file(memory))) {}
+//   memory_stream() : binary_stream(__new(::memory_file)) {}
+//   memory_stream(::memory_base & memory) : binary_stream(__new(::memory_file(memory))) {}
 //
 //   ::memory_file * operator ->() { return m_p.cast < ::memory_file >().m_p; }
 //   const ::memory_file * operator ->() const { return m_p.cast < ::memory_file >().m_p; }

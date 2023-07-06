@@ -5,6 +5,7 @@
 
 
 #include "acme/filesystem/file/print_formatting.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 struct CLASS_DECL_ACME write_text_stream_struct
@@ -32,22 +33,26 @@ struct CLASS_DECL_ACME write_text_stream_struct
 };
 
 
-template < typename FILE >
-class write_text_stream :
-   public write_text_stream_struct
+class string_buffer_base;
+
+
+//// template < typename FILE >
+class CLASS_DECL_ACME write_text_stream :
+   virtual public write_text_stream_struct
 {
 public:
 
 
-    FILE *                             m_pfile;
+   ::pointer < ::string_buffer_base > m_pstringbuffer;
+
 
 
     write_text_stream();
-    write_text_stream(FILE* pfile);
-    write_text_stream(const write_text_stream & stream) = default;
-    write_text_stream(write_text_stream && stream) = default;
-    write_text_stream(FILE * pfile, write_text_stream_struct && streamstruct) : m_pfile(pfile), write_text_stream_struct(streamstruct) {}
-    ~write_text_stream();
+    write_text_stream(const ::pointer < ::string_buffer_base > & pstringbuffer);
+    write_text_stream(const write_text_stream & stream);
+    write_text_stream(write_text_stream && stream);
+    write_text_stream(const ::pointer < ::string_buffer_base > & pstringbuffer, write_text_stream_struct && streamstruct);
+    virtual ~write_text_stream();
 
 
     // void destroy() ;
@@ -594,6 +599,9 @@ public:
 
     //::filesize get_position() const ;
     void write(const void* psz, strsize s);
+
+    //void print(const ::scoped_string & scopedstr);
+
 //    {
 //
 //       m_pfile->write(psz, s);
@@ -629,3 +637,101 @@ public:
 
 
 
+
+
+template < primitive_number NUMBER >
+inline void write_text_stream::write_number(NUMBER number)
+{
+
+   print(as_string(number));
+
+}
+
+
+template < primitive_number NUMBER >
+inline void write_text_stream::write_number(NUMBER number, const ::ansi_character * pszFormat)
+{
+
+   print(as_string(number, pszFormat));
+
+}
+
+
+template < primitive_signed_not_8bit SIGNED >
+inline write_text_stream & write_text_stream::operator <<(SIGNED i)
+{
+
+   write_number(i);
+
+   if (this->fmtflags() & ::file::separated)
+   {
+
+      print(m_chSeparator);
+
+   }
+
+   return *this;
+
+}
+
+
+// // template < typename FILE >
+template < primitive_unsigned_not_8bit UNSIGNED >
+inline write_text_stream & write_text_stream::operator <<(UNSIGNED u)
+{
+
+   write_number(u);
+
+   if (this->fmtflags() & ::file::separated)
+   {
+
+      print(m_chSeparator);
+
+   }
+
+   return *this;
+
+}
+
+
+
+
+
+// // template < typename FILE >
+template < primitive_floating FLOATING >
+inline write_text_stream & write_text_stream::operator <<(FLOATING f)
+{
+
+   string strFormat;
+
+   strFormat.format("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
+
+   //   char szFormat[32];
+   //
+   //   snprintf(szFormat, sizeof(szFormat), );
+
+   write_number(f, strFormat);
+
+   if (this->fmtflags() & ::file::separated)
+   {
+
+      print(m_chSeparator);
+
+   }
+
+   return *this;
+
+}
+
+
+
+
+
+// // template < typename FILE >
+template < typename TYPE >
+inline write_text_stream & write_text_stream::write(const TYPE & t)
+{
+
+   return *this << t;
+
+}

@@ -33,11 +33,11 @@ namespace earth
 
 #ifdef WINDOWS
 
-      return time( ::_time64( nullptr ) ) ;
+      return posix_time({ posix_time_t{}, ::_time64(nullptr) });
 
 #else
 
-      return time( ::time( nullptr ) );
+      return posix_time({ posix_time_t{},  ::time(nullptr) });
 
 #endif
 
@@ -746,12 +746,24 @@ namespace earth
    }
 
 
+   bool time::operator == (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) == time; 
+   
+   }
+
+
+   ::std::strong_ordering time::operator <=> (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) <=> time; 
+   
+   }
+
+
+
 } // namespace earth
-
-
-
-
-
 
 
 

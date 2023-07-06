@@ -1063,5 +1063,53 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 }
 
 
+template < typename T >
+template < class T2 >
+inline pointer < T > & pointer < T >::operator = (::pointer<T2>&& t)
+{
+
+   auto pOld = m_p;
+
+   if (::is_set(t.m_p))
+   {
+
+      m_p = dynamic_cast <T *>(t.m_p);
+
+      m_pparticle = t.m_pparticle;
+
+      if (::is_set(m_p))
+      {
+
+         t.m_p = nullptr;
+
+         t.m_pparticle = nullptr;
+
+      }
+
+   }
+   else
+   {
+
+      m_p = nullptr;
+
+      m_pparticle = nullptr;
+
+   }
+
+   ::release(pOld);
+
+   return *this;
+
+}
+
+
+template < typename T >
+inline bool pointer < T > ::ok() const
+{
+
+   return is_set() && m_pparticle->is_ok();
+
+}
+
 
 

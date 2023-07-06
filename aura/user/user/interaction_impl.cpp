@@ -7699,18 +7699,23 @@ namespace user
 
       //}
 
-      m_puserinteraction->set_position(preposition->m_point, e_layout_window);
-
-      if (!m_pwindow->placement_log()->has_recent(preposition->m_point))
+      if (!m_pwindow->is_iconic())
       {
 
-         m_puserinteraction->set_position(preposition->m_point, e_layout_sketch);
+         m_puserinteraction->set_position(preposition->m_point, e_layout_window);
 
-         m_puserinteraction->set_reposition();
+         if (!m_pwindow->placement_log()->has_recent(preposition->m_point))
+         {
 
-         m_puserinteraction->set_need_redraw();
+            m_puserinteraction->set_position(preposition->m_point, e_layout_sketch);
 
-         m_puserinteraction->post_redraw();
+            m_puserinteraction->set_reposition();
+
+            m_puserinteraction->set_need_redraw();
+
+            m_puserinteraction->post_redraw();
+
+         }
 
       }
 

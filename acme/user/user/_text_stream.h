@@ -7,8 +7,7 @@
 #include "_string.h"
 
 
-template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, ::enum_display edisplay)
+inline ::write_text_stream & operator <<(::write_text_stream  & textstream, ::enum_display edisplay)
 {
 
    return textstream << ::as_string(edisplay);
@@ -16,8 +15,8 @@ inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > &
 }
 
 
-template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, ::enum_activation eactivation)
+
+inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::enum_activation eactivation)
 {
 
    return textstream << ::as_string(eactivation);

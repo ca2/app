@@ -2,16 +2,18 @@
 #pragma once
 
 
-constexpr bool is_null(const void* p, std::size_t s)
+inline bool is_null(const void* p, memsize s)
 {
 
-   return ((std::size_t)p <= s);
+   return ((iptr)p <= s);
 
 }
 
 
-constexpr int is_null(const void* p) { return ((uptr)p) < 65536; }
-constexpr int is_set(const void* p) { return !is_null(p); }
+inline bool is_null(const void* p) { return ::is_null(p, 65535); }
+
+
+inline int is_set(const void* p) { return !is_null(p); }
 
 
 CLASS_DECL_ACME strsize safe_strlen(void* p, strsize n);

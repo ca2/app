@@ -5,8 +5,8 @@
 
 
 
-template < typename FILE, primitive_point POINT >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const POINT & point)
+template < primitive_point POINT >
+inline ::write_text_stream & operator <<(::write_text_stream & textstream, const POINT & point)
 {
 
    return textstream << "(" << point.x()  << ", " << point.y() << ")";
@@ -14,8 +14,8 @@ inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > &
 }
 
 
-template < typename FILE, primitive_size SIZE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const SIZE & size)
+template < primitive_size SIZE >
+inline ::write_text_stream & operator <<(::write_text_stream  & textstream, const SIZE & size)
 {
 
    return textstream << "(" << size.cx()  << ", " << size.cy() << ")";
@@ -24,8 +24,8 @@ inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > &
 
 
 
-template < typename FILE, primitive_rectangle RECTANGLE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const RECTANGLE & rectangle)
+template <  primitive_rectangle RECTANGLE >
+inline ::write_text_stream & operator <<(::write_text_stream & textstream, const RECTANGLE & rectangle)
 {
 
    return textstream << "xy(" << rectangle.left  << ", " << rectangle.top << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";

@@ -138,6 +138,9 @@
 #include "_string.h"
 
 
+#include  "acme/filesystem/file/binary_stream.h"
+
+
 #include "acme/filesystem/_impl.h"
 #include "acme/primitive/datetime/_impl.h"
 #include "acme/primitive/primitive/_impl.h"

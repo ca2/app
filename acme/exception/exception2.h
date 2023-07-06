@@ -17,7 +17,7 @@ do { \
 #endif // C_RUNTIME_ERRORCHECK_SPRINTF
 
 
-inline errno_t c_runtime_error_check(errno_t error)
+CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error)
 {
     switch(error)
     {
@@ -40,12 +40,8 @@ inline errno_t c_runtime_error_check(errno_t error)
     return error;
 }
 
-inline void __cdecl __clearerr_s(FILE *stream)
-{
-#ifdef WINDOWS
-   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
-#else
-   ::clearerr(stream);
-   C_RUNTIME_ERROR_CHECK(errno);
-#endif
-}
+
+
+
+
+

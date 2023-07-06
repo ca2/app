@@ -314,7 +314,7 @@
 //
 //
 //
-////void element::write(::binary_stream < FILE > & stream) const
+////void element::write(::binary_stream & stream) const
 ////{
 ////
 ////   throw interface_only();
@@ -322,7 +322,7 @@
 ////}
 ////
 ////
-////void element::read(::binary_stream < FILE > & stream)
+////void element::read(::binary_stream & stream)
 ////{
 ////
 ////   throw interface_only();

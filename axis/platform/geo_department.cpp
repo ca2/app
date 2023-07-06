@@ -8,7 +8,7 @@
 #include "acme/platform/sequencer.h"
 #include "acme/primitive/datetime/_binary_stream.h"
 #include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/datetime/zonetime.h"
+#include "acme/primitive/datetime/earth_zone_time.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/collection/_map_binary_stream.h"
 #include "acme/primitive/datetime/_binary_stream.h"
@@ -98,7 +98,7 @@ namespace geo
 
          auto pfile = __new(memory_file(memory));
 
-         auto stream = __binary_stream(pfile);
+         binary_stream stream(pfile);
 
 
             stream >> m_straCity;
@@ -249,7 +249,7 @@ namespace geo
 
             auto pfileOut = pfile->get_writer(pathFolder / "weather.bin");
 
-            auto stream = __binary_stream(pfileOut);
+            binary_stream stream(pfileOut);
 
             stream << m_straCity;
             stream << m_straCityLo;
@@ -589,9 +589,9 @@ namespace geo
 
       v.parse_network_payload(pszJson);
 
-      ::earth::zonetime timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_i64() }, iTimeZone);
+      ::earth::zone_time timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_i64() }, iTimeZone);
 
-      ::earth::zonetime timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_i64() }, iTimeZone);
+      ::earth::zone_time timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_i64() }, iTimeZone);
 
       iRise = (int)timeSunrise.GetZoneTimeOfDay().m_iSecond;
 
@@ -1352,7 +1352,7 @@ namespace geo
             if (pfile.ok())
             {
 
-               auto reader = __binary_stream(pfile);
+               binary_stream reader(pfile);
 
                synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
@@ -1432,7 +1432,7 @@ namespace geo
             if (pfile.ok())
             {
 
-               auto reader = __binary_stream(pfile);
+               binary_stream reader(pfile);
 
                synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
@@ -1559,7 +1559,7 @@ namespace geo
 
             auto file = ::particle::file()->get_reader(path);
 
-            auto reader = __binary_stream(file);
+            binary_stream reader(file);
 
             synchronous_lock synchronouslock(m_pmutexCityWeather);
 
@@ -1851,7 +1851,7 @@ namespace geo
          if (pfile)
          {
 
-            auto writer = __binary_stream(pfile);
+            binary_stream writer(pfile);
 
             synchronous_lock synchronouslock(m_pmutexCityTimeZone);
 
@@ -1881,7 +1881,7 @@ namespace geo
          if (pfile)
          {
 
-            auto writer = __binary_stream(pfile);
+            binary_stream writer(pfile);
 
             synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
 
@@ -1908,7 +1908,7 @@ namespace geo
 
          auto pfile = file()->get_writer(path);
 
-         auto writer = __binary_stream(pfile);
+         binary_stream writer(pfile);
 
          synchronous_lock synchronouslock(m_pmutexCityWeather);
 

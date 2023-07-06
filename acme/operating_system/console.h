@@ -2,20 +2,20 @@
 
 
 #include "acme/operating_system/_const_console.h"
-#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/string_buffer.h"
 
 
 void RedirectIOToConsole();
 
 
-class std_out_buffer:
-   virtual public ::file::file
+class CLASS_DECL_ACME std_out_buffer:
+   virtual public ::string_buffer_base
 {
 public:
 
 
-   std_out_buffer() {}
-   virtual ~std_out_buffer() {}
+   std_out_buffer();
+   ~std_out_buffer() override;
 
 
    void write(const void * pdata,memsize nCount);
@@ -46,15 +46,15 @@ namespace console
 
 
 
-      ::write_text_stream < ::file::file >         m_cout;
+      ::write_text_stream                          m_cout;
       int                                          m_iTextColor;
 
 
-      console(::file::file * pfile = nullptr);
+      console(const ::pointer < ::string_buffer_base > & pstringbuffer = nullptr);
       ~console() override;
 
 
-      inline ::write_text_stream < ::file::file > & cout() { return m_cout; }
+      inline ::write_text_stream & cout() { return m_cout; }
 
 
       virtual void redirect_io();

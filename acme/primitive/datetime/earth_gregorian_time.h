@@ -76,7 +76,7 @@ namespace earth
          void set(const file_time_t *pfiletime);
 
 
-         void Now(const time_shift &timeshift = time_shift::none());
+         //void Now(const time_shift &timeshift = time_shift::none());
 
 
          posix_time make_utc_time() const;

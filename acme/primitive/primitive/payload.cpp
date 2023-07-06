@@ -2884,6 +2884,65 @@ string payload::get_recursive_string() const
 }
 
 
+::posix_time payload::as_time(const class ::time & timeDefault) const
+{
+
+   if (m_etype == e_type_payload_pointer)
+   {
+      return m_ppayload->as_time(timeDefault);
+   }
+   else if (m_etype == e_type_property)
+   {
+      return m_pproperty->as_time(timeDefault);
+   }
+   else if (m_etype != e_type_time)
+   {
+
+      class ::time time;
+
+      if (m_etype == ::e_type_null)
+      {
+
+         time = timeDefault;
+
+      }
+      else if (is_integer())
+      {
+
+         time.m_iSecond = as_i64();
+
+      }
+      else if (is_floating())
+      {
+
+         auto f = f64();
+
+         time.m_iSecond = (::i64)floor(f);
+         time.m_iNanosecond = (::i64)(fmod(f, 1.0) * 1'000'000'000.0);
+
+      }
+      else 
+      {
+
+         time = timeDefault;
+
+      }
+
+      return time;
+
+   }
+   else
+   {
+
+      return m_time;
+
+   }
+
+}
+
+
+
+
 string payload::as_string(const ::scoped_string & scopedstrOnNull) const
 {
 

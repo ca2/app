@@ -69,7 +69,7 @@ namespace dynamic_source
 
       m_pfileError.create_new(this);
 
-      m_streamError.m_pfile = m_pfileError;
+      m_textstreamError.m_pstringbuffer = m_pfileError;
 
       //return estatus;
 
@@ -196,7 +196,7 @@ namespace dynamic_source
 
       m_bHasTempOsError          = false;
 
-      m_streamError.m_pfile->set_size(0);
+      m_textstreamError.m_pfile->set_size(0);
 
       m_strError.empty();
 
@@ -346,13 +346,13 @@ namespace dynamic_source
          if(HasTempError())
          {
 
-            m_streamError << m_strScriptPath << ": does not exist because of \"temp\" error.";
+            m_textstreamError << m_strScriptPath << ": does not exist because of \"temp\" error.";
 
          }
          else
          {
 
-            m_streamError << m_strScriptPath << ": does not exist.";
+            m_textstreamError << m_strScriptPath << ": does not exist.";
 
          }
 
@@ -402,7 +402,7 @@ namespace dynamic_source
 
             str.format("%d - ", dwMessageId);
 
-            m_streamError << strStagePath << " : LoadLibrary, get_last_error : " << str << dwMessageId;
+            m_textstreamError << strStagePath << " : LoadLibrary, get_last_error : " << str << dwMessageId;
 
 #endif
 

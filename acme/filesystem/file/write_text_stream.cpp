@@ -63,11 +63,11 @@ write_text_stream::write_text_stream(write_text_stream && stream) :
 //write_text_stream write_text_stream(const write_text_stream& stream) = delete;
 
 
-write_text_stream::write_text_stream(const ::pointer < ::string_buffer_base > & pstringbuffer, write_text_stream_struct && streamstruct) :
+write_text_stream::write_text_stream(const ::file_pointer & pfile, write_text_stream_struct && streamstruct) :
    write_text_stream_struct(streamstruct) 
 {
 
-   m_pstringbuffer = pstringbuffer;
+   m_pfile = pfile;
 
 }
 

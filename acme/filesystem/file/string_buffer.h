@@ -6,7 +6,7 @@ class string_buffer;
 
 
 class string_buffer_base :
-   virtual public ::particle
+   virtual public ::file::file
 {
 public:
 

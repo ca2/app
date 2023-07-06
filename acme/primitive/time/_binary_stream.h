@@ -6,8 +6,8 @@
 #include "acme/filesystem/file/binary_stream.h"
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::posix_time & posixtime)
+
+inline binary_stream & operator <<(binary_stream  & s, const ::posix_time & posixtime)
 {
 
    s << posixtime.m_iSecond;
@@ -17,8 +17,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::posix_time & posixtime)
+inline binary_stream & operator >>(binary_stream & s, ::posix_time & posixtime)
 {
 
    s >> posixtime.m_iSecond;
@@ -28,8 +27,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::posix_
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::nanosecond & nanosecond)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & s, const ::nanosecond & nanosecond)
 {
 
    s << nanosecond.m_iNanosecond;
@@ -39,8 +38,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::nanosecond & nanosecond)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & s, ::nanosecond & nanosecond)
 {
 
    s >> nanosecond.m_iNanosecond;
@@ -54,8 +53,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::nanose
 
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const class ::time & time)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & s, const class ::time & time)
 {
 
    s << (const ::posix_time &) time;
@@ -66,8 +65,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const cl
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, class ::time & time)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & s, class ::time & time)
 {
 
    s >> (::posix_time &)time;

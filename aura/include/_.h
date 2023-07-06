@@ -1533,7 +1533,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////using file_pointer = ::pointer<::file::file>
 ////
 ////class stream;
-////class binary_stream < FILE >;
+////class binary_stream;
 ////
 ////template < typename BASE_TYPE >
 ////inline stream & __save_object(stream & stream, BASE_TYPE * p);

@@ -645,7 +645,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, ::u
 
    //   memory_file memoryfile;
 
-   //   ::binary_stream < FILE > streamObject;
+   //   ::binary_stream streamObject;
 
    //   streamObject.set_storing();
 

@@ -12,6 +12,7 @@
 
 
 #include "acme/_operating_system.h"
+#include "acme/operating_system/posix/time.h"
 
 
 #include <time.h>
@@ -32,11 +33,11 @@ namespace earth
 
 #ifdef WINDOWS
 
-      return time( ::_time64( nullptr ) ) ;
+      return posix_time({ posix_time_t{}, ::_time64(nullptr) });
 
 #else
 
-      return time( ::time( nullptr ) );
+      return posix_time({ posix_time_t{},  ::time(nullptr) });
 
 #endif
 
@@ -745,12 +746,24 @@ namespace earth
    }
 
 
+   bool time::operator == (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) == time; 
+   
+   }
+
+
+   ::std::strong_ordering time::operator <=> (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) <=> time; 
+   
+   }
+
+
+
 } // namespace earth
-
-
-
-
-
 
 
 
@@ -829,7 +842,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 
    struct tm * ptm;
 
-   ptm = time.tm_struct(&ttm);
+   ptm = tm_struct(&ttm, time);
 
    st.wDay = ptm->tm_mday;
    st.wDayOfWeek = ptm->tm_wday;

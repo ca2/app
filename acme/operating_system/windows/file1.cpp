@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/operating_system/console.h"
 #include "acme/_operating_system.h"
 
 
@@ -107,3 +108,24 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 
 
 
+
+
+
+
+void std_out_buffer::write(const void * pdata, memsize nCount)
+{
+
+#ifdef WINDOWS
+
+   DWORD dw;
+
+   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
+
+#else
+
+   fwrite(pdata, nCount, 1, stdout);
+
+
+#endif
+
+}

@@ -7,6 +7,7 @@
 #include "acme/primitive/datetime/system_time.h"
 #include "acme/platform/nanosecond_timer.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/posix/time.h"
 #include <time.h>
 
 
@@ -117,7 +118,11 @@ void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystem
 
    copy(tm, *psystemtime);
 
-   *ptime = ::earth::make_utc_time(&tm);
+   ::earth::gregorian::time gregoriantime;
+
+   copy(&gregoriantime, &tm);
+
+   *ptime = gregoriantime.make_utc_time();
 
 }
 

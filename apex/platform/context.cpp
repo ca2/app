@@ -1388,7 +1388,7 @@ namespace apex
    void context::_load_from_file(::particle * pparticle, const ::payload & payloadFile, const ::payload & varOptions)
    {
 
-      auto reader = __binary_stream(file()->get_reader(payloadFile));
+      binary_stream read(file()->get_reader(payloadFile));
 
       //read(reader);
 
@@ -1400,7 +1400,7 @@ namespace apex
    void context::_save_to_file(const ::payload & payloadFile, const ::payload & varOptions, const ::particle * pparticle)
    {
 
-      auto writer = __binary_stream(file()->get_writer(payloadFile));
+      binary_stream write(file()->get_writer(payloadFile));
 
       //write(writer);
 

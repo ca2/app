@@ -8,7 +8,7 @@ namespace earth
 {
 
 
-   class CLASS_DECL_ACME zonetime :
+   class CLASS_DECL_ACME zone_time :
       public time
    {
    public:
@@ -17,13 +17,13 @@ namespace earth
       time_shift     m_timeshift;
 
 
-      static zonetime get_current_time(posix_time iZone) noexcept;
+      zone_time() noexcept;
+      zone_time(const zone_time & zonetime) noexcept;
+      zone_time(posix_time zonetime, time_shift timeshift) noexcept;
+      zone_time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset);
 
-      zonetime() noexcept;
-      zonetime(const zonetime & zonetime) noexcept;
-      zonetime(posix_time zonetime, int iZoneOffset) noexcept;
-      zonetime(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset);
 
+      static zone_time get_current_time(time_shift timeshift) noexcept;
 
       ::earth::gregorian::time get_zone_time() const;
 
@@ -50,7 +50,7 @@ namespace earth
 
 
 //#ifdef __DEBUG
-//CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime time);
+//CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::zone_time time);
 //#endif
 
 

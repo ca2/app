@@ -7,7 +7,7 @@
 //
 #pragma once
 
-template < typename FILE >
+// template < typename FILE >
 inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const ::earth::time & time)
 {
 

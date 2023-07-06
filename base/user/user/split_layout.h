@@ -48,22 +48,22 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual i32 get_normal_dimension();
-      virtual i32 get_ortogonal_dimension();
+      virtual i32 get_normal_dimension(enum_layout elayout = e_layout_design);
+      virtual i32 get_ortogonal_dimension(enum_layout elayout = e_layout_design);
 
       //void RelayEventSplitBar(index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam);
       enum_orientation GetSplitOrientation();
-      i32 GetMaxPos(index iPane);
-      i32 GetMinPos(index iPane);
+      i32 GetMaxPos(index iPane, enum_layout elayout = e_layout_design);
+      i32 GetMinPos(index iPane, enum_layout elayout = e_layout_design);
       bool InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom idPane = atom());
       bool SetPane(index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, atom idPane = atom());
       bool RemovePaneAt(index iIndex);
       void SetPaneFixedSize(index iIndex, const ::size_i32 & pSize);
-      void CalcSplitBarRect(index iIndex, ::rectangle_i32 & rectangle);
+      void CalcSplitBarRect(index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
 
-      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, ::rectangle_i32 & rectangle);
+      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
 
-      void CalcPaneRect(index iIndex, ::rectangle_i32 & rectangle);
+      void CalcPaneRect(index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
 
 
       virtual ::user::interaction * get_pane_window(index iPane);
@@ -85,8 +85,8 @@ namespace user
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      i32 GetMaxPos();
-      i32 GetMinPos();
+      i32 GetMaxPos(enum_layout elayout = e_layout_design);
+      i32 GetMinPos(enum_layout elayout = e_layout_design);
       i32 GetPos(i32 xPos, i32 yPos);
       void RelayChildEvent(index iIndex, const MESSAGE *  pMsg);
 

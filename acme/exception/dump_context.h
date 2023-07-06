@@ -4,7 +4,7 @@
 //////#include "acme/primitive/primitive/object.h"
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //class CLASS_DECL_ACME dump_context :
 //   virtual public text_stream <
 //{

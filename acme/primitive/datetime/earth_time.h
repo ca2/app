@@ -142,7 +142,8 @@ namespace earth
       time_span abs_diff(const ::earth::time &time) const;
 
 
-      DECLARE_COMPARISON_WITH_TIME(inline)
+      bool operator == (const class  ::time & time) const; \
+      ::std::strong_ordering operator <=> (const class  ::time & time) const;
 
    };
 

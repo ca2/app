@@ -3,7 +3,7 @@
 
 
 template < typename FILE, primitive_point POINT >
-inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const POINT & point)
+inline binary_stream & operator << (binary_stream & s, const POINT & point)
 {
 
    s << point.x();
@@ -15,7 +15,7 @@ inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const P
 
 
 template < typename FILE, primitive_point POINT >
-inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, POINT & point)
+inline binary_stream & operator >> (binary_stream & s, POINT & point)
 {
 
    s >> point.x();
@@ -27,7 +27,7 @@ inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, POINT &
 
 
 template < typename FILE, primitive_size SIZE >
-inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const SIZE & size)
+inline binary_stream & operator << (binary_stream & s, const SIZE & size)
 {
 
    s << size.cx();
@@ -39,7 +39,7 @@ inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const S
 
 
 template < typename FILE, primitive_size SIZE >
-inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, SIZE & size)
+inline binary_stream & operator >> (binary_stream & s, SIZE & size)
 {
 
    s >> size.cx();
@@ -51,7 +51,7 @@ inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, SIZE & 
 
 
 template < typename FILE, primitive_rectangle RECTANGLE >
-inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const RECTANGLE & rectangle)
+inline binary_stream & operator << (binary_stream & s, const RECTANGLE & rectangle)
 {
 
    s << rectangle.left;
@@ -65,7 +65,7 @@ inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const R
 
 
 template < typename FILE, primitive_rectangle RECTANGLE >
-inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, RECTANGLE & rectangle)
+inline binary_stream & operator >> (binary_stream & s, RECTANGLE & rectangle)
 {
 
    s >> rectangle.left;

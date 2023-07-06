@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "text_file.h"
+#include "acme/filesystem/file/text_file.h"
 
 
 #include <stdio.h>
@@ -80,5 +80,12 @@ CLASS_DECL_ACME ::pointer<stdio_file> stdio_open(::particle * pparticle, const :
 
 
 ::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize = 1024);
+
+
+
+
+
+CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
+
 
 

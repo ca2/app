@@ -109,7 +109,7 @@ namespace earth
 
     class time;
     class time_span;
-    class zonetime;
+    class zone_time;
     class date_span;
  
 } // namespace earth

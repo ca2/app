@@ -1,5 +1,75 @@
+// Detemplatized by camilo on 2023-07-06 07:28 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-//#include "string_buffer.h"
+#include "string_buffer.h"
+
+
+
+
+string_buffer_base::string_buffer_base()
+{
+
+}
+
+
+string_buffer_base::~string_buffer_base()
+{
+
+}
+
+
+void string_buffer_base::write(const ::block & block)
+{
+   
+
+}
+
+
+void string_buffer_base::flush()
+{
+
+
+}
+
+
+void string_buffer_base::close()
+{
+
+
+}
+
+
+bool string_buffer_base::is_empty() const
+{
+
+   return true;
+
+}
+
+
+filesize string_buffer_base::length() const
+{
+
+   return 0;
+
+}
+
+
+filesize string_buffer_base::get_position() const
+{
+
+   return -1000;
+
+   //   retu
+
+}
+
+
+bool string_buffer_base::unget_if(::ansi_character ch)
+{
+
+   return false;
+
+}
 
 //namespace file
 //{
@@ -177,3 +247,172 @@
 ////
 ////
 ////
+
+
+
+
+string_reference_buffer::string_reference_buffer(::string & str) : 
+   m_str(str) 
+{
+
+}
+
+
+string_reference_buffer::~string_reference_buffer()
+{
+
+}
+
+void string_reference_buffer::write(const ::block & block)
+{
+
+   m_str.append((const ::ansi_character *)block.data(), block.size());
+
+}
+
+//virtual stream & write(stream & ostream) const override;
+
+//::string str() const
+//{
+
+//   return m_str;
+
+//}
+
+//virtual void flush();
+
+//virtual void close();
+
+
+void string_reference_buffer::flush()
+{
+
+
+}
+
+
+void string_reference_buffer::close()
+{
+
+
+}
+
+
+bool string_reference_buffer::is_empty() const
+{
+
+   return m_str.is_empty();
+
+}
+
+
+filesize string_reference_buffer::length() const
+{
+
+   return m_str.length();
+
+}
+
+
+filesize string_reference_buffer::get_position() const
+{
+
+   return -1000;
+
+   //   retu
+
+}
+
+bool string_reference_buffer::unget_if(::ansi_character ch)
+{
+
+   if (m_str.last_char() != ch)
+   {
+
+      return false;
+
+   }
+
+   m_str.truncate(m_str.end() - 1);
+
+   return true;
+
+}
+
+
+//}
+
+
+//void destroy() { }
+//void alloc(strsize iSize);
+
+//void alloc_up(strsize iAtLeast);
+
+//void set(const ::scoped_string & scopedstr, strsize len)
+//{
+
+
+
+//}
+
+//void set(const ::string& str)
+//{
+//   set(str, str.length());
+//}
+
+
+//void append(const ::scoped_string & scopedstr, strsize len)
+//{
+
+//   m_str.append
+
+//}
+
+//void append(const ::string& str)
+//{
+//   append(str, str.length());
+//}
+
+
+
+//operator const string& () const
+//{
+
+//   return m_str;
+
+//}
+
+
+//string as_string() const;
+
+
+//string_buffer& operator += (const ::string& str)
+//{
+//   append(str);
+//   return *this;
+//}
+
+//string_buffer& operator = (const ::string& str)
+//{
+//   set(str);
+//   return *this;
+//}
+
+
+string_buffer::string_buffer() :
+      string_reference_buffer(m_strOwnStorage)
+   {
+
+
+   }
+
+string_buffer::string_buffer(string_buffer && buffer) :
+      m_strOwnStorage(::transfer(buffer.m_strOwnStorage)),
+      string_reference_buffer(m_strOwnStorage)
+   {
+
+   }
+string_buffer::~string_buffer()
+   {
+
+   }

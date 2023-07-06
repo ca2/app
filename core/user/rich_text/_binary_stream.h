@@ -8,8 +8,8 @@
 #include "core/user/rich_text/edit_impl.h"
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::user::rich_text::format & format)
+// template < typename FILE >
+::binary_stream & operator <<(::binary_stream & stream, const ::user::rich_text::format & format)
 {
 
    stream << format.m_bItalic;
@@ -26,8 +26,8 @@ template < typename FILE >
 }
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, ::user::rich_text::format &format)
+// template < typename FILE >
+::binary_stream & operator <<(::binary_stream & stream, ::user::rich_text::format &format)
 {
              
    stream >> format.m_bItalic;
@@ -44,8 +44,8 @@ template < typename FILE >
 }
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::user::rich_text::span & span)
+// template < typename FILE >
+::binary_stream & operator <<(::binary_stream & stream, const ::user::rich_text::span & span)
 {
 
    property_set set;
@@ -62,8 +62,8 @@ template < typename FILE >
 }
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, ::user::rich_text::span & span)
+// template < typename FILE >
+::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::span & span)
 {
 
    property_set set;
@@ -89,8 +89,8 @@ template < typename FILE >
 }
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::user::rich_text::data & data)
+// template < typename FILE >
+::binary_stream & operator <<(::binary_stream & stream, const ::user::rich_text::data & data)
 {
 
    synchronous_lock synchronouslock(data.synchronization());
@@ -104,8 +104,8 @@ template < typename FILE >
 }
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, ::user::rich_text::data & data)
+// template < typename FILE >
+::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::data & data)
 {
 
    synchronous_lock synchronouslock(data.synchronization());
@@ -126,8 +126,8 @@ template < typename FILE >
 
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, ::user::rich_text::edit_impl & editimpl)
+// template < typename FILE >
+::binary_stream & operator <<(::binary_stream & stream, ::user::rich_text::edit_impl & editimpl)
 {
 
    stream << (const ::user::picture &) editimpl;
@@ -152,8 +152,8 @@ template < typename FILE >
 }
 
 
-template < typename FILE >
-::binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, ::user::rich_text::edit_impl & editimpl)
+// template < typename FILE >
+::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::edit_impl & editimpl)
 {
 
    stream >> (const ::user::picture &)editimpl;

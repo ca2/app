@@ -19,8 +19,8 @@ namespace console
 {
 
 
-   console::console(::file::file * pfile) :
-      m_cout(pfile)
+   console::console(const ::pointer < ::string_buffer_base > & pstringbuffer) :
+      m_cout(pstringbuffer)
    {
 
 
@@ -372,4 +372,38 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string
 }
 
 
+std_out_buffer::std_out_buffer()
+{
 
+}
+
+
+std_out_buffer::~std_out_buffer()
+{
+
+}
+
+
+
+
+
+
+//
+//
+//void std_out_buffer::write(const void * pdata, memsize nCount)
+//{
+//
+//#ifdef WINDOWS
+//
+//   DWORD dw;
+//
+//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
+//
+//#else
+//
+//   fwrite(pdata, nCount, 1, stdout);
+//
+//
+//#endif
+//
+//}

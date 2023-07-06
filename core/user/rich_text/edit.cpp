@@ -849,7 +849,7 @@ namespace user
       }
 
 
-      //void edit::write(::binary_stream < FILE > & stream) const
+      //void edit::write(::binary_stream & stream) const
       //{
 
       //   return ::user::picture::write(stream);
@@ -857,7 +857,7 @@ namespace user
       //}
 
 
-      //void edit::read(::binary_stream < FILE > & stream)
+      //void edit::read(::binary_stream & stream)
       //{
 
       //   return ::user::picture::read(stream);

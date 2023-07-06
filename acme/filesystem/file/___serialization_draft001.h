@@ -170,7 +170,7 @@ write(u64) throw not_implemented;
 }
 
 
-binary_stream < FILE >
+binary_stream
 {
 
 

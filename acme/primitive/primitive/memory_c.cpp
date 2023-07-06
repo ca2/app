@@ -35,7 +35,7 @@ CLASS_DECL_ACME void* memory_transfer(void * dst, const void * src, memsize iSiz
 
    }
 
-   return memory_transfer(dst, src, (size_t) iSize);
+   return memmove(dst, src, (size_t) iSize);
 
 }
 
@@ -58,7 +58,7 @@ CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize)
    }
 
    if (::is_null(p)) return nullptr;
-   return memory_set(p, i, (size_t) iSize);
+   return memset(p, i, (size_t) iSize);
 //   uchar * puch = (uchar * ) p;
 //   while(iSize > 0)
 //   {
@@ -137,7 +137,7 @@ CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize)
 
    }
 
-   ::memory_copy(dst, src, (size_t) iSize);
+   ::memcpy(dst, src, (size_t) iSize);
 
    return dst;
 
@@ -183,7 +183,7 @@ CLASS_DECL_ACME ::std::strong_ordering memory_order(const void * p1, const void 
 
    }
 
-   return memory_order(p1, p2, (size_t) iLen) <=> 0;
+   return memcmp(p1, p2, (size_t) iLen) <=> 0;
 
 }
 

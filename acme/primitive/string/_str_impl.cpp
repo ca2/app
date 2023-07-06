@@ -351,11 +351,11 @@ CLASS_DECL_ACME void from_string(::wd32_character sz[n], const ::ansi_character 
 }
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //CLASS_DECL_ACME ::string as_string(const ::string_stream & strstream);
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //CLASS_DECL_ACME ::string as_string(const ::text_stream < FILE > & strstream);
 
 
@@ -423,29 +423,6 @@ CLASS_DECL_ACME void to_string(string & str, const double & d);
 
 
 
-CLASS_DECL_ACME strsize str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
-{
-
-   const ::ansi_character * pszDec = unicode_prior(pszBeg, psz);
-
-   if (pszDec == nullptr)
-   {
-
-      return -1;
-
-   }
-
-   return psz - pszDec;
-
-}
-
-
-CLASS_DECL_ACME  strsize str::utf8_inc_len(const ::ansi_character * psz)
-{
-
-   return get_utf8_char_length(psz);
-
-}
 
 
 CLASS_DECL_ACME bool str::namespaced(const ::ansi_character * psz, const ::ansi_character * pszNamespace, const ::ansi_character * pszSeparator)

@@ -138,7 +138,7 @@ public:
    TYPE pop_to();
 
 
-   void CopySorted(const numeric_array & array, TYPE & tOffset, TYPE & tMin);
+   void CopySorted(const numeric_array & array, const TYPE & tOffset, const TYPE & tMin);
 
    void Diff(
    const numeric_array & array1,
@@ -148,7 +148,7 @@ public:
 
    void ElementDiff(
    const numeric_array & array1,
-   TYPE & tMax);
+   const TYPE & tMax);
 
    TYPE simple_total_mean();
 
@@ -602,8 +602,8 @@ Cmp(const numeric_array & array1)
 template < typename TYPE, ::enum_type m_etypeContainer >
 void numeric_array < TYPE, m_etypeContainer >::CopySorted(
    const numeric_array< TYPE, m_etypeContainer > & a,
-TYPE & tOffset,
-TYPE & tMin)
+const TYPE & tOffset,
+const TYPE & tMin)
 {
 
 
@@ -643,7 +643,7 @@ const numeric_array < TYPE, m_etypeContainer > & array2)
 template < typename TYPE, ::enum_type m_etypeContainer >
 void numeric_array < TYPE, m_etypeContainer >::ElementDiff(
 const numeric_array  & a,
-TYPE & tMax)
+const TYPE & tMax)
 {
    ::index i;
    TYPE t;

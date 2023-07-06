@@ -2,9 +2,7 @@
 #pragma once
 
 
-
-
-template < typename FILE, typename PAIR >
+template <  typename PAIR >
 inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR > & m)
 {
 
@@ -33,7 +31,7 @@ inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR
 }
 
 
-template < typename FILE, typename PAIR >
+template < typename PAIR >
 inline binary_stream & operator >>(binary_stream & stream, pair_map < PAIR > & m)
 {
 

@@ -4,7 +4,7 @@
 
 //#include "earth_time.h"
 //#include "time_span.h"
-#include "earth_zonetime.h"
+#include "earth_zone_time.h"
 
 
 // template < typename FILE >
@@ -78,7 +78,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::datetime::time_zone
 
 
 // template < typename FILE >
-inline binary_stream & operator >>(binary_stream & s, ::earth::zonetime & z)
+inline binary_stream & operator >>(binary_stream & s, ::earth::zone_time & z)
 {
 
    s >> z.m_iSecond;
@@ -90,7 +90,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::zonetime & z)
 
 
 // template < typename FILE >
-inline binary_stream & operator <<(binary_stream & s, const ::earth::zonetime & z)
+inline binary_stream & operator <<(binary_stream & s, const ::earth::zone_time & z)
 {
 
    s << z.m_iSecond;

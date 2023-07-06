@@ -11,7 +11,7 @@ inline binary_stream & operator <<(binary_stream & stream, const class ::string_
 {
 
    stream << t.m_str;
-   stream << t.m_time;
+   stream << t.m_time.m_iSecond;
 
    return stream;
 
@@ -23,7 +23,7 @@ inline binary_stream & operator >>(binary_stream & stream, class ::string_timeou
 {
 
    stream >> t.m_str;
-   stream >> t.m_time;
+   stream >> t.m_time.m_iSecond;
 
    return stream;
 

@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/filesystem/file/binary_stream.h"
+
+
 // template < typename FILE >
 inline binary_stream & operator << (binary_stream & s, const ::color::HLS & hls)
 {

@@ -452,17 +452,17 @@ public:
 
 
 
-   template < typename TYPE >
-   inline binary_stream & operator <<(const TYPE * p) { *this << *p;  return *this; }
+   //template < typename TYPE >
+   //inline binary_stream & operator <<(const TYPE * p) { *this << *p;  return *this; }
 
-   template < typename TYPE >
-   inline binary_stream & operator >>(TYPE * p) { *this >> *p; return *this; }
+   //template < typename TYPE >
+   //inline binary_stream & operator >>(TYPE * p) { *this >> *p; return *this; }
 
-   template < typename TYPE >
-   inline binary_stream & operator <<(const ::pointer<TYPE>& p) { *this << *p;  return *this; }
+   //template < typename TYPE >
+   //inline binary_stream & operator <<(const ::pointer<TYPE>& p) { *this << *p;  return *this; }
 
-   template < typename TYPE >
-   inline binary_stream & operator >>(::pointer<TYPE>& p) { *this >> *p; return *this; }
+   //template < typename TYPE >
+   //inline binary_stream & operator >>(::pointer<TYPE>& p) { *this >> *p; return *this; }
 
 
 

@@ -69,7 +69,7 @@ namespace dynamic_source
 
       m_pfileError.create_new(this);
 
-      m_textstreamError.m_pstringbuffer = m_pfileError;
+      m_textstreamError.m_pfile = m_pfileError;
 
       //return estatus;
 

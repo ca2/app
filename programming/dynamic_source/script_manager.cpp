@@ -613,7 +613,7 @@ namespace dynamic_source
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
 
-               if (pinstanceParent->m_pscript2->m_streamError.m_pfile->size() > 0)
+               if (pinstanceParent->m_pscript2->m_textstreamError.m_pfile->size() > 0)
                {
 
                   pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);

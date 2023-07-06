@@ -302,7 +302,7 @@ namespace dynamic_source
 
       information("Compiling script %s", pscript->m_strName.c_str());
 
-      auto & ostreamError = pscript->m_streamError;
+      auto & ostreamError = pscript->m_textstreamError;
 
       ::file::path strName(pscript->m_strName);
 

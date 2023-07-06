@@ -87,7 +87,7 @@ void * standard_exception::siginfodup(void * psiginfo)
 
    auto p = malloc(sizeof(siginfo_t));
 
-   memcpy(p, psiginfo, sizeof(siginfo_t));
+   memory_copy(p, psiginfo, sizeof(siginfo_t));
 
    return p;
 

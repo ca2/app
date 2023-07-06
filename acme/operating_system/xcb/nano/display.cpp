@@ -870,7 +870,7 @@ namespace xcb
 
       xcb_client_message_event_t event;
 
-      memset(&event, 0, sizeof(event));
+      memory_set(&event, 0, sizeof(event));
 
       event.response_type = XCB_CLIENT_MESSAGE;
       event.format = 32;

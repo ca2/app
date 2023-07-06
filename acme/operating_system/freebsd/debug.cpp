@@ -169,7 +169,7 @@ void output_debug_string(const scoped_string & scopedstrFormat)
 
       output_debug_string_format("%s", ::string(scopedstrFormat).c_str());
 
-      fflush(stdout);
+      //fflush(stdout);
 
    }
 

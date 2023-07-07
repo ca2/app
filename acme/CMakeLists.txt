@@ -156,9 +156,9 @@ list(APPEND library_source
    filesystem/file/streamable_composite.cpp
    filesystem/file/streamable_composite.h
    filesystem/file/string_buffer.cpp
-
-
    filesystem/file/string_buffer.h #3 ***----
+   filesystem/file/string_stream.cpp
+   filesystem/file/string_stream.h
    filesystem/file/text_file.cpp
    filesystem/file/text_stream.cpp
    filesystem/file/transfer.cpp

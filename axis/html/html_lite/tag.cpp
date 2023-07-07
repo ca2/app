@@ -221,10 +221,10 @@ lite_html_tag::~lite_html_tag()
          // attribute/value pairs could not be parsed?
       {
          SAFE_DELETE_POINTER(pcollAttr);
-         if ((pszEnd = ::strstr(pszBegin, "/>")) == nullptr)
+         if ((pszEnd = ::ansi_str(pszBegin, "/>")) == nullptr)
 
          {
-            if ((pszEnd = ::strchr(pszBegin, '>')) == nullptr)
+            if ((pszEnd = ::ansi_chr(pszBegin, '>')) == nullptr)
 
                return (0U);
          }

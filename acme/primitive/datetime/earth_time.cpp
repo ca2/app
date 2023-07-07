@@ -762,7 +762,7 @@ namespace earth
    }
 
 
-   ::i64 time::total_minutes(const time_shift & timeshift = time_shift::none()) const noexcept
+   ::i64 time::total_minutes(const time_shift & timeshift) const noexcept
    {
    
       return m_iSecond / 60;

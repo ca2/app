@@ -522,7 +522,7 @@ void memory_base::append_entire_file(::file::file * pfileIn, memsize uiBufferSiz
 //            
 //            auto errorcode = errno_error_code(iErrNo);
 //            
-//            auto estatus = errno_status(iErrNo);
+//            auto estatus = cerrornumber.estatus();
 //            
 //            throw ::file::exception(estatus, errorcode, m_path, "");
 //

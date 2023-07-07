@@ -45,6 +45,31 @@ struct CLASS_DECL_ACME posix_time
       return *this;
    }
 
+
+   template < primitive_integral INTEGRAL >
+   constexpr posix_time & operator *=(INTEGRAL i)
+   {
+      m_iSecond *= i;
+      return *this;
+   }
+
+
+   template < primitive_integral INTEGRAL >
+   constexpr posix_time & operator /=(INTEGRAL i)
+   {
+      m_iSecond /= i;
+      return *this;
+   }
+
+
+   template < primitive_integral INTEGRAL >
+   constexpr posix_time & operator %=(INTEGRAL i)
+   {
+      m_iSecond %= i;
+      return *this;
+   }
+
+
    template < primitive_integral INTEGRAL >
    constexpr posix_time operator * (INTEGRAL i)  const
    {
@@ -56,6 +81,13 @@ struct CLASS_DECL_ACME posix_time
    constexpr posix_time operator / (INTEGRAL i)  const
    {
       return { posix_time_t{}, m_iSecond / i };
+   }
+
+
+   template < primitive_integral INTEGRAL >
+   constexpr posix_time operator % (INTEGRAL i)  const
+   {
+      return { posix_time_t{}, m_iSecond % i };
    }
 
 

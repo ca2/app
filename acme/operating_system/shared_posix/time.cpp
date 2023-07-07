@@ -4,6 +4,7 @@
 #include "acme/primitive/datetime/earth_zone_time.h"
 #ifdef FREEBSD
 #undef _C11_SOURCE
+#define __XSI_VISIBLE 500
 #endif
 #include <time.h>
 
@@ -359,3 +360,23 @@ namespace earth
 
 
 
+
+class ::time & time::Now()
+{
+
+   struct timespec timespec;
+
+   if (timespec_get(&timespec, TIME_UTC) != TIME_UTC)
+   {
+
+      throw "timespec_get failed!!";
+
+   }
+
+   m_iSecond = timespec.tv_sec;
+
+   m_iNanosecond = timespec.tv_nsec;
+
+   return *this;
+
+}

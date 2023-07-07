@@ -770,7 +770,7 @@ list(APPEND library_source
    #primitive/string/_c_trait_wd16_impl.h
    #primitive/string/_c_trait_wd32.h
    #primitive/string/_c_trait_wd32_impl.h
-   #primitive/string/_c_trait_wide.cpp
+   primitive/string/_c_trait_wide.cpp
    #primitive/string/_c_trait_wide.h
    #primitive/string/_c_trait_wide_impl.h
    #primitive/string/_c_unicode.h
@@ -1357,6 +1357,7 @@ list(APPEND library_source
    operating_system/process.cpp
    operating_system/shared_posix/c_error_number.cpp
    operating_system/shared_posix/c_error_number.h
+   operating_system/shared_posix/earth_time_shift.cpp
    operating_system/shared_posix/stdio_file.cpp
    operating_system/shared_posix/stdio_file.h
    operating_system/shared_posix/time.cpp

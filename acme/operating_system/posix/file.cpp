@@ -3,6 +3,7 @@
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/console.h"
 #if defined( FREEBSD)
 #define __XSI_VISIBLE 1
 #endif
@@ -1223,3 +1224,22 @@ void copy(struct status * pst, const ::file::file_status * pstatus)
 }
 
 
+
+
+void std_out_buffer::write(const void * pdata, memsize nCount)
+{
+
+//#ifdef WINDOWS
+//
+//   DWORD dw;
+//
+//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
+//
+//#else
+
+   fwrite(pdata, nCount, 1, stdout);
+
+
+//#endif
+
+}

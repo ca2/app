@@ -16,17 +16,17 @@ public:
 
    virtual void write(const ::block & block);
 
-   virtual void flush();
+   void flush() override;
 
-   virtual void close();
+   void close() override;
 
    virtual bool is_empty() const;
 
    virtual filesize length() const;
 
-   virtual filesize get_position() const;
+   filesize get_position() const override;
 
-   virtual bool unget_if(::ansi_character ch);
+   bool unget_if(::ansi_character ch) override;
 
 };
 

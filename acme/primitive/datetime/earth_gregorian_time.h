@@ -51,7 +51,7 @@ namespace earth
 
          void set(const ::earth::time &time, const time_shift &timeshift);
 
-         ::posix_time get_time_t();
+         ::posix_time get_posix_time();
 
 
 //         inline void get(struct ::tm *ptm)

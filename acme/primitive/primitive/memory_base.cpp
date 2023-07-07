@@ -520,7 +520,7 @@ void memory_base::append_entire_file(::file::file * pfileIn, memsize uiBufferSiz
 //
 //            i32 iErrNo = errno;
 //            
-//            auto errorcode = errno_error_code(iErrNo);
+//            auto errorcode = cerrornumber.error_code();
 //            
 //            auto estatus = cerrornumber.estatus();
 //            

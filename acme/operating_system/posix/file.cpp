@@ -1162,7 +1162,7 @@ void file_delete(const ::file::path & path)
 
    auto estatus = cerrornumber.estatus();
 
-   auto errorcode = errno_error_code(iErrNo);
+   auto errorcode = cerrornumber.error_code();
 
    throw ::file::exception(estatus, errorcode, path, eopen, scopedstr);
 

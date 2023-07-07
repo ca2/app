@@ -403,11 +403,11 @@ class c_error_number stdio_file::c_error_number() const
 void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 {
 
-   auto iErrNo = errno;
+   auto cerrornumber = c_error_number();
 
    auto estatus = cerrornumber.estatus();
 
-   auto errorcode = errno_error_code(iErrNo);
+   auto errorcode = cerrornumber.error_code();
 
    throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstr);
 

@@ -56,7 +56,7 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 ::e_status c_error_number::estatus() const
 {
 
-   switch (cerrornumber.m_siErrorNumber)
+   switch (m_iErrorNumber)
    {
       case 0:
          return ::success;

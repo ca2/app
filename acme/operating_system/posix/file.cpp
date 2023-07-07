@@ -746,7 +746,7 @@
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {
@@ -755,7 +755,7 @@
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -793,7 +793,7 @@
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {
@@ -802,7 +802,7 @@
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -840,7 +840,7 @@ bool safe_is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {
@@ -849,7 +849,7 @@ bool safe_is_directory(const ::file::path & path)
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -886,7 +886,7 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {
@@ -895,7 +895,7 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1160,7 +1160,7 @@ void file_delete(const ::file::path & path)
 
    } 
 
-   auto estatus = errno_status(iErrNo);
+   auto estatus = cerrornumber.estatus();
 
    auto errorcode = errno_error_code(iErrNo);
 

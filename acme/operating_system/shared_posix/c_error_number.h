@@ -31,6 +31,8 @@ public:
    ::string get_error_description();
 
 
+   class ::error_code error_code() const;
+
    ::e_status estatus() const;
 
    ::e_status failed_estatus() const;

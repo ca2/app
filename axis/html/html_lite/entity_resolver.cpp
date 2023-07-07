@@ -160,7 +160,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
    const ::ansi_character * pszBegin = pszEntity;
 
-   const ::ansi_character * pszEnd = ::strchr(pszEntity, ';');
+   const ::ansi_character * pszEnd = ::ansi_chr(pszEntity, ';');
 
    char   chTemp = 0;
 

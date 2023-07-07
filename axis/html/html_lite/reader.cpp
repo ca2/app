@@ -467,7 +467,7 @@ bool lite_html_reader::parseComment(string &rComment)
    const char *   pszBegin = &m_strBuffer[m_dwBufPos + 4];
 
    // HTML comments end with two hyphen symbols '--'
-   const char *   pszEnd = ::strstr(pszBegin, "--");
+   const char *   pszEnd = ::ansi_str(pszBegin, "--");
 
 
    // comment ending delimeter could not be found?

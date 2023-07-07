@@ -21,6 +21,9 @@ public:
 
 
    c_error_number();
+#ifdef WINDOWS
+   c_error_number(errno_t iErrNo);
+#endif
    c_error_number(c_error_number_t, ::i32 iErrorNumber);
    c_error_number(const c_error_number & cerrornumber);
 

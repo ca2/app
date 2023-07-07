@@ -12,7 +12,7 @@
 
 
 #include "acme/_operating_system.h"
-#include "acme/operating_system/posix/time.h"
+#include "acme/operating_system/shared_posix/time.h"
 
 
 #include <time.h>

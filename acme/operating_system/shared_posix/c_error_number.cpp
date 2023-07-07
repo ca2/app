@@ -15,6 +15,19 @@ c_error_number::c_error_number() :
 }
 
 
+#ifdef WINDOWS
+
+
+c_error_number::c_error_number(errno_t iErrNo) :
+   m_iErrorNumber(iErrNo)
+{
+
+
+}
+
+
+#endif
+
 c_error_number::c_error_number(c_error_number_t, ::i32 iErrorNumber) :
    m_iErrorNumber(iErrorNumber)
 {

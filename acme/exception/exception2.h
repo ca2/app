@@ -1,4 +1,10 @@
-#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
+#pragma once
+
+
+#include "acme/operating_system/shared_posix/c_error_number.h"
+
+
+#define C_RUNTIME_ERROR_CHECK(expr) ::c_error_number::s_throw_exception(expr)
 #ifndef C_RUNTIME_ERRORCHECK_SPRINTF
 #define C_RUNTIME_ERRORCHECK_SPRINTF(expr) \
 do { \
@@ -17,7 +23,7 @@ do { \
 #endif // C_RUNTIME_ERRORCHECK_SPRINTF
 
 
-CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error);
+//CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error);
 //{
 //    switch(error)
 //    {

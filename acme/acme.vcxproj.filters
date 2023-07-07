@@ -4477,6 +4477,9 @@
     <ClCompile Include="operating_system\shared_posix\time.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

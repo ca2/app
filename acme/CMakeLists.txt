@@ -1351,14 +1351,16 @@ list(APPEND library_source
    operating_system/pipe.cpp
    operating_system/pipe.h
    operating_system/posix/callstack.cpp
-   operating_system/posix/error_number.cpp
    operating_system/posix/file.h
    operating_system/posix/mq_base.h
-   operating_system/posix/stdio_file.cpp
-   operating_system/posix/stdio_file.h
-   operating_system/posix/time.h
    operating_system/pthread/pthread_np.cpp
    operating_system/process.cpp
+   operating_system/shared_posix/c_error_number.cpp
+   operating_system/shared_posix/c_error_number.h
+   operating_system/shared_posix/stdio_file.cpp
+   operating_system/shared_posix/stdio_file.h
+   operating_system/shared_posix/time.cpp
+   operating_system/shared_posix/time.h
    operating_system/solaris/linux_internal.h
    operating_system/solaris/solaris.h
    operating_system/solaris/solaris_cairo_keep.h
@@ -1434,7 +1436,7 @@ list(APPEND library_source
    platform/definition.h
    platform/display.h
    platform/enum.h
-   platform/error.h
+   #platform/error.h
    platform/exclusive.h
    platform/factory.h
    platform/filestream.h
@@ -2293,7 +2295,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       operating_system/posix/parallelization.cpp
       operating_system/posix/parallelization_pthread.cpp
       operating_system/posix/parallelization_pthread.h
-      operating_system/posix/time.cpp
+      #operating_system/posix/time.cpp
       #operating_system/posix/timer.cpp
       operating_system/winpr_keycode.cpp
       operating_system/winpr_scancode.cpp

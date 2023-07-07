@@ -88,17 +88,17 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 }
 
 
-::e_status c_error_number::failed_errno_status() const
+::e_status c_error_number::failed_estatus() const
 {
 
-   if(cerrornumber.m_iErrorNumber == 0)
+   if(m_iErrorNumber == 0)
    {
 
       return error_some_error_has_occurred;
 
    }
 
-   return errno_status(cerrornumber);
+   return this->estatus();
 
 }
 

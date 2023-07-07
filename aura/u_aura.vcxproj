@@ -489,6 +489,7 @@
     <ClCompile Include="graphics\write_text\fonts.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp" />
+    <ClCompile Include="graphics\write_text\font_family.cpp" />
     <ClCompile Include="graphics\write_text\font_list.cpp" />
     <ClCompile Include="graphics\write_text\glyph.cpp" />
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
@@ -547,6 +548,7 @@
     <ClCompile Include="user\user\prodevian.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
+    <ClCompile Include="user\user\redraw.cpp" />
     <ClCompile Include="user\user\run_application.cpp" />
     <ClCompile Include="user\user\scroll.cpp" />
     <ClCompile Include="user\user\scroll_bar.cpp" />
@@ -578,6 +580,7 @@
     <ClCompile Include="windowing\menu_command.cpp" />
     <ClCompile Include="windowing\menu_item.cpp" />
     <ClCompile Include="windowing\monitor.cpp" />
+    <ClCompile Include="windowing\placement_log.cpp" />
     <ClCompile Include="windowing\sandbox\host_interaction.cpp" />
     <ClCompile Include="windowing\sandbox\window.cpp" />
     <ClCompile Include="windowing\sandbox\windowing.cpp" />

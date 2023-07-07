@@ -687,6 +687,7 @@
     <ClInclude Include="operating_system\serial.h" />
     <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
+    <ClInclude Include="operating_system\shared_posix\time.h" />
     <ClInclude Include="operating_system\text.h" />
     <ClInclude Include="operating_system\time.h" />
     <ClInclude Include="operating_system\universal_windows\base_file.h" />
@@ -1617,7 +1618,9 @@
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
+    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
     <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
+    <ClCompile Include="operating_system\shared_posix\time.cpp" />
     <ClCompile Include="operating_system\string.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\universal_windows\aura.cpp" />
@@ -1766,6 +1769,7 @@
     <ClCompile Include="primitive\datetime\system_time.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\item.cpp" />
+    <ClCompile Include="primitive\geometry2d\rectangle_array.cpp" />
     <ClCompile Include="primitive\geometry2d\region.cpp" />
     <ClCompile Include="primitive\geometry2d\size.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />

@@ -1546,6 +1546,15 @@
     <ClCompile Include="graphics\gpu\shader.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\write_text\font_family.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\redraw.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\placement_log.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">

@@ -40,7 +40,7 @@ BOOL WINAPI DosDateTimeToFileTime(WORD fatdate, WORD fattime, LPFILETIME ft) {
 #ifndef HAVE_TIMEGM
 
    struct tm * gtm;
-   posix_time time1, time2;
+   time_t time1, time2;
 #endif
 
    //TRACEN((printf("DosDateTimeToFileTime\n")))
@@ -415,7 +415,7 @@ namespace folder_zip
 
 #else
 
-      time.m_iSecond = dos_time_unix_time((dostime_t) dosDate);
+      time.m_iSecond = dos_time_unix_time((dostime_t) dosDate).m_iSecond;
       time.m_iNanosecond = 0;
 
 #endif

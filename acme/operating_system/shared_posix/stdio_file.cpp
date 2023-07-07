@@ -111,7 +111,7 @@ try_again:
 
       auto cerrornumber = c_error_number();
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       m_estatus = estatus;
 
@@ -405,7 +405,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 
    auto iErrNo = errno;
 
-   auto estatus = errno_status(iErrNo);
+   auto estatus = cerrornumber.estatus();
 
    auto errorcode = errno_error_code(iErrNo);
 

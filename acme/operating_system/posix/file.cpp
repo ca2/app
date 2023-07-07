@@ -755,7 +755,7 @@
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -802,7 +802,7 @@
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -849,7 +849,7 @@ bool safe_is_directory(const ::file::path & path)
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -895,7 +895,7 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1160,7 +1160,7 @@ void file_delete(const ::file::path & path)
 
    } 
 
-   auto estatus = errno_status(iErrNo);
+   auto estatus = cerrornumber.estatus();
 
    auto errorcode = errno_error_code(iErrNo);
 

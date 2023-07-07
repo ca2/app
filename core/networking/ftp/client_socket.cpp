@@ -652,7 +652,7 @@ namespace ftp
       ::ftp::file file;
       if (!file.Open(strLocalFile, ::file::e_open_read | ::file::e_open_binary))
       {
-         ReportError(sys_error::GetErrorDescription(), __FILE__, __LINE__);
+         ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
          return false;
       }
 

@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "stdio_file.h"
-#include "acme/exception/exception2.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

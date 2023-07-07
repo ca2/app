@@ -1083,6 +1083,7 @@ bool file_exists(const ::file::path & path)
 //
 //
 
+#if defined(FREEBSD)
 
 void create_directory(const ::file::path & path)
 {
@@ -1146,6 +1147,9 @@ void file_delete(const ::file::path & path)
 }
 
 
+#endif 
+
+
 [[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, int iErrNo)
 {
 
@@ -1163,6 +1167,9 @@ void file_delete(const ::file::path & path)
    throw ::file::exception(estatus, errorcode, path, eopen, scopedstr);
 
 }
+
+
+#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD) || defined(__APPLE__)
 
 
 void copy(::file::file_status * pstatus, const struct stat * pst)
@@ -1202,6 +1209,8 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
     }
 
 }
+
+#endif
 
 void copy(struct status * pst, const ::file::file_status * pstatus)
 {

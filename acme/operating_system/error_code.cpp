@@ -8,8 +8,18 @@
 #include "framework.h"
 #include "acme/filesystem/file/text_stream.h"
 //#include "error_code.h"
+#include "shared_posix/c_error_number.h"
 #include "debug.h"
 #include "_api.h"
+
+
+error_code::error_code(const c_error_number & error_code) :
+   m_etype(e_error_code_type_errno),
+   m_iOsError(error_code.m_iErrorNumber)
+{
+
+
+}
 
 
 void error_code::get_message(::string & strMessage) const

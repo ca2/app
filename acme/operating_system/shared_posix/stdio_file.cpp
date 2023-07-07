@@ -654,7 +654,7 @@ void __cdecl __clearerr_s(FILE * stream)
 
       auto cerrornumber = c_error_number();
 
-      auto estatus = failed_errno_status(iErrNo);
+      auto estatus = cerrornumber.failed_estatus();
 
       throw ::exception(estatus);
 

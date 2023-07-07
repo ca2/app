@@ -115,7 +115,7 @@ try_again:
 
       m_estatus = estatus;
 
-      set_failed_flag();
+      set_nok();
 
       if (!estatus)
       {

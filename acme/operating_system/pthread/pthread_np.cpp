@@ -9,10 +9,13 @@
 #undef _C99_SOURCE
 #undef _C11_SOURCE
 #endif
-#include <pthread_np.h>
 #if defined(FREEBSD)
+#include <pthread_np.h>
 #include <sched.h>
 #include <errno.h>
+#else
+#include <pthread.h>
+#include <sched.h>
 #endif
 
 

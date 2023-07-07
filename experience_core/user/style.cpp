@@ -51,7 +51,7 @@ namespace experience_core
 
          m_pfont.create(this);
 
-         auto pnode = acmenode();
+         //auto pnode = acmenode();
 
          m_pfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
 

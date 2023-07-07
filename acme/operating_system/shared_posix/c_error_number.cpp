@@ -144,16 +144,16 @@ void c_error_number::s_throw_exception(c_error_number cerrornumber)
 }
 
 
-::e_status c_error_number::as_status()
-{
-
-   int iErrorNumber = m_iErrorNumber;
-
-   auto estatus = errno_status(iErrorNumber);
-
-   return estatus;
-
-}
+//::e_status c_error_number::as_status()
+//{
+//
+//   int iErrorNumber = m_iErrorNumber;
+//
+//   auto estatus = errno_status(iErrorNumber);
+//
+//   return estatus;
+//
+//}
 
 
 ::e_status c_error_number::set_last_errno_status()

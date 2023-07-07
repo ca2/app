@@ -52,7 +52,7 @@
 #include "file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/error.h"
+//#include "acme/platform/error.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/transfer_socket.h"
 #include "apex/networking/sockets/base/socket_handler.h"

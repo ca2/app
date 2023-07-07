@@ -56,7 +56,7 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 class ::error_code c_error_number::error_code() const
 {
 
-   return { e_error_code_errno, (::i64) m_iErrorNumber};
+   return { e_error_code_type_errno, (::i64) m_iErrorNumber};
 
 }
 
@@ -167,7 +167,7 @@ void c_error_number::s_throw_exception(c_error_number cerrornumber)
 ::e_status c_error_number::set_last_errno_status()
 {
 
-   auto estatus = this->as_status();
+   auto estatus = this->estatus();
 
    set_last_status(estatus);
 

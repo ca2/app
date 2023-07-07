@@ -877,11 +877,11 @@ string acme_file::line(const ::file::path & pathParam, index iLine)
    if (file == nullptr)
    {
 
-      int iErrorNumber = errno;
+      auto cerrornumber = c_error_number();
 
-      auto estatus = errno_status(iErrorNumber);
+      auto estatus = cerrornumber.estatus();
 
-      auto error_code = errno_error_code(iErrorNumber);
+      auto error_code = cerrornumber.error_code();
 
       throw ::file::exception(estatus, error_code, path);
 

@@ -274,8 +274,6 @@ public:
 //
 
 
-CLASS_DECL_ACME::e_status errno_status(int nErrno);
-CLASS_DECL_ACME::e_status failed_errno_status(int nErrno);
 
 
 

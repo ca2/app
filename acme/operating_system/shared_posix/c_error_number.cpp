@@ -53,6 +53,56 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 }
 
 
+::e_status c_error_number::estatus() const
+{
+
+   switch (cerrornumber.m_siErrorNumber)
+   {
+      case 0:
+         return ::success;
+      case EEXIST:
+         return ::error_already_exists;
+      case EPERM:
+      case EACCES:
+         return error_file_access_denied;
+      case EBADF:
+         return error_invalid_file;
+         //      case EDEADLOCK:
+         //       return ::file::exception::sharingViolation;
+      case EMFILE:
+         return error_too_many_open_files;
+      case ENOENT:
+      case ENFILE:
+         return error_file_not_found;
+      case ENOTDIR:
+         return error_not_a_directory;
+      case ENOSPC:
+         return error_disk_full;
+      case EINVAL:
+      case EIO:
+         return error_hard_io;
+      default:
+         return ::error_failed;
+   }
+
+}
+
+
+::e_status c_error_number::failed_errno_status() const
+{
+
+   if(cerrornumber.m_iErrorNumber == 0)
+   {
+
+      return error_some_error_has_occurred;
+
+   }
+
+   return errno_status(cerrornumber);
+
+}
+
+
 c_error_number c_error_number::s_errno()
 {
 

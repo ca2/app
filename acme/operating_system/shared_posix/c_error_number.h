@@ -31,7 +31,9 @@ public:
    ::string get_error_description();
 
 
-   ::e_status as_status();
+   ::e_status estatus() const;
+
+   ::e_status failed_estatus() const;
 
 
    ::e_status set_last_errno_status();

@@ -113,6 +113,10 @@ try_again:
 
       auto estatus = errno_status(iErrNo);
 
+      m_estatus = estatus;
+
+      set_failed_flag();
+
       if (!estatus)
       {
 
@@ -384,6 +388,14 @@ bool stdio_file::is_opened() const
 {
 
    return m_pfile != nullptr;
+
+}
+
+
+class c_error_number stdio_file::c_error_number() const
+{
+
+   return {c_error_number_t{}, ferror(m_pfile)};
 
 }
 

@@ -593,7 +593,7 @@ namespace ftp
       if (!file.Open(strLocalFile, (m_fResumeIfPossible ? ::file::e_open_no_truncate : ::file::e_open_create) | ::file::e_open_write
                      | ::file::e_open_binary | ::file::e_open_defer_create_directory))
       {
-         ReportError(sys_error::GetErrorDescription(), __FILE__, __LINE__);
+         ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
          return false;
       }
       file.Seek(0, ::e_seek_from_end);

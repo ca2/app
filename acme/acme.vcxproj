@@ -837,8 +837,10 @@
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
-    <ClInclude Include="operating_system\posix\stdio_file.h" />
     <ClInclude Include="operating_system\posix\time.h" />
+    <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
+    <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
+    <ClInclude Include="operating_system\shared_posix\time.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
@@ -919,11 +921,11 @@
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
-    <ClCompile Include="operating_system\posix\error_number.cpp" />
-    <ClCompile Include="operating_system\posix\stdio_file.cpp" />
-    <ClCompile Include="operating_system\posix\time.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
+    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
+    <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
+    <ClCompile Include="operating_system\shared_posix\time.cpp" />
     <ClCompile Include="operating_system\string.cpp" />
     <ClCompile Include="operating_system\summary.cpp" />
     <ClCompile Include="operating_system\time.cpp" />

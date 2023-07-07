@@ -109,7 +109,7 @@ try_again:
    if (!m_pfile)
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       auto estatus = errno_status(iErrNo);
 
@@ -652,7 +652,7 @@ void __cdecl __clearerr_s(FILE * stream)
 
       }
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       auto estatus = failed_errno_status(iErrNo);
 

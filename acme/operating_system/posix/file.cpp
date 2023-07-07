@@ -746,7 +746,7 @@
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {
@@ -793,7 +793,7 @@
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {
@@ -840,7 +840,7 @@ bool safe_is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {
@@ -886,7 +886,7 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       if(iErrNo == ENOTDIR)
       {

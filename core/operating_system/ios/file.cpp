@@ -190,7 +190,7 @@ namespace ios
       if(hFile == hFileNull)
       {
 
-         int iErrNo = errno;
+         auto cerrornumber = c_error_number();
 
          if(iErrNo != ENOENT && iErrNo != ENFILE)
          {

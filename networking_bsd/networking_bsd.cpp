@@ -443,7 +443,7 @@ CLASS_DECL_NETWORKING_BSD::string __string_inet_ntop(int iFamily, const void * p
    if (!inet_ntop(iFamily, paddr, sz, sizeof(sz)))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
       auto estatus = errno_status(iErrNo);
 

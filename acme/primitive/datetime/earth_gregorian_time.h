@@ -39,7 +39,7 @@ namespace earth
          }
 
 
-         inline time(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift = time_shift::none());
+         time(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift = time_shift::none());
 
          inline time(const class ::time &time, const time_shift &timeshift = time_shift::none());
 

@@ -5,6 +5,7 @@
 #include "c_error_number.h"
 #if defined(FREEBSD)
 #include <errno.h>
+#include <string.h>
 #endif
 
 

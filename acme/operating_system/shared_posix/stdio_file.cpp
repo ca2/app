@@ -584,7 +584,7 @@ void __cdecl __clearerr_s(FILE * stream)
 
    clearerr(stream);
 
-   C_RUNTIME_ERROR_CHECK(errno);
+   C_RUNTIME_ERROR_CHECK(c_error_number{c_error_number_t{}, errno});
 
 #endif
 

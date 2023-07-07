@@ -56,7 +56,7 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 ::e_status c_error_number::estatus() const
 {
 
-   switch (cerrornumber.m_siErrorNumber)
+   switch (m_iErrorNumber)
    {
       case 0:
          return ::success;
@@ -88,17 +88,17 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 }
 
 
-::e_status c_error_number::failed_errno_status() const
+::e_status c_error_number::failed_estatus() const
 {
 
-   if(cerrornumber.m_iErrorNumber == 0)
+   if(m_iErrorNumber == 0)
    {
 
       return error_some_error_has_occurred;
 
    }
 
-   return errno_status(cerrornumber);
+   return this->estatus();
 
 }
 
@@ -144,22 +144,22 @@ void c_error_number::s_throw_exception(c_error_number cerrornumber)
 }
 
 
-::e_status c_error_number::as_status()
-{
-
-   int iErrorNumber = m_iErrorNumber;
-
-   auto estatus = errno_status(iErrorNumber);
-
-   return estatus;
-
-}
+//::e_status c_error_number::as_status()
+//{
+//
+//   int iErrorNumber = m_iErrorNumber;
+//
+//   auto estatus = errno_status(iErrorNumber);
+//
+//   return estatus;
+//
+//}
 
 
 ::e_status c_error_number::set_last_errno_status()
 {
 
-   auto estatus = this->as_status();
+   auto estatus = this->estatus();
 
    set_last_status(estatus);
 

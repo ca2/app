@@ -145,6 +145,10 @@ namespace earth
       bool operator == (const class  ::time & time) const; \
       ::std::strong_ordering operator <=> (const class  ::time & time) const;
 
+
+      ::i64 total_minutes(const time_shift & timeshift = time_shift::none()) const noexcept;
+
+
    };
 
 

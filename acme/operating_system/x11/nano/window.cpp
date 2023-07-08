@@ -17,7 +17,7 @@
 #include <cairo-xlib.h>
 
 
-::user::enum_desktop _get_edesktop();
+::user::enum_desktop get_edesktop();
 
 
 struct MWMHints

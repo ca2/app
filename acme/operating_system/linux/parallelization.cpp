@@ -6,7 +6,7 @@
 #include "acme/platform/system.h"
 
 
-//::user::enum_desktop _get_edesktop();
+//::user::enum_desktop get_edesktop();
 
 
 //void x11_asynchronous(::procedure function);

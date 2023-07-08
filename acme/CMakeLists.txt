@@ -1810,7 +1810,7 @@ else ()
 endif ()
 
 
-if (WIN32 OR UWP)
+if (${WIN32} OR ${UWP})
 
    list(APPEND library_source
       #      operating_system/windows_common/_dll.cpp

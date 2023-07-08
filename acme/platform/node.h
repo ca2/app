@@ -15,6 +15,7 @@
 //#include "acme/filesystem/filesystem/path.h"
 #include "acme/operating_system/security_attributes.h"
 #include "acme/platform/serial_shared.h"
+//#include "acme/exception/status.h"
 ////#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/atom_array.h"
@@ -668,6 +669,9 @@ namespace acme
       /// This version of command_system is originally meant for implementators
       /// to not use standard I/O redirection.
       virtual int command_system(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
+
+
+      virtual ::string get_output(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
 
 
       virtual void open_terminal_and_run(const ::scoped_string& scopedstr);

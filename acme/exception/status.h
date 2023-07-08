@@ -111,6 +111,18 @@ public:
 };
 
 
+template < typename T >
+class particular :
+   public T,
+   virtual public ::particle
+{
+public:
+
+};
+
+template < typename TYPE >
+using status_pointer = ::pointer < ::particular < TYPE > >;
+
 //template < typename OBJECT >
 //class transport :
 //   public status < ::pointer<OBJECT> >

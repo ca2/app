@@ -284,6 +284,7 @@ public:
    //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
+   bool is_empty() const { return m_propertya.is_empty(); }
 
    
    property_ptra & propertyptra() { return m_propertya; }

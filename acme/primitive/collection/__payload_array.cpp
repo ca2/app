@@ -527,7 +527,7 @@ payload_array & payload_array::operator = (const property_set & propset)
 
    index i = 0;
 
-   for(auto & pproperty : propset)
+   for(auto & pproperty : propset.propertyptra())
    {
 
       set_at(i++, *pproperty);

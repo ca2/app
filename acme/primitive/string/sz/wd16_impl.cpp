@@ -245,6 +245,9 @@ CLASS_DECL_ACME bool character_isalnum(::wd16_character ch) noexcept { return wd
 CLASS_DECL_ACME bool character_isspace(::wd16_character ch) noexcept { return wd16_char_isspace(ch); }
 
 
+CLASS_DECL_ACME bool character_isxdigit(::wd16_character ch) noexcept { return wd16_char_isxdigit(ch); }
+
+
 CLASS_DECL_ACME strsize string_skip_any_character_in(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept
 {
 

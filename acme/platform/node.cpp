@@ -8,6 +8,7 @@
 #include "session.h"
 #include "system.h"
 #include "acme/constant/id.h"
+#include "acme/exception/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -2769,6 +2770,36 @@ return false;
       tracefunction.m_timeTimeout  = timeOut;
 
       return command_system(scopedstr, tracefunction);
+
+   }
+
+
+   ::string node::get_output(const ::scoped_string & scopedstr, const class ::time & timeOut)
+   {
+
+      status_pointer <::string> pstring;
+
+      __construct_new(pstring);
+
+      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string & str)
+      {
+
+         pstring->m_payload += str;
+
+      };
+
+      tracefunction.m_timeTimeout  = timeOut;
+
+      auto iExitCode = command_system(scopedstr, tracefunction);
+
+      if(iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      return pstring->m_payload;
 
    }
 

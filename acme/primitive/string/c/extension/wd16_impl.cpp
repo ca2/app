@@ -11,7 +11,7 @@ CLASS_DECL_ACME i32 wd16_char_isalnum(i32 i) { return __wd16charisalnum(i); }
 CLASS_DECL_ACME i32 wd16_char_isspace(i32 i) { return __wd16charisspace(i); }
 
 
-CLASS_DECL_ACME i32 wd16_char_is_hexadecimal(i32 i) { return __wd16charishexadecimal(i); }
+CLASS_DECL_ACME i32 wd16_char_isxdigit(i32 i) { return __wd16charisxdigit(i); }
 
 
 

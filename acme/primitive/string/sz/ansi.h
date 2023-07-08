@@ -101,6 +101,9 @@ CLASS_DECL_ACME bool character_isspace(::ansi_character ansich) noexcept;
 CLASS_DECL_ACME bool character_isupper(::ansi_character ansich) noexcept;
 
 
+CLASS_DECL_ACME bool character_isxdigit(::ansi_character ansich) noexcept;
+
+
 CLASS_DECL_ACME ::ansi_character * string_uppercase(::ansi_character * psz, strsize size) noexcept;
 CLASS_DECL_ACME ::ansi_character * string_reverse(::ansi_character * psz) noexcept;
 

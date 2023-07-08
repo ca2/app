@@ -13,7 +13,7 @@ CLASS_DECL_ACME i32 wd32_char_isalnum(i32 i) { return __wd32charisalnum(i); }
 CLASS_DECL_ACME i32 wd32_char_isspace(i32 i) { return __wd32charisspace(i); }
 
 
-CLASS_DECL_ACME i32 wd32_char_is_hexadecimal(i32 i) { return __wd32charishexadecimal(i); }
+CLASS_DECL_ACME i32 wd32_char_isxdigit(i32 i) { return __wd32charisxdigit(i); }
 
 
 CLASS_DECL_ACME const ::wd32_character * wd32_const_last_char(const ::wd32_character * psz)

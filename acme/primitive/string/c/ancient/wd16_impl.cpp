@@ -9,7 +9,7 @@ CLASS_DECL_ACME i32 __wd16charisalnum(i32 i) { return wd16_char_isalpha(i) || wd
 CLASS_DECL_ACME i32 __wd16charisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
 
 
-CLASS_DECL_ACME i32 __wd16charishexadecimal(i32 i) { return wd16_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
+CLASS_DECL_ACME i32 __wd16charisxdigit(i32 i) { return wd16_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
 CLASS_DECL_ACME ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const ::wd16_character * pszSrc, strsize srclen)

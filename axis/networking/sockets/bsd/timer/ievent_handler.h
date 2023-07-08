@@ -30,6 +30,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
+struct timeval;
+
 namespace sockets
 {
 
@@ -47,7 +49,7 @@ namespace sockets
       /** Return time left until next event.
          \lparam tv time struct that will be filled by method
          \return true if time is set for next event */
-      virtual bool GetTimeUntilNextEvent(struct timeval *) = 0;
+      virtual bool GetTimeUntilNextEvent(struct ::timeval *) = 0;
       /** Will fire events whose time has come. */
       virtual void CheckEvents() = 0;
       /** Schedule event for an owner.

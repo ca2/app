@@ -13,7 +13,7 @@ CLASS_DECL_ACME i32                    wd16_char_isalnum(i32 ch);
 CLASS_DECL_ACME i32                    wd16_char_isspace(i32 ch);
 
 
-CLASS_DECL_ACME i32                    wd16_char_is_hexadecimal(i32 ch);
+CLASS_DECL_ACME i32                    wd16_char_isxdigit(i32 ch);
 
 CLASS_DECL_ACME ::wd16_character *             wd16_last_char(::wd16_character * psz);
 CLASS_DECL_ACME const ::wd16_character *       wd16_const_last_char(const ::wd16_character * psz);

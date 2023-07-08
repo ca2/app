@@ -12,7 +12,7 @@ CLASS_DECL_ACME i32                    __wd16charisalnum(i32 i);
 CLASS_DECL_ACME i32                    __wd16charisspace(i32 i);
 
 
-CLASS_DECL_ACME i32                    __wd16charishexadecimal(i32 i);
+CLASS_DECL_ACME i32                    __wd16charisxdigit(i32 i);
 
 
 CLASS_DECL_ACME strsize __wd16len(const ::wd16_character * psz);

@@ -59,6 +59,9 @@ CLASS_DECL_ACME bool character_isdigit(::wd16_character ansich) noexcept;
 CLASS_DECL_ACME bool character_isspace(::wd16_character ansich) noexcept;
 
 
+CLASS_DECL_ACME bool character_isxdigit(::wd16_character ansich) noexcept;
+
+
 CLASS_DECL_ACME ::wd16_character * string_uppercase(::wd16_character * psz, strsize size) noexcept;
 CLASS_DECL_ACME ::wd16_character * string_reverse(::wd16_character * psz) noexcept;
 

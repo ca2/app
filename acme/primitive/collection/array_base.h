@@ -1143,9 +1143,10 @@ public:
    inline TYPE& operator%(::index nIndex)
    {
 
-      return this->operator[](nIndex% this->get_size());
+      return this->element_at(nIndex% this->get_size());
 
    }
+
 
    inline const TYPE& operator%(::index nIndex) const
    {

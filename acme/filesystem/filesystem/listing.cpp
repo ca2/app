@@ -323,7 +323,7 @@ namespace file
 
       }
 
-      return operator[](i).title();
+      return element_at(i).title();
 
    }
 
@@ -338,7 +338,7 @@ namespace file
 
       }
 
-      return operator[](i).name();
+      return element_at(i).name();
 
    }
 

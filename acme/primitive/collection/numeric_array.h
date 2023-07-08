@@ -1343,13 +1343,13 @@ void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
 }
 
 
-using i32_2a = array < i32_array >;
+// using i32_2a = array < i32_array >;
 
 
-using f32_2a = array < f32_array >;
+// using f32_2a = array < f32_array >;
 
 
-using f64_2a = array < f64_array >;
+// using f64_2a = array < f64_array >;
 
 
 

@@ -3263,6 +3263,9 @@
     <ClInclude Include="operating_system\shared_posix\time.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\array_2d.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

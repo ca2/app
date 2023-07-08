@@ -843,6 +843,7 @@
     <ClInclude Include="operating_system\shared_posix\time.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="platform\trace_statement.h" />
+    <ClInclude Include="primitive\collection\array_2d.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
     <ClInclude Include="primitive\mathematics\numeric.h" />

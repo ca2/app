@@ -41,7 +41,7 @@ public:
    ~point_array_base() override { }
 
 
-   operator ::point_type < UNIT_TYPE > * () { return this->get_data(); }
+   //operator ::point_type < UNIT_TYPE > * () { return this->get_data(); }
 
    void offset(UNIT_TYPE x, UNIT_TYPE y);
    void offset(::point_type < UNIT_TYPE > point) { offset(point.x(), point.y()); }

@@ -383,7 +383,7 @@ public:
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         if (pfnCompare(this->operator[](i).m_p, p) == 0)
+         if (pfnCompare(this->element_at(i).m_p, p) == 0)
          {
 
             return i;
@@ -437,8 +437,8 @@ public:
    }
 
 
-   //inline const pointer < T > & operator[](::index i) const { return ARRAY_BASE::operator[](i); }
-   //inline pointer < T > & operator[](::index i) { return ARRAY_BASE::operator[](i); }
+   //inline const pointer < T > & element_at(::index i) const { return ARRAY_BASE::element_at(i); }
+   //inline pointer < T > & element_at(::index i) { return ARRAY_BASE::element_at(i); }
 
 
    template < typename TYPE >
@@ -729,7 +729,7 @@ public:
 
       for(::index i = 0; i < c; i++)
       {
-         this->add(pa->operator[](i));
+         this->add(pa->element_at(i));
       }
 
       return c;
@@ -777,7 +777,7 @@ public:
 
       for(::index i = 0; i < c; i++)
       {
-         this->add(*pptra->operator[](i));
+         this->add(*pptra->element_at(i));
       }
 
       return c;
@@ -1285,7 +1285,7 @@ public:
 //      for(::index i = iStart; i <= iEnd; i++)
 //      {
 //
-//         if(this->operator[](i).m_p == p)
+//         if(this->element_at(i).m_p == p)
 //            return i;
 //
 //      }
@@ -1319,7 +1319,7 @@ public:
 //      for(::index i = iStart; i <= iEnd; i++)
 //      {
 //
-//         if(pfnCompare(this->operator[](i).m_p,p) == 0)
+//         if(pfnCompare(this->element_at(i).m_p,p) == 0)
 //
 //            return i;
 //
@@ -1385,17 +1385,17 @@ public:
 //   }
 //
 //   // overloaded operator helpers
-//   T  & operator[](::index nIndex) const
+//   T  & element_at(::index nIndex) const
 //   {
 //
-//      return *this->comparable_array < ::pointer<T > > ::operator[](nIndex).m_p;
+//      return *this->comparable_array < ::pointer<T > > ::element_at(nIndex).m_p;
 //
 //   }
 //
-//   T  & operator[](::index nIndex)
+//   T  & element_at(::index nIndex)
 //   {
 //
-//      return *this->comparable_array < ::pointer<T > > ::operator[](nIndex).m_p;
+//      return *this->comparable_array < ::pointer<T > > ::element_at(nIndex).m_p;
 //
 //   }
 //
@@ -1581,7 +1581,7 @@ public:
 //
 //      for(::index i = 0; i < c; i++)
 //      {
-//         this->add(pa->operator[](i));
+//         this->add(pa->element_at(i));
 //      }
 //
 //      return *this;
@@ -1629,7 +1629,7 @@ public:
 //
 //      for(::index i = 0; i < c; i++)
 //      {
-//         this->add(*pptra->operator[](i));
+//         this->add(*pptra->element_at(i));
 //      }
 //
 //      return *this;

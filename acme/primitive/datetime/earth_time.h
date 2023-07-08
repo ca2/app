@@ -89,7 +89,7 @@ namespace earth
       constexpr class ::time operator % (class ::time & time) const noexcept
       {
 
-         return class ::time(*this) % time;
+         return ((class ::time)*this) % time;
 
       }
 

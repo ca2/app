@@ -415,7 +415,7 @@ namespace networking_bsd
       {
          if (str[i] == '.')
             dots++;
-         else if (!isdigit((uchar)str[i]))
+         else if (!character_isdigit(str[i]))
             return false;
       }
       if (dots != 3)

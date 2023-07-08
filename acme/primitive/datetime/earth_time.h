@@ -86,6 +86,13 @@ namespace earth
       //time& operator+=( const time & span ) noexcept;
       //time& operator-=( const time & span ) noexcept;
 
+      constexpr class ::time operator % (class ::time & time) const noexcept
+      {
+
+         return class ::time(*this) % time;
+
+      }
+
       constexpr time_span operator-(time time) const noexcept;
 
       constexpr time operator-(time_span span) const noexcept;

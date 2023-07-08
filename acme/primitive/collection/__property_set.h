@@ -296,7 +296,7 @@ public:
    inline property * ptr_at(::index nIndex) { return m_propertya.element_at(nIndex); }
 
 
-   inline ::index eraset_property_at(::index iIndex) { return m_propertya.erase_at(iIndex); }
+   inline ::index erase_property_at(::index iIndex) { return m_propertya.erase_at(iIndex); }
 
    
    property_ptra & propertyptra() { return m_propertya; }

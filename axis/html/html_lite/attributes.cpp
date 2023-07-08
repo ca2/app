@@ -386,7 +386,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
 bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 {
 
-   if((m_strValue.length()) && (::isalpha(m_strValue[0])))
+   if((m_strValue.length()) && (::character_isalpha(m_strValue[0])))
    {
 
       if (preader->m_phtml->m_namedcolor.contains(m_strValue.lowered()))
@@ -405,7 +405,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 {
 
-   if((m_strValue.length()) && (::isalpha(m_strValue[0])))
+   if((m_strValue.length()) && (::character_isalpha(m_strValue[0])))
    {
 
       status < ::color::color > color;
@@ -443,7 +443,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
          for (i32 i = 1; i < m_strValue.length(); i++)
          {
 
-            if (!::isdigit((uchar) m_strValue[i]))
+            if (!::character_isdigit(m_strValue[i]))
                return false;
 
          }

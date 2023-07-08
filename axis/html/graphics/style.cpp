@@ -1152,7 +1152,7 @@ namespace html
       if(i < 0)
          return false;
 
-      while(i < str.length() && i < isdigit(str[i]))
+      while(i < str.length() && i < character_isdigit(str[i]))
       {
          i++;
       }

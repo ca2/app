@@ -386,7 +386,7 @@ namespace networking_bsd
       string dst;
       for (i32 i = 0; i < src.length(); i++)
       {
-         if (src[i] == '%' && character_isxdigit((uchar)(src[i + 1])) && character_isxdigit((uchar)(src[i + 2])))
+         if (src[i] == '%' && character_isxdigit(src[i + 1]) && character_isxdigit(src[i + 2]))
          {
             char c1 = src[++i];
             char c2 = src[++i];

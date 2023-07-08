@@ -1072,7 +1072,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
    str += "{";
 
-   auto p = m_propertyptra begin();
+   auto p = m_propertyptra.begin();
 
    if (p)
    {
@@ -1084,7 +1084,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
          p++;
 
-         if (p >= end())
+         if (p >= m_propertyptra.end())
          {
 
             break;

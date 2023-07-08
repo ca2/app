@@ -298,6 +298,8 @@ public:
 
    inline ::index erase_property_at(::index iIndex) { return m_propertyptra.erase_at(iIndex); }
 
+   inline ::count erase_all_properties() { return m_propertyptra.erase_all(); }
+
    
    property_ptra & propertyptra() { return m_propertyptra; }
    const property_ptra & propertyptra() const { return m_propertyptra; }

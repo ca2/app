@@ -49,7 +49,7 @@ public:
    }
    
 
-   void erase_all()
+   ::count erase_all()
    {
 
       for(auto & p : *this)
@@ -59,7 +59,7 @@ public:
 
       }
 
-      BASE_ARRAY::erase_all();
+      return BASE_ARRAY::erase_all();
 
    }
 

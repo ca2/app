@@ -2784,7 +2784,7 @@ return false;
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string & str)
       {
 
-         pstring->operator +=(str);
+         pstring->m_payload += str;
 
       };
 
@@ -2799,7 +2799,7 @@ return false;
 
       }
 
-      return *pstring;
+      return pstring->m_payload;
 
    }
 

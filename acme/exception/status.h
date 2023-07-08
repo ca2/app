@@ -112,16 +112,18 @@ public:
 
 
 template < typename T >
-class particular :
-   public T,
+class particle_of :
    virtual public ::particle
 {
 public:
 
+   T     m_payload;
+
 };
 
+
 template < typename TYPE >
-using status_pointer = ::pointer < ::particular < TYPE > >;
+using status_pointer = ::pointer < ::particle_of < TYPE > >;
 
 //template < typename OBJECT >
 //class transport :

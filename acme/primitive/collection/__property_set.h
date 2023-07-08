@@ -295,6 +295,9 @@ public:
    inline const property * ptr_at(::index nIndex) const { return m_propertya.element_at(nIndex); }
    inline property * ptr_at(::index nIndex) { return m_propertya.element_at(nIndex); }
 
+
+   inline ::index eraset_property_at(::index iIndex) { return m_propertya.erase_at(iIndex); }
+
    
    property_ptra & propertyptra() { return m_propertya; }
    const property_ptra & propertyptra() const { return m_propertya; }

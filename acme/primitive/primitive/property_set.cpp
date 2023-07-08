@@ -106,19 +106,19 @@ property_set::~property_set()
 
 bool property_set::is_set_empty(::count countMinimum) const
 {
-   return get_count() < countMinimum;
+   return property_count() < countMinimum;
 }
 
 bool property_set::has_properties(::count countMinimum) const
 {
-   return get_count() >= countMinimum;
+   return property_count() >= countMinimum;
 }
 
 
 property * property_set::find_value_ci(const ::payload & payload) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (pproperty->case_insensitive_order(payload) == 0)
@@ -138,7 +138,7 @@ property * property_set::find_value_ci(const ::payload & payload) const
 property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (pproperty->case_insensitive_equals(scopedstr))
@@ -160,7 +160,7 @@ property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
 property * property_set::find_payload(const ::payload & payload) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (*pproperty == payload)
@@ -180,7 +180,7 @@ property * property_set::find_payload(const ::payload & payload) const
 property * property_set::find_payload(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (*pproperty == scopedstr)
@@ -410,7 +410,7 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
       }
 
-      erase_at(iFind);
+      erase_property_at(iFind);
 
       c++;
 
@@ -1484,7 +1484,7 @@ property_set & property_set::operator = (const ::payload & payload)
       //if (::element::has(e_flag_data_struct))
       //{
 
-      //   for (auto & pproperty : *this)
+      //   for (auto & pproperty : this->propertyptra())
       //   {
 
       //      auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_atom);
@@ -1767,7 +1767,7 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr) const { r
 property * property_set::str_find(const property & property) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (pproperty->str_compare(property) == 0)
@@ -2094,7 +2094,7 @@ string property_set::get_command_line() const
 
    string str;
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (str.has_char())
@@ -2280,7 +2280,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 
    ::string str;
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
       
       str += pproperty->m_atom.as_string();

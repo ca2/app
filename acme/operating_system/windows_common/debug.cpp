@@ -230,6 +230,22 @@ namespace windows
    }
 
 
+   ::enum_status _failed_last_error_status(DWORD dwLastError)
+   {
+
+      if (dwLastError == 0)
+      {
+
+         return error_some_error_has_occurred;
+
+      }
+
+      return _last_error_status(dwLastError);
+
+   }
+
+
+
 } // namespace windows
 
 

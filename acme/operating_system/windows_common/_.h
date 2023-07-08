@@ -73,6 +73,10 @@ namespace windows
 
    CLASS_DECL_ACME::enum_status _last_error_status(DWORD dwLastError);
    inline ::e_status last_error_status(DWORD dwLastError) { return _last_error_status(dwLastError); }
+   
+   
+   CLASS_DECL_ACME::enum_status _failed_last_error_status(DWORD dwLastError);
+   inline ::e_status failed_last_error_status(DWORD dwLastError) { return _failed_last_error_status(dwLastError); }
 
 
    CLASS_DECL_ACME::enum_status _hresult_status(HRESULT hresult);

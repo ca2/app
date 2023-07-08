@@ -1345,7 +1345,7 @@ string property_set::_001Replace(const ::string & str) const
 void property_set::clear()
 {
 
-   erase_all();
+   erase_all_properties();
 
 }
 
@@ -1355,7 +1355,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
    string str;
 
-   auto p = begin();
+   auto p = m_propertyptra.begin();
 
    if (p)
    {
@@ -1367,7 +1367,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
          p++;
 
-         if (!p)
+         if (p >= m_propertyptra.end())
          {
 
             break;
@@ -1433,7 +1433,7 @@ property_set::property_set(const property_set & set)
 
 
 property_set::property_set(property_set && set) :
-   property_ptra(::transfer(set))
+   m_propertyptra(::transfer(set.m_propertyptra))
 {
 
 }
@@ -1510,7 +1510,7 @@ property_set & property_set::operator = (const ::payload & payload)
    else if (payload.m_etype == e_type_property)
    {
 
-      erase_all();
+      erase_all_properties();
 
       set_at(payload.m_pproperty->m_atom, *payload.m_pproperty);
 
@@ -1548,10 +1548,10 @@ property_set & property_set::append(const property_set & set)
    if (&set != this)
    {
 
-      for (auto & pproperty : set)
+      for (auto & pproperty : propertyptra())
       {
 
-         add_item(memory_new property(*pproperty));
+         add_property(memory_new property(*pproperty));
 
       }
 
@@ -1568,7 +1568,7 @@ property_set & property_set::merge(const property_set & set)
    if (::is_reference_set(set) && &set != this)
    {
 
-      for (auto & pproperty : set)
+      for (auto & pproperty : propertyptra())
       {
 
          atom idName = pproperty->name();
@@ -1787,7 +1787,7 @@ property * property_set::str_find(const property & property) const
 bool property_set::str_contains(const property_set & set) const
 {
 
-   for (auto & pproperty : set)
+   for (auto & pproperty : propertyptra())
    {
 
       if (str_find(*pproperty) == nullptr)
@@ -1807,7 +1807,7 @@ bool property_set::str_contains(const property_set & set) const
 bool property_set::contains(const property_set & set) const
 {
 
-   for (auto & pproperty : set)
+   for (auto & pproperty : propertyptra())
    {
 
       auto ppropertyHere = find(pproperty->name());
@@ -1836,9 +1836,9 @@ bool property_set::contains(const property_set & set) const
 string & property_set::get_network_arguments(string & strNetworkArguments) const
 {
 
-   auto p = begin();
+   auto p = m_propertyptra.begin();
 
-   while (!is_end(p))
+   while (!m_propertyptra.is_end(p))
    {
 
       if (strNetworkArguments.has_char())
@@ -2301,12 +2301,10 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 ::index property_set::index_of(const ::atom & atom, ::index i) const
 {
 
-   auto p = this->m_begin + i;
-
-   for (; p < this->m_end; p++)
+   for (; i < m_propertyptra.get_count(); i++)
    {
 
-      if (p[i]->m_atom == atom)
+      if (m_propertyptra[i]->m_atom == atom)
       {
 
          return i;
@@ -2323,9 +2321,9 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 ::property * property_set::find(const ::atom & atom, ::index iStart) const
 {
 
-   auto p = this->m_begin + iStart;
+   auto p = m_propertyptra.begin() + iStart;
 
-   for (; p < this->m_end; p++)
+   for (; !m_propertyptra.is_end(p); p++)
    {
 
       if ((*p)->m_atom == atom)
@@ -2352,7 +2350,7 @@ property & property_set::get(const ::atom & atom, ::index iStart)
 
       pproperty = memory_new property(atom);
 
-      add_item(pproperty);
+      add_property(pproperty);
 
    }
 
@@ -2435,7 +2433,7 @@ property & property_set::get(const ::atom & atom, ::index iStart)
 
       pproperty = memory_new property(atom);
 
-      add_item(pproperty);
+      add_property(pproperty);
 
    }
 

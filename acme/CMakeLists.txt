@@ -2289,7 +2289,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       operating_system/posix/_posix.h
       operating_system/posix/file.cpp
       operating_system/posix/chldstatus.cpp
-      operating_system/posix/desktop.cpp
+      operating_system/posix/calculate_edesktop.cpp
       operating_system/posix/file_lock.cpp
       operating_system/posix/file_lock.h
       operating_system/posix/idn.cpp

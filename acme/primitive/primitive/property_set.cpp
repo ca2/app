@@ -1072,7 +1072,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
    str += "{";
 
-   auto p = begin();
+   auto p = m_propertyptra begin();
 
    if (p)
    {

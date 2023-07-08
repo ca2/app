@@ -17,7 +17,7 @@ class CLASS_DECL_ACME property_set :
 public:
 
 
-   property_ptra     m_propertya;
+   property_ptra     m_propertyptra;
 
 
    //__declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
@@ -80,9 +80,9 @@ public:
    inline ::payload operator[](const ::atom & atom) const { return find(atom); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }
    template < primitive_integral INTEGRAL >
-   inline ::payload operator[](INTEGRAL i) const { return m_propertya[i]; }
+   inline ::payload operator[](INTEGRAL i) const { return m_propertyptra[i]; }
    template < primitive_integral INTEGRAL >
-   inline ::property & operator[](INTEGRAL i) { return *m_propertya[i]; }
+   inline ::property & operator[](INTEGRAL i) { return *m_propertyptra[i]; }
 
 
 
@@ -284,23 +284,23 @@ public:
    //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
-   bool is_empty() const { return m_propertya.is_empty(); }
-   bool has_property() const { return m_propertya.has_element(); }
-   ::count property_count() const { return m_propertya.get_count(); }
+   bool is_empty() const { return m_propertyptra.is_empty(); }
+   bool has_property() const { return m_propertyptra.has_element(); }
+   ::count property_count() const { return m_propertyptra.get_count(); }
    
    
-   ::index add_property(property * pproperty) { return m_propertya.add_item(pproperty); }
+   ::index add_property(property * pproperty) { return m_propertyptra.add_item(pproperty); }
 
 
-   inline const property * ptr_at(::index nIndex) const { return m_propertya.element_at(nIndex); }
-   inline property * ptr_at(::index nIndex) { return m_propertya.element_at(nIndex); }
+   inline const property * ptr_at(::index nIndex) const { return m_propertyptra.element_at(nIndex); }
+   inline property * ptr_at(::index nIndex) { return m_propertyptra.element_at(nIndex); }
 
 
-   inline ::index erase_property_at(::index iIndex) { return m_propertya.erase_at(iIndex); }
+   inline ::index erase_property_at(::index iIndex) { return m_propertyptra.erase_at(iIndex); }
 
    
-   property_ptra & propertyptra() { return m_propertya; }
-   const property_ptra & propertyptra() const { return m_propertya; }
+   property_ptra & propertyptra() { return m_propertyptra; }
+   const property_ptra & propertyptra() const { return m_propertyptra; }
 
 
    //template < typename TYPE >

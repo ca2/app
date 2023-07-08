@@ -90,6 +90,15 @@ namespace earth
 //      _TIME_COMPARISON_WITH(::floating_day);
 
 
+      constexpr class ::time operator % (class ::time & time) const noexcept
+      {
+
+         return ((class ::time) * this) % time;
+
+      }
+
+
+
       constexpr ::std::strong_ordering operator <=>(const class ::time & time) const;
       constexpr ::std::strong_ordering operator <=>(const time_span & timespan) const { return m_iSecond <=> timespan.m_iSecond; }
 

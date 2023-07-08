@@ -21,9 +21,6 @@ namespace calculator
    }
 
 
-   double pi();
-
-
    result element::get_result()
    {
 
@@ -34,7 +31,7 @@ namespace calculator
 
          if(m_ptoken->m_str.case_insensitive_order("pi") == 0)
          {
-            result.m_dR = pi();
+            result.m_dR = π;
          }
          else
          {

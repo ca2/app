@@ -14,11 +14,9 @@
 #endif
 
 
-//#define BSD_STYLE_SOCKETS 1
+#define BSD_STYLE_SOCKETS 1
 #define HAVE_OPENSSL 1
-#ifdef FREEBSD
-#define __BSD_VISIBLE 1
-#endif
+
 
 #include "_operating_system.h"
 

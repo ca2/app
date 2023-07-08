@@ -58,7 +58,7 @@ CLASS_DECL_ACME bool character_isalnum(::wd32_character ansich) noexcept;
 CLASS_DECL_ACME bool character_isdigit(::wd32_character ansich) noexcept;
 CLASS_DECL_ACME bool character_isspace(::wd32_character ansich) noexcept;
 
-
+CLASS_DECL_ACME bool character_isxdigit(::wd32_character ansich) noexcept;
 
 CLASS_DECL_ACME ::wd32_character * string_reverse(::wd32_character * psz) noexcept;
 CLASS_DECL_ACME ::wd32_character * string_uppercase(::wd32_character * psz, strsize size) noexcept;

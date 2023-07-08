@@ -13,6 +13,7 @@
 
 // apt install libcairo2-dev
 // dnf install cairo-devel pango
+#undef HAVE_UNISTD_H
 #include <cairo/cairo-features.h>
 #include <cairo/cairo.h>
 #include <cairo/cairo-ft.h>

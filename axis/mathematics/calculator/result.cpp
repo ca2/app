@@ -29,7 +29,7 @@ namespace calculator
       {
          if(m_dI < 0.0)
          {
-            return  - 0.5 * pi();
+            return  - 0.5 * π;
          }
          else if(m_dI == 0.0)
          {
@@ -38,14 +38,14 @@ namespace calculator
          }
          else
          {
-            return  0.5 * pi();
+            return  0.5 * π;
          }
       }
       else if(m_dI == 0.0)
       {
          if(m_dR < 0.0)
          {
-            return pi();
+            return π;
          }
          else if(m_dR == 0.0)
          {
@@ -102,7 +102,7 @@ namespace calculator
       }
       else if(emode == mode_polar_degree)
       {
-         str.format(unitext("%f arg(%fdegrees)"), mod(), arg() * 180.0 / pi());
+         str.format(unitext("%f arg(%fdegrees)"), mod(), arg() * 180.0 / π);
          return str;
       }
       return "";
@@ -110,7 +110,7 @@ namespace calculator
 
 //   double g_dPi = ::atan(1.0) * 4.0;
 //
-//   double pi()
+//   double π
 //   {
 //      return M_PI;
 //   }

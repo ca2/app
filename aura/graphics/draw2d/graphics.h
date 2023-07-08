@@ -905,7 +905,7 @@ namespace draw2d
 #endif
 
 
-      virtual ::count get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart = 0, strsize iCount = -1);
+      virtual ::count get_character_extent(f64_array & daLeft, f64_array & daRight, const ::string & str, strsize iStart = 0, strsize iCount = -1);
 
       //virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString);
 

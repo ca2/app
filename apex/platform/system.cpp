@@ -502,7 +502,7 @@ namespace apex
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
       factory()->add_factory_item < ::i64_array >();
-      factory()->add_factory_item < ::double_array >();
+      factory()->add_factory_item < ::f64_array >();
       factory()->add_factory_item < ::acme::library >();
 
       factory()->add_factory_item < ::file::path_object >();
@@ -514,7 +514,7 @@ namespace apex
 
       //factory()->add_factory_item < ::file::path_object >();
       //factory()->add_factory_item < ::i64_array >();
-      //factory()->add_factory_item < ::double_array >();
+      //factory()->add_factory_item < ::f64_array >();
       //factory()->add_factory_item < ::acme::library >();
 
       //factory()->add_factory_item < ::file::path_object >();

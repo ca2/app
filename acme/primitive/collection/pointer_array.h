@@ -326,7 +326,7 @@ public:
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         auto& pointer = this->operator[](i);
+         auto& pointer = this->element_at(i);
 
          if (pointer && pointer.m_p == p)
          {

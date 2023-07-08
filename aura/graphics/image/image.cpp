@@ -400,7 +400,7 @@ void image::create_isotropic(::image* pimage)
 }
 
 
-void image::create_isotropic(double_array& daRate, ::enum_priority epriority)
+void image::create_isotropic(f64_array& daRate, ::enum_priority epriority)
 {
 
    //return false;

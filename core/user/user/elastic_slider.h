@@ -28,7 +28,7 @@ namespace user
       double                        m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
       bool                          m_bSlide;
       index                         m_iScalar;
-      double_array                  m_daScalar;
+      f64_array                  m_daScalar;
 
 
       elastic_slider();

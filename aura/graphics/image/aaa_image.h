@@ -106,7 +106,7 @@
 ////   virtual bool _set_mipmap(::draw2d::enum_mipmap emipmap)= 0;
 ////
 ////   virtual bool create_isotropic(::image * pimage)= 0;
-////   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority)= 0;
+////   virtual bool create_isotropic(f64_array & daRate, ::enum_priority epriority)= 0;
 ////
 ////   virtual bool set_origin(const ::point_i32 & point)= 0;
 ////   virtual bool set_font_factor(double dFactor)= 0;

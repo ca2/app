@@ -503,8 +503,8 @@ using unique_iptr_sort_array = unique_i32_sort_array;
 
 #endif
 
-using float_array = numeric_array < float  >;
-using double_array = numeric_array < double  >;
+using f32_array = numeric_array < ::f32 >;
+using f64_array = numeric_array < ::f64 >;
 
 using strsize_array = iptr_array;
 

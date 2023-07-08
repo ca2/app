@@ -85,7 +85,7 @@ public:
 
    
    virtual void create_isotropic(::image * pimage);
-   virtual void create_isotropic(double_array & daRate, ::enum_priority epriority);
+   virtual void create_isotropic(f64_array & daRate, ::enum_priority epriority);
 
 
    virtual void set_origin(const ::point_i32 & point);

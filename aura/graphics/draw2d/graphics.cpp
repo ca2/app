@@ -3673,7 +3673,7 @@ namespace draw2d
    }
 
 
-   ::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart, strsize iCount)
+   ::count graphics::get_character_extent(f64_array & daLeft, f64_array & daRight, const ::string & str, strsize iStart, strsize iCount)
    {
 
       daLeft.erase_all();

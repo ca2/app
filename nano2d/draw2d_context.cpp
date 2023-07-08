@@ -744,8 +744,8 @@ namespace nano2d
    int draw2d_context::text_glyph_positions(float x, float y, const ::scoped_string& scopedstr, ::nano2d::glyphPosition * positions, int maxPositions)
    {
 
-      double_array daLeft;
-      double_array daRight;
+      f64_array daLeft;
+      f64_array daRight;
 
       m_pgraphics->set(_get_current_font());
 

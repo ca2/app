@@ -140,9 +140,9 @@ namespace simple_shader
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      double_array daStart;
+      f64_array daStart;
 
-      double_array daAngle;
+      f64_array daAngle;
 
       daStart.add(0.0);
       daAngle.add(100.0);

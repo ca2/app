@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #if defined(FREEBSD)
+#define __XSI_VISIBLE 1
 #include <sys/time.h>
 #endif
 

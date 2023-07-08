@@ -108,12 +108,12 @@ namespace calculator
       return "";
    }
 
-   double g_dPi = ::atan(1.0) * 4.0;
-
-   double pi()
-   {
-      return M_PI;
-   }
+//   double g_dPi = ::atan(1.0) * 4.0;
+//
+//   double pi()
+//   {
+//      return M_PI;
+//   }
 
 
    result operator + (const result & val1, const result & val2)

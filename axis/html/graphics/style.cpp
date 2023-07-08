@@ -1170,7 +1170,7 @@ namespace html
          f = (float) strtod(&str[iFindDigit], nullptr);
          return true;
       }
-      while(i < str.length() && i < isdigit(str[i]))
+      while(i < str.length() && i < character_isdigit(str[i]))
       {
          i++;
       }

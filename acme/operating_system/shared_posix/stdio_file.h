@@ -13,20 +13,20 @@ class CLASS_DECL_ACME stdio_file:
 public:
 
    
-   enum enum_flag
-   {
-      
-      flag_none = 0,
-      flag_no_exception_if_not_found = 1,
-      flag_file_not_found = 2,
+//   enum enum_flag
+//   {
+//
+//      e_flag_none = 0,
+//      e_flag_no_exception_if_not_found = 1,
+//      e_flag_file_not_found = 2,
+//
+//   };
 
-   };
-
-   using e_flag = enumeration < enum_flag >;
+   //using e_flag = enumeration < enum_flag >;
 
 
    FILE *                        m_pfile;
-   e_flag                        m_eflag;
+   //e_flag                        m_eflag;
 
 
    stdio_file();

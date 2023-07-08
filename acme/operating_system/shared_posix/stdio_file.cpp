@@ -78,6 +78,15 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 
    int iShare = _SH_DENYNO;
 
+   m_eopen = eopen;
+
+//   if(eopen & ::file::e_open_no_exception_on_open)
+//   {
+//
+//      m_eflag |= e_flag_no_exception_if_not_found;
+//
+//   }
+
    open(path, str, iShare);
 
 }
@@ -109,7 +118,7 @@ try_again:
    if (!m_pfile)
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrornumber = ::c_error_number();
 
       auto estatus = cerrornumber.estatus();
 
@@ -120,10 +129,16 @@ try_again:
       if (!estatus)
       {
 
-         if (m_eflag & flag_no_exception_if_not_found && estatus == error_file_not_found)
+         if (m_eopen & ::file::e_open_no_exception_on_open)
          {
 
-            m_eflag |= flag_file_not_found;
+            return;
+
+         }
+         else if (m_eopen & ::file::e_open_no_exception_if_not_found
+         && (m_estatus == error_file_not_found
+         || m_estatus == error_bad_path))
+         {
 
             return;
 
@@ -395,6 +410,13 @@ bool stdio_file::is_opened() const
 class c_error_number stdio_file::c_error_number() const
 {
 
+   if(m_pfile == nullptr)
+   {
+
+      return {};
+
+   }
+
    return {c_error_number_t{}, ferror(m_pfile)};
 
 }
@@ -445,7 +467,7 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
    if (bNoExceptionIfNotFound)
    {
 
-      pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
+      pfile->m_eopen |= file::e_open_no_exception_if_not_found;
 
    }
 
@@ -453,15 +475,10 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
 
    pfile->open(path, "rb", _SH_DENYNO);
 
-   if (bNoExceptionIfNotFound)
+   if (pfile.nok())
    {
 
-      if (pfile->m_eflag & stdio_file::flag_file_not_found)
-      {
-
-         return {};
-
-      }
+      return {};
 
    }
 
@@ -514,7 +531,7 @@ memory acme_file::safe_get_memory(const ::file::path & pathParam, strsize iReadA
 
    auto pfile = m_pcontext->__create_new < stdio_file >();
 
-   pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
+   pfile->m_eopen |= ::file::e_open_no_exception_if_not_found;
 
    auto path = acmepath()->defer_process_relative_path(pathParam);
 
@@ -523,7 +540,7 @@ memory acme_file::safe_get_memory(const ::file::path & pathParam, strsize iReadA
    if (bNoExceptionIfNotFound)
    {
 
-      if (pfile->m_eflag & stdio_file::flag_file_not_found)
+      if (pfile.nok())
       {
 
          return {};

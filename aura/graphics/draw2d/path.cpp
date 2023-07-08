@@ -661,7 +661,7 @@ namespace draw2d
 
       pitem->m_polygon.set_size(nCount);
 
-      memcpy(pitem->m_polygon.data(), ppoint, pitem->m_polygon.get_size_in_bytes());
+      memory_copy(pitem->m_polygon.data(), ppoint, pitem->m_polygon.get_size_in_bytes());
 
       //if (!m_pshapea)
       //{
@@ -690,7 +690,7 @@ namespace draw2d
 
       pitem->m_item.set_size(nCount);
 
-      memcpy(pitem->m_item.data(), ppoint, pitem->m_item.get_size_in_bytes());
+      memory_copy(pitem->m_item.data(), ppoint, pitem->m_item.get_size_in_bytes());
 
       //if (!m_pshapea)
       //{

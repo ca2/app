@@ -249,7 +249,7 @@ namespace xml
    {
       while(*psz)
       {
-         if(strchr(pszchs,*psz))
+         if(ansi_chr(pszchs,*psz))
             return (char *)psz;
          psz++;
       }

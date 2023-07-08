@@ -506,6 +506,7 @@ list(APPEND library_source
    primitive/geometry2d/polygon.h
    primitive/geometry2d/rectangle.cpp
    primitive/geometry2d/rectangle.h
+   primitive/geometry2d/rectangle_array.cpp
    primitive/geometry2d/rectangle_array.h
    primitive/geometry2d/region.cpp
    primitive/geometry2d/region.h
@@ -770,7 +771,7 @@ list(APPEND library_source
    #primitive/string/_c_trait_wd16_impl.h
    #primitive/string/_c_trait_wd32.h
    #primitive/string/_c_trait_wd32_impl.h
-   #primitive/string/_c_trait_wide.cpp
+   primitive/string/_c_trait_wide.cpp
    #primitive/string/_c_trait_wide.h
    #primitive/string/_c_trait_wide_impl.h
    #primitive/string/_c_unicode.h
@@ -787,6 +788,7 @@ list(APPEND library_source
    #primitive/string/_natural.h
    #primitive/string/_str.h
    primitive/string/_string.cpp
+   primitive/string/_str_impl.cpp
    #primitive/string/_str_impl.h
    #primitive/string/_string_wide.h
    #primitive/string/_sz_ansi.cpp
@@ -1357,6 +1359,7 @@ list(APPEND library_source
    operating_system/process.cpp
    operating_system/shared_posix/c_error_number.cpp
    operating_system/shared_posix/c_error_number.h
+   operating_system/shared_posix/earth_time_shift.cpp
    operating_system/shared_posix/stdio_file.cpp
    operating_system/shared_posix/stdio_file.h
    operating_system/shared_posix/time.cpp
@@ -2363,7 +2366,7 @@ elseif (${LINUX} OR ${FREEBSD})
    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
@@ -2376,7 +2379,7 @@ elseif (${LINUX} OR ${FREEBSD})
    target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
 
-   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+   target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})

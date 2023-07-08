@@ -79,7 +79,7 @@ namespace http
          m_strBoundary = "";
          while (!str.is_empty())
          {
-            if (!strcmp(str,"boundary"))
+            if (!ansi_cmp(str,"boundary"))
             {
                m_strBoundary = pa.getword();
                iBoundaryLength = m_strBoundary.length();
@@ -99,11 +99,11 @@ namespace http
                content_type = "";
                current_name = "";
                current_filename = "";
-               if ((strstr(slask,m_strBoundary) || strstr(m_strBoundary,slask)) && strcmp(slask, m_strBoundary))
+               if ((ansi_str(slask,m_strBoundary) || ansi_str(m_strBoundary,slask)) && ansi_cmp(slask, m_strBoundary))
                {
                   m_strBoundary = slask;
                }
-               if (!strcmp(slask, m_strBoundary))
+               if (!ansi_cmp(slask, m_strBoundary))
                {
                   bool bRead;
                   // get headers until is_empty line
@@ -125,7 +125,7 @@ namespace http
 
                         h = pa.getword();
 
-                        if (!strcmp(h,"form-data"))
+                        if (!ansi_cmp(h,"form-data"))
                         {
 
                            pa.EnableQuote(true);
@@ -141,7 +141,7 @@ namespace http
 
                               h = pa2.getrest();
 
-                              if (!strcmp(name,"name"))
+                              if (!ansi_cmp(name,"name"))
                               {
 
                                  if (!h.is_empty() && h[0] == '"')
@@ -158,7 +158,7 @@ namespace http
                                  }
 
                               }
-                              else if (!strcmp(name,"filename"))
+                              else if (!ansi_cmp(name,"filename"))
                               {
 
                                  if (!h.is_empty() && h[0] == '"')

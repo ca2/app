@@ -260,7 +260,7 @@ namespace freedesktop
 
       ::information("matter icon nok");
 
-      ::fflush(stdout);
+      //::fflush(stdout);
 
    }
 
@@ -317,9 +317,9 @@ namespace freedesktop
 
       ::file::path pathModuleIcon256 = pathModule / (strName + "-256.png");
 
-      ::information("\npathModuleIcon256=" + pathModuleIcon256 + "\n");
+      ::information("\npathModuleIcon256=" + pathModuleIcon256);
 
-      ::fflush(stdout);
+      //::fflush(stdout);
 
       if(!acmefile()->exists(pathModuleIcon256))
       {

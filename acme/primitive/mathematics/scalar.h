@@ -43,9 +43,9 @@ public:
    number(u64 u) { m_u64 = u; m_enumber = e_number_u64; }
    number(f32 f) { m_f32 = f; m_enumber = e_number_f32; }
    number(f64 d) { m_f64 = d; m_enumber = e_number_f64; }
-#ifdef __clang__
-   number(long l) { m_i64 = l; m_enumber = e_number_i64; }
-#endif
+//#ifdef __clang__
+//   number(long l) { m_i64 = l; m_enumber = e_number_i64; }
+//#endif
 
 
    bool ok() const { return m_enumber != e_number_none; }

@@ -17,7 +17,7 @@ string_buffer_base::~string_buffer_base()
 }
 
 
-void string_buffer_base::write(const ::block & block)
+void string_buffer_base::write(const void * dataToWrite, ::memsize amountToWrite)
 {
    
 
@@ -263,10 +263,11 @@ string_reference_buffer::~string_reference_buffer()
 
 }
 
-void string_reference_buffer::write(const ::block & block)
+
+void string_reference_buffer::write(const void * dataToWrite, ::memsize amountToWrite)
 {
 
-   m_str.append((const ::ansi_character *)block.data(), block.size());
+   m_str.append((const ::ansi_character *)dataToWrite, amountToWrite);
 
 }
 

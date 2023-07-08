@@ -118,6 +118,7 @@ namespace acme
       }
 
       void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
+      //void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);
 
       if (plibrary == nullptr)
       {
@@ -181,6 +182,7 @@ namespace acme
       }
 
       void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
+      //void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);
 
       if (plibrary != nullptr)
       {

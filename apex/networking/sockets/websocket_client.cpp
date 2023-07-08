@@ -1159,7 +1159,7 @@ namespace sockets
    ::memory websocket_client::get_client_send_text(const char * src, bool bMasked)
    {
 
-      memory m2(src, strlen(src));
+      memory m2(src, ansi_len(src));
 
       return get_client_send(0x81, m2, bMasked);
 

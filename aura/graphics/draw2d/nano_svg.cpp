@@ -7,7 +7,7 @@
 //#endif
 
 
-#include "acme/_start.h"
+//#include "acme/_start.h"
 
 
 #define NANOSVG_IMPLEMENTATION  // Expands implementation

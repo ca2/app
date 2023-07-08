@@ -28,6 +28,9 @@ public:
    c_error_number(const c_error_number & cerrornumber);
 
 
+   ::i32 i32() const {return m_iErrorNumber;}
+
+
    ::string get_error_description();
 
 
@@ -45,6 +48,9 @@ public:
    static string s_get_error_description(c_error_number cerrornumber = s_errno());
 
    static void s_throw_exception(c_error_number cerrornumber);
+
+
+   bool operator == (::i32 iErrorNumber) const {return m_iErrorNumber == iErrorNumber; }
 
 
 };

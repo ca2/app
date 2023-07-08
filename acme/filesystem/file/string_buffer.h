@@ -14,7 +14,7 @@ public:
    string_buffer_base();
    ~string_buffer_base() override;
 
-   virtual void write(const ::block & block);
+   void write(const void * dataToWrite, ::memsize amountToWrite) override;
 
    void flush() override;
 
@@ -45,7 +45,7 @@ public:
    string_reference_buffer(string_reference_buffer & buffer) = default;
    ~string_reference_buffer() override;
 
-   void write(const ::block & block) override;
+   void write(const void * dataToWrite, ::memsize amountToWrite) override;
 
    void flush() override;
 

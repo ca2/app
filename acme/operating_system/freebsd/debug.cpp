@@ -11,7 +11,7 @@
 //#include <stdbool.h
 #include <sys/ptrace.h>
 #include <sys/wait.h>
-
+#include <stdio.h>
 
 int gdb_check();
 
@@ -167,7 +167,7 @@ void output_debug_string(const scoped_string & scopedstrFormat)
 
       }
 
-      output_debug_string_format("%s", ::string(scopedstrFormat).c_str());
+      printf("%s", ::string(scopedstrFormat).c_str());
 
       //fflush(stdout);
 
@@ -182,7 +182,7 @@ void output_debug_string(const ::wide_character * pOutputString)
    //if(::acme::g_bOutputDebugString)
    {
 
-      information(string(pOutputString));
+      output_debug_string(string(pOutputString));
 
    }
 

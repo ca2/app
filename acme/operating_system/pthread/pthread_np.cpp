@@ -8,13 +8,14 @@
 #undef _ANSI_SOURCE
 #undef _C99_SOURCE
 #undef _C11_SOURCE
+#define __BSD_VISIBLE 1
 #endif
+#include <pthread.h>
 #if defined(FREEBSD)
 #include <pthread_np.h>
 #include <sched.h>
 #include <errno.h>
 #else
-#include <pthread.h>
 #include <sched.h>
 #endif
 

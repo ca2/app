@@ -209,7 +209,7 @@ namespace netserver
                   
                   straRange[1].trim();
 
-                  if (strlen(straRange[1]) == 0)
+                  if (ansi_len(straRange[1]) == 0)
                      rangea.last_ptr()->add(-1);
                   else
                      rangea.last_ptr()->add(atoi(straRange[1]));

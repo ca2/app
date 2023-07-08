@@ -1085,7 +1085,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    }
 
-   if (memory.size() > 3 && strnicmp(psz, "gif", 3) == 0)
+   if (memory.size() > 3 && ansi_nicmp(psz, "gif", 3) == 0)
    {
 
       _load_multi_frame_image(pimage, memory);

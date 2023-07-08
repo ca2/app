@@ -8,7 +8,7 @@
 //#endif
 
 
-#include "acme/_start.h"
+//#include "acme/_start.h"
 
 #include "nanosvg.h"
 #define NANOSVGRAST_IMPLEMENTATION

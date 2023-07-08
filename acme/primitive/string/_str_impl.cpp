@@ -3,6 +3,7 @@
 
 #include "acme/exception/parsing.h"
 
+#include <string.h>
 
 
 CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const char * right, size_t len);

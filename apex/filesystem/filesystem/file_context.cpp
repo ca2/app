@@ -595,7 +595,7 @@ i32 file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, 
 
          }
 
-         if (!isdigit((uchar) str[0]) || !isdigit((uchar) str[1]))
+         if (!character_isdigit(str[0]) || !character_isdigit(str[1]))
          {
 
             stra.erase_at(i);
@@ -3519,7 +3519,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
       else
       {
 
-         throw file::exception(::error_file_not_found, errno_error_code(ENOENT), path, ::file::e_open_none, "defer_process_path returns empty path");
+         throw file::exception(::error_file_not_found, {}, path, ::file::e_open_none, "defer_process_path returns empty path");
 
       }
 

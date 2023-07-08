@@ -1263,11 +1263,11 @@ namespace sockets_bsd
                if(errnr == SSL_ERROR_SYSCALL)
                {
 
-                  int iError = errno;
+                  auto cerrornumber = c_error_number();
 
-                  const ::ansi_character * pszError = strerror(iError);
+                  auto strError = cerrornumber.get_error_description();
 
-                  information() << pszError;
+                  information() << strError;
 
                }
 
@@ -1562,7 +1562,7 @@ namespace sockets_bsd
          }
       }
 
-      strcpy(request + 8,GetSocks4Userid());
+      ansi_cpy(request + 8,GetSocks4Userid());
 
       ::count length = GetSocks4Userid().length() + 8 + 1;
 
@@ -2588,7 +2588,7 @@ namespace sockets_bsd
 
       }
 
-      strcpy(buf, strPassword);
+      ansi_cpy(buf, strPassword);
 
       return (i32)strPassword.length();
 
@@ -3019,7 +3019,7 @@ namespace sockets_bsd
 
       bool ok = false;
 
-      if(cert != nullptr && strlen(common_name) > 0)
+      if(cert != nullptr && ansi_len(common_name) > 0)
       {
 
          char data[256];

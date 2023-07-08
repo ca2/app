@@ -3,20 +3,19 @@
 #include "networking.h"
 
 
+//#include <string.h>
+
 
 ::i32 networking_last_error()
 {
 
-   return errno;
+   return c_error_number().m_iErrorNumber;
 
 }
 
 
-
-
 CLASS_DECL_NETWORKING_BSD bool defer_initialize_operating_system_networking()
 {
-
 
    return true;
 
@@ -36,7 +35,7 @@ CLASS_DECL_NETWORKING_BSD bool defer_finalize_operating_system_networking()
 string bsd_socket_error(int iBsdSocketError)
 {
 
-   return strerror(iBsdSocketError);
+   return c_error_number({c_error_number_t{}, iBsdSocketError}).get_error_description();
 
 }
 

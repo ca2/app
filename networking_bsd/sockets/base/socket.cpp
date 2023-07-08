@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <netdb.h>
 #include <fcntl.h>
 #else
+#define __BSD_VISIBLE 1
 #include <netdb.h>
 #include <fcntl.h>
 #endif

@@ -5240,7 +5240,7 @@ namespace apex
 
       path2 = acmepath()->safe_get_real_path(path2);
 
-      return strcmp(path1, path2) == 0;
+      return ansi_cmp(path1, path2) == 0;
 
    }
 

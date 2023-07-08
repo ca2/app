@@ -285,6 +285,15 @@ public:
 
    bool is_empty(const atom & idName) const;
    bool is_empty() const { return m_propertya.is_empty(); }
+   bool has_property() const { return m_propertya.has_element(); }
+   ::count property_count() const { return m_propertya.get_count(); }
+   
+   
+   ::index add_property(property * pproperty) { return m_propertya.add_item(pproperty); }
+
+
+   inline const property * ptr_at(::index nIndex) const { return m_propertya.element_at(nIndex); }
+   inline property * ptr_at(::index nIndex) { return m_propertya.element_at(nIndex); }
 
    
    property_ptra & propertyptra() { return m_propertya; }

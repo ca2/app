@@ -14,6 +14,13 @@
 class CLASS_DECL_ACME property_set :
    public property_ptra
 {
+protected:
+
+
+   using property_ptra::operator property **;
+   using property_ptra::operator property * const *;
+
+
 public:
 
 
@@ -82,10 +89,6 @@ public:
 
    inline ::payload operator[](const ::atom & atom) const { return find(atom); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }
-   template < primitive_integral INTEGRAL >
-   inline ::payload operator[](INTEGRAL i) const { return this->element_at(i); }
-   template < primitive_integral INTEGRAL >
-   inline ::property & operator[](INTEGRAL i) { return *this->element_at(i); }
 
 
 

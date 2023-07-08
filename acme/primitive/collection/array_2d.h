@@ -20,18 +20,21 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type m_etypeConta
 class array_2d :
    virtual public ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >
 {
-protected:
-
-
-   inline operator TYPE * () { return this->m_begin; }
-   inline operator const TYPE * () const { return this->m_begin; }
-
-
 public:
 
 
    using BASE_ARRAY = ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
    using row = ::row < TYPE >;
+
+
+protected:
+
+
+   using BASE_ARRAY::operator TYPE *;
+   using BASE_ARRAY::operator const TYPE *;
+
+
+public:
 
 
    ::i64    m_iWidth;

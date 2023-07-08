@@ -12,22 +12,12 @@
 // property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :
-   public property_ptra
+   virtual public ::particle
 {
-protected:
-
-
-   using property_ptra::operator property **;
-   using property_ptra::operator property * const *;
-
-
 public:
 
 
-   using BASE_ARRAY = property_ptra;
-
-
-   using property_ptra::erase;
+   property_ptra     m_propertya;
 
 
    //__declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
@@ -89,6 +79,10 @@ public:
 
    inline ::payload operator[](const ::atom & atom) const { return find(atom); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }
+   template < primitive_integral INTEGRAL >
+   inline ::payload operator[](INTEGRAL i) const { return m_propertya[i]; }
+   template < primitive_integral INTEGRAL >
+   inline ::property & operator[](INTEGRAL i) { return *m_propertya[i]; }
 
 
 
@@ -287,9 +281,13 @@ public:
    bool is_new_or_null(const atom & idName) const;
 
    
-   using property_ptra::is_empty;
+   //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
+
+   
+   property_ptra & propertyptra() { return m_propertya; }
+   const property_ptra & propertyptra() const { return m_propertya; }
 
 
    //template < typename TYPE >

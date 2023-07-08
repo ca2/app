@@ -7,13 +7,15 @@
 CLASS_DECL_ACME ::wd32_character               wd32_char_tolower(i32 ch);
 CLASS_DECL_ACME ::wd32_character               wd32_char_toupper(i32 ch);
 
+
 CLASS_DECL_ACME i32                    wd32_char_isdigit(i32 ch);
 CLASS_DECL_ACME i32                    wd32_char_isalpha(i32 ch);
 CLASS_DECL_ACME i32                    wd32_char_isalnum(i32 ch);
 CLASS_DECL_ACME i32                    wd32_char_isspace(i32 ch);
 
 
-CLASS_DECL_ACME i32                    wd32_char_is_hexadecimal(i32 ch);
+CLASS_DECL_ACME i32                    wd32_char_isxdigit(i32 ch);
+
 
 CLASS_DECL_ACME ::wd32_character *             wd32_last_char(::wd32_character * psz);
 CLASS_DECL_ACME const ::wd32_character *       wd32_const_last_char(const ::wd32_character * psz);

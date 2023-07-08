@@ -2,6 +2,11 @@
 #pragma once
 
 
+#ifdef FREEBSD
+#define __BSD_VISIBLE 1
+#endif
+
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 

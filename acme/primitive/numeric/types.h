@@ -6,28 +6,28 @@
 #if OSBIT == 32
 
 
-typedef i32 iptr;
-typedef u32 uptr;
+using iptr = i32;
+using uptr = u32;
 
 
 #elif OSBIT == 64
 
 
-#ifdef __APPLE__
+// #ifdef __APPLE__
 
 
-typedef long iptr;
-typedef unsigned long uptr;
+// typedef long iptr;
+// typedef unsigned long uptr;
 
 
-#else
+// #else
 
 
 using iptr = i64;
 using uptr = u64;
 
 
-#endif
+// #endif
 
 
 #else

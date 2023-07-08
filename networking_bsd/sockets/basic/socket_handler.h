@@ -8,6 +8,9 @@
 #include "acme/primitive/collection/comparable_list.h"
 
 
+#include <sys/select.h>
+
+
 namespace sockets_bsd
 {
 

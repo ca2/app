@@ -2998,9 +2998,9 @@ namespace http
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
       };
 
-      char strDateTime[1024];
+      ::string strDateTime;
 
-      sprintf(strDateTime, "%s, %02d-%s-%04d %02d:%02d:%02d GMT",
+      strDateTime.format("%s, %02d-%s-%04d %02d:%02d:%02d GMT",
          days[tp.tm_wday],
          tp.tm_mday,
          months[tp.tm_mon],

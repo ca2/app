@@ -378,6 +378,8 @@ CLASS_DECL_ACME ::ansi_character * ansi_dup(const ::ansi_character * psz) { retu
 
 CLASS_DECL_ACME strsize ansi_len(const ::ansi_character * psz) { return strlen(psz); }
 
+CLASS_DECL_ACME strsize ansi_nlen(const ::ansi_character * psz, memsize len) { return strnlen(psz, len); }
+
 CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const ::ansi_character * psz) { return strcat(pszDst, psz); }
 
 CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const ::ansi_character * psz) { return strcpy(pszDst, psz); }

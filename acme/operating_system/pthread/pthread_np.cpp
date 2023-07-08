@@ -8,7 +8,9 @@
 #undef _ANSI_SOURCE
 #undef _C99_SOURCE
 #undef _C11_SOURCE
+#define __BSD_VISIBLE 1
 #endif
+#include <pthread.h>
 #include <pthread_np.h>
 #if defined(FREEBSD)
 #include <sched.h>
@@ -78,17 +80,7 @@ string task_get_name(htask_t htask)
 
    char szThreadName[32];
 
-#ifdef FREEBSD
-
-   pthread_get_name_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
-
-   int error = errno;
-
-#else
-
    int error = pthread_getname_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
-
-#endif
 
    if (error)
    {
@@ -124,17 +116,7 @@ void task_set_name(htask_t htask, const char * psz)
 
    thread_name_abbreviate(strName, 15);
 
-#if defined(FREEBSD)
-
-   pthread_set_name_np(pthread, strName);
-
-   int error = errno;
-
-#else
-
    int error = pthread_setname_np(pthread, strName);
-
-#endif
 
 #endif
 

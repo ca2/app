@@ -277,7 +277,7 @@ namespace graphics
 
 #else
 
-      string str((const char *)data, minimum(strnlen((const char *)data, (size_t)s), s));
+      string str((const char *)data, minimum(ansi_nlen((const char *)data, (size_t)s), s));
 
 #endif
 

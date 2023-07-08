@@ -1041,11 +1041,11 @@ namespace aura
       string get_default_playlist_path() override;
 
       
-#if defined(FREEBSD)
-
-      bool os_on_start_application() override;
-
-#endif
+//#if defined(FREEBSD)
+//
+//      bool os_on_start_application() override;
+//
+//#endif
 
       virtual string draw2d_get_default_implementation_name();
 

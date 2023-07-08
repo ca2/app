@@ -60,7 +60,7 @@ bool machine_event::read(machine_event_data * pdata)
       if (pfile == nullptr)
       {
 
-         memset(pdata, 0, sizeof(*pdata));
+         memory_set(pdata, 0, sizeof(*pdata));
 
          return false;
 

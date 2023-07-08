@@ -621,14 +621,14 @@ namespace apex
       if (is_true("show_application_information"))
       {
 
-         printf("%s", "\n\nApplication Information\n");
-         information("\n\nApplication Information\n");
+         //printf("%s", "\n\nApplication Information\n");
+         information("Application Information");
 
          auto iPid = acmenode()->current_process_identifier();
 
-         printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
+         //printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
-         information("Process PID: " + ::as_string(iPid) + "\n");
+         information("Process PID: " + ::as_string(iPid));
 
       }
 
@@ -5077,7 +5077,7 @@ namespace apex
          if (is_true("show_application_information"))
          {
 
-            printf("return code is %" PRIi64 "x", estatus.m_eenum);
+            information("return code is %" PRIi64 "x", estatus.m_eenum);
 
          }
 

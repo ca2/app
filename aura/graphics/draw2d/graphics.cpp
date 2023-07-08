@@ -1925,7 +1925,7 @@ namespace draw2d
 
       m_pfont->get_os_data(this);
 
-      memcpy(pMetrics, &m_pfont->m_textmetric2, sizeof(*pMetrics));
+      memory_copy(pMetrics, &m_pfont->m_textmetric2, sizeof(*pMetrics));
 
    }
 

@@ -4057,11 +4057,11 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(const_ite
 
    auto psz = str.get_buffer(finalLen);
 
-   memcpy(psz, this->begin(), start - this->begin());
+   memory_copy(psz, this->begin(), start - this->begin());
 
-   memcpy(psz + (start - this->begin()), scopedstr.begin(), scopedstr.size());
+   memory_copy(psz + (start - this->begin()), scopedstr.begin(), scopedstr.size());
 
-   memcpy(psz + (start - this->begin()) + scopedstr.size(), end, this->end() - end);
+   memory_copy(psz + (start - this->begin()) + scopedstr.size(), end, this->end() - end);
 
    str.release_buffer(finalLen);
 

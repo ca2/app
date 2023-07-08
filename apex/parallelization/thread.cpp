@@ -101,7 +101,7 @@ struct send_thread_message :
 send_thread_message::send_thread_message(::particle * pparticle)
 {
 
-   memset(&m_message, 0, sizeof(m_message));
+   memory_set(&m_message, 0, sizeof(m_message));
 
    m_ev.ResetEvent();
 

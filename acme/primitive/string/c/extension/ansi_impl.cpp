@@ -11,6 +11,7 @@ CLASS_DECL_ACME i32 ansi_char_isdigit(i32 i) { return __ansicharisdigit(i); }
 CLASS_DECL_ACME i32 ansi_char_isalpha(i32 i) { return __ansicharisalpha(i); }
 CLASS_DECL_ACME i32 ansi_char_isalnum(i32 i) { return __ansicharisalnum(i); }
 CLASS_DECL_ACME i32 ansi_char_isspace(i32 i) { return __ansicharisspace(i); }
+CLASS_DECL_ACME i32 ansi_char_isxdigit(i32 i) { return __ansicharisxdigit(i); }
 
 
 CLASS_DECL_ACME i32 ansi_char_is_hexadecimal(i32 i) { return __ansicharishexadecimal(i); }

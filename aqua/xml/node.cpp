@@ -1050,7 +1050,7 @@ namespace xml
 
          }
 
-         rangeXml.m_begin = strchr(rangeXml.m_begin, '<');
+         rangeXml.m_begin = ansi_chr(rangeXml.m_begin, '<');
 
          if (rangeXml.m_begin == nullptr)
          {

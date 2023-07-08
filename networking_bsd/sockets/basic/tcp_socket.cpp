@@ -1263,11 +1263,11 @@ namespace sockets_bsd
                if(errnr == SSL_ERROR_SYSCALL)
                {
 
-                  int iError = errno;
+                  auto cerrornumber = c_error_number();
 
-                  const ::ansi_character * pszError = strerror(iError);
+                  auto strError = cerrornumber.get_error_description();
 
-                  information() << pszError;
+                  information() << strError;
 
                }
 

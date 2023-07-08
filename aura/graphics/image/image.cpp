@@ -2429,9 +2429,9 @@ void image::flip_vertically()
 
       auto plineSecondHalf = pimage32 + ((h - y - 1) * sw);
 
-      memcpy(line.data(), plineFirstHalf, m_iScan);
-      memcpy(plineFirstHalf, plineSecondHalf, m_iScan);
-      memcpy(plineSecondHalf, line.data(), m_iScan);
+      memory_copy(line.data(), plineFirstHalf, m_iScan);
+      memory_copy(plineFirstHalf, plineSecondHalf, m_iScan);
+      memory_copy(plineSecondHalf, line.data(), m_iScan);
 
    }
 
@@ -9793,7 +9793,7 @@ void image::defer_update_image()
 
       m_pbitmap = pimage->m_pbitmap;
 
-      ::memcpy(ppixmapDst, ppixmapSrc, sizeof(::pixmap));
+      ::memory_copy(ppixmapDst, ppixmapSrc, sizeof(::pixmap));
 
    }
 

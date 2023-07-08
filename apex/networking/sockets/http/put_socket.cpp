@@ -148,20 +148,27 @@ namespace sockets
       else
       {
 
-         FILE *fil = fopen(m_filename, "rb");
+         auto preader = file()->get_reader(m_filename);
 
-         if (fil)
+         if (preader.ok())
          {
-            memsize n;
-            char buf[32768];
-            while ((n = fread(buf, 1, 32768, fil)) > 0)
-            {
-               write({ buf, n });
-            }
-            fclose(fil);
-         }
-      }
 
+            memory buffer;
+
+            buffer.set_size(32_KiB);
+
+            memsize n;
+
+            while ((n = preader->read(buffer)) > 0)
+            {
+
+               write({ buffer.data(), n });
+
+            }
+
+         }
+
+      }
 
       return true;
 

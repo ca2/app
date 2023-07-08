@@ -211,7 +211,7 @@ namespace graphics
 
          //::copy_image32((::color32_t*)p, ppixmap->size(), iScan, ppixmap);
 
-         memcpy(p, ppixmap->m_pimage32Raw, ppixmap->height() * iScan);
+         memory_copy(p, ppixmap->m_pimage32Raw, ppixmap->height() * iScan);
 
       }
       catch (...)

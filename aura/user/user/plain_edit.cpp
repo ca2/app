@@ -1497,7 +1497,7 @@ namespace user
 
          m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
-         m_ptree->m_peditfile->Insert(psz, strlen(psz));
+         m_ptree->m_peditfile->Insert(psz, ansi_len(psz));
 
       }
 

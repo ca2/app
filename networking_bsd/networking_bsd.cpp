@@ -757,7 +757,7 @@ namespace net
          break;
 
       default:
-         strncpy(sz, "(Unknown Address Family)", sizeof(sz));
+         ansi_ncpy(sz, "(Unknown Address Family)", sizeof(sz));
          break;
       };
 

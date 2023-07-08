@@ -1866,7 +1866,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
         
         prev_escape = nullptr;
 
-        if (strchr(chset, *this->m_begin))
+        if (ansi_chr(chset, *this->m_begin))
         {
            return;
 

@@ -228,6 +228,7 @@ CLASS_DECL_ACME bool character_isalpha(::ansi_character ch) noexcept { return an
 CLASS_DECL_ACME bool character_isalnum(::ansi_character ch) noexcept { return ansi_char_isalnum(ch); }
 CLASS_DECL_ACME bool character_isspace(::ansi_character ch) noexcept { return ansi_char_isspace(ch); }
 CLASS_DECL_ACME bool character_isupper(::ansi_character ch) noexcept { return ch >= 'A' && ch <= 'Z'; }
+CLASS_DECL_ACME bool character_isxdigit(::ansi_character ch) noexcept { return ansi_char_isxdigit(ch); }
 
 
 // From STRSPN(3) - Linux Programmer's Manual

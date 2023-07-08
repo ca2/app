@@ -87,7 +87,7 @@ i32                 cy)
     ** of the text.
     */
    if(cb == -1)
-      cb = strlen(pcsz);
+      cb = ansi_len(pcsz);
 
 
    /* If the shadow or text color is -1, use the

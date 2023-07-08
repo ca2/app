@@ -387,7 +387,7 @@ namespace folder_zip
 
       ::information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
-      ::fflush(stdout);
+      //::fflush(stdout);
 
    }
 

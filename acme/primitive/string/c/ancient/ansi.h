@@ -9,6 +9,7 @@ CLASS_DECL_ACME i32                    __ansicharisdigit(i32 i);
 CLASS_DECL_ACME i32                    __ansicharisalpha(i32 i);
 CLASS_DECL_ACME i32                    __ansicharisalnum(i32 i);
 CLASS_DECL_ACME i32                    __ansicharisspace(i32 i);
+CLASS_DECL_ACME i32                    __ansicharisxdigit(i32 i);
 
 
 CLASS_DECL_ACME i32                    __ansicharishexadecimal(i32 i);

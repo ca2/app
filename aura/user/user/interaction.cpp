@@ -458,6 +458,8 @@ namespace user
    void interaction::on_initialize_particle()
    {
 
+      __defer_construct_new(m_pitema);
+
       ::user::primitive::on_initialize_particle();
 
       if (m_bEnableDragClient)
@@ -6213,8 +6215,6 @@ return strClass;
    void interaction::on_message_create(::message::message *pmessage)
    {
 
-      __defer_construct_new(m_pitema);
-
       if (pmessage->previous())
       {
 
@@ -11504,7 +11504,7 @@ return strClass;
 
       }
 
-      for (auto &puseritem: *m_pitema)
+      for (auto & puseritem : *m_pitema)
       {
 
          if (puseritem && puseritem->m_eelement != ::e_element_item)

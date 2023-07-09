@@ -914,8 +914,8 @@ namespace sort
    template<class TYPE, class ARG_TYPE>
    void BubbleSortByLPGetSize(array<TYPE, ARG_TYPE> & a, bool bAsc = true);
 
-   template<class TYPE, class ARG_TYPE>
-   void BubbleSortByGetSize(array<TYPE, ARG_TYPE> & a, bool bAsc = true);
+   //template<class TYPE, class ARG_TYPE>
+   //void BubbleSortByGetSize(array<TYPE, ARG_TYPE> & a, bool bAsc = true);
 
    template<typename TYPE>
    void BubbleSortByPtrAtGetSize(
@@ -966,75 +966,88 @@ namespace sort
       return;
    }
 
+
    template<primitive_array ARRAY>
-   void BubbleSortByGetSize(
-      ARRAY & a,
-      bool bAsc)
+   void BubbleSortByGetSize(ARRAY & a, bool bAsc)
    {
+
       if (bAsc)
       {
+
          for (iptr i = 0; i < a.get_size(); i++)
+         {
+
             for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if (a.element_at(i).get_size() > a.element_at(j).get_size())
+
+               if (a[i].get_size() > a[j].get_size())
                {
-                  auto t = a.element_at[i];
-                  a.set_at(i, a.element_at[j]);
-                  a.set_at(j, t);
+
+                  a.__swap(i, j);
+
                }
 
             }
+
+         }
+
       }
       else
       {
+
          for (iptr i = 0; i < a.get_size(); i++)
+         {
+
             for (iptr j = i + 1; j < a.get_size(); j++)
             {
-               if (a.element_at(i).get_size() < a.element_at(j).get_size())
+
+               if (a[i].get_size() < a[j].get_size())
                {
-                  auto t = a.element_at(i);
-                  a.set_at(i, a.element_at(j));
-                  a.set_at(j, t);
+
+                  a.__swap(i, j);
+
                }
 
             }
+
+         }
+
       }
 
-      return;
    }
 
-   template<class ARRAY>
-   void BubbleSortByGetSize(
-      ARRAY & a,
-      bool bAsc)
-   {
-      typename ARRAY::BASE_TYPE t;
-      if (bAsc)
-      {
-         for (iptr i = 0; i < a.get_size(); i++)
-            for (iptr j = i + 1; j < a.get_size(); j++)
-            {
-               if (a.element_at(i).get_size() > a.element_at(j).get_size())
-               {
-                  a.__swap(i, j);
-               }
-            }
-      }
-      else
-      {
-         for (iptr i = 0; i < a.get_size(); i++)
-            for (iptr j = i + 1; j < a.get_size(); j++)
-            {
-               if (a.element_at(i).get_size() < a.element_at(j).get_size())
-               {
-                  a.__swap(i, j);
-               }
+   //template<class ARRAY>
+   //void BubbleSortByGetSize(
+   //   ARRAY & a,
+   //   bool bAsc)
+   //{
+   //   typename ARRAY::BASE_TYPE t;
+   //   if (bAsc)
+   //   {
+   //      for (iptr i = 0; i < a.get_size(); i++)
+   //         for (iptr j = i + 1; j < a.get_size(); j++)
+   //         {
+   //            if (a.element_at(i).get_size() > a.element_at(j).get_size())
+   //            {
+   //               a.__swap(i, j);
+   //            }
+   //         }
+   //   }
+   //   else
+   //   {
+   //      for (iptr i = 0; i < a.get_size(); i++)
+   //         for (iptr j = i + 1; j < a.get_size(); j++)
+   //         {
+   //            if (a.element_at(i).get_size() < a.element_at(j).get_size())
+   //            {
+   //               a.__swap(i, j);
+   //            }
 
-            }
-      }
+   //         }
+   //   }
 
-      return;
-   }
+   //   return;
+   //}
 
 
    template<typename TYPE>

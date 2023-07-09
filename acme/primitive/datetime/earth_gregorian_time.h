@@ -71,9 +71,9 @@ namespace earth
 
          void set(const system_time_t *psystemtime);
 
-         void get(file_time *pfiletime);
+         void get(file_time & filetime);
 
-         void set(const file_time *pfiletime);
+         void set(const class ::file_time & filetime);
 
 
          //void Now(const time_shift &timeshift = time_shift::none());

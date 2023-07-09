@@ -146,7 +146,7 @@ namespace earth
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_earth_time(this, &filetime);
+      file_time_to_earth_time(this, filetime);
 
    }
 

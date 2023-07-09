@@ -179,3 +179,21 @@ namespace windows
 
 
 
+inline file_time as_file_time(const FILETIME & filetime)
+{
+
+   return { file_time_t{}, (::u64) ::make_u32(filetime.dwLowDateTime, filetime.dwHighDateTime) };
+
+}
+
+
+
+inline FILETIME as_FILETIME(const file_time & filetime)
+{
+
+   return {
+      .dwLowDateTime =::lower_u32(filetime.m_uFileTime),
+      .dwHighDateTime = ::upper_u32(filetime.m_uFileTime) 
+   };
+
+}

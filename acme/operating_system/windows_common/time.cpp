@@ -198,7 +198,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time* pfile_time, const posix_
 //
 //
 //
-//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const file_time * pfile_time)
+//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const ::file_time & filetime)
 //{
 //
 //   FileTimeToSystemTime((FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime);
@@ -217,7 +217,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time* pfile_time, const posix_
 
 //
 //
-//void file_time_to_system_time(system_time_t * psystemtime, const file_time * pfile_time)
+//void file_time_to_system_time(system_time_t * psystemtime, const ::file_time & filetime)
 //{
 //
 //   if (!FileTimeToSystemTime((FILETIME *)pfile_time, (SYSTEMTIME *)psystemtime))
@@ -282,10 +282,10 @@ void GetSystemTime(system_time_t* psystemtime)
 }
 
 
-void file_time_to_system_time(system_time_t * psystemtime, const file_time * pfile_time)
+void file_time_to_system_time(system_time_t * psystemtime, const ::file_time & filetime)
 {
 
-   FileTimeToSystemTime((FILETIME *) pfile_time, (SYSTEMTIME *) psystemtime);
+   FileTimeToSystemTime((FILETIME *) &filetime.m_uFileTime, (SYSTEMTIME *) psystemtime);
 
 }
 

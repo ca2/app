@@ -88,24 +88,24 @@ namespace earth
       }
 
 
-      void time::get(file_time * pfiletime)
+      void time::get(file_time & filetime)
       {
 
          system_time systemtime;
 
          get(&systemtime);
 
-         system_time_to_file_time(pfiletime, &systemtime);
+         system_time_to_file_time(&filetime, &systemtime);
 
       }
 
 
-      void time::set(const file_time * pfiletime)
+      void time::set(const ::file_time & filetime)
       {
 
          system_time systemtime;
 
-         file_time_to_system_time(&systemtime, pfiletime);
+         file_time_to_system_time(&systemtime, filetime);
 
          set(&systemtime);
 

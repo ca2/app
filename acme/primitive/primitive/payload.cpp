@@ -8583,7 +8583,7 @@ bool payload::is_false() const
    case e_type_earth_time:
       return !m_earthtime.m_iSecond;
    case e_type_file_time:
-      return !m_filetime;
+      return !m_filetime.m_uFileTime;
    case e_type_payload_pointer:
       return m_ppayload || !*m_ppayload;
    case e_type_property:
@@ -8770,7 +8770,7 @@ bool payload::is_set_false() const
    case e_type_earth_time:
       return !m_earthtime.m_iSecond;
    case e_type_file_time:
-      return !m_filetime;
+      return !m_filetime.m_uFileTime;
    case e_type_payload_pointer:
       return m_ppayload && m_ppayload->is_set_false();
    case e_type_property:
@@ -9032,19 +9032,19 @@ void unit_test_primitive_var_acme_block()
    else if (is_integer())
    {
 
-      return as_u64();
+      return { file_time_t{}, as_u64() };
 
    }
    else if (is_floating())
    {
 
-      return as_u64();
+      return  { file_time_t{}, as_u64() };
 
    }
    else
    {
 
-      return as_u64();
+      return { file_time_t{},  as_u64() };
 
    }
 

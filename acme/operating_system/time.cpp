@@ -167,7 +167,7 @@ void get_system_time_as_file_time(file_time* pfile_time)
 }
 
 
-//void file_time_to_system_time(system_time_t* psystemtime, const file_time* pfile_time)
+//void file_time_to_system_time(system_time_t* psystemtime, const ::file_time & filetime)
 //{
 //
 //   if (!FileTimeToSystemTime((const FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime))
@@ -182,7 +182,7 @@ void get_system_time_as_file_time(file_time* pfile_time)
 //}
 //
 //
-//void file_time_to_local_file_time(file_time* pfile_timeLocal, const file_time* pfile_time)
+//void file_time_to_local_file_time(file_time* pfile_timeLocal, const ::file_time & filetime)
 //{
 //
 //   if (!FileTimeToLocalFileTime((const FILETIME*)pfile_time, (FILETIME*)pfile_timeLocal))
@@ -197,7 +197,7 @@ void get_system_time_as_file_time(file_time* pfile_time)
 //}
 //
 //
-//void is_valid_file_time(const file_time* pfile_time)
+//void is_valid_file_time(const ::file_time & filetime)
 //{
 //
 //   SYSTEMTIME systemtime{};
@@ -214,12 +214,12 @@ void get_system_time_as_file_time(file_time* pfile_time)
 //}
 
 
-void file_time_to_earth_time(posix_time* ptime, const file_time* pfile_time, i32 nDST)
+void file_time_to_earth_time(posix_time* ptime, const ::file_time & filetime, i32 nDST)
 {
 
    system_time_t systemtime{};
 
-   file_time_to_system_time(&systemtime, pfile_time);
+   file_time_to_system_time(&systemtime, filetime);
 
    system_time_to_earth_time(ptime, &systemtime);
 
@@ -277,7 +277,7 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
-//void FileTimeToSystemTime(const file_time* pfile_time, system_time_t* psystemtime);
+//void FileTimeToSystemTime(const ::file_time & filetime, system_time_t* psystemtime);
 
 
 
@@ -291,10 +291,10 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 static const uint64_t EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
 
 
-CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time* pfiletime)
+CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const ::file_time & filetime)
 {
 
-   uint64_t nanoseconds = pfiletime->m_uFileTime * 100;
+   uint64_t nanoseconds = filetime.m_uFileTime * 100;
 
    nanoseconds -= EPOCH_DIFFERENCE_NANOS;
 

@@ -9,9 +9,14 @@ class row :
 public:
 
 
+   using BASE_RANGE = range < TYPE * >;
+
+
    inline operator TYPE * () { return this->m_begin; }
    inline operator const TYPE * () const { return this->m_begin; }
 
+
+   row(TYPE * pbegin, TYPE * pend):BASE_RANGE(pbegin, pend) {}
 
 };
 
@@ -66,7 +71,7 @@ public:
    row operator [](::index iRowIndex)
    {
 
-      auto prowdata = this->begin + m_iWidth * iRowIndex;
+      auto prowdata = this->begin() + m_iWidth * iRowIndex;
 
       return { prowdata, prowdata + m_iWidth };
 
@@ -76,7 +81,7 @@ public:
    const row operator [](::index iRowIndex) const
    {
 
-      auto prowdata = this->begin + m_iWidth * iRowIndex;
+      auto prowdata = this->begin() + m_iWidth * iRowIndex;
 
       return { prowdata, prowdata + m_iWidth };
 

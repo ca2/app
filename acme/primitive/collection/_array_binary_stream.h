@@ -203,3 +203,40 @@ inline binary_stream & operator >>(binary_stream & stream, ::raw_array < TYPE, A
 
 }
 
+
+inline binary_stream & operator <<(binary_stream & stream, const ::property_set & propertyset)
+{
+
+   return stream << propertyset.m_propertyptra;
+
+}
+
+
+inline binary_stream & operator >>(binary_stream & stream, ::property_set & propertyset)
+{
+
+   return stream >> propertyset.m_propertyptra;
+
+}
+
+
+
+
+inline binary_stream & operator <<(binary_stream & stream, const ::property * pproperty)
+{
+
+   return stream << *pproperty;
+
+}
+
+
+inline binary_stream & operator >>(binary_stream & stream, ::property * pproperty)
+{
+
+   return stream >> *pproperty;
+
+}
+
+
+
+

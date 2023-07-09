@@ -8,7 +8,7 @@
 // {
 
 
-//    CLASS_DECL_ACME time_shift time_shift::local()
+//    CLASS_DECL_ACME class ::time class ::time::local()
 //    {
 
 //       time_t zero = 0;

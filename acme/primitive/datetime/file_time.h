@@ -12,6 +12,10 @@ class CLASS_DECL_ACME file_time
 public:
 
 
+   // Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
+   inline static const ::u64 EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
+
+
    // Contains a 64-bit value representing the number
    // of 100-nanosecond intervals since January 1, 1601 (UTC).
    ::u64          m_uFileTime;

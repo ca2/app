@@ -44,7 +44,7 @@ namespace earth
    }
 
 
-   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const ::earth::time_shift & timeshift)
+   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const class ::time & timeshift)
    {
 
 
@@ -64,7 +64,7 @@ namespace earth
       //atm.tm_isdst = nDST;
 
 
-      time::operator=(gregoriantime.make_utc_time() - posix_time(posix_time_t{}, (::i64) timeshift.m_d));
+      time::operator=(gregoriantime.make_utc_time() - timeshift);
 
 
       /*
@@ -85,7 +85,7 @@ namespace earth
 
    }
 
-   time::time(const ::earth::gregorian_time & gregoriantime, const time_shift & timeshift) :
+   time::time(const ::earth::gregorian_time & gregoriantime, const class ::time & timeshift) :
       time(gregoriantime.m_iYear,
          gregoriantime.m_iMonth,
          gregoriantime.m_iDay,
@@ -141,7 +141,7 @@ namespace earth
 #endif
 
    
-   time::time(const file_time & filetime, const time_shift & timeshift) :
+   time::time(const file_time & filetime, const class ::time & timeshift) :
       time(::earth::gregorian_time(filetime), timeshift)
    {
 
@@ -152,7 +152,7 @@ namespace earth
    }
 
 
-   time::time(const system_time & systemtime, const time_shift & timeshift) :
+   time::time(const system_time & systemtime, const class ::time & timeshift) :
       time(::earth::gregorian_time(systemtime), timeshift)
    {
 
@@ -163,10 +163,10 @@ namespace earth
    }
 
 
-//   struct tm * time::tm_struct(struct tm * ptm, const ::earth::time_shift & timeshift) const
+//   struct tm * time::tm_struct(struct tm * ptm, const class ::time & timeshift) const
 //   {
 //
-//      time_t timeOffset = (time_t) timeshift.m_d;
+//      time_t timeOffset = (time_t) timeshift.floating_second();
 //
 //      time_t time = m_iSecond + timeOffset;
 //
@@ -281,7 +281,7 @@ namespace earth
    }
 
 
-   i32 time::year(const ::earth::time_shift & timeshift) const noexcept
+   i32 time::year(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -296,7 +296,7 @@ namespace earth
    }
 
 
-   i32 time::month(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::month(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -312,7 +312,7 @@ namespace earth
    }
 
 
-   i32 time::day(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::day(const class ::time& timeshift) const noexcept
    {
 
       //struct tm ttm;
@@ -329,7 +329,7 @@ namespace earth
    }
 
 
-   i32 time::hour(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::hour(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -345,7 +345,7 @@ namespace earth
    }
 
 
-   i32 time::minute(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::minute(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -361,7 +361,7 @@ namespace earth
    }
 
 
-   i32 time::second(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::second(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -377,7 +377,7 @@ namespace earth
    }
 
 
-   i32 time::day_of_week(const ::earth::time_shift & timeshift) const noexcept
+   i32 time::day_of_week(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -491,7 +491,7 @@ namespace earth
    //}
 
 
-   time time::get_sunday(const time_shift& timeshift) const
+   time time::get_sunday(const class ::time& timeshift) const
    {
 
       time sunday(*this);
@@ -521,7 +521,7 @@ namespace earth
    }
 
 
-   posix_time time::time_of_day(const time_shift & timeshift) const noexcept
+   posix_time time::time_of_day(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -552,7 +552,7 @@ namespace earth
    //}
 
 
-   i64 time::day_sig(const time_shift& timeshift) const noexcept
+   i64 time::day_sig(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -563,14 +563,14 @@ namespace earth
 
 
 
-   string format(const ::string & strFormat, const ::earth::time & time, const ::earth::time_shift& timeshift)
+   string format(const ::string & strFormat, const ::earth::time & time, const class ::time& timeshift)
    {
 
       string str;
 
       time_t timeUtc = time.m_iSecond;
 
-      timeUtc += (::i32)  (timeshift.m_d * 3600.0);
+      timeUtc += timeshift.m_iSecond;
 
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
@@ -774,7 +774,7 @@ namespace earth
    }
 
 
-   ::i64 time::total_minutes(const time_shift & timeshift) const noexcept
+   ::i64 time::total_minutes(const class ::time & timeshift) const noexcept
    {
    
       return m_iSecond / 60;

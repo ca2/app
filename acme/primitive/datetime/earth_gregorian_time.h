@@ -34,17 +34,17 @@ namespace earth
       }
 
 
-      explicit gregorian_time(const ::posix_time & posixtime, ::i64 iNanosecond = 0, const time_shift & timeshift = time_shift::none());
-      explicit gregorian_time(const class ::time & time, const time_shift & timeshift = time_shift::none());
-      explicit gregorian_time(const ::system_time & systemtime, const time_shift & timeshift = time_shift::none());
-      explicit gregorian_time(const ::file_time & filetime, const time_shift & timeshift = time_shift::none());
+      explicit gregorian_time(const ::posix_time & posixtime, ::i64 iNanosecond = 0, const class ::time & timeshift = {});
+      explicit gregorian_time(const class ::time & time, const class ::time & timeshift = {});
+      explicit gregorian_time(const ::system_time & systemtime, const class ::time & timeshift = {});
+      explicit gregorian_time(const ::file_time & filetime, const class ::time & timeshift = {});
 
 
-      void set(const ::posix_time & time, ::i64 iNanosecond, const time_shift & timeshift);
+      void set(const ::posix_time & time, ::i64 iNanosecond, const class ::time & timeshift);
 
-      void set(const class ::time & time, const time_shift & timeshift);
+      void set(const class ::time & time, const class ::time & timeshift);
 
-      //void set(const ::earth::time & time, const time_shift & timeshift);
+      //void set(const ::earth::time & time, const class ::time & timeshift);
 
       ::posix_time get_posix_time();
 
@@ -68,7 +68,7 @@ namespace earth
 
 
 
-      //void Now(const time_shift &timeshift = time_shift::none());
+      //void Now(const class ::time &timeshift = {});
 
 
       posix_time make_utc_time() const;

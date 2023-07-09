@@ -1533,7 +1533,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::acme::copy((property_ptra &)*this, (const property_ptra &)set);
+      ::acme::copy(m_propertyptra, set.m_propertyptra);
 
    }
 

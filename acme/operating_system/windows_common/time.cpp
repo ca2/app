@@ -142,22 +142,22 @@ void system_time_to_earth_time(posix_time * ptime, const system_time & systemtim
 //}
 
 
-CLASS_DECL_ACME system_time as_system_time(const ::posix_time & posixtime)
-{
-   
-   time_t time = posixtime.m_iSecond;
-
-   struct tm tm;
-
-   gmtime_r(&time, &tm);
-
-   system_time systemtime;
-
-   copy(&systemtime, &tm);
-
-   return systemtime;
-
-}
+//CLASS_DECL_ACME system_time as_system_time(const ::posix_time & posixtime)
+//{
+//   
+//   time_t time = posixtime.m_iSecond;
+//
+//   struct tm tm;
+//
+//   gmtime_r(&time, &tm);
+//
+//   system_time systemtime;
+//
+//   copy(&systemtime, &tm);
+//
+//   return systemtime;
+//
+//}
 
 
 //CLASS_DECL_ACME file_time as_file_time(const ::posix_time & time)
@@ -392,5 +392,31 @@ file_time::file_time(const system_time & systemtime) :
 
 
 }
+
+
+namespace earth
+{
+
+
+   gregorian_time::gregorian_time(const class ::time & time, const class ::time & timeshift)
+   {
+
+      auto timeTotal = time + timeshift;
+      
+      time_t t = timeTotal.m_iSecond;
+
+      struct tm tm;
+
+      gmtime_r(&t, &tm);
+
+      copy(this, &tm);
+
+      m_iNanoSecond = timeTotal.m_iNanosecond;
+
+   }
+
+
+} // namespace earth
+
 
 

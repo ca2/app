@@ -71,12 +71,12 @@ system_time::system_time(now_t)
 }
 
 
-system_time::system_time(const ::posix_time & time)
+system_time::system_time(const ::posix_time & posixtime) :
+   system_time(::earth::gregorian_time(posixtime))
 {
 
 
 }
-
 
 system_time::system_time(const ::file_time & filetime)
 {

@@ -9,7 +9,7 @@ namespace earth
 {
 
 
-   ::earth::zone_time zone_time::get_current_time(time_shift timeshift) noexcept
+   ::earth::zone_time zone_time::get_current_time(class ::time timeshift) noexcept
    {
 
       zone_time t;
@@ -46,7 +46,7 @@ namespace earth
    }
 
 
-   zone_time::zone_time(posix_time zone_time, time_shift timeshift) noexcept :
+   zone_time::zone_time(posix_time zone_time, class ::time timeshift) noexcept :
       time(zone_time),
       m_timeshift(timeshift)
    {
@@ -79,7 +79,9 @@ namespace earth
 
       time::operator=(gregoriantime.make_utc_time());
 
-      m_timeshift.m_d = (double) iZoneOffset;
+      m_timeshift.m_iSecond = iZoneOffset;
+      m_timeshift.m_iNanosecond = 0;
+         
 
       /*
       Remember that:

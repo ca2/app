@@ -46,7 +46,7 @@ namespace sockets_bsd
       , m_maxsock(0)
       , m_iPreviousError(-1)
       //,m_errcnt(0)
-      , m_tlast(0)
+      , m_tlast{}
       , m_socks4_port(0)
       , m_bTryDirect(false)
       //, m_resolv_id(0)

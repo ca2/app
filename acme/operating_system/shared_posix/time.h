@@ -23,7 +23,7 @@ inline timespec __timespec(const class time & time)
 }
 
 
-CLASS_DECL_ACME struct ::tm * tm_struct(struct ::tm * ptm, const ::posix_time & posixtime, const ::earth::time_shift & timeshift = ::earth::time_shift::none());
+CLASS_DECL_ACME struct ::tm * tm_struct(struct ::tm * ptm, const ::posix_time & posixtime, const class ::time & timeshift = {});
 
 
 CLASS_DECL_ACME void copy(::earth::gregorian_time * ptime, const struct ::tm * ptm, ::i64 iNanosecond = 0);

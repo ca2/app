@@ -50,7 +50,7 @@ namespace earth
    }
 
 
-   gregorian_time::gregorian_time(const system_time & systemtime, const time_shift & timeshift)
+   gregorian_time::gregorian_time(const system_time & systemtime, const class ::time & timeshift)
    {
 
       m_iDayOfWeek = systemtime.wDayOfWeek;
@@ -79,7 +79,7 @@ namespace earth
    //}
 
 
-   gregorian_time::gregorian_time(const ::file_time & filetime, const time_shift & timeshift) :
+   gregorian_time::gregorian_time(const ::file_time & filetime, const class ::time & timeshift) :
       gregorian_time(system_time(filetime), timeshift)
    {
 
@@ -92,7 +92,7 @@ namespace earth
    }
 
 
-   //void time::Now(const time_shift & timeshift)
+   //void time::Now(const class ::time & timeshift)
    //{
 
    //   ::earth::time time;
@@ -103,8 +103,8 @@ namespace earth
 
    //}
 
-
-   gregorian_time::gregorian_time(const ::posix_time & posixtime, ::i64 iNanosecond, const time_shift & timeshift)
+  
+   gregorian_time::gregorian_time(const ::posix_time & posixtime, ::i64 iNanosecond, const class ::time & timeshift)
    {
 
       set(posixtime, iNanosecond, timeshift);
@@ -112,7 +112,7 @@ namespace earth
    }
 
 
-   //void gregorian_time::set(const ::earth::time & time, const time_shift & timeshift)
+   //void gregorian_time::set(const ::earth::time & time, const class ::time & timeshift)
    //{
 
    //   set(time, 0, timeshift);
@@ -120,15 +120,15 @@ namespace earth
    //}
 
 
-   gregorian_time::gregorian_time(const class ::time & time, const time_shift & timeshift)
-   {
+   //gregorian_time::gregorian_time(const class ::time & time, const class ::time & timeshift)
+   //{
 
-      set(time, time.m_iNanosecond, timeshift);
+   //   set(time, time.m_iNanosecond, timeshift);
 
-   }
+   //}
 
 
-   void gregorian_time::set(const class ::time & time, const time_shift & timeshift)
+   void gregorian_time::set(const class ::time & time, const class ::time & timeshift)
    {
 
       set(time, time.m_iNanosecond, timeshift);

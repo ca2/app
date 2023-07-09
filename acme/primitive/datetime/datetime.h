@@ -58,13 +58,13 @@ namespace datetime
          ::earth::time parse_str(const string & str);
 
 
-         string get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
-         string get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
-         string get_date_time_for_file(const ::earth::time_shift& timeshift = ::earth::time_shift::none(), const ::earth::time & time = ::earth::time::now());
+         string get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
+         string get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {});
+         string get_date_time_for_file(const class ::time& timeshift = {}, const ::earth::time & time = ::earth::time::now());
 
-         string get_date(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_FORMAT, const ::earth::time_shift & timeshift = ::earth::time_shift::none());
-         string get_date(string strFormat = INTERNATIONAL_DATE_FORMAT, const ::earth::time_shift & timeshift = ::earth::time_shift::none());
-         string get_date_for_file(const ::earth::time_shift & timeshift = ::earth::time_shift::none(), const ::earth::time & time = ::earth::time::now());
+         string get_date(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time & timeshift = {});
+         string get_date(string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time & timeshift = {});
+         string get_date_for_file(const class ::time & timeshift = {}, const ::earth::time & time = ::earth::time::now());
          
 
          //string local_get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
@@ -72,12 +72,12 @@ namespace datetime
          //string local_get_date_time_for_file();
 
 
-         string get_date_time_for_file_with_no_spaces(const ::earth::time_shift& timeshift = ::earth::time_shift::none(), const ::earth::time & time = ::earth::time::now());
+         string get_date_time_for_file_with_no_spaces(const class ::time& timeshift = {}, const ::earth::time & time = ::earth::time::now());
          //string local_get_date_time_for_file_with_no_spaces();
 
 
-         inline string format(const ::scoped_string & strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(strFormat, timeshift);  }
-         inline string format(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(time, strFormat, timeshift); }
+         inline string format(const ::scoped_string & strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return get_date_time(strFormat, timeshift);  }
+         inline string format(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const class ::time& timeshift = {}) { return get_date_time(time, strFormat, timeshift); }
          
          //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }
          //inline string local_get(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(time, strFormat); }
@@ -105,7 +105,7 @@ namespace datetime
 //
 //         void initialize(::particle * pparticle) override;
 //
-//         string get_date_time(const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+//         string get_date_time(const class ::time& timeshift = {});
 //
 //
 //      };
@@ -137,11 +137,11 @@ namespace datetime
       i32 get_weekday(i32 year, i32 month, i32 day);
 
 
-      posix_time strtotime(const ::text::context * pcontext, const ::string & str, posix_time time,i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
-      posix_time strtotime(const ::text::context * pcontext, const ::string & str, i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      posix_time strtotime(const ::text::context * pcontext, const ::string & str, posix_time time,i32 iPath,i32 & iPathCount, const class ::time& timezone = {});
+      posix_time strtotime(const ::text::context * pcontext, const ::string & str, i32 iPath,i32 & iPathCount, const class ::time& timezone = {});
 
       
-      ::earth::time from_string(const ::text::context* pcontext, const ::string & str, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      ::earth::time from_string(const ::text::context* pcontext, const ::string & str, const class ::time& timezone = {});
 
 
       // 1 - domingo
@@ -151,13 +151,13 @@ namespace datetime
       string get_month_str(const ::text::context * pcontext,i32 iMonth);
       string get_short_month_str(const ::text::context * pcontext,i32 iMonth);
 
-      static posix_time s_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      static posix_time s_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear, const class ::time& timezone = {});
 
       inline class  international& international() { return *m_pinternational; }
       //inline class str& str() { return* m_pstr; }
 
-      string format(const string & str, const ::earth::time & time, const ::earth::time_shift& timezone = ::earth::time_shift::none());
-      string format(const string & str, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      string format(const string & str, const ::earth::time & time, const class ::time& timezone = {});
+      string format(const string & str, const class ::time& timezone = {});
 
       i32 SWN(i32 y,i32 m,i32 d);
       i32 DP(i32 y,i32 m);
@@ -169,15 +169,15 @@ namespace datetime
       i32 getDayOfWeek(i32 month,i32 day,i32 year,i32 CalendarSystem);
       i32 ISO_WN(i32  y,i32 m,i32 d);
 
-      virtual string to_string(const ::text::context* pcontext, const ::datetime::result& result, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+      virtual string to_string(const ::text::context* pcontext, const ::datetime::result& result, const class ::time& timeshift = {});
 
-      virtual result span_parse_time(const ::text::context* pcontext, const string & str, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+      virtual result span_parse_time(const ::text::context* pcontext, const string & str, const class ::time& timeshift = {});
 
-      virtual result parse_time(const ::text::context* pcontext, const string & str, i32& iPath, i32& iPathCount, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+      virtual result parse_time(const ::text::context* pcontext, const string & str, i32& iPath, i32& iPathCount, const class ::time& timeshift = {});
 
-      string friend_time(const ::text::context * pcontext,::earth::time timeNow,::earth::time time, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+      string friend_time(const ::text::context * pcontext,::earth::time timeNow,::earth::time time, const class ::time& timeshift = {});
 
-      virtual string _001FriendTime(const ::text::context* pcontext, const ::earth::time& timeNow, const ::earth::time& time, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+      virtual string _001FriendTime(const ::text::context* pcontext, const ::earth::time& timeNow, const ::earth::time& time, const class ::time& timeshift = {});
 
 
    };

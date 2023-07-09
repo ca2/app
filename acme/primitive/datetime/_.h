@@ -124,6 +124,19 @@ namespace datetime
 
 } // namespace datetime;
 
+
+
+namespace earth
+{
+
+
+   class gregorian_time;
+
+
+} // namespace earth
+
+
+
 //#ifdef WINDOWS
 //
 //

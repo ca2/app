@@ -31,7 +31,7 @@ namespace datetime
 
    }
 
-   ::earth::time datetime::from_string(const ::text::context* pcontext, const ::string & str, const ::earth::time_shift & timeshift)
+   ::earth::time datetime::from_string(const ::text::context* pcontext, const ::string & str, const class ::time & timeshift)
    {
 
       int iPathCount;
@@ -214,7 +214,7 @@ namespace datetime
    }
 
 
-   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, i32 iPath, i32 & iPathCount, const ::earth::time_shift & timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, i32 iPath, i32 & iPathCount, const class ::time & timeshift)
    {
 
       if (str.trimmed().is_empty())
@@ -246,7 +246,7 @@ namespace datetime
    }
 
 
-   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, i32 iPath, i32 & iPathCount, const ::earth::time_shift& timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, i32 iPath, i32 & iPathCount, const class ::time& timeshift)
    {
 
       if (str.trimmed().is_empty())
@@ -441,7 +441,7 @@ namespace datetime
    }
 
 
-   string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const ::earth::time_shift& timeshift)
+   string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const class ::time& timeshift)
    {
       
       string str;
@@ -452,7 +452,7 @@ namespace datetime
 
    }
 
-   string datetime::international::get_date_time(string strFormat, const ::earth::time_shift & timeshift)
+   string datetime::international::get_date_time(string strFormat, const class ::time & timeshift)
    {
 
       ::earth::time time;
@@ -463,7 +463,7 @@ namespace datetime
 
    }
 
-   string datetime::international::get_date_time_for_file(const ::earth::time_shift & timeshift, const ::earth::time & time)
+   string datetime::international::get_date_time_for_file(const class ::time & timeshift, const ::earth::time & time)
    {
 
       return get_date_time(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
@@ -472,7 +472,7 @@ namespace datetime
 
 
 
-   string datetime::international::get_date(const ::earth::time & time, string strFormat, const ::earth::time_shift & timeshift)
+   string datetime::international::get_date(const ::earth::time & time, string strFormat, const class ::time & timeshift)
    {
 
       string str;
@@ -483,7 +483,7 @@ namespace datetime
 
    }
 
-   string datetime::international::get_date(string strFormat, const ::earth::time_shift & timeshift)
+   string datetime::international::get_date(string strFormat, const class ::time & timeshift)
    {
 
       ::earth::time time;
@@ -494,7 +494,7 @@ namespace datetime
 
    }
 
-   string datetime::international::get_date_for_file(const ::earth::time_shift & timeshift, const ::earth::time & time)
+   string datetime::international::get_date_for_file(const class ::time & timeshift, const ::earth::time & time)
    {
 
       return get_date(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift);
@@ -520,7 +520,7 @@ namespace datetime
 
 
 
-   //string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const ::earth::time_shift& timeshift)
+   //string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const class ::time& timeshift)
    //{
    //   
    //   string str;
@@ -532,7 +532,7 @@ namespace datetime
    //}
 
 
-   //string datetime::international::get_date_time_for_file(const ::earth::time_shift& timeshift)
+   //string datetime::international::get_date_time_for_file(const class ::time& timeshift)
    //{
 
    //   return get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
@@ -540,7 +540,7 @@ namespace datetime
    //}
 
 
-   string datetime::international::get_date_time_for_file_with_no_spaces(const ::earth::time_shift& timeshift, const ::earth::time & time)
+   string datetime::international::get_date_time_for_file_with_no_spaces(const class ::time& timeshift, const ::earth::time & time)
    {
 
       string str = get_date_time_for_file(timeshift, time);
@@ -552,7 +552,7 @@ namespace datetime
    }
 
 
-   //string datetime::international::get_date_time_for_file_with_no_spaces(const ::earth::time_shift& timeshift)
+   //string datetime::international::get_date_time_for_file_with_no_spaces(const class ::time& timeshift)
    //{
 
    //   string str = get_date_time_for_file(timeshift);
@@ -572,7 +572,7 @@ namespace datetime
 //   }
 //
 //
-//   string datetime::str::get_date_time(const ::earth::time_shift& timeshift)
+//   string datetime::str::get_date_time(const class ::time& timeshift)
 //   {
 //
 //      return m_pdatetime->international().get_date_time(::earth::time::now(), timeshift);
@@ -580,7 +580,7 @@ namespace datetime
 //   }
 //
 
-   posix_time datetime::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::earth::time_shift& timeshift)
+   posix_time datetime::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const class ::time& timeshift)
    {
 
        earth::gregorian_time time;
@@ -594,10 +594,7 @@ namespace datetime
 
       auto posixtime = time.make_utc_time();
 
-      return (posix_time)(posixtime - posix_time{
-         posix_time_t{}, (::i64)timeshift.m_d
-      })
-      ;
+      return posixtime - timeshift;
 
 //#ifdef WINDOWS
 //
@@ -862,7 +859,7 @@ namespace datetime
    }
 
 
-   string datetime::format(const string & strFormatParam, const ::earth::time & time, const ::earth::time_shift & timeshift)
+   string datetime::format(const string & strFormatParam, const ::earth::time & time, const class ::time & timeshift)
    {
 
       string strFormat(strFormatParam);
@@ -889,7 +886,7 @@ namespace datetime
    }
 
 
-   string datetime::format(const string & str, const ::earth::time_shift& timeshift)
+   string datetime::format(const string & str, const class ::time& timeshift)
    {
 
       return format(str, ::earth::time::now(), timeshift);
@@ -897,7 +894,7 @@ namespace datetime
    }
 
 
-   //string datetime::strftime(const ::scoped_string & scopedstr, const ::earth::time & time, const ::earth::time_shift& timeshift)
+   //string datetime::strftime(const ::scoped_string & scopedstr, const ::earth::time & time, const class ::time& timeshift)
    //{
 
    //   string strFormat(psz);
@@ -932,7 +929,7 @@ namespace datetime
    //}
 
 
-   string datetime::friend_time(const ::text::context * pcontext, ::earth::time timeNow, ::earth::time time, const ::earth::time_shift& timeshift)
+   string datetime::friend_time(const ::text::context * pcontext, ::earth::time timeNow, ::earth::time time, const class ::time& timeshift)
    {
       bool bDiff = false;
       bool bSolved = false;
@@ -1071,7 +1068,7 @@ namespace datetime
 
 
 
-   string datetime::_001FriendTime(const ::text::context* pcontext, const ::earth::time& timeNow, const ::earth::time& time, const ::earth::time_shift& timeshift)
+   string datetime::_001FriendTime(const ::text::context* pcontext, const ::earth::time& timeNow, const ::earth::time& time, const class ::time& timeshift)
    {
 
       bool bDiff = false;
@@ -1268,7 +1265,7 @@ namespace datetime
 {
 
 
-   result datetime::span_parse_time(const ::text::context* pcontext, const string & strSpanExpression, const ::earth::time_shift & timeshift)
+   result datetime::span_parse_time(const ::text::context* pcontext, const string & strSpanExpression, const class ::time & timeshift)
    {
 
       static atom idCalendarDay("calendar:day");
@@ -1483,7 +1480,7 @@ namespace datetime
    }
 
 
-   result datetime::parse_time(const ::text::context* pcontext, const string & strParam, i32& iPath, i32& iPathCount, const ::earth::time_shift& timeshift)
+   result datetime::parse_time(const ::text::context* pcontext, const string & strParam, i32& iPath, i32& iPathCount, const class ::time& timeshift)
    {
       ::earth::time time;
       string str(strParam);
@@ -1549,7 +1546,7 @@ namespace datetime
                   set["day"].as_i32(),
                   set["hour"].as_i32(),
                   set["minute"].as_i32(),
-                  set["second"].as_i32(), ::earth::time_shift::local());
+                  set["second"].as_i32(), ::time::local());
 
             }
 
@@ -1717,7 +1714,7 @@ namespace datetime
    }
 
 
-   string datetime::to_string(const ::text::context* pcontext, const ::datetime::result& result, const ::earth::time_shift& timeshift)
+   string datetime::to_string(const ::text::context* pcontext, const ::datetime::result& result, const class ::time& timeshift)
    {
 
       string str;

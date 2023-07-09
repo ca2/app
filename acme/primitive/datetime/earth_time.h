@@ -46,13 +46,13 @@ namespace earth
       constexpr time(const posix_time & time) noexcept;
 
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
-           const time_shift &timeshift = time_shift::none());
+           const class ::time &timeshift = {});
       explicit time(const ::earth::gregorian_time & gregoriantime,
-         const time_shift & timeshift = time_shift::none());
+         const class ::time & timeshift = {});
       explicit time(const file_time & filetime,
-         const time_shift & timeshift = time_shift::none());
+         const class ::time & timeshift = {});
       explicit time(const ::system_time & systemtime,
-         const time_shift & timeshift = time_shift::none());
+         const class ::time & timeshift = {});
 
 #ifdef WINDOWS
       time(::u16 wDosDate, ::u16 wDosTime, i32 nDST = -1);
@@ -119,26 +119,26 @@ namespace earth
 
       posix_time get_time() const noexcept;
 
-      i32 year(const time_shift &timeshift = time_shift::none()) const noexcept;
+      i32 year(const class ::time &timeshift = {}) const noexcept;
 
-      i32 month(const time_shift &timeshift = time_shift::none()) const noexcept;
+      i32 month(const class ::time &timeshift = {}) const noexcept;
 
-      i32 day(const time_shift &timeshift = time_shift::none()) const noexcept;
+      i32 day(const class ::time &timeshift = {}) const noexcept;
 
-      i32 hour(const time_shift &timeshift = time_shift::none()) const noexcept;
+      i32 hour(const class ::time &timeshift = {}) const noexcept;
 
-      i32 minute(const time_shift &timeshift = time_shift::none()) const noexcept;
+      i32 minute(const class ::time &timeshift = {}) const noexcept;
 
-      i32 second(const time_shift &timeshift = time_shift::none()) const noexcept;
+      i32 second(const class ::time &timeshift = {}) const noexcept;
 
-      i32 day_of_week(const time_shift &timeshift = time_shift::none()) const noexcept; // 1 = Sunday, 7 = Saturday
+      i32 day_of_week(const class ::time &timeshift = {}) const noexcept; // 1 = Sunday, 7 = Saturday
 
 
-      time get_sunday(const time_shift &timeshift = time_shift::none()) const;
+      time get_sunday(const class ::time &timeshift = {}) const;
 
-      posix_time time_of_day(const time_shift &timeshift = time_shift::none()) const noexcept;
+      posix_time time_of_day(const class ::time &timeshift = {}) const noexcept;
 
-      i64 day_sig(const time_shift &timeshift = time_shift::none()) const noexcept;
+      i64 day_sig(const class ::time &timeshift = {}) const noexcept;
 
 
       time_span elapsed() const;
@@ -150,7 +150,7 @@ namespace earth
       ::std::strong_ordering operator <=> (const class  ::time & time) const;
 
 
-      ::i64 total_minutes(const time_shift & timeshift = time_shift::none()) const noexcept;
+      ::i64 total_minutes(const class ::time & timeshift = {}) const noexcept;
 
 
    };

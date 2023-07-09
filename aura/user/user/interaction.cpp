@@ -1571,6 +1571,8 @@ namespace user
 
       m_bNeedPerformLayout = true;
 
+      m_bNeedLayout = true;
+
    }
 
 

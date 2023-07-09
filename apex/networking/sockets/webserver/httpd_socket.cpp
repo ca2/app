@@ -173,7 +173,7 @@ namespace sockets
 
       auto timeNow = ::earth::time::now();
 
-      gregoriantime.set(timeNow, ::earth::time_shift::local());
+      gregoriantime.set(timeNow, ::time::local());
 
       char slask[40]; // yyyy-mm-dd hh:mm:ss
 

@@ -30,10 +30,11 @@ inline binary_stream & operator <<(binary_stream & s, const ::earth::time & z)
 
 
 // template < typename FILE >
-inline binary_stream & operator <<(binary_stream & stream, const ::earth::time_shift & timeshift)
+inline binary_stream & operator <<(binary_stream & stream, const class ::time & timeshift)
 {
 
-   stream << timeshift.m_d;
+   stream << timeshift.m_iSecond;
+   stream << timeshift.m_iNanosecond;
 
    return stream;
 
@@ -41,10 +42,11 @@ inline binary_stream & operator <<(binary_stream & stream, const ::earth::time_s
 
 
 // template < typename FILE >
-inline binary_stream & operator >>(binary_stream & stream, ::earth::time_shift & timeshift)
+inline binary_stream & operator >>(binary_stream & stream, class ::time & timeshift)
 {
 
-   stream >> timeshift.m_d;
+   stream >> timeshift.m_iSecond;
+   stream >> timeshift.m_iNanosecond;
 
    return stream;
 

@@ -266,38 +266,18 @@ void copy(system_time * psystemtime, const tm * ptm)
 }
 
 
-// Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
-static const uint64_t EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
 
 
-CLASS_DECL_ACME class ::time as_time(const ::file_time & filetime)
-{
-
-   uint64_t nanoseconds = filetime.m_uFileTime * 100;
-
-   nanoseconds -= EPOCH_DIFFERENCE_NANOS;
-
-   class ::time time;
-
-   time.m_iSecond = nanoseconds / 1'000'000'000;
-
-   time.m_iNanosecond = nanoseconds % 1'000'000'000;
-
-   return time;
-
-}
-
-
-CLASS_DECL_ACME file_time as_file_time(const class ::time & time)
-{
-
-   ::u64 nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
-
-   nanoseconds += EPOCH_DIFFERENCE_NANOS;
-
-   return { ::file_time_t{}, nanoseconds / 100 };
-
-}
+//CLASS_DECL_ACME file_time as_file_time(const class ::time & time)
+//{
+//
+//   ::u64 nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
+//
+//   nanoseconds += EPOCH_DIFFERENCE_NANOS;
+//
+//   return { ::file_time_t{}, nanoseconds / 100 };
+//
+//}
 
 
 posix_time::posix_time(now_t):

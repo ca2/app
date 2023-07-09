@@ -306,8 +306,8 @@ public:
 
    auto begin() { return propertyptra().begin(); }
    auto begin() const { return propertyptra().begin(); }
-   auto end() { return propertyptra().begin(); }
-   auto end() const { return propertyptra().begin(); }
+   auto end() { return propertyptra().end(); }
+   auto end() const { return propertyptra().end(); }
 
    auto is_end(property_ptra::const_iterator iterator) const { return propertyptra().is_end(iterator); }
 

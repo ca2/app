@@ -8,6 +8,16 @@
 #include "nanosecond.h"
 
 
+namespace earth
+{
+
+
+   class gregorian_time;
+
+
+} // namespace earth
+
+
 #define _TIME_COMPARISON_WITH(TYPE) \
    inline bool operator == (const TYPE & t) const { return operator == ((class ::time) t); } \
    inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> ((class ::time) t); }
@@ -69,6 +79,8 @@ public:
 
 
    constexpr time(const class ::time& time) : posix_time(time),nanosecond(time) { }
+   explicit time(const ::earth::gregorian_time & time);
+   explicit time(const ::file_time & filetime);
 
    template < primitive_integer INTEGER >
    constexpr time(INTEGER iSecond)
@@ -160,6 +172,8 @@ public:
    //constexpr static time zero();
 //   constexpr bool operator !() const {return is_null();}
 
+   static class ::time local();
+
    //constexpr void infinite() {*this=infinity();}
    //void PosInfinity() {*this=pos_infinity();}
    //constexpr void zero() { this->m_iSecond = 0; this->m_iNanosecond = 0; }
@@ -174,7 +188,7 @@ public:
 
    //constexpr operator bool() const;
 
-
+   constexpr ::i64 total_nanoseconds() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
    //constexpr  double operator() ()const { return floating_second(); }
 
 

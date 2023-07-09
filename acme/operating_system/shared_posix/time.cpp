@@ -142,7 +142,7 @@ CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespe
 }
 
 
-struct tm * tm_struct(struct tm * ptm, const ::posix_time & posixtime, const ::earth::time_shift & timeshift)
+struct tm * tm_struct(struct tm * ptm, const ::posix_time & posixtime, const class ::time & timeshift)
 {
 
    if (::is_null(ptm))
@@ -152,9 +152,7 @@ struct tm * tm_struct(struct tm * ptm, const ::posix_time & posixtime, const ::e
 
    }
 
-   time_t timeOffset = (time_t)timeshift.m_d;
-
-   time_t time = posixtime.m_iSecond + timeOffset;
+   time_t time = posixtime.m_iSecond + timeshift.m_iSecond;
 
 #ifdef WINDOWS
 
@@ -245,7 +243,7 @@ void copy(struct ::tm * ptm, const ::earth::gregorian_time * ptime)
 namespace earth
 {
 
-   void gregorian_time::set(const ::posix_time & time, ::i64 iNanosecond, const time_shift & timeshift)
+   void gregorian_time::set(const ::posix_time & time, ::i64 iNanosecond, const class ::time & timeshift)
    {
 
       struct tm tm;
@@ -275,9 +273,7 @@ CLASS_DECL_ACME struct tm * GetZoneTm(struct tm * ptm, const ::earth::zone_time 
 
    struct tm tmTemp;
 
-   time_t t = zonetime.m_iSecond;
-
-   t += (::i32)zonetime.m_timeshift.m_d;
+   time_t t = zonetime.m_iSecond + zonetime.m_timeshift.m_iSecond;
 
    errno_t err = _gmtime64_s(&tmTemp, &t);
 
@@ -351,8 +347,6 @@ namespace earth
 
 
 
-
-
 class ::time & time::Now()
 {
 
@@ -372,3 +366,9 @@ class ::time & time::Now()
    return *this;
 
 }
+
+
+
+
+
+

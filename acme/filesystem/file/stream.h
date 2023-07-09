@@ -881,11 +881,11 @@ public:
 //
 //
 //
-//inline binary_stream & operator >>(binary_stream & s, ::earth::time_shift & z);
+//inline binary_stream & operator >>(binary_stream & s, class ::time & z);
 //
 //
 //
-//inline binary_stream & operator <<(binary_stream & s, const ::earth::time_shift & z);
+//inline binary_stream & operator <<(binary_stream & s, const class ::time & z);
 //
 //
 //

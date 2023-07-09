@@ -20,13 +20,13 @@ public:
 
 
    system_time(
-unsigned short ushYear = 0,
-unsigned short ushMonth = 0,
-unsigned short ushDayOfWeek = 0,
-unsigned short ushDay = 0,
-unsigned short ushHour = 0,
-unsigned short ushMinute = 0,
-unsigned short ushSecond = 0,
+unsigned short ushYear,
+unsigned short ushMonth,
+unsigned short ushDayOfWeek,
+unsigned short ushDay,
+unsigned short ushHour,
+unsigned short ushMinute,
+unsigned short ushSecond,
 unsigned short ushMilliseconds = 0
    )
    {
@@ -42,10 +42,10 @@ unsigned short ushMilliseconds = 0
 
 
    }
-   system_time(const ::earth::gregorian_time & gregoriantime);
+   explicit system_time(const ::earth::gregorian_time & gregoriantime);
    system_time(now_t);
-   system_time(const ::posix_time & time);
-   system_time(const ::file_time & filetime);
+   explicit system_time(const ::posix_time & time);
+   explicit system_time(const ::file_time & filetime);
 
 
 

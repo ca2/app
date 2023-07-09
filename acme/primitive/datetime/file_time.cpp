@@ -61,15 +61,14 @@ file_time::file_time(const ::posix_time & time) :
 }
 
 
-file_time::file_time(const class ::time & time) :
-   file_time(::earth::gregorian_time(time))
+file_time::file_time(const class ::time & time)
 {
 
-   //auto systemtime = as_system_time(time);
+   auto nanoseconds = time.m_iSecond * 1'000'000'000 + time.m_iNanosecond;
 
-   //auto filetime = as_file_time(systemtime);
+   nanoseconds += EPOCH_DIFFERENCE_NANOS;
 
-   //return filetime;
+   m_uFileTime = nanoseconds / 100;
 
 }
 

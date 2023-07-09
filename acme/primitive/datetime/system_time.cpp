@@ -78,11 +78,11 @@ system_time::system_time(const ::posix_time & posixtime) :
 
 }
 
-system_time::system_time(const ::file_time & filetime)
-{
-
-
-}
+//system_time::system_time(const ::file_time & filetime)
+//{
+//
+//
+//}
 
 
 

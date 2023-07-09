@@ -290,11 +290,11 @@ CLASS_DECL_ACME struct tm * GetZoneTm(struct tm * ptm, const ::earth::zone_time 
 
    struct tm * ptmTemp;
 
-   auto t = zonetime.m_iSecond;
+   auto t = zonetime + zonetime.m_timeshift;
 
-   t += (::i64)zonetime.m_timeshift.m_d;
+   time_t time = t.m_iSecond;
 
-   ptmTemp = gmtime(&t);
+   ptmTemp = gmtime(&time);
 
    // gmtime can return nullptr
    if (ptmTemp == nullptr)

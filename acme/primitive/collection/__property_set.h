@@ -304,6 +304,13 @@ public:
    const property_ptra & propertyptra() const { return m_propertyptra; }
 
 
+   auto begin() { return propertyptra().begin(); }
+   auto begin() const { return propertyptra().begin(); }
+   auto end() { return propertyptra().begin(); }
+   auto end() const { return propertyptra().begin(); }
+
+   auto is_end(property_ptra::const_iterator iterator) const { return propertyptra().is_end(iterator); }
+
    //template < typename TYPE >
    //bool find(const ::atom & atom, TYPE & t)
    //{

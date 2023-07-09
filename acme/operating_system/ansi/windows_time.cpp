@@ -20,14 +20,6 @@
 #include <errno.h>
 
 
-using WORD = ::u16;
-using LONG = ::i32;
-using WINULONG = ::u32;
-using LONGLONG = ::i64;
-using ULONGLONG = ::u64;
-using NTSTATUS = ::i32;
-using DWORD = ::u32;
-using LPDWORD = ::DWORD *;
 
 
 #define STATUS_SUCCESS                   ((NTSTATUS) 0x00000000)

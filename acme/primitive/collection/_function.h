@@ -16,12 +16,12 @@ void _001RemoveIndexes(ARRAY & a, ARRAY_INDEXES & ia)
    // sort
    //::sort::quick_sort(ia,true);
 
-   ia.sort();
+   ::sort::QuickSortAsc(ia);
 
    ::index i = ia.get_upper_bound();
 
    // filter out of upper bound indexes
-   while (i >= 0 && ia[i] >= get_size())
+   while (i >= 0 && ia[i] >= a.get_size())
    {
 
       ia.erase_at(i);
@@ -41,7 +41,7 @@ void _001RemoveIndexes(ARRAY & a, ARRAY_INDEXES & ia)
    i = ia.get_upper_bound();
 
    // filter out duplicates
-   while (i > 0 && ia[i] >= get_size())
+   while (i > 0 && ia[i] >= a.get_size())
    {
 
       if (ia[i] == ia[i - 1])

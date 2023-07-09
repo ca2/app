@@ -3,7 +3,9 @@
 
 #include "acme/primitive/datetime/file_time.h"
 #include "acme/primitive/datetime/system_time.h"
-#ifndef WINDOWS
+#ifdef WINDOWS
+#include "acme/_operating_system.h"
+#else
 #include "acme/operating_system/ansi/windows_time.h"
 #endif
 

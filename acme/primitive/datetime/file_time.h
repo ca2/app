@@ -4,22 +4,27 @@
 #include "file_time_span.h"
 
 
+struct file_time_t {};
+
+
 class CLASS_DECL_ACME file_time
 {
 public:
 
 
-   file_time_t           m_filetime;
+   // Contains a 64-bit value representing the number
+   // of 100-nanosecond intervals since January 1, 1601 (UTC).
+   ::u64          m_uFileTime;
 
 
-   file_time() noexcept { m_filetime = 0; }
-   file_time(file_time_t file_time) noexcept { m_filetime = file_time; }
+   file_time() noexcept { m_uFileTime = 0; }
+   file_time(file_time_t, ::u64 uFileTime) noexcept { m_uFileTime = uFileTime; }
 
    static file_time get_current_time() noexcept;
 
 
-   explicit operator file_time_t &() { return m_filetime; }
-   explicit operator file_time_t () const { return m_filetime; }
+   //explicit operator file_time_t &() { return m_filetime; }
+   //explicit operator file_time_t () const { return m_filetime; }
 
 
    file_time& operator+=(file_time_span span) noexcept;
@@ -30,25 +35,25 @@ public:
    file_time_span operator-(file_time ft) const noexcept;
 
    bool operator==(file_time ft) const noexcept;
-   bool operator!=(file_time ft) const noexcept;
-   bool operator<(file_time ft) const noexcept;
-   bool operator>(file_time ft) const noexcept;
-   bool operator<=(file_time ft) const noexcept;
-   bool operator>=(file_time ft) const noexcept;
+   std::strong_ordering operator<=>(file_time ft) const noexcept;
+   //bool operator<(file_time ft) const noexcept;
+   //bool operator>(file_time ft) const noexcept;
+   //bool operator<=(file_time ft) const noexcept;
+   //bool operator>=(file_time ft) const noexcept;
 
-   file_time_t get_time() const noexcept;
-   void SetTime(file_time_t nTime) noexcept;
+   ::u64 get_file_time() const noexcept;
+   void set_file_time(::u64 nTime) noexcept;
 
 
    //file_time UTCToLocal() const noexcept;
    //file_time LocalToUTC() const noexcept;
 
-   static const file_time_t Millisecond;
-   static const file_time_t Second;
-   static const file_time_t Minute;
-   static const file_time_t Hour;
-   static const file_time_t Day;
-   static const file_time_t Week;
+   //static const file_time_t Millisecond;
+   //static const file_time_t Second;
+   //static const file_time_t Minute;
+   //static const file_time_t Hour;
+   //static const file_time_t Day;
+   //static const file_time_t Week;
 
 };
 
@@ -92,7 +97,7 @@ struct CLASS_DECL_ACME file_time_set
    bool modified_timeout(const file_time & current, int iSeconds) const
    {
 
-      if (current - m_filetimeModified > (iSeconds * 10'000'000))
+      if ((current - m_filetimeModified).m_iFileTimeSpan > (iSeconds * 10'000'000))
       {
 
          return true;

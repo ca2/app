@@ -127,7 +127,7 @@ void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystem
 }
 
 
-//void system_time_to_file_time(file_time_t* pfile_time, const system_time_t* psystemtime)
+//void system_time_to_file_time(file_time* pfile_time, const system_time_t* psystemtime)
 //{
 //
 //   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfile_time))
@@ -156,7 +156,7 @@ CLASS_DECL_ACME void earth_time_to_system_time(system_time_t* psystemtime, const
 }
 
 
-CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const posix_time* ptime)
+CLASS_DECL_ACME void earth_time_to_file_time(file_time* pfile_time, const posix_time* ptime)
 {
 
    system_time_t systemtime;
@@ -198,7 +198,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const posi
 //
 //
 //
-//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const file_time * pfile_time)
 //{
 //
 //   FileTimeToSystemTime((FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime);
@@ -217,7 +217,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const posi
 
 //
 //
-//void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+//void file_time_to_system_time(system_time_t * psystemtime, const file_time * pfile_time)
 //{
 //
 //   if (!FileTimeToSystemTime((FILETIME *)pfile_time, (SYSTEMTIME *)psystemtime))
@@ -245,7 +245,7 @@ CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, L
 
 
 
-void FileTimeToSystemTime(const file_time_t* pfile_time, system_time_t* psystemtime)
+void FileTimeToSystemTime(const file_time* pfile_time, system_time_t* psystemtime)
 {
 
    if (!FileTimeToSystemTime((LPFILETIME) pfile_time, (LPSYSTEMTIME) psystemtime))
@@ -259,7 +259,7 @@ void FileTimeToSystemTime(const file_time_t* pfile_time, system_time_t* psystemt
 
 
 
-void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_time)
+void SystemTimeToFileTime(const system_time_t* psystemtime, file_time* pfile_time)
 {
 
    if (!SystemTimeToFileTime((LPSYSTEMTIME)pfile_time, (LPFILETIME)psystemtime))
@@ -282,7 +282,7 @@ void GetSystemTime(system_time_t* psystemtime)
 }
 
 
-void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+void file_time_to_system_time(system_time_t * psystemtime, const file_time * pfile_time)
 {
 
    FileTimeToSystemTime((FILETIME *) pfile_time, (SYSTEMTIME *) psystemtime);
@@ -290,7 +290,7 @@ void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * p
 }
 
 
-void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
+void system_time_to_file_time(file_time * pfile_time, const system_time_t * psystemtime)
 {
 
    SystemTimeToFileTime((SYSTEMTIME *) psystemtime, (FILETIME *) pfile_time);
@@ -315,7 +315,7 @@ void get_system_time(system_time_t * psystemtime)
 }
 
 
-void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
+void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 {
 
    SYSTEMTIME sysTime;

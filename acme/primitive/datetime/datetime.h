@@ -137,8 +137,8 @@ namespace datetime
       i32 get_weekday(i32 year, i32 month, i32 day);
 
 
-      i64 strtotime(const ::text::context * pcontext, const ::string & str, posix_time time,i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
-      i64 strtotime(const ::text::context * pcontext, const ::string & str, i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      posix_time strtotime(const ::text::context * pcontext, const ::string & str, posix_time time,i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
+      posix_time strtotime(const ::text::context * pcontext, const ::string & str, i32 iPath,i32 & iPathCount, const ::earth::time_shift& timezone = ::earth::time_shift::none());
 
       
       ::earth::time from_string(const ::text::context* pcontext, const ::string & str, const ::earth::time_shift& timezone = ::earth::time_shift::none());

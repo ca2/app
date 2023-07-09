@@ -31,8 +31,7 @@ namespace earth
    }
 
    
-   zone_time::zone_time() noexcept :
-      time(0)
+   zone_time::zone_time() noexcept
    {
 
    }

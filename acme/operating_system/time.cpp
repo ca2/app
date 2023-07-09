@@ -137,7 +137,7 @@ void copy(struct tm & tmUTC, const system_time_t & systemtimeUTC)
 }
 
 
-void get_system_time_as_file_time(file_time_t* pfile_time)
+void get_system_time_as_file_time(file_time* pfile_time)
 {
 
    system_time_t systemtime;
@@ -167,7 +167,7 @@ void get_system_time_as_file_time(file_time_t* pfile_time)
 }
 
 
-//void file_time_to_system_time(system_time_t* psystemtime, const file_time_t* pfile_time)
+//void file_time_to_system_time(system_time_t* psystemtime, const file_time* pfile_time)
 //{
 //
 //   if (!FileTimeToSystemTime((const FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime))
@@ -182,7 +182,7 @@ void get_system_time_as_file_time(file_time_t* pfile_time)
 //}
 //
 //
-//void file_time_to_local_file_time(file_time_t* pfile_timeLocal, const file_time_t* pfile_time)
+//void file_time_to_local_file_time(file_time* pfile_timeLocal, const file_time* pfile_time)
 //{
 //
 //   if (!FileTimeToLocalFileTime((const FILETIME*)pfile_time, (FILETIME*)pfile_timeLocal))
@@ -197,7 +197,7 @@ void get_system_time_as_file_time(file_time_t* pfile_time)
 //}
 //
 //
-//void is_valid_file_time(const file_time_t* pfile_time)
+//void is_valid_file_time(const file_time* pfile_time)
 //{
 //
 //   SYSTEMTIME systemtime{};
@@ -214,7 +214,7 @@ void get_system_time_as_file_time(file_time_t* pfile_time)
 //}
 
 
-void file_time_to_earth_time(posix_time* ptime, const file_time_t* pfile_time, i32 nDST)
+void file_time_to_earth_time(posix_time* ptime, const file_time* pfile_time, i32 nDST)
 {
 
    system_time_t systemtime{};
@@ -229,9 +229,9 @@ void file_time_to_earth_time(posix_time* ptime, const file_time_t* pfile_time, i
 file_time get_file_time_now()
 {
 
-   file_time_t file_time=0;
+   file_time filetime{};
 
-   /*auto estatus = */ get_system_time_as_file_time(&file_time);
+   /*auto estatus = */ get_system_time_as_file_time(&filetime);
 
    //if(!estatus)
    //{
@@ -240,7 +240,7 @@ file_time get_file_time_now()
 
    //}
 
-   return file_time;
+   return filetime;
 
 }
 
@@ -277,11 +277,11 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
-//void FileTimeToSystemTime(const file_time_t* pfile_time, system_time_t* psystemtime);
+//void FileTimeToSystemTime(const file_time* pfile_time, system_time_t* psystemtime);
 
 
 
-//void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_time);
+//void SystemTimeToFileTime(const system_time_t* psystemtime, file_time* pfile_time);
 
 
 //void GetSystemTime(system_time_t* psystemtime);
@@ -291,10 +291,10 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 static const uint64_t EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
 
 
-CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* pfiletime)
+CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time* pfiletime)
 {
 
-   uint64_t nanoseconds = *pfiletime * 100;
+   uint64_t nanoseconds = pfiletime->m_uFileTime * 100;
 
    nanoseconds -= EPOCH_DIFFERENCE_NANOS;
 
@@ -306,14 +306,14 @@ CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* 
 
 
 
-CLASS_DECL_ACME void time_to_file_time(file_time_t* pfiletime, const class ::time * ptime)
+CLASS_DECL_ACME void time_to_file_time(file_time* pfiletime, const class ::time * ptime)
 {
 
    uint64_t nanoseconds = ptime->m_iNanosecond + ptime->m_iSecond * 1'000'000'000;
 
    nanoseconds += EPOCH_DIFFERENCE_NANOS;
 
-   *pfiletime = nanoseconds / 100;
+   pfiletime->m_uFileTime = nanoseconds / 100;
 
 }
 

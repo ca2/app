@@ -84,7 +84,7 @@ public:
       ::f64 * m_pf64;
       payload * m_ppayload;
       ::earth::time                          m_earthtime;
-      file_time_t                            m_filetime;
+      file_time                              m_filetime;
       atom * m_patom;
       ::property * m_pproperty;
       //integral_nanosecond                    m_integralnanosecond;

@@ -28,7 +28,7 @@ file_time file_time::get_current_time() noexcept
 file_time& file_time::operator+=(file_time_span span) noexcept
 {
 
-   SetTime(get_time() + span.GetTimeSpan());
+   set_file_time(get_file_time() + span.get_file_time_span());
 
    return *this;
 
@@ -38,7 +38,7 @@ file_time& file_time::operator+=(file_time_span span) noexcept
 file_time& file_time::operator-=(file_time_span span) noexcept
 {
       
-   SetTime(get_time() - span.GetTimeSpan());
+   set_file_time(get_file_time() - span.get_file_time_span());
 
    return *this;
 
@@ -47,62 +47,69 @@ file_time& file_time::operator-=(file_time_span span) noexcept
 
 file_time file_time::operator+(file_time_span span) const noexcept
 {
-   return(file_time(get_time() + span.GetTimeSpan()));
+   return{ file_time_t{}, get_file_time() + span.get_file_time_span() };
 }
 
 file_time file_time::operator-(file_time_span span) const noexcept
 {
-   return(file_time(get_time() - span.GetTimeSpan()));
+   return { file_time_t{}, get_file_time() - span.get_file_time_span() };
 }
+
 
 file_time_span file_time::operator-(file_time ft) const noexcept
 {
-   return(file_time_span(get_time() - ft.get_time()));
+
+   return{ file_time_span_t{}, (::i64) get_file_time() -(::i64) ft.get_file_time() };
+
 }
+
 
 bool file_time::operator==(file_time ft) const noexcept
 {
-   return(get_time() == ft.get_time());
-}
 
-bool file_time::operator!=(file_time ft) const noexcept
-{
-   return(get_time() != ft.get_time());
-}
-
-bool file_time::operator<(file_time ft) const noexcept
-{
-   return(get_time() < ft.get_time());
-}
-
-bool file_time::operator>(file_time ft) const noexcept
-{
-   return(get_time() > ft.get_time());
-}
-
-bool file_time::operator<=(file_time ft) const noexcept
-{
-   return(get_time() <= ft.get_time());
-}
-
-bool file_time::operator>=(file_time ft) const noexcept
-{
-   return(get_time() >= ft.get_time());
-}
-
-
-file_time_t file_time::get_time() const noexcept
-{
-
-   return m_filetime;
+   return get_file_time() == ft.get_file_time();
 
 }
 
 
-void file_time::SetTime(file_time_t nTime) noexcept
+//bool file_time::operator!=(file_time ft) const noexcept
+//{
+//   return(get_file_time() != ft.get_file_time());
+//}
+
+::std::strong_ordering  file_time::operator<=>(file_time ft) const noexcept
+{
+   return get_file_time() <=> ft.get_file_time();
+}
+
+//bool file_time::operator>(file_time ft) const noexcept
+//{
+//   return(get_file_time() > ft.get_file_time());
+//}
+//
+//bool file_time::operator<=(file_time ft) const noexcept
+//{
+//   return(get_file_time() <= ft.get_file_time());
+//}
+//
+//bool file_time::operator>=(file_time ft) const noexcept
+//{
+//   return(get_file_time() >= ft.get_file_time());
+//}
+
+
+::u64 file_time::get_file_time() const noexcept
 {
 
-   m_filetime = nTime;
+   return m_uFileTime;
+
+}
+
+
+void file_time::set_file_time(::u64 uFileTime) noexcept
+{
+
+   m_uFileTime = uFileTime;
 
 }
 
@@ -140,12 +147,12 @@ void file_time::SetTime(file_time_t nTime) noexcept
 //#endif
 
 
-const file_time_t file_time::Millisecond = 10000;
-const file_time_t file_time::Second = Millisecond * static_cast<file_time_t>(1000);
-const file_time_t file_time::Minute = Second * static_cast<file_time_t>(60);
-const file_time_t file_time::Hour = Minute * static_cast<file_time_t>(60);
-const file_time_t file_time::Day = Hour * static_cast<file_time_t>(24);
-const file_time_t file_time::Week = Day * static_cast<file_time_t>(7);
+//const file_time_t file_time::Millisecond = 10000;
+//const file_time_t file_time::Second = Millisecond * static_cast<file_time_t>(1000);
+//const file_time_t file_time::Minute = Second * static_cast<file_time_t>(60);
+//const file_time_t file_time::Hour = Minute * static_cast<file_time_t>(60);
+//const file_time_t file_time::Day = Hour * static_cast<file_time_t>(24);
+//const file_time_t file_time::Week = Day * static_cast<file_time_t>(7);
 
 
 CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds)
@@ -290,7 +297,7 @@ CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const cla
 
    ::file_time filetime;
 
-   time_to_file_time(&filetime.m_filetime, &time);
+   time_to_file_time(&filetime, &time);
 
    set_modified_file_time(path, filetime);
 
@@ -342,12 +349,12 @@ void get_file_time_set(const ::file::path & path, file_time & creation, file_tim
 
 
 
-void copy(payload * ppayload, const file_time * pfile_time)
+void copy(payload * ppayload, const file_time * pfiletime)
 {
 
    ppayload->set_type(e_type_file_time, false);
 
-   ppayload->m_filetime = pfile_time->m_filetime;
+   ppayload->m_filetime =*pfiletime;
 
 }
 

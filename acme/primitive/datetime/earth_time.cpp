@@ -141,12 +141,12 @@ namespace earth
 #endif
 
    
-   time::time(const file_time & file_time)
+   time::time(const file_time & filetime)
    {
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_earth_time(this, &file_time.m_filetime);
+      file_time_to_earth_time(this, &filetime);
 
    }
 

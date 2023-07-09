@@ -214,13 +214,13 @@ namespace datetime
    }
 
 
-   i64 datetime::strtotime(const ::text::context * pcontext, const string & str, i32 iPath, i32 & iPathCount, const ::earth::time_shift & timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, i32 iPath, i32 & iPathCount, const ::earth::time_shift & timeshift)
    {
 
       if (str.trimmed().is_empty())
       {
 
-         return 0;
+         return {};
 
       }
 
@@ -241,18 +241,18 @@ namespace datetime
 
       }
 
-      return time.get_time().m_iSecond;
+      return time.get_time();
 
    }
 
 
-   i64 datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, i32 iPath, i32 & iPathCount, const ::earth::time_shift& timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, i32 iPath, i32 & iPathCount, const ::earth::time_shift& timeshift)
    {
 
       if (str.trimmed().is_empty())
       {
 
-         return 0;
+         return {};
 
       }
 
@@ -264,7 +264,7 @@ namespace datetime
 
       ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, str);
 
-      return val.get_time().get_time().m_iSecond;
+      return val.get_time().get_time();
 
    }
 

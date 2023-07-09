@@ -88,7 +88,7 @@ namespace earth
       }
 
 
-      void time::get(file_time_t * pfiletime)
+      void time::get(file_time * pfiletime)
       {
 
          system_time systemtime;
@@ -100,7 +100,7 @@ namespace earth
       }
 
 
-      void time::set(const file_time_t * pfiletime)
+      void time::set(const file_time * pfiletime)
       {
 
          system_time systemtime;

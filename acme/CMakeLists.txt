@@ -1362,6 +1362,7 @@ list(APPEND library_source
    operating_system/shared_posix/earth_time_shift.cpp
    operating_system/shared_posix/stdio_file.cpp
    operating_system/shared_posix/stdio_file.h
+   operating_system/shared_posix/windows_time.cpp
    operating_system/shared_posix/time.cpp
    operating_system/shared_posix/time.h
    operating_system/solaris/linux_internal.h

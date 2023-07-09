@@ -9,13 +9,18 @@
 #pragma once
 
 
-CLASS_DECL_ACME int_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time_t * psystemtime);
+typedef struct _FILETIME FILETIME;
+
+typedef struct _SYSTEMTIME SYSTEMTIME;
 
 
-CLASS_DECL_ACME int_bool SystemTimeToFileTime(const system_time & systemtime, file_time_t * pfile_time);
+CLASS_DECL_ACME int_bool FileTimeToSystemTime(const FILETIME * pfiletime, SYSTEMTIME * psystemtime);
 
 
-CLASS_DECL_ACME void GetSystemTime(system_time_t * systime);
+CLASS_DECL_ACME int_bool SystemTimeToFileTime(const SYSTEMTIME * psystemtime, FILETIME * pfiletime);
+
+
+CLASS_DECL_ACME void GetSystemTime(SYSTEMTIME * psystemtime);
 
 
 

@@ -2,6 +2,7 @@
 //#include "file_time.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/datetime/earth_gregorian_time.h"
+#include "acme/primitive/datetime/system_time.h"
 #include "acme/_operating_system.h"
 
 
@@ -86,22 +87,26 @@ file_time::file_time(const ::earth::gregorian_time & gregoriantime) :
 }
 
 
-file_time file_time::get_current_time() noexcept
+file_time file_time::now() noexcept
 {
 
-#ifdef WINDOWS_DESKTOP
+   return now_t{};
 
-   FILETIME file_time;
-
-   GetSystemTimeAsFileTime(&file_time);
-
-   return *(const ::file_time *) &file_time;
-
-#else
-
-   return 0;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   FILETIME file_time;
+//
+//   GetSystemTimeAsFileTime(&file_time);
+//
+//   return *(const ::file_time *) &file_time;
+//
+//#else
+//
+//   ::file_time filetime(now_t{});
+//
+//   return filetime;
+//
+//#endif
 
 }
 
@@ -418,9 +423,9 @@ void get_file_time_set(const ::file::path & path, file_time & creation, file_tim
 
    stat(path, &st);
 
-   creation.m_filetime = st.st_ctime;
+   creation = file_time({ posix_time_t{}, st.st_ctime });
 
-   modified.m_filetime = st.st_mtime;
+   modified = file_time({ posix_time_t{}, st.st_mtime });
 
 }
 

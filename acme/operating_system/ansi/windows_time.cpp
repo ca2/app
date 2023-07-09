@@ -76,7 +76,7 @@ typedef struct _SYSTEMTIME {
     WORD wHour;
     WORD wMinute;
     WORD wSecond;
-    WORD wMillisecond;
+    WORD wMilliseconds;
 } SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
@@ -127,6 +127,7 @@ using LPSYSTEMTIME = SYSTEMTIME *;
  */
 
 #include "framework.h"
+#include "acme/operating_system/windows_time.h"
 //#include "_windows.h"
 //#include "windows_internals.h"
 
@@ -1119,7 +1120,7 @@ int_bool FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
    syst->wHour = tf.Hour;
    syst->wMinute = tf.Minute;
    syst->wSecond = tf.Second;
-   syst->wMillisecond = tf.Millisecond;
+   syst->wMilliseconds = tf.Millisecond;
    syst->wDayOfWeek = tf.Weekday;
    return true;
 }
@@ -1146,7 +1147,7 @@ int_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
    tf.Hour = syst->wHour;
    tf.Minute = syst->wMinute;
    tf.Second = syst->wSecond;
-   tf.Millisecond = syst->wMillisecond;
+   tf.Millisecond = syst->wMilliseconds;
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
@@ -1163,13 +1164,26 @@ int_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 }
 
 
-int_bool SystemTimeToFileTime(const system_time & systemtime, file_time_t * pfile_time)
+system_time::system_time(const file_time & filetime) :
+   system_time(as_system_time(as_SYSTEMTIME(as_FILETIME(filetime))))
 {
+
+   //auto FILETIME = ;
    
-   return SystemTimeToFileTime((const SYSTEMTIME *) psystemtime, (LPFILETIME) pfile_time);
+   //return SystemTimeToFileTime((const SYSTEMTIME *) psystemtime, (LPFILETIME) pfile_time);
    
 }
 
+
+file_time::file_time(const system_time & systemtime) :
+   file_time(as_file_time(as_FILETIME(as_SYSTEMTIME(systemtime))))
+{
+
+   //auto FILETIME = ;
+
+   //return SystemTimeToFileTime((const SYSTEMTIME *) psystemtime, (LPFILETIME) pfile_time);
+
+}
 
 /***********************************************************************
  *              GetSystemTimeAsFileTime  (KERNEL32.@)
@@ -1267,24 +1281,15 @@ void file_time_to_system_time(system_time * psystemtime, const file_time_t * pfi
 }
 
 
-file_time as_file_time(const system_time & systemtime)
-{
-
-   FILETIME filetime;
-
-   SystemTimeToFileTime(psystemtime, &filetime);
-
-   return as_file_time(filetime);
-
-}
-
-
-void get_system_time(system_time * psystemtime)
-{
-
-   GetSystemTime(psystemtime);
-
-}
+//
+//
+//void get_system_time(system_time * psystemtime)
+//{
+//
+//   GetSystemTime(psystemtime);
+//
+//}
 
 
 
+//file_time::file_time(system_time)

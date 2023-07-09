@@ -32,7 +32,7 @@ public:
    //file_time(const ::earth::time & time);
    file_time(now_t);
 
-   static file_time get_current_time() noexcept;
+   static file_time now() noexcept;
 
 
    //explicit operator file_time_t &() { return m_filetime; }

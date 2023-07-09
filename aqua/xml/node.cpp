@@ -1493,7 +1493,7 @@ namespace xml
             // <?TAG
             ostring += "<?" +m_strName;
             // <?TAG Attr1="Val1"
-            if (m_set.has_elements())
+            if (m_set.has_property())
             {
 
                ostring += ' ';

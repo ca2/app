@@ -15,4 +15,7 @@ using time_array = numeric_array < class time >;
 //using ::time_array = numeric_array < integral_millisecond >;
 
 
-using time_2darray = pointer_array < time_array >;
+using time_array_array = ::array < time_array >;
+
+
+

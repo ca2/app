@@ -979,8 +979,8 @@ namespace sort
             {
                if (a.element_at(i).get_size() > a.element_at(j).get_size())
                {
-                  t = a.element_at(i);
-                  set_at(i, a.element_at(j));
+                  t = a.element_at[i];
+                  set_at(i, a.element_at[j]);
                   set_at(j, t);
                }
 

@@ -329,19 +329,19 @@ mktime.  */
 //   }
 //
 //   static int
-//      check_result(tk,tmk,tl,tml)
-//      time_t tk;
+//      check_result(tick,tmk,tl,tml)
+//      time_t tick;
 //   struct tm tmk;
 //   time_t tl;
 //   struct tm tml;
 //   {
-//      if(tk != tl || not_equal_tm(&tmk,&tml))
+//      if(tick != tl || not_equal_tm(&tmk,&tml))
 //      {
 //         debug_print("mktime (");
 //         print_tm(&tmk);
 //         debug_print(")\nyields (");
 //         print_tm(&tml);
-//         debug_print(") == %ld, should be %ld\n",(long)tl,(long)tk);
+//         debug_print(") == %ld, should be %ld\n",(long)tl,(long)tick);
 //         return 1;
 //      }
 //
@@ -355,7 +355,7 @@ mktime.  */
 //   {
 //      int status = 0;
 //      struct tm tm,tmk,tml;
-//      time_t tk,tl;
+//      time_t tick,tl;
 //      char trailer;
 //
 //      if((argc == 3 || argc == 4)
@@ -388,8 +388,8 @@ mktime.  */
 //            {
 //               tml = *localtime(&tl);
 //               tmk = tml;
-//               tk = mktime(&tmk);
-//               status |= check_result(tk,tmk,tl,tml);
+//               tick = mktime(&tmk);
+//               status |= check_result(tick,tmk,tl,tml);
 //            }
 //         else
 //            for(tl = from; tl <= to; tl += by)
@@ -397,8 +397,8 @@ mktime.  */
 //               /* Null benchmark.  */
 //               tml = *localtime(&tl);
 //               tmk = tml;
-//               tk = tl;
-//               status |= check_result(tk,tmk,tl,tml);
+//               tick = tl;
+//               status |= check_result(tick,tmk,tl,tml);
 //            }
 //      }
 //      else

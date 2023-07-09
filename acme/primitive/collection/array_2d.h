@@ -24,7 +24,7 @@ public:
 
 
    using BASE_ARRAY = ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >;
-   using row = ::row < TYPE >;
+   using row = ::row < TYPE, ARG_TYPE >;
 
 
 protected:
@@ -109,13 +109,13 @@ public:
 };
 
 
-using ::i32_array_2d = ::array_2d < ::i32 >;
+using i32_array_2d = ::array_2d < ::i32, ::i32 >;
 
 
-using ::f32_array_2d = ::array_2d < ::f32 >;
+using f32_array_2d = ::array_2d < ::f32, ::f32 >;
 
 
-using ::f64_array_2d = ::array_2d < ::f64 >;
+using f64_array_2d = ::array_2d < ::f64, ::f64 >;
 
 
 

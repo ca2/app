@@ -249,6 +249,11 @@ namespace allocator
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
 class array_base;
 
+template < class TYPE, class ARG_TYPE = const TYPE & >
+class row;
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
+class array_2d;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
 class array;

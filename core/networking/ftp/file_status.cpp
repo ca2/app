@@ -26,7 +26,7 @@ namespace ftp
       m_esize(size_unknown),
       m_filesize(-1),
       m_etimeModification(time_unknown),
-      m_timeModification(0),
+      m_timeModification{},
       m_eid(id_unknown)
    {
    }

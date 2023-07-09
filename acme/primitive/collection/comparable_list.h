@@ -13,7 +13,7 @@ public:
    comparable_list();
    comparable_list(const comparable_list & array);
 
-   void quick_sort(bool bAsc = true);
+   //void quick_sort(bool bAsc = true);
 
    TYPE maximum(TYPE minimum);
 
@@ -69,12 +69,12 @@ maximum(TYPE maximum)
 
 
 
-
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-quick_sort(bool bAscendent)
-{
-
-   sort::quick_sort(*this, bAscendent);
-
-}
+//
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//quick_sort(bool bAscendent)
+//{
+//
+//   sort::quick_sort(*this, bAscendent);
+//
+//}

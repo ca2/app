@@ -228,7 +228,7 @@ public:
    }
 
 
-   void sort(bool bAsc = true);
+   //void sort(bool bAsc = true);
 
    bool is_any_set() const
    {
@@ -1321,26 +1321,26 @@ namespace acme
 } // namespace acme
 
 
-#include "sort.h"
+//#include "sort.h"
 
-template < typename TYPE, ::enum_type m_etypeContainer >
-void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
-{
-
-   if (bAsc)
-   {
-
-      sort::QuickSortAsc(*this);
-
-   }
-   else
-   {
-
-      sort::QuickSortDesc(*this);
-
-   }
-
-}
+//template < typename TYPE, ::enum_type m_etypeContainer >
+//void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
+//{
+//
+//   if (bAsc)
+//   {
+//
+//      sort::QuickSortAsc(*this);
+//
+//   }
+//   else
+//   {
+//
+//      sort::QuickSortDesc(*this);
+//
+//   }
+//
+//}
 
 
 // using i32_2a = array < i32_array >;

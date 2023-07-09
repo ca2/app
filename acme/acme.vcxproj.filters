@@ -2195,7 +2195,7 @@
     <ClInclude Include="primitive\collection\sort_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\sort.h">
+    <ClInclude Include="primitive\collection\_sort.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\single.h">

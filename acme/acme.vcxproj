@@ -1343,7 +1343,7 @@
     <ClInclude Include="primitive\collection\set.h" />
     <ClInclude Include="primitive\collection\set_element.h" />
     <ClInclude Include="primitive\collection\single.h" />
-    <ClInclude Include="primitive\collection\sort.h" />
+    <ClInclude Include="primitive\collection\_sort.h" />
     <ClInclude Include="primitive\collection\sort_array.h" />
     <ClInclude Include="primitive\collection\sort_list.h" />
     <ClInclude Include="primitive\collection\sort_map.h" />

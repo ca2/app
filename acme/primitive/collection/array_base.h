@@ -745,8 +745,8 @@ public:
 
    void zero(::index iStart = 0, ::count c = -1);
 
-   template < primitive_array ARRAY >
-   void _001RemoveIndexes(ARRAY & ia);
+   //template < primitive_array ARRAY >
+   //void _001RemoveIndexes(ARRAY & ia);
    
    template < primitive_array ARRAY >
    void erase_indexes(const ARRAY & ia);

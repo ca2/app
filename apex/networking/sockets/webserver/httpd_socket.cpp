@@ -169,7 +169,7 @@ namespace sockets
    string httpd_socket::GetDate()
    {
 
-      ::earth::gregorian::time gregoriantime;
+      ::earth::gregorian_time gregoriantime;
 
       auto timeNow = ::earth::time::now();
 

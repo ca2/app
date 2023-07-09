@@ -106,7 +106,7 @@ CLASS_DECL_ACME void preempt(const class time & time)
 // leap seconds in certain systems.
 
 
-void copy(system_time_t & systemtimeUTC, const struct tm & tmUTC)
+void copy(system_time & systemtimeUTC, const struct tm & tmUTC)
 {
 
    systemtimeUTC.wYear = tmUTC.tm_year + 1900; 
@@ -121,7 +121,7 @@ void copy(system_time_t & systemtimeUTC, const struct tm & tmUTC)
 }
 
 
-void copy(struct tm & tmUTC, const system_time_t & systemtimeUTC)
+void copy(struct tm & tmUTC, const system_time & systemtimeUTC)
 {
 
    tmUTC.tm_year = systemtimeUTC.wYear - 1900;
@@ -137,37 +137,39 @@ void copy(struct tm & tmUTC, const system_time_t & systemtimeUTC)
 }
 
 
-void get_system_time_as_file_time(file_time* pfile_time)
-{
+//file_time system_time_as_file_time()
+//{
+//
+//   //system_time systemtime;
+//
+//   //auto estatus = get_system_time(&systemtime);
+//
+//   auto systemtime = now_as_system_time();
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   /*estatus = */
+//   
+//   return as_file_time(systemtime);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
-   system_time_t systemtime;
 
-   //auto estatus = get_system_time(&systemtime);
-
-   get_system_time(&systemtime);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /*estatus = */ system_time_to_file_time(pfile_time, &systemtime);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
-
-//void file_time_to_system_time(system_time_t* psystemtime, const ::file_time & filetime)
+//void file_time_to_system_time(system_time* psystemtime, const ::file_time & filetime)
 //{
 //
 //   if (!FileTimeToSystemTime((const FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime))
@@ -212,40 +214,31 @@ void get_system_time_as_file_time(file_time* pfile_time)
 //   return ::success;
 //
 //}
+//
+//
+//::posix_time as_posix_time(const ::file_time & filetime, i32 nDST)
+//{
+//
+//   auto systemtime = as_system_time(filetime);
+//
+//   auto posixtime = as_posix_time(systemtime, nDST);
+//
+//   return posixtime;
+//
+//}
 
 
-void file_time_to_earth_time(posix_time* ptime, const ::file_time & filetime, i32 nDST)
-{
-
-   system_time_t systemtime{};
-
-   file_time_to_system_time(&systemtime, filetime);
-
-   system_time_to_earth_time(ptime, &systemtime);
-
-}
+//file_time now_as_file_time()
+//{
+//
+//   auto filetime = system_time_as_file_time();
+//
+//   return filetime;
+//
+//}
 
 
-file_time get_file_time_now()
-{
-
-   file_time filetime{};
-
-   /*auto estatus = */ get_system_time_as_file_time(&filetime);
-
-   //if(!estatus)
-   //{
-
-   //   return 0;
-
-   //}
-
-   return filetime;
-
-}
-
-
-void system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
+void copy(tm * ptm, const system_time * psystemtime)
 {
 
    ptm->tm_hour   = psystemtime->wHour;
@@ -255,69 +248,56 @@ void system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
    ptm->tm_mday   = psystemtime->wDay;
    ptm->tm_year   = psystemtime->wYear;
 
-   //return ::success;
-
 }
 
 
-void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
+void copy(system_time * psystemtime, const tm * ptm)
 {
 
-   psystemtime->wHour      = ptm->tm_hour    ;
-   psystemtime->wMinute    = ptm->tm_min     ;
-   psystemtime->wSecond    = ptm->tm_sec     ;
-   psystemtime->wMonth     = ptm->tm_mon     ;
-   psystemtime->wDay       = ptm->tm_mday    ;
-   psystemtime->wYear      = ptm->tm_year    ;
-
-   //return ::success;
+   psystemtime->wYear = (unsigned short)ptm->tm_year;
+   psystemtime->wMonth = (unsigned short)ptm->tm_mon;
+   psystemtime->wDayOfWeek = (unsigned short)ptm->tm_wday;
+   psystemtime->wDay = (unsigned short)ptm->tm_mday;
+   psystemtime->wHour = (unsigned short)ptm->tm_hour;
+   psystemtime->wMinute = (unsigned short)ptm->tm_min;
+   psystemtime->wSecond = (unsigned short)ptm->tm_sec;
+   psystemtime->wMilliseconds = 0;
 
 }
-
-
-
-
-//void FileTimeToSystemTime(const ::file_time & filetime, system_time_t* psystemtime);
-
-
-
-//void SystemTimeToFileTime(const system_time_t* psystemtime, file_time* pfile_time);
-
-
-//void GetSystemTime(system_time_t* psystemtime);
 
 
 // Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
 static const uint64_t EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
 
 
-CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const ::file_time & filetime)
+CLASS_DECL_ACME class ::time as_time(const ::file_time & filetime)
 {
 
    uint64_t nanoseconds = filetime.m_uFileTime * 100;
 
    nanoseconds -= EPOCH_DIFFERENCE_NANOS;
 
-   ptime->m_iSecond = nanoseconds / 1'000'000'000;
+   class ::time time;
 
-   ptime->m_iNanosecond = nanoseconds % 1'000'000'000;
+   time.m_iSecond = nanoseconds / 1'000'000'000;
+
+   time.m_iNanosecond = nanoseconds % 1'000'000'000;
+
+   return time;
 
 }
 
 
-
-CLASS_DECL_ACME void time_to_file_time(file_time* pfiletime, const class ::time * ptime)
+CLASS_DECL_ACME file_time as_file_time(const class ::time & time)
 {
 
-   uint64_t nanoseconds = ptime->m_iNanosecond + ptime->m_iSecond * 1'000'000'000;
+   ::u64 nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
 
    nanoseconds += EPOCH_DIFFERENCE_NANOS;
 
-   pfiletime->m_uFileTime = nanoseconds / 100;
+   return { ::file_time_t{}, nanoseconds / 100 };
 
 }
-
-
 
 
 posix_time::posix_time(now_t):

@@ -19,6 +19,14 @@ public:
 
    file_time() noexcept { m_uFileTime = 0; }
    file_time(file_time_t, ::u64 uFileTime) noexcept { m_uFileTime = uFileTime; }
+   explicit file_time(const system_time & systemtime);
+   explicit file_time(const ::posix_time & time);
+   explicit file_time(const class ::time & time);
+   explicit file_time(const ::earth::gregorian_time & gregoriantime);
+   // ystem_time_as_file_time();
+   //file_time(local_const ::file_time & filetime);
+   //file_time(const ::earth::time & time);
+   file_time(now_t);
 
    static file_time get_current_time() noexcept;
 
@@ -45,6 +53,7 @@ public:
    void set_file_time(::u64 nTime) noexcept;
 
 
+   
    //file_time UTCToLocal() const noexcept;
    //file_time LocalToUTC() const noexcept;
 
@@ -161,6 +170,10 @@ inline file_time_set get_file_time_set(const ::file::path & path)
 
 
 //posix_time __time(const file_time & file_time);
+
+
+
+CLASS_DECL_ACME file_time as_local_file_time(const ::file_time & filetime);
 
 
 

@@ -1076,6 +1076,7 @@
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
+    <ClCompile Include="primitive\datetime\system_time.cpp" />
     <ClCompile Include="primitive\geometry2d\aaa_shape.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
@@ -1164,6 +1165,7 @@
     <ClCompile Include="primitive\text\text.cpp" />
     <ClCompile Include="primitive\text\translator.cpp" />
     <ClCompile Include="primitive\time\time.cpp" />
+    <ClCompile Include="primitive\time\time\posix_time.cpp" />
     <ClCompile Include="primitive\time\__string.cpp" />
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />

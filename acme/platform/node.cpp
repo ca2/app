@@ -1392,7 +1392,7 @@ namespace acme
    //}
 
 
-   //void node::file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+   //void node::file_time_to_system_time(system_time * psystemtime, const file_time_t * pfile_time)
    //{
 
    //   throw ::interface_only();
@@ -1400,7 +1400,7 @@ namespace acme
    //}
 
 
-   //void node::system_time_to_earth_time(posix_time * ptime, const system_time_t * psystemtime, i32 nDST)
+   //void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, i32 nDST)
    //{
 
    //   throw ::interface_only();
@@ -1408,7 +1408,7 @@ namespace acme
    //}
 
 
-   //void node::system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
+   //void node::system_time_to_file_time(file_time_t * pfile_time, const system_time & systemtime)
    //{
 
    //   throw ::interface_only();
@@ -1416,7 +1416,7 @@ namespace acme
    //}
 
 
-   //void node::time_to_system_time(system_time_t * psystem_time, const posix_time * ptime)
+   //void node::time_to_system_time(system_time * psystem_time, const posix_time * ptime)
    //{
 
    //   throw ::interface_only();

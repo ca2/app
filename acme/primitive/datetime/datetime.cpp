@@ -583,7 +583,7 @@ namespace datetime
    posix_time datetime::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::earth::time_shift& timeshift)
    {
 
-       earth::gregorian::time time;
+       earth::gregorian_time time;
 
        time.m_iHour = iHour;
        time.m_iMinute = iMinute;

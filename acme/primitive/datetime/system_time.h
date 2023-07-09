@@ -4,8 +4,9 @@
 #pragma pack(push, system_time, 1)
 
 
-struct system_time_t
+class CLASS_DECL_ACME system_time
 {
+public:
 
 
    unsigned short wYear;
@@ -18,18 +19,41 @@ struct system_time_t
    unsigned short wMilliseconds;
 
 
+   system_time(
+unsigned short ushYear = 0,
+unsigned short ushMonth = 0,
+unsigned short ushDayOfWeek = 0,
+unsigned short ushDay = 0,
+unsigned short ushHour = 0,
+unsigned short ushMinute = 0,
+unsigned short ushSecond = 0,
+unsigned short ushMilliseconds = 0
+   )
+   {
+
+      wYear = ushYear;
+      wMonth = ushMonth;
+      wDayOfWeek = ushDayOfWeek;
+      wDay = ushDay;
+      wHour = ushHour;
+      wMinute = ushMinute;
+      wSecond = ushSecond;
+      wMilliseconds = ushMilliseconds;
+
+
+   }
+   system_time(const ::earth::gregorian_time & gregoriantime);
+   system_time(now_t);
+   system_time(const ::posix_time & time);
+   system_time(const ::file_time & filetime);
+
+
+
 };
 
 
 #pragma pack(pop, system_time)
 
-
-class CLASS_DECL_ACME system_time :
-   public system_time_t
-{
-public:
-
-};
 
 
 //
@@ -136,3 +160,8 @@ public:
 //Copy the resulting FILETIME structure to a ULARGE_INTEGER structure.
 //Use normal 64 - bit arithmetic on the ULARGE_INTEGER value.
 //The system can periodically refresh the time by synchronizing with a time source.Because the system time can be adjusted either forward or backward, do not compare system time readings to determine elapsed time.Instead, use one of the methods described in Windows Time.
+
+
+
+
+

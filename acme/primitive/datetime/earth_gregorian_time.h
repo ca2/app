@@ -11,91 +11,78 @@ namespace earth
 {
 
 
-   namespace gregorian
+   class CLASS_DECL_ACME gregorian_time
    {
+   public:
 
 
-      class CLASS_DECL_ACME time
+      int m_iDayOfWeek;
+
+
+      ::i64 m_iNanoSecond;
+      int m_iSecond;        /* Seconds.	[0-60] (1 leap second) */
+      int m_iMinute;        /* Minutes.	[0-59] */
+      int m_iHour;          /* Hours.	[0-23] */
+      int m_iDay;           /* Day.		[1-31] */
+      int m_iMonth;         /* Month.	[0-11] */
+      int m_iYear;
+
+
+      inline gregorian_time()
       {
-         public:
+
+      }
 
 
-         int m_iDayOfWeek;
+      explicit gregorian_time(const ::posix_time & posixtime, ::i64 iNanosecond = 0, const time_shift & timeshift = time_shift::none());
+      explicit gregorian_time(const class ::time & time, const time_shift & timeshift = time_shift::none());
+      explicit gregorian_time(const ::system_time & systemtime, const time_shift & timeshift = time_shift::none());
+      explicit gregorian_time(const ::file_time & filetime, const time_shift & timeshift = time_shift::none());
 
 
-         ::i64 m_iNanoSecond;
-         int m_iSecond;        /* Seconds.	[0-60] (1 leap second) */
-         int m_iMinute;        /* Minutes.	[0-59] */
-         int m_iHour;          /* Hours.	[0-23] */
-         int m_iDay;           /* Day.		[1-31] */
-         int m_iMonth;         /* Month.	[0-11] */
-         int m_iYear;
+      void set(const ::posix_time & time, ::i64 iNanosecond, const time_shift & timeshift);
+
+      void set(const class ::time & time, const time_shift & timeshift);
+
+      //void set(const ::earth::time & time, const time_shift & timeshift);
+
+      ::posix_time get_posix_time();
 
 
-         inline time()
-         {
+      //         inline void get(struct ::tm *ptm)
+      //         {
+      //
+      //            ptm->tm_sec = m_iSecond;
+      //            ptm->tm_min = m_iMinute;
+      //            ptm->tm_hour = m_iHour;
+      //            ptm->tm_mday = m_iDay;
+      //            ptm->tm_mon = m_iMonth;
+      //            ptm->tm_year = m_iYear - 1900;
+      //
+      //         }
 
 
-         }
+      //void get(system_time_t * psystemtime);
 
-
-         time(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift = time_shift::none());
-
-         inline time(const class ::time &time, const time_shift &timeshift = time_shift::none());
-
-
-
-         void set(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift);
-
-         void set(const class ::time & time, const time_shift & timeshift);
-
-         void set(const ::earth::time &time, const time_shift &timeshift);
-
-         ::posix_time get_posix_time();
-
-
-//         inline void get(struct ::tm *ptm)
-//         {
-//
-//            ptm->tm_sec = m_iSecond;
-//            ptm->tm_min = m_iMinute;
-//            ptm->tm_hour = m_iHour;
-//            ptm->tm_mday = m_iDay;
-//            ptm->tm_mon = m_iMonth;
-//            ptm->tm_year = m_iYear - 1900;
-//
-//         }
-
-
-         void get(system_time_t *psystemtime);
-
-         void set(const system_time_t *psystemtime);
-
-         void get(file_time & filetime);
-
-         void set(const class ::file_time & filetime);
-
-
-         //void Now(const time_shift &timeshift = time_shift::none());
-
-
-         posix_time make_utc_time() const;
-
-
-      };
+      //void get(file_time & filetime);
 
 
 
-   } // namespace gregorian
+      //void Now(const time_shift &timeshift = time_shift::none());
 
+
+      posix_time make_utc_time() const;
+
+
+   };
 
    constexpr int32_t is_leap_year(::i32 year)
    {
-      if(year % 400 == 0)
+      if (year % 400 == 0)
          return 1;
-      if(year % 100 == 0)
+      if (year % 100 == 0)
          return 0;
-      if(year % 4 == 0)
+      if (year % 4 == 0)
          return 1;
       return 0;
    }
@@ -104,7 +91,7 @@ namespace earth
    constexpr ::i32 days_from_0(::i32 year)
    {
       year--;
-      return 365 * year + (year / 400) - (year/100) + (year / 4);
+      return 365 * year + (year / 400) - (year / 100) + (year / 4);
    }
 
 
@@ -115,7 +102,7 @@ namespace earth
    }
 
 
-   CLASS_DECL_ACME ::i32 days_from_1jan(::i32 year, ::i32 month, ::i32 day);
+   CLASS_DECL_ACME::i32 days_from_1jan(::i32 year, ::i32 month, ::i32 day);
 
 
 

@@ -1,8 +1,90 @@
 #include "framework.h"
 //#include "file_time.h"
 //#include "acme/primitive/primitive/payload.h"
-//#include "acme/operating_system/time.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/_operating_system.h"
+
+
+file_time::file_time(now_t) :
+   file_time(system_time(now_t{}))
+{
+
+
+      //system_time systemtime;
+
+      ////auto estatus = get_system_time(&systemtime);
+
+      //auto systemtime = now_as_system_time();
+
+      ////if (!estatus)
+      ////{
+
+      ////   return estatus;
+
+      ////}
+
+      ///*estatus = */
+
+      //return as_file_time(systemtime);
+
+      ////if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+
+}
+//
+//
+//file_time::file_time(const system_time & systemtime) :
+//   file_time(::earth::gregorian_time(systemtime))
+//{
+//
+//
+//}
+//
+
+file_time::file_time(const ::posix_time & time) :
+   file_time(::earth::gregorian_time(time))
+{
+
+   //auto systemtime = as_system_time(time);
+
+   //auto filetime = as_file_time(systemtime);
+
+   //return filetime;
+
+}
+
+
+file_time::file_time(const class ::time & time) :
+   file_time(::earth::gregorian_time(time))
+{
+
+   //auto systemtime = as_system_time(time);
+
+   //auto filetime = as_file_time(systemtime);
+
+   //return filetime;
+
+}
+
+
+file_time::file_time(const ::earth::gregorian_time & gregoriantime) :
+   file_time(system_time(gregoriantime))
+{
+
+   //system_time systemtime;
+
+   //get(&systemtime);
+
+   //filetime = as_file_time(&systemtime);
+
+}
 
 
 file_time file_time::get_current_time() noexcept
@@ -227,7 +309,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //   void node::file_time_to_time(posix_time * ptime, const file_time_t * pfile_time, i32 nDST)
 //   {
 //
-//      system_time_t systemtime;
+//      system_time systemtime;
 //
 //      auto estatus = file_time_to_system_time(&systemtime, pfile_time);
 //
@@ -295,11 +377,10 @@ void get_file_time_set(const ::file::path & path, file_time & file_timeCreation,
 CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const class ::time& time)
 {
 
-   ::file_time filetime;
+   //auto filetime = as_file_time(&time);
 
-   time_to_file_time(&filetime, &time);
-
-   set_modified_file_time(path, filetime);
+   //set_modified_file_time(path, file_time(time));
+   set_modified_file_time(path, file_time(time));
 
 }
 
@@ -362,11 +443,20 @@ void copy(payload * ppayload, const file_time * pfiletime)
 bool file_time_set::modified_timeout(int iSeconds) const
 {
 
-   auto file_timeNow = get_file_time_now();
+   //auto filetimeNow = now_as_file_time();
 
-   return modified_timeout(file_timeNow, iSeconds);
+   return modified_timeout(now_t{}, iSeconds);
 
 }
 
 
 
+
+
+CLASS_DECL_ACME file_time as_local_file_time(const ::file_time & filetime)
+{
+
+
+   return {};
+
+}

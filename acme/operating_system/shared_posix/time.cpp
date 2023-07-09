@@ -107,7 +107,7 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 //}
 //
 //
-////void system_time_to_earth_time(posix_time* ptime, const system_time_t* psystemtime, i32 nDST)
+////void system_time_to_earth_time(posix_time* ptime, const system_time* psystemtime, i32 nDST)
 ////{
 ////
 ////   struct tm tm;
@@ -126,7 +126,7 @@ CLASS_DECL_ACME void copy(struct timespec * ptimespec, const class ::time * ptim
 {
 
    ptimespec->tv_sec = ptime->m_iSecond;
-   ptimespec->tv_nsec = (long) ptime->m_iNanosecond;
+   ptimespec->tv_nsec = (long)ptime->m_iNanosecond;
 
 }
 
@@ -213,7 +213,7 @@ bool microsecond_sleep::sleep(unsigned long usec)
 #endif
 
 
-void copy(::earth::gregorian::time * ptime, const struct ::tm * ptm, ::i64 iNanosecond)
+void copy(::earth::gregorian_time * ptime, const struct ::tm * ptm, ::i64 iNanosecond)
 {
 
    ptime->m_iNanoSecond = iNanosecond;
@@ -228,8 +228,7 @@ void copy(::earth::gregorian::time * ptime, const struct ::tm * ptm, ::i64 iNano
 }
 
 
-
-void copy(struct ::tm * ptm, const ::earth::gregorian::time * ptime)
+void copy(struct ::tm * ptm, const ::earth::gregorian_time * ptime)
 {
 
    ptm->tm_sec = ptime->m_iSecond;
@@ -243,27 +242,20 @@ void copy(struct ::tm * ptm, const ::earth::gregorian::time * ptime)
 }
 
 
-namespace earth 
+namespace earth
 {
 
-
-   namespace gregorian 
+   void gregorian_time::set(const ::posix_time & time, ::i64 iNanosecond, const time_shift & timeshift)
    {
 
+      struct tm tm;
 
-      void time::set(const ::earth::time & time, ::i64 iNanosecond, const time_shift & timeshift) 
-      {
+      ::tm_struct(&tm, time, timeshift);
 
-         struct tm tm;
+      copy(this, &tm);
 
-         ::tm_struct(&tm, time, timeshift);
+   }
 
-         copy(this, &tm);
-
-      }
-
-
-   } // namespace gregorian
 
 
 } // namespace earth
@@ -337,14 +329,14 @@ namespace earth
 
 
 
-   ::earth::gregorian::time zone_time::get_zone_time() const
+   ::earth::gregorian_time zone_time::get_zone_time() const
    {
 
       struct tm tm;
 
       GetZoneTm(&tm, *this);
 
-      ::earth::gregorian::time time;
+      ::earth::gregorian_time time;
 
       copy(&time, &tm);
 

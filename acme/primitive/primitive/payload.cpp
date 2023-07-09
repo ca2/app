@@ -48,9 +48,9 @@ CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str)
 }
 
 
-//void copy(payload * pp, const system_time_t * ps)
+//void copy(payload * pp, const system_time * ps)
 //{
-//   ::earth::gregorian::time t;
+//   ::earth::gregorian_time t;
 //   t.set(ps);
 //   ::earth::time time;
 //   time = t;

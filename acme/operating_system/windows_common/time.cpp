@@ -98,7 +98,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 }
 
 
-//void get_system_time(system_time_t* psystemtime)
+//void get_system_time(system_time* psystemtime)
 //{
 //
 //   ::GetSystemTime((LPSYSTEMTIME)psystemtime);
@@ -111,14 +111,14 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystemtime, i32 nDST)
+void system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, i32 nDST)
 {
 
    struct tm tm;
 
-   copy(tm, *psystemtime);
+   copy(&tm, &systemtime);
 
-   ::earth::gregorian::time gregoriantime;
+   ::earth::gregorian_time gregoriantime;
 
    copy(&gregoriantime, &tm);
 
@@ -127,7 +127,7 @@ void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystem
 }
 
 
-//void system_time_to_file_time(file_time* pfile_time, const system_time_t* psystemtime)
+//void system_time_to_file_time(file_time* pfile_time, const system_time* psystemtime)
 //{
 //
 //   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfile_time))
@@ -142,46 +142,34 @@ void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystem
 //}
 
 
-CLASS_DECL_ACME void earth_time_to_system_time(system_time_t* psystemtime, const posix_time* ptime)
+CLASS_DECL_ACME system_time as_system_time(const ::posix_time & posixtime)
 {
    
-   struct tm tm;
+   time_t time = posixtime.m_iSecond;
 
-   time_t time = ptime->m_iSecond;
+   struct tm tm;
 
    gmtime_r(&time, &tm);
 
-   copy(*psystemtime, tm);
+   system_time systemtime;
+
+   copy(&systemtime, &tm);
+
+   return systemtime;
 
 }
 
 
-CLASS_DECL_ACME void earth_time_to_file_time(file_time* pfile_time, const posix_time* ptime)
-{
-
-   system_time_t systemtime;
-
-   /*auto estatus = */ earth_time_to_system_time(&systemtime, ptime);
-
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /* estatus = */ system_time_to_file_time(pfile_time, &systemtime);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
+//CLASS_DECL_ACME file_time as_file_time(const ::posix_time & time)
+//{
+//
+//   auto systemtime = as_system_time(time);
+//
+//   auto filetime = as_file_time(systemtime);
+//
+//   return filetime;
+//
+//}
 
 
 
@@ -198,7 +186,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time* pfile_time, const posix_
 //
 //
 //
-//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const ::file_time & filetime)
+//CLASS_DECL_ACME void file_time_to_system_time(system_time * psystemtime, const ::file_time & filetime)
 //{
 //
 //   FileTimeToSystemTime((FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime);
@@ -217,7 +205,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time* pfile_time, const posix_
 
 //
 //
-//void file_time_to_system_time(system_time_t * psystemtime, const ::file_time & filetime)
+//void file_time_to_system_time(system_time * psystemtime, const ::file_time & filetime)
 //{
 //
 //   if (!FileTimeToSystemTime((FILETIME *)pfile_time, (SYSTEMTIME *)psystemtime))
@@ -245,7 +233,7 @@ CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, L
 
 
 
-void FileTimeToSystemTime(const file_time* pfile_time, system_time_t* psystemtime)
+void FileTimeToSystemTime(const file_time* pfile_time, system_time* psystemtime)
 {
 
    if (!FileTimeToSystemTime((LPFILETIME) pfile_time, (LPSYSTEMTIME) psystemtime))
@@ -259,7 +247,7 @@ void FileTimeToSystemTime(const file_time* pfile_time, system_time_t* psystemtim
 
 
 
-void SystemTimeToFileTime(const system_time_t* psystemtime, file_time* pfile_time)
+void SystemTimeToFileTime(const system_time* psystemtime, file_time* pfile_time)
 {
 
    if (!SystemTimeToFileTime((LPSYSTEMTIME)pfile_time, (LPFILETIME)psystemtime))
@@ -272,7 +260,7 @@ void SystemTimeToFileTime(const system_time_t* psystemtime, file_time* pfile_tim
 }
 
 
-void GetSystemTime(system_time_t* psystemtime)
+void GetSystemTime(system_time* psystemtime)
 {
 
 
@@ -282,7 +270,7 @@ void GetSystemTime(system_time_t* psystemtime)
 }
 
 
-void file_time_to_system_time(system_time_t * psystemtime, const ::file_time & filetime)
+void file_time_to_system_time(system_time * psystemtime, const ::file_time & filetime)
 {
 
    FileTimeToSystemTime((FILETIME *) &filetime.m_uFileTime, (SYSTEMTIME *) psystemtime);
@@ -290,15 +278,21 @@ void file_time_to_system_time(system_time_t * psystemtime, const ::file_time & f
 }
 
 
-void system_time_to_file_time(file_time * pfile_time, const system_time_t * psystemtime)
+file_time as_file_time(const system_time & systemtime)
 {
 
-   SystemTimeToFileTime((SYSTEMTIME *) psystemtime, (FILETIME *) pfile_time);
+   FILETIME filetime;
+
+   auto SYSTEMTIME = as_SYSTEMTIME(systemtime);
+
+   SystemTimeToFileTime(&SYSTEMTIME, &filetime);
+
+   return as_file_time(filetime);
 
 }
 
 
-//void get_system_time(system_time_t * psystemtime)
+//void get_system_time(system_time * psystemtime)
 //{
 //
 //   GetSystemTime((SYSTEMTIME *) psystemtime);
@@ -307,7 +301,7 @@ void system_time_to_file_time(file_time * pfile_time, const system_time_t * psys
 
 
 
-void get_system_time(system_time_t * psystemtime)
+void get_system_time(system_time * psystemtime)
 {
 
    GetSystemTime((SYSTEMTIME *) psystemtime);
@@ -386,5 +380,17 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 //
 //}
 
+
+
+
+
+
+
+file_time::file_time(const system_time & systemtime) :
+   file_time(as_file_time(as_FILETIME(as_SYSTEMTIME(systemtime))))
+{
+
+
+}
 
 

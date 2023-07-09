@@ -4,21 +4,21 @@
 #include "acme/operating_system/shared_posix/time.h"
 
 
-void system_time_to_tm(tm * ptm, const system_time_t * psystemtime);
+void system_time_to_tm(tm * ptm, const system_time & systemtime);
 
 
-void system_time_to_earth_time(posix_time * ptime, const system_time_t * psystemtime, i32 nDST)
+::posix_time as_posix_time(const system_time & systemtime, i32 nDST)
 {
 
    struct tm tm;
 
    system_time_to_tm(&tm, psystemtime);
 
-   ::earth::gregorian::time time;
+   ::earth::gregorian_time time;
 
    copy(&time, &tm);
 
-   *ptime = time.make_utc_time();
+   return time.make_utc_time();
 
 }
 

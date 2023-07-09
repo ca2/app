@@ -25,7 +25,7 @@ namespace earth
 
       static zone_time get_current_time(time_shift timeshift) noexcept;
 
-      ::earth::gregorian::time get_zone_time() const;
+      ::earth::gregorian_time get_zone_time() const;
 
       i32 GetZoneYear() const noexcept;
       i32 GetZoneMonth() const noexcept;

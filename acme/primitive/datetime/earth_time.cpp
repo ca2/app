@@ -53,7 +53,7 @@ namespace earth
 #pragma warning (pop)
 
 
-      ::earth::gregorian::time gregoriantime;
+      ::earth::gregorian_time gregoriantime;
 
       gregoriantime.m_iSecond = nSec;
       gregoriantime.m_iMinute = nMin;
@@ -85,7 +85,7 @@ namespace earth
 
    }
 
-   time::time(const ::earth::gregorian::time & gregoriantime, const time_shift & timeshift) :
+   time::time(const ::earth::gregorian_time & gregoriantime, const time_shift & timeshift) :
       time(gregoriantime.m_iYear,
          gregoriantime.m_iMonth,
          gregoriantime.m_iDay,
@@ -141,12 +141,24 @@ namespace earth
 #endif
 
    
-   time::time(const file_time & filetime)
+   time::time(const file_time & filetime, const time_shift & timeshift) :
+      time(::earth::gregorian_time(filetime), timeshift)
    {
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_earth_time(this, filetime);
+      //file_time_to_earth_time(this, filetime);
+
+   }
+
+
+   time::time(const system_time & systemtime, const time_shift & timeshift) :
+      time(::earth::gregorian_time(systemtime), timeshift)
+   {
+
+      //auto pnode = acmesystem()->node();
+
+      //file_time_to_earth_time(this, filetime);
 
    }
 
@@ -272,7 +284,7 @@ namespace earth
    i32 time::year(const ::earth::time_shift & timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -287,7 +299,7 @@ namespace earth
    i32 time::month(const ::earth::time_shift& timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -304,7 +316,7 @@ namespace earth
    {
 
       //struct tm ttm;
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -320,7 +332,7 @@ namespace earth
    i32 time::hour(const ::earth::time_shift& timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -336,7 +348,7 @@ namespace earth
    i32 time::minute(const ::earth::time_shift& timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -352,7 +364,7 @@ namespace earth
    i32 time::second(const ::earth::time_shift& timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -368,7 +380,7 @@ namespace earth
    i32 time::day_of_week(const ::earth::time_shift & timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -512,7 +524,7 @@ namespace earth
    posix_time time::time_of_day(const time_shift & timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 //      struct tm ttm;
 //
 //      struct tm * ptm;
@@ -543,7 +555,7 @@ namespace earth
    i64 time::day_sig(const time_shift& timeshift) const noexcept
    {
 
-       ::earth::gregorian::time gregoriantime(*this, 0, timeshift);
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 
       return ((gregoriantime.m_iYear - 1900) * 500) + (gregoriantime.m_iMonth * 40) + gregoriantime.m_iDay;
 

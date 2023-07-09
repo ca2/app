@@ -1125,7 +1125,7 @@ int_bool FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 }
 
 
-int_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time_t * psystemtime)
+int_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time * psystemtime)
 {
    
    return FileTimeToSystemTime((const FILETIME *) pfile_time, (LPSYSTEMTIME) psystemtime);
@@ -1163,7 +1163,7 @@ int_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 }
 
 
-int_bool SystemTimeToFileTime(const system_time_t * psystemtime, file_time_t * pfile_time)
+int_bool SystemTimeToFileTime(const system_time & systemtime, file_time_t * pfile_time)
 {
    
    return SystemTimeToFileTime((const SYSTEMTIME *) psystemtime, (LPFILETIME) pfile_time);
@@ -1213,7 +1213,7 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
 }
 
 
-CLASS_DECL_ACME void GetSystemTime(system_time_t * psystemtime)
+CLASS_DECL_ACME void GetSystemTime(system_time * psystemtime)
 {
    
    GetSystemTime((LPSYSTEMTIME) psystemtime);
@@ -1259,7 +1259,7 @@ void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time)
 }
 
 
-void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+void file_time_to_system_time(system_time * psystemtime, const file_time_t * pfile_time)
 {
 
    FileTimeToSystemTime(pfile_time, psystemtime);
@@ -1267,15 +1267,19 @@ void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * p
 }
 
 
-void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
+file_time as_file_time(const system_time & systemtime)
 {
 
-   SystemTimeToFileTime(psystemtime, pfile_time);
+   FILETIME filetime;
+
+   SystemTimeToFileTime(psystemtime, &filetime);
+
+   return as_file_time(filetime);
 
 }
 
 
-void get_system_time(system_time_t * psystemtime)
+void get_system_time(system_time * psystemtime)
 {
 
    GetSystemTime(psystemtime);

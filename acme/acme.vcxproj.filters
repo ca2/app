@@ -297,6 +297,9 @@
     <Filter Include="Header Files\operating_system\shared_posix">
       <UniqueIdentifier>{e9c06eac-8a7e-4890-b1e3-3cd41f451baa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\time\time">
+      <UniqueIdentifier>{acd8a87b-032c-4197-af5e-5b846a680d7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4482,6 +4485,12 @@
     </ClCompile>
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\system_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\time\time\posix_time.cpp">
+      <Filter>Source Files\primitive\time\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

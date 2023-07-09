@@ -99,10 +99,10 @@ namespace netserver
 
       information("socket::OnExecute: %s\n", strUrl.c_str());
 
-      for (auto& item : m_request.headers())
+      for (auto& pproperty : m_request.headers().propertyptra())
       {
 
-         information("Headers %s=%s\n", item->m_atom.as_string().c_str(), item->as_string().c_str());
+         information("Headers %s=%s\n", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
 
       }
 

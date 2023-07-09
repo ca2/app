@@ -5604,7 +5604,7 @@ property & payload::get_property(const ::atom & atom)
    case e_type_payload_array:
       return &m_ppayloada->element_at(i);
    case e_type_property_set:
-      return m_ppropertyset->ptr_at(i);
+      return m_ppropertyset->property_at(i);
    case e_type_payload_pointer:
       return m_ppayload->at(i);
    case e_type_property:

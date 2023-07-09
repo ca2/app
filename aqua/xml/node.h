@@ -174,7 +174,7 @@ namespace xml
       //bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }
 
       ::property              attribute(const ::atom & atom) { return m_set[atom]; }
-      ::property *            attribute_at(index i) { return m_set.element_at(i); }
+      ::property *            attribute_at(index i) { return m_set.property_at(i); }
       ::property *            set_attribute(const property & property) { return set_attribute(property.m_atom, property); }
       ::property *            set_attribute(const ::atom & atom, const ::payload & payload = ::e_type_new);
       bool                    erase_attribute(::property * pproperty) { return erase_attribute(pproperty->m_atom); }

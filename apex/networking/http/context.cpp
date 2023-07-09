@@ -1970,7 +1970,7 @@ namespace http
          psocket->m_emethod = ::sockets::http_method_put;
 
       }
-      else if (set["post"].propset().has_element() || set("http_method") == "POST")
+      else if (set["post"].propset().has_property() || set("http_method") == "POST")
       {
 
          //bPost = true;
@@ -2706,14 +2706,14 @@ namespace http
 
       property_set & set = pmessage->get_property_set();
 
-      if (pmessageMessage->m_setPost.get_count() > 0)
+      if (pmessageMessage->m_setPost.property_count() > 0)
       {
 
          set["post"] = pmessageMessage->m_setPost;
 
       }
 
-      if (pmessageMessage->m_setHeaders.get_count() > 0)
+      if (pmessageMessage->m_setHeaders.property_count() > 0)
       {
 
          set["headers"] = pmessageMessage->m_setHeaders;

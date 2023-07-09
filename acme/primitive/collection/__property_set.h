@@ -292,9 +292,8 @@ public:
    ::index add_property(property * pproperty) { return m_propertyptra.add_item(pproperty); }
 
 
-   inline const property * ptr_at(::index nIndex) const { return m_propertyptra.element_at(nIndex); }
-   inline property * ptr_at(::index nIndex) { return m_propertyptra.element_at(nIndex); }
-
+   inline const property * property_at(::index nIndex) const { return m_propertyptra.element_at(nIndex); }
+   inline property * property_at(::index nIndex) { return m_propertyptra.element_at(nIndex); }
 
    inline ::index erase_property_at(::index iIndex) { return m_propertyptra.erase_at(iIndex); }
 

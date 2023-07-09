@@ -271,7 +271,7 @@ namespace user
    }
 
 
-   void shell::add_size_interest(int_array iaSize)
+   void shell::add_size_interest(::i32_array iaSize)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -290,7 +290,7 @@ namespace user
    }
 
 
-   void shell::set_size_interest(int_array iaSize)
+   void shell::set_size_interest(::i32_array iaSize)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -1911,7 +1911,7 @@ namespace user
 
          ::pointer<::image>pimage;
 
-         int_array iaSizeFallback;
+         ::i32_array iaSizeFallback;
 
          iaSizeFallback.add(1024);
          iaSizeFallback.add(512);

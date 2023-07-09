@@ -295,7 +295,7 @@ namespace user
       }
 
 
-      void shell::add_size_interest(int_array iaSize)
+      void shell::add_size_interest(::i32_array iaSize)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -314,7 +314,7 @@ namespace user
       }
 
 
-      void shell::set_size_interest(int_array iaSize)
+      void shell::set_size_interest(::i32_array iaSize)
       {
 
          synchronous_lock synchronouslock(this->synchronization());

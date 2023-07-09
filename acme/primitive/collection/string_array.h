@@ -665,7 +665,7 @@ public:
 typedef CLASS_DECL_ACME string_array_base < wstring > wstring_array;
 
 
-class CLASS_DECL_ACME string2a:
+class CLASS_DECL_ACME string_array_array:
         public array < string_array >
 {
 public:

@@ -34,7 +34,7 @@ namespace filemanager
 
 
       bool add_unique(const string_array & stra);
-      bool add_unique(const string_array & stra, int_array & baRecursive);
+      bool add_unique(const string_array & stra, ::i32_array & baRecursive);
       bool erase(const string_array & stra);
 
 

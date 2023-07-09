@@ -474,7 +474,7 @@ using f32_array = numeric_array < f32 >;
 using f64_array = numeric_array < f64 >;
 
 
-using int_array = i32_array;
+using i32_array_array = ::array < i32_array >;
 
 
 using index_array = numeric_array < ::index >;

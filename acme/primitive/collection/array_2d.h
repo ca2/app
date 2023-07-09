@@ -55,7 +55,7 @@ public:
    ::count set_size(::size_i32 size, ::count nGrowBy = -1)
    {
 
-      return BASE_ARRAY::set_size(size.cx(), size.cy(), nGrowBy);
+      return this->set_size(size.cx(), size.cy(), nGrowBy);
 
    }
 

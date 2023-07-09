@@ -344,7 +344,7 @@ namespace user
       virtual i32 _001GetGroupHeight(index iGroup);
 
 
-      virtual void FilterInclude(int_array & array);
+      virtual void FilterInclude(::i32_array & array);
       virtual void FilterInclude(index iItem);
       virtual void FilterExcludeAll();
       virtual void FilterClose();

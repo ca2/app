@@ -16,7 +16,7 @@ namespace app_integration
    public:
 
       string_array                              m_straName;
-      ::pointer_array < ::string_array >        m_str2aOutput;
+      ::pointer_array < ::string_array >        m_straaOutput;
 
       ::string          m_strName;
       //::string          m_strRelease;

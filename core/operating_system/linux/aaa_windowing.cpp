@@ -1791,7 +1791,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, ::i32_array  & ya,SIZE32 * psize)
 {
 
    synchronous_lock synchronouslock(x11_mutex());

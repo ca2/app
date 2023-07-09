@@ -366,7 +366,7 @@ payload::payload(const string_array & payload)
 }
 
 
-payload::payload(const int_array & ia)
+payload::payload(const ::i32_array & ia)
 {
 
    m_etype  = e_type_new;
@@ -1669,7 +1669,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
 }
 
 
-class ::payload & payload::operator = (const int_array & ia)
+class ::payload & payload::operator = (const ::i32_array & ia)
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -4481,7 +4481,7 @@ string_array & payload::string_array_reference()
 }
 
 
-int_array payload::ia() const
+::i32_array payload::ia() const
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -4499,7 +4499,7 @@ int_array payload::ia() const
    else if (m_etype != e_type_i32_array)
    {
 
-      int_array ia;
+      ::i32_array ia;
 
       try
       {
@@ -4525,7 +4525,7 @@ int_array payload::ia() const
    else if (::is_null(m_pia))
    {
 
-      return int_array();
+      return ::i32_array();
 
    }
 
@@ -4552,7 +4552,7 @@ i32_array & payload::i32_array_reference()
    else if(m_etype != e_type_i32_array)
    {
 
-      auto pia = memory_new int_array();
+      auto pia = memory_new ::i32_array();
 
       try
       {
@@ -4580,7 +4580,7 @@ i32_array & payload::i32_array_reference()
    else if (::is_null(m_pia))
    {
 
-      m_pia = memory_new int_array();
+      m_pia = memory_new ::i32_array();
 
    }
 

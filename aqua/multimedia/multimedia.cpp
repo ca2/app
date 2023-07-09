@@ -68,7 +68,7 @@ namespace aqua
    }
 
 
-   void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle)
+   void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string_array_array & straaTitle)
    {
 
 

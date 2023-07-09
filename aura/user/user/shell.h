@@ -147,7 +147,7 @@ namespace user
    protected:
 
 
-      int_array                                          m_iaSize;
+      ::i32_array                                          m_iaSize;
 
 
    public:
@@ -199,8 +199,8 @@ namespace user
 
       virtual void on_update_sizes_interest();
 
-      void add_size_interest(int_array iaSize);
-      void set_size_interest(int_array iaSize);
+      void add_size_interest(::i32_array iaSize);
+      void set_size_interest(::i32_array iaSize);
 
       i32 _reserve_image(const image_key & key);
 

@@ -4805,7 +4805,7 @@ namespace user
    }
 
 
-   void mesh::FilterInclude(int_array & array)
+   void mesh::FilterInclude(::i32_array & array)
    {
 
       ASSERT(m_efilterstate == FilterStateSetup);

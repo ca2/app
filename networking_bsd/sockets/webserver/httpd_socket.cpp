@@ -276,7 +276,7 @@ namespace sockets
       //if (strCipherList.find("DH") >= 0)
       //{
 
-      //   int_array ia;
+      //   ::i32_array ia;
 
       //   ia.add(512);
       //   ia.add(1024);

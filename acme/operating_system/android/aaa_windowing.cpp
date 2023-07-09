@@ -646,7 +646,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya, SIZE32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, ::i32_array  & ya, SIZE32 * psize)
 {
 
    pgraphics->fill_solid_rect_dim(0, 0, psize->cx(), psize->cy(), rgb(84, 90, 80));

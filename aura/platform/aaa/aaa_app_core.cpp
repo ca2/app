@@ -1503,7 +1503,7 @@ string transform_to_c_arg(const ::string & psz)
 }
 
 
-string merge_colon_args(const array < string_array > & str2a)
+string merge_colon_args(const array < string_array > & straa)
 {
 
    string_array straBeforeColon;
@@ -1512,7 +1512,7 @@ string merge_colon_args(const array < string_array > & str2a)
 
    string strCommandLine;
 
-   for (auto & stra : str2a)
+   for (auto & stra : straa)
    {
 
       index iFindColon = stra.find_first(":");

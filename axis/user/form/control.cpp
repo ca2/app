@@ -513,7 +513,7 @@ namespace user
 
             throw_todo();
 
-//            int_array ia;
+//            ::i32_array ia;
 //
 //            ::pointer<::database::client>pclient = pinteraction;
 //
@@ -632,7 +632,7 @@ namespace user
 
       ASSERT(pinteraction->m_eddx == e_control_ddx_dbflags);
 
-      int_array ia;
+      ::i32_array ia;
 
       try
       {
@@ -1486,7 +1486,7 @@ namespace user
    //      if(pinteraction->m_eddx == e_control_ddx_dbflags)
    //      {
 
-   //         int_array ia;
+   //         ::i32_array ia;
 
    //         ::pointer<::database::client>pclient = pinteraction;
 

@@ -185,9 +185,9 @@ public:
    payload(const ::color::hls & hls);
    payload(const ::particle & particle);
    payload(const ::file::path & path);
-   payload(const ::string_array & payload);
-   payload(const ::int_array & payload);
-   payload(const ::payload_array & payload);
+   payload(const ::string_array & stra);
+   payload(const ::i32_array & ia);
+   payload(const ::payload_array & payloada);
    payload(const ::property_set & set);
    payload(const ::property & prop);
    payload(const class time & time);
@@ -455,7 +455,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
    ::memory memory() const;
    ::string_array stra() const;
-   ::int_array ia() const;
+   ::i32_array ia() const;
    ::i64_array i64a() const;
    ::payload_array payloada()  const;
    ::property_set propset() const;
@@ -776,7 +776,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    payload & operator = (const ::property & prop);
    payload & operator = (const ::property * pproperty);
    payload & operator = (const ::payload & payload);
-   payload & operator = (const ::int_array & ia);
+   payload & operator = (const ::i32_array & ia);
    payload & operator = (const ::string_array & stra);
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);

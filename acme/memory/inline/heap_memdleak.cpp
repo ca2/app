@@ -593,7 +593,7 @@ string get_mem_info_report1()
       }
 
 
-      int_array ia;
+      ::i32_array ia;
 
       ia.set_size(bla.get_count());
 

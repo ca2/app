@@ -181,8 +181,8 @@ namespace xml
       bool                    erase_attribute(const ::atom & atom) { return m_set.erase_by_name(atom) > 0; }
 
 
-      bool from_row_column_v2(const string2a & str2a);
-      bool to_row_column_v2(string2a & str2a);
+      bool from_row_column_v2(const string_array_array & straa);
+      bool to_row_column_v2(string_array_array & straa);
 
       // operator overloads
       node * operator [] ( i32 i ) { return child_at(i); }

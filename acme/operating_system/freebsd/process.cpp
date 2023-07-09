@@ -477,10 +477,10 @@
 //}
 //
 //
-//int_array module_path_get_pid(const ::file::path & path)
+//::i32_array module_path_get_pid(const ::file::path & path)
 //{
 //
-//   int_array ia;
+//   ::i32_array ia;
 //
 //   ::file::path_array stra;
 //

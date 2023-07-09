@@ -35,7 +35,7 @@ namespace aqua
 
       virtual string get_media_call_title(const string& str);
 
-      virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle);
+      virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string_array_array & straaTitle);
 
       virtual ::pointer<::user::controller>defer_create_impact(::particle * pparticle, const ::string & strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
 

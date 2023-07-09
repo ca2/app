@@ -25,7 +25,7 @@ namespace user
       ::draw2d::pen_pointer               m_ppen;
       string_map < ::image_pointer >      m_pimageMap;
       string_map < ::image_pointer >      m_pimageMapGray;
-      int_array                           m_iaPopup;
+      ::i32_array                           m_iaPopup;
 
 
       menu_impact();

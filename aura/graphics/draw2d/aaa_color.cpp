@@ -968,7 +968,7 @@ bool color::parse_color(const ::string & psz)
             str.trim();
             ::payload a;
             a.stra().explode(",", str);
-            int_array & ia = a.inta();
+            ::i32_array & ia = a.inta();
             if (ia.get_count() == 3)
             {
                set_COLORREF(argb(255, ia[0], ia[1], ia[2]));

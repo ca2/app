@@ -212,7 +212,7 @@ namespace app_integration
       for (auto & str : m_straName)
       {
 
-         __construct_new(m_str2aOutput.add_new());
+         __construct_new(m_straaOutput.add_new());
 
       }
 
@@ -227,7 +227,7 @@ namespace app_integration
 
          auto strName = m_straName[i];
 
-         auto pstraOutput = m_str2aOutput[i];
+         auto pstraOutput = m_straaOutput[i];
 
 
          fork([strName, pstraOutput, this]()
@@ -330,13 +330,13 @@ namespace app_integration
       auto rect = client_rectangle();
 
       int y = rect.bottom - 50;
-      for (int i = m_str2aOutput.get_upper_bound(); i >= 0; i--)
+      for (int i = m_straaOutput.get_upper_bound(); i >= 0; i--)
       {
-         for (int j = 0; j < minimum(3, m_str2aOutput[i]->size()); j++)
+         for (int j = 0; j < minimum(3, m_straaOutput[i]->size()); j++)
          {
 
 
-            pgraphics->text_out({ (double)20, (double)y }, m_straName[i] + " > " + m_str2aOutput[i]->last(-j - 1));
+            pgraphics->text_out({ (double)20, (double)y }, m_straName[i] + " > " + m_straaOutput[i]->last(-j - 1));
 
             y -= 30;
 

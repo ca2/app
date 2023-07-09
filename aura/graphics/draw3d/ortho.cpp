@@ -17,7 +17,7 @@ namespace draw3d
 {
 
 
-   int_array ortho::draw_ortho_plain_wire_frame(::box_f64 * pbox,int iHint,int bA,bool bFirst)
+   ::i32_array ortho::draw_ortho_plain_wire_frame(::box_f64 * pbox,int iHint,int bA,bool bFirst)
    {
 
       double dA = bA / 255.0;
@@ -76,8 +76,8 @@ namespace draw3d
       }
 
 
-      int_array  point1;
-      int_array  point2;
+      ::i32_array  point1;
+      ::i32_array  point2;
 
 
 
@@ -125,7 +125,7 @@ namespace draw3d
 
       i = 0;
 
-      int_array ia;
+      ::i32_array ia;
 
       while(point1.get_count() > 0)
       {
@@ -225,19 +225,19 @@ namespace draw3d
    }
 
 
-   int_array ortho::draw_ortho_plain_fill(::box_f64 * pbox,int iHint,int bA,bool bFirst,::image * pimage)
+   ::i32_array ortho::draw_ortho_plain_fill(::box_f64 * pbox,int iHint,int bA,bool bFirst,::image * pimage)
    {
 
       ::draw2d::bitmap bm;
 
       ::point_i32 point2da[3];
 
-      int_array ia;
+      ::i32_array ia;
 
       double dA = bA / 255.0;
 
       array < ::location_f64 > locationa = pbox->vertices();
-      array < int_array > f = pbox->faces();
+      array < ::i32_array > f = pbox->faces();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -285,7 +285,7 @@ namespace draw3d
 
       i = 0;
 
-      int_array iaf;
+      ::i32_array iaf;
 
       //throw ::exception(todo);
 

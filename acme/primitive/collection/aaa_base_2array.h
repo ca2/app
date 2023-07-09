@@ -1,7 +1,7 @@
 #pragma once
 
 
-using int2a = array < int_array >;
+using int2a = array < ::i32_array >;
 
 
 using float2a = array < f32_array >;

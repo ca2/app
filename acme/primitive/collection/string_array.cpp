@@ -4,7 +4,7 @@
 #include <memory.h>
 
 
-void string2a::add_csv(string str)
+void string_array_array::add_csv(string str)
 {
 
    string_array stra;

@@ -20,7 +20,7 @@ public:
    payload_array();
    payload_array(const std::initializer_list < ::payload > & varlist);
    payload_array(const string_array & stra);
-   payload_array(const int_array & inta);
+   payload_array(const ::i32_array & inta);
    payload_array(const ::property_set & propset);
    payload_array(const payload_array & payloada);
    ~payload_array() override;
@@ -92,7 +92,7 @@ public:
    payload_array operator +(const payload_array & payloada) const;
 
    payload_array & operator = (const string_array & stra);
-   payload_array & operator = (const int_array & inta);
+   payload_array & operator = (const ::i32_array & inta);
    payload_array & operator = (const ::property_set & propset);
    payload_array & operator = (const payload_array & payloada);
 

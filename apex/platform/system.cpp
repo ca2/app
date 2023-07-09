@@ -510,7 +510,7 @@ namespace apex
       factory()->add_factory_item < string_array >();
       factory()->add_factory_item < memory >();
       factory()->add_factory_item < memory_file >();
-      factory()->add_factory_item < int_array >();
+      factory()->add_factory_item < ::i32_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
       //factory()->add_factory_item < ::i64_array >();
@@ -522,7 +522,7 @@ namespace apex
       //factory()->add_factory_item < string_array >();
       //factory()->add_factory_item < memory >();
       //factory()->add_factory_item < memory_file >();
-      //factory()->add_factory_item < int_array >();
+      //factory()->add_factory_item < ::i32_array >();
 
       ///estatus =
 

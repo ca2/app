@@ -176,7 +176,7 @@ namespace acme
 
       string_array stra2;
 
-      int_array iaPid2;
+      ::i32_array iaPid2;
 
       auto psystem = acmesystem();
 

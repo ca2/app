@@ -912,7 +912,7 @@ namespace interprocess
 
       string_array stra2;
 
-      int_array iaPid2;
+      ::i32_array iaPid2;
 
       for (index i = 0; i < m_straModule.get_count();)
       {

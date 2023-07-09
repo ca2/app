@@ -662,11 +662,11 @@ public:
 
 
 //typedef CLASS_DECL_ACME string_array_base < string > string_array;
-typedef CLASS_DECL_ACME string_array_base < wstring > wstring_array;
+
 
 
 class CLASS_DECL_ACME string_array_array:
-        public array < string_array >
+   public ::array < string_array >
 {
 public:
 

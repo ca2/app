@@ -929,6 +929,7 @@
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
     <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
     <ClCompile Include="operating_system\shared_posix\time.cpp" />
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp" />
     <ClCompile Include="operating_system\string.cpp" />
     <ClCompile Include="operating_system\summary.cpp" />
     <ClCompile Include="operating_system\time.cpp" />

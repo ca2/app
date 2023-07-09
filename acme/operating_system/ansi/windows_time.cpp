@@ -1137,26 +1137,7 @@ int_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 }
 
 
-system_time::system_time(const file_time & filetime) :
-   system_time(as_system_time(as_SYSTEMTIME(as_FILETIME(filetime))))
-{
 
-   //auto FILETIME = ;
-   
-   //return SystemTimeToFileTime((const SYSTEMTIME *) psystemtime, (LPFILETIME) pfile_time);
-   
-}
-
-
-file_time::file_time(const system_time & systemtime) :
-   file_time(as_file_time(as_FILETIME(as_SYSTEMTIME(systemtime))))
-{
-
-   //auto FILETIME = ;
-
-   //return SystemTimeToFileTime((const SYSTEMTIME *) psystemtime, (LPFILETIME) pfile_time);
-
-}
 
 /***********************************************************************
  *              GetSystemTimeAsFileTime  (KERNEL32.@)

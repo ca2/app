@@ -4498,6 +4498,9 @@
     <ClCompile Include="primitive\time\time\time.cpp">
       <Filter>Source Files\primitive\time\time</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

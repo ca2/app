@@ -385,14 +385,14 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 
 
 
-
-
-file_time::file_time(const system_time & systemtime) :
-   file_time(as_file_time(as_FILETIME(as_SYSTEMTIME(systemtime))))
-{
-
-
-}
+//
+//
+//file_time::file_time(const system_time & systemtime) :
+//   file_time(as_file_time(as_FILETIME(as_SYSTEMTIME(systemtime))))
+//{
+//
+//
+//}
 
 
 namespace earth

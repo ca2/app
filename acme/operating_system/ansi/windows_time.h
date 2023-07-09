@@ -9,9 +9,25 @@
 #pragma once
 
 
-typedef struct _FILETIME FILETIME;
 
-typedef struct _SYSTEMTIME SYSTEMTIME;
+#ifndef _FILETIME_
+#define _FILETIME_
+typedef struct _FILETIME {
+   DWORD dwLowDateTime;
+   DWORD dwHighDateTime;
+} FILETIME, *PFILETIME, *LPFILETIME;
+#endif
+
+typedef struct _SYSTEMTIME {
+   WORD wYear;
+   WORD wMonth;
+   WORD wDayOfWeek;
+   WORD wDay;
+   WORD wHour;
+   WORD wMinute;
+   WORD wSecond;
+   WORD wMilliseconds;
+} SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
 CLASS_DECL_ACME int_bool FileTimeToSystemTime(const FILETIME * pfiletime, SYSTEMTIME * psystemtime);

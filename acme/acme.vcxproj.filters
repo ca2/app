@@ -3272,6 +3272,9 @@
     <ClInclude Include="primitive\time\time\time_span.h">
       <Filter>Header Files\primitive\time\time</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\_function.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

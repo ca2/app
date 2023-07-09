@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "window_util.h"
 #include "interaction.h"
+#include "acme/primitive/collection/_sort.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -281,7 +282,7 @@ namespace user
       if (cAddedCount > 0)
       {
 
-         m_iaSize.sort();
+         ::sort::QuickSortAsc(m_iaSize);
 
          m_bPendingUpdate = true;
 
@@ -295,7 +296,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      iaSize.sort();
+      ::sort::QuickSortAsc(iaSize);
 
       if (::acme::array::is_different(m_iaSize, iaSize))
       {
@@ -396,7 +397,7 @@ namespace user
 
       m_imagemap.erase_all();
 
-      m_iaSize.sort();
+      ::sort::QuickSortAsc(m_iaSize);
 
       if (m_iaSize.is_empty())
       {
@@ -1506,7 +1507,7 @@ namespace user
       
       auto iaSize = m_iaSize;
       
-      iaSize.sort(false);
+      ::sort::QuickSortDesc(iaSize);
 
       for(int & iSize : iaSize)
       {
@@ -1614,7 +1615,7 @@ namespace user
       
       auto iaSize = m_iaSize;
       
-      iaSize.sort(false);
+      ::sort::QuickSortDesc(iaSize);
       
       for(int & iSize : iaSize)
       {

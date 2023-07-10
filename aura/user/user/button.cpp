@@ -3,7 +3,7 @@
 #include "style.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/handler/item.h"
+#include "acme/handler/item.h" 
 #include "acme/platform/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -731,7 +731,9 @@ namespace user
 
             auto pstyle = get_style(pgraphics);
 
-            ::color::color colorText = get_color(pstyle, e_element_text, get_state());
+            auto estate = get_state();
+
+            ::color::color colorText = get_color(pstyle, e_element_text, estate);
 
             pgraphics->set_text_color(colorText);
 

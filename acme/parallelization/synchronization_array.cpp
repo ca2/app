@@ -331,7 +331,7 @@ void synchronization_array::erase(index index)
       return -1;
 
    }
-   else if (failed(estatus))
+   else if (estatus.failed())
    {
 
       throw ::exception(estatus);

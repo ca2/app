@@ -147,6 +147,35 @@ namespace user
          else
          {
 
+
+            //auto pbrushText = __create < ::draw2d::brush >();
+
+
+            //if (!is_window_enabled())
+            //{
+
+            //   //         pgraphics->set_text_color(pstyle->m_colorTextDisabled);
+            //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
+
+            //}
+            //else if (is_left_button_pressed())
+            //{
+            //   //         pgraphics->set_text_color(pstyle->m_colorTextPress);
+            //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
+            //}
+            //else if (m_pitemHover && m_pitemHover->is_set())
+            //{
+            //   //         pgraphics->set_text_color(pstyle->m_colorTextHover);
+            //   pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
+            //}
+            //else
+            //{
+            //   //         pgraphics->set_text_color(pstyle->m_colorTextNormal);
+            //   pbrushText->create_solid(get_color(pstyle, e_element_text));
+            //}
+
+            //pgraphics->set(pbrushText);
+
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             defer_update_text_out_array(pgraphics);
@@ -517,17 +546,17 @@ namespace user
    {
 
 
-      if (eelement == e_element_text)
-      {
+      //if (eelement == e_element_text)
+      //{
 
-         if (m_statuscolorText.ok())
-         {
+      //   if (m_statuscolorText.ok())
+      //   {
 
-            return m_statuscolorText;
+      //      return m_statuscolorText;
 
-         }
+      //   }
 
-      }
+      //}
 
       return ::user::interaction::get_color(pstyle, eelement, elayout);
 
@@ -580,22 +609,22 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      //::pointer<::write_text::font>pfont;
+      ::pointer<::write_text::font>pfont;
 
-      //auto pstyle = get_style(pgraphics);
+      auto pstyle = get_style(pgraphics);
 
-      //if (m_pfont)
-      //{
+      if (m_pfont)
+      {
 
-      //   pfont = m_pfont;
+         pfont = m_pfont;
 
-      //}
-      //else
-      //{
+      }
+      else
+      {
 
-      //   pfont = get_font(pstyle, ::e_element_none);
+         pfont = get_font(pstyle, ::e_element_none);
 
-      //}
+      }
 
       ::string strWindowText = get_window_text();
 
@@ -624,7 +653,7 @@ namespace user
 
       }
 
-      auto pstyle = get_style(pgraphics);
+      //auto pstyle = get_style(pgraphics);
 
       auto rectangleClient = client_rectangle();
 
@@ -715,21 +744,19 @@ namespace user
 
          ::size_f64 sizeText = _001CalculateFittingSize(pgraphics);
 
-         ::rectangle_i32 rectangle;
+         //::rectangle_i32 rectangle;
 
-         rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
+         //rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
 
-         rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
+         //rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
 
-         rectangle.right = (::i32)(rectangle.left + sizeText.cx());
+         //rectangle.right = (::i32)(rectangle.left + sizeText.cx());
 
-         rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+         //rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
 
          //m_rectangleText = rectangle;
 
-         set_width((::i32)ceil(sizeText.cx()));
-
-         set_height((::i32)ceil(sizeText.cy()));
+         set_size(::ceil(sizeText), ::user::e_layout_layout, pgraphics);
 
          return true;
 
@@ -925,7 +952,7 @@ namespace user
          pbrushText->create_solid(get_color(pstyle, e_element_text));
       }
 
-      pgraphics->set(pbrushText);
+      pgraphics->set(pbrushText);   
 
       string strText(get_window_text());
 

@@ -1290,7 +1290,7 @@ bool task::has_message() const
 
       ::e_status estatus = m_estatus;
 
-      if (failed(estatus))
+      if (estatus.failed())
       {
 
          ::e_status estatusExit = m_estatus;

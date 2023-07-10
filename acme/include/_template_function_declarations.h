@@ -130,11 +130,11 @@ CLASS_DECL_ACME void __node_acme_pos_term();
 typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 
-CLASS_DECL_ACME bool succeeded(const ::payload& payload);
-
-
-
-
+//CLASS_DECL_ACME bool succeeded(const ::payload& payload);
+//
+//
+//
+//
 
 
 CLASS_DECL_ACME bool is_filemanager(const ::atom& atom);
@@ -212,7 +212,7 @@ inline const ::particle * context_trace_object();
 inline const ::particle * trace_object(const ::particle* pparticle);
 
 
-inline bool failed(const ::payload& payload);
+//inline bool failed(const ::payload& payload);
 
 
 

@@ -2383,34 +2383,34 @@ return false;
    }
 
 
-   bool node::succeeded(const ::error_code& errorcode)
-   {
+   //bool node::succeeded(const ::error_code& errorcode)
+   //{
 
-      if (errorcode.m_etype == e_error_code_type_errno)
-      {
+   //   if (errorcode.m_etype == e_error_code_type_errno)
+   //   {
 
-         return errorcode.m_iOsError == 0;
+   //      return errorcode.m_iOsError == 0;
 
-      }
-      else if (errorcode.m_etype == e_error_code_type_last_error)
-      {
+   //   }
+   //   else if (errorcode.m_etype == e_error_code_type_last_error)
+   //   {
 
-         return errorcode.m_iOsError == 0;
+   //      return errorcode.m_iOsError == 0;
 
-      }
+   //   }
 
-      throw interface_only();
+   //   throw interface_only();
 
-      return false;
-    
-   }
+   //   return false;
+   // 
+   //}
 
-   bool node::failed(const ::error_code& errorcode)
-   {
+   //bool node::failed(const ::error_code& errorcode)
+   //{
 
-      return !succeeded(errorcode);
+   //   return !succeeded(errorcode);
 
-   }
+   //}
 
 
 #ifdef WINDOWS

@@ -420,7 +420,7 @@ namespace account
    bool user::is_ok()
    {
 
-      if(::failed(m_estatus))
+      if(m_estatus.failed())
       {
 
          return false;

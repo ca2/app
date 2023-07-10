@@ -1284,6 +1284,29 @@ namespace user
    status<::color::color> interaction::get_color(style *pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
+      if (eelement == e_element_text)
+      {
+
+         if (m_statuscolorText.ok())
+         {
+
+            return m_statuscolorText;
+
+         }
+
+      }
+      else if (eelement == e_element_background)
+      {
+
+         if (m_statuscolorBackground.ok())
+         {
+
+            return m_statuscolorBackground;
+
+         }
+
+      }
+
       //if (pstyle)
       //{
 
@@ -3952,6 +3975,14 @@ namespace user
 
 
    bool interaction::is_frame_window()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::is_impact()
    {
 
       return false;
@@ -11331,13 +11362,27 @@ return strClass;
 
    }
 
-   
-   bool interaction::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
+
+   void interaction::extend_on_parent(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      if (::string(typeid(*this).name()).contains("impact"))
+      {
 
-      return m_bNeedPerformLayout;
+         information() << "interaction::on_perform_top_down_layout impact";
+
+      }
+
+      auto sizeParent = get_parent()->size(::user::e_layout_lading);
+
+      auto sizeThis = size(::user::e_layout_lading);
+
+      if (sizeThis != sizeParent)
+      {
+
+         set_size(sizeParent, ::user::e_layout_layout, pgraphics);
+
+      }
 
    }
 
@@ -11374,6 +11419,36 @@ return strClass;
 
    }
 
+ 
+   bool interaction::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
+      return m_bNeedPerformLayout;
+
+   }
+
+
+   bool interaction::need_on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
+      bool bNeedOnPerformLayout = false;
+
+      if (!bNeedOnPerformLayout && m_bAutoResize)
+      {
+
+         bNeedOnPerformLayout = true;
+
+      }
+
+      return bNeedOnPerformLayout;
+
+   }
+
+
 
    bool interaction::perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
@@ -11398,7 +11473,7 @@ return strClass;
 
       }
 
-      bool bNeedPerformLayoutHere = false;
+      bool bNeedPerformLayoutHere = need_on_perform_layout(pgraphics);
 
       if (m_puserinteractionpointeraChild)
       {
@@ -11443,6 +11518,8 @@ return strClass;
 
          }
 
+         m_bNeedLayout = true;
+
       }
 
       return bParentMayNeedToPerformLayout;
@@ -11456,23 +11533,7 @@ return strClass;
       if (m_bExtendOnParent)
       {
 
-         if (::string(typeid(*this).name()).contains("impact"))
-         {
-
-            information() << "interaction::on_perform_top_down_layout impact";
-
-         }
-
-         auto sizeParent = get_parent()->size(::user::e_layout_lading);
-
-         auto sizeThis = size(::user::e_layout_lading);
-
-         if (sizeThis != sizeParent)
-         {
-
-            set_size(sizeParent, ::user::e_layout_layout, pgraphics);
-
-         }
+         extend_on_parent(pgraphics);
 
       }
 

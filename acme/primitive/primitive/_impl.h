@@ -10,24 +10,24 @@
 
 
 
-inline bool __enum_is_failed(const ::e_status & e)
-{
-
-   return ::failed(e);
-
-}
+//inline bool __enum_is_failed(const ::e_status & e)
+//{
+//
+//   return ::failed(e);
+//
+//}
 
 
 #include "_impl_atom.h"
 #include "_impl_primitive.h"
 
 
-inline bool succeeded(const ::property & property)
-{
-
-   return ::succeeded((const ::payload &) property);
-
-}
+//inline bool succeeded(const ::property & property)
+//{
+//
+//   return ::succeeded((const ::payload &) property);
+//
+//}
 
 
 template < typename BASE_TYPE >

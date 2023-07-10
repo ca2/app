@@ -336,7 +336,7 @@ namespace user
       catch (const ::exception& exception)
       {
 
-         if (::failed(exception.m_estatus))
+         if (exception.m_estatus.failed())
          {
 
             return false;

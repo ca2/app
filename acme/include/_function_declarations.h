@@ -135,7 +135,18 @@ CLASS_DECL_ACME void __node_acme_pos_term();
 typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 
-CLASS_DECL_ACME bool succeeded(const ::payload& payload);
+class e_status;
+
+
+//CLASS_DECL_ACME bool succeeded(const ::payload & payload);
+//constexpr bool succeeded(const ::e_status & e_status);
+
+
+//inline bool failed(const ::payload & payload);
+//constexpr bool failed(const ::e_status & e_status);
+
+
+
 
 //
 //CLASS_DECL_ACME::atom message_box_synchronous(::particle* ppartcicle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
@@ -223,9 +234,6 @@ inline const ::particle * context_trace_object();
 
 
 inline const ::particle * trace_object(const ::particle* pparticle);
-
-
-inline bool failed(const ::payload& payload);
 
 
 

@@ -11,7 +11,7 @@ namespace write_text
    font_family::font_family(enum_font efont)
    {
 
-      m_efont = e_font_none;
+      m_efont = efont;
 
    }
 

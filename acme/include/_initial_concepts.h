@@ -12,7 +12,11 @@
 struct ENUM_TYPE_TAG {};
 
 
-//s#include "acme/primitive/primitive/e_status.h"
+struct sequence_t {};
+
+
+template < typename SEQUENCE >
+concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
 
 
 template < typename ENUM >

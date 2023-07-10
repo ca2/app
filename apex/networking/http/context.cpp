@@ -2575,7 +2575,7 @@ namespace http
          }
 
       }
-      else if (::failed(psocket->m_estatus))
+      else if (psocket->m_estatus.failed())
       {
 
          estatus = psocket->m_estatus;

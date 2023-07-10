@@ -983,6 +983,14 @@ namespace user
    }
 
 
+   bool impact::is_impact()
+   {
+
+      return true;
+
+   }
+
+
    ::user::document * impact::get_document() const
    {
 

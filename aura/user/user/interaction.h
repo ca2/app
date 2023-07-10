@@ -333,7 +333,8 @@ namespace user
       ::point_i32                                  m_pointMouseMove;
       class ::time                                   m_timeLastRedraw;
       ::atom                                       m_atomImpact;
-      ::color::color                               m_colorBackground;
+      ::status < ::color::color >                  m_statuscolorBackground;
+      ::status < ::color::color >                  m_statuscolorText;
       point_i32                                    m_pointScroll;
       // if high frequency mouse transfer notification is required
       // create a fast path/low latency callback system
@@ -882,6 +883,7 @@ namespace user
 
 
       virtual bool is_frame_window();
+      virtual bool is_impact();
       bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
       virtual bool sketch_on_display();
@@ -1218,8 +1220,13 @@ namespace user
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
+
+      virtual void extend_on_parent(::draw2d::graphics_pointer & pgraphics);
+
+
       virtual void top_down_prefix();
       virtual bool should_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool need_on_perform_layout(::draw2d::graphics_pointer & pgraphics);
       /// returns true if parent may need to perform layout
       /// the parent may need to perform layout if
       ///    - during perform_layout the position and/or size of

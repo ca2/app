@@ -20,10 +20,12 @@
 
 
 
-template < primitive_number COORDINATE, size_t t_iSize >
+template < primitive_number COORDINATE, ::count t_iSize >
 struct sequence_type
 {
 
+
+   using sequence_tag = sequence_t;
    using BASE_COORDINATE = COORDINATE;
    using UNIT_TYPE = COORDINATE;
 
@@ -32,7 +34,7 @@ struct sequence_type
 
 
    static constexpr bool IS_MATRIX = false;
-   static constexpr size_t SIZE = t_iSize;
+   static constexpr ::count SIZE = t_iSize;
 
 
    sequence_type()
@@ -61,11 +63,11 @@ struct sequence_type
 //      std::enable_if_t<T::SIZE == SIZE &&
 //      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
 //   sequence_type(const T & a) {
-//      for (size_t i = 0; i < SIZE; ++i)
+//      for (::count i = 0; i < SIZE; ++i)
 //         m_coordinatea[i] = (COORDINATE)a[i];
 //   }
 
-   template < primitive_number NUMBER1, size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   template < primitive_number NUMBER1, ::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
    sequence_type(const sequence_type < NUMBER1, 2 > & sequence)
    {
       m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
@@ -73,7 +75,7 @@ struct sequence_type
    }
 
    
-   template < primitive_number NUMBER1, size_t S = SIZE, std::enable_if_t<S == 3, int> = 0 >
+   template < primitive_number NUMBER1, ::count S = SIZE, std::enable_if_t<S == 3, int> = 0 >
    sequence_type(const sequence_type < NUMBER1, 3 > & sequence)
    {
       m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
@@ -82,7 +84,7 @@ struct sequence_type
    }
 
    
-   template < primitive_number NUMBER1, size_t S = SIZE, std::enable_if_t<S == 4, int> = 0 >
+   template < primitive_number NUMBER1, ::count S = SIZE, std::enable_if_t<S == 4, int> = 0 >
    sequence_type(const sequence_type < NUMBER1, 4 > & sequence)
    {
       m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
@@ -92,11 +94,11 @@ struct sequence_type
    }
 
 //   sequence_type(COORDINATE s) {
-//      for (size_t i = 0; i < SIZE; ++i)
+//      for (::count i = 0; i < SIZE; ++i)
 //         m_coordinatea[i] = s;
 //   }
 
-   template < size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
    sequence_type(COORDINATE coordinate0, COORDINATE coordinate1)
    {
       m_coordinatea[0] = coordinate0;
@@ -104,7 +106,7 @@ struct sequence_type
    }
 
    
-   template <size_t S = SIZE, std::enable_if_t<S == 3, int> = 0>
+   template <::count S = SIZE, std::enable_if_t<S == 3, int> = 0>
    sequence_type(COORDINATE coordinate0, COORDINATE coordinate1,
                  COORDINATE coordinate2)
    {
@@ -114,7 +116,7 @@ struct sequence_type
    }
 
    
-   template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
+   template <::count S = SIZE, std::enable_if_t<S == 4, int> = 0>
    sequence_type(
                  COORDINATE coordinate0, COORDINATE coordinate1,
                  COORDINATE coordinate2, COORDINATE coordinate3)
@@ -125,11 +127,39 @@ struct sequence_type
       m_coordinatea[3] = coordinate3;
    }
 
+
+   constexpr ::count get_size() const { return SIZE; }
+   constexpr ::count get_count() const { return this->get_size(); }
    
+   
+   constexpr COORDINATE & set_coordinate(::index i, COORDINATE coordinate)
+   {
+
+      return m_coordinatea[i] = coordinate;
+
+   }
+
+
+   constexpr COORDINATE get_coordinate(::index i) const
+   {
+
+      return m_coordinatea[i];
+
+   }
+
+   
+   constexpr COORDINATE & get_coordinate(::index i)
+   {
+
+      return m_coordinatea[i];
+
+   }
+
+
    void set_all(COORDINATE coordinate)
    {
       
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
       {
          
          m_coordinatea[i] = coordinate;
@@ -137,34 +167,36 @@ struct sequence_type
       }
       
    }
-   
+
+
+
    // simple menthods: operates on x, y
-   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void add2(const sequence_type & a)
    {
       this->a() += a.a();
       this->b() += a.b();
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void sub2(const sequence_type & a)
    {
       this->a() -= a.a();
       this->b() -= a.b();
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void mul2(UNIT_TYPE n)
    {
       this->a() *= n;
       this->b() *= n;
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void set2(UNIT_TYPE a, UNIT_TYPE b)
    {
       this->a() = a;
       this->b() = b;
    }
 
-   template < size_t S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    static inline void mix2(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
       c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
@@ -172,28 +204,28 @@ struct sequence_type
    }
 
    // simple menthods: operates on x, y, z
-   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void add3(const sequence_type & a)
    {
       this->a() += a.a();
       this->b() += a.b();
       this->c() += a.c();
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void sub3(const sequence_type & a)
    {
       this->a() -= a.a();
       this->b() -= a.b();
       this->c() -= a.c();
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void mul3(UNIT_TYPE n)
    {
       this->a() *= n;
       this->b() *= n;
       this->c() *= n;
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void set3(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c)
    {
       this->a() = a;
@@ -201,7 +233,7 @@ struct sequence_type
       this->c() = c;
    }
 
-   template < size_t S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    static inline void mix3(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
       c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
@@ -210,7 +242,7 @@ struct sequence_type
    }
 
    // simple menthods: operates on x, y, z, w
-   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void add4(const sequence_type & q)
    {
       this->a() += q.a();
@@ -218,7 +250,7 @@ struct sequence_type
       this->c() += q.c();
       this->d() += q.d();
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void sub4(const sequence_type & q)
    {
       this->a() -= q.a();
@@ -226,7 +258,7 @@ struct sequence_type
       this->c() -= q.c();
       this->d() -= q.d();
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void mul4(UNIT_TYPE n)
    {
       this->a() *= n;
@@ -234,7 +266,7 @@ struct sequence_type
       this->c() *= n;
       this->d() *= n;
    }
-   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void set4(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d)
    {
       this->a() = a;
@@ -243,7 +275,7 @@ struct sequence_type
       this->d() = d;
    }
 
-   template < size_t S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    static inline void mix4(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
       c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
@@ -256,7 +288,7 @@ struct sequence_type
    sequence_type operator-() const
    {
       sequence_type result;
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result[i] = -m_coordinatea[i];
       return result;
    }
@@ -265,33 +297,33 @@ struct sequence_type
    friend sequence_type operator+(const sequence_type& a, const sequence_type& b)
    {
       sequence_type result;
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] + b.m_coordinatea[i];
       return result;
    }
 
    sequence_type& operator+=(const sequence_type& a) {
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          m_coordinatea[i] += a.m_coordinatea[i];
       return *this;
    }
 
    friend sequence_type operator-(const sequence_type& a, const sequence_type& b) {
       sequence_type result;
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] - b.m_coordinatea[i];
       return result;
    }
 
    sequence_type& operator-=(const sequence_type& a) {
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          m_coordinatea[i] -= a.m_coordinatea[i];
       return *this;
    }
 
    friend sequence_type operator *(const sequence_type& a, const sequence_type& b) {
       sequence_type result;
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] * b.m_coordinatea[i];
       return result;
    }
@@ -300,14 +332,14 @@ struct sequence_type
    sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > operator *(NUMBER1 n) const
    {
       sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > result;
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result[i] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[i] * n);
       return result;
    }
 
 
    sequence_type& operator*=(const sequence_type& a) {
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          m_coordinatea[i] *= a.m_coordinatea[i];
       return *this;
    }
@@ -315,7 +347,7 @@ struct sequence_type
    
    friend sequence_type operator/(const sequence_type& a, const sequence_type& b) {
       sequence_type result;
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] / b.m_coordinatea[i];
       return result;
    }
@@ -325,20 +357,20 @@ struct sequence_type
    sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > operator /(NUMBER1 n) const
    {
       sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > result;
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result[i] = (largest_number < UNIT_TYPE, NUMBER1 >) (this->m_coordinatea[i] / n);
       return result;
    }
 
 
    sequence_type& operator/=(const sequence_type& a) {
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          m_coordinatea[i] /= a.m_coordinatea[i];
       return *this;
    }
 
    bool operator==(const sequence_type& a) const {
-      for (size_t i = 0; i < SIZE; ++i) {
+      for (::count i = 0; i < SIZE; ++i) {
          if (m_coordinatea[i] != a.m_coordinatea[i])
             return false;
       }
@@ -350,7 +382,7 @@ struct sequence_type
    bool is_every(PREDICATE predicate) const
    {
 
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
       {
 
          if (!predicate(m_coordinatea[i]))
@@ -405,7 +437,7 @@ struct sequence_type
 
       sequence_type vector;
 
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
       {
 
          if (predicate(m_coordinatea[i]))
@@ -483,32 +515,32 @@ struct sequence_type
 
    constexpr bool operator!=(const sequence_type& a) const { return !operator==(a); }
 
-   constexpr const COORDINATE& operator[](size_t i) const { return m_coordinatea[i]; }
+   constexpr const COORDINATE& operator[](::count i) const { return m_coordinatea[i]; }
 
-   constexpr COORDINATE& operator[](size_t i) { return m_coordinatea[i]; }
+   constexpr COORDINATE& operator[](::count i) { return m_coordinatea[i]; }
 
-   template <size_t S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
    constexpr const COORDINATE& a() const { return m_coordinatea[0]; }
-   template <size_t S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
    COORDINATE& a() { return m_coordinatea[0]; }
 
-   template <size_t S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
    constexpr const COORDINATE& b() const { return m_coordinatea[1]; }
-   template <size_t S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
    COORDINATE& b() { return m_coordinatea[1]; }
 
-   template <size_t S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
    constexpr const COORDINATE& c() const { return m_coordinatea[2]; }
-   template <size_t S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
    COORDINATE& c() { return m_coordinatea[2]; }
 
-   template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
    constexpr const COORDINATE& d() const { return m_coordinatea[3]; }
-   template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
    COORDINATE& d() { return m_coordinatea[3]; }
    
    
-   template <size_t S = SIZE, std::enable_if_t<(S == 2), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S == 2), int> = 0>
    COORDINATE dot_with_left_perpendicular_of(const sequence_type & b)
    {
 
@@ -517,7 +549,7 @@ struct sequence_type
    }
 
    
-   template <size_t S = SIZE, std::enable_if_t<(S == 2), int> = 0>
+   template <::count S = SIZE, std::enable_if_t<(S == 2), int> = 0>
    COORDINATE angle(const sequence_type & b)
    {
 
@@ -531,7 +563,7 @@ struct sequence_type
 
       sequence_type result;
 
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
       {
 
          result.m_coordinatea[i] = ::maximum(m_coordinatea[i], vector.m_coordinatea[i]);
@@ -547,7 +579,7 @@ struct sequence_type
 
       sequence_type result;
 
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
       {
 
          result.m_coordinatea[i] = ::minimum(m_coordinatea[i], vector.m_coordinatea[i]);
@@ -564,7 +596,7 @@ struct sequence_type
 
       UNIT_TYPE nMinimum = this->m_coordinatea[0];
 
-      for (size_t i = 1; i < SIZE; ++i)
+      for (::count i = 1; i < SIZE; ++i)
       {
 
          nMinimum = ::minimum(nMinimum, this->m_coordinatea[i]);
@@ -581,7 +613,7 @@ struct sequence_type
 
       UNIT_TYPE nMaximum = this->m_coordinatea[0];
 
-      for (size_t i = 1; i < SIZE; ++i)
+      for (::count i = 1; i < SIZE; ++i)
       {
 
          nMaximum = ::maximum(nMaximum, this->m_coordinatea[i]);
@@ -598,7 +630,7 @@ struct sequence_type
 
       COORDINATE result = m_coordinatea[0] * vector.m_coordinatea[0];
 
-      for (size_t i = 1; i < SIZE; ++i)
+      for (::count i = 1; i < SIZE; ++i)
       {
 
          result += m_coordinatea[i] * vector.m_coordinatea[i];
@@ -648,7 +680,7 @@ struct sequence_type
    }
 
    
-   template < size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
    const UNIT_TYPE & get_normal_dimension(enum_orientation eorientation) const
    {
       
@@ -657,7 +689,7 @@ struct sequence_type
    }
 
    
-   template < size_t S = SIZE, std::enable_if_t<S == 2, int> = 0 >
+   template < ::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
    UNIT_TYPE & get_normal_dimension(enum_orientation eorientation)
    {
       
@@ -698,10 +730,10 @@ sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const 
 
 
 
-//template <typename COORDINATE, size_t SIZE>
+//template <typename COORDINATE, ::count SIZE>
 //sequence_type<COORDINATE, SIZE> min(const sequence_type<COORDINATE, SIZE>& a1, const sequence_type<COORDINATE, SIZE>& a2) {
 //   sequence_type<COORDINATE, SIZE> result;
-//   for (size_t i = 0; i < SIZE; ++i)
+//   for (::count i = 0; i < SIZE; ++i)
 //      result.m_coordinatea[i] = std::min(a1.m_coordinatea[i], a2.m_coordinatea[i]);
 //   return result;
 //}
@@ -938,27 +970,27 @@ using sequence4_f64 = sequence_type<::f64, 4>;
 //};
 
 /// Simple matrix class with column-major storage
-template <typename Value_, size_t Size_> struct Matrix {
+template <typename Value_, ::count Size_> struct Matrix {
    static constexpr bool IsNanoGUI = true;
    static constexpr bool IsMatrix = true;
 
    using COORDINATE = Value_;
-   static constexpr size_t SIZE = Size_;
+   static constexpr ::count SIZE = Size_;
 
    Matrix() { }
 
    explicit Matrix(COORDINATE s) {
       memset(m, 0, sizeof(COORDINATE) * SIZE * SIZE);
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          m[i][i] = s;
    }
 
    friend Matrix operator*(const Matrix& a, const Matrix& b) {
       Matrix c;
-      for (size_t i = 0; i < SIZE; ++i) {
-         for (size_t j = 0; j < SIZE; ++j) {
+      for (::count i = 0; i < SIZE; ++i) {
+         for (::count j = 0; j < SIZE; ++j) {
             COORDINATE accum = 0;
-            for (size_t k = 0; k < SIZE; ++k)
+            for (::count k = 0; k < SIZE; ++k)
                accum += a.m[k][i] * b.m[j][k];
             c.m[j][i] = accum;
          }
@@ -969,7 +1001,7 @@ template <typename Value_, size_t Size_> struct Matrix {
    static Matrix scale(const sequence_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result.m[i][i] = i < SIZE - 1 ? m_coordinatea[i] : 1;
       return result;
    }
@@ -977,7 +1009,7 @@ template <typename Value_, size_t Size_> struct Matrix {
    static Matrix scale(const sequence_type<COORDINATE, SIZE>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
-      for (size_t i = 0; i < SIZE; ++i)
+      for (::count i = 0; i < SIZE; ++i)
          result.m[i][i] = m_coordinatea[i];
       return result;
    }
@@ -985,7 +1017,7 @@ template <typename Value_, size_t Size_> struct Matrix {
    static Matrix translate(const sequence_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
       memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
-      for (size_t i = 0; i < SIZE; ++i) {
+      for (::count i = 0; i < SIZE; ++i) {
          result.m[i][i] = 1.f;
          if (i < SIZE - 1)
             result.m[SIZE - 1][i] = m_coordinatea[i];
@@ -994,7 +1026,7 @@ template <typename Value_, size_t Size_> struct Matrix {
    }
 
 
-   template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
+   template <::count S = SIZE, std::enable_if_t<S == 4, int> = 0>
    static Matrix rotate(const sequence_type<COORDINATE, 3>& axis, COORDINATE angle)
    {
 
@@ -1029,7 +1061,7 @@ template <typename Value_, size_t Size_> struct Matrix {
    }
 
 
-   template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
+   template <::count S = SIZE, std::enable_if_t<S == 4, int> = 0>
    static Matrix perspective(COORDINATE fov, COORDINATE near_, COORDINATE far_, COORDINATE aspect = 1.f)
    {
 
@@ -1044,7 +1076,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return trafo;
    }
 
-   template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
+   template <::count S = SIZE, std::enable_if_t<S == 4, int> = 0>
    static Matrix ortho(COORDINATE left, COORDINATE right,
       COORDINATE bottom, COORDINATE top,
       COORDINATE near_, COORDINATE far_)
@@ -1067,7 +1099,7 @@ template <typename Value_, size_t Size_> struct Matrix {
       return result;
    }
 
-   template <size_t S = SIZE, std::enable_if_t<S == 4, int> = 0>
+   template <::count S = SIZE, std::enable_if_t<S == 4, int> = 0>
    static Matrix look_at(const sequence_type<COORDINATE, 3>& origin,
       const sequence_type<COORDINATE, 3>& target,
       const sequence_type<COORDINATE, 3>& up)
@@ -1108,8 +1140,40 @@ using Matrix4f = Matrix<float, 4>;
 //   return reinterpret_cast<const ::color::color &>(*(this->m_coordinatea));
 //}
 
+template < primitive_sequence SEQUENCE, typename COORDINATE_TRANSFORM >
+auto transform(const SEQUENCE & sequence, COORDINATE_TRANSFORM coordinatetransform)
+{
+
+   SEQUENCE sequenceResult(no_initialize_t{});
+
+   for (::count i = 0; i < sequence.get_size(); ++i)
+   {
+
+      sequenceResult.set_coordinate(i, coordinatetransform(sequence.get_coordinate(i)));
+
+   }
+
+   return sequenceResult;
+
+}
 
 
+template < primitive_sequence SEQUENCE >
+auto floor(const SEQUENCE & sequence)
+{
+
+   return transform(sequence, [](auto a) {return floor(a); });
+
+}
+
+
+template < primitive_sequence SEQUENCE >
+auto ceil(const SEQUENCE & sequence)
+{
+
+   return transform(sequence, [](auto a) {return ceil(a); });
+
+}
 
 
 

@@ -4900,7 +4900,7 @@ namespace apex
 
       //return estatus;
 
-      if (m_iExitCode == 0 && ::failed(m_estatus))
+      if (m_iExitCode == 0 && m_estatus.failed())
       {
 
          m_iExitCode = m_estatus.exit_code();

@@ -10111,7 +10111,7 @@ namespace apex
 
       auto estatus = on_html_response(strHtml, strUri, setPost);
 
-      if(estatus != success_none && ::succeeded(estatus))
+      if(estatus != success_none && estatus.succeeded())
       {
          
          return true;

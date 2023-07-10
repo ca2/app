@@ -2122,7 +2122,7 @@ bool payload::is_true(bool bDefault) const
    case e_type_property:
       return m_pproperty->is_true(bDefault);
    case e_type_enum_status:
-      return ::succeeded(m_estatus);
+      return m_estatus.succeeded();
    case e_type_enum_check:
       return __bool(m_echeck);
    default:

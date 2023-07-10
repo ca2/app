@@ -392,23 +392,23 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 // }
 
 
-string estatus_to_string(::e_status estatus)
-{
-
-   if (::succeeded(estatus))
-   {
-      
-      return "success";
-
-   }
-   else
-   {
-
-      return "failed";
-
-   }
-
-}
+//string estatus_to_string(::e_status estatus)
+//{
+//
+//   if (::succeeded(estatus))
+//   {
+//      
+//      return "success";
+//
+//   }
+//   else
+//   {
+//
+//      return "failed";
+//
+//   }
+//
+//}
 
 //
 //CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip, void * caller_address)

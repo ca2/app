@@ -260,12 +260,6 @@ public:
    //   }
 
 
-      //payload(const ::e_status & estatus)
-      //{
-      //   m_etype = e_type_new;
-      //   operator = (estatus.m_estatus);
-      //}
-
    ~payload();
 
 
@@ -350,7 +344,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
 #define DECL_VAR_ENUM(ENUMTYPE) \
-   inline payload(const ::e_ ## ENUMTYPE & e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
+   inline explicit payload(const ::e_ ## ENUMTYPE & e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
    inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
    inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
    ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \

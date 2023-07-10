@@ -44,7 +44,7 @@ namespace user
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
-
+      bool is_impact() override;
       ::user::document * get_document() const;
 
 

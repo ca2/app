@@ -30,7 +30,6 @@ namespace user
 
       ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;
-      ::status < ::color::color >         m_statuscolorText;
 
       still();
       ~still() override;

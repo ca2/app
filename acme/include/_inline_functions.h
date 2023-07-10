@@ -414,7 +414,7 @@ inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsi
 inline const ::particle* trace_object(const ::particle* pparticle) { return pparticle; }
 
 
-inline bool failed(const ::payload& payload) { return !::succeeded(payload); }
+//inline bool failed(const ::payload& payload) { return !::succeeded(payload); }
 
 
 inline int read_char(u8*& pdata, memsize& s, char* pch)

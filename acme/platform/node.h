@@ -687,8 +687,8 @@ namespace acme
       virtual int is_release_build();
 
 
-      virtual bool succeeded(const ::error_code& errorcode);
-      virtual bool failed(const ::error_code& errorcode);
+      //virtual bool succeeded(const ::error_code& errorcode);
+      //virtual bool failed(const ::error_code& errorcode);
 
 
 #ifdef WINDOWS

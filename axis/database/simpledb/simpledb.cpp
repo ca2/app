@@ -249,7 +249,7 @@ namespace simpledb
 
             strValue = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
-            if (strValue.is_empty() || ::failed(set["get_status"]))
+            if (strValue.is_empty() || set["get_status"].failed())
             {
 
                return false;

@@ -160,14 +160,14 @@ namespace account
    bool product::is_ok()
    {
 
-      if(::failed(m_estatus))
+      if(m_estatus.failed())
       {
 
          return false;
 
       }
 
-      if(::failed(m_estatusLicensing))
+      if(m_estatusLicensing.failed())
       {
 
          return false;

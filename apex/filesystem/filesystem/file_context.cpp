@@ -662,7 +662,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    pfile->open(path, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_no_exception_on_open);
 
-   if (::failed(pfile->m_estatus))
+   if (pfile->m_estatus.failed())
    {
 
       return false;
@@ -848,7 +848,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
          return;
 
       }
-      else if (::failed(pfile->m_estatus))
+      else if (pfile->m_estatus.failed())
       {
 
          return;
@@ -919,7 +919,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
          return -1;
 
       }
-      else if (::failed(pfile->m_estatus))
+      else if (pfile->m_estatus.failed())
       {
 
          return -1;

@@ -326,7 +326,7 @@ namespace account
 
       strNode = pcontext->m_papexcontext->http().get(strGetFontopus, set);
 
-      if(::failed(set["get_status"]))
+      if(set["get_status"].failed())
       {
 
          throw ::exception(set["get_status"].estatus());

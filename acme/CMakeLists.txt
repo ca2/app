@@ -1489,9 +1489,11 @@ list(APPEND library_source
    primitive/api/api.h
    primitive/api/api_rotate.h
    primitive/collection/__payload_array.h
+   primitive/collection/_function.h
    primitive/collection/_loosely.h
    primitive/collection/_loosely_map.h
    primitive/collection/_papaya_heap.h
+   primitive/collection/_sort.h
    primitive/collection/address_array.h
    primitive/collection/array.h
    primitive/collection/array_base.h
@@ -1532,7 +1534,6 @@ list(APPEND library_source
    primitive/collection/range.h
    primitive/collection/raw_array.h
    primitive/collection/set.h
-   primitive/collection/sort.h
    primitive/collection/sort_array.h
    primitive/collection/sort_list.h
    primitive/collection/sort_map.h

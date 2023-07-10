@@ -2,16 +2,17 @@
 #include "control_box.h"
 #include "frame_window.h"
 #include "frame.h"
+#include "button.h"
+#include "experience.h"
 #include "acme/constant/message.h"
+#include "acme/constant/timer.h"
+#include "acme/platform/timer.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
-#include "base/platform/session.h"
-#include "acme/constant/timer.h"
-#include "acme/platform/timer.h"
 #include "aura/message/user.h"
-#include "button.h"
-#include "experience.h"
+#include "base/platform/session.h"
 
 
 namespace experience
@@ -550,6 +551,7 @@ if(rectangle.left > 400)
             rectangle.bottom = sizeButton.cy() + rectangle.top;
 
             pbutton->order(e_zorder_top);
+            information() << "experience::control_box::_layout_button" << rectangle;
             pbutton->place(rectangle);
             pbutton->display();
             pbutton->UpdateWndRgn();
@@ -577,21 +579,21 @@ if(rectangle.left > 400)
    void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_sketch);
+      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
 
       ::rectangle_i32 rectangleParent(rectangleWindow);
 
-      m_pframewindow->screen_to_client(::user::e_layout_sketch)(rectangleParent);
+      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangleParent);
 
       ::rectangle_i32 rectangle;
 
-      window_rectangle(rectangle, ::user::e_layout_sketch);
+      window_rectangle(rectangle, ::user::e_layout_lading);
 
-      m_pframewindow->screen_to_client(::user::e_layout_sketch)(rectangle);
+      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangle);
 
       reset_layout(pgraphics);
 
-      auto rectangleClient = client_rectangle(::user::e_layout_sketch);
+      auto rectangleClient = client_rectangle(::user::e_layout_lading);
 
       int iWidth = rectangleClient.width();
 

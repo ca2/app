@@ -9,6 +9,7 @@
 #include "acme/constant/id.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/message/user.h"
 #include "aura/user/user/style.h"
 #include "base/platform/session.h"
@@ -792,13 +793,13 @@ namespace experience
       try
       {
 
-         if (m_pframewindow->layout().is_full_screen())
+         if (m_pframewindow->layout().is_full_screen(::user::e_layout_lading))
          {
 
             bVisibleControlBox = false;
 
          }
-         else if (m_pframewindow->layout().is_this_screen_visible())
+         else if (m_pframewindow->layout().is_this_screen_visible(::user::e_layout_lading))
          {
 
             bVisibleControlBox = true;
@@ -821,6 +822,8 @@ namespace experience
 
       rectangleClient = pframewindow->::user::interaction::client_rectangle(::user::e_layout_lading);
 
+      information() << "experience::frame_window::title_bar_layout " << rectangleClient;
+
       if (rectangleClient.is_empty())
       {
 
@@ -830,9 +833,13 @@ namespace experience
 
       rectangle_i32 rectangleMargin = get_margin_rectangle();
 
+      information() << "experience::frame_window::title_bar_layout rectangleMargin: " << rectangleMargin;
+
       rectangle_i32 rectangleCaptionTextPadding = get_caption_text_padding();
 
       i32 iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
+
+      information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
       calculate_caption_height(pgraphics);
 
@@ -874,6 +881,8 @@ namespace experience
 
       }
 
+      information() << "experience::frame_window::title_bar_layout m_iControlBoxPosition: " << m_iControlBoxPosition;
+
       ::rectangle_i32 rectangleControlBox;
 
       rectangleControlBox.left = m_iControlBoxPosition;
@@ -881,10 +890,12 @@ namespace experience
       rectangleControlBox.top = m_rectangleCaption.top;
       rectangleControlBox.bottom = m_rectangleCaption.bottom;
 
-      if (m_pframewindow->const_layout().is_this_screen_visible() && !is_iconic(m_pframewindow->const_layout().design().display()))
+      if (m_pframewindow->const_layout().is_this_screen_visible(::user::e_layout_lading) && !is_iconic(m_pframewindow->const_layout().lading().display()))
       {
 
          get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pgraphics);
+
+         information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
 
       }
 
@@ -918,11 +929,15 @@ namespace experience
 
          get_control_box()->display();
 
+         information() << "experience::frame_window::title_bar_layout bVisibleControlBox: true";
+
       }
       else
       {
 
          get_control_box()->hide();
+
+         information() << "experience::frame_window::title_bar_layout bVisibleControlBox: false";
 
       }
 

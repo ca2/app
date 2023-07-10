@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"

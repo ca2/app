@@ -13,9 +13,12 @@
 */
 #include "framework.h"
 #include "TextBox.h"
-#include <regex>
+//#include <regex>
 #include "acme/constant/message.h"
+#include "acme/regular_expression/regular_expression.h"
+#include "acme/regular_expression/result.h"
 #include "aura/platform/session.h"
+#include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/copydesk.h"
 #include "nano2d/context.h"
@@ -869,10 +872,18 @@ namespace nanoui
       if (format.is_empty())
          return true;
       try {
-         std::regex regex(::std::string(format.begin(), format.end()));
-         return std::regex_match(::std::string(input.begin(), input.end()), regex);
+
+               auto pregex = acmesystem()->create_regular_expression("pcre", format);
+
+               //::string straResult;
+               auto presult = pregex->run(input);
+
+               return presult->has_match();
+         //std::regex regex(::std::string(format.begin(), format.end()));
+         //return std::regex_match(::std::string(input.begin(), input.end()), regex);
       }
-      catch (const std::regex_error&) {
+      //catch (const std::regex_error&) {
+      catch (const ::exception & e) {
          //#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
          //      std::cerr << "Warning: cannot validate text field due to lacking regular expression support. please compile with GCC >= 4.9" << std::endl;
          //      return true;

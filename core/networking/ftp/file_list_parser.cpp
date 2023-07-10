@@ -77,9 +77,9 @@ namespace ftp
 
    bool file_list_parser::CheckMonth(const ::scoped_string & scopedstr, const ::string & pszMonthName) const
    {
-      if (tolower(scopedstr.begin()[0]) != pszMonthName[0] ||
-         tolower(scopedstr.begin()[1]) != pszMonthName[1] ||
-         tolower(scopedstr.begin()[2]) != pszMonthName[2])
+      if (character_tolower(scopedstr.begin()[0]) != pszMonthName[0] ||
+         character_tolower(scopedstr.begin()[1]) != pszMonthName[1] ||
+         character_tolower(scopedstr.begin()[2]) != pszMonthName[2])
          return false;
 
       return true;
@@ -489,7 +489,7 @@ namespace ftp
    /// "CII-MANUAL.TEX;1  213/216  29-JAN-1996 03:33:12  [ANONYMOU,ANONYMOUS]   (RWED,RWED,,)"
    bool file_list_parser::IsMultiNetListing(const ::scoped_string & scopedstrLine)
    {
-      return scopedstrLine.begin() && strchr(scopedstrLine.begin(), ';') != nullptr;
+      return scopedstrLine.begin() && ansi_chr(scopedstrLine.begin(), ';') != nullptr;
    }
 
    bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine)

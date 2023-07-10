@@ -377,7 +377,7 @@ namespace account
    bool impact::on_action(const ::string & pszId)
    {
 
-      if (!strcmp(pszId, "submit"))
+      if (!ansi_cmp(pszId, "submit"))
       {
 
          if (!m_bCred)
@@ -400,7 +400,7 @@ namespace account
          m_evSubmit.SetEvent();
 
       }
-      else if (!strcmp(pszId, "escape"))
+      else if (!ansi_cmp(pszId, "escape"))
       {
 
          get_parent()->display(e_display_none);

@@ -1296,19 +1296,19 @@ namespace user
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-         if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
+         if (key.m_nChar < 256 && character_isalpha((char)key.m_nChar))
          {
 
             if (bShift)
             {
 
-               key.m_nChar = toupper((i32)key.m_nChar);
+               key.m_nChar = character_toupper((char)key.m_nChar);
 
             }
             else
             {
 
-               key.m_nChar = tolower((i32)key.m_nChar);
+               key.m_nChar = character_tolower((char)key.m_nChar);
 
             }
 

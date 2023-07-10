@@ -541,7 +541,7 @@ namespace user
       if (!pshowwindow->m_bShow)
       {
 
-         if (m_plistbox.is_set())
+         if (m_plistbox.is_set() && m_plistbox->is_window())
          {
 
             m_plistbox->post_message(MESSAGE_CLOSE);

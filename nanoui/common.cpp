@@ -34,11 +34,11 @@ void CLASS_DECL_NANOUI file_dialog_from_platform(
 
 //#include <nanoui/opengl.h>
 //#include <nanoui/metal.h>
-#include <map>
-#include <thread>
-#include <chrono>
-#include <mutex>
-#include <iostream>
+//#include <map>
+//#include <thread>
+//#include <chrono>
+//#include <mutex>
+//#include <iostream>
 
 #if !defined(_WIN32)
 #  include <locale.h>
@@ -56,7 +56,7 @@ namespace nanoui
 
 
 
-extern std::map<GLFWwindow *, Screen *> __nanoui_screens;
+//extern std::map<GLFWwindow *, Screen *> __nanoui_screens;
 
 #if defined(__APPLE__)
 extern void disable_saved_application_state_osx();
@@ -275,10 +275,10 @@ static float emscripten_refresh = 0;
 }
 
 int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
-   static std::map<::string, int> icon_cache;
-   auto it = icon_cache.find(name);
+   static string_map < int> icon_cache;
+   auto it = icon_cache.plookup(name);
    if (it != icon_cache.end())
-      return it->second;
+      return it->m_element2;
    int icon_id = pcontext->create_image_mem(0, data, size);
    if (icon_id == 0)
       throw std::runtime_error("Unable to load resource data.");

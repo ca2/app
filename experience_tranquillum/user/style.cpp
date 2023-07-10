@@ -740,7 +740,7 @@ namespace experience_tranquillum
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
          ::rectangle_i32 rectangleClient;
-         rectangleClient = ptab->client_rectangle();
+         rectangleClient = ptab->client_rectangle(::user::e_layout_lading);
 
          ptab->get_data()->m_rectangleTab.left = rectangleClient.left;
          ptab->get_data()->m_rectangleTab.top = rectangleClient.top;
@@ -768,7 +768,7 @@ namespace experience_tranquillum
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::rectangle_i32 rectangleClient;
-         rectangleClient = ptab->client_rectangle();
+         rectangleClient = ptab->client_rectangle(::user::e_layout_lading);
          int x = rectangleClient.left;
 
          i32 ixAdd;

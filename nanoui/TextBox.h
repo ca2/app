@@ -18,8 +18,8 @@
 #include "Widget.h"
 #include "Screen.h"
 #include "aura/user/user/interaction.h"
-#include <sstream>
-#include <limits>
+//#include <sstream>
+//#include <limits>
 
 
 namespace nanoui

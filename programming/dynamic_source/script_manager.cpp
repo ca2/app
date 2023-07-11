@@ -12,7 +12,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-// #include "acme/primitive/string/string.h"
+
 #include "acme/primitive/string/str.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/rsa.h"
@@ -414,7 +414,7 @@ namespace dynamic_source
          if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
          {
 
-            output_debug_string("resident");
+            information("resident");
 
          }
 
@@ -613,7 +613,7 @@ namespace dynamic_source
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
 
-               if (pinstanceParent->m_pscript2->m_streamError.m_pfile->size() > 0)
+               if (pinstanceParent->m_pscript2->m_textstreamError.m_pfile->size() > 0)
                {
 
                   pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);
@@ -1606,7 +1606,7 @@ namespace dynamic_source
 
       auto pfile = pcontext->m_papexcontext->file()->get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
 
-      if (!pfile || ::failed(pfile->m_estatus))
+      if (!pfile || pfile->m_estatus.failed())
       {
 
          return false;

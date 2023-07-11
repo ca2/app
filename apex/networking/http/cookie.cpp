@@ -199,12 +199,12 @@ namespace http
       i32 i = 0;
       while(bRun)
       {
-         const ::ansi_character * pszEnd = strchr(psz, ';');
+         const ::ansi_character * pszEnd = ansi_chr(psz, ';');
          bRun = pszEnd != nullptr;
          if(!bRun)
-            pszEnd = psz + strlen(psz);
+            pszEnd = psz + ansi_len(psz);
 
-         const ::ansi_character * pszEqual = strchr(psz, '=');
+         const ::ansi_character * pszEqual = ansi_chr(psz, '=');
          if(pszEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)
@@ -374,8 +374,8 @@ namespace http
          }
          if(*pszParam == '\0')
             break;
-         pszParamEnd = strchr(pszParam, ';');
-         pszKeyEnd = strchr(pszParam, '=');
+         pszParamEnd = ansi_chr(pszParam, ';');
+         pszKeyEnd = ansi_chr(pszParam, '=');
          if(pszParamEnd == nullptr)
          {
 

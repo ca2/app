@@ -358,9 +358,9 @@ namespace apex
 
       //xxdebug_box("box1", "box1", e_message_box_icon_information);
    //
-     // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "output_debug_string.txt" ;
+     // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "information.txt" ;
 
-      //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "output_debug_string.txt" ;
+      //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "information.txt" ;
 
       //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
@@ -502,7 +502,7 @@ namespace apex
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
       factory()->add_factory_item < ::i64_array >();
-      factory()->add_factory_item < ::double_array >();
+      factory()->add_factory_item < ::f64_array >();
       factory()->add_factory_item < ::acme::library >();
 
       factory()->add_factory_item < ::file::path_object >();
@@ -510,11 +510,11 @@ namespace apex
       factory()->add_factory_item < string_array >();
       factory()->add_factory_item < memory >();
       factory()->add_factory_item < memory_file >();
-      factory()->add_factory_item < int_array >();
+      factory()->add_factory_item < ::i32_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
       //factory()->add_factory_item < ::i64_array >();
-      //factory()->add_factory_item < ::double_array >();
+      //factory()->add_factory_item < ::f64_array >();
       //factory()->add_factory_item < ::acme::library >();
 
       //factory()->add_factory_item < ::file::path_object >();
@@ -522,7 +522,7 @@ namespace apex
       //factory()->add_factory_item < string_array >();
       //factory()->add_factory_item < memory >();
       //factory()->add_factory_item < memory_file >();
-      //factory()->add_factory_item < int_array >();
+      //factory()->add_factory_item < ::i32_array >();
 
       ///estatus =
 
@@ -621,14 +621,14 @@ namespace apex
       if (is_true("show_application_information"))
       {
 
-         printf("%s", "\n\nApplication Information\n");
-         output_debug_string("\n\nApplication Information\n");
+         //printf("%s", "\n\nApplication Information\n");
+         information("Application Information");
 
          auto iPid = acmenode()->current_process_identifier();
 
-         printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
+         //printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
-         output_debug_string("Process PID: " + ::as_string(iPid) + "\n");
+         information("Process PID: " + ::as_string(iPid));
 
       }
 
@@ -807,7 +807,7 @@ pacmedirectory->create("/ca2core");
 
          if (status != errAuthorizationSuccess)
          {
-            information("Error Creating Initial Authorization: %d", status);
+            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
 
             return false;
 
@@ -830,7 +830,7 @@ pacmedirectory->create("/ca2core");
          if (status != errAuthorizationSuccess)
          {
 
-            information("Copy Rights Unsuccessful: %d", status);
+            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
 
             return false;
 
@@ -880,7 +880,7 @@ pacmedirectory->create("/ca2core");
       //if(!estatus)
       //{
 
-      //   error() <<"failed to initialize file-system";
+      //   ERROR("failed to initialize file-system");
 
       //   return estatus;
 
@@ -892,13 +892,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   error() <<"failed to initialize dir-system";
+      //   ERROR("failed to initialize dir-system");
 
       //   return false;
 
       //}
 
-      ///information() << "apex::session::process_init .3";
+      ///INFORMATION("apex::session::process_init .3");
 
       //estatus = 
       m_pfilesystem->init_system();
@@ -1025,7 +1025,7 @@ pacmedirectory->create("/ca2core");
       //
       //         strCurrentWorkingDirectory = get_current_directory_name();
       //
-      //         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //         ::information("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
       //
       //      }
 
@@ -1034,7 +1034,7 @@ pacmedirectory->create("/ca2core");
             //if(!estatus)
             //{
 
-               //warning() <<"failed to process_init ::apex::log trace";
+               //WARNING("failed to process_init ::apex::log trace");
 
             //}
 
@@ -1080,32 +1080,21 @@ pacmedirectory->create("/ca2core");
       if (acmeapplication()->m_bCrypto)
       {
 
-         try
-         {
+         auto & pfactoryCrypto = factory("crypto", "openssl");
 
-            auto & pfactoryCrypto = factory("crypto", "openssl");
+         //if (!pfactoryCrypto)
+         //{
 
-            //if (!pfactoryCrypto)
-            //{
+         //   WARNING("Could not open crypto openssl plugin.");
 
-            //   warning() <<"Could not open crypto openssl plugin.";
+         //   //return pfactoryCrypto;
 
-            //   //return pfactoryCrypto;
+         //}
 
-            //}
+         pfactoryCrypto->merge_to_global_factory();
 
-            pfactoryCrypto->merge_to_global_factory();
-
-            //estatus = 
-            pfactoryCrypto->__construct(this, m_pcrypto);
-
-         }
-         catch (...)
-         {
-
-            error("No crypto library!!");
-
-         }
+         //estatus = 
+         pfactoryCrypto->__construct(this, m_pcrypto);
 
       }
 
@@ -1127,7 +1116,7 @@ pacmedirectory->create("/ca2core");
 
       //estatus = 
 
-      if (acmeapplication()->m_bNetworking || acmeapplication()->m_bNetworking.is_optional())
+      if (acmeapplication()->m_bNetworking || acmeapplication()->m_bNetworking.undefined())
       {
 
          initialize_networking();
@@ -1150,7 +1139,7 @@ pacmedirectory->create("/ca2core");
 
          bool bMatterFromResource = false;
 
-         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sorensen.dedicatory");
+         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
 
          if (pfile)
          {
@@ -1202,13 +1191,13 @@ pacmedirectory->create("/ca2core");
       //if (!estatus)
       //{
 
-      //   fatal() <<"axis::application::process_init .2";
+      //   FATAL("axis::application::process_init .2");
 
       //   return false;
 
       //}
 
-      //information() << "start";
+      //INFORMATION("start");
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1240,7 +1229,7 @@ pacmedirectory->create("/ca2core");
 //
 //#endif // LINUX
 
-      //information() << "success";
+      //INFORMATION("success");
 
 //      return true;
 
@@ -1378,7 +1367,7 @@ pacmedirectory->create("/ca2core");
 
       //   //output_error_message("Failed to allocate get_session()!!");
 
-      //   output_debug_string("Failed to allocate get_session()!!");
+      //   information("Failed to allocate get_session()!!");
 
       //   return estatus;
 
@@ -1402,11 +1391,15 @@ pacmedirectory->create("/ca2core");
       //else
       //{
 
-         ///if (!
+      if (acmeapplication()->m_bSession)
+      {
+
          acmesession()->branch_synchronously();
+
+      }
          //{
 
-         //   output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+         //   information("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
 
          //   return false;
 
@@ -1424,9 +1417,14 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto psession = acmesession();
+      if (acmeapplication()->m_bSession)
+      {
 
-      psession->m_ptextcontext->defer_ok(m_ptexttable);
+         auto psession = acmesession();
+
+         psession->m_ptextcontext->defer_ok(m_ptexttable);
+
+      }
 
 
       //if(!::application::init2())
@@ -2222,7 +2220,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      information() << strPrint;
+      information(strPrint);
 
       if (iReportType == _CRT_ASSERT)
       {
@@ -2240,25 +2238,27 @@ pacmedirectory->create("/ca2core");
    }
 
 
-
-
    bool system::assert_failed_line(const ::string& pszFileName, i32 iLine)
-
    {
+
       UNREFERENCED_PARAMETER(pszFileName);
 
       UNREFERENCED_PARAMETER(iLine);
+
       return false;
+
    }
 
 
    bool system::on_assert_failed_line(const ::string& pszFileName, i32 iLine)
-
    {
+
       UNREFERENCED_PARAMETER(pszFileName);
 
       UNREFERENCED_PARAMETER(iLine);
+
       return true;
+
    }
 
 
@@ -2327,7 +2327,7 @@ pacmedirectory->create("/ca2core");
 
       //   //}
 
-      //   information(strMessage);
+      //   TRACE(strMessage);
 
       //}
 
@@ -2421,9 +2421,6 @@ pacmedirectory->create("/ca2core");
       //return ::success;
 
    }
-
-
-
 
 
    void system::appa_load_string_table()
@@ -2677,7 +2674,6 @@ pacmedirectory->create("/ca2core");
    }
 
 
-
    string system::get_system_configuration()
    {
 
@@ -2799,7 +2795,7 @@ pacmedirectory->create("/ca2core");
    ////      if(!pfile)
    ////         return false;
    ////
-   ////      ::binary_stream < FILE > is(pfile);
+   ////      ::binary_stream is(pfile);
    ////
    ////      is >> m_mapAppLibrary;
    ////
@@ -2829,11 +2825,11 @@ pacmedirectory->create("/ca2core");
    ////
    ////      ::file::path pathCa2Module = dir()->ca2module();
    ////
-   ////      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
+   ////      ::information("\n\n::apex::system::find_applications_to_cache\n\n");
    ////
-   ////      ::output_debug_string("ca2 module folder : " + pathCa2Module);
+   ////      ::information("ca2 module folder : " + pathCa2Module);
    ////
-   ////      ::output_debug_string("\n\n\n");
+   ////      ::information("\n\n\n");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
@@ -2854,7 +2850,7 @@ pacmedirectory->create("/ca2core");
    ////               continue;
    ////            }
    ////
-   ////            ::output_debug_string("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+   ////            ::information("library("+as_string(i)+") : " + strLibraryId+"\n\n");
    ////
    ////            map_application_library(strLibraryId);
    ////
@@ -2900,34 +2896,34 @@ pacmedirectory->create("/ca2core");
    //
    //      if(!strcmp(pszLibrary,"app_core_rdpclient"))
    //      {
-   //         information() << "reach";
+   //         INFORMATION("reach");
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         information() << "reach app_core_hello_multiverse";
+   //         INFORMATION("reach app_core_hello_multiverse");
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
    //      {
-   //         information() << "reach experience_lite";
+   //         INFORMATION("reach experience_lite");
    //      }
    //
    //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
    //      {
-   //         information() << "reach app_core_hello_multiverse";
+   //         INFORMATION("reach app_core_hello_multiverse");
    //      }
    //
    //      if(!library.open(pszLibrary, true))
    //      {
-   //         information() << "::system::map_application_library Failed to open library :" << pszLibrary;
+   //         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
    //         return false;
    //      }
    //
    //      //if(!library.open_library())
    //      //{
    //
-   //      //   ::output_debug_string("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+   //      //   ::information("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
    //
    //      //   return false;
    //
@@ -4092,7 +4088,7 @@ pacmedirectory->create("/ca2core");
 
          strParam = " -c '" + strCmd + "'";
 
-         output_debug_string(strParam);
+         information(strParam);
 
          auto psystem = acmesystem();
 
@@ -4904,7 +4900,7 @@ namespace apex
 
       //return estatus;
 
-      if (m_iExitCode == 0 && ::failed(m_estatus))
+      if (m_iExitCode == 0 && m_estatus.failed())
       {
 
          m_iExitCode = m_estatus.exit_code();
@@ -5081,7 +5077,7 @@ namespace apex
          if (is_true("show_application_information"))
          {
 
-            printf("return code is %" PRIi64 "x", estatus.m_eenum);
+            information("return code is %" PRIi64 "x", estatus.m_eenum);
 
          }
 
@@ -5162,13 +5158,26 @@ string get_bundle_app_library_name();
    // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
 
 
+   ::string system::fetch_public_internet_domain_extension_list_text()
+   {
+
+      //auto estatus = 
+      ///::acme::system::get_public_internet_domain_extension_list(stra);
+
+      //return estatus;
+
+      return {};
+
+   }
+
+
    //void system::get_public_internet_domain_extension_list(string_array& stra)
    //{
 
-   //   //auto estatus = 
-   //   ::acme::system::get_public_internet_domain_extension_list(stra);
+   ////   //auto estatus = 
+   ////   ::acme::system::get_public_internet_domain_extension_list(stra);
 
-   //   //return estatus;
+   //   ///return estatus;
 
    //}
 
@@ -5200,7 +5209,7 @@ string get_bundle_app_library_name();
          //if (!pfactoryCrypto)
          //{
 
-         //   warning() <<"Could not open crypto openssl plugin.";
+         //   WARNING("Could not open crypto openssl plugin.");
 
          //   //return pfactoryCrypto;
 
@@ -5241,23 +5250,7 @@ string get_bundle_app_library_name();
    }
 
 
-   ::string system::fetch_public_internet_domain_extension_list_text()
-   {
-
-      //throw interface_only();
-
-      ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
-
-      ::string str = file()->as_string(pathPublicDomainExtensionList);
-
-      return str;
-
-   }
-
-
-
 } // namespace apex
-
 
 
 

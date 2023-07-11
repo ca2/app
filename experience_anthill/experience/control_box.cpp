@@ -65,7 +65,7 @@ namespace experience_anthill
 
       m_pfontMarlett.create(this);
 
-      m_pfontMarlett->create_pixel_font("Marlett", 32.0);
+      m_pfontMarlett->create_font("Marlett", 32_px);
 
    }
 

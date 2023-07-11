@@ -15,26 +15,14 @@
 //#include "acme/filesystem/filesystem/path.h"
 #include "acme/operating_system/security_attributes.h"
 #include "acme/platform/serial_shared.h"
+//#include "acme/exception/status.h"
 ////#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/collection/atom_array.h"
 #include "acme/primitive/collection/string_map.h"
 //#include "acme/primitive/time/time.h"
+#include "trace.h"
 
-inline auto std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information)
-{
-
-   auto predicate = [&](auto etracelevel, auto & str)
-   {
-
-      ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
-                ::string(str).c_str());
-
-   };
-
-   return predicate;
-
-}
 
 CLASS_DECL_ACME const char * callstack_default_format();
 
@@ -683,6 +671,9 @@ namespace acme
       virtual int command_system(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
 
 
+      virtual ::string get_output(const ::scoped_string & scopedstr, const class ::time & timeOut = 15_min);
+
+
       virtual void open_terminal_and_run(const ::scoped_string& scopedstr);
 
 
@@ -696,8 +687,8 @@ namespace acme
       virtual int is_release_build();
 
 
-      virtual bool succeeded(const ::error_code& errorcode);
-      virtual bool failed(const ::error_code& errorcode);
+      //virtual bool succeeded(const ::error_code& errorcode);
+      //virtual bool failed(const ::error_code& errorcode);
 
 
 #ifdef WINDOWS

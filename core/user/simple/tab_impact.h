@@ -27,7 +27,7 @@ public:
    void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   void client_rectangle(::rectangle_i32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    void install_message_routing(::channel * pchannel) override;

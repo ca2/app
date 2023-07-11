@@ -1263,11 +1263,11 @@ namespace sockets_bsd
                if(errnr == SSL_ERROR_SYSCALL)
                {
 
-                  int iError = errno;
+                  auto cerrornumber = c_error_number();
 
-                  const ::ansi_character * pszError = strerror(iError);
+                  auto strError = cerrornumber.get_error_description();
 
-                  information() << pszError;
+                  information() << strError;
 
                }
 
@@ -1562,7 +1562,7 @@ namespace sockets_bsd
          }
       }
 
-      strcpy(request + 8,GetSocks4Userid());
+      ansi_cpy(request + 8,GetSocks4Userid());
 
       ::count length = GetSocks4Userid().length() + 8 + 1;
 
@@ -1684,7 +1684,7 @@ namespace sockets_bsd
       //   if(m_ssl_ctx)
       //   {
 
-      //      information("SSL Context already initialized - closing socket\n");
+      //      information("SSL Context already initialized - closing socket");
 
       //      SetCloseAndDelete(true);
 
@@ -2018,7 +2018,7 @@ namespace sockets_bsd
 
 //                  auto last_error = networking_last_error();
 
-                  // output_debug_string("");
+                  // information("");
                 
                }
 
@@ -2163,7 +2163,7 @@ namespace sockets_bsd
       //if (strCipherList.find("DH") >= 0)
       //{
 
-      //   int_array ia;
+      //   ::i32_array ia;
 
       //   ia.add(512);
       //   ia.add(1024);
@@ -2316,21 +2316,26 @@ namespace sockets_bsd
       SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS) ;
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
       // session atom
-      int iSetSessionResult = -1;
+      //int iSetSessionResult = -1;
       u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
 
       if (context.length())
       {
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-                                                            (const uchar *) (const char *) context,
-                                                            minimum((u32) context.length(), uSessionIdMaxLen));
+         //iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+         //                                                   (const uchar *) (const char *) context,
+         //                                                   minimum((u32) context.length(), uSessionIdMaxLen));
 
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+                                                            (const uchar *)(const char *)context,
+                                                            minimum((u32)context.length(), uSessionIdMaxLen));
       }
       else
       {
 
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-                                                            (const uchar *) "--is_empty--", 9);
+         // iSetSessionResult =
+
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+                                                           (const uchar *)"--is_empty--", 9);
       }
 
       if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))
@@ -2583,7 +2588,7 @@ namespace sockets_bsd
 
       }
 
-      strcpy(buf, strPassword);
+      ansi_cpy(buf, strPassword);
 
       return (i32)strPassword.length();
 
@@ -2775,7 +2780,7 @@ namespace sockets_bsd
       UNREFERENCED_PARAMETER(type);
       UNREFERENCED_PARAMETER(protocol);
 
-      //information("socket::OnOptions()\n");
+      //information("socket::OnOptions()");
       
 #ifdef SO_NOSIGPIPE
       
@@ -3014,7 +3019,7 @@ namespace sockets_bsd
 
       bool ok = false;
 
-      if(cert != nullptr && strlen(common_name) > 0)
+      if(cert != nullptr && ansi_len(common_name) > 0)
       {
 
          char data[256];

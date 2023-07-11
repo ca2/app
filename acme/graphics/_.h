@@ -11,6 +11,7 @@
 
 #include "acme/graphics/draw2d/_.h"
 #include "acme/graphics/image/_.h"
+#include "acme/graphics/write_text/_.h"
 
 
 

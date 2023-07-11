@@ -984,7 +984,7 @@ namespace nanoui
          else
          {
 
-            //         output_debug_string("optimized");
+            //         information("optimized");
 
          }
 
@@ -1108,7 +1108,7 @@ namespace nanoui
 
       }
 
-      screen()->m_puserinteraction->set_need_redraw({rectangleInteraction}, function);
+      screen()->m_puserinteraction->set_need_redraw({rectangleInteraction}, nullptr, function);
 
    }
 
@@ -1225,7 +1225,7 @@ namespace nanoui
       if (pbutton)
       {
 
-         output_debug_string("Button contains");
+         information("Button contains");
 
       }
 

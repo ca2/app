@@ -147,50 +147,6 @@ string exception::get_consolidated_details() const
 }
 
 
-errno_t c_runtime_error_check(errno_t error)
-{
-
-   switch(error)
-   {
-   case ENOMEM:
-      throw ::exception(error_no_memory, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
-      break;
-   case EINVAL:
-   case ERANGE:
-      throw ::exception(error_bad_argument, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
-      break;
-#if defined(WINDOWS)
-   case STRUNCATE:
-#endif
-   case 0:
-      break;
-   default:
-      throw ::exception(error_bad_argument, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
-      break;
-   }
-   
-   return error;
-
-}
-
-
-void __cdecl __clearerr_s(FILE *stream)
-{
-
-#ifdef WINDOWS
-
-   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
-
-#else
-
-   clearerr(stream);
-
-   C_RUNTIME_ERROR_CHECK(errno);
-
-#endif
-
-}
-
 
 //
 //namespace exception
@@ -332,7 +288,7 @@ void __cdecl __clearerr_s(FILE *stream)
 //         for (auto& str : stra)
 //         {
 //
-//            output_debug_string(str);
+//            information(str);
 //
 //         }
 //
@@ -436,23 +392,23 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 // }
 
 
-string estatus_to_string(::e_status estatus)
-{
-
-   if (::succeeded(estatus))
-   {
-      
-      return "success";
-
-   }
-   else
-   {
-
-      return "failed";
-
-   }
-
-}
+//string estatus_to_string(::e_status estatus)
+//{
+//
+//   if (::succeeded(estatus))
+//   {
+//      
+//      return "success";
+//
+//   }
+//   else
+//   {
+//
+//      return "failed";
+//
+//   }
+//
+//}
 
 //
 //CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip, void * caller_address)
@@ -566,6 +522,19 @@ CLASS_DECL_ACME void copy(::string& str, const ::exception& exception)
 {
 
    str = exception.m_strMessage;
+
+}
+
+
+
+
+
+CLASS_DECL_ACME write_text_stream & operator <<(write_text_stream & stream, const ::exception & exception)
+{
+
+   stream << exception.get_message();
+
+   return stream;
 
 }
 

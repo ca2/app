@@ -3,7 +3,7 @@
 #include "acme/_operating_system.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
 
 #include <time.h>

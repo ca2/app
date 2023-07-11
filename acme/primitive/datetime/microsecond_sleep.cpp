@@ -53,10 +53,12 @@ microsecond_sleep::~microsecond_sleep()
 }
 
 
-bool microsecond_sleep::sleep(unsigned long usec)
-{
 
 #ifdef WINDOWS
+
+
+bool microsecond_sleep::sleep(unsigned long usec)
+{
 
    LARGE_INTEGER ft;
 
@@ -70,15 +72,10 @@ bool microsecond_sleep::sleep(unsigned long usec)
 
    return true;
 
-#else
+}
 
-   usleep((::u32)usec);
-
-   return true;
 
 #endif
-
-}
 
 
 

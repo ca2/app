@@ -55,7 +55,7 @@ namespace graphics
          //if (!estatus)
          //{
 
-         //   ::output_debug_string("no memory map for the graphics buffer");
+         //   ::information("no memory map for the graphics buffer");
          //   //return estatus;
 
          //   estatus = ::success;
@@ -211,7 +211,7 @@ namespace graphics
 
          //::copy_image32((::color32_t*)p, ppixmap->size(), iScan, ppixmap);
 
-         memcpy(p, ppixmap->m_pimage32Raw, ppixmap->height() * iScan);
+         memory_copy(p, ppixmap->m_pimage32Raw, ppixmap->height() * iScan);
 
       }
       catch (...)
@@ -244,7 +244,7 @@ namespace graphics
       if (is_ipc_copy_enabled())
       {
 
-         if (!ipc_copy(get_screen_item()->m_pimage))
+         if (!ipc_copy(get_screen_item()->m_pimage2))
          {
 
             return false;

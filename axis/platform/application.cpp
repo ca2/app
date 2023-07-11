@@ -294,7 +294,7 @@ namespace axis
 ////
 ////            dappy(__type_name(this) + " : on_run failure : " + as_string(m_iErrorCode));
 ////
-////            ::output_debug_string("application::main on_run termination failure\n");
+////            ::information("application::main on_run termination failure\n");
 ////
 ////         }
 //
@@ -1791,7 +1791,7 @@ namespace axis
    bool application::assert_user_logged_in()
    {
 
-      const char * pszRequestUrl = nullptr;
+      //const char * pszRequestUrl = nullptr;
 
       string strRequestUrl;
 
@@ -1800,7 +1800,7 @@ namespace axis
 
          strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
-         pszRequestUrl = strRequestUrl;
+         //pszRequestUrl = strRequestUrl;
 
       }
 

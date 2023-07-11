@@ -1,26 +1,112 @@
 #include "framework.h"
 //#include "file_time.h"
 //#include "acme/primitive/primitive/payload.h"
-//#include "acme/operating_system/time.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
+#include "acme/primitive/datetime/system_time.h"
 #include "acme/_operating_system.h"
 
 
-file_time file_time::get_current_time() noexcept
+file_time::file_time(now_t) :
+   file_time(system_time(now_t{}))
 {
 
-#ifdef WINDOWS_DESKTOP
 
-   FILETIME file_time;
+      //system_time systemtime;
 
-   GetSystemTimeAsFileTime(&file_time);
+      ////auto estatus = get_system_time(&systemtime);
 
-   return *(const ::file_time *) &file_time;
+      //auto systemtime = now_as_system_time();
 
-#else
+      ////if (!estatus)
+      ////{
 
-   return 0;
+      ////   return estatus;
 
-#endif
+      ////}
+
+      ///*estatus = */
+
+      //return as_file_time(systemtime);
+
+      ////if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+
+}
+//
+//
+//file_time::file_time(const system_time & systemtime) :
+//   file_time(::earth::gregorian_time(systemtime))
+//{
+//
+//
+//}
+//
+
+file_time::file_time(const ::posix_time & time) :
+   file_time(::earth::gregorian_time(time))
+{
+
+   //auto systemtime = as_system_time(time);
+
+   //auto filetime = as_file_time(systemtime);
+
+   //return filetime;
+
+}
+
+
+file_time::file_time(const class ::time & time)
+{
+
+   auto nanoseconds = time.m_iSecond * 1'000'000'000 + time.m_iNanosecond;
+
+   nanoseconds += EPOCH_DIFFERENCE_NANOS;
+
+   m_uFileTime = nanoseconds / 100;
+
+}
+
+
+file_time::file_time(const ::earth::gregorian_time & gregoriantime) :
+   file_time(system_time(gregoriantime))
+{
+
+   //system_time systemtime;
+
+   //get(&systemtime);
+
+   //filetime = as_file_time(&systemtime);
+
+}
+
+
+file_time file_time::now() noexcept
+{
+
+   return now_t{};
+
+//#ifdef WINDOWS_DESKTOP
+//
+//   FILETIME file_time;
+//
+//   GetSystemTimeAsFileTime(&file_time);
+//
+//   return *(const ::file_time *) &file_time;
+//
+//#else
+//
+//   ::file_time filetime(now_t{});
+//
+//   return filetime;
+//
+//#endif
 
 }
 
@@ -28,7 +114,7 @@ file_time file_time::get_current_time() noexcept
 file_time& file_time::operator+=(file_time_span span) noexcept
 {
 
-   SetTime(get_time() + span.GetTimeSpan());
+   set_file_time(get_file_time() + span.get_file_time_span());
 
    return *this;
 
@@ -38,7 +124,7 @@ file_time& file_time::operator+=(file_time_span span) noexcept
 file_time& file_time::operator-=(file_time_span span) noexcept
 {
       
-   SetTime(get_time() - span.GetTimeSpan());
+   set_file_time(get_file_time() - span.get_file_time_span());
 
    return *this;
 
@@ -47,62 +133,69 @@ file_time& file_time::operator-=(file_time_span span) noexcept
 
 file_time file_time::operator+(file_time_span span) const noexcept
 {
-   return(file_time(get_time() + span.GetTimeSpan()));
+   return{ file_time_t{}, get_file_time() + span.get_file_time_span() };
 }
 
 file_time file_time::operator-(file_time_span span) const noexcept
 {
-   return(file_time(get_time() - span.GetTimeSpan()));
+   return { file_time_t{}, get_file_time() - span.get_file_time_span() };
 }
+
 
 file_time_span file_time::operator-(file_time ft) const noexcept
 {
-   return(file_time_span(get_time() - ft.get_time()));
+
+   return{ file_time_span_t{}, (::i64) get_file_time() -(::i64) ft.get_file_time() };
+
 }
+
 
 bool file_time::operator==(file_time ft) const noexcept
 {
-   return(get_time() == ft.get_time());
-}
 
-bool file_time::operator!=(file_time ft) const noexcept
-{
-   return(get_time() != ft.get_time());
-}
-
-bool file_time::operator<(file_time ft) const noexcept
-{
-   return(get_time() < ft.get_time());
-}
-
-bool file_time::operator>(file_time ft) const noexcept
-{
-   return(get_time() > ft.get_time());
-}
-
-bool file_time::operator<=(file_time ft) const noexcept
-{
-   return(get_time() <= ft.get_time());
-}
-
-bool file_time::operator>=(file_time ft) const noexcept
-{
-   return(get_time() >= ft.get_time());
-}
-
-
-file_time_t file_time::get_time() const noexcept
-{
-
-   return m_filetime;
+   return get_file_time() == ft.get_file_time();
 
 }
 
 
-void file_time::SetTime(file_time_t nTime) noexcept
+//bool file_time::operator!=(file_time ft) const noexcept
+//{
+//   return(get_file_time() != ft.get_file_time());
+//}
+
+::std::strong_ordering  file_time::operator<=>(file_time ft) const noexcept
+{
+   return get_file_time() <=> ft.get_file_time();
+}
+
+//bool file_time::operator>(file_time ft) const noexcept
+//{
+//   return(get_file_time() > ft.get_file_time());
+//}
+//
+//bool file_time::operator<=(file_time ft) const noexcept
+//{
+//   return(get_file_time() <= ft.get_file_time());
+//}
+//
+//bool file_time::operator>=(file_time ft) const noexcept
+//{
+//   return(get_file_time() >= ft.get_file_time());
+//}
+
+
+::u64 file_time::get_file_time() const noexcept
 {
 
-   m_filetime = nTime;
+   return m_uFileTime;
+
+}
+
+
+void file_time::set_file_time(::u64 uFileTime) noexcept
+{
+
+   m_uFileTime = uFileTime;
 
 }
 
@@ -140,12 +233,12 @@ void file_time::SetTime(file_time_t nTime) noexcept
 //#endif
 
 
-const file_time_t file_time::Millisecond = 10000;
-const file_time_t file_time::Second = Millisecond * static_cast<file_time_t>(1000);
-const file_time_t file_time::Minute = Second * static_cast<file_time_t>(60);
-const file_time_t file_time::Hour = Minute * static_cast<file_time_t>(60);
-const file_time_t file_time::Day = Hour * static_cast<file_time_t>(24);
-const file_time_t file_time::Week = Day * static_cast<file_time_t>(7);
+//const file_time_t file_time::Millisecond = 10000;
+//const file_time_t file_time::Second = Millisecond * static_cast<file_time_t>(1000);
+//const file_time_t file_time::Minute = Second * static_cast<file_time_t>(60);
+//const file_time_t file_time::Hour = Minute * static_cast<file_time_t>(60);
+//const file_time_t file_time::Day = Hour * static_cast<file_time_t>(24);
+//const file_time_t file_time::Week = Day * static_cast<file_time_t>(7);
 
 
 CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds)
@@ -217,10 +310,10 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //   }
 //
 //
-//   void node::file_time_to_time(time_t * ptime, const file_time_t * pfile_time, i32 nDST)
+//   void node::file_time_to_time(posix_time * ptime, const file_time_t * pfile_time, i32 nDST)
 //   {
 //
-//      system_time_t systemtime;
+//      system_time systemtime;
 //
 //      auto estatus = file_time_to_system_time(&systemtime, pfile_time);
 //
@@ -288,11 +381,10 @@ void get_file_time_set(const ::file::path & path, file_time & file_timeCreation,
 CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const class ::time& time)
 {
 
-   ::file_time filetime;
+   //auto filetime = as_file_time(&time);
 
-   time_to_file_time(&filetime.m_filetime, &time);
-
-   set_modified_file_time(path, filetime);
+   //set_modified_file_time(path, file_time(time));
+   set_modified_file_time(path, file_time(time));
 
 }
 
@@ -331,9 +423,9 @@ void get_file_time_set(const ::file::path & path, file_time & creation, file_tim
 
    stat(path, &st);
 
-   creation.m_filetime = st.st_ctime;
+   creation = file_time({ posix_time_t{}, st.st_ctime });
 
-   modified.m_filetime = st.st_mtime;
+   modified = file_time({ posix_time_t{}, st.st_mtime });
 
 }
 
@@ -342,12 +434,12 @@ void get_file_time_set(const ::file::path & path, file_time & creation, file_tim
 
 
 
-void copy(payload * ppayload, const file_time * pfile_time)
+void copy(payload * ppayload, const file_time * pfiletime)
 {
 
    ppayload->set_type(e_type_file_time, false);
 
-   ppayload->m_filetime = pfile_time->m_filetime;
+   ppayload->m_filetime =*pfiletime;
 
 }
 
@@ -355,11 +447,20 @@ void copy(payload * ppayload, const file_time * pfile_time)
 bool file_time_set::modified_timeout(int iSeconds) const
 {
 
-   auto file_timeNow = get_file_time_now();
+   //auto filetimeNow = now_as_file_time();
 
-   return modified_timeout(file_timeNow, iSeconds);
+   return modified_timeout(now_t{}, iSeconds);
 
 }
 
 
 
+
+
+CLASS_DECL_ACME file_time as_local_file_time(const ::file_time & filetime)
+{
+
+
+   return {};
+
+}

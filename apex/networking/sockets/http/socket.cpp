@@ -487,7 +487,7 @@ namespace sockets
 
       }
 
-      for (auto &pproperty: m_response.m_propertysetHeader)
+      for (auto &pproperty: m_response.m_propertysetHeader.propertyptra())
       {
 
          string strKey = pproperty->name();
@@ -615,7 +615,7 @@ namespace sockets
 
       }
 
-      for (auto &pproperty: m_request.m_propertysetHeader)
+      for (auto &pproperty: m_request.m_propertysetHeader.propertyptra())
       {
 
          string strKey = pproperty->name();

@@ -140,11 +140,11 @@ namespace sandbox_windowing
 
       void destroy_window() override;
       //virtual int_bool destroy_window( windowing_android_WINDOW_MEMBER );
-      virtual bool is_window() override;
+      bool is_window() override;
       //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
 
 
-      virtual void set_window_text(const ::scoped_string & scopedstrString);
+      void set_window_text(const ::scoped_string & scopedstrString) override;
 
 
       void set_tool_window(bool bSet) override;

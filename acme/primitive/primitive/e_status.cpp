@@ -2,7 +2,7 @@
 // Created by camilo on 12/11/2020.
 //
 #include "framework.h"
-// #include "acme/primitive/string/string.h"
+
 //#include "acme/primitive/string/hex.h"
 
 
@@ -38,7 +38,7 @@ CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
       str += "success";
 
    }
-   else if(::succeeded(estatus))
+   else if(estatus.succeeded())
    {
 
       str += "\"succeeded status=" + ::hex::lower_case_from(estatus.as_i64()) + "...\"";
@@ -92,7 +92,7 @@ CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
       str += "error_wrong_state";
 
    }
-   else if(failed(estatus))
+   else if(estatus.failed())
    {
 
       str += "\"failed status=" + ::hex::lower_case_from(estatus.as_i64()) + "...\"";

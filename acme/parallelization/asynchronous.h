@@ -2,7 +2,6 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
 //#include "acme/primitive/primitive/function.h"
 //#include "acme/primitive/primitive/matter.h"
 

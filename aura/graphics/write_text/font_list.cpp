@@ -480,11 +480,11 @@ namespace write_text
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
 
-            output_debug_string("test05");
+            information("test05");
 
          }
 
-         pbox->m_pfont->create_pixel_font(str, pfontlistdata->m_iaSize[iBox]);
+         pbox->m_pfont->create_font(str, font_size(pfontlistdata->m_iaSize[iBox], e_unit_pixel));
 
          ::draw2d::lock draw2dlock(this);
 
@@ -749,7 +749,7 @@ namespace write_text
    void font_list::update_extents()
    {
 
-      int_array iaSize;
+      ::i32_array iaSize;
 
       int iBaseSize;
 

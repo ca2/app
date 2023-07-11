@@ -59,7 +59,7 @@ enum_type set_element(::payload & payload, ::particle * pelement)
          payload.m_pstra = dynamic_cast <::string_array*>(pelement);
          break;
       case ::e_type_i32_array:
-         payload.m_pia = dynamic_cast <::int_array*>(pelement);
+         payload.m_pia = dynamic_cast <::i32_array*>(pelement);
          break;
       case ::e_type_payload_array:
          payload.m_ppayloada = dynamic_cast <payload_array*>(pelement);

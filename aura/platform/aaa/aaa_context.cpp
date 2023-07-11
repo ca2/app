@@ -1082,7 +1082,7 @@ void context::add_matter_locator(::aura::application * papp)
 void context::_load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions)
 {
 
-   binary_stream < FILE > reader(pcontext->m_papexcontext->file()->get_reader(payloadFile));
+   binary_stream reader(pcontext->m_papexcontext->file()->get_reader(payloadFile));
 
    read(reader);
 
@@ -1094,7 +1094,7 @@ void context::_load_from_file(::particle * pparticle, const ::payload& payloadFi
 void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle)
 {
 
-   binary_stream < FILE > writer(pcontext->m_papexcontext->file()->get_writer(payloadFile));
+   binary_stream writer(pcontext->m_papexcontext->file()->get_writer(payloadFile));
 
    write(writer);
 

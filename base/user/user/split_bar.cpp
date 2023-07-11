@@ -82,9 +82,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       pgraphics->fill_rectangle(rectangleClient, argb(255, 180, 180, 180));
 

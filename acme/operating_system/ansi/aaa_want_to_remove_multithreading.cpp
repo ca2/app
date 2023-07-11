@@ -1162,8 +1162,8 @@
 ////   msg.message = Msg;
 ////   msg.wParam  = wParam;
 ////   msg.lParam  = lParam;
-////   msg.pt.x()    = 0x80000000;
-////   msg.pt.y()    = 0x80000000;
+////   msg.pt.x()    = I32_MINIMUM;
+////   msg.pt.y()    = I32_MINIMUM;
 ////   msg.hwnd    = NULL;
 ////
 ////   pmq->ma.add(msg);
@@ -1201,8 +1201,8 @@
 ////   msg.message    = Msg;
 ////   msg.wParam     = wParam;
 ////   msg.lParam     = lParam;
-////   msg.pt.x()       = 0x80000000;
-////   msg.pt.y()       = 0x80000000;
+////   msg.pt.x()       = I32_MINIMUM;
+////   msg.pt.y()       = I32_MINIMUM;
 ////
 ////
 ////   pmq->ma.add(msg);

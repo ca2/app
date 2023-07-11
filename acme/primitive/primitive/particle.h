@@ -316,24 +316,24 @@ public:
    //virtual void trace_log_fatal() << const ::ansi_character * pszFormat, ...;
 
 
-   virtual class tracer & tracer();
+   virtual class tracer & tracer() const;
 
 
-   virtual ::trace_statement log_statement();
+   virtual ::trace_statement log_statement() const;
 
 
    //virtual trace_statement trace(enum_trace_level etracelevel);
 
 
-   virtual ::trace_statement information();
-   virtual ::trace_statement warning();
-   virtual ::trace_statement error();
-   virtual ::trace_statement fatal();
+   virtual ::trace_statement information() const;
+   virtual ::trace_statement warning() const;
+   virtual ::trace_statement error() const;
+   virtual ::trace_statement fatal() const;
 
-   virtual void information(const ::ansi_character * pszFormat, ...);
-   virtual void warning(const ::ansi_character * pszFormat, ...);
-   virtual void error(const ::ansi_character * pszFormat, ...);
-   virtual void fatal(const ::ansi_character * pszFormat, ...);
+   virtual void information(const ::ansi_character * pszFormat, ...) const;
+   virtual void warning(const ::ansi_character * pszFormat, ...) const;
+   virtual void error(const ::ansi_character * pszFormat, ...) const;
+   virtual void fatal(const ::ansi_character * pszFormat, ...) const;
 
    //virtual trace_statement trace_log_warning() << ;
    //virtual trace_statement trace_log_error() << ;
@@ -415,7 +415,7 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   pointer < ::sequencer < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+   pointer < ::sequencer < ::conversation > > message_box(const string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
 
    pointer < ::sequencer < ::conversation > > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
 
@@ -531,8 +531,8 @@ public:
    //virtual void exchange(::stream& s);
    //virtual void exchange(::payload_stream& s);
 
-   //virtual void write(::binary_stream < FILE >& stream) const;
-   //virtual void read(::binary_stream < FILE >& stream);
+   //virtual void write(::binary_stream& stream) const;
+   //virtual void read(::binary_stream& stream);
 
 
    //virtual void add_composite(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -616,7 +616,7 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::output_debug_string("exception release p = nullptr; \n");
+//      ::information("exception release p = nullptr; \n");
 //
 //   }
 //
@@ -629,7 +629,7 @@ inline i64 release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::output_debug_string("exception release pparticle->release() \n");
+//      ::information("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -667,7 +667,7 @@ inline i64 global_release(T*& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   catch (...)
 //   {
 //
-//      ::output_debug_string("exception release pparticle->release() \n");
+//      ::information("exception release pparticle->release() \n");
 //
 //   }
 //

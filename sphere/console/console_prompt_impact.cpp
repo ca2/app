@@ -228,7 +228,7 @@ namespace console
          if(str.has_char())
          {
 
-            if(m_iNewChar == 0x80000000)
+            if(m_iNewChar == I32_MINIMUM)
             {
 
                m_iNewChar = str[0];
@@ -272,7 +272,7 @@ namespace console
 
       m_timeCaretPeriod.Now();
 
-      m_iNewChar = 0x80000000;
+      m_iNewChar = I32_MINIMUM;
 
       m_evNewChar.wait();
 

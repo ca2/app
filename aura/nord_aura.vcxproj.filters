@@ -94,12 +94,6 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{f71a8c0e-47f3-461e-8b0b-e38eb0f26ca5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gpu">
-      <UniqueIdentifier>{8b506cb4-d9da-4647-9f32-e2841d2d255a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gpu\gpu">
-      <UniqueIdentifier>{11cc150d-9ed6-4104-a733-9728bb6707ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\game">
       <UniqueIdentifier>{6193404e-fc52-4bdc-ba0b-45c31d0ac008}</UniqueIdentifier>
     </Filter>
@@ -156,6 +150,12 @@
     </Filter>
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{22a1e177-2a49-44ac-a3fc-4d08a25bd064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\gpu">
+      <UniqueIdentifier>{246c6559-06b4-464c-96d9-cc8255f73fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\gpu">
+      <UniqueIdentifier>{6b9fa9e6-e040-42d0-bd69-d09968c30bea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1086,6 +1086,36 @@
     <ClInclude Include="windowing\sandbox\_.h">
       <Filter>Header Files\windowing\sandbox</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\gpu\shader.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\render.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\program.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\object.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\context.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\buffer.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\approach.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\aaaa_gpu.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_constant.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\_impl.h">
@@ -1191,21 +1221,6 @@
     </ClCompile>
     <ClCompile Include="platform\theme.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\approach.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\buffer.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\context.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\program.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\shader.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
     </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\game</Filter>
@@ -1528,9 +1543,6 @@
     <ClCompile Include="user\appearance\still.cpp">
       <Filter>Source Files\user\appearance</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
-      <Filter>Source Files\graphics\write_text</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1628,6 +1640,30 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\_.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\approach.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\buffer.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\context.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\object.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\program.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\render.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\shader.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\drawing.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
   </ItemGroup>

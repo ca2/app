@@ -1,5 +1,8 @@
 #include "framework.h"
+#include "acme/filesystem/file/__string.h"
+#include "acme/operating_system/shared_posix/stdio_file.h"
 #include <dirent.h>
+#include <stdio.h>
 
 
 i32 get_process_pid(const char * procNameParam)
@@ -32,11 +35,11 @@ i32 get_process_pid(const char * procNameParam)
             if(estatus && cmdLine.has_char())
             {
                // Keep first cmdline item which contains the program path
-               strsize pos = cmdLine.find('\0');
+               strsize pos = cmdLine.find_index('\0');
                if(pos >= 0)
                   cmdLine = cmdLine.substr(0, pos);
                // Keep program name only, removing the path
-               pos = cmdLine.rear_find('/');
+               pos = cmdLine.rear_find_index('/');
                if (pos >= 0)
                   cmdLine = cmdLine.substr(pos + 1);
                // compare against requested process name

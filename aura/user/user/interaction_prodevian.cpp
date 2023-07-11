@@ -187,10 +187,10 @@ namespace user
 
                _synchronous_lock synchronouslock(pimpl->synchronization());
 
-               if(pimpl->m_redrawa.has_element())
+               if(pimpl->m_redrawitema.has_element())
                {
 
-                  auto iRequestsRemaining = pimpl->m_redrawa.size();
+                  auto iRequestsRemaining = pimpl->m_redrawitema.size();
 
                   information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
 
@@ -271,7 +271,7 @@ namespace user
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
 //
-//         output_debug_string("list_box");
+//         information("list_box");
 //
 //      }
 
@@ -474,7 +474,7 @@ namespace user
          // if (bHasProdevian)
          // {
 
-         //    output_debug_string("has_prodevian");
+         //    information("has_prodevian");
 
          // }
 //
@@ -504,7 +504,7 @@ namespace user
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
-//               output_debug_string("list_box");
+//               information("list_box");
 //
 //            }
 
@@ -622,7 +622,7 @@ namespace user
 
       }
 
-      i64 i1 = ::integral_nanosecond();
+      i64 i1 = ::i64_nanosecond();
 
       bRedraw = m_message.wParam & 1;
 
@@ -658,7 +658,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         if (m_pimpl->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
+         if (m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
          {
 
             m_puserinteraction->m_bUpdateVisual = false;
@@ -674,7 +674,7 @@ namespace user
 
       }
 
-      bool bWait = ((m_pimpl->m_bUpdateWindow || m_pimpl->m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
+      bool bWait = ((m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
 
       if (bWait)
       {
@@ -726,7 +726,7 @@ namespace user
          {
 
             // todo display average from last 10 or so frame drawing time and not for every each single offending sample
-            // output_debug_string("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
+            // information("("+as_string(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
 
             m_timeNextScreenUpdate += timeFrame;
 
@@ -743,7 +743,7 @@ namespace user
             if (timeToWaitForNextFrame > 1_s)
             {
 
-               //output_debug_string("what?!?!\n");
+               //information("what?!?!\n");
 
                timeToWaitForNextFrame = 500_ms;
 
@@ -802,7 +802,7 @@ namespace user
             if (timeEndWait - timeStartWait > 100_ms)
             {
 
-               output_debug_string("Waited more than 100ms to go display drawn frame at screen?!?!\n");
+               information("Waited more than 100ms to go display drawn frame at screen?!?!\n");
 
             }
 
@@ -911,7 +911,7 @@ namespace user
       
       timeUpdateScreenPost.Now();
 
-      output_debug_string("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+      information("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
 
 #endif
 
@@ -934,7 +934,7 @@ namespace user
 
       auto e2 = timeUpdateScreenPost.elapsed();
 
-      output_debug_string("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+      information("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1010,11 +1010,11 @@ namespace user
 
       m_bRedraw = bRedraw;
 
-      m_pimpl->m_bUpdateBuffer = false;
+      m_puserinteraction->m_bUpdateBuffer = false;
 
-      m_pimpl->m_bUpdateScreen = false;
+      m_puserinteraction->m_bUpdateScreen = false;
 
-      m_pimpl->m_bUpdateWindow = false;
+      m_puserinteraction->m_bUpdateWindow = false;
 
       //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 
@@ -1085,7 +1085,7 @@ namespace user
 
          //bUpdateWindow = false;
 
-         i64 i1 = ::integral_nanosecond();
+         i64 i1 = ::i64_nanosecond();
 
       //   bool bTransparentDraw;
 
@@ -1138,13 +1138,13 @@ namespace user
 
          m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 
-         i64 i2 = ::integral_nanosecond();
+         i64 i2 = ::i64_nanosecond();
 
 #if TIME_REPORTING
 
          static ::time timeLast;
 
-         output_debug_string("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+         information("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 
 #endif
 
@@ -1225,7 +1225,7 @@ namespace user
          if(strType.case_insensitive_contains("list_box"))
          {
 
-            output_debug_string("We're on the list_box update_screen");
+            information("We're on the list_box update_screen");
 
          }
          
@@ -1302,9 +1302,9 @@ namespace user
       if (m_timeDuringUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //information("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //information("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
 
@@ -1313,9 +1313,9 @@ namespace user
       if (m_timeOufOfUpdateScreen > 60_ms)
       {
 
-         //output_debug_string("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
+         //information("It took about " + as_string(m_timeDuringUpdateScreen) + " to update screen\n");
 
-         //output_debug_string("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
+         //information("It took about " + as_string(m_timeOufOfUpdateScreen) + " out of screen update\n");
 
       }
       

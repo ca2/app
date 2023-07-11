@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < typename FILE >
+// template < typename FILE >
 text_stream < FILE >& operator <<(text_stream < FILE >& stream, const property_set& set)
 {
 

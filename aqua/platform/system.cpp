@@ -367,7 +367,7 @@ namespace aqua
    void system::defer_audio()
    {
 
-      if(acmeapplication()->m_bAudio.is_true())
+      if(acmeapplication()->m_bAudio.is_set_true())
       {
 
          if (!m_paudio)
@@ -400,7 +400,7 @@ namespace aqua
    bool system::has_audio()
    {
 
-      return !acmeapplication()->m_bAudio.undefined() && acmeapplication()->m_bAudio.is_true();
+      return acmeapplication()->m_bAudio.is_set_true();
 
    }
 

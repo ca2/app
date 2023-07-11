@@ -109,7 +109,7 @@ namespace http
       virtual void config_proxy(const ::scoped_string & scopedstrUrl, proxy * pproxy);
       virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::scoped_string & scopedstrUrl, proxy * pproxy);
 
-      virtual string gmdate(time_t t);
+      virtual string gmdate(posix_time t);
 
       virtual pac * get_pac(const ::scoped_string & scopedstrUrl);
       virtual proxy * get_proxy(const ::scoped_string & scopedstrUrl);

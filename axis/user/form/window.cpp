@@ -127,9 +127,9 @@ namespace user
    bool form_window::OnCommand(wparam wparam, lparam lparam)
    {
 
-      ::u32 uNotificationCode = second_u16(wparam);
+      ::u32 uNotificationCode = upper_u16(wparam);
 
-      ::atom atom(first_u16(wparam));
+      ::atom atom(lower_u16(wparam));
 
       auto pinteraction = get_child_by_id(atom);
 
@@ -1442,7 +1442,7 @@ throw_todo();
    void form_window::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
-      pinteraction->client_rectangle(rectangle);
+      rectangle = pinteraction->client_rectangle();
 
    }
 

@@ -8,6 +8,7 @@
 #include "session.h"
 #include "system.h"
 #include "acme/constant/id.h"
+#include "acme/exception/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -175,7 +176,7 @@ namespace acme
 
       string_array stra2;
 
-      int_array iaPid2;
+      ::i32_array iaPid2;
 
       auto psystem = acmesystem();
 
@@ -293,8 +294,13 @@ namespace acme
       {
          
          psystem->init_task();
-         
-         psystem->m_pacmesession->init_task();
+
+         if (psystem->m_pacmeapplication->m_bSession)
+         {
+
+            psystem->m_pacmesession->init_task();
+
+         }
 
          psystem->m_pacmeapplication->init_task();
 
@@ -1003,13 +1009,13 @@ namespace acme
       if (m_bDarkMode)
       {
 
-         ::output_debug_string("background_color :: Dark\n");
+         ::information("background_color :: Dark\n");
 
       }
       else
       {
 
-         ::output_debug_string("background_color :: Lite\n");
+         ::information("background_color :: Lite\n");
 
       }
 
@@ -1386,7 +1392,7 @@ namespace acme
    //}
 
 
-   //void node::file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+   //void node::file_time_to_system_time(system_time * psystemtime, const file_time_t * pfile_time)
    //{
 
    //   throw ::interface_only();
@@ -1394,7 +1400,7 @@ namespace acme
    //}
 
 
-   //void node::system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   //void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, i32 nDST)
    //{
 
    //   throw ::interface_only();
@@ -1402,7 +1408,7 @@ namespace acme
    //}
 
 
-   //void node::system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
+   //void node::system_time_to_file_time(file_time_t * pfile_time, const system_time & systemtime)
    //{
 
    //   throw ::interface_only();
@@ -1410,7 +1416,7 @@ namespace acme
    //}
 
 
-   //void node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
+   //void node::time_to_system_time(system_time * psystem_time, const posix_time * ptime)
    //{
 
    //   throw ::interface_only();
@@ -1418,7 +1424,7 @@ namespace acme
    //}
 
 
-   //void node::time_to_file_time(file_time_t * pfile_time, const time_t * ptime)
+   //void node::time_to_file_time(file_time_t * pfile_time, const posix_time * ptime)
    //{
 
    //   throw ::interface_only();
@@ -2095,7 +2101,9 @@ return false;
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
-      exception_message_box(exception, strMoreDetails);
+      auto psequencer = exception_message_box(exception, strMoreDetails);
+
+      psequencer->do_synchronously();
 
    }
 
@@ -2375,34 +2383,34 @@ return false;
    }
 
 
-   bool node::succeeded(const ::error_code& errorcode)
-   {
+   //bool node::succeeded(const ::error_code& errorcode)
+   //{
 
-      if (errorcode.m_etype == e_error_code_type_errno)
-      {
+   //   if (errorcode.m_etype == e_error_code_type_errno)
+   //   {
 
-         return errorcode.m_iOsError == 0;
+   //      return errorcode.m_iOsError == 0;
 
-      }
-      else if (errorcode.m_etype == e_error_code_type_last_error)
-      {
+   //   }
+   //   else if (errorcode.m_etype == e_error_code_type_last_error)
+   //   {
 
-         return errorcode.m_iOsError == 0;
+   //      return errorcode.m_iOsError == 0;
 
-      }
+   //   }
 
-      throw interface_only();
+   //   throw interface_only();
 
-      return false;
-    
-   }
+   //   return false;
+   // 
+   //}
 
-   bool node::failed(const ::error_code& errorcode)
-   {
+   //bool node::failed(const ::error_code& errorcode)
+   //{
 
-      return !succeeded(errorcode);
+   //   return !succeeded(errorcode);
 
-   }
+   //}
 
 
 #ifdef WINDOWS
@@ -2582,7 +2590,7 @@ return false;
             if (*psz == '\\')
             {
 
-               memory_transfer(psz, psz + 1, strlen(psz));
+               memory_transfer(psz, psz + 1, ansi_len(psz));
 
                unicode_increment(psz);
 
@@ -2757,9 +2765,41 @@ return false;
    int node::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut)
    {
 
-      throw interface_only();
+      trace_function tracefunction = std_inline_log();
 
-      return -1;
+      tracefunction.m_timeTimeout  = timeOut;
+
+      return command_system(scopedstr, tracefunction);
+
+   }
+
+
+   ::string node::get_output(const ::scoped_string & scopedstr, const class ::time & timeOut)
+   {
+
+      status_pointer <::string> pstring;
+
+      __construct_new(pstring);
+
+      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string & str)
+      {
+
+         pstring->m_payload += str;
+
+      };
+
+      tracefunction.m_timeTimeout  = timeOut;
+
+      auto iExitCode = command_system(scopedstr, tracefunction);
+
+      if(iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      return pstring->m_payload;
 
    }
 

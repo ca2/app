@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
@@ -635,22 +636,22 @@ namespace experience
    }
 
 
-   void frame_window::GetRegionClientRect(::rectangle_i32 * prectangle)
+   void frame_window::GetRegionClientRectangle(::rectangle_i32 * prectangle)
    {
 
       ASSERT(m_pframe != nullptr);
 
-      m_pframe->get_window_client_rect(prectangle);
+      m_pframe->get_window_client_rectangle(prectangle);
 
    }
 
 
-   void frame_window::get_draw_client_rect(::rectangle_i32 * prectangle)
+   void frame_window::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
    {
 
       ASSERT(m_pframe != nullptr);
 
-      m_pframe->get_window_client_rect(prectangle);
+      m_pframe->get_window_client_rectangle(prectangle, elayout);
 
    }
 
@@ -1238,11 +1239,13 @@ namespace experience
    }
 
 
-   void frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!is_frame_experience_enabled())
       {
+
+         ::user::frame_window::on_perform_top_down_layout(pgraphics);
 
          return;
 
@@ -1251,7 +1254,7 @@ namespace experience
       if (m_pframe != nullptr)
       {
 
-         m_pframe->on_layout(pgraphics);
+         m_pframe->on_perform_top_down_layout(pgraphics);
 
       }
 
@@ -2002,7 +2005,7 @@ namespace experience
       else
       {
 
-         rectangle = screen_rect();
+         rectangle = screen_rectangle();
 
       }
 

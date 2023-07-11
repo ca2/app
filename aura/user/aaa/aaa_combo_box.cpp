@@ -108,13 +108,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(192,192,192, 255);
+      //         colorText = ::rgba(192, 192, 192, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(255, 255, 255, 255);
+      //         colorText = ::rgba(255, 255, 255, 255);
 
       //      }
 
@@ -125,13 +125,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
 
@@ -148,7 +148,7 @@ namespace user
 
       ::rectangle_f64 rectangleText;
 
-      get_element_rect(rectangleText, e_element_text);
+      get_element_rectangle(rectangleText, e_element_text);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -164,7 +164,7 @@ namespace user
 
       ::rectangle_f64 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       i32 cx = rectangleDropDown.width() / 3;
 
@@ -209,12 +209,12 @@ namespace user
 
       ::rectangle_f64 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       ::rectangle_f64 rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
-      ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
+      ::color::color colorDropDown = ::rgba(127, 127, 127, 255);
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -225,13 +225,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(80, 80, 180, 255);
+      //         colorDropDown = ::rgba(80, 80, 180, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(100, 100, 200, 255);
+      //         colorDropDown = ::rgba(100, 100, 200, 255);
 
       //      }
 
@@ -242,13 +242,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(200, 200, 250, 255);
+      //         colorDropDown = ::rgba(200, 200, 250, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(192, 192, 192, 255);
+      //         colorDropDown = ::rgba(192, 192, 192, 255);
 
       //      }
 
@@ -264,13 +264,13 @@ namespace user
             if (m_pitemHover)
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 
@@ -281,13 +281,13 @@ namespace user
             if (m_pitemHover)
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color::color(200, 200, 250, 255);
+               colorDropDown = ::rgba(200, 200, 250, 255);
 
             }
 
@@ -436,7 +436,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECT32 * prect, enum_element eelement)
+   bool combo_box::get_element_rectangle(RECT32 * prect, enum_element eelement)
 
    {
 
@@ -447,7 +447,7 @@ namespace user
 
       }
 
-      return interaction::get_element_rect(prect, eelement);
+      return interaction::get_element_rectangle(prect, eelement);
 
 
    }
@@ -458,7 +458,7 @@ namespace user
 
       ::rectangle_f64 rectangleElement;
 
-      if(get_element_rect(rectangleElement, e_element_drop_down))
+      if(get_element_rectangle(rectangleElement, e_element_drop_down))
       {
 
          if (rectangleElement.contains(item.m_pointHitTest))
@@ -630,7 +630,7 @@ namespace user
             else if (!m_plist->is_this_screen_visible())
             {
 
-               //output_debug_string("test");
+               //information("test");
 
             }
 
@@ -727,7 +727,7 @@ namespace user
 
          //      m_plist->m_durationLastHide -= 300;
 
-         //      output_debug_string("asking to show too soon!! not going to show!!");
+         //      information("asking to show too soon!! not going to show!!");
 
          //      return;
 
@@ -1659,7 +1659,7 @@ namespace user
    void combo_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      //output_debug_string("\nCOMBO_BOX: DOUBLE CLICK\n");
+      //information("\nCOMBO_BOX: DOUBLE CLICK\n");
 
       on_message_left_button_down(pmessage);
 

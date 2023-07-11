@@ -44,10 +44,10 @@ namespace user
          strsize           m_iPosEnd;
          size_f64             m_sizeSpan;
          size_f64             m_sizeDevice;
-         double_array      m_daPositionLeft;
-         double_array      m_daPositionRight;
-         double_array      m_daPositionDeviceLeft;
-         double_array      m_daPositionDeviceRight;
+         f64_array      m_daPositionLeft;
+         f64_array      m_daPositionRight;
+         f64_array      m_daPositionDeviceLeft;
+         f64_array      m_daPositionDeviceRight;
 
 
          span();
@@ -72,8 +72,8 @@ namespace user
 
          ::pointer<class span> fork(const class format * pformat, const e_attribute & eattribute);
 
-         //void write(::binary_stream < FILE > & stream) const override;
-         //void read(::binary_stream < FILE > & stream) override;
+         //void write(::binary_stream & stream) const override;
+         //void read(::binary_stream & stream) override;
 
          span & operator=(const span & span);
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/operating_system/console.h"
 #include "acme/_operating_system.h"
 
 
@@ -102,6 +103,8 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 //    return iCmp == 0;
 
 // }
+
+
 
 
 

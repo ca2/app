@@ -243,7 +243,7 @@ class exchanger
            }
 
 
-              binary_stream < FILE >
+              binary_stream
            {
 
 

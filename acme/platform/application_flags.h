@@ -11,30 +11,31 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    bool                             m_bFork;
 
 
-   ::tristate                       m_bResource;
-   ::tristate                       m_bCrypto;
-   ::tristate                       m_bLocalization;
-   ::tristate                       m_bNetworking;
-   ::tristate                       m_bConsole;
-   ::tristate                       m_bCreateAppShorcut;
-   ::tristate                       m_bDraw2d;
-   ::tristate                       m_bWriteText;
-   ::tristate                       m_bUser;
-   ::tristate                       m_bUserEx;
-   ::tristate                       m_bImaging;
-   ::tristate                       m_bAudio;
-   ::tristate                       m_bMidi;
-   ::tristate                       m_bInitializeDataCentral;
+   ::boolean                       m_bResource;
+   ::boolean                       m_bCrypto;
+   ::boolean                       m_bLocalization;
+   ::boolean                       m_bNetworking;
+   ::boolean                       m_bConsole;
+   ::boolean                       m_bSession;
+   ::boolean                       m_bCreateAppShorcut;
+   ::boolean                       m_bDraw2d;
+   ::boolean                       m_bWriteText;
+   ::boolean                       m_bUser;
+   ::boolean                       m_bUserEx;
+   ::boolean                       m_bImaging;
+   ::boolean                       m_bAudio;
+   ::boolean                       m_bMidi;
+   ::boolean                       m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
-   ::tristate                       m_bGdiplus;
+   ::boolean                       m_bGdiplus;
 #elif defined(LINUX) || defined(FREEBSD)
-   ::tristate                       m_bGtkApp;
+   ::boolean                       m_bGtkApp;
 #endif
-   ::tristate                       m_bShowApplicationInformation;
-   ::tristate                       m_bDataCentralRequired;
+   ::boolean                       m_bShowApplicationInformation;
+   ::boolean                       m_bDataCentralRequired;
 
-   ::tristate                       m_bExperienceMainFrame;
-   ::tristate                       m_bVerbose;
+   ::boolean                       m_bExperienceMainFrame;
+   ::boolean                       m_bVerbose;
 //   //PFN_NEW_MATTER                   m_pfnnewmatterApplication;
 //   //PFN_NEW_LIBRARY                  m_pfnnewlibrary;
 //   PFN_DEFER_TERM                      m_pfnDeferTerm;
@@ -45,7 +46,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    void copy_application_flags(const APPLICATION_FLAGS& applicationflags)
    {
 
-      memcpy(this, &applicationflags, sizeof(APPLICATION_FLAGS));
+      memory_copy(this, &applicationflags, sizeof(APPLICATION_FLAGS));
 
    }
 

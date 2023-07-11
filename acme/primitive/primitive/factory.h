@@ -4,7 +4,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/primitive/collection/atom_map.h"
-#include "acme/primitive/primitive/particle.h"
+
 #include "acme/primitive/primitive/type.h"
 #include "acme/primitive/collection/list_iterator.h"
 //////#include "acme/exception/exception.h"
@@ -285,8 +285,8 @@ namespace factory
 //   }
 
 
-   template < typename ORIGIN_TYPE >
-   inline ::pointer<factory_item_interface>& get_factory_item();
+   //template < typename ORIGIN_TYPE >
+   //inline ::pointer<factory_item_interface>& get_factory_item();
 //   {
 //
 //      //static auto atom = get_atom<ORIGIN_TYPE>();
@@ -648,7 +648,7 @@ namespace factory
    //      if (p && __type_name(p)) == strText
    //      {
 
-   //         ::output_debug_string("loading into existing matter of same class type (1)");
+   //         ::information("loading into existing matter of same class type (1)");
 
    //      }
    //      else
@@ -659,7 +659,7 @@ namespace factory
    //         if (!p)
    //         {
 
-   //            ::output_debug_string("defer_new failed (1.1)");
+   //            ::information("defer_new failed (1.1)");
 
    //            stream.set_fail_bit();
 
@@ -667,7 +667,7 @@ namespace factory
    //         else if (__type_name(p)) != strText
    //         {
 
-   //            ::output_debug_string("allocated matter type is different from streamed matter type (1.2)");
+   //            ::information("allocated matter type is different from streamed matter type (1.2)");
 
    //            stream.set_fail_bit();
 
@@ -684,7 +684,7 @@ namespace factory
    //      if (p && atom == __type_name(p))
    //      {
 
-   //         ::output_debug_string("loading into existing matter of same class type (2)");
+   //         ::information("loading into existing matter of same class type (2)");
 
    //      }
    //      else
@@ -695,13 +695,13 @@ namespace factory
    //         if (!p)
    //         {
 
-   //            ::output_debug_string("stream::alloc_object_from_text failed (2.1)");
+   //            ::information("stream::alloc_object_from_text failed (2.1)");
 
    //         }
    //         else if (__type_name(p)) != atom.to_string()
    //         {
 
-   //            ::output_debug_string("allocated matter type is different from streamed matter type (2.2)");
+   //            ::information("allocated matter type is different from streamed matter type (2.2)");
 
    //            stream.set_fail_bit();
 

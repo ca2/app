@@ -2,7 +2,7 @@
 
 
 #include "acme/operating_system/error_code.h"
-// #include "acme/primitive/string/string.h"
+
 //#include "acme/primitive/collection/array.h"
 
 
@@ -70,4 +70,6 @@ public:
    throw EXCEPTION(__VA_ARGS__)
 
 
+
+CLASS_DECL_ACME write_text_stream & operator <<(write_text_stream & stream, const ::exception & exception);
 

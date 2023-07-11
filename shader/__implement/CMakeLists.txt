@@ -3,7 +3,7 @@ project(_app_shader CXX)
 
 
 add_executable(shared_${PROJECT_NAME} application.cpp)
-add_executable(static_${PROJECT_NAME} application.cpp)
+#add_executable(static_${PROJECT_NAME} application.cpp)
 
 
 list(APPEND executable_references
@@ -16,7 +16,7 @@ list(APPEND executable_references
 
 
 
-if(LINUX OR FREEBSD)
+if(${LINUX} OR ${FREEBSD})
 #
 #   add_custom_command(
 #      COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
@@ -48,13 +48,13 @@ if (MSVC)
    target_link_libraries(shared_${PROJECT_NAME} PRIVATE ${executable_references})
 
 
-elseif(LINUX OR FREEBSD)
+elseif(${LINUX} OR ${FREEBSD})
 
 
    target_compile_options(shared_${PROJECT_NAME} PRIVATE -fpermissive)
    target_link_libraries(shared_${PROJECT_NAME} PRIVATE ${executable_references})
    target_link_options(shared_${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   #target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
 

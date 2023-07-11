@@ -8,6 +8,14 @@
 // C++ include
 
 
+
+#define _POSIX_C_SOURCE 200809L
+
+
+#include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CoreGraphics.h>
+
+
 #include "debug.h"
 
 

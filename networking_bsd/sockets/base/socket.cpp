@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <netdb.h>
 #include <fcntl.h>
 #else
+#define __BSD_VISIBLE 1
 #include <netdb.h>
 #include <fcntl.h>
 #endif
@@ -73,12 +74,12 @@ namespace sockets_bsd
    base_socket::base_socket() :
       m_bDelete(false)
       ,m_bCloseAndDelete(false)
-      ,m_timeCreate(time(nullptr))
+      , m_timeCreate(now_t{})
       ,m_psocketParent(nullptr)
       ,m_bDisableRead(false)
       ,m_bConnected(false)
       ,m_bErasedByHandler(false)
-      ,m_timeClose(0)
+      , m_timeClose({ posix_time_t{}, 0 })
       ,m_bLost(false)
       ,m_bEnableSsl(false)
       ,m_bSsl(false)
@@ -370,7 +371,7 @@ namespace sockets_bsd
          if (bCloseAndDelete)
          {
 
-            m_timeClose = time(nullptr);
+            m_timeClose.Now();
 
          }
 
@@ -636,9 +637,12 @@ namespace sockets_bsd
    {
    }
 
-   time_t base_socket::Uptime()
+
+   posix_time base_socket::Uptime()
    {
-      return time(nullptr) - m_timeCreate;
+
+      return m_timeCreate.elapsed();
+
    }
 
 
@@ -707,9 +711,11 @@ namespace sockets_bsd
    }
 
 
-   time_t base_socket::TimeSinceClose()
+   posix_time base_socket::TimeSinceClose()
    {
-      return time(nullptr) - m_timeClose;
+
+      return m_timeClose.elapsed();
+
    }
 
 

@@ -22,7 +22,7 @@
 //
 //      memory_file memoryfile;
 //
-//      binary_stream < FILE > stream(&memoryfile);
+//      binary_stream stream(&memoryfile);
 //
 //      stream << t;
 //
@@ -68,7 +68,7 @@
 //      }
 //
 //
-//      binary_stream < FILE > stream(&memoryfile);
+//      binary_stream stream(&memoryfile);
 //
 //
 //      ////if (!m_pdataserver->_data_server_load(this, key, stream->memory()))

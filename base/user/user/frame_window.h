@@ -35,7 +35,7 @@ namespace user
       pointer_array < ::user::control_bar >      m_controlbara; // array of all control bars that have this interaction_impl as their dock site
 
       //bool                                         m_bAutoWindowFrame;
-      tristate                                  m_bWindowFrame;
+      boolean                                  m_bWindowFrame;
       bool                                         m_bLayered;
       i32                                          m_iFrameData;
       ::atom                                         m_atomHelp;         // xxx mrs
@@ -125,7 +125,7 @@ namespace user
 
 
       virtual void SetBorderRect(const ::rectangle_i32 & rectangle);
-      virtual void GetBorderRect(::rectangle_i32 * prectangle);
+      virtual void GetBorderRectangle(::rectangle_i32 * prectangle);
 
       virtual bool _001IsFrameWnd();
 
@@ -214,7 +214,7 @@ namespace user
       bool IsTracking() const;
 
       
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
       void ActivateFrame(::e_display edisplay = e_display_undefined) override;
       virtual void prepare_frame(::user::document * pdocument, bool bMakeVisible);
       //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;

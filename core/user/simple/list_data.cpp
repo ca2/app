@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/collection/_function.h"
 #include "acme/primitive/data/listener.h"
 #include "core/user/simple/list_data.h"
 #include "core/user/user/mesh.h"
@@ -172,7 +173,7 @@ void simple_list_data::_001OnDeleteRange(::user::range & range)
 
    range.get_item_indexes(ia);
 
-   m_array._001RemoveIndexes(ia);
+   _001RemoveIndexes(m_array, ia);
 
 }
 

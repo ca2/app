@@ -83,10 +83,7 @@ public:
 
    [[nodiscard]] ::enum_status estatus() const { return m_estatus.m_eenum; }
 
-   [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus.m_eenum); }
-
-
-   using TYPE::operator =;
+   [[nodiscard]] bool is_ok() const { return m_estatus.succeeded(); }
 
 
    status & operator = (enum_status estatus)
@@ -108,8 +105,34 @@ public:
    }
 
 
+   status & operator = (const TYPE & payload)
+   {
+
+      (*((TYPE*)(this))) = payload;
+
+      m_estatus = ::success;
+
+      return *this;
+
+   }
+
+
 };
 
+
+template < typename T >
+class particle_of :
+   virtual public ::particle
+{
+public:
+
+   T     m_payload;
+
+};
+
+
+template < typename TYPE >
+using status_pointer = ::pointer < ::particle_of < TYPE > >;
 
 //template < typename OBJECT >
 //class transport :

@@ -105,9 +105,9 @@ namespace user
    bool form_control::OnCommand(wparam wparam,lparam lparam)
    {
 
-      ::u32 uNotificationCode = second_u16(wparam);
+      ::u32 uNotificationCode = upper_u16(wparam);
 
-      ::atom atom(first_u16(wparam));
+      ::atom atom(lower_u16(wparam));
 
       ::pointer<::user::interaction>pinteraction = get_child_by_id(atom);
 
@@ -336,7 +336,7 @@ namespace user
       catch (const ::exception& exception)
       {
 
-         if (::failed(exception.m_estatus))
+         if (exception.m_estatus.failed())
          {
 
             return false;
@@ -513,7 +513,7 @@ namespace user
 
             throw_todo();
 
-//            int_array ia;
+//            ::i32_array ia;
 //
 //            ::pointer<::database::client>pclient = pinteraction;
 //
@@ -632,7 +632,7 @@ namespace user
 
       ASSERT(pinteraction->m_eddx == e_control_ddx_dbflags);
 
-      int_array ia;
+      ::i32_array ia;
 
       try
       {
@@ -1486,7 +1486,7 @@ namespace user
    //      if(pinteraction->m_eddx == e_control_ddx_dbflags)
    //      {
 
-   //         int_array ia;
+   //         ::i32_array ia;
 
    //         ::pointer<::database::client>pclient = pinteraction;
 
@@ -1646,7 +1646,7 @@ namespace user
    void form_control::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
    {
 
-      pinteraction->client_rectangle(rectangle);
+      rectangle = pinteraction->client_rectangle();
 
    }
 

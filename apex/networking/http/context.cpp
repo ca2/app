@@ -8,6 +8,7 @@
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
+#include "acme/primitive/primitive/_text_stream.h"
 #include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"
@@ -435,7 +436,7 @@ namespace http
 
       //output_error_message("What?!", nullptr, e_message_box_ok);
 
-      output_debug_string("What?!");
+      information("What?!");
 
       string strUrl = locale_schema_url(scopedstrUrl, scopedstrLocale, scopedstrSchema);
 
@@ -1867,20 +1868,20 @@ namespace http
 
       ::pointer<::apex::application>pappAgent = papp;
 
-      i32 iPort;
+      //i32 iPort;
 
-      if (strProtocol == "https")
-      {
+      //if (strProtocol == "https")
+      //{
 
-         iPort = 443;
+      //   iPort = 443;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         iPort = 80;
+      //   iPort = 80;
 
-      }
+      //}
 
       string strVersion;
       
@@ -1947,16 +1948,16 @@ namespace http
 
       }
 
-      bool bPost;
+      //bool bPost;
 
-      bool bPut;
+      //bool bPut;
 
       if (set["put"].cast < ::file::file >() || set("http_method") == "PUT")
       {
 
-         bPost = false;
+         //bPost = false;
 
-         bPut = true;
+         //bPut = true;
 
          auto psocketPut = pobjectCreator->__create_new < ::sockets::http_put_socket>();
 
@@ -1969,12 +1970,12 @@ namespace http
          psocket->m_emethod = ::sockets::http_method_put;
 
       }
-      else if (set["post"].propset().has_element() || set("http_method") == "POST")
+      else if (set["post"].propset().has_property() || set("http_method") == "POST")
       {
 
-         bPost = true;
+         //bPost = true;
 
-         bPut = false;
+         //bPut = false;
 
          auto psocketPost = pobjectCreator->__create_new < ::sockets::http_post_socket >();
 
@@ -1997,9 +1998,9 @@ namespace http
       else
       {
 
-         bPost = false;
+         //bPost = false;
 
-         bPut = false;
+         //bPut = false;
 
          auto psocketGet = pobjectCreator->__create_new < ::http::get_socket>();
 
@@ -2574,7 +2575,7 @@ namespace http
          }
 
       }
-      else if (::failed(psocket->m_estatus))
+      else if (psocket->m_estatus.failed())
       {
 
          estatus = psocket->m_estatus;
@@ -2705,14 +2706,14 @@ namespace http
 
       property_set & set = pmessage->get_property_set();
 
-      if (pmessageMessage->m_setPost.get_count() > 0)
+      if (pmessageMessage->m_setPost.property_count() > 0)
       {
 
          set["post"] = pmessageMessage->m_setPost;
 
       }
 
-      if (pmessageMessage->m_setHeaders.get_count() > 0)
+      if (pmessageMessage->m_setHeaders.property_count() > 0)
       {
 
          set["headers"] = pmessageMessage->m_setHeaders;
@@ -2963,27 +2964,31 @@ namespace http
    }
 
 
-   string context::gmdate(time_t t)
+   string context::gmdate(posix_time t)
    {
 
-      if (t == 0)
+      if (t.m_iSecond == 0)
       {
 
-         t = ::time(nullptr);
+         t.m_iSecond = ::time(nullptr);
 
       }
 
       struct tm tp;
 
+      time_t time(t.m_iSecond);
+
 #ifdef _WIN32
 
-      ::memory_copy(&tp, gmtime(&t), sizeof(tp));
+      ::memory_copy(&tp, gmtime(&time), sizeof(tp));
 
 #else
 
-      gmtime_r(&t, &tp);
+      gmtime_r(&time, &tp);
 
 #endif
+
+      t.m_iSecond = time;
 
       const char * days[7] = { "Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -2993,9 +2998,9 @@ namespace http
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
       };
 
-      char strDateTime[1024];
+      ::string strDateTime;
 
-      sprintf(strDateTime, "%s, %02d-%s-%04d %02d:%02d:%02d GMT",
+      strDateTime.format("%s, %02d-%s-%04d %02d:%02d:%02d GMT",
          days[tp.tm_wday],
          tp.tm_mday,
          months[tp.tm_mon],

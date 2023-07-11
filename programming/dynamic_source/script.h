@@ -17,7 +17,7 @@ namespace dynamic_source
       ::pointer<script_manager>                 m_pmanager;
       string                                    m_strName;
       memory_file_pointer                       m_pfileError;
-      ::write_text_stream  < ::file::file >     m_streamError;
+      ::write_text_stream                       m_textstreamError;
       string                                    m_strError;
       bool                                      m_bNew;
 

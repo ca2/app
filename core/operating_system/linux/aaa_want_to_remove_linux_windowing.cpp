@@ -572,7 +572,7 @@ Window * x11_window_list(Display *disp, unsigned long * len)
    if (XGetWindowProperty(disp,XDefaultRootWindow(disp),prop,0,1024,False,XA_WINDOW,
                           &type,&form,len,&remain,&list) != Success)
    {
-      output_debug_string("winlist() -- GetWinProp");
+      information("winlist() -- GetWinProp");
       return nullptr;
    }
 
@@ -1325,7 +1325,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, ::i32_array  & ya,SIZE32 * psize)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -2283,8 +2283,8 @@ CLASS_DECL_CORE int_bool PostMessage(oswindow oswindow, ::u32 Msg, WPARAM wParam
    message.message = Msg;
    message.wParam = wParam;
    message.lParam = lParam;
-   message.pt.x() = 0x80000000;
-   message.pt.y() = 0x80000000;
+   message.pt.x() = I32_MINIMUM;
+   message.pt.y() = I32_MINIMUM;
 
    return post_ui_message(message);
 
@@ -2345,7 +2345,7 @@ bool post_ui_message(const MESSAGE & message)
    if(message.message == e_message_quit)
    {
 
-      output_debug_string("e_message_quit thread");
+      information("e_message_quit thread");
 
    }
 
@@ -2406,7 +2406,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
       if(g_tickLastMouseMove.elapsed() < 5)
       {
 
-         //output_debug_string("\n.optimized");
+         //information("\n.optimized");
 
       }
       else
@@ -2500,19 +2500,19 @@ bool x11_process_message(Display * pdisplay)
                   if(pinteraction->m_iMouseMoveSkipCount == 2)
                   {
 
-                     //output_debug_string("\nmmv>skip 2!");
+                     //information("\nmmv>skip 2!");
 
                   }
                   else if(pinteraction->m_iMouseMoveSkipCount == 5)
                   {
 
-                     //output_debug_string("\nmmv>Skip 5!!!");
+                     //information("\nmmv>Skip 5!!!");
 
                   }
                   else if(pinteraction->m_iMouseMoveSkipCount == 10)
                   {
 
-                     //output_debug_string("\nmmv>SKIP 10 !!!!!!!!!");
+                     //information("\nmmv>SKIP 10 !!!!!!!!!");
 
                   }
 
@@ -2905,13 +2905,13 @@ bool x11_process_message(Display * pdisplay)
 //         if(wFocus == e.xfocus.window)
 //         {
 //
-//            output_debug_string("A\n");
+//            information("A\n");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("B " + as_string(wFocus));
+//            information("B " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -2920,13 +2920,13 @@ bool x11_process_message(Display * pdisplay)
 //         if(wFocus == g_windowFocus)
 //         {
 //
-//            output_debug_string("C\n");
+//            information("C\n");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("D " + as_string(wFocus));
+//            information("D " + as_string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -2995,7 +2995,7 @@ bool x11_process_message(Display * pdisplay)
    break;
    default:
    {
-      output_debug_string("axis_x11 case default:");
+      information("axis_x11 case default:");
    }
    }
 

@@ -418,9 +418,6 @@ CLASS_DECL_ACME void copy(::string & str, const particle & particle);
 CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 
 
-CLASS_DECL_ACME::string & copy(::string & str, const integral_byte & memsize);
-
-
 CLASS_DECL_ACME void copy(::string & str, const particle & particle);
 
 

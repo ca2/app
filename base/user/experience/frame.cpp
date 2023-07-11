@@ -9,6 +9,7 @@
 #include "acme/constant/id.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/message/user.h"
 #include "aura/user/user/style.h"
 #include "base/platform/session.h"
@@ -230,7 +231,7 @@ namespace experience
    }
 
 
-   void frame::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto pframewindow = m_pframewindow;
@@ -252,7 +253,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      get_window_client_rect(&rectangleClient);
+      get_window_client_rectangle(&rectangleClient, ::user::e_layout_lading);
 
       if (pframewindow != nullptr)
       {
@@ -266,7 +267,7 @@ namespace experience
                                  &rectangle, rectangle, false);
             rectangle.offset(rectangleClient.top_left());
             ::rectangle_i32 rectangleBorder;
-            pframewindow->GetBorderRect(&rectangleBorder);
+            pframewindow->GetBorderRectangle(&rectangleBorder);
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
                                  &rectangleBorder, rectangle, true);
             pframewindow->SetBorderRect(rectangleBorder);
@@ -286,7 +287,7 @@ namespace experience
 
             ::rectangle_i32 rectangleBorder;
 
-            pframewindow->GetBorderRect(&rectangleBorder);
+            pframewindow->GetBorderRectangle(&rectangleBorder);
 
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleClient);
 
@@ -766,7 +767,7 @@ namespace experience
 
       auto rectangle = get_control_box()->get_button_margin(e_button_close);
 
-      auto iButtonSize = get_control_box()->calc_button_size(pgraphics);
+      auto iButtonSize = get_control_box()->calculate_button_size(pgraphics);
 
       auto iCaptionHeight = rectangle.top + iButtonSize + rectangle.bottom;
 
@@ -792,13 +793,13 @@ namespace experience
       try
       {
 
-         if (m_pframewindow->layout().is_full_screen())
+         if (m_pframewindow->layout().is_full_screen(::user::e_layout_lading))
          {
 
             bVisibleControlBox = false;
 
          }
-         else if (m_pframewindow->layout().is_this_screen_visible())
+         else if (m_pframewindow->layout().is_this_screen_visible(::user::e_layout_lading))
          {
 
             bVisibleControlBox = true;
@@ -819,7 +820,9 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = pframewindow->::user::interaction::client_rectangle(::user::e_layout_lading);
+
+      information() << "experience::frame_window::title_bar_layout " << rectangleClient;
 
       if (rectangleClient.is_empty())
       {
@@ -828,14 +831,17 @@ namespace experience
 
       }
 
-      rectangle_i32 rectangleMargin = get_margin_rect();
+      rectangle_i32 rectangleMargin = get_margin_rectangle();
+
+      information() << "experience::frame_window::title_bar_layout rectangleMargin: " << rectangleMargin;
 
       rectangle_i32 rectangleCaptionTextPadding = get_caption_text_padding();
 
-      i32 iControlBoxWidth = m_pcontrolbox->calc_control_box_width(pgraphics);
+      i32 iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
+
+      information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
       calculate_caption_height(pgraphics);
-
 
       //i32 iCaptionHeight = m_iCap;
 
@@ -875,6 +881,8 @@ namespace experience
 
       }
 
+      information() << "experience::frame_window::title_bar_layout m_iControlBoxPosition: " << m_iControlBoxPosition;
+
       ::rectangle_i32 rectangleControlBox;
 
       rectangleControlBox.left = m_iControlBoxPosition;
@@ -882,10 +890,12 @@ namespace experience
       rectangleControlBox.top = m_rectangleCaption.top;
       rectangleControlBox.bottom = m_rectangleCaption.bottom;
 
-      if (m_pframewindow->const_layout().is_this_screen_visible() && !is_iconic(m_pframewindow->const_layout().design().display()))
+      if (m_pframewindow->const_layout().is_this_screen_visible(::user::e_layout_lading) && !is_iconic(m_pframewindow->const_layout().lading().display()))
       {
 
-         get_control_box()->place(rectangleControlBox);
+         get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pgraphics);
+
+         information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
 
       }
 
@@ -893,7 +903,7 @@ namespace experience
 
       ::rectangle_i32 rectangleIcon;
 
-      bool bIcon = get_element_rect(rectangleIcon, ::e_element_top_left_icon);
+      bool bIcon = get_element_rectangle(rectangleIcon, ::e_element_top_left_icon);
 
       m_pointWindowIcon.y() = rectangleMargin.top + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
 
@@ -919,11 +929,15 @@ namespace experience
 
          get_control_box()->display();
 
+         information() << "experience::frame_window::title_bar_layout bVisibleControlBox: true";
+
       }
       else
       {
 
          get_control_box()->hide();
+
+         information() << "experience::frame_window::title_bar_layout bVisibleControlBox: false";
 
       }
 
@@ -1027,12 +1041,12 @@ namespace experience
    }
 
 
-   bool frame::calculate_window_client_rect(::rectangle_i32 * prectangle)
+   bool frame::calculate_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
    {
 
       ::rectangle_i32 rectangleClient(*prectangle);
 
-      auto eappearance = m_pframewindow->const_layout().design().appearance();
+      auto eappearance = m_pframewindow->const_layout().state(elayout).appearance();
 
       if (!m_pframewindow->layout().is_full_screen() &&
          !(eappearance & ::e_appearance_transparent_frame))
@@ -1042,7 +1056,7 @@ namespace experience
 
       }
 
-      rectangle_i32 rectangleMargin = get_margin_rect();
+      rectangle_i32 rectangleMargin = get_margin_rectangle();
 
       rectangleClient.deflate(rectangleMargin);
 
@@ -1060,22 +1074,22 @@ namespace experience
    }
 
 
-   bool frame::get_window_client_rect(::rectangle_i32 * prectangle)
+   bool frame::get_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
    {
 
       if (__type_name(this).case_insensitive_contains("file"))
       {
 
 
-         output_debug_string("frame::get_window_client_rect file");
+         information("frame::get_window_client_rectangle file");
 
       }
 
       ::rectangle_i32 rectangleClient;
 
-      m_pframewindow->::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = m_pframewindow->::user::interaction::client_rectangle(elayout);
 
-      if (!calculate_window_client_rect(&rectangleClient))
+      if (!calculate_window_client_rectangle(&rectangleClient, elayout))
       {
 
          return false;
@@ -1089,12 +1103,12 @@ namespace experience
    }
 
 
-   bool frame::get_draw_client_rect(::rectangle_i32 * prectangle)
+   bool frame::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
    {
 
       ::rectangle_i32 rectangle;
 
-      if (!get_window_client_rect(&rectangle))
+      if (!get_window_client_rectangle(&rectangle, elayout))
       {
 
          return false;
@@ -1104,7 +1118,6 @@ namespace experience
       rectangle.offset(-rectangle.top_left());
 
       *prectangle = rectangle;
-
 
       return true;
 
@@ -1118,7 +1131,7 @@ namespace experience
 
       ::rectangle_i32 rectangleInner(rectangle);
 
-      calculate_window_client_rect(&rectangleInner);
+      calculate_window_client_rectangle(&rectangleInner);
 
       auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 
@@ -1143,7 +1156,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = pframewindow->::user::interaction::client_rectangle();
 
       //calc_window_client_rect(m_rectangleClient, rectangleClient);
 
@@ -1193,7 +1206,7 @@ namespace experience
    }
 
 
-   rectangle_i32 frame::get_margin_rect()
+   rectangle_i32 frame::get_margin_rectangle()
    {
 
       if (m_pframewindow->layout().is_full_screen())
@@ -1221,7 +1234,7 @@ namespace experience
    void frame::on_defer_display()
    {
 
-      if (m_pframewindow->layout().is_this_screen_visible())
+      if (m_pframewindow->layout().is_this_screen_visible(::user::e_layout_lading))
       {
 
          if (m_pframewindow->get_parent() == nullptr)
@@ -1263,7 +1276,7 @@ namespace experience
 
       }
 
-      auto edisplay = m_pframewindow->const_layout().sketch().display();
+      auto edisplay = m_pframewindow->const_layout().lading().display();
 
       ::rectangle_i32 rectangle;
 
@@ -1271,7 +1284,7 @@ namespace experience
 
       bool bPreserveSize;
 
-      rectangleRequest = m_pframewindow->screen_rect();
+      rectangleRequest = m_pframewindow->screen_rectangle(::user::e_layout_lading);
 
       bool bMoving = m_pframewindow->move_manager() && m_pframewindow->move_manager()->window_is_moving();
 
@@ -1317,7 +1330,7 @@ namespace experience
          (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
       {
 
-         if (m_pframewindow->const_layout().m_timeLastSketchToDesign.elapsed() < 800_ms)
+         if (m_pframewindow->const_layout().m_timeLastLadingToLayout.elapsed() < 800_ms)
          {
 
             if (edisplay != m_pframewindow->const_layout().design().display())
@@ -1406,7 +1419,7 @@ namespace experience
 
       auto sizeMin = m_pframewindow->get_window_minimum_size();
 
-      auto size = m_pframewindow->const_layout().sketch().size();
+      auto size = m_pframewindow->const_layout().lading().size();
 
       size.ensure_at_least(sizeMin);
 
@@ -1418,7 +1431,7 @@ namespace experience
    void frame::sync_dock_grip_border()
    {
 
-      ::e_display edisplay = m_pframewindow->const_layout().sketch().display();
+      ::e_display edisplay = m_pframewindow->const_layout().lading().display();
 
       auto rectangleMargin = m_rectangleMarginNormal;
 
@@ -1426,7 +1439,8 @@ namespace experience
       e_border eborder = e_border_none;
       e_dock edock = e_dock_none;
 
-      if (!m_pframewindow->is_this_screen_visible() || is_zoomed(edisplay) || is_full_screen(edisplay))
+      if (!m_pframewindow->is_this_screen_visible(::user::e_layout_lading)
+         || is_zoomed(edisplay) || is_full_screen(edisplay))
       {
 
          rectangleMargin.Null();
@@ -1570,7 +1584,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rect(::rectangle_i32 & prectangle, ::enum_element eelement)
+   bool frame::get_element_rectangle(::rectangle_i32 & prectangle, ::enum_element eelement)
    {
 
       return false;
@@ -1578,8 +1592,7 @@ namespace experience
    }
 
 
-   void frame::get_parent_rect(::rectangle_i32 & rectangle)
-
+   void frame::get_parent_rectangle(::rectangle_i32 & rectangle)
    {
 
       if (m_pframewindow->layout().is_full_screen())
@@ -1587,13 +1600,11 @@ namespace experience
 
          m_pframewindow->best_monitor(&rectangle);
 
-
       }
       else if (m_pframewindow->layout().is_zoomed())
       {
 
          m_pframewindow->window_rectangle(rectangle);
-
 
       }
       else
@@ -1644,7 +1655,7 @@ namespace experience
    void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      m_pframewindow->::user::interaction::client_rectangle(rectangle);
+      rectangle = m_pframewindow->::user::interaction::client_rectangle();
 
    }
 

@@ -186,7 +186,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //     fd_set m_efds; ///< file descriptor set monitored for exceptions
          int m_preverror; ///< debug select() error
          int m_errcnt; ///< debug select() error
-         time_t m_tlast; ///< timeout control
+         posix_time m_tlast; ///< timeout control
 
          // state lists
          socket_id_list m_fds; ///< Active file descriptor list

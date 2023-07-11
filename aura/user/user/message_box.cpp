@@ -447,7 +447,7 @@ namespace user
 
       r.offset_y((rectangleMonitor.height() - r.height()) * 2 / 5);
 
-      if (r != this->screen_rect())
+      if (r != this->screen_rectangle())
       {
 
          place(r);
@@ -512,9 +512,7 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto pstyle = get_style(pgraphics);
 

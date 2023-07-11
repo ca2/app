@@ -97,7 +97,7 @@
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rect(::rectangle_i32 * lprect, enum_element eelement) override;
+               virtual bool get_element_rectangle(::rectangle_i32 * lprect, enum_element eelement) override;
 
                virtual bool hit_test(const ::point_i32 &point, enum_element &eelementParam);
 

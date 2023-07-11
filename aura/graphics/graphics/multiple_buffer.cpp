@@ -82,7 +82,7 @@ namespace graphics
    //}
 
 
-   buffer_item * multiple_buffer::on_begin_draw()
+   ::graphics::buffer_item * multiple_buffer::on_begin_draw()
    {
 
       auto pitem = get_buffer_item();
@@ -93,7 +93,7 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         pitem->m_pimage->create(pitem->m_size);
+         pitem->m_pimage2->create(pitem->m_size);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{
@@ -104,7 +104,7 @@ namespace graphics
 
       }
 
-      ::image_pointer & pimage = m_bufferitema[m_iBuffer]->m_pimage;
+      ::image_pointer & pimage = m_bufferitema[m_iBuffer]->m_pimage2;
 
       if (!pimage)
       {
@@ -140,12 +140,12 @@ namespace graphics
 
       }
 
-      if (m_bufferitema[m_iDone]->m_pimage)
+      if (m_bufferitema[m_iDone]->m_pimage2)
       {
 
          iFound = m_iDone;
 
-         ::size_i32 sizeBuffer = m_bufferitema[iFound]->m_pimage->size();
+         ::size_i32 sizeBuffer = m_bufferitema[iFound]->m_pimage2->size();
 
          bBigger = sizeBuffer.cx() > size.cx() || sizeBuffer.cy() > size.cy();
 
@@ -161,14 +161,14 @@ namespace graphics
 
          }
 
-         if (!m_bufferitema[i]->m_pimage)
+         if (!m_bufferitema[i]->m_pimage2)
          {
 
             break;
 
          }
 
-         ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage->size();
+         ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage2->size();
 
          if (size == sizeBuffer)
          {
@@ -209,14 +209,14 @@ namespace graphics
 
             }
 
-            if (!m_bufferitema[i]->m_pimage)
+            if (!m_bufferitema[i]->m_pimage2)
             {
 
                break;
 
             }
 
-            ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage->get_size();
+            ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage2->get_size();
 
             if (sizeBuffer == size)
             {
@@ -255,26 +255,26 @@ namespace graphics
 
       }
 
-      int iAge;
+      //int iAge;
 
-      if (iGot < 0)
-      {
+      //if (iGot < 0)
+      //{
 
-         iAge = -1;
+      //   //iAge = -1;
 
-      }
-      else if (iGot <= m_iDone)
-      {
+      //}
+      //else if (iGot <= m_iDone)
+      //{
 
-         iAge = (int)(m_iDone - iGot);
+      //   //iAge = (int)(m_iDone - iGot);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         iAge = (int)(m_bufferitema.size() - iGot + m_iDone);
+      //   //iAge = (int)(m_bufferitema.size() - iGot + m_iDone);
 
-      }
+      //}
 
 #ifdef EXTRALOG
 
@@ -306,7 +306,7 @@ namespace graphics
       if (iGot < 0)
       {
 
-         output_debug_string("NOT DRAWING? <<---- search and bp here !imageBuffer2 ");
+         information("NOT DRAWING? <<---- search and bp here !imageBuffer2 ");
 
       }
 
@@ -383,7 +383,7 @@ namespace graphics
 
       bool bOk = false;
 
-      ipc_copy(pitem->m_pimage);
+      ipc_copy(pitem->m_pimage2);
 
       return bOk;
 

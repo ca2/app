@@ -284,8 +284,7 @@ namespace user
       /*CPaintDC spgraphics(this);
       ::draw2d::graphics_pointer & pgraphics = &spgraphics;
       pgraphics->set(m_pfont);
-      ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
       ::rectangle_i32 rectangleText;
       pgraphics->SetBkMode(TRANSPARENT);
       if(((m_ealign & AlignLeft) == AlignLeft) &&
@@ -512,8 +511,7 @@ namespace user
       __construct(m_pfont);
 
       /*::draw2d::region rgn;
-      ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
       ::rectangle_i32 rectangleWindow;
       window_rectangle(rectangleWindow);
       screen_to_client(rectangleWindow);

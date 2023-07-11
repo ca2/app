@@ -554,6 +554,16 @@ namespace file
    }
 
 
+   bool file::unget_if(::ansi_character ch)
+   {
+
+      throw ::exception(error_not_supported);
+
+      return false;
+
+   }
+
+
    bool file::read_string(string & str)
    {
 
@@ -1435,6 +1445,25 @@ namespace file
       {
 
          payload.file_path_reference().flags() |= ::file::e_flag_bypass_cache;
+
+      }
+
+   }
+
+   
+   CLASS_DECL_ACME bool get_no_cache(const ::payload & payload)
+   {
+
+      if (payload.get_type() == e_type_property_set)
+      {
+
+         return payload["nocache"].is_true();
+
+      }
+      else
+      {
+
+         return payload.as_file_path().flags() & ::file::e_flag_bypass_cache;
 
       }
 

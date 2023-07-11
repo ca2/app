@@ -2187,12 +2187,12 @@ namespace user
    }
 
 
-   void element::on_layout(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void element::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void element::on_reposition()
@@ -2405,10 +2405,16 @@ namespace user
    }
 
 
-   void element::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
-   {
+   //void element::sketch_to_layout()
+   //{
 
-   }
+   //}
+
+
+   //void element::layout_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
+   //{
+
+   //}
 
 
    void element::_001UpdateWindow()
@@ -4486,10 +4492,16 @@ namespace user
 
 
 
-   void element::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   void element::set_need_redraw(
+      const ::rectangle_i32_array & rectangleaNeedRedraw,
+      ::draw2d::graphics * pgraphics,
+      function<void()> function, 
+      bool bAscendants)
    {
 
       UNREFERENCED_PARAMETER(rectangleaNeedRedraw);
+      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(function);
       UNREFERENCED_PARAMETER(bAscendants);
 
    }
@@ -4688,7 +4700,7 @@ namespace user
 
       pfiledialog->m_filedialogfiltera = filedialogfiltera;
 
-      pfiledialog->m_function = [this, function](auto pdialog)
+      pfiledialog->m_function = [function](auto pdialog)
       {
 
 
@@ -4718,7 +4730,7 @@ namespace user
 
       auto pfiledialog = acmenode()->node_file_dialog();
 
-      pfiledialog->m_function = [this, function](auto pdialog)
+      pfiledialog->m_function = [function](auto pdialog)
       {
 
 
@@ -4749,7 +4761,7 @@ namespace user
 
       auto pfiledialog = acmenode()->node_file_dialog();
 
-      pfiledialog->m_function = [this, function](auto pdialog)
+      pfiledialog->m_function = [function](auto pdialog)
       {
 
 

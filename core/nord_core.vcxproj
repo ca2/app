@@ -225,8 +225,10 @@
     <ClCompile Include="filesystem\filemanager\operation_thread.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\path_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_button_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_edit_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp" />
-    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tree.cpp" />
     <ClCompile Include="filesystem\filemanager\_.cpp" />
@@ -274,11 +276,9 @@
     <ClCompile Include="user\simple\mesh_data.cpp" />
     <ClCompile Include="user\simple\pane_document.cpp" />
     <ClCompile Include="user\simple\printer_list_impact.cpp" />
-    <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\still.cpp" />
     <ClCompile Include="user\simple\tab_control.cpp" />
     <ClCompile Include="user\simple\tab_impact.cpp" />
-    <ClCompile Include="user\simple\toolbar.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
     <ClCompile Include="user\userex\calculator_edit_impact.cpp" />
     <ClCompile Include="user\userex\color_impact.cpp" />
@@ -293,7 +293,6 @@
     <ClCompile Include="user\userex\impact_host.cpp" />
     <ClCompile Include="user\userex\menu_document.cpp" />
     <ClCompile Include="user\userex\menu_frame.cpp" />
-    <ClCompile Include="user\userex\menu_impact.cpp" />
     <ClCompile Include="user\userex\message_box.cpp" />
     <ClCompile Include="user\userex\pane_split_impact.cpp" />
     <ClCompile Include="user\userex\pane_tab_impact.cpp" />
@@ -328,7 +327,6 @@
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
     <ClCompile Include="user\user\mesh_item.cpp" />
-    <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
     <ClCompile Include="user\user\toolbar_ctrl.cpp" />
@@ -430,6 +428,9 @@
     <ClInclude Include="filesystem\filemanager\operation_thread.h" />
     <ClInclude Include="filesystem\filemanager\operation_impact.h" />
     <ClInclude Include="filesystem\filemanager\path_impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_button_impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_edit_impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_impact.h" />
     <ClInclude Include="filesystem\filemanager\thumbnail.h" />
     <ClInclude Include="filesystem\filemanager\save_as_name_impact.h" />
     <ClInclude Include="filesystem\filemanager\tab_impact.h" />

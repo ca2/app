@@ -34,8 +34,8 @@ namespace userfs
       i32 get_index() const;
       bool is_folder() const;
 
-      //void write(binary_stream < FILE > & s) const override;
-      //void read(binary_stream < FILE > & s) override;
+      //void write(binary_stream & s) const override;
+      //void read(binary_stream & s) override;
 
 
    };

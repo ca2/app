@@ -52,14 +52,14 @@ namespace simpledb
 
       __construct_new(pbaRecursive);
 
-      if (!datastream()->get(::atom(), ppatha))
+      if (!datastream()->get(::atom(), *ppatha))
       {
 
          return;
 
       }
 
-      datastream()->get("recursive", pbaRecursive);
+      datastream()->get("recursive", *pbaRecursive);
 
       for (index i = pbaRecursive->get_size(); i < ppatha->get_size(); i++)
       {
@@ -79,9 +79,9 @@ namespace simpledb
    void file_set::add_search(const ::file::path & pathSearchFolder, bool bRecursive)
    {
 
-      datastream()->get(::atom(), m_ppathaSearch);
+      datastream()->get(::atom(), *m_ppathaSearch);
 
-      datastream()->get("recursive", m_pbaRecursive);
+      datastream()->get("recursive", *m_pbaRecursive);
 
       index i = -1;
 
@@ -96,9 +96,9 @@ namespace simpledb
 
          m_pbaRecursive->add(bRecursive);
 
-         datastream()->set(::atom(), m_ppathaSearch);
+         datastream()->set(::atom(), *m_ppathaSearch);
 
-         datastream()->set("recursive", m_pbaRecursive);
+         datastream()->set("recursive", *m_pbaRecursive);
 
       }
       else
@@ -106,7 +106,7 @@ namespace simpledb
 
          m_pbaRecursive->set_at_grow(i,bRecursive);
 
-         datastream()->set("recursive", m_pbaRecursive);
+         datastream()->set("recursive", *m_pbaRecursive);
 
       }
 

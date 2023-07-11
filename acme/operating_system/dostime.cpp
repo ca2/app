@@ -73,7 +73,7 @@
  * To get the corresponding Unix time, use the dos2unixtime() as in:
  *
  * \code
- *      time_t min(dos2unixtime(mindostime()));
+ *      posix_time min(dos2unixtime(mindostime()));
  * \endcode
  *
  * \return The smallest possible DOS time.
@@ -97,7 +97,7 @@ dos_time_t minimum_dos_time()
  * To get the corresponding Unix time, use the dos2unixtime() as in:
  *
  * \code
- *      time_t max(dos2unixtime(maxdostime()));
+ *      posix_time max(dos2unixtime(maxdostime()));
  * \endcode
  *
  * \return The largest possible DOS time.
@@ -111,7 +111,7 @@ dos_time_t maximum_dos_time()
 
 /** \brief Convert a DOS time to a Unix time
  *
- * This function returns the Unix time_t value (GMT/UTC time) from
+ * This function returns the Unix posix_time value (GMT/UTC time) from
  * the DOS format (local) time dostime, where dostime is a four
  * ::u8 value (date in most significant word, time in least
  * significant word), see dostime() function.
@@ -128,14 +128,14 @@ dos_time_t maximum_dos_time()
  *
  * \sa dostime()
  */
-time_t dos_time_unix_time(dos_time_t dostime)
+posix_time dos_time_unix_time(dos_time_t dostime)
 {
     struct tm t;         /* argument for mktime() */
 
     memset(&t, 0, sizeof(t));
 
     t.tm_isdst = -1;     /* let mktime() determine if DST is in effect */
-    /* Convert DOS time to UNIX time_t format */
+    /* Convert DOS time to UNIX posix_time format */
     t.tm_sec  = (((int)dostime <<  1) & 0x3E);
     t.tm_min  = (((int)dostime >>  5) & 0x3F);
     t.tm_hour = (((int)dostime >> 11) & 0x1F);
@@ -150,14 +150,14 @@ time_t dos_time_unix_time(dos_time_t dostime)
     || t.tm_min  <  0 || t.tm_min  >  59
     || t.tm_sec  <  0 || t.tm_sec  >  59)
     {
-        return -1;
+       throw ::exception(error_invalid_time_type);
     }
 
     // A full round trip between Unix date to DOS and back to Unix works
     // as is (without worry about the current timezone) because the DOS
     // format makes use of localdate() and that's 1 to 1 compatible with
     // mktime() which expects a local date too.
-    return mktime(&t);
+    return { posix_time_t{}, (::i64)mktime(&t) };
 }
 
 
@@ -208,20 +208,20 @@ dos_time_t dos_time(int year, int month, int day, int hour, int minute, int seco
 
 /** \brief Convert a Unix date to a DOS date.
  *
- * This function return the Unix time_t converted in DOS format,
+ * This function return the Unix posix_time converted in DOS format,
  * rounded up to the next even second.
  *
- * \param[in] unix_time  A Unix time_t value.
+ * \param[in] unix_time  A Unix posix_time value.
  *
  * \return The Unix date in DOS format unless it is out of range for
  *         a DOS time and date in which case zero (0) is returned.
  */
-dos_time_t unix_time_dos_time(time_t unix_time)
+dos_time_t unix_time_dos_time(posix_time unix_time)
 {
     time_t even_time;
     struct tm *s;         /* result of localtime() */
 
-    even_time = (unix_time + 1) & ~1;         /* Round up to even seconds. */
+    even_time = (unix_time.m_iSecond + 1) & ~1;         /* Round up to even seconds. */
     s = localtime(&even_time);         /* Use local time since MSDOS does. */
     return dos_time(s->tm_year + 1900, s->tm_mon + 1, s->tm_mday,
                    s->tm_hour, s->tm_min, s->tm_sec);

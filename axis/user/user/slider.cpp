@@ -144,9 +144,7 @@ namespace user
 
       screen_to_client(e_layout_design)(pointCursor);
 
-      ::rectangle_i32 rectangle;
-
-      client_rectangle(rectangle);
+      auto rectangle = client_rectangle();
 
       if(rectangle.width() != 0)
       {
@@ -203,9 +201,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
@@ -237,9 +233,7 @@ namespace user
    void slider::get_slider_rect(::rectangle_i32 & rectangle)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       i32 iWidth = 16;
 

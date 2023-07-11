@@ -595,7 +595,7 @@ i32 file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, 
 
          }
 
-         if (!isdigit((uchar) str[0]) || !isdigit((uchar) str[1]))
+         if (!character_isdigit(str[0]) || !character_isdigit(str[1]))
          {
 
             stra.erase_at(i);
@@ -662,7 +662,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    pfile->open(path, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_no_exception_on_open);
 
-   if (::failed(pfile->m_estatus))
+   if (pfile->m_estatus.failed())
    {
 
       return false;
@@ -848,7 +848,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
          return;
 
       }
-      else if (::failed(pfile->m_estatus))
+      else if (pfile->m_estatus.failed())
       {
 
          return;
@@ -919,7 +919,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
          return -1;
 
       }
-      else if (::failed(pfile->m_estatus))
+      else if (pfile->m_estatus.failed())
       {
 
          return -1;
@@ -1353,7 +1353,7 @@ void file_context::calculate_main_resource_memory()
          if (!m_pfolderResource)
          {
 
-            output_debug_string("m_pfolderResource is null? Why?");
+            information("m_pfolderResource is null? Why?");
 
          }
 
@@ -1428,7 +1428,7 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
-   ::output_debug_string(strPath);
+   ::information(strPath);
 
    fflush(stdout);
 
@@ -1461,14 +1461,14 @@ void file_context::calculate_main_resource_memory()
    if(strPath.contains("256"))
    {
 
-      output_debug_string("contains 256");
+      information("contains 256");
 
       fflush(stdout);
 
       if(pfileOutput.nok())
       {
 
-         output_debug_string("output file nok");
+         information("output file nok");
 
          fflush(stdout);
 
@@ -1936,7 +1936,7 @@ void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
 //   if (file == nullptr)
 //   {
 //
-//      //output_debug_string("test");
+//      //information("test");
 //
 //      throw ::exception(::exception("file::file_context::transfer Could not transfer file, could not open source file"));
 //
@@ -3185,7 +3185,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    domain.create(purl->get_server(path));
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
+   //bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
+
+   bool bSaveCache = !::file::get_no_cache(payloadFile);
 
    ::file::path pathCache;
 
@@ -3223,6 +3225,20 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
       pathCache.replace_with("_/", "://");
 #endif
       pathCache = dir()->cache() / (pathCache + ".cache");
+
+      if (exists(pathCache))
+      {
+
+         auto pfile = get_reader(pathCache);
+
+         if (pfile.ok())
+         {
+
+            return pfile;
+
+         }
+
+      }
 
    }
 
@@ -3461,7 +3477,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    if (path.contains("yesno.xhtml"))
    {
 
-      output_debug_string("file_context::get_file yesno.xhtml");
+      information("file_context::get_file yesno.xhtml");
 
    }
 
@@ -3503,7 +3519,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
       else
       {
 
-         throw file::exception(::error_file_not_found, errno_error_code(ENOENT), path, ::file::e_open_none, "defer_process_path returns empty path");
+         throw file::exception(::error_file_not_found, {}, path, ::file::e_open_none, "defer_process_path returns empty path");
 
       }
 

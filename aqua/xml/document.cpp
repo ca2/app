@@ -488,9 +488,9 @@ namespace xml
 
       char * pszRight = (char *)m_memoryData.data() + iRight;
 
-      memmove(pszRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
+      memory_transfer(pszRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
 
-      memcpy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
+      memory_copy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
 
       //m_strData = m_strData.left(iPos) + strValue + m_strData.substr(iPos + strName.length() + 2);
 

@@ -3,7 +3,7 @@
 #include "style.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/handler/item.h"
+#include "acme/handler/item.h" 
 #include "acme/platform/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -312,9 +312,7 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
@@ -336,9 +334,7 @@ namespace user
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::color::color crBk;
 
@@ -590,10 +586,8 @@ namespace user
 
    void button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      
-      ::rectangle_i32 rectangleClient;
 
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -644,9 +638,7 @@ namespace user
    void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -739,7 +731,9 @@ namespace user
 
             auto pstyle = get_style(pgraphics);
 
-            ::color::color colorText = get_color(pstyle, e_element_text, get_state());
+            auto estate = get_state();
+
+            ::color::color colorText = get_color(pstyle, e_element_text, estate);
 
             pgraphics->set_text_color(colorText);
 
@@ -819,9 +813,7 @@ namespace user
    void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -884,9 +876,7 @@ namespace user
       else if(!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectangleMargin(4, 4, 4, 4);
 
@@ -954,9 +944,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectanglePadded(rectangleClient);
 
@@ -1045,9 +1033,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto color = get_color(pstyle, e_element_background);
 
@@ -1280,7 +1266,7 @@ namespace user
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
    }
 
@@ -1325,7 +1311,7 @@ namespace user
 
       }
 
-      client_rectangle(rectangleClient);
+      rectangleClient = client_rectangle();
 
       ::point_i32 point = rectangleClient.top_left();
 

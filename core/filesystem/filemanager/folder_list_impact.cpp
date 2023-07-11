@@ -115,7 +115,7 @@ namespace filemanager
    }
 
 
-   bool folder_list_impact::add_unique(const string_array & stra, int_array & baRecursive)
+   bool folder_list_impact::add_unique(const string_array & stra, ::i32_array & baRecursive)
    {
 
       if (stra.get_size() == 0)

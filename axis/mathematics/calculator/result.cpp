@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "result.h"
-// #include "acme/primitive/string/string.h"
+
 #include "acme/primitive/string/international.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -29,7 +29,7 @@ namespace calculator
       {
          if(m_dI < 0.0)
          {
-            return  - 0.5 * pi();
+            return  - 0.5 * π;
          }
          else if(m_dI == 0.0)
          {
@@ -38,14 +38,14 @@ namespace calculator
          }
          else
          {
-            return  0.5 * pi();
+            return  0.5 * π;
          }
       }
       else if(m_dI == 0.0)
       {
          if(m_dR < 0.0)
          {
-            return pi();
+            return π;
          }
          else if(m_dR == 0.0)
          {
@@ -102,18 +102,18 @@ namespace calculator
       }
       else if(emode == mode_polar_degree)
       {
-         str.format(unitext("%f arg(%fdegrees)"), mod(), arg() * 180.0 / pi());
+         str.format(unitext("%f arg(%fdegrees)"), mod(), arg() * 180.0 / π);
          return str;
       }
       return "";
    }
 
-   double g_dPi = ::atan(1.0) * 4.0;
-
-   double pi()
-   {
-      return M_PI;
-   }
+//   double g_dPi = ::atan(1.0) * 4.0;
+//
+//   double π
+//   {
+//      return M_PI;
+//   }
 
 
    result operator + (const result & val1, const result & val2)

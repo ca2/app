@@ -7,6 +7,10 @@
 #include "acme/primitive/collection/comparable_eq_list.h"
 #include "acme/primitive/collection/comparable_list.h"
 
+//#ifdef FREEBSD
+//#include <sys/select.h>
+//#endif
+
 
 namespace sockets_bsd
 {
@@ -39,7 +43,7 @@ namespace sockets_bsd
       fd_set                     m_efds; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
-      time_t                     m_tlast; ///< timeout control
+      ::earth::time                 m_tlast; ///< timeout control
 
       // state lists
       socket_id_list                m_socketlist; ///< Active file descriptor list

@@ -192,7 +192,7 @@ namespace simpledb
             else
             {
 
-               output_debug_string("");
+               information("");
 
             }
 
@@ -249,7 +249,7 @@ namespace simpledb
 
             strValue = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
-            if (strValue.is_empty() || ::failed(set["get_status"]))
+            if (strValue.is_empty() || set["get_status"].failed())
             {
 
                return false;
@@ -273,7 +273,7 @@ namespace simpledb
 
             ::earth::time timeListing(pdatetime->from_string(ptextcontext, strListingTime));
 
-            if (timeListing.abs_diff(e_now) > 5_s)
+            if (timeListing.abs_diff(now_t{}) > 5_s)
             {
 
                return false;

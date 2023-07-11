@@ -29,10 +29,18 @@ add_library(${PROJECT_NAME} SHARED ${regular_expression_pcre2_source})
 add_library(static_${PROJECT_NAME} STATIC ${regular_expression_pcre2_source})
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 
 set_target_properties(regular_expression_pcre2 PROPERTIES LINKER_LANGUAGE CXX)
@@ -45,7 +53,7 @@ if (MSVC)
     target_link_options(regular_expression_pcre2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/regular_expression_pcre2.def")
     target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
 
-elseif (LINUX)
+elseif (${LINUX})
 
 
     #if (USE_PKGCONFIG)
@@ -71,7 +79,7 @@ elseif (LINUX)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-elseif (FREEBSD)
+elseif (${FREEBSD})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)

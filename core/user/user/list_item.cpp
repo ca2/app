@@ -359,7 +359,7 @@ namespace user
 
             //   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::point_i32(), 0);
             //   auto pimage32 = pimageDebug->get_data();
-            //   output_debug_string("imageDebug");
+            //   information("imageDebug");
 
             //}
 
@@ -475,7 +475,7 @@ namespace user
          else
          {
 
-            //output_debug_string("OptHilite(listItemColorText)\n");
+            //information("OptHilite(listItemColorText)\n");
 
          }
 
@@ -492,7 +492,7 @@ namespace user
          else
          {
 
-            //output_debug_string("Opt(listItemColorText)\n");
+            //information("Opt(listItemColorText)\n");
 
          }
 
@@ -580,7 +580,7 @@ namespace user
             if (m_strText == "LOVE OR NOTHING")
             {
 
-               output_debug_string("LOVE OR NOTHING");
+               information("LOVE OR NOTHING");
 
             }
 

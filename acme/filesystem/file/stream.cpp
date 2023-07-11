@@ -28,7 +28,7 @@
 //}
 //
 //
-//void binary_stream < FILE >::write_element(const ::atom & atom, ::particle * pparticle)
+//void binary_stream::write_element(const ::atom & atom, ::particle * pparticle)
 //{
 //
 //   auto strId = factory_id_to_text(__type_name(pelement));
@@ -40,7 +40,7 @@
 //}
 //
 //
-//::pointer<::element>binary_stream < FILE >::read_element(const ::atom & atom)
+//::pointer<::element>binary_stream::read_element(const ::atom & atom)
 //{
 //
 //   string strId;

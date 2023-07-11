@@ -150,13 +150,13 @@ typedef __msvcrt_long __time32_t;
 #endif
 
 #ifndef _TIME64_T_DEFINED
-typedef ::i64 DECLSPEC_ALIGN(8) time_t;
+typedef ::i64 DECLSPEC_ALIGN(8) posix_time;
 #define _TIME64_T_DEFINED
 #endif
 
 #ifdef _USE_32BIT_TIME_T
 # ifdef OS64BIT
-#  error You cannot use 32-bit time_t in Win64
+#  error You cannot use 32-bit posix_time in Win64
 # endif
 #elif !defined(OS64BIT)
 # define _USE_32BIT_TIME_T
@@ -165,9 +165,9 @@ typedef ::i64 DECLSPEC_ALIGN(8) time_t;
 /*
 #ifndef _TIME_T_DEFINED
 #ifdef _USE_32BIT_TIME_T
-typedef __time32_t time_t;
+typedef __time32_t posix_time;
 #else
-typedef time_t time_t;
+typedef posix_time posix_time;
 #endif
 #define _TIME_T_DEFINED
 #endif

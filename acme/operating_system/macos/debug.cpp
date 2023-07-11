@@ -91,10 +91,10 @@
 //
 //
 //
-//void output_debug_string(const ::wide_character * pOutputString)
+//void information(const ::wide_character * pOutputString)
 //{
 //
-//   output_debug_string(string(pOutputString));
+//   information(string(pOutputString));
 //
 //}
 //

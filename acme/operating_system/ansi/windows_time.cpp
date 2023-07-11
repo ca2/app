@@ -12,16 +12,14 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 ////#include "acme/exception/exception.h"
+#ifdef FREEBSD
+#define __XSI_VISIBLE 700
+#define __BSD_VISIBLE 1
+#endif
+#include <sys/time.h>
+#include <errno.h>
 
 
-using WORD = ::u16;
-using LONG = ::i32;
-using WINULONG = ::u32;
-using LONGLONG = ::i64;
-using ULONGLONG = ::u64;
-using NTSTATUS = ::i32;
-using DWORD = ::u32;
-using LPDWORD = ::DWORD *;
 
 
 #define STATUS_SUCCESS                   ((NTSTATUS) 0x00000000)
@@ -53,25 +51,6 @@ typedef union _LARGE_INTEGER {
     LONGLONG QuadPart;
 } LARGE_INTEGER, *PLARGE_INTEGER;
 
-
-#ifndef _FILETIME_
-#define _FILETIME_
-typedef struct _FILETIME {
-    DWORD dwLowDateTime;
-    DWORD dwHighDateTime;
-} FILETIME, *PFILETIME, *LPFILETIME;
-#endif
-
-typedef struct _SYSTEMTIME {
-    WORD wYear;
-    WORD wMonth;
-    WORD wDayOfWeek;
-    WORD wDay;
-    WORD wHour;
-    WORD wMinute;
-    WORD wSecond;
-    WORD wMillisecond;
-} SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
 
@@ -121,6 +100,7 @@ using LPSYSTEMTIME = SYSTEMTIME *;
  */
 
 #include "framework.h"
+#include "acme/operating_system/time.h"
 //#include "_windows.h"
 //#include "windows_internals.h"
 
@@ -899,7 +879,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 
    if (dlt == iStandard || !dlt || !iStandard)
    {
-//xxx   information("there is no daylight saving rules in this time zone\n");
+//xxx   information("there is no daylight saving rules in this time zone");
    }
    else
    {
@@ -1113,13 +1093,13 @@ int_bool FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
    syst->wHour = tf.Hour;
    syst->wMinute = tf.Minute;
    syst->wSecond = tf.Second;
-   syst->wMillisecond = tf.Millisecond;
+   syst->wMilliseconds = tf.Millisecond;
    syst->wDayOfWeek = tf.Weekday;
    return true;
 }
 
 
-int_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time_t * psystemtime)
+int_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time * psystemtime)
 {
    
    return FileTimeToSystemTime((const FILETIME *) pfile_time, (LPSYSTEMTIME) psystemtime);
@@ -1140,7 +1120,7 @@ int_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
    tf.Hour = syst->wHour;
    tf.Minute = syst->wMinute;
    tf.Second = syst->wSecond;
-   tf.Millisecond = syst->wMillisecond;
+   tf.Millisecond = syst->wMilliseconds;
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
@@ -1157,12 +1137,6 @@ int_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 }
 
 
-int_bool SystemTimeToFileTime(const system_time_t * psystemtime, file_time_t * pfile_time)
-{
-   
-   return SystemTimeToFileTime((const SYSTEMTIME *) psystemtime, (LPFILETIME) pfile_time);
-   
-}
 
 
 /***********************************************************************
@@ -1207,7 +1181,7 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
 }
 
 
-CLASS_DECL_ACME void GetSystemTime(system_time_t * psystemtime)
+CLASS_DECL_ACME void GetSystemTime(system_time * psystemtime)
 {
    
    GetSystemTime((LPSYSTEMTIME) psystemtime);
@@ -1215,7 +1189,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * psystemtime)
 }
 
 
-void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time)
+void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time)
 {
 
    SYSTEMTIME systemtime;
@@ -1223,7 +1197,7 @@ void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time)
    if (!FileTimeToSystemTime((FILETIME *) &file_time, &systemtime))
    {
 
-      time = 0;
+      time = {posix_time_t{}, 0};
 
       throw ::exception(::error_failed);
 
@@ -1240,11 +1214,11 @@ void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time)
 
 #ifdef WINDOWS
    
-   time = _mkgmtime64(&tm);
+   time.m_iSecond = _mkgmtime64(&tm);
 
 #else
 
-   time = timegm(&tm);
+   time.m_iSecond = timegm(&tm);
 
 #endif
 
@@ -1253,7 +1227,7 @@ void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time)
 }
 
 
-void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+void file_time_to_system_time(system_time * psystemtime, const file_time_t * pfile_time)
 {
 
    FileTimeToSystemTime(pfile_time, psystemtime);
@@ -1261,20 +1235,15 @@ void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * p
 }
 
 
-void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
-{
-
-   SystemTimeToFileTime(psystemtime, pfile_time);
-
-}
-
-
-void get_system_time(system_time_t * psystemtime)
-{
-
-   GetSystemTime(psystemtime);
-
-}
+//
+//
+//void get_system_time(system_time * psystemtime)
+//{
+//
+//   GetSystemTime(psystemtime);
+//
+//}
 
 
 
+//file_time::file_time(system_time)

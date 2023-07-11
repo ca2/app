@@ -28,10 +28,10 @@ using scoped_string = scoped_ansi_string;
 using scoped_wstring = scoped_wide_string;
 
 
-template < typename FILE >
+//// template < typename FILE >
 class binary_stream;
 
-template < typename FILE >
+//// template < typename FILE >
 class write_text_stream;
 
 template < typename RESULT >
@@ -249,6 +249,11 @@ namespace allocator
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
 class array_base;
 
+template < class TYPE, class ARG_TYPE = const TYPE & >
+class row;
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
+class array_2d;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE  >, ::enum_type m_etypeContainer = e_type_element >
 class array;
@@ -469,7 +474,10 @@ using f32_array = numeric_array < f32 >;
 using f64_array = numeric_array < f64 >;
 
 
-using int_array = i32_array;
+using i32_array_array = ::array < i32_array >;
+
+using f32_array_array = ::array < f32_array >;
+using f64_array_array = ::array < f64_array >;
 
 
 using index_array = numeric_array < ::index >;
@@ -503,8 +511,8 @@ using unique_iptr_sort_array = unique_i32_sort_array;
 
 #endif
 
-using float_array = numeric_array < float  >;
-using double_array = numeric_array < double  >;
+using f32_array = numeric_array < ::f32 >;
+using f64_array = numeric_array < ::f64 >;
 
 using strsize_array = iptr_array;
 

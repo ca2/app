@@ -57,11 +57,11 @@
 
 // apt install libglew-dev
 // dnf install glew-devel
-#include <GL/glew.h> // added for GL_VERTEX_SHADER
+///#include <GL/glew.h> // added for GL_VERTEX_SHADER
 //#define GL_GLEXT_PROTOTYPES 1
 //#include <GLES/gl.h>
 //#include <GLES/glext.h>
-
+#include <glad.h>
 
 // OpenGL ES includes
 //#include <GLES2/gl2.h>

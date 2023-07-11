@@ -3,7 +3,7 @@
 //
 //
 //extern "C"
-//struct tm *gmtime_r(const time_t *timep,struct tm *result)
+//struct tm *gmtime_r(const posix_time *timep,struct tm *result)
 //#ifdef CENTOS_LINUX
 //throw()
 //#endif

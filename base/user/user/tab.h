@@ -66,7 +66,7 @@ namespace user
       ::write_text::font_pointer                   m_pfontTab;
       ::count                                      m_iRestoredTabCount;
       bool                                         m_bDrawTabAtBackground;
-      ::tristate                                   m_bitLastShowTabs;
+      ::boolean                                   m_bitLastShowTabs;
       int                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;
@@ -163,12 +163,14 @@ namespace user
       virtual enum_position DragHitTest(const ::point_i32 & point);
       virtual void GetDragRect(::rectangle_i32 & rectangle, enum_position eposition);
 
-      virtual bool get_element_rect(::index iTab, ::rectangle_i32 & rectangle, enum_element eelement);
+      virtual bool get_element_rectangle(::index iTab, ::rectangle_i32 & rectangle, enum_element eelement);
 
 
       virtual void get_title(int iPane,string_array & stra);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void layout_pane(index iPane, bool bDisplay = false);
 

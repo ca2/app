@@ -135,12 +135,12 @@ namespace write_text
    }
 
 
-   font_pointer write_text::point_font(const ::string & pszFontName, double dFontSize, int iFontWeight)
+   font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight)
    {
 
-      auto pfont = __create < font >();
+      auto pfont = __create < class font >();
 
-      pfont->create_point_font(pszFontName, dFontSize, iFontWeight);
+      pfont->create_font(pfontfamily, fontsize, iFontWeight);
 
       return ::transfer(pfont);
 
@@ -150,7 +150,7 @@ namespace write_text
    font_pointer write_text::create_font()
    {
 
-      return __create < font > ();
+      return __create < class font > ();
       
    }
 

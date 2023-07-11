@@ -290,7 +290,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          ColorGlass(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -311,7 +311,7 @@ SizingNone:;
          Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
@@ -325,7 +325,7 @@ SizingNone:;
       {
 
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          ColorGlass(pgraphics, rectangle, crMoveableBorder, 230);
 
@@ -375,7 +375,7 @@ SizingNone:;
       bool bZoomed = pframewindow->layout().is_zoomed();
 
       ::rectangle_i32 rectangleClient;
-      pframewindow->client_rectangle(rectangleClient);
+      rectangleClient = pframewindow->client_rectangle();
 
 
       string str;
@@ -458,7 +458,7 @@ SizingNone:;
 
    }
 
-   void frame_005::GetBorderRect(
+   void frame_005::GetBorderRectangle(
    const ::rectangle_i32 & rectangleClient,
 
    ::rectangle_i32 * prectangle,
@@ -468,7 +468,7 @@ SizingNone:;
       ::rectangle_i32 rectangleBig(rectangleClient);
 
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rect(&rectangleSmall);
+      get_window_client_rectangle(&rectangleSmall);
       ::rectangle_i32 rectangle;
       if(eside == e_border_top)
       {

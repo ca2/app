@@ -31,7 +31,7 @@
 //   if(iError != 0)
 //   {
 //
-//      int iErrNo = errno;
+//      auto cerrornumber = c_error_number();
 //
 //      estatus = errno_status(iErrNo);
 //
@@ -46,7 +46,7 @@
 //   if(iError != 0)
 //   {
 //
-//      int iErrNo = errno;
+//      auto cerrornumber = c_error_number();
 //
 //      estatus = errno_status(iErrNo);
 //

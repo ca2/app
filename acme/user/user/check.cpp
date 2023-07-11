@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "check.h"
+#include "acme/primitive/primitive/action_context.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "apex/user/_user.h"
 //#endif
@@ -43,6 +44,18 @@ namespace user
       {
 
          *m_linkedpropertyCheck = echeck;
+
+         if (context.is_user_source())
+         {
+
+            if (m_callbackOnCheck)
+            {
+
+               m_callbackOnCheck(this);
+
+            }
+
+         }
 
          m_linkedpropertyCheck.notify_property_changed(context);
 

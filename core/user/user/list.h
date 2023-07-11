@@ -134,7 +134,7 @@ namespace user
       i32 _001GetGroupHeight(index iGroup) override;
 
 
-      void FilterInclude(int_array & array) override;
+      void FilterInclude(::i32_array & array) override;
       void FilterInclude(index iItem) override;
       void FilterExcludeAll() override;
       void FilterClose() override;

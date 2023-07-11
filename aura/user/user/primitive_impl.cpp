@@ -118,6 +118,21 @@ namespace user
    }
 
 
+   void primitive_impl::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      m_puserinteraction->_000CallOnDraw(pgraphics);
+
+   }
+
+
+   void primitive_impl::top_down_prefix()
+   {
+
+      m_puserinteraction->top_down_prefix();
+
+   }
+
 
    void primitive_impl::set_need_layout()
    {
@@ -364,88 +379,96 @@ namespace user
    //}
 
 
-   void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
+
+      m_puserinteraction->_001OnTopNcClip(pgraphics);
 
    }
 
 
-   void primitive_impl::on_graphics(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      string strType = __type_name(m_puserinteraction);
-
-//      if (strType.contains("list_box"))
+//   void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//   }
+//
+//
+//   void primitive_impl::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (!m_puserinteraction)
 //      {
 //
-//         output_debug_string("list_box");
+//         return;
 //
 //      }
-
-      windowing_output_debug_string("\ninteraction_impl_base::_001Print");
-
-      m_puserinteraction->on_graphics(pgraphics);
-
-   }
-
-
-   void primitive_impl::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->_000CallOnDraw(pgraphics);
-
-      }
-
-   }
-
-
-   void primitive_impl::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->_001DrawThis(pgraphics);
-
-      }
-
-   }
-
-
-   void primitive_impl::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->_001DrawChildren(pgraphics);
-
-      }
-
-   }
-
-
-   void primitive_impl::draw_control_background(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->draw_control_background(pgraphics);
-
-      }
-
-   }
+//
+//      string strType = __type_name(m_puserinteraction);
+//
+////      if (strType.contains("list_box"))
+////      {
+////
+////         information("list_box");
+////
+////      }
+//
+//      windowing_output_debug_string("\ninteraction_impl_base::_001Print");
+//
+//      m_puserinteraction->_000CallOnDraw(pgraphics);
+//
+//   }
+//
+//
+//   void primitive_impl::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->_000CallOnDraw(pgraphics);
+//
+//      }
+//
+//   }
+//
+//
+//   void primitive_impl::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->_001DrawThis(pgraphics);
+//
+//      }
+//
+//   }
+//
+//
+//   void primitive_impl::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->_001DrawChildren(pgraphics);
+//
+//      }
+//
+//   }
+//
+//
+//   void primitive_impl::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_puserinteraction)
+//      {
+//
+//         m_puserinteraction->draw_control_background(pgraphics);
+//
+//      }
+//
+//   }
 
 
    void primitive_impl::set_origin(::draw2d::graphics_pointer & pgraphics)
@@ -720,9 +743,9 @@ namespace user
 
             pmessage->m_nChar = static_cast<::u32>(wparam);
 
-            pmessage->m_nRepCnt = first_u16(lparam);
+            pmessage->m_nRepCnt = lower_u16(lparam);
 
-            pmessage->m_nFlags = HIWORD(lparam);
+            pmessage->m_nFlags = upper_u16(lparam);
 
             pmessage->m_iVirtualKey = (int)wparam;
 
@@ -789,9 +812,9 @@ namespace user
 
          //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(i16)first_u16(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(i16)lower_u16(wparam);
 
-         pmessage->m_nPos = (i16)HIWORD(wparam);
+         pmessage->m_nPos = (i16)upper_u16(wparam);
 
       }
       break;
@@ -826,10 +849,10 @@ namespace user
          _NEW_MESSAGE(::message::mouse);
          pmessage->m_ebuttonstate = (::user::enum_button_state ) wparam.m_number;
 
-//         if ((pmessage->m_ebuttonstate & 0x80000000) == (0x80000000))
+//         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
 //         {
 //
-//            output_debug_string("(m_ebuttonstate & 0x80000000) == (0x80000000)");
+//            information("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
 //
 //         }
 
@@ -860,13 +883,13 @@ namespace user
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ebuttonstate = (::user::enum_button_state) first_u16(wparam);
+         pmessage->m_ebuttonstate = (::user::enum_button_state) lower_u16(wparam);
 
          pmessage->m_point = lparam.point();
 
-         pmessage->m_Δ = second_i16(wparam);
+         pmessage->m_Δ = upper_i16(wparam);
 
-         _raw_client_to_screen(pmessage->m_point);
+         //_raw_client_to_screen(pmessage->m_point);
 
       }
       break;
@@ -889,7 +912,7 @@ namespace user
 
             //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_eactivate = (enum_activate)(first_u16(wparam));
+         pmessage->m_eactivate = (enum_activate)(lower_u16(wparam));
 
          if (lparam == 0)
          {
@@ -910,7 +933,7 @@ namespace user
 
          }
 
-         pmessage->m_bMinimized = HIWORD(wparam) != false;
+         pmessage->m_bMinimized = upper_u16(wparam) != false;
 
          //}
 
@@ -1940,9 +1963,7 @@ namespace user
    void primitive_impl::get_rect_normal(::rectangle_i32 * prectangle)
    {
 
-      *prectangle = m_puserinteraction->screen_rect();
-
-      //return true;
+      *prectangle = m_puserinteraction->screen_rectangle();
 
    }
 
@@ -1957,7 +1978,7 @@ namespace user
          //
          //         str.format("creating fast timer: %d\n", nEllapse);
          //
-         //         ::output_debug_string(str);
+         //         ::information(str);
 
       }
 
@@ -2383,7 +2404,12 @@ namespace user
 
       ::pointer<::message::show_window>pshowwindow(pmessage);
 
-      m_puserinteraction->set_need_redraw();
+      if (m_puserinteraction)
+      {
+
+         m_puserinteraction->set_need_redraw();
+
+      }
 
    }
 

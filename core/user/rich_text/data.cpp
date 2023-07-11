@@ -312,7 +312,7 @@ namespace user
             for (auto & pbox : *pline)
             {
 
-               rBox.maximum(pbox->m_rectangleDevice);
+               rBox.unite(pbox->m_rectangleDevice);
 
                yLast = pbox->m_rectangleHitTest.top;
 
@@ -1168,7 +1168,7 @@ namespace user
 
          update_span_cache(m_spana);
 
-         bool bLineWrap = false;
+         //bool bLineWrap = false;
 
          auto rectangle = get_drawing_rect();
 
@@ -1176,9 +1176,9 @@ namespace user
 
          int x = (int) rectangle.left;
 
-         int xLast = x;
+         //int xLast = x;
 
-         bool bFirstParagraph = true;
+         //bool bFirstParagraph = true;
 
          auto plinea = __new(pointer_array < line >);
 
@@ -1266,7 +1266,7 @@ namespace user
 
                   ASSERT(false);
 
-                  output_debug_string("unexpected: iLenSpan != iLenMeasure");
+                  information("unexpected: iLenSpan != iLenMeasure");
 
                }
 
@@ -1299,9 +1299,9 @@ namespace user
 
                x = (int) rectangle.left;
 
-               xLast = x;
+               //xLast = x;
 
-               bLineWrap = false;
+               //bLineWrap = false;
 
                ealign = pspan->m_ealignNewLine;
 
@@ -1331,7 +1331,7 @@ namespace user
 
                //pline->add(pbox);
 
-               bFirstParagraph = false;
+               //bFirstParagraph = false;
 
             }
 
@@ -2045,7 +2045,7 @@ namespace user
 
          //m_iSelEnd = sel_char(*plinea, m_iSelEnd3, m_ebiasEnd);
 
-         bool bNeedRedraw = false;
+         //bool bNeedRedraw = false;
 
          strsize iSelBeg = m_iSelBeg;
 
@@ -2102,7 +2102,7 @@ namespace user
 
             m_iSelBeg = iSelBeg;
 
-            bNeedRedraw = true;
+            //bNeedRedraw = true;
 
          }
 
@@ -2111,7 +2111,7 @@ namespace user
 
             m_iSelEnd = iSelEnd;
 
-            bNeedRedraw = true;
+            //bNeedRedraw = true;
 
          }
 
@@ -2141,7 +2141,7 @@ namespace user
       }
 
 
-      //void data::write(::binary_stream < FILE > & stream) const
+      //void data::write(::binary_stream & stream) const
       //{
 
       //   synchronous_lock synchronouslock(this->synchronization());
@@ -2153,7 +2153,7 @@ namespace user
       //}
 
 
-      //void data::read(::binary_stream < FILE > & stream)
+      //void data::read(::binary_stream & stream)
       //{
 
       //   synchronous_lock synchronouslock(this->synchronization());

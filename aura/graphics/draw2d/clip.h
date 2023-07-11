@@ -22,9 +22,9 @@ namespace draw2d
       public ::particle
    {
    public:
-      
+
       virtual enum_clip_item clip_item_type() const { return e_clip_item_none; }
-      
+
    };
 
    template < typename TYPE, enum_clip_item t_eclipitem >
@@ -32,24 +32,24 @@ namespace draw2d
       public clip_item
    {
    public:
-   
-   
+
+
       TYPE m_item;
-   
+
       virtual enum_clip_item clip_item_type() const { return t_eclipitem; }
-   
+
    };
 
-using   clip_rectangle = clip_item_base < ::rectangle_f64, e_clip_item_rectangle >;
-using   clip_ellipse = clip_item_base < ::ellipse_f64, e_clip_item_ellipse >;
-using   clip_polygon = clip_item_base < ::polygon_f64, e_clip_item_polygon >;
+   using clip_rectangle = clip_item_base < ::rectangle_i32, e_clip_item_rectangle >;
+   using clip_ellipse = clip_item_base < ::ellipse_f64, e_clip_item_ellipse >;
+   using clip_polygon = clip_item_base < ::polygon_f64, e_clip_item_polygon >;
 
 
    class CLASS_DECL_AURA clip_group :
       public ::pointer_array < clip_item >
    {
    public:
-      
+
    };
 
 
@@ -57,8 +57,8 @@ using   clip_polygon = clip_item_base < ::polygon_f64, e_clip_item_polygon >;
       public ::pointer_array <  clip_group >
    {
    public:
-      
-   
+
+
    };
 
 

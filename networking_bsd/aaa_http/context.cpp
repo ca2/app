@@ -410,7 +410,7 @@ namespace http
 
       //output_error_message("What?!", nullptr, e_message_box_ok);
 
-      output_debug_string("What?!");
+      information("What?!");
 
       string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
 
@@ -2851,7 +2851,7 @@ namespace http
    }
 
 
-   string context::gmdate(time_t t)
+   string context::gmdate(posix_time t)
    {
 
       if (t == 0)

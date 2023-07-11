@@ -29,7 +29,7 @@ namespace userfs
       inline list_item * get_item(index iItem)  
       {
 
-         return operator[](iItem);
+         return this->element_at(iItem);
 
       }
 

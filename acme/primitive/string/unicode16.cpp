@@ -2,6 +2,8 @@
 //#include "string.h"
 #include "international.h"
 ////#include "acme/exception/exception.h"
+#include <string.h>
+#include <wchar.h>
 
 
 strsize wd16_to_ansi_len(const ::wd16_character * pwsz, strsize inputsize)
@@ -742,7 +744,7 @@ strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsi
 
       auto used_len = ansi_to_wd32_char(&u32, psz, srclen);
 
-      if(u32 & 0x80000000)
+      if(u32 & I32_MINIMUM)
       {
 
          used_len = 1;

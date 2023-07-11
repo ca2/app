@@ -27,7 +27,7 @@ namespace user
       bool                       m_bLButtonDown;
       ::point_i32                m_pointLButtonDown;
       ::point_i32                m_pointInitial;
-      ::size_i32                 m_sizeLButtonDownOffset;
+      //::size_i32                 m_sizeLButtonDownOffset;
       ::pointer<::user::mouse>   m_pmouse;
       enum_cursor                m_ecursor;
 

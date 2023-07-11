@@ -44,42 +44,59 @@ namespace user
       layout_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; return *this; }
       layout_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; return *this; }
 
-      bool operator == (const layout_state & windowstate) const { return !memcmp(this, &windowstate, sizeof(layout_state)); }
-      bool operator != (const layout_state & windowstate) const { return !operator == (windowstate); }
+      bool operator == (const layout_state & state) const
+      {
+         return
+         this->m_zorder == state.m_zorder
+         && this->m_eactivation == state.m_eactivation
+         && visual_state::operator == (state);
+      }
+      //bool operator != (const layout_state & layoutstate) const { return !operator == (layoutstate); }
 
-      layout_state & copy_size(layout_state & windowstate)
+      layout_state & copy_size(const layout_state & layoutstate)
       {
 
-         m_size = windowstate.m_size;
+         m_size = layoutstate.m_size;
 
          return *this;
 
       }
 
-      layout_state & copy_position(layout_state & windowstate)
+      layout_state & copy_position(const layout_state & layoutstate)
       {
 
-         m_point = windowstate.m_point;
+         m_point2 = layoutstate.m_point2;
 
          return *this;
 
       }
 
-      layout_state & copy_zorder(layout_state & windowstate)
+      layout_state & copy_zorder(const layout_state & layoutstate)
       {
 
-         m_zorder = windowstate.m_zorder;
+         m_zorder = layoutstate.m_zorder;
 
          return *this;
 
       }
 
-      layout_state & copy_display(layout_state & windowstate)
+      layout_state & copy_display(const layout_state & layoutstate)
       {
 
-         m_edisplay = windowstate.m_edisplay;
-         m_eappearance = windowstate.m_eappearance;
-         m_eactivation = windowstate.m_eactivation;
+         m_edisplay = layoutstate.m_edisplay;
+         m_eappearance = layoutstate.m_eappearance;
+         m_eactivation = layoutstate.m_eactivation;
+
+         return *this;
+
+      }
+
+      layout_state & operator = (const layout_state & layoutstate)
+      {
+
+         visual_state::operator=(layoutstate);
+         m_zorder = layoutstate.m_zorder;
+         m_eactivation = layoutstate.m_eactivation;
 
          return *this;
 
@@ -105,7 +122,7 @@ namespace user
       index                      m_iWorkspace = 0;
 
       using memory_template < window_rectangle >::operator=;
-      bool operator == (const window_rectangle & rectangle) const {return !memcmp(this, &rectangle, sizeof(window_rectangle)); }
+      bool operator == (const window_rectangle & rectangle) const {return memory_order(this, &rectangle, sizeof(window_rectangle)) == 0; }
       bool operator != (const window_rectangle & rectangle) const {return !operator==(rectangle); }
 
    };

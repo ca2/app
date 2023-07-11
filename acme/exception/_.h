@@ -40,7 +40,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 // non-DEBUG_ALLOC version that assume everything is OK
 #define __enable_memory_tracking(bTrack) false
 #define __enable_memory_leak_override(bEnable) true
-#define __output_debug_string(psz) ::output_debug_string(psz)
+#define __output_debug_string(psz) ::information(psz)
 
 
 
@@ -85,8 +85,10 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
    ASSERT(((p) == nullptr) || is_memory_segment_ok((p), sizeof(type), false))
 
 
-CLASS_DECL_ACME errno_t c_runtime_error_check(errno_t error);
-CLASS_DECL_ACME void __cdecl __clearerr_s(FILE *stream);
+//using c_error_number = ::i32;
+
+//CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error);
+//CLASS_DECL_ACME void __clearerr_s(FILE *stream);
 
 
 
@@ -94,7 +96,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const ::ansi_character * pszFileName, 
 
 CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const ::ansi_character * pszFileName, i32 nLine);
 
-CLASS_DECL_ACME void __dump(const ::particle * pparticle);
+//CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 
 
 

@@ -2332,12 +2332,12 @@ namespace user
    }
 
 
-   void primitive::on_layout(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void primitive::on_reposition()
@@ -2560,10 +2560,17 @@ namespace user
    }
 
 
-   void primitive::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
-   {
+   //void primitive::sketch_to_layout()
+   //{
 
-   }
+
+   //}
+
+
+   //void primitive::layout_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
+   //{
+
+   //}
 
 
    void primitive::_001UpdateWindow()

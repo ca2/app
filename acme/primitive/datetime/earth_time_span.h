@@ -15,18 +15,19 @@ namespace earth
 {
 
 
-   class CLASS_DECL_ACME time_span
+   class CLASS_DECL_ACME time_span :
+      public posix_time
    {
    public:
 
 
-      time_t m_time;
+      //posix_time m_posixtime;
 
 
       constexpr time_span() noexcept;
       constexpr time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
-      constexpr time_span(const time_t & time) noexcept : m_time(time) {}
-      constexpr time_span(const class ::time & time) noexcept : m_time(time.m_iSecond) {}
+      constexpr time_span(const posix_time & posixtime) noexcept : posix_time(posixtime) {}
+      constexpr time_span(const class ::time & time) noexcept : posix_time(time) {}
 
 
       constexpr i64 GetDays() const noexcept;
@@ -37,7 +38,7 @@ namespace earth
       constexpr i64 GetTotalSeconds() const noexcept;
       constexpr i32 GetSeconds() const noexcept;
 
-      constexpr time_t GetTimeSpan() const noexcept;
+      constexpr posix_time GetTimeSpan() const noexcept;
 
       constexpr time_span operator+(time_span span) const noexcept;
       constexpr time_span operator-(time_span span) const noexcept;
@@ -47,7 +48,7 @@ namespace earth
       constexpr operator time() const
       {
 
-         return ::earth::time(GetTotalSeconds());
+         return ::earth::time({ posix_time_t{}, GetTotalSeconds() });
 
       }
 
@@ -89,8 +90,17 @@ namespace earth
 //      _TIME_COMPARISON_WITH(::floating_day);
 
 
+      constexpr class ::time operator % (class ::time & time) const noexcept
+      {
+
+         return ((class ::time) * this) % time;
+
+      }
+
+
+
       constexpr ::std::strong_ordering operator <=>(const class ::time & time) const;
-      constexpr ::std::strong_ordering operator <=>(const time_span & timespan) const { return m_time <=> timespan.m_time; }
+      constexpr ::std::strong_ordering operator <=>(const time_span & timespan) const { return m_iSecond <=> timespan.m_iSecond; }
 
    };
 
@@ -101,18 +111,18 @@ namespace earth
    }
 
 
-   constexpr  time_span::time_span(i64 lDays, i32 nHours, i32 nMins, i32 nSecs) noexcept
+   constexpr time_span::time_span(i64 lDays, i32 nHours, i32 nMins, i32 nSecs) noexcept
    {
 
-      m_time = nSecs + 60 * (nMins + 60 * (nHours + i64(24) * lDays));
+      m_iSecond = nSecs + 60 * (nMins + 60 * (nHours + i64(24) * lDays));
 
    }
 
 
-   constexpr  i64 time_span::GetDays() const noexcept
+   constexpr i64 time_span::GetDays() const noexcept
    {
 
-      return m_time / (24 * 3600);
+      return m_iSecond / (24 * 3600);
 
    }
 
@@ -120,7 +130,7 @@ namespace earth
    constexpr  i64 time_span::GetTotalHours() const noexcept
    {
 
-      return m_time / 3600;
+      return m_iSecond / 3600;
 
    }
 
@@ -136,7 +146,7 @@ namespace earth
    constexpr  i64 time_span::GetTotalMinutes() const noexcept
    {
 
-      return m_time / 60;
+      return m_iSecond / 60;
 
    }
 
@@ -151,7 +161,7 @@ namespace earth
 
    constexpr  i64 time_span::GetTotalSeconds() const noexcept
    {
-      return m_time;
+      return m_iSecond;
 
    }
 
@@ -164,18 +174,18 @@ namespace earth
    }
 
 
-   constexpr  time_t time_span::GetTimeSpan() const noexcept
+   constexpr posix_time time_span::GetTimeSpan() const noexcept
    {
 
-      return(m_time);
+      return *this;
 
    }
 
 
-   constexpr  time_span time_span::operator+(time_span span) const noexcept
+   constexpr time_span time_span::operator+(time_span span) const noexcept
    {
 
-      return { m_time + span.m_time };
+      return posix_time::operator+(span);
 
    }
 
@@ -183,15 +193,15 @@ namespace earth
    constexpr  time_span time_span::operator-(time_span span) const noexcept
    {
 
-      return m_time - span.m_time;
+      return posix_time::operator-(span);
 
    }
 
 
-   constexpr  time_span& time_span::operator+=(time_span span) noexcept
+   constexpr time_span& time_span::operator+=(time_span span) noexcept
    {
 
-      m_time += span.m_time;
+      posix_time::operator +=(span);
 
       return *this;
 
@@ -201,7 +211,7 @@ namespace earth
    constexpr  time_span& time_span::operator-=(time_span span) noexcept
    {
 
-      m_time -= span.m_time;
+      posix_time::operator -=(span);
 
       return *this;
 

@@ -61,13 +61,13 @@ namespace user
 
       }
 
-      auto psystem = acmesystem()->m_paurasystem;
+      //auto psystem = acmesystem()->m_paurasystem;
 
-      auto pnode = psystem->node();
+      //auto pnode = psystem->node();
 
-      auto strFontName = pnode->font_name(e_font_sans_ex);
+      //auto strFontName = pnode->font_name(e_font_sans_ex);
 
-      m_pfont->create_point_font(strFontName, 12.0);
+      m_pfont->create_font(e_font_sans_ex, 12_pt);
 
    }
 
@@ -97,9 +97,7 @@ namespace user
 
       pgraphics->reset_clip();
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto ppath = __create < ::draw2d::path > ();
 

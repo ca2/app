@@ -245,7 +245,7 @@ void app_core::system_init()
 
    //   //string str = ::str::consume_quoted_value(psz);
 
-   //   //output_debug_string(str);
+   //   //information(str);
 
    //}
 
@@ -528,9 +528,9 @@ void app_core::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 //
-  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "output_debug_string.txt" ;
+  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "information.txt" ;
 
-   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "output_debug_string.txt" ;
+   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "information.txt" ;
 
    //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
 
@@ -708,7 +708,7 @@ void app_core::system_end()
 //
 //      char szTimeMessage[2108];
 //
-//      ::time_t timet = ::time(nullptr);
+//      ::posix_time timet = ::time(nullptr);
 //
 //      tm t;
 //
@@ -730,13 +730,13 @@ void app_core::system_end()
 //         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 //
 //         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         ::duration i::durationsTotal = tickEnd - m_durationStart;
 //
 //         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::durationsTotal.m_i);
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         int i::durations = i::durationsTotal.m_i % 1000;
@@ -773,43 +773,43 @@ void app_core::system_end()
 //
 //         }
 //
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n|");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n|  %s", szTime);
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n|");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n|");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n-------------------------------------------------------------------------------------------- - ");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         sprintf(szTimeMessage, "\n");
-//         ::output_debug_string(szTimeMessage);
+//         ::information(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
 //         if (file_exists_raw(szEllapsed))
@@ -817,7 +817,7 @@ void app_core::system_end()
 //
 //            char szUTCTime[2048];
 //
-//            time_t rawtime;
+//            posix_time rawtime;
 //
 //            struct tm* g;
 //
@@ -1028,7 +1028,7 @@ void app_core::system_proc()
 //   catch (...)
 //   {
 //
-//      output_debug_string("exception:app_core:run");
+//      information("exception:app_core:run");
 //
 //      estatus = error_exception;
 //

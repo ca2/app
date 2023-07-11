@@ -10,8 +10,8 @@
 
 
 
-inline strsize string_get_length(const ::ansi_character* psz) noexcept { return strlen(psz); }
-inline strsize string_safe_length(const ::ansi_character* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz) noexcept;
+CLASS_DECL_ACME strsize string_safe_length(const ::ansi_character * psz) noexcept;
 
 
 using BLOCK = ::range < ::u8 * >;
@@ -208,7 +208,7 @@ struct CLASS_DECL_ACME block :
 
       }
 
-      memcpy(ba, this->m_begin, c);
+      memory_copy(ba, this->m_begin, c);
 
       return *this;
 
@@ -231,7 +231,7 @@ struct CLASS_DECL_ACME block :
 
       auto commonSize = minimum(size(), block.size());
 
-      auto ordering = memcmp(begin(), block.begin(), commonSize) <=>0;
+      auto ordering = memory_order(begin(), block.begin(), commonSize) <=>0;
 
       if (ordering != 0)
       {
@@ -262,7 +262,7 @@ struct CLASS_DECL_ACME block :
 
       }
 
-      return memcmp(begin(), block.begin(), (size_t)size()) == 0;
+      return memory_order(begin(), block.begin(), (size_t)size()) == 0;
 
    }
 

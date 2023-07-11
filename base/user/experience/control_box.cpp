@@ -2,16 +2,17 @@
 #include "control_box.h"
 #include "frame_window.h"
 #include "frame.h"
+#include "button.h"
+#include "experience.h"
 #include "acme/constant/message.h"
+#include "acme/constant/timer.h"
+#include "acme/platform/timer.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
-#include "base/platform/session.h"
-#include "acme/constant/timer.h"
-#include "acme/platform/timer.h"
 #include "aura/message/user.h"
-#include "button.h"
-#include "experience.h"
+#include "base/platform/session.h"
 
 
 namespace experience
@@ -193,7 +194,7 @@ namespace experience
       else
       {
 
-         output_debug_string(".");
+         information(".");
 
       }
 
@@ -380,7 +381,7 @@ namespace experience
 
          m_pfontMarlett.create(this);
 
-         m_pfontMarlett->create_pixel_font("Marlett", 16.0);
+         m_pfontMarlett->create_font("Marlett", 16_px);
 
       }
 
@@ -540,7 +541,7 @@ namespace experience
          rectangle.left = rectangle.right - sizeButton.cx();
 if(rectangle.left > 400)
 {
-   output_debug_string("rectangle.left > 400");
+   information("rectangle.left > 400");
    
 }
          if (pbutton)
@@ -550,6 +551,7 @@ if(rectangle.left > 400)
             rectangle.bottom = sizeButton.cy() + rectangle.top;
 
             pbutton->order(e_zorder_top);
+            information() << "experience::control_box::_layout_button" << rectangle;
             pbutton->place(rectangle);
             pbutton->display();
             pbutton->UpdateWndRgn();
@@ -574,31 +576,26 @@ if(rectangle.left > 400)
    }
 
 
-   void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void control_box::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleWindow;
-
-      m_pframewindow->window_rectangle(rectangleWindow);
+      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
 
       ::rectangle_i32 rectangleParent(rectangleWindow);
 
-      m_pframewindow->screen_to_client()(rectangleParent);
+      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangleParent);
 
       ::rectangle_i32 rectangle;
 
-      window_rectangle(rectangle);
+      window_rectangle(rectangle, ::user::e_layout_lading);
 
-      m_pframewindow->screen_to_client()(rectangle);
+      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangle);
 
       reset_layout(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle(::user::e_layout_lading);
 
       int iWidth = rectangleClient.width();
-
 
       rectangle.left = iWidth;
 
@@ -619,7 +616,6 @@ if(rectangle.left > 400)
       _layout_button(e_button_transparent_frame, rectangle);
 
       _layout_button(e_button_dock, rectangle);
-
 
    }
 
@@ -953,10 +949,9 @@ if(rectangle.left > 400)
    void control_box::reset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      int iDefaultButtonSize = calc_button_size(pgraphics);
+      int iDefaultButtonSize = calculate_button_size(pgraphics);
 
-      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize,iDefaultButtonSize);
-
+      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize, iDefaultButtonSize);
 
    }
 
@@ -984,7 +979,7 @@ if(rectangle.left > 400)
    }
 
 
-   i32 control_box::calc_button_size(::draw2d::graphics_pointer & pgraphics)
+   i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto dFontHeight = m_pfontMarlett->get_height(pgraphics);
@@ -1020,10 +1015,10 @@ if(rectangle.left > 400)
    }
 
 
-   i32 control_box::calc_control_box_width(::draw2d::graphics_pointer & pgraphics)
+   i32 control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_iDefaultButtonSize = calc_button_size(pgraphics);
+      m_iDefaultButtonSize = calculate_button_size(pgraphics);
 
       int iWidth = 0;
 
@@ -1133,11 +1128,9 @@ if(rectangle.left > 400)
    void control_box::on_message_size(::message::message * pmessage)
    {
 
-      ::rectangle_i32 rectangleClient;
+      //auto rectangleClient = client_rectangle();
 
-      client_rectangle(rectangleClient);
-
-      output_debug_string("rectangleClient");
+      information("rectangleClient");
 
    }
 

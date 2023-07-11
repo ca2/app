@@ -1,5 +1,5 @@
 #include "framework.h"
-// #include "acme/primitive/string/string.h"
+
 
 
 char g_strDebugPuts[1024];
@@ -30,7 +30,8 @@ void teste_acme_cmp();
 void acme_auto_debug_teste()
 {
 
-   printf("\n\nvoid acme_auto_debug_teste()\n\n");
+   output_debug_string("\n\nvoid acme_auto_debug_teste()\n\n");
+
    {
 
       wd16_string wstr1;
@@ -47,11 +48,11 @@ void acme_auto_debug_teste()
 
          string str3("aaaabbbbccccddddaaaabbbbccccddddaaaabbbbccccddddaaaabbbbccccdddd");
 
-         printf("str1 %s", str1.c_str());
+         output_debug_string_format("str1 %s", str1.c_str());
 
-         printf("str2 %s", str2.c_str());
+         output_debug_string_format("str2 %s", str2.c_str());
 
-         printf("str3 %s", str3.c_str());
+         output_debug_string_format("str3 %s", str3.c_str());
 
          wstr1 = str1;
 
@@ -59,7 +60,7 @@ void acme_auto_debug_teste()
 
          wstr3 = str3;
 
-         output_debug_string("strstr");
+         information("strstr");
 
       }
 
@@ -104,7 +105,7 @@ void acme_auto_debug_teste()
 //   catch(...)
 //   {
 //   }
-//   ::output_debug_string(g_strDebugPuts);
+//   ::information(g_strDebugPuts);
 
 }
 

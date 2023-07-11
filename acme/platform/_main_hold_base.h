@@ -2,7 +2,6 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
 //#include "acme/primitive/primitive/pointer.h"
 
 
@@ -15,7 +14,7 @@ public:
    ::pointer<::acme::application>        m_pacmeapplication;
 
 
-   static tristate is_audio_enabled();
+   static boolean is_audio_enabled();
 
    static void enable_audio(bool bEnable = true);
 

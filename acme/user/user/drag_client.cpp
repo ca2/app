@@ -157,19 +157,17 @@ namespace user
 
             //set_cursor(e_cursor_move);
 
-            //auto integral_milliseconds = integral_millisecond(e_now);
+            //auto integral_milliseconds = integral_millisecond(now_t{});
 
             //string str;
             //str.format("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i);
 
-            //output_debug_string(str);
+            //information(str);
 
             if (!m_pdragCurrent->m_bDrag)
             {
 
                m_pdragCurrent->m_bDrag = true;
-
-               auto pointDrag = pmouse->m_point - m_pdragCurrent->m_sizeLButtonDownOffset;
 
                drag_shift(m_pdragCurrent);
 

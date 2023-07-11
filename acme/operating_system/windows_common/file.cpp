@@ -1,8 +1,7 @@
 // Created by camilo on 2023-03-14 09:48 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-
-
 #include "acme/_operating_system.h"
+#include "acme/operating_system/console.h"
 
 
 namespace windows
@@ -290,7 +289,7 @@ namespace windows
          else if (lasterror == ERROR_NO_SYSTEM_RESOURCES)
          {
 
-            ::output_debug_string("Insufficient system resources exist to complete the requested service. (::windows::file::flush_file_buffers())");
+            ::information("Insufficient system resources exist to complete the requested service. (::windows::file::flush_file_buffers())");
 
          }
          else
@@ -507,6 +506,26 @@ namespace windows
 
 
 } // namespace windows
+
+
+
+void std_out_buffer::write(const void * pdata, memsize nCount)
+{
+
+#ifdef WINDOWS
+
+   DWORD dw;
+
+   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
+
+#else
+
+   fwrite(pdata, nCount, 1, stdout);
+
+
+#endif
+
+}
 
 
 

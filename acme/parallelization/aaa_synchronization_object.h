@@ -6,9 +6,6 @@
 //#endif
 
 
-//#include "acme/primitive/primitive/particle.h"
-
-
 //class CLASS_DECL_ACME synchronization_object :
 //   virtual public particle
 //{

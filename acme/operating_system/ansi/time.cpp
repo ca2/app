@@ -1,18 +1,25 @@
 #include "framework.h"
 #include "time.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
+#include "acme/operating_system/shared_posix/time.h"
+#include "acme/operating_system/time.h"
 
 
-void system_time_to_tm(tm * ptm, const system_time_t * psystemtime);
+//void system_time_to_tm(tm * ptm, const system_time & systemtime);
 
 
-void system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+posix_time::posix_time(const system_time & systemtime, i32 nDST)
 {
 
    struct tm tm;
 
-   system_time_to_tm(&tm, psystemtime);
+   copy(&tm, &systemtime);
 
-   *ptime = timegm(&tm);
+   ::earth::gregorian_time time;
+
+   copy(&time, &tm);
+
+   m_iSecond = time.make_utc_time().m_iSecond;
 
 }
 

@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   void frame_window::GetBorderRect(::rectangle_i32 * prectangle)
+   void frame_window::GetBorderRectangle(::rectangle_i32 * prectangle)
    {
 
       UNREFERENCED_PARAMETER(prectangle);
@@ -523,7 +523,7 @@ namespace user
 
                   auto rectangleTarget = ::rectangle_f64(rectangle.size());
 
-                  auto pgraphics = pbufferitem->m_pimage->g();
+                  auto pgraphics = pbufferitem->g();
 
                   image_source imagesource(pgraphics);
 
@@ -1098,7 +1098,7 @@ namespace user
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         pholder->client_rectangle(rectangleFrame);
+         rectangleFrame = pholder->client_rectangle();
 
       }
       else
@@ -1112,7 +1112,7 @@ namespace user
 
       set_display(e_display_none);
 
-      output_debug_string("\nm_bLayoutEnable false");
+      information("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
@@ -2256,7 +2256,7 @@ namespace user
    }
 
 
-   void frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       __task_guard(m_bInRecalcLayout);
@@ -2683,13 +2683,13 @@ namespace user
 //      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
 //      {
 //
-//         //::output_debug_string("app_veriwell_keyboard::main_frame");
+//         //::information("app_veriwell_keyboard::main_frame");
 //
 //      }
 //      else if(type.name_contains("simple_child_frame"))
 //      {
 //
-//         //::output_debug_string("simple_child_frame");
+//         //::information("simple_child_frame");
 //
 //      }
 //
@@ -2794,6 +2794,8 @@ namespace user
 
    void frame_window::_001OnNcDraw(::draw2d::graphics_pointer &pgraphics)
    {
+
+      //return;
 
       auto pstyle = get_style(pgraphics);
 

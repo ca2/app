@@ -274,8 +274,8 @@ public:
 //
 
 
-CLASS_DECL_ACME::e_status errno_status(int nErrno);
-CLASS_DECL_ACME::e_status failed_errno_status(int nErrno);
+//constexpr bool succeeded(const ::e_status & estatus) { return estatus.succeeded(); }
+//constexpr bool failed(const ::e_status & estatus) { return estatus.failed(); }
 
 
 

@@ -22,7 +22,7 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-CLASS_DECL_ACME ::i64 integral_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
 
    return ::time::now().integral_nanosecond();
@@ -36,7 +36,7 @@ CLASS_DECL_ACME ::i64 integral_nanosecond()
 }
 
 
-//void output_debug_string(const ::ansi_character * psz)
+//void information(const ::ansi_character * psz)
 //{
 //
 //#ifdef WINDOWS

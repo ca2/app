@@ -6,7 +6,7 @@
 
 CLASS_DECL_ACME i32 mkint32(u32 u)
 {
-   if (u >= 0x7fffffff)
+   if (u >= I32_MAXIMUM)
       throw_cast_overflow();
    return (i32)u;
 }

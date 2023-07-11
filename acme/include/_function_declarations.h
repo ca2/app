@@ -8,6 +8,19 @@
 //CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);
 
 
+CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+
+CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+
+
+CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+
+
+CLASS_DECL_ACME::i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+
+
+CLASS_DECL_ACME::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+
 
 
 CLASS_DECL_ACME void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
@@ -30,7 +43,7 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 CLASS_DECL_ACME i32 ansi_open(const ::scoped_string & scopedstr, i32 i);
 
-CLASS_DECL_ACME FILE* ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
+//CLASS_DECL_ACME FILE* ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
 
 CLASS_DECL_ACME int ansi_file_flag(int iFlag);
 
@@ -42,7 +55,7 @@ CLASS_DECL_ACME void ansi_unlink(const ::scoped_string & scopedstr);
 //CLASS_DECL_ACME::e_status get_last_status();
 
 
-#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID) && !defined(FREEBSD)
 
 int ftruncate(int file, filesize len);
 
@@ -122,7 +135,18 @@ CLASS_DECL_ACME void __node_acme_pos_term();
 typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 
-CLASS_DECL_ACME bool succeeded(const ::payload& payload);
+class e_status;
+
+
+//CLASS_DECL_ACME bool succeeded(const ::payload & payload);
+//constexpr bool succeeded(const ::e_status & e_status);
+
+
+//inline bool failed(const ::payload & payload);
+//constexpr bool failed(const ::e_status & e_status);
+
+
+
 
 //
 //CLASS_DECL_ACME::atom message_box_synchronous(::particle* ppartcicle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
@@ -212,9 +236,6 @@ inline const ::particle * context_trace_object();
 inline const ::particle * trace_object(const ::particle* pparticle);
 
 
-inline bool failed(const ::payload& payload);
-
-
 
 inline int read_char(u8*& pdata, memsize& s, char* pch);
 
@@ -246,10 +267,10 @@ inline bool exists(const ::file::enum_type& etype);
 // CLASS_DECL_ACME bool is_verbose_log();
 
 
-inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 
 CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);

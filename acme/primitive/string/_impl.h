@@ -6,7 +6,7 @@
 #include "_impl_string_meta_data.h"
 
 #include "c/_impl.h"
-#include "sz/_impl.h"
+//#include "sz/_impl.h"
 
 #include "unicode_impl.h"
 
@@ -612,12 +612,12 @@ template < typename ITERATOR_TYPE >
          if (p[1] == '\\')
          {
 
-            memmove(p, p + 1, pend - p);
+            memory_transfer(p, p + 1, pend - p);
          }
          else if (p[1] == '\"')
          {
 
-            memmove(p, p + 1, pend - p);
+            memory_transfer(p, p + 1, pend - p);
 
          }
 
@@ -1866,7 +1866,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
         
         prev_escape = nullptr;
 
-        if (strchr(chset, *this->m_begin))
+        if (ansi_chr(chset, *this->m_begin))
         {
            return;
 
@@ -1914,7 +1914,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
 
         prev_escape = nullptr;
 
-        order = tolower(*r.m_begin) <=> tolower(*rangeCompare.m_begin);
+        order = __ansitolower(*r.m_begin) <=> __ansitolower(*rangeCompare.m_begin);
 
         if (order != 0)
         {
@@ -2062,3 +2062,52 @@ typename string_range < ITERATOR_TYPE >::THIS_RANGE string_range < ITERATOR_TYPE
    return { pszStart, minimum(this->m_begin, this->m_end) };
 
 }
+
+
+
+// // template < typename FILE >
+template < typename T >
+inline void write_text_stream::print_string_copy(const T & t)
+{
+
+   ::string str;
+
+   ::copy(str, t);
+
+   print(str);
+
+}
+
+
+// // template < typename FILE >
+template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+inline write_text_stream & write_text_stream::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
+{
+
+   if (this->fmtflags() & ::file::network_payload)
+   {
+
+      print("\"");
+
+   }
+
+   write(inlinestring.data(), inlinestring.size());
+
+   if (this->fmtflags() & ::file::network_payload)
+   {
+
+      print("\"");
+
+   }
+
+   if (this->fmtflags() & ::file::separated)
+   {
+
+      print(m_chSeparator);
+
+   }
+
+   return *this;
+
+}
+

@@ -1,6 +1,6 @@
 #include "framework.h"
-// #include "acme/primitive/string/string.h"
 
+#include <stdio.h>
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
@@ -36,7 +36,7 @@ void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString)
    if(g_bWindowingOutputDebugString)
    {
 
-      output_debug_string(scopedstrDebugString);
+      information(scopedstrDebugString);
 
       fflush(stdout);
 

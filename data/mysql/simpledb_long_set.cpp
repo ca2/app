@@ -411,7 +411,7 @@ bool db_long_set::find(const ::string & lpKey)
    HRESULT hr;
    if(m_bIndexed)
    {
-   //         information("CSongsSet::FindKey Seeking\n");
+   //         information("CSongsSet::FindKey Seeking");
    string strSection(lpSection);
    string strKey(lpKey);
    if(FAILED(hr = MoveFirst()))

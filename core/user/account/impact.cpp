@@ -139,9 +139,7 @@ namespace account
       int h;
       int w;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       /*
       if (m_bSelfLayout)
@@ -213,18 +211,18 @@ namespace account
       i32 pad = (int)(5 * ry);
 
       i32 y = (int)((49 + 86) * ry);
-      m_pstillUser->set_placement(x1, y, w2, h1);
+      m_pstillUser->place(x1, y, w2, h1);
       y += h1 + pad;
-      m_peditUser->set_placement(x1, y, w2, h1);
+      m_peditUser->place(x1, y, w2, h1);
       y += h1 + pad;
-      m_pstillPassword->set_placement(x1, y, w2, h1);
+      m_pstillPassword->place(x1, y, w2, h1);
       y += h1 + pad;
-      m_peditPassword->set_placement(x1, y, w2, h1);
+      m_peditPassword->place(x1, y, w2, h1);
       y += h1 + pad;
       y += pad + h1 + pad;
-      m_pbutton->set_placement(x1, y, w2, h1 * 3);;
+      m_pbutton->place(x1, y, w2, h1 * 3);;
 
-      m_pbuttonClose->set_placement(w - 36, 12, 24, 24);
+      m_pbuttonClose->place(w - 36, 12, 24, 24);
 
    }
 
@@ -337,11 +335,11 @@ namespace account
 
          float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         auto psystem = acmesystem()->m_paurasystem;
+         //auto psystem = acmesystem()->m_paurasystem;
 
-         auto pnode = psystem->node();
+         //auto pnode = psystem->node();
 
-         f->create_point_font(pnode->font_name(e_font_sans_ex), fHeight * 1.0);
+         f->create_font(e_font_sans_ex, ::write_text::font_size(fHeight, e_unit_point));
 
          pgraphics->set(f);
 
@@ -379,7 +377,7 @@ namespace account
    bool impact::on_action(const ::string & pszId)
    {
 
-      if (!strcmp(pszId, "submit"))
+      if (!ansi_cmp(pszId, "submit"))
       {
 
          if (!m_bCred)
@@ -402,7 +400,7 @@ namespace account
          m_evSubmit.SetEvent();
 
       }
-      else if (!strcmp(pszId, "escape"))
+      else if (!ansi_cmp(pszId, "escape"))
       {
 
          get_parent()->display(e_display_none);
@@ -461,7 +459,7 @@ namespace account
       m_pstillPassword->set_window_text("");
       m_pbutton->set_window_text("");
 
-      set_placement(0, 0, 800, 450);
+      place(0, 0, 800, 450);
 
       m_peditUser->set_keyboard_focus();
 

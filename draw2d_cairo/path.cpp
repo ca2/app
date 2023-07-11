@@ -52,9 +52,33 @@ namespace draw2d_cairo
    bool path::contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point)
    {
 
-      pgraphics.cast < graphics >()->_set(this);
+      auto pcairographics = pgraphics.cast < graphics >();
 
-      return pgraphics->fill_contains(point);
+      if(::is_null(pcairographics))
+      {
+
+         return ::draw2d::path::contains(pgraphics, point);
+
+      }
+
+      pcairographics->_set(this);
+
+      if(pgraphics->fill_contains(point))
+      {
+
+         information("cairo in fill");
+
+         return true;
+
+      }
+      else
+      {
+
+         information("cairo NOT in fill");
+
+         return false;
+
+      }
 
    }
 

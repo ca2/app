@@ -92,7 +92,7 @@ namespace user
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
 
-      virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
+      virtual bool get_element_rectangle(RECT32 * prect, enum_element eelement) override;
 
       virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 

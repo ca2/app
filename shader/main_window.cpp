@@ -29,7 +29,7 @@ namespace app_shader
 
       m_flagNonClient.erase(e_non_client_focus_rect);
 
-      m_colorBackground = {};
+      //m_colorBackground = {};
 
       m_bClickDefaultMouseHandling = true;
 

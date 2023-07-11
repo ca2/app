@@ -4,9 +4,9 @@
 #include "file_path.h"
 #include "acme/primitive/datetime/file_time_span.h"
 //#include "acme/primitive/datetime/file_time.h"
-#include "acme/primitive/primitive/particle.h"
+#include  "acme/primitive/primitive/particle.h"
 //#include "acme/primitive/primitive/pointer.h"
-// #include "acme/primitive/string/string.h"
+
 
 
 namespace file
@@ -274,12 +274,12 @@ namespace file
 
 #ifdef WINDOWS
 
-         if (_stricmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+         if (ansi_icmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
             return true;
 
 #else
 
-         if (strcmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+         if (ansi_cmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
             return true;
 
 #endif

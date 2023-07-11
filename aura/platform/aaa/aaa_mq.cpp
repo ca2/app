@@ -49,8 +49,8 @@ int_bool message_queue::post_message(oswindow oswindow, ::u32 uMessage, WPARAM w
    message.message = uMessage;
    message.wParam = wParam;
    message.lParam = lParam;
-   message.pt.x() = 0x80000000;
-   message.pt.y() = 0x80000000;
+   message.pt.x() = I32_MINIMUM;
+   message.pt.y() = I32_MINIMUM;
 
    return post_message(message);
 
@@ -243,25 +243,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxwave_player");
+//            information("xxCLOSED_MQ xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxout");
+//            information("xxCLOSED_MQ xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
+//            information("xxCLOSED_MQ xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
+//            information("xxCLOSED_MQ xx__get_mq from xxmultimedia::*");
 //
 //         }
 //
@@ -289,25 +289,25 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //         if(strType.contains("wave_player"))
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxwave_player");
+//            information("notxxbCreate xx__get_mq from xxwave_player");
 //
 //         }
 //         else if(strType.case_insensitive_ends("out"))
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxout");
+//            information("notxxbCreate xx__get_mq from xxout");
 //
 //         }
 //         else if(strType.contains("output_thread"))
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxoutput_thread");
+//            information("notxxbCreate xx__get_mq from xxoutput_thread");
 //
 //         }
 //         else
 //         {
 //
-//            output_debug_string("notxxbCreate xx__get_mq from xxmultimedia::*");
+//            information("notxxbCreate xx__get_mq from xxmultimedia::*");
 //
 //         }
 //

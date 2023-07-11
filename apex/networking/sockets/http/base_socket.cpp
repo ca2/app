@@ -107,7 +107,7 @@ namespace sockets
          if (strTest.find_index('.') > 0)
          {
 
-            output_debug_string("!!!!!!!!!! -> " + strTest + "\n");
+            information("!!!!!!!!!! -> " + strTest + "\n");
 
          }
 
@@ -182,12 +182,12 @@ namespace sockets
             && m_request.header("connection").string().case_insensitive_order("close") != 0)
          {
             m_b_keepalive = true;
-         information(" ***    keepalive: true\n");
+         information(" ***    keepalive: true");
          }
          else
          {
             m_b_keepalive = false;
-            information(" *** keepalive: false\n");
+            information(" *** keepalive: false");
          }*/
 
       // prepare page
@@ -262,18 +262,18 @@ namespace sockets
    void http_base_socket::OnWriteComplete()
    {
       //Debug deb("http_base_socket::OnTransferLimit");
-      //information("\n");
-      //information("http_base_socket::OnTransferLimit\n");
+      //information("");
+      //information("http_base_socket::OnTransferLimit");
       //   char msg[32768];
       OnResponseComplete();
       //if (!m_b_keepalive)
       //{
-      //   //information("SetCloseAndDelete\n");
+      //   //information("SetCloseAndDelete");
       //   SetCloseAndDelete();
       //}
       //else
       //{
-      //   //information("keep-alive\n");
+      //   //information("keep-alive");
       //}
    }
 
@@ -343,14 +343,14 @@ namespace sockets
 
             auto & strFile = response().m_strFile;
 
-            ::filesize iInputFileSize = 0;
+            //::filesize iInputFileSize = 0;
 
             if (strFile.has_char())
             {
 
                auto pfileIn = file()->get_reader(strFile);
 
-               iInputFileSize = pfileIn->size();
+               //iInputFileSize = pfileIn->size();
 
                acmesystem()->compress(pfile, pfileIn, "zlib");
 
@@ -362,7 +362,7 @@ namespace sockets
 
                response().file()->seek_to_begin();
 
-               iInputFileSize = response().file()->size();
+               //iInputFileSize = response().file()->size();
 
                acmesystem()->compress(pfile, response().file(), "zlib");
 
@@ -386,7 +386,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < int_array >* prangea, const ::scoped_string & scopedstrContentType)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::i32_array >* prangea, const ::scoped_string & scopedstrContentType)
    {
 
       ::file::path pcsz(pcszParam);
@@ -596,7 +596,7 @@ namespace sockets
          if (prangea->get_count() > 1)
          {
             
-            memsize uTotal = 0;
+            //memsize uTotal = 0;
             
             memory mem;
             
@@ -660,7 +660,7 @@ namespace sockets
                      uRead = mem.size();
                   }
                   uRead = preader->read(mem(0,uRead));
-                  uTotal += uRead;
+                  //uTotal += uRead;
                   if (uRead == 0)
                      break;
                   pfile->write(mem(0, uRead));
@@ -685,7 +685,7 @@ namespace sockets
          else
          {
             
-            memsize uTotal = 0;
+            //memsize uTotal = 0;
             
             memory mem;
             
@@ -736,7 +736,7 @@ namespace sockets
                   
                   uRead = preader->read(mem(0, uRead));
                   
-                  uTotal += uRead;
+                  //uTotal += uRead;
 
                   if (uRead == 0)
                   {

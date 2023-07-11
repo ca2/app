@@ -127,7 +127,7 @@ namespace datetime
             pfile->raw_print("<tr>");
             if (pfile->m_strOptions.contains("<left-week-of-the-year>"))
             {
-               time_t w;   
+               posix_time w;   
                
                auto psystem = acmesystem();
 

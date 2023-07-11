@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <string.h>
 
 CLASS_DECL_ACME string i64toa_dup(i64 i, i32 iBase);
 CLASS_DECL_ACME string i64toa_dup(i64 i);

@@ -23,5 +23,9 @@ union message_union
 };
 
 
+struct now_t {};
+struct infinite_t {};
+struct zero_t {};
+
 
 

@@ -20,7 +20,7 @@ namespace sockets_bsd
 //   typedef string_map < ::string_to_string >       resolv_cache_t;
 
    /* type, host, time */
-//   typedef string_map < string_map < time_t > >    resolv_timeout_t;
+//   typedef string_map < string_map < posix_time > >    resolv_timeout_t;
 
 
 

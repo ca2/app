@@ -121,13 +121,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(192,192,192, 255);
+      //         colorText = ::rgba(192, 192, 192, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(255, 255, 255, 255);
+      //         colorText = ::rgba(255, 255, 255, 255);
 
       //      }
 
@@ -138,13 +138,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color::color(80, 80, 80, 255);;
+      //         colorText = ::rgba(80, 80, 80, 255);;
 
       //      }
 
@@ -161,7 +161,7 @@ namespace user
 
       ::rectangle_i32 rectangleText;
 
-      get_element_rect(rectangleText, e_element_text);
+      get_element_rectangle(rectangleText, e_element_text);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -196,7 +196,7 @@ namespace user
 
       ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       i32 cx = rectangleDropDown.width() / 3;
 
@@ -216,9 +216,7 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -241,7 +239,7 @@ namespace user
 
       ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectangleDropDown, e_element_drop_down);
+      get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
       ::rectangle_i32 rectangleDropIn(rectangleDropDown);
 
@@ -257,13 +255,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(80, 80, 180, 255);
+      //         colorDropDown = ::rgba(80, 80, 180, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(100, 100, 200, 255);
+      //         colorDropDown = ::rgba(100, 100, 200, 255);
 
       //      }
 
@@ -274,13 +272,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color::color(200, 200, 250, 255);
+      //         colorDropDown = ::rgba(200, 200, 250, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color::color(192, 192, 192, 255);
+      //         colorDropDown = ::rgba(192, 192, 192, 255);
 
       //      }
 
@@ -478,7 +476,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(::rectangle_i32 & rectangle, enum_element eelement)
+   bool combo_box::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
 
    {
 
@@ -489,7 +487,7 @@ namespace user
 
       }
 
-      return interaction::get_element_rect(rectangle, eelement);
+      return interaction::get_element_rectangle(rectangle, eelement);
 
    }
 
@@ -499,7 +497,7 @@ namespace user
 
       ::rectangle_i32 rectangleElement;
 
-      if(get_element_rect(rectangleElement, e_element_drop_down))
+      if(get_element_rectangle(rectangleElement, e_element_drop_down))
       {
 
          if (rectangleElement.contains(point))
@@ -543,7 +541,7 @@ namespace user
       if (!pshowwindow->m_bShow)
       {
 
-         if (m_plistbox.is_set())
+         if (m_plistbox.is_set() && m_plistbox->is_window())
          {
 
             m_plistbox->post_message(MESSAGE_CLOSE);
@@ -679,7 +677,7 @@ namespace user
             else if (!m_plistbox->const_layout().sketch().is_screen_visible())
             {
 
-               //output_debug_string("test");
+               //information("test");
 
             }
 
@@ -830,9 +828,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       m_plistbox->m_dItemHeight = minimum(24, rectangleClient.height());
 
@@ -891,9 +887,7 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::e_unit_pixel;

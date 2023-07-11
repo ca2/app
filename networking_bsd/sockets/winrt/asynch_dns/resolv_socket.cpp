@@ -222,7 +222,7 @@ namespace sockets
       else if (key == "Failed" && m_parent)
       {
 
-         information(" ************ Resolve failed\n");
+         information(" ************ Resolve failed");
 
          if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
          {

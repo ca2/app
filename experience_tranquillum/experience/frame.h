@@ -74,7 +74,7 @@ namespace experience_tranquillum
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool get_element_rect(::rectangle_i32 & rectangle, enum_element eelement) override;
+      virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement) override;
 
 
 

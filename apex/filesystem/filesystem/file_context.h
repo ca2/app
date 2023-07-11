@@ -119,7 +119,7 @@ public:
 
    //   auto preader = get_reader(payloadFile);
 
-   //   binary_stream < FILE > stream(preader);
+   //   binary_stream stream(preader);
 
    //   stream.defer_set_loading();
 
@@ -136,7 +136,7 @@ public:
 
    //   auto pwriter = get_writer(payloadFile);
 
-   //   binary_stream < FILE > stream(pwriter);
+   //   binary_stream stream(pwriter);
 
    //   stream.defer_set_storing();
 
@@ -328,7 +328,7 @@ public:
 
    //   auto pfile = get_reader(payloadFile);
 
-   //   ::binary_stream < FILE > s(pfile);
+   //   ::binary_stream s(pfile);
 
    //   __exchange_array(a, s);
 

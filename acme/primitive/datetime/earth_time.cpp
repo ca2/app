@@ -5,19 +5,20 @@
 #include "earth_gregorian_time.h"
 #include "acme/platform/definition.h"
 #include "acme/primitive/datetime/_string.h"
-//#include "acme/operating_system/time.h"
+
 #include "acme/exception/not_implemented.h"
 #include "acme/platform/debug.h"
 #include "acme/primitive/string/str.h"
 
 
 #include "acme/_operating_system.h"
+#include "acme/operating_system/shared_posix/time.h"
 
 
 #include <time.h>
 
 
-void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time);
+void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time);
 
 
 namespace earth
@@ -32,18 +33,18 @@ namespace earth
 
 #ifdef WINDOWS
 
-      return time( ::_time64( nullptr ) ) ;
+      return posix_time({ posix_time_t{}, ::_time64(nullptr) });
 
 #else
 
-      return time( ::time( nullptr ) );
+      return posix_time({ posix_time_t{},  ::time(nullptr) });
 
 #endif
 
    }
 
 
-   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const ::earth::time_shift & timeshift)
+   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const class ::time & timeshift)
    {
 
 
@@ -52,18 +53,18 @@ namespace earth
 #pragma warning (pop)
 
 
-      struct tm atm;
+      ::earth::gregorian_time gregoriantime;
 
-      atm.tm_sec = nSec;
-      atm.tm_min = nMin;
-      atm.tm_hour = nHour;
-      atm.tm_mday = nDay;
-      atm.tm_mon = nMonth - 1;        // tm_mon is 0 based
-      atm.tm_year = nYear - 1900;     // tm_year is 1900 based
+      gregoriantime.m_iSecond = nSec;
+      gregoriantime.m_iMinute = nMin;
+      gregoriantime.m_iHour = nHour;
+      gregoriantime.m_iDay = nDay;
+      gregoriantime.m_iMonth = nMonth - 1;        // tm_mon is 0 based
+      gregoriantime.m_iYear = nYear;
       //atm.tm_isdst = nDST;
 
 
-      m_time = make_utc_time(&atm) - (time_t) timeshift.m_d;
+      time::operator=(gregoriantime.make_utc_time() - timeshift);
 
 
       /*
@@ -74,8 +75,8 @@ namespace earth
       ENSURE( nHour >= 0 && nHour <= 23 );
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
-      ASSUME(m_time != -1);   */    // indicates an illegal input time
-      if(m_time == -1)
+      ASSUME(m_posixtime != -1);   */    // indicates an illegal input time
+      if(m_iSecond == -1)
       {
 
          throw_exception(error_bad_argument);
@@ -84,7 +85,7 @@ namespace earth
 
    }
 
-   time::time(const ::earth::gregorian::time & gregoriantime, const time_shift & timeshift) :
+   time::time(const ::earth::gregorian_time & gregoriantime, const class ::time & timeshift) :
       time(gregoriantime.m_iYear,
          gregoriantime.m_iMonth,
          gregoriantime.m_iDay,
@@ -117,20 +118,20 @@ namespace earth
 
 #ifdef WINDOWS
 
-      m_time = _mktime64(&atm);
+      m_iSecond = _mktime64(&atm);
 
 #else
 
-      m_time = mktime(&atm);
+      m_iSecond = mktime(&atm);
 
 #endif
 
-      ASSUME(m_time != -1);       // indicates an illegal input time
+      ASSUME(m_iSecond != -1);       // indicates an illegal input time
 
-      if (m_time == -1)
+      if (m_iSecond == -1)
       {
 
-         throw ::exception(error_bad_argument);
+         throw ::exception(error_invalid_time_type);
 
       }
 
@@ -140,71 +141,83 @@ namespace earth
 #endif
 
    
-   time::time(const file_time & file_time)
+   time::time(const file_time & filetime, const class ::time & timeshift) :
+      time(::earth::gregorian_time(filetime), timeshift)
    {
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_earth_time((time_t *)&m_time, &file_time.m_filetime);
+      //file_time_to_earth_time(this, filetime);
 
    }
 
 
-   struct tm* time::tm_struct(struct tm* ptm, const ::earth::time_shift & timeshift) const
+   time::time(const system_time & systemtime, const class ::time & timeshift) :
+      time(::earth::gregorian_time(systemtime), timeshift)
    {
 
-      time_t timeOffset = (time_t) timeshift.m_d;
+      //auto pnode = acmesystem()->node();
 
-      time_t time = m_time + timeOffset;
-
-      if (ptm != nullptr)
-      {
-
-#ifdef WINDOWS
-
-         struct tm tmTemp;
-
-         errno_t err = _gmtime64_s(&tmTemp, &time);
-
-         if (err != 0)
-         {
-            return nullptr;    // indicates that m_time was not initialized!
-         }
-
-         *ptm = tmTemp;
-
-         return ptm;
-
-#else
-
-         struct tm * ptmTemp;
-
-         ptmTemp = gmtime((time_t *)&time);
-
-         // gmtime can return nullptr
-         if(ptmTemp == nullptr)
-            return nullptr;
-
-         // but don't throw ::exception( exception or generate error...
-         // (reason for commenting out below, fat to be erased...)
-//         if(errno != 0)
-         //          return nullptr;
-
-         *ptm = *ptmTemp;
-
-         return ptm;
-
-#endif
-
-      }
-      else
-      {
-
-         return nullptr;
-
-      }
+      //file_time_to_earth_time(this, filetime);
 
    }
+
+
+//   struct tm * time::tm_struct(struct tm * ptm, const class ::time & timeshift) const
+//   {
+//
+//      time_t timeOffset = (time_t) timeshift.floating_second();
+//
+//      time_t time = m_iSecond + timeOffset;
+//
+//      if (ptm != nullptr)
+//      {
+//
+//#ifdef WINDOWS
+//
+//         struct tm tmTemp;
+//
+//         errno_t err = _gmtime64_s(&tmTemp, &time);
+//
+//         if (err != 0)
+//         {
+//            return nullptr;    // indicates that m_posixtime was not initialized!
+//         }
+//
+//         *ptm = tmTemp;
+//
+//         return ptm;
+//
+//#else
+//
+//         struct tm * ptmTemp;
+//
+//         ptmTemp = gmtime((posix_time *)&time);
+//
+//         // gmtime can return nullptr
+//         if(ptmTemp == nullptr)
+//            return nullptr;
+//
+//         // but don't throw ::exception( exception or generate error...
+//         // (reason for commenting out below, fat to be erased...)
+////         if(errno != 0)
+//         //          return nullptr;
+//
+//         *ptm = *ptmTemp;
+//
+//         return ptm;
+//
+//#endif
+//
+//      }
+//      else
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//   }
 
 
 //   struct tm* time::GetLocalTm(struct tm* ptm) const
@@ -232,11 +245,11 @@ namespace earth
 //
 //         struct tm tmTemp;
 //
-//         errno_t err = _localtime64_s(&tmTemp, &m_time);
+//         errno_t err = _localtime64_s(&tmTemp, &m_posixtime);
 //
 //         if (err != 0)
 //         {
-//            return nullptr;    // indicates that m_time was not initialized!
+//            return nullptr;    // indicates that m_posixtime was not initialized!
 //         }
 //
 //         *ptm = tmTemp;
@@ -245,7 +258,7 @@ namespace earth
 //
 //#else
 //
-//         return localtime_r((time_t *)&m_time, ptm);
+//         return localtime_r((posix_time *)&m_posixtime, ptm);
 //
 //#endif
 //
@@ -260,108 +273,122 @@ namespace earth
 //   }
 //
 
-   time_t time::get_time() const noexcept
+   posix_time time::get_time() const noexcept
    {
 
-       return m_time;
+       return *this;
 
    }
 
 
-   i32 time::year(const ::earth::time_shift & timeshift) const noexcept
+   i32 time::year(const class ::time & timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
-
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? (ptm->tm_year) + 1900 : 0 ;
+      return gregoriantime.m_iYear;
 
    }
 
 
-   i32 time::month(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::month(const class ::time& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iMonth+1;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_mon + 1 : 0;
 
    }
 
 
-   i32 time::day(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::day(const class ::time& timeshift) const noexcept
    {
 
-      struct tm ttm;
+      //struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iDay;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_mday : 0 ;
 
    }
 
 
-   i32 time::hour(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::hour(const class ::time& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iHour;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_hour : -1 ;
 
    }
 
 
-   i32 time::minute(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::minute(const class ::time& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iMinute;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_min : -1 ;
 
    }
 
 
-   i32 time::second(const ::earth::time_shift& timeshift) const noexcept
+   i32 time::second(const class ::time& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iSecond;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_sec : -1 ;
 
    }
 
 
-   i32 time::day_of_week(const ::earth::time_shift & timeshift) const noexcept
+   i32 time::day_of_week(const class ::time & timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+       return gregoriantime.m_iDayOfWeek;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ptm->tm_wday : 0 ;
 
    }
 
@@ -464,7 +491,7 @@ namespace earth
    //}
 
 
-   time time::get_sunday(const time_shift& timeshift) const
+   time time::get_sunday(const class ::time& timeshift) const
    {
 
       time sunday(*this);
@@ -489,26 +516,29 @@ namespace earth
    time_span time::abs_diff(const class time & time) const
    {
 
-      return abs(time.m_time - m_time);
+      return posix_time({ posix_time_t{}, abs(m_iSecond - time.m_iSecond) });
 
    }
 
 
-   time_t time::time_of_day(const time_shift& timeshift) const noexcept
+   posix_time time::time_of_day(const class ::time & timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
+//      struct tm ttm;
+//
+//      struct tm * ptm;
+//
+//      ptm = tm_struct(&ttm, timeshift);
 
-      struct tm * ptm;
+//       return gregoriantime.m_iYear;
 
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
+      return { posix_time_t{}, (::i64)((gregoriantime.m_iHour * 3600) + (gregoriantime.m_iMinute * 60) + gregoriantime.m_iSecond) };
 
    }
 
 
-   //time_t time::GetGmtTimeOfDay() const noexcept
+   //posix_time time::GetGmtTimeOfDay() const noexcept
    //{
 
    //   struct tm ttm;
@@ -522,34 +552,30 @@ namespace earth
    //}
 
 
-   i64 time::day_sig(const time_shift& timeshift) const noexcept
+   i64 time::day_sig(const class ::time& timeshift) const noexcept
    {
 
-      struct tm ttm;
+       ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
 
-      struct tm * ptm;
-
-      ptm = tm_struct(&ttm, timeshift);
-
-      return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
+      return ((gregoriantime.m_iYear - 1900) * 500) + (gregoriantime.m_iMonth * 40) + gregoriantime.m_iDay;
 
    }
 
 
 
-   string format(const ::string & strFormat, const ::earth::time & time, const ::earth::time_shift& timeshift)
+   string format(const ::string & strFormat, const ::earth::time & time, const class ::time& timeshift)
    {
 
       string str;
 
-      auto timeUtc = time.m_time;
+      time_t timeUtc = time.m_iSecond;
 
-      timeUtc += (::i32)  (timeshift.m_d * 3600.0);
+      timeUtc += timeshift.m_iSecond;
 
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
    #if OSBIT == 32
-      const time_t timet = (const time_t) timeUtc;
+      const posix_time timet = (const posix_time) timeUtc;
       struct tm * ptmTemp = gmtime(&timet);
       #else
       struct tm * ptmTemp = gmtime(&timeUtc);
@@ -571,7 +597,7 @@ namespace earth
 
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
 
-      struct tm * ptmTemp = gmtime((time_t *)&time.m_time);
+      struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
 
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
@@ -590,7 +616,7 @@ namespace earth
 
       struct tm ptmTemp;
 
-      errno_t err = _gmbtime64_s(&ptmTemp, &m_time);
+      errno_t err = _gmbtime64_s(&ptmTemp, &m_posixtime);
 
       if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
       {
@@ -606,7 +632,7 @@ namespace earth
 
       //#elif defined(ANDROID) || defined(SOLARIS)
       //
-      //      struct tm* ptmTemp = localtime(&m_time);
+      //      struct tm* ptmTemp = localtime(&m_posixtime);
       //
       //      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       //      {
@@ -642,7 +668,7 @@ namespace earth
 
    //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   //   struct tm * ptmTemp = gmtime((time_t *)&time.m_time);
+   //   struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
 
    //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    //   {
@@ -655,7 +681,7 @@ namespace earth
 
    //   struct tm ptmTemp;
 
-   //   errno_t err = _gmtime64_s(&ptmTemp, &m_time);
+   //   errno_t err = _gmtime64_s(&ptmTemp, &m_posixtime);
 
    //   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
    //   {
@@ -666,7 +692,7 @@ namespace earth
 
    //#else
 
-   //   struct tm * ptmTemp = _gmtime64(&time.m_time);
+   //   struct tm * ptmTemp = _gmtime64(&time.m_posixtime);
 
    //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    //   {
@@ -715,7 +741,7 @@ namespace earth
 
       //throw ::not_implemented();
 
-      return 0;
+      return posix_time{ posix_time_t{}, 0 };
 
    }
 
@@ -727,17 +753,36 @@ namespace earth
 
       //throw_();
 
-      return 0;
+      return posix_time{ posix_time_t{}, 0 };
 
    }
 
 
+   bool time::operator == (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) == time; 
+   
+   }
+
+
+   ::std::strong_ordering time::operator <=> (const class  ::time & time) const
+   {
+      
+      return ((class ::time) *this) <=> time; 
+   
+   }
+
+
+   ::i64 time::total_minutes(const class ::time & timeshift) const noexcept
+   {
+   
+      return m_iSecond / 60;
+   
+   }
+
+
 } // namespace earth
-
-
-
-
-
 
 
 
@@ -748,7 +793,7 @@ namespace earth
 ////   char psz[32];
 ////   psz[0] = '\0';
 ////
-//////   time_t tmp = time.get_time();
+//////   posix_time tmp = time.get_time();
 //////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
 ////
 ////   errno_t err = 0;
@@ -771,7 +816,7 @@ namespace earth
 ////stream & operator <<(stream & os, ::earth::time & time)
 ////{
 ////
-////   os.write((i64) time.m_time);
+////   os.write((i64) time.m_posixtime);
 ////
 ////   return os;
 ////
@@ -797,7 +842,7 @@ namespace earth
 //stream & operator >>(stream & is, ::earth::time & rtime)
 //{
 //
-//   is.read((i64 &) rtime.m_time);
+//   is.read((i64 &) rtime.m_posixtime);
 //
 //   return is;
 //
@@ -816,7 +861,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 
    struct tm * ptm;
 
-   ptm = time.tm_struct(&ttm);
+   ptm = tm_struct(&ttm, time);
 
    st.wDay = ptm->tm_mday;
    st.wDayOfWeek = ptm->tm_wday;
@@ -896,12 +941,12 @@ CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
 //#define INTEL 1
 
 //
-//time_t __time(const file_time & file_time)
+//posix_time __time(const file_time & file_time)
 //{
 //
 //   auto time = __time(*(FILETIME *)&file_time);
 //
-//   auto estatus = mkgmtime_from_filetime(time.m_time, file_time.m_filetime);
+//   auto estatus = mkgmtime_from_filetime(time.m_posixtime, file_time.m_filetime);
 //
 //   if (!estatus)
 //   {

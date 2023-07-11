@@ -86,7 +86,7 @@ namespace multimedia
    }
 
 
-   void decoder::FillTitleInfo(string_array & wstraFormat, string2a & wstr2aTitle)
+   void decoder::FillTitleInfo(string_array & wstraFormat, string_array_array & wstr2aTitle)
    {
 
       ::payload strAttr;

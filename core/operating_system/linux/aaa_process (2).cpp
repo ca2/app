@@ -463,10 +463,10 @@ retry:
 }
 
 
-int_array module_path_get_pid(const ::string & pszPath)
+::i32_array module_path_get_pid(const ::string & pszPath)
 {
 
-   int_array ia;
+   ::i32_array ia;
 
    ::file::path_array stra;
 
@@ -502,7 +502,7 @@ int_array module_path_get_pid(const ::string & pszPath)
 atom_array app_get_pid(const ::string & psz)
 {
 
-   ::output_debug_string("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+   ::information("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
 
    atom_array ia;
 
@@ -530,14 +530,14 @@ atom_array app_get_pid(const ::string & psz)
 
       //if(iPid == 22912)
       //{
-      //output_debug_string("22912");
+      //information("22912");
       //}
          ::file::path path = module_path_from_pid(iPid);
 
          if(path.has_char())
          {
 
-            //output_debug_string(path + "\n");
+            //information(path + "\n");
 
          }
 

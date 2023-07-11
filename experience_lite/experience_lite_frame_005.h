@@ -37,7 +37,7 @@
                void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
                void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient);
                void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_border eside);
-               void GetBorderRect(const ::rectangle_i32 &lpcrectClient, ::rectangle_i32 * lprect, enum_border eside);
+               void GetBorderRectangle(const ::rectangle_i32 &lpcrectClient, ::rectangle_i32 * lprect, enum_border eside);
                void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient);
                void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_grip egrip);
                void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);

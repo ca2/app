@@ -173,7 +173,7 @@ namespace folder_zip
 
       auto timeModification = pfile->modification_time();
 
-      ::earth::time earthtimeCreation(timeModification.m_iSecond);
+      ::earth::time earthtimeCreation(timeModification);
 
       zipfi.tmz_date.tm_hour = earthtimeCreation.hour();
       zipfi.tmz_date.tm_sec = earthtimeCreation.second();
@@ -184,9 +184,7 @@ namespace folder_zip
 
 #ifdef WINDOWS_DESKTOP
 
-      FILETIME filetimeLocal;
-
-      ::time_to_file_time((file_time_t *) & filetimeLocal, &timeModification);
+      auto filetimeLocal = as_FILETIME(file_time(timeModification));
 
       WORD dosDate = 0;
       WORD dosTime = 0;
@@ -201,7 +199,7 @@ namespace folder_zip
 
       memory mem;
 
-      mem.set_size(256 * 1024);
+      mem.set_size(256_KiB);
 
       memsize uRead;
 
@@ -320,7 +318,7 @@ namespace folder_zip
          if (pathFile.contains("-256.png"))
          {
 
-            ::output_debug_string("-256.png");
+            ::information("-256.png");
 
          }
 
@@ -385,9 +383,9 @@ namespace folder_zip
    void didnt_locate_file(const char * pszFile)
    {
 
-      ::output_debug_string("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+      ::information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
-      ::fflush(stdout);
+      //::fflush(stdout);
 
    }
 
@@ -404,18 +402,18 @@ namespace folder_zip
 
 #ifdef WINDOWS_DESKTOP
 
-      ::file_time_t filetimeLocal;
-      ::file_time_t filetime;
+      ::FILETIME filetimeLocal;
+      ::FILETIME filetime;
 
-      ::DosDateTimeToFileTime((WORD)(dosDate >> 16), (WORD)dosDate, (LPFILETIME)&filetimeLocal);
+      ::DosDateTimeToFileTime((WORD)(dosDate >> 16), (WORD)dosDate, &filetimeLocal);
 
-      ::LocalFileTimeToFileTime((LPFILETIME)&filetimeLocal, (LPFILETIME)&filetime);
+      ::LocalFileTimeToFileTime(&filetimeLocal, &filetime);
 
-      ::file_time_to_time(&time, &filetime);
+      time = class ::time(as_file_time(filetime));
 
 #else
 
-      time.m_iSecond = dos_time_unix_time((dostime_t) dosDate);
+      time.m_iSecond = dos_time_unix_time((dostime_t) dosDate).m_iSecond;
       time.m_iNanosecond = 0;
 
 #endif

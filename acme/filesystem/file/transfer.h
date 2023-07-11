@@ -2,9 +2,6 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
-
-
 class CLASS_DECL_ACME file_transfer :
    virtual public ::particle
 {

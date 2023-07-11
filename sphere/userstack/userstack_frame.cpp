@@ -168,8 +168,7 @@ namespace userstack
             && m_pdocument->m_pplatformdocument != nullptr
             && m_pdocument->m_pplatformdocument->get_platform_frame() != nullptr)
             {
-               ::rectangle_i32 rectangleClient;
-               client_rectangle(rectangleClient);
+               auto rectangleClient = client_rectangle();
                ::point_i32 point = pmouse->m_point;
                screen_to_client()(point);
                if(rectangleClient.contains(point))

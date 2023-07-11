@@ -147,7 +147,7 @@ const char * __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_s
 
    auto len = scopedstrSkip.size();
 
-   auto n = strncmp(scopedstr.begin(), scopedstrSkip.begin(), len);
+   auto n = ansi_ncmp(scopedstr.begin(), scopedstrSkip.begin(), len);
 
    if(n)
    {
@@ -572,7 +572,7 @@ void particle::on_sequence()
 strsize particle::sz_len() const
 {
 
-   return strlen(__type_name(this)) + 1;
+   return ansi_len(__type_name(this)) + 1;
 
 }
 
@@ -580,7 +580,7 @@ strsize particle::sz_len() const
 void particle::to_sz(char * sz, strsize len) const
 {
 
-   strncpy(sz, __type_name(this), len);
+   ansi_ncpy(sz, __type_name(this), len);
 
 }
 
@@ -756,7 +756,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 
 
-class tracer & particle::tracer()
+class tracer & particle::tracer() const
 {
 
    auto ptask = get_task();
@@ -773,15 +773,15 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::log_statement()
+::trace_statement particle::log_statement() const
 {
 
-   return ::transfer(trace_statement(tracer())(this));
+   return ::transfer(trace_statement(tracer())((::particle *) this));
 
 }
 
 
-::trace_statement particle::information()
+::trace_statement particle::information() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_information));
@@ -789,7 +789,7 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::warning()
+::trace_statement particle::warning() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_warning));
@@ -797,7 +797,7 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::error()
+::trace_statement particle::error() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_error));
@@ -805,7 +805,7 @@ class tracer & particle::tracer()
 }
 
 
-::trace_statement particle::fatal()
+::trace_statement particle::fatal() const
 {
 
    return ::transfer(trace_statement(tracer())(e_trace_level_fatal));
@@ -813,8 +813,7 @@ class tracer & particle::tracer()
 }
 
 
-
-void particle::information(const ::ansi_character * pszFormat, ...)
+void particle::information(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -836,7 +835,7 @@ void particle::information(const ::ansi_character * pszFormat, ...)
 }
 
 
-void particle::warning(const ::ansi_character * pszFormat, ...)
+void particle::warning(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -858,7 +857,7 @@ void particle::warning(const ::ansi_character * pszFormat, ...)
 }
 
 
-void particle::error(const ::ansi_character * pszFormat, ...)
+void particle::error(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -880,7 +879,7 @@ void particle::error(const ::ansi_character * pszFormat, ...)
 }
 
 
-void particle::fatal(const ::ansi_character * pszFormat, ...)
+void particle::fatal(const ::ansi_character * pszFormat, ...) const
 {
 
    va_list arguments;
@@ -1347,7 +1346,7 @@ bool particle::_wait(const class time & timeWait)
 //   //if (milliseconds < 1'000'000'000)
 //   //{
 //
-//   //   output_debug_string("milliseconds < 1'000'000'000");
+//   //   information("milliseconds < 1'000'000'000");
 //
 //   //}
 //
@@ -1373,7 +1372,7 @@ bool particle::_wait(const class time & timeWait)
 //
 //         pmutex->m_strThread = ::task_get_name();
 //         pmutex->m_itask = ::get_current_itask();
-//         ::output_debug_string("");
+//         ::information("");
 //
 //      }
 //
@@ -2014,7 +2013,7 @@ void particle::destroy_os_data()
 
 
 
-//void particle::write(::binary_stream < FILE > & stream) const
+//void particle::write(::binary_stream & stream) const
 //{
 //
 //   throw interface_only();
@@ -2022,7 +2021,7 @@ void particle::destroy_os_data()
 //}
 //
 //
-//void particle::read(::binary_stream < FILE > & stream)
+//void particle::read(::binary_stream & stream)
 //{
 //
 //   throw interface_only();

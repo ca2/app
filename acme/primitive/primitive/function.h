@@ -6,9 +6,8 @@
 
 #include "acme/primitive/primitive/ptr.h"
 
-#include "acme/primitive/primitive/particle.h"
+#include  "acme/primitive/primitive/particle.h"
 
-//#include "acme/parallelization/wait.h"
 
 enum enum_use
 {
@@ -688,12 +687,6 @@ public:
    operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }
 
 };
-
-
-
-using trace_function = ::function < void(enum_trace_level, const ::scoped_string&) >;
-
-
 
 
 

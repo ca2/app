@@ -461,6 +461,7 @@
 				9A1D5D732751A98B003D9B5F /* platform */,
 				9A1D5D852751A98B003D9B5F /* user */,
 				9A1D5E6E2751A98C003D9B5F /* version */,
+				9A71B1852A44F82E00F9FC3D /* New Group */,
 				9A03B7C42A25BA8300A0E33E /* _____debug.xcconfig */,
 				9A03B7C52A25BA8300A0E33E /* _____release.xcconfig */,
 				9A1D5E582751A98C003D9B5F /* _.cpp */,
@@ -752,6 +753,13 @@
 				9A5ECD1328CCC0060084D354 /* _.h */,
 			);
 			path = user;
+			sourceTree = "<group>";
+		};
+		9A71B1852A44F82E00F9FC3D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		9A979D5028C827660013DC54 /* form */ = {

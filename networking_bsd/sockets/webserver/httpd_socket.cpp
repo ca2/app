@@ -117,7 +117,7 @@ namespace sockets
    string httpd_socket::datetime2httpdate(const string & dt)
    {
       struct tm tp;
-      time_t t;
+      posix_time t;
       const char *days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
       const char *months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                                "Jul","Aug","Sep","Oct","Nov","Dec"
@@ -164,7 +164,7 @@ namespace sockets
 
    string httpd_socket::GetDate()
    {
-      time_t t = time(nullptr);
+      posix_time t = time(nullptr);
       struct tm tp;
 #ifdef _WIN32
       ::memory_copy(&tp, localtime(&t), sizeof(tp));
@@ -276,7 +276,7 @@ namespace sockets
       //if (strCipherList.find("DH") >= 0)
       //{
 
-      //   int_array ia;
+      //   ::i32_array ia;
 
       //   ia.add(512);
       //   ia.add(1024);

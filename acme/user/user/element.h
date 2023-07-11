@@ -252,8 +252,8 @@ namespace user
 
       //virtual void window_apply_visual(const window_state & windowstate);
 
-
-      virtual void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow);
+      //virtual void sketch_to_layout();
+      //virtual void layout_to_design(bool & bUpdateBuffer, bool & bUpdateWindow);
 
       virtual void design_down();
       virtual void design_up();
@@ -267,7 +267,7 @@ namespace user
       virtual void on_configuration_change(::user::element * pprimitiveSource);
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
       virtual void on_show_window();
 
@@ -666,7 +666,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaScreenNeedRedraw = {}, ::function < void() > function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);

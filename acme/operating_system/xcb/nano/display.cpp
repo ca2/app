@@ -135,7 +135,7 @@ namespace xcb
          if(eatom == ::x11::e_atom_net_active_window)
          {
 
-            ::output_debug_string("e_atom_net_active_window");
+            ::information("e_atom_net_active_window");
 
          }
 
@@ -497,13 +497,13 @@ namespace xcb
       // if (pevent->response_type == XCB_CONFIGURE_NOTIFY)
       // {
 
-      //    output_debug_string("ConfigureNotify");
+      //    information("ConfigureNotify");
 
       // }
       // else if (pevent->response_type == XCB_BUTTON_PRESS)
       // {
 
-      //    output_debug_string("ButtonPress");
+      //    information("ButtonPress");
 
       // }
 
@@ -614,7 +614,7 @@ namespace xcb
       if (xcb_connection_has_error(m_pconnection))
       {
 
-         fprintf(stderr, "ERROR: failed to connection to X server\n");
+         error("ERROR: failed to connection to X server");
 
          throw ::exception(error_failed);
 
@@ -720,7 +720,7 @@ namespace xcb
       if (!m_pdepth)
       {
 
-         fprintf(stderr, "ERROR: screen does not support 32 bit color depth\n");
+         error("ERROR: screen does not support 32 bit color depth");
 
          xcb_disconnect(m_pconnection);
 
@@ -751,7 +751,7 @@ namespace xcb
       if (!m_pvisualtype)
       {
 
-         fprintf(stderr, "ERROR: screen does not support true Color\n");
+         output_error_message("ERROR: screen does not support true Color");
 
          xcb_disconnect(m_pconnection);
 
@@ -775,7 +775,7 @@ namespace xcb
          if (!estatus)
          {
 
-            fprintf(stderr, "ERROR: failed to create colormap\n");
+            output_error_message("ERROR: failed to create colormap");
 
             xcb_disconnect(m_pconnection);
 
@@ -870,7 +870,7 @@ namespace xcb
 
       xcb_client_message_event_t event;
 
-      memset(&event, 0, sizeof(event));
+      memory_set(&event, 0, sizeof(event));
 
       event.response_type = XCB_CLIENT_MESSAGE;
       event.format = 32;
@@ -905,7 +905,7 @@ namespace xcb
             {
 
 
-               output_debug_string("kick_idle\n");
+               information("kick_idle\n");
 
             }
 
@@ -1297,7 +1297,7 @@ namespace xcb
 
       atoma.set_size(size / sizeof(xcb_atom_t));
 
-      memcpy(atoma.data(), patom, atoma.get_size_in_bytes());
+      memory_copy(atoma.data(), patom, atoma.get_size_in_bytes());
 
       return atoma;
 

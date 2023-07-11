@@ -50,7 +50,7 @@ namespace hex
 
       }
       auto pcsz = scopedstr.begin();
-      for(i64 i = strlen(pcsz)-1; i >= 0; i--)
+      for(i64 i = ansi_len(pcsz)-1; i >= 0; i--)
       {
 
          i64 d = alphadigit_weight(pcsz[i]);

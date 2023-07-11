@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/exception/interface_only.h"
-// #include "acme/primitive/string/string.h"
+
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
@@ -443,9 +443,9 @@ CLASS_DECL_NETWORKING_BSD::string __string_inet_ntop(int iFamily, const void * p
    if (!inet_ntop(iFamily, paddr, sz, sizeof(sz)))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       throw ::exception(estatus, "Failed to convert IP4 Address to text");
 
@@ -757,7 +757,7 @@ namespace net
          break;
 
       default:
-         strncpy(sz, "(Unknown Address Family)", sizeof(sz));
+         ansi_ncpy(sz, "(Unknown Address Family)", sizeof(sz));
          break;
       };
 

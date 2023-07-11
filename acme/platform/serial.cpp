@@ -213,7 +213,11 @@ namespace serial
 
       size_t eol_len = (size_t)eol.length();
 
-      u8* buffer_ = static_cast<u8*>(alloca(size * sizeof(u8)));
+      memory memory;
+
+      memory.set_size(size * sizeof(u8));
+
+      u8* buffer_ = static_cast<u8*>(memory.data());
 
       size_t read_so_far = 0;
 

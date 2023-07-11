@@ -119,7 +119,7 @@ namespace aura
 //
 //      u32                                             m_dwPromptContext;        // help action_context override for message box
 //      // LKG
-//      u32                                             m_dwPolicies;            // block for storing tristate system policies
+//      u32                                             m_dwPolicies;            // block for storing boolean system policies
 //
 //      // Support for Shift+F1 help mode.
 //      // true if we're in SHIFT+F1 mode.
@@ -1041,11 +1041,11 @@ namespace aura
       string get_default_playlist_path() override;
 
       
-#if defined(FREEBSD)
-
-      bool os_on_start_application() override;
-
-#endif
+//#if defined(FREEBSD)
+//
+//      bool os_on_start_application() override;
+//
+//#endif
 
       virtual string draw2d_get_default_implementation_name();
 

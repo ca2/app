@@ -108,11 +108,11 @@ namespace http
       static string expire(const class time & time = 5_minute);
 
 
-      using ARRAY_BASE::operator [];
       http::cookie & operator [](const char * name);
 
 
       cookies & operator = (const cookies & cookies);
+
 
    };
 

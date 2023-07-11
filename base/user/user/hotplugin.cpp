@@ -48,7 +48,7 @@ namespace hotplugin
 
       int w =300;
 
-      int v = (int) (::integral_millisecond() / 2);
+      int v = (int) (::i64_millisecond() / 2);
 
       int x = v % rectangleBar.width();
 
@@ -126,7 +126,7 @@ namespace hotplugin
 
       ::write_text::font_pointer f(e_create, pgraphics.m_p);
 
-      f->create_pixel_font("Calibri", 18.0);
+      f->create_font("Calibri", 18_px);
 
       rectangleBar.left += 4;
 

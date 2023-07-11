@@ -84,7 +84,7 @@ namespace user
 
          }
 
-         box * pboxLast = nullptr;
+         //box * pboxLast = nullptr;
 
          index iLine = 0;
 
@@ -96,7 +96,7 @@ namespace user
             for (auto & pbox : *pline)
             {
 
-               pboxLast = pbox;
+               //pboxLast = pbox;
 
                if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
                {
@@ -124,7 +124,7 @@ namespace user
 
          }
 
-         box * pboxLast = nullptr;
+         //box * pboxLast = nullptr;
 
          index iLine = 0;
 
@@ -136,7 +136,7 @@ namespace user
             for (auto & pbox : *pline)
             {
 
-               pboxLast = pbox;
+               ///pboxLast = pbox;
 
                if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
                {
@@ -209,7 +209,7 @@ namespace user
 
          }
 
-         box* pboxLast = nullptr;
+         //box* pboxLast = nullptr;
 
          index iLine = 0;
 
@@ -221,7 +221,7 @@ namespace user
             for (auto& pbox : *pline)
             {
 
-               pboxLast = pbox;
+               //pboxLast = pbox;
 
                if (pbox->m_iPosBeg <= iSel && iSel <= (pbox->m_iPosEnd + (pbox == pline->last_ptr() ? 1 : 0)))
                {

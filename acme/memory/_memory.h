@@ -5,7 +5,7 @@
 CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const void* s, memsize s_len);
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(FREEBSD) || defined(__APPLE__)
 
 
 inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
@@ -49,6 +49,50 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 
 
 #endif
+
+
+inline const void * _memory_find_u8(const void* l, int i, memsize len)
+{
+
+    auto u = (::u8) (*((::u32*)(&i)) & 0xff);
+
+    auto p = (const ::u8*)l;
+
+    while(len > 0)
+    {
+
+        if(*p == u)
+        {
+
+            return p;
+
+        }
+
+        p++;
+
+        len--;
+
+    }
+
+    return nullptr;
+
+}
+
+
+
+inline const void * memory_find_u8(const void* l, int i, memsize len)
+{
+
+    if(::is_null(l))
+    {
+
+        return nullptr;
+
+    }
+
+    return _memory_find_u8(l, i, len);
+
+}
 
 
 

@@ -118,7 +118,7 @@ namespace sockets
       SendRequest();
       if(m_file.is_set())
       {
-         ::output_debug_string("Sending " + ::as_string(m_content_length)+ " bytes");
+         ::information("Sending " + ::as_string(m_content_length)+ " bytes");
          memsize n;
          if(m_transferprogressfunction)
          {
@@ -133,7 +133,7 @@ namespace sockets
             write(memory.data(), n);
             total+=n;
             double dRate=(double)total/(double)m_content_length;
-            ::format_output_debug_string("%0.2f%% %d of %d bytes\n",100.0*dRate, total, m_content_length);
+            ::output_debug_string_format("%0.2f%% %d of %d bytes\n",100.0*dRate, total, m_content_length);
             
             if(m_transferprogressfunction)
             {
@@ -148,20 +148,27 @@ namespace sockets
       else
       {
 
-         FILE *fil = fopen(m_filename, "rb");
+         auto preader = file()->get_reader(m_filename);
 
-         if (fil)
+         if (preader.ok())
          {
-            memsize n;
-            char buf[32768];
-            while ((n = fread(buf, 1, 32768, fil)) > 0)
-            {
-               write({ buf, n });
-            }
-            fclose(fil);
-         }
-      }
 
+            memory buffer;
+
+            buffer.set_size(32_KiB);
+
+            memsize n;
+
+            while ((n = preader->read(buffer)) > 0)
+            {
+
+               write({ buffer.data(), n });
+
+            }
+
+         }
+
+      }
 
       return true;
 

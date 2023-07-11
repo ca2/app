@@ -154,7 +154,7 @@ namespace user
       bool                                         m_bEnableDragResize;
       bool                                         m_bDerivedHeight;
 
-      bool                                         m_bSketchToDesignLayout;
+      bool                                         m_bLadingToLayout;
       bool                                         m_bTransparent;
       bool                                         m_bCreated;
       bool                                         m_bSubclassed;
@@ -164,15 +164,21 @@ namespace user
       bool                                         m_bCustomWindowProc;
       bool                                         m_bControlExCommandEnabled;
 
+      bool                                         m_bUpdateBuffer; // internal offscreen buffer
+      bool                                         m_bUpdateWindow; // window frame
+      bool                                         m_bUpdateScreen; // screen buffer
+
       bool                                         m_bIdBound;
       bool                                         m_bOverdraw;
       bool                                         m_bFullScreen;
       bool                                         m_bModal;
 
       bool                                         m_bNeedRedraw;
+      boolean                                      m_bNeedPerformLayout;
       bool                                         m_bNeedLayout;
       bool                                         m_bReposition;
       bool                                         m_bUpdatingVisual;
+      bool                                         m_bOnDraw;
 
       bool                                         m_bUpdateVisual;
       bool                                         m_bMouseMovePending;
@@ -262,8 +268,8 @@ namespace user
       property_set                              m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
-      int_array                                 m_iaSubItemDuplicate;
-      int_array                                 m_iaSubItemDisable;
+      ::i32_array                                 m_iaSubItemDuplicate;
+      ::i32_array                                 m_iaSubItemDisable;
 
       string                                    m_strClass;
       string_to_string                          m_mapClassStyle;
@@ -274,6 +280,7 @@ namespace user
       ::user::frame *                           m_puserframeTopLevel;
       ::user::frame *                           m_puserframeParent;
       ::windowing::window *                     m_pwindow;
+      bool                                      m_bAutoResize;
 
 
       ::rectangle_f64                               m_rectangleClip;
@@ -326,7 +333,8 @@ namespace user
       ::point_i32                                  m_pointMouseMove;
       class ::time                                   m_timeLastRedraw;
       ::atom                                       m_atomImpact;
-      ::color::color                               m_colorBackground;
+      ::status < ::color::color >                  m_statuscolorBackground;
+      ::status < ::color::color >                  m_statuscolorText;
       point_i32                                    m_pointScroll;
       // if high frequency mouse transfer notification is required
       // create a fast path/low latency callback system
@@ -430,10 +438,10 @@ namespace user
       virtual void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored);
 
       
-      virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch);
-      virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
-      virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch);
-      virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch);
+      virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       /// @brief shift left position changing size
       /// @param left left position
       /// @param elayout elayout to change
@@ -448,8 +456,8 @@ namespace user
       /// @param elayout elayout to change
       virtual void set_top(::i32 top, enum_layout elayout = e_layout_sketch);
       
-      virtual bool on_set_position(const ::point_i32 & point, enum_layout elayout);
-      virtual bool on_set_size(const ::size_i32 & size, enum_layout elayout);
+      virtual bool on_set_position(::point_i32 & point, enum_layout elayout);
+      virtual bool on_set_size(::size_i32 & size, enum_layout elayout);
 
       //virtual interaction_draw2d * get_draw2d();
       double point_dpi(double d) override;
@@ -592,7 +600,7 @@ namespace user
       inline bool is_full_screen() { return m_bFullScreen; }
       virtual bool _is_full_screen();
 
-      virtual bool get_element_rect(::rectangle_i32 & rectangle, enum_element eelement);
+      virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement);
 
 
       virtual status < rectangle_i32 > rectangle(enum_element eelement)
@@ -600,7 +608,7 @@ namespace user
 
           ::rectangle_i32 rectangle;
 
-          if (!get_element_rect(rectangle, eelement))
+          if (!get_element_rectangle(rectangle, eelement))
           {
 
               return ::error_failed;
@@ -721,12 +729,12 @@ namespace user
 
       virtual void on_defer_display();
 
-      virtual bool display_sketch_to_design();
-      virtual void design_display();
-      virtual void design_appearance();
-      virtual void design_zorder();
-      virtual void design_reposition();
-      virtual void design_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool display_lading_to_layout();
+      virtual void layout_display();
+      virtual void layout_appearance();
+      virtual void layout_zorder();
+      virtual void layout_reposition();
+      virtual void layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void display_previous();
@@ -774,9 +782,9 @@ namespace user
 
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
-      virtual void set_need_layout(bool bAscendants = true);
+      virtual void set_need_layout();
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {},  ::function < void() > function= nullptr, bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
@@ -814,7 +822,9 @@ namespace user
 
 
       //virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
-      virtual void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      virtual void sketch_to_lading();
+      virtual void lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow);
+      virtual void layout_to_design();
       virtual void _001UpdateWindow() override;
       //virtual void window_apply_visual(const class layout_state& windowstate) override;
 
@@ -839,11 +849,13 @@ namespace user
       // Client Rect : e_layout_design : Design/_001OnDraw time
       virtual void input_client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
 
-      virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      //virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design);
 
-      virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      //virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 screen_rectangle(enum_layout elayout = e_layout_design);
+
 
 
       virtual ::rectangle_i32 parent_client_rectangle(enum_layout elayout = e_layout_design);
@@ -871,6 +883,7 @@ namespace user
 
 
       virtual bool is_frame_window();
+      virtual bool is_impact();
       bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
       virtual bool sketch_on_display();
@@ -1207,7 +1220,25 @@ namespace user
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      virtual void extend_on_parent(::draw2d::graphics_pointer & pgraphics);
+
+
+      virtual void top_down_prefix();
+      virtual bool should_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual bool need_on_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      /// returns true if parent may need to perform layout
+      /// the parent may need to perform layout if
+      ///    - during perform_layout the position and/or size of
+      ///      the user::interaction has changed.
+      virtual bool perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics);
+      /// returns true if parent may need to perform layout
+      /// the parent may need to perform layout if
+      ///    - during on_perform_layout the position and/or size of
+      ///      the user::interaction has changed.
+      virtual bool on_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition() override;
       virtual void on_show_window() override;
       virtual void _on_show_window();
@@ -1348,8 +1379,10 @@ namespace user
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+      void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
@@ -1360,6 +1393,7 @@ namespace user
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnTopNcClip(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) ;
@@ -1547,7 +1581,7 @@ namespace user
       void drag_release_capture() override;
       void drag_set_cursor(::user::drag * pdrag) override;
 
-      virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
+      //virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
 
       void _001OnTimer(::timer* ptimer) override;
       void on_timer(::timer* ptimer) override;
@@ -1580,8 +1614,6 @@ namespace user
 
 
       bool _001IsPointInside(const ::point_i32 & point) override;
-
-      virtual rectangle_i32 screen_rect();
 
       virtual bool _001IsPointInsideInline(const ::point_i32 & point);
       virtual bool _001IsClientPointInsideInline(const ::point_i32 & point);
@@ -1830,13 +1862,14 @@ namespace user
       //virtual void move_to(i32 x, i32 y);
       //virtual void set_size(i32 cx, i32 cy);
       //virtual void set_dim(const ::point_i32& point, const ::size_i32& size);
-      virtual void place(const ::rectangle_i32& rectangle, enum_layout elayout = e_layout_sketch);
-      inline void set_placement(i32 x, i32 y, i32 cx, i32 cy, enum_layout elayout = e_layout_sketch)
-      {
-         
-         place(::rectangle_i32_dimension(x, y, cx, cy));
-         
-      }
+      virtual void place(const ::rectangle_i32& rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      //inline void set_placement(i32 x, i32 y, i32 cx, i32 cy, enum_layout elayout = e_layout_sketch)
+      //{
+      //   
+      //   place(::rectangle_i32_dimension(x, y, cx, cy));
+      //   
+      //}
       virtual interaction& operator =(const ::rectangle_i32& rectangle);
 
       virtual void place_rate_or_size(const ::rectangle_f64 & rectangle);
@@ -2087,14 +2120,14 @@ namespace user
       virtual bool on_right_click(::item * pitem);
 
 
-      virtual int width();
-      virtual int height();
+      virtual int width(enum_layout elayout = e_layout_design);
+      virtual int height(enum_layout elayout = e_layout_design);
 
-      virtual int client_width();
-      virtual int client_height();
+      virtual int client_width(enum_layout elayout = e_layout_design);
+      virtual int client_height(enum_layout elayout = e_layout_design);
 
-      virtual ::size_f64 get_size();
-      virtual ::size_f64 get_client_size();
+      virtual ::size_f64 get_size(enum_layout elayout = e_layout_design);
+      virtual ::size_f64 get_client_size(enum_layout elayout = e_layout_design);
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
 
@@ -2230,7 +2263,7 @@ namespace user
       //void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
-      //virtual bool get_element_rect(::rectangle_i32* prectangle, enum_element eelement);
+      //virtual bool get_element_rectangle(::rectangle_i32* prectangle, enum_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa);
       // control member functions END
 
@@ -2421,6 +2454,8 @@ namespace user
       virtual ::shift_i32 client_to_parent(enum_layout elayout = e_layout_design);
       virtual ::shift_i32 host_to_client(enum_layout elayout = e_layout_design);
       virtual ::shift_i32 client_to_host(enum_layout elayout = e_layout_design);
+      virtual ::shift_i32 host_to_raw(enum_layout elayout = e_layout_design);
+      virtual ::shift_i32 raw_to_host(enum_layout elayout = e_layout_design);
 
 
       //template < typename GEOMETRY >

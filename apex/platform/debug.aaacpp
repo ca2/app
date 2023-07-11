@@ -30,17 +30,17 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 //   //::context_object * po = new context_object();
 //
 //   //// 2 arguments
-//   //o.treat(ok, po, [&](auto & result) { output_debug_string("o += ok..."); return success; } };
+//   //o.treat(ok, po, [&](auto & result) { infomration("o += ok..."); return success; } };
 //
 //   //// 3 arguments
-//   //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
+//   //o += { ok, id_text, [&](auto & result) { infomration("o += ok, id_text ..."); return ::success; } };
 //
 //
 //   //::pointer < ::object > pobject;
 //
 //   //__keep(pobject, nullptr);
 //   ////   // 4 arguments
-//   ////   o += { ok, id_text, [&](auto pobject) { ASSERT(pobject == &o); output_debug_string("o += ok, id_text, &o ...");  } };
+//   ////   o += { ok, id_text, [&](auto pobject) { ASSERT(pobject == &o); infomration("o += ok, id_text, &o ...");  } };
 //
 //
 //}

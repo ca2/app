@@ -23829,7 +23829,7 @@
 // HRESULT_FROM_WIN32(x) used to be a macro, however we now run it as an inline function
 // to prevent double evaluation of 'x'. If you still need the macro, you can use __HRESULT_FROM_WIN32(x)
 //
-#define __HRESULT_FROM_WIN32(x) ((HRESULT)(x) <= 0 ? ((HRESULT)(x)) : ((HRESULT) (((x) & 0x0000FFFF) | (FACILITY_WIN32 << 16) | 0x80000000)))
+#define __HRESULT_FROM_WIN32(x) ((HRESULT)(x) <= 0 ? ((HRESULT)(x)) : ((HRESULT) (((x) & 0x0000FFFF) | (FACILITY_WIN32 << 16) | I32_MINIMUM)))
 
 // #if !defined(_HRESULT_DEFINED) && !defined(__midl)
 // #define _HRESULT_DEFINED
@@ -23837,7 +23837,7 @@
 // #endif
 
 //#ifndef __midl
-//FORCEINLINE HRESULT HRESULT_FROM_WIN32(unsigned long x) { return (HRESULT)(x) <= 0 ? (HRESULT)(x) : (HRESULT) (((x) & 0x0000FFFF) | (FACILITY_WIN32 << 16) | 0x80000000);}
+//FORCEINLINE HRESULT HRESULT_FROM_WIN32(unsigned long x) { return (HRESULT)(x) <= 0 ? (HRESULT)(x) : (HRESULT) (((x) & 0x0000FFFF) | (FACILITY_WIN32 << 16) | I32_MINIMUM);}
 //#else
 #define HRESULT_FROM_WIN32(x) __HRESULT_FROM_WIN32(x)
 //#endif
@@ -32340,7 +32340,7 @@
 // macro to map either Win32 or SetupAPI error codes into an HRESULT.
 //
 #define HRESULT_FROM_SETUPAPI(x) ((((x) & (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) == (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) \
-   ? ((HRESULT)(((x)& 0x0000FFFF) | (FACILITY_SETUPAPI << 16) | 0x80000000))                               \
+   ? ((HRESULT)(((x)& 0x0000FFFF) | (FACILITY_SETUPAPI << 16) | I32_MINIMUM))                               \
    : HRESULT_FROM_WIN32(x))
 //
 // MessageId: SPAPI_E_EXPECTED_SECTION_NAME

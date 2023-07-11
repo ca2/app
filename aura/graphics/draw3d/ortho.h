@@ -18,8 +18,8 @@ namespace draw3d
       ::draw2d::graphics * m_pdc;
 
 
-      int_array draw_ortho_plain_wire_frame(::box_f64 * pbox, int iHint,int bA,bool bFirst);
-      int_array draw_ortho_plain_fill(::box_f64* pbox, int iHint,int bA,bool bFirst,::image * pimage);
+      ::i32_array draw_ortho_plain_wire_frame(::box_f64 * pbox, int iHint,int bA,bool bFirst);
+      ::i32_array draw_ortho_plain_fill(::box_f64* pbox, int iHint,int bA,bool bFirst,::image * pimage);
 
 
    };

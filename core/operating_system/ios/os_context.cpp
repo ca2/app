@@ -34,22 +34,22 @@ namespace ios
       
       /*      bool retval = true;
        HANDLE hToken;
-       TOKEN_PRIVILEGES tkp;
+       TOKEN_PRIVILEGES tokenprivileges;
        if (!OpenProcessToken(GetCurrentProcess(),
        TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
        return false;
-       LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
-       tkp.PrivilegeCount = 1;
-       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-       AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+       LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tokenprivileges.Privileges[0].Luid);
+       tokenprivileges.PrivilegeCount = 1;
+       tokenprivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+       AdjustTokenPrivileges(hToken, false, &tokenprivileges, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
        if (bIfPowerOff)
        retval = ExitWindowsEx(EWX_POWEROFF, 0) != false;
        else
        retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != false;
 
        //reset the previlages
-       tkp.Privileges[0].Attributes = 0;
-       AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+       tokenprivileges.Privileges[0].Attributes = 0;
+       AdjustTokenPrivileges(hToken, false, &tokenprivileges, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
        return retval;*/
 
       //  throw ::not_implemented();
@@ -61,18 +61,18 @@ namespace ios
    bool os_context::reboot()
    {
       /*      HANDLE hToken;
-       TOKEN_PRIVILEGES tkp;
+       TOKEN_PRIVILEGES tokenprivileges;
        if (!OpenProcessToken(GetCurrentProcess(),
        TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
        return false;
-       if(!LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid))
+       if(!LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tokenprivileges.Privileges[0].Luid))
        {
        TRACELASTERROR();
        return false;
        }
-       tkp.PrivilegeCount = 1;
-       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-       if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+       tokenprivileges.PrivilegeCount = 1;
+       tokenprivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+       if(!AdjustTokenPrivileges(hToken, false, &tokenprivileges, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
        {
        TRACELASTERROR();
        return false;
@@ -81,14 +81,14 @@ namespace ios
        {
        return false;
        }
-       if(!LookupPrivilegeValue(nullptr, SE_REMOTE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid))
+       if(!LookupPrivilegeValue(nullptr, SE_REMOTE_SHUTDOWN_NAME, &tokenprivileges.Privileges[0].Luid))
        {
        TRACELASTERROR();
        return false;
        }
-       tkp.PrivilegeCount = 1;
-       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-       if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+       tokenprivileges.PrivilegeCount = 1;
+       tokenprivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+       if(!AdjustTokenPrivileges(hToken, false, &tokenprivileges, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
        {
        TRACELASTERROR();
        return false;
@@ -111,8 +111,8 @@ namespace ios
        return false;
        }*/
       //reset the previlages
-      /*    tkp.Privileges[0].Attributes = 0;
-       AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+      /*    tokenprivileges.Privileges[0].Attributes = 0;
+       AdjustTokenPrivileges(hToken, false, &tokenprivileges, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
        return true;*/
       //    throw ::not_implemented();
       return false;

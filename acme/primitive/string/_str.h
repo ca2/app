@@ -79,7 +79,7 @@ public:
    //inline  bool equal_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
 
 
-   static inline     bool trimmed_is_empty(const ::scoped_string & scopedstr);
+   static bool trimmed_is_empty(const ::scoped_string & scopedstr);
 
 
    template < primitive_character CHAR_TYPE >
@@ -335,7 +335,7 @@ public:
 CLASS_DECL_ACME  string normalize_wildcard_criteria(const ::string & strPattern);
 
 
-inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
+CLASS_DECL_ACME string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
 
 
 CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
@@ -349,6 +349,31 @@ CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 //   return ::str::consume_quoted_value(*this);
 //
 //}
+
+
+inline strsize str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
+{
+
+   const ::ansi_character * pszDec = unicode_prior(pszBeg, psz);
+
+   if (pszDec == nullptr)
+   {
+
+      return -1;
+
+   }
+
+   return psz - pszDec;
+
+}
+
+
+inline strsize str::utf8_inc_len(const ::ansi_character * psz)
+{
+
+   return get_utf8_char_length(psz);
+
+}
 
 
 

@@ -10,6 +10,7 @@
 #include <sys/sem.h>
 #include <time.h>
 #include <pthread.h>
+#include <errno.h>
 
 #endif
 

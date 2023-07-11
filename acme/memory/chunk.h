@@ -76,7 +76,7 @@ public:
       if (::is_set(m_p))
       {
 
-         memcpy(m_p, p, s);
+         memory_copy(m_p, p, s);
 
          m_size = s;
 
@@ -118,7 +118,7 @@ public:
 
       }
 
-      return !memcmp(m_p, chunk.m_p, m_size);
+      return memory_order(m_p, chunk.m_p, m_size) == 0;
 
    }
 

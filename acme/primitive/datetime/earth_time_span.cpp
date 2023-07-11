@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "earth_time_shift.h"
 //s#include "earth_time.h"
-// #include "acme/primitive/string/string.h"
+
 
 
 namespace earth
@@ -57,7 +57,7 @@ namespace earth
 {
 
 
-   string format(const char* pFormat, const time_span& span, const time_shift& timeshift)
+   string format(const char* pFormat, const time_span& span, const class ::time& timeshift)
    {
       // formatting timespans is a little trickier than formatting CTimes
       //  * we are only interested in relative time formats, ie. it is illegal

@@ -49,7 +49,7 @@ namespace networking
       //   dns_cache_item(const dns_cache_item& item);
 
 
-      //   void write(::binary_stream < FILE > & stream) const override;
+      //   void write(::binary_stream & stream) const override;
       //   virtual ::stream& read(::stream& stream);
 
       //   dns_cache_item& operator = (const dns_cache_item& item);
@@ -73,7 +73,7 @@ namespace networking
       //   reverse_cache_item();
       //   reverse_cache_item(const reverse_cache_item& item);
 
-      //   void write(::binary_stream < FILE > & stream) const override;
+      //   void write(::binary_stream & stream) const override;
       //   virtual ::stream& read(::stream& stream);
 
       //   reverse_cache_item& operator = (const reverse_cache_item& item);

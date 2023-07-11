@@ -313,7 +313,7 @@ namespace draw2d
    }
 
 
-   void font::AddXFGlyphs(string2a  & str2aTokens)
+   void font::AddXFGlyphs(string_array_array  & straaTokens)
    {
       char           ch;
       string         str;
@@ -321,9 +321,9 @@ namespace draw2d
       bool           forceInsertion = false;
 
       SelectFont();
-      for(i = 0; i < str2aTokens.get_size(); i++)
+      for(i = 0; i < straaTokens.get_size(); i++)
       {
-         string_array & straTokens = str2aTokens[i];
+         string_array & straTokens = straaTokens[i];
          for(j = 0; j < straTokens.get_size(); j++)
          {
             str = straTokens[j];

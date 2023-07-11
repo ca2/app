@@ -109,6 +109,8 @@ namespace user
 
       virtual void on_create_bars();
 
+      
+      bool should_perform_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
 

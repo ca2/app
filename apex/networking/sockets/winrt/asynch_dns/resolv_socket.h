@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          typedef ::string_map < ::string_to_string > cache_t;
 
          /* type, host, time */
-         typedef ::string_map < ::string_map < time_t > > timeout_t; 
+         typedef ::string_map < ::string_map < posix_time > > timeout_t; 
 
 
          string m_query;

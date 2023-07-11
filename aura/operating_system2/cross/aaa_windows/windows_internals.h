@@ -1788,7 +1788,7 @@ typedef void (NTAPI *RTL_WAITORTIMERCALLBACKFUNC)(PVOID, int_bool); /* FIXME: no
 #define FLG_CRITSEC_EVENT_CREATION       0x10000000
 #define FLG_LDR_TOP_DOWN                 0x20000000
 #define FLG_ENABLE_HANDLE_EXCEPTIONS     0x40000000
-#define FLG_DISABLE_PROTDLLS             0x80000000
+#define FLG_DISABLE_PROTDLLS             I32_MINIMUM
 
 /* Rtl*Registry* functions structs and defines */
 #define RTL_REGISTRY_ABSOLUTE             0
@@ -1799,7 +1799,7 @@ typedef void (NTAPI *RTL_WAITORTIMERCALLBACKFUNC)(PVOID, int_bool); /* FIXME: no
 #define RTL_REGISTRY_USER                 5
 
 #define RTL_REGISTRY_HANDLE       0x40000000
-#define RTL_REGISTRY_OPTIONAL     0x80000000
+#define RTL_REGISTRY_OPTIONAL     I32_MINIMUM
 
 #define RTL_QUERY_REGISTRY_SUBKEY         0x00000001
 #define RTL_QUERY_REGISTRY_TOPKEY         0x00000002
@@ -2077,7 +2077,7 @@ typedef struct _LDR_MODULE
 
 /* these ones is Wine specific */
 #define LDR_DONT_RESOLVE_REFS           0x40000000
-#define LDR_WINE_INTERNAL               0x80000000
+#define LDR_WINE_INTERNAL               I32_MINIMUM
 
 /* FIXME: to be checked */
 #define MAXIMUM_FILENAME_LENGTH 256

@@ -15,7 +15,7 @@ string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * 
 
     auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-    return _ansi_stack_trace(stack, frames, pszFormat);
+    return _ansi_stack_trace(stack, frames, scopedstrFormat);
 
 }
 //namespace linux

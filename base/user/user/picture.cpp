@@ -698,9 +698,9 @@ namespace user
 
       ASSERT(is_picture_enabled());
 
-      polygon_f64 polygon_i32;
+      polygon_f64 polygon;
 
-      polygon_i32.set_rect(rectangleParam);
+      polygon = rectangleParam;
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -709,7 +709,7 @@ namespace user
 
       }
 
-      return polygon_i32.overlaps(m_ppictureimpl->m_polygonDrawing);
+      return polygon.overlaps(m_ppictureimpl->m_polygonDrawing);
 
    }
 

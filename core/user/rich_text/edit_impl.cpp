@@ -295,7 +295,7 @@ namespace user
             if (pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
-               output_debug_string("Window winning focus is own font format tool");
+               information("Window winning focus is own font format tool");
 
                return;
 
@@ -569,7 +569,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement)
+      bool edit_impl::get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -728,7 +728,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   output_debug_string("no full red");
+         //   //   information("no full red");
 
          //   //}
 
@@ -752,7 +752,7 @@ namespace user
          //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
-         //   //   output_debug_string("no full red");
+         //   //   information("no full red");
 
          //   //}
 
@@ -784,9 +784,7 @@ namespace user
        //  else
        //  {
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             pgraphics->fill_rectangle(rectangleClient, argb(40, 255, 255, 255));
 
@@ -896,7 +894,7 @@ namespace user
 
             get_parent()->screen_to_client()(rectangleWindow);
 
-            rectangleWindow = rectangleWindow;
+            //rectangleWindow = rectangleWindow;
 
             point += rectangleWindow.top_left();
 
@@ -1298,19 +1296,19 @@ namespace user
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-         if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
+         if (key.m_nChar < 256 && character_isalpha((char)key.m_nChar))
          {
 
             if (bShift)
             {
 
-               key.m_nChar = toupper((i32)key.m_nChar);
+               key.m_nChar = character_toupper((char)key.m_nChar);
 
             }
             else
             {
 
-               key.m_nChar = tolower((i32)key.m_nChar);
+               key.m_nChar = character_tolower((char)key.m_nChar);
 
             }
 
@@ -1923,18 +1921,18 @@ namespace user
                      if (bShift)
                      {
 
-                        iChar |= 0x80000000;
+                        iChar |= I32_MINIMUM;
 
                      }
 
-                     i32 iCode = pkey->m_nFlags & 0xff;
+                     //i32 iCode = pkey->m_nFlags & 0xff;
 
-                     if (bShift)
-                     {
+                     //if (bShift)
+                     //{
 
-                        iCode |= 0x80000000;
+                     //   iCode |= I32_MINIMUM;
 
-                     }
+                     //}
 
                      //str = psession->keyboard().process_key(pkey);
                                           //str = psession->keyboard().process_key(pkey);
@@ -2049,7 +2047,7 @@ namespace user
       }
 
 
-      //void edit_impl::write(::binary_stream < FILE > & stream) const
+      //void edit_impl::write(::binary_stream & stream) const
       //{
 
       //   ::user::picture::write(stream);
@@ -2074,7 +2072,7 @@ namespace user
       //}
 
 
-      //void edit_impl::read(::binary_stream < FILE > & stream)
+      //void edit_impl::read(::binary_stream & stream)
       //{
 
       //   ::user::picture::read(stream);

@@ -307,6 +307,7 @@
     <ClCompile Include="user\user\tab_callback.cpp" />
     <ClCompile Include="user\user\tab_data.cpp" />
     <ClCompile Include="user\user\tab_drop_target_window.cpp" />
+    <ClCompile Include="user\user\tab_graphics.cpp" />
     <ClCompile Include="user\user\tab_pane.cpp" />
     <ClCompile Include="user\user\tab_pane_array.cpp" />
     <ClCompile Include="user\user\tab_impact.cpp" />

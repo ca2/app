@@ -135,7 +135,7 @@ void __node_acme_pos_term()
    //if (is_verbose())
    //{
 
-   //   output_debug_string(L"acme terminating!\n");
+   //   information(L"acme terminating!\n");
 
    //}
 

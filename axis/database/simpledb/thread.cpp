@@ -137,7 +137,7 @@ namespace simpledb
 
                }
 
-               if (::failed(set["get_status"]))
+               if (set["get_status"].failed())
                {
 
                   sleep(500_ms);

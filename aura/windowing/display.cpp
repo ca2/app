@@ -839,7 +839,7 @@ namespace windowing
       //   if (edisplayPrevious & e_display_bottom)
       //      strP += "B";
 
-      //   ::output_debug_string(
+      //   ::information(
       //      "w" + as_string(rectangleWorkspace.left) + ","
       //      + as_string(rectangleWorkspace.top) + ","
       //      + as_string(rectangleWorkspace.right) + ","
@@ -1419,7 +1419,7 @@ namespace windowing
 
          ::rectangle_i32 rectangle;
 
-         rectangle = pinteraction->screen_rect();
+         rectangle = pinteraction->screen_rectangle(::user::e_layout_lading);
 
          return get_best_workspace(nullptr, rectangle);
 

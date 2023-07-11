@@ -414,11 +414,11 @@ auto tick2 = ::time::now();
          string str2;
          str2.format("| time for calculating box blur : %d\b",dw3);
 
-         output_debug_string("/-----------------------------------------\n");
-         output_debug_string("| \n");
-         output_debug_string(str1);
-         output_debug_string(str2);
-         output_debug_string("| \n");
+         information("/-----------------------------------------\n");
+         information("| \n");
+         information(str1);
+         information(str2);
+         information("| \n");
 
          ::aura::application * papp = m_p->get_app();
          information("/--------------------------------");
@@ -531,11 +531,11 @@ auto tickC1 = ::time::now();
             string str2;
             str2.format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond());
 
-            output_debug_string("/-----------------------------------------\n");
-            output_debug_string("| \n");
-            output_debug_string(str1);
-            output_debug_string(str2);
-            output_debug_string("| \n");
+            information("/-----------------------------------------\n");
+            information("| \n");
+            information(str1);
+            information(str2);
+            information("| \n");
 
             //::aura::application * papp = pimage->get_app();
             information() << "/--------------------------------";
@@ -624,11 +624,11 @@ auto tick2 = ::time::now();
       string str2;
       str2.format("| time for calculating fast blur : %d\b",dw3);
 
-      output_debug_string("/-----------------------------------------\n");
-      output_debug_string("| \n");
-      output_debug_string(str1);
-      output_debug_string(str2);
-      output_debug_string("| \n");
+      information("/-----------------------------------------\n");
+      information("| \n");
+      information(str1);
+      information(str2);
+      information("| \n");
 
       ::aura::application * papp = m_p->get_app();
       information("/--------------------------------");
@@ -1382,20 +1382,20 @@ auto tick2 = ::time::now();
 
       }
 
-      int dir;
+//      int dir;
 
-      if(bottomup)
-      {
+      //if(bottomup)
+      //{
 
-         dir = -1;
+      //   dir = -1;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         dir = 1;
+      //   dir = 1;
 
-      }
+      //}
 
       int workstride = w * sizeof(u32);
 

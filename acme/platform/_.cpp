@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/constant/id.h"
-// #include "acme/primitive/string/string.h"
+
 ////#include "acme/exception/exception.h"
 #include "acme/_operating_system.h"
 
@@ -36,7 +36,7 @@ namespace acme
 
       while (iSubString--)
       {
-         pszFullString = strchr(pszFullString, chSep);
+         pszFullString = ansi_chr(pszFullString, chSep);
 
          if (pszFullString == nullptr)
 
@@ -48,10 +48,10 @@ namespace acme
 
       }
 
-      const char* pchEnd = strchr(pszFullString, chSep);
+      const char* pchEnd = ansi_chr(pszFullString, chSep);
 
 
-      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (i32)(pchEnd - pszFullString);
+      strsize nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (i32)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -236,7 +236,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
 
    string strType = get_debug_report_type_text(iType);
 
-   output_debug_string(strType + ": file: " + string(psz) + " line:" + as_string(iLine) + strModule + strExtra);
+   information(strType + ": file: " + string(psz) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 
@@ -268,7 +268,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    }
 
 
-   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + as_string(iLine) + strModule + strExtra);
+   information(strType + ": file: " + string(pszFile) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 

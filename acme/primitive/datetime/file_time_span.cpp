@@ -3,21 +3,21 @@
 
 
 file_time_span::file_time_span() noexcept:
-   m_nSpan(0)
+   m_iFileTimeSpan(0)
 {
 
 }
 
 
 file_time_span::file_time_span(const file_time_span& span) noexcept:
-   m_nSpan(span.m_nSpan)
+   m_iFileTimeSpan(span.m_iFileTimeSpan)
 {
 
 }
 
 
-file_time_span::file_time_span(::i64 nSpan) noexcept:
-   m_nSpan(nSpan)
+file_time_span::file_time_span(file_time_span_t, ::i64 nSpan) noexcept:
+   m_iFileTimeSpan(nSpan)
 {
 
 }
@@ -26,7 +26,7 @@ file_time_span::file_time_span(::i64 nSpan) noexcept:
 file_time_span& file_time_span::operator=(const file_time_span& span) noexcept
 {
 
-   m_nSpan = span.m_nSpan;
+   m_iFileTimeSpan = span.m_iFileTimeSpan;
 
    return *this;
 
@@ -36,7 +36,7 @@ file_time_span& file_time_span::operator=(const file_time_span& span) noexcept
 file_time_span& file_time_span::operator+=(file_time_span span) noexcept
 {
 
-   m_nSpan += span.m_nSpan;
+   m_iFileTimeSpan += span.m_iFileTimeSpan;
 
    return *this;
 
@@ -46,7 +46,7 @@ file_time_span& file_time_span::operator+=(file_time_span span) noexcept
 file_time_span& file_time_span::operator-=(file_time_span span) noexcept
 {
 
-   m_nSpan -= span.m_nSpan;
+   m_iFileTimeSpan -= span.m_iFileTimeSpan;
 
    return *this;
 
@@ -56,7 +56,7 @@ file_time_span& file_time_span::operator-=(file_time_span span) noexcept
 file_time_span file_time_span::operator+(file_time_span span) const noexcept
 {
 
-   return(file_time_span(m_nSpan + span.m_nSpan));
+   return { file_time_span_t{}, m_iFileTimeSpan + span.m_iFileTimeSpan };
 
 }
 
@@ -64,7 +64,7 @@ file_time_span file_time_span::operator+(file_time_span span) const noexcept
 file_time_span file_time_span::operator-(file_time_span span) const noexcept
 {
 
-   return(file_time_span(m_nSpan - span.m_nSpan));
+   return { file_time_span_t{}, m_iFileTimeSpan - span.m_iFileTimeSpan };
 
 }
 
@@ -72,65 +72,70 @@ file_time_span file_time_span::operator-(file_time_span span) const noexcept
 bool file_time_span::operator==(file_time_span span) const noexcept
 {
 
-   return(m_nSpan == span.m_nSpan);
+   return m_iFileTimeSpan == span.m_iFileTimeSpan;
 
 }
 
+//
+//bool file_time_span::operator!=(file_time_span span) const noexcept
+//{
+//
+//   return(m_iFileTimeSpan != span.m_iFileTimeSpan);
+//
+//}
+//
+//
+//bool file_time_span::operator<(file_time_span span) const noexcept
+//{
+//
+//   return(m_iFileTimeSpan < span.m_iFileTimeSpan);
+//
+//}
+//
+//
+//bool file_time_span::operator>(file_time_span span) const noexcept
+//{
+//
+//   return(m_iFileTimeSpan > span.m_iFileTimeSpan);
+//
+//}
+//
+//
+//bool file_time_span::operator<=(file_time_span span) const noexcept
+//{
+//
+//   return(m_iFileTimeSpan <= span.m_iFileTimeSpan);
+//
+//}
 
-bool file_time_span::operator!=(file_time_span span) const noexcept
+
+std::strong_ordering file_time_span::operator<=>(file_time_span span) const noexcept
 {
 
-   return(m_nSpan != span.m_nSpan);
+   return m_iFileTimeSpan <=> span.m_iFileTimeSpan;
 
 }
 
 
-bool file_time_span::operator<(file_time_span span) const noexcept
+::i64 file_time_span::get_file_time_span() const noexcept
 {
 
-   return(m_nSpan < span.m_nSpan);
+   return(m_iFileTimeSpan);
 
 }
 
 
-bool file_time_span::operator>(file_time_span span) const noexcept
+void file_time_span::set_file_time_span(::i64 nSpan) noexcept
 {
 
-   return(m_nSpan > span.m_nSpan);
+   m_iFileTimeSpan = nSpan;
 
 }
 
 
-bool file_time_span::operator<=(file_time_span span) const noexcept
+::posix_time file_time_span::get_time_span() const noexcept
 {
 
-   return(m_nSpan <= span.m_nSpan);
+   return { posix_time_t{}, m_iFileTimeSpan * 100 };
 
 }
-
-
-bool file_time_span::operator>=(file_time_span span) const noexcept
-{
-
-   return(m_nSpan >= span.m_nSpan);
-
-}
-
-
-::i64 file_time_span::GetTimeSpan() const noexcept
-{
-
-   return(m_nSpan);
-
-}
-
-
-void file_time_span::SetTimeSpan(::i64 nSpan) noexcept
-{
-
-   m_nSpan = nSpan;
-
-}
-
-
-

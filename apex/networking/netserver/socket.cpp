@@ -99,10 +99,10 @@ namespace netserver
 
       information("socket::OnExecute: %s\n", strUrl.c_str());
 
-      for (auto& item : m_request.headers())
+      for (auto& pproperty : m_request.headers().propertyptra())
       {
 
-         information("Headers %s=%s\n", item->m_atom.as_string().c_str(), item->as_string().c_str());
+         information("Headers %s=%s\n", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
 
       }
 
@@ -175,7 +175,7 @@ namespace netserver
    void socket::simple_file_server(const ::string & pszPath, bool bMatter)
    {
 
-      pointer_array < int_array > rangea;
+      pointer_array < ::i32_array > rangea;
 
       if (inheader("range").has_char())
       {
@@ -203,13 +203,13 @@ namespace netserver
                if (straRange.get_count() == 2)
                {
                   
-                  rangea.add(memory_new int_array());
+                  rangea.add(memory_new ::i32_array());
                   
                   rangea.last_ptr()->add(atoi(straRange[0]));
                   
                   straRange[1].trim();
 
-                  if (strlen(straRange[1]) == 0)
+                  if (ansi_len(straRange[1]) == 0)
                      rangea.last_ptr()->add(-1);
                   else
                      rangea.last_ptr()->add(atoi(straRange[1]));

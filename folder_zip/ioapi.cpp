@@ -9,6 +9,7 @@
 #include "ioapi.h"
 
 #include <stdio.h>
+#include <errno.h>
 
 /* I've found an old Unix (a SunOS 4.1.3_U1) without all SEEK_* defined.... */
 

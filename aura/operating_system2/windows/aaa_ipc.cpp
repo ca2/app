@@ -136,7 +136,7 @@ namespace aura
 
          COPYDATASTRUCT cds;
 
-         cds.dwData = 0x80000000;
+         cds.dwData = I32_MINIMUM;
          cds.cbData = (unsigned int)strlen(pszMessage);
          cds.lpData = (void *)pszMessage;
 
@@ -168,7 +168,7 @@ namespace aura
       bool tx::send(int message, void * pdata, int len, duration durationTimeout)
       {
 
-         if(message == 0x80000000)
+         if(message == I32_MINIMUM)
             return false;
 
          if(!is_tx_ok())
@@ -451,7 +451,7 @@ namespace aura
                return 0;
 
             }
-            else if(pcds->dwData == 0x80000000)
+            else if(pcds->dwData == I32_MINIMUM)
             {
 
                string strMessage((const ::string &)pcds->lpData,pcds->cbData);

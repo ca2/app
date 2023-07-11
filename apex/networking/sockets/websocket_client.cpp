@@ -712,12 +712,12 @@ namespace sockets
 
                   m_strWebSocketProtocol = outheader("sec-websocket-protocol");
 
-                  output_debug_string("\n\nnow : websocket\n");
+                  information("\n\nnow : websocket\n");
 
                   if (m_strWebSocketProtocol.has_char())
                   {
 
-                     output_debug_string("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
+                     information("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
 
                   }
 
@@ -886,7 +886,7 @@ namespace sockets
             strOut1 += "wsdata:   " + strHexa + "   <--\n";
             strOut1 += "wschar:   " + strChar + "   <--\n..\n.\n";
 
-            output_debug_string(strOut1);
+            information(strOut1);
 
 #endif
 
@@ -993,7 +993,7 @@ namespace sockets
                if (m_opcode == e_opcode::CONTINUATION)
                {
 
-                  output_debug_string("test03");
+                  information("test03");
 
                }
 
@@ -1022,7 +1022,7 @@ namespace sockets
                else
                {
 
-                  ::output_debug_string("ws_buffering");
+                  ::information("ws_buffering");
 
                }
 
@@ -1071,7 +1071,7 @@ namespace sockets
             else
             {
 
-               output_debug_string("ERR: Got unexpected WebSocket message.\n");
+               information("ERR: Got unexpected WebSocket message.\n");
 
                SetCloseAndDelete();
 
@@ -1159,7 +1159,7 @@ namespace sockets
    ::memory websocket_client::get_client_send_text(const char * src, bool bMasked)
    {
 
-      memory m2(src, strlen(src));
+      memory m2(src, ansi_len(src));
 
       return get_client_send(0x81, m2, bMasked);
 

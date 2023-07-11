@@ -74,7 +74,7 @@ namespace user
       if(pwritetext)
       {
 
-         m_pfont = pwritetext->point_font(pnode->font_name(e_font_sans_ui), 12.0);
+         m_pfont = pwritetext->font(e_font_sans_ui, 12_pt);
          
       }
 
@@ -965,7 +965,7 @@ namespace user
          if (strType.contains("form"))
          {
 
-            output_debug_string("form");
+            information("form");
 
          }
 

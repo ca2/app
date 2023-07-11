@@ -48,9 +48,9 @@ CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str)
 }
 
 
-//void copy(payload * pp, const system_time_t * ps)
+//void copy(payload * pp, const system_time * ps)
 //{
-//   ::earth::gregorian::time t;
+//   ::earth::gregorian_time t;
 //   t.set(ps);
 //   ::earth::time time;
 //   time = t;
@@ -366,7 +366,7 @@ payload::payload(const string_array & payload)
 }
 
 
-payload::payload(const int_array & ia)
+payload::payload(const ::i32_array & ia)
 {
 
    m_etype  = e_type_new;
@@ -1678,7 +1678,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
 }
 
 
-class ::payload & payload::operator = (const int_array & ia)
+class ::payload & payload::operator = (const ::i32_array & ia)
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -2131,7 +2131,7 @@ bool payload::is_true(bool bDefault) const
    case e_type_property:
       return m_pproperty->is_true(bDefault);
    case e_type_enum_status:
-      return ::succeeded(m_estatus);
+      return m_estatus.succeeded();
    case e_type_enum_check:
       return __bool(m_echeck);
    default:
@@ -2245,7 +2245,7 @@ bool payload::has_char() const
    case e_type_payload_array:
       return ::is_set(m_ppayloada) && m_ppayloada->has_element();
    case e_type_property_set:
-      return ::is_set(m_ppropertyset) && m_ppropertyset->has_element();
+      return ::is_set(m_ppropertyset) && m_ppropertyset->has_property();
    case e_type_i64_array:
       return ::is_set(m_pi64a) && m_pi64a->has_element();
    case e_type_memory:
@@ -2891,6 +2891,65 @@ string payload::get_recursive_string() const
    }
 
 }
+
+
+::posix_time payload::as_time(const class ::time & timeDefault) const
+{
+
+   if (m_etype == e_type_payload_pointer)
+   {
+      return m_ppayload->as_time(timeDefault);
+   }
+   else if (m_etype == e_type_property)
+   {
+      return m_pproperty->as_time(timeDefault);
+   }
+   else if (m_etype != e_type_time)
+   {
+
+      class ::time time;
+
+      if (m_etype == ::e_type_null)
+      {
+
+         time = timeDefault;
+
+      }
+      else if (is_integer())
+      {
+
+         time.m_iSecond = as_i64();
+
+      }
+      else if (is_floating())
+      {
+
+         auto f = f64();
+
+         time.m_iSecond = (::i64)floor(f);
+         time.m_iNanosecond = (::i64)(fmod(f, 1.0) * 1'000'000'000.0);
+
+      }
+      else 
+      {
+
+         time = timeDefault;
+
+      }
+
+      return time;
+
+   }
+   else
+   {
+
+      return m_time;
+
+   }
+
+}
+
+
 
 
 string payload::as_string(const ::scoped_string & scopedstrOnNull) const
@@ -4431,7 +4490,7 @@ string_array & payload::string_array_reference()
 }
 
 
-int_array payload::ia() const
+::i32_array payload::ia() const
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -4449,7 +4508,7 @@ int_array payload::ia() const
    else if (m_etype != e_type_i32_array)
    {
 
-      int_array ia;
+      ::i32_array ia;
 
       try
       {
@@ -4475,7 +4534,7 @@ int_array payload::ia() const
    else if (::is_null(m_pia))
    {
 
-      return int_array();
+      return ::i32_array();
 
    }
 
@@ -4502,7 +4561,7 @@ i32_array & payload::i32_array_reference()
    else if(m_etype != e_type_i32_array)
    {
 
-      auto pia = memory_new int_array();
+      auto pia = memory_new ::i32_array();
 
       try
       {
@@ -4530,7 +4589,7 @@ i32_array & payload::i32_array_reference()
    else if (::is_null(m_pia))
    {
 
-      m_pia = memory_new int_array();
+      m_pia = memory_new ::i32_array();
 
    }
 
@@ -4682,19 +4741,19 @@ class ::time payload::time() const
    else if(is_integer())
    {
 
-      return integral_second(as_i64());
+      return second_time(as_i64());
 
    }
    else if (is_floating())
    {
 
-      return floating_second(as_f64());
+      return second_time(as_f64());
 
    }
    else
    {
 
-      return floating_second(as_f64());
+      return second_time(as_f64());
 
    }
 
@@ -5400,7 +5459,7 @@ property & payload::get_property(const ::atom & atom)
 
    auto payload = *this;
 
-   property_set_reference().add_item(pproperty);
+   property_set_reference().add_property(pproperty);
 
    *pproperty = payload;
 
@@ -5554,7 +5613,7 @@ property & payload::get_property(const ::atom & atom)
    case e_type_payload_array:
       return &m_ppayloada->element_at(i);
    case e_type_property_set:
-      return m_ppropertyset->ptr_at(i);
+      return m_ppropertyset->property_at(i);
    case e_type_payload_pointer:
       return m_ppayload->at(i);
    case e_type_property:
@@ -7050,13 +7109,13 @@ void payload::consume_identifier(::ansi_range & range)
 
 void payload::consume_number(::ansi_range & range)
 {
-   bool bSigned = false;
+   //bool bSigned = false;
    bool bFloat = false;
    range.consume_spaces(0);
    const ::ansi_character * pszStart = range.m_begin;
    if(*range.m_begin == '-')
    {
-      bSigned = true;
+      //bSigned = true;
       range.m_begin++;
    }
    if(*range.m_begin == '.')
@@ -7074,7 +7133,7 @@ void payload::consume_number(::ansi_range & range)
       bFloat = true;
       if(*range.m_begin == '-')
       {
-         bSigned = true;
+         //bSigned = true;
          range.m_begin++;
       }
       if(*range.m_begin == '.')
@@ -7103,7 +7162,7 @@ void payload::consume_number(::ansi_range & range)
       bFloat = true;
       if(*range.m_begin == '-')
       {
-         bSigned = true;
+         //bSigned = true;
          range.m_begin++;
       }
       if(*range.m_begin == '.')
@@ -7159,7 +7218,7 @@ end:
 
       //if (bSigned)
       //{
-
+      //   
       //   i = -i;
 
       //}
@@ -7337,13 +7396,13 @@ void payload_skip_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::output_debug_string("");
+      ::information("");
 
    }
    else if (*range.m_begin == '\0')
    {
 
-      ::output_debug_string("");
+      ::information("");
 
    }
    else
@@ -7443,7 +7502,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::output_debug_string("");
+      ::information("");
 
       //pszJson++;
 
@@ -7451,7 +7510,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::output_debug_string("");
+      ::information("");
 
    }
    else
@@ -7472,7 +7531,7 @@ void payload::parse_network_payload(::ansi_range & range)
    if (range.is_empty())
    {
       
-      ::output_debug_string("");
+      ::information("");
 
       return ::e_type_new;
 
@@ -7480,7 +7539,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::output_debug_string("");
+      ::information("");
 
       return ::e_type_new;
 
@@ -7607,7 +7666,7 @@ void payload::parse_network_payload(::ansi_range & range)
    }
    else if (*range.m_begin == ']')
    {
-      ::output_debug_string("");
+      ::information("");
       return ::e_type_new;
    }
    else
@@ -8372,7 +8431,7 @@ void payload::null()
    else if (m_etype == e_type_path)
    {
 
-      return *m_ppath;
+      return (::file::path&)* m_ppath;
 
    }
 
@@ -8532,9 +8591,9 @@ bool payload::is_false() const
    case e_type_patom:
       return !m_patom || m_patom->is_empty() || *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || *m_patom == "0";
    case e_type_earth_time:
-      return !m_earthtime.m_time;
+      return !m_earthtime.m_iSecond;
    case e_type_file_time:
-      return !m_filetime;
+      return !m_filetime.m_uFileTime;
    case e_type_payload_pointer:
       return m_ppayload || !*m_ppayload;
    case e_type_property:
@@ -8719,9 +8778,9 @@ bool payload::is_set_false() const
    case e_type_patom:
       return !m_patom || m_patom->is_empty()|| *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || m_patom->case_insensitive_order("0") == 0;
    case e_type_earth_time:
-      return !m_earthtime.m_time;
+      return !m_earthtime.m_iSecond;
    case e_type_file_time:
-      return !m_filetime;
+      return !m_filetime.m_uFileTime;
    case e_type_payload_pointer:
       return m_ppayload && m_ppayload->is_set_false();
    case e_type_property:
@@ -8983,19 +9042,19 @@ void unit_test_primitive_var_acme_block()
    else if (is_integer())
    {
 
-      return as_u64();
+      return { file_time_t{}, as_u64() };
 
    }
    else if (is_floating())
    {
 
-      return as_u64();
+      return  { file_time_t{}, as_u64() };
 
    }
    else
    {
 
-      return as_u64();
+      return { file_time_t{},  as_u64() };
 
    }
 
@@ -9047,7 +9106,7 @@ void unit_test_primitive_var_acme_block()
 ::earth::time payload::as_earth_time () const
 {
 
-   return as_i64();
+   return posix_time{ posix_time_t{}, as_i64() };
 
 }
 
@@ -9074,7 +9133,7 @@ void unit_test_primitive_var_acme_block()
 
       set_type(e_type_time, false);
 
-      m_earthtime = i;
+      m_earthtime.m_iSecond = i;
 
 
    }
@@ -9667,7 +9726,7 @@ f = payload.as_f64();
       case e_type_payload_array:
          return ::is_null(m_ppayloada) ? 0 : m_ppayloada->get_count();
       case e_type_property_set:
-         return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->get_count();
+         return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->property_count();
       case e_type_empty:
       case e_type_null:
       case e_type_new:

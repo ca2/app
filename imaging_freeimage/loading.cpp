@@ -261,7 +261,7 @@ namespace imaging_freeimage
          if (tmp.case_insensitive_ends(".gif"))
          {
 
-            output_debug_string("GIF!!");
+            information("GIF!!");
 
          }
 
@@ -321,7 +321,7 @@ namespace imaging_freeimage
       char  pszPngSignature []= {(char)137, 80, 78 ,71, 13 ,10, 26 ,10};
 
       bool bPng = size > sizeof(pszPngSignature)
-      && strncmp((const char *) pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
+      && ansi_ncmp((const char *) pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
 
       bool bJpegBegins = memory.begins("\x0FF\x0D8");
 
@@ -444,7 +444,7 @@ namespace imaging_freeimage
          do
          {
 
-            if (!_stricmp(FreeImage_GetTagKey(tag), "orientation"))
+            if (!ansi_icmp(FreeImage_GetTagKey(tag), "orientation"))
             {
 
                bOrientation = true;

@@ -59,14 +59,14 @@ namespace userfs
       for(i32 i = 0; i < this->get_count(); i++)
       {
 
-         if(operator[](i)->final_path() == path)
+         if(element_at(i)->final_path() == path)
          {
 
             return i;
 
          }
 
-         if (operator[](i)->user_path() == path)
+         if (element_at(i)->user_path() == path)
          {
 
             return i;

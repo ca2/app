@@ -307,9 +307,9 @@ namespace user
       string str = pcontext->m_papexcontext->file()->as_string(pszPath);
 
 
-      output_debug_string(pszPath);
+      information(pszPath);
 
-      output_debug_string(str);
+      information(str);
 
       if(str.is_empty())
       {
@@ -475,7 +475,7 @@ namespace user
 
    //   if(psession->is_key_pressed(::user::e_key_shift))
    //   {
-   //      pkey->m_iCode |= 0x80000000;
+   //      pkey->m_iCode |= I32_MINIMUM;
    //   }
    //   if(psession->is_key_pressed(::user::e_key_right_alt))
    //   {
@@ -502,7 +502,7 @@ namespace user
 
    //   if(psession->is_key_pressed(::user::e_key_shift))
    //   {
-   //      iCode |= 0x80000000;
+   //      iCode |= I32_MINIMUM;
    //   }
    //   if(psession->is_key_pressed(::user::e_key_right_alt))
    //   {

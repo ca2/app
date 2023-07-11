@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.16)
 project(apex CXX)
 
 
-if (LINUX)
+if (${LINUX})
     set(USE_OPENSSL TRUE)
     set(PTHREAD TRUE)
 elseif (WIN32)
     set(USE_OPENSSL TRUE)
-elseif (FREEBSD)
+elseif (${FREEBSD})
     set(USE_OPENSSL TRUE)
     set(PTHREAD TRUE)
 endif ()
@@ -854,7 +854,7 @@ else ()
 endif ()
 
 
-if (LINUX)
+if (${LINUX})
 
     list(APPEND apex_source
 #            operating_system/linux/
@@ -1226,7 +1226,7 @@ if (ANDROID)
 endif ()
 
 
-if (FREEBSD)
+if (${FREEBSD})
 
     list(APPEND apex_source
 #            operating_system/freebsd/_.h
@@ -1430,8 +1430,12 @@ add_library(${PROJECT_NAME} SHARED ${apex_source})
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
@@ -1444,7 +1448,7 @@ if (MSVC)
     target_link_options(apex PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
     target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
     target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
-elseif (LINUX OR FREEBSD)
+elseif (${LINUX} OR ${FREEBSD})
 
     if(USE_PKGCONFIG)
          pkg_check_modules(PKGCONFIG libarchive)
@@ -1457,7 +1461,7 @@ elseif (LINUX OR FREEBSD)
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(apex PRIVATE -Wl,-rpath=$ORIGIN)
-    if (FREEBSD)
+    if (${FREEBSD})
         list(APPEND system_libraries dl pthread z)
     else ()
         list(APPEND system_libraries dl pthread idn z)

@@ -258,7 +258,7 @@ namespace apex
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::increment_reference_count(this);
 
-      srand((u32)::integral_nanosecond());
+      srand((u32)::i64_nanosecond());
 
       m_bService = false;
 
@@ -1343,7 +1343,7 @@ namespace apex
    //////
    //////            dappy(__type_name(this) + " : on_run failure : " + as_string(m_iErrorCode));
    //////
-   //////            ::output_debug_string("application::main on_run termination failure\n");
+   //////            ::information("application::main on_run termination failure\n");
    //////
    //////         }
    ////
@@ -1799,7 +1799,7 @@ namespace apex
 
             //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
-            output_debug_string(strMessage + m_strAppName);
+            information(strMessage + m_strAppName);
 
             information() << "apex::application::init_application exit";
 
@@ -2207,15 +2207,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-#if defined(ANDROID) || defined(WINDOWS) || defined(MACOS) || defined(LINUX)
-
       acmenode()->m_papexnode->on_create_app_shortcut(this);
-
-#else
-
-      throw todo();
-
-#endif
 
    }
 
@@ -2534,7 +2526,7 @@ namespace apex
       on_install();
       //{
 
-      //   ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+      //   ::information("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 
@@ -3966,14 +3958,14 @@ namespace apex
                if (bContinue && pinterprocesstask->m_tristateContinue.is_set())
                {
 
-                  bContinue = pinterprocesstask->m_tristateContinue;
+                  bContinue = pinterprocesstask->m_tristateContinue.is_set_true();
 
                }
 
                if (!bHandled && pinterprocesstask->m_tristateHandled.is_set())
                {
 
-                  bHandled = pinterprocesstask->m_tristateHandled.is_true();
+                  bHandled = pinterprocesstask->m_tristateHandled.is_set_true();
 
                }
 
@@ -4019,7 +4011,7 @@ namespace apex
                if (!bHandled)
                {
 
-                  bHandled = ptask->m_tristateHandled.is_true();
+                  bHandled = ptask->m_tristateHandled.is_set_true();
 
                   //if (bHandled)
                   //{
@@ -4224,13 +4216,13 @@ namespace apex
       //else if (escalar == scalar_app_install_progress_min)
       //{
 
-      //   i = 0x7fffffff;
+      //   i = I32_MAXIMUM;
 
       //}
       //else if (escalar == scalar_app_install_progress_max)
       //{
 
-      //   i = 0x7fffffff;
+      //   i = I32_MAXIMUM;
 
       //}
       //else
@@ -4383,18 +4375,23 @@ namespace apex
 
       matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-      auto psession = acmesession();
-
-      auto ptextcontext = psession->text_context();
-
-      for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+      if (acmeapplication()->m_bSession)
       {
 
-         string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+         auto psession = acmesession();
 
-         string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+         auto ptextcontext = psession->text_context();
 
-         matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+         for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+         {
+
+            string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+
+            string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+
+            matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+
+         }
 
       }
 
@@ -4665,7 +4662,7 @@ namespace apex
 
       //#ifdef UNIVERSAL_WINDOWS
       //
-      //      output_debug_string(strFile);
+      //      information(strFile);
       //
       //#elif defined(WINDOWS)
       //
@@ -5243,7 +5240,7 @@ namespace apex
 
       path2 = acmepath()->safe_get_real_path(path2);
 
-      return strcmp(path1, path2) == 0;
+      return ansi_cmp(path1, path2) == 0;
 
    }
 
@@ -5475,8 +5472,8 @@ namespace apex
       if (!is_service())
       {
 
-         if ((m_bConsole && m_bCreateAppShorcut.is_true())
-            || (!m_bConsole && m_bCreateAppShorcut.is_true_or_not_set()))
+         if ((m_bConsole && m_bCreateAppShorcut.is_set_true())
+            || (!m_bConsole && m_bCreateAppShorcut.is_true_or_undefined()))
          {
 
             on_create_app_shortcut();
@@ -10114,7 +10111,7 @@ namespace apex
 
       auto estatus = on_html_response(strHtml, strUri, setPost);
 
-      if(estatus != success_none && ::succeeded(estatus))
+      if(estatus != success_none && estatus.succeeded())
       {
          
          return true;

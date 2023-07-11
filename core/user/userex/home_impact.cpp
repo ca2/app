@@ -239,9 +239,7 @@ namespace userex
 
       ::user::impact::on_layout(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
       {
@@ -252,7 +250,7 @@ namespace userex
 
       ::rectangle_i32 rectangleColors;
 
-      client_rectangle(rectangleColors);
+      rectangleColors = client_rectangle();
 
       //if (!m_bCompact)
       //{

@@ -275,7 +275,7 @@ namespace user
 
          index iNewStart = 0;
 
-         index w;
+         //index w;
 
          for (index i = 0; i < sizea.get_size(); i++)
          {
@@ -290,7 +290,7 @@ namespace user
 
                if (i == 0)
                {
-                  w = (::index) (sizea[0].cx() - x);
+                  //w = (::index) (sizea[0].cx() - x);
                   x = (::index) (sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
@@ -298,7 +298,7 @@ namespace user
                }
                else
                {
-                  w = (::index) (sizea[i - 1].cx() - x);
+                  //w = (::index) (sizea[i - 1].cx() - x);
                   x = (::index) (sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
@@ -469,7 +469,7 @@ namespace user
 
       ::rectangle_i32 rectangleIntersect;
 
-      client_rectangle(rectangleClient);
+      rectangleClient = client_rectangle();
 
       bool bHoverFont = false;
 
@@ -579,9 +579,7 @@ namespace user
    void list::_001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst, index iItemLast)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectangleIntersect;
 
@@ -1040,24 +1038,22 @@ namespace user
       if (m_eview == impact_icon)
       {
 
-         ::rectangle_i32 rectangleClient;
+         auto rectangleClient = client_rectangle();
 
-         client_rectangle(rectangleClient);
+         //index iIconSize;
 
-         index iIconSize;
+         //if (m_pcolumna->get_count() > 0)
+         //{
 
-         if (m_pcolumna->get_count() > 0)
-         {
+         //   iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-            iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         //}
+         //else
+         //{
 
-         }
-         else
-         {
+         //   iIconSize = 32;
 
-            iIconSize = 32;
-
-         }
+         //}
 
       }
 
@@ -1234,9 +1230,7 @@ namespace user
          else
          {
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             auto pitem = get_item(0);
 
@@ -1267,7 +1261,7 @@ namespace user
                             rectangleClient.left +
                             m_nItemCount * pitem->m_pdrawlistitem->m_rectangleItem.width() * m_dItemHeight /
                             rectangleClient.height()
-                            + pitem->m_pdrawlistitem->m_rectangleItem.width(), MAXI32);
+                            + pitem->m_pdrawlistitem->m_rectangleItem.width(), I32_MAXIMUM);
 
             }
 
@@ -1907,7 +1901,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         client_rectangle(rectangleImpact);
+         rectangleImpact = client_rectangle();
 
          index dHeight = (::index) ((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
 
@@ -1939,7 +1933,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         client_rectangle(rectangleImpact);
+         rectangleImpact = client_rectangle();
 
          const ::size_i32 & sizeItem = get_item_size();
 
@@ -1952,7 +1946,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         client_rectangle(rectangleImpact);
+         rectangleImpact = client_rectangle();
 
          if (m_dItemHeight == 0)
          {
@@ -2005,7 +1999,7 @@ namespace user
 
       ::rectangle_i32 rectangleUpdate;
 
-      client_rectangle(rectangleUpdate);
+      rectangleUpdate = client_rectangle();
 
       auto pitem = get_item(iItemFirst);
 
@@ -2251,9 +2245,7 @@ namespace user
 
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (point.x() < 0
                || point.x() > rectangleClient.right
@@ -2324,9 +2316,7 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (m_bTopText)
          {
@@ -2447,9 +2437,7 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (m_bTopText)
          {
@@ -2753,9 +2741,7 @@ namespace user
       else if (m_eview == impact_list)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (m_bTopText)
          {
@@ -2819,9 +2805,7 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         ::rectangle_i32 rectangleClient;
-
-         client_rectangle(rectangleClient);
+         auto rectangleClient = client_rectangle();
 
          if (rectangleClient.is_empty())
          {
@@ -3516,9 +3500,7 @@ namespace user
             if (m_eview == impact_icon)
             {
 
-               ::rectangle_i32 rectangleClient;
-
-               client_rectangle(rectangleClient);
+               auto rectangleClient = client_rectangle();
 
                index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
@@ -4646,20 +4628,20 @@ namespace user
 
       string str;
 
-      index i;
+      //index i;
 
-      index width;
+      //index width;
 
-      for (i = 0; i < m_pcolumna->get_count(); i++)
-      {
+      //for (i = 0; i < m_pcolumna->get_count(); i++)
+      //{
 
-         str.format("list_column[%d].width", i);
+      //   str.format("list_column[%d].width", i);
 
-         width = m_pcolumna->element_at(i)->m_iWidth;
+      //   //width = m_pcolumna->element_at(i)->m_iWidth;
 
-         //datastream()->set(str, width);
+      //   //datastream()->set(str, width);
 
-      }
+      //}
 
       return true;
 
@@ -5592,9 +5574,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       return rectangleClient.intersect(rectangleClient, item.m_rectangleItem) != 0;
 
@@ -5648,8 +5628,7 @@ namespace user
       ::size_f64_array sizea;
 
       m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
-      ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
       index x = 0;
       index right = rectangleClient.right;
       index y = 0;
@@ -6328,7 +6307,7 @@ namespace user
       }
    }
 
-   void list::FilterInclude(int_array & array)
+   void list::FilterInclude(::i32_array & array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       for (index i = 0; i < array.get_size(); i++)
@@ -7064,9 +7043,7 @@ namespace user
          if (m_rangeSelection.get_item_count() > 0)
          {
 
-            ::rectangle_i32 rectangleClient;
-
-            client_rectangle(rectangleClient);
+            auto rectangleClient = client_rectangle();
 
             index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 

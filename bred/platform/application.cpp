@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "application.h"
 #include "system.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 namespace bred
@@ -70,6 +71,15 @@ namespace bred
    //   return ::transfer(pprogresscontrol);
 
    //}
+
+
+   ::file::path application::get_main_weather_file_path(const ::scoped_string & scopedstringAspect)
+   {
+
+      return acmedirectory()->roaming() / "weather" / (scopedstringAspect + ".txt");
+
+   }
+
 
 
 } // namespace bred

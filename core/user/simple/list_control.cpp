@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/collection/_sort.h"
 #include "acme/primitive/data/listener.h"
 #include "core/user/simple/list_control.h"
 #include "core/user/simple/list_data.h"
@@ -86,7 +87,7 @@ bool simple_list_control::erase_item(i32 iItem)
 bool simple_list_control::erase_item(::user::item_range & range)
 {
    
-   bool bOk = true;
+   //bool bOk = true;
    
    for(::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
    {
@@ -94,7 +95,7 @@ bool simple_list_control::erase_item(::user::item_range & range)
       if(!m_psimplelistdata->erase_item(iItem))
       {
 
-         bOk = false;
+//         bOk = false;
 
       }
 
@@ -119,7 +120,7 @@ bool simple_list_control::erase_item(::user::range & range)
          iaRemove.add_unique(iItem);
       }
    }
-   ::sort::quick_sort(iaRemove, false);
+   ::sort::QuickSortDesc(iaRemove);
    for(index i = 0; i < iaRemove.get_size(); i++)
    {
       if(!m_psimplelistdata->erase_item(iaRemove[i]))

@@ -2,8 +2,6 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
-
 
 class trace;
 
@@ -98,3 +96,13 @@ CLASS_DECL_ACME const char * get_windows_message_name(::u32 nMsg);
 
 
 
+
+
+
+
+using trace_function = ::function < void(enum_trace_level, const ::scoped_string &) >;
+
+
+
+
+CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information);

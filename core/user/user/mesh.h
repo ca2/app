@@ -344,7 +344,7 @@ namespace user
       virtual i32 _001GetGroupHeight(index iGroup);
 
 
-      virtual void FilterInclude(int_array & array);
+      virtual void FilterInclude(::i32_array & array);
       virtual void FilterInclude(index iItem);
       virtual void FilterExcludeAll();
       virtual void FilterClose();
@@ -590,8 +590,8 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_CORE binary_stream < FILE > operator <<(binary_stream < FILE > & s, const ::user::mesh::mesh_layout & layout);
-CLASS_DECL_CORE binary_stream < FILE > operator >>(binary_stream < FILE > & s, ::user::mesh::mesh_layout & layout);
+CLASS_DECL_CORE binary_stream operator <<(binary_stream & s, const ::user::mesh::mesh_layout & layout);
+CLASS_DECL_CORE binary_stream operator >>(binary_stream & s, ::user::mesh::mesh_layout & layout);
 
 
 

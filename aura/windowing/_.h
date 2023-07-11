@@ -33,6 +33,7 @@ namespace windowing
    class cursor_manager;
    class keyboard;
    class monitor;
+   class placement_log;
 
 
    enum enum_status

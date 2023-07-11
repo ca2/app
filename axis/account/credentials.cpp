@@ -201,7 +201,7 @@ namespace account
 
          string strUser;
 
-         if (bOk && ::failed(get("user", strUser)))
+         if (bOk && !get("user", strUser))
          {
 
             bOk = false;
@@ -210,21 +210,21 @@ namespace account
 
          string strHash;
 
-         if (bOk && ::failed(get("hash", strHash)))
+         if (bOk && !get("hash", strHash))
          {
 
             bOk = false;
 
          }
 
-         if (bOk && ::failed(get("olen", strOlen)))
+         if (bOk && !get("olen", strOlen))
          {
 
             bOk = false;
 
          }
 
-         if (bOk && ::failed(get("open", strOpen)))
+         if (bOk && !get("open", strOpen))
          {
 
             bOk = false;

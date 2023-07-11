@@ -77,14 +77,12 @@ public:
    inline bool contains_y(UNIT_TYPE y) const noexcept { return ::contains_y(*this, y); }
 
 
-   template < typename RECTANGLE_TYPE >
-   rectangle_type & maximum(const RECTANGLE_TYPE & rectangle)
+   template < typename SIZE >
+   rectangle_type & ensure_at_least(const SIZE & size)
    {
 
-      this->left = (decltype(RECTANGLE_TYPE::left))::minimum(this->left, rectangle.left);
-      this->top = (decltype(RECTANGLE_TYPE::top))::minimum(this->top, rectangle.top);
-      this->right = (decltype(RECTANGLE_TYPE::right))::maximum(this->right, rectangle.right);
-      this->bottom = (decltype(RECTANGLE_TYPE::bottom))::maximum(this->bottom, rectangle.bottom);
+      this->right = (decltype(this->right))::maximum(this->right, this->left + size.cx());
+      this->bottom = (decltype(this->bottom))::maximum(this->bottom, this->top + size.cy());
 
       return *this;
 
@@ -381,11 +379,11 @@ public:
    }
 //   bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
-//   template < primitive_point POINT >
-//   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x(), point.y()); }
-//
-//   template < primitive_size SIZE >
-//   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx(), size.cy()); }
+   template < primitive_point POINT >
+   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x(), point.y()); }
+
+   template < primitive_size SIZE >
+   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx(), size.cy()); }
 
    rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }
@@ -415,8 +413,8 @@ public:
 //   inline rectangle_type operator-(const SHIFT_I32 & shift) noexcept { return { (UNIT_TYPE)(this->left - shift.Δx), (UNIT_TYPE)(this->top - shift.Δy), (UNIT_TYPE)(this->right - shift.Δx), (UNIT_TYPE)(this->bottom - shift.Δy) }; }
 
 
-   //template < primitive_point POINT >
-   //rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x(), point.y()); }
+   template < primitive_point POINT >
+   rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x(), point.y()); }
 
    template < primitive_size SIZE >
    rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract(*this, -size.cx(), -size.cy()); }
@@ -1314,20 +1312,20 @@ public:
    template < primitive_size SIZE >
    inline bool operator == (const SIZE & size) const noexcept { return this->width() == size.cx() && this->height() == size.cy(); }
 
-//   template < primitive_size SIZE >
-//   inline bool operator != (const SIZE & size) const noexcept { return !operator ==(size); }
+   template < primitive_size SIZE >
+   inline bool operator != (const SIZE & size) const noexcept { return !operator ==(size); }
 
-//   template < primitive_size SIZE >
-//   inline bool operator > (const SIZE & size) const noexcept { return this->size() > size; }
-//
-//   template < primitive_size SIZE >
-//   inline bool operator >= (const SIZE & size) const noexcept { return this->size() >= size; }
-//
-//   template < primitive_size SIZE >
-//   inline bool operator < (const SIZE & size) const noexcept { return this->size() < size; }
-//
-//   template < primitive_size SIZE >
-//   inline bool operator <= (const SIZE & size) const noexcept { return this->size() <= size; }
+   template < primitive_size SIZE >
+   inline bool operator > (const SIZE & size) const noexcept { return this->size() > size; }
+
+   template < primitive_size SIZE >
+   inline bool operator >= (const SIZE & size) const noexcept { return this->size() >= size; }
+
+   template < primitive_size SIZE >
+   inline bool operator < (const SIZE & size) const noexcept { return this->size() < size; }
+
+   template < primitive_size SIZE >
+   inline bool operator <= (const SIZE & size) const noexcept { return this->size() <= size; }
 
    template < primitive_size SIZE >
    inline bool any_gt(const SIZE & size) const noexcept { return this->size().any_gt(size); }

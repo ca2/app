@@ -6,7 +6,7 @@
 #define TWIST_LEN       (m_uinta.get_count())
 #define TWIST_IA        397
 #define TWIST_IB        (TWIST_LEN - TWIST_IA)
-#define UMASK           0x80000000
+#define UMASK           I32_MINIMUM
 #define LMASK           0x7FFFFFFF
 #define MATRIX_A        0x9908B0DF
 #define TWIST(b,i,j)   ((b)[i] & UMASK) | ((b)[j] & LMASK)
@@ -73,15 +73,15 @@ namespace mathematics
 
       }
 
-      i64 i0 = ::integral_nanosecond();
+      i64 i0 = ::i64_nanosecond();
 
-      preempt(integral_millisecond(bLevel));
+      preempt(microsecond_time(bLevel));
 
-      i64 i1 = ::integral_nanosecond();
+      i64 i1 = ::i64_nanosecond();
 
       i64 i2 = time(nullptr);
 
-      i64 i3 = ::integral_nanosecond();
+      i64 i3 = ::i64_nanosecond();
 
       i64 i4 = abs(i0 + i1 + i2 + i3);
 
@@ -102,14 +102,14 @@ namespace mathematics
 
       ::i64 iValue = 0;
 
-      iValue %= MAXI32;
+      iValue %= I32_MAXIMUM;
 
       while (iLevel > 0)
       {
 
          iValue += random_context_entropy64(iLevel);
 
-         iValue %= MAXI32;
+         iValue %= I32_MAXIMUM;
 
          iLevel--;
 

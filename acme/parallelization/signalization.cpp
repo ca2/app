@@ -21,7 +21,7 @@ namespace parallelization
    signalization::~signalization()
    {
 
-      //::output_debug_string("signalization::~signalization");
+      //::information("signalization::~signalization");
 
    }
 

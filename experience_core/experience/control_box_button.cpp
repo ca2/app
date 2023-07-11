@@ -95,7 +95,7 @@ namespace experience_core
             crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
          }
-         else if (hover_item().is_set())
+         else if (is_mouse_hover())
          {
 
             pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
@@ -207,9 +207,16 @@ namespace experience_core
    void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleClient = client_rectangle(::user::e_layout_layout);
 
-      __defer_construct(m_pregion);
+      if (rectangleClient.is_empty())
+      {
+
+         return;
+
+      }
+
+      __construct(m_pregion);
       
       ::ellipse_f64 ellipse;
       

@@ -1040,7 +1040,7 @@ end1:
    
 #ifdef FUNCTION_TRACE
    
-   output_debug_string(str);
+   information(str);
    
 #endif
    
@@ -1249,7 +1249,7 @@ end1:
    
 #ifdef FUNCTION_TRACE
    
-   output_debug_string(str);
+   information(str);
    
 #endif
    

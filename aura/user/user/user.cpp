@@ -93,7 +93,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   output_debug_string("\nFailed to create_windowing at user::user::initialize.");
+      //   information("\nFailed to create_windowing at user::user::initialize.");
 
       //   return estatus;
 
@@ -1509,7 +1509,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   output_debug_string("\nFailed to initialize_windowing at ::user::user::create_windowing");
+      //   information("\nFailed to initialize_windowing at ::user::user::create_windowing");
 
       //   return estatus;
 

@@ -1,26 +1,22 @@
 #include "framework.h"
 #include "event.h"
-// #include "acme/primitive/string/string.h"
+
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/time/timespec.h"
 #include "acme/_operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
-
-
 #include "acme/operating_system/ansi/_pthread.h"
-
-
 #endif
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 #include <sys/ipc.h>
-#include "acme/operating_system/ansi/_pthread.h"
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
+#include <sys/errno.h>
 
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/sem.h>
@@ -405,7 +401,7 @@ bool event::ResetEvent()
       if(m_handle == NULL)
       {
 
-         ::output_debug_string(L"error reset event (1)");
+         ::information("error reset event (1)");
 
          return false;
 
@@ -417,7 +413,7 @@ bool event::ResetEvent()
    catch(...)
    {
 
-      ::output_debug_string(L"error reset event (2)");
+      ::information("error reset event (2)");
 
    }
 
@@ -889,7 +885,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *)this)->wait({ e_zero });
+      return ((event *)this)->wait({ zero_t{} }).ok();
 
    }
 

@@ -44,7 +44,7 @@ void file_put_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (f == nullptr)
       return;
 
-   ::count iSize = strlen(path.c_str());
+   ::count iSize = ansi_len(path.c_str());
 
    ::count iRead = fwrite(path.c_str(), 1, (size_t)iSize, f);
 
@@ -132,7 +132,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (lRead != lLen)
    {
 
-      output_debug_string("file_beg_contents_raw: error writing to file.");
+      information("file_beg_contents_raw: error writing to file.");
 
    }
 

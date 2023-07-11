@@ -414,7 +414,7 @@ inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsi
 inline const ::particle* trace_object(const ::particle* pparticle) { return pparticle; }
 
 
-inline bool failed(const ::payload& payload) { return !::succeeded(payload); }
+//inline bool failed(const ::payload& payload) { return !::succeeded(payload); }
 
 
 inline int read_char(u8*& pdata, memsize& s, char* pch)
@@ -523,83 +523,6 @@ inline bool exists(const ::file::enum_type& etype)
 //
 //
 
-
-inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
-
-}
-
-
-inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);
-
-}
-
-
-inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-#ifdef WINDOWS
-
-   return strtol(psz, (::ansi_character **) ppszEnd, iBase);
-
-#else
-
-   long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
-
-   if(l > INT_MAX)
-   {
-
-      errno = ERANGE;
-
-      return INT_MAX;
-
-   }
-   else if(l < INT_MIN)
-   {
-
-      errno = ERANGE;
-
-      return INT_MIN;
-
-   }
-
-   return (::i32) l;
-
-#endif
-
-}
-
-
-inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
-{
-
-#ifdef WINDOWS
-
-   return strtoul(psz, (::ansi_character **) ppszEnd, iBase);
-
-#else
-
-   unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
-
-   if(ul > UINT_MAX)
-   {
-
-      errno = ERANGE;
-
-      return UINT_MAX;
-
-   }
-
-   return (::u32) ul;
-
-#endif
-
-}
 
 
 

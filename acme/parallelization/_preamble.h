@@ -35,7 +35,7 @@ namespace factory
 
 #define CRITICAL_SECTION_FUNCTION_RETURN int
 
-CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t* pmutex);
+//CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t* pmutex);
 
 #else
 

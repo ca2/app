@@ -11,17 +11,21 @@
 namespace graphics
 {
 
-   class buffer_item :
+   class CLASS_DECL_AURA buffer_item :
       virtual public ::particle
    {
    public:
 
       
-      ::image_pointer               m_pimage;
+      ::image_pointer               m_pimage2;
       ::mutex_pointer               m_pmutex;
+      ::draw2d::graphics_pointer    m_pgraphics;
       ::point_i32                   m_point;
       ::size_i32                    m_size;
       ::pointer < ::particle >      m_pparticleData;
+
+
+      ::draw2d::graphics_pointer g();
 
 
    };

@@ -114,7 +114,7 @@
 #include "acme/platform/lparam.h"
 #include "acme/primitive/comparison/compare.h"
 //#include "acme/primitive/primitive/e_status.h"
-#include "acme/primitive/logic/tristate.h"
+#include "acme/primitive/logic/boolean.h"
 #include "acme/primitive/primitive/logic.h"
 #include "acme/primitive/mathematics/c_number.h"
 #include "acme/primitive/mathematics/numeric_info.h"
@@ -122,6 +122,7 @@
 #include "acme/primitive/primitive/transfer.h"
 
 
+#include  "acme/primitive/primitive/_unit.h"
 #include  "acme/primitive/time/_.h"
 #include  "acme/primitive/string/string.h"
 #include  "acme/primitive/primitive/payload.h"
@@ -135,6 +136,9 @@
 
 
 #include "_string.h"
+
+
+#include  "acme/filesystem/file/binary_stream.h"
 
 
 #include "acme/filesystem/_impl.h"
@@ -232,7 +236,7 @@
 //#include "acme/graphics/draw2d/_constant.h"
 //
 //
-//#include "acme/primitive/logic/tristate.h"
+//#include "acme/primitive/logic/boolean.h"
 //
 //
 //#include "acme/platform/auto.h"

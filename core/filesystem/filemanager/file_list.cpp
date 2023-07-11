@@ -1115,13 +1115,13 @@ namespace filemanager
 
       pathParentEx = filemanager_path();
 
-      i32 iMaxSize;
+      //i32 iMaxSize;
 
-      iMaxSize = 1000;
+      //iMaxSize = 1000;
 
-      i32 iSize;
+      //i32 iSize;
 
-      iSize = 0;
+      //iSize = 0;
 
       m_pathaStrictOrder.erase_all();
 
@@ -1181,7 +1181,7 @@ namespace filemanager
             //if (spitem->m_strName.case_insensitive_contains("aaa."))
             //{
 
-            //   output_debug_string("test filemanager file_list");
+            //   information("test filemanager file_list");
 
             //}
 
@@ -1307,7 +1307,7 @@ namespace filemanager
       for (i = 0; i < iCount; i++)
       {
 
-         index iControl;
+         //index iControl;
 
          ::atom atom = 1000 + i;
 
@@ -1319,7 +1319,7 @@ namespace filemanager
             //pinteraction->m_type = __type(::user::button);
             pinteraction->m_atom = atom;
             pinteraction->add_function(user::e_control_function_action);
-            iControl = _001AddControl(pinteraction);
+            _001AddControl(pinteraction);
 
          }
 

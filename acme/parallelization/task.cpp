@@ -76,7 +76,7 @@ task::~task()
    auto strThreadName = ::task_get_name();
    auto itask = ::get_current_itask();
 
-   ::output_debug_string("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
+   ::information("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
 
 #endif
 
@@ -773,13 +773,13 @@ void task::init_task()
    if (__type_name(this).contains("synth_thread"))
    {
 
-      output_debug_string("synth_thread thread::thread_proc");
+      information("synth_thread thread::thread_proc");
 
    }
    else if (__type_name(this).case_insensitive_ends("out"))
    {
 
-      output_debug_string("synth_thread thread::out");
+      information("synth_thread thread::out");
 
    }
 
@@ -1035,7 +1035,7 @@ bool task::has_message() const
 
    }
 
-   m_pszDebug = strdup(strId.c_str());
+   //m_pszDebug = strdup(strId.c_str());
 
 #endif
 
@@ -1290,7 +1290,7 @@ bool task::has_message() const
 
       ::e_status estatus = m_estatus;
 
-      if (failed(estatus))
+      if (estatus.failed())
       {
 
          ::e_status estatusExit = m_estatus;

@@ -55,7 +55,7 @@ void matter::trace_last_status()
 extern "C"
 void o_debug_string(const ::scoped_string & scopedstr)
 {
-   output_debug_string(scopedstr);
+   information(scopedstr);
 }
 
 
@@ -86,7 +86,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    char * psz = str.get_buffer(iLen + 8);
 
-   strncpy(psz, scopedstrText, scopedstrText.size());
+   ansi_ncpy(psz, scopedstrText, scopedstrText.size());
 
    if (scopedstrFile.has_char())
    {
@@ -343,7 +343,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    strMessage += "\n";
 
-   output_debug_string(strMessage);
+   information(strMessage);
 
 }
 

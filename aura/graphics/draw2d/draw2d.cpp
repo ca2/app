@@ -671,13 +671,15 @@ void draw2d::emboss_predicate(
 
       auto psystem = acmesystem()->m_paurasystem;
 
+      pimageBlur->create(size);
+
+      blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
+
       psystem->imaging().channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_opacity, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
       for (iptr i = 0; i < iBlur; i++)
       {
          
-         blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
-
          blur.blur(pimageBlur);
 
       }
@@ -1525,7 +1527,7 @@ void draw2d::emboss_predicate(
 
       }
 
-      //output_debug_string("No write_text pluging available!!.");
+      //information("No write_text pluging available!!.");
       if (pfactoryWriteText)
       {
 

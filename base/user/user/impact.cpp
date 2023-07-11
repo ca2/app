@@ -29,6 +29,8 @@ namespace user
 
       m_bEmptyAreaIsClientArea = false;
 
+      //m_bExtendOnParent = true;
+
    }
 
 
@@ -977,6 +979,14 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
       //   auto pmouse = pmessage->m_union.m_pmouse;
+
+   }
+
+
+   bool impact::is_impact()
+   {
+
+      return true;
 
    }
 

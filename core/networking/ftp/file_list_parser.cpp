@@ -54,16 +54,18 @@ namespace ftp
       m_lCurrentYear(-1)
    {
 
-      m_tmBase = 0;
+      m_tmBase.Null();
 
-      tm tm = { 0 };
+      ::earth::time time(now_t{});
 
-      time_t t = time(nullptr);
+      //tm tm = { 0 };
 
-      gmtime_r(&t, &tm);
+      //posix_time t = time(nullptr);
 
-      m_tmBase = -(ToTAI(tm.tm_year + 1900, tm.tm_mon, tm.tm_mday) +
-         tm.tm_hour * 3600 + tm.tm_min * 60 + tm.tm_sec);
+      //gmtime_r(&t, &tm);
+
+      m_tmBase = posix_time{ posix_time_t{},-(ToTAI(time.year(), time.month(), time.day()) +
+         time.hour() * 3600 + time.minute() * 60 + time.second()) };
 
       // assumes the right time, counting seconds.
       // base may be slightly off if time counts non-leap seconds.
@@ -75,9 +77,9 @@ namespace ftp
 
    bool file_list_parser::CheckMonth(const ::scoped_string & scopedstr, const ::string & pszMonthName) const
    {
-      if (tolower(scopedstr.begin()[0]) != pszMonthName[0] ||
-         tolower(scopedstr.begin()[1]) != pszMonthName[1] ||
-         tolower(scopedstr.begin()[2]) != pszMonthName[2])
+      if (character_tolower(scopedstr.begin()[0]) != pszMonthName[0] ||
+         character_tolower(scopedstr.begin()[1]) != pszMonthName[1] ||
+         character_tolower(scopedstr.begin()[2]) != pszMonthName[2])
          return false;
 
       return true;
@@ -167,11 +169,11 @@ namespace ftp
       return lResult * 86400;
    }
 
-   long file_list_parser::GetYear(time_t time) const
+   long file_list_parser::GetYear(posix_time time) const
    {
-      long lDay = static_cast<long>(time / 86400L);
+      long lDay = static_cast<long>(time.m_iSecond / 86400L);
 
-      if ((time % 86400L) < 0)
+      if ((time.m_iSecond % 86400L) < 0)
          --lDay;
 
       lDay -= 11017;
@@ -227,7 +229,7 @@ namespace ftp
    long file_list_parser::GuessTAI(long lMonth, long lMDay)
    {
       ///////////////////////////*/*/*/*/
-      time_t now = ::time(nullptr) - m_tmBase;
+      auto now = m_tmBase.elapsed();
 
       if (m_lCurrentYear == -1)
       {
@@ -238,7 +240,7 @@ namespace ftp
       for (long lYear = m_lCurrentYear - 1; lYear < m_lCurrentYear + 100; ++lYear)
       {
          lTAI = ToTAI(lYear, lMonth, lMDay);
-         if (now - lTAI < 350 * 86400)
+         if (now.m_iSecond - lTAI < 350 * 86400)
             return lTAI;
       }
       return lTAI;
@@ -298,7 +300,7 @@ namespace ftp
             case ('m'):
                ftpFileStatus.m_etimeModification = file_status::time_local;
                lTemp = atoi(string(scopedstrLine.begin() + i + 1, j - i - 1));
-               ftpFileStatus.m_timeModification = m_tmBase + lTemp;
+               ftpFileStatus.m_timeModification.m_iSecond = m_tmBase.m_iSecond + lTemp;
                acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                break;
             case ('i'):
@@ -422,7 +424,7 @@ namespace ftp
                   GetLong(scopedstrLine(i, 1), lHour);
                   GetLong(scopedstrLine(i + 2, 2), lMinute);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
-                  ftpFileStatus.m_timeModification = m_tmBase + GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
+                  ftpFileStatus.m_timeModification.m_iSecond = m_tmBase.m_iSecond + GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
                   acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
                else if (j - i == 5 && scopedstrLine.begin()[i + 2] == (':'))
@@ -430,14 +432,14 @@ namespace ftp
                   GetLong(scopedstrLine(i, 2), lHour);
                   GetLong(scopedstrLine(i + 3, 2), lMinute);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
-                  ftpFileStatus.m_timeModification = m_tmBase + GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
+                  ftpFileStatus.m_timeModification.m_iSecond = m_tmBase.m_iSecond +GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
                   acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
                else if (j - i >= 4)
                {
                   GetLong(scopedstrLine(i, j - i), lYear);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_day;
-                  ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay);
+                  ftpFileStatus.m_timeModification.m_iSecond = m_tmBase.m_iSecond + file_list_parser::ToTAI(lYear, lMonth, lMDay);
                   acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
                else
@@ -487,7 +489,7 @@ namespace ftp
    /// "CII-MANUAL.TEX;1  213/216  29-JAN-1996 03:33:12  [ANONYMOU,ANONYMOUS]   (RWED,RWED,,)"
    bool file_list_parser::IsMultiNetListing(const ::scoped_string & scopedstrLine)
    {
-      return scopedstrLine.begin() && strchr(scopedstrLine.begin(), ';') != nullptr;
+      return scopedstrLine.begin() && ansi_chr(scopedstrLine.begin(), ';') != nullptr;
    }
 
    bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine)
@@ -548,7 +550,7 @@ namespace ftp
          GetLong(scopedstrLine(i, j - i), lMinute);
 
          ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
-         ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
+         ftpFileStatus.m_timeModification.m_iSecond = m_tmBase.m_iSecond + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
          acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
       }
 
@@ -632,7 +634,7 @@ namespace ftp
       ftpFileStatus.m_strName = scopedstrLine.begin() + j;
 
       ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
-      ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
+      ftpFileStatus.m_timeModification.m_iSecond = m_tmBase.m_iSecond + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
       acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
 
       return true;

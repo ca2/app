@@ -31,11 +31,8 @@
 		9A8F4DBF2A26D5C800097EE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D922A26D5C600097EE1 /* InfoPlist.strings */; };
 		9A8F4DC02A26D5C800097EE1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D942A26D5C600097EE1 /* MainMenu.xib */; };
 		9A8F4DC12A26D5C800097EE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F4D962A26D5C600097EE1 /* Images.xcassets */; };
-		9AB15BD729A8796500DFDF90 /* libacme_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; };
 		9AB15BD829A8796500DFDF90 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9AB15BD929A8796600DFDF90 /* libapex_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */; };
 		9AB15BDA29A8796600DFDF90 /* libapex_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9AB15BDB29A8796600DFDF90 /* libaura_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */; };
 		9AB15BDC29A8796600DFDF90 /* libaura_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB3DE7E278385C50025099F /* libapp_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D36D26785A9C000B22D0 /* libapp_message_box.dylib */; };
 		9AB3DE88278386490025099F /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB3DE86278386490025099F /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -310,14 +307,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AB15BD929A8796600DFDF90 /* libapex_darwin.dylib in Frameworks */,
 				9AB3DE7E278385C50025099F /* libapp_message_box.dylib in Frameworks */,
-				9AB15BDB29A8796600DFDF90 /* libaura_darwin.dylib in Frameworks */,
 				9AC01D822748C622006BEBCC /* libaura.dylib in Frameworks */,
 				9A46D37C26785B51000B22D0 /* libacme.dylib in Frameworks */,
 				9AC01D7C2748C510006BEBCC /* libapp_app.dylib in Frameworks */,
 				9A46D37726785AD0000B22D0 /* libapex.dylib in Frameworks */,
-				9AB15BD729A8796500DFDF90 /* libacme_darwin.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

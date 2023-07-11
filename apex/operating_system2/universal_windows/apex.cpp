@@ -389,7 +389,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //#else
 //
-//   return !(GetVersion() & 0x80000000);
+//   return !(GetVersion() & I32_MINIMUM);
 //
 //#endif
 //
@@ -435,7 +435,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //      }
 //
-//      ::output_debug_string("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//      ::information("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 //      return false;
 //

@@ -1161,7 +1161,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 bool dir_context::name_is(const ::file::path& strPath)
 {
 
-   //output_debug_string(strPath);
+   //information(strPath);
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
@@ -2086,7 +2086,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
    if (patha[0].contains("yesno.xhtml"))
    {
 
-      output_debug_string("matter_from_locator yesno.xhtml");
+      information("matter_from_locator yesno.xhtml");
 
    }
 
@@ -2111,7 +2111,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          if (path.case_insensitive_begins_eat("itdoesntexist."))
          {
 
-            class ::time t = integral_millisecond(::as_i64(path));
+            class ::time t = millisecond_time(::as_i64(path));
 
             auto elapsed = t.elapsed();
 
@@ -2170,7 +2170,14 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    m_pcontext->m_papexcontext->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
 
-   auto ptextcontext = acmesession()->text_context();
+   //::text::context * ptextcontext = nullptr;
+
+   //if (acmeapplication()->m_bSession)
+   //{
+
+   //   ptextcontext = acmesession()->text_context();
+
+   //}
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -2359,7 +2366,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    bOk = false;
 
-   path = "itdoesntexist." + ::as_string(::integral_millisecond());
+   path = "itdoesntexist." + ::as_string(::i64_millisecond());
 
 ret:
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "control_box_button.h"
+#include "acme/primitive/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -136,7 +137,7 @@ namespace experience_nanoui
 
          string str;
 
-         get_window_text(str);
+         str = get_window_text();
 
          pgraphics->set_font(this, ::e_element_none);
 
@@ -161,7 +162,7 @@ namespace experience_nanoui
 
          auto ppen = __create < ::draw2d::pen >();
 
-         ppen->create_solid(1.0f, ::color::color(255, 255, 255, 255));
+         ppen->create_solid(1.0f, ::rgba(255, 255, 255, 255));
 
          pgraphics->set(ppen);
 
@@ -204,7 +205,11 @@ namespace experience_nanoui
 
       __defer_construct(m_pregion);
 
-      m_pregion->create_ellipse(rectangleClient);
+      ::ellipse_f64 ellipse;
+
+      ellipse.set(rectangleClient);
+
+      m_pregion->create_ellipse(ellipse);
 
    }
 

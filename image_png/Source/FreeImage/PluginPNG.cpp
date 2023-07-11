@@ -118,10 +118,10 @@ static int_bool
 
          ::u32 tag_length;
 
-         if(text_ptr[i].text_length & 0x80000000)
+         if(text_ptr[i].text_length & I32_MINIMUM)
          {
 #ifdef PNG_iTXt_SUPPORTED
-            if(text_ptr[i].itxt_length & 0x80000000)
+            if(text_ptr[i].itxt_length & I32_MINIMUM)
             {
                continue;
             }
@@ -134,7 +134,7 @@ static int_bool
 #endif
          }
 #ifdef PNG_iTXt_SUPPORTED
-         else if(text_ptr[i].itxt_length & 0x80000000)
+         else if(text_ptr[i].itxt_length & I32_MINIMUM)
          {
             tag_length = (::u32) text_ptr[i].text_length;
          }

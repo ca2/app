@@ -4,12 +4,10 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
 ////#include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/geometry2d/point.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 //#include "acme/primitive/geometry2d/region.h"
-#include "acme/primitive/primitive/particle.h"
 #include "acme/constant/element.h"
 #include "acme/user/user/_constant.h"
 
@@ -87,6 +85,7 @@ struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
    ITEM_DATA_ADDITIONS()
    {
 
+      m_ezorder = ::user::e_zorder_front;
 
    }
    
@@ -412,7 +411,6 @@ public:
    operator INTEGRAL() const { return (INTEGRAL)m_iItem; }
 
    virtual bool is_hidden() const;
-
 
    //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 

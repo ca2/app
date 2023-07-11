@@ -47,6 +47,8 @@ namespace user
    {
 
       e_layout_sketch, // layouting request ("staging area")
+      e_layout_lading, // layouting request ("staging area")
+      e_layout_layout, // to layout
       e_layout_design, // ready to process
       //      layout_bitmap, // drawn/ready sketch
       e_layout_output, // screen output 
@@ -444,12 +446,12 @@ enum enum_toolbar_style_ex
 enum enum_scroll_command
 {
 
-   e_scroll_command_line_closer = 0,
-   e_scroll_command_line_up = e_scroll_command_line_closer,
-   e_scroll_command_line_left = e_scroll_command_line_closer,
-   e_scroll_command_line_farther = 1,
-   e_scroll_command_line_down = e_scroll_command_line_farther,
-   e_scroll_command_line_right = e_scroll_command_line_farther,
+   e_scroll_command_line_near = 0,
+   e_scroll_command_line_up = e_scroll_command_line_near,
+   e_scroll_command_line_left = e_scroll_command_line_near,
+   e_scroll_command_line_far = 1,
+   e_scroll_command_line_down = e_scroll_command_line_far,
+   e_scroll_command_line_right = e_scroll_command_line_far,
    e_scroll_command_page_near = 2,
    e_scroll_command_page_up = e_scroll_command_page_near,
    e_scroll_command_page_left = e_scroll_command_page_near,
@@ -464,7 +466,11 @@ enum enum_scroll_command
    e_scroll_command_end = 7,
    e_scroll_command_bottom = e_scroll_command_end,
    e_scroll_command_right = e_scroll_command_end,
-   e_scroll_command_end_scroll = 8,
+   e_scroll_command_wheel_near = 8,
+   e_scroll_command_wheel_up = e_scroll_command_wheel_near,
+   e_scroll_command_wheel_far = 9,
+   e_scroll_command_wheel_down = e_scroll_command_wheel_far,
+   e_scroll_command_end_scroll = 10,
 
 };
 

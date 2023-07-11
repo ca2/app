@@ -242,9 +242,9 @@ SizingNone:;
             
          ::rectangle_i32 rectangle;
             
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
       }
       else if(m_pframewindow->m_estyle == ::user::StyleLightBlue)
@@ -252,7 +252,7 @@ SizingNone:;
             
          rectangleA.deflate(1, 1, 1, 1);
             
-         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, 0);
+         Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, ::color::transparent);
 
          rectangleA.deflate(1, 1, 1, 1);
             
@@ -268,9 +268,9 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
             
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 0.5));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
             
       }
       else
@@ -280,11 +280,11 @@ SizingNone:;
 
          rectangleClient.deflate(1, 1);
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
-         pgraphics->fill_rectangle(rectangle,::color::color(crMoveableBorder, 200));
+         pgraphics->fill_rectangle(rectangle, crMoveableBorder & 200_opacity);
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          ::rectangle_i32 rectangleClientB = rectangleA;
 
@@ -297,14 +297,14 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
          rectangleA.top++;
          rectangleA.bottom--;
          rectangleA.left++;
          rectangleA.right--;
-         Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -312,7 +312,7 @@ SizingNone:;
          rectangleA.right--;
          if(edock == e_dock_none)
          {
-            Draw3dRectSide(pgraphics, rectangleA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow.opaque(), m_colorDkShadow.opaque());
          }
 
       }
@@ -414,14 +414,14 @@ SizingNone:;
    }
    
 
-   void frame_002::GetBorderRect(
+   void frame_002::GetBorderRectangle(
    const ::rectangle_i32 & rectangleClient,
    ::rectangle_i32 * lprect,
    enum_border eside)
    {
       ::rectangle_i32 rectangleBig(rectangleClient);
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rect(&rectangleSmall);
+      get_window_client_rectangle(&rectangleSmall);
       ::rectangle_i32 rectangle;
       if(eside == e_border_top)
       {

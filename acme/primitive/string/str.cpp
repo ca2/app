@@ -9,6 +9,7 @@
 #include "acme/primitive/string/str.h"
 //#include "string.h"
 #include <stdio.h>
+#include <string.h>
 
 
 #ifdef LINUX
@@ -3118,7 +3119,7 @@ i64 str::to_i64(const ::string & str)
 
    u64 u = 0;
 
-   for (; i < str.length() && isdigit(str[i]); i++)
+   for (; i < str.length() && character_isdigit(str[i]); i++)
    {
 
       u = u * 10 + str[i] - 48;
@@ -3176,7 +3177,7 @@ u64 str::to_u64(const ::string & str)
 
    u64 u = 0;
 
-   for (; i < str.length() && isdigit(str[i]); i++)
+   for (; i < str.length() && character_isdigit(str[i]); i++)
    {
       u = u * 10 + str[i] - 48;
    }
@@ -4161,7 +4162,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 //}
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //::string as_string(const ::text_stream < FILE > & strstream)
 //{
 //

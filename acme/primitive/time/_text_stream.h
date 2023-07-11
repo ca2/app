@@ -21,27 +21,27 @@ struct integral_day;
 
 
 
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_microsecond& integral);
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_millisecond& integral);
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_second& integral);
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_minute& integral);
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_hour& integral);
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_day& integral);
 
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_nanosecond& integral)
 //{
 //
@@ -52,7 +52,7 @@ struct integral_day;
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_microsecond& integral)
 //{
 //
@@ -63,7 +63,7 @@ struct integral_day;
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_millisecond& integral)
 //{
 //
@@ -74,7 +74,7 @@ struct integral_day;
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_second& integral)
 //{
 //
@@ -85,7 +85,7 @@ struct integral_day;
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_minute& integral)
 //{
 //
@@ -96,7 +96,7 @@ struct integral_day;
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_hour& integral)
 //{
 //
@@ -107,7 +107,7 @@ struct integral_day;
 //}
 //
 //
-//template < typename FILE >
+//// template < typename FILE >
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_day& integral)
 //{
 //

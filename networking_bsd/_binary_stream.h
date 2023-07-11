@@ -5,8 +5,8 @@
 #include "acme/filesystem/file/binary_stream.h"
 
 
-template < typename FILE >
-binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::networking_bsd::address & address)
+// template < typename FILE >
+binary_stream & operator <<(::binary_stream & stream, const ::networking_bsd::address & address)
 {
 
    stream.write(&address.u.m_sa, sizeof(address.u.m_sa));
@@ -17,8 +17,8 @@ binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::
 }
 
 
-template < typename FILE >
-binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, ::networking_bsd::address & address)
+// template < typename FILE >
+binary_stream & operator >>(::binary_stream & stream, ::networking_bsd::address & address)
 {
 
    stream.read(&address.u.m_sa, sizeof(address.u.m_sa));
@@ -30,8 +30,8 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, ::networ
 
 
 
-template < typename FILE >
-binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const networking::dns_cache_item & item)
+// template < typename FILE >
+binary_stream & operator <<(::binary_stream & stream, const networking::dns_cache_item & item)
 {
 
    string strAddress;
@@ -48,8 +48,8 @@ binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ne
 }
 
 
-template < typename FILE >
-binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, networking::dns_cache_item &item)
+// template < typename FILE >
+binary_stream & operator >>(::binary_stream & stream, networking::dns_cache_item &item)
 {
 
    string strAddress;
@@ -68,8 +68,8 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, networki
 
 
 
-template < typename FILE >
-binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, const networking::reverse_cache_item & item)
+// template < typename FILE >
+binary_stream & operator >>(::binary_stream & stream, const networking::reverse_cache_item & item)
 {
 
    stream << item.m_strIpAddress;
@@ -84,8 +84,8 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, const ne
 }
 
 
-template < typename FILE >
-binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, networking::reverse_cache_item & item)
+// template < typename FILE >
+binary_stream & operator >>(::binary_stream & stream, networking::reverse_cache_item & item)
 {
 
    stream >> item.m_strIpAddress;
@@ -101,8 +101,8 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, networki
 
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::in6_addr & addr)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & s, const ::in6_addr & addr)
 {
 
    s.write(&addr, sizeof(addr));
@@ -112,8 +112,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::in6_addr & addr)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & s, ::in6_addr & addr)
 {
 
    s.read(&addr, sizeof(addr));
@@ -123,8 +123,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::in6_ad
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::in_addr & addr)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & s, const ::in_addr & addr)
 {
 
    s.write(&addr, sizeof(addr));
@@ -134,8 +134,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::in_addr & addr)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & s, ::in_addr & addr)
 {
 
    s.read(&addr, sizeof(addr));

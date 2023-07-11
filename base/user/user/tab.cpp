@@ -951,13 +951,18 @@ namespace user
       else if (pointClient.y() > ptabdata->m_iTabHeight)
       {
 
-         m_bOverrideVisibleTabs = false;
+         if (m_bOverrideVisibleTabs)
+         {
 
-         set_need_layout();
+            m_bOverrideVisibleTabs = false;
 
-         set_need_redraw();
+            set_need_layout();
 
-         post_redraw();
+            set_need_redraw();
+
+            post_redraw();
+
+         }
 
       }
 
@@ -981,7 +986,7 @@ namespace user
    //}
 
 
-   bool tab::get_element_rect(::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
+   bool tab::get_element_rectangle(::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       point_i32 ptOffset(0,0);
@@ -1106,7 +1111,7 @@ namespace user
       if(eelement == e_element_border)
       {
 
-         if (!get_element_rect(iIndex, rectangle, e_element_tab))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_tab))
          {
 
             return false;
@@ -1122,7 +1127,7 @@ namespace user
       if(eelement == e_element_client)
       {
 
-         if (!get_element_rect(iIndex, rectangle, e_element_border))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_border))
          {
 
             return false;
@@ -1145,7 +1150,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iIndex, rectangle, e_element_client))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_client))
          {
 
             return false;
@@ -1162,7 +1167,7 @@ namespace user
       else if(eelement == e_element_text)
       {
 
-         if (!get_element_rect(iIndex, rectangle, e_element_client))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_client))
          {
 
             return false;
@@ -1212,7 +1217,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iIndex, rectangle, e_element_client))
+         if (!get_element_rectangle(iIndex, rectangle, e_element_client))
          {
 
             return false;
@@ -1391,7 +1396,7 @@ namespace user
          else
          {
 
-            if (get_element_rect(-1, rectangleScroll, ::e_element_tab_near_scroll))
+            if (get_element_rectangle(-1, rectangleScroll, ::e_element_tab_near_scroll))
             {
 
                if (rectangleScroll.contains(pointCursor))
@@ -1403,7 +1408,7 @@ namespace user
 
             }
 
-            if (get_element_rect(-1, rectangleScroll, ::e_element_tab_far_scroll))
+            if (get_element_rectangle(-1, rectangleScroll, ::e_element_tab_far_scroll))
             {
 
                if (rectangleScroll.contains(pointCursor))
@@ -1433,7 +1438,7 @@ namespace user
 
             ::rectangle_i32 rectangleText;
 
-            if(get_element_rect(iIndex, rectangleText, e_element_text))
+            if(get_element_rectangle(iIndex, rectangleText, e_element_text))
             {
 
                if(rectangleText.contains(point))
@@ -1463,7 +1468,7 @@ namespace user
 
          }
 
-         if(get_element_rect(iIndex, rectangle, e_element_close_tab_button) )
+         if(get_element_rectangle(iIndex, rectangle, e_element_close_tab_button) )
          {
 
             if(rectangle.contains(point))
@@ -1475,7 +1480,7 @@ namespace user
 
          }
 
-         if(get_element_rect(iIndex, rectangle, e_element_tab))
+         if(get_element_rectangle(iIndex, rectangle, e_element_tab))
          {
 
             if(rectangle.contains(point))
@@ -1671,7 +1676,7 @@ namespace user
    void tab::set_current_tab_by_index(::index iIndex)
    {
       
-      output_debug_string("tab::set_current_tab_by_index start\n");
+      information("tab::set_current_tab_by_index start\n");
 
       synchronous_lock lock(get_data()->synchronization());
 
@@ -1699,7 +1704,7 @@ namespace user
          
       }
       
-      output_debug_string("tab::set_current_tab_by_index end\n");
+      information("tab::set_current_tab_by_index end\n");
       
    }
 
@@ -2963,7 +2968,7 @@ namespace user
       else
       {
 
-         information("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .\n");
+         information("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .");
 
       }
 

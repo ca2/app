@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "rectangle.h"
+
+
 template < primitive_number NUMBER >
 class rectangle_array_base :
 public ::array < ::rectangle_type < NUMBER > >
@@ -28,7 +31,21 @@ public:
    void add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom);
    void add(const ::point_type < NUMBER > & point, const ::size_type < NUMBER > & size);
    void add(const ::size_type < NUMBER > & size);
+   void add_if_none_contains(const ::rectangle_type < NUMBER > & rectangle)
+   {
+      if (!this->any_contains(rectangle)) add(rectangle);
+   }
+   template < primitive_container CONTAINER >
+   void append_if_none_contains(const CONTAINER & container)
+   {
+      for (auto & r : container) add_if_none_contains(r);
+   }
    void intersect(const ::rectangle_type < NUMBER > & rectangle);
+   bool any_contains(const ::rectangle_type < NUMBER > & rectangle) const
+   {
+      for (auto & r : *this) if (r.contains(rectangle)) return true;
+      return false;
+   }
 
    void add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy);
 
@@ -238,6 +255,9 @@ index rectangle_array_base < NUMBER >::max_normal_intersect_area(const ::rectang
    return iFound;
 
 }
+
+
+CLASS_DECL_ACME rectangle_i32_array get_top_left_oriented_damaged_areas_by_resizing(const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld, bool bOnlyGrowing = true);
 
 
 

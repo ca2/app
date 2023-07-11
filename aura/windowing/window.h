@@ -43,6 +43,7 @@ namespace windowing
       
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
+      ::pointer < placement_log >               m_pplacementlog;
 
 
       window();
@@ -83,6 +84,8 @@ namespace windowing
 
 
       //virtual bool defer_set_icon();
+
+      virtual class placement_log* placement_log();
 
       virtual double get_top_margin();
       
@@ -144,6 +147,8 @@ namespace windowing
       virtual ::oswindow get_parent_oswindow() const;
       virtual void set_parent(::windowing::window * pwindowNewParent);
 
+
+
       
       virtual ::windowing::window * get_owner() const;
       virtual ::oswindow get_owner_oswindow() const;
@@ -164,7 +169,7 @@ namespace windowing
       virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
 
       virtual bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
-      virtual bool _set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
+      virtual bool _set_window_pos(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide, ::u32 nOverrideFlags = 0);
 
       virtual bool is_destroying();
 

@@ -641,7 +641,7 @@ namespace user
 
             string strType =  typeid(*p1).name();
 
-            output_debug_string("the type is " + strType);
+            information("the type is " + strType);
             
          }
 
@@ -663,7 +663,7 @@ namespace user
          && m_pimpactdataOld->m_atom != OPTIONS_IMPACT)
       {
 
-         output_debug_string("::user::e_flag_hide_on_kill_focus");
+         information("::user::e_flag_hide_on_kill_focus");
 
          m_pimpactdataOld->m_pplaceholder->hide();
 
@@ -719,7 +719,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      m_pimpactdata->m_pplaceholder->client_rectangle(rectangleClient);
+      rectangleClient = m_pimpactdata->m_pplaceholder->client_rectangle();
 
       if (!rectangleTabClient.is_empty())
       {
@@ -1076,25 +1076,25 @@ namespace user
    void tab_impact::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bUpdateBuffer = false;
+      //bool bUpdateBuffer = false;
 
-      bool bUpdateWindow = false;
+      //bool bUpdateWindow = false;
 
-      sketch_to_design(bUpdateBuffer, bUpdateWindow);
+      //layout_to_design(bUpdateBuffer, bUpdateWindow);
 
-      if (!is_this_visible())
+      //if (!is_this_visible())
+      //{
+
+      //   return;
+
+      //}
+
+      if (m_bLadingToLayout)
       {
 
-         return;
+         m_bLadingToLayout = false;
 
-      }
-
-      if (m_bSketchToDesignLayout)
-      {
-
-         m_bSketchToDesignLayout = false;
-
-         design_layout(pgraphics);
+         layout_layout(pgraphics);
 
       }
 

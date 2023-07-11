@@ -177,36 +177,36 @@ void plex_heap_alloc::pre_finalize()
 plex_heap_alloc_array::plex_heap_alloc_array()
 {
 
-   add(new plex_heap_alloc(32       , 256));
-   add(new plex_heap_alloc(64       , 128));
-   add(new plex_heap_alloc(128      , 128));
-   add(new plex_heap_alloc(256      , 128));
-   add(new plex_heap_alloc(512      , 64));
-   add(new plex_heap_alloc(1_KiB    , 64));
-   add(new plex_heap_alloc(2_KiB    , 32));
-   add(new plex_heap_alloc(4_KiB    , 32));
-   add(new plex_heap_alloc(8_KiB    , 16));
-   add(new plex_heap_alloc(16_KiB   , 16));
+   add(new plex_heap_alloc(32      , 256));
+   add(new plex_heap_alloc(64      , 128));
+   add(new plex_heap_alloc(128     , 128));
+   add(new plex_heap_alloc(256     , 128));
+   add(new plex_heap_alloc(512     , 64));
+   add(new plex_heap_alloc(1_KiB   , 64));
+   add(new plex_heap_alloc(2_KiB   , 32));
+   add(new plex_heap_alloc(4_KiB   , 32));
+   add(new plex_heap_alloc(8_KiB   , 16));
+   add(new plex_heap_alloc(16_KiB  , 16));
 
 #if !MOBILE_PLATFORM
 
-   add(new plex_heap_alloc(24_KiB   , 16));
-   add(new plex_heap_alloc(32_KiB   , 16));
-   add(new plex_heap_alloc(48_KiB   , 16));
-   add(new plex_heap_alloc(64_KiB   , 16));
-   add(new plex_heap_alloc(128_KiB  , 16));
-   add(new plex_heap_alloc(256_KiB  , 8));
-   add(new plex_heap_alloc(512_KiB  , 8));
-   add(new plex_heap_alloc(1_MiB    , 4));
+   add(new plex_heap_alloc(24_KiB  , 16));
+   add(new plex_heap_alloc(32_KiB  , 16));
+   add(new plex_heap_alloc(48_KiB  , 16));
+   add(new plex_heap_alloc(64_KiB  , 16));
+   add(new plex_heap_alloc(128_KiB , 16));
+   add(new plex_heap_alloc(256_KiB , 8));
+   add(new plex_heap_alloc(512_KiB , 8));
+   add(new plex_heap_alloc(1_MiB   , 4));
 
 
 
 #if OSBIT > 32
 
-   add(new plex_heap_alloc(2_MiB    , 2));
-   add(new plex_heap_alloc(4_MiB    , 2));
-   add(new plex_heap_alloc(8_MiB    , 2));
-   add(new plex_heap_alloc(16_MiB   , 2));
+   add(new plex_heap_alloc(2_MiB   , 2));
+   add(new plex_heap_alloc(4_MiB   , 2));
+   add(new plex_heap_alloc(8_MiB   , 2));
+   add(new plex_heap_alloc(16_MiB  , 2));
 
 #endif
 
@@ -576,7 +576,7 @@ plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
          if (palloc->m_iAllocSize == 16384)
          {
 
-            //::output_debug_string(".");
+            //::information(".");
 
          }
 
@@ -668,7 +668,7 @@ void * plex_heap_alloc_sync::Alloc()
       //if (m_nAllocSize == 128)
       //{
 
-      //   output_debug_string("plex_heap_alloc_sync::Alloc 128");
+      //   information("plex_heap_alloc_sync::Alloc 128");
 
       //}
 
@@ -711,7 +711,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    if(i > g_iMonitor - m_nAllocSize && i < g_iMonitor + m_nAllocSize)
    {
 
-      printf("MAKING FREE");
+      output_debug_string("MAKING FREE");
 
    }
 
@@ -728,7 +728,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
       if ((u & 0xff000000) == 00)
       {
-         //output_debug_string("");
+         //information("");
 
       }
 
@@ -753,7 +753,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    else if (pParam == g_pDebugPointer)
    {
 
-      //output_debug_string("test");
+      //information("test");
 
    }
 
@@ -862,7 +862,7 @@ plex_heap * plex_heap::create(plex_heap * & pheapHead, uptr nMax, uptr cbElement
    if((iptr) pheap > g_iMonitor - 8192 && (iptr) pheap < g_iMonitor + 8192)
    {
 
-      printf("MAKING FREE");
+      output_debug_string("MAKING FREE");
 
    }
 

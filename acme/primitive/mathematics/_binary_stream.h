@@ -3,7 +3,7 @@
 
 
 template < typename FILE, class T, class T_to_T = map < T, T, T, T > >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & ostream, const biunique< T, T_to_T > & b)
+inline binary_stream & operator <<(binary_stream & ostream, const biunique< T, T_to_T > & b)
 {
    ostream << m_bBiunivoca;
    ostream << m_iMaxA;
@@ -26,7 +26,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & ostream, co
 
 
 template < typename FILE, class T, class T_to_T = map < T, T, T, T > >
-binary_stream < FILE > & operator >> (binary_stream < FILE > & istream, biunique< T, T_to_T > & b)
+binary_stream & operator >> (binary_stream & istream, biunique< T, T_to_T > & b)
 {
    try
    {

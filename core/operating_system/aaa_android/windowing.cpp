@@ -646,7 +646,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya, SIZE32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, ::i32_array  & ya, SIZE32 * psize)
 {
 
    pgraphics->fill_solid_rect_dim(0, 0, psize->cx(), psize->cy(), rgb(84, 90, 80));
@@ -1188,7 +1188,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 // void android_key_down(int keyCode, int iUni)
 // {
 
-//    output_debug_string("here???555");
+//    information("here???555");
 
 //    android_key(e_message_key_down, keyCode, iUni);
 
@@ -1202,7 +1202,7 @@ int g_iAndroidBufferSize = -2;
 void android_audio_parameters(int iSampleRate, int iBufferSize)
 {
 
-   output_debug_string("here???555.1");
+   information("here???555.1");
 
    g_iAndroidSampleRate = iSampleRate;
 
@@ -1219,7 +1219,7 @@ void _android_size(float xScreen, float yScreen, float aPok, float yBitmap);
 void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 {
 
-   output_debug_string("android_on_size\n");
+   information("android_on_size\n");
 
    if (::get_context_system() == nullptr)
    {
@@ -1246,7 +1246,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 // 
 // void android_key_up(int keyCode, int iUni)
 // {
-//    output_debug_string("here???444");
+//    information("here???444");
 
 //    android_key(e_message_key_up, keyCode, iUni);
 
@@ -1258,9 +1258,9 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 {
 
-   output_debug_string("here???333");
+   information("here???333");
 
-   if (0x80000000 & iUni)
+   if (I32_MINIMUM & iUni)
    {
 
       return 0;
@@ -1330,7 +1330,7 @@ void _android_on_text(string str);
 void android_on_text(enum_os_text etext, const wchar_t * pwch, size_t len)
 {
 
-   output_debug_string("here???222");
+   information("here???222");
 
    string strText(pwch, len);
 

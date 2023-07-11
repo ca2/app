@@ -39,7 +39,7 @@ constexpr class time& time::operator = (const class time & time)
 constexpr class ::time & time::operator = (const ::earth::time_span & timespan)
 {
 
-   m_iSecond = timespan.m_time;
+   m_iSecond = timespan.m_iSecond;
    m_iNanosecond = 0;
 
    return *this;

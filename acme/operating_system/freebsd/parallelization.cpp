@@ -1,44 +1,48 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
-
+#include "acme/platform/system.h"
 #include "acme/user/nano/display.h"
+#include "acme/platform/acme.h"
 
+#if defined(FREEBSD)
+#define __XSI_VISIBLE 1
+#endif
 #define bitset freebsd_bitset
 #include <sys/_cpuset.h>
 #include <sys/cpuset.h>
 #undef bitset
 #include <pthread_np.h>
-
-
+#include <signal.h>
 #include <sys/time.h>
 #define ITIMER_REAL      0
 #define ITIMER_VIRTUAL   1
 #define ITIMER_PROF      2
+#include <errno.h>
 
 
-void task_set_name(htask_t htask, const char * psz)
-{
+//void task_set_name(htask_t htask, const char * psz)
+//{
 
 //   string strName(psz);
 
   // thread_name_abbreviate(strName, 15);
 
-   if(!pthread_setname_np((pthread_t) htask, psz))
-   {
+  // if(!pthread_setname_np((pthread_t) htask, psz))
+   //{
 
-       output_debug_string("pthread_setname_np Failed\n");
+     //  information("pthread_setname_np Failed\n");
 
-   }
+   //}
 
-}
+//}
 
 
-void task_set_name(const char * psz)
-{
+//void task_set_name(const char * psz)
+//{
 
-   return task_set_name((htask_t) pthread_self(), psz);
+  // return task_set_name((htask_t) pthread_self(), psz);
 
-}
+//}
 
 
 // void __node_init_cross_windows_threading()
@@ -53,30 +57,6 @@ void task_set_name(const char * psz)
 // }
 
 
-int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
-{
-
-   cpuset_t c;
-
-   CPU_ZERO(&c);
-
-   for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
-   {
-
-      if((1 << i) & dwThreadAffinityMask)
-      {
-
-         CPU_SET(i, &c);
-
-      }
-
-   }
-
-   pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
-
-   return 1;
-
-}
 
 
 
@@ -168,10 +148,10 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
          return -1;
       }
 
-      memset(&value, 0, sizeof value);
+      memory_set(&value, 0, sizeof value);
       value.it_value = timeout;
 
-      memset(&sa, 0, sizeof sa);
+      memory_set(&sa, 0, sizeof sa);
       sa.sa_sigaction = signal_ignore;
       sa.sa_flags = SA_SIGINFO;
       sigemptyset(&sa.sa_mask);
@@ -236,7 +216,7 @@ void main_asynchronous(const ::procedure & procedure)
 
     };
 
-    acmesystem()->windowing_post(predicate);
+    ::acme::acme::g_pacme->m_psubsystem->acmesystem()->windowing_post(predicate);
 
 }
 

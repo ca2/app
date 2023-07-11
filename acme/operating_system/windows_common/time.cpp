@@ -1,11 +1,14 @@
 #include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "acme/operating_system/ansi/datetime_c.h"
-//#include "acme/operating_system/time.h"
+
 ////#include "acme/primitive/datetime/earth_time.h"
+#include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/primitive/datetime/system_time.h"
 #include "acme/platform/nanosecond_timer.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/shared_posix/time.h"
+#include "acme/operating_system/time.h"
 #include <time.h>
 
 
@@ -14,10 +17,13 @@ struct tm * gmtime_r(const time_t * timep, struct tm * result)
 {
 
    if (gmtime_s(result, timep) != 0)
+   {
+
       return nullptr;
 
-   return result;
+   }
 
+   return result;
 
 }
 
@@ -93,7 +99,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 }
 
 
-//void get_system_time(system_time_t* psystemtime)
+//void get_system_time(system_time* psystemtime)
 //{
 //
 //   ::GetSystemTime((LPSYSTEMTIME)psystemtime);
@@ -106,19 +112,23 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-void system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+void system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, i32 nDST)
 {
 
    struct tm tm;
 
-   copy(tm, *psystemtime);
+   copy(&tm, &systemtime);
 
-   *ptime = make_utc_time(&tm);
+   ::earth::gregorian_time gregoriantime;
+
+   copy(&gregoriantime, &tm);
+
+   *ptime = gregoriantime.make_utc_time();
 
 }
 
 
-//void system_time_to_file_time(file_time_t* pfile_time, const system_time_t* psystemtime)
+//void system_time_to_file_time(file_time* pfile_time, const system_time* psystemtime)
 //{
 //
 //   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfile_time))
@@ -133,44 +143,34 @@ void system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime
 //}
 
 
-void earth_time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
-{
-   
-   struct tm tm;
+//CLASS_DECL_ACME system_time as_system_time(const ::posix_time & posixtime)
+//{
+//   
+//   time_t time = posixtime.m_iSecond;
+//
+//   struct tm tm;
+//
+//   gmtime_r(&time, &tm);
+//
+//   system_time systemtime;
+//
+//   copy(&systemtime, &tm);
+//
+//   return systemtime;
+//
+//}
 
-   gmtime_r(ptime, &tm);
 
-   copy(*psystemtime, tm);
-
-}
-
-
-CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const time_t* ptime)
-{
-
-   system_time_t systemtime;
-
-   /*auto estatus = */ earth_time_to_system_time(&systemtime, ptime);
-
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /* estatus = */ system_time_to_file_time(pfile_time, &systemtime);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
+//CLASS_DECL_ACME file_time as_file_time(const ::posix_time & time)
+//{
+//
+//   auto systemtime = as_system_time(time);
+//
+//   auto filetime = as_file_time(systemtime);
+//
+//   return filetime;
+//
+//}
 
 
 
@@ -187,7 +187,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const time
 //
 //
 //
-//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+//CLASS_DECL_ACME void file_time_to_system_time(system_time * psystemtime, const ::file_time & filetime)
 //{
 //
 //   FileTimeToSystemTime((FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime);
@@ -206,7 +206,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const time
 
 //
 //
-//void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+//void file_time_to_system_time(system_time * psystemtime, const ::file_time & filetime)
 //{
 //
 //   if (!FileTimeToSystemTime((FILETIME *)pfile_time, (SYSTEMTIME *)psystemtime))
@@ -234,7 +234,7 @@ CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, L
 
 
 
-void FileTimeToSystemTime(const file_time_t* pfile_time, system_time_t* psystemtime)
+void FileTimeToSystemTime(const file_time* pfile_time, system_time* psystemtime)
 {
 
    if (!FileTimeToSystemTime((LPFILETIME) pfile_time, (LPSYSTEMTIME) psystemtime))
@@ -248,7 +248,7 @@ void FileTimeToSystemTime(const file_time_t* pfile_time, system_time_t* psystemt
 
 
 
-void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_time)
+void SystemTimeToFileTime(const system_time* psystemtime, file_time* pfile_time)
 {
 
    if (!SystemTimeToFileTime((LPSYSTEMTIME)pfile_time, (LPFILETIME)psystemtime))
@@ -261,7 +261,7 @@ void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_t
 }
 
 
-void GetSystemTime(system_time_t* psystemtime)
+void GetSystemTime(system_time* psystemtime)
 {
 
 
@@ -271,23 +271,29 @@ void GetSystemTime(system_time_t* psystemtime)
 }
 
 
-void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+void file_time_to_system_time(system_time * psystemtime, const ::file_time & filetime)
 {
 
-   FileTimeToSystemTime((FILETIME *) pfile_time, (SYSTEMTIME *) psystemtime);
+   FileTimeToSystemTime((FILETIME *) &filetime.m_uFileTime, (SYSTEMTIME *) psystemtime);
 
 }
 
 
-void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
+file_time as_file_time(const system_time & systemtime)
 {
 
-   SystemTimeToFileTime((SYSTEMTIME *) psystemtime, (FILETIME *) pfile_time);
+   FILETIME filetime;
+
+   auto SYSTEMTIME = as_SYSTEMTIME(systemtime);
+
+   SystemTimeToFileTime(&SYSTEMTIME, &filetime);
+
+   return as_file_time(filetime);
 
 }
 
 
-//void get_system_time(system_time_t * psystemtime)
+//void get_system_time(system_time * psystemtime)
 //{
 //
 //   GetSystemTime((SYSTEMTIME *) psystemtime);
@@ -296,7 +302,7 @@ void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * ps
 
 
 
-void get_system_time(system_time_t * psystemtime)
+void get_system_time(system_time * psystemtime)
 {
 
    GetSystemTime((SYSTEMTIME *) psystemtime);
@@ -304,7 +310,7 @@ void get_system_time(system_time_t * psystemtime)
 }
 
 
-void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
+void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 {
 
    SYSTEMTIME sysTime;
@@ -348,6 +354,70 @@ void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
    //return ::success;
 
 }
+
+
+
+
+
+
+//
+//class ::time & time::Now()
+//{
+//
+//   struct timespec timespec;
+//
+//   if (timespec_get(&timespec, TIME_UTC) != TIME_UTC)
+//   {
+//
+//      throw "timespec_get failed!!";
+//
+//   }
+//
+//   m_iSecond = timespec.tv_sec;
+//
+//   m_iNanosecond = timespec.tv_nsec;
+//
+//   return *this;
+//
+//}
+
+
+
+
+
+//
+//
+//file_time::file_time(const system_time & systemtime) :
+//   file_time(as_file_time(as_FILETIME(as_SYSTEMTIME(systemtime))))
+//{
+//
+//
+//}
+
+
+namespace earth
+{
+
+
+   gregorian_time::gregorian_time(const class ::time & time, const class ::time & timeshift)
+   {
+
+      auto timeTotal = time + timeshift;
+      
+      time_t t = timeTotal.m_iSecond;
+
+      struct tm tm;
+
+      gmtime_r(&t, &tm);
+
+      copy(this, &tm);
+
+      m_iNanoSecond = timeTotal.m_iNanosecond;
+
+   }
+
+
+} // namespace earth
 
 
 

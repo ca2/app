@@ -43,9 +43,7 @@ namespace experience_tranquillum
 
       }
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
          return;
@@ -90,7 +88,9 @@ namespace experience_tranquillum
          
       m_pfontMarlett.create(this);
 
-      m_pfontMarlett->create_point_font("Marlett", 20);
+      //m_pfontMarlett->create_point_font("Marlett", 20);
+
+      m_pfontMarlett->create_font("Marlett", 20_pt);
       
    }
 

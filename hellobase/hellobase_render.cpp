@@ -211,7 +211,7 @@ namespace hellobase
       ////
       ////#endif
 
-      //double_array daFrame;
+      //f64_array daFrame;
 
       //index iLastFrameId;
 

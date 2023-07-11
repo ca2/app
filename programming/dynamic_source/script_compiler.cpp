@@ -187,7 +187,7 @@ namespace dynamic_source
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         output_debug_string("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
+//         information("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
 //
 //      }
 //
@@ -302,14 +302,14 @@ namespace dynamic_source
 
       information("Compiling script %s", pscript->m_strName.c_str());
 
-      auto & ostreamError = pscript->m_streamError;
+      auto & ostreamError = pscript->m_textstreamError;
 
       ::file::path strName(pscript->m_strName);
 
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
 
-         ::output_debug_string("compile auth3.ds");
+         ::information("compile auth3.ds");
 
       }
 
@@ -376,7 +376,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = ::as_string(::integral_millisecond() % 1000);
+      strMillis = ::as_string(::i64_millisecond() % 1000);
 
       auto pszBufferMillis = strMillis.get_buffer(3);
 
@@ -407,7 +407,7 @@ namespace dynamic_source
 
          string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
-         ::output_debug_string("Ops");
+         ::information("Ops");
 
       }
 
@@ -1290,7 +1290,7 @@ namespace dynamic_source
 //         { \r\n \
 // \r\n \
 // \r\n \
-//             ::output_debug_string(\"netnode_desktop script initializing : " + strCppPath + "!\\n\"); \r\n \
+//             ::information(\"netnode_desktop script initializing : " + strCppPath + "!\\n\"); \r\n \
 // \r\n \
 // \r\n \
 //         } \r\n \
@@ -1298,7 +1298,7 @@ namespace dynamic_source
 //         { \r\n \
 // \r\n \
 // \r\n \
-//            ::output_debug_string(\"netnode_desktop script terminating : " + strCppPath + "!\\n\"); \r\n \
+//            ::information(\"netnode_desktop script terminating : " + strCppPath + "!\\n\"); \r\n \
 // \r\n \
 // \r\n \
 //         } \r\n \
@@ -2942,13 +2942,13 @@ ch_else:
             catch (const ::parsing_exception & )
             {
 
-               output_debug_string("script_compiler::parse_pstr_set");
+               information("script_compiler::parse_pstr_set");
 
             }
             catch (const ::exception & )
             {
 
-               output_debug_string("script_compiler::parse_pstr_set");
+               information("script_compiler::parse_pstr_set");
 
             }
             catch(...)

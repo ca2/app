@@ -6,24 +6,24 @@
 #include "axis/platform/geo_department.h"
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const class ::string_timeout & t)
+// template < typename FILE >
+inline binary_stream & operator <<(binary_stream & stream, const class ::string_timeout & t)
 {
 
    stream << t.m_str;
-   stream << t.m_time;
+   stream << t.m_time.m_iSecond;
 
    return stream;
 
 }
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, class ::string_timeout & t)
+// template < typename FILE >
+inline binary_stream & operator >>(binary_stream & stream, class ::string_timeout & t)
 {
 
    stream >> t.m_str;
-   stream >> t.m_time;
+   stream >> t.m_time.m_iSecond;
 
    return stream;
 

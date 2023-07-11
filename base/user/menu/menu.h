@@ -43,8 +43,8 @@ namespace user
       bool                                   m_bInline;
       bool                                   m_bMenuOk;
       ::pointer<menu_item>                  m_pmenuitemSub;
-      int_array                              m_iaColumnWidth;
-      int_array                              m_iaColumnHeight;
+      ::i32_array                              m_iaColumnWidth;
+      ::i32_array                              m_iaColumnHeight;
       bool                                   m_bCloseButton;
 
 

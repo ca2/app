@@ -692,9 +692,9 @@ u32  crcForCrypting)
    if (comment==nullptr)
       size_comment = 0;
    else
-      size_comment = (u32) strlen(comment);
+      size_comment = (u32) ansi_len(comment);
 
-   size_filename = (u32) strlen(filename);
+   size_filename = (u32) ansi_len(filename);
 
    if (zipfi == nullptr)
       zi->ci.dosDate = 0;
@@ -1095,7 +1095,7 @@ const char* global_comment)
    if (global_comment==nullptr)
       size_global_comment = 0;
    else
-      size_global_comment = (u32) strlen(global_comment);
+      size_global_comment = (u32) ansi_len(global_comment);
 
 
    centraldir_pos_inzip = ZTELL(zi->z_filefunc,zi->filestream);

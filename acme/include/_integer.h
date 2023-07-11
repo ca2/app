@@ -25,6 +25,7 @@ constexpr ::u8 lower_u8(::iptr i) { return (::u8)(i & 0xff); }
 constexpr ::u8 upper_u8(::iptr i) { return (::u8)((i >> 8) & 0xff); }
 constexpr ::u16 lower_u16(::iptr i) { return (::u16)(i & 0xffff); }
 constexpr ::u16 upper_u16(::iptr i) { return (::u16)((i >> 16) & 0xffff); }
+constexpr ::i16 upper_i16(::iptr i) { return (::i16)((i >> 16) & 0xffff); }
 constexpr ::u32 lower_u32(::u64 u) { return (::u32)(u); }
 constexpr ::u32 upper_u32(::u64 u) { return (::u32)((u >> 32) & 0xffffffff); }
 
@@ -41,6 +42,7 @@ constexpr ::u16 make_u16(::iptr a, ::iptr b) { return (::u16)((::u8)a) | ((::u16
 constexpr ::i32 make_i32(::iptr a, ::iptr b) { return (::i32)((::u16)a) | ((::u32)((::u16)b) << 16); }
 constexpr ::u32 make_u32(::iptr a, ::iptr b) { return (::u32) make_i32(a, b); }
 constexpr ::u32 make_u32(::iptr a, ::iptr b, ::iptr c, ::iptr d) { return make_u32(make_u16(a, b), make_u16(c, d)); }
+constexpr ::u64 make_u64(::u32 a, ::u32 b) { return ((::u64)a) | (((::u64)b) << 32ull); }
 
 
 constexpr ::u16 swap_u16(::u16 u) { return make_u16(upper_u8(u), lower_u8(u)); }

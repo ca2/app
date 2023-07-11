@@ -1,13 +1,14 @@
 #include "framework.h"
 #include "window_util.h"
 #include "interaction.h"
-#include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/primitive/atomic.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/primitive/primitive/atomic.h"
+#include "acme/primitive/collection/_sort.h"
+#include "acme/primitive/primitive/url.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/list.h"
@@ -35,7 +36,7 @@ namespace user
    shell::image_key::image_key()
    {
 
-      m_iIcon = 0x80000000;
+      m_iIcon = I32_MINIMUM;
 
    }
 
@@ -271,7 +272,7 @@ namespace user
    }
 
 
-   void shell::add_size_interest(int_array iaSize)
+   void shell::add_size_interest(::i32_array iaSize)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -281,7 +282,7 @@ namespace user
       if (cAddedCount > 0)
       {
 
-         m_iaSize.sort();
+         ::sort::QuickSortAsc(m_iaSize);
 
          m_bPendingUpdate = true;
 
@@ -290,12 +291,12 @@ namespace user
    }
 
 
-   void shell::set_size_interest(int_array iaSize)
+   void shell::set_size_interest(::i32_array iaSize)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      iaSize.sort();
+      ::sort::QuickSortAsc(iaSize);
 
       if (::acme::array::is_different(m_iaSize, iaSize))
       {
@@ -396,7 +397,7 @@ namespace user
 
       m_imagemap.erase_all();
 
-      m_iaSize.sort();
+      ::sort::QuickSortAsc(m_iaSize);
 
       if (m_iaSize.is_empty())
       {
@@ -707,7 +708,7 @@ namespace user
          if (iImage == 0x80000001)
          {
 
-            iImage = 0x80000000;
+            iImage = I32_MINIMUM;
 
          }
 
@@ -737,7 +738,7 @@ namespace user
 
       }
 
-      return 0x80000000;
+      return I32_MINIMUM;
 
    }
 
@@ -802,7 +803,7 @@ namespace user
 //
 ////         image_key imagekey(imagekeyParam);
 ////
-////         i32 iImage = 0x80000000;
+////         i32 iImage = I32_MINIMUM;
 //
 //      if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "uifs:"))
 //      {
@@ -963,7 +964,7 @@ namespace user
 //      if (string_ends_ci(getfileimage.m_imagekey.m_strPath, ".sln"))
 //      {
 //
-//         // output_debug_string("test .sln");
+//         // information("test .sln");
 //
 //      }
 //
@@ -974,7 +975,7 @@ namespace user
 
 //         image_key imagekey(imagekeyParam);
 //
-//         i32 iImage = 0x80000000;
+//         i32 iImage = I32_MINIMUM;
 
       if (strPath.case_insensitive_begins("uifs:"))
       {
@@ -1506,7 +1507,7 @@ namespace user
       
       auto iaSize = m_iaSize;
       
-      iaSize.sort(false);
+      ::sort::QuickSortDesc(iaSize);
 
       for(int & iSize : iaSize)
       {
@@ -1614,7 +1615,7 @@ namespace user
       
       auto iaSize = m_iaSize;
       
-      iaSize.sort(false);
+      ::sort::QuickSortDesc(iaSize);
       
       for(int & iSize : iaSize)
       {
@@ -1715,7 +1716,7 @@ namespace user
 
             synchronous_lock synchronouslock(this->synchronization());
 
-            if (m_pgetfileimage->m_iImage & 0x80000000)
+            if (m_pgetfileimage->m_iImage & I32_MINIMUM)
             {
 
                m_imagemap.erase_item(m_pgetfileimage->m_imagekey);
@@ -1781,7 +1782,7 @@ namespace user
          if (::is_null(pimage))
          {
 
-            output_debug_string("error loading image: \"" + path + "\"\n");
+            information("error loading image: \"" + path + "\"\n");
 
          }
 
@@ -1811,7 +1812,7 @@ namespace user
 //
 //      auto pimageHover = m_pimagelist[iSize]->get_image(iImage);
 //
-//      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+//      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
 //
 //      m_pimagelistHover[iSize]->set(iImage, pimageHover);
 //
@@ -1911,7 +1912,7 @@ namespace user
 
          ::pointer<::image>pimage;
 
-         int_array iaSizeFallback;
+         ::i32_array iaSizeFallback;
 
          iaSizeFallback.add(1024);
          iaSizeFallback.add(512);
@@ -2082,7 +2083,7 @@ namespace user
 
    //      auto pimage = m_pimagelist[iSize]->get_image(iImage);
    //      
-   //      pimage->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+   //      pimage->g()->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
 
    //      m_pimagelistHover[iSize]->add_image(pimage, 0, 0, iImage);
 

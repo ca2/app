@@ -2,8 +2,7 @@
 #pragma once
 
 
-template < typename FILE >
-inline write_text_stream < FILE > & operator << (write_text_stream < FILE > & s, const ::color::color & color)
+inline write_text_stream & operator << (write_text_stream & s, const ::color::color & color)
 {
 
    if (s.fmtflags() & ::file::hex)

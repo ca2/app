@@ -30,7 +30,8 @@ namespace aqua
       ~audio() override;
 
 
-      virtual void play_audio(::file::file * pfile, bool bSynch = false);
+      virtual void play_audio(const ::payload & payloadFile, bool bSynch = false);
+      virtual void _play_audio(::file::file * pfile, bool bSynch = false);
 
 
       virtual string text_to_speech_implementation();

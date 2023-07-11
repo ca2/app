@@ -974,7 +974,7 @@ namespace aura
 //   void context::_load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions)
 //   {
 //
-//      binary_stream < FILE > reader(file()->get_reader(payloadFile));
+//      binary_stream reader(file()->get_reader(payloadFile));
 //
 //      read(reader);
 //
@@ -986,7 +986,7 @@ namespace aura
 //   void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle)
 //   {
 //
-//      binary_stream < FILE > writer(file()->get_writer(payloadFile));
+//      binary_stream writer(file()->get_writer(payloadFile));
 //
 //      write(writer);
 //

@@ -6,10 +6,14 @@ using errno_t = int;
 #endif
 
 
-CLASS_DECL_ACME errno_t c_runtime_error_check(errno_t error);
-CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
 
-#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
+#include "acme/operating_system/shared_posix/c_error_number.h"
+
+
+//CLASS_DECL_ACME errno_t c_runtime_error_check(errno_t error);
+//CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
+
+#define C_RUNTIME_ERROR_CHECK(expr) ::c_error_number::s_throw_exception(expr)
 
 
 #if defined(LINUX) || defined(__APPLE__)

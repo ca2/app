@@ -245,7 +245,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(lpcrectClient, rectangle, eside);
+                  GetBorderRectangle(lpcrectClient, rectangle, eside);
 
                   ColorGlass(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -265,7 +265,7 @@ SizingNone:;
                   Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(lpcrectClient, rectangle, eside);
+                  GetBorderRectangle(lpcrectClient, rectangle, eside);
 
                   pgraphics->color_blend(
                                       rectangle,
@@ -275,7 +275,7 @@ SizingNone:;
                else
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(lpcrectClient, rectangle, eside);
+                  GetBorderRectangle(lpcrectClient, rectangle, eside);
 
                   ColorGlass(pgraphics, rectangle, crMoveableBorder, 230);
 
@@ -412,14 +412,14 @@ SizingNone:;
 
             }
 
-            void frame_005::GetBorderRect(
+            void frame_005::GetBorderRectangle(
             const ::rectangle_i32 &lpcrectClient,
             ::rectangle_i32 * lprect,
             enum_border eside)
             {
                ::rectangle_i32 rectangleBig(lpcrectClient);
                ::rectangle_i32 rectangleSmall;
-               get_window_client_rect(&rectangleSmall);
+               get_window_client_rectangle(&rectangleSmall);
                ::rectangle_i32 rectangle;
                if(eside == e_border_top)
                {

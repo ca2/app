@@ -451,7 +451,7 @@ namespace user
    void form_list::_001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
 
-      bool bSameControl = false;
+      //bool bSameControl = false;
 
       bool bSameItemAndSubItem = false;
 
@@ -479,7 +479,7 @@ namespace user
          else
          {
 
-            bSameControl = true;
+            //bSameControl = true;
 
             _001SaveEdit(_001GetEditControl());
 

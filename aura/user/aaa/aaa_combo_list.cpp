@@ -331,7 +331,7 @@ namespace user
             if (size.cy() != 18)
             {
 
-               //output_debug_string("\nCOMBO LIST ITEM HEIGHT != 18\n");
+               //information("\nCOMBO LIST ITEM HEIGHT != 18\n");
 
             }
 
@@ -509,7 +509,7 @@ namespace user
       else
       {
 
-         output_debug_string("list_box hide");
+         information("list_box hide");
 
       }
 
@@ -556,7 +556,7 @@ namespace user
          //   else
          //   {
 
-         //      //output_debug_string("A phantom is loosing focus. What a pitty!!");
+         //      //information("A phantom is loosing focus. What a pitty!!");
 
          //   }
 

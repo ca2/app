@@ -12,7 +12,7 @@ list(APPEND library_source
    )
 
 
-if(LINUX)
+if(${LINUX})
 
    list(APPEND library_source
       linux.cpp
@@ -40,10 +40,18 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 target_link_directories(build PRIVATE ${library_link_directories})
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 
 set_target_properties(build PROPERTIES LINKER_LANGUAGE CXX)
@@ -55,7 +63,7 @@ if (MSVC)
    target_link_options(build PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(build PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(build PRIVATE ${library_references})
-elseif(LINUX OR FREEBSD)
+elseif(${LINUX} OR ${FREEBSD})
    target_compile_options(build PRIVATE -fpermissive)
    #target_link_options(build PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(build PRIVATE ${library_references})

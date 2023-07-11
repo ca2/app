@@ -12,9 +12,9 @@
 
    } 
 
-   auto estatus = errno_status(iErrNo);
+   auto estatus = cerrornumber.estatus();
 
-   auto errorcode = errno_error_code(iErrNo);
+   auto errorcode = cerrornumber.error_code();
 
    throw ::exception(estatus, { errorcode }, scopedstr);
 

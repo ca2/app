@@ -3612,7 +3612,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIn
 
       CHARACTER * pszBuffer = get_buffer();
 
-      memmove(pszBuffer + iIndex, pszBuffer + iIndex + count, (size_t)nCopy);
+      memory_transfer(pszBuffer + iIndex, pszBuffer + iIndex + count, (size_t)nCopy);
 
       release_buffer(nNewLength);
 
@@ -3645,7 +3645,7 @@ inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
 
    CHARACTER * pszBuffer = get_buffer(nNewLength);
 
-   memmove(pszBuffer + i + 1, pszBuffer + i, nNewLength - i);
+   memory_transfer(pszBuffer + i + 1, pszBuffer + i, nNewLength - i);
 
    pszBuffer[i] = ch;
 
@@ -3685,9 +3685,9 @@ inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_bas
 
       CHARACTER * pszBuffer = get_buffer(nNewLength);
 
-      memmove(pszBuffer + i + nInsertLength, pszBuffer + i, (nNewLength - i - nInsertLength + 1) * sizeof(CHARACTER));
+      memory_transfer(pszBuffer + i + nInsertLength, pszBuffer + i, (nNewLength - i - nInsertLength + 1) * sizeof(CHARACTER));
 
-      memcpy(pszBuffer + i, str.begin(), nInsertLength * sizeof(CHARACTER));
+      memory_copy(pszBuffer + i, str.begin(), nInsertLength * sizeof(CHARACTER));
 
       release_buffer(nNewLength);
 
@@ -3806,7 +3806,7 @@ inline ::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CH
 //
 //            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
 //
-//            memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
+//            memory_transfer(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 //
 //            memcpy(pszTarget, scopedstrOld.begin(), nReplacementLen * sizeof(CHARACTER));
 //
@@ -3895,7 +3895,7 @@ template < typename ITERATOR_TYPE >
 
             strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
 
-            memmove((void *)(pszTarget + nReplacementLen), pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
+            memory_transfer((void *)(pszTarget + nReplacementLen), pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
             memcpy((void *)pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
 
@@ -3976,7 +3976,7 @@ template < typename ITERATOR_TYPE >
 
             strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
 
-            memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
+            memory_transfer(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
             memcpy(pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
 
@@ -4057,11 +4057,11 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(const_ite
 
    auto psz = str.get_buffer(finalLen);
 
-   memcpy(psz, this->begin(), start - this->begin());
+   memory_copy(psz, this->begin(), start - this->begin());
 
-   memcpy(psz + (start - this->begin()), scopedstr.begin(), scopedstr.size());
+   memory_copy(psz + (start - this->begin()), scopedstr.begin(), scopedstr.size());
 
-   memcpy(psz + (start - this->begin()) + scopedstr.size(), end, this->end() - end);
+   memory_copy(psz + (start - this->begin()) + scopedstr.size(), end, this->end() - end);
 
    str.release_buffer(finalLen);
 
@@ -5193,7 +5193,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left()
 
    ////   strsize nDataLength = size() - iFirst;
 
-   ////   memmove(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
+   ////   memory_transfer(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
 
    ////   release_buffer(nDataLength);
 
@@ -5371,7 +5371,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(CHARACT
    //   CHARACTER * pszBuffer = get_buffer(size());
    //   psz = pszBuffer + iFirst;
    //   strsize nDataLength = size() - iFirst;
-   //   memmove(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
+   //   memory_transfer(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
    //   release_buffer(nDataLength);
    //}
 
@@ -5419,7 +5419,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const S
    //   CHARACTER * pszBuffer = get_buffer(size());
    //   psz = pszBuffer + iFirst;
    //   strsize nDataLength = size() - iFirst;
-   //   memmove(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
+   //   memory_transfer(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
    //   release_buffer(nDataLength);
    //}
 
@@ -6927,11 +6927,11 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
       auto offset = pszTarget - rangeOld.begin();
 
-      memcpy(pLastNewEnd,rangeOld.begin(), offset * sizeof(CHARACTER));
+      memory_copy(pLastNewEnd,rangeOld.begin(), offset * sizeof(CHARACTER));
 
       pLastNewEnd += offset;
 
-      memcpy(pLastNewEnd, scopedstrNew.begin(), nReplacementLen * sizeof(CHARACTER));
+      memory_copy(pLastNewEnd, scopedstrNew.begin(), nReplacementLen * sizeof(CHARACTER));
 
       rangeOld.m_begin = pszTarget + nReplacedLen;
 
@@ -6939,7 +6939,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
    }
 
-   memcpy(pLastNewEnd,rangeOld.begin(), (rangeOld.end() - rangeOld.begin()) * sizeof(CHARACTER));
+   memory_copy(pLastNewEnd,rangeOld.begin(), (rangeOld.end() - rangeOld.begin()) * sizeof(CHARACTER));
 
    str.release_buffer(nNewLength);
 

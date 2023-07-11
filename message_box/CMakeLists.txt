@@ -28,10 +28,18 @@ list(APPEND library_references
    )
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 set_target_properties(app_message_box PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -40,7 +48,7 @@ if (MSVC)
     target_link_options(app_message_box PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(app_message_box PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_message_box PRIVATE ${library_references})
-elseif(LINUX)
+elseif(${LINUX})
 
     #if(GNOME_DESKTOP)
     #    add_dependencies(app_message_box node_gnome windowing_x11)

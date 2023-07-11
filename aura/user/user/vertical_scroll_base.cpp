@@ -22,7 +22,7 @@ namespace user
 
       m_pscrolldataVertical->m_bScroll = false;
       m_pscrolldataVertical->m_iPage = 0;
-      m_pscrolldataVertical->m_iLine = 0;
+      m_pscrolldataVertical->m_iLine = 60;
       m_pscrolldataVertical->m_bScrollEnable = true;
 
    }
@@ -158,7 +158,17 @@ namespace user
             if (pscroll->m_ecommand == e_scroll_command_line_up)
             {
 
-               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - m_pscrolldataVertical->m_iLine));
+               auto Δ = m_pscrolldataVertical->m_iLine;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
+
+            }
+            else if (pscroll->m_ecommand == e_scroll_command_wheel_up)
+            {
+
+               auto Δ = m_pscrolldataVertical->m_iWheel;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() - Δ));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_up)
@@ -179,6 +189,14 @@ namespace user
                auto iLine = m_pscrolldataVertical->m_iLine;
 
                set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + iLine));
+
+            }
+            else if (pscroll->m_ecommand == e_scroll_command_wheel_down)
+            {
+
+               auto Δ = m_pscrolldataVertical->m_iWheel;
+
+               set_context_offset_y(pgraphics, (::i32)(get_context_offset().y() + Δ));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
@@ -409,9 +427,7 @@ namespace user
 
       m_pscrolldataVertical->m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::i32 iTotalHeight = (::i32)sizeTotal.cy();
 
@@ -447,9 +463,7 @@ namespace user
 
       m_pscrolldataVertical->m_bScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll;
 
-      ::rectangle_i32 rectangleScroll;
-
-      client_rectangle(rectangleScroll);
+      auto rectangleScroll = client_rectangle();
 
       m_pscrolldataVertical->m_iPage = rectangleScroll.height();
 

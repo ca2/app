@@ -1,7 +1,7 @@
 // Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSorensen!! (Thomas likes number 5!!)
 #include "framework.h"
 #include "acme/filesystem/filesystem/listing.h"
-// #include "acme/primitive/string/string.h"
+
 #include "acme/primitive/string/str.h"
 ////#include "acme/exception/exception.h"
 
@@ -110,7 +110,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
 
    }
 
-   if (strcmp(pszValue, pszCriteria) != 0)
+   if (ansi_cmp(pszValue, pszCriteria) != 0)
       return false;
 
    return true;

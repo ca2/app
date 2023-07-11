@@ -17,8 +17,8 @@ namespace filemanager
 
       enum_operation             m_eoperation;
       ::file::listing            m_stra;
-      double_array               m_daRead;
-      double_array               m_daSize;
+      f64_array               m_daRead;
+      f64_array               m_daSize;
       ::file::path               m_str;
       ::file::path               m_strBase;
       double                     m_dSize;

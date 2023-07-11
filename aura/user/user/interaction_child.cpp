@@ -487,7 +487,7 @@ namespace user
          //if (message == e_message_key_down)
          //{
 
-         //   output_debug_string("\n Key Down Event ");
+         //   information("\n Key Down Event ");
 
          //}
 
@@ -759,6 +759,14 @@ namespace user
    }
 
 
+   //void interaction_child::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ::user::primitive_impl::_000CallOnDraw(pgraphics);
+
+   //}
+
+
    void interaction_child::set_origin(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -854,7 +862,7 @@ namespace user
       if (pinteraction != nullptr)
       {
 
-         output_debug_string("::user::interaction_child::keyboard_focus_OnKillFocus() (1) \n");
+         information("::user::interaction_child::keyboard_focus_OnKillFocus() (1) \n");
 
          return pinteraction->keyboard_focus_OnChildKillFocus();
 

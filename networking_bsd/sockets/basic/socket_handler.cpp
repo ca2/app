@@ -46,7 +46,7 @@ namespace sockets_bsd
       , m_maxsock(0)
       , m_iPreviousError(-1)
       //,m_errcnt(0)
-      , m_tlast(0)
+      , m_tlast{}
       , m_socks4_port(0)
       , m_bTryDirect(false)
       //, m_resolv_id(0)
@@ -70,7 +70,7 @@ namespace sockets_bsd
 
       g_interlockedcountSocketHandler++;
 
-      ::output_debug_string("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
+      ::information("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
 
    }
 
@@ -1160,7 +1160,7 @@ end_processing_adding:
                   
                   // Out-Of-Band data
                   // recv with MSG_OOB
-                  //time_t tnow = time(nullptr);
+                  //posix_time tnow = time(nullptr);
 
                   if (ppairSocket->m_psocket->has_timed_out())
                   {
@@ -1275,7 +1275,9 @@ end_processing_adding:
       if (m_socketlistTimeout.get_size())
       {
          
-         time_t tnow = time(nullptr);
+         ::earth::time tnow(now_t{});
+         
+         //= time(nullptr);
 
          if (tnow != m_tlast)
          {
@@ -1473,7 +1475,7 @@ end_processing_adding:
 
                   // memory_new graceful ptcpsocket - flush and close timeout 5s
                   if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
-                        !ptcpsocket->IsSSL() && psocket->TimeSinceClose() < 5)
+                        !ptcpsocket->IsSSL() && psocket->TimeSinceClose().m_iSecond < 5)
                   {
 
                      //information() << " close(1)\n");
@@ -2249,7 +2251,7 @@ end_processing_adding:
          //if (which_one == e_list_close)
          //{
 
-         //   //INFO(output_debug_string("list_close");
+         //   //INFO(information("list_close");
          //}
          //return;
       //}
@@ -2285,7 +2287,7 @@ end_processing_adding:
       //if (which_one == e_list_close)
       //{
 
-      //   //INFO(output_debug_string("list_close");
+      //   //INFO(information("list_close");
       //}
       //return;
    //}

@@ -12,15 +12,12 @@
 // property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :
-   public property_ptra
+   virtual public ::particle
 {
 public:
 
 
-   using BASE_ARRAY = property_ptra;
-
-
-   using property_ptra::erase;
+   property_ptra     m_propertyptra;
 
 
    //__declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
@@ -82,6 +79,10 @@ public:
 
    inline ::payload operator[](const ::atom & atom) const { return find(atom); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }
+   template < primitive_integral INTEGRAL >
+   inline ::payload operator[](INTEGRAL i) const { return m_propertyptra[i]; }
+   template < primitive_integral INTEGRAL >
+   inline ::property & operator[](INTEGRAL i) { return *m_propertyptra[i]; }
 
 
 
@@ -280,10 +281,35 @@ public:
    bool is_new_or_null(const atom & idName) const;
 
    
-   using property_ptra::is_empty;
+   //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
+   bool is_empty() const { return m_propertyptra.is_empty(); }
+   bool has_property() const { return m_propertyptra.has_element(); }
+   ::count property_count() const { return m_propertyptra.get_count(); }
+   
+   
+   ::index add_property(property * pproperty) { return m_propertyptra.add_item(pproperty); }
 
+
+   inline const property * property_at(::index nIndex) const { return m_propertyptra.element_at(nIndex); }
+   inline property * property_at(::index nIndex) { return m_propertyptra.element_at(nIndex); }
+
+   inline ::index erase_property_at(::index iIndex) { return m_propertyptra.erase_at(iIndex); }
+
+   inline ::count erase_all_properties() { return m_propertyptra.erase_all(); }
+
+   
+   property_ptra & propertyptra() { return m_propertyptra; }
+   const property_ptra & propertyptra() const { return m_propertyptra; }
+
+
+   auto begin() { return propertyptra().begin(); }
+   auto begin() const { return propertyptra().begin(); }
+   auto end() { return propertyptra().end(); }
+   auto end() const { return propertyptra().end(); }
+
+   auto is_end(property_ptra::const_iterator iterator) const { return propertyptra().is_end(iterator); }
 
    //template < typename TYPE >
    //bool find(const ::atom & atom, TYPE & t)

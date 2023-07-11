@@ -520,9 +520,9 @@ void memory_base::append_entire_file(::file::file * pfileIn, memsize uiBufferSiz
 //
 //            i32 iErrNo = errno;
 //            
-//            auto errorcode = errno_error_code(iErrNo);
+//            auto errorcode = cerrornumber.error_code();
 //            
-//            auto estatus = errno_status(iErrNo);
+//            auto estatus = cerrornumber.estatus();
 //            
 //            throw ::file::exception(estatus, errorcode, m_path, "");
 //
@@ -1936,7 +1936,7 @@ memsize memory_base::length() const
 
    ::count cFindLength;
 
-   if (memcmp(data() + iStart, blockPrefix.data(), blockPrefix.size()) == 0)
+   if (memory_order(data() + iStart, blockPrefix.data(), blockPrefix.size()) == 0)
    {
 
       iFind = iStart;
@@ -1953,7 +1953,7 @@ memsize memory_base::length() const
 
       memoryFind[0] = '\n';
 
-      memcpy(memoryFind.data() + 1, blockPrefix.data(), blockPrefix.size());
+      memory_copy(memoryFind.data() + 1, blockPrefix.data(), blockPrefix.size());
 
       iFind = find_index(memoryFind, iStart + 1);
 
@@ -2015,7 +2015,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       auto c = abs(iNewLen - iOldLen);
 
-      memmove(ptarget, psource, iOldSize - iStart - iNewLen);
+      memory_transfer(ptarget, psource, iOldSize - iStart - iNewLen);
 
    }
 
@@ -2028,9 +2028,9 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       auto c = blockSuffix.size();
 
-      memcpy(ptarget, psource, c);
+      memory_copy(ptarget, psource, c);
 
-      output_debug_string(" ");
+      information(" ");
 
    }
 

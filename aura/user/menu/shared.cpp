@@ -55,8 +55,8 @@ menu_shared::~menu_shared()
    pmenushared->m_ositema = memory_new void *[iCount];
    pmenushared->m_statusa = memory_new int[iCount];
 
-   memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
-   memset(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);
+   memory_set(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
+   memory_set(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);
 
    return pmenushared;
 
@@ -69,10 +69,10 @@ void * menu_shared::find_item(const ::scoped_string & scopedstrParent, const ::s
    for(int i = 0; i < m_iCount; i++)
    {
 
-      if(!strcmp(scopedstrParent, m_ppszParent[i]))
+      if(!ansi_cmp(scopedstrParent, m_ppszParent[i]))
       {
 
-         if(!strcmp(scopedstrId, m_ppszId[i]))
+         if(!ansi_cmp(scopedstrId, m_ppszId[i]))
          {
 
             return m_ositema[i];

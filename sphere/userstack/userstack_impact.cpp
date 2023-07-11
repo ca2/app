@@ -362,8 +362,7 @@ namespace userstack
 
    /*void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
-      ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
       if(m_ppaneimpact != nullptr)
       {
          m_ppaneimpact->set_window_position(e_zorder_top, rectangleClient.top, rectangleClient.left, rectangleClient.width(), rectangleClient.height(), SWP_SHOWWINDOW);

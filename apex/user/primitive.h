@@ -171,8 +171,8 @@ namespace user
 
       //virtual void window_apply_visual(const window_state & windowstate);
 
-
-      void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)override;
+      //void sketch_to_layout()override;
+      //void layout_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)override;
 
       void design_down() override;
       void design_up() override;
@@ -195,7 +195,7 @@ namespace user
       virtual void on_configuration_change(::user::primitive * pprimitiveSource);
 
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_reposition() override;
       void on_show_window() override;
 

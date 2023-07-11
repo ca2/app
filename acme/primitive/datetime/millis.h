@@ -7,7 +7,7 @@ inline millis operator +(const ::millis& millis1, const ::millis& millis2);
 enum enum_now
 {
 
-   e_now,
+   now_t{},
 
 };
 
@@ -252,7 +252,7 @@ inline auto __pr(const ::millis & millis) { return millis.m_i; }
 inline u32 __os(const ::millis & millis)
 {
 
-   if (millis.m_i > (i64) MAXI32)
+   if (millis.m_i > (i64) I32_MAXIMUM)
    {
 
       return U32_INFINITE_TIMEOUT;

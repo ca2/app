@@ -64,7 +64,7 @@ namespace opengl
       if (!hwnd)
       {
 
-         information("MS GDI - CreateWindow failed\n");
+         information("MS GDI - CreateWindow failed");
 
          information("last-error code: %d\n", GetLastError());
 
@@ -91,7 +91,7 @@ namespace opengl
       if (!popengl->m_atomClass)
       {
 
-         information("MS GDI - RegisterClass failed\n");
+         information("MS GDI - RegisterClass failed");
 
          information("last-error code: %d\n", GetLastError());
 
@@ -110,7 +110,7 @@ namespace opengl
       if (!hdc)
       {
 
-         information("MS GDI - GetDC failed\n");
+         information("MS GDI - GetDC failed");
 
          information("last-error code: %d\n", GetLastError());
 
@@ -137,7 +137,7 @@ namespace opengl
       if (chosenformat == 0)
       {
 
-         information("MS GDI - ChoosePixelFormat failed\n");
+         information("MS GDI - ChoosePixelFormat failed");
 
          information("last-error code: %d\n", GetLastError());
 
@@ -152,7 +152,7 @@ namespace opengl
       if (!spfok)
       {
 
-         information("MS GDI - SetPixelFormat failed\n");
+         information("MS GDI - SetPixelFormat failed");
 
          information("last-error code: %d\n", GetLastError());
 
@@ -167,7 +167,7 @@ namespace opengl
       if (!hglrc)
       {
 
-         information("MS WGL - wglCreateContext failed\n");
+         information("MS WGL - wglCreateContext failed");
 
          information("last-error code: %d\n", GetLastError());
 
@@ -182,7 +182,7 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         information("MS WGL - wglMakeCurrent failed\n");
+         information("MS WGL - wglMakeCurrent failed");
 
          information("last-error code: %d\n", GetLastError());
 
@@ -293,7 +293,7 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         information("MS WGL - wglMakeCurrent failed\n");
+         information("MS WGL - wglMakeCurrent failed");
 
          information("last-error code: %d\n", GetLastError());
 

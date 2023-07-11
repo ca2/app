@@ -93,15 +93,15 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_size);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::size_i32 get_button_size(enum_button ebutton);
 
       virtual ::rectangle_i32 get_button_margin(enum_button ebutton);
 
-      virtual i32 calc_button_size(::draw2d::graphics_pointer & pgraphics);
+      virtual i32 calculate_button_size(::draw2d::graphics_pointer & pgraphics);
 
-      virtual i32 calc_control_box_width(::draw2d::graphics_pointer & pgraphics);
+      virtual i32 calculate_control_box_width(::draw2d::graphics_pointer & pgraphics);
 
       virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
 

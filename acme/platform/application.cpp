@@ -315,7 +315,9 @@ namespace acme
       if (m_bResource.undefined())
       {
 
-         m_bResource = !m_bConsole;
+         //m_bResource = !m_bConsole;
+
+         m_bResource = true;
 
       }
 
@@ -345,6 +347,29 @@ namespace acme
       {
 
          m_bShowApplicationInformation = false;
+
+      }
+
+      if (m_bConsole)
+      {
+
+         if (m_bSession.undefined())
+         {
+
+            m_bSession = false;
+
+         }
+
+      }
+      else // !m_bConsole
+      {
+
+         if (m_bSession.undefined())
+         {
+
+            m_bSession = true;
+
+         }
 
       }
 

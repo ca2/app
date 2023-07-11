@@ -329,7 +329,7 @@ namespace experience_anthill
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-         auto rectangle = get_margin_rect();
+         auto rectangle = get_margin_rectangle();
 
 
          for (index i = 0; i < 11; i++)
@@ -397,7 +397,7 @@ namespace experience_anthill
          //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
          //   ::rectangle_i32 rectangle;
-         //   GetBorderRect(rectangleClient, &rectangle, eside);
+         //   GetBorderRectangle(rectangleClient, &rectangle, eside);
          //   class imaging & imaging = psystem->imaging();
          //   imaging.fill_rectangle(pgraphics,
          //      rectangle,
@@ -412,7 +412,7 @@ namespace experience_anthill
          || estyle == ::user::StyleTranslucidLightGreen)
       {
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(
             rectangle,
@@ -422,7 +422,7 @@ namespace experience_anthill
       else
       {
          ::rectangle_i32 rectangle;
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(
             rectangle,
@@ -618,14 +618,14 @@ namespace experience_anthill
 
    }
 
-   void frame_008::GetBorderRect(
+   void frame_008::GetBorderRectangle(
       const ::rectangle_i32 & rectangleClient,
       ::rectangle_i32 * lprect,
       enum_border eside)
    {
       ::rectangle_i32 rectangleBig(rectangleClient);
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rect(&rectangleSmall);
+      get_window_client_rectangle(&rectangleSmall);
       ::rectangle_i32 rectangle;
       if (eside == e_border_top)
       {

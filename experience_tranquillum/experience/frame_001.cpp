@@ -236,7 +236,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, colorMoveableBorder & 127_opacity);
 
@@ -246,7 +246,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
 
 
@@ -270,14 +270,14 @@ SizingNone:;
       {
 
          ::rectangle_i32 rectangleClient;
-         
-         m_pframewindow->client_rectangle(rectangleClient);
+
+         rectangleClient  = m_pframewindow->client_rectangle();
 
          rectangleClient.deflate(2, 2, 2, 2);
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRect(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleClient, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
 
@@ -380,7 +380,7 @@ SizingNone:;
 
    }
 
-   void frame_001::GetBorderRect(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * prectangle, enum_border eside)
+   void frame_001::GetBorderRectangle(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * prectangle, enum_border eside)
 
    {
 
@@ -389,7 +389,7 @@ SizingNone:;
 
       ::rectangle_i32 rectangleSmall;
 
-      get_window_client_rect(&rectangleSmall);
+      get_window_client_rectangle(&rectangleSmall);
 
       ::rectangle_i32 rectangle;
 

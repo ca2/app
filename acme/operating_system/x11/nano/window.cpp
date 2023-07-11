@@ -17,7 +17,7 @@
 #include <cairo-xlib.h>
 
 
-::user::enum_desktop _get_edesktop();
+::user::enum_desktop get_edesktop();
 
 
 struct MWMHints
@@ -457,7 +457,7 @@ namespace x11
       else if (pevent->type == UnmapNotify)
       {
 
-         output_debug_string("UnmapNotify");
+         information("UnmapNotify");
 
       }
       else if (pevent->type == MapNotify)
@@ -502,7 +502,7 @@ namespace x11
       else if (pevent->type == PropertyNotify)
       {
 
-         output_debug_string("PropertyNotify");
+         information("PropertyNotify");
 
       }
       else if (pevent->type == KeyPress)

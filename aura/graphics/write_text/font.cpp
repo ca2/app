@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "font.h"
+#include "acme/exception/bad_unit_exception.h"
 #include "acme/exception/interface_only.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -10,14 +11,13 @@ namespace write_text
 {
 
 
-   font::font()
+   font::font() :
+      m_fontsize(12_pt)
    {
 
       m_bCacheLayout = true;
-      m_dFontSize = 17.0;
       m_dFontWidth = 1.0;
-      m_eunitFontSize = ::draw2d::e_unit_point;
-      m_iFontWeight = 400;
+      m_fontweight = e_font_weight_normal;
       m_bItalic = false;
       m_bUnderline = false;
       m_bStrikeout = false;
@@ -58,15 +58,20 @@ namespace write_text
    }
 
 
-   bool font::create_pixel_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+   bool font::create_font(
+      const font_family_pointer & pfontfamily, 
+      const font_size & fontsize, 
+      const font_weight & fontweight,
+      bool bItalic, 
+      bool bUnderline, 
+      bool bStrikeOut, 
+      double dWidth)
    {
 
-      m_strFontFamilyName = pszFacename;
-
-      m_dFontSize = dSize;
+      m_pfontfamily = pfontfamily;
+      m_fontsize = fontsize;
+      m_fontweight = fontweight;
       m_dFontWidth = 1.0;
-      m_eunitFontSize = ::draw2d::e_unit_pixel;
-      m_iFontWeight = iWeight;
       m_bItalic = bItalic;
       m_bUnderline = bUnderline;
       m_bStrikeout = bStrikeOut;
@@ -78,39 +83,39 @@ namespace write_text
    }
 
 
-   bool font::create_point_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
-   {
-
-      m_strFontFamilyName = pszFacename;
-
-      if (m_dFontSize == 0.0)
-      {
-
-         dSize = 12.0;
-
-      }
-
-      if (dSize != 0.0)
-      {
-#ifdef MACOS
-         m_dFontSize = dSize * 1.2;
-#elif defined(ANDROID)
-         m_dFontSize = dSize * 1.6;
-#else
-         m_dFontSize = dSize;
-#endif
-      }
-      m_dFontWidth = 1.0;
-      m_eunitFontSize = ::draw2d::e_unit_point;
-      m_iFontWeight = iWeight;
-      m_bItalic = bItalic;
-      m_bUnderline = bUnderline;
-      m_bStrikeout = bStrikeOut;
-      set_modified();
-
-      return true;
-
-   }
+//   bool font::create_point_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+//   {
+//
+//      m_strFontFamilyName = pszFacename;
+//
+//      if (m_dFontSize == 0.0)
+//      {
+//
+//         dSize = 12.0;
+//
+//      }
+//
+//      if (dSize != 0.0)
+//      {
+//#ifdef MACOS
+//         m_dFontSize = dSize * 1.2;
+//#elif defined(ANDROID)
+//         m_dFontSize = dSize * 1.6;
+//#else
+//         m_dFontSize = dSize;
+//#endif
+//      }
+//      m_dFontWidth = 1.0;
+//      m_eunitFontSize = ::draw2d::e_unit_point;
+//      m_iFontWeight = iWeight;
+//      m_bItalic = bItalic;
+//      m_bUnderline = bUnderline;
+//      m_bStrikeout = bStrikeOut;
+//      set_modified();
+//
+//      return true;
+//
+//   }
 
 
    font & font::operator = (const font & font)
@@ -119,12 +124,12 @@ namespace write_text
       if (this != &font)
       {
 
-         m_strFontFamilyName = font.m_strFontFamilyName;
+         m_pfontfamily = font.m_pfontfamily->clone();
          m_path = font.m_path;
-         m_dFontSize = font.m_dFontSize;
+         m_fontsize = font.m_fontsize;
          m_dFontWidth = font.m_dFontWidth;
-         m_eunitFontSize = font.m_eunitFontSize;
-         m_iFontWeight = font.m_iFontWeight;
+         //m_eunitFontSize = font.m_eunitFontSize;
+         m_fontweight = font.m_fontweight;
          m_bItalic = font.m_bItalic;
          m_bUnderline = font.m_bUnderline;
          m_bStrikeout = font.m_bStrikeout;
@@ -143,18 +148,18 @@ namespace write_text
    void font::set_family_name(const ::string & pszFamilyName)
    {
 
-      m_strFontFamilyName = pszFamilyName;
+      m_pfontfamily = font_family_pointer(pszFamilyName);
 
       set_modified();
 
    }
 
 
-   void font::set_size(double dSize, ::draw2d::enum_unit eunit)
+   void font::set_size(const font_size & fontsize)
    {
 
-      m_dFontSize = dSize;
-      m_eunitFontSize = eunit;
+      m_fontsize = fontsize;
+      //m_eunitFontSize = eunit;
       set_modified();
 
    }
@@ -166,13 +171,13 @@ namespace write_text
       if (bBold)
       {
 
-         m_iFontWeight = e_font_weight_bold;
+         m_fontweight = e_font_weight_bold;
 
       }
       else
       {
 
-         m_iFontWeight = e_font_weight_normal;
+         m_fontweight = e_font_weight_normal;
 
       }
 
@@ -252,7 +257,7 @@ namespace write_text
 
       }
 
-      return m_strFontFamilyName;
+      return m_pfontfamily->family_name(pgraphics);
 
    }
 
@@ -283,14 +288,24 @@ namespace write_text
    double font::get_pixel_font_height(::draw2d::graphics * pgraphics)
    {
 
-      if (m_eunitFontSize == ::draw2d::e_unit_point)
+      if (m_fontsize.eunit() == ::e_unit_point)
       {
 
-         return m_dFontSize * pgraphics->get_dpiy() / 72.0;
+         return m_fontsize.f64() * pgraphics->get_dpiy() / 72.0;
 
       }
+      else if (m_fontsize.eunit() == ::e_unit_pixel)
+      {
 
-      return m_dFontSize;
+         return m_fontsize.f64();
+
+      }
+      else
+      {
+
+         throw ::bad_unit_exception< enum_unit >(m_fontsize.eunit());
+
+      }
 
    }
 
@@ -585,7 +600,7 @@ namespace write_text
 //   }
 //
 //
-//   void font::AddXFGlyphs(string2a  & str2aTokens)
+//   void font::AddXFGlyphs(string_array_array  & straaTokens)
 //   {
 //      char           ch;
 //      string         str;
@@ -593,9 +608,9 @@ namespace write_text
 //      bool           forceInsertion = FALSE;
 //
 //      SelectFont();
-//      for (i = 0; i < str2aTokens.get_size(); i++)
+//      for (i = 0; i < straaTokens.get_size(); i++)
 //      {
-//         string_array & straTokens = str2aTokens[i];
+//         string_array & straTokens = straaTokens[i];
 //         for (j = 0; j < straTokens.get_size(); j++)
 //         {
 //            str = straTokens[j];
@@ -722,6 +737,21 @@ namespace write_text
 //      spgraphics->DeleteDC();
 //
 //   }
+
+
+   ::string font::family_name()
+   {
+      
+      if(!m_pfontfamily)
+      {
+         
+         return {};
+         
+      }
+      
+      return m_pfontfamily->family_name(this);
+      
+   }
 
    void font::destroy()
    {

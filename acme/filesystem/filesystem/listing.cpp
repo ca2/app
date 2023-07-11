@@ -268,7 +268,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
       if (strValue.case_insensitive_begins("resident"))
       {
 
-         //output_debug_string("resident*");
+         //information("resident*");
 
       }
 
@@ -323,7 +323,7 @@ namespace file
 
       }
 
-      return operator[](i).title();
+      return element_at(i).title();
 
    }
 
@@ -338,7 +338,7 @@ namespace file
 
       }
 
-      return operator[](i).name();
+      return element_at(i).name();
 
    }
 

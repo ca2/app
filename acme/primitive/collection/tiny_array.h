@@ -154,7 +154,7 @@ void tiny_array < TYPE > ::erase_at(::i32 iIndex)
    if(countMove > 0)
    {
 
-      ::memmove(m_p + iIndex, m_p + iNext, countMove * sizeof(TYPE));
+      ::memory_transfer(m_p + iIndex, m_p + iNext, countMove * sizeof(TYPE));
 
    }
 

@@ -2,8 +2,8 @@
 #pragma once
 
 
-template < typename FILE >
-binary_stream < FILE > &  operator <<(binary_stream < FILE > & s, const ::userfs::item & item)
+// template < typename FILE >
+binary_stream &  operator <<(binary_stream & s, const ::userfs::item & item)
 {
 
    s << (::data::item &)item;
@@ -14,8 +14,8 @@ binary_stream < FILE > &  operator <<(binary_stream < FILE > & s, const ::userfs
 }
 
 
-template < typename FILE >
-binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::userfs::item & item)
+// template < typename FILE >
+binary_stream & operator >>(binary_stream & s, ::userfs::item & item)
 {
 
    //::data::item::read(s);

@@ -34,7 +34,7 @@
 // are combined with the attributes
 //
 
-#define FILE_FLAG_WRITE_THROUGH         0x80000000
+#define FILE_FLAG_WRITE_THROUGH         I32_MINIMUM
 #define FILE_FLAG_OVERLAPPED            0x40000000
 #define FILE_FLAG_NO_BUFFERING          0x20000000
 #define FILE_FLAG_RANDOM_ACCESS         0x10000000

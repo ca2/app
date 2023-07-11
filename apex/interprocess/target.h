@@ -27,11 +27,11 @@ namespace interprocess
       //   memory      m_memory;
 
 
-      //   dispatch_item(::string && strMessage) : m_uData(0x80000000), m_strMessage(strMessage) {}
-      //   dispatch_item(u64 uData, ::memory && memory) : m_uData(0x80000000), m_memory(::transfer(memory)) {}
+      //   dispatch_item(::string && strMessage) : m_uData(I32_MINIMUM), m_strMessage(strMessage) {}
+      //   dispatch_item(u64 uData, ::memory && memory) : m_uData(I32_MINIMUM), m_memory(::transfer(memory)) {}
 
       //   bool is_text_message() const {
-      //      return m_uData == 0x80000000
+      //      return m_uData == I32_MINIMUM
       //         ;
       //   }
 

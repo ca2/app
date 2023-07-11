@@ -296,7 +296,7 @@ i32 iCaseSensitivity)
       iCaseSensitivity=CASESENSITIVITYDEFAULTVALUE;
 
    if (iCaseSensitivity==1)
-      return strcmp(fileName1,fileName2);
+      return ansi_cmp(fileName1,fileName2);
 
    return STRCMPCASENOSENTIVEFUNCTION(fileName1,fileName2);
 }
@@ -851,7 +851,7 @@ i32 iCaseSensitivity)
    if (file==nullptr)
       return UNZ_PARAMERROR;
 
-   if (strlen(szFileName)>=UNZ_MAXFILENAMEINZIP)
+   if (ansi_len(szFileName)>=UNZ_MAXFILENAMEINZIP)
       return UNZ_PARAMERROR;
 
    s=(unz_s*)file;

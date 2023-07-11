@@ -155,8 +155,8 @@ typedef ::u64 HANDLE_PTR;
 typedef i32 HALF_PTR, *PHALF_PTR;
 typedef u32 UHALF_PTR, *PUHALF_PTR;
 
-#define MAXHALF_PTR 0x7fffffff
-#define MINHALF_PTR 0x80000000
+#define MAXHALF_PTR I32_MAXIMUM
+#define MINHALF_PTR I32_MINIMUM
 #define MAXUHALF_PTR 0xffffffff
 
    /*
@@ -254,8 +254,8 @@ inline void *ULongToPtr(ULONG32 ul)
 #else /* FIXME: defined(_WIN32) */
 
 #ifndef UNIVERSAL_WINDOWS
-#define MAXINT_PTR 0x7fffffff
-#define MININT_PTR 0x80000000
+#define MAXINT_PTR I32_MAXIMUM
+#define MININT_PTR I32_MINIMUM
 #define MAXUINT_PTR 0xffffffff
 #endif
 

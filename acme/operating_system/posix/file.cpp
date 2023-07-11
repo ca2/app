@@ -1,9 +1,16 @@
 #include "framework.h"
+#include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
-
-
 #include "acme/_operating_system.h"
+#include "acme/operating_system/console.h"
+#if defined( FREEBSD)
+#define __XSI_VISIBLE 1
+#endif
+#include <errno.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 
 //#ifdef WINDOWS
@@ -14,7 +21,7 @@
 //#include <sys/stat.h>
 ////Copy file using mmap()
 //#include <sys/mman.h>
-#include <unistd.h>
+//#include <unistd.h>
 //#endif
 //
 //#include <fcntl.h>
@@ -23,7 +30,7 @@
 ////#define PACKAGE "mmap"
 ////#include <wchar.h>
 ////#include <fcntl.h>
-#include <sys/stat.h>
+//#include <sys/stat.h>
 //
 //
 ////void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
@@ -740,16 +747,16 @@
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
-      if(iErrNo == ENOTDIR)
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -787,16 +794,16 @@
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
-      if(iErrNo == ENOTDIR)
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -805,7 +812,7 @@
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), iErrNo);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
 
       throw ::exception(estatus);
 
@@ -834,16 +841,16 @@ bool safe_is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
-      if(iErrNo == ENOTDIR)
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
       {
 
          return false;
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -880,16 +887,16 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      int iErrNo = errno;
+      auto cerrornumber = c_error_number();
 
-      if(iErrNo == ENOTDIR)
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
       {
 
          return false;
 
       }
 
-      auto estatus = errno_status(iErrNo);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -898,7 +905,7 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), iErrNo);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
 
       throw ::exception(estatus);
 
@@ -926,9 +933,9 @@ bool safe_file_exists(const ::file::path & path)
    if (::stat(path, &stat))
    {
 
-      int iErrorNumber = errno;
+      auto cerrornumber = c_error_number();
 
-      auto estatus = errno_status(iErrorNumber);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -943,7 +950,7 @@ bool safe_file_exists(const ::file::path & path)
 
       }
 
-      //auto errorcode = errno_error_code(iErrorNumber);
+      //auto error_code = cerrornumber.error_code();
 
       //throw ::file::exception(estatus, errorcode, path, ::file::e_open_none, "stat");
 
@@ -973,9 +980,9 @@ bool file_exists(const ::file::path & path)
    if (::stat(path, &stat))
    {
 
-      int iErrorNumber = errno;
+      auto cerrornumber = c_error_number();
 
-      auto estatus = errno_status(iErrorNumber);
+      auto estatus = cerrornumber.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -990,9 +997,9 @@ bool file_exists(const ::file::path & path)
 
       }
 
-      auto errorcode = errno_error_code(iErrorNumber);
+      auto error_code = cerrornumber.error_code();
 
-      throw ::file::exception(estatus, errorcode, path, ::file::e_open_none, "stat");
+      throw ::file::exception(estatus, error_code, path, ::file::e_open_none, "stat");
 
    }
 
@@ -1077,16 +1084,15 @@ bool file_exists(const ::file::path & path)
 //
 //
 
-
 void create_directory(const ::file::path & path)
 {
 
    if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
       
-      int iErrorNumber = errno;
+      auto cerrornumber = c_error_number();
 
-      auto estatus = errno_status(errno);
+      auto estatus = cerrornumber.estatus();
       
       if(estatus == error_already_exists)
       {
@@ -1115,7 +1121,9 @@ void erase_directory(const ::file::path & path)
    if (::rmdir(path) != 0)
    {
 
-      auto estatus =  errno_status(errno);
+      auto cerrornumber = c_error_number();
+
+      auto estatus =  cerrornumber.estatus();
 
       throw ::exception(estatus);
 
@@ -1131,7 +1139,9 @@ void file_delete(const ::file::path & path)
    if (::unlink(path) == -1)
    {
 
-      auto estatus = errno_status(errno);
+      auto cerrornumber = c_error_number();
+
+      auto estatus =  cerrornumber.estatus();
 
       throw ::exception(estatus);
 
@@ -1140,19 +1150,19 @@ void file_delete(const ::file::path & path)
 }
 
 
-[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, int iErrNo)
+[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, c_error_number cerrornumber)
 {
 
-   if (iErrNo == 0)
+   if(cerrornumber.m_iErrorNumber == 0)
    {
 
-      iErrNo = errno;
+      cerrornumber.m_iErrorNumber = errno;
 
-   } 
+   }
 
-   auto estatus = errno_status(iErrNo);
+   auto estatus =  cerrornumber.estatus();
 
-   auto errorcode = errno_error_code(iErrNo);
+   auto errorcode = cerrornumber.error_code();
 
    throw ::file::exception(estatus, errorcode, path, eopen, scopedstr);
 
@@ -1167,7 +1177,7 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
     pstatus->m_attribute = 0;
 
 
-#if defined(ANDROID) || defined(LINUX)
+#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD)
 
     ::copy(&pstatus->m_timeModification, &pst->st_mtim);
     ::copy(&pstatus->m_timeAccess, &pst->st_atim);
@@ -1197,6 +1207,7 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
 
 }
 
+
 void copy(struct status * pst, const ::file::file_status * pstatus)
 {
     
@@ -1204,4 +1215,20 @@ void copy(struct status * pst, const ::file::file_status * pstatus)
 }
 
 
+void std_out_buffer::write(const void * pdata, memsize nCount)
+{
 
+//#ifdef WINDOWS
+//
+//   DWORD dw;
+//
+//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
+//
+//#else
+
+   fwrite(pdata, nCount, 1, stdout);
+
+
+//#endif
+
+}

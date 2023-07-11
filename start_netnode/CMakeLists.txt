@@ -27,10 +27,18 @@ list(APPEND library_references
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
 
 set_target_properties(app_app PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -41,7 +49,7 @@ if (MSVC)
     target_link_options(app_app PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_app PRIVATE ${library_references})
 
-elseif(LINUX)
+elseif(${LINUX})
 
     #target_link_options(app_app PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(app_app PRIVATE ${library_references})
@@ -81,7 +89,7 @@ list(APPEND executable_references
    )
 
 
-if(LINUX OR FREEBSD)
+if(${LINUX} OR ${FREEBSD})
 #
 #   add_custom_command(
 #      COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
@@ -111,7 +119,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
 
-elseif(LINUX OR FREEBSD)
+elseif(${LINUX} OR ${FREEBSD})
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)

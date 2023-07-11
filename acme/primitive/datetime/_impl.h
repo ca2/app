@@ -108,14 +108,15 @@ namespace earth
    constexpr ::std::strong_ordering time_span::operator <=>(const class ::time & time) const
    {
 
-      return m_time <=> time.integral_second();
+      return m_iSecond <=> time.integral_second();
 
    }
+
 
    constexpr earth::time time::operator+(class ::time& time) const
    {
 
-      return { (time_t) ( this->m_time + time.m_iSecond) };
+      return { posix_time({ posix_time_t {}, this->m_iSecond + time.m_iSecond }) };
 
    }
 

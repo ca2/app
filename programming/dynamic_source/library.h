@@ -32,9 +32,9 @@ namespace dynamic_source
       ::pointer<::acme::library>               m_plibraryLib;
 
 
-      raw_array < __time_t >                    m_ftaLibCreation;
-      raw_array < __time_t >                    m_ftaLibAccess;
-      raw_array < __time_t >                    m_ftaLibModified;
+      raw_array < class ::time >                    m_ftaLibCreation;
+      raw_array < class ::time >                    m_ftaLibAccess;
+      raw_array < class ::time >                    m_ftaLibModified;
 
       
       library(::particle * pparticle);

@@ -511,7 +511,7 @@ namespace account
 
       }
 
-      client_rectangle(rectangleClient);
+      rectangleClient = client_rectangle();
 
       ::user::interaction::on_layout(pgraphics);
 

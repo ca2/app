@@ -346,7 +346,7 @@ namespace apple
 
          m_exitstatus.m_iExitSignal = WTERMSIG(iExitCode);
 
-         m_exitstatus.m_iExitCode = 0x80000000;
+         m_exitstatus.m_iExitCode = I32_MINIMUM;
 
          return true;
 
@@ -356,7 +356,7 @@ namespace apple
 
          m_exitstatus.m_iExitStop = WSTOPSIG(iExitCode);
 
-         m_exitstatus.m_iExitCode = 0x80000000;
+         m_exitstatus.m_iExitCode = I32_MINIMUM;
 
          return true;
 
@@ -548,26 +548,26 @@ namespace apple
 
 //      int uid = getuid();
 
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
-      ::output_debug_string("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
+      ::information("---\n");
 
 //      int i = setuid(0);
 
@@ -706,7 +706,7 @@ auto tickStart = ::duration::now();
          iRead =(int) fread(sz,1,1024, pipe);
          if(iRead >0)
          {
-            ::output_debug_string(sz);
+            ::information(sz);
          }
          else if(iRead <= 0)
          {

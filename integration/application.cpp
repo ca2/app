@@ -91,7 +91,7 @@ namespace app_integration
       if (!bCheckOk)
       {
 
-         output_debug_string("ERROR: simple_check_box is not ok");
+         information("ERROR: simple_check_box is not ok");
 
       }
 
@@ -172,13 +172,13 @@ namespace app_integration
 
 #ifdef _DEBUG
 
-      output_debug_string("_DEBUG build? (basis)");
+      information("_DEBUG build? (basis)");
 
       ASSERT(false);
 
 #else
 
-      output_debug_string("RELEASE build? (stage)");
+      information("RELEASE build? (stage)");
 
       ASSERT(false);
 
@@ -215,7 +215,7 @@ namespace app_integration
 
       }
 
-      output_debug_string("\nfinished simple_drawing::on_request");
+      information("\nfinished simple_drawing::on_request");
 
    }
 

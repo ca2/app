@@ -109,10 +109,10 @@ struct time
 extern struct date date_null;
 extern struct time time_null;
 
-__BEGIN_DECLS CLASS_DECL_TURBOC time_t dostounix (struct date *d, struct time *t);
-CLASS_DECL_TURBOC void unixtodos (time_t the_time, struct date *d, struct time *t);
-CLASS_DECL_TURBOC void unixdos_time (time_t the_time, struct time *t);
-CLASS_DECL_TURBOC void unixdos_date (time_t the_time, struct date *d);
+__BEGIN_DECLS CLASS_DECL_TURBOC posix_time dostounix (struct date *d, struct time *t);
+CLASS_DECL_TURBOC void unixtodos (posix_time the_time, struct date *d, struct time *t);
+CLASS_DECL_TURBOC void unixdos_time (posix_time the_time, struct time *t);
+CLASS_DECL_TURBOC void unixdos_date (posix_time the_time, struct date *d);
 CLASS_DECL_TURBOC void gettime_d (struct time *t);
 // RSB:  The following originally was suffixed by "_d".
 #define getdate(d) getdateTurbo (d)

@@ -337,7 +337,7 @@ namespace ansios
 
          m_exitstatus.m_iExitSignal = WTERMSIG(iExitCode);
 
-         m_exitstatus.m_iExitCode = 0x80000000;
+         m_exitstatus.m_iExitCode = I32_MINIMUM;
 
          return true;
 
@@ -347,7 +347,7 @@ namespace ansios
 
          m_exitstatus.m_iExitStop = WSTOPSIG(iExitCode);
 
-         m_exitstatus.m_iExitCode = 0x80000000;
+         m_exitstatus.m_iExitCode = I32_MINIMUM;
 
          return true;
 

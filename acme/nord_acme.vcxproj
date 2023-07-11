@@ -182,7 +182,6 @@
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\resource.cpp" />
     <ClCompile Include="exception\serialization.cpp" />
-    <ClCompile Include="exception\standard.cpp" />
     <ClCompile Include="exception\translator.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
@@ -447,6 +446,7 @@
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
+    <ClCompile Include="platform\trace_statement.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />
@@ -481,9 +481,7 @@
     <ClCompile Include="primitive\datetime\system_time.cpp" />
     <ClCompile Include="primitive\datetime\zonetime.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
-    <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />
-    <ClCompile Include="primitive\geometry2d\_shape.cpp" />
     <ClCompile Include="primitive\geometry3d\box.cpp" />
     <ClCompile Include="primitive\geometry3d\location.cpp" />
     <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
@@ -526,7 +524,6 @@
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
-    <ClCompile Include="primitive\primitive\top_level_domain_list.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />

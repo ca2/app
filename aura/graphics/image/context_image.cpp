@@ -735,7 +735,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       //}
 
-      auto reader = __binary_stream(pfile);
+      binary_stream reader(pfile);
 
       //read(reader);
 
@@ -818,7 +818,7 @@ void context_image::save_dib(const ::file::path & pathDib, image * pimage)
       if (pfile)
       {
 
-         //::binary_stream < FILE > writer(pfile);
+         //::binary_stream writer(pfile);
 
          //write(writer);
 
@@ -1045,7 +1045,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    auto dt = t2 - t1;
 
-   output_debug_string("file_as_memory time "+::as_string(dt.floating_millisecond()) + "ms");
+   information("file_as_memory time "+::as_string(dt.floating_millisecond()) + "ms");
 
    const ::ansi_character * psz = (const char *)memory.data();
 
@@ -1085,7 +1085,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    }
 
-   if (memory.size() > 3 && strnicmp(psz, "gif", 3) == 0)
+   if (memory.size() > 3 && ansi_nicmp(psz, "gif", 3) == 0)
    {
 
       _load_multi_frame_image(pimage, memory);

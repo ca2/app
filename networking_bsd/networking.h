@@ -17,7 +17,7 @@ namespace sockets_bsd
    typedef string_map < ::string_to_string >       resolv_cache_t;
 
    /* type, host, time */
-   typedef string_map < string_map < time_t > >    resolv_timeout_t;
+   typedef string_map < string_map < posix_time > >    resolv_timeout_t;
 
 
 } // namespace sockets_bsd
@@ -60,8 +60,8 @@ namespace networking_bsd
          dns_cache_item(const dns_cache_item& item);
 
 
-         //void write(::binary_stream < FILE > & stream) const override;
-         //void read(::binary_stream < FILE >& stream) override;
+         //void write(::binary_stream & stream) const override;
+         //void read(::binary_stream& stream) override;
 
          dns_cache_item& operator = (const dns_cache_item& item);
 
@@ -87,8 +87,8 @@ namespace networking_bsd
          reverse_cache_item();
          reverse_cache_item(const reverse_cache_item& item);
 
-         //void write(::binary_stream < FILE > & stream) const override;
-         //void read(::binary_stream < FILE >& stream);
+         //void write(::binary_stream & stream) const override;
+         //void read(::binary_stream& stream);
 
          reverse_cache_item& operator = (const reverse_cache_item& item);
 

@@ -505,7 +505,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::st
 //   if (colorSpace == nullptr)
 //   {
 //
-//      output_debug_string("CreateARGBBitmapContext: Error allocating color space\n");
+//      information("CreateARGBBitmapContext: Error allocating color space\n");
 //
 //      return nullptr;
 //
@@ -516,7 +516,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::st
 //   //   if (bitmapData == nullptr)
 //   //   {
 //   //
-//   //      output_debug_string("CreateARGBBitmapContext: Memory not allocated!");
+//   //      information("CreateARGBBitmapContext: Memory not allocated!");
 //   //
 //   //      CGColorSpaceRelease( colorSpace );
 //   //
@@ -545,7 +545,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::st
 //   //
 //   //      free (bitmapData);
 //   //
-//   //      output_debug_string("CreateARGBBitmapContext: Context not created!");
+//   //      information("CreateARGBBitmapContext: Context not created!");
 //   //
 //   //   }
 //

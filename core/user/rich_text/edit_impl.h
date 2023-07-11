@@ -53,7 +53,7 @@ namespace user
 
          virtual bool get_item_rect(::rectangle_i32 * prectangle, index i) override;
 
-         virtual bool get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement) override;
+         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement) override;
 
          virtual ::size_f64 get_size() override;
 
@@ -143,8 +143,8 @@ namespace user
 
          strsize _001GetTextLength() override;
 
-         //void write(::binary_stream < FILE > & stream) const override;
-         //void read(::binary_stream < FILE > & stream) override;
+         //void write(::binary_stream & stream) const override;
+         //void read(::binary_stream & stream) override;
 
          void _001GetSel(strsize & iBeg, strsize & iEnd) override;
          void _001GetSelLineText(string & str) override;

@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "acme/primitive/primitive/payload.h"
 //#include "acme/primitive/string/hex.h"
-// #include "acme/primitive/string/string.h"
+
 #include "acme/graphics/draw2d/image32.h"
 #include <stdio.h>
 
@@ -320,15 +320,15 @@ namespace color
 
       if(dHParam > 1.0)
       {
-         ::output_debug_string("dHParam > 1.0");
+         ::information("dHParam > 1.0");
       }
       if(dLParam > 1.0)
       {
-         ::output_debug_string("dLParam > 1.0");
+         ::information("dLParam > 1.0");
       }
       if(dSParam > 1.0)
       {
-         ::output_debug_string("dSParam > 1.0");
+         ::information("dSParam > 1.0");
       }
       */
 

@@ -4,6 +4,18 @@
 
 #include "acme/primitive/mathematics/numeric.h"
 #include "acme/primitive/time/_structures.h"
+#include "posix_time.h"
+#include "nanosecond.h"
+
+
+namespace earth
+{
+
+
+   class gregorian_time;
+
+
+} // namespace earth
 
 
 #define _TIME_COMPARISON_WITH(TYPE) \
@@ -12,9 +24,12 @@
 
 
 class CLASS_DECL_ACME time :
-   public TIME
+   public posix_time,
+   public nanosecond
 {
 public:
+
+   //nanosecond        m_nanosecond;
 
 
    enum enum_unit
@@ -33,14 +48,20 @@ public:
 
    static time s_timeFirst;
 
-   constexpr time(enum_zero ezero = e_zero) :
-      TIME{}
+   constexpr time()
+      //posix{}
+   {
+
+   }
+
+   constexpr time(zero_t) :
+      posix_time(zero_t{})
    {
 
    }
 
 
-   time(enum_now)
+   time(now_t)
    {
 
       Now();
@@ -48,20 +69,22 @@ public:
    }
 
 
-   constexpr time(enum_infinite)
+   constexpr time(infinite_t)
    {
 
-      *this = ::time::infinity();
+      Infinite();
 
    }
 
 
 
-   constexpr time(const class ::time& time) : TIME{time} { }
+   constexpr time(const class ::time& time) : posix_time(time),nanosecond(time) { }
+   explicit time(const ::earth::gregorian_time & time);
+   explicit time(const ::file_time & filetime);
 
    template < primitive_integer INTEGER >
    constexpr time(INTEGER iSecond)
-   :TIME{ .m_iSecond = (time_t)iSecond, .m_iNanosecond = (long)0 }
+      : posix_time( {posix_time_t{}, (::i64)iSecond}), nanosecond({nanosecond_t{}, 0})
    {
       
       
@@ -77,7 +100,7 @@ public:
 
    template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
    constexpr time(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
-      TIME{ .m_iSecond = (time_t)iSecond, .m_iNanosecond = (long)iNanosecond }
+      posix_time( {posix_time_t{}, (::i64)iSecond}), nanosecond({nanosecond_t{}, (::i64)iNanosecond})
    { }
 
 
@@ -120,14 +143,14 @@ public:
    }
 
 
-   constexpr time(const ::TIME & time) : TIME(time) {}
+   constexpr time(const ::posix_time & posixtime) : posix_time(posixtime), nanosecond({ nanosecond_t{}, 0 }) {}
 
 
-   constexpr void raw_set(time_t iSeconds, long iNanoseconds = 0);
-   constexpr void set(time_t iSeconds, long iNanoseconds);
+   constexpr void raw_set(posix_time posixtime, nanosecond nanosecond = { nanosecond_t{}, 0 });
+   constexpr void set(posix_time posixtime, nanosecond nanosecond);
    constexpr void set_null();
-   static constexpr time raw_create(time_t iSeconds, long iNanoseconds);
-   static constexpr time create(time_t iSeconds, long iNanoseconds);
+   static constexpr time raw_create(posix_time posixtime, nanosecond nanosecond);
+   static constexpr time create(posix_time posixtime, nanosecond nanosecond);
    static constexpr time create_null();
 
 
@@ -149,6 +172,8 @@ public:
    //constexpr static time zero();
 //   constexpr bool operator !() const {return is_null();}
 
+   static class ::time local();
+
    //constexpr void infinite() {*this=infinity();}
    //void PosInfinity() {*this=pos_infinity();}
    //constexpr void zero() { this->m_iSecond = 0; this->m_iNanosecond = 0; }
@@ -163,35 +188,24 @@ public:
 
    //constexpr operator bool() const;
 
-
+   constexpr ::i64 total_nanoseconds() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
    //constexpr  double operator() ()const { return floating_second(); }
 
 
    //static inline class ::time first();
-  [[nodiscard]] static inline class ::time now() { return e_now; }
+   [[nodiscard]] static inline class ::time now() { return now_t{}; }
 
    inline bool is_past() const { return now() > *this; }
 
-   inline class ::time & Now()
-   { 
-      
-      struct timespec timespec; 
-      
-      if (timespec_get(&timespec, TIME_UTC) != TIME_UTC) 
-      {
-         
-         throw "timespec_get failed!!"; 
-         
-      }
+   class ::time & Now();
 
-      m_iSecond = timespec.tv_sec;
+   constexpr inline class ::time & Infinite()
+   {
 
-      m_iNanosecond = timespec.tv_nsec;
-      
-      return *this; 
-      
+      return *this = infinity();
+
    }
-   
+     
 
    inline class time elapsed() const { return elapsed(now()); }
    constexpr class time elapsed(const class time & time ) const { return time - *this; }
@@ -311,12 +325,12 @@ public:
    //class ::time operator % (const class time & time) const;
 
 
-   constexpr time_t GetTimeSpan() const;
+   constexpr posix_time GetTimeSpan() const;
 
    
    //inline bool timeout(const class time & time);
    
-   inline time remaining(const class time & time, const class time & timeNow = e_now);
+   inline time remaining(const class time & time, const class time & timeNow = now_t{});
 
 
    constexpr  class ::time wait() const;
@@ -362,7 +376,7 @@ public:
    constexpr::i64 integral_hour() const { return m_iSecond / 3'600; }
    constexpr::i64 integral_minute() const { return m_iSecond / 60; }
    constexpr::i64 integral_second() const { return m_iSecond; }
-   constexpr ::i64 integral_millisecond() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000; }
+   constexpr::i64 integral_millisecond() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000; }
    constexpr::i64 integral_microsecond() const { return m_iSecond * 1'000'000 + m_iNanosecond / 1'000; }
    constexpr::i64 integral_nanosecond() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
 
@@ -393,7 +407,18 @@ public:
    //inline bool operator <= (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond <= time.m_iNanosecond); }
    //inline bool operator > (const class time & time) const { return !operator <=(time); }
    //inline bool operator >= (const class time & time) const { return !operator <=(time); }
+   ::pair < ::count, time > count_and_remainder(const class time & time) const
+   {
 
+      auto d = *this / time;
+
+      auto count = (::count)::floor(d);
+
+      auto remainder = *this % time;
+
+      return { count, remainder };
+
+   }
 
    constexpr time operator %(const class time & time) const;
    constexpr double operator /(const class time & time) const;
@@ -401,7 +426,7 @@ public:
    constexpr time operator -(const class time & time) const { return { e_normalize, this->m_iSecond - time.m_iSecond, this->m_iNanosecond - time.m_iNanosecond }; }
 
 
-   constexpr time operator -() const { return { e_raw, -m_iSecond, -m_iNanosecond }; }
+   constexpr time operator -() const { return { e_raw, -m_iSecond, -m_iNanosecond}; }
 
 
 
@@ -914,40 +939,40 @@ public:
 //}
 
 
-constexpr  void time::raw_set(time_t iSeconds, long iNanoseconds)
+constexpr  void time::raw_set(posix_time posixtime, nanosecond nanosecond)
 {
 
-   m_iSecond = iSeconds;
+   posix_time::operator = (posixtime);
 
-   m_iNanosecond = iNanoseconds;
+   nanosecond::operator = (nanosecond);
 
 }
 
 
-constexpr  void time::set(time_t iSeconds, long iNanoseconds)
+constexpr  void time::set(posix_time posixtime, nanosecond nanosecond)
 {
 
-   raw_set(iSeconds, iNanoseconds);
+   raw_set(posixtime, nanosecond);
 
    normalize();
 
 }
 
 
-constexpr  void time::set_null()
+constexpr void time::set_null()
 {
 
-   raw_set(0, 0);
+   raw_set({ posix_time_t{}, 0 }, { nanosecond_t{}, 0 });
 
 }
 
 
-constexpr  class ::time time::raw_create(time_t iSeconds, long iNanoseconds)
+constexpr class ::time time::raw_create(posix_time posixtime, nanosecond nanosecond)
 {
 
    time time;
 
-   time.raw_set(iSeconds, iNanoseconds);
+   time.raw_set(posixtime, nanosecond);
 
    return time;
 
@@ -955,12 +980,12 @@ constexpr  class ::time time::raw_create(time_t iSeconds, long iNanoseconds)
 
 
 
-constexpr  class ::time time::create(time_t iSeconds, long iNanoseconds)
+constexpr  class ::time time::create(posix_time posixtime, nanosecond nanosecond)
 {
 
    time time;
 
-   time.set(iSeconds, iNanoseconds);
+   time.set(posixtime, nanosecond);
 
    return time;
 
@@ -1006,7 +1031,7 @@ constexpr bool time::is_infinite() const
 constexpr  class ::time time::infinity()
 {
 
-   return {(::i64)MAXI64,(::i64)0};
+   return {(::i64)I64_MAXIMUM,(::i64)0};
 
 }
 
@@ -1014,7 +1039,7 @@ constexpr  class ::time time::infinity()
 //inline class ::time time::pos_infinity()
 //{
 //
-//   return {(::i64)MAXI64, (::i64)0};
+//   return {(::i64)I64_MAXIMUM, (::i64)0};
 //
 //}
 
@@ -1027,10 +1052,10 @@ constexpr  class ::time time::infinity()
 //}
 
 
-constexpr  time_t time::GetTimeSpan() const
+constexpr posix_time time::GetTimeSpan() const
 {
 
-   return m_iSecond;
+   return *this;
 
 }
 
@@ -1201,21 +1226,43 @@ inline class time time::remaining(const class time & time, const class time & ti
 
 
 
-
-constexpr class time integral_nanosecond(::i64 i) { return { (::i64)i / 1'000'000'000, (long)(i % 1'000'000'000) }; }
-constexpr class time floating_nanosecond(double d) { return { (::i64)(d / 1'000'000'000.0), (long)(fmod(d, 1'000'000'000.0)) }; }
-constexpr class time integral_microsecond(::i64 i) { return { i / 1'000'000, (long)((i % 1'000'000) * 1'000) }; }
-constexpr class time floating_microsecond(double d) { return { (::i64)(d / 1'000'000.0), (long)(fmod(d, 1'000'000.0) * 1'000.0) }; }
-constexpr class time integral_millisecond(::i64 i) { return { i / 1'000, (long)((i % 1'000) * 1'000'000) }; }
-constexpr class time floating_millisecond(double d) { return { (::i64)(d / 1'000.0), (long)(fmod(d, 1'000.0) * 1'000'000.0) }; }
-constexpr class time integral_second(::i64 i) { return { i }; }
-constexpr class time floating_second(double d) { return { (::i64)(d), (long)(fmod(d, 1.0) * 1'000'000'000.0) }; }
-constexpr class time integral_minute(::i64 i) { return { i * 60 }; }
-constexpr class time floating_minute(double d) { return { (::i64)(d * 60.0), (long)(fmod(d * 60.0, 1.0) * 1'000'000'000.0) }; }
-constexpr class time integral_hour(::i64 i) { return { i * 3'600 }; }
-constexpr class time floating_hour(double d) { return { (::i64)(d * 3'600.0), (long)(fmod(d * 3'600.0, 1.0) * 1'000'000'000.0) }; }
-constexpr class time integral_day(::i64 i) { return { i * 86'400 }; }
-constexpr class time floating_day(double d) { return { (::i64)(d * 86'400.0), (long)(fmod(d * 86'400.0, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time nanosecond_time(INTEGRAL i) { return { (INTEGRAL)i / 1'000'000'000, (long)(i % 1'000'000'000) }; }
+template < primitive_floating FLOATING >
+constexpr class time nanosecond_time(FLOATING f) { return { (FLOATING)(f / 1'000'000'000.0), (long)(fmod(f, 1'000'000'000.0)) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time microsecond_time(INTEGRAL i) { return { i / 1'000'000, (long)((i % 1'000'000) * 1'000) }; }
+template < primitive_floating FLOATING >
+constexpr class time microsecond_time(FLOATING f) { return { (FLOATING)(f / 1'000'000.0), (long)(fmod(f, 1'000'000.0) * 1'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time millisecond_time(INTEGRAL i) { return { i / 1'000, (long)((i % 1'000) * 1'000'000) }; }
+template < primitive_floating FLOATING >
+constexpr class time millisecond_time(FLOATING f) { return { (FLOATING)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time second_time(INTEGRAL i) { return { i }; }
+template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
+constexpr class time second_time(NUMERATOR numerator, DENOMINATOR denominator)
+{
+   return  
+   { 
+      (::i64) (numerator / denominator),
+      (::i64) ((numerator % denominator) * 1'000'000'000 / denominator)
+   }; 
+}
+template < primitive_floating FLOATING >
+constexpr class time second_time(FLOATING f) { return { (FLOATING)(f), (long)(fmod(f, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time minute_time(INTEGRAL i) { return { i * 60 }; }
+template < primitive_floating FLOATING >
+constexpr class time minute_time(FLOATING f) { return { (FLOATING)(f * 60.0), (long)(fmod(f * 60.0, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time hour_time(INTEGRAL i) { return { i * 3'600 }; }
+template < primitive_floating FLOATING >
+constexpr class time hour_time(FLOATING f) { return { (FLOATING)(f * 3'600.0), (long)(fmod(f * 3'600.0, 1.0) * 1'000'000'000.0) }; }
+template < primitive_integral INTEGRAL >
+constexpr class time day_time(INTEGRAL i) { return { i * 86'400 }; }
+template < primitive_floating FLOATING >
+constexpr class time day_time(FLOATING f) { return { (FLOATING)(f * 86'400.0), (long)(fmod(f * 86'400.0, 1.0) * 1'000'000'000.0) }; }
 
 
 
@@ -1317,22 +1364,22 @@ constexpr void time::set(i64 i, enum_unit eunit)
    switch (eunit)
    {
    case unit_nanos:
-      raw_set(i / (1000 * 1000 * 1000), i % (1000 * 1000 * 1000));
+      raw_set({ posix_time_t{}, i / (1000 * 1000 * 1000) }, { nanosecond_t{}, i % (1000 * 1000 * 1000) });
       break;
    case unit_micros:
-      raw_set(i / (1000 * 1000), (i / 1000) % (1000 * 1000 * 1000));
+      raw_set({ posix_time_t{},i / (1000 * 1000) }, { nanosecond_t{},(i / 1000) % (1000 * 1000 * 1000) });
       break;
    case unit_millis:
-      raw_set(i / 1000, (i / (1000 * 1000)) % (1000 * 1000 * 1000));
+      raw_set({ posix_time_t{}, i / 1000 }, { nanosecond_t{},(i / (1000 * 1000)) % (1000 * 1000 * 1000) });
       break;
    case unit_seconds:
-      raw_set(i, 0);
+      raw_set({ posix_time_t{}, i }, { nanosecond_t{},0});
       break;
    case unit_minutes:
-      raw_set(i * 60, 0);
+      raw_set({ posix_time_t{},i * 60 },{ nanosecond_t{},0});
       break;
    case unit_hours:
-      raw_set(i * 60 * 60, 0);
+      raw_set({ posix_time_t{},i * 60 * 60 }, { nanosecond_t{}, 0 });
       break;
    default:
       throw_exception(error_bad_argument);
@@ -1340,3 +1387,8 @@ constexpr void time::set(i64 i, enum_unit eunit)
    };
 
 }
+
+
+
+
+

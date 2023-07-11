@@ -139,7 +139,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
    if(strApp == "app-core/clockverse")
    {
 
-      ::output_debug_string("app-core/clockverse");
+      ::information("app-core/clockverse");
 
    }
 
@@ -326,7 +326,7 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 
    //memory_file memoryfile;
 
-   //binary_stream < FILE > stream(&memoryfile);
+   //binary_stream stream(&memoryfile);
 
    //stream << payloada;
 
@@ -671,7 +671,7 @@ repeat:
 
    string_array stra2;
 
-   int_array iaPid2;
+   ::i32_array iaPid2;
 
    auto psystem = acmesystem();
 
@@ -762,7 +762,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    string_array stra2;
 
-   int_array iaPid2;
+   ::i32_array iaPid2;
 
    for (index i = 0; i < m_straModule.get_count();)
    {

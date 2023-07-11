@@ -11,7 +11,7 @@
 #include "acme/primitive/string/str.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 #include <locale.h>
 #endif
 
@@ -106,19 +106,19 @@ property_set::~property_set()
 
 bool property_set::is_set_empty(::count countMinimum) const
 {
-   return get_count() < countMinimum;
+   return property_count() < countMinimum;
 }
 
 bool property_set::has_properties(::count countMinimum) const
 {
-   return get_count() >= countMinimum;
+   return property_count() >= countMinimum;
 }
 
 
 property * property_set::find_value_ci(const ::payload & payload) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (pproperty->case_insensitive_order(payload) == 0)
@@ -138,7 +138,7 @@ property * property_set::find_value_ci(const ::payload & payload) const
 property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (pproperty->case_insensitive_equals(scopedstr))
@@ -160,7 +160,7 @@ property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
 property * property_set::find_payload(const ::payload & payload) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (*pproperty == payload)
@@ -180,7 +180,7 @@ property * property_set::find_payload(const ::payload & payload) const
 property * property_set::find_payload(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (*pproperty == scopedstr)
@@ -410,7 +410,7 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
       }
 
-      erase_at(iFind);
+      erase_property_at(iFind);
 
       c++;
 
@@ -1072,7 +1072,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
    str += "{";
 
-   auto p = begin();
+   auto p = m_propertyptra.begin();
 
    if (p)
    {
@@ -1084,7 +1084,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
          p++;
 
-         if (p >= end())
+         if (p >= m_propertyptra.end())
          {
 
             break;
@@ -1133,7 +1133,7 @@ void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriO
 
    }
 
-   const char * pszNetworkArguments = strchr(scopedstrUriOrNetworkArguments.begin(), '?');
+   auto pszNetworkArguments = scopedstrUriOrNetworkArguments.find('?');
 
    if (::is_empty(pszNetworkArguments))
    {
@@ -1176,13 +1176,13 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
    while (true)
    {
 
-      pszArgumentEnd1 = strchr(pszArgument, '&');
+      pszArgumentEnd1 = ansi_chr(pszArgument, '&');
 
-      pszArgumentEnd2 = strchr(pszArgument, '?');
+      pszArgumentEnd2 = ansi_chr(pszArgument, '?');
 
       pszArgumentEnd = ::minimum_non_null(pszArgumentEnd1, pszArgumentEnd2);
 
-      pszKeyEnd = strchr(pszArgument, '=');
+      pszKeyEnd = ansi_chr(pszArgument, '=');
 
       if (pszArgumentEnd == nullptr)
       {
@@ -1345,7 +1345,7 @@ string property_set::_001Replace(const ::string & str) const
 void property_set::clear()
 {
 
-   erase_all();
+   erase_all_properties();
 
 }
 
@@ -1355,7 +1355,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
    string str;
 
-   auto p = begin();
+   auto p = m_propertyptra.begin();
 
    if (p)
    {
@@ -1367,7 +1367,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
          p++;
 
-         if (!p)
+         if (p >= m_propertyptra.end())
          {
 
             break;
@@ -1433,7 +1433,7 @@ property_set::property_set(const property_set & set)
 
 
 property_set::property_set(property_set && set) :
-   property_ptra(::transfer(set))
+   m_propertyptra(::transfer(set.m_propertyptra))
 {
 
 }
@@ -1484,7 +1484,7 @@ property_set & property_set::operator = (const ::payload & payload)
       //if (::element::has(e_flag_data_struct))
       //{
 
-      //   for (auto & pproperty : *this)
+      //   for (auto & pproperty : this->propertyptra())
       //   {
 
       //      auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_atom);
@@ -1510,7 +1510,7 @@ property_set & property_set::operator = (const ::payload & payload)
    else if (payload.m_etype == e_type_property)
    {
 
-      erase_all();
+      erase_all_properties();
 
       set_at(payload.m_pproperty->m_atom, *payload.m_pproperty);
 
@@ -1533,7 +1533,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::acme::copy((property_ptra &)*this, (const property_ptra &)set);
+      ::acme::copy(m_propertyptra, set.m_propertyptra);
 
    }
 
@@ -1548,10 +1548,10 @@ property_set & property_set::append(const property_set & set)
    if (&set != this)
    {
 
-      for (auto & pproperty : set)
+      for (auto & pproperty : propertyptra())
       {
 
-         add_item(memory_new property(*pproperty));
+         add_property(memory_new property(*pproperty));
 
       }
 
@@ -1568,7 +1568,7 @@ property_set & property_set::merge(const property_set & set)
    if (::is_reference_set(set) && &set != this)
    {
 
-      for (auto & pproperty : set)
+      for (auto & pproperty : propertyptra())
       {
 
          atom idName = pproperty->name();
@@ -1767,7 +1767,7 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr) const { r
 property * property_set::str_find(const property & property) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (pproperty->str_compare(property) == 0)
@@ -1787,7 +1787,7 @@ property * property_set::str_find(const property & property) const
 bool property_set::str_contains(const property_set & set) const
 {
 
-   for (auto & pproperty : set)
+   for (auto & pproperty : propertyptra())
    {
 
       if (str_find(*pproperty) == nullptr)
@@ -1807,7 +1807,7 @@ bool property_set::str_contains(const property_set & set) const
 bool property_set::contains(const property_set & set) const
 {
 
-   for (auto & pproperty : set)
+   for (auto & pproperty : propertyptra())
    {
 
       auto ppropertyHere = find(pproperty->name());
@@ -1836,9 +1836,9 @@ bool property_set::contains(const property_set & set) const
 string & property_set::get_network_arguments(string & strNetworkArguments) const
 {
 
-   auto p = begin();
+   auto p = m_propertyptra.begin();
 
-   while (!is_end(p))
+   while (!m_propertyptra.is_end(p))
    {
 
       if (strNetworkArguments.has_char())
@@ -2094,7 +2094,7 @@ string property_set::get_command_line() const
 
    string str;
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
 
       if (str.has_char())
@@ -2280,7 +2280,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 
    ::string str;
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : this->propertyptra())
    {
       
       str += pproperty->m_atom.as_string();
@@ -2301,12 +2301,10 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 ::index property_set::index_of(const ::atom & atom, ::index i) const
 {
 
-   auto p = this->m_begin + i;
-
-   for (; p < this->m_end; p++)
+   for (; i < m_propertyptra.get_count(); i++)
    {
 
-      if (p[i]->m_atom == atom)
+      if (m_propertyptra[i]->m_atom == atom)
       {
 
          return i;
@@ -2323,9 +2321,9 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 ::property * property_set::find(const ::atom & atom, ::index iStart) const
 {
 
-   auto p = this->m_begin + iStart;
+   auto p = m_propertyptra.begin() + iStart;
 
-   for (; p < this->m_end; p++)
+   for (; !m_propertyptra.is_end(p); p++)
    {
 
       if ((*p)->m_atom == atom)
@@ -2352,7 +2350,7 @@ property & property_set::get(const ::atom & atom, ::index iStart)
 
       pproperty = memory_new property(atom);
 
-      add_item(pproperty);
+      add_property(pproperty);
 
    }
 
@@ -2435,7 +2433,7 @@ property & property_set::get(const ::atom & atom, ::index iStart)
 
       pproperty = memory_new property(atom);
 
-      add_item(pproperty);
+      add_property(pproperty);
 
    }
 

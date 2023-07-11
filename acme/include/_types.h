@@ -2,9 +2,7 @@
 #pragma once
 
 
-// Contains a 64-bit value representing the number
-// of 100-nanosecond intervals since January 1, 1601 (UTC).
-typedef u64 file_time_t;
+//typedef u64 file_time_t;
 
 
 using process_identifier = ::i64;

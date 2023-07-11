@@ -42,7 +42,7 @@ namespace userfs
       else
       {
 
-         return strcmp(typeid(pitem1).name(), typeid(pitem2).name()) <=> 0;
+         return ansi_cmp(typeid(pitem1).name(), typeid(pitem2).name()) <=> 0;
 
       }
 

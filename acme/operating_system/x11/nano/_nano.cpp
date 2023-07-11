@@ -9,7 +9,7 @@
 #include "acme/platform/node.h"
 
 
-::user::enum_desktop _get_edesktop();
+::user::enum_desktop get_edesktop();
 
 
 void operating_system_initialize_x11_nano(::factory::factory * pfactory)
@@ -30,7 +30,7 @@ void operating_system_initialize_xcb_nano(::factory::factory * pfactory);
 void operating_system_initialize_nano(::factory::factory * pfactory)
 {
 
-   auto edesktop = _get_edesktop();
+   auto edesktop = get_edesktop();
 
    auto psystem = pfactory->acmesystem();
 

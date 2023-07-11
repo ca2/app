@@ -166,13 +166,13 @@
 //         if(rectangleWindow.contains(pointCursor))
 //         {
 //
-//            crText = ::color::color(255, 0, 0, 0);
+//            crText = ::rgba(255, 0, 0, 0);
 //
 //         }
 //         else
 //         {
 //
-//            crText = ::color::color(255, 0, 0, 0);
+//            crText = ::rgba(255, 0, 0, 0);
 //
 //         }
 //
@@ -180,7 +180,7 @@
 //      else
 //      {
 //
-//         crText = ::color::color(255, 0, 0, 0);
+//         crText = ::rgba(255, 0, 0, 0);
 //
 //      }
 //

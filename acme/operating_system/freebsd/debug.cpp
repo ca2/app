@@ -11,7 +11,7 @@
 //#include <stdbool.h
 #include <sys/ptrace.h>
 #include <sys/wait.h>
-
+#include <stdio.h>
 
 int gdb_check();
 
@@ -154,22 +154,22 @@ gdb_check(void)
 //}
 
 
-void output_debug_string(const scoped_string & str)
+void output_debug_string(const scoped_string & scopedstrFormat)
 {
 
-   if(::acme::g_bOutputDebugString)
+   //if(::acme::g_bOutputDebugString)
    {
 
-      if(strstr(pOutputString, "font_list"))
+      if(scopedstrFormat == "font_list")
       {
 
-         printf("a");
+         output_debug_string("a");
 
       }
 
-      printf("%s", pOutputString);
+      printf("%s", ::string(scopedstrFormat).c_str());
 
-      fflush(stdout);
+      //fflush(stdout);
 
    }
 
@@ -179,7 +179,7 @@ void output_debug_string(const scoped_string & str)
 void output_debug_string(const ::wide_character * pOutputString)
 {
 
-   if(::acme::g_bOutputDebugString)
+   //if(::acme::g_bOutputDebugString)
    {
 
       output_debug_string(string(pOutputString));

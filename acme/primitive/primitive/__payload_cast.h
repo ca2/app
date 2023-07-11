@@ -47,7 +47,7 @@ public:
    //operator property ()const { return m_payload.property(); }
 
 
-   operator ::int_array ()const { return m_payload.ia(); }
+   operator ::i32_array ()const { return m_payload.ia(); }
    operator ::i64_array ()const { return m_payload.i64a(); }
    operator ::string_array ()const { return m_payload.stra(); }
    operator ::payload_array() const { return m_payload.payloada(); }

@@ -54,7 +54,7 @@ namespace experience_nanoui
       if (top_level()->frame_is_transparent())
       {
 
-         crBackground = argb(90, m_colorBackground.red, m_colorBackground.green, m_colorBackground.blue);
+         crBackground = m_colorBackground & ::opacity(90);
 
       }
       else
@@ -113,7 +113,7 @@ namespace experience_nanoui
    }
 
 
-   i32 control_box::calc_button_size(::draw2d::graphics_pointer & pgraphics)
+   i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       return 26;

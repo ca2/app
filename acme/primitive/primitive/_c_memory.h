@@ -14,12 +14,7 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * p, const void * point1, memsiz
 
 CLASS_DECL_ACME ::std::strong_ordering memory_order(const void* sz1, const void* sz2, memsize iSize);
 
-inline ::std::strong_ordering _memory_order(const void* p1, const void* p2, memsize size)
-{
-
-   return memcmp(p1, p2, size) <=> 0;
-
-}
+CLASS_DECL_ACME ::std::strong_ordering _memory_order(const void* p1, const void* p2, memsize size);
 
 
 #ifdef __cplusplus

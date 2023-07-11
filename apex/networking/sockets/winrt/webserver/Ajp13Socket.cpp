@@ -36,7 +36,7 @@ namespace sockets
    {
       if (sz - 2 > m_body_size_left)
       {
-         information("More body data received than expected\n");
+         information("More body data received than expected");
          SetCloseAndDelete();
          return;
       }

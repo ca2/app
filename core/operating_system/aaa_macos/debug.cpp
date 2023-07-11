@@ -87,7 +87,7 @@ va_list *Arguments
 void ns_log(const ::string & pszLog);
 
 
-void output_debug_string(const ::string & pszOutputString)
+void information(const ::string & pszOutputString)
 {
 
    string strOutputString(pszOutputString);
@@ -109,14 +109,14 @@ void output_debug_string(const ::string & pszOutputString)
 
 VOID
 WINAPI
-output_debug_string(
+information(
 const ::wide_character * pOutputString
 
 )
 {
 
 
-   output_debug_string(string(pOutputString));
+   information(string(pOutputString));
 
 
 

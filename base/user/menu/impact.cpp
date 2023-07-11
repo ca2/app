@@ -204,15 +204,11 @@ namespace user
 
       m_pfontTitle.create(this);
 
-      auto psystem = acmesystem()->m_pbasesystem;
-
-      auto pnode = psystem->node();
-
-      m_pfontTitle->create_point_font(pnode->font_name(e_font_sans_ui), 14, 800);
+      m_pfontTitle->create_font(e_font_sans_ui, 14_pt, 800);
 
       m_pfont.create(this);
 
-      m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
+      m_pfont->create_font(e_font_sans_ui, 14_pt, 400);
 
       if (get_typed_parent<::user::split_impact>() != nullptr)
       {
@@ -271,7 +267,7 @@ namespace user
 
       ::status < ::rectangle_i32 > rectangleMenuItem;
 
-      int iHeight = (int) ( m_pfontTitle->m_dFontSize * 1.25 + 20);
+      int iHeight = (int) ( m_pfontTitle->m_fontsize.f64() * 1.25 + 20);
 
       int x = 10;
 
@@ -281,9 +277,7 @@ namespace user
 
       y += 10;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       int w = rectangleClient.width() - x * 2;
 
@@ -389,9 +383,7 @@ namespace user
 
       pimage1 = m_pimageMem;
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
       {
@@ -672,9 +664,7 @@ namespace user
    void menu_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.area() <= 0)
          return;

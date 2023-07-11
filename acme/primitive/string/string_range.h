@@ -1421,7 +1421,7 @@ public:
    //    //const_iterator __replace(const_iterator start, const_iterator end, const SCOPED_STRING & scopedstr)
    //    //{
    //
-   //    //   ::memmove((void *)start, start + scopedstr.size(), this->end() - end);
+   //    //   ::memory_transfer((void *)start, start + scopedstr.size(), this->end() - end);
    //
    //    //   string_count_copy(start, scopedstr.begin(), scopedstr.size());
    //

@@ -400,7 +400,7 @@ void image::create_isotropic(::image* pimage)
 }
 
 
-void image::create_isotropic(double_array& daRate, ::enum_priority epriority)
+void image::create_isotropic(f64_array& daRate, ::enum_priority epriority)
 {
 
    //return false;
@@ -1996,17 +1996,17 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
    u8* psrc2;
 
-   u8* palf2;
+   //u8* palf2;
 
-   int x1;
-   int x2;
-   int y1;
-   int y2;
+   //int x1;
+   //int x2;
+   //int y1;
+   //int y2;
 
-   x1 = pointDstAlf.x();
-   x2 = pimageAlf->width() + x1;
-   y1 = pointDstAlf.y();
-   y2 = pimageAlf->height() + y1;
+   //x1 = pointDstAlf.x();
+   //x2 = pimageAlf->width() + x1;
+   //y1 = pointDstAlf.y();
+   //y2 = pimageAlf->height() + y1;
 
 
    //int a;
@@ -2018,7 +2018,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
       psrc2 = (u8*)&psrc[scanSrc * y];
 
-      palf2 = (u8*)&palf[scanAlf * y];
+      //palf2 = (u8*)&palf[scanAlf * y];
 
       for (int x = 0; x < xEnd; x++)
       {
@@ -2066,7 +2066,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
          psrc2 += 4;
 
-         palf2 += 4;
+         //palf2 += 4;
 
 
       }
@@ -2429,9 +2429,9 @@ void image::flip_vertically()
 
       auto plineSecondHalf = pimage32 + ((h - y - 1) * sw);
 
-      memcpy(line.data(), plineFirstHalf, m_iScan);
-      memcpy(plineFirstHalf, plineSecondHalf, m_iScan);
-      memcpy(plineSecondHalf, line.data(), m_iScan);
+      memory_copy(line.data(), plineFirstHalf, m_iScan);
+      memory_copy(plineFirstHalf, plineSecondHalf, m_iScan);
+      memory_copy(plineSecondHalf, line.data(), m_iScan);
 
    }
 
@@ -6147,14 +6147,14 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
    if (hdst != hsrc)
    {
 
-      output_debug_string("different height");
+      information("different height");
 
    }
 
    if (wdst != wsrc)
    {
 
-      output_debug_string("different width");
+      information("different width");
 
    }
 
@@ -6195,7 +6195,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
       if (lineDst < 0)
       {
 
-         output_debug_string("image::Rotate034 lineDst < 0");
+         information("image::Rotate034 lineDst < 0");
 
       }
 
@@ -8496,7 +8496,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
       if (areaRgba < areaRgbaLast)
       {
 
-         output_debug_string("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
+         information("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
 
       }
 
@@ -9793,7 +9793,7 @@ void image::defer_update_image()
 
       m_pbitmap = pimage->m_pbitmap;
 
-      ::memcpy(ppixmapDst, ppixmapSrc, sizeof(::pixmap));
+      ::memory_copy(ppixmapDst, ppixmapSrc, sizeof(::pixmap));
 
    }
 

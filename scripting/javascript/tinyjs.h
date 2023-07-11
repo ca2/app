@@ -151,11 +151,11 @@ public:
    ~CScriptLex(void);
 
    char currCh, nextCh;
-   i32 tk; ///< The type of the token that we have
+   i32 token; ///< The type of the token that we have
    i32 tokenStart; ///< Position in the data at the beginning of the token we have here
    i32 tokenEnd; ///< Position in the data at the last character of the token we have here
    i32 tokenLastEnd; ///< Position in the data at the last character of the last token
-   string tkStr; ///< Data contained in the token we have here
+   string tokenStr; ///< Data contained in the token we have here
 
    void match(i32 expected_tk); ///< Lexical match wotsit
    static string getTokenStr(i32 token); ///< Get the string representation of the given token

@@ -84,7 +84,7 @@ va_list *Arguments
 
 VOID
 WINAPI
-output_debug_string(
+information(
 const char * lpOutputString
 )
 {
@@ -102,13 +102,13 @@ const char * lpOutputString
 
 VOID
 WINAPI
-output_debug_string(
+information(
 const ::wide_character * lpOutputString
 )
 {
 
 
-   output_debug_string(string(lpOutputString));
+   information(string(lpOutputString));
 
 
 }

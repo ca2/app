@@ -9,11 +9,7 @@
 
 
 #ifdef PARALLELIZATION_PTHREAD
-
-
 #include "acme/operating_system/ansi/_pthread.h"
-
-
 #endif
 
 
@@ -21,6 +17,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include "acme/operating_system/ansi/_ansi.h"
+#include <errno.h>
 #elif defined(ANDROID)
 #include <sys/types.h>
 #include <sys/stat.h>

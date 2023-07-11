@@ -196,7 +196,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      rectangle = client_rectangle();
 
       rectangle.left = xLast;
 
@@ -442,7 +442,7 @@ namespace user
 
       ::string strDataKey({ true, "::user::list_column_width" });
 
-      int_array iaWidth;
+      ::i32_array iaWidth;
 
       if (bSave)
       {
@@ -753,7 +753,7 @@ namespace user
       //   if (strType.case_insensitive_contains("control_box"))
       //   {
 
-      //      output_debug_string("control box on clip");
+      //      information("control box on clip");
 
       //   }
 
@@ -902,9 +902,7 @@ namespace user
    {
 
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectangleUpdate(rectangleClient);
 

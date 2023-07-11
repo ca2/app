@@ -1,63 +1,63 @@
 #pragma once
 
 
-class task;
+// class task;
 
 
 
 
-#ifdef PARALLELIZATION_PTHREAD
+// #ifdef PARALLELIZATION_PTHREAD
 
 
-#if defined(ANDROID)
+// #if defined(ANDROID)
 
 
-//#define MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX // as of 2016-11-26
-// not implemented (err=38) on android-19 (POSIX semaphore)
-#define MUTEX_NAMED_FD
-#undef MUTEX_NAMED_VSEM
+// //#define MUTEX_COND_TIMED
+// #undef MUTEX_NAMED_POSIX // as of 2016-11-26
+// // not implemented (err=38) on android-19 (POSIX semaphore)
+// #define MUTEX_NAMED_FD
+// #undef MUTEX_NAMED_VSEM
 
-#elif defined(__APPLE__)
+// #elif defined(__APPLE__) || defined(FREEBSD)
 
-//#define MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX
-#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-#undef MUTEX_NAMED_VSEM
+// //#define MUTEX_COND_TIMED
+// #undef MUTEX_NAMED_POSIX
+// #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+// #undef MUTEX_NAMED_VSEM
 
-#elif defined(LINUX)
+// #elif defined(LINUX)
 
-//#define MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX
-#undef MUTEX_NAMED_FD
-#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
-#undef MUTEX_NAMED_VSEM
+// //#define MUTEX_COND_TIMED
+// #undef MUTEX_NAMED_POSIX
+// #undef MUTEX_NAMED_FD
+// #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+// //#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
+// #undef MUTEX_NAMED_VSEM
 
-#elif defined(FREEBSD)
+// #elif defined(FREEBSD)
 
-//#define MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX
-#undef MUTEX_NAMED_FD
-#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
-#undef MUTEX_NAMED_VSEM
+// //#define MUTEX_COND_TIMED
+// #undef MUTEX_NAMED_POSIX
+// #undef MUTEX_NAMED_FD
+// #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+// //#define MUTEX_NAMED_VSEM // acmesystem() V Semaphore
+// #undef MUTEX_NAMED_VSEM
 
-#else
+// #else
 
-#error "Operating system not supported..."
+// #error "Operating system not supported..."
 
-#endif
+// #endif
 
-#endif
+// #endif
 
 
-class synchronization;
-class semaphore;
-class event;
-class critical_section;
-class single_lock;
-class multi_lock;
+// class synchronization;
+// class semaphore;
+// class event;
+// class critical_section;
+// class single_lock;
+// class multi_lock;
 
 
 

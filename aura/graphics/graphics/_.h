@@ -36,6 +36,7 @@ namespace graphics
 
 
    class graphics;
+   class buffer_item;
 
 
 } // namespace graphics

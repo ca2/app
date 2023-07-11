@@ -51,9 +51,9 @@ namespace experience_core
 
          m_pfont.create(this);
 
-         auto pnode = acmenode();
+         //auto pnode = acmenode();
 
-         m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12, e_font_weight_normal);
+         m_pfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
 
       }
 
@@ -113,18 +113,18 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      ptab->client_rectangle(rcClient);
+      rcClient = ptab->client_rectangle(::user::e_layout_sketch);
       
       if(rcClient.is_empty())
       {
          
-         output_debug_string("style::_001TabOnDrawSchema01 Tab Client Rect is empty\n");
+         information("style::_001TabOnDrawSchema01 Tab Client Rect is empty\n");
          
          return true;
          
       }
       
-      //output_debug_string("style::_001TabOnDrawSchema01\n");
+      //information("style::_001TabOnDrawSchema01\n");
 
       auto pstyle = ptab->get_style(pgraphics);
 
@@ -172,14 +172,14 @@ namespace experience_core
 
          iTab++;
 
-         if (!ptab->get_element_rect(iTab, rectangle, ::e_element_tab))
+         if (!ptab->get_element_rectangle(iTab, rectangle, ::e_element_tab))
          {
 
             continue;
 
          }
 
-         if (!ptab->get_element_rect(iTab, rectangleBorder, ::e_element_border))
+         if (!ptab->get_element_rectangle(iTab, rectangleBorder, ::e_element_border))
          {
 
             continue;
@@ -200,15 +200,15 @@ namespace experience_core
 
          }
 
-         if (!ptab->get_element_rect(iTab, rectangleClient, ::e_element_client))
+         if (!ptab->get_element_rectangle(iTab, rectangleClient, ::e_element_client))
             continue;
 
-         bool bTextRect = ptab->get_element_rect(iTab, rectangleText, ::e_element_text);
+         bool bTextRect = ptab->get_element_rectangle(iTab, rectangleText, ::e_element_text);
 
          if (pdata->m_bVertical)
          {
 
-            if (ptab->get_element_rect(iTab, rectangleIcon, ::e_element_icon))
+            if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -440,7 +440,7 @@ namespace experience_core
 
             // Horizontal Tab
 
-            if (ptab->get_element_rect(iTab, rectangleIcon, ::e_element_icon))
+            if (ptab->get_element_rectangle(iTab, rectangleIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -803,7 +803,7 @@ namespace experience_core
 
          }
 
-         if (ptab->get_element_rect(iTab, rectangleClose, ::e_element_close_tab_button))
+         if (ptab->get_element_rectangle(iTab, rectangleClose, ::e_element_close_tab_button))
          {
 
             pgraphics->set_font(ptab, ::e_element_close_tab_button);
@@ -837,14 +837,14 @@ namespace experience_core
       if (bScroll)
       {
 
-         if (ptab->get_element_rect(-1, rectangleScroll, ::e_element_tab_near_scroll))
+         if (ptab->get_element_rectangle(-1, rectangleScroll, ::e_element_tab_near_scroll))
          {
 
             pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
 
          }
 
-         if (ptab->get_element_rect(-1, rectangleScroll, ::e_element_tab_far_scroll))
+         if (ptab->get_element_rectangle(-1, rectangleScroll, ::e_element_tab_far_scroll))
          {
 
             pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
@@ -1085,7 +1085,7 @@ namespace experience_core
 
          pdata->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_sketch);
 
          pdata->m_rectangleTab.left = rectangleClient.left;
          pdata->m_rectangleTab.top = rectangleClient.top;
@@ -1115,7 +1115,7 @@ namespace experience_core
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_sketch);
          //ptab->client_rectangle(rectangleClient);
          int x = rectangleClient.left;
 
@@ -1253,7 +1253,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      ptab->client_rectangle(rcClient);
+      rcClient = ptab->client_rectangle(::user::e_layout_sketch);
 
       if (pdata->m_bVertical)
       {
@@ -1304,7 +1304,7 @@ namespace experience_core
 //            if (strType.contains("form"))
 //            {
 //
-//               output_debug_string("form");
+//               information("form");
 //
 //            }
 
@@ -1934,7 +1934,7 @@ namespace experience_core
             {
 
                pbar->payload("tracking_on") = true;
-               pbar->payload("tracking_start_time") = (class ::time)e_now + dRate * periodFadeIn;
+               pbar->payload("tracking_start_time") = (class ::time)now_t{} + dRate * periodFadeIn;
                pbar->payload("tracking_fade_in") = true;
                pbar->payload("tracking_fade_out") = false;
                pbar->payload("tracking_simple") = random(1, 2) == 1;
@@ -1950,7 +1950,7 @@ namespace experience_core
 
                pbar->payload("tracking_fade_in") = false;
                pbar->payload("tracking_fade_out") = true;
-               pbar->payload("tracking_start_time") = (class ::time)e_now + (1.0 - dRate) * periodFadeOut;
+               pbar->payload("tracking_start_time") = (class ::time)now_t{} + (1.0 - dRate) * periodFadeOut;
 
             }
 

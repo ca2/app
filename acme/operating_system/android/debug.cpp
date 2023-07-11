@@ -37,9 +37,9 @@ void output_debug_string(const ::scoped_string & scopedstr)
    //      for (auto str : stra)
    //      {
 
-   //__android_log_print(ANDROID_LOG_INFO, "output_debug_string", str);
+   //__android_log_print(ANDROID_LOG_INFO, "information", str);
 
-   __android_log_print(ANDROID_LOG_INFO,"output_debug_string", "%s", ::string(scopedstr).c_str());
+   __android_log_print(ANDROID_LOG_INFO,"information", "%s", ::string(scopedstr).c_str());
 
    //      }
 
@@ -63,7 +63,7 @@ void output_debug_string(const ::wide_character * lpOutputString)
 {
 
 
-   output_debug_string(string(lpOutputString));
+   ::output_debug_string(string(lpOutputString));
 
 
 }

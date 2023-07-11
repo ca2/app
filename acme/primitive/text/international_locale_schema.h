@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/primitive/atom.h"
-#include "acme/primitive/primitive/particle.h"
+
 #include "acme/primitive/collection/atom_array.h"
 
 

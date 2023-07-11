@@ -258,7 +258,7 @@ namespace sockets
 
       {
 
-         for(auto & pproperty : m_fields)
+         for(auto & pproperty : m_fields.propertyptra())
          {
 
             atom & atom = pproperty->m_atom;

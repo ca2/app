@@ -2,7 +2,7 @@
 
 #include "acme/operating_system.h"
 #include "acme/platform/version.h"
-// #include "acme/primitive/string/string.h"
+
 //#include "acme/primitive/collection/string_array.h"
 
 
@@ -1021,7 +1021,7 @@ string transform_to_quoted_value(const ::scoped_string & scopedstr)
 }
 
 
-string merge_colon_args(const array < string_array >& str2a)
+string merge_colon_args(const array < string_array >& straa)
 {
 
    string_array straBeforeColon;
@@ -1030,7 +1030,7 @@ string merge_colon_args(const array < string_array >& str2a)
 
    string strCommandLine;
 
-   for (auto& stra : str2a)
+   for (auto& stra : straa)
    {
 
       index iFindColon = stra.find_first(":");

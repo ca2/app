@@ -160,7 +160,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
    const ::ansi_character * pszBegin = pszEntity;
 
-   const ::ansi_character * pszEnd = ::strchr(pszEntity, ';');
+   const ::ansi_character * pszEnd = ::ansi_chr(pszEntity, ';');
 
    char   chTemp = 0;
 
@@ -196,7 +196,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
       chTemp = *pszBegin;
 
-      i32   aura = (::isdigit(chTemp) ? 10 :
+      i32   aura = (::character_isdigit(chTemp) ? 10 :
                         (chTemp == 'x' ||
                          chTemp == 'X' ? 16 : 0));
       if (aura)
@@ -224,7 +224,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       if (strKey.case_insensitive_equals("eth") ||
             !strKey.case_insensitive_equals("thorn"))
       {
-         if (::isupper(strKey[0]))
+         if (::character_isupper(strKey[0]))
             strKey.make_upper();
          else
             strKey.make_lower();

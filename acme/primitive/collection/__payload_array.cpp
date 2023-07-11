@@ -26,7 +26,7 @@ payload_array::payload_array(const string_array & stra)
    operator = (stra);
 }
 
-payload_array::payload_array(const int_array & ia)
+payload_array::payload_array(const ::i32_array & ia)
 {
    operator = (ia);
 }
@@ -509,7 +509,7 @@ payload_array & payload_array::operator = (const string_array & stra)
    return *this;
 }
 
-payload_array & payload_array::operator = (const int_array & inta)
+payload_array & payload_array::operator = (const ::i32_array & inta)
 {
    erase_all();
    for(i32 i = 0; i < inta.get_count(); i++)
@@ -527,7 +527,7 @@ payload_array & payload_array::operator = (const property_set & propset)
 
    index i = 0;
 
-   for(auto & pproperty : propset)
+   for(auto & pproperty : propset.propertyptra())
    {
 
       set_at(i++, *pproperty);

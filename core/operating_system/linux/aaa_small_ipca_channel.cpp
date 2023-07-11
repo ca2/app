@@ -123,11 +123,11 @@ namespace aura
 
          }
 
-         ::output_debug_string("functon: \"tx::send\"\n");
+         ::information("functon: \"tx::send\"\n");
 
-         ::output_debug_string("channel: \"" +m_strBaseChannel+ "\"\n");
+         ::information("channel: \"" +m_strBaseChannel+ "\"\n");
 
-         ::output_debug_string("message: \"" +string(pszMessage)+ "\"\n");
+         ::information("message: \"" +string(pszMessage)+ "\"\n");
 
          return true;
 

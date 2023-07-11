@@ -306,6 +306,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Icons.h" />
+    <ClInclude Include="ImageButton.h" />
     <ClInclude Include="ImageImpact.h" />
     <ClInclude Include="ImagePanel.h" />
     <ClInclude Include="IntBox.h" />

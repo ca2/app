@@ -1050,7 +1050,7 @@ namespace xml
 
          }
 
-         rangeXml.m_begin = strchr(rangeXml.m_begin, '<');
+         rangeXml.m_begin = ansi_chr(rangeXml.m_begin, '<');
 
          if (rangeXml.m_begin == nullptr)
          {
@@ -1493,7 +1493,7 @@ namespace xml
             // <?TAG
             ostring += "<?" +m_strName;
             // <?TAG Attr1="Val1"
-            if (m_set.has_elements())
+            if (m_set.has_property())
             {
 
                ostring += ' ';
@@ -2932,12 +2932,12 @@ namespace xml
    }
 
 
-   bool node::from_row_column_v2(const string2a & str2a)
+   bool node::from_row_column_v2(const string_array_array & straa)
    {
 
       m_strName = "row_column_v2";
 
-      if(str2a.get_size() <= 0)
+      if(straa.get_size() <= 0)
       {
 
          m_strValue.empty();
@@ -2950,7 +2950,7 @@ namespace xml
       else
       {
       
-         ::count iColCount = str2a.get_count();
+         ::count iColCount = straa.get_count();
 
          set_attribute("column_count", iColCount);
 
@@ -2961,17 +2961,17 @@ namespace xml
 
             ::pointer<::xml::node>pcol = add_child("ca");
 
-            iRowCount = str2a[iCol].get_count();
+            iRowCount = straa[iCol].get_count();
 
             pcol->set_attribute("row_count", iRowCount);
 
             for(i32 iRow = 0; iRow < iRowCount; iRow++)
             {
 
-               if(iRow < str2a[iCol].get_count())
+               if(iRow < straa[iCol].get_count())
                {
 
-                  pcol->m_strValue = str2a[iCol][iRow];
+                  pcol->m_strValue = straa[iCol][iRow];
 
                }
 
@@ -2986,7 +2986,7 @@ namespace xml
    }
 
 
-   bool node::to_row_column_v2(string2a & str2a)
+   bool node::to_row_column_v2(string_array_array & straa)
    {
 
       // "this is not a row column v2 xml node";
@@ -3004,13 +3004,13 @@ namespace xml
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
 
-         str2a.erase_all();
+         straa.erase_all();
 
          return true;
 
       }
 
-      str2a.set_size(iColCount);
+      straa.set_size(iColCount);
 
       ::count iRowCount = 0;
 
@@ -3021,20 +3021,20 @@ namespace xml
 
          auto pcol = pheader->m_nodea.element_at(iCol);
 
-         str2a[iCol].set_size(pcol->attribute("row_count").as_i32());
+         straa[iCol].set_size(pcol->attribute("row_count").as_i32());
 
       }
 
       for(::index iRow = 0; iRow < iRowCount; iRow++)
       {
 
-         for(i32 iCol = 0; iCol < str2a[iCol].get_count(); iCol++)
+         for(i32 iCol = 0; iCol < straa[iCol].get_count(); iCol++)
          {
 
-            if(iRow < str2a[iCol].get_count())
+            if(iRow < straa[iCol].get_count())
             {
 
-               iRowCount = str2a[iCol].get_count();
+               iRowCount = straa[iCol].get_count();
 
             }
 
@@ -3121,12 +3121,14 @@ namespace xml
 
    }
 
+
    index_array node::get_indexed_path() const
    {
 
       return get_document()->get_child_indexed_path(this);
 
    }
+
 
    void node::get_indexed_path(index_array & iaPath) const
    {
@@ -3165,3 +3167,6 @@ namespace xml
 
 
 } // namespace xml
+
+
+

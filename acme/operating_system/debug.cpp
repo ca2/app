@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "acme/exception/exception.h"
 #include "acme/platform/constraint.h"
-// #include "acme/primitive/string/string.h"
+
 //#ifdef WINDOWS
 #include "acme/_operating_system.h"
 //#endif
@@ -54,7 +54,7 @@ void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, con
 
    strMessage.format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), ::string(scopedstr).c_str());
 
-   output_debug_string(strMessage);
+   information(strMessage);
 
 }
 
@@ -89,7 +89,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //
 //   strMessage.format("-%c- %s %s\n", e_trace_level_char(elevel), strTag.c_str(), psz);
 //
-//   output_debug_string(strMessage);
+//   information(strMessage);
 //
 //}
 //
@@ -101,7 +101,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //{
 //
 ////   os_trace(e_trace_level_information, "simple_debug_string", psz);
-//   output_debug_string(psz);
+//   information(psz);
 //
 //}
 
@@ -128,7 +128,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //}
 
 
-//CLASS_DECL_ACME void output_debug_string(const ::scoped_string & scopedstr)
+//CLASS_DECL_ACME void information(const ::scoped_string & scopedstr)
 //{
 //
 //
@@ -160,7 +160,7 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
 }
 
 
-void format_output_debug_string(const char* pszFormat, ...)
+void output_debug_string_format(const char* pszFormat, ...)
 {
 
    ASSERT(is_string_ok(pszFormat));

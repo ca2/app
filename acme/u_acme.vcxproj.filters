@@ -146,9 +146,6 @@
     <Filter Include="Header Files\parallelization">
       <UniqueIdentifier>{4e75e734-1d14-43f9-9166-28f72447930c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{8f02c56f-9b11-45a1-9bdc-7f947da8920f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{2e5d8132-44fa-4147-bf82-2973b5663ea0}</UniqueIdentifier>
     </Filter>
@@ -238,6 +235,27 @@
     </Filter>
     <Filter Include="Source Files\memory\os_impl">
       <UniqueIdentifier>{d13e4c7a-f361-472d-9567-a5f1b50293ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\sz">
+      <UniqueIdentifier>{35066103-ea19-49ce-9c17-1a55c7688a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c">
+      <UniqueIdentifier>{654dbdba-cd63-4e64-b01c-7b4991d946bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c\ancient">
+      <UniqueIdentifier>{44cb85c4-d479-4747-babc-6071f31bfdd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c\extension">
+      <UniqueIdentifier>{e052dc09-343f-40ca-a40a-9bf418aba0d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\shared_posix">
+      <UniqueIdentifier>{4cb931c8-8187-475a-8a3f-9b8dd1df7c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\shared_posix">
+      <UniqueIdentifier>{26e4ee20-4366-43ee-849d-5ece4d839983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows_common\NewFilter1">
+      <UniqueIdentifier>{2f349e86-c350-42ea-8476-853aa210299c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -343,17 +361,11 @@
     <ClCompile Include="graphics\draw2d\color.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\colorref_array.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\_.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="exception\cancel.cpp">
       <Filter>Source Files\exception</Filter>
@@ -413,9 +425,6 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\memory_map.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\stdio_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\stream.cpp">
@@ -656,9 +665,6 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\system_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\zonetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\_.cpp">
@@ -1057,9 +1063,6 @@
     <ClCompile Include="exception\serialization.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\standard.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="platform\acme.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1372,6 +1375,105 @@
     <ClCompile Include="primitive\geometry2d\item.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image32_array.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\write_text_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\print_formatting.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace_statement.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\mouse.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_string.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\earth_zone_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\string.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\__wide.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\_str_impl.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\network_payload.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\ansi.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd16.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd32.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\coupling_impl.cpp">
+      <Filter>Source Files\primitive\string\c</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\unicode_impl.cpp">
+      <Filter>Source Files\primitive\string\c</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\memory.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\string_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\stdio_file.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\time.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\rectangle_array.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -1432,9 +1534,6 @@
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\zonetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\_c.h">
@@ -2247,9 +2346,6 @@
     <ClInclude Include="filesystem\file\status.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\stdio_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_stream1.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -2421,7 +2517,7 @@
     <ClInclude Include="platform\enum.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\error.h">
+    <ClInclude Include="platform\aaa_error.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\exclusive.h">
@@ -3653,6 +3749,27 @@
     </ClInclude>
     <ClInclude Include="platform\application_base.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\earth_zone_time.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\shared_posix\stdio_file.h">
+      <Filter>Header Files\operating_system\shared_posix</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\shared_posix\c_error_number.h">
+      <Filter>Header Files\operating_system\shared_posix</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\last_error.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\last_error_exception.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\error_number.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\shared_posix\time.h">
+      <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

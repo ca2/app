@@ -8,7 +8,7 @@
 //
 #include "framework.h"
 #include "windows_unicode.h"
-// #include "acme/primitive/string/string.h"
+
 #include <iconv.h>
 
 
@@ -96,7 +96,7 @@ i32      cchWideChar)
      size_t sIn;
 
      if(cbMultiByte < 0)
-        sIn = strlen(pMultiByteStr);
+        sIn = ansi_len(pMultiByteStr);
 
      else
         sIn = cbMultiByte;
@@ -221,7 +221,7 @@ i32      cchWideChar)
      size_t sIn;
 
      if(cbMultiByte < 0)
-        sIn = strlen(pMultiByteStr);
+        sIn = ansi_len(pMultiByteStr);
 
      else
         sIn = cbMultiByte;

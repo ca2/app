@@ -205,6 +205,8 @@ namespace file
       inline u64 get_u64_unbounded() { ::u64 u64; get_u64(u64); return u64; }
 
 
+      virtual bool unget_if(::ansi_character ch);
+
       inline filesize _right_size() { return this->right_size(); }
 
 
@@ -290,6 +292,7 @@ namespace file
 
    
    CLASS_DECL_ACME void set_no_cache(::payload& payload);
+   CLASS_DECL_ACME bool get_no_cache(const ::payload & payload);
 
 
  } // namespace file

@@ -344,12 +344,6 @@ constexpr int trace_level_letter(enum_trace_level etracelevel)
 }
 
 
-inline FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace_level etracelevelInformation = e_trace_level_information)
-{
-
-   return etracelevel <= etracelevelInformation ? stdout : stderr;
-
-}
 
 
 //enum  : i64
@@ -452,27 +446,27 @@ enum enum_thread_context
 enum enum_timer : iptr;
 
 
-enum enum_boolean
-{
-
-
-   // negative state... bad/failure states
-
-   e_boolean_no = -1, // 0xffffffff......
-   e_boolean_false = -1,
-
-   e_boolean_none = 0,
-   e_boolean_empty = 0, // 0x00000000......
-   e_boolean_undefined = 0,
-
-   e_boolean_yes = 1, // <3tbs
-   e_boolean_true = 1, // 0x00000001......
-
-   // positive state... good/success states
-
-   e_boolean_some_yes_some_no = 256,
-
-};
+//enum enum_boolean 
+//{
+//
+//
+//   // negative state... bad/failure states
+//
+//   e_boolean_no = -1, // 0xffffffff......
+//   e_boolean_false = -1,
+//
+//   e_boolean_none = 0,
+//   e_boolean_empty = 0, // 0x00000000......
+//   e_boolean_undefined = 0,
+//
+//   e_boolean_yes = 1, // <3tbs
+//   e_boolean_true = 1, // 0x00000001......
+//
+//   // positive state... good/success states
+//
+//   e_boolean_some_yes_some_no = 256,
+//
+//};
 
 
 enum enum_zorder
@@ -510,7 +504,7 @@ enum enum_display
 {
 
 
-   e_display_undefined = MINI32,
+   e_display_undefined = I32_MINIMUM,
    e_display_notify_icon,
    e_display_default,
    //display_close,
@@ -883,34 +877,34 @@ enum enum_no_initialize
 };
 
 
-enum enum_zero
-{
+//enum zero_t
+//{
+//
+//
+//   zero_t{},
+//
+//
+//};
 
 
-   e_zero,
+//enum enum_now
+//{
+//
+//
+//   now_t{},
+//
+//
+//};
 
-
-};
-
-
-enum enum_now
-{
-
-
-   e_now,
-
-
-};
-
-
-enum enum_infinite
-{
-
-
-   e_infinite,
-
-
-};
+//
+//enum enum_infinite
+//{
+//
+//
+//   e_infinite,
+//
+//
+//};
 
 
 enum enum_normalize
@@ -1071,4 +1065,22 @@ namespace library
 
 
 } // namespace library
+
+
+
+enum enum_unit :
+   ::i32
+{
+
+   e_unit_rate = (::i32) - 1,
+
+   e_unit_none = 0,
+
+   e_unit_pixel,
+   e_unit_point,
+   e_unit_em,
+
+
+};
+
 

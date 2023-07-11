@@ -22,6 +22,8 @@ namespace write_text
    class font;
    using font_pointer = ::pointer<font>;
    using font_pointer_array = pointer_array < font >;
+   class font_family;
+   class font_family_pointer;
 
 
 } // namespace write_text

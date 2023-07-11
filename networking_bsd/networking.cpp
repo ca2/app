@@ -386,7 +386,7 @@ namespace networking_bsd
       string dst;
       for (i32 i = 0; i < src.length(); i++)
       {
-         if (src[i] == '%' && isxdigit((uchar)(src[i + 1])) && isxdigit((uchar)(src[i + 2])))
+         if (src[i] == '%' && character_isxdigit(src[i + 1]) && character_isxdigit(src[i + 2]))
          {
             char c1 = src[++i];
             char c2 = src[++i];
@@ -415,7 +415,7 @@ namespace networking_bsd
       {
          if (str[i] == '.')
             dots++;
-         else if (!isdigit((uchar)str[i]))
+         else if (!character_isdigit(str[i]))
             return false;
       }
       if (dots != 3)
@@ -926,7 +926,7 @@ namespace networking_bsd
       catch (const ::exception& e)
       {
 
-         output_debug_string(e.m_strMessage);
+         information(e.m_strMessage);
 
          return false;
 
@@ -2278,7 +2278,7 @@ namespace networking_bsd
       //   catch (const ::exception & e)
       //   {
       //
-      //      output_debug_string(e.m_strMessage);
+      //      information(e.m_strMessage);
       //
       //      return false;
       //

@@ -73,7 +73,7 @@
  * To get the corresponding Unix time, use the dos2unixtime() as in:
  *
  * \code
- *      time_t min(dos2unixtime(mindostime()));
+ *      posix_time min(dos2unixtime(mindostime()));
  * \endcode
  *
  * \return The smallest possible DOS time.
@@ -97,7 +97,7 @@ dostime_t minimum_dos_time()
  * To get the corresponding Unix time, use the dos2unixtime() as in:
  *
  * \code
- *      time_t max(dos2unixtime(maxdostime()));
+ *      posix_time max(dos2unixtime(maxdostime()));
  * \endcode
  *
  * \return The largest possible DOS time.
@@ -111,7 +111,7 @@ dostime_t maximum_dos_time()
 
 /** \brief Convert a DOS time to a Unix time
  *
- * This function returns the Unix time_t value (GMT/UTC time) from
+ * This function returns the Unix posix_time value (GMT/UTC time) from
  * the DOS format (local) time dostime, where dostime is a four
  * ::u8 value (date in most significant word, time in least
  * significant word), see dostime() function.
@@ -128,14 +128,14 @@ dostime_t maximum_dos_time()
  *
  * \sa dostime()
  */
-time_t dos_time_unix_time(dostime_t dostime)
+posix_time dos_time_unix_time(dostime_t dostime)
 {
     struct tm t;         /* argument for mktime() */
 
     memset(&t, 0, sizeof(t));
 
     t.tm_isdst = -1;     /* let mktime() determine if DST is in effect */
-    /* Convert DOS time to UNIX time_t format */
+    /* Convert DOS time to UNIX posix_time format */
     t.tm_sec  = (((int)dostime <<  1) & 0x3E);
     t.tm_min  = (((int)dostime >>  5) & 0x3F);
     t.tm_hour = (((int)dostime >> 11) & 0x1F);
@@ -208,17 +208,17 @@ dostime_t dos_time(int year, int month, int day, int hour, int minute, int secon
 
 /** \brief Convert a Unix date to a DOS date.
  *
- * This function return the Unix time_t converted in DOS format,
+ * This function return the Unix posix_time converted in DOS format,
  * rounded up to the next even second.
  *
- * \param[in] unix_time  A Unix time_t value.
+ * \param[in] unix_time  A Unix posix_time value.
  *
  * \return The Unix date in DOS format unless it is out of range for
  *         a DOS time and date in which case zero (0) is returned.
  */
-dostime_t unix_time_dos_time(time_t unix_time)
+dostime_t unix_time_dos_time(posix_time unix_time)
 {
-    time_t even_time;
+    posix_time even_time;
     struct tm *s;         /* result of localtime() */
 
     even_time = (unix_time + 1) & ~1;         /* Round up to even seconds. */

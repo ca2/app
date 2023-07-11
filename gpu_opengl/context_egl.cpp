@@ -19,16 +19,18 @@ namespace opengl
    context_egl::context_egl()
    {
 
-#if !defined(ANDROID)
+      gladLoadGL();
 
-      if (glewInit() != GLEW_NO_ERROR)
-      {
-         //cout << "Failed to initialize GLEW... " << endl;
-         //return -1;
-
-      }
-
-#endif
+//#if !defined(ANDROID)
+//
+//      if (glewInit() != GLEW_NO_ERROR)
+//      {
+//         //cout << "Failed to initialize GLEW... " << endl;
+//         //return -1;
+//
+//      }
+//
+//#endif
 
       m_emode = e_mode_egl;
 

@@ -349,7 +349,7 @@ m_bDrag(false)
 
             };
             
-            screen()->m_puserinteraction->set_need_redraw(rectanglea, function);
+            screen()->m_puserinteraction->set_need_redraw(rectanglea, nullptr, function);
             
             post_redraw();
             

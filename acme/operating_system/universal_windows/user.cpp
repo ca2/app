@@ -44,7 +44,7 @@ namespace user
 
 
 
-   ::tristate      g_bLastDarkModeApp;
+   ::boolean      g_bLastDarkModeApp;
 
 
 } // namespace user

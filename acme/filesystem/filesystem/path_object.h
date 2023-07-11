@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/particle.h"
-#include  "acme/primitive/primitive/pointer.h"
+#include "acme/primitive/primitive/pointer.h"
 #include "path.h"
 
 
@@ -56,7 +55,7 @@ namespace file
 
       // g_interlockedcountFilePathObject++;
 
-       //::output_debug_string("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+       //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -66,7 +65,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::output_debug_string("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -77,7 +76,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::output_debug_string("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -88,7 +87,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //::output_debug_string("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::information("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -120,7 +119,7 @@ namespace file
    inline void path_object::to_sz(char* sz, strsize len) const
    {
 
-      strncpy(sz, c_str(), len);
+      ansi_ncpy(sz, c_str(), len);
 
    }
 

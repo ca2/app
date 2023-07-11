@@ -53,7 +53,7 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::client_rectangle(rectangleClient);
+      rectangleClient = ::user::interaction::client_rectangle();
 
       if (rectangleClient.area() <= 0)
          return;
@@ -180,7 +180,7 @@ namespace experience_tranquillum
          if (m_estockicon == e_stock_icon_restore)
          {
 
-            output_debug_string("restore button is being shown");
+            information("restore button is being shown");
 
          }
 
@@ -197,9 +197,7 @@ namespace experience_tranquillum
       __construct(m_ppen);
       __construct(m_pbrush);
          
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+      auto rectangleClient = client_rectangle();
       
       ::ellipse_f64 ellipse;
       

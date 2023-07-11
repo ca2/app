@@ -383,15 +383,15 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,::u32 Msg,WP
    if(Msg == e_message_quit)
    {
 
-      ::output_debug_string("\n\n\nWM_QUIT posted to thread " + as_string((uint64_t)iThreadId) + "\n\n\n");
+      ::information("\n\n\nWM_QUIT posted to thread " + as_string((uint64_t)iThreadId) + "\n\n\n");
 
    }
 
    msg.message = Msg;
    msg.wParam  = wParam;
    msg.lParam  = lParam;
-   msg.pt.x()    = 0x80000000;
-   msg.pt.y()    = 0x80000000;
+   msg.pt.x()    = I32_MINIMUM;
+   msg.pt.y()    = I32_MINIMUM;
    msg.hwnd    = nullptr;
 
    pmq->ma.add(msg);

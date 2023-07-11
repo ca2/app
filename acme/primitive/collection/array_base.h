@@ -4,7 +4,7 @@
 #include "_iterator.h"
 #include "allocator.h"
 #include "acme/platform/common.h"
-#include "acme/primitive/primitive/particle.h"
+
 
 //using tiny_index_array = tiny_array <::index>;
 
@@ -745,8 +745,8 @@ public:
 
    void zero(::index iStart = 0, ::count c = -1);
 
-   template < primitive_array ARRAY >
-   void _001RemoveIndexes(ARRAY & ia);
+   //template < primitive_array ARRAY >
+   //void _001RemoveIndexes(ARRAY & ia);
    
    template < primitive_array ARRAY >
    void erase_indexes(const ARRAY & ia);
@@ -769,9 +769,11 @@ public:
    void on_destruct_element(TYPE * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) { ALLOCATOR::destruct(p  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS); }
    void on_copy_element(::index i, const TYPE * p) { ALLOCATOR::copy(&this->m_begin[i], p); }
 
+   inline operator TYPE *() { return this->m_begin; }
+   inline operator const TYPE *() const { return this->m_begin; }
 
-   inline const TYPE & operator[](::index i) const;
-   inline TYPE & operator[](::index i);
+   //inline const TYPE & operator[](::index i) const;
+   //inline TYPE & operator[](::index i);
 
 
    TYPE & insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
@@ -1141,14 +1143,15 @@ public:
    inline TYPE& operator%(::index nIndex)
    {
 
-      return this->operator[](nIndex% this->get_size());
+      return this->element_at(nIndex% this->get_size());
 
    }
+
 
    inline const TYPE& operator%(::index nIndex) const
    {
 
-      return this->operator[](nIndex% this->get_size());
+      return this->element_at(nIndex% this->get_size());
 
    }
 
@@ -1538,57 +1541,6 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const arra
 //}
 
 //#include "sort.h"
-
-// take in accptr that _001RemoveIndexes machine
-// the ::index raw_array by sorting it and returning
-// only the indexes that could be erased
-// without indexes duplicates
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-template < primitive_array ARRAY >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::_001RemoveIndexes(ARRAY & ia)
-{
-
-   // sort
-   //::sort::quick_sort(ia,true);
-
-   ia.sort();
-
-   ::index i = ia.get_upper_bound();
-
-   // filter out of upper bound indexes
-   while(i >= 0 && ia[i] >= get_size())
-   {
-
-      ia.erase_at(i);
-
-      i--;
-
-   }
-
-   // filter out of lower bound indexes
-   while(ia.get_size() > 0 && ia[0] < 0)
-   {
-
-      ia.erase_at(0);
-
-   }
-
-   i = ia.get_upper_bound();
-
-   // filter out duplicates
-   while(i > 0 && ia[i] >= get_size())
-   {
-
-      if(ia[i] == ia[i - 1])
-         ia.erase_at(i);
-
-      i--;
-
-   }
-
-   erase_indexes(ia);
-
-}
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
@@ -2598,22 +2550,22 @@ inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::elemen
 //   return (TYPE*)this->m_begin;
 //}
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i) const
-{
-
-   return this->m_begin[i];
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i)
-{
-
-   return this->m_begin[i];
-
-}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i) const
+//{
+//
+//   return this->m_begin[i];
+//
+//}
+//
+//
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i)
+//{
+//
+//   return this->m_begin[i];
+//
+//}
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >

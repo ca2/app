@@ -9,9 +9,13 @@
 #include "framework.h"
 #include "callstack.h"
 #include "acme/platform/node.h"
-// #include "acme/primitive/string/string.h"
+
 #include <execinfo.h>
 #include <cxxabi.h>
+
+
+//#define __USE_BFD
+
 
 #ifdef __APPLE__
 
@@ -42,10 +46,17 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
 
    auto ppMessages = messages.get();
 
-   int i = iSkip;
+   int i = 0;
 
    for (; i < frames && *ppMessages != nullptr; ++i, ppMessages++)
    {
+
+      if(i < iSkip)
+      {
+
+         continue;
+
+      }
 
       //printf("backtrace %s\n", *ppMessages);
 #ifdef __USE_BFD
@@ -65,6 +76,9 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
 
       auto pmessage = *ppMessages;
 
+
+
+
       //printf("%s", pmessage);
 
       string strSymbolName;
@@ -80,7 +94,6 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
       backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
       
 #endif
-      
 
       string strLine;
 

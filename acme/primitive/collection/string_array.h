@@ -4,7 +4,7 @@
 #include "array.h"
 //#include "comparable_eq_array.h"
 //#include "comparable_array.h"
-//// #include "acme/primitive/string/string.h"
+//
 #include "acme/primitive/collection/address_array.h"
 ////#include "acme/primitive/primitive/payload.h"
 //#include "acme/array.h"
@@ -208,7 +208,7 @@ public:
     void make_lower();
     void make_upper();
 
-   auto & append_format(const CHARACTER * psz, ...)
+    auto & append_format(const CHARACTER * psz, ...)
    {
 
       va_list arguments;
@@ -662,11 +662,11 @@ public:
 
 
 //typedef CLASS_DECL_ACME string_array_base < string > string_array;
-typedef CLASS_DECL_ACME string_array_base < wstring > wstring_array;
 
 
-class CLASS_DECL_ACME string2a:
-        public array < string_array >
+
+class CLASS_DECL_ACME string_array_array:
+   public ::array < string_array >
 {
 public:
 

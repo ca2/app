@@ -6,7 +6,7 @@
 #include "comparable_array.h"
 #include "comparable_raw_array.h"
 #include "acme/primitive/primitive/compare_predicate.h"
-// #include "acme/primitive/string/string.h"
+
 #include "acme/primitive/mathematics/numeric.h"
 
 
@@ -138,7 +138,7 @@ public:
    TYPE pop_to();
 
 
-   void CopySorted(const numeric_array & array, TYPE & tOffset, TYPE & tMin);
+   void CopySorted(const numeric_array & array, const TYPE & tOffset, const TYPE & tMin);
 
    void Diff(
    const numeric_array & array1,
@@ -148,7 +148,7 @@ public:
 
    void ElementDiff(
    const numeric_array & array1,
-   TYPE & tMax);
+   const TYPE & tMax);
 
    TYPE simple_total_mean();
 
@@ -228,7 +228,7 @@ public:
    }
 
 
-   void sort(bool bAsc = true);
+   //void sort(bool bAsc = true);
 
    bool is_any_set() const
    {
@@ -602,8 +602,8 @@ Cmp(const numeric_array & array1)
 template < typename TYPE, ::enum_type m_etypeContainer >
 void numeric_array < TYPE, m_etypeContainer >::CopySorted(
    const numeric_array< TYPE, m_etypeContainer > & a,
-TYPE & tOffset,
-TYPE & tMin)
+const TYPE & tOffset,
+const TYPE & tMin)
 {
 
 
@@ -643,7 +643,7 @@ const numeric_array < TYPE, m_etypeContainer > & array2)
 template < typename TYPE, ::enum_type m_etypeContainer >
 void numeric_array < TYPE, m_etypeContainer >::ElementDiff(
 const numeric_array  & a,
-TYPE & tMax)
+const TYPE & tMax)
 {
    ::index i;
    TYPE t;
@@ -1321,35 +1321,35 @@ namespace acme
 } // namespace acme
 
 
-#include "sort.h"
+//#include "sort.h"
 
-template < typename TYPE, ::enum_type m_etypeContainer >
-void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
-{
-
-   if (bAsc)
-   {
-
-      sort::QuickSortAsc(*this);
-
-   }
-   else
-   {
-
-      sort::QuickSortDesc(*this);
-
-   }
-
-}
-
-
-using int2a = array < int_array >;
+//template < typename TYPE, ::enum_type m_etypeContainer >
+//void numeric_array < TYPE, m_etypeContainer >::sort(bool bAsc)
+//{
+//
+//   if (bAsc)
+//   {
+//
+//      sort::QuickSortAsc(*this);
+//
+//   }
+//   else
+//   {
+//
+//      sort::QuickSortDesc(*this);
+//
+//   }
+//
+//}
 
 
-using float2a = array < float_array >;
+// using i32_2a = array < i32_array >;
 
 
-using double2a = array < double_array >;
+// using f32_2a = array < f32_array >;
+
+
+// using f64_2a = array < f64_array >;
 
 
 

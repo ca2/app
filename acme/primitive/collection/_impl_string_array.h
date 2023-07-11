@@ -300,7 +300,7 @@ void string_array_base < Type, RawType, m_etypeContainer >::_007SetLine(const Ra
    if(iKeyIndex >= 0)
    {
 
-      this->operator[](iKeyIndex) = strNewLine;
+      this->element_at(iKeyIndex) = strNewLine;
 
    }
    else
@@ -326,7 +326,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    }
 
-   strValue = this->operator[](iKeyIndex).substr(strKey.size() + 1);
+   strValue = this->element_at(iKeyIndex).substr(strKey.size() + 1);
 
    return iKeyIndex;
 
@@ -2114,7 +2114,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim_left(const Raw
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim_left(strChars);
+      this->element_at(i).trim_left(strChars);
    }
 }
 
@@ -2124,7 +2124,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim_right(const Ra
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim_right(strChars);
+      this->element_at(i).trim_right(strChars);
    }
 }
 
@@ -2134,7 +2134,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim(const RawType 
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim(strChars);
+      this->element_at(i).trim(strChars);
    }
 }
 
@@ -2145,7 +2145,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim_left()
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim_left();
+      this->element_at(i).trim_left();
    }
 }
 
@@ -2155,7 +2155,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim_right()
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim_right();
+      this->element_at(i).trim_right();
    }
 }
 
@@ -2165,7 +2165,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::trim()
 {
    for(::index i = 0; i < this->size(); i++)
    {
-      this->operator[](i).trim();
+      this->element_at(i).trim();
    }
 }
 
@@ -4535,7 +4535,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 inline void string_array_base < Type, RawType, m_etypeContainer > ::debug_output(::index iStart, ::count inCountLastOut)
 {
 
-::output_debug_string(implode(STR_NEWLINE, iStart, inCountLastOut));
+::information(implode(STR_NEWLINE, iStart, inCountLastOut));
 
 }
 

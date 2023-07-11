@@ -4,6 +4,7 @@
 #include "type.h"
 #include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/time/time/posix_time.h"
 #include "acme/graphics/draw2d/color.h"
 #include "ptr.h"
 #include "acme/memory/memory.h"
@@ -22,7 +23,7 @@ inline payload & copy(payload & payload, const class time & time);
 
 enum para_return
 {
-   e_fail = 0x80000000,
+   e_fail = I32_MINIMUM,
    s_success = 0
 };
 
@@ -59,7 +60,7 @@ public:
       atom                                   m_atom;
       type                                   m_type;
       bool                                   m_b;
-      bool *                                 m_pb;
+      bool * m_pb;
       ::i8                                   m_i8;
       ::u8                                   m_u8;
       ::i16                                  m_i16;
@@ -83,7 +84,7 @@ public:
       ::f64 * m_pf64;
       payload * m_ppayload;
       ::earth::time                          m_earthtime;
-      file_time_t                            m_filetime;
+      file_time                              m_filetime;
       atom * m_patom;
       ::property * m_pproperty;
       //integral_nanosecond                    m_integralnanosecond;
@@ -135,7 +136,7 @@ public:
       ::i64                                  m_all[3];
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;
-      ::function_common* m_pfunctioncommon;
+      ::function_common * m_pfunctioncommon;
 
    };
 
@@ -184,9 +185,9 @@ public:
    payload(const ::color::hls & hls);
    payload(const ::particle & particle);
    payload(const ::file::path & path);
-   payload(const ::string_array & payload);
-   payload(const ::int_array & payload);
-   payload(const ::payload_array & payload);
+   payload(const ::string_array & stra);
+   payload(const ::i32_array & ia);
+   payload(const ::payload_array & payloada);
    payload(const ::property_set & set);
    payload(const ::property & prop);
    payload(const class time & time);
@@ -200,9 +201,11 @@ public:
    template < class T >
    payload(const ::pointer < T > & p)
    {
+
       m_etype = e_type_new;
-      //operator = (p.m_p);
-      _set_element((T*) p.m_p);
+
+      _set_element(p.m_pparticle);
+
    }
 
    template < class T >
@@ -210,7 +213,7 @@ public:
    {
       m_etype = e_type_new;
       //operator = (p.m_p);
-      _set_element((T*) p.m_p);
+      _set_element((T *)p.m_p);
    }
 
    //template < class T >
@@ -256,12 +259,6 @@ public:
    //      operator = (t);
    //   }
 
-
-      //payload(const ::e_status & estatus)
-      //{
-      //   m_etype = e_type_new;
-      //   operator = (estatus.m_estatus);
-      //}
 
    ~payload();
 
@@ -347,7 +344,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
 #define DECL_VAR_ENUM(ENUMTYPE) \
-   inline payload(const ::e_ ## ENUMTYPE & e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
+   inline explicit payload(const ::e_ ## ENUMTYPE & e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
    inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
    inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
    ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
@@ -361,8 +358,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
    template < primitive_enum ENUM >
-   bool operator ==(ENUM e) const 
-   { 
+   bool operator ==(ENUM e) const
+   {
 
       if (m_etype == e_type_atom)
       {
@@ -377,8 +374,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
       }
 
-      return equals_enum(e); 
-   
+      return equals_enum(e);
+
    }
 
 
@@ -434,6 +431,16 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    ::procedure get_procedure() const;
 
 
+   ::posix_time as_posix_time(::i64 iDefault = 0) const
+   {
+
+      return { posix_time_t{}, this->as_i64() };
+
+   }
+
+
+   ::posix_time as_time(const class ::time & timeDefault = {}) const;
+
    ::string as_string(const ::scoped_string & scopedstrOnNull) const;
    ::string as_string() const;
    ::string get_recursive_string() const;
@@ -442,7 +449,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
    ::memory memory() const;
    ::string_array stra() const;
-   ::int_array ia() const;
+   ::i32_array ia() const;
    ::i64_array i64a() const;
    ::payload_array payloada()  const;
    ::property_set propset() const;
@@ -764,7 +771,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    payload & operator = (const ::property & prop);
    payload & operator = (const ::property * pproperty);
    payload & operator = (const ::payload & payload);
-   payload & operator = (const ::int_array & ia);
+   payload & operator = (const ::i32_array & ia);
    payload & operator = (const ::string_array & stra);
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);

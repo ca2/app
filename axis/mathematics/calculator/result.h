@@ -36,7 +36,7 @@ namespace calculator
    };
 
 
-   CLASS_DECL_AXIS double pi();
+   //CLASS_DECL_AXIS double pi();
 
    CLASS_DECL_AXIS result operator + (const result & payload1, const result & payload2);
    CLASS_DECL_AXIS result operator - (const result & payload1, const result & payload2);

@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include <time.h>
+
+
 constexpr struct ::timespec& copy(struct ::timespec& timespec, const class ::time& time)
 {
 

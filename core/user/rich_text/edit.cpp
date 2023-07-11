@@ -200,7 +200,7 @@ namespace user
             if(pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
-               output_debug_string("Window winning focus is own font format tool");
+               information("Window winning focus is own font format tool");
 
                return;
 
@@ -279,7 +279,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rect(::rectangle_i32 * prectangle, index i, enum_element eelement)
+      bool edit::get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement)
 
       {
 
@@ -427,7 +427,7 @@ namespace user
             
             get_parent()->screen_to_client()(rectangleWindow);
 
-            rectangleWindow = rectangleWindow;
+            //rectangleWindow = rectangleWindow;
 
             point += rectangleWindow.top_left();
 
@@ -771,19 +771,19 @@ namespace user
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-         if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
+         if (key.m_nChar < 256 && character_isalpha((char)key.m_nChar))
          {
 
             if (bShift)
             {
 
-               key.m_nChar = toupper((i32)key.m_nChar);
+               key.m_nChar = character_toupper((char)key.m_nChar);
 
             }
             else
             {
 
-               key.m_nChar = tolower((i32)key.m_nChar);
+               key.m_nChar = character_tolower((char)key.m_nChar);
 
             }
 
@@ -849,7 +849,7 @@ namespace user
       }
 
 
-      //void edit::write(::binary_stream < FILE > & stream) const
+      //void edit::write(::binary_stream & stream) const
       //{
 
       //   return ::user::picture::write(stream);
@@ -857,7 +857,7 @@ namespace user
       //}
 
 
-      //void edit::read(::binary_stream < FILE > & stream)
+      //void edit::read(::binary_stream & stream)
       //{
 
       //   return ::user::picture::read(stream);

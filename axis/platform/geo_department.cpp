@@ -208,7 +208,12 @@ namespace geo
 
          string str;
 
-         str = pfile->as_string("https://ca2.software/city-list.json");
+         ::payload payload;
+
+         payload["nocache"] = true;
+         payload["url"] = "https://ca2.software/city-list.json";
+
+         str = pfile->as_string(payload);
 
          if (str.has_char())
          {

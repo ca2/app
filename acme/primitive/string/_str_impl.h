@@ -2,7 +2,7 @@
 
 
 template < primitive_character CHAR_TYPE >
-CLASS_DECL_ACME string_base < const CHAR_TYPE * > str::repeat(const CHAR_TYPE * psz, strsize c)
+string_base < const CHAR_TYPE * > str::repeat(const CHAR_TYPE * psz, strsize c)
 {
 
    auto itemLen = string_safe_length(psz);

@@ -766,6 +766,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    payload & operator = (::payload * pvar);
    payload & operator = (const ::payload * pvar);
    payload & operator = (const ::wide_character * pcsz);
+   payload& operator = (const ::ansi_character* pcsz);
 
    payload & operator = (const ::property & prop);
    payload & operator = (const ::property * pproperty);

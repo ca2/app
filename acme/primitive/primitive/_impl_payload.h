@@ -681,7 +681,7 @@ namespace file
 
       }
 
-      auto range = substr(p);
+      auto range = subrange(p);
 
       p = range.find_skip_or_end('.');
 

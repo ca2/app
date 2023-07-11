@@ -1749,9 +1749,15 @@ namespace user
 
          rectangle = raw_rectangle();
 
-      }
+         raw_to_host()(rectangle);
 
-      client_to_host()(rectangle);
+      }
+      else
+      {
+
+         client_to_host()(rectangle);
+
+      }
 
       bool bNeedsToDraw = pgraphics->user_redraw()->needs_to_draw(rectangle);
 
@@ -21389,6 +21395,22 @@ return strClass;
    {
 
       return (::shift_i32(host_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
+
+   }
+
+
+   ::shift_i32 interaction::host_to_raw(enum_layout elayout)
+   {
+
+      return -raw_to_host(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::raw_to_host(enum_layout elayout)
+   {
+
+      return ::shift_i32(host_origin(elayout));
 
    }
 

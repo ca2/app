@@ -27,7 +27,7 @@ public:
   e_check(::enum_check echeck) : m_echeck(echeck) {}
   e_check(const ::e_check & echeck) : m_echeck(echeck.m_echeck) {}
   e_check(bool b) : m_echeck(b ? ::e_check_checked : e_check_unchecked) {}
-  //e_check(const ::tristate & triestate);
+  //e_check(const ::boolean & triestate);
 
 
   operator ::enum_check & () { return m_echeck; }

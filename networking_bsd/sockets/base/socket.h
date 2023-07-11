@@ -90,7 +90,7 @@ namespace sockets_bsd
       class ::time              m_timeStart; ///< Set by SetTimeout
       class ::time              m_timeMaximum; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
-      //    unsigned long           m_flags; ///< tristate flags, replacing old 'bool' members
+      //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
 #if !defined(BSD_STYLE_SOCKETS)
       manual_reset_event      m_event;

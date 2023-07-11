@@ -1760,7 +1760,7 @@
     <ClInclude Include="primitive\geometry3d\pole.h" />
     <ClInclude Include="primitive\geometry3d\quaternions.h" />
     <ClInclude Include="primitive\geometry3d\_.h" />
-    <ClInclude Include="primitive\logic\tristate.h" />
+    <ClInclude Include="primitive\logic\boolean.h" />
     <ClInclude Include="primitive\mathematics\binary_operation.h" />
     <ClInclude Include="primitive\mathematics\cast.h" />
     <ClInclude Include="primitive\mathematics\classes.h" />

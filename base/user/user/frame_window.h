@@ -35,7 +35,7 @@ namespace user
       pointer_array < ::user::control_bar >      m_controlbara; // array of all control bars that have this interaction_impl as their dock site
 
       //bool                                         m_bAutoWindowFrame;
-      tristate                                  m_bWindowFrame;
+      boolean                                  m_bWindowFrame;
       bool                                         m_bLayered;
       i32                                          m_iFrameData;
       ::atom                                         m_atomHelp;         // xxx mrs

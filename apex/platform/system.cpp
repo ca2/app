@@ -1116,7 +1116,7 @@ pacmedirectory->create("/ca2core");
 
       //estatus = 
 
-      if (acmeapplication()->m_bNetworking || acmeapplication()->m_bNetworking.is_optional())
+      if (acmeapplication()->m_bNetworking || acmeapplication()->m_bNetworking.undefined())
       {
 
          initialize_networking();

@@ -174,7 +174,7 @@ namespace user
       bool                                         m_bModal;
 
       bool                                         m_bNeedRedraw;
-      bool                                         m_bNeedPerformLayout;
+      boolean                                      m_bNeedPerformLayout;
       bool                                         m_bNeedLayout;
       bool                                         m_bReposition;
       bool                                         m_bUpdatingVisual;

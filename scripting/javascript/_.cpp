@@ -2293,7 +2293,7 @@ CScriptVarLink *tinyjs::logic(bool &execute)
       i32 op = l->token;
       l->match(l->token);
       bool shortCircuit = false;
-      bool tristate = false;
+      bool boolean = false;
       // if we have i16-circuit ops, then if we know the outcome
       // we don't bother to execute the other op. Even if not
       // we need to tell mathsOp it's an & or |
@@ -2301,18 +2301,18 @@ CScriptVarLink *tinyjs::logic(bool &execute)
       {
          op = '&';
          shortCircuit = !a->payload->getBool();
-         tristate = true;
+         boolean = true;
       }
       else if (op==LEX_OROR)
       {
          op = '|';
          shortCircuit = a->payload->getBool();
-         tristate = true;
+         boolean = true;
       }
       b = condition(shortCircuit ? noexecute : execute);
       if (execute && !shortCircuit)
       {
-         if (tristate)
+         if (boolean)
          {
             CScriptVar *newa = memory_new CScriptVar(a->payload->getBool());
             CScriptVar *newb = memory_new CScriptVar(b->payload->getBool());

@@ -93,7 +93,7 @@ struct CLASS_DECL_ACME main_struct :
 
    bool                          m_bDataCentralRequired : 1;
 
-   ::tristate                    m_bExperienceMainFrame;
+   ::boolean                    m_bExperienceMainFrame;
 
    ::i32_sz *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;

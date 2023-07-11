@@ -3958,14 +3958,14 @@ namespace apex
                if (bContinue && pinterprocesstask->m_tristateContinue.is_set())
                {
 
-                  bContinue = pinterprocesstask->m_tristateContinue;
+                  bContinue = pinterprocesstask->m_tristateContinue.is_set_true();
 
                }
 
                if (!bHandled && pinterprocesstask->m_tristateHandled.is_set())
                {
 
-                  bHandled = pinterprocesstask->m_tristateHandled.is_true();
+                  bHandled = pinterprocesstask->m_tristateHandled.is_set_true();
 
                }
 
@@ -4011,7 +4011,7 @@ namespace apex
                if (!bHandled)
                {
 
-                  bHandled = ptask->m_tristateHandled.is_true();
+                  bHandled = ptask->m_tristateHandled.is_set_true();
 
                   //if (bHandled)
                   //{
@@ -5472,8 +5472,8 @@ namespace apex
       if (!is_service())
       {
 
-         if ((m_bConsole && m_bCreateAppShorcut.is_true())
-            || (!m_bConsole && m_bCreateAppShorcut.is_true_or_not_set()))
+         if ((m_bConsole && m_bCreateAppShorcut.is_set_true())
+            || (!m_bConsole && m_bCreateAppShorcut.is_true_or_undefined()))
          {
 
             on_create_app_shortcut();

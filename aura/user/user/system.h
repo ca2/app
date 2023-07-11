@@ -43,7 +43,7 @@ namespace user
       ::pointer<::request>                      m_prequest;
       ::pointer<::windowing::window>            m_pwindow;
 
-      tristate                                  m_bWindowFrame;
+      boolean                                  m_bWindowFrame;
       ::type                                    m_typeNewImpact;
       ::pointer<::object>                       m_pdocumentCurrent;
       ::pointer<::user::primitive>              m_puserprimitiveNew;

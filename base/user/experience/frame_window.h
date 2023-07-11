@@ -26,7 +26,7 @@ namespace experience
       bool                                         m_bFullScreenCtrl;
 
 
-      ::tristate                                   m_bitMinimizeToTray;
+      ::boolean                                   m_bitMinimizeToTray;
       bool                                         m_bFullScreenOnMaximize;
       
       ::u32                                        m_uiSWPFlags;

@@ -6246,6 +6246,13 @@ return strClass;
    void interaction::on_message_create(::message::message *pmessage)
    {
 
+      if (::is_null(get_parent()))
+      {
+
+         m_bNeedPerformLayout();
+
+      }
+
       if (pmessage->previous())
       {
 
@@ -10291,7 +10298,8 @@ return strClass;
       // to the current e_display (Currently this means that e_display_broad,
       // e_display_compact and e_display_normal are considered the same
       // and not saved as previous state of such equivalent e_displays)
-      if (!::is_same_in_equivalence_sink(edisplayPrevious, edisplayLading))
+      if (!::is_same_in_equivalence_sink(edisplayPrevious, edisplayLading)
+         && ::is_screen_visible(edisplayPrevious))
       {
 
          set_window_previous_display(edisplayPrevious);

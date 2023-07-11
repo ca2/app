@@ -1606,7 +1606,7 @@ namespace dynamic_source
 
       auto pfile = pcontext->m_papexcontext->file()->get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
 
-      if (!pfile || ::failed(pfile->m_estatus))
+      if (!pfile || pfile->m_estatus.failed())
       {
 
          return false;

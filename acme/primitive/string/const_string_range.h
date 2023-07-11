@@ -110,6 +110,17 @@ public:
       ::_start_count_string_range(psz, start, count)) {}
 
 
+
+   const_string_range subrange(strsize iFirst) const;
+
+   const_string_range subrange(const_iterator p) const { return ::transfer(subrange(p, -1)); }
+   const_string_range subrange(const_iterator p, strsize count) const { return ::transfer(subrange(p - this->begin(), count)); }
+
+   template < primitive_integral START, primitive_integral COUNT >
+   const_string_range subrange(START start, COUNT count) const;
+   template < primitive_integral START >
+   const_string_range subrange(START start, const_iterator p) const { return subrange(start, (p - this->m_begin) - start); }
+
    //auto this_range() const {return *this;}
 
    //auto subrange(strsize start, strsize count) const { auto range = *this; ::_start_count_range(range, start, count); return range; }

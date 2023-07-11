@@ -369,6 +369,7 @@
     <ClInclude Include="database\database\dataset.h" />
     <ClInclude Include="database\database\definition.h" />
     <ClInclude Include="database\database\field_definition.h" />
+    <ClInclude Include="database\database\result_set.h" />
     <ClInclude Include="database\database\template.h" />
     <ClInclude Include="database\database\transaction.h" />
     <ClInclude Include="database\database\_.h" />

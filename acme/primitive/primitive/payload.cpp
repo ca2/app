@@ -1428,6 +1428,15 @@ class ::payload & payload::operator = (const ::wide_character * pcsz)
 
 }
 
+class ::payload& payload::operator = (const ::ansi_character* pcsz)
+{
+
+   set_string(pcsz);
+
+   return *this;
+
+}
+
 
 class ::payload & payload::operator = (const ::property & property)
 {
@@ -7738,6 +7747,7 @@ bool payload::is_numeric() const
 
    case e_type_bool:
    case e_type_pbool:
+   case e_type_key_exists:
       return false;
 
    case e_type_f64:

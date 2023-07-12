@@ -1,7 +1,8 @@
 #include "framework.h"
 //#include "string_array.h"
 //#include "acme/filesystem/filesystem/path.h"
-#include <memory.h>
+//#ifdef
+//#include <memory.h>
 
 
 void string_array_array::add_csv(string str)
@@ -161,7 +162,7 @@ CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array & stra)
    for(int i = 0; i < iCount; i++)
    {
 
-      p[i] = strdup(stra[i].c_str());
+      p[i] = ansi_dup(stra[i].c_str());
 
    }
 

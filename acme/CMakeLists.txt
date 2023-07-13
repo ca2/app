@@ -890,6 +890,10 @@ list(APPEND library_source
    #primitive/time/duration/duration.h
    primitive/time/floating/_.h
    primitive/time/integral/_.h
+   primitive/time/time/posix_time.cpp
+   primitive/time/time/posix_time.h
+   primitive/time/time/time.cpp
+   primitive/time/time/time.h
    primitive/time/_.h
    primitive/time/__string.cpp
    primitive/time/__string.h

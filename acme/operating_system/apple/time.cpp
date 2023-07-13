@@ -50,28 +50,28 @@ struct __mach_timespec
 };
 
 
-static __mach_timespec g_machtimespec;
+//static __mach_timespec g_machtimespec;
+
+//void utc_timespec(timespec * ptimespec)
+//{
+   
+  // g_machtimespec.get(ptimespec);
+
+//}
+
+
+
+
+
+//void utc_timespec(timespec * ptimespec);
+
 
 void utc_timespec(timespec * ptimespec)
 {
    
-   g_machtimespec.get(ptimespec);
-
-}
-
-
-
-
-
-void utc_timespec(timespec * ptimespec);
-
-
-int mach_timespec_get(timespec * ptimespec, int i)
-{
+   __mach_timespec machtimespec;
    
-   utc_timespec(ptimespec);
-   
-   return i;
+   machtimespec.get(ptimespec);
    
 }
 
@@ -96,3 +96,36 @@ int mach_timespec_get(timespec * ptimespec, int i)
 //   return *this;
 //
 //}
+
+
+class ::time & time::Now()
+{
+
+   struct timespec timespec;
+   
+   if (__builtin_available(macOS 10.15, *))
+   {
+      
+      if (timespec_get(&timespec, TIME_UTC) != TIME_UTC)
+      {
+         
+         throw "timespec_get failed!!";
+         
+      }
+      
+   }
+   else
+   {
+      
+      utc_timespec(&timespec);
+
+   }
+   
+   m_iSecond = timespec.tv_sec;
+
+   m_iNanosecond = timespec.tv_nsec;
+
+   return *this;
+
+}
+

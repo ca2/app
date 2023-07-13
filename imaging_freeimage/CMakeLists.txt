@@ -39,12 +39,12 @@ if (NOT ${NO_PRECOMPILED_HEADER})
     target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
-if (NOT ${NO_PRECOMPILED_HEADER})
-
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-
-endif ()
+#if (NOT ${NO_PRECOMPILED_HEADER})
+#
+#    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+#    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+#
+#endif ()
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
@@ -66,13 +66,21 @@ elseif (${FREEBSD})
     #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
     pkg_check_modules(PKGCONFIG freeimage)
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
 
+
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
+
+    message(STATUS "PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")
+    message(STATUS "PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
+    message(STATUS "PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
 
 elseif (${LINUX})
@@ -109,7 +117,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _IMAGING_FREEIMAGE_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _imaging_freeimage_project)
 
 
 

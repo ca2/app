@@ -344,6 +344,9 @@ namespace earth
 } // namespace earth
 
 
+#if !defined(__APPLE__)
+
+
 class ::time & time::Now()
 {
 
@@ -365,33 +368,7 @@ class ::time & time::Now()
 }
 
 
-
-
-
-
-namespace earth
-{
-
-
-   gregorian_time::gregorian_time(const class ::time & time, const class ::time & timeshift)
-   {
-
-      auto timeTotal = time + timeshift;
-
-      time_t t = timeTotal.m_iSecond;
-
-      struct tm tm;
-
-      gmtime_r(&t, &tm);
-
-      copy(this, &tm);
-
-      m_iNanoSecond = timeTotal.m_iNanosecond;
-
-   }
-
-
-} // namespace earth
+#endif
 
 
 

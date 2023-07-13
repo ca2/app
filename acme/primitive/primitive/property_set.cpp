@@ -13,6 +13,8 @@
 
 #if defined(LINUX) || defined(FREEBSD)
 #include <locale.h>
+#elif defined(__APPLE__)
+#include <xlocale.h>
 #endif
 
 #ifdef WINDOWS

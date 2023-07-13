@@ -257,6 +257,9 @@
     <Filter Include="Header Files\operating_system\windows_common\NewFilter1">
       <UniqueIdentifier>{2f349e86-c350-42ea-8476-853aa210299c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\time\time">
+      <UniqueIdentifier>{5da65cd5-e479-4833-a68d-223b0257d317}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -1473,6 +1476,15 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\rectangle_array.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\time\time\time.cpp">
+      <Filter>Source Files\primitive\time\time</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\time\time\posix_time.cpp">
+      <Filter>Source Files\primitive\time\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

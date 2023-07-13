@@ -1721,7 +1721,7 @@
     <ClInclude Include="parallelization\task_keep.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\logic\tristate.h">
+    <ClInclude Include="primitive\logic\boolean.h">
       <Filter>Header Files\primitive\logic</Filter>
     </ClInclude>
     <ClInclude Include="platform\sequencer.h">

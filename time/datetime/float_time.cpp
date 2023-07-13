@@ -1110,10 +1110,10 @@ namespace datetime
 
    float_time WINAPI float_time::GetCurrentTime() RELEASENOTHROW
    {
-        
+
 #ifdef WINDOWS
-        
-        return float_time(::_time64(NULL));
+
+      return float_time(posix_time({ posix_time_t{ }, ::_time64(NULL)}));
         
 #else
         
@@ -1138,7 +1138,8 @@ inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDes
     struct tm ttm;
     
 #ifdef WINDOWS
-    if (_localtime64_s(&ttm, &timeSrc) != 0)
+    auto t = (time_t) timeSrc.m_iSecond;
+    if (_localtime64_s(&ttm, &t) != 0)
     {
         return false;
     }

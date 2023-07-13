@@ -5555,6 +5555,67 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::left_trimmed(const 
 }
 
 
+template < typename ITERATOR_TYPE >
+const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subrange(strsize start) const
+{
+
+   return subrange(start, -1);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < primitive_integral START, primitive_integral COUNT >
+const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subrange(START start, COUNT count) const
+{
+
+   strsize length = this->size();
+
+   if (start < 0)
+   {
+
+      start = 0;
+
+   }
+   else if ((::strsize)start >= length)
+   {
+
+      return {};
+
+   }
+
+   strsize end;
+
+   if (count < 0)
+   {
+
+      end = length + count + 1;
+
+   }
+   else
+   {
+
+      end = start + count;
+
+   }
+
+   if (end > length)
+   {
+
+      end = length;
+
+   }
+
+   if (end <= (::strsize)start)
+   {
+
+      return {};
+
+   }
+
+   return { this->begin() + start, (::strsize)(end - start) };
+
+}
 
 
 template < typename ITERATOR_TYPE >

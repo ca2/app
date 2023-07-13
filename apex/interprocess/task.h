@@ -21,8 +21,8 @@ namespace interprocess
       ::pointer<::interprocess::call>           m_pcall;
       ::payload                                 m_payload;
       ::pointer<manual_reset_event>             m_pevReady;
-      tristate                                  m_tristateContinue;
-      tristate                                  m_tristateHandled;
+      boolean                                  m_tristateContinue;
+      boolean                                  m_tristateHandled;
 
 
       task(::interprocess::call * pcall, const ::atom & idPid, i64 iTask);

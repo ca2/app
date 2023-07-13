@@ -1614,7 +1614,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 
 
 
-//inline e_check::e_check(const ::tristate & triestate)
+//inline e_check::e_check(const ::boolean & triestate)
 //{
 //
 //   if (triestate == e_boolean_undefined)

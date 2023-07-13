@@ -161,13 +161,12 @@ namespace geo
          try
          {
 
-            pfile->erase(pathFolder / "weather.bin");
+            if (pfile->exists(pathFolder / "weather.bin"))
+            {
 
-            m_straCityLo.erase_all();
-            m_straCity.erase_all();
-            m_iaIds.erase_all();
-            m_daLon.erase_all();
-            m_daLat.erase_all();
+               pfile->erase(pathFolder / "weather.bin");
+
+            }
 
          }
          catch (const ::exception & exception)
@@ -187,9 +186,13 @@ namespace geo
 
             psequencer->do_asynchronously();
 
-            psequencer->do_asynchronously();
-
          }
+
+         m_straCityLo.erase_all();
+         m_straCity.erase_all();
+         m_iaIds.erase_all();
+         m_daLon.erase_all();
+         m_daLat.erase_all();
 
       }
 
@@ -205,7 +208,12 @@ namespace geo
 
          string str;
 
-         str = pfile->as_string("https://ca2.software/city-list.json");
+         ::payload payload;
+
+         payload["nocache"] = true;
+         payload["url"] = "https://ca2.software/city-list.json";
+
+         str = pfile->as_string(payload);
 
          if (str.has_char())
          {

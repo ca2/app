@@ -446,27 +446,27 @@ enum enum_thread_context
 enum enum_timer : iptr;
 
 
-enum enum_boolean
-{
-
-
-   // negative state... bad/failure states
-
-   e_boolean_no = -1, // 0xffffffff......
-   e_boolean_false = -1,
-
-   e_boolean_none = 0,
-   e_boolean_empty = 0, // 0x00000000......
-   e_boolean_undefined = 0,
-
-   e_boolean_yes = 1, // <3tbs
-   e_boolean_true = 1, // 0x00000001......
-
-   // positive state... good/success states
-
-   e_boolean_some_yes_some_no = 256,
-
-};
+//enum enum_boolean 
+//{
+//
+//
+//   // negative state... bad/failure states
+//
+//   e_boolean_no = -1, // 0xffffffff......
+//   e_boolean_false = -1,
+//
+//   e_boolean_none = 0,
+//   e_boolean_empty = 0, // 0x00000000......
+//   e_boolean_undefined = 0,
+//
+//   e_boolean_yes = 1, // <3tbs
+//   e_boolean_true = 1, // 0x00000001......
+//
+//   // positive state... good/success states
+//
+//   e_boolean_some_yes_some_no = 256,
+//
+//};
 
 
 enum enum_zorder

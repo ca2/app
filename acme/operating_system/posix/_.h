@@ -4,13 +4,16 @@
 #pragma once
 
 
+class time;
+
+
 CLASS_DECL_ACME void copy(struct timespec * ptimespec, const class ::time * ptime);
 CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespec);
 
 
 
 [[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr = nullptr, c_error_number cerrornumber = {});
-[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, c_error_number cerrornumber = {});
+[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, c_error_number cerrornumber = {});
 
 //CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr = nullptr, int iErrNo = 0);
 //CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, int iErrNo = 0);

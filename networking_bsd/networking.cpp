@@ -44,7 +44,7 @@ bool defer_finalize_operating_system_networking();
 //#include <ctype.h>
 #endif
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(LINUX)
 #include <unistd.h>
 #endif
 

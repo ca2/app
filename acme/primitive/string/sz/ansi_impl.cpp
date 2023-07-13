@@ -163,7 +163,29 @@ CLASS_DECL_ACME ::ansi_character * string_reverse(::ansi_character * psz) noexce
 
    }
 
+#ifdef __GNUC__
+
+   // To avoid GCC's:
+   // /usr/include/x86_64-linux-gnu/bits/string_fortified.h:79:33: warning: argument 1 null where non-null expected
+   // "GCC checks for non null but doesn't check for non null enoughieyr better than MSVC or Apple-CLANG"
+   // gcc (Ubuntu 12.2.0-17ubuntu1) 12.2.0
+   // Copyright (C) 2022 Free Software Foundation, Inc.
+   //      This is free software; see the source for copying conditions.  There is
+   // NO WARranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+   ::string strHolderBackup;
+
+   auto pszHolderBackup = strHolderBackup.get_buffer(strReverse.length());
+
+   strcpy(psz ? psz : pszHolderBackup, strReverse.c_str());
+
+   strHolderBackup.release_buffer();
+
+#else
+
    strcpy(psz, strReverse.c_str());
+
+#endif
 
    return psz;
 

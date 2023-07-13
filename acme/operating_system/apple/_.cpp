@@ -10,6 +10,7 @@
 #include "framework.h"
 
 #include "main.h"
+#include "acme/constant/user.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
@@ -563,5 +564,9 @@ void apple_set_application_delegate(void * pApplication, void * pDelegate)
 }
 
 
-
-
+::user::enum_desktop calculate_edesktop()
+{
+   
+   return ::user::e_desktop_unknown;
+   
+}

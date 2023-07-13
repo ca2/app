@@ -107,6 +107,8 @@ struct CLASS_DECL_ACME posix_time
 
    }
 
+   inline static posix_time now() { return now_t{}; }
+
 };
 
 

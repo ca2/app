@@ -344,7 +344,7 @@ namespace earth
 } // namespace earth
 
 
-
+#if !defined(__APPLE__)
 
 
 class ::time & time::Now()
@@ -368,7 +368,7 @@ class ::time & time::Now()
 }
 
 
-
+#endif
 
 
 

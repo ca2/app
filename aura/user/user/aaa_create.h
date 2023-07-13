@@ -13,7 +13,7 @@ namespace user
 
 
       //bool                           m_bAutoWindowFrame;
-      tristate                          m_bWindowFrame;
+      boolean                          m_bWindowFrame;
       ::type                           m_typeNewImpact;
       //::user::document *             m_pdocumentCurrent;
       ::object *                       m_pdocumentCurrent;

@@ -53,7 +53,7 @@ namespace experience_nanoui
 
          auto pnode = acmenode();
 
-         m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12, e_font_weight_normal);
+         m_pfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
 
       }
 

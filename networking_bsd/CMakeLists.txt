@@ -153,12 +153,7 @@ if (NOT ${NO_PRECOMPILED_HEADER})
     target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
-if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-
-endif ()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -168,9 +163,10 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
-elseif (${LINUX})
+elseif (${LINUX} OR ${FREEBSD})
 
-    if (USE_PKGCONFIG)
+    if (${USE_PKGCONFIG})
+        message(STATUS "networking_bsd USE_PKGCONFIG")
         pkg_check_modules(PKGCONFIG libcrypto libssl)
     endif ()
 
@@ -182,16 +178,18 @@ elseif (${LINUX})
 
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    if(NOT ${FREEBSD})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+    endif()
     #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_CFLAGS ${PKGCONFIG_CFLAGS}")
+    message(STATUS "PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
+    message(STATUS "PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
 endif ()
 
 
@@ -203,4 +201,4 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _NETWORKING_BSD_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _networking_bsd_project)

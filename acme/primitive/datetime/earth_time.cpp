@@ -572,14 +572,14 @@ namespace earth
 
       timeUtc += timeshift.m_iSecond;
 
-   #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+   #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(__APPLE__)
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
-   #if OSBIT == 32
-      const posix_time timet = (const posix_time) timeUtc;
-      struct tm * ptmTemp = gmtime(&timet);
-      #else
+//   #if OSBIT == 32
+  //    const posix_time timet = (const posix_time) timeUtc;
+    //  struct tm * ptmTemp = gmtime(&timet);
+     // #else
       struct tm * ptmTemp = gmtime(&timeUtc);
-      #endif
+      //#endif
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat.c_str(), ptmTemp))
       {
          szBuffer[0] = '\0';
@@ -589,26 +589,26 @@ namespace earth
 
       return str;
 
-   #elif defined(__APPLE__)
-
-   #if __WORDSIZE != 64
-   #pragma error "error: long should 8-::u8 on __APPLE__"
-   #endif
-
-      char * szBuffer = str.get_buffer(maxTimeBufferSize);
-
-      struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
-
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-      str.release_buffer();
-
-      return str;
+//   #elif defined(__APPLE__)
+//
+//   #if __WORDSIZE != 64
+//   #pragma error "error: long should 8-::u8 on __APPLE__"
+//   #endif
+//
+//      char * szBuffer = str.get_buffer(maxTimeBufferSize);
+//
+//      struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
+//
+//      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+//      {
+//
+//         szBuffer[0] = '\0';
+//
+//      }
+//
+//      str.release_buffer();
+//
+//      return str;
 
    #elif _SECURE_TEMPLATE
 

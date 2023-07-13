@@ -769,11 +769,14 @@ public:
    void on_destruct_element(TYPE * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) { ALLOCATOR::destruct(p  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS); }
    void on_copy_element(::index i, const TYPE * p) { ALLOCATOR::copy(&this->m_begin[i], p); }
 
-   inline operator TYPE *() { return this->m_begin; }
-   inline operator const TYPE *() const { return this->m_begin; }
 
-   //inline const TYPE & operator[](::index i) const;
-   //inline TYPE & operator[](::index i);
+   // FISC - Flaw in some compiler
+   //inline operator TYPE *() { return this->m_begin; }
+   //inline operator const TYPE *() const { return this->m_begin; }
+
+
+   inline const TYPE & operator[](::index i) const { return this->m_begin[i]; }
+   inline TYPE & operator[](::index i) { return this->m_begin[i]; }
 
 
    TYPE & insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
@@ -2557,8 +2560,8 @@ inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::elemen
 //   return this->m_begin[i];
 //
 //}
-//
-//
+
+
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 //inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::operator[](::index i)
 //{

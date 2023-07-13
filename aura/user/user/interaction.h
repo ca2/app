@@ -174,7 +174,7 @@ namespace user
       bool                                         m_bModal;
 
       bool                                         m_bNeedRedraw;
-      bool                                         m_bNeedPerformLayout;
+      boolean                                      m_bNeedPerformLayout;
       bool                                         m_bNeedLayout;
       bool                                         m_bReposition;
       bool                                         m_bUpdatingVisual;
@@ -2454,6 +2454,8 @@ namespace user
       virtual ::shift_i32 client_to_parent(enum_layout elayout = e_layout_design);
       virtual ::shift_i32 host_to_client(enum_layout elayout = e_layout_design);
       virtual ::shift_i32 client_to_host(enum_layout elayout = e_layout_design);
+      virtual ::shift_i32 host_to_raw(enum_layout elayout = e_layout_design);
+      virtual ::shift_i32 raw_to_host(enum_layout elayout = e_layout_design);
 
 
       //template < typename GEOMETRY >

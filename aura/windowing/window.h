@@ -43,7 +43,7 @@ namespace windowing
       
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
-      ::pointer < placement_log >               m_pplacementlog;
+      ::pointer < class placement_log >         m_pplacementlog;
 
 
       window();

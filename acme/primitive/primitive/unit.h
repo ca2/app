@@ -194,6 +194,10 @@ inline unit_base < ENUM > operator * (FLOATING f, const unit_base < ENUM > & uni
 
 }
 
+struct pixel_t {};
+
+template < primitive_number NUMBER >
+constexpr auto operator *(NUMBER n, pixel_t) { return unit(n, e_unit_pixel); }
 
 using unit = unit_base < enum_unit >;
 
@@ -211,6 +215,12 @@ constexpr auto operator ""_px(long double d)
    return unit(d, e_unit_pixel);
 
 }
+
+
+struct point_t {};
+
+template < primitive_number NUMBER >
+constexpr auto operator *(NUMBER n, point_t) { return unit(n, e_unit_point); }
 
 
 constexpr auto operator ""_pt(unsigned long long i)

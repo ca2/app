@@ -118,8 +118,6 @@ bool log::get_extended_log()
 bool is_verbose_log()
 {
 
-   //return g_bVerboseLog;
-
-   return ::acme::acme::g_pacme->m_pacmeapplication->m_bVerbose;
+   return ::acme::acme::g_pacme->m_pacmeapplication->m_bVerbose.is_set_true();
 
 }

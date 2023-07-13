@@ -830,7 +830,7 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
    auto papp = get_app();
 
-   if (m_bWindowFrame.is_none())
+   if (m_bWindowFrame.undefined())
    {
 
       auto& bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
@@ -1240,16 +1240,16 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
 
    }
 
-   auto papp = get_app();
+   //auto papp = get_app();
 
-   if (papp->m_bExperienceMainFrame.is_false() && get_parent() == nullptr)
-   {
+   //if (!papp->m_bExperienceMainFrame && get_parent() == nullptr)
+   //{
 
-      auto rectangle = get_host_window()->client_rectangle();
+   //   auto rectangle = get_host_window()->client_rectangle();
 
-      place(rectangle);
+   //   place(rectangle);
 
-   }
+   //}
 
    if (is_frame_experience_enabled())
    {
@@ -2930,7 +2930,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    //}
 
-   m_bitMinimizeToTray.defer(e_boolean_true);
+   m_bitMinimizeToTray.defer(true);
 
       });
 

@@ -190,7 +190,7 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      int iPangoSize = (int) (m_dFontSize * PANGO_SCALE);
+      int iPangoSize = (int) (m_fontsize.f64() * PANGO_SCALE);
 
       if(iPangoSize <= 0)
       {
@@ -222,22 +222,22 @@ namespace draw2d_cairo
 
       }
 
-      pango_font_description_set_family(m_pdesc, m_strFontFamilyName);
+      pango_font_description_set_family(m_pdesc, family_name());
 
       pango_font_description_set_style(m_pdesc, m_bItalic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL);
 
-      pango_font_description_set_weight(m_pdesc, (PangoWeight)m_iFontWeight);
+      pango_font_description_set_weight(m_pdesc, (PangoWeight)m_fontweight.i32());
 
-      if (m_eunitFontSize == ::draw2d::e_unit_pixel)
+      if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         pango_font_description_set_absolute_size(m_pdesc, m_dFontSize * PANGO_SCALE);
+         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.f64() * PANGO_SCALE);
 
       }
       else
       {
 
-         pango_font_description_set_size(m_pdesc, m_dFontSize * PANGO_SCALE);
+         pango_font_description_set_size(m_pdesc, m_fontsize.f64() * PANGO_SCALE);
 
       }
 

@@ -743,7 +743,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 #ifndef APPLEOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
-      return operator=(static_cast<posix_time>(timeSrc));
+      return operator=(posix_time({ posix_time_t{}, timeSrc }));
    }
 #endif
    inline float_time& float_time::operator=(const posix_time& timeSrc) RELEASENOTHROW
@@ -777,7 +777,8 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       struct tm ttm;
 
 #ifdef WINDOWS
-      if (_localtime64_s(&ttm, &timeSrc) != 0)
+      auto t = (time_t) timeSrc.m_iSecond;
+      if (_localtime64_s(&ttm, &t) != 0)
       {
          return false;
       }

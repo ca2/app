@@ -19,7 +19,7 @@
 #include "debug.h"
 
 
-#include "_apple_no_templates.h"
+#include "_apple.h"
 
 
 //string apple_app_module_path();

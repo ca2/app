@@ -3,10 +3,10 @@
 #include "_main_hold_base.h"
 
 
-static tristate g_bEnableAudio;
+static boolean g_bEnableAudio;
 
 
-tristate main_hold_base::is_audio_enabled()
+boolean main_hold_base::is_audio_enabled()
 {
 
    return g_bEnableAudio;

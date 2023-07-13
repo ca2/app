@@ -1749,9 +1749,15 @@ namespace user
 
          rectangle = raw_rectangle();
 
-      }
+         raw_to_host()(rectangle);
 
-      client_to_host()(rectangle);
+      }
+      else
+      {
+
+         client_to_host()(rectangle);
+
+      }
 
       bool bNeedsToDraw = pgraphics->user_redraw()->needs_to_draw(rectangle);
 
@@ -5370,7 +5376,7 @@ return strClass;
          if (strType.contains("control_box_button"))
          {
 
-            information() << "should_perform_layout control_box_button";
+            //information() << "should_perform_layout control_box_button";
 
          }
 
@@ -6245,6 +6251,13 @@ return strClass;
 
    void interaction::on_message_create(::message::message *pmessage)
    {
+
+      if (::is_null(get_parent()))
+      {
+
+         m_bNeedPerformLayout();
+
+      }
 
       if (pmessage->previous())
       {
@@ -10291,7 +10304,8 @@ return strClass;
       // to the current e_display (Currently this means that e_display_broad,
       // e_display_compact and e_display_normal are considered the same
       // and not saved as previous state of such equivalent e_displays)
-      if (!::is_same_in_equivalence_sink(edisplayPrevious, edisplayLading))
+      if (!::is_same_in_equivalence_sink(edisplayPrevious, edisplayLading)
+         && ::is_screen_visible(edisplayPrevious))
       {
 
          set_window_previous_display(edisplayPrevious);
@@ -11403,7 +11417,7 @@ return strClass;
       if (strType.contains("control_box_button"))
       {
 
-         information() << "perform_layout control_box_button";
+         //information() << "perform_layout control_box_button";
 
       }
 
@@ -12914,7 +12928,7 @@ return strClass;
       if (strType.contains("control_box_button"))
       {
 
-         information() << "should_perform_layout control_box_button";
+         //information() << "should_perform_layout control_box_button";
 
       }
 
@@ -20885,9 +20899,9 @@ return strClass;
 
                //information() << "_001OnNcDraw Fill0Rect " << rectangle;
 
-               information() << "set_transparent window_rectangle " << rectangle;
+//dr               information() << "set_transparent window_rectangle " << rectangle;
 
-               information() << "set_transparent clip_box " << prectangleitem->m_item;
+//               information() << "set_transparent clip_box " << prectangleitem->m_item;
 
             }
             else
@@ -21381,6 +21395,22 @@ return strClass;
    {
 
       return (::shift_i32(host_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
+
+   }
+
+
+   ::shift_i32 interaction::host_to_raw(enum_layout elayout)
+   {
+
+      return -raw_to_host(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::raw_to_host(enum_layout elayout)
+   {
+
+      return ::shift_i32(host_origin(elayout));
 
    }
 

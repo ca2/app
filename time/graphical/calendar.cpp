@@ -136,18 +136,18 @@ namespace datetime
                if (pfile->m_strOptions.contains("<monday-first>"))
                {
                   
-                  w = atoi(pdatetime->format("%V",::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
+                  w = { posix_time_t{}, atoi(pdatetime->format("%V",::earth::time(iYear, iMonth, iDay, 0, 0, 0))) };
 
                }
                else
                {
 
-                  w = atoi(pdatetime->format("%U", ::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
+                  w = { posix_time_t{}, atoi(pdatetime->format("%U", ::earth::time(iYear, iMonth, iDay, 0, 0, 0))) };
 
                }
 
                pfile->raw_print("<td>");
-               pfile->raw_print(as_string((int64_t)w));
+               pfile->raw_print(as_string((int64_t)w.m_iSecond));
                pfile->raw_print("</td>");
             }
             for (int32_t iWeekDay = 1; iWeekDay <= 7; iWeekDay++)

@@ -1621,6 +1621,7 @@
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
     <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
     <ClCompile Include="operating_system\shared_posix\time.cpp" />
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp" />
     <ClCompile Include="operating_system\string.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\universal_windows\aura.cpp" />
@@ -1879,6 +1880,8 @@
     <ClCompile Include="primitive\text\text.cpp" />
     <ClCompile Include="primitive\text\translator.cpp" />
     <ClCompile Include="primitive\time\time.cpp" />
+    <ClCompile Include="primitive\time\time\posix_time.cpp" />
+    <ClCompile Include="primitive\time\time\time.cpp" />
     <ClCompile Include="primitive\time\__string.cpp" />
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />

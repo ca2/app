@@ -27,6 +27,8 @@
 #include "acme/user/nano/message_box.h"
 
 
+::user::enum_desktop calculate_edesktop();
+
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
 
@@ -1577,7 +1579,7 @@ namespace acme
    ::user::enum_desktop node::calculate_edesktop()
    {
 
-      return ::user::e_desktop_none;
+      return ::calculate_edesktop();
 
    }
 

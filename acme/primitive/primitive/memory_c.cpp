@@ -2,6 +2,10 @@
 #ifdef WINDOWS
 #include "_c_memory.h"
 #else
+#if defined(FREEBSD)
+#define _POSIX_C_SOURCE 200809L
+#define _ANSI_SOURCE
+#endif
 #include <string.h>
 #endif
 ////#include "acme/exception/exception.h"

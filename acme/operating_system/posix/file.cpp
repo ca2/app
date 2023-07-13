@@ -1150,7 +1150,7 @@ void file_delete(const ::file::path & path)
 }
 
 
-[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, c_error_number cerrornumber)
+[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, c_error_number cerrornumber)
 {
 
    if(cerrornumber.m_iErrorNumber == 0)

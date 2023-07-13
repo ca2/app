@@ -18,6 +18,22 @@ include(source/_.cmake)
 
 
 include(operating_system/_.cmake)
+
+
+if(${PLATFORM_NAME} STREQUAL "freebsd")
+   set(FREEBSD TRUE)
+else()
+   set(FREEBSD FALSE)
+endif()
+
+if(${PLATFORM_NAME} STREQUAL "linux")
+   set(LINUX TRUE)
+else()
+   set(LINUX FALSE)
+   set(DISTRO "(NotApplicable)")
+endif()
+
+
 add_subdirectory(source/app)
 add_subdirectory(operating_system)
 add_subdirectory(port)

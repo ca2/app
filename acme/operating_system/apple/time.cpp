@@ -66,14 +66,12 @@ struct __mach_timespec
 //void utc_timespec(timespec * ptimespec);
 
 
-int mach_timespec_get(timespec * ptimespec, int i)
+void utc_timespec(timespec * ptimespec)
 {
    
    __mach_timespec machtimespec;
    
    machtimespec.get(ptimespec);
-   
-   return i;
    
 }
 
@@ -119,12 +117,7 @@ class ::time & time::Now()
    else
    {
       
-      if (mach_timespec_get(&timespec, TIME_UTC) != TIME_UTC)
-      {
-         
-         throw "mach_timespec_get failed!!";
-         
-      }
+      utc_timespec(&timespec);
 
    }
    

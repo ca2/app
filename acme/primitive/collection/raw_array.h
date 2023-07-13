@@ -151,8 +151,11 @@ public:
    inline raw_array & transfer(raw_array && a);
 
 
-   operator TYPE *() { return this->m_begin;  }
-   operator const TYPE *() const { return this->m_begin; }
+   //operator TYPE *() { return this->m_begin;  }
+   //operator const TYPE *() const { return this->m_begin; }
+   
+   
+   
    operator ::count () const { return this->get_count(); }
 
 

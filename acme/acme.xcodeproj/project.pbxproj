@@ -934,8 +934,6 @@
 		9A68AE2F25114435008DABD2 /* mktime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6292511442F008DABD2 /* mktime.cpp */; };
 		9A68AE3125114435008DABD2 /* datetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A62B2511442F008DABD2 /* datetime.cpp */; };
 		9A68AE3225114435008DABD2 /* date_span.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A62C2511442F008DABD2 /* date_span.h */; };
-		9A68AE3425114435008DABD2 /* zonetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A62E2511442F008DABD2 /* zonetime.cpp */; };
-		9A68AE3525114435008DABD2 /* zonetime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A62F2511442F008DABD2 /* zonetime.h */; };
 		9A68AE3725114435008DABD2 /* earth_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6312511442F008DABD2 /* earth_time.cpp */; };
 		9A68AE3825114435008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6322511442F008DABD2 /* _.h */; };
 		9A68AE3925114435008DABD2 /* type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6342511442F008DABD2 /* type.h */; };
@@ -1462,6 +1460,12 @@
 		9A7F3EE0274D543A00D914CC /* implement_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDD274D543900D914CC /* implement_console.h */; };
 		9A7F3EE1274D543A00D914CC /* implement_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDD274D543900D914CC /* implement_console.h */; };
 		9A7F6051296FBE3600C10EAE /* _initial_concepts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F6050296FBE3600C10EAE /* _initial_concepts.h */; };
+		9A809C882A5F1D8200FCA9FD /* earth_time_shift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A809C852A5F1D8200FCA9FD /* earth_time_shift.cpp */; };
+		9A809C892A5F1D8200FCA9FD /* earth_time_shift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A809C852A5F1D8200FCA9FD /* earth_time_shift.cpp */; };
+		9A809C8A2A5F1D8200FCA9FD /* earth_zone_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A809C862A5F1D8200FCA9FD /* earth_zone_time.cpp */; };
+		9A809C8B2A5F1D8200FCA9FD /* earth_zone_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A809C862A5F1D8200FCA9FD /* earth_zone_time.cpp */; };
+		9A809C8C2A5F1D8200FCA9FD /* earth_zone_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A809C872A5F1D8200FCA9FD /* earth_zone_time.h */; };
+		9A809C8D2A5F1D8200FCA9FD /* earth_zone_time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A809C872A5F1D8200FCA9FD /* earth_zone_time.h */; };
 		9A83A850294D4CC90074C712 /* array_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A84E294D4CC80074C712 /* array_iterator.h */; };
 		9A83A851294D4CC90074C712 /* array_range.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A84F294D4CC80074C712 /* array_range.h */; };
 		9A83A854294D4D220074C712 /* raw_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A852294D4D210074C712 /* raw_array.h */; };
@@ -2337,7 +2341,6 @@
 		9AD6902A251A753A00C0EBD7 /* x_charcategory_names.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7582511442F008DABD2 /* x_charcategory_names.h */; };
 		9AD6902B251A753A00C0EBD7 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6E42511442F008DABD2 /* hash.h */; };
 		9AD6902C251A753A00C0EBD7 /* cmp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5622511442F008DABD2 /* cmp.h */; };
-		9AD69033251A753A00C0EBD7 /* zonetime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A62F2511442F008DABD2 /* zonetime.h */; };
 		9AD69036251A753A00C0EBD7 /* stick.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6612511442F008DABD2 /* stick.h */; };
 		9AD69037251A753A00C0EBD7 /* heap_item_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4D32511442E008DABD2 /* heap_item_array.h */; };
 		9AD6903D251A753A00C0EBD7 /* status.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7862511442F008DABD2 /* status.h */; };
@@ -2463,7 +2466,6 @@
 		9AD691CA251A753A00C0EBD7 /* parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6FD2511442F008DABD2 /* parse.cpp */; };
 		9AD691CD251A753A00C0EBD7 /* from_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6E92511442F008DABD2 /* from_integer.cpp */; };
 		9AD691D1251A753A00C0EBD7 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A4E52511442E008DABD2 /* framework.cpp */; };
-		9AD691E6251A753A00C0EBD7 /* zonetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A62E2511442F008DABD2 /* zonetime.cpp */; };
 		9AD691E7251A753A00C0EBD7 /* earth_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6312511442F008DABD2 /* earth_time.cpp */; };
 		9AD691E8251A753A00C0EBD7 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A72C2511442F008DABD2 /* _.cpp */; };
 		9AD691E9251A753A00C0EBD7 /* to_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A7402511442F008DABD2 /* to_integer.cpp */; };
@@ -3257,8 +3259,6 @@
 		9A68A6292511442F008DABD2 /* mktime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mktime.cpp; sourceTree = "<group>"; };
 		9A68A62B2511442F008DABD2 /* datetime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime.cpp; sourceTree = "<group>"; };
 		9A68A62C2511442F008DABD2 /* date_span.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = date_span.h; sourceTree = "<group>"; };
-		9A68A62E2511442F008DABD2 /* zonetime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zonetime.cpp; sourceTree = "<group>"; };
-		9A68A62F2511442F008DABD2 /* zonetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zonetime.h; sourceTree = "<group>"; };
 		9A68A6312511442F008DABD2 /* earth_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = earth_time.cpp; sourceTree = "<group>"; };
 		9A68A6322511442F008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A68A6342511442F008DABD2 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
@@ -3640,6 +3640,9 @@
 		9A7F3EDB274D543900D914CC /* implement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement.h; sourceTree = "<group>"; };
 		9A7F3EDD274D543900D914CC /* implement_console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement_console.h; sourceTree = "<group>"; };
 		9A7F6050296FBE3600C10EAE /* _initial_concepts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _initial_concepts.h; sourceTree = "<group>"; };
+		9A809C852A5F1D8200FCA9FD /* earth_time_shift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = earth_time_shift.cpp; sourceTree = "<group>"; };
+		9A809C862A5F1D8200FCA9FD /* earth_zone_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = earth_zone_time.cpp; sourceTree = "<group>"; };
+		9A809C872A5F1D8200FCA9FD /* earth_zone_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = earth_zone_time.h; sourceTree = "<group>"; };
 		9A83A84E294D4CC80074C712 /* array_iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array_iterator.h; sourceTree = "<group>"; };
 		9A83A84F294D4CC80074C712 /* array_range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array_range.h; sourceTree = "<group>"; };
 		9A83A852294D4D210074C712 /* raw_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = raw_array.h; sourceTree = "<group>"; };
@@ -5006,9 +5009,12 @@
 				9A5FB43D299EBD0800094E43 /* earth_gregorian_time.cpp */,
 				9A5FB435299EBCF900094E43 /* earth_gregorian_time.h */,
 				9AE6DE472961FC38008A1335 /* earth_time_span.cpp */,
+				9A809C852A5F1D8200FCA9FD /* earth_time_shift.cpp */,
 				9A5FB43B299EBD0300094E43 /* earth_time_shift.h */,
 				9A5FB438299EBCFC00094E43 /* earth_time_span.h */,
 				9A68A6312511442F008DABD2 /* earth_time.cpp */,
+				9A809C862A5F1D8200FCA9FD /* earth_zone_time.cpp */,
+				9A809C872A5F1D8200FCA9FD /* earth_zone_time.h */,
 				9A110F7627CDD4C50081BCCD /* file_time_span.cpp */,
 				9A110F7327CDD4C40081BCCD /* file_time_span.h */,
 				9A110F7527CDD4C50081BCCD /* file_time.cpp */,
@@ -5024,8 +5030,6 @@
 				9A15A54D264B0EC80080670E /* system_time.h */,
 				9A5FB43C299EBD0500094E43 /* earth_time.h */,
 				9A5FB437299EBCFA00094E43 /* time_zone.h */,
-				9A68A62E2511442F008DABD2 /* zonetime.cpp */,
-				9A68A62F2511442F008DABD2 /* zonetime.h */,
 			);
 			path = datetime;
 			sourceTree = "<group>";
@@ -6559,6 +6563,7 @@
 				9A68AF0A25114435008DABD2 /* bstring.h in Headers */,
 				9A0842DE2935EB40009F7FF4 /* particle.h in Headers */,
 				9A0842912935E694009F7FF4 /* __property_set.h in Headers */,
+				9A809C8C2A5F1D8200FCA9FD /* earth_zone_time.h in Headers */,
 				9A15A6BC264B59EF0080670E /* tools.h in Headers */,
 				9A68AF8E25114436008DABD2 /* _text_stream_impl.h in Headers */,
 				9ADD654C26B5CFE700D11298 /* __plex_heap.h in Headers */,
@@ -6787,7 +6792,6 @@
 				9A892E7126CDD00D008D6412 /* acme_file.h in Headers */,
 				9A786250264B90B5003DF8A0 /* mathematics.h in Headers */,
 				9A08421D2935DD6E009F7FF4 /* ansi.h in Headers */,
-				9A68AE3525114435008DABD2 /* zonetime.h in Headers */,
 				9AE6DE5429621577008A1335 /* application_array.h in Headers */,
 				9ADD655426B5CFE700D11298 /* secondary_memory_allocate.h in Headers */,
 				9A15A56B264B0ECB0080670E /* microsecond_sleep.h in Headers */,
@@ -7659,7 +7663,6 @@
 				9AD6902C251A753A00C0EBD7 /* cmp.h in Headers */,
 				9A787B70264BB118003DF8A0 /* department.h in Headers */,
 				9A9AB0A12A2A71E20075A73B /* item.h in Headers */,
-				9AD69033251A753A00C0EBD7 /* zonetime.h in Headers */,
 				9A0841852935C1FD009F7FF4 /* _c_swap.h in Headers */,
 				9A787C9F264C0371003DF8A0 /* work.h in Headers */,
 				9AD69036251A753A00C0EBD7 /* stick.h in Headers */,
@@ -7782,6 +7785,7 @@
 				9A0842D92935EB40009F7FF4 /* read_only_memory.h in Headers */,
 				9AD69088251A753A00C0EBD7 /* memory_map.h in Headers */,
 				9AD6908B251A753A00C0EBD7 /* insert_iterator.h in Headers */,
+				9A809C8D2A5F1D8200FCA9FD /* earth_zone_time.h in Headers */,
 				9A0842EB2935EB40009F7FF4 /* tuple.h in Headers */,
 				9AA8F92A27BA7269008FF9AA /* os_colors.h in Headers */,
 				9A787B63264BB0FD003DF8A0 /* library.h in Headers */,
@@ -8257,7 +8261,6 @@
 				9AA8F8DB27BA7268008FF9AA /* window.cpp in Sources */,
 				9A1625F926EFCCC1003D9CB9 /* streamable_composite.cpp in Sources */,
 				9A922FF127EAC9D400B5A78D /* handler.cpp in Sources */,
-				9A68AE3425114435008DABD2 /* zonetime.cpp in Sources */,
 				9A68AE3725114435008DABD2 /* earth_time.cpp in Sources */,
 				9A9066C52845841F00333D60 /* LaunchServicesWrapper.mm in Sources */,
 				9A0843542936677C009F7FF4 /* tracer.cpp in Sources */,
@@ -8287,6 +8290,7 @@
 				9A68AE3125114435008DABD2 /* datetime.cpp in Sources */,
 				9A68AD8325114434008DABD2 /* debug.cpp in Sources */,
 				9AA801DF27BA72A6008FF9AA /* debug.cpp in Sources */,
+				9A809C882A5F1D8200FCA9FD /* earth_time_shift.cpp in Sources */,
 				9AE6DE482961FC38008A1335 /* earth_time_span.cpp in Sources */,
 				9A68AFB325114436008DABD2 /* circular_buffer.cpp in Sources */,
 				9A08435B2936699B009F7FF4 /* idn.cpp in Sources */,
@@ -8391,6 +8395,7 @@
 				9A0842752935E694009F7FF4 /* __payload_array.cpp in Sources */,
 				9A0842F1293665F3009F7FF4 /* drag_client.cpp in Sources */,
 				9A08431F2936667C009F7FF4 /* synchronizer.cpp in Sources */,
+				9A809C8A2A5F1D8200FCA9FD /* earth_zone_time.cpp in Sources */,
 				9A98149F28E4EA8E001C9855 /* procedure.cpp in Sources */,
 				9A786254264B90B5003DF8A0 /* number.cpp in Sources */,
 				9A68AD6125114434008DABD2 /* build_debug.cpp in Sources */,
@@ -8545,6 +8550,7 @@
 				9AC0190627489356006BEBCC /* implementable.cpp in Sources */,
 				9AD6917D251A753A00C0EBD7 /* cancel.cpp in Sources */,
 				9AA44B9E297BEB7100AA2F92 /* callstack.cpp in Sources */,
+				9A809C892A5F1D8200FCA9FD /* earth_time_shift.cpp in Sources */,
 				9A0843AE29366D3A009F7FF4 /* bad_file_format.cpp in Sources */,
 				9A15A6A7264B59EF0080670E /* message_queue_global.cpp in Sources */,
 				9AD6917F251A753A00C0EBD7 /* allocation.cpp in Sources */,
@@ -8650,7 +8656,6 @@
 				9A5DCE4D271A75CE00C2ED86 /* io.cpp in Sources */,
 				9AA8FD5E27BA729A008FF9AA /* file_lock.cpp in Sources */,
 				9AA8F8EE27BA7268008FF9AA /* device.cpp in Sources */,
-				9AD691E6251A753A00C0EBD7 /* zonetime.cpp in Sources */,
 				9AA8038A27BAD174008FF9AA /* windows_unicode.cpp in Sources */,
 				9AD691E7251A753A00C0EBD7 /* earth_time.cpp in Sources */,
 				9A359B3029A4A324007AAC52 /* file_dialog.cpp in Sources */,
@@ -8684,6 +8689,7 @@
 				9A72EF0F2A3D5C32009743AD /* mouse.cpp in Sources */,
 				9AA8F8E627BA7268008FF9AA /* object.cpp in Sources */,
 				9A72EF002A3D59BD009743AD /* write_text_stream.cpp in Sources */,
+				9A809C8B2A5F1D8200FCA9FD /* earth_zone_time.cpp in Sources */,
 				9AD69201251A753A00C0EBD7 /* hyperlink.cpp in Sources */,
 				9AD69203251A753A00C0EBD7 /* memory_file.cpp in Sources */,
 				9AD69205251A753A00C0EBD7 /* datetime.cpp in Sources */,

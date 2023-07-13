@@ -12,8 +12,14 @@ public:
    using BASE_RANGE = range < TYPE * >;
 
 
-   inline operator TYPE * () { return this->m_begin; }
-   inline operator const TYPE * () const { return this->m_begin; }
+   // FISC - Flaw in some compiler
+
+   //inline operator TYPE * () { return this->m_begin; }
+   //inline operator const TYPE * () const { return this->m_begin; }
+
+   
+   inline TYPE & operator[](::index i) { return this->m_begin[i]; }
+   inline const TYPE & operator [](::index i) const { return this->m_begin[i]; }
 
 
    row(TYPE * pbegin, TYPE * pend):BASE_RANGE(pbegin, pend) {}
@@ -32,14 +38,16 @@ public:
    using row = ::row < TYPE, ARG_TYPE >;
 
 
-protected:
+   // FISC - Flaw in some compiler
 
-
-   using BASE_ARRAY::operator TYPE *;
-   using BASE_ARRAY::operator const TYPE *;
-
-
-public:
+//protected:
+//
+//
+//   using BASE_ARRAY::operator TYPE *;
+//   using BASE_ARRAY::operator const TYPE *;
+//
+//
+//public:
 
 
    ::i64    m_iWidth;

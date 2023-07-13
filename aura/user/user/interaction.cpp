@@ -5376,7 +5376,7 @@ return strClass;
          if (strType.contains("control_box_button"))
          {
 
-            information() << "should_perform_layout control_box_button";
+            //information() << "should_perform_layout control_box_button";
 
          }
 
@@ -11417,7 +11417,7 @@ return strClass;
       if (strType.contains("control_box_button"))
       {
 
-         information() << "perform_layout control_box_button";
+         //information() << "perform_layout control_box_button";
 
       }
 
@@ -12928,7 +12928,7 @@ return strClass;
       if (strType.contains("control_box_button"))
       {
 
-         information() << "should_perform_layout control_box_button";
+         //information() << "should_perform_layout control_box_button";
 
       }
 
@@ -20899,9 +20899,9 @@ return strClass;
 
                //information() << "_001OnNcDraw Fill0Rect " << rectangle;
 
-               information() << "set_transparent window_rectangle " << rectangle;
+//dr               information() << "set_transparent window_rectangle " << rectangle;
 
-               information() << "set_transparent clip_box " << prectangleitem->m_item;
+//               information() << "set_transparent clip_box " << prectangleitem->m_item;
 
             }
             else

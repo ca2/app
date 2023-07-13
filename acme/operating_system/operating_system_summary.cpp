@@ -2,7 +2,7 @@
 // Created by camilo on 07/04/23.
 //
 #include "framework.h"
-#include "distro__release_and_desktop_environment.h"
+#include "operating_system_summary.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
 

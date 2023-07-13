@@ -1,6 +1,8 @@
 #include "framework.h"
 #if defined(LINUX) || defined(FREEBSD)
 #include <malloc.h>
+#elif defined(__APPLE__)
+#include <malloc/malloc.h>
 #endif
 
 

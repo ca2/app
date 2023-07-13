@@ -21,6 +21,9 @@ CLASS_DECL_ACME bool add_matter(::matter * pmatter);
 
 
 #include <locale.h>
+#if defined(__APPLE__)
+#include <xlocale.h>
+#endif
 
 
 #ifdef WINDOWS

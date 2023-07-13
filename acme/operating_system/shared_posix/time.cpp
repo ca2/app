@@ -344,19 +344,19 @@ namespace earth
 } // namespace earth
 
 
-
+#if !defined(__APPLE__)
 
 
 class ::time & time::Now()
 {
 
    struct timespec timespec;
-
+   
    if (timespec_get(&timespec, TIME_UTC) != TIME_UTC)
    {
-
+         
       throw "timespec_get failed!!";
-
+         
    }
 
    m_iSecond = timespec.tv_sec;
@@ -368,7 +368,7 @@ class ::time & time::Now()
 }
 
 
-
+#endif
 
 
 

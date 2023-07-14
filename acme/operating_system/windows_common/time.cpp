@@ -395,6 +395,3 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 //}
 
 
-xxxxxxxx
-
-

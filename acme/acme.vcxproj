@@ -972,6 +972,7 @@
     <ClCompile Include="operating_system\windows_common\process.cpp" />
     <ClCompile Include="operating_system\windows_common\time.cpp" />
     <ClCompile Include="operating_system\windows_common\unicode.cpp" />
+    <ClCompile Include="operating_system\windows_common\user.cpp" />
     <ClCompile Include="operating_system\windows_common\windows_common.cpp" />
     <ClCompile Include="operating_system\winpr_keycode.cpp" />
     <ClCompile Include="operating_system\winpr_scancode.cpp" />

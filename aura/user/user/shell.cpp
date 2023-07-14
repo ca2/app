@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "window_util.h"
+#include "interaction_array.h"
 #include "interaction.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"

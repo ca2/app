@@ -5,12 +5,13 @@
 #include "frame_window.h"
 #include "split_impact.h"
 #include "document.h"
+#include "form_options.h"
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/primitive/data/listener.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
 #include "base/user/menu/menu.h"
@@ -788,7 +789,15 @@ namespace user
    void tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
    
-      if(pimpactdata->m_atom == MENU_IMPACT)
+      if (pimpactdata->m_atom == "form_options")
+      {
+
+         create_impact < form_options >(pimpactdata);
+
+         //pimpactdata->m_eflag += ::user::e_flag_hide_all_others_on_show;
+
+      }
+      else if(pimpactdata->m_atom == MENU_IMPACT)
       {
          
          create_impact_menu(pimpactdata);

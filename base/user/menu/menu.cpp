@@ -1577,7 +1577,7 @@ namespace user
 
       ::pointer<::base::session>psession = get_session();
 
-      auto puser = psession->user();
+      auto puser = psession->baseuser();
 
       auto pinteraction = puser->create_menu_button(pstyle, pitem);
 

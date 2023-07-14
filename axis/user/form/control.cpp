@@ -15,6 +15,7 @@
 #include "axis/platform/application.h"
 #include "axis/platform/session.h"
 #include "axis/platform/system.h"
+#include "axis/user/user/user.h"
 #include "axis/user/user/validate.h"
 
 
@@ -1309,10 +1310,10 @@ namespace user
    }
 
 
-   ::axis::user * form_control::user()
+   ::axis::user * form_control::axisuser()
    {
       
-      return get_session() ? get_session()->user() : nullptr; 
+      return user() ? user()->m_paxisuser : nullptr; 
    
    }
 

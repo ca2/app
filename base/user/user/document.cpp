@@ -13,7 +13,7 @@
 #include "acme/primitive/datetime/datetime.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/wait_cursor.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/platform/system.h"
@@ -123,12 +123,12 @@ namespace user
    }
 
 
-   ::base::user* document::user()
+   ::base::user* document::baseuser()
    {
 
       auto psession = get_session();
 
-      return ::is_set(psession) ? psession->user() : nullptr;
+      return ::is_set(psession) ? psession->baseuser() : nullptr;
 
    }
 

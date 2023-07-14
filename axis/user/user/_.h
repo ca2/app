@@ -14,6 +14,9 @@ namespace user
    class step_slider;
 
 
+   class line_layout;
+
+
 } // namespace user
 
 

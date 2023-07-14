@@ -71,7 +71,7 @@ namespace account
    }
 
 
-   void credentials::initialize_account_credentials(user * puser, storage * pstorage) 
+   void credentials::initialize_account_credentials(::account::user * puser, storage * pstorage) 
    {
 
       initialize_account_storage_client(pstorage);
@@ -370,7 +370,7 @@ namespace account
 
       }
 
-      user userPrevious;
+      ::account::user userPrevious;
 
       userPrevious.initialize(this);
 

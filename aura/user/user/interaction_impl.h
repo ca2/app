@@ -2,7 +2,7 @@
 
 
 #include "primitive_impl.h"
-#include "window_util.h"
+#include "interaction_array.h"
 #include "interaction.h"
 #include "redraw.h"
 #include "acme/primitive/collection/list.h"

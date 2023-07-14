@@ -117,7 +117,7 @@ namespace filemanager
 
       m_iAnimate = 0;
 
-      auto puser = user();
+      auto puser = baseuser();
 
       __construct(m_pimagelist, puser->shell()->GetImageList(16));
 
@@ -537,7 +537,7 @@ namespace filemanager
 
          });
 
-      auto puser = user();
+      auto puser = baseuser();
 
       if (::is_null(m_pimagelist))
       {

@@ -76,8 +76,12 @@ namespace user
    {
 
       auto prequest = pappOnBehalfOf->__create_new< ::request>();
+
+      ::payload payloadOptions;
+
+      payloadOptions["visible"] = bMakeVisible;
       
-      prequest->initialize_create(pappOnBehalfOf->m_strAppId, payloadFile, bMakeVisible, puiParent, eflag, atom);
+      prequest->initialize_create(pappOnBehalfOf->m_strAppId, payloadFile, payloadOptions, puiParent, eflag, atom);
 
       request(prequest);
 

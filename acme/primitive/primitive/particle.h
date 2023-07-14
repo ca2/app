@@ -564,6 +564,13 @@ public:
    virtual ::particle_pointer clone() const;
 
 
+   virtual ::user::user * aurauser();
+   virtual ::axis::user * axisuser();
+   virtual ::base::user * baseuser();
+   virtual ::bred::user * breduser();
+   virtual ::core::user * coreuser();
+
+
 };
 
 //

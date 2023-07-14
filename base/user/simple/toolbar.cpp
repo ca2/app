@@ -724,7 +724,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto psession = acmesession()->m_pbasesession;
 
-   auto puser = psession->user();
+   auto puser = psession->baseuser();
 
    auto pmenucentral = puser->menu();
 

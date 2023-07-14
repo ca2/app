@@ -38,7 +38,7 @@ namespace user
       ::base::application * get_app();
       ::base::session * get_session();
       ::base::system * get_system();
-      ::base::user * user();
+      ::base::user * baseuser();
 
 
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);

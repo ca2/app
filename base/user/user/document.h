@@ -52,7 +52,7 @@ namespace user
       ::base::application * get_app();
       ::base::session * get_session();
       ::base::system * get_system();
-      ::base::user * user();
+      ::base::user * baseuser();
 
 
       ::user::interaction* impact_at(::index iImpact) override;

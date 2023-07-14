@@ -10,7 +10,7 @@
 #include "apex/filesystem/filesystem/file_context.h"
 #include "acme/handler/request.h"
 #include "aura/message/user.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "axis/account/credentials.h"
 #include "base/user/user/tab_pane.h"
 #include "base/user/user/frame_window.h"
@@ -615,7 +615,7 @@ namespace userex
             || pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_no_interaction())
          {
 
-            auto puser = user()->m_pcoreuser;
+            auto puser = coreuser();
 
             m_pformdocumentMenu = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 

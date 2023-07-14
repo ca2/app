@@ -7,7 +7,7 @@
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/shell.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "base/user/user/user.h"
 #include "core/user/user/mesh.h"
 #include "core/platform/session.h"

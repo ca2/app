@@ -757,6 +757,7 @@
     <ClCompile Include="user\user\drawable.cpp" />
     <ClCompile Include="user\user\form.cpp" />
     <ClCompile Include="user\user\form_callback.cpp" />
+    <ClCompile Include="user\user\form_designer.cpp" />
     <ClCompile Include="user\user\frame.cpp" />
     <ClCompile Include="user\user\horizontal_scroll_base.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
@@ -1088,6 +1089,7 @@
     <ClInclude Include="user\user\drawable.h" />
     <ClInclude Include="user\user\form.h" />
     <ClInclude Include="user\user\form_callback.h" />
+    <ClInclude Include="user\user\form_designer.h" />
     <ClInclude Include="user\user\frame.h" />
     <ClInclude Include="user\user\graphics_call.h" />
     <ClInclude Include="user\user\horizontal_scroll_base.h" />
@@ -1139,7 +1141,7 @@
     <ClInclude Include="user\user\visual_state.h" />
     <ClInclude Include="user\user\wait_cursor.h" />
     <ClInclude Include="user\user\windowing.h" />
-    <ClInclude Include="user\user\window_util.h" />
+    <ClInclude Include="user\user\interaction_array.h" />
     <ClInclude Include="user\user\zorder.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_constant.h" />

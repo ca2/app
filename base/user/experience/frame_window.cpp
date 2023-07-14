@@ -352,7 +352,7 @@ namespace experience
 
       auto psession = get_session();
 
-      auto puser = psession->user();
+      auto puser = psession->baseuser();
 
       return puser->experience()->create_experience(this, strExperience);
 
@@ -364,7 +364,7 @@ namespace experience
 
       auto psession = get_session();
 
-      auto puser = psession->user();
+      auto puser = psession->baseuser();
 
       return puser->experience()->experience(this, strExperience);
 
@@ -376,7 +376,7 @@ namespace experience
 
       auto psession = get_session();
 
-      auto puser = psession->user();
+      auto puser = psession->baseuser();
 
       auto pframe = puser->experience()->frame_experience(this, strExperience, strFrame);
 

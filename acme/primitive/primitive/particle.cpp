@@ -1796,6 +1796,46 @@ void particle::set_timeout(const class time & timeTimeout)
 }
 
 
+::user::user * particle::aurauser()
+{
+
+   return ::is_set(acmeapplication()) ? acmeapplication()->aurauser() : nullptr;
+
+}
+
+
+::axis::user * particle::axisuser()
+{
+
+   return ::is_set(acmeapplication()) ? acmeapplication()->axisuser() : nullptr;
+
+}
+
+
+::base::user * particle::baseuser()
+{
+
+   return ::is_set(acmeapplication()) ? acmeapplication()->baseuser() : nullptr;
+
+}
+
+
+::bred::user * particle::breduser()
+{
+
+   return ::is_set(acmeapplication()) ? acmeapplication()->breduser() : nullptr;
+
+}
+
+
+::core::user * particle::coreuser()
+{
+
+   return ::is_set(acmeapplication()) ? acmeapplication()->coreuser() : nullptr;
+
+}
+
+
 void particle::set_generic_object_name(const ::scoped_string & scopedstrName)
 {
 

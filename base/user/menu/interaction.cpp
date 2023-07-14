@@ -262,12 +262,12 @@ namespace user
    }
 
 
-   ::base::user* menu_interaction::user()
+   ::base::user* menu_interaction::baseuser()
    {
 
       auto psession = get_session();
 
-      return ::is_set(psession) ? psession->user() : nullptr;
+      return ::is_set(psession) ? psession->baseuser() : nullptr;
 
    }
 

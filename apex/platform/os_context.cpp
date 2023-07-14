@@ -165,44 +165,44 @@
    }
 
 
-   void os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
+   void os_context::local_machine_set_run(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
+      UNREFERENCED_PARAMETER(pathExecutable);
 
       //return false;
 
    }
 
 
-   void os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
+   void os_context::local_machine_set_run_once(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
-
-      //return false;
-
-   }
-
-   
-   void os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
-   {
-
-      UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
+      UNREFERENCED_PARAMETER(pathExecutable);
 
       //return false;
 
    }
 
    
-   void os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
+   void os_context::current_user_set_run(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
+      UNREFERENCED_PARAMETER(pathExecutable);
+
+      //return false;
+
+   }
+
+   
+   void os_context::current_user_set_run_once(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   {
+
+      UNREFERENCED_PARAMETER(pszKey);
+      UNREFERENCED_PARAMETER(pathExecutable);
 
       //return false;
 
@@ -782,7 +782,7 @@
    }
 
 
-   void os_context::register_user_auto_start(const string & strAppId, const string & strCommand, const string & strArguments, bool bRegister)
+   void os_context::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
    {
 
       throw interface_only();

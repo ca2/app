@@ -2,7 +2,7 @@
 #include "impact_creator.h"
 #include "impact_data.h"
 #include "place_holder.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 
 
 #ifdef LINUX

@@ -21,7 +21,7 @@
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/plain_edit.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "aura/user/menu/command.h"
 #include "aura/user/user/shell.h"
 #include "base/user/menu/menu.h"

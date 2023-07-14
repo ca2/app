@@ -1637,6 +1637,9 @@ namespace bred
 
    class application;
 
+
+   class user;
+
 } // namespace bred
 
 

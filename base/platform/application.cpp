@@ -5,6 +5,8 @@
 #include "acme/filesystem/file/item_array.h"
 #include "acme/handler/request.h"
 #include "aura/user/user/interaction.h"
+#include "axis/user/user/line_layout.h"
+#include "base/user/user/document_manager.h"
 #include "base/user/user/impact_system.h"
 #include "base/user/user/user.h"
 #include "base/user/user/document_manager.h"
@@ -113,7 +115,7 @@ namespace base
       if (psession->m_puser)
       {
 
-         auto puser = psession->user();
+         auto puser = psession->baseuser();
 
          auto pdocumentmanager = puser->document_manager();
 
@@ -206,6 +208,42 @@ namespace base
       return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
 
    }
+
+
+   void application::create_options_form(::user::interaction * pparent)
+   {
+
+      auto playout = create_line_layout(pparent, e_orientation_vertical);
+
+      create_options_header(playout);
+      create_options_body(playout);
+      create_options_footer(playout);
+
+   }
+
+
+   void application::create_options_header(::user::interaction * pparent)
+   {
+
+
+   }
+
+
+   void application::create_options_body(::user::interaction * pparent)
+   {
+
+
+   }
+
+
+   void application::create_options_footer(::user::interaction * pparent)
+   {
+
+
+   }
+
+
+
 
 
 } // namespace base

@@ -1288,7 +1288,7 @@ namespace axis
 //   __namespace_session_factory(session);
 
 
-    ::axis::user * session::user()
+    ::axis::user * session::axisuser()
       {
             
          return ::is_set(m_puser) ? m_puser->m_paxisuser : nullptr; 

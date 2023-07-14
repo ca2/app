@@ -687,6 +687,9 @@
     <ClCompile Include="user\user\redraw.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\form_designer.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -923,7 +926,7 @@
     <ClInclude Include="user\user\wait_cursor.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\window_util.h">
+    <ClInclude Include="user\user\interaction_array.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\windowing.h">
@@ -1725,6 +1728,9 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\aaa_set_need_redraw.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_designer.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>

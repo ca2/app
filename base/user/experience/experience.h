@@ -28,7 +28,7 @@ namespace experience
       ::base::application * get_app();
       ::base::session * get_session();
       ::base::system * get_system();
-      ::base::user * user();
+      ::base::user * baseuser() override;
 
 
       virtual void update();

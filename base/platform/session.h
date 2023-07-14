@@ -27,7 +27,7 @@ namespace base
       virtual void on_instantiate_application(::acme::application* papp) override;
 
 
-      ::base::user* user();
+      ::base::user* baseuser();
 
 
       ::base::system* get_system();

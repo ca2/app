@@ -236,7 +236,7 @@ namespace user
 
          auto psession = get_session();
 
-         auto puser = psession->user();
+         auto puser = psession->baseuser();
 
          if (puser)
          {
@@ -265,7 +265,7 @@ namespace user
 
          auto psession = get_session();
 
-         auto puser = psession->user();
+         auto puser = psession->baseuser();
 
          if (puser)
          {

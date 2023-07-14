@@ -41,7 +41,14 @@ namespace core
       virtual string prepare_impact_options_main_body();
       virtual string prepare_impact_options_footer();
 
+
+      void create_options_footer(::user::interaction * pparent) override;
+
+
       bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, property_set & propertyset) override;
+
+
+      virtual void create_auto_start_option(::user::interaction * pparent);
 
 
    };

@@ -56,12 +56,12 @@ namespace base
    }
 
 
-   ::base::user* style::user()
+   ::base::user* style::baseuser()
    {
 
       auto psession = get_session();
 
-      return ::is_set(psession) ? psession->user() : nullptr;
+      return ::is_set(psession) ? psession->baseuser() : nullptr;
 
    }
 
@@ -71,7 +71,7 @@ namespace base
 
       auto psession = get_session();
       
-      auto puser = psession->user();
+      auto puser = psession->baseuser();
 
       return puser->create_menu_button(pstyle, pitem);
 

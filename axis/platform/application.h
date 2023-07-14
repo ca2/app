@@ -1,8 +1,9 @@
 #pragma once
 
 
-#include "axis/account/interactive.h"
 #include "aura/platform/application.h"
+#include "axis/account/interactive.h"
+#include "axis/user/user/form_designer.h"
 
 
 namespace axis
@@ -22,7 +23,8 @@ namespace axis
 
    class CLASS_DECL_AXIS application :
       virtual public ::aura::application,
-      virtual public ::account::interactive
+      virtual public ::account::interactive,
+      virtual public ::axis::form_designer
    {
    public:
 
@@ -160,6 +162,8 @@ namespace axis
       ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
       ::user::interaction* create_menu_interaction() override;
 //      void handle_url(const ::string & strUrl) override;
+
+      //::user::user * axisuser() override;
 
    };
 

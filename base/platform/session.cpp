@@ -68,7 +68,7 @@ namespace base
    }
 
    
-   ::base::user* session::user()
+   ::base::user* session::baseuser()
    {
       
       return m_puser ? m_puser->m_pbaseuser : nullptr; 

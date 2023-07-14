@@ -30,7 +30,7 @@
 #include "aura/graphics/image/icon.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction_impl.h"
@@ -8415,7 +8415,7 @@ namespace aura
                      os_context()->register_user_auto_start(
                         get_executable_appid(),
                         get_executable_path(),
-                        ": auto_start=1",
+                        "--auto_start=1",
                         pcheck->echeck() == ::e_check_checked);
 
                   }
@@ -9039,6 +9039,52 @@ namespace aura
    }
 
 
+   ::user::user * application::aurauser()
+   {
+
+      return acmesession()->m_paurasession->user();
+
+   }
+
+
+   ::axis::user * application::axisuser()
+   {
+
+      return aurauser()->m_paxisuser;
+
+   }
+
+
+   ::base::user * application::baseuser()
+   {
+
+      return aurauser()->m_pbaseuser;
+
+   }
+
+
+   ::bred::user * application::breduser()
+   {
+
+      return aurauser()->m_pbreduser;
+
+   }
+
+
+   ::core::user * application::coreuser()
+   {
+
+      return aurauser()->m_pcoreuser;
+
+   }
+
+
+   //::core::user * application::coreuser()
+   //{
+
+   //   return user()->m_pcobreuser;
+
+   //}
 
 } // namespace aura
 

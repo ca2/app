@@ -70,7 +70,7 @@ namespace account
    void user_array::_get_user(const ::file::path & pathUrl, bool bInteractive)
    {
 
-      ::pointer<user>puser;
+      ::pointer<::account::user>puser;
 
       auto psystem = acmesystem();
 
@@ -149,7 +149,7 @@ namespace account
    ::pointer<user>user_array::allocate_user()
    {
 
-      return __create < user > ();
+      return __create < ::account::user > ();
 
    }
 

@@ -9,7 +9,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/style.h"
 #include "aura/platform/session.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 
 
 namespace user

@@ -28,6 +28,7 @@ namespace user
       ::core::application* get_app();
       ::core::session* get_session();
       ::core::system* get_system();
+      ::base::user * baseuser() override;
 
 
 //      // void assert_ok() const override;

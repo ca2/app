@@ -705,6 +705,12 @@
     <ClInclude Include="database\database\result_set.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\line_layout.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_designer.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -991,6 +997,12 @@
     </ClCompile>
     <ClCompile Include="mathematics\calculator\error.cpp">
       <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\line_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_designer.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

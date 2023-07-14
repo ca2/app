@@ -710,6 +710,8 @@ namespace core
       ::pointer<::user::plain_edit>create_calculator_plain_edit() override;
 
 
+      
+
    };
 
 

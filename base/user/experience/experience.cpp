@@ -50,12 +50,12 @@ namespace experience
    }
 
 
-   ::base::user * experience::user()
+   ::base::user * experience::baseuser()
    {
 
       auto psession = get_session();
       
-      return ::is_set(psession) ? psession->user() : nullptr; 
+      return ::is_set(psession) ? psession->baseuser() : nullptr; 
    
    }
 

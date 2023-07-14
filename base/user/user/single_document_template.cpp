@@ -93,7 +93,7 @@ namespace user
       if (prequest->m_payloadOptions.has_property("visible"))
       {
 
-         prequest->m_bMakeVisible = prequest->m_payloadOptions.is_true("visible");
+         prequest->m_bMakeVisible = prequest->m_payloadOptions["visible"].is_true();
 
       }
 

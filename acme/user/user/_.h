@@ -16,6 +16,9 @@ namespace user
 {
 
 
+   class user;
+
+
    DECLARE_ENUMERATION(e_state, enum_state);
    CLASS_DECL_ACME string get_wallpaper(::index iIndex);
 

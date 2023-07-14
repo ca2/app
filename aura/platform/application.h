@@ -4,6 +4,7 @@
 #include "context.h"
 #include "aqua/platform/application.h"
 #include "aura/filesystem/filemanager/callback.h"
+#include "aura/user/user/form_designer.h"
 
 
 namespace aura
@@ -13,7 +14,8 @@ namespace aura
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
       virtual public ::aura::context,
-      virtual public ::filemanager::callback
+      virtual public ::filemanager::callback,
+      virtual public ::user::form_designer
    {
    public:
 
@@ -1051,6 +1053,13 @@ namespace aura
 
 
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+
+
+      ::user::user * aurauser() override;
+      ::axis::user * axisuser() override;
+      ::base::user * baseuser() override;
+      ::bred::user * breduser() override;
+      ::core::user * coreuser() override;
 
 
    };

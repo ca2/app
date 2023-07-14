@@ -23,7 +23,7 @@ namespace account
    public:
 
 
-      ::pointer<user>                           m_puser;
+      ::pointer<::account::user>                m_puser;
       interactive *                             m_pinteractive;
       bool                                      m_bInteractive;
       ::e_status                                m_estatusHttp;
@@ -57,7 +57,7 @@ namespace account
       credentials();
       ~credentials() override;
 
-      virtual void initialize_account_credentials(user * puser, storage * pstorage);
+      virtual void initialize_account_credentials(::account::user * puser, storage * pstorage);
       virtual void initialize_account_credentials(const credentials & credentials);
 
       virtual bool is_ok();

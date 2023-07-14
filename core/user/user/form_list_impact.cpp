@@ -57,6 +57,14 @@ namespace user
    }
 
 
+   ::base::user * form_list_impact::baseuser()
+   {
+
+      return ::user::impact::baseuser();
+
+   }
+
+
    void form_list_impact::install_message_routing(::channel * pchannel)
    {
 

@@ -2102,40 +2102,56 @@ bool payload::casts_to(::enum_type etype) const
 bool payload::is_true(bool bDefault) const
 {
 
-   switch (m_etype)
+   if (m_etype == e_type_payload_pointer)
    {
-   case e_type_null:
-      return bDefault;
-   case e_type_empty:
-      return bDefault;
-   case e_type_key_exists:
-      return true;
-   case e_type_string:
-      return !m_str.is_empty() && m_str.case_insensitive_order("no") != 0 && m_str.case_insensitive_order("false") != 0 && m_str.order("0") != 0;
-   case e_type_pstring:
-      return m_pstr && !m_pstr->is_empty() && m_pstr->case_insensitive_order("no") != 0 && m_pstr->case_insensitive_order("false") != 0 && m_pstr->order("0") != 0;
-   case e_type_i32:
-      return m_i32 != 0;
-   case e_type_u32:
-      return m_u32 != 0;
-   case e_type_i64:
-      return m_i64 != 0;
-   case e_type_u64:
-      return m_u64 != 0;
-   case e_type_f64:
-      return m_f64 != 0;
-   case e_type_bool:
-      return m_b;
-   case e_type_payload_pointer:
+
       return m_ppayload->is_true(bDefault);
-   case e_type_property:
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
       return m_pproperty->is_true(bDefault);
-   case e_type_enum_status:
-      return m_estatus.succeeded();
-   case e_type_enum_check:
-      return __bool(m_echeck);
-   default:
-      return bDefault;
+
+   }
+   else
+   {
+      switch (m_etype)
+      {
+      case e_type_null:
+         return bDefault;
+      case e_type_empty:
+         return bDefault;
+      case e_type_key_exists:
+         return true;
+      case e_type_string:
+         return !m_str.is_empty() && m_str.case_insensitive_order("no") != 0 && m_str.case_insensitive_order("false") != 0 && m_str.order("0") != 0;
+      case e_type_pstring:
+         return m_pstr && !m_pstr->is_empty() && m_pstr->case_insensitive_order("no") != 0 && m_pstr->case_insensitive_order("false") != 0 && m_pstr->order("0") != 0;
+      case e_type_i32:
+         return m_i32 != 0;
+      case e_type_u32:
+         return m_u32 != 0;
+      case e_type_i64:
+         return m_i64 != 0;
+      case e_type_u64:
+         return m_u64 != 0;
+      case e_type_f64:
+         return m_f64 != 0;
+      case e_type_bool:
+         return m_b;
+      case e_type_payload_pointer:
+         return m_ppayload->is_true(bDefault);
+      case e_type_property:
+         return m_pproperty->is_true(bDefault);
+      case e_type_enum_status:
+         return m_estatus.succeeded();
+      case e_type_enum_check:
+         return __bool(m_echeck);
+      default:
+         return bDefault;
+      }
+
    }
 
 }

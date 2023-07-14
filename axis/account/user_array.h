@@ -16,8 +16,8 @@ namespace account
    public:
 
 
-      department *               m_paccount;
-      string_map < ::pointer<user >>   m_map;
+      department *                                 m_paccount;
+      string_map < ::pointer<::account::user >>    m_map;
 
 
       user_array();
@@ -27,13 +27,13 @@ namespace account
       virtual void initialize_user_array(department* pdepartment);
 
 
-      virtual ::pointer<user>allocate_user();
+      virtual ::pointer<::account::user>allocate_user();
       
       
       virtual void logout();
 
       
-      virtual user * get_user(const ::file::path & pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+      virtual ::account::user * get_user(const ::file::path & pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 //      virtual user * interactive_get_user(::file::path pathUrl = nullptr);
 //      virtual user * noninteractive_get_user(::file::path pathUrl = nullptr);
       
@@ -54,7 +54,7 @@ namespace account
       
       void cleanup_networking();
       
-      virtual bool authorize_user(user * puser);
+      virtual bool authorize_user(::account::user * puser);
       
 
    };

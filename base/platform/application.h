@@ -1336,6 +1336,12 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
       virtual void on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context) override;
 
 
+      virtual void create_options_form(::user::interaction * pparent);
+      virtual void create_options_header(::user::interaction * pparent);
+      virtual void create_options_body(::user::interaction * pparent);
+      virtual void create_options_footer(::user::interaction * pparent);
+
+
    };
 
 

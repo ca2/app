@@ -16,7 +16,7 @@
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
 #include "aqua/xml/document.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -622,7 +622,7 @@ void simple_frame_window::on_message_destroy(::message::message* pmessage)
 
    auto psession = get_session();
 
-   auto puser = psession->user();
+   auto puser = psession->baseuser();
 
    if (!puser || puser->experience() == nullptr)
    {
@@ -2130,6 +2130,13 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
    //bCreated = 
 
+   if (pusersystem->m_prequest && !pusersystem->m_prequest->m_bMakeVisible)
+   {
+
+      hide();
+
+   }
+
    create_interaction(puiParent, atom());
 
    if (bLoadImplRect)
@@ -3323,7 +3330,7 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
 
          auto psession = get_session();
 
-         auto puser = psession->user();
+         auto puser = psession->baseuser();
 
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
@@ -4207,7 +4214,7 @@ void simple_frame_window::on_select_user_style()
 
          auto psession = get_session();
 
-         auto puser = psession->user();
+         auto puser = psession->baseuser();
 
          auto pstyle = puser->get_user_style(strSchema, get_app());
 

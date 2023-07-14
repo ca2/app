@@ -12,7 +12,7 @@
 #include "acme/platform/system.h"
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "base/platform/session.h"
 #include "base/user/user/place_holder.h"
 #include "base/user/user/user.h"
@@ -793,12 +793,12 @@ namespace user
    }
 
 
-   ::base::user* impact::user()
+   ::base::user* impact::baseuser()
    {
 
       auto psession = get_session();
 
-      return ::is_set(psession) ? psession->user() : nullptr;
+      return ::is_set(psession) ? psession->baseuser() : nullptr;
 
    }
 

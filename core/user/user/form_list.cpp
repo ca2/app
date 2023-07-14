@@ -14,7 +14,7 @@
 #include "axis/user/user/combo_box.h"
 #include "axis/user/user/list_box.h"
 #include "aura/message/user.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "core/platform/session.h"
 
 

@@ -17,7 +17,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/system.h"
-#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction_array.h"
 #include "style.h"
 #include "aura/message/user.h"
 #include "tab_callback.h"

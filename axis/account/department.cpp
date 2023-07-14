@@ -361,7 +361,7 @@ namespace account
    }
 
 
-   void department::on_user_logon(user * puser)
+   void department::on_user_logon(::account::user * puser)
    {
 
       if(::is_null(puser))

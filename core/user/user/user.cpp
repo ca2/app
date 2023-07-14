@@ -10,6 +10,7 @@
 #include "acme/handler/request.h"
 #include "acme/platform/sequencer.h"
 #include "acme/user/nano/nano.h"
+#include "apex/platform/os_context.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/font.h"
@@ -17,7 +18,9 @@
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/progress.h"
 #include "aura/user/user/shell.h"
+#include "aura/user/user/still.h"
 #include "axis/html/html/html.h"
+#include "axis/user/user/line_layout.h"
 #include "base/user/user/picture.h"
 #include "base/user/user/multiple_document_template.h"
 #include "base/user/user/document_manager.h"
@@ -97,27 +100,27 @@
 ////
 //#endif
 
-CLASS_DECL_CORE ::pointer< ::mutex > get_cred_mutex();
+CLASS_DECL_CORE::pointer< ::mutex > get_cred_mutex();
 
 
 namespace core
 {
 
 
-  /* class user_static_factory
-   {
-   public:
+   /* class user_static_factory
+    {
+    public:
 
-      user_static_factory()
-      {
+       user_static_factory()
+       {
 
-         add_factory_item < user, ::user::user >();
+          add_factory_item < user, ::user::user >();
 
-      }
+       }
 
-   };
+    };
 
-   user_static_factory g_userstaticfactory;*/
+    user_static_factory g_userstaticfactory;*/
 
    user::user()
    {
@@ -138,7 +141,7 @@ namespace core
 
 
 
-   ::core::application* user::get_app()
+   ::core::application * user::get_app()
    {
 
       auto pacmeapplication = acmeapplication();
@@ -148,7 +151,7 @@ namespace core
    }
 
 
-   ::core::session* user::get_session()
+   ::core::session * user::get_session()
    {
 
       auto pacmesession = acmesession();
@@ -158,7 +161,7 @@ namespace core
    }
 
 
-   ::core::system* user::get_system()
+   ::core::system * user::get_system()
    {
 
       auto pacmesystem = acmesystem();
@@ -171,7 +174,7 @@ namespace core
    {
 
       //auto estatus =
-      
+
       ::base::user::initialize(pparticle);
 
       //if (!estatus)
@@ -205,8 +208,8 @@ namespace core
 
 
       factory()->add_factory_item < ::simple_toolbar, ::user::toolbar >();
-      
-      
+
+
       factory()->add_factory_item < ::simple_toolbar >();
 
       factory()->add_factory_item <::userex::dialog_frame >();
@@ -276,7 +279,7 @@ namespace core
       factory()->add_factory_item <simple_printer_list_impact >();
 
 
-      
+
       factory()->add_factory_item <::user::show < ::user::plain_edit > >();
       factory()->add_factory_item <::user::show < ::user::tree > >();
       factory()->add_factory_item <::user::show < ::user::list > >();
@@ -315,8 +318,8 @@ namespace core
       add_document_template(m_ptemplateChildForm);
 
       ptemplate = __new(::user::multiple_document_template(
-            "system/form",
-            __type(::user::document),
+         "system/form",
+         __type(::user::document),
          psystem->get_simple_frame_window_type_info(),
          __type(::user::place_holder)));
 
@@ -326,7 +329,7 @@ namespace core
 
       add_document_template(ptemplate);
 
-      auto pmultitemplate = memory_new ::user::multiple_document_template(
+      auto pmultitemplate = memory_new::user::multiple_document_template(
          "main",
          __type(::user::document),
          __type(::userex::dialog_frame),
@@ -337,7 +340,7 @@ namespace core
       add_document_template(pmultitemplate);
 
       //auto estatus = 
-      
+
       initialize_html();
 
       //if (!estatus)
@@ -352,7 +355,7 @@ namespace core
       //}
 
       //estatus = 
-      
+
       __construct(m_phtml);
 
       //if(!estatus)
@@ -364,98 +367,98 @@ namespace core
 
       information("::user::application::initialize");
 
-//      auto pxml = psystem->xml();
-//
-//      auto pdocumentUser = pxml->create_document();
-//
-//      auto pcontext = get_context();
-//
-//      string strUser = pcontext->m_papexcontext->file()->as_string(dir()->appdata() / "langstyle_settings.xml");
-//
-//      string strLangUser;
-//
-//      string strStyleUser;
-//
-//      if (pdocumentUser->load(strUser))
-//      {
-//
-//         if (pdocumentUser->get_child("lang") != nullptr)
-//         {
-//
-//            strLangUser = pdocumentUser->get_child("lang")->get_value();
-//
-//         }
-//
-//         if (pdocumentUser->get_child("style") != nullptr)
-//         {
-//
-//            strStyleUser = pdocumentUser->get_child("style")->get_value();
-//
-//         }
-//
-//      }
+      //      auto pxml = psystem->xml();
+      //
+      //      auto pdocumentUser = pxml->create_document();
+      //
+      //      auto pcontext = get_context();
+      //
+      //      string strUser = pcontext->m_papexcontext->file()->as_string(dir()->appdata() / "langstyle_settings.xml");
+      //
+      //      string strLangUser;
+      //
+      //      string strStyleUser;
+      //
+      //      if (pdocumentUser->load(strUser))
+      //      {
+      //
+      //         if (pdocumentUser->get_child("lang") != nullptr)
+      //         {
+      //
+      //            strLangUser = pdocumentUser->get_child("lang")->get_value();
+      //
+      //         }
+      //
+      //         if (pdocumentUser->get_child("style") != nullptr)
+      //         {
+      //
+      //            strStyleUser = pdocumentUser->get_child("style")->get_value();
+      //
+      //         }
+      //
+      //      }
 
-      //auto papp = get_se();
+            //auto papp = get_se();
 
-      //if (strLangUser.has_char())
-      //{
+            //if (strLangUser.has_char())
+            //{
 
-      //   psession->set_locale(strLangUser, ::e_source_database);
+            //   psession->set_locale(strLangUser, ::e_source_database);
 
-      //}
+            //}
 
-      //if (strStyleUser.has_char())
-      //{
+            //if (strStyleUser.has_char())
+            //{
 
-      //   psession->set_schema(strStyleUser, ::e_source_database);
+            //   psession->set_schema(strStyleUser, ::e_source_database);
 
-      //}
+            //}
 
-      //string strLicense = papp->get_license_id();
+            //string strLicense = papp->get_license_id();
 
 
-      //::payload & varTopicQuey = psystem->m_varTopicQuery;
+            //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-//      bool bHasInstall = psystem->has_property("install");
-//
-//      bool bHasUninstall = psystem->has_property("uninstall");
-//
-//      if (!(bHasInstall || bHasUninstall)
-//            && papp->m_bLicense
-//            && strLicense.has_char())
-//      {
-//
-//         // call application's is_licensed function
-//         // because if delay is needed for authentication -
-//         // or either asking for authentication -
-//         // current application startup won't be
-//         // exited by timeout.
-//
-//         i32 iRetry = 1;
-//
-//retry_license:
-//
-//         iRetry--;
-//
-//         if (!psession->is_licensed(strLicense))
-//         {
-//
-//            //psession->licensing().m_mapInfo.erase_key(strLicense);
-//
-//            if (iRetry > 0)
-//            {
-//
-//               goto retry_license;
-//
-//            }
-//
-//            return false;
-//
-//         }
-//
-//      }
+      //      bool bHasInstall = psystem->has_property("install");
+      //
+      //      bool bHasUninstall = psystem->has_property("uninstall");
+      //
+      //      if (!(bHasInstall || bHasUninstall)
+      //            && papp->m_bLicense
+      //            && strLicense.has_char())
+      //      {
+      //
+      //         // call application's is_licensed function
+      //         // because if delay is needed for authentication -
+      //         // or either asking for authentication -
+      //         // current application startup won't be
+      //         // exited by timeout.
+      //
+      //         i32 iRetry = 1;
+      //
+      //retry_license:
+      //
+      //         iRetry--;
+      //
+      //         if (!psession->is_licensed(strLicense))
+      //         {
+      //
+      //            //psession->licensing().m_mapInfo.erase_key(strLicense);
+      //
+      //            if (iRetry > 0)
+      //            {
+      //
+      //               goto retry_license;
+      //
+      //            }
+      //
+      //            return false;
+      //
+      //         }
+      //
+      //      }
 
-      //set_data_server(papp->dataserver());
+            //set_data_server(papp->dataserver());
 
 
       factory()->add_factory_item <::userex::pane_tab_impact >();
@@ -465,7 +468,7 @@ namespace core
       factory()->add_factory_item <::experience::orto_button >();
 
       //estatus = 
-      
+
       initialize_filemanager_component(this);
 
       //if (!estatus)
@@ -562,10 +565,10 @@ namespace core
       {
 
          psystem = __new(::user::multiple_document_template(
-                        m_ptemplateForm->m_atom,
-                        m_ptemplateForm->m_typeDocument,
-                        m_ptemplateForm->m_typeFrame,
-                        type));
+            m_ptemplateForm->m_atom,
+            m_ptemplateForm->m_typeDocument,
+            m_ptemplateForm->m_typeFrame,
+            type));
 
          m_mapTemplate[type] = psystem;
 
@@ -950,12 +953,12 @@ namespace core
 
          auto psession = get_session();
 
-         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->m_paurasession->savings().m_eresourceflagsShouldSave.m_eenum);
+         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->m_paurasession->savings().m_eresourceflagsShouldSave.m_eenum);
 
       }
 
    }
-   
+
 
    bool user::modal_get_color(::user::interaction * puiOwner, ::color::hls & hls)
    {
@@ -1030,9 +1033,9 @@ namespace core
 
    void user::_001OnFileNew()
    {
-      
+
       auto papp = get_app();
-      
+
       ASSERT(papp->document_manager() != nullptr);
 
       if (papp->document_manager() == nullptr)
@@ -1365,7 +1368,7 @@ namespace core
 
    //}
 
-   
+
    bool is_html_file(string strFilePath)
    {
 
@@ -1534,7 +1537,7 @@ namespace core
    ::pointer<::user::list_header>user::default_create_list_header(::particle * pparticle)
    {
 
-      return ::__id_create < ::user::list_header > (pparticle, default_type_list_header());
+      return ::__id_create < ::user::list_header >(pparticle, default_type_list_header());
 
    }
 
@@ -1542,7 +1545,7 @@ namespace core
    ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
    {
 
-      return ::__id_create < ::user::mesh_data > (pparticle, default_type_list_data());
+      return ::__id_create < ::user::mesh_data >(pparticle, default_type_list_data());
 
    }
 
@@ -1903,7 +1906,7 @@ namespace core
 
 
 
-} //namespace user
+} //namespace core
 
 
 
@@ -2106,10 +2109,10 @@ namespace core
          factory()->add_factory_item <::userex::color_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
-                               "main",
-                               __type(::user::document),
-                               __type(::simple_frame_window),
-                               __type(::userex::color_impact)));
+            "main",
+            __type(::user::document),
+            __type(::simple_frame_window),
+            __type(::userex::color_impact)));
 
          auto psession = get_session();
 
@@ -2135,10 +2138,10 @@ namespace core
          factory()->add_factory_item <::userex::font_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
-                               "main",
-                               __type(::user::document),
-                               __type(::simple_frame_window),
-                               __type(::userex::font_impact)));
+            "main",
+            __type(::user::document),
+            __type(::simple_frame_window),
+            __type(::userex::font_impact)));
 
          auto psession = get_session();
 
@@ -2148,14 +2151,14 @@ namespace core
 
          fork([this]()
          {
-            
-               auto psystem = acmesystem()->m_paurasystem;
 
-               auto pdraw2d = psystem->draw2d();
+            auto psystem = acmesystem()->m_paurasystem;
 
-               auto pfonts = pdraw2d->write_text()->fonts();
+            auto pdraw2d = psystem->draw2d();
 
-               pfonts->enumerate_fonts();
+            auto pfonts = pdraw2d->write_text()->fonts();
+
+            pfonts->enumerate_fonts();
 
          });
 
@@ -2185,7 +2188,7 @@ namespace core
    ::pointer<::user::plain_edit>user::create_calculator_plain_edit()
    {
 
-      return memory_new ::calculator::plain_edit_impact();
+      return memory_new::calculator::plain_edit_impact();
 
    }
 
@@ -2201,9 +2204,9 @@ namespace user
    {
 
       auto pcontext = m_pcontext;
-      
+
       auto psession = pcontext->m_pacmesession->m_paurasession;
-      
+
       auto puser = psession->m_puser->m_pcoreuser;
 
       return puser->default_create_mesh_data(this);
@@ -2215,9 +2218,9 @@ namespace user
    {
 
       auto pcontext = m_pcontext;
-      
+
       auto psession = pcontext->m_pacmesession->m_paurasession;
-      
+
       auto puser = psession->m_puser->m_pcoreuser;
 
       return puser->default_create_list_header(this);
@@ -2229,14 +2232,15 @@ namespace user
    {
 
       auto pcontext = m_pcontext;
-      
+
       auto psession = pcontext->m_pacmesession->m_paurasession;
-      
+
       auto puser = psession->m_puser->m_pcoreuser;
 
       return puser->default_create_list_data(this);
 
    }
+
 
 
 

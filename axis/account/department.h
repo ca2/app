@@ -50,7 +50,7 @@ namespace account
 
       ::file::path system_storage_default_path_prefix();
 
-      virtual user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 //      virtual user * fecth_user(::file::path pathUrl = nullptr, bool bInteractive = true);
       //    virtual user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
@@ -66,7 +66,7 @@ namespace account
 
       virtual bool url_requires_auth(::file::path pathUrl);
 
-      virtual void on_user_logon(user * puser);
+      virtual void on_user_logon(::account::user * puser);
 
 
 

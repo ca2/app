@@ -426,7 +426,7 @@ namespace userex
 
       pinteraction->window_rectangle(rectangleWindow);
 
-      auto puser = user();
+      auto puser = baseuser();
 
       m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::size_i32(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));

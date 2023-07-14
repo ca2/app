@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "window_util.h"
-
+#include "interaction_array.h"
 #include "interaction.h"
 
 

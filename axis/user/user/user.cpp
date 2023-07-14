@@ -2,6 +2,7 @@
 #include "user.h"
 #include "combo_box.h"
 #include "list_box.h"
+#include "line_layout.h"
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/still.h"
@@ -59,6 +60,8 @@ namespace axis
    //   return m_puserstyle;
 
    //}
+
+
 
 
 } // namespace axis

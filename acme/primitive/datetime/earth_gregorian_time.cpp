@@ -120,12 +120,12 @@ namespace earth
    //}
 
 
-   //gregorian_time::gregorian_time(const class ::time & time, const class ::time & timeshift)
-   //{
+   gregorian_time::gregorian_time(const class ::time & time, const class ::time & timeshift)
+   {
 
-   //   set(time, time.m_iNanosecond, timeshift);
+      set(time, time.m_iNanosecond, timeshift);
 
-   //}
+   }
 
 
    void gregorian_time::set(const class ::time & time, const class ::time & timeshift)

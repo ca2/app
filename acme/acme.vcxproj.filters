@@ -4507,6 +4507,10 @@
     <ClCompile Include="operating_system\windows_common\user.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows_common\desktop.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

@@ -403,11 +403,13 @@ namespace user
 
          display(edisplayForRestore);
 
-         auto rectangleWindow = window_rectangle();
+         return true;
 
-         good_restore(nullptr, rectangleWindow, true, e_activation_default, e_zorder_top, edisplayForRestore);
+         //auto rectangleWindow = window_rectangle();
 
-         display(edisplay);
+         //good_restore(nullptr, rectangleWindow, true, e_activation_default, e_zorder_top, edisplayForRestore);
+
+         //display(edisplay);
 
       }
       else if (is_docking_appearance(edisplay)

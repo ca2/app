@@ -41,6 +41,14 @@ namespace user
       void _patch_order(int iOrder) { m_zorder.m_iZOrder = iOrder; }
 
       ::e_activation activation() const { return m_eactivation; }
+      bool has_activation_request() const
+      {
+
+         return m_eactivation != e_activation_default ||
+            m_zorder.is_change_request();
+
+
+      }
       layout_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; return *this; }
       layout_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; return *this; }
 

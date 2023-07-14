@@ -35,30 +35,24 @@ if (NOT ${NO_PRECOMPILED_HEADER})
     target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
-if (NOT ${NO_PRECOMPILED_HEADER})
-
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-
-endif ()
 
 
 set_target_properties(regular_expression_pcre2 PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(regular_expression_pcre2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(regular_expression_pcre2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(regular_expression_pcre2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/regular_expression_pcre2.lib")
-    target_link_options(regular_expression_pcre2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/regular_expression_pcre2.def")
-    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/regular_expression_pcre2.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/regular_expression_pcre2.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
-elseif (${LINUX})
+elseif (${LINUX} OR ${FREEBSD})
 
 
-    #if (USE_PKGCONFIG)
+    if (${USE_PKGCONFIG})
         pkg_check_modules(PKGCONFIG libpcre2-8)
-    #endif ()
+    endif ()
 
     message(STATUS "regular_expression_pcre2")
     message(STATUS "PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")
@@ -79,20 +73,6 @@ elseif (${LINUX})
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-elseif (${FREEBSD})
-
-
-    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
-    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
-    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
-
-    target_compile_options(regular_expression_pcre2 PRIVATE -I/usr/local/include)
-    target_link_options(regular_expression_pcre2 PRIVATE -L/usr/local/lib)
-    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} pcre2-8)
-    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
-
-
 endif ()
 
 
@@ -105,7 +85,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(regular_expression_pcre2 PRIVATE _REGULAR_EXPRESSION_PCRE2_LIBRARY)
+target_compile_definitions(regular_expression_pcre2 PRIVATE _regular_expression_pcre2_project)
 
 
 

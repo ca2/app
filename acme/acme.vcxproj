@@ -959,6 +959,7 @@
     <ClCompile Include="operating_system\windows\user.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
     <ClCompile Include="operating_system\windows_common\Debug.cpp" />
+    <ClCompile Include="operating_system\windows_common\desktop.cpp" />
     <ClCompile Include="operating_system\windows_common\file1.cpp" />
     <ClCompile Include="operating_system\windows_common\find_file.cpp" />
     <ClCompile Include="operating_system\windows_common\handle.cpp" />

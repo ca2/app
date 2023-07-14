@@ -558,6 +558,7 @@ enum enum_activation
    e_activation_under_mouse_cursor = 1 << 3,
    e_activation_on_center_of_screen = 1 << 4,
    e_activation_display_change = 1 << 5,
+   e_activation_set_popup = 1 << 6,
 
 
 };

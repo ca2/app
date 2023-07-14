@@ -800,7 +800,7 @@ namespace user
 
       
       virtual void clear_activation(enum_layout elayout = e_layout_sketch);
-      
+
       virtual void set_display(::e_display edisplay = e_display_default, enum_layout elayout = e_layout_sketch);
       
       virtual void set_layout_state(const layout_state & state, enum_layout elayout = e_layout_sketch);

@@ -57,6 +57,37 @@ public:
       this->bottom = (UNIT_TYPE) t.bottom;
       
    }
+   // template < primitive_rectangle RECTANGLE >
+   // rectangle_type & operator =(const RECTANGLE & rectangle) noexcept
+   // {
+      
+   //    if((void *) this != (void *) &rectangle)
+   //    {
+      
+   //       this->left = (UNIT_TYPE) rectangle.left;
+   //       this->top = (UNIT_TYPE) rectangle.top;
+   //       this->right = (UNIT_TYPE) rectangle.right;
+   //       this->bottom = (UNIT_TYPE) rectangle.bottom;
+      
+   //    }
+      
+   //    return *this;
+      
+   // }
+   
+
+   template < primitive_origin_size ORIGIN_SIZE >
+   rectangle_type(const ORIGIN_SIZE & originsize) noexcept
+   {
+      
+      this->left = (UNIT_TYPE) originsize.origin.x;
+      this->top = (UNIT_TYPE) originsize.origin.y;
+      this->right = (UNIT_TYPE) originsize.origin.x + originsize.size.width;
+      this->bottom = (UNIT_TYPE) originsize.origin.y + originsize.size.height;
+      
+      //return *this;
+      
+   }
 
 
    POINT_TYPE & origin() noexcept { return top_left(); }
@@ -338,37 +369,39 @@ public:
    rectangle_type right_plus_difference(const rectangle_type& rectangle) const { return { this->right, ::minimum(this->top, rectangle.top), rectangle.right, ::maximum(this->bottom, rectangle.bottom) }; }
    rectangle_type bottom_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->bottom, ::maximum(this->right, rectangle.right), rectangle.bottom }; }
 
-   template < primitive_rectangle RECTANGLE >
-   rectangle_type & operator =(const RECTANGLE & rectangle) noexcept
-   {
+   rectangle_type & operator =(const rectangle_type & rectangle) noexcept = default;
+
+   // template < primitive_rectangle RECTANGLE >
+   // rectangle_type & operator =(const RECTANGLE & rectangle) noexcept
+   // {
       
-      if((void *) this != (void *) &rectangle)
-      {
+   //    if((void *) this != (void *) &rectangle)
+   //    {
       
-         this->left = (UNIT_TYPE) rectangle.left;
-         this->top = (UNIT_TYPE) rectangle.top;
-         this->right = (UNIT_TYPE) rectangle.right;
-         this->bottom = (UNIT_TYPE) rectangle.bottom;
+   //       this->left = (UNIT_TYPE) rectangle.left;
+   //       this->top = (UNIT_TYPE) rectangle.top;
+   //       this->right = (UNIT_TYPE) rectangle.right;
+   //       this->bottom = (UNIT_TYPE) rectangle.bottom;
       
-      }
+   //    }
       
-      return *this;
+   //    return *this;
       
-   }
+   // }
    
 
-   template < primitive_origin_size ORIGIN_SIZE >
-   rectangle_type & operator =(const ORIGIN_SIZE & originsize) noexcept
-   {
+   // template < primitive_origin_size ORIGIN_SIZE >
+   // rectangle_type & operator =(const ORIGIN_SIZE & originsize) noexcept
+   // {
       
-      this->left = (UNIT_TYPE) originsize.origin.x;
-      this->top = (UNIT_TYPE) originsize.origin.y;
-      this->right = (UNIT_TYPE) originsize.origin.x + originsize.size.width;
-      this->bottom = (UNIT_TYPE) originsize.origin.y + originsize.size.height;
+   //    this->left = (UNIT_TYPE) originsize.origin.x;
+   //    this->top = (UNIT_TYPE) originsize.origin.y;
+   //    this->right = (UNIT_TYPE) originsize.origin.x + originsize.size.width;
+   //    this->bottom = (UNIT_TYPE) originsize.origin.y + originsize.size.height;
       
-      return *this;
+   //    return *this;
       
-   }
+   // }
 
 
    bool operator==(const rectangle_type & rectangle) const noexcept 

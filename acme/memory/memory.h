@@ -5,7 +5,7 @@
 
 
 template < typename BLOCK_TYPE >
-struct memory_template
+struct raw_block
 {
 
    const BLOCK_TYPE * data() const { return (const BLOCK_TYPE *)this; }
@@ -30,13 +30,16 @@ struct memory_template
 
    inline void reset() { ::zero(data(), size()); }
 
+   bool operator == (const BLOCK_TYPE & rectangle) const {return memory_order(this, &rectangle, sizeof(BLOCK_TYPE)) == 0; }
+
+
 };
 
 
 
 
 
-#define __memory(MEMORY) struct CLASS_DECL_EXPORT MEMORY : public memory_template < MEMORY >
+//#define __memory(MEMORY) struct CLASS_DECL_EXPORT MEMORY : public memory_template < MEMORY >
 
 
 

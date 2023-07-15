@@ -5,22 +5,22 @@
 
 
 
-template < typename BLOCK_TYPE >
-inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block & block)
-{
+// template < typename BLOCK_TYPE >
+// inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block & block)
+// {
 
-   if (block.size() < size())
-   {
+//    if (block.size() < size())
+//    {
 
-      throw_exception(error_bad_argument);
+//       throw_exception(error_bad_argument);
 
-   }
+//    }
 
-   ::memory_copy(data(), block.data(), (size_t)size());
+//    ::memory_copy(data(), block.data(), (size_t)size());
 
-   return *data();
+//    return *data();
 
-}
+// }
 
 
 

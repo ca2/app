@@ -57,7 +57,7 @@ typedef u32              dword_ptr;
 
 
 
-#ifndef __APPLE__
+#if !defined(__APPLE__) && !defined(OPENBSD)
 
 
 #define ssize_t         iptr

@@ -114,8 +114,10 @@ namespace user
    };
 
 
-   __memory(window_rectangle)
+   class CLASS_DECL_AURA window_rectangle :
+      public raw_block < window_rectangle >
    {
+      public:
 
       e_display                  m_edisplayPrevious = e_display_none;
       e_display                  m_edisplayLastNormal = e_display_normal;
@@ -129,9 +131,9 @@ namespace user
       int                        m_iControlBoxRightToLeft = 0;
       index                      m_iWorkspace = 0;
 
-      using memory_template < window_rectangle >::operator=;
-      bool operator == (const window_rectangle & rectangle) const {return memory_order(this, &rectangle, sizeof(window_rectangle)) == 0; }
-      bool operator != (const window_rectangle & rectangle) const {return !operator==(rectangle); }
+      //using memory_template < window_rectangle >::operator=;
+      // bool operator == (const window_rectangle & rectangle) const {return memory_order(this, &rectangle, sizeof(window_rectangle)) == 0; }
+      // bool operator != (const window_rectangle & rectangle) const {return !operator==(rectangle); }
 
    };
 

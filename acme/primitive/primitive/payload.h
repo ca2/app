@@ -226,10 +226,10 @@ public:
    //}
 
    template < typename BLOCK_TYPE >
-   payload(const ::memory_template < BLOCK_TYPE > & memorytemplate)
+   payload(const ::raw_block < BLOCK_TYPE > & rawblock)
    {
       m_etype = e_type_new;
-      operator = (memorytemplate.block());
+      operator = (rawblock.block());
    }
 
    //   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
@@ -857,10 +857,10 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
    template < class T >
-   payload & operator = (const memory_template < T > & memory)
+   payload & operator = (const raw_block < T > & rawblock)
    {
 
-      return this->operator = (memory.block());
+      return this->operator = (rawblock.block());
 
    }
 

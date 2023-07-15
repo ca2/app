@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		07F5B1F8184A3B430092C3E1 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B188184A3B430092C3E1 /* filesystem.h */; };
+		9A0EF1B42A623F9F00067390 /* form_designer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF1B22A623F9D00067390 /* form_designer.h */; };
+		9A0EF1B52A623F9F00067390 /* form_designer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF1B32A623F9E00067390 /* form_designer.cpp */; };
 		9A0F53A128E8D5FA00025231 /* horizontal_scroll_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979D6C28C82ACD0013DC54 /* horizontal_scroll_base.cpp */; };
 		9A0F53A228E8D62800025231 /* drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979D6628C82ACC0013DC54 /* drawable.cpp */; };
 		9A0F53A328E8D67100025231 /* text_composition_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979D7928C82B190013DC54 /* text_composition_client.cpp */; };
@@ -631,6 +633,8 @@
 		07F5B188184A3B430092C3E1 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
 		9A03B7BA2A25B8D700A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A03B7BB2A25B8D700A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A0EF1B22A623F9D00067390 /* form_designer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form_designer.h; sourceTree = "<group>"; };
+		9A0EF1B32A623F9E00067390 /* form_designer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form_designer.cpp; sourceTree = "<group>"; };
 		9A16414A19C4A4CE00966C5E /* base_iosTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "base_iosTests-Info.plist"; sourceTree = "<group>"; };
 		9A16414B19C4A4CE00966C5E /* base_iosTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base_iosTests.m; sourceTree = "<group>"; };
 		9A1E1D5922F0AF69004243B8 /* multiple_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multiple_buffer.cpp; sourceTree = "<group>"; };
@@ -1468,6 +1472,8 @@
 				9A979D6728C82ACC0013DC54 /* drawable.h */,
 				9A922FF427EACA3A00B5A78D /* form_callback.cpp */,
 				9A92302227EACA3B00B5A78D /* form_callback.h */,
+				9A0EF1B32A623F9E00067390 /* form_designer.cpp */,
+				9A0EF1B22A623F9D00067390 /* form_designer.h */,
 				9A922FFA27EACA3A00B5A78D /* form.cpp */,
 				9A92301027EACA3A00B5A78D /* form.h */,
 				9A92300527EACA3A00B5A78D /* frame.cpp */,
@@ -1961,6 +1967,7 @@
 				9ADDBC012A4025DC00C53EEB /* _.h in Headers */,
 				9A2489E12453417F00F23D28 /* timer.h in Headers */,
 				9A92313B27EACF2100B5A78D /* _.h in Headers */,
+				9A0EF1B42A623F9F00067390 /* form_designer.h in Headers */,
 				9A979D9328C82B1C0013DC54 /* text_composition_composite.h in Headers */,
 				9AC2CE4326533BFC00CC8096 /* title.h in Headers */,
 				9A5498672A2C00320052BAB6 /* holdee.h in Headers */,
@@ -2483,6 +2490,7 @@
 				9A3764B42409BF0C002D15D3 /* graphics_extension.cpp in Sources */,
 				9A979D8F28C82B1C0013DC54 /* prodevian.cpp in Sources */,
 				9A3764782409BF0C002D15D3 /* buffered_graphics.cpp in Sources */,
+				9A0EF1B52A623F9F00067390 /* form_designer.cpp in Sources */,
 				9A1E1D7D22F0AF69004243B8 /* double_buffer.cpp in Sources */,
 				9AF8CE4D271B347500BF80B7 /* nano_svg.cpp in Sources */,
 				9A2489E62453417F00F23D28 /* user.cpp in Sources */,

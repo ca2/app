@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A0EF0992A623F3F00067390 /* options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EF0972A623F3F00067390 /* options.cpp */; };
+		9A0EF09A2A623F3F00067390 /* options.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0EF0982A623F3F00067390 /* options.h */; };
 		9A1D5F0F2751B537003D9B5F /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E6B2751A98C003D9B5F /* idpool.cpp */; };
 		9A1D5F112751B537003D9B5F /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5D7C2751A98B003D9B5F /* application.cpp */; };
 		9A1D5F122751B537003D9B5F /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5D782751A98B003D9B5F /* session.cpp */; };
@@ -212,6 +214,8 @@
 /* Begin PBXFileReference section */
 		9A03B7C42A25BA8300A0E33E /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A03B7C52A25BA8300A0E33E /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A0EF0972A623F3F00067390 /* options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = options.cpp; sourceTree = "<group>"; };
+		9A0EF0982A623F3F00067390 /* options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = options.h; sourceTree = "<group>"; };
 		9A1D5D492751A98B003D9B5F /* procedure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A1D5D4A2751A98B003D9B5F /* console.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A1D5D562751A98B003D9B5F /* library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -771,6 +775,8 @@
 				9A979D5328C827660013DC54 /* impact.cpp */,
 				9A979D5428C827660013DC54 /* document.h */,
 				9A979D5528C827660013DC54 /* document.cpp */,
+				9A0EF0972A623F3F00067390 /* options.cpp */,
+				9A0EF0982A623F3F00067390 /* options.h */,
 			);
 			path = form;
 			sourceTree = "<group>";
@@ -834,6 +840,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A92318427EAE4B400B5A78D /* impact_kit.h in Headers */,
+				9A0EF09A2A623F3F00067390 /* options.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,6 +1046,7 @@
 				9A5ECD2628CCC1C00084D354 /* tab_drop_target_window.cpp in Sources */,
 				9A1D5F5E2751B5A9003D9B5F /* _.cpp in Sources */,
 				9A1D5F5F2751B5A9003D9B5F /* framework.cpp in Sources */,
+				9A0EF0992A623F3F00067390 /* options.cpp in Sources */,
 				9A94EBD729E243C300C8C249 /* status_bar.cpp in Sources */,
 				9A1D5F1F2751B58A003D9B5F /* control_bar.cpp in Sources */,
 				9A1D5F212751B58A003D9B5F /* control_property.cpp in Sources */,

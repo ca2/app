@@ -33,7 +33,7 @@ namespace user
 
 
       void clear();
-      void initialize_and_transfer(pointer_array < redraw_item > && redrawitema);
+      void initialize_and_transfer(pointer_array < redraw_item > & redrawitema);
       void set_need_redraw(const ::rectangle_i32 & rectangle);
       void set_need_redraw(const ::rectangle_i32_array & rectanglea);
       bool needs_to_draw(const ::rectangle_i32 & rectangle);

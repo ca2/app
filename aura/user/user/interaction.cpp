@@ -1635,7 +1635,7 @@ namespace user
 
       //   }
 
-      //   information() << acmenode()->get_callstack();
+      // information() << acmenode()->get_callstack();
 
       //}
 
@@ -10113,13 +10113,6 @@ return strClass;
       return pwindow->get_density_for_window();
 
    }
-
-//void interaction::set_need_redraw()
-//{
-
-//   set_need_redraw();
-
-//}
 
 
    bool interaction::check_child_zorder()
@@ -20881,7 +20874,7 @@ return strClass;
 
                iNcDraw0FillCounter++;
 
-               information() << "set_transparent";
+               //information() << "interaction::_001OnNcDraw set_transparent";
 
                pgraphics->payload("set_transparent") = "set_transparent";
 

@@ -15,6 +15,7 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
@@ -4056,6 +4057,8 @@ namespace user
 
       m_redrawitema.add(predrawitem);
 
+      information() << acmenode()->get_callstack();
+
    }
 
 
@@ -5533,7 +5536,14 @@ namespace user
 
          pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
-         pgraphics->user_redraw()->initialize_and_transfer(::transfer(m_redrawitema));
+         pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+
+         if(m_redrawitema.has_element())
+         {
+
+            throw "what?!?!";
+
+         }
 
       }
 

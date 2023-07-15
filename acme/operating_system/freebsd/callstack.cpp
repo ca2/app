@@ -1,6 +1,10 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/callstack.h"
-#include "_freebsd.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/sub_system.h"
+#include "acme/platform/system.h"
+//#include "_freebsd.h"
 #include <execinfo.h>
 #include <cxxabi.h>
 #undef USE_MISC
@@ -17,13 +21,13 @@ string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * 
 
     return _ansi_stack_trace(stack, frames, scopedstrFormat);
 
-}
 //namespace linux
 //{
 //
 //
 //   callstack::callstack()
 //   {
+}
 //
 //   }
 //
@@ -62,4 +66,102 @@ string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * 
 //} // namespace linux
 
 
+
+void freebsd_backtrace_symbol_parse(string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address)
+{
+
+   if(ansi_str(pmessage, "EPT_"))
+   {
+
+      output_debug_string("EPT_");
+
+   }
+
+   char * pszMangledName = nullptr;
+
+   char * pszModuleName = nullptr;
+
+   char * pszOffsetBegin = nullptr;
+
+   char * pszOffsetEnd = nullptr;
+
+   // find parantheses and +address offset surrounding mangled name
+   for (char * psz = pmessage; *psz; ++psz)
+   {
+
+      if (*psz == '<')
+      {
+
+         pszMangledName = psz;
+
+      }
+      else if (*psz == '+')
+      {
+
+         pszOffsetBegin = psz;
+
+      }
+      else if (*psz == '>')
+      {
+
+         pszOffsetEnd = psz;
+
+      }
+      else if (psz[0] == ' ' && psz[1] == 'a' && psz[2] == 't' && psz[3] == ' ')
+      {
+
+         psz+=4;
+
+         pszModuleName = psz;
+
+      }
+
+   }
+
+   if (pszMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
+   {
+
+      *pszMangledName++ = '\0';
+      *pszOffsetBegin++ = '\0';
+      *pszOffsetEnd = '\0';
+
+      strModule = pszModuleName;
+
+      i32 status = 0;
+
+      auto psynchronization = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization();
+
+      synchronous_lock sl(psynchronization);
+
+      try
+      {
+
+         //acme::malloc<char *> pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+
+//         if (status == 0)
+//         {
+//
+//            strSymbolName = (const char *) (char *) pszRealName;
+//
+//         }
+//         else
+         {
+
+            strSymbolName = pszMangledName;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         strSymbolName = pszMangledName;
+
+      }
+
+      strAddress = pszOffsetBegin;
+
+   }
+
+}
 

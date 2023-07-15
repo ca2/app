@@ -2206,84 +2206,87 @@ if (SOLARIS)
 
 endif ()
 
+if (${DARWIN})
+   list(APPEND library_source
+      #operating_system/darwin/callstack.cpp
+      )
+endif()
+
+
 
 if (${FREEBSD})
    list(APPEND library_source
+
+      #operating_system/freebsd/application_system_run.cpp
       #operating_system/freebsd/console.cpp
+      #operating_system/freebsd/console.h
+      #operating_system/freebsd/file.cpp
+      #operating_system/freebsd/file.h
+      #operating_system/freebsd/gdk.cpp
+      #operating_system/freebsd/gdk.h
+      #operating_system/freebsd/list_serial_ports.cpp
+      #operating_system/freebsd/operating_system.cpp
+      #operating_system/freebsd/operating_system.h
+      #operating_system/freebsd/shell.cpp
+      #operating_system/freebsd/shell_freebsd.cpp
+      #operating_system/freebsd/stdio_file.cpp
+      #operating_system/freebsd/stdio_file.h
+      #operating_system/freebsd/user.cpp
+      operating_system/freebsd/
+      operating_system/freebsd/_.cpp
+      operating_system/freebsd/_.cpp
+      operating_system/freebsd/_.h
+      operating_system/freebsd/_.h
+      operating_system/freebsd/_c.h
+      operating_system/freebsd/_factory.cpp
+      operating_system/freebsd/_freebsd.h
+      operating_system/freebsd/_freebsd2.h
+      operating_system/freebsd/_user.h
+      operating_system/freebsd/application.h
+      operating_system/freebsd/callstack.cpp
+      operating_system/freebsd/cross_win_file.cpp
+      operating_system/freebsd/cross_win_file.h
+      operating_system/freebsd/cross_win_gdi.cpp
+      operating_system/freebsd/cross_win_gdi.h
+      operating_system/freebsd/cross_win_gdi_internal.h
+      operating_system/freebsd/debug.cpp
+      operating_system/freebsd/debug.h
       operating_system/freebsd/dumpinit.cpp
       operating_system/freebsd/error.cpp
       operating_system/freebsd/exception.cpp
-      operating_system/freebsd/_factory.cpp
-      #operating_system/freebsd/file.cpp
-      operating_system/freebsd/freebsd.cpp
-      operating_system/freebsd/freebsd2.cpp
-      #operating_system/freebsd/operating_system.cpp
-      #operating_system/freebsd/operating_system.h
-      operating_system/freebsd/root_tools.cpp
-      #operating_system/freebsd/shell.cpp
-      #operating_system/freebsd/shell_freebsd.cpp
-      operating_system/freebsd/system.cpp
-      #operating_system/freebsd/stdio_file.cpp
-      operating_system/freebsd/thread.cpp
-      operating_system/freebsd/trace.cpp
-      operating_system/freebsd/util.cpp
-      #operating_system/freebsd/application_system_run.cpp
-      operating_system/freebsd/_.cpp
-      operating_system/freebsd/callstack.cpp
-      operating_system/freebsd/cross_win_file.cpp
-      operating_system/freebsd/cross_win_gdi.cpp
-      operating_system/freebsd/debug.cpp
       operating_system/freebsd/exception_engine.cpp
+      operating_system/freebsd/exception_engine.h
       operating_system/freebsd/file.cpp
+      operating_system/freebsd/file.h
       operating_system/freebsd/file_lock.cpp
-
-      #operating_system/freebsd/gdk.cpp
-      operating_system/freebsd/graphics.cpp
-      operating_system/freebsd/library.cpp
       operating_system/freebsd/freebsd.cpp
       operating_system/freebsd/freebsd.inl
-      #operating_system/freebsd/list_serial_ports.cpp
-      operating_system/freebsd/parallelization.cpp
-      operating_system/freebsd/_.cpp
+      operating_system/freebsd/freebsd2.cpp
+      operating_system/freebsd/freebsd_freebsd.h
+      operating_system/freebsd/graphics.cpp
+      operating_system/freebsd/internal.h
+      operating_system/freebsd/library.cpp
       operating_system/freebsd/os.cpp
+      operating_system/freebsd/parallelization.cpp
       operating_system/freebsd/process.cpp
+      operating_system/freebsd/process.h
       operating_system/freebsd/process_pid.cpp
+      operating_system/freebsd/root_tools.cpp
+      operating_system/freebsd/root_tools.h
       operating_system/freebsd/simple_app.cpp
       operating_system/freebsd/standard_exception.cpp
       operating_system/freebsd/standard_exception.h
+      operating_system/freebsd/system.cpp
+      operating_system/freebsd/thread.cpp
+      operating_system/freebsd/thread.h
       operating_system/freebsd/time.cpp
-      #operating_system/freebsd/user.cpp
+      operating_system/freebsd/trace.cpp
+      operating_system/freebsd/user.h
+      operating_system/freebsd/user_private.h
+      operating_system/freebsd/util.cpp
       operating_system/freebsd/win_base.cpp
       )
 
-
-   list(APPEND library_source
-      operating_system/freebsd/application.h
-      #operating_system/freebsd/console.h
-      operating_system/freebsd/
-      #operating_system/freebsd/file.h
-      operating_system/freebsd/internal.h
-      operating_system/freebsd/root_tools.h
-      #operating_system/freebsd/stdio_file.h
-      operating_system/freebsd/thread.h
-      operating_system/freebsd/_.h
-      operating_system/freebsd/_freebsd.h
-      operating_system/freebsd/cross_win_file.h
-      operating_system/freebsd/cross_win_gdi.h
-      operating_system/freebsd/cross_win_gdi_internal.h
-      operating_system/freebsd/debug.h
-      operating_system/freebsd/exception_engine.h
-      operating_system/freebsd/file.h
-      #operating_system/freebsd/gdk.h
-      operating_system/freebsd/freebsd_freebsd.h
-      operating_system/freebsd/process.h
-      operating_system/freebsd/user.h
-      operating_system/freebsd/user_private.h
-      operating_system/freebsd/_.h
-      operating_system/freebsd/_c.h
-      operating_system/freebsd/_freebsd.h
-      operating_system/freebsd/_user.h
-      )
 endif ()
 
 

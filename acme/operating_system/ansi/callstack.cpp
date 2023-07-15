@@ -8,8 +8,11 @@
 //
 #include "framework.h"
 #include "callstack.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-
+#include "acme/platform/acme.h"
+#include "acme/platform/sub_system.h"
+#include "acme/platform/system.h"
 #include <execinfo.h>
 #include <cxxabi.h>
 
@@ -17,9 +20,13 @@
 //#define __USE_BFD
 
 
-#ifdef __APPLE__
+#if defined(__APPLE__)
 
 void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address);
+
+#elif defined(FREEBSD)
+
+void freebsd_backtrace_symbol_parse(string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
 
 #else
 
@@ -84,20 +91,30 @@ string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, i
       string strSymbolName;
 
       string strAddress;
-      
-#ifdef __APPLE__
+
+      string strLine;
+
+#if defined(__APPLE__)
       
       apple_backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
-      
+
+      strLine.format("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
+
+#elif defined(FREEBSD)
+
+      string strModule;
+
+      freebsd_backtrace_symbol_parse(strSymbolName, strModule, strAddress, pmessage, ppui[i]);
+
+      strLine.format("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
+
 #else
       
       backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
       
-#endif
-
-      string strLine;
-
       strLine.format("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
+
+#endif
 
       strCallstack += strLine;
 
@@ -122,7 +139,15 @@ namespace acme
    string node::get_callstack(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
-      const int iMaximumFramesToCapture = 100;
+      auto psynchronization = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization();
+
+      synchronous_lock sl(psynchronization);
+
+#if defined(FREEBSD)
+      const int iMaximumFramesToCapture = 32;
+#else
+      const int iMaximumFramesToCapture = 96;
+#endif
 
       void * stack[iMaximumFramesToCapture];
 

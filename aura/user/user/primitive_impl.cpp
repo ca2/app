@@ -2404,12 +2404,12 @@ namespace user
 
       ::pointer<::message::show_window>pshowwindow(pmessage);
 
-      if (m_puserinteraction)
-      {
+      //if (m_puserinteraction)
+      //{
 
-         m_puserinteraction->set_need_redraw();
+      //   m_puserinteraction->set_need_redraw();
 
-      }
+      //}
 
    }
 

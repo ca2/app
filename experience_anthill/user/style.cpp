@@ -1639,7 +1639,7 @@ namespace experience_anthill
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_lading);
 
          ptab->get_data()->m_rectangleTab.left = rectangleClient.left;
          ptab->get_data()->m_rectangleTab.top = rectangleClient.top;
@@ -1670,7 +1670,7 @@ namespace experience_anthill
 
          pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_lading);
 
          int x = rectangleClient.left;
 

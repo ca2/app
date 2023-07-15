@@ -17,7 +17,7 @@ namespace user
    }
 
 
-   void redraw::initialize_and_transfer(pointer_array < ::user::redraw_item > && redrawitema)
+   void redraw::initialize_and_transfer(pointer_array < ::user::redraw_item > & redrawitema)
    {
 
       m_rectangleaNeedRedraw.clear();
@@ -63,6 +63,8 @@ namespace user
          }
 
       }
+
+      redrawitema.clear();
 
    }
 

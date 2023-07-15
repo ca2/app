@@ -379,10 +379,15 @@ list(APPEND library_source
    user/user/form.h
    user/user/form_callback.cpp
    user/user/form_callback.h
+   user/user/form_designer.cpp
+   user/user/form_designer.h
    user/user/frame.cpp
    user/user/frame.h
    user/user/interaction.cpp
    user/user/interaction.h
+   user/user/interaction_array.cpp
+   user/user/interaction_array.h
+   #user/user/window_util.h
    user/user/interaction_child.cpp
    user/user/interaction_child.h
    #use/user//interaction_draw2d.h
@@ -463,8 +468,6 @@ list(APPEND library_source
    user/user/wait_cursor.h
    #user/user/window_map.cpp
    #user/user/window_map.h
-   user/user/window_util.cpp
-   user/user/window_util.h
    user/user/windowing.cpp
    user/user/windowing.h
    user/user/zorder.cpp

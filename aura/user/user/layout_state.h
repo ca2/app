@@ -4,14 +4,12 @@
 
 #include "visual_state.h"
 #include "zorder.h"
-//#include "acme/memory/memory.h"
-
 
 namespace user
 {
 
 
-   class CLASS_DECL_EXPORT layout_state :
+   class CLASS_DECL_AURA layout_state :
       public visual_state
    {
    public:
@@ -110,30 +108,6 @@ namespace user
 
       }
 
-
-   };
-
-
-   class CLASS_DECL_AURA window_rectangle :
-      public raw_block < window_rectangle >
-   {
-      public:
-
-      e_display                  m_edisplayPrevious = e_display_none;
-      e_display                  m_edisplayLastNormal = e_display_normal;
-      e_display                  m_edisplay = e_display_none;
-      e_appearance               m_eappearance = e_appearance_none;
-      rectangle_i32              m_rectangleSnapped = nullptr;
-      rectangle_i32              m_rectangleNormal = nullptr;
-      rectangle_i32              m_rectangleBroad = nullptr;
-      rectangle_i32              m_rectangleCompact = nullptr;
-      rectangle_i32              m_rectangleWindow = nullptr;
-      int                        m_iControlBoxRightToLeft = 0;
-      index                      m_iWorkspace = 0;
-
-      //using memory_template < window_rectangle >::operator=;
-      // bool operator == (const window_rectangle & rectangle) const {return memory_order(this, &rectangle, sizeof(window_rectangle)) == 0; }
-      // bool operator != (const window_rectangle & rectangle) const {return !operator==(rectangle); }
 
    };
 

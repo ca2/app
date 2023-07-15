@@ -28,17 +28,19 @@ public:
 //   template <primitive_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
 //      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
-   point_type(UNIT_TYPE n)
+   template < primitive_number A >
+   point_type(A a)
    {
    
-      this->set_all(n);
+      this->set_all(a);
       
    }
    
-   point_type(NUMBER x, NUMBER y)
+   template < primitive_number X, primitive_number Y >
+   point_type(X x, Y y)
    {
-      this->m_coordinatea[0] = x;
-      this->m_coordinatea[1] = y;
+      this->m_coordinatea[0] = (UNIT_TYPE) x;
+      this->m_coordinatea[1] = (UNIT_TYPE) y;
    }
    
    template < primitive_number NUMBER1 >

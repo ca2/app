@@ -38,18 +38,19 @@ public:
 //         m_coordinatea[i] = (COORDINATE)a[i];
 //   }
    
-   size_type(UNIT_TYPE n)
+   template < primitive_number C >
+   size_type(C c)
    {
    
-      this->set_all(n);
+      this->set_all(c);
       
    }
 
-   
-   size_type(NUMBER x, NUMBER y)
+   template < primitive_number CX, primitive_number CY >
+   size_type(CX cx, CY cy)
    {
-      this->m_coordinatea[0] = x;
-      this->m_coordinatea[1] = y;
+      this->m_coordinatea[0] = (UNIT_TYPE) cx;
+      this->m_coordinatea[1] = (UNIT_TYPE) cy;
    }
    
    template < primitive_number NUMBER1 >

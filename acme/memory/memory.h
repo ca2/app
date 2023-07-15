@@ -4,33 +4,37 @@
 //#include "acme/primitive/primitive/block.h"
 
 
-template < typename BLOCK_TYPE >
+
+
+template < typename RAW_BLOCK >
 struct raw_block
 {
 
-   const BLOCK_TYPE * data() const { return (const BLOCK_TYPE *)this; }
-   BLOCK_TYPE * data() { return (BLOCK_TYPE *)this; }
-   memsize size() const { return (memsize) sizeof(BLOCK_TYPE); }
+   using raw_RAW_BLOCK = RAW_BLOCK;
 
-   BLOCK_TYPE & operator = (const block & block)
+   const RAW_BLOCK * data() const { return (const RAW_BLOCK *)this; }
+   RAW_BLOCK * data() { return (RAW_BLOCK *)this; }
+   memsize size() const { return (memsize) sizeof(RAW_BLOCK); }
+
+   RAW_BLOCK & operator = (const block & block)
    {
 
       if ((const void *) this != (const void *)  & block)
       {
 
-         memcpy(this, block.data(), minimum(sizeof(*this), block.size()));
+         memory_copy(this, block.data(), minimum(sizeof(*this), block.size()));
 
       }
 
-      return (BLOCK_TYPE &) *this;
+      return (RAW_BLOCK &) *this;
 
    }
 
    ::block block() const { return ::block(data(), size()); }
 
-   inline void reset() { ::zero(data(), size()); }
+   inline void clear() { ::zero(data(), size()); }
 
-   bool operator == (const BLOCK_TYPE & rectangle) const {return memory_order(this, &rectangle, sizeof(BLOCK_TYPE)) == 0; }
+   bool operator == (const RAW_BLOCK & rectangle) const {return memory_order(this, &rectangle, sizeof(RAW_BLOCK)) == 0; }
 
 
 };

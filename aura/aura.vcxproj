@@ -761,6 +761,7 @@
     <ClCompile Include="user\user\frame.cpp" />
     <ClCompile Include="user\user\horizontal_scroll_base.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
+    <ClCompile Include="user\user\interaction_array.cpp" />
     <ClCompile Include="user\user\interaction_child.cpp" />
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
@@ -800,7 +801,6 @@
     <ClCompile Include="user\user\visual_state.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />
-    <ClCompile Include="user\user\window_util.cpp" />
     <ClCompile Include="user\user\zorder.cpp" />
     <ClCompile Include="user\user\_.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />

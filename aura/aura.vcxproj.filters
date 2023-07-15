@@ -300,9 +300,6 @@
     <ClCompile Include="user\user\wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\window_util.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\appearance\appearance.cpp">
       <Filter>Source Files\user\apperance</Filter>
     </ClCompile>
@@ -688,6 +685,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\form_designer.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_array.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

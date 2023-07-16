@@ -153,8 +153,8 @@ public:
    ::image_pointer & imageCache);
 
    bool IsVisible();
-   void Validate(const ::rectangle_i32 & rectangle = nullptr);
-   void Invalidate(const ::rectangle_i32 & rectangle = nullptr);
+   void Validate(const ::rectangle_i32 & rectangle = {});
+   void Invalidate(const ::rectangle_i32 & rectangle = {});
    //void AddVmsFont(::write_text::font * pfont);
    //i32 GetVmsFontCount();
    void SetPlacement(const ::rectangle_i32 & rectangle);

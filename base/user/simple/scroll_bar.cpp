@@ -1390,7 +1390,7 @@ public:
 
       //}
 
-      best_monitor(nullptr,nullptr,true);
+      best_monitor(nullptr,{},true);
 
    }
 

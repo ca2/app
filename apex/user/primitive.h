@@ -181,7 +181,7 @@ namespace user
 
       virtual void design_window_minimize(::e_activation eactivation);
       virtual void design_window_maximize();
-      virtual void design_window_full_screen(const ::rectangle_i32 & rectangleHint = nullptr);
+      virtual void design_window_full_screen(const ::rectangle_i32 & rectangleHint = {});
       virtual void design_window_normal(e_display edisplay);
       virtual void design_window_dock(e_display edisplayDock);
 
@@ -381,7 +381,8 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = {
+         }, bool bStretch = true) override;
 
       ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags) override;

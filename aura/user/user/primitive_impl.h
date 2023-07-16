@@ -261,7 +261,7 @@ namespace user
       virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
 
 
-      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
+      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);

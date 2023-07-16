@@ -263,7 +263,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
+         ::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -303,7 +303,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
+         ::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 

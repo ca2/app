@@ -267,8 +267,10 @@ public:
 
       m_begin = range.m_begin;
       m_end = range.m_end;
+      m_erange = range.m_erange;
       range.m_begin = nullptr;
       range.m_end = nullptr;
+      range.m_erange = e_range_none;
 
       return *this;
 

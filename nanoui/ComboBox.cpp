@@ -21,17 +21,27 @@ namespace nanoui
 
 
    ComboBox::ComboBox(Widget* parent)
-      : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0) {
+      : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0) 
+   {
+
    }
+
 
    ComboBox::ComboBox(Widget* parent, const ::string_array& items)
-      : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0) {
+      : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0) 
+   {
+
       set_items(items);
+
    }
 
+
    ComboBox::ComboBox(Widget* parent, const ::string_array& items, const ::string_array& items_short)
-      : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0) {
+      : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0)
+   {
+
       set_items(items, items_short);
+
    }
 
 
@@ -73,7 +83,8 @@ namespace nanoui
       while (m_container->child_count() != 0)
          m_container->erase_child_at(m_container->child_count() - 1);
 
-      if (m_scroll == nullptr && items.size() > 8) {
+      if (m_scroll == nullptr && items.size() > 8) 
+      {
          m_scroll = memory_new VScrollPanel(m_ppopup);
          m_scroll->set_fixed_height(300);
          m_container = memory_new Widget(m_scroll);
@@ -83,18 +94,37 @@ namespace nanoui
       m_container->set_layout(memory_new GroupLayout(10));
 
       ::index iIndex = 0;
-      for (const auto& str : items) {
+      for (const auto& str : items) 
+      {
+
          Button* button = memory_new Button(m_container, str);
+         
          button->set_flags(Button::RadioButton);
-         button->set_callback([&, iIndex] {
-            m_iSelectedIndex = iIndex;
-            set_caption(m_straItemsShort[iIndex]);
-            set_checked(false, e_source_selection);
+         
+         button->set_callback([&, iIndex]
+         {
+            
             popup()->set_visible(false);
+            
+            m_iSelectedIndex = iIndex;
+            
+            set_caption(m_straItemsShort[iIndex]);
+            
+            set_checked(false, e_source_selection);
+            
             if (m_callback)
+            {
+
                m_callback(iIndex);
-            });
+
+            }
+            
+            post_redraw();
+
+         });
+
          iIndex++;
+
       }
 
       set_selected_index(m_iSelectedIndex, e_source_sync);

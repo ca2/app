@@ -52,7 +52,14 @@ namespace nanoui
          TextBox::set_callback(
             [cb, this](const ::scoped_string& str) {
                Scalar value = 0;
-               from_string(value, str);
+               try
+               {
+                  from_string(value, str);
+               }
+               catch (...)
+               {
+                  value = 0;
+               }
                set_value(value, e_source_sync);
                cb(value);
                return true;

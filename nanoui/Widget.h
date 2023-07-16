@@ -251,8 +251,8 @@ namespace nanoui
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual bool visible() const;
       /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
-      void set_visible(bool bVisible);
-      void toggle_visible();
+      virtual void set_visible(bool bVisible);
+      virtual void toggle_visible();
 
       /// Check if this pwidget is currently visible, taking parent widgets into account
       bool visible_recursive() const {

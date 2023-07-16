@@ -374,7 +374,8 @@ public:
    string_base & operator = (const ansi_string & ansistr) { assign_range(ansistr); return *this;}
    string_base & operator = (const wd16_string & wd16str) { assign_range(wd16str); return *this;}
    string_base & operator = (const wd32_string & wd32str) { assign_range(wd32str); return *this;}
-   
+   string_base & operator = (string_base && str) { assign_range(::transfer(str)); return *this; }
+
    template < primitive_block BLOCK >
    string_base & operator = (const BLOCK & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
       //template < primitive_character CHARACTER2 >

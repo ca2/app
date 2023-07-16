@@ -1330,6 +1330,10 @@ namespace nanoui
 
       }
 
+      window->set_need_redraw();
+
+      window->post_redraw();
+
       erase_child(window);
 
    }
@@ -1369,6 +1373,13 @@ namespace nanoui
    void Screen::move_window_to_front(Window* window)
    {
 
+      if (!m_children.contains(window))
+      {
+
+         return;
+
+      }
+
       m_children.erase(window);
 
       m_children.add(window);
@@ -1404,8 +1415,6 @@ namespace nanoui
       } while (changed);
 
       set_need_redraw();
-
-      post_redraw();
 
    }
 

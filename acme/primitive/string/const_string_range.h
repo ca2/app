@@ -13,6 +13,17 @@ template<typename ITERATOR_TYPE>
 class string_range;
 
 
+
+template < typename CHAR_POINTER >
+struct end_of_line_and_next_line
+{
+
+   CHAR_POINTER end_of_line;
+   CHAR_POINTER next_line;
+
+};
+
+
 //template < typename ITERATOR_TYPE >
 //class scoped_string_base;
 
@@ -142,6 +153,54 @@ public:
    STRING_RANGE operator()(START start) const;
 
    STRING_RANGE operator()() const;
+
+
+   ::end_of_line_and_next_line < const CHARACTER* > end_of_line_and_next_line() const
+   {
+
+      ::end_of_line_and_next_line < const CHARACTER* > pair;
+
+      pair.end_of_line = this->find_first_character_in("\r\n\0");
+
+      pair.next_line = pair.end_of_line;
+
+      if (!*pair.next_line)
+      {
+
+         pair.next_line = nullptr;
+
+      }
+      else if (*pair.next_line == '\r')
+      {
+
+         pair.next_line++;
+
+         if (*pair.next_line == '\n')
+         {
+
+            pair.next_line++;
+
+         }
+
+      }
+      else if (*pair.next_line == '\n')
+      {
+
+         pair.next_line++;
+
+      }
+      else
+      {
+
+         throw_exception(error_failed);
+
+      }
+
+      return pair;
+
+   }
+
+
 
 
    bool has_char() const { return !this->is_empty(); }

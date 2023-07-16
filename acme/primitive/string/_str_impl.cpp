@@ -455,23 +455,23 @@ CLASS_DECL_ACME bool str::namespaced(const ::ansi_character * psz, const ::ansi_
 }
 
 
-CLASS_DECL_ACME bool str::begins_ci_skip(const char *& psz, const ::scoped_string & scopedstrPrefix)
-{
-
-   auto length = scopedstrPrefix.size();
-
-   if (ansi_nicmp(psz, scopedstrPrefix.c_str(), length) != 0)
-   {
-
-      return false;
-
-   }
-
-   psz += length;
-
-   return true;
-
-}
+//CLASS_DECL_ACME bool str::begins_ci_skip(const char *& psz, const ::scoped_string & scopedstrPrefix)
+//{
+//
+//   auto length = scopedstrPrefix.size();
+//
+//   if (ansi_nicmp(psz, scopedstrPrefix.c_str(), length) != 0)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   psz += length;
+//
+//   return true;
+//
+//}
 
 
 // CLASS_DECL_ACME const ::ansi_character * str::windows_bbqbunc(const ansi_string &) { return "\\\\?\\UNC"; }
@@ -483,53 +483,53 @@ CLASS_DECL_ACME bool str::begins_ci_skip(const char *& psz, const ::scoped_strin
 // CLASS_DECL_ACME const ::wide_character * str::windows_bb(const wide_string &) { return L"\\\\"; }
 
 
-/// Returns:
-/// end of line, and;
-/// next line or null if no next line
-CLASS_DECL_ACME struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const ::scoped_string & scopedstr)
-{
-
-   struct ::end_of_line_and_next_line pair;
-
-   pair.end_of_line = scopedstr.find_first_character_in("\r\n\0");
-
-   pair.next_line = pair.end_of_line;
-
-   if (!*pair.next_line)
-   {
-
-      pair.next_line = nullptr;
-
-   }
-   else if (*pair.next_line == '\r')
-   {
-
-      pair.next_line++;
-
-      if (*pair.next_line == '\r')
-      {
-
-         pair.next_line++;
-
-      }
-
-   }
-   else if (*pair.next_line == '\n')
-   {
-
-      pair.next_line++;
-
-   }
-   else
-   {
-
-      throw_exception(error_failed);
-
-   }
-
-   return pair;
-
-}
+///// Returns:
+///// end of line, and;
+///// next line or null if no next line
+//CLASS_DECL_ACME struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const ::scoped_string & scopedstr)
+//{
+//
+//   struct ::end_of_line_and_next_line pair;
+//
+//   pair.end_of_line = scopedstr.find_first_character_in("\r\n\0");
+//
+//   pair.next_line = pair.end_of_line;
+//
+//   if (!*pair.next_line)
+//   {
+//
+//      pair.next_line = nullptr;
+//
+//   }
+//   else if (*pair.next_line == '\r')
+//   {
+//
+//      pair.next_line++;
+//
+//      if (*pair.next_line == '\r')
+//      {
+//
+//         pair.next_line++;
+//
+//      }
+//
+//   }
+//   else if (*pair.next_line == '\n')
+//   {
+//
+//      pair.next_line++;
+//
+//   }
+//   else
+//   {
+//
+//      throw_exception(error_failed);
+//
+//   }
+//
+//   return pair;
+//
+//}
 
 
 

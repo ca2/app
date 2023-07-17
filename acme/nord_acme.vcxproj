@@ -321,6 +321,7 @@
     <ClCompile Include="operating_system\android\process.cpp" />
     <ClCompile Include="operating_system\android\process2.cpp" />
     <ClCompile Include="operating_system\android\process_pid.cpp" />
+    <ClCompile Include="operating_system\android\standard_exception.cpp" />
     <ClCompile Include="operating_system\android\thread.cpp" />
     <ClCompile Include="operating_system\android\time.cpp" />
     <ClCompile Include="operating_system\android\user.cpp" />
@@ -350,7 +351,6 @@
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
-    <ClCompile Include="operating_system\linux\standard_exception.cpp" />
     <ClCompile Include="operating_system\main_window.cpp" />
     <ClCompile Include="operating_system\memory.cpp" />
     <ClCompile Include="operating_system\message.cpp" />

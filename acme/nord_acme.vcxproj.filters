@@ -1234,9 +1234,6 @@
     <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\linux\standard_exception.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\write_text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -1254,6 +1251,9 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\standard_exception.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4057,6 +4057,9 @@
     </Filter>
     <Filter Include="Source Files\memory\os_impl">
       <UniqueIdentifier>{11230880-42a1-4755-8b0d-e1050af3b9c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\geometry2d\NewFilter1">
+      <UniqueIdentifier>{c83c8a1d-5aed-4b63-9d13-8da2b64ef7bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

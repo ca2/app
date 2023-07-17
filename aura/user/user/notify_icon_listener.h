@@ -3,7 +3,7 @@
 
 //#include "acme/primitive/collection/pointer_array.h"
 
-#include "apex/user/notify_icon_bridge.h"
+#include "apex/user/user/notify_icon_bridge.h"
 
 
 namespace user

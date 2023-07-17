@@ -22,7 +22,7 @@
 #include "apex/message/command.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
-#include "apex/user/primitive.h"
+#include "apex/user/user/primitive.h"
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)

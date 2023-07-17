@@ -1,23 +1,9 @@
 #include "framework.h"
 #include "_linux.h"
 #include "standard_exception.h"
-//#include "acme/exception/standard.h"
 
 
-
-//standard_exception::standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip, void * caller_address) :
-//standard_exception::standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip) :
-//::exception(error_exception, nullptr, nullptr, iSkip),
-//m_iSignal(iSignal),
-//m_psiginfo(siginfodup(psiginfo))
-//{
-//
-//   /*_ASSERTE(psiginfo != 0);*/
-//
-//}
-
-
-#if defined(ANDROID) || defined(RASPBERRYPIOS)
+#if  defined(RASPBERRYPIOS)
 
 
 standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
@@ -27,46 +13,19 @@ standard_access_violation::standard_access_violation (i32 signal, void * psiginf
    }
 
 
-#elif defined(FREEBSD_UNIX)
+#elif defined(LINUX)
 
-
-standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
-   standard_exception(signal, psiginfo, pc, 3, (void *) pc)
+standard_exception::standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip, void * caller_address )
 {
-
 
 }
 
-
-#elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
-
-
-#ifdef LINUX
 standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
 #ifdef _LP64
 standard_exception(signal, psiginfo, pc, 6, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
 #else
 standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip)
 #endif
-#else
-#ifdef _LP64
-#ifdef __arm64__
-   standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__pc)
-#else
-   standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
-#endif
-#else
-#ifdef SOLARIS
-   ::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.gregs[EIP])
-#elif defined(APPLE_IOS)
-   ::callstack(3, (void *) nullptr)
-#else
-   //::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip)
-#endif
-#endif
-#endif
-//         ::exception(),
-//       ::standard_exception(pparticle, signal, psiginfo, pc)
 {
 
 }

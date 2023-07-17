@@ -14,7 +14,7 @@
 #include "acme/user/user/e_window_flag.h"
 //#include "apex/database/key.h"
 #include "apex/message/command.h"
-#include "apex/user/primitive.h"
+#include "apex/user/user/primitive.h"
 
 
 namespace user

@@ -26,16 +26,13 @@
       <Filter>Source Files\memory\inline</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\malloc.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
+      <Filter>Source Files\memory\os_impl</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
+      <Filter>Source Files\memory\os_impl</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
+      <Filter>Source Files\memory\os_impl</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\_.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -75,9 +72,6 @@
     </ClCompile>
     <ClCompile Include="parallelization\task.cpp">
       <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="compress\compress.cpp">
       <Filter>Source Files\compress</Filter>
@@ -155,9 +149,6 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\stdio_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\payload_stream.cpp">
@@ -391,16 +382,10 @@
     <ClCompile Include="operating_system\posix\file.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\posix\desktop.cpp">
-      <Filter>Source Files\operating_system\posix</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\posix\file_lock.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\posix\parallelization.cpp">
-      <Filter>Source Files\operating_system\posix</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\posix\time.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\_.cpp">
@@ -632,9 +617,6 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\system_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\zonetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\_.cpp">
@@ -1167,6 +1149,111 @@
     </ClCompile>
     <ClCompile Include="platform\trace_statement.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\stdio_file.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\time.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\earth_zone_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\extension\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\c\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\coupling_impl.cpp">
+      <Filter>Source Files\primitive\string\c</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\c\unicode_impl.cpp">
+      <Filter>Source Files\primitive\string\c</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\ansi.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\ansi_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd16.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd16_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd32.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\sz\wd32_impl.cpp">
+      <Filter>Source Files\primitive\string\sz</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\_str_impl.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\__wide.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\application.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\dostime.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\main_window.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\memory.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\string.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\summary.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\linux\standard_exception.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\write_text_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\malloc.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\string_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\desktop.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\print_formatting.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3711,6 +3798,18 @@
     <ClInclude Include="operating_system\posix\_.h">
       <Filter>Header Files\operating_system\posix</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\shared_posix\time.h">
+      <Filter>Header Files\operating_system\shared_posix</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\shared_posix\stdio_file.h">
+      <Filter>Header Files\operating_system\shared_posix</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\shared_posix\c_error_number.h">
+      <Filter>Header Files\operating_system\shared_posix</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\standard_exception.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -3779,9 +3878,6 @@
     <Filter Include="Source Files\memory\inline">
       <UniqueIdentifier>{718440a9-d2ad-454e-9111-c82742929df9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\memory\os_alloc">
-      <UniqueIdentifier>{11230880-42a1-4755-8b0d-e1050af3b9c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\memory">
       <UniqueIdentifier>{6b3e3e23-2bf7-4802-9d13-a37103276920}</UniqueIdentifier>
     </Filter>
@@ -3826,9 +3922,6 @@
     </Filter>
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{e3dcf8f1-fbf3-408a-9f08-298f2de1bcc7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{f6d9dfea-e266-4c58-bb40-d41b9cb66bdd}</UniqueIdentifier>
@@ -3943,6 +4036,27 @@
     </Filter>
     <Filter Include="Header Files\operating_system\posix">
       <UniqueIdentifier>{22ef593a-7d47-4857-9afc-bae79ae447f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\shared_posix">
+      <UniqueIdentifier>{c09bf033-2d21-4236-9e14-c1bfbe12b12c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\shared_posix">
+      <UniqueIdentifier>{570ef37a-0a81-4e5e-9f1b-5e743a8fc8e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c">
+      <UniqueIdentifier>{6f8abb07-5407-4126-abea-96311dd1a102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c\ancient">
+      <UniqueIdentifier>{63f8b90c-c5e3-4785-a19d-44636a806393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\c\extension">
+      <UniqueIdentifier>{29f2fc06-17c1-483a-8007-b12c12c6eed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\string\sz">
+      <UniqueIdentifier>{64065547-8ed5-4bdf-a260-31c7133e8b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\os_impl">
+      <UniqueIdentifier>{11230880-42a1-4755-8b0d-e1050af3b9c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

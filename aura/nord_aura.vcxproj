@@ -439,7 +439,6 @@
     <ClInclude Include="user\user\windowing.h" />
     <ClInclude Include="user\user\window_map.h" />
     <ClInclude Include="user\user\window_state.h" />
-    <ClInclude Include="user\user\window_util.h" />
     <ClInclude Include="user\user\zorder.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_constant.h" />
@@ -613,6 +612,7 @@
     <ClCompile Include="user\user\frame.cpp" />
     <ClCompile Include="user\user\horizontal_scroll_base.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
+    <ClCompile Include="user\user\interaction_array.cpp" />
     <ClCompile Include="user\user\interaction_child.cpp" />
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
@@ -649,7 +649,6 @@
     <ClCompile Include="user\user\visual_state.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />
-    <ClCompile Include="user\user\window_util.cpp" />
     <ClCompile Include="user\user\zorder.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />

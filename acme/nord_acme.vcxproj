@@ -164,7 +164,6 @@
   <ItemGroup>
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
-    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
@@ -207,15 +206,17 @@
     <ClCompile Include="filesystem\file\memory_file.cpp" />
     <ClCompile Include="filesystem\file\memory_map.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
-    <ClCompile Include="filesystem\file\stdio_file.cpp" />
+    <ClCompile Include="filesystem\file\print_formatting.cpp" />
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
     <ClCompile Include="filesystem\file\string_buffer.cpp" />
+    <ClCompile Include="filesystem\file\string_stream.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="filesystem\file\text_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="filesystem\file\translatable.cpp" />
+    <ClCompile Include="filesystem\file\write_text_stream.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\draw2d\color.cpp" />
     <ClCompile Include="graphics\draw2d\color_array.cpp" />
@@ -280,12 +281,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="memory\os_alloc\malloc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
@@ -298,6 +293,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="memory\os_impl\malloc.cpp" />
     <ClCompile Include="memory\paged_large.cpp" />
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
@@ -307,6 +303,7 @@
     <ClCompile Include="operating_system\android\application_system_run.cpp" />
     <ClCompile Include="operating_system\android\callstack.cpp" />
     <ClCompile Include="operating_system\android\Debug.cpp" />
+    <ClCompile Include="operating_system\android\desktop.cpp" />
     <ClCompile Include="operating_system\android\dir.cpp" />
     <ClCompile Include="operating_system\android\error.cpp" />
     <ClCompile Include="operating_system\android\exception.cpp" />
@@ -342,29 +339,39 @@
     <ClCompile Include="operating_system\ansi\time.cpp" />
     <ClCompile Include="operating_system\ansi\windows_time.cpp" />
     <ClCompile Include="operating_system\ansi\windows_unicode.cpp" />
+    <ClCompile Include="operating_system\application.cpp" />
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\bidirectional_pipe.cpp" />
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\Debug.cpp" />
+    <ClCompile Include="operating_system\dostime.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
+    <ClCompile Include="operating_system\linux\standard_exception.cpp" />
+    <ClCompile Include="operating_system\main_window.cpp" />
+    <ClCompile Include="operating_system\memory.cpp" />
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\posix\file.cpp" />
     <ClCompile Include="operating_system\posix\chldstatus.cpp" />
-    <ClCompile Include="operating_system\posix\desktop.cpp" />
     <ClCompile Include="operating_system\posix\file_lock.cpp" />
     <ClCompile Include="operating_system\posix\idn.cpp" />
     <ClCompile Include="operating_system\posix\parallelization.cpp" />
     <ClCompile Include="operating_system\posix\parallelization_pthread.cpp" />
-    <ClCompile Include="operating_system\posix\time.cpp" />
     <ClCompile Include="operating_system\posix\_.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
+    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
+    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
+    <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
+    <ClCompile Include="operating_system\shared_posix\time.cpp" />
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp" />
+    <ClCompile Include="operating_system\string.cpp" />
+    <ClCompile Include="operating_system\summary.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\winpr_keycode.cpp" />
@@ -471,15 +478,16 @@
     <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
+    <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp" />
     <ClCompile Include="primitive\datetime\earth_time.cpp" />
     <ClCompile Include="primitive\datetime\earth_time_span.cpp" />
+    <ClCompile Include="primitive\datetime\earth_zone_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
     <ClCompile Include="primitive\datetime\system_time.cpp" />
-    <ClCompile Include="primitive\datetime\zonetime.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />
     <ClCompile Include="primitive\geometry3d\box.cpp" />
@@ -536,6 +544,14 @@
     <ClCompile Include="primitive\string\character.cpp" />
     <ClCompile Include="primitive\string\ch_class.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\coupling_impl.cpp" />
+    <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp" />
+    <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp" />
+    <ClCompile Include="primitive\string\c\extension\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\unicode_impl.cpp" />
     <ClCompile Include="primitive\string\encoding_exception.cpp" />
     <ClCompile Include="primitive\string\from_integer.cpp" />
     <ClCompile Include="primitive\string\hex.cpp" />
@@ -552,6 +568,12 @@
     <ClCompile Include="primitive\string\strx.cpp" />
     <ClCompile Include="primitive\string\str_to.cpp" />
     <ClCompile Include="primitive\string\sz.cpp" />
+    <ClCompile Include="primitive\string\sz\ansi.cpp" />
+    <ClCompile Include="primitive\string\sz\ansi_impl.cpp" />
+    <ClCompile Include="primitive\string\sz\wd16.cpp" />
+    <ClCompile Include="primitive\string\sz\wd16_impl.cpp" />
+    <ClCompile Include="primitive\string\sz\wd32.cpp" />
+    <ClCompile Include="primitive\string\sz\wd32_impl.cpp" />
     <ClCompile Include="primitive\string\tokenizer.cpp" />
     <ClCompile Include="primitive\string\to_integer.cpp" />
     <ClCompile Include="primitive\string\unicode.cpp" />
@@ -564,6 +586,8 @@
     <ClCompile Include="primitive\string\_c_trait_ansi.cpp" />
     <ClCompile Include="primitive\string\_c_trait_wide.cpp" />
     <ClCompile Include="primitive\string\_string.cpp" />
+    <ClCompile Include="primitive\string\_str_impl.cpp" />
+    <ClCompile Include="primitive\string\__wide.cpp" />
     <ClCompile Include="primitive\text\context.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />
     <ClCompile Include="primitive\text\international.cpp" />
@@ -806,6 +830,7 @@
     <ClInclude Include="operating_system\android\internal2.h" />
     <ClInclude Include="operating_system\android\jni_object.h" />
     <ClInclude Include="operating_system\android\process.h" />
+    <ClInclude Include="operating_system\android\standard_exception.h" />
     <ClInclude Include="operating_system\android\thread.h" />
     <ClInclude Include="operating_system\android\_.h" />
     <ClInclude Include="operating_system\android\_2.h" />
@@ -816,6 +841,9 @@
     <ClInclude Include="operating_system\android\_user.h" />
     <ClInclude Include="operating_system\error_code.h" />
     <ClInclude Include="operating_system\posix\_.h" />
+    <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
+    <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
+    <ClInclude Include="operating_system\shared_posix\time.h" />
     <ClInclude Include="operating_system\_.h" />
     <ClInclude Include="os\chronometer.h" />
     <ClInclude Include="os\console.h" />

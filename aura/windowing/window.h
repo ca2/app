@@ -231,7 +231,7 @@ namespace windowing
       virtual void UnlockWindowUpdate();
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
+      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
       // Window State Functions
       virtual bool is_this_enabled();

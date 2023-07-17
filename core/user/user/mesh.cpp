@@ -3532,7 +3532,7 @@ namespace user
       {
 
          //RedrawWindow(nullptr,nullptr,RDW_INVALIDATE);
-         RedrawWindow(nullptr,nullptr,0);
+         RedrawWindow({},nullptr,0);
 
       }
 

@@ -1,8 +1,8 @@
 #pragma once
 
 
+#include "window_rectangle.h"
 #include "app/aura/user/user/interaction.h"
-//#include "apex/database/key.h"
 
 
 namespace user
@@ -17,8 +17,8 @@ namespace user
 
       string                        m_strDisplay;
       //::string                      m_strDataKey2;
-      struct window_rectangle       m_windowrectangle;
-      struct window_rectangle       m_windowrectangleStore;
+      class window_rectangle        m_windowrectangle;
+      class window_rectangle        m_windowrectangleStore;
 
 
       box();

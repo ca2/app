@@ -163,6 +163,11 @@ public:
    //}
 
 
+   /// Returns:
+/// end of line, and;
+/// next line or null if no next line
+
+
    template < typename GENERIC_RANGE >
    void construct_range(const GENERIC_RANGE & range)
    {

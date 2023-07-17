@@ -2892,7 +2892,7 @@ namespace user
    void interaction::display_full_screen(::index iMonitor, ::e_activation eactivation)
    {
 
-      best_monitor(nullptr, nullptr, true, e_activation_default, e_zorder_top);
+      best_monitor(nullptr, {}, true, e_activation_default, e_zorder_top);
 
    }
 

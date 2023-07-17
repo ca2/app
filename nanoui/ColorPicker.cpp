@@ -84,7 +84,8 @@ namespace nanoui
             ::color::color value = m_color_wheel->color();
             set_checked(false, e_source_selection);
             set_color(value);
-            m_final_callback(value);
+            call_final_callback(value);
+            post_redraw();
          }
          });
 
@@ -97,7 +98,10 @@ namespace nanoui
          m_pick_button->set_text_color(fg);
 
          m_callback(bg);
-         m_final_callback(bg);
+         call_final_callback(bg);
+
+         post_redraw();
+
          });
    }
 
@@ -127,6 +131,16 @@ namespace nanoui
          m_reset_button->set_background_color(color);
          m_reset_button->set_text_color(fg);
       }
+
+   }
+
+
+   void ColorPicker::call_final_callback(const ::color::color& color)
+   {
+
+      popup()->set_visible(false);
+
+      m_final_callback(color);
 
    }
 

@@ -122,7 +122,58 @@ namespace nanoui
 
                }
 
-               dynamic_cast<nanoui::PopupButton*>(this)->popup()->request_focus();
+               //dynamic_cast<nanoui::PopupButton*>(this)->popup()->request_focus();
+
+               auto ppopupbutton = dynamic_cast<nanoui::PopupButton*>(this);
+
+               auto ppopup = ppopupbutton->popup();
+
+               bool bVisible = !ppopup->visible();
+
+               if(bVisible)
+               {
+
+                  auto pwindowParent = ppopup->parent_window();
+
+                  if (pwindowParent)
+                  {
+
+                     pwindowParent->m_popupbuttona.add(ppopupbutton);
+
+                  }
+
+                  m_bChecked = true;
+
+                  screen()->m_pwidgetMouseDown = this;
+
+                  ppopup->set_visible(true);
+
+               }
+               else
+               {
+
+                  auto pwindowParent = ppopup->parent_window();
+
+                  if (pwindowParent)
+                  {
+
+                     pwindowParent->m_popupbuttona.erase(ppopupbutton);
+
+                  }
+
+                  m_bChecked = false;
+
+                  screen()->m_pwidgetMouseDown = nullptr;
+
+                  ppopup->set_visible(false);
+
+               }
+
+               set_need_redraw();
+
+               post_redraw();
+
+               return true;
 
             }
 
@@ -189,13 +240,14 @@ namespace nanoui
             post_redraw();
 
          }
-         else 
+         else // !down
          {
 
             auto pscreen = screen();
 
             if (pscreen->m_pwidgetMouseDown == this
-               && (!pscreen->m_pwidgetDrop
+               && !(m_flags & PopupButton)
+               && (pscreen->m_pwidgetDrop
                   || pscreen->m_pwidgetDrop == this))
             {
 
@@ -253,8 +305,6 @@ namespace nanoui
          }
 
          set_need_redraw();
-
-         post_redraw();
 
       }
 

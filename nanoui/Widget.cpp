@@ -1107,8 +1107,10 @@ namespace nanoui
          rectangleInteraction -= offsetScroll;
 
       }
+      
+      auto pscreen = screen();
 
-      screen()->m_puserinteraction->set_need_redraw({rectangleInteraction}, nullptr, function);
+      pscreen->m_puserinteraction->set_need_redraw({ rectangleInteraction }, nullptr, function);
 
    }
 

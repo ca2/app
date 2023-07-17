@@ -751,7 +751,7 @@ namespace user
       virtual void design_window_iconic();
       virtual void design_window_minimize(::e_activation eactivation) override;
       virtual void design_window_maximize() override;
-      virtual void design_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
+      virtual void design_window_full_screen(const ::rectangle_i32& rectangleHint = {}) override;
       virtual void design_window_normal(::e_display edisplay) override;
       virtual void design_window_dock(::e_display edisplay) override;
 
@@ -1210,7 +1210,7 @@ namespace user
 
       virtual void get_child_rect(::rectangle_i32 & rectangle);
 
-      inline auto get_child_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_child_rect(rectangle); return rectangle; }
+      inline auto get_child_rect() { ::rectangle_i32 rectangle(no_initialize_t{}); get_child_rect(rectangle); return rectangle; }
 
       virtual bool scroll_bar_get_client_rect(::rectangle_i32 & rectangle);
 
@@ -1311,7 +1311,7 @@ namespace user
 //
 //#else
 
-      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
+      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},
          ::draw2d::region* prgnUpdate = nullptr,
          ::u32 flags = 0);
 
@@ -1701,7 +1701,8 @@ namespace user
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
-      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
+      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = {
+         }, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags) override;
@@ -1902,18 +1903,19 @@ namespace user
 
       virtual bool calculate_window_rectangle_in_main_monitor(::rectangle_i32 & rectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
 
-      virtual index calculate_broad_and_compact_restore(::rectangle_i32 * prectWorkspace = nullptr, const ::size_i32 & sizeMin = {}, const ::rectangle_i32& rectangleHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(::rectangle_i32 * prectWorkspace = nullptr, const ::size_i32 & sizeMin = {}, const ::rectangle_i32& rectangleHint = {
+         });
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index best_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index good_restore(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
-      virtual index good_iconify(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index make_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index good_restore(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
+      virtual index good_iconify(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
-      virtual index good_move(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index good_move(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle = {}, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index get_best_zoneing(::e_display& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
       virtual index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 

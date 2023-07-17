@@ -122,6 +122,10 @@ namespace nanoui
 
       /// Sets the current caption of the \::pointer nanoui::ColorPicker::m_reset_button.
       void set_reset_button_caption(const ::scoped_string& caption) { m_reset_button->set_caption(caption); }
+
+
+      virtual void call_final_callback(const ::color::color& color);
+
    };
 
 

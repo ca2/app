@@ -31,6 +31,7 @@ namespace nanoui
 
       
       ::pointer<::user::box>           m_pbox;
+      ::pointer_array<PopupButton>     m_popupbuttona;
       bool                             m_bPendingCentering;
       float                            m_boundsHeader[4];
       ::string                         m_title;

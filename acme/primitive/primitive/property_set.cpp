@@ -1570,7 +1570,7 @@ property_set & property_set::merge(const property_set & set)
    if (::is_reference_set(set) && &set != this)
    {
 
-      for (auto & pproperty : propertyptra())
+      for (auto & pproperty : set.propertyptra())
       {
 
          atom idName = pproperty->name();

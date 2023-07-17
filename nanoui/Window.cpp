@@ -11,6 +11,7 @@
 #include "framework.h"
 #include "Window.h"
 #include "Layout.h"
+#include "PopupButton.h"
 #include "Screen.h"
 #include "nano2d/context.h"
 #include "aura/user/user/interaction.h"
@@ -325,8 +326,45 @@ m_bDrag(false)
             
             rectanglea.add(rectangleOld);
 
+            for (auto ppopupbutton : m_popupbuttona)
+            {
+
+               auto ppopup = ppopupbutton->popup();
+
+               ::rectangle_i32 rectangleOld(ppopup->m_pointLastDragPosition, ppopup->m_size);
+
+               if (ppopup->parent())
+               {
+
+                  rectangleOld += ppopup->parent()->absolute_position();
+
+               }
+
+               if (ppopup->side() == Popup::Left)
+               {
+
+                  rectangleOld.right += ppopup->anchor_size();
+
+               }
+               else
+               {
+
+                  rectangleOld.left -= ppopup->anchor_size();
+
+               }
+
+               information("extra Popup Button : rectangleOld (%d, %d, %d, %d)",
+                  rectangleOld.left,
+                  rectangleOld.top,
+                  rectangleOld.right,
+                  rectangleOld.bottom);
+
+               rectanglea.add(rectangleOld);
+
+            }
+
             ::rectangle_i32 rectangleNew(posNew, m_size);
-            
+
             if(parent())
             {
                
@@ -341,11 +379,63 @@ m_bDrag(false)
                         rectangleNew.bottom);
 
             rectanglea.add(rectangleNew);
+
+            auto offset = posNew - m_pointLastDragPosition;
+
+            for (auto ppopupbutton : m_popupbuttona)
+            {
+
+               auto ppopup = ppopupbutton->popup();
+
+               ::rectangle_i32 rectangleNew(ppopup->m_pointLastDragPosition, ppopup->m_size);
+
+               rectangleNew += offset;
+
+               if (ppopup->parent())
+               {
+
+                  rectangleNew += ppopup->parent()->absolute_position();
+
+               }
+
+               if (ppopup->side() == Popup::Left)
+               {
+
+                  rectangleNew.right += ppopup->anchor_size();
+
+               }
+               else
+               {
+
+                  rectangleNew.left -= ppopup->anchor_size();
+
+               }
+
+               information("extra Popup Button : rectangleNew (%d, %d, %d, %d)",
+                  rectangleNew.left,
+                  rectangleNew.top,
+                  rectangleNew.right,
+                  rectangleNew.bottom);
+
+               rectanglea.add(rectangleNew);
+
+            }
             
             auto function = [this, posNew]()
             {
+
+               auto offset = posNew - m_pos;
                
-               m_pos = posNew;
+               m_pos += offset;
+
+               for (auto ppopupbutton : m_popupbuttona)
+               {
+
+                  auto ppopup = ppopupbutton->popup();
+
+                  ppopup->m_pos += offset;
+
+               }
 
             };
             

@@ -873,7 +873,7 @@ namespace nanoui
          return true;
       try {
 
-               auto pregex = acmesystem()->create_regular_expression("pcre", format);
+               auto pregex = screen()->acmesystem()->create_regular_expression("pcre2", format);
 
                //::string straResult;
                auto presult = pregex->run(input);
@@ -883,7 +883,7 @@ namespace nanoui
          //return std::regex_match(::std::string(input.begin(), input.end()), regex);
       }
       //catch (const std::regex_error&) {
-      catch (const ::exception & e) {
+      catch (const ::exception & ) {
          //#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
          //      std::cerr << "Warning: cannot validate text field due to lacking regular expression support. please compile with GCC >= 4.9" << std::endl;
          //      return true;

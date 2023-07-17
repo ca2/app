@@ -49,10 +49,11 @@ namespace nanoui
    void PopupButton::draw(::nano2d::context* pcontext) 
    {
 
-      if (!m_bEnabled && m_bChecked)
-         m_bChecked = false;
+      // if (!m_bEnabled && m_bChecked)
+      //    m_bChecked = false;
 
-      m_ppopup->set_visible(m_bChecked);
+      //m_ppopup->set_visible(m_bChecked);
+
       Button::draw(pcontext);
 
       if (m_efontawesomeChevron) 
@@ -79,26 +80,47 @@ namespace nanoui
       }
    }
 
-   void PopupButton::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) {
+   
+   void PopupButton::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   {
+
       Widget::perform_layout(pcontext);
 
       const Window* parent_window = window();
 
       int anchor_size = m_ppopup->anchor_size();
 
-      if (parent_window) {
+      if (parent_window) 
+      {
+
          int pos_y = absolute_position().y() - parent_window->position().y() + m_size.cy() / 2;
+
          if (m_ppopup->side() == Popup::Right)
+         {
+          
             m_ppopup->set_anchor_pos(sequence2_i32(parent_window->width() + anchor_size, pos_y));
+
+         }
          else
+         {
+
             m_ppopup->set_anchor_pos(sequence2_i32(-anchor_size, pos_y));
+
+         }
+
       }
-      else {
+      else 
+      {
+
          m_ppopup->set_position(absolute_position() + sequence2_i32(width() + anchor_size + 1, m_size.cy() / 2 - anchor_size));
+
       }
+
    }
 
-   void PopupButton::set_side(Popup::Side side) {
+   
+   void PopupButton::set_side(Popup::Side side) 
+   {
       if (m_ppopup->side() == Popup::Right &&
          m_efontawesomeChevron == m_ptheme->m_efontawesomePopupChevronRight)
          set_chevron_icon(m_ptheme->m_efontawesomePopupChevronLeft);

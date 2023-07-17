@@ -1104,7 +1104,7 @@ namespace user
       else
       {
 
-         rectangleFrame = nullptr;
+         rectangleFrame = {};
 
       }
 

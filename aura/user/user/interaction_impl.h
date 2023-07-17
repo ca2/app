@@ -502,7 +502,7 @@ namespace user
 //
 //#else
 
-      void RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
+      void RedrawWindow(const ::rectangle_i32 & rectangleUpdate = {}, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
 
 //#endif
 

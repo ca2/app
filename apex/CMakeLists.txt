@@ -572,20 +572,21 @@ list(APPEND apex_source
         progress/_.h
         template/list.h
         user/_.h
+   user/user/_.h
         #user/_const_key.h
         #user/command.cpp
-        user/command.h
+        user/user/command.h
         #user/control_event.cpp
         #user/control_event.h
-        user/language.cpp
-        user/language.h
-        user/language_map.cpp
-        user/language_map.h
-        user/message.cpp
-        user/message.h
-        user/notify_icon_bridge.h
-        user/primitive.cpp
-        user/primitive.h
+        user/user/language.cpp
+        user/user/language.h
+        user/user/language_map.cpp
+        user/user/language_map.h
+        user/user/message.cpp
+        user/user/message.h
+        user/user/notify_icon_bridge.h
+        user/user/primitive.cpp
+        user/user/primitive.h
         version/version.config.h
         version/version.h
         #_.cpp

@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < typename FILE, primitive_point POINT >
+template < primitive_point POINT >
 inline binary_stream & operator << (binary_stream & s, const POINT & point)
 {
 
@@ -14,7 +14,7 @@ inline binary_stream & operator << (binary_stream & s, const POINT & point)
 }
 
 
-template < typename FILE, primitive_point POINT >
+template < primitive_point POINT >
 inline binary_stream & operator >> (binary_stream & s, POINT & point)
 {
 
@@ -26,7 +26,7 @@ inline binary_stream & operator >> (binary_stream & s, POINT & point)
 }
 
 
-template < typename FILE, primitive_size SIZE >
+template < primitive_size SIZE >
 inline binary_stream & operator << (binary_stream & s, const SIZE & size)
 {
 
@@ -38,7 +38,7 @@ inline binary_stream & operator << (binary_stream & s, const SIZE & size)
 }
 
 
-template < typename FILE, primitive_size SIZE >
+template < primitive_size SIZE >
 inline binary_stream & operator >> (binary_stream & s, SIZE & size)
 {
 
@@ -50,7 +50,7 @@ inline binary_stream & operator >> (binary_stream & s, SIZE & size)
 }
 
 
-template < typename FILE, primitive_rectangle RECTANGLE >
+template < primitive_rectangle RECTANGLE >
 inline binary_stream & operator << (binary_stream & s, const RECTANGLE & rectangle)
 {
 
@@ -64,7 +64,7 @@ inline binary_stream & operator << (binary_stream & s, const RECTANGLE & rectang
 }
 
 
-template < typename FILE, primitive_rectangle RECTANGLE >
+template < primitive_rectangle RECTANGLE >
 inline binary_stream & operator >> (binary_stream & s, RECTANGLE & rectangle)
 {
 

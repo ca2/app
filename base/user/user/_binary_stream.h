@@ -3,6 +3,7 @@
 
 
 #include "acme/filesystem/file/binary_stream.h"
+#include "acme/primitive/geometry2d/_binary_stream.h"
 
 
 // template < typename FILE >
@@ -14,30 +15,33 @@ binary_stream & operator << (binary_stream & stream, const ::user::picture & pic
 
       bool bEnable = false;
 
-      bEnable = m_ppictureimpl != nullptr;
+      bEnable = picture.m_ppictureimpl != nullptr;
 
       stream << bEnable;
 
       if (bEnable)
       {
 
-         stream << *m_ppictureimpl;
+         stream << *picture.m_ppictureimpl;
 
       }
 
    }
 
-}
-
-// template < typename FILE >
-binary_stream & operator << (binary_stream & stream, const ::user::picture & picture)
-{
-
-   picture.write(stream);
-
    return stream;
 
 }
+
+
+//// template < typename FILE >
+//binary_stream & operator << (binary_stream & stream, const ::user::picture & picture)
+//{
+//
+//   picture.write(stream);
+//
+//   return stream;
+//
+//}
 
 
 // template < typename FILE >
@@ -51,19 +55,20 @@ binary_stream & operator >> (binary_stream & stream, ::user::picture & picture)
 
       stream >> bEnable;
 
-      enable_picture(bEnable);
+      picture.enable_picture(bEnable);
 
       if (bEnable)
       {
 
-         stream >> *m_ppictureimpl;
+         stream >> *picture.m_ppictureimpl;
 
       }
 
    }
 
-}
+   return stream;
 
+}
 
 
 // template < typename FILE >

@@ -29,7 +29,7 @@
 
 
 // template < typename FILE >
-::binary_stream & operator <<(::binary_stream & stream, ::user::rich_text::format &format)
+::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::format &format)
 {
              
    stream >> format.m_bItalic;
@@ -158,9 +158,9 @@
 ::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::edit_impl & editimpl)
 {
 
-   stream >> (const ::user::picture &)editimpl;
+   stream >> (::user::picture &)editimpl;
 
-   stream >> editimpl.m_pdata;
+   stream >> *editimpl.m_pdata;
 
    ::rectangle_i32 rectangleWindow;
 

@@ -61,7 +61,7 @@ namespace nanoui
       /// Return the parent window of the popup
       const Window* parent_window() const { return m_parent_window; }
 
-      void set_visible(bool bVisible);
+      void set_visible(bool bVisible) override;
       //void toggle_visible() override;
 
       /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any

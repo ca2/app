@@ -6,6 +6,8 @@
 #include "core/user/rich_text/span.h"
 #include "core/user/rich_text/data.h"
 #include "core/user/rich_text/edit_impl.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
+#include "base/user/user/_binary_stream.h"
 
 
 // template < typename FILE >
@@ -16,8 +18,8 @@
    stream << format.m_bUnderline;
    stream << format.m_strFontFamily;
    stream << format.m_dFontSize;
-   stream << (u32)format.m_colorForeground;
-   stream << (u32)format.m_colorBackground;
+   stream << format.m_colorForeground.m_u32;
+   stream << format.m_colorBackground.m_u32;
    stream << (i32)format.m_escript;
    stream << (i32)format.m_elineheight;
 
@@ -34,8 +36,8 @@
    stream >> format.m_bUnderline;
    stream >> format.m_strFontFamily;
    stream >> format.m_dFontSize;
-   stream >> (u32 &)format.m_colorForeground;
-   stream >> (u32 &)format.m_colorBackground;
+   stream >> format.m_colorForeground.m_u32;
+   stream >> format.m_colorBackground.m_u32;
    stream >> (i32 &)format.m_escript;
    stream >> (i32 &)format.m_elineheight;
 
@@ -95,7 +97,7 @@
 
    synchronous_lock synchronouslock(data.synchronization());
 
-   stream << data.m_pformata;
+   stream << *data.m_pformata;
 
    stream << data.m_spana;
 
@@ -116,7 +118,7 @@
 
    data.m_spana.erase_all();
 
-   stream >> data.m_pformata;
+   stream >> *data.m_pformata;
 
    stream >> data.m_spana;
 
@@ -132,7 +134,7 @@
 
    stream << (const ::user::picture &) editimpl;
 
-   stream << editimpl.m_pdata;
+   stream << *editimpl.m_pdata;
 
    ::rectangle_i32 rectangleWindow;
 

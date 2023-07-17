@@ -183,6 +183,12 @@
     <Filter Include="Source Files\operating_system">
       <UniqueIdentifier>{f2f6a8be-3d42-41e2-8467-699bd80d3a74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{a26fd52a-9097-4b34-8fff-8160a5e79627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{2f71ac51-960c-488f-a584-9946874eccc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -467,21 +473,6 @@
     <ClInclude Include="database\stringhelper.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="user\language.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\language_map.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\_.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_item.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_range.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="compress\_.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
@@ -538,12 +529,6 @@
     </ClInclude>
     <ClInclude Include="message\simple_command.h">
       <Filter>Header Files\message</Filter>
-    </ClInclude>
-    <ClInclude Include="user\command.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\ewindowflag.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="platform\history.h">
       <Filter>Header Files\platform</Filter>
@@ -655,9 +640,6 @@
     </ClInclude>
     <ClInclude Include="message\handler_item.h">
       <Filter>Header Files\message</Filter>
-    </ClInclude>
-    <ClInclude Include="user\primitive.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\service.h">
       <Filter>Header Files\parallelization</Filter>
@@ -1004,8 +986,29 @@
     <ClInclude Include="filesystem\filesystem\_.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="user\message.h">
-      <Filter>Header Files\user</Filter>
+    <ClInclude Include="user\user\primitive.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon_bridge.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\message.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\language_map.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\language.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\command.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_const_key.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1138,12 +1141,6 @@
     <ClCompile Include="database\stringhelper.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="user\language.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\language_map.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\html_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -1188,9 +1185,6 @@
     </ClCompile>
     <ClCompile Include="message\command.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="user\primitive.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\service.cpp">
       <Filter>Source Files\parallelization</Filter>
@@ -1456,8 +1450,17 @@
     <ClCompile Include="filesystem\filesystem\link.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="user\message.cpp">
-      <Filter>Source Files\user</Filter>
+    <ClCompile Include="user\user\language.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\language_map.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\primitive.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

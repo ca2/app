@@ -1234,9 +1234,6 @@
     <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\linux\standard_exception.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\write_text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -1254,6 +1251,30 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\standard_exception.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\size.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\region.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\rectangle_array.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\rectangle.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\item.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\mouse.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_string.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4057,6 +4078,9 @@
     </Filter>
     <Filter Include="Source Files\memory\os_impl">
       <UniqueIdentifier>{11230880-42a1-4755-8b0d-e1050af3b9c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\primitive\NewFilter1">
+      <UniqueIdentifier>{d1d7a7cd-a1fe-4ab7-b390-10d2d4b5b2d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

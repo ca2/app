@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_linux.h"
+//#include "_linux.h"
 #include "standard_exception.h"
 //#include "acme/exception/standard.h"
 
@@ -8,8 +8,8 @@
 standard_exception::standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip, void * caller_address) :
 ::exception(error_exception, nullptr, nullptr, iSkip, caller_address),
 m_iSignal(iSignal),
-m_psiginfo(siginfodup(psiginfo)),
-m_ucontext(*((::ucontext_t *)pc))
+m_psiginfo(siginfodup(psiginfo))
+//,m_ucontext(*((::ucontext_t *)pc))
 {
 
    /*_ASSERTE(psiginfo != 0);*/

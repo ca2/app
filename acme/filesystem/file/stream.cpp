@@ -3,7 +3,12 @@
 //#include "stream.h"
 
 
+bool  stream_base::is_version(int i)
+{
 
+   return i == 0;
+
+}
 //::file::path stream::get_file_path() const
 //{
 //

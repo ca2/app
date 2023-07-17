@@ -213,6 +213,7 @@ public:
    //   m_iostate = (::file::e_iostate) state;
    //}
 
+   virtual bool  is_version(int i);
 
 
    //::file::e_iostate rdstate() const

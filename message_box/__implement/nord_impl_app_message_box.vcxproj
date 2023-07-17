@@ -163,13 +163,6 @@
     <ClCompile Include="application.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="window.h" />
-    <ClInclude Include="_.h" />
-    <ClInclude Include="_user.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\..\operating_system\operating_system-android\acme_android\nord_acme_android.vcxproj">
       <Project>{c296392c-dc67-41f2-badc-7ad2f2f0fb3e}</Project>
     </ProjectReference>

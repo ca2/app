@@ -23,7 +23,7 @@
 #include "apex/interprocess/target.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/os_context.h"
-#include "apex/user/message.h"
+#include "apex/user/user/message.h"
 #include "aqua/game/game.h"
 #include "aura/constant/idpool.h"
 #include "aura/platform/node.h"

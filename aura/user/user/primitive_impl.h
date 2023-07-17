@@ -1,7 +1,10 @@
 #pragma once
 
 
-#include "apex/user/primitive.h"
+#include "apex/message/channel.h"
+#include "apex/handler/manager.h"
+#include "apex/handler/source.h"
+#include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/primitive/collection/int_map.h"
 #include "acme/platform/auto_pointer.h"
 

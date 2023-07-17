@@ -33,7 +33,7 @@
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/time/_string.h"
 #include "apex/message/simple_command.h"
-#include "apex/user/message.h"
+#include "apex/user/user/message.h"
 #include "aqua/user/controller.h"
 #include "aura/graphics/draw2d/clip.h"
 #include "aura/graphics/draw2d/draw2d.h"

@@ -9,7 +9,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
-#include "apex/user/message.h"
+#include "apex/user/user/message.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/platform/session.h"

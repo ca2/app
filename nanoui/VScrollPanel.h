@@ -30,11 +30,12 @@ namespace nanoui
    public:
 
 
-      bool        m_bDrag;
-      float       m_fTotalHeight;
-      float       m_fScroll;
-      bool        m_update_layout;
+      bool              m_bDrag;
+      float             m_fTotalHeight;
+      float             m_fScroll;
+      bool              m_update_layout;
 
+      ::point_i32       m_pointCurrentLocalCursor;
 
       VScrollPanel(Widget* parent);
 

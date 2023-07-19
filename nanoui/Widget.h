@@ -15,8 +15,10 @@
 #include "Object.h"
 #include "Theme.h"
 ///#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/handler/item.h"
 #include "acme/primitive/geometry2d/size.h"
 #include "acme/primitive/geometry2d/rectangle.h"
+#include "apex/user/user/container.h"
 //#include <xxxvector>
 //#include <xxxalgorithm>
 //#include "acme/primitive/primitive/function.h"
@@ -40,7 +42,9 @@ namespace nanoui
     * widgets using a layout generator (see \::pointer Layout).
     */
    class CLASS_DECL_NANOUI Widget :
-      public Object
+      public Object,
+      public ::user::container,
+      public ::item
    {
    public:
 
@@ -53,6 +57,7 @@ namespace nanoui
       point_i32               m_pos;
       size_i32                m_size;
       size_i32                m_fixed_size;
+      bool                    m_bHoverCache;
       //size_i32                m_offsetToApplyOnDraw;
       //size_i32                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;

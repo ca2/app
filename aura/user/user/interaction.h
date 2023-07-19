@@ -953,7 +953,7 @@ namespace user
       virtual ::item_pointer current_item();
 
 
-      virtual ::item_pointer hover_item();
+      //virtual ::item_pointer hover_item();
 
 
       virtual bool _is_window() const override;
@@ -2354,6 +2354,17 @@ namespace user
 
       virtual point_i32 screen_origin(enum_layout elayout = e_layout_design);
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
+
+
+      item_pointer get_child_as_item(::index iIndex) override;
+      ::count get_child_as_item_count() override;
+
+
+      void on_item_selected(::item* pitem) override;
+      void on_item_hover(::item* pitem) override;
+
+
+      item_pointer hover_item() override;
 
 
       //template < typename OFFSETABLE, typename SOURCE >

@@ -705,6 +705,7 @@
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\integration_context.cpp" />
+    <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
     <ClCompile Include="user\user\message.cpp" />
@@ -972,6 +973,7 @@
     <ClInclude Include="aaa_user.h" />
     <ClInclude Include="user\user\aaa_const_key.h" />
     <ClInclude Include="user\user\command.h" />
+    <ClInclude Include="user\user\container.h" />
     <ClInclude Include="user\user\language.h" />
     <ClInclude Include="user\user\language_map.h" />
     <ClInclude Include="user\user\message.h" />

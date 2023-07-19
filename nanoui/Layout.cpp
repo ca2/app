@@ -21,8 +21,8 @@ namespace nanoui
 
 
    BoxLayout::BoxLayout(enum_orientation orientation, enum_alignment alignment,
-      int margin, int spacing)
-      : m_eorientation(orientation), m_ealignment(alignment), m_iMargin(margin),
+      ::rectangle_i32 margin, int spacing)
+      : m_eorientation(orientation), m_ealignment(alignment), m_rectangleMargin(margin),
       m_iSpacing(spacing) {
    }
 
@@ -30,7 +30,8 @@ namespace nanoui
    size_i32 BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      size_i32 size(2 * m_iMargin, 2 * m_iMargin);
+      size_i32 size(m_rectangleMargin.left + m_rectangleMargin.right,
+         m_rectangleMargin.top + m_rectangleMargin.bottom);
 
       int y_offset = 0;
 
@@ -42,7 +43,7 @@ namespace nanoui
          if (m_eorientation == e_orientation_vertical)
          {
 
-            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top - m_rectangleMargin.bottom;
 
          }
          else
@@ -95,7 +96,10 @@ namespace nanoui
 
          size[iAxisIndex1] += sizeTarget[iAxisIndex1];
 
-         size[iAxisIndex2] = ::maximum(size[iAxisIndex2], sizeTarget[iAxisIndex2] + 2 * m_iMargin);
+         size[iAxisIndex2] = ::maximum(size[iAxisIndex2], 
+            sizeTarget[iAxisIndex2] + 
+            m_rectangleMargin.get_dimension((enum_orientation) iAxisIndex2, 0) +
+            m_rectangleMargin.get_dimension((enum_orientation) iAxisIndex2, 1));
 
          bFirst = false;
 
@@ -119,7 +123,7 @@ namespace nanoui
 
       auto iAxisIndex2 = orthogonal2_index_of(m_eorientation);
 
-      int position = m_iMargin;
+      int position = m_rectangleMargin.get_first_dimension((enum_orientation)iAxisIndex1);
 
       int y_offset = 0;
 
@@ -131,7 +135,7 @@ namespace nanoui
          if (m_eorientation == e_orientation_vertical)
          {
 
-            position += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+            position += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top - m_rectangleMargin.bottom;
 
          }
          else
@@ -188,21 +192,24 @@ namespace nanoui
          switch (m_ealignment)
          {
          case e_alignment_minimum:
-            pos[iAxisIndex2] += m_iMargin;
+            pos[iAxisIndex2] += m_rectangleMargin.get_first_dimension((enum_orientation)iAxisIndex2);
             break;
          case e_alignment_middle:
-            pos[iAxisIndex2] += (container_size[iAxisIndex2] - sizeTarget[iAxisIndex2]) / 2;
+            pos[iAxisIndex2] += m_rectangleMargin.get_first_dimension((enum_orientation)iAxisIndex2)+
+               ((container_size[iAxisIndex2] - sizeTarget[iAxisIndex2] - m_rectangleMargin.get_total_dimension((enum_orientation)iAxisIndex2))) / 2;
             break;
          case e_alignment_maximum:
-            pos[iAxisIndex2] += container_size[iAxisIndex2] - sizeTarget[iAxisIndex2] - m_iMargin * 2;
+            pos[iAxisIndex2] += container_size[iAxisIndex2] - sizeTarget[iAxisIndex2] - m_rectangleMargin.get_second_dimension((enum_orientation)iAxisIndex2);
             break;
          case e_alignment_fill:
-            pos[iAxisIndex2] += m_iMargin;
-            sizeTarget[iAxisIndex2] = sizeFixed[iAxisIndex2] ? sizeFixed[iAxisIndex2] : (container_size[iAxisIndex2] - m_iMargin * 2);
+            pos[iAxisIndex2] += m_rectangleMargin.get_first_dimension((enum_orientation)iAxisIndex2);
+            sizeTarget[iAxisIndex2] = sizeFixed[iAxisIndex2] ? sizeFixed[iAxisIndex2] : (container_size[iAxisIndex2] - m_rectangleMargin.get_total_dimension((enum_orientation) iAxisIndex2));
             break;
          }
 
          pwidgetChild->set_position(pos);
+
+         auto sizeTargetFinal = pwidgetChild->m_fixed_size.prefer_self_coordinate_if_positive(sizeTarget);
 
          pwidgetChild->set_size(sizeTarget);
 

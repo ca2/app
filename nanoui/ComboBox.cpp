@@ -88,7 +88,7 @@ namespace nanoui
          m_scroll = memory_new VScrollPanel(m_ppopup);
          m_scroll->set_fixed_height(300);
          m_container = memory_new Widget(m_scroll);
-         m_ppopup->set_layout(memory_new BoxLayout(e_orientation_horizontal, e_alignment_middle));
+         m_ppopup->set_layout(memory_new BoxLayout(e_orientation_horizontal, e_alignment_middle, { 0 }, 0));
       }
 
       m_container->set_layout(memory_new GroupLayout(10));

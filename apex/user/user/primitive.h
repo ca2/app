@@ -2,13 +2,14 @@
 #pragma once
 
 
+#include "container.h"
+#include "acme/handler/item.h"
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
 #include "acme/user/user/element.h"
 #include "apex/handler/manager.h"
 #include "apex/handler/source.h"
 #include "apex/message/channel.h"
-
 
 
 namespace user
@@ -19,7 +20,9 @@ namespace user
       virtual public ::user::element,
       virtual public ::channel,
       virtual public ::source,
-      virtual public ::manager
+      virtual public ::manager,
+      virtual public ::user::container,
+      virtual public ::item
    {
    public:
 

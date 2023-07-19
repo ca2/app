@@ -291,7 +291,7 @@ namespace sockets_bsd
 
       auto sockaddr_len = paddress2->sa_len();
 
-      if (bind(s, psockaddr, sockaddr_len) == -1)
+      if (bind(s, psockaddr, sockaddr_len) != 0)
       {
 
          fatal() <<"bind() failed for port " << ::as_string(paddress2->get_service_number()) << ", " << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -302,7 +302,7 @@ namespace sockets_bsd
 
       }
 
-      if (listen(s, depth) == -1)
+      if (listen(s, depth) != 0)
       {
 
          fatal() <<"listen" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -487,7 +487,7 @@ namespace sockets_bsd
 
    void listen_socket::OnOptions(i32,i32,i32,SOCKET s)
    {
-      _SetSoReuseaddr(s, true);
+      //_SetSoReuseaddr(s, true);
    }
 
 

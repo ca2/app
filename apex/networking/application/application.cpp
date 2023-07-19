@@ -84,7 +84,7 @@ namespace networking
 
       timeStart.Now();
 
-      while (get_current_port() < 0 && timeStart.elapsed() < time)
+      while (get_current_port() <= 0 && timeStart.elapsed() < time)
       {
 
          preempt(300_ms);

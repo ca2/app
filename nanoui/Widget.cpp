@@ -36,6 +36,7 @@ namespace nanoui
       m_bMouseHover(false), m_tooltip(""), m_font_size(-1)
       , m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/
    {
+      m_bHoverCache = false;
       m_bNeedLayout = false;
       //m_iHoverCandidateChildStart = -1;
       //m_iHoverCandidateChildEnd = -1;
@@ -437,18 +438,26 @@ namespace nanoui
 
          auto pointChildClient = p - posChild - offsetScroll;
 
-         bool contained = pchild->contains(pointChildClient);
+         int pointY = pointChildClient[1];
 
-         bool prev_contained = pchild->contains(pointChildClient - rel);
+         int childTop = pchild->m_pos[1];
 
-         if (contained != prev_contained)
+         int childBottom = childTop + pchild->m_size[1];
+
+         bool bHover = pchild->contains(pointChildClient) && this->m_bHoverCache;
+         
+         bool bHoverOld = pchild->m_bHoverCache;
+
+         if (::is_different(bHover, bHoverOld))
          {
 
-            bHandled |= pchild->mouse_enter_event(pointChildClient, contained, ekeyModifiers);
+            pchild->m_bHoverCache = bHover;
+
+            bHandled |= pchild->mouse_enter_event(pointChildClient, bHover, ekeyModifiers);
 
          }
 
-         if (contained || prev_contained)
+         if (bHover || bHoverOld)
          {
 
             bHandled |= pchild->mouse_motion_event(pointChildClient, rel, bDown, ekeyModifiers);
@@ -507,6 +516,8 @@ namespace nanoui
    {
 
       m_bMouseHover = bEnter;
+
+      m_bHoverCache = bEnter;
 
       return false;
 
@@ -1110,6 +1121,8 @@ namespace nanoui
       
       auto pscreen = screen();
 
+      pscreen->m_bNeedRedraw = true;
+
       pscreen->m_puserinteraction->set_need_redraw({ rectangleInteraction }, nullptr, function);
 
    }
@@ -1117,6 +1130,17 @@ namespace nanoui
 
    void Widget::post_redraw()
    {
+
+      auto pscreen = screen();
+
+      if (pscreen->m_bPreventRedraw)
+      {
+
+         return;
+
+      }
+
+      pscreen->m_bNeedRedraw = false;
 
       screen()->m_puserinteraction->post_redraw();
 
@@ -1231,8 +1255,26 @@ namespace nanoui
 
       }
 
+      //int iAddUp = 0;
+
+      //auto pparent = parent();
+
+      //if (pparent)
+      //{
+
+      //   auto pscrollPanel = dynamic_cast <VScrollPanel*>((Widget *) pparent->parent());
+
+      //   if (pscrollPanel)
+      //   {
+
+      //      iAddUp = 12;
+
+      //   }
+
+      //}
+
       //sequence2_i32 d = p - m_pos;
-      return p.x() >= 0 && p.y() >= 0 && p.x() < m_size.cx() && p.y() < m_size.cy();
+      return p.x() >= 0 && p.y() >= 0 && p.x() < (m_size.cx()) && p.y() < m_size.cy();
 
    }
 

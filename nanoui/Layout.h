@@ -87,7 +87,7 @@ namespace nanoui
       enum_alignment m_ealignment;
 
       /// The margin padding of this BoxLayout.
-      int m_iMargin;
+      ::rectangle_i32 m_rectangleMargin;
 
       /// The spacing between widgets of this BoxLayout.
       int m_iSpacing;
@@ -107,8 +107,8 @@ namespace nanoui
        * \param spacing
        *     Extra spacing placed between widgets
        */
-      BoxLayout(enum_orientation orientation, enum_alignment alignment = e_alignment_middle,
-         int margin = 0, int spacing = 0);
+      BoxLayout(enum_orientation orientation, enum_alignment alignment,
+         ::rectangle_i32 margin, int spacing);
 
       /// The enum_orientation this BoxLayout is using.
       enum_orientation orientation() const { return m_eorientation; }
@@ -123,10 +123,10 @@ namespace nanoui
       void set_alignment(enum_alignment alignment) { m_ealignment = alignment; }
 
       /// The margin of this BoxLayout.
-      int margin() const { return m_iMargin; }
+      rectangle_i32 margin() const { return m_rectangleMargin; }
 
       /// Sets the margin of this BoxLayout.
-      void set_margin(int margin) { m_iMargin = margin; }
+      void set_margin(rectangle_i32 margin) { m_rectangleMargin = margin; }
 
       /// The spacing this BoxLayout is using to pad in between widgets.
       int spacing() const { return m_iSpacing; }

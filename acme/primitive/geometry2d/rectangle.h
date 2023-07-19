@@ -38,8 +38,12 @@ public:
       this->right = (UNIT_TYPE)right; 
       this->bottom = (UNIT_TYPE)bottom; 
    }
-   //rectangle_type(UNIT_TYPE x, UNIT_TYPE y)  : rectangle_type(x, y, x, y) {}
-   //rectangle_type(UNIT_TYPE i)  : rectangle_type(i, i) {}
+
+   template < primitive_number A, primitive_number B >
+   rectangle_type(A a, B b)  : rectangle_type(a, b, a, b) {}
+
+   template < primitive_number N >
+   rectangle_type(N n)  : rectangle_type(n, n) {}
 
 
 //#ifdef APPLE
@@ -167,6 +171,78 @@ public:
 
    //UNIT_TYPE minimum_signed_absolute_dimension(bool bNegativePreference = true) const ;
    //UNIT_TYPE maximum_signed_absolute_dimension(bool bPositivePreference = true) const ;
+
+   UNIT_TYPE get_dimension(enum_orientation eorientation, ::index i)
+   {
+
+      return eorientation == e_orientation_horizontal ?
+         (i == 0 ? left : right) :
+         (i == 0 ? top : bottom);
+
+   }
+
+   UNIT_TYPE get_normal_dimension(enum_orientation eorientation, ::index i)
+   {
+
+      return eorientation == e_orientation_vertical ?
+         (i == 0 ? left : right) :
+         (i == 0 ? top : bottom);
+
+   }
+
+   UNIT_TYPE get_first_dimension(enum_orientation eorientation)
+   {
+
+      return eorientation == e_orientation_horizontal ?
+         (left ) :
+         (top);
+
+   }
+
+   UNIT_TYPE get_first_normal_dimension(enum_orientation eorientation)
+   {
+
+      return eorientation == e_orientation_vertical ?
+         (right) :
+         (bottom);
+
+   }
+
+   UNIT_TYPE get_second_dimension(enum_orientation eorientation)
+   {
+
+      return eorientation == e_orientation_horizontal ?
+         (right) :
+         (bottom);
+
+   }
+
+   UNIT_TYPE get_second_normal_dimension(enum_orientation eorientation)
+   {
+
+      return eorientation == e_orientation_vertical ?
+         (right) :
+         (bottom);
+
+   }
+
+   UNIT_TYPE get_total_dimension(enum_orientation eorientation)
+   {
+
+      return eorientation == e_orientation_horizontal ?
+         left + right :
+         top + bottom;
+
+   }
+
+   UNIT_TYPE get_normal_total_dimension(enum_orientation eorientation)
+   {
+
+      return eorientation == e_orientation_vertical ?
+         left + right :
+         top + bottom;
+
+   }
 
 
    UNIT_TYPE width() const  { return this->right - this->left; }

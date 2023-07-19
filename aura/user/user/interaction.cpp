@@ -17747,12 +17747,12 @@ return strClass;
    }
 
 
-   item_pointer interaction::hover_item()
-   {
+   //item_pointer interaction::hover_item()
+   //{
 
-      return m_pitemHover;
+   //   return m_pitemHover;
 
-   }
+   //}
 
 
    void interaction::show_tooltip(const ::string &str, bool bError)
@@ -20255,6 +20255,17 @@ return strClass;
 
             bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
 
+            if (get_wnd()->m_pinteractionimpl)
+            {
+               
+               if (get_wnd()->m_pinteractionimpl->m_redrawitema.has_element())
+               {
+
+                  post_redraw();
+
+               }
+
+            }
             //}
 
             pappearance->m_pointMouseLast = pointClient;
@@ -21340,6 +21351,72 @@ return strClass;
       }
 
       return point;
+
+   }
+
+
+   item_pointer interaction::get_child_as_item(::index iIndex)
+   {
+
+      if (!m_puserinteractionpointeraChild)
+      {
+
+         return nullptr;
+
+      }
+
+      if (iIndex < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      if (iIndex >= m_puserinteractionpointeraChild->interaction_count())
+      {
+
+         return nullptr;
+
+      }
+
+      return m_puserinteractionpointeraChild->interaction_at(iIndex);
+
+   }
+
+
+   ::count interaction::get_child_as_item_count()
+   {
+
+      if (!m_puserinteractionpointeraChild)
+      {
+
+         return 0;
+
+      }
+
+      return m_puserinteractionpointeraChild->interaction_count();
+
+   }
+
+
+   void interaction::on_item_selected(::item* pitem)
+   {
+
+   }
+
+
+   void interaction::on_item_hover(::item* pitem)
+   {
+
+      m_pitemHover = pitem;
+
+   }
+
+   
+   item_pointer interaction::hover_item()
+   {
+
+      return m_pitemHover;
 
    }
 
@@ -22935,6 +23012,8 @@ return strClass;
       return pimpl ? pimpl->m_puserinteraction : nullptr;
 
    }
+
+
 
 
 } // namespace user

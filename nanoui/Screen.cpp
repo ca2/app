@@ -151,6 +151,8 @@ namespace nanoui
       initialize(puserinteraction);
       m_puserinteraction = puserinteraction;
 
+      defer_create_synchronization();
+
       common_construct();
 
       m_size = size;
@@ -882,12 +884,16 @@ namespace nanoui
    bool Screen::on_mouse_move(const ::point_i32& point, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
+      _synchronous_lock lock(this->synchronization());
+
       //if (point.x() > m_size.cx() - 10 && point.y() > m_size.cy() - 10)
       //{
 
       //   return false;
 
       //}
+
+      m_bHoverCache = true;
 
       sequence2_i32 pointCursor((int)point.x(), (int)point.y());
 

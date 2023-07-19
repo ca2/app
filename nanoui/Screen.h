@@ -73,6 +73,9 @@ namespace nanoui
       ::pointer < Widget >          m_pwidgetDrag;
       ::pointer < Widget >          m_pwidgetDrop;
 
+      bool                          m_bPreventRedraw = false;
+      bool                          m_bNeedRedraw = false;
+
 
       class ::time m_last_interaction;
       //   bool m_process_events = true;

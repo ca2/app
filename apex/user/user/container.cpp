@@ -44,7 +44,7 @@ namespace user
 
       auto iCount = get_child_as_item_count();
 
-      for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex)
+      for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex++)
       {
 
          auto pitem = get_child_as_item(iIndex);
@@ -100,7 +100,7 @@ namespace user
 
       auto iCount = get_child_as_item_count();
 
-      for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex)
+      for (decltype(iCount) iIndex = 0; iIndex < iCount; iIndex++)
       {
 
          auto pitem = get_child_as_item(iIndex);

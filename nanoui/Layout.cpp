@@ -211,7 +211,7 @@ namespace nanoui
 
          auto sizeTargetFinal = pwidgetChild->m_fixed_size.prefer_self_coordinate_if_positive(sizeTarget);
 
-         pwidgetChild->set_size(sizeTarget);
+         pwidgetChild->set_size(sizeTargetFinal);
 
          pwidgetChild->perform_layout(pcontext);
 

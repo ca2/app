@@ -43,7 +43,7 @@ namespace nanoui
          if (m_eorientation == e_orientation_vertical)
          {
 
-            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top - m_rectangleMargin.bottom;
+            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top / 2;
 
          }
          else
@@ -135,7 +135,7 @@ namespace nanoui
          if (m_eorientation == e_orientation_vertical)
          {
 
-            position += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top - m_rectangleMargin.bottom;
+            position += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top / 2;
 
          }
          else
@@ -211,7 +211,7 @@ namespace nanoui
 
          auto sizeTargetFinal = pwidgetChild->m_fixed_size.prefer_self_coordinate_if_positive(sizeTarget);
 
-         pwidgetChild->set_size(sizeTarget);
+         pwidgetChild->set_size(sizeTargetFinal);
 
          pwidgetChild->perform_layout(pcontext);
 

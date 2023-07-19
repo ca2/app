@@ -95,7 +95,7 @@ namespace user
       
       //::index tool_item_index(const ::atom & atom) const;
       
-      ::user::tool_item * tool_item(const ::atom & atom) const;
+      ::user::tool_item * tool_item_by_atom(const ::atom & atom) const;
       
       e_tool_item_style tool_item_style(const ::atom & atom) const;
       void set_tool_item_style(const ::atom & atom, const e_tool_item_style & estyle);

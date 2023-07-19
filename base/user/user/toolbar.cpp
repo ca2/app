@@ -578,7 +578,7 @@ namespace user
    e_tool_item_style toolbar::tool_item_style(const ::atom & atom) const
    {
 
-      auto pitem = tool_item(atom);
+      auto pitem = tool_item_by_atom(atom);
 
       return pitem->m_estyle;
 
@@ -588,7 +588,7 @@ namespace user
    void toolbar::set_tool_item_style(const ::atom & atom, const e_tool_item_style & estyle)
    {
 
-      auto pitem = tool_item(atom);
+      auto pitem = tool_item_by_atom(atom);
 
       pitem->m_estyle = estyle;
 
@@ -629,10 +629,10 @@ namespace user
    //   }
 
 
-   ::user::tool_item * toolbar::tool_item(const ::atom & atom) const
+   ::user::tool_item * toolbar::tool_item_by_atom(const ::atom & atom) const
    {
 
-      auto iIndex = item_index(atom);
+      auto iIndex = item_index_by_atom(atom);
 
       return index_tool_item(iIndex);
 
@@ -642,7 +642,7 @@ namespace user
    ::e_tool_item_state toolbar::tool_item_state(const ::atom & atom) const
    {
 
-      auto pitem = tool_item(atom);
+      auto pitem = tool_item_by_atom(atom);
 
       auto & estate = pitem->m_estate;
 
@@ -655,11 +655,11 @@ namespace user
 
          estate.set(e_tool_item_state_enabled, bEnabled);
 
-         bool bPressed = is_item_pressed(atom);
+         bool bPressed = is_item_pressed_by_atom(atom);
 
          estate.set(e_tool_item_state_pressed, bPressed);
 
-         bool bHover = is_item_hover(atom);
+         bool bHover = is_item_hover_by_atom(atom);
 
          estate.set(e_tool_item_state_hover, bHover);
 
@@ -1217,7 +1217,7 @@ namespace user
    void toolbar::set_tool_item_image(const ::atom & atom, index iImage)
    {
 
-      tool_item(atom)->m_iImage = iImage;
+      tool_item_by_atom(atom)->m_iImage = iImage;
 
    }
 
@@ -1236,8 +1236,10 @@ namespace user
       //#else
       //      throw ::exception(todo);
       //#endif
-      return tool_item(atom)->m_iImage;
+      return tool_item_by_atom(atom)->m_iImage;
+      
    }
+
 
    //   void toolbar::SetButtonInfo(const ::atom & atom, ::u32 nID, ::u32 nStyle, index iImage)
    //   {
@@ -1266,7 +1268,7 @@ namespace user
    void toolbar::set_tool_item_text(const ::atom & atom, const ::string & str)
    {
 
-      tool_item(atom)->m_str = str;
+      tool_item_by_atom(atom)->m_str = str;
 
       //throw todo;
 //      // attempt to lookup string index in map
@@ -1332,7 +1334,7 @@ namespace user
    string toolbar::tool_item_text(const ::atom & atom) const
    {
 
-      auto ptoolitem = tool_item(atom);
+      auto ptoolitem = tool_item_by_atom(atom);
 
       return ptoolitem->m_str;
 
@@ -2024,7 +2026,7 @@ namespace user
    void toolbar::set_tool_item_state(const ::atom & atom, const e_tool_item_state & estate)
    {
 
-      auto ptoolitem = tool_item(atom);
+      auto ptoolitem = tool_item_by_atom(atom);
       
       ptoolitem->m_estate = estate;
 

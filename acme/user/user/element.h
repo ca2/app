@@ -147,15 +147,15 @@ namespace user
       virtual void defer_update_display();
       
       
-      virtual ::index item_index(const ::atom & atom) const;
+      virtual ::index item_index_by_atom(const ::atom & atom) const;
 
-      virtual bool is_index_item_pressed(::index iIndex) const;
-      
-      virtual bool is_index_item_hover(::index iIndex) const;
-      
-      virtual bool is_item_pressed(const ::atom & atom) const;
+      virtual bool is_item_pressed_by_atom(const ::atom & atom) const;
 
-      virtual bool is_item_hover(const ::atom & atom) const;
+      virtual bool is_item_hover_by_atom(const ::atom & atom) const;
+      
+      virtual bool is_item_pressed_by_index(::index iIndex) const;
+      
+      virtual bool is_item_hover_by_index(::index iIndex) const;
       
       virtual enum_control_type get_control_type() const;
 

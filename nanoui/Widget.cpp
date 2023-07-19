@@ -438,11 +438,11 @@ namespace nanoui
 
          auto pointChildClient = p - posChild - offsetScroll;
 
-         int pointY = pointChildClient[1];
-
-         int childTop = pchild->m_pos[1];
-
-         int childBottom = childTop + pchild->m_size[1];
+//         int pointY = pointChildClient[1];
+//
+//         int childTop = pchild->m_pos[1];
+//
+//         int childBottom = childTop + pchild->m_size[1];
 
          bool bHover = pchild->contains(pointChildClient) && this->m_bHoverCache;
          

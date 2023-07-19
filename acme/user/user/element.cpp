@@ -2856,7 +2856,7 @@ namespace user
    }
 
 
-   ::index element::item_index(const ::atom & atom) const
+   ::index element::item_index_by_atom(const ::atom & atom) const
    {
 
       auto iIndex = atom.as_index();
@@ -2887,7 +2887,7 @@ namespace user
    }
 
 
-   bool element::is_index_item_pressed(::index iIndex) const
+   bool element::is_item_pressed_by_index(::index iIndex) const
    {
 
       return ::is_item_index(m_pitemPressed, iIndex);
@@ -2895,7 +2895,7 @@ namespace user
    }
 
 
-   bool element::is_index_item_hover(::index iIndex) const
+   bool element::is_item_hover_by_index(::index iIndex) const
    {
 
       return ::is_item_index(m_pitemHover, iIndex);
@@ -2903,22 +2903,22 @@ namespace user
    }
 
 
-   bool element::is_item_pressed(const ::atom & atom) const
+   bool element::is_item_pressed_by_atom(const ::atom & atom) const
    {
 
-      auto iIndex = item_index(atom);
+      auto iIndex = item_index_by_atom(atom);
 
-      return is_index_item_pressed(iIndex);
+      return is_item_pressed_by_index(iIndex);
 
    }
 
 
-   bool element::is_item_hover(const ::atom & atom) const
+   bool element::is_item_hover_by_atom(const ::atom & atom) const
    {
 
-      auto iIndex = item_index(atom);
+      auto iIndex = item_index_by_atom(atom);
 
-      return is_index_item_hover(iIndex);
+      return is_item_hover_by_index(iIndex);
 
    }
 

@@ -230,7 +230,7 @@ namespace user
 
                   if (::is_item(m_pitemHover, iIndex)
                      && !::is_element(m_pitemHover, ::e_element_close_tab_button)
-                     && !in_element_range(m_pitemHover, ::e_element_split, 100))
+                     && !::in_element_range(m_pitemHover, ::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));

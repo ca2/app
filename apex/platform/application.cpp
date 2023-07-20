@@ -825,6 +825,8 @@ namespace apex
 
       m_prequest = prequest;
 
+      prequest->m_bMakeVisible = prequest->payload("auto_start").as_i32() != 1;
+
       if (is_service())
       {
 

@@ -4851,7 +4851,15 @@ void image::vertical_line(i32 x, ::color::color color, i32 y1, i32 y2)
      // x1 += width();
    image32_t u32ImageColor(color, color_indexes());
 
+#ifdef __APPLE__
+
+   image32_t* pdata = (image32_t*)((::u8*)data() + x *sizeof(image32_t) + ((height() - y2 - 1) * m_iScan));
+
+#else
+
    image32_t* pdata = (image32_t*)((::u8*)data() + x *sizeof(image32_t) + (y1 * m_iScan));
+   
+#endif
 
    for (i32 y = y1; y <= y2; y++)
    {

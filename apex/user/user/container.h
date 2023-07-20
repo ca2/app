@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   class container :
+   class CLASS_DECL_APEX container :
       virtual public ::particle
    {
    public:

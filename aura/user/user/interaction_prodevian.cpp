@@ -62,7 +62,7 @@ namespace user
 
       //m_bUpdateBufferUpdateWindowPending = false;
 
-      m_bRedraw = false;
+      //m_bRedraw = false;
 
       m_bAuraMessageQueue = true;
 
@@ -631,7 +631,7 @@ namespace user
       //if (m_puserinteraction->m_bUpdateBufferPending)
       //{
 
-         prodevian_update_buffer(bRedraw);
+         prodevian_update_buffer();
 
       //}
 
@@ -1005,10 +1005,10 @@ namespace user
    }
 
 
-   bool prodevian::prodevian_update_buffer(bool bRedraw)
+   bool prodevian::prodevian_update_buffer()
    {
 
-      m_bRedraw = bRedraw;
+      //m_bRedraw = bRedraw;
 
       m_puserinteraction->m_bUpdateBuffer = false;
 

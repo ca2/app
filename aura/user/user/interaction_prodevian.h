@@ -57,7 +57,7 @@ namespace user
       ::procedure                                 m_procedureWindowShow;
       
 
-      bool                                      m_bRedraw;
+      //bool                                      m_bRedraw;
 
 
       bool                                      m_bExclusiveMode;
@@ -90,7 +90,7 @@ namespace user
 
       bool prodevian_reset(::user::interaction * pinteraction);
       bool prodevian_iteration();
-      bool prodevian_update_buffer(bool bRedraw);
+      bool prodevian_update_buffer();
       bool prodevian_update_screen();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       void update_buffer();

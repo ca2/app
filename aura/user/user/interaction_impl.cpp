@@ -1191,7 +1191,7 @@ namespace user
       {
 
          MESSAGE_LINK(e_message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
-         MESSAGE_LINK(e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
+         //MESSAGE_LINK(e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
 
 
          //#ifndef LINUX
@@ -5783,25 +5783,25 @@ namespace user
    }
 
 
-   void interaction_impl::start_window_visual()
-   {
-
-      if (m_puserthread)
-      {
-
-         m_puserthread->start_window_visual();
-
-      }
-      else
-      {
-
-         m_puserinteraction->post_message(e_message_apply_visual);
-
-      }
-
-      //return true;
-
-   }
+//   void interaction_impl::start_window_visual()
+//   {
+//
+//      if (m_puserthread)
+//      {
+//
+//         m_puserthread->start_window_visual();
+//
+//      }
+//      else
+//      {
+//
+//         m_puserinteraction->post_message(e_message_apply_visual);
+//
+//      }
+//
+//      //return true;
+//
+//   }
 
 
    void interaction_impl::_001UpdateWindow()
@@ -7598,40 +7598,40 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnApplyVisual(::message::message * pmessage)
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      string strType = __type_name(m_puserinteraction);
-
-      if (strType.case_insensitive_contains("filemanager"))
-      {
-
-         information() << "filemanager apply visual";
-
-      }
-
-      if (m_puserinteraction->is_graphical())
-      {
-
-         window_show();
-
-         //if (::is_set(m_puserthread))
-         //{
-
-         //   m_puserthread->m_evApplyVisual.set_event();
-
-         //}
-
-      }
-
-   }
+//   void interaction_impl::_001OnApplyVisual(::message::message * pmessage)
+//   {
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      string strType = __type_name(m_puserinteraction);
+//
+//      if (strType.case_insensitive_contains("filemanager"))
+//      {
+//
+//         information() << "filemanager apply visual";
+//
+//      }
+//
+//      if (m_puserinteraction->is_graphical())
+//      {
+//
+//         window_show();
+//
+//         //if (::is_set(m_puserthread))
+//         //{
+//
+//         //   m_puserthread->m_evApplyVisual.set_event();
+//
+//         //}
+//
+//      }
+//
+//   }
 
 
    void interaction_impl::on_message_move(::message::message * pmessage)

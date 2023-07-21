@@ -330,7 +330,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
-      DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
+      //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
@@ -741,7 +741,8 @@ namespace user
       virtual void _001UpdateWindow() override;
 
 
-      virtual void start_window_visual() override;
+      // deprecated schedule window visual
+      //virtual void start_window_visual() override;
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;

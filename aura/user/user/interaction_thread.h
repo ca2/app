@@ -115,7 +115,8 @@ namespace user
       //virtual void set_finish_composites(::property_object * pcontextobjectFinish) override;
       void on_destroy() override;
 
-      void start_window_visual();
+      // deprecated schedule window visual
+      //void start_window_visual();
 
       virtual void task_caller_on_init() override;
 

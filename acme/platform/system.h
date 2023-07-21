@@ -200,6 +200,15 @@ namespace acme
       inline ::crypto::crypto * crypto() { return m_pcrypto; }
 
 
+      virtual ::string http_text(const ::scoped_string & scopedstrUrl);
+      virtual ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set);
+
+
+
+      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
+      virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
+
+
       virtual void defer_audio();
 
       virtual bool has_audio();

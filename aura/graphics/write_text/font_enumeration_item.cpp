@@ -68,6 +68,23 @@ namespace write_text
    }
 
 
+   font_enumeration_item::font_enumeration_item(const ::string & strFile, const ::string & strBranch, const ::string & strName) :
+      m_strName(strName)
+   {
+
+      m_mapFileName[0] = strFile;
+
+      m_strBranch = strBranch;
+
+#ifdef WINDOWS
+
+      m_wstrName = strName;
+
+#endif
+
+   }
+
+
    font_enumeration_item::~font_enumeration_item()
    {
 

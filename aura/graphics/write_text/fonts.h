@@ -15,8 +15,8 @@ namespace write_text
    public:
 
 
-      ::pointer<font_enumeration>                 m_pfontenumeration;
-      ::write_text::font_enumeration_item_array    m_fontenumerationitema;
+      string_map < ::pointer<font_enumeration> >                  m_mapFontEnumeration;
+      string_map < ::write_text::font_enumeration_item_array >    m_mapFontEnumerationItemArray;
 
 
       fonts();
@@ -26,10 +26,10 @@ namespace write_text
       void initialize(::particle * pparticle) override;
 
 
-      virtual void enumerate_fonts();
+      virtual void enumerate_fonts(const ::scoped_string & scopedstrFontBranch);
 
 
-      virtual font_enumeration* enumeration();
+      virtual font_enumeration* enumeration(const ::scoped_string & scopedstrFontBranch);
 
 
       virtual string default_font_name();

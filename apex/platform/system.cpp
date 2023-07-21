@@ -5250,6 +5250,22 @@ string get_bundle_app_library_name();
    }
 
 
+   ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      return http().get(scopedstrUrl, set);
+
+   }
+
+
+   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      http().download(scopedstrUrl, payloadFile, set);
+
+   }
+
+
 } // namespace apex
 
 

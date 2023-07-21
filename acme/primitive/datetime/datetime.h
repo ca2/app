@@ -54,6 +54,8 @@ namespace datetime
          virtual void initialize(::particle * pparticle) override;
 
 
+         ::posix_time parse(const string & str);
+
          void parse_str(const string & str, property_set & set);
          ::earth::time parse_str(const string & str);
 

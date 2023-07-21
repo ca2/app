@@ -3,6 +3,7 @@
 #include "datetime.h"
 ////#include "acme/exception/exception.h"
 #include "acme/exception/not_implemented.h"
+#include "acme/exception/parsing.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/datetime/_string.h"
 #include "acme/primitive/datetime/earth_gregorian_time.h"
@@ -437,6 +438,53 @@ namespace datetime
          set["minute"].as_i32(),
          set["second"].as_i32()
       };
+
+   }
+
+
+   ::posix_time datetime::international::parse(const string & strParam)
+   {
+
+      ::string str(strParam);
+
+      str.trim();
+
+      ::earth::gregorian_time gregoriantime{};
+
+      if(character_isdigit(strParam[0])
+         && character_isdigit(strParam[1])
+         && character_isdigit(strParam[2])
+         && character_isdigit(strParam[3])
+         && character_isdigit(strParam[5])
+         && character_isdigit(strParam[6])
+         && character_isdigit(strParam[8])
+         && character_isdigit(strParam[9]))
+      {
+         if (character_isdigit(strParam[11])
+            && character_isdigit(strParam[12])
+            && character_isdigit(strParam[14])
+            && character_isdigit(strParam[15])
+            && character_isdigit(strParam[17])
+            && character_isdigit(strParam[18]))
+         {
+            gregoriantime.m_iSecond = atoi(strParam(17, 2));
+            gregoriantime.m_iMinute = atoi(strParam(14, 2));
+            gregoriantime.m_iHour = atoi(strParam(11, 2));
+
+         }
+
+         gregoriantime.m_iDay = atoi(strParam(8, 2));
+         gregoriantime.m_iMonth = atoi(strParam(5, 2));
+         gregoriantime.m_iYear = atoi(strParam(0, 4));
+      }
+      else
+      {
+
+         throw ::parsing_exception("not international date");
+
+      }
+
+      return gregoriantime.make_utc_time();
 
    }
 

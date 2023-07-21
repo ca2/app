@@ -41,7 +41,7 @@ CLASS_DECL_ACME bool is_valid_file_time(const ::file_time & filetime);
 inline file_time as_file_time(const FILETIME & filetime)
 {
 
-   return { file_time_t{}, (::u64) ::make_u32(filetime.dwLowDateTime, filetime.dwHighDateTime) };
+   return { file_time_t{}, (::u64) ::make_u64(filetime.dwLowDateTime, filetime.dwHighDateTime) };
 
 }
 

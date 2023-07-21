@@ -119,6 +119,16 @@ namespace user
    }
 
 
+   void font_list::set_font_branch(const ::scoped_string & scopedstrFontBranch)
+   {
+
+      __defer_construct_new(m_pfontlist);
+
+      m_pfontlist->set_font_branch(scopedstrFontBranch);
+
+   }
+
+
    void font_list::update_data(bool bSaveAndValidate)
    {
 

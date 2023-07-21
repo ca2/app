@@ -550,6 +550,8 @@ namespace user
 
       //virtual void enumerate_composite(matter_array& a) override;
 
+      virtual bool _is_set() const;
+
       virtual bool is_user_thread();
 
       virtual void interaction_send(const ::procedure & procedure);

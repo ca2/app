@@ -6227,6 +6227,14 @@ return strClass;
 //}
 
 
+   bool interaction::_is_set() const
+   {
+
+      return true;
+
+   }
+
+
    bool interaction::is_user_thread()
    {
 

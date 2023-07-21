@@ -53,7 +53,7 @@ namespace user
       class ::time                                m_timeOutOfDrawing;
 
       class ::time                                m_timeLastScreenUpdate;
-      ::procedure                                 m_procedureUpdateScreen;
+      //::procedure                                 m_procedureUpdateScreen;
       ::procedure                                 m_procedureWindowShow;
       
 
@@ -94,7 +94,7 @@ namespace user
       bool prodevian_update_screen();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       void update_buffer();
-      bool update_screen();
+      bool exclusive_mode_update_screen();
 
       
       virtual void profiling_on_before_update_screen();

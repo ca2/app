@@ -171,36 +171,36 @@ namespace user
 
       //}
 
-      m_procedureUpdateScreen = [this, pimpl]()
-         {
-
-            if (!has_flag(e_flag_destroying) && !has_finishing_flag())
-            {
-
-               update_screen();
-
-            }
-
-            m_bUpdatingScreen = false;
-
-            {
-
-               _synchronous_lock synchronouslock(pimpl->synchronization());
-
-               if(pimpl->m_redrawitema.has_element())
-               {
-
-                  auto iRequestsRemaining = pimpl->m_redrawitema.size();
-
-                  information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
-
-                  m_puserinteraction->post_redraw();
-
-               }
-
-            }
-
-         };
+//      m_procedureUpdateScreen = [this, pimpl]()
+//         {
+//
+//            if (!has_flag(e_flag_destroying) && !has_finishing_flag())
+//            {
+//
+//               update_screen();
+//
+//            }
+//
+//            m_bUpdatingScreen = false;
+//
+//            {
+//
+//               _synchronous_lock synchronouslock(pimpl->synchronization());
+//
+//               if(pimpl->m_redrawitema.has_element())
+//               {
+//
+//                  auto iRequestsRemaining = pimpl->m_redrawitema.size();
+//
+//                  information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
+//
+//                  m_puserinteraction->post_redraw();
+//
+//               }
+//
+//            }
+//
+//         };
 
       m_procedureWindowShow = [this]()
          {
@@ -365,14 +365,14 @@ namespace user
 
       m_puserinteraction.release();
 
-      if (m_procedureUpdateScreen)
-      {
-
-         m_procedureUpdateScreen->destroy();
-
-      }
-
-      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      if (m_procedureUpdateScreen)
+//      {
+//
+//         m_procedureUpdateScreen->destroy();
+//
+//      }
+//
+//      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
       if (m_procedureWindowShow)
       {
@@ -1033,19 +1033,21 @@ namespace user
       if (m_bExclusiveMode)
       {
 
-         update_screen();
+         // UNIVERSAL_WINDOWS
+
+         exclusive_mode_update_screen();
+
+         return true;
 
       }
-      else
-      {
 
-         m_timeLastScreenUpdate.Now();
+      m_timeLastScreenUpdate.Now();
 
-         m_bUpdatingScreen = true;
+      m_bUpdatingScreen = true;
 
-         m_pimpl->m_pwindow->update_screen();
+      m_pimpl->m_pwindow->update_screen();
 
-         //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
+      //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
 //         {
 //
 //            if (m_puserinteraction)
@@ -1056,8 +1058,6 @@ namespace user
 //            }
 //
 //         }
-
-      }
 
       return true;
 
@@ -1072,67 +1072,67 @@ namespace user
       try
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
-
-         if(!m_puserinteraction)
-         {
-
-            return;
-
-         }
-
-         //bUpdateBuffer = false;
-
-         //bUpdateWindow = false;
-
-         i64 i1 = ::i64_nanosecond();
-
-      //   bool bTransparentDraw;
-
-      //#ifdef WINDOWS_DESKTOP
-
-      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
-      //   {
-
-      //      bTransparentDraw = true;
-
-      //   }
-      //   else
-      //   {
-
-      //      bTransparentDraw = false;
-
-      //   }
-
-      //#else
-
-      //   bTransparentDraw = true;
-
-      //#endif
-
-         if (!::task_get_run())
-         {
-
-            return;
-
-         }
-
-         if (m_puserinteraction == nullptr)
-         {
-
-            return;
-
-         }
-
-
-         if (!m_pimpl)
-         {
-
-            return;
-
-         }
-
-         synchronouslock.unlock();
+//         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+//
+//         if(!m_puserinteraction)
+//         {
+//
+//            return;
+//
+//         }
+//
+//         //bUpdateBuffer = false;
+//
+//         //bUpdateWindow = false;
+//
+//         i64 i1 = ::i64_nanosecond();
+//
+//      //   bool bTransparentDraw;
+//
+//      //#ifdef WINDOWS_DESKTOP
+//
+//      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
+//      //   {
+//
+//      //      bTransparentDraw = true;
+//
+//      //   }
+//      //   else
+//      //   {
+//
+//      //      bTransparentDraw = false;
+//
+//      //   }
+//
+//      //#else
+//
+//      //   bTransparentDraw = true;
+//
+//      //#endif
+//
+//         if (!::task_get_run())
+//         {
+//
+//            return;
+//
+//         }
+//
+//         if (m_puserinteraction == nullptr)
+//         {
+//
+//            return;
+//
+//         }
+//
+//
+//         if (!m_pimpl)
+//         {
+//
+//            return;
+//
+//         }
+//
+//         synchronouslock.unlock();
 
          m_timeBeforeDrawing.Now();
 
@@ -1158,7 +1158,6 @@ namespace user
 
 #endif
 
-
          m_timeAfterDrawing.Now();
 
          m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
@@ -1167,11 +1166,6 @@ namespace user
          {
 
             m_puserinteraction->on_after_graphical_update();
-
-         }
-
-         if (m_puserinteraction)
-         {
 
             m_puserinteraction->m_bNeedRedraw = false;
 
@@ -1186,7 +1180,7 @@ namespace user
    }
 
 
-   bool prodevian::update_screen()
+   bool prodevian::exclusive_mode_update_screen()
    {
 
       //if (m_pimpl)

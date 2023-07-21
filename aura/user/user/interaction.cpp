@@ -5343,7 +5343,6 @@ return strClass;
    void interaction::defer_draw(::draw2d::graphics_pointer & pgraphics)
    {
 
-
       m_pprimitiveimpl->defer_draw(pgraphics);
 
    }

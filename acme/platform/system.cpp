@@ -992,6 +992,53 @@ namespace acme
       throw ::interface_only();
 
    }
+   
+   
+   ::string system::http_text(const ::scoped_string & scopedstrUrl)
+   {
+
+      property_set set;
+
+      set["raw_http"] = true;
+
+      set["disable_common_name_cert_check"] = true;
+
+      return http_text(scopedstrUrl, set);
+
+   }
+
+
+   ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+   
+      throw ::not_implemented("requires apex");
+
+      return {};
+   
+   }
+
+
+
+   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   {
+
+      property_set set;
+
+      set["raw_http"] = true;
+
+      set["disable_common_name_cert_check"] = true;
+
+      http_download(payloadFile, scopedstrUrl, set);
+
+   }
+
+
+   void system::http_download(const ::payload & payloadFileh, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      throw ::not_implemented("requires apex");
+
+   }
 
 
    bool system::has_audio()

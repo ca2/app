@@ -443,7 +443,14 @@ namespace apex
 
       ::string fetch_public_internet_domain_extension_list_text() override;
 
-      
+
+      using acme::system::http_text;
+      ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
+
+      using acme::system::http_download;
+      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
+
+
    };
 
 

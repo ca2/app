@@ -65,11 +65,11 @@ file_time::file_time(const ::posix_time & time) :
 file_time::file_time(const class ::time & time)
 {
 
-   auto nanoseconds = time.m_iSecond * 1'000'000'000 + time.m_iNanosecond;
+   auto centimicroseconds = time.m_iSecond * 10'000'000 + time.m_iNanosecond / 100;
 
-   nanoseconds += EPOCH_DIFFERENCE_NANOS;
+   centimicroseconds += (EPOCH_DIFFERENCE_NANOS/100);
 
-   m_uFileTime = nanoseconds / 100;
+   m_uFileTime = centimicroseconds;
 
 }
 

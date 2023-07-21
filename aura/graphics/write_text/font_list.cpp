@@ -15,6 +15,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/user/user/interaction.h"
+#include "aura/user/user/style.h"
 
 
 #define BOX 0
@@ -135,6 +136,56 @@ namespace write_text
          m_puserinteraction->post_redraw();
 
          return;
+
+      }
+
+      if (m_pfontenumeration)
+      {
+
+         if (m_pfontenumerationAddRedrawHandler != m_pfontenumeration)
+         {
+
+            m_pfontenumerationAddRedrawHandler = m_pfontenumeration;
+
+            m_pfontenumerationAddRedrawHandler->get_signal(id_font_list_redraw)->add_handler(this);
+
+         }
+
+         _synchronous_lock synchronouslockEnumeration(m_pfontenumeration->synchronization());
+
+         auto pstyle = m_puserinteraction->get_style();
+
+         if (pstyle->is_dark_mode())
+         {
+
+            pgraphics->set_text_color(::color::white);
+
+         }
+         else
+         {
+
+            pgraphics->set_text_color(::color::black);
+         }
+
+         pgraphics->set_text_color(::color::white);
+
+         if (m_pfontenumeration->m_pathaLoading.get_count())
+         {
+
+            ::point_i32 point{10,10};
+
+            for (index i = 0; i < m_pfontenumeration->m_pathaLoading.get_count(); i++)
+            {
+
+               pgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
+
+               point.y() += pgraphics->m_pfont->get_height(pgraphics);
+
+            }
+
+            return;
+
+         }
 
       }
 
@@ -484,7 +535,9 @@ namespace write_text
 
          }
 
-         pbox->m_pfont->create_font(str, font_size(pfontlistdata->m_iaSize[iBox], e_unit_pixel));
+         pbox->m_pfont->create_font({ str, pitem->m_strBranch }, font_size(pfontlistdata->m_iaSize[iBox], e_unit_pixel));
+
+         pbox->m_pfont->m_path = pitem->m_path;
 
          ::draw2d::lock draw2dlock(this);
 
@@ -767,7 +820,7 @@ namespace write_text
 
          auto pfonts = pwritetext->fonts();
 
-         auto pfontenumeration = pfonts->enumeration();
+         auto pfontenumeration = pfonts->enumeration(m_strFontBranch);
 
          if (!pfontenumeration->m_eventReady.wait(30_s))
          {
@@ -1061,17 +1114,21 @@ namespace write_text
 
                plistitem->m_strName = penumitem->m_strName;
 
+               plistitem->m_strBranch = penumitem->m_strBranch;
+
+               plistitem->m_path = penumitem->m_mapFileName[0];
+
                plistitem->m_echaracterseta = penumitem->m_echaracterseta;
 
             }
-            else if (plistitem->m_strFont != penumitem->m_mapFileName[0])
-            {
+            //else if (plistitem->m_strFont != penumitem->m_mapFileName[0])
+            //{
+//
+               //information() << "what?!?!";
+               //
+               //continue;
 
-               information() << "what?!?!";
-
-               continue;
-
-            }
+            //}
 
             if (bNew || !bSameSize)
             {
@@ -1802,6 +1859,25 @@ namespace write_text
       return m_bUpdatingFontList;
 
    }
+
+
+   void font_list::set_font_branch(const ::scoped_string & scopedstrFontBranch)
+   {
+
+      m_strFontBranch = scopedstrFontBranch;
+
+      //on_update_font_branch();
+
+   }
+
+
+   void font_list::on_update_font_branch()
+   {
+
+      update_extents();
+
+   }
+
 
 
 } // namespace write_text

@@ -31,6 +31,17 @@ namespace earth
       inline gregorian_time()
       {
 
+         m_iDayOfWeek = 0;
+
+
+         m_iNanoSecond = 0;
+         m_iSecond =0;        /* Seconds.	[0-60] (1 leap second) */
+         m_iMinute =0 ;        /* Minutes.	[0-59] */
+         m_iHour=0;          /* Hours.	[0-23] */
+         m_iDay=0;           /* Day.		[1-31] */
+         m_iMonth=0;         /* Month.	[0-11] */
+         m_iYear=0;
+
       }
 
 

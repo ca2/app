@@ -14,11 +14,12 @@ namespace write_text
 
       enum_font         m_efont;
       ::string          m_strFamilyName;
+      ::string          m_strBranch;
 
    protected:
       font_family(enum_font efont);
 
-      font_family(const ::scoped_string & scopedstrFamilyName);
+      font_family(const ::scoped_string & scopedstrFamilyName, const ::scoped_string & scopedstrBranch = {});
 
       font_family(const font_family & fontfamily);
 
@@ -50,7 +51,7 @@ namespace write_text
 
       font_family_pointer(enum_font efont = e_font_default);
 
-      font_family_pointer(const ::scoped_string & scopedstrFamilyName);
+      font_family_pointer(const ::scoped_string & scopedstrFamilyName, const ::scoped_string & scopedstrBranch = {});
 
       font_family_pointer(const ::string & strFamilyName) : font_family_pointer((const scoped_string &)strFamilyName) {}
 

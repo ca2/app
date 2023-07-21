@@ -16,13 +16,13 @@ time::time(const ::earth::gregorian_time & gregoriantime) :
 time::time(const ::file_time & filetime)
 {
 
-   uint64_t nanoseconds = filetime.m_uFileTime * 100;
+   uint64_t centimicroseconds = filetime.m_uFileTime ;
 
-   nanoseconds -= file_time::EPOCH_DIFFERENCE_NANOS;
+   centimicroseconds -= (file_time::EPOCH_DIFFERENCE_NANOS / 100);
 
-   m_iSecond = nanoseconds / 1'000'000'000;
+   m_iSecond = centimicroseconds / 10'000'000;
 
-   m_iNanosecond = nanoseconds % 1'000'000'000;
+   m_iNanosecond = (centimicroseconds % 10'000'000) * 100;
 
 }
 

@@ -28,6 +28,7 @@ namespace write_text
       // 201 Light Italic
       int_to_string              m_mapFileName;
       string                     m_strName;
+      string                     m_strBranch;
    #ifdef WINDOWS
       wstring                    m_wstrName;
    #endif
@@ -41,6 +42,7 @@ namespace write_text
    #endif
       font_enumeration_item(const ::string & strName);
       font_enumeration_item(const ::string & strFile, const ::string & strName);
+      font_enumeration_item(const ::string & strFile, const ::string & strBranch, const ::string & strName);
       ~font_enumeration_item() override;
 
 

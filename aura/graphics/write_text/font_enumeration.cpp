@@ -52,6 +52,12 @@ namespace write_text
    }
 
 
+   void font_enumeration::defer_download_font(const ::file::path & pathCache)
+   {
+
+   }
+
+
    void font_enumeration::handle(::topic * ptopic, ::context * pcontext)
    {
 

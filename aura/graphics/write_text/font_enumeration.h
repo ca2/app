@@ -20,9 +20,10 @@ namespace write_text
       bool                                            m_bTrueType : 1;
       bool                                            m_bOther : 1;
       int                                             m_iUpdateId;
-      ::pointer<font_enumeration_item_array>         m_pfontenumerationitema;
+      ::pointer<font_enumeration_item_array>          m_pfontenumerationitema;
       bool                                            m_bUpdating;
       manual_reset_event                              m_eventReady;
+      ::file::path_array                              m_pathaLoading;
 
 
       font_enumeration();
@@ -34,6 +35,9 @@ namespace write_text
 
       //void signal(::signal * psignal) override;
       void handle(::topic * ptopic, ::context * pcontext) override;
+
+
+      virtual void defer_download_font(const ::file::path & pathCache);
 
 
       virtual void check_need_update(::topic * ptopic);

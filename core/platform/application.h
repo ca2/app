@@ -48,7 +48,7 @@ namespace core
       bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, property_set & propertyset) override;
 
 
-      virtual void create_auto_start_option(::user::interaction * pparent);
+      void create_auto_start_option(::user::interaction * pparent) override;
 
 
    };

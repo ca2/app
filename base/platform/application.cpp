@@ -259,7 +259,7 @@ namespace base
 
       auto pcheckbox = create_check_box<::user::check_box>(playoutLine, "");
 
-      bool bCheck = false;
+      //bool bCheck = false;
 
       auto papplication = acmeapplication()->m_papexapplication;
 

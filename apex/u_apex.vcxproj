@@ -777,19 +777,14 @@
     <ClInclude Include="subject\_impl.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
-    <ClInclude Include="user\aaa_item.h" />
-    <ClInclude Include="user\aaa_range.h" />
-    <ClInclude Include="user\callback.h" />
-    <ClInclude Include="user\command.h" />
-    <ClInclude Include="user\control_event.h" />
-    <ClInclude Include="user\ewindowflag.h" />
-    <ClInclude Include="user\item.h" />
-    <ClInclude Include="user\language.h" />
-    <ClInclude Include="user\language_map.h" />
-    <ClInclude Include="user\menu_shared.h" />
-    <ClInclude Include="user\menu_shared_command.h" />
-    <ClInclude Include="user\notify_icon_bridge.h" />
-    <ClInclude Include="user\primitive.h" />
+    <ClInclude Include="user\user\aaa_const_key.h" />
+    <ClInclude Include="user\user\command.h" />
+    <ClInclude Include="user\user\language.h" />
+    <ClInclude Include="user\user\language_map.h" />
+    <ClInclude Include="user\user\message.h" />
+    <ClInclude Include="user\user\notify_icon_bridge.h" />
+    <ClInclude Include="user\user\primitive.h" />
+    <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\_const_key.h" />
     <ClInclude Include="version\version.h" />
@@ -955,10 +950,10 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
-    <ClCompile Include="user\language.cpp" />
-    <ClCompile Include="user\language_map.cpp" />
-    <ClCompile Include="user\message.cpp" />
-    <ClCompile Include="user\primitive.cpp" />
+    <ClCompile Include="user\user\language.cpp" />
+    <ClCompile Include="user\user\language_map.cpp" />
+    <ClCompile Include="user\user\message.cpp" />
+    <ClCompile Include="user\user\primitive.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

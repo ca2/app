@@ -995,5 +995,11 @@
     <ClCompile Include="html\html\data.cpp">
       <Filter>Source Files\html\html</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\form_designer.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\line_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

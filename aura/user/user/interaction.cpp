@@ -571,7 +571,7 @@ namespace user
          if (x < 100 || y < 100)
          {
 
-            information("user::interaction set_position x or y < 100 (%d, %d)", x, y);
+            //information("user::interaction set_position x or y < 100 (%d, %d)", x, y);
 
          }
 

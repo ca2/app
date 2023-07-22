@@ -822,7 +822,7 @@ namespace experience
 
       rectangleClient = pframewindow->::user::interaction::client_rectangle(::user::e_layout_lading);
 
-      information() << "experience::frame_window::title_bar_layout " << rectangleClient;
+      //information() << "experience::frame_window::title_bar_layout " << rectangleClient;
 
       if (rectangleClient.is_empty())
       {
@@ -833,13 +833,13 @@ namespace experience
 
       rectangle_i32 rectangleMargin = get_margin_rectangle();
 
-      information() << "experience::frame_window::title_bar_layout rectangleMargin: " << rectangleMargin;
+      //information() << "experience::frame_window::title_bar_layout rectangleMargin: " << rectangleMargin;
 
       rectangle_i32 rectangleCaptionTextPadding = get_caption_text_padding();
 
       i32 iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
 
-      information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
+      //information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
       calculate_caption_height(pgraphics);
 
@@ -881,7 +881,7 @@ namespace experience
 
       }
 
-      information() << "experience::frame_window::title_bar_layout m_iControlBoxPosition: " << m_iControlBoxPosition;
+      //information() << "experience::frame_window::title_bar_layout m_iControlBoxPosition: " << m_iControlBoxPosition;
 
       ::rectangle_i32 rectangleControlBox;
 
@@ -895,7 +895,7 @@ namespace experience
 
          get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pgraphics);
 
-         information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
+         //information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
 
       }
 
@@ -929,7 +929,7 @@ namespace experience
 
          get_control_box()->display();
 
-         information() << "experience::frame_window::title_bar_layout bVisibleControlBox: true";
+         //information() << "experience::frame_window::title_bar_layout bVisibleControlBox: true";
 
       }
       else
@@ -937,7 +937,7 @@ namespace experience
 
          get_control_box()->hide();
 
-         information() << "experience::frame_window::title_bar_layout bVisibleControlBox: false";
+         //information() << "experience::frame_window::title_bar_layout bVisibleControlBox: false";
 
       }
 

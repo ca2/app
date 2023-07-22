@@ -3,6 +3,7 @@
 #include "frame_window.h"
 #include "frame.h"
 #include "acme/constant/message.h"
+#include "apex/parallelization/thread.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
@@ -146,6 +147,8 @@ namespace experience
       pmouse->m_pcursor = pcursor;
 
       m_eframeSizing = eframe;
+
+      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
 
       m_pframewindow->on_start_layout_experience(e_layout_experience_sizing);
 
@@ -349,6 +352,8 @@ namespace experience
          return false;
 
       }
+
+      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
 
       auto eframeSizing = m_eframeSizing;
 

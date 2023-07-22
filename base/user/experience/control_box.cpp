@@ -551,7 +551,7 @@ if(rectangle.left > 400)
             rectangle.bottom = sizeButton.cy() + rectangle.top;
 
             pbutton->order(e_zorder_top);
-            information() << "experience::control_box::_layout_button" << rectangle;
+            //information() << "experience::control_box::_layout_button" << rectangle;
             pbutton->place(rectangle);
             pbutton->display();
             pbutton->UpdateWndRgn();

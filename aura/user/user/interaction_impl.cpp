@@ -4040,7 +4040,7 @@ namespace user
       if (m_bDoingGraphics)
       {
 
-         information("set_need_redraw on doing graphics");
+         //information("set_need_redraw on doing graphics");
 
       }
 
@@ -5417,7 +5417,7 @@ namespace user
 
          auto iRequestsDuringDrawing = m_redrawitema.size();
 
-         information() << iRequestsDuringDrawing << " redraw requests while drawing.";
+         //information() << iRequestsDuringDrawing << " redraw requests while drawing.";
 
       }
 

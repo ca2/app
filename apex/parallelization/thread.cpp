@@ -4056,7 +4056,39 @@ void thread::handle_posted_messages()
 
       auto pmessage = m_messagea.first_pointer();
 
-      m_messagea.erase_at(0);
+      ::index iEraseAt = 0;
+
+      if(m_emessageaGetLast.has_element())
+      {
+
+         if (m_emessageaGetLast.contains(pmessage->m_atom.as_emessage()))
+         {
+
+            for (::index i = 1; i < m_messagea.size();)
+            {
+
+               if (m_messagea[i]->m_atom == pmessage->m_atom)
+               {
+
+                  m_messagea.erase_at(iEraseAt);
+
+                  iEraseAt = i - 1;
+
+               }
+               else
+               {
+
+                  i++;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      m_messagea.erase_at(iEraseAt);
 
       synchronouslock.unlock();
 
@@ -4076,6 +4108,13 @@ void thread::handle_posted_messages()
       }
 
       synchronouslock.lock();
+
+      if(pmessage->has_property("flush_similar_messages"))
+      {
+
+
+
+      }
 
    }
 

@@ -92,6 +92,7 @@ namespace user
       bool prodevian_iteration();
       bool prodevian_update_buffer();
       bool prodevian_update_screen();
+      void prodevian_redraw();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       void update_buffer();
       bool exclusive_mode_update_screen();

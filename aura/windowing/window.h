@@ -321,8 +321,10 @@ namespace windowing
       virtual void show_task(bool bShowTask);
 
 
-      virtual void update_screen();
-      virtual void window_show();
+      virtual void window_update_screen_buffer();
+      virtual void window_request_presentation();
+
+      virtual void _window_request_presentation();
       
       virtual void frame_toggle_restore();
 

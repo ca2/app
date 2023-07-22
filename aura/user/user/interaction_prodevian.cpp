@@ -1045,7 +1045,7 @@ namespace user
 
       m_bUpdatingScreen = true;
 
-      m_pimpl->m_pwindow->update_screen();
+      m_pimpl->m_pwindow->window_update_screen_buffer();
 
       //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
 //         {
@@ -1063,6 +1063,28 @@ namespace user
 
    }
 
+
+   void prodevian::prodevian_redraw()
+   {
+
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
+      {
+
+         m_message.wParam |= 1;
+
+         prodevian_iteration();
+
+      }
+      else
+      {
+
+         bool bUpdateBuffer = 1;
+
+         post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
+
+      }
+
+   }
 
 
    //void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)

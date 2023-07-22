@@ -1199,45 +1199,54 @@ namespace windowing
    }
 
 
-   void window::update_screen()
+   void window::window_update_screen_buffer()
    {
 
    }
 
 
-   void window::window_show()
+   void window::window_request_presentation()
    {
 
-      auto window_show = [this]()
-      {
+      m_pwindowing->windowing_post([this]() {_window_request_presentation();});
 
-         auto puserinteractionimpl = m_puserinteractionimpl;
-
-         if (::is_set(puserinteractionimpl))
-         {
-
-            auto puserinteraction = puserinteractionimpl->m_puserinteraction;
-
-            if (::is_set(puserinteraction))
-            {
-
-               auto puserinteractionimpl2 = puserinteraction->m_pinteractionimpl;
-
-               if (::is_set(puserinteractionimpl2))
-               {
-
-                  puserinteractionimpl2->window_show();
-
-               }
-
-            }
-
-         }
-
-      };
-   
-      m_pwindowing->windowing_post(window_show);
+//      auto window_show = [this]()
+//      {
+//
+//         auto puserinteractionimpl = m_puserinteractionimpl;
+//
+//         if (::is_set(puserinteractionimpl))
+//         {
+//
+//            auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+//
+//            if (::is_set(puserinteraction))
+//            {
+//
+//               auto puserinteractionimpl2 = puserinteraction->m_pinteractionimpl;
+//
+//               if (::is_set(puserinteractionimpl2))
+//               {
+//
+//                  puserinteractionimpl2->window_show();
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      };
+//
+//      m_pwindowing->windowing_post(window_show);
       
+   }
+
+
+   void window::_window_request_presentation()
+   {
+
+
    }
 
 

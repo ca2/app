@@ -5810,69 +5810,69 @@ namespace user
    }
 
 
-   void interaction_impl::_001UpdateScreen()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      if (m_bOfflineRender)
-      {
-
-         return;
-
-      }
-
-      string strType = __type_name(m_puserinteraction);
-
-      if (strType.case_insensitive_contains("list_box"))
-      {
-
-         auto edisplay = m_puserinteraction->const_layout().state(e_layout_design).display();
-
-         bool bGraphicsSet = m_pgraphics.is_set();
-
-         information("_001UpdateScreen list_box");
-
-      }
-
-      if (m_pgraphics.is_set())
-      {
-
-         if (m_puserinteraction->layout().is_this_screen_visible())
-         {
-
-            //            //CINFO(prodevian)("going to update_window (1)");
-            //
-            //            auto puserinteraction = m_puserinteraction.m_p;
-            //
-            //            int* pi = (int*)puserinteraction;
-            //
-            //            auto& i = *pi;
-            //
-            //            //monitor_pointer(puserinteraction);
-            //
-            //            auto& iStateCount = m_puserinteraction->layout().m_iStateCount;
-            //
-            //            monitor_pointer(&iStateCount);
-            //
-            //            m_pgraphics->update_screen();
-
-            m_pwindow->update_screen();
-
-            //m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
-
-         }
-
-      }
-
-   }
+//   void interaction_impl::_001UpdateScreen()
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization());
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_bOfflineRender)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      string strType = __type_name(m_puserinteraction);
+//
+//      if (strType.case_insensitive_contains("list_box"))
+//      {
+//
+//         auto edisplay = m_puserinteraction->const_layout().state(e_layout_design).display();
+//
+//         bool bGraphicsSet = m_pgraphics.is_set();
+//
+//         information("_001UpdateScreen list_box");
+//
+//      }
+//
+//      if (m_pgraphics.is_set())
+//      {
+//
+//         if (m_puserinteraction->layout().is_this_screen_visible())
+//         {
+//
+//            //            //CINFO(prodevian)("going to update_window (1)");
+//            //
+//            //            auto puserinteraction = m_puserinteraction.m_p;
+//            //
+//            //            int* pi = (int*)puserinteraction;
+//            //
+//            //            auto& i = *pi;
+//            //
+//            //            //monitor_pointer(puserinteraction);
+//            //
+//            //            auto& iStateCount = m_puserinteraction->layout().m_iStateCount;
+//            //
+//            //            monitor_pointer(&iStateCount);
+//            //
+//            //            m_pgraphics->update_screen();
+//
+//            m_pwindow->window_update_screen_buffer();
+//
+//            //m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
+//
+//         }
+//
+//      }
+//
+//   }
 
 
    void interaction_impl::process_message()
@@ -6062,32 +6062,32 @@ namespace user
    //}
 
 
-   void interaction_impl::prodevian_redraw(bool bUpdateBuffer)
-   {
-
-      if (!m_pprodevian)
-      {
-
-         return;
-
-      }
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
-      {
-
-         m_pprodevian->m_message.wParam |= 1;
-
-         m_pprodevian->prodevian_iteration();
-
-      }
-      else
-      {
-
-         m_pprodevian->post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
-
-      }
-
-   }
+//   void interaction_impl::prodevian_redraw(bool bUpdateBuffer)
+//   {
+//
+//      if (!m_pprodevian)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
+//      {
+//
+//         m_pprodevian->m_message.wParam |= 1;
+//
+//         m_pprodevian->prodevian_iteration();
+//
+//      }
+//      else
+//      {
+//
+//         m_pprodevian->post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
+//
+//      }
+//
+//   }
 
 
    void interaction_impl::set_finish(::particle * pparticleContextFinish)
@@ -6161,14 +6161,15 @@ namespace user
    }
 
 
-   void interaction_impl::prodevian_update_screen()
-   {
-
-      _001UpdateScreen();
-
-      //return true;
-
-   }
+//   void interaction_impl::prodevian_update_screen()
+//   {
+//
+//
+//      //_001UpdateScreen();
+//
+//      //return true;
+//
+//   }
 
 
    //void interaction_impl::set_handle(::windowing::window * pwindow)

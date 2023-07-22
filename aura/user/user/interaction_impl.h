@@ -492,9 +492,12 @@ namespace user
       virtual void LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
-      void prodevian_update_screen() override;
 
-      void prodevian_redraw(bool bUpdateBuffer) override;
+      // try calling prodevian things from prodevian... he is not much called...
+      //void prodevian_update_screen() override;
+
+      // try calling prodevian things from prodevian... is he ever called...
+      //void prodevian_redraw(bool bUpdateBuffer) override;
 
 //#ifdef WINDOWS
 //
@@ -748,7 +751,8 @@ namespace user
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
       void defer_draw(::draw2d::graphics_pointer & pgraphics) override;
       //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001UpdateScreen();
+      // call window window_update_screen_buffer
+      //virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
 
 

@@ -108,7 +108,7 @@ namespace user
 
       virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
       
-      virtual void prodevian_update_screen();
+      //virtual void prodevian_update_screen();
 
       //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
 
@@ -179,7 +179,7 @@ namespace user
       virtual void SetRedraw(bool bRedraw = true);
 
 
-      virtual void prodevian_redraw(bool bUpdateBuffer);
+      //virtual void prodevian_redraw(bool bUpdateBuffer);
 
 
       virtual void set_mouse_cursor(::windowing::cursor* pcursor);

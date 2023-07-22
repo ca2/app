@@ -207,12 +207,12 @@ namespace user
    //}
 
 
-   void primitive_impl::prodevian_update_screen()
-   {
-
-      //return true;
-
-   }
+//   void primitive_impl::prodevian_update_screen()
+//   {
+//
+//      //return true;
+//
+//   }
 
 
    //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
@@ -1037,11 +1037,11 @@ namespace user
    }
 
 
-   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
-   {
-
-
-   }
+//   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
+//   {
+//
+//
+//   }
 
 
    void primitive_impl::set_mouse_cursor(::windowing::cursor* pcursor)

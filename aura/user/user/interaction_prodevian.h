@@ -60,7 +60,7 @@ namespace user
       //bool                                      m_bRedraw;
 
 
-      bool                                      m_bExclusiveMode;
+      //bool                                      m_bExclusiveMode;
       //bool                                      m_bVisualUpdated;
 
       bool                                      m_bUpdatingScreen;
@@ -95,7 +95,7 @@ namespace user
       void prodevian_redraw();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       void update_buffer();
-      bool exclusive_mode_update_screen();
+      //bool exclusive_mode_update_screen();
 
       
       virtual void profiling_on_before_update_screen();

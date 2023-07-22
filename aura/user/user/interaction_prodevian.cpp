@@ -68,11 +68,11 @@ namespace user
 
       m_bUpdatingScreen = false;
 
-#ifdef UNIVERSAL_WINDOWS
-      m_bExclusiveMode = true;
-#else
-      m_bExclusiveMode = false;
-#endif
+//#ifdef UNIVERSAL_WINDOWS
+//      m_bExclusiveMode = true;
+//#else
+//      m_bExclusiveMode = false;
+//#endif
 
       //m_bVisualUpdated = true;
 
@@ -1030,22 +1030,26 @@ namespace user
    bool prodevian::prodevian_update_screen()
    {
 
-      if (m_bExclusiveMode)
-      {
-
-         // UNIVERSAL_WINDOWS
-
-         exclusive_mode_update_screen();
-
-         return true;
-
-      }
+//      if (m_bExclusiveMode)
+//      {
+//
+//         // UNIVERSAL_WINDOWS
+//
+//         exclusive_mode_update_screen();
+//
+//         return true;
+//
+//      }
 
       m_timeLastScreenUpdate.Now();
 
       m_bUpdatingScreen = true;
 
+      profiling_on_before_update_screen();
+
       m_pimpl->m_pwindow->window_update_screen_buffer();
+
+      profiling_on_after_update_screen();
 
       //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
 //         {
@@ -1202,94 +1206,94 @@ namespace user
    }
 
 
-   bool prodevian::exclusive_mode_update_screen()
-   {
-
-      //if (m_pimpl)
-      //{
-
-      //   if (m_pimpl->m_pgraphics)
-      //   {
-
-      //      auto pbitmapsource = m_pimpl->m_pgraphics.cast < ::graphics::bitmap_source_buffer >();
-
-      //      if (pbitmapsource)
-      //      {
-
-      //         string strBitmapSource = m_puserinteraction->payload("bitmap-source");
-
-      //         if (pbitmapsource->m_strBitmapSource != strBitmapSource)
-      //         {
-
-      //            pbitmapsource->enable_ipc_copy(strBitmapSource);
-
-      //         }
-
-      //      }
-
-
-      //   }
-
-      //}
-
-
-      try
-      {
-
-         string strType = __type_name(m_puserinteraction);
-
-         if(strType.case_insensitive_contains("list_box"))
-         {
-
-            information("We're on the list_box update_screen");
-
-         }
-         
-         profiling_on_before_update_screen();
-
-         if (!m_pimpl)
-         {
-
-            return false;
-
-         }
-
-         m_pimpl->prodevian_update_screen();
-
-         if (!m_puserinteraction)
-         {
-
-            return false;
-
-         }
-
-//         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
-//            m_puserinteraction->is_this_visible())
-//            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
-//               m_puserinteraction->is_window_screen_visible()))
+//   bool prodevian::exclusive_mode_update_screen()
+//   {
+//
+//      //if (m_pimpl)
+//      //{
+//
+//      //   if (m_pimpl->m_pgraphics)
+//      //   {
+//
+//      //      auto pbitmapsource = m_pimpl->m_pgraphics.cast < ::graphics::bitmap_source_buffer >();
+//
+//      //      if (pbitmapsource)
+//      //      {
+//
+//      //         string strBitmapSource = m_puserinteraction->payload("bitmap-source");
+//
+//      //         if (pbitmapsource->m_strBitmapSource != strBitmapSource)
+//      //         {
+//
+//      //            pbitmapsource->enable_ipc_copy(strBitmapSource);
+//
+//      //         }
+//
+//      //      }
+//
+//
+//      //   }
+//
+//      //}
+//
+//
+//      try
+//      {
+//
+//         string strType = __type_name(m_puserinteraction);
+//
+//         if(strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
-//
-//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
-//
-//            m_puserinteraction->_on_show_window();
+//            information("We're on the list_box update_screen");
 //
 //         }
-
-         profiling_on_after_update_screen();
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//
+//         profiling_on_before_update_screen();
+//
+//         if (!m_pimpl)
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         m_pimpl->prodevian_update_screen();
+//
+//         if (!m_puserinteraction)
+//         {
+//
+//            return false;
+//
+//         }
+//
+////         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
+////            m_puserinteraction->is_this_visible())
+////            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
+////               m_puserinteraction->is_window_screen_visible()))
+////         {
+////
+////            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
+////
+////            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
+////
+////            m_puserinteraction->_on_show_window();
+////
+////         }
+//
+//         profiling_on_after_update_screen();
+//
+//      }
+//      catch(...)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 
    void prodevian::profiling_on_before_update_screen()

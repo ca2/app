@@ -4101,6 +4101,13 @@ namespace user
    void interaction_impl::post_redraw(bool bAscendants)
    {
 
+      if (::is_null(m_pprodevian))
+      {
+
+         return;
+
+      }
+
 //      if (!m_puserinteraction)
 //      {
 //

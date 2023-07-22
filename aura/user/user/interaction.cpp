@@ -18928,43 +18928,43 @@ return strClass;
       }*/
 
 
-   void interaction::prodevian_redraw(bool bUpdateBuffer)
-   {
+//   void interaction::prodevian_redraw(bool bUpdateBuffer)
+//   {
+//
+//      auto type = __object_type(*this);
+//
+//      //      if (type.name_contains("list_box"))
+//      //      {
+//      //
+//      //         information("prodevian_redraw list_box");
+//      //
+//      //      }
+//
+//      if (m_pprimitiveimpl.is_null())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_pprimitiveimpl->prodevian_redraw(bUpdateBuffer);
+//
+//   }
 
-      auto type = __object_type(*this);
 
-      //      if (type.name_contains("list_box"))
-      //      {
-      //
-      //         information("prodevian_redraw list_box");
-      //
-      //      }
-
-      if (m_pprimitiveimpl.is_null())
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->prodevian_redraw(bUpdateBuffer);
-
-   }
-
-
-   void interaction::prodevian_stop()
-   {
-
-      if (!m_pprimitiveimpl)
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->prodevian_stop();
-
-   }
+//   void interaction::prodevian_stop()
+//   {
+//
+//      if (!m_pprimitiveimpl)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_pprimitiveimpl->prodevian_stop();
+//
+//   }
 
 
 //   void interaction::install_click_default_mouse_handling(::channel* pchannel)

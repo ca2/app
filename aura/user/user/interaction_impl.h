@@ -307,7 +307,7 @@ namespace user
       bool is_prodevian(const ::matter * pmatter) const override;
       inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
 
-      void prodevian_stop() override;
+      //void prodevian_stop() override;
 
 
       //virtual ::user::interaction * get_owner();

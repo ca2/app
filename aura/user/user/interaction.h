@@ -761,9 +761,9 @@ namespace user
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void prodevian_stop() override;
+      //virtual void prodevian_stop() override;
 
-      virtual void prodevian_redraw(bool bUpdateBuffer) override;
+      //virtual void prodevian_redraw(bool bUpdateBuffer) override;
 
       //virtual void _001OnAfterAppearance();
 
@@ -2305,7 +2305,7 @@ namespace user
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;
-      virtual void prodevian_post_procedure(const ::procedure & procedure);
+      //virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
       //void send_procedure(const ::procedure & procedure) override;

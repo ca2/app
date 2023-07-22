@@ -607,11 +607,11 @@ namespace user
    }
 
 
-   void primitive_impl::prodevian_stop()
-   {
-
-
-   }
+//   void primitive_impl::prodevian_stop()
+//   {
+//
+//
+//   }
 
 
    ::user::primitive* primitive_impl::set_owner(::user::primitive* pprimitiveOwner)

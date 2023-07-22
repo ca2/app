@@ -135,7 +135,7 @@ namespace user
       virtual bool is_prodevian(const ::matter* pmatter) const;
 
 
-      virtual void prodevian_stop();
+      //virtual void prodevian_stop();
 
 
       virtual ::user::primitive* set_owner(::user::primitive* pprimitiveOwner);

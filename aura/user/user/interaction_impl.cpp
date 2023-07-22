@@ -6120,45 +6120,45 @@ namespace user
    }
 
 
-   void interaction_impl::prodevian_stop()
-   {
-
-      auto pprodevian = m_pprodevian;
-
-      if (::is_set(pprodevian) && ::is_set(m_pgraphics))
-      {
-
-         {
-
-            _synchronous_lock slGraphics(m_pgraphics->synchronization());
-
-            auto pbufferitem = m_pgraphics->get_buffer_item();
-
-            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
-
-            slGraphics.unlock();
-
-            //pprodevian->m_puserinteraction = nullptr;
-
-            //pprodevian->m_pimpl = nullptr;
-
-            pprodevian->set_finish();
-
-         }
-
-         //{
-
-         //   _synchronous_lock synchronouslock(this->synchronization());
-
-         //   _synchronous_lock slGraphics(m_pgraphics->synchronization());
-
-         //   m_pprodevian);
-
-         //}
-
-      }
-
-   }
+//   void interaction_impl::prodevian_stop()
+//   {
+//
+//      auto pprodevian = m_pprodevian;
+//
+//      if (::is_set(pprodevian) && ::is_set(m_pgraphics))
+//      {
+//
+//         {
+//
+//            _synchronous_lock slGraphics(m_pgraphics->synchronization());
+//
+//            auto pbufferitem = m_pgraphics->get_buffer_item();
+//
+//            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+//
+//            slGraphics.unlock();
+//
+//            //pprodevian->m_puserinteraction = nullptr;
+//
+//            //pprodevian->m_pimpl = nullptr;
+//
+//            pprodevian->set_finish();
+//
+//         }
+//
+//         //{
+//
+//         //   _synchronous_lock synchronouslock(this->synchronization());
+//
+//         //   _synchronous_lock slGraphics(m_pgraphics->synchronization());
+//
+//         //   m_pprodevian);
+//
+//         //}
+//
+//      }
+//
+//   }
 
 
 //   void interaction_impl::prodevian_update_screen()

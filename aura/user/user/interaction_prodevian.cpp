@@ -1381,19 +1381,19 @@ namespace user
    }
 
 
-   void interaction::prodevian_post_procedure(const ::procedure & procedure)
-   {
-
-      if (!is_graphical())
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      m_pinteractionimpl->m_pprodevian->post_procedure(procedure);
-
-   }
+//   void interaction::prodevian_post_procedure(const ::procedure & procedure)
+//   {
+//
+//      if (!is_graphical())
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//
+//      }
+//
+//      m_pinteractionimpl->m_pprodevian->post_procedure(procedure);
+//
+//   }
 
 
 } // namespace user

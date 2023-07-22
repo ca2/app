@@ -288,7 +288,7 @@ namespace windowing
 
 
       virtual bool get_rect_normal(::rectangle_i32 * prectangle);
-      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
+      virtual void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
 
       virtual void non_top_most_upper_window_rects(::rectangle_i32_array & recta);

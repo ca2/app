@@ -54,7 +54,7 @@ namespace user
 
       class ::time                                m_timeLastScreenUpdate;
       //::procedure                                 m_procedureUpdateScreen;
-      ::procedure                                 m_procedureWindowShow;
+      //::procedure                                 m_procedureWindowShow;
       
 
       //bool                                      m_bRedraw;

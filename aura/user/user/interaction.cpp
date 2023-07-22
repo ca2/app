@@ -3996,12 +3996,12 @@ namespace user
    }
 
 
-   void interaction::show_window()
-   {
-
-      window_show_change_visibility();
-
-   }
+//   void interaction::show_window()
+//   {
+//
+//      window_show_change_visibility();
+//
+//   }
 
 
    void interaction::on_message_move(::message::message *pmessage)
@@ -11676,10 +11676,10 @@ return strClass;
    }
 
 
-   void interaction::window_show()
+   void interaction::_window_request_presentation()
    {
 
-      m_pinteractionimpl->window_show();
+      m_pinteractionimpl->_window_request_presentation();
 
       if (m_bVisualChanged)
       {
@@ -11791,12 +11791,12 @@ return strClass;
 
       }
 
-      if (get_parent() == nullptr || is_top_level())
-      {
-
-         window_show_change_visibility();
-
-      }
+//      if (get_parent() == nullptr || is_top_level())
+//      {
+//
+//         window_show_change_visibility();
+//
+//      }
 
    }
 
@@ -11820,7 +11820,7 @@ return strClass;
    }
 
 
-   void interaction::window_show_change_visibility()
+   void interaction::_window_show_change_visibility()
    {
 
       //::enum_display edisplayOutput = layout().output().display();
@@ -11883,7 +11883,7 @@ return strClass;
 
             auto eactivation = layout().layout().activation();
 
-            m_pprimitiveimpl->window_show_change_visibility(edisplayOutputForOsShowWindow, eactivation);
+            m_pprimitiveimpl->_window_show_change_visibility(edisplayOutputForOsShowWindow, eactivation);
 
          }
 
@@ -13125,19 +13125,24 @@ return strClass;
 
       }
 
-      if (bDeferDisplay || bPosition)
+      if(get_parent() != nullptr)
       {
 
-         if (!(m_ewindowflag & e_window_flag_embedded_prodevian))
+         if (bDeferDisplay || bPosition)
          {
 
-            if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
+            if (!(m_ewindowflag & e_window_flag_embedded_prodevian))
             {
 
-               if (m_pprimitiveimpl)
+               if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
                {
 
-                  m_pprimitiveimpl->start_window_visual();
+                  if (m_pprimitiveimpl)
+                  {
+
+                     m_pprimitiveimpl->_window_request_presentation();
+
+                  }
 
                }
 
@@ -13190,45 +13195,45 @@ return strClass;
 
       }
 
-      if (m_bUpdateVisual || m_bReposition)
-      {
-
-         if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
-         {
-
-            if (m_ewindowflag & e_window_flag_embedded_prodevian)
-            {
-
-               auto psession = get_session();
-
-               if (get_parent() == nullptr || get_parent() == psession->get_user_interaction_host())
-               {
-
-                  if (m_pinteractionimpl)
-                  {
-
-                     m_pinteractionimpl->window_show();
-
-                  }
-
-               }
-               else
-               {
-
-                  if (m_pprimitiveimpl)
-                  {
-
-                     m_pprimitiveimpl->start_window_visual();
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
+//      if (m_bUpdateVisual || m_bReposition)
+//      {
+//
+//         if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
+//         {
+//
+//            if (m_ewindowflag & e_window_flag_embedded_prodevian)
+//            {
+//
+//               auto psession = get_session();
+//
+//               if (get_parent() == nullptr || get_parent() == psession->get_user_interaction_host())
+//               {
+//
+//                  if (m_pinteractionimpl)
+//                  {
+//
+//                     m_pinteractionimpl->_window_show();
+//
+//                  }
+//
+//               }
+//               else
+//               {
+//
+//                  if (m_pprimitiveimpl)
+//                  {
+//
+//                     m_pprimitiveimpl->start_window_visual();
+//
+//                  }
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
 
    }
 

@@ -2695,13 +2695,13 @@ namespace user
    // }
 
 
-   void primitive_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void primitive_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
    }
 
 
-   void primitive_impl::start_window_visual()
+   void primitive_impl::_window_request_presentation()
    {
 
       //return true;

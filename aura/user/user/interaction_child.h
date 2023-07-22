@@ -43,7 +43,7 @@ namespace user
       //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
-      void start_window_visual() override;
+
 
       //virtual bool is_active() const override;
 
@@ -93,7 +93,8 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      void _window_request_presentation() override;
 
       bool _is_window() override;
 

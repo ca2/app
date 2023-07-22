@@ -336,7 +336,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnRedraw);
-      DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
+      //DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
 
 
 //#if (WINVER >= 0x0500) && defined(WINDOWS_DESKTOP)
@@ -756,9 +756,6 @@ namespace user
       //virtual void window_apply_visual(const window_state & windowstate) override;
 
 
-      virtual void window_show();
-
-
       //virtual void update_graphics_resources();
 
 
@@ -806,7 +803,10 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      virtual void _window_request_presentation();
+
+
 
 
       virtual void ShowWindow(const ::e_display & edisplay);

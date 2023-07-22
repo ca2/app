@@ -795,7 +795,7 @@ namespace user
       virtual bool should_redraw_on_mouse_activate();
       virtual bool should_redraw_on_mouse_hover();
       virtual bool should_redraw_on_hover(::item * pitem);
-      virtual void show_window();
+      //virtual void show_window();
 
 
       ///virtual bool is_sketch_to_design_locked();
@@ -1216,8 +1216,6 @@ namespace user
 
       virtual bool scroll_bar_get_client_rect(::rectangle_i32 & rectangle);
 
-      virtual void window_show();
-      virtual void on_visual_applied();
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -1247,7 +1245,10 @@ namespace user
       
       virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void window_show_change_visibility();
+      virtual void _window_show_change_visibility();
+      virtual void _window_request_presentation();
+      virtual void on_visual_applied();
+
 
       virtual void defer_save_window_placement();
 

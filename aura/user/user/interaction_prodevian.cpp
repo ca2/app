@@ -202,17 +202,17 @@ namespace user
 //
 //         };
 
-      m_procedureWindowShow = [this]()
-         {
-
-            if (m_pimpl)
-            {
-
-               m_puserinteraction->window_show();
-
-            }
-
-         };
+//      m_procedureWindowShow = [this]()
+//         {
+//
+//            if (m_pimpl)
+//            {
+//
+//               m_puserinteraction->window_show();
+//
+//            }
+//
+//         };
 
       m_puserinteraction = pimpl->m_puserinteraction;
 
@@ -374,14 +374,14 @@ namespace user
 //
 //      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-      if (m_procedureWindowShow)
-      {
-
-         m_procedureWindowShow->destroy();
-
-      }
-
-      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      if (m_procedureWindowShow)
+//      {
+//
+//         m_procedureWindowShow->destroy();
+//
+//      }
+//
+//      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
 
@@ -857,7 +857,7 @@ namespace user
          if (bStartWindowVisual)
          {
 
-            m_puserinteraction->window_show();
+            m_puserinteraction->_window_request_presentation();
 
             //m_pimpl->window_show();
 
@@ -953,7 +953,7 @@ namespace user
          if (bStartWindowVisual)
          {
 
-            m_puserinteraction->window_show();
+            m_puserinteraction->_window_request_presentation();
 
             //m_pimpl->m_pwindow->window_show();
             //m_puserinteraction->post_procedure(m_procedureWindowShow);

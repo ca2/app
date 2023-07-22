@@ -902,7 +902,7 @@ namespace windowing
    }
 
 
-   void window::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void window::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
       throw ::interface_only();

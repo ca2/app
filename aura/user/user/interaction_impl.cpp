@@ -4101,16 +4101,18 @@ namespace user
    void interaction_impl::post_redraw(bool bAscendants)
    {
 
-      if (!m_puserinteraction)
-      {
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      bool bForceUpdateBuffer = false;
+//
+//      m_puserinteraction->post_message(::e_message_redraw, bForceUpdateBuffer);
 
-         return;
-
-      }
-
-      bool bForceUpdateBuffer = false;
-
-      m_puserinteraction->post_message(::e_message_redraw, bForceUpdateBuffer);
+      m_pprodevian->prodevian_redraw();
 
    }
 
@@ -6917,9 +6919,7 @@ namespace user
    }
 
 
-
-
-   void interaction_impl::window_show()
+   void interaction_impl::_window_request_presentation()
    {
 
       if (::is_null(m_puserinteraction))
@@ -7234,7 +7234,7 @@ namespace user
             //#endif
             //         {
 
-            m_puserinteraction->window_show_change_visibility();
+            m_puserinteraction->_window_show_change_visibility();
 
             //}
 
@@ -7396,7 +7396,7 @@ namespace user
             //#endif
             //         {
 
-            m_puserinteraction->window_show_change_visibility();
+            m_puserinteraction->_window_show_change_visibility();
 
             //}
 
@@ -7532,11 +7532,11 @@ namespace user
    }
 
 
-   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void interaction_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
-      m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
-         {
+      //m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
+        // {
 
                if (!m_puserinteraction)
                {
@@ -7578,7 +7578,7 @@ namespace user
 
                }
 
-         });
+         //});
 
    }
 
@@ -7591,12 +7591,12 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnDoShowWindow(::message::message * pmessage)
-   {
-
-      m_puserinteraction->window_show_change_visibility();
-
-   }
+//   void interaction_impl::_001OnDoShowWindow(::message::message * pmessage)
+//   {
+//
+//      m_puserinteraction->_window_show_change_visibility();
+//
+//   }
 
 
 //   void interaction_impl::_001OnApplyVisual(::message::message * pmessage)

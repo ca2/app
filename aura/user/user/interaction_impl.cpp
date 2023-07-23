@@ -7352,13 +7352,13 @@ namespace user
             // else
          {
 
-            m_pwindow->on_set_window_position(
-               zorderNew,
-               pointOutput.x(),
-               pointOutput.y(),
-               sizeOutput.cx(),
-               sizeOutput.cy(),
-               eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
+//            m_pwindow->on_set_window_position(
+//               zorderNew,
+//               pointOutput.x(),
+//               pointOutput.y(),
+//               sizeOutput.cx(),
+//               sizeOutput.cy(),
+//               eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
 
             m_sizeSetWindowSizeRequest = sizeOutput;
 
@@ -7829,14 +7829,14 @@ namespace user
 
             //m_pwindow->m_size = psize->m_size;
 
-      m_puserinteraction->set_size(psize->m_size, e_layout_window);
+      //m_puserinteraction->set_size(psize->m_size, e_layout_window);
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 
       if (!m_pwindow->placement_log()->has_recent(psize->m_size))
       {
 
-         m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
+         //m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
 
          int cx = m_puserinteraction->const_layout().sketch().size().width();
 

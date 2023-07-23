@@ -10,6 +10,7 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
+#include "aura/windowing/placement_log.h"
 #include "size_parent_layout.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -229,6 +230,9 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
+
+
+      m_bIgnoringSketchToLading = false;
 
       m_bExtendOnParent = false;
       m_bExtendOnParentIfClientOnly = false;
@@ -579,6 +583,15 @@ namespace user
 
       m_layout.m_statea[elayout].set_visual_state_origin(pointNew);
 
+      if(m_pinteractionimpl && elayout == e_layout_sketch)
+      {
+
+         auto size = m_layout.m_statea[elayout].m_size;
+
+         m_pinteractionimpl->m_pwindow->placement_log()->add({pointNew, size});
+
+      }
+
       if (::is_set(pgraphics) && ::user::e_layout_layout)
       {
 
@@ -627,6 +640,15 @@ namespace user
 
       }
 
+      if(m_pinteractionimpl && elayout == e_layout_sketch)
+      {
+
+         auto point = m_layout.m_statea[elayout].origin();
+
+         m_pinteractionimpl->m_pwindow->placement_log()->add({point, sizeNew});
+
+      }
+
       auto rectangleAfter = layoutstate.raw_rectangle();
 
       set_need_layout();
@@ -654,6 +676,16 @@ namespace user
          post_redraw();
 
       }
+
+   }
+
+
+   void interaction::_set_size(const ::size_i32 &size, enum_layout elayout)
+   {
+
+      auto & layoutstate = layout().m_statea[elayout];
+
+      layoutstate.m_size = size;
 
    }
 
@@ -5606,7 +5638,7 @@ return strClass;
 
          if (pgraphics->payload("set_transparent") == "set_transparent")
          {
-            information() << "Not draw!?!?!";
+            information() << "Not draw (!m_bDraw) !?!?!";
 
          }
 
@@ -5621,7 +5653,7 @@ return strClass;
          if (pgraphics->payload("set_transparent") == "set_transparent")
          {
 
-            information() << "Not draw!?!?!";
+            information() << "Not draw (!needs_to_draw)!?!?!";
 
             if (!needs_to_draw(pgraphics))
             {
@@ -12796,6 +12828,53 @@ return strClass;
 
       _synchronous_lock synchronouslock(this->synchronization());
 
+      if(get_parent() == nullptr)
+      {
+
+         if (layout().lading().m_size.area() > 0)
+         {
+
+            if (layout().lading().m_size != layout().window().m_size
+            && !(m_bIgnoringSketchToLading && m_timeLastIgnoredSketchToLading.elapsed() < 200_ms))
+            {
+
+               if(!m_bIgnoringSketchToLading)
+               {
+
+                  m_timeLastIgnoredSketchToLading.Now();
+
+                  m_bIgnoringSketchToLading = true;
+
+               }
+
+               synchronouslock.unlock();
+
+               information() << "ignoring sketch with size : " << layout().sketch().m_size;
+
+               post_redraw();
+
+//                  if(m_ptask)
+//
+//                  m_ptaskRecheckIgnoredSketchToLading =
+//                  fork([this]()
+//                  {
+//
+//                     prempt(16.67_ms);
+//
+//                     post_redraw();
+//
+//                  });
+
+               return;
+
+            }
+
+         }
+
+         m_bIgnoringSketchToLading = false;
+
+      }
+
       layout().lading() = layout().sketch();
 
       layout().sketch().clear_activation();
@@ -15511,6 +15590,13 @@ return strClass;
          layout().sketch().m_size = sizeNew;
 
          layout().lading().m_size = sizeNew;
+
+      }
+
+      if(m_pinteractionimpl && elayout == e_layout_sketch)
+      {
+
+         m_pinteractionimpl->m_pwindow->placement_log()->add({pointNew, sizeNew});
 
       }
 

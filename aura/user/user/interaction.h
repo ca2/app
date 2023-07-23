@@ -246,6 +246,9 @@ namespace user
 
       ::user::interaction::enum_updown             m_eupdown;
 
+      class ::time                                 m_timeLastIgnoredSketchToLading;
+      bool                                         m_bIgnoringSketchToLading;
+
    public:
 
       index                                        m_iItem;
@@ -440,6 +443,7 @@ namespace user
       
       virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void _set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
       virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       /// @brief shift left position changing size

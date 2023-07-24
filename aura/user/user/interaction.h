@@ -554,7 +554,7 @@ namespace user
 
       //virtual void enumerate_composite(matter_array& a) override;
 
-      virtual bool _is_set() const;
+      bool _is_set() const override;
 
       virtual bool is_user_thread();
 

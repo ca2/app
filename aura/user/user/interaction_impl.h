@@ -804,7 +804,8 @@ namespace user
       virtual bool is_this_visible(enum_layout elayout) override;
 
       void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
-      virtual void _window_request_presentation();
+      
+      void _window_request_presentation() override;
 
 
 

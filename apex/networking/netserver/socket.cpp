@@ -97,12 +97,28 @@ namespace netserver
 
       string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
 
-      information("socket::OnExecute: %s\n", strUrl.c_str());
+      information("socket::OnExecute: %s", strUrl.c_str());
+
+      string str;
 
       for (auto& pproperty : m_request.headers().propertyptra())
       {
+         
+         str.append_format("{%s=%s}", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
 
-         information("Headers %s=%s\n", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
+         if (str.length() > 80)
+         {
+
+            information("Headers %s", str.c_str());
+
+         }
+
+      }
+
+      if (str.length() > 0)
+      {
+
+         information("Headers %s", str.c_str());
 
       }
 

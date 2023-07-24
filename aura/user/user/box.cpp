@@ -176,10 +176,10 @@ namespace user
    }
 
 
-   void box::window_show_change_visibility()
+   void box::_window_show_change_visibility()
    {
 
-      ::user::interaction::window_show_change_visibility();
+      ::user::interaction::_window_show_change_visibility();
 
       m_windowrectangle.m_edisplay = const_layout().window().display();
 

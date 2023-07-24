@@ -207,12 +207,12 @@ namespace user
    //}
 
 
-   void primitive_impl::prodevian_update_screen()
-   {
-
-      //return true;
-
-   }
+//   void primitive_impl::prodevian_update_screen()
+//   {
+//
+//      //return true;
+//
+//   }
 
 
    //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
@@ -607,11 +607,11 @@ namespace user
    }
 
 
-   void primitive_impl::prodevian_stop()
-   {
-
-
-   }
+//   void primitive_impl::prodevian_stop()
+//   {
+//
+//
+//   }
 
 
    ::user::primitive* primitive_impl::set_owner(::user::primitive* pprimitiveOwner)
@@ -676,12 +676,22 @@ namespace user
 
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = __create_new<TYPE>(); \
+   pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_atom = atom; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam; \
    pmessageBase = pmessage
+
+
+//#define _NEW_MESSAGE(TYPE) \
+//   auto pmessage = __create_new<TYPE>(); \
+//   pmessage->m_pchannel = this; \
+//   pmessage->m_atom = atom; \
+//   pmessage->m_wparam = wparam; \
+//   pmessage->m_lparam = lparam; \
+//   pmessageBase = pmessage
 
 
    ::pointer<::message::message>primitive_impl::get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
@@ -698,7 +708,7 @@ namespace user
 
       auto pwindow = this->window();
 
-      auto oswindow = pwindow->oswindow();
+      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
 
       switch (eprototype)
       {
@@ -1037,11 +1047,11 @@ namespace user
    }
 
 
-   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
-   {
-
-
-   }
+//   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
+//   {
+//
+//
+//   }
 
 
    void primitive_impl::set_mouse_cursor(::windowing::cursor* pcursor)
@@ -2695,13 +2705,13 @@ namespace user
    // }
 
 
-   void primitive_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void primitive_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
    }
 
 
-   void primitive_impl::start_window_visual()
+   void primitive_impl::_window_request_presentation()
    {
 
       //return true;

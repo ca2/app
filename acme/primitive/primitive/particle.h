@@ -571,6 +571,12 @@ public:
    virtual ::core::user * coreuser();
 
 
+   virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);
+
+
+
+
+
 };
 
 //

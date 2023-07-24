@@ -62,17 +62,17 @@ namespace user
 
       //m_bUpdateBufferUpdateWindowPending = false;
 
-      m_bRedraw = false;
+      //m_bRedraw = false;
 
       m_bAuraMessageQueue = true;
 
       m_bUpdatingScreen = false;
 
-#ifdef UNIVERSAL_WINDOWS
-      m_bExclusiveMode = true;
-#else
-      m_bExclusiveMode = false;
-#endif
+//#ifdef UNIVERSAL_WINDOWS
+//      m_bExclusiveMode = true;
+//#else
+//      m_bExclusiveMode = false;
+//#endif
 
       //m_bVisualUpdated = true;
 
@@ -171,48 +171,48 @@ namespace user
 
       //}
 
-      m_procedureUpdateScreen = [this, pimpl]()
-         {
+//      m_procedureUpdateScreen = [this, pimpl]()
+//         {
+//
+//            if (!has_flag(e_flag_destroying) && !has_finishing_flag())
+//            {
+//
+//               update_screen();
+//
+//            }
+//
+//            m_bUpdatingScreen = false;
+//
+//            {
+//
+//               _synchronous_lock synchronouslock(pimpl->synchronization());
+//
+//               if(pimpl->m_redrawitema.has_element())
+//               {
+//
+//                  auto iRequestsRemaining = pimpl->m_redrawitema.size();
+//
+//                  information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
+//
+//                  m_puserinteraction->post_redraw();
+//
+//               }
+//
+//            }
+//
+//         };
 
-            if (!has_flag(e_flag_destroying) && !has_finishing_flag())
-            {
-
-               update_screen();
-
-            }
-
-            m_bUpdatingScreen = false;
-
-            {
-
-               _synchronous_lock synchronouslock(pimpl->synchronization());
-
-               if(pimpl->m_redrawitema.has_element())
-               {
-
-                  auto iRequestsRemaining = pimpl->m_redrawitema.size();
-
-                  information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
-
-                  m_puserinteraction->post_redraw();
-
-               }
-
-            }
-
-         };
-
-      m_procedureWindowShow = [this]()
-         {
-
-            if (m_pimpl)
-            {
-
-               m_puserinteraction->window_show();
-
-            }
-
-         };
+//      m_procedureWindowShow = [this]()
+//         {
+//
+//            if (m_pimpl)
+//            {
+//
+//               m_puserinteraction->window_show();
+//
+//            }
+//
+//         };
 
       m_puserinteraction = pimpl->m_puserinteraction;
 
@@ -365,23 +365,23 @@ namespace user
 
       m_puserinteraction.release();
 
-      if (m_procedureUpdateScreen)
-      {
+//      if (m_procedureUpdateScreen)
+//      {
+//
+//         m_procedureUpdateScreen->destroy();
+//
+//      }
+//
+//      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-         m_procedureUpdateScreen->destroy();
-
-      }
-
-      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-
-      if (m_procedureWindowShow)
-      {
-
-         m_procedureWindowShow->destroy();
-
-      }
-
-      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//      if (m_procedureWindowShow)
+//      {
+//
+//         m_procedureWindowShow->destroy();
+//
+//      }
+//
+//      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
 
@@ -631,7 +631,7 @@ namespace user
       //if (m_puserinteraction->m_bUpdateBufferPending)
       //{
 
-         prodevian_update_buffer(bRedraw);
+         prodevian_update_buffer();
 
       //}
 
@@ -857,7 +857,7 @@ namespace user
          if (bStartWindowVisual)
          {
 
-            m_puserinteraction->window_show();
+            m_puserinteraction->_window_request_presentation();
 
             //m_pimpl->window_show();
 
@@ -953,7 +953,7 @@ namespace user
          if (bStartWindowVisual)
          {
 
-            m_puserinteraction->window_show();
+            m_puserinteraction->_window_request_presentation();
 
             //m_pimpl->m_pwindow->window_show();
             //m_puserinteraction->post_procedure(m_procedureWindowShow);
@@ -1005,10 +1005,10 @@ namespace user
    }
 
 
-   bool prodevian::prodevian_update_buffer(bool bRedraw)
+   bool prodevian::prodevian_update_buffer()
    {
 
-      m_bRedraw = bRedraw;
+      //m_bRedraw = bRedraw;
 
       m_puserinteraction->m_bUpdateBuffer = false;
 
@@ -1030,22 +1030,28 @@ namespace user
    bool prodevian::prodevian_update_screen()
    {
 
-      if (m_bExclusiveMode)
-      {
+//      if (m_bExclusiveMode)
+//      {
+//
+//         // UNIVERSAL_WINDOWS
+//
+//         exclusive_mode_update_screen();
+//
+//         return true;
+//
+//      }
 
-         update_screen();
+      m_timeLastScreenUpdate.Now();
 
-      }
-      else
-      {
+      m_bUpdatingScreen = true;
 
-         m_timeLastScreenUpdate.Now();
+      profiling_on_before_update_screen();
 
-         m_bUpdatingScreen = true;
+      m_pimpl->m_pwindow->window_update_screen_buffer();
 
-         m_pimpl->m_pwindow->update_screen();
+      profiling_on_after_update_screen();
 
-         //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
+      //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
 //         {
 //
 //            if (m_puserinteraction)
@@ -1057,12 +1063,32 @@ namespace user
 //
 //         }
 
-      }
-
       return true;
 
    }
 
+
+   void prodevian::prodevian_redraw()
+   {
+
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
+      {
+
+         m_message.wParam |= 1;
+
+         prodevian_iteration();
+
+      }
+      else
+      {
+
+         bool bUpdateBuffer = 1;
+
+         post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
+
+      }
+
+   }
 
 
    //void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
@@ -1072,67 +1098,67 @@ namespace user
       try
       {
 
-         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
-
-         if(!m_puserinteraction)
-         {
-
-            return;
-
-         }
-
-         //bUpdateBuffer = false;
-
-         //bUpdateWindow = false;
-
-         i64 i1 = ::i64_nanosecond();
-
-      //   bool bTransparentDraw;
-
-      //#ifdef WINDOWS_DESKTOP
-
-      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
-      //   {
-
-      //      bTransparentDraw = true;
-
-      //   }
-      //   else
-      //   {
-
-      //      bTransparentDraw = false;
-
-      //   }
-
-      //#else
-
-      //   bTransparentDraw = true;
-
-      //#endif
-
-         if (!::task_get_run())
-         {
-
-            return;
-
-         }
-
-         if (m_puserinteraction == nullptr)
-         {
-
-            return;
-
-         }
-
-
-         if (!m_pimpl)
-         {
-
-            return;
-
-         }
-
-         synchronouslock.unlock();
+//         synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+//
+//         if(!m_puserinteraction)
+//         {
+//
+//            return;
+//
+//         }
+//
+//         //bUpdateBuffer = false;
+//
+//         //bUpdateWindow = false;
+//
+//         i64 i1 = ::i64_nanosecond();
+//
+//      //   bool bTransparentDraw;
+//
+//      //#ifdef WINDOWS_DESKTOP
+//
+//      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
+//      //   {
+//
+//      //      bTransparentDraw = true;
+//
+//      //   }
+//      //   else
+//      //   {
+//
+//      //      bTransparentDraw = false;
+//
+//      //   }
+//
+//      //#else
+//
+//      //   bTransparentDraw = true;
+//
+//      //#endif
+//
+//         if (!::task_get_run())
+//         {
+//
+//            return;
+//
+//         }
+//
+//         if (m_puserinteraction == nullptr)
+//         {
+//
+//            return;
+//
+//         }
+//
+//
+//         if (!m_pimpl)
+//         {
+//
+//            return;
+//
+//         }
+//
+//         synchronouslock.unlock();
 
          m_timeBeforeDrawing.Now();
 
@@ -1158,7 +1184,6 @@ namespace user
 
 #endif
 
-
          m_timeAfterDrawing.Now();
 
          m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
@@ -1167,11 +1192,6 @@ namespace user
          {
 
             m_puserinteraction->on_after_graphical_update();
-
-         }
-
-         if (m_puserinteraction)
-         {
 
             m_puserinteraction->m_bNeedRedraw = false;
 
@@ -1186,94 +1206,94 @@ namespace user
    }
 
 
-   bool prodevian::update_screen()
-   {
-
-      //if (m_pimpl)
-      //{
-
-      //   if (m_pimpl->m_pgraphics)
-      //   {
-
-      //      auto pbitmapsource = m_pimpl->m_pgraphics.cast < ::graphics::bitmap_source_buffer >();
-
-      //      if (pbitmapsource)
-      //      {
-
-      //         string strBitmapSource = m_puserinteraction->payload("bitmap-source");
-
-      //         if (pbitmapsource->m_strBitmapSource != strBitmapSource)
-      //         {
-
-      //            pbitmapsource->enable_ipc_copy(strBitmapSource);
-
-      //         }
-
-      //      }
-
-
-      //   }
-
-      //}
-
-
-      try
-      {
-
-         string strType = __type_name(m_puserinteraction);
-
-         if(strType.case_insensitive_contains("list_box"))
-         {
-
-            information("We're on the list_box update_screen");
-
-         }
-         
-         profiling_on_before_update_screen();
-
-         if (!m_pimpl)
-         {
-
-            return false;
-
-         }
-
-         m_pimpl->prodevian_update_screen();
-
-         if (!m_puserinteraction)
-         {
-
-            return false;
-
-         }
-
-//         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
-//            m_puserinteraction->is_this_visible())
-//            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
-//               m_puserinteraction->is_window_screen_visible()))
+//   bool prodevian::exclusive_mode_update_screen()
+//   {
+//
+//      //if (m_pimpl)
+//      //{
+//
+//      //   if (m_pimpl->m_pgraphics)
+//      //   {
+//
+//      //      auto pbitmapsource = m_pimpl->m_pgraphics.cast < ::graphics::bitmap_source_buffer >();
+//
+//      //      if (pbitmapsource)
+//      //      {
+//
+//      //         string strBitmapSource = m_puserinteraction->payload("bitmap-source");
+//
+//      //         if (pbitmapsource->m_strBitmapSource != strBitmapSource)
+//      //         {
+//
+//      //            pbitmapsource->enable_ipc_copy(strBitmapSource);
+//
+//      //         }
+//
+//      //      }
+//
+//
+//      //   }
+//
+//      //}
+//
+//
+//      try
+//      {
+//
+//         string strType = __type_name(m_puserinteraction);
+//
+//         if(strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
-//
-//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
-//
-//            m_puserinteraction->_on_show_window();
+//            information("We're on the list_box update_screen");
 //
 //         }
-
-         profiling_on_after_update_screen();
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//
+//         profiling_on_before_update_screen();
+//
+//         if (!m_pimpl)
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         m_pimpl->prodevian_update_screen();
+//
+//         if (!m_puserinteraction)
+//         {
+//
+//            return false;
+//
+//         }
+//
+////         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
+////            m_puserinteraction->is_this_visible())
+////            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
+////               m_puserinteraction->is_window_screen_visible()))
+////         {
+////
+////            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
+////
+////            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
+////
+////            m_puserinteraction->_on_show_window();
+////
+////         }
+//
+//         profiling_on_after_update_screen();
+//
+//      }
+//      catch(...)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 
    void prodevian::profiling_on_before_update_screen()
@@ -1361,19 +1381,19 @@ namespace user
    }
 
 
-   void interaction::prodevian_post_procedure(const ::procedure & procedure)
-   {
-
-      if (!is_graphical())
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      m_pinteractionimpl->m_pprodevian->post_procedure(procedure);
-
-   }
+//   void interaction::prodevian_post_procedure(const ::procedure & procedure)
+//   {
+//
+//      if (!is_graphical())
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//
+//      }
+//
+//      m_pinteractionimpl->m_pprodevian->post_procedure(procedure);
+//
+//   }
 
 
 } // namespace user

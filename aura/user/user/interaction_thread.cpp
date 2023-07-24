@@ -697,24 +697,25 @@ namespace user
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));
 
-            //short circuit for frequent messages
-            if (iMessage == e_message_apply_visual)
-            {
-
-               //throw ::exception(todo("interaction"));
-               //throw ::exception(todo("thread"));
-
-               if (puserinteraction->m_pinteractionimpl)
-               {
-
-                  puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
-
-                  return true;
-
-               }
-
-            }
-            else if (iMessage == e_message_update_notify_icon)
+//            //short circuit for frequent messages
+//            if (iMessage == e_message_apply_visual)
+//            {
+//
+//               //throw ::exception(todo("interaction"));
+//               //throw ::exception(todo("thread"));
+//
+//               if (puserinteraction->m_pinteractionimpl)
+//               {
+//
+//                  puserinteraction->user->_001OnApplyVisual(pusermessage);
+//
+//                  return true;
+//
+//               }
+//
+//            }
+//            else
+               if (iMessage == e_message_update_notify_icon)
             {
 
                puserinteraction->route_message(pusermessage);
@@ -722,14 +723,14 @@ namespace user
                return true;
 
             }
-            else if (iMessage == e_message_simple_command)
-            {
-
-               puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
-
-               return true;
-
-            }
+//            else if (iMessage == e_message_simple_command)
+//            {
+//
+//               puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
+//
+//               return true;
+//
+//            }
 
             //if (iMessage > e_message_midi_sequence_event)
             //{
@@ -1081,14 +1082,14 @@ namespace user
    }
 
 
-   void thread::start_window_visual()
-   {
-
-      //m_evApplyVisual.ResetEvent();
-
-      m_pimpl->m_puserinteraction->post_message(e_message_apply_visual);
-
-   }
+//   void thread::start_window_visual()
+//   {
+//
+//      //m_evApplyVisual.ResetEvent();
+//
+//      m_pimpl->m_puserinteraction->post_message(e_message_apply_visual);
+//
+//   }
 
 
    //void thread::destroy()

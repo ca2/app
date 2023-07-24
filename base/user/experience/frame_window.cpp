@@ -1528,7 +1528,7 @@ namespace experience
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
          {
 
-            information() << "e_message_mouse_move during window transfer ignored!!";
+            //information() << "e_message_mouse_move during window transfer ignored!!";
 
          }
          else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)

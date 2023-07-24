@@ -53,14 +53,14 @@ namespace user
       class ::time                                m_timeOutOfDrawing;
 
       class ::time                                m_timeLastScreenUpdate;
-      ::procedure                                 m_procedureUpdateScreen;
-      ::procedure                                 m_procedureWindowShow;
+      //::procedure                                 m_procedureUpdateScreen;
+      //::procedure                                 m_procedureWindowShow;
       
 
-      bool                                      m_bRedraw;
+      //bool                                      m_bRedraw;
 
 
-      bool                                      m_bExclusiveMode;
+      //bool                                      m_bExclusiveMode;
       //bool                                      m_bVisualUpdated;
 
       bool                                      m_bUpdatingScreen;
@@ -90,11 +90,12 @@ namespace user
 
       bool prodevian_reset(::user::interaction * pinteraction);
       bool prodevian_iteration();
-      bool prodevian_update_buffer(bool bRedraw);
+      bool prodevian_update_buffer();
       bool prodevian_update_screen();
+      void prodevian_redraw();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       void update_buffer();
-      bool update_screen();
+      //bool exclusive_mode_update_screen();
 
       
       virtual void profiling_on_before_update_screen();

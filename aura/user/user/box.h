@@ -57,7 +57,7 @@ namespace user
 
       void on_visual_applied() override;
 
-      void window_show_change_visibility() override;
+      void _window_show_change_visibility() override;
 
 
       void design_window_normal(::e_display edisplay) override;

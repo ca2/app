@@ -4,7 +4,8 @@
 #include "frame.h"
 #include "control_box.h"
 #include "button.h"
-////#include "acme/exception/exception.h"
+#include "acme/constant/message.h"
+#include "apex/parallelization/thread.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -423,6 +424,8 @@ namespace experience
 
       m_bDocking = true;
 
+      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
+
       m_pframewindow->on_start_layout_experience(e_layout_experience_docking);
 
       m_iDockMove = 0;
@@ -478,6 +481,8 @@ namespace experience
          return;
 
       }
+
+      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
 
       m_bDocking = false;
 

@@ -52,7 +52,7 @@ namespace user
          if (r.area() > 500 * 500)
          {
 
-            information() << "rNeedRedraw.area() has area > 500 * 500";
+            //information() << "rNeedRedraw.area() has area > 500 * 500";
 
          }
          if (r.area() < 50 * 50)

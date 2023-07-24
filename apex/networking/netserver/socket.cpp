@@ -103,13 +103,23 @@ namespace netserver
 
       for (auto& pproperty : m_request.headers().propertyptra())
       {
-         
-         str.append_format("{%s=%s}", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
 
-         if (str.length() > 80)
+         ::string strNewHeader;
+
+         strNewHeader.format("{%s=%s}", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
+
+         if (str.length() + strNewHeader.length() > 80)
          {
 
             information("Headers %s", str.c_str());
+
+            str = strNewHeader;
+
+         }
+         else
+         {
+
+            str += strNewHeader;
 
          }
 

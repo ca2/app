@@ -676,12 +676,22 @@ namespace user
 
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = __create_new<TYPE>(); \
+   pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_atom = atom; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam; \
    pmessageBase = pmessage
+
+
+//#define _NEW_MESSAGE(TYPE) \
+//   auto pmessage = __create_new<TYPE>(); \
+//   pmessage->m_pchannel = this; \
+//   pmessage->m_atom = atom; \
+//   pmessage->m_wparam = wparam; \
+//   pmessage->m_lparam = lparam; \
+//   pmessageBase = pmessage
 
 
    ::pointer<::message::message>primitive_impl::get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
@@ -698,7 +708,7 @@ namespace user
 
       auto pwindow = this->window();
 
-      auto oswindow = pwindow->oswindow();
+      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
 
       switch (eprototype)
       {

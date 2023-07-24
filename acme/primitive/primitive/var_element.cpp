@@ -104,9 +104,54 @@ void payload::_set_element(::particle * pelement)
 
    ::increment_reference_count(pelement);
 
-   release();
+   logical_release();
 
-   ::set_element(*this, pelement);
+   if (m_etype == ::e_type_payload_pointer)
+   {
+
+      //return ->logical_release();
+
+      ::set_element(*m_ppayload, pelement);
+
+   }
+   else if (m_etype == ::e_type_property)
+   {
+
+      ::set_element(*m_pproperty, pelement);
+
+   }
+   else
+   {
+
+      ::set_element(*this, pelement);
+
+   }
+
+}
+
+
+::i64 payload::logical_release()
+{
+
+   if (m_etype == ::e_type_payload_pointer)
+   {
+
+      return m_ppayload->logical_release();
+
+   }
+   else if (m_etype == ::e_type_property)
+   {
+
+      return m_pproperty->logical_release();
+
+   }
+   else
+   {
+
+      return release();
+
+   }
+
 
 }
 

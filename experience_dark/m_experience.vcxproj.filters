@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{e25669ee-d102-4d79-856b-b7590e995120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{98c4be34-439b-4202-99ab-f21c6db5cdac}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame_001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame_002.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame_005.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame_008.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame_011.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame_013.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="experience_lite_frame_Minimal001.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame_001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame_002.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame_005.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame_008.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame_011.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame_013.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_frame_Minimal001.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_interaction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience_lite_library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="experience_lite.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

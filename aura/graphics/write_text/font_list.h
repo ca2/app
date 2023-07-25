@@ -32,15 +32,17 @@ namespace write_text
 
       bool                                      m_bUpdatingFontList : 1;
       string                                    m_strFontFamily;
+      string                                    m_strFontBranch;
       ::i32                                     m_iLayoutSerial;
-      ::pointer<font_enumeration>              m_pfontenumeration;
-      ::pointer<font_enumeration_item_array>   m_pfontenumerationitema;
-      ::pointer<font_list_data>                m_pfontlistdata;
+      ::pointer<font_enumeration>               m_pfontenumeration;
+      ::pointer<font_enumeration>               m_pfontenumerationAddRedrawHandler;
+      ::pointer<font_enumeration_item_array>    m_pfontenumerationitema;
+      ::pointer<font_list_data>                 m_pfontlistdata;
 
 
       ::color::color                            m_uaBackgroundColor[2][3];
       ::color::color                            m_uaForegroundColor[2][3];
-      ::pointer<::user::interaction>           m_puserinteraction;
+      ::pointer<::user::interaction>            m_puserinteraction;
 
 
       point_i32                                 m_point;
@@ -108,6 +110,9 @@ namespace write_text
 
       virtual void set_font_list_type(enum_font_list efontlist);
       virtual enum_font_list get_font_list_type() const;
+
+      virtual void set_font_branch(const ::scoped_string & scopedstrFontBranch);
+      virtual void on_update_font_branch();
 
 
    };

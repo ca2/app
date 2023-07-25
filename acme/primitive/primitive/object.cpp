@@ -1668,6 +1668,8 @@ void object::branch_each(const ::procedure_array& routinea)
 
    get_property_set()["thread"][atom] = ptask;
 
+   auto ptask2 = get_property_set()["thread"][atom].cast < ::task>();
+
    ptask->branch();
 
    return ptask;

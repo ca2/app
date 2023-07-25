@@ -4,10 +4,13 @@
 #include "system.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/handler/request.h"
+#include "apex/platform/os_context.h"
+#include "aura/user/user/check_box.h"
 #include "aura/user/user/interaction.h"
 #include "axis/user/user/line_layout.h"
 #include "base/user/user/document_manager.h"
 #include "base/user/user/impact_system.h"
+#include "aura/user/user/still.h"
 #include "base/user/user/user.h"
 #include "base/user/user/document_manager.h"
 
@@ -239,11 +242,49 @@ namespace base
    void application::create_options_footer(::user::interaction * pparent)
    {
 
+      if (m_bEnableAutoStartOption)
+      {
+
+         create_auto_start_option(pparent);
+
+      }
 
    }
 
 
+   void application::create_auto_start_option(::user::interaction* pparent)
+   {
 
+      auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
+
+      auto pcheckbox = create_check_box<::user::check_box>(playoutLine, "");
+
+      //bool bCheck = false;
+
+      auto papplication = acmeapplication()->m_papexapplication;
+
+      bool bUserAutoStart = os_context()->is_user_auto_start(papplication->get_executable_appid());
+
+      pcheckbox->_001SetCheck(bUserAutoStart, ::e_source_initialize);
+
+      pcheckbox->m_callbackOnCheck = [this](auto pcheck)
+      {
+
+         bool bCheck = pcheck->bcheck();
+
+         auto papplication = acmeapplication()->m_papexapplication;
+
+         os_context()->register_user_auto_start(
+            papplication->get_executable_appid(),
+            papplication->get_executable_path(),
+            "--auto_start=1",
+            bCheck);
+
+      };
+
+      create_label<::user::still>(playoutLine, "Enable Auto Start");
+
+   }
 
 
 } // namespace base

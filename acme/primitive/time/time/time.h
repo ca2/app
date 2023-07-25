@@ -6,6 +6,7 @@
 #include "acme/primitive/time/_structures.h"
 #include "posix_time.h"
 #include "nanosecond.h"
+#include "acme/platform/uint64_utilities.h"
 
 
 namespace earth
@@ -1246,7 +1247,7 @@ constexpr class time second_time(NUMERATOR numerator, DENOMINATOR denominator)
    return  
    { 
       (::i64) (numerator / denominator),
-      (::i64) ((numerator % denominator) * 1'000'000'000 / denominator)
+      (::i64) muldiv64((numerator % denominator), 1'000'000'000 , denominator)
    }; 
 }
 template < primitive_floating FLOATING >

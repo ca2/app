@@ -318,6 +318,12 @@
     <ClInclude Include="audio\text_to_speech_client.h">
       <Filter>Header Files\audio</Filter>
     </ClInclude>
+    <ClInclude Include="platform\hwid.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\byte_order.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -442,6 +448,12 @@
     </ClCompile>
     <ClCompile Include="audio\text_to_speech_client.cpp">
       <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\hwid.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\sha256.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

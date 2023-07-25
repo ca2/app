@@ -101,14 +101,12 @@ namespace user
 
       void destroy() override;
 
-      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
-
-
-      virtual void start_window_visual();
+      virtual void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
+      virtual void _window_request_presentation();
 
       virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
       
-      virtual void prodevian_update_screen();
+      //virtual void prodevian_update_screen();
 
       //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
 
@@ -135,7 +133,7 @@ namespace user
       virtual bool is_prodevian(const ::matter* pmatter) const;
 
 
-      virtual void prodevian_stop();
+      //virtual void prodevian_stop();
 
 
       virtual ::user::primitive* set_owner(::user::primitive* pprimitiveOwner);
@@ -179,7 +177,7 @@ namespace user
       virtual void SetRedraw(bool bRedraw = true);
 
 
-      virtual void prodevian_redraw(bool bUpdateBuffer);
+      //virtual void prodevian_redraw(bool bUpdateBuffer);
 
 
       virtual void set_mouse_cursor(::windowing::cursor* pcursor);

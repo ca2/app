@@ -35,7 +35,7 @@ namespace sockets_bsd
 {
 
 
-   ::interlocked_count g_interlockedcountSocketHandler;
+   //::interlocked_count g_interlockedcountSocketHandler;
 
 
    //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plogger) :
@@ -68,9 +68,9 @@ namespace sockets_bsd
       m_countW = 0;
       m_countE = 0;
 
-      g_interlockedcountSocketHandler++;
+      //g_interlockedcountSocketHandler++;
 
-      ::information("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountSocketHandler) + ")\n");
+      //::information() << "socket_handler allocated count = " << (::i64) g_interlockedcountSocketHandler;
 
    }
 
@@ -80,7 +80,7 @@ namespace sockets_bsd
 
       cleanup_handler();
 
-      g_interlockedcountSocketHandler--;
+      //g_interlockedcountSocketHandler--;
 
    }
 
@@ -555,7 +555,7 @@ namespace sockets_bsd
             if (!m_socketmap.lookup(socket, psocket)) // not found
             {
 
-               warning() <<"GetSocket/handler/4 " << (i32)socket << " Did not find expected socket using file descriptor(4)";
+               warning() <<"socket_handler " << (i32)socket << " Did not find expected socket using file descriptor(4)";
 
                socket_id_list_erase(__Socket(psocket)->GetSocketId(), e_list_call_on_connect);
 
@@ -1086,7 +1086,7 @@ end_processing_adding:
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
 
-                     ppairSocket->m_psocket->information() << "SSLNegotiate";
+                     //ppairSocket->m_psocket->information() << "SSLNegotiate";
                      
                      ppairSocket->m_psocket->SSLNegotiate();
 
@@ -1094,7 +1094,7 @@ end_processing_adding:
                   else
                   {
 
-                     ppairSocket->m_psocket->information() << "OnRead";
+                     //ppairSocket->m_psocket->information() << "OnRead";
                      
                      ppairSocket->m_psocket->OnRead();
 
@@ -1104,7 +1104,7 @@ end_processing_adding:
                else
                {
 
-                  warning() <<"GetSocket/handler/1 " << (i32)socket << "Did not find expected socket using file descriptor(1)";
+                  warning() << "socket_handler " << (i32)socket << "Did not find expected socket using file descriptor(1)";
 
                }
 
@@ -1124,7 +1124,7 @@ end_processing_adding:
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
 
-                     ppairSocket->m_psocket->information() << "SSLNegotiate";
+                     //ppairSocket->m_psocket->information() << "SSLNegotiate";
 
                      ppairSocket->m_psocket->SSLNegotiate();
 
@@ -1142,7 +1142,7 @@ end_processing_adding:
                else
                {
 
-                  warning() <<"GetSocket/handler/2" << (i32)socket << "Did not find expected socket using file descriptor(2)";
+                  warning() << "socket_handler " << (i32)socket << " Did not find expected socket using file descriptor(2)";
 
                }
 
@@ -1168,7 +1168,7 @@ end_processing_adding:
                      if (ppairSocket->m_psocket->is_connecting())
                      {
 
-                        warning() <<"GetSocket/handler/3" << (i32)socket << "stream_socket on_connection_timeout (3)";
+                        warning() << "socket_handler " << (i32)socket << " stream_socket on_connection_timeout (3)";
 
                         ppairSocket->m_psocket->on_connection_timeout();
 
@@ -1176,7 +1176,7 @@ end_processing_adding:
                      else
                      {
 
-                        warning() <<"GetSocket/handler/3 " << (i32)socket << " socket on_timeout(3)";
+                        warning() << "socket_handler " << (i32)socket << " socket on_timeout(3)";
 
                         ppairSocket->m_psocket->on_timeout();
 
@@ -1194,7 +1194,7 @@ end_processing_adding:
                else
                {
 
-                  warning() <<"GetSocket/handler/3 " << (i32)socket << " Did not find expected socket using file descripto(3)r";
+                  warning() << "socket_handler " << (i32)socket << " Did not find expected socket using file descripto(3)r";
 
                }
 
@@ -1303,7 +1303,7 @@ end_processing_adding:
                   if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket))
                   {
 
-                     warning() <<"GetSocket/handler/6 " << (i32)socket << " Did not find expected socket using file descriptor(f)";
+                     warning() << "socket_handler " << (i32)socket << " Did not find expected socket using file descriptor(f)";
 
                      m_socketlistTimeout.erase_item(socket);
 
@@ -1324,7 +1324,7 @@ end_processing_adding:
                      if (ppairSocket->m_psocket->is_connecting())
                      {
 
-                        warning() <<"GetSocket/handler/7 " << (i32)socket << "stream_socket on_connection_timeout (g)";
+                        warning() << "socket_handler " << (i32)socket << " stream_socket on_connection_timeout (g)";
 
                         ppairSocket->m_psocket->on_connection_timeout();
 
@@ -1332,7 +1332,7 @@ end_processing_adding:
                      else
                      {
 
-                        warning() <<"GetSocket/handler/7 " << (i32)socket << " socket on_timeout (g)";
+                        warning() << "socket_handler " << (i32)socket << " socket on_timeout (g)";
 
                         ppairSocket->m_psocket->on_timeout();
 
@@ -1368,7 +1368,7 @@ end_processing_adding:
             if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket))
             {
 
-               warning() <<"GetSocket/handler/7 " << (i32)*p << " Did not find expected socket using file descriptor(g)";
+               warning() << "socket_handler " << (i32)*p << " Did not find expected socket using file descriptor(g)";
 
             }
 
@@ -1445,7 +1445,7 @@ end_processing_adding:
                if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket))
                {
 
-                  warning() <<"GetSocket/handler/8 " << (i32)socket << " Did not find expected socket using file descriptor(8)";
+                  warning() << "socket_handler " << (i32)socket << " Did not find expected socket using file descriptor(8)";
 
                }
                else

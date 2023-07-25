@@ -84,6 +84,8 @@
     <ClInclude Include="operating_system\windows\_windows.h" />
     <ClInclude Include="operating_system\_.h" />
     <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\byte_order.h" />
+    <ClInclude Include="platform\hwid.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_impl.h" />
@@ -145,7 +147,9 @@
     <ClCompile Include="operating_system\windows\audio.cpp" />
     <ClCompile Include="operating_system\windows\system.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\hwid.cpp" />
     <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\sha256.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\controller.cpp" />
     <ClCompile Include="xml\data.cpp" />

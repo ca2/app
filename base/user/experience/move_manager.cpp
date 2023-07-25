@@ -3,6 +3,7 @@
 #include "frame_window.h"
 #include "frame.h"
 #include "acme/constant/message.h"
+#include "apex/parallelization/thread.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 
@@ -79,6 +80,8 @@ namespace experience
 
       m_bMoving = true;
 
+      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
+
       auto & edisplaySketch = m_pframewindow->layout().m_statea[::user::e_layout_sketch].m_edisplay;
 
       if (edisplaySketch & e_display_docking_mask)
@@ -130,6 +133,8 @@ namespace experience
          return false;
 
       }
+
+      pmouse->payload("flush_similar_messages") = true;
 
       auto pframewindow = m_pframewindow;
 
@@ -222,6 +227,8 @@ namespace experience
       }
 
       m_bMoving = false;
+
+      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
 
       auto pwindowing = m_pframewindow->windowing();
 

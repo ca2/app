@@ -31,6 +31,7 @@ namespace user
       bool                                   m_bEnsureVisible;
       bool                                   m_bFirstShown;
       ::i32                                  m_iLayoutSerial;
+      ::string                               m_strFontBranch;
 
 
       font_list();
@@ -113,6 +114,7 @@ namespace user
       virtual void update_data(bool bSaveAndValidate) override;
 
       virtual void set_font_list_type(::write_text::enum_font_list efoldertype);
+      virtual void set_font_branch(const ::scoped_string & scopedstrFontBranch);
 
 
    };

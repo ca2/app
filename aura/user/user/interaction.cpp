@@ -10,6 +10,7 @@
 #include "user.h"
 #include "frame.h"
 #include "form.h"
+#include "aura/windowing/placement_log.h"
 #include "size_parent_layout.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -229,6 +230,9 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
+
+
+      m_bIgnoringSketchToLading = false;
 
       m_bExtendOnParent = false;
       m_bExtendOnParentIfClientOnly = false;
@@ -571,13 +575,22 @@ namespace user
          if (x < 100 || y < 100)
          {
 
-            information("user::interaction set_position x or y < 100 (%d, %d)", x, y);
+            //information("user::interaction set_position x or y < 100 (%d, %d)", x, y);
 
          }
 
       }
 
       m_layout.m_statea[elayout].set_visual_state_origin(pointNew);
+
+      if(m_pinteractionimpl && elayout == e_layout_sketch)
+      {
+
+         auto size = m_layout.m_statea[elayout].m_size;
+
+         m_pinteractionimpl->m_pwindow->placement_log()->add({pointNew, size});
+
+      }
 
       if (::is_set(pgraphics) && ::user::e_layout_layout)
       {
@@ -627,6 +640,15 @@ namespace user
 
       }
 
+      if(m_pinteractionimpl && elayout == e_layout_sketch)
+      {
+
+         auto point = m_layout.m_statea[elayout].origin();
+
+         m_pinteractionimpl->m_pwindow->placement_log()->add({point, sizeNew});
+
+      }
+
       auto rectangleAfter = layoutstate.raw_rectangle();
 
       set_need_layout();
@@ -654,6 +676,16 @@ namespace user
          post_redraw();
 
       }
+
+   }
+
+
+   void interaction::_set_size(const ::size_i32 &size, enum_layout elayout)
+   {
+
+      auto & layoutstate = layout().m_statea[elayout];
+
+      layoutstate.m_size = size;
 
    }
 
@@ -3996,12 +4028,12 @@ namespace user
    }
 
 
-   void interaction::show_window()
-   {
-
-      window_show_change_visibility();
-
-   }
+//   void interaction::show_window()
+//   {
+//
+//      window_show_change_visibility();
+//
+//   }
 
 
    void interaction::on_message_move(::message::message *pmessage)
@@ -5343,7 +5375,6 @@ return strClass;
    void interaction::defer_draw(::draw2d::graphics_pointer & pgraphics)
    {
 
-
       m_pprimitiveimpl->defer_draw(pgraphics);
 
    }
@@ -5607,7 +5638,7 @@ return strClass;
 
          if (pgraphics->payload("set_transparent") == "set_transparent")
          {
-            information() << "Not draw!?!?!";
+            information() << "Not draw (!m_bDraw) !?!?!";
 
          }
 
@@ -5622,7 +5653,7 @@ return strClass;
          if (pgraphics->payload("set_transparent") == "set_transparent")
          {
 
-            information() << "Not draw!?!?!";
+            information() << "Not draw (!needs_to_draw)!?!?!";
 
             if (!needs_to_draw(pgraphics))
             {
@@ -6225,6 +6256,14 @@ return strClass;
 //   }
 
 //}
+
+
+   bool interaction::_is_set() const
+   {
+
+      return true;
+
+   }
 
 
    bool interaction::is_user_thread()
@@ -11669,10 +11708,10 @@ return strClass;
    }
 
 
-   void interaction::window_show()
+   void interaction::_window_request_presentation()
    {
 
-      m_pinteractionimpl->window_show();
+      m_pinteractionimpl->_window_request_presentation();
 
       if (m_bVisualChanged)
       {
@@ -11784,12 +11823,12 @@ return strClass;
 
       }
 
-      if (get_parent() == nullptr || is_top_level())
-      {
-
-         window_show_change_visibility();
-
-      }
+//      if (get_parent() == nullptr || is_top_level())
+//      {
+//
+//         window_show_change_visibility();
+//
+//      }
 
    }
 
@@ -11813,7 +11852,7 @@ return strClass;
    }
 
 
-   void interaction::window_show_change_visibility()
+   void interaction::_window_show_change_visibility()
    {
 
       //::enum_display edisplayOutput = layout().output().display();
@@ -11876,7 +11915,7 @@ return strClass;
 
             auto eactivation = layout().layout().activation();
 
-            m_pprimitiveimpl->window_show_change_visibility(edisplayOutputForOsShowWindow, eactivation);
+            m_pprimitiveimpl->_window_show_change_visibility(edisplayOutputForOsShowWindow, eactivation);
 
          }
 
@@ -12789,6 +12828,53 @@ return strClass;
 
       _synchronous_lock synchronouslock(this->synchronization());
 
+      if(get_parent() == nullptr)
+      {
+
+         if (layout().lading().m_size.area() > 0)
+         {
+
+            if (layout().lading().m_size != layout().window().m_size
+            && !(m_bIgnoringSketchToLading && m_timeLastIgnoredSketchToLading.elapsed() < 200_ms))
+            {
+
+               if(!m_bIgnoringSketchToLading)
+               {
+
+                  m_timeLastIgnoredSketchToLading.Now();
+
+                  m_bIgnoringSketchToLading = true;
+
+               }
+
+               synchronouslock.unlock();
+
+               information() << "ignoring sketch with size : " << layout().sketch().m_size;
+
+               post_redraw();
+
+//                  if(m_ptask)
+//
+//                  m_ptaskRecheckIgnoredSketchToLading =
+//                  fork([this]()
+//                  {
+//
+//                     prempt(16.67_ms);
+//
+//                     post_redraw();
+//
+//                  });
+
+               return;
+
+            }
+
+         }
+
+         m_bIgnoringSketchToLading = false;
+
+      }
+
       layout().lading() = layout().sketch();
 
       layout().sketch().clear_activation();
@@ -13118,19 +13204,24 @@ return strClass;
 
       }
 
-      if (bDeferDisplay || bPosition)
+      if(get_parent() != nullptr)
       {
 
-         if (!(m_ewindowflag & e_window_flag_embedded_prodevian))
+         if (bDeferDisplay || bPosition)
          {
 
-            if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
+            if (!(m_ewindowflag & e_window_flag_embedded_prodevian))
             {
 
-               if (m_pprimitiveimpl)
+               if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
                {
 
-                  m_pprimitiveimpl->start_window_visual();
+                  if (m_pprimitiveimpl)
+                  {
+
+                     m_pprimitiveimpl->_window_request_presentation();
+
+                  }
 
                }
 
@@ -13183,45 +13274,45 @@ return strClass;
 
       }
 
-      if (m_bUpdateVisual || m_bReposition)
-      {
-
-         if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
-         {
-
-            if (m_ewindowflag & e_window_flag_embedded_prodevian)
-            {
-
-               auto psession = get_session();
-
-               if (get_parent() == nullptr || get_parent() == psession->get_user_interaction_host())
-               {
-
-                  if (m_pinteractionimpl)
-                  {
-
-                     m_pinteractionimpl->window_show();
-
-                  }
-
-               }
-               else
-               {
-
-                  if (m_pprimitiveimpl)
-                  {
-
-                     m_pprimitiveimpl->start_window_visual();
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
+//      if (m_bUpdateVisual || m_bReposition)
+//      {
+//
+//         if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
+//         {
+//
+//            if (m_ewindowflag & e_window_flag_embedded_prodevian)
+//            {
+//
+//               auto psession = get_session();
+//
+//               if (get_parent() == nullptr || get_parent() == psession->get_user_interaction_host())
+//               {
+//
+//                  if (m_pinteractionimpl)
+//                  {
+//
+//                     m_pinteractionimpl->_window_show();
+//
+//                  }
+//
+//               }
+//               else
+//               {
+//
+//                  if (m_pprimitiveimpl)
+//                  {
+//
+//                     m_pprimitiveimpl->start_window_visual();
+//
+//                  }
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
 
    }
 
@@ -15499,6 +15590,13 @@ return strClass;
          layout().sketch().m_size = sizeNew;
 
          layout().lading().m_size = sizeNew;
+
+      }
+
+      if(m_pinteractionimpl && elayout == e_layout_sketch)
+      {
+
+         m_pinteractionimpl->m_pwindow->placement_log()->add({pointNew, sizeNew});
 
       }
 
@@ -18921,43 +19019,43 @@ return strClass;
       }*/
 
 
-   void interaction::prodevian_redraw(bool bUpdateBuffer)
-   {
+//   void interaction::prodevian_redraw(bool bUpdateBuffer)
+//   {
+//
+//      auto type = __object_type(*this);
+//
+//      //      if (type.name_contains("list_box"))
+//      //      {
+//      //
+//      //         information("prodevian_redraw list_box");
+//      //
+//      //      }
+//
+//      if (m_pprimitiveimpl.is_null())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_pprimitiveimpl->prodevian_redraw(bUpdateBuffer);
+//
+//   }
 
-      auto type = __object_type(*this);
 
-      //      if (type.name_contains("list_box"))
-      //      {
-      //
-      //         information("prodevian_redraw list_box");
-      //
-      //      }
-
-      if (m_pprimitiveimpl.is_null())
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->prodevian_redraw(bUpdateBuffer);
-
-   }
-
-
-   void interaction::prodevian_stop()
-   {
-
-      if (!m_pprimitiveimpl)
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->prodevian_stop();
-
-   }
+//   void interaction::prodevian_stop()
+//   {
+//
+//      if (!m_pprimitiveimpl)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_pprimitiveimpl->prodevian_stop();
+//
+//   }
 
 
 //   void interaction::install_click_default_mouse_handling(::channel* pchannel)

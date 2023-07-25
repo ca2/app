@@ -573,7 +573,23 @@ public:
       //inline string_base & assign(::ansi_character ansich);
       //inline string_base & assign(::wd16_character wd16ch);
       //inline string_base & assign(::wd32_character wd32ch);
-   
+
+
+   inline string_base& assign(const_iterator start)
+   {
+
+      return assign(start, string_safe_length(start));
+
+   }
+
+
+   inline string_base& assign(const_iterator start, const_iterator end)
+   {
+
+      return assign(start, end - start);
+
+   }
+
    template < primitive_character CHARACTER2 >
    inline string_base & assign(const CHARACTER2 * start, const CHARACTER2 * end);
 

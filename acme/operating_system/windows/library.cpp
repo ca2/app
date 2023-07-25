@@ -217,7 +217,7 @@ namespace acme
 
       strMessage = "node_library_open Success opening " + path;
 
-      ::information(strMessage + "\n\n");
+      ::information() << strMessage;
 
       return plibrary;
 

@@ -1309,9 +1309,6 @@
     <ClCompile Include="user\user\windowing.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\window_util.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1554,6 +1551,12 @@
     </ClCompile>
     <ClCompile Include="windowing\placement_log.cpp">
       <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_array.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_designer.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

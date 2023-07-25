@@ -255,6 +255,7 @@
     <ClCompile Include="user\experience\size_manager.cpp" />
     <ClCompile Include="user\form\document.cpp" />
     <ClCompile Include="user\form\impact.cpp" />
+    <ClCompile Include="user\form\options.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
     <ClCompile Include="user\menu\interaction.cpp" />

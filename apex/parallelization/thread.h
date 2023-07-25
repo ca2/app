@@ -110,6 +110,7 @@ public:
    ::pointer<::object>                                m_pobjectScript;
 
    ::pointer_array < ::message::message >             m_messagea;
+   numeric_array < enum_message >                     m_emessageaGetLast;
 
 
 //#ifdef MACOS

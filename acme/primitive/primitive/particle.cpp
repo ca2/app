@@ -4,7 +4,7 @@
 #include "factory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/extended_topic.h"
-#include "acme/parallelization/single_lock.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 #include "acme/handler/topic.h"
@@ -2294,3 +2294,39 @@ void fatal(const ::ansi_character * pszFormat, ...)
    va_end(arguments);
 
 }
+
+
+void particle::process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   if(procedurelist.is_empty())
+   {
+
+      return;
+
+   }
+
+   do
+   {
+
+      {
+
+         auto routine = procedurelist.pick_head();
+
+         synchronouslock.unlock();
+
+         routine();
+
+      }
+
+      synchronouslock.lock();
+
+   }
+   while(procedurelist.has_element());
+
+}
+
+
+

@@ -5511,7 +5511,7 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
-      auto penumeration = acmesystem()->m_paurasystem->draw2d()->write_text()->fonts()->enumeration();
+      auto penumeration = acmesystem()->m_paurasystem->draw2d()->write_text()->fonts()->enumeration("system");
 
       penumeration->m_eventReady.wait(30_s);
 

@@ -29,7 +29,7 @@ class CLASS_DECL_ACME string_reference_stream :
 public:
 
 
-   string_reference_stream(::string& str) : write_text_stream(this),string_reference_buffer(str) { }
+   string_reference_stream(::string& str) : string_reference_buffer(str) { m_pfile = this; }
 
 
 };

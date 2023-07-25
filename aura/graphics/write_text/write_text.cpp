@@ -130,7 +130,7 @@ namespace write_text
 
       auto pfonts = this->fonts();
 
-      pfonts->enumerate_fonts();
+      pfonts->enumerate_fonts("system");
 
    }
 

@@ -1191,7 +1191,7 @@ namespace user
       {
 
          MESSAGE_LINK(e_message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
-         MESSAGE_LINK(e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
+         //MESSAGE_LINK(e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
 
 
          //#ifndef LINUX
@@ -4040,7 +4040,7 @@ namespace user
       if (m_bDoingGraphics)
       {
 
-         information("set_need_redraw on doing graphics");
+         //information("set_need_redraw on doing graphics");
 
       }
 
@@ -4101,16 +4101,25 @@ namespace user
    void interaction_impl::post_redraw(bool bAscendants)
    {
 
-      if (!m_puserinteraction)
+      if (::is_null(m_pprodevian))
       {
 
          return;
 
       }
 
-      bool bForceUpdateBuffer = false;
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      bool bForceUpdateBuffer = false;
+//
+//      m_puserinteraction->post_message(::e_message_redraw, bForceUpdateBuffer);
 
-      m_puserinteraction->post_message(::e_message_redraw, bForceUpdateBuffer);
+      m_pprodevian->prodevian_redraw();
 
    }
 
@@ -5415,7 +5424,7 @@ namespace user
 
          auto iRequestsDuringDrawing = m_redrawitema.size();
 
-         information() << iRequestsDuringDrawing << " redraw requests while drawing.";
+         //information() << iRequestsDuringDrawing << " redraw requests while drawing.";
 
       }
 
@@ -5783,25 +5792,25 @@ namespace user
    }
 
 
-   void interaction_impl::start_window_visual()
-   {
-
-      if (m_puserthread)
-      {
-
-         m_puserthread->start_window_visual();
-
-      }
-      else
-      {
-
-         m_puserinteraction->post_message(e_message_apply_visual);
-
-      }
-
-      //return true;
-
-   }
+//   void interaction_impl::start_window_visual()
+//   {
+//
+//      if (m_puserthread)
+//      {
+//
+//         m_puserthread->start_window_visual();
+//
+//      }
+//      else
+//      {
+//
+//         m_puserinteraction->post_message(e_message_apply_visual);
+//
+//      }
+//
+//      //return true;
+//
+//   }
 
 
    void interaction_impl::_001UpdateWindow()
@@ -5810,69 +5819,69 @@ namespace user
    }
 
 
-   void interaction_impl::_001UpdateScreen()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      if (m_bOfflineRender)
-      {
-
-         return;
-
-      }
-
-      string strType = __type_name(m_puserinteraction);
-
-      if (strType.case_insensitive_contains("list_box"))
-      {
-
-         auto edisplay = m_puserinteraction->const_layout().state(e_layout_design).display();
-
-         bool bGraphicsSet = m_pgraphics.is_set();
-
-         information("_001UpdateScreen list_box");
-
-      }
-
-      if (m_pgraphics.is_set())
-      {
-
-         if (m_puserinteraction->layout().is_this_screen_visible())
-         {
-
-            //            //CINFO(prodevian)("going to update_window (1)");
-            //
-            //            auto puserinteraction = m_puserinteraction.m_p;
-            //
-            //            int* pi = (int*)puserinteraction;
-            //
-            //            auto& i = *pi;
-            //
-            //            //monitor_pointer(puserinteraction);
-            //
-            //            auto& iStateCount = m_puserinteraction->layout().m_iStateCount;
-            //
-            //            monitor_pointer(&iStateCount);
-            //
-            //            m_pgraphics->update_screen();
-
-            m_pwindow->update_screen();
-
-            //m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
-
-         }
-
-      }
-
-   }
+//   void interaction_impl::_001UpdateScreen()
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization());
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_bOfflineRender)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      string strType = __type_name(m_puserinteraction);
+//
+//      if (strType.case_insensitive_contains("list_box"))
+//      {
+//
+//         auto edisplay = m_puserinteraction->const_layout().state(e_layout_design).display();
+//
+//         bool bGraphicsSet = m_pgraphics.is_set();
+//
+//         information("_001UpdateScreen list_box");
+//
+//      }
+//
+//      if (m_pgraphics.is_set())
+//      {
+//
+//         if (m_puserinteraction->layout().is_this_screen_visible())
+//         {
+//
+//            //            //CINFO(prodevian)("going to update_window (1)");
+//            //
+//            //            auto puserinteraction = m_puserinteraction.m_p;
+//            //
+//            //            int* pi = (int*)puserinteraction;
+//            //
+//            //            auto& i = *pi;
+//            //
+//            //            //monitor_pointer(puserinteraction);
+//            //
+//            //            auto& iStateCount = m_puserinteraction->layout().m_iStateCount;
+//            //
+//            //            monitor_pointer(&iStateCount);
+//            //
+//            //            m_pgraphics->update_screen();
+//
+//            m_pwindow->window_update_screen_buffer();
+//
+//            //m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), ::user::e_layout_window);
+//
+//         }
+//
+//      }
+//
+//   }
 
 
    void interaction_impl::process_message()
@@ -6062,32 +6071,32 @@ namespace user
    //}
 
 
-   void interaction_impl::prodevian_redraw(bool bUpdateBuffer)
-   {
-
-      if (!m_pprodevian)
-      {
-
-         return;
-
-      }
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
-      {
-
-         m_pprodevian->m_message.wParam |= 1;
-
-         m_pprodevian->prodevian_iteration();
-
-      }
-      else
-      {
-
-         m_pprodevian->post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
-
-      }
-
-   }
+//   void interaction_impl::prodevian_redraw(bool bUpdateBuffer)
+//   {
+//
+//      if (!m_pprodevian)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
+//      {
+//
+//         m_pprodevian->m_message.wParam |= 1;
+//
+//         m_pprodevian->prodevian_iteration();
+//
+//      }
+//      else
+//      {
+//
+//         m_pprodevian->post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
+//
+//      }
+//
+//   }
 
 
    void interaction_impl::set_finish(::particle * pparticleContextFinish)
@@ -6120,55 +6129,56 @@ namespace user
    }
 
 
-   void interaction_impl::prodevian_stop()
-   {
+//   void interaction_impl::prodevian_stop()
+//   {
+//
+//      auto pprodevian = m_pprodevian;
+//
+//      if (::is_set(pprodevian) && ::is_set(m_pgraphics))
+//      {
+//
+//         {
+//
+//            _synchronous_lock slGraphics(m_pgraphics->synchronization());
+//
+//            auto pbufferitem = m_pgraphics->get_buffer_item();
+//
+//            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+//
+//            slGraphics.unlock();
+//
+//            //pprodevian->m_puserinteraction = nullptr;
+//
+//            //pprodevian->m_pimpl = nullptr;
+//
+//            pprodevian->set_finish();
+//
+//         }
+//
+//         //{
+//
+//         //   _synchronous_lock synchronouslock(this->synchronization());
+//
+//         //   _synchronous_lock slGraphics(m_pgraphics->synchronization());
+//
+//         //   m_pprodevian);
+//
+//         //}
+//
+//      }
+//
+//   }
 
-      auto pprodevian = m_pprodevian;
 
-      if (::is_set(pprodevian) && ::is_set(m_pgraphics))
-      {
-
-         {
-
-            _synchronous_lock slGraphics(m_pgraphics->synchronization());
-
-            auto pbufferitem = m_pgraphics->get_buffer_item();
-
-            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
-
-            slGraphics.unlock();
-
-            //pprodevian->m_puserinteraction = nullptr;
-
-            //pprodevian->m_pimpl = nullptr;
-
-            pprodevian->set_finish();
-
-         }
-
-         //{
-
-         //   _synchronous_lock synchronouslock(this->synchronization());
-
-         //   _synchronous_lock slGraphics(m_pgraphics->synchronization());
-
-         //   m_pprodevian);
-
-         //}
-
-      }
-
-   }
-
-
-   void interaction_impl::prodevian_update_screen()
-   {
-
-      _001UpdateScreen();
-
-      //return true;
-
-   }
+//   void interaction_impl::prodevian_update_screen()
+//   {
+//
+//
+//      //_001UpdateScreen();
+//
+//      //return true;
+//
+//   }
 
 
    //void interaction_impl::set_handle(::windowing::window * pwindow)
@@ -6916,9 +6926,7 @@ namespace user
    }
 
 
-
-
-   void interaction_impl::window_show()
+   void interaction_impl::_window_request_presentation()
    {
 
       if (::is_null(m_puserinteraction))
@@ -7233,7 +7241,7 @@ namespace user
             //#endif
             //         {
 
-            m_puserinteraction->window_show_change_visibility();
+            m_puserinteraction->_window_show_change_visibility();
 
             //}
 
@@ -7344,13 +7352,13 @@ namespace user
             // else
          {
 
-            m_pwindow->on_set_window_position(
-               zorderNew,
-               pointOutput.x(),
-               pointOutput.y(),
-               sizeOutput.cx(),
-               sizeOutput.cy(),
-               eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
+//            m_pwindow->on_set_window_position(
+//               zorderNew,
+//               pointOutput.x(),
+//               pointOutput.y(),
+//               sizeOutput.cx(),
+//               sizeOutput.cy(),
+//               eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
 
             m_sizeSetWindowSizeRequest = sizeOutput;
 
@@ -7395,7 +7403,7 @@ namespace user
             //#endif
             //         {
 
-            m_puserinteraction->window_show_change_visibility();
+            m_puserinteraction->_window_show_change_visibility();
 
             //}
 
@@ -7531,11 +7539,11 @@ namespace user
    }
 
 
-   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void interaction_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
-      m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
-         {
+      //m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
+        // {
 
                if (!m_puserinteraction)
                {
@@ -7577,7 +7585,7 @@ namespace user
 
                }
 
-         });
+         //});
 
    }
 
@@ -7590,48 +7598,48 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnDoShowWindow(::message::message * pmessage)
-   {
+//   void interaction_impl::_001OnDoShowWindow(::message::message * pmessage)
+//   {
+//
+//      m_puserinteraction->_window_show_change_visibility();
+//
+//   }
 
-      m_puserinteraction->window_show_change_visibility();
 
-   }
-
-
-   void interaction_impl::_001OnApplyVisual(::message::message * pmessage)
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return;
-
-      }
-
-      string strType = __type_name(m_puserinteraction);
-
-      if (strType.case_insensitive_contains("filemanager"))
-      {
-
-         information() << "filemanager apply visual";
-
-      }
-
-      if (m_puserinteraction->is_graphical())
-      {
-
-         window_show();
-
-         //if (::is_set(m_puserthread))
-         //{
-
-         //   m_puserthread->m_evApplyVisual.set_event();
-
-         //}
-
-      }
-
-   }
+//   void interaction_impl::_001OnApplyVisual(::message::message * pmessage)
+//   {
+//
+//      if (!m_puserinteraction)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      string strType = __type_name(m_puserinteraction);
+//
+//      if (strType.case_insensitive_contains("filemanager"))
+//      {
+//
+//         information() << "filemanager apply visual";
+//
+//      }
+//
+//      if (m_puserinteraction->is_graphical())
+//      {
+//
+//         window_show();
+//
+//         //if (::is_set(m_puserthread))
+//         //{
+//
+//         //   m_puserthread->m_evApplyVisual.set_event();
+//
+//         //}
+//
+//      }
+//
+//   }
 
 
    void interaction_impl::on_message_move(::message::message * pmessage)
@@ -7821,14 +7829,14 @@ namespace user
 
             //m_pwindow->m_size = psize->m_size;
 
-      m_puserinteraction->set_size(psize->m_size, e_layout_window);
+      //m_puserinteraction->set_size(psize->m_size, e_layout_window);
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 
       if (!m_pwindow->placement_log()->has_recent(psize->m_size))
       {
 
-         m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
+         //m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
 
          int cx = m_puserinteraction->const_layout().sketch().size().width();
 

@@ -3,6 +3,7 @@
 #include "font.h"
 #include "font_enumeration_item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
 
 
 #define FONTFACENAME_MENU pnode->font_name(e_font_sans)
@@ -47,29 +48,59 @@ namespace write_text
    }
 
 
-   font_enumeration* fonts::enumeration()
+   font_enumeration* fonts::enumeration(const ::scoped_string & scopedstrFontBranch)
    {
 
       synchronous_lock syncronouslock(synchronization());
 
-      if (!m_pfontenumeration)
+      ::string strFontBranch = scopedstrFontBranch;
+
+      strFontBranch.make_lower();
+
+      strFontBranch.trim();
+
+      strFontBranch.find_replace("-", "_");
+
+      if (!m_mapFontEnumeration[strFontBranch])
       {
 
-         enumerate_fonts();
+         enumerate_fonts(strFontBranch);
 
       }
 
-      return m_pfontenumeration;
+      return m_mapFontEnumeration[strFontBranch];
 
    }
 
    
-   void fonts::enumerate_fonts()
+   void fonts::enumerate_fonts(const ::scoped_string & scopedstrFontBranch)
    {
 
       synchronous_lock syncronouslock(synchronization());
 
-      auto pfontenumeration = __create < ::write_text::font_enumeration >();
+      ::pointer < ::write_text::font_enumeration > pfontenumeration;
+
+      if (scopedstrFontBranch == "system")
+      {
+
+         pfontenumeration = __create < ::write_text::font_enumeration >();
+
+      }
+      else
+      {
+
+         ::string strFontBranch;
+
+         strFontBranch = scopedstrFontBranch;
+
+         strFontBranch.find_replace("-", "_");
+
+         auto pfactory = acmesystem()->factory("font_enumeration", strFontBranch);
+
+         pfontenumeration = __create < ::write_text::font_enumeration >(pfactory);
+
+      }
+
 
       //if (!pfontenumeration.m_estatus)
       //{
@@ -78,21 +109,21 @@ namespace write_text
 
       //}
 
-      if (!m_pfontenumeration)
+      if (!m_mapFontEnumeration[scopedstrFontBranch])
       {
 
-         m_pfontenumeration = pfontenumeration;
+         m_mapFontEnumeration[scopedstrFontBranch] = pfontenumeration;
 
       }
 
-      fork([this, pfontenumeration]
+      fork([this, pfontenumeration, scopedstrFontBranch]
       {
 
          pfontenumeration->enumerate_fonts();
 
          synchronous_lock syncronouslock(synchronization());
 
-         m_pfontenumeration = pfontenumeration;
+         m_mapFontEnumeration[scopedstrFontBranch] = pfontenumeration;
 
       });
 

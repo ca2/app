@@ -1835,7 +1835,7 @@ namespace sockets_bsd
       if(!IsSSLServer()) // client
       {
 
-         information() << "SSLNegotiate: SSL_connect";
+         //information() << "SSLNegotiate: SSL_connect";
 
          if (m_bReuseSession && !m_bClientSessionSet && m_psslcontext->m_pclientcontext->m_psslsession != nullptr)
          {
@@ -1927,7 +1927,7 @@ namespace sockets_bsd
             }
 
 
-            information() << "SSLNegotiate/SSL_connect: Connection established";
+            //information() << "SSLNegotiate/SSL_connect: Connection established";
 
             return true;
 
@@ -2052,7 +2052,7 @@ namespace sockets_bsd
             OnAccept();
 
 
-            information() << "SSLNegotiate/SSL_accept: Connection established";
+            //information() << "SSLNegotiate/SSL_accept: Connection established";
 
             return true;
 

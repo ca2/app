@@ -1341,6 +1341,8 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
       virtual void create_options_body(::user::interaction * pparent);
       virtual void create_options_footer(::user::interaction * pparent);
 
+      virtual void create_auto_start_option(::user::interaction* pparent);
+
 
    };
 

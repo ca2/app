@@ -76,12 +76,12 @@ namespace apex
    void application::on_service_request(::request * prequest)
    {
 
-      if (!is_service())
-      {
+      //if (!is_service())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       if (prequest->has_property("create_service"))
       {

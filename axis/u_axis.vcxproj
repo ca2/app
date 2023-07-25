@@ -350,6 +350,8 @@
     <ClCompile Include="user\form\data.cpp" />
     <ClCompile Include="user\form\window.cpp" />
     <ClCompile Include="user\user\combo_box.cpp" />
+    <ClCompile Include="user\user\form_designer.cpp" />
+    <ClCompile Include="user\user\line_layout.cpp" />
     <ClCompile Include="user\user\list_box.cpp" />
     <ClCompile Include="user\user\object.cpp" />
     <ClCompile Include="user\user\plus_minus.cpp" />

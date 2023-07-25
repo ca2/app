@@ -203,16 +203,16 @@
     <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{4274c4d7-fab2-4c54-9a57-4cd951677100}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{2845dbd0-2070-4c45-988f-90b79523fce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{31f9c496-9c28-4c91-b906-ab9ff73cb45e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user\language.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\language_map.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\edit_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -496,9 +496,6 @@
     <ClCompile Include="networking\sockets.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="user\primitive.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="message\command.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
@@ -640,8 +637,20 @@
     <ClCompile Include="filesystem\filesystem\link.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="user\message.cpp">
-      <Filter>Source Files\user</Filter>
+    <ClCompile Include="user\user\language.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\language_map.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\primitive.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\container.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -707,33 +716,6 @@
     </ClInclude>
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_item.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\command.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\language.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\language_map.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\aaa_range.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu_shared.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu_shared_command.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\_.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\ewindowflag.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
@@ -1527,12 +1509,6 @@
     <ClInclude Include="progress\real.h">
       <Filter>Header Files\progress</Filter>
     </ClInclude>
-    <ClInclude Include="user\notify_icon_bridge.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\primitive.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="message\command.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
@@ -1544,15 +1520,6 @@
     </ClInclude>
     <ClInclude Include="inline\console\universal_windows.h">
       <Filter>Header Files\inline\console</Filter>
-    </ClInclude>
-    <ClInclude Include="user\callback.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\control_event.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\item.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="platform\event.h">
       <Filter>Header Files\platform</Filter>
@@ -1637,6 +1604,36 @@
     </ClInclude>
     <ClInclude Include="operating_system\department.h">
       <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\primitive.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon_bridge.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\message.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\language_map.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\language.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\command.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_const_key.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\container.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

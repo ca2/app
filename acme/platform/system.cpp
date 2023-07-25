@@ -68,10 +68,6 @@ namespace acme
       m_pbredsystem = nullptr;
       m_pcoresystem = nullptr;
 
-      //__defer_construct_new(m_pprintingformat);
-
-      m_plogger = __create_new < ::simple_log >();
-
 #ifndef WINDOWS
 
       ::unsetenv("LD_LIBRARY_PATH");
@@ -90,12 +86,24 @@ namespace acme
    }
 
 
+   void system::on_initialize_particle()
+   {
+
+      ::acme::context::on_initialize_particle();
+
+      ::plane_system::on_initialize_particle();
+
+   }
+
+
    void system::initialize_system()
    {
 
       m_psubsystem = ::acme::acme::g_pacme->m_psubsystem;
 
       m_psubsystem->initialize(this);
+
+      m_plogger = __create_new < ::simple_log >();
 
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
@@ -189,10 +197,8 @@ namespace acme
 
       //set_os_data(LAYERED_ACME, this);
 
-
-
-
    }
+
 
    void system::on_pre_run_task()
    {
@@ -990,6 +996,53 @@ namespace acme
    {
 
       throw ::interface_only();
+
+   }
+   
+   
+   ::string system::http_text(const ::scoped_string & scopedstrUrl)
+   {
+
+      property_set set;
+
+      set["raw_http"] = true;
+
+      set["disable_common_name_cert_check"] = true;
+
+      return http_text(scopedstrUrl, set);
+
+   }
+
+
+   ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+   
+      throw ::not_implemented("requires apex");
+
+      return {};
+   
+   }
+
+
+
+   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   {
+
+      property_set set;
+
+      set["raw_http"] = true;
+
+      set["disable_common_name_cert_check"] = true;
+
+      http_download(payloadFile, scopedstrUrl, set);
+
+   }
+
+
+   void system::http_download(const ::payload & payloadFileh, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      throw ::not_implemented("requires apex");
 
    }
 

@@ -43,7 +43,9 @@ void log::initialize(::particle * pparticle)
 
 #endif
 
-   if (file_exists(pathHome / "log.txt"))
+   auto pathLog = pathHome / "log.txt";
+
+   if (file_exists(pathLog))
    {
 
       m_bLog = true;

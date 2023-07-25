@@ -307,7 +307,7 @@ namespace user
       bool is_prodevian(const ::matter * pmatter) const override;
       inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
 
-      void prodevian_stop() override;
+      //void prodevian_stop() override;
 
 
       //virtual ::user::interaction * get_owner();
@@ -330,13 +330,13 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
-      DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
+      //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnRedraw);
-      DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
+      //DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
 
 
 //#if (WINVER >= 0x0500) && defined(WINDOWS_DESKTOP)
@@ -492,9 +492,12 @@ namespace user
       virtual void LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
-      void prodevian_update_screen() override;
 
-      void prodevian_redraw(bool bUpdateBuffer) override;
+      // try calling prodevian things from prodevian... he is not much called...
+      //void prodevian_update_screen() override;
+
+      // try calling prodevian things from prodevian... is he ever called...
+      //void prodevian_redraw(bool bUpdateBuffer) override;
 
 //#ifdef WINDOWS
 //
@@ -741,17 +744,16 @@ namespace user
       virtual void _001UpdateWindow() override;
 
 
-      virtual void start_window_visual() override;
+      // deprecated schedule window visual
+      //virtual void start_window_visual() override;
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
       void defer_draw(::draw2d::graphics_pointer & pgraphics) override;
       //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001UpdateScreen();
+      // call window window_update_screen_buffer
+      //virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
-
-
-      virtual void window_show();
 
 
       //virtual void update_graphics_resources();
@@ -801,7 +803,11 @@ namespace user
 
       virtual bool is_this_visible(enum_layout elayout) override;
 
-      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      
+      void _window_request_presentation() override;
+
+
 
 
       virtual void ShowWindow(const ::e_display & edisplay);

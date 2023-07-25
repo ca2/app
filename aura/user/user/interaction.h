@@ -246,6 +246,9 @@ namespace user
 
       ::user::interaction::enum_updown             m_eupdown;
 
+      class ::time                                 m_timeLastIgnoredSketchToLading;
+      bool                                         m_bIgnoringSketchToLading;
+
    public:
 
       index                                        m_iItem;
@@ -440,6 +443,7 @@ namespace user
       
       virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void _set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
       virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       /// @brief shift left position changing size
@@ -549,6 +553,8 @@ namespace user
 
 
       //virtual void enumerate_composite(matter_array& a) override;
+
+      bool _is_set() const override;
 
       virtual bool is_user_thread();
 
@@ -759,9 +765,9 @@ namespace user
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void prodevian_stop() override;
+      //virtual void prodevian_stop() override;
 
-      virtual void prodevian_redraw(bool bUpdateBuffer) override;
+      //virtual void prodevian_redraw(bool bUpdateBuffer) override;
 
       //virtual void _001OnAfterAppearance();
 
@@ -793,7 +799,7 @@ namespace user
       virtual bool should_redraw_on_mouse_activate();
       virtual bool should_redraw_on_mouse_hover();
       virtual bool should_redraw_on_hover(::item * pitem);
-      virtual void show_window();
+      //virtual void show_window();
 
 
       ///virtual bool is_sketch_to_design_locked();
@@ -1214,8 +1220,6 @@ namespace user
 
       virtual bool scroll_bar_get_client_rect(::rectangle_i32 & rectangle);
 
-      virtual void window_show();
-      virtual void on_visual_applied();
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -1245,7 +1249,10 @@ namespace user
       
       virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void window_show_change_visibility();
+      virtual void _window_show_change_visibility();
+      virtual void _window_request_presentation();
+      virtual void on_visual_applied();
+
 
       virtual void defer_save_window_placement();
 
@@ -2303,7 +2310,7 @@ namespace user
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;
-      virtual void prodevian_post_procedure(const ::procedure & procedure);
+      //virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
       //void send_procedure(const ::procedure & procedure) override;

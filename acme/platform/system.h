@@ -152,6 +152,9 @@ namespace acme
       system();
       ~system() override;
       
+
+      void on_initialize_particle() override;
+
       
       void initialize_system();
 

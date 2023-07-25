@@ -195,7 +195,33 @@ namespace acme
 
          //m_strPath = pszPath;
 
-         m_strName = ::file::path(path).title();
+         auto pFinalExtension = path.find_final_extension();
+
+         auto pFinalName = path.find_name();
+
+         if (pFinalName)
+         {
+
+            if (pFinalExtension)
+            {
+
+               m_strName.assign(pFinalName, pFinalExtension);
+
+            }
+            else
+            {
+
+               m_strName = pFinalName;
+
+            }
+
+         }
+         else
+         {
+
+            m_strName.empty();
+
+         }
 
       //}
       //catch(...)
@@ -212,7 +238,7 @@ namespace acme
       if(is_verbose_log())
       {
       
-         information("acme::library::open success : %s", m_strName.c_str());
+         information() << "acme::library::open success : \"" << m_strName << "\"";
          
       }
 

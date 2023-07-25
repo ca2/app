@@ -68,7 +68,9 @@ namespace sockets_bsd
    socket_thread::socket_thread()
    {
 
-      ::information(::as_string(g_iSocketThread++) + " - memory_new socket_thread\n");
+      //auto iAllocatedSocketThreadCount = g_iSocketThread++;
+
+      //::information() << "::sockets_bsd::socket_thread currently allocated count = " << iAllocatedSocketThreadCount;
 
    }
 

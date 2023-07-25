@@ -68,10 +68,6 @@ namespace acme
       m_pbredsystem = nullptr;
       m_pcoresystem = nullptr;
 
-      //__defer_construct_new(m_pprintingformat);
-
-      m_plogger = __create_new < ::simple_log >();
-
 #ifndef WINDOWS
 
       ::unsetenv("LD_LIBRARY_PATH");
@@ -90,12 +86,24 @@ namespace acme
    }
 
 
+   void system::on_initialize_particle()
+   {
+
+      ::acme::context::on_initialize_particle();
+
+      ::plane_system::on_initialize_particle();
+
+   }
+
+
    void system::initialize_system()
    {
 
       m_psubsystem = ::acme::acme::g_pacme->m_psubsystem;
 
       m_psubsystem->initialize(this);
+
+      m_plogger = __create_new < ::simple_log >();
 
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
@@ -189,10 +197,8 @@ namespace acme
 
       //set_os_data(LAYERED_ACME, this);
 
-
-
-
    }
+
 
    void system::on_pre_run_task()
    {

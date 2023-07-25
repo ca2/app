@@ -87,12 +87,13 @@ namespace netserver
 
    }
 
+
    void socket::OnExecute()
    {
 
       string strUrl = m_request.attr("http_protocol").string() + "://" + m_request.header("host").string() + m_request.attr("request_uri").string();
 
-      information("socket::OnExecute: %s\n", strUrl.c_str());
+      //information("socket::OnExecute: %s\n", strUrl.c_str());
 
       auto tickExecuteBeg = ::duration::now();
 
@@ -102,7 +103,7 @@ namespace netserver
 
       auto tickExecuteEnd = ::duration::now();
 
-      error() <<"=> " << (tickExecuteEnd - tickExecuteBeg).integral_second();
+      error() <<"send_response time => " << (tickExecuteEnd - tickExecuteBeg).integral_second();
 
    }
 

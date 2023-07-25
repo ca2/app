@@ -60,7 +60,7 @@ namespace sockets
 
       g_interlockedcountsocket_idHandler++;
 
-      ::information("----socket_handler (count=" + ::as_string((::iptr) g_interlockedcountsocket_idHandler) + ")\n");
+      ::information("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) g_interlockedcountsocket_idHandler));
 
    }
 

@@ -1456,6 +1456,7 @@ list(APPEND library_source
    platform/less.h
    platform/logic.h
    platform/lparam.h
+   platform/muldiv64.cpp
    platform/nanosecond_timer.h
    platform/number.h
    platform/object_reference_count_debug.cpp

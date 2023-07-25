@@ -8,6 +8,11 @@ set(ROOT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
 
 
+# default configuration
+set(HAS_SYSTEM_UNAC FALSE)
+set(HAS_APP_VERIWELL FALSE)
+set(HAS_AUDIO_SYSTEM FALSE)
+
 
 # In include(source/_.cmake) set variables like below
 #set(INCLUDE_DRAW2D_CAIRO TRUE)

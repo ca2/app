@@ -417,7 +417,7 @@ if (MSVC)
 elseif (${LINUX} OR ${FREEBSD})
 
 
-   if (${FREEBSD})
+   if (NOT ${HAS_SYSTEM_UNAC})
       list(APPEND library_references
          unac)
    else ()

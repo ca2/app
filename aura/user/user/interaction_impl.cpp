@@ -1195,7 +1195,7 @@ namespace user
 
 
          //#ifndef LINUX
-         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_reposition);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
          //#endif
 
@@ -7642,7 +7642,7 @@ namespace user
 //   }
 
 
-   void interaction_impl::on_message_move(::message::message * pmessage)
+   void interaction_impl::on_message_reposition(::message::message * pmessage)
    {
 
       m_puserinteraction->m_pinteractionScaler->on_display_change(m_puserinteraction);

@@ -331,7 +331,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
-      DECLARE_MESSAGE_HANDLER(on_message_move);
+      DECLARE_MESSAGE_HANDLER(on_message_reposition);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

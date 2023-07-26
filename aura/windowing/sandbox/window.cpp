@@ -3403,89 +3403,89 @@ namespace sandbox_windowing
    //   }
 
 
-   void window::update_screen()
-   {
+   //void window::window_update_screen_buffer()
+   //{
 
-      window_post([this]()
-         {
+   //   window_post([this]()
+   //      {
 
-            auto pimpl = m_puserinteractionimpl;
+   //         auto pimpl = m_puserinteractionimpl;
 
-            if (::is_set(pimpl))
-            {
+   //         if (::is_set(pimpl))
+   //         {
 
-               auto puserinteraction = pimpl->m_puserinteraction;
+   //            auto puserinteraction = pimpl->m_puserinteraction;
 
-               if (::is_set(puserinteraction))
-               {
+   //            if (::is_set(puserinteraction))
+   //            {
 
-                  string strType = __type_name(puserinteraction);
+   //               string strType = __type_name(puserinteraction);
 
-                  if (strType.contains("menu"))
-                  {
+   //               if (strType.contains("menu"))
+   //               {
 
-                     information("menu");
+   //                  information("menu");
 
-                  }
+   //               }
 
-                  auto pimpl2 = puserinteraction->m_pinteractionimpl;
+   //               auto pimpl2 = puserinteraction->m_pinteractionimpl;
 
-                  if (::is_set(pimpl2))
-                  {
+   //               if (::is_set(pimpl2))
+   //               {
 
-                     auto pprodevian = pimpl2->m_pprodevian;
+   //                  auto pprodevian = pimpl2->m_pprodevian;
 
-                     if (::is_set(pprodevian))
-                     {
+   //                  if (::is_set(pprodevian))
+   //                  {
 
-                        pprodevian->update_screen();
+   //                     pprodevian->update_screen();
 
-                     }
+   //                  }
 
-                  }
+   //               }
 
-               }
+   //            }
 
-            }
+   //         }
 
-         });
+   //      });
 
-   }
-
-
-   void window::window_show()
-   {
-
-      m_pwindowing->windowing_post([this]()
-         {
-
-            auto pimpl = m_puserinteractionimpl;
-
-            if (::is_set(pimpl))
-            {
-
-               auto puserinteraction = pimpl->m_puserinteraction;
-
-               if (::is_set(puserinteraction))
-               {
-
-                  auto pimpl2 = puserinteraction->m_pinteractionimpl;
-
-                  if (::is_set(pimpl2))
-                  {
-
-                     pimpl2->window_show();
-
-                  }
-
-               }
-
-            }
-
-         });
+   //}
 
 
-   }
+   //void window::_window_request_presensation()
+   //{
+
+   //   m_pwindowing->windowing_post([this]()
+   //      {
+
+   //         auto pimpl = m_puserinteractionimpl;
+
+   //         if (::is_set(pimpl))
+   //         {
+
+   //            auto puserinteraction = pimpl->m_puserinteraction;
+
+   //            if (::is_set(puserinteraction))
+   //            {
+
+   //               auto pimpl2 = puserinteraction->m_pinteractionimpl;
+
+   //               if (::is_set(pimpl2))
+   //               {
+
+   //                  pimpl2->window_show();
+
+   //               }
+
+   //            }
+
+   //         }
+
+   //      });
+
+
+   //}
 
 
    void window::set_mouse_capture()

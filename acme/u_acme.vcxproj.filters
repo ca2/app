@@ -1489,6 +1489,9 @@
     <ClCompile Include="operating_system\windows_common\user.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
+    <ClCompile Include="platform\muldiv64.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">

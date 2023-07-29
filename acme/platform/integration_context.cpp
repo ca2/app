@@ -4,13 +4,15 @@
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/url.h"
-#include "apex/filesystem/filesystem/file_context.h"
-#include "apex/networking/http/context.h"
-#include "apex/platform/application.h"
-#include "apex/platform/system.h"
+//#include "apex/filesystem/filesystem/file_context.h"
+//#include "apex/networking/http/context.h"
+//#include "apex/platform/application.h"
+//#include "apex/platform/system.h"
 
 
 #include "acme/_operating_system.h"
@@ -53,9 +55,11 @@ namespace integration
    void context::prepare()
    {
 
-      m_path = m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
+      m_pathBase = m_strName / m_strRelease;
+      
+      m_pathPlatformConfiguration = m_strPlatform / m_strConfiguration;
 
-      m_pathSource2 = m_pathFolder / m_path / "source";
+      m_pathSource = m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "source";
 
       //acmedirectory()->create(m_pathSource2);
 
@@ -67,7 +71,7 @@ namespace integration
 
       ::file::path path;
 
-      path = m_pathSource2;
+      path = m_pathSource;
 
       if (scopedstr.has_char())
       {
@@ -225,7 +229,7 @@ namespace integration
 
       ::file::path path;
 
-      path = this->prepare_path(m_pathFolder / m_path / "source");
+      path = this->prepare_path(m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "source");
 
       if (acmeapplication()->payload("no-source-clean").is_true())
       {
@@ -304,7 +308,7 @@ namespace integration
 
          auto url = m_pathDownloadURL;
 
-         acmeapplication()->m_papexapplication->http().download(url, pmemoryFileTarGz, set);
+         acmesystem()->http_download(pmemoryFileTarGz,  url, set);
 
          //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 
@@ -316,7 +320,7 @@ namespace integration
 
          pmemoryFileTar->seek_to_begin();
 
-         this->untar(m_pathFolder / m_path, pmemoryFileTar, 1);
+         this->untar(m_pathFolder / m_pathBase / m_pathPlatformConfiguration, pmemoryFileTar, 1);
 
       }
 
@@ -326,13 +330,15 @@ namespace integration
    void context::git_clone()
    {
       //preempt(15_s);
+      
+      information() << "Current Directory: " << acmedirectory()->get_current();
 
       bash("git clone " + m_pathDownloadURL + " .");
 
    }
 
 
-   void context::bash(const ::scoped_string & scopedstr)
+   ::i32 context::bash(const ::scoped_string & scopedstr)
    {
 
       string strEscaped = scopedstr;
@@ -357,11 +363,48 @@ namespace integration
 
       //
 
-      command_system(strCommand);
+      auto iExitCode = command_system(strCommand);
 
       ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
 
       
+      return iExitCode;
+      
+
+   }
+
+
+   ::i32 context::zsh(const ::scoped_string & scopedstr)
+   {
+
+      string strEscaped = scopedstr;
+
+      ::string strCommand;
+
+      printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
+      printf("%s\n", strEscaped.c_str());
+
+      if (m_bMsys)
+      {
+
+         strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+
+      }
+      else
+      {
+
+         strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+
+      }
+
+      //
+
+      auto iExitCode = command_system(strCommand);
+
+      ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
+
+      
+      return iExitCode;
       
 
    }
@@ -379,9 +422,7 @@ namespace integration
 
       ::memory memory;
 
-      memory = file()->as_memory(payloadTar);
-
-
+      memory = acmefile()->as_memory(payloadTar);
 
       //struct archive * a = archive_read_new();
       //archive_read_support_compression_gzip(a);
@@ -423,7 +464,7 @@ namespace integration
 
             }
 
-            auto pfile = file()->get_writer(pathFolder / path);
+            auto pfile = acmefile()->get_writer(pathFolder / path);
 
             for (;;) {
                auto size = archive_read_data(a, memory2.data(), memory2.size());

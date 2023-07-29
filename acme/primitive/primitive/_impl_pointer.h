@@ -392,6 +392,21 @@ inline T * pointer < T > ::detach()
 }
 
 
+template < class T >
+inline ::particle * pointer < T > ::detach_particle()
+{
+
+   auto p = m_pparticle;
+
+   m_p = nullptr;
+
+   m_pparticle = nullptr;
+
+   return p;
+
+}
+
+
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >

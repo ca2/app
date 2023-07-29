@@ -26,8 +26,6 @@
 		9A1BD6D82A0079D400152CD1 /* zip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E7B274DFD11000B7A22 /* zip.cpp */; };
 		9A1BD6D92A0079D400152CD1 /* folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E4D274DFD0F000B7A22 /* folder.cpp */; };
 		9A1BD6DA2A0079D400152CD1 /* file_function_definitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D760A274E4EED00403BC3 /* file_function_definitions.cpp */; };
-		9A1BD6DC2A0079D400152CD1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5D7607274E4D2100403BC3 /* libz.tbd */; };
-		9A1BD6DD2A0079D400152CD1 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1F6EB3274DFDB1000B7A22 /* libacme.dylib */; };
 		9A1F6E8C274DFD11000B7A22 /* ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E47274DFD0F000B7A22 /* ioapi.cpp */; };
 		9A1F6E8D274DFD11000B7A22 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E49274DFD0F000B7A22 /* framework.cpp */; };
 		9A1F6E8E274DFD11000B7A22 /* iowin32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E4A274DFD0F000B7A22 /* iowin32.h */; };
@@ -71,13 +69,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A1BD6C52A0079D400152CD1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A1F6EAD274DFDB1000B7A22 /* acme.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A68A41325114352008DABD2;
-			remoteInfo = acme;
-		};
 		9A1F6EB2274DFDB1000B7A22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1F6EAD274DFDB1000B7A22 /* acme.xcodeproj */;
@@ -105,6 +96,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AD68E39251A753A00C0EBD7;
 			remoteInfo = ios_acme;
+		};
+		9AC981B92A71B72700B1BCF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1F6EAD274DFDB1000B7A22 /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AD68E39251A753A00C0EBD7;
+			remoteInfo = static_acme;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -139,15 +137,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9A1BD6DB2A0079D400152CD1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A1BD6DC2A0079D400152CD1 /* libz.tbd in Frameworks */,
-				9A1BD6DD2A0079D400152CD1 /* libacme.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AC09A2B274DFC67008B042E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,12 +278,11 @@
 			buildPhases = (
 				9A1BD6C62A0079D400152CD1 /* Headers */,
 				9A1BD6D12A0079D400152CD1 /* Sources */,
-				9A1BD6DB2A0079D400152CD1 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A1BD6C42A0079D400152CD1 /* PBXTargetDependency */,
+				9AC981BA2A71B72700B1BCF3 /* PBXTargetDependency */,
 			);
 			name = static_folder_zip;
 			productName = folder_zip;
@@ -343,7 +331,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					9AC09A2C274DFC67008B042E = {
 						CreatedOnToolsVersion = 13.1;
@@ -445,11 +433,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A1BD6C42A0079D400152CD1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = acme;
-			targetProxy = 9A1BD6C52A0079D400152CD1 /* PBXContainerItemProxy */;
-		};
 		9A1F6EB7274DFDBF000B7A22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = acme;
@@ -459,6 +442,11 @@
 			isa = PBXTargetDependency;
 			name = ios_acme;
 			targetProxy = 9A8E9EE9282A34A9005FF778 /* PBXContainerItemProxy */;
+		};
+		9AC981BA2A71B72700B1BCF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = static_acme;
+			targetProxy = 9AC981B92A71B72700B1BCF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

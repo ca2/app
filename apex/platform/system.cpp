@@ -374,6 +374,9 @@ namespace apex
       ::acme::system::process_init();
 
       __construct_new(m_pthreading);
+      
+      thread::s_bAllocReady = true;
+
 
 //      ::earth::time timeNow = ::earth::time::now();
 //
@@ -533,10 +536,8 @@ namespace apex
 
       //}
 
-      thread::s_bAllocReady = true;
 
       //estatus =
-      __construct_new(m_purl);
 
       //if (!estatus)
       //{

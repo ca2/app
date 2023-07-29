@@ -190,7 +190,7 @@ namespace sockets_bsd
 
 #endif
 
-      s = ::socket(af, iType, protno);
+      s = ::socket(af, iType | SOCK_CLOEXEC, protno);
 
       if (s == INVALID_SOCKET)
       {

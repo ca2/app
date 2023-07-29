@@ -1867,6 +1867,14 @@ namespace acme
    }
 
 
+   void node::unset_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
 #if !defined(UNIVERSAL_WINDOWS)
 
 

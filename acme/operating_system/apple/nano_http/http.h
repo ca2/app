@@ -20,10 +20,11 @@ namespace apple
       nano_http();
       ~nano_http() override;
       
+      static void s_http_response(long http_status, const void * data, long size, void * userdata);
+      
+      void asynchronous_memory(const ::scoped_string & scopedstrUrl, ::pointer < ::nano::asynchronous_http_response > pasynchronoushttpresponse) override;
       
       
-      virtual void asynchronous_memory(const ::scoped_string & scopedstrUrl, const ::property_set & set,
-                                       const ::function < void(int iStatus, const ::memory & memory ) > & function);
 
    
    };

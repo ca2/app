@@ -98,7 +98,7 @@ pacmedirectory->create(::file_path_folder(str));
 
    if(bCreate)
    {
-      i32 fd = open(str, O_CREAT | O_RDWR);
+      i32 fd = open(str, O_CREAT | O_RDWR | O_CLOEXEC);
       if(fd == -1)
          return "";
       if(pfd != nullptr)

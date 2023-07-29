@@ -11,11 +11,10 @@
 #include <Foundation/Foundation.h>
 
 
-void nano_asynchronous_http_memory(const char * pszUrl, PFN_HTTP_RESPONSE pfn)
+void nano_asynchronous_http_memory(const char * pszUrl, PFN_NANO_HTTP_RESPONSE pfn, void * userdata)
 {
    
-   NSString * strUrl = [[NSString alloc] init
-                        WithCString: pszUrl];
+   NSString * strUrl = [[NSString alloc] initWithUTF8String: pszUrl];
    
    NSURL * url =[NSURL URLWithString:strUrl];
    
@@ -24,10 +23,12 @@ void nano_asynchronous_http_memory(const char * pszUrl, PFN_HTTP_RESPONSE pfn)
    NSURLSessionDataTask * pdatatask = [aSession dataTaskWithURL:url completionHandler:
        ^(NSData *data, NSURLResponse *response, NSError *error)
 {
-            pfn(((NSHTTPURLResponse *)response).statusCode, [data bytes], [data length]);
+            pfn(((NSHTTPURLResponse *)response).statusCode, [data bytes], [data length], userdata);
 //            NSString *contentOfURL = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //            NSLog(@"%@", contentOfURL);
-   }];
+      //passynchronoushttpdata->m_event.setEvent();
+      
+ }];
    
    [pdatatask resume];
    

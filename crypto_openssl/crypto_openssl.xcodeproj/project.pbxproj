@@ -41,6 +41,21 @@
 		9AC019BF2748A059006BEBCC /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198D2748A058006BEBCC /* hasher_algorithm.h */; };
 		9AC019C02748A059006BEBCC /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0198E2748A059006BEBCC /* rsa.cpp */; };
 		9AC019C12748A059006BEBCC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198F2748A059006BEBCC /* _.h */; };
+		9AC97EB72A71B2A700B1BCF3 /* initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0196B2748A057006BEBCC /* initializer.h */; };
+		9AC97EB82A71B2A700B1BCF3 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019652748A057006BEBCC /* hasher.h */; };
+		9AC97EB92A71B2A700B1BCF3 /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198D2748A058006BEBCC /* hasher_algorithm.h */; };
+		9AC97EBA2A71B2A700B1BCF3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198F2748A059006BEBCC /* _.h */; };
+		9AC97EBB2A71B2A700B1BCF3 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019732748A057006BEBCC /* framework.h */; };
+		9AC97EBC2A71B2A700B1BCF3 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019742748A057006BEBCC /* rsa.h */; };
+		9AC97EBD2A71B2A700B1BCF3 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019612748A057006BEBCC /* crypto.h */; };
+		9AC97EBF2A71B2A700B1BCF3 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019472748A057006BEBCC /* initializer.cpp */; };
+		9AC97EC02A71B2A700B1BCF3 /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0196E2748A057006BEBCC /* crypto.cpp */; };
+		9AC97EC12A71B2A700B1BCF3 /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019492748A057006BEBCC /* hasher.cpp */; };
+		9AC97EC22A71B2A700B1BCF3 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0196C2748A057006BEBCC /* _factory.cpp */; };
+		9AC97EC32A71B2A700B1BCF3 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019582748A057006BEBCC /* framework.cpp */; };
+		9AC97EC42A71B2A700B1BCF3 /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0194A2748A057006BEBCC /* hasher_algorithm.cpp */; };
+		9AC97EC52A71B2A700B1BCF3 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019682748A057006BEBCC /* _.cpp */; };
+		9AC97EC62A71B2A700B1BCF3 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0198E2748A059006BEBCC /* rsa.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +87,20 @@
 			remoteGlobalIDString = 9AD695C2251A754800C0EBD7;
 			remoteInfo = ios_apex;
 		};
+		9AC981BC2A71B73600B1BCF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC980872A71B39E00B1BCF3;
+			remoteInfo = static_apex;
+		};
+		9AC981BE2A71B73D00B1BCF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC97EEA2A71B39E00B1BCF3;
+			remoteInfo = static_apex;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +129,7 @@
 		9AC0198E2748A059006BEBCC /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
 		9AC0198F2748A059006BEBCC /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
+		9AC97ECF2A71B2A700B1BCF3 /* libstatic_crypto_openssl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_crypto_openssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +162,7 @@
 			children = (
 				9AC019342748A002006BEBCC /* libcrypto_openssl.dylib */,
 				9AA14DBB282A17C600B1621E /* libios_crypto_openssl.a */,
+				9AC97ECF2A71B2A700B1BCF3 /* libstatic_crypto_openssl.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +208,7 @@
 			children = (
 				9AC019E22748A7D4006BEBCC /* libapex.dylib */,
 				9AC019E42748A7D4006BEBCC /* libios_apex.a */,
+				9AC981BD2A71B73600B1BCF3 /* libstatic_apex.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,6 +241,20 @@
 				9AC019B12748A059006BEBCC /* framework.h in Headers */,
 				9AC019B22748A059006BEBCC /* rsa.h in Headers */,
 				9AC019AB2748A059006BEBCC /* crypto.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AC97EB62A71B2A700B1BCF3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC97EB72A71B2A700B1BCF3 /* initializer.h in Headers */,
+				9AC97EB82A71B2A700B1BCF3 /* hasher.h in Headers */,
+				9AC97EB92A71B2A700B1BCF3 /* hasher_algorithm.h in Headers */,
+				9AC97EBA2A71B2A700B1BCF3 /* _.h in Headers */,
+				9AC97EBB2A71B2A700B1BCF3 /* framework.h in Headers */,
+				9AC97EBC2A71B2A700B1BCF3 /* rsa.h in Headers */,
+				9AC97EBD2A71B2A700B1BCF3 /* crypto.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +296,23 @@
 			productReference = 9AC019342748A002006BEBCC /* libcrypto_openssl.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
+		9AC97EB32A71B2A700B1BCF3 /* static_crypto_openssl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AC97ECC2A71B2A700B1BCF3 /* Build configuration list for PBXNativeTarget "static_crypto_openssl" */;
+			buildPhases = (
+				9AC97EB62A71B2A700B1BCF3 /* Headers */,
+				9AC97EBE2A71B2A700B1BCF3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AC981BF2A71B73D00B1BCF3 /* PBXTargetDependency */,
+			);
+			name = static_crypto_openssl;
+			productName = crypto_openssl;
+			productReference = 9AC97ECF2A71B2A700B1BCF3 /* libstatic_crypto_openssl.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -257,7 +320,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					9AC019332748A002006BEBCC = {
 						CreatedOnToolsVersion = 13.1;
@@ -285,6 +348,7 @@
 			targets = (
 				9AC019332748A002006BEBCC /* crypto_openssl */,
 				9AA14D9E282A17C600B1621E /* ios_crypto_openssl */,
+				9AC97EB32A71B2A700B1BCF3 /* static_crypto_openssl */,
 			);
 		};
 /* End PBXProject section */
@@ -302,6 +366,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_apex.a;
 			remoteRef = 9AC019E32748A7D4006BEBCC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC981BD2A71B73600B1BCF3 /* libstatic_apex.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_apex.a;
+			remoteRef = 9AC981BC2A71B73600B1BCF3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -337,6 +408,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AC97EBE2A71B2A700B1BCF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC97EBF2A71B2A700B1BCF3 /* initializer.cpp in Sources */,
+				9AC97EC02A71B2A700B1BCF3 /* crypto.cpp in Sources */,
+				9AC97EC12A71B2A700B1BCF3 /* hasher.cpp in Sources */,
+				9AC97EC22A71B2A700B1BCF3 /* _factory.cpp in Sources */,
+				9AC97EC32A71B2A700B1BCF3 /* framework.cpp in Sources */,
+				9AC97EC42A71B2A700B1BCF3 /* hasher_algorithm.cpp in Sources */,
+				9AC97EC52A71B2A700B1BCF3 /* _.cpp in Sources */,
+				9AC97EC62A71B2A700B1BCF3 /* rsa.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -349,6 +435,11 @@
 			isa = PBXTargetDependency;
 			name = ios_apex;
 			targetProxy = 9A8E9ED8282A33F6005FF778 /* PBXContainerItemProxy */;
+		};
+		9AC981BF2A71B73D00B1BCF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = static_apex;
+			targetProxy = 9AC981BE2A71B73D00B1BCF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -587,6 +678,32 @@
 			};
 			name = Release;
 		};
+		9AC97ECD2A71B2A700B1BCF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					CUBE,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9AC97ECE2A71B2A700B1BCF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = CUBE;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -613,6 +730,15 @@
 			buildConfigurations = (
 				9AC019392748A002006BEBCC /* Debug */,
 				9AC0193A2748A002006BEBCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AC97ECC2A71B2A700B1BCF3 /* Build configuration list for PBXNativeTarget "static_crypto_openssl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AC97ECD2A71B2A700B1BCF3 /* Debug */,
+				9AC97ECE2A71B2A700B1BCF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

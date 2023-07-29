@@ -2188,6 +2188,8 @@ namespace nano
 
    class nano;
 
+   class http;
+
 } // namespace nano
 
 

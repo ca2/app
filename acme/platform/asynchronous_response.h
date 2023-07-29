@@ -7,18 +7,26 @@
 //
 #pragma once
 
+
+#include "acme/parallelization/manual_reset_event.h"
+
+
 template < typename PAYLOAD >
-n   class http_response :
+class asynchronous_response :
       virtual public ::particle
-   {
-   public:
-      
-      ::property_set    m_set;
-      
-      memory            m_memory;
-      
-      bool              m_bTimeout;
+{
+public:
    
-   };
+   //::function < void(::pointer < asynchronous_response < PAYLOAD > > ) >               m_function;
+   
+   class ::time            m_timeTimeout;
+   
+   ::manual_reset_event    m_event;
+   
+   PAYLOAD                 m_data;
+   
+   bool                    m_bTimeout;
+
+};
 
 

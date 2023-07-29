@@ -1707,6 +1707,7 @@
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
     <ClCompile Include="platform\math.cpp" />
+    <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />

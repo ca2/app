@@ -13,7 +13,8 @@ namespace sandbox_windowing
    class window;
 
 
-   // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+   // created by Camilo <3CamiloSasukeThomasBorregaardSoerens
+   // en
    // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
    // Adapted by Camilo for android 2022-01-05 04:34 <3TBS (Thomas likes number 5), Mummi and bilbo!!
    // Adapted by Camilo for cached/simulation of mouse-capture/keyboard-focus state information and
@@ -83,7 +84,7 @@ namespace sandbox_windowing
       void release_mouse_capture() override;
 
 
-      void clear_keyboard_focus(::user::element* pelementGainingFocusIfAny = nullptr) override;
+      void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
 
       void windowing_post(const ::procedure& procedure) override;

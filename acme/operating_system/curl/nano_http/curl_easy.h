@@ -1,8 +1,34 @@
 //
-// Created by camilo on 29/07/23.
+// Created by camilo on 29/07/2023 21:18 <3ThomasBorregaardSorensen!!
+// at kubuntu box at canada
 //
+#pragma once
 
-#ifndef MAIN_CURL_EASY_H
-#define MAIN_CURL_EASY_H
 
-#endif //MAIN_CURL_EASY_H
+#include "acme/platform/nano_http_response.h"
+#include <curl/curl.h>
+
+
+class CLASS_DECL_ACME curl_easy :
+virtual public ::particle
+   {
+   public:
+
+
+//long m_lHttpStatusCode;
+
+
+      CURL * m_pcurl;
+
+   curl_easy();
+   ~curl_easy() override;
+
+
+   static size_t  s_write_function(void *contents, size_t size, size_t nmemb, void *userp);
+
+      virtual void get(const ::scoped_string & scopedstrUrl, ::nano::http_response & httpresponse);
+
+
+
+   };
+

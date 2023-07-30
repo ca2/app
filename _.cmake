@@ -12,6 +12,7 @@ set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
 set(HAS_SYSTEM_UNAC FALSE)
 set(HAS_APP_VERIWELL FALSE)
 set(HAS_AUDIO_SYSTEM FALSE)
+set(CURL_NANO_HTTP FALSE)
 
 
 # In include(source/_.cmake) set variables like below

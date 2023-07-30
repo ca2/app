@@ -11,19 +11,25 @@
 #include "acme/parallelization/manual_reset_event.h"
 
 
-template < typename PAYLOAD >
+template < typename RESPONSE >
 class asynchronous_response :
       virtual public ::particle
 {
 public:
    
    //::function < void(::pointer < asynchronous_response < PAYLOAD > > ) >               m_function;
+
+   asynchronous_response(RESPONSE & response) :
+      m_response(response)
+   {
+
+   }
    
    class ::time            m_timeTimeout;
    
    ::manual_reset_event    m_event;
    
-   PAYLOAD                 m_data;
+   RESPONSE &              m_response;
    
    bool                    m_bTimeout;
 

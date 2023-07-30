@@ -190,7 +190,15 @@ namespace sockets_bsd
 
 #endif
 
+#ifdef WINDOWS
+
+      s = ::socket(af, iType, protno);
+
+#else
+
       s = ::socket(af, iType | SOCK_CLOEXEC, protno);
+
+#endif
 
       if (s == INVALID_SOCKET)
       {

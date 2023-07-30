@@ -29,7 +29,7 @@ namespace nano
       ~http() override;
       
       
-      virtual pointer < asynchronous_http_response > memory(const ::scoped_string & scopedstrUrl, ::property_set & set, const class ::time & timeTimeout = 5_min);
+      virtual void memory(const ::scoped_string & scopedstrUrl, http_response & httpresponse, const class ::time & timeTimeout = 5_min);
       
       virtual void asynchronous_memory(const ::scoped_string & scopedstrUrl, ::pointer < asynchronous_http_response > pasynchronoushttpresponse);
 

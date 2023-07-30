@@ -1069,10 +1069,20 @@ namespace acme
 
    ::memory system::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
-      
-      auto pasynchronousehttpresponse = nano_http()->memory(scopedstrUrl, set);
-      
-      if(pasynchronousehttpresponse->m_bTimeout)
+
+      try
+      {
+         
+         ::memory memory;
+
+         ::nano::http_response httpresponse(set, memory);
+
+         nano_http()->memory(scopedstrUrl, httpresponse);
+
+         return ::transfer(memory);
+
+      }
+      catch(...)
       {
          
          set["timeout"] = true;
@@ -1081,7 +1091,7 @@ namespace acme
          
       }
       
-      return pasynchronousehttpresponse->m_data.m_memory;
+      //return pasynchronousehttpresponse->m_data.m_memory;
       
    }
 

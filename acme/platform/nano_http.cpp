@@ -30,10 +30,12 @@ namespace nano
    }
 
 
-   ::pointer < asynchronous_http_response > http::memory(const ::scoped_string & scopedstrUrl, ::property_set & set, const class ::time & timeTimeout)
+   void http::memory(const ::scoped_string & scopedstrUrl, ::nano::http_response & httpresponse, const class ::time & timeTimeout)
    {
       
-      auto pasynchronoushttpresponse = __create_new < asynchronous_http_response >();
+      auto pasynchronoushttpresponse = __new(asynchronous_http_response(httpresponse));
+
+      pasynchronoushttpresponse->initialize(this);
       
       pasynchronoushttpresponse->m_timeTimeout = timeTimeout;
       
@@ -42,17 +44,20 @@ namespace nano
       if(!pasynchronoushttpresponse->m_event.wait(1_day))
       {
          
-         pasynchronoushttpresponse->m_bTimeout = true;
+         //pasynchronoushttpresponse->m_bTimeout = true;
+
+         throw ::exception(error_timeout);
          
       }
-      else
-      {
-         
-         set = pasynchronoushttpresponse->m_data.m_set;
-         
-      }
+      //else
+      //{
+      //   
+      //   httpresponse.m_memory = pasynchronoushttpresponse->m_data.m_memory;
+      //   httpresponse.m_set = pasynchronoushttpresponse->m_data.m_set;
+      //   
+      //}
       
-      return pasynchronoushttpresponse;
+      //return pasynchronoushttpresponse;
       
    }
 
@@ -60,7 +65,14 @@ namespace nano
    void http::asynchronous_memory(const ::scoped_string & scopedstrUrl, ::pointer < asynchronous_http_response > pasynchronoushttpresponse)
    {
    
-      throw ::interface_only();
+      fork([this, scopedstrUrl, pasynchronoushttpresponse]()
+         {
+
+            memory(scopedstrUrl, pasynchronoushttpresponse->m_response);
+
+            pasynchronoushttpresponse->m_event.SetEvent();
+
+         });
    
    }
 

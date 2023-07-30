@@ -704,7 +704,6 @@
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
-    <ClCompile Include="platform\integration_context.cpp" />
     <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
@@ -943,7 +942,6 @@
     <ClInclude Include="platform\create.h" />
     <ClInclude Include="platform\display.h" />
     <ClInclude Include="platform\history.h" />
-    <ClInclude Include="platform\integration_context.h" />
     <ClInclude Include="platform\launcher.h" />
     <ClInclude Include="platform\log.h" />
     <ClInclude Include="platform\machine_event.h" />

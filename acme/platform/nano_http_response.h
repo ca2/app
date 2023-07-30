@@ -20,9 +20,15 @@ namespace nano
    public:
       
       
-      ::property_set       m_set;
+      ::property_set  &       m_set;
       
-      memory               m_memory;
+      memory          &       m_memory;
+
+      http_response(::property_set & set, ::memory & memory) :
+         m_set(set), m_memory(memory)
+      {
+
+      }
                
    
    };

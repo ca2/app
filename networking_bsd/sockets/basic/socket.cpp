@@ -194,6 +194,12 @@ namespace sockets_bsd
 
       s = ::socket(af, iType, protno);
 
+#elif defined(__APPLE__)
+      
+      s = ::socket(af, iType, protno);
+      
+      fcntl(s, O_CLOEXEC);
+
 #else
 
       s = ::socket(af, iType | SOCK_CLOEXEC, protno);

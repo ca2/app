@@ -28,9 +28,9 @@ namespace apple
       
       ::pointer < ::nano::asynchronous_http_response > passynchronoushttpdata(e_pointer_transfer, (::particle *) userdata);
       
-      passynchronoushttpdata->m_data.m_memory.assign(data, size);
+      passynchronoushttpdata->m_response.m_memory.assign(data, size);
       
-      passynchronoushttpdata->m_data.m_set["http_status_code"] = http_status;
+      passynchronoushttpdata->m_response.m_set["http_status_code"] = http_status;
       
       passynchronoushttpdata->m_event.SetEvent();
       

@@ -273,6 +273,14 @@ namespace nanoui
       //   /// Return the number of pwidgetChild widgets
       int child_count() const { return (int)m_children.size(); }
 
+      ::count get_child_as_item_count() override;
+      
+      item_pointer get_child_as_item(::index iIndex) override;
+
+      item_pointer selected_item() override;
+
+      item_pointer hover_item() override;
+
       /// Return the list of pwidgetChild widgets of the current pwidget
       const ::pointer_array<Widget>& children() const { return m_children; }
 
@@ -294,6 +302,8 @@ namespace nanoui
 
       /// Remove a pwidgetChild pwidget by value
       void erase_child(Widget* pwidget);
+
+      void to_top();
 
       virtual void destroy_window();
 

@@ -7691,7 +7691,6 @@ namespace user
 
       }
 
-
       for (index b = 0; b < m_nItemCount; b++)
       {
 
@@ -7705,9 +7704,6 @@ namespace user
       }
 
    }
-
-
-
 
 
 } // namespace user

@@ -1276,6 +1276,24 @@
     <ClCompile Include="user\user\_string.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\android\nano_http\_nano_http.cpp">
+      <Filter>Source Files\operating_system\android\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\nano_http\http.cpp">
+      <Filter>Source Files\operating_system\android\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\nano_http.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\nano_http_response.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\muldiv64.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\link.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3831,6 +3849,21 @@
     <ClInclude Include="operating_system\android\standard_exception.h">
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\android\nano_http\_nano_http.h">
+      <Filter>Header Files\operating_system\android\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\nano_http\http.h">
+      <Filter>Header Files\operating_system\android\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\nano_http_response.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\nano_http.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\link.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -4081,6 +4114,15 @@
     </Filter>
     <Filter Include="Source Files\primitive\primitive\NewFilter1">
       <UniqueIdentifier>{d1d7a7cd-a1fe-4ab7-b390-10d2d4b5b2d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\android\nano_http">
+      <UniqueIdentifier>{908a499b-bf54-4da7-bd87-b771e764e5c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\android\nano_http">
+      <UniqueIdentifier>{d86b3640-d4df-477c-9f3a-23f9661f6310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\android\nano">
+      <UniqueIdentifier>{de622ca2-246d-4f9a-80f1-07e38d6e0dc7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

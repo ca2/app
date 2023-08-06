@@ -189,6 +189,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
+    <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
@@ -317,6 +318,8 @@
     <ClCompile Include="operating_system\android\lock.cpp" />
     <ClCompile Include="operating_system\android\main.cpp" />
     <ClCompile Include="operating_system\android\nano\_nano.cpp" />
+    <ClCompile Include="operating_system\android\nano_http\http.cpp" />
+    <ClCompile Include="operating_system\android\nano_http\_nano_http.cpp" />
     <ClCompile Include="operating_system\android\parallelization.cpp" />
     <ClCompile Include="operating_system\android\process.cpp" />
     <ClCompile Include="operating_system\android\process2.cpp" />
@@ -427,7 +430,10 @@
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
     <ClCompile Include="platform\math.cpp" />
+    <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
+    <ClCompile Include="platform\nano_http.cpp" />
+    <ClCompile Include="platform\nano_http_response.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />
@@ -709,6 +715,7 @@
     <ClInclude Include="filesystem\filesystem\acme_path.h" />
     <ClInclude Include="filesystem\filesystem\enumerator.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\filesystem\link.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
     <ClInclude Include="filesystem\filesystem\path.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
@@ -836,6 +843,8 @@
     <ClInclude Include="operating_system\android\internal.h" />
     <ClInclude Include="operating_system\android\internal2.h" />
     <ClInclude Include="operating_system\android\jni_object.h" />
+    <ClInclude Include="operating_system\android\nano_http\http.h" />
+    <ClInclude Include="operating_system\android\nano_http\_nano_http.h" />
     <ClInclude Include="operating_system\android\process.h" />
     <ClInclude Include="operating_system\android\standard_exception.h" />
     <ClInclude Include="operating_system\android\thread.h" />
@@ -961,6 +970,8 @@
     <ClInclude Include="platform\muldiv32.h" />
     <ClInclude Include="platform\muldiv64.h" />
     <ClInclude Include="platform\nanosecond_timer.h" />
+    <ClInclude Include="platform\nano_http.h" />
+    <ClInclude Include="platform\nano_http_response.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\number.h" />

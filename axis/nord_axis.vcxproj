@@ -294,7 +294,6 @@
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\geo_department.cpp" />
-    <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\form\control.cpp" />

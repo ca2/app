@@ -424,9 +424,6 @@
     <ClCompile Include="platform\api_client_base.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\link.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\language.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -437,6 +434,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\primitive.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\container.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1273,6 +1273,9 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\primitive.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\container.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>

@@ -623,6 +623,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
+    <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />

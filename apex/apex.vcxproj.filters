@@ -977,9 +977,6 @@
     <ClInclude Include="platform\api_client_base.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\link.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\_.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -1443,9 +1440,6 @@
     </ClCompile>
     <ClCompile Include="platform\api_client_base.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\link.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="user\user\language.cpp">
       <Filter>Source Files\user\user</Filter>

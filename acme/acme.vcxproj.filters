@@ -4552,6 +4552,9 @@
     <ClCompile Include="platform\integration_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filesystem\link.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

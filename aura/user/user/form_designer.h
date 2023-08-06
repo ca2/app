@@ -31,7 +31,6 @@ namespace user
 
          return plabel;
 
-
       }
 
 
@@ -39,18 +38,55 @@ namespace user
       ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::scoped_string & scopedstrLabel)
       {
 
-         auto plabel = __create_new<CHECK_BOX>();
+         auto pcheckbox = __create_new<CHECK_BOX>();
 
-         plabel->m_bAutoResize = true;
+         pcheckbox->m_bAutoResize = true;
 
-         plabel->create_child(puserinteractionParent);
+         pcheckbox->create_child(puserinteractionParent);
 
-         plabel->set_window_text(scopedstrLabel);
+         pcheckbox->set_window_text(scopedstrLabel);
 
-         plabel->display();
+         pcheckbox->display();
 
-         return plabel;
+         return pcheckbox;
 
+      }
+
+
+      template < typename BUTTON >
+      ::pointer < BUTTON >create_button(::user::interaction* puserinteractionParent, const ::scoped_string& scopedstrName)
+      {
+
+         auto pbutton = __create_new<BUTTON>();
+
+         pbutton->m_bAutoResize = true;
+
+         pbutton->create_child(puserinteractionParent);
+
+         pbutton->set_window_text(scopedstrName);
+
+         pbutton->display();
+
+         return pbutton;
+
+      }
+
+
+      template < typename EDIT >
+      ::pointer < EDIT >create_edit(::user::interaction* puserinteractionParent)
+      {
+
+         auto pedit = __create_new<EDIT>();
+
+         //pbutton->m_bAutoResize = true;
+
+         pedit->create_child(puserinteractionParent);
+
+         //pbutton->set_window_text(scopedstrName);
+
+         pedit->display();
+
+         return pedit;
 
       }
 

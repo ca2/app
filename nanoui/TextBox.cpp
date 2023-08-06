@@ -69,7 +69,7 @@ namespace nanoui
    }
 
 
-   void TextBox::set_value(const ::scoped_string& value, const ::action_context & actioncontext) 
+   void TextBox::set_value(const ::scoped_string& value, const ::action_context& actioncontext)
    {
 
       m_strValue = value;
@@ -159,7 +159,7 @@ namespace nanoui
 
       float unit_width = 0;
 
-      if (m_iUnitImage > 0) 
+      if (m_iUnitImage > 0)
       {
 
          int pwidgetChild, h;
@@ -177,7 +177,7 @@ namespace nanoui
          pcontext->fill();
          unit_width += 2;
       }
-      else if (m_strUnit.has_char()) 
+      else if (m_strUnit.has_char())
       {
 
          unit_width = pcontext->text_bounds(0, 0, m_strUnit, nullptr);
@@ -190,7 +190,7 @@ namespace nanoui
 
       float spin_arrows_width = 0.f;
 
-      if (m_bSpinnable && !focused()) 
+      if (m_bSpinnable && !focused())
       {
 
          spin_arrows_width = 14.f;
@@ -205,12 +205,12 @@ namespace nanoui
             pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_ptheme->m_colorText : m_ptheme->m_colorDisableText);
             auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxUp);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-            
+
             point_f32 icon_pos(m_pos.x() + 4.f,
                m_pos.y() + m_size.cy() / 2.f - x_spacing / 2.f);
-            
+
             pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
-            
+
          }
 
          /* down button */ {
@@ -218,12 +218,12 @@ namespace nanoui
             pcontext->fill_color((m_bEnabled && (hover || spinning)) ? m_ptheme->m_colorText : m_ptheme->m_colorDisableText);
             auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxDown);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-            
+
             point_f32 icon_pos(m_pos.x() + 4.f,
                m_pos.y() + m_size.cy() / 2.f + x_spacing / 2.f + 1.5f);
-            
+
             pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
-            
+
          }
 
          pcontext->font_size(font_size());
@@ -413,6 +413,8 @@ namespace nanoui
 
             m_ekeyMouseDownModifier = ekeyModifiers;
 
+            m_bCommitted = false;
+
             //m_last_click.Now();
 
             set_need_redraw();
@@ -424,13 +426,13 @@ namespace nanoui
          }
 
       }
-      else if (m_bSpinnable) 
+      else if (m_bSpinnable)
       {
 
-         if (down) 
+         if (down)
          {
 
-            if (spin_area(p) == SpinArea::None) 
+            if (spin_area(p) == SpinArea::None)
             {
 
                m_pointMouseDown = p;
@@ -462,11 +464,11 @@ namespace nanoui
                //m_last_click.Now();
 
             }
-            else 
+            else
             {
 
                m_pointMouseDown = sequence2_i32(-1, -1);
-               
+
                m_pointMouseDrag = sequence2_i32(-1, -1);
 
             }
@@ -501,7 +503,6 @@ namespace nanoui
          set_cursor(Cursor::Hand);
       else
          set_cursor(Cursor::IBeam);
-
 
       if (bDown && is_mouse_down())
       {
@@ -554,17 +555,17 @@ namespace nanoui
    //}
 
 
-   bool TextBox::focus_event(bool focused) 
+   bool TextBox::focus_event(bool focused)
    {
 
       Widget::focus_event(focused);
 
-      if (m_bEditable) 
+      if (m_bEditable)
       {
-      
-         if (focused) 
+
+         if (focused)
          {
-         
+
             m_strValueEdit = m_strValue;
 
             m_bCommitted = false;
@@ -576,12 +577,12 @@ namespace nanoui
          }
          else
          {
-         
+
             ::string strRollback = m_strValue;
 
             if (m_bValidFormat)
             {
-            
+
                if (m_strValueEdit == "")
                {
 
@@ -655,19 +656,19 @@ namespace nanoui
    }
 
 
-   bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) 
+   bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key& ekeyModifiers, const ::string& strText)
    {
 
-      if (m_bEditable && focused()) 
+      if (m_bEditable && focused())
       {
 
          auto psession = screen()->m_puserinteraction->get_session();
 
          //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
-         if (action == ::e_message_key_down) 
+         if (action == ::e_message_key_down)
          {
 
-            if (ekey == ::user::e_key_left) 
+            if (ekey == ::user::e_key_left)
             {
 
                if (m_iSelectionEnd > 0)
@@ -685,9 +686,9 @@ namespace nanoui
                }
 
             }
-            else if (ekey == ::user::e_key_right) 
+            else if (ekey == ::user::e_key_right)
             {
-               
+
                if (m_iSelectionEnd < (int)m_strValueEdit.length())
                {
 
@@ -701,7 +702,7 @@ namespace nanoui
                   m_iSelectionStart = m_iSelectionEnd;
 
                }
-            
+
             }
             else if (ekey == ::user::e_key_home)
             {
@@ -716,7 +717,7 @@ namespace nanoui
                }
 
             }
-            else if (ekey == ::user::e_key_end) 
+            else if (ekey == ::user::e_key_end)
             {
 
                m_iSelectionEnd = (int)m_strValueEdit.size();
@@ -729,15 +730,15 @@ namespace nanoui
                }
 
             }
-            else if (ekey == ::user::e_key_back) 
+            else if (ekey == ::user::e_key_back)
             {
 
-               if (!delete_selection()) 
+               if (!delete_selection())
                {
 
-                  if (m_iSelectionStart > 0) 
+                  if (m_iSelectionStart > 0)
                   {
-                  
+
                      m_iSelectionStart--;
 
                      m_strValueEdit.erase(m_iSelectionStart, 1);
@@ -749,10 +750,10 @@ namespace nanoui
                }
 
             }
-            else if (ekey == ::user::e_key_delete) 
+            else if (ekey == ::user::e_key_delete)
             {
 
-               if (!delete_selection()) 
+               if (!delete_selection())
                {
 
                   if (m_iSelectionStart < m_strValueEdit.length())
@@ -765,7 +766,7 @@ namespace nanoui
                }
 
             }
-            else if (ekey == ::user::e_key_return) 
+            else if (ekey == ::user::e_key_return)
             {
 
                if (!m_bCommitted)
@@ -776,7 +777,7 @@ namespace nanoui
                }
 
             }
-            else if (ekey == ::user::e_key_a && psession->is_key_pressed(::user::e_key_system_command)) 
+            else if (ekey == ::user::e_key_a && psession->is_key_pressed(::user::e_key_system_command))
             {
 
                m_iSelectionStart = 0;
@@ -784,7 +785,7 @@ namespace nanoui
                m_iSelectionEnd = (int)m_strValueEdit.length();
 
             }
-            else if (ekey == ::user::e_key_x && psession->is_key_pressed(::user::e_key_system_command)) 
+            else if (ekey == ::user::e_key_x && psession->is_key_pressed(::user::e_key_system_command))
             {
 
                copy_selection();
@@ -792,13 +793,13 @@ namespace nanoui
                delete_selection();
 
             }
-            else if (ekey == ::user::e_key_c && psession->is_key_pressed(::user::e_key_system_command)) 
+            else if (ekey == ::user::e_key_c && psession->is_key_pressed(::user::e_key_system_command))
             {
 
                copy_selection();
 
             }
-            else if (ekey == ::user::e_key_v && psession->is_key_pressed(::user::e_key_system_command)) 
+            else if (ekey == ::user::e_key_v && psession->is_key_pressed(::user::e_key_system_command))
             {
 
                delete_selection();
@@ -823,11 +824,11 @@ namespace nanoui
 
    }
 
-   
-   bool TextBox::keyboard_character_event(unsigned int codepoint) 
+
+   bool TextBox::keyboard_character_event(unsigned int codepoint)
    {
 
-      if (m_bEditable && focused()) 
+      if (m_bEditable && focused())
       {
 
          if (codepoint <= 16)
@@ -843,12 +844,12 @@ namespace nanoui
             return false;
 
          }
-         
+
          //std::ostringstream convert;
          ::string strConvert((char)codepoint);
 
          delete_selection();
-         
+
          m_strValueEdit.insert(m_iSelectionStart, strConvert);
 
          m_iSelectionStart += strConvert.length();
@@ -873,17 +874,17 @@ namespace nanoui
          return true;
       try {
 
-               auto pregex = screen()->acmesystem()->create_regular_expression("pcre2", format);
+         auto pregex = screen()->acmesystem()->create_regular_expression("pcre2", format);
 
-               //::string straResult;
-               auto presult = pregex->run(input);
+         //::string straResult;
+         auto presult = pregex->run(input);
 
-               return presult->has_match();
+         return presult->has_match();
          //std::regex regex(::std::string(format.begin(), format.end()));
          //return std::regex_match(::std::string(input.begin(), input.end()), regex);
       }
       //catch (const std::regex_error&) {
-      catch (const ::exception & ) {
+      catch (const ::exception&) {
          //#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
          //      std::cerr << "Warning: cannot validate text field due to lacking regular expression support. please compile with GCC >= 4.9" << std::endl;
          //      return true;
@@ -894,11 +895,11 @@ namespace nanoui
       return true;
    }
 
-   
-   bool TextBox::copy_selection() 
+
+   bool TextBox::copy_selection()
    {
 
-      if (m_iSelectionEnd > -1) 
+      if (m_iSelectionEnd > -1)
       {
 
          Screen* sc = screen();
@@ -934,7 +935,7 @@ namespace nanoui
    }
 
 
-   void TextBox::paste_from_clipboard() 
+   void TextBox::paste_from_clipboard()
    {
 
       Screen* sc = screen();
@@ -996,12 +997,41 @@ namespace nanoui
    {
 
       // handle mouse cursor events
-      if (m_pointMouseDown.x() != -1)
+      if (m_pointMouseDrag.x() != -1)
       {
 
-         auto iCursor = position_to_cursor_index((float)m_pointMouseDown.x(), lastx, glyphs, size);
+         if (m_iSelectionStart == -1)
+         {
 
-         if (m_ekeyMouseDownModifier == ::user::e_key_shift) 
+            if (m_iSelectionStart != m_iSelectionEnd)
+            {
+
+               m_iSelectionStart = m_iSelectionEnd;
+
+            }
+
+         }
+
+         auto iSelectionEnd = position_to_cursor_index(
+            (float)m_pointMouseDrag.x() + m_pos.x(), 
+            lastx, glyphs, size);
+
+         if (m_iSelectionEnd != iSelectionEnd)
+         {
+
+            m_iSelectionEnd = iSelectionEnd;
+
+         }
+
+      }
+      else if (m_pointMouseDown.x() != -1)
+      {
+
+         auto iCursor = position_to_cursor_index(
+            (float)m_pointMouseDown.x() + m_pos.x(),
+            lastx, glyphs, size);
+
+         if (m_ekeyMouseDownModifier == ::user::e_key_shift)
          {
 
             m_iSelectionEnd = iCursor;
@@ -1017,19 +1047,6 @@ namespace nanoui
          }
 
          m_pointMouseDown = sequence2_i32(-1, -1);
-
-      }
-      else if (m_pointMouseDrag.x() != -1)
-      {
-
-         if (m_iSelectionStart == -1)
-         {
-
-            m_iSelectionStart = m_iSelectionEnd;
-
-         }
-
-         m_iSelectionEnd = position_to_cursor_index((float)m_pointMouseDrag.x(), lastx, glyphs, size);
 
       }
       else
@@ -1050,7 +1067,7 @@ namespace nanoui
 
    float TextBox::cursor_index_to_position(::strsize iIndex, float lastx, const ::nano2d::glyphPosition* glyphs, ::strsize size)
    {
-   
+
       float pos = 0;
       if (iIndex == size)
          pos = lastx; // last character
@@ -1075,6 +1092,8 @@ namespace nanoui
       }
 
       double dLastX = caretx;
+
+      //double dLastX = 0.;
 
       int cursor = 1;
 

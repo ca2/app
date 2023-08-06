@@ -6,7 +6,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_APEX link :
+   class CLASS_DECL_ACME link :
       virtual public ::particle
    {
    public:

@@ -13,7 +13,7 @@
 //#include <windows.h>
 //#include <iostream>
 //#include <fstream>
-
+#pragma comment(lib, "Winhttp.lib")
 
 namespace windows
 {

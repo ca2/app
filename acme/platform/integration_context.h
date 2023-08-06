@@ -29,6 +29,7 @@ namespace integration
       ::file::path      m_pathPlatformConfiguration;
       ::file::path      m_pathSource;
       ::file::path      m_pathPrefix;
+      ::file::path      m_pathStaticPrefix;
       ::string          m_strRelease;
       //::string          m_strContext;
       //::string          m_strSdk1;

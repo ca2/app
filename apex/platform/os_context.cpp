@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "os_context.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/link.h"
 #include "acme/platform/node.h"
 #include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/filesystem/filesystem/link.h"
 #include "apex/filesystem/file/set.h"
 #if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <unistd.h>
@@ -444,179 +444,179 @@
    //}
 
 
-   ::pointer < ::file::link > os_context::resolve_link(const ::file::path & path, ::file::e_link elink)
-   {
-
-      if(path.case_insensitive_ends(".desktop"))
-      {
-
-         auto stra = file()->lines(path);
-
-         stra.filter_begins_ci("exec=");
-
-         if(stra.get_size() <= 0)
-         {
-
-            return nullptr;
-
-         }
-
-         auto plink = __create_new < ::file::link >();
-
-         string strLink = stra[0];
-
-         strLink.case_insensitive_begins_eat("exec=");
-
-         while(true)
-         {
-
-            bool bAte = false;
-
-            if(strLink.case_insensitive_ends_eat("%u"))
-            {
-
-               bAte = true;
-
-            }
-
-            if(!bAte)
-            {
-
-               break;
-
-            }
-
-         }
-
-         strLink.trim();
-
-         strLink.trim("\"");
-
-         strLink.trim("\'");
-
-         plink->m_pathFolder = ::file::path(strLink).folder();
-
-         plink->m_pathTarget = strLink;
-
-         return plink;
-
-      }
-      else
-      {
-
-
-#ifndef WINDOWS
-
-
-#if 0
-
-
-
-      if (::is_null(psz))
-      {
-
-         return false;
-
-      }
-
-
-
-
-      char* pszRealPath = ::realpath(psz, NULL);
-
-      if (pszRealPath == NULL)
-      {
-
-         return false;
-
-      }
-
-      if (strcmp(psz, pszRealPath) == 0)
-      {
-
-         ::free(pszRealPath);
-
-         return false;
-
-      }
-
-      try
-      {
-
-         path = pszRealPath;
-
-      }
-      catch (...)
-      {
-
-      }
-
-      ::free(pszRealPath);
-
-      return true;
-
-   }
-
-#else
-
-         auto plink = __create_new < ::file::link >();
-         
-         string strLink;
-
-         char * psz = strLink.get_buffer(4096);
-
-         int count = (int) readlink(path, psz, 4096);
-
-         if (count < 0)
-         {
-
-            strLink.release_buffer(0);
-
-            if (elink & ::file::e_link_target)
-            {
-
-               plink->m_pathTarget = path;
-
-            }
-
-            if(elink & ::file::e_link_folder)
-            {
-
-               plink->m_pathFolder = ::file::path(strLink).folder();
-
-            }
-
-            return plink;
-
-         }
-
-         strLink.release_buffer(count);
-
-         if (elink & ::file::e_link_target)
-         {
-
-            plink->m_pathTarget = path;
-
-         }
-
-         if (elink & ::file::e_link_folder)
-         {
-
-            plink->m_pathFolder = ::file::path(strLink).folder();
-
-         }
-
-         return plink;
-
-#endif
-
-#endif
-
-      }
-
-      return nullptr;
-
-   }
+//   ::pointer < ::file::link > os_context::resolve_link(const ::file::path & path, ::file::e_link elink)
+//   {
+//
+//      if(path.case_insensitive_ends(".desktop"))
+//      {
+//
+//         auto stra = file()->lines(path);
+//
+//         stra.filter_begins_ci("exec=");
+//
+//         if(stra.get_size() <= 0)
+//         {
+//
+//            return nullptr;
+//
+//         }
+//
+//         auto plink = __create_new < ::file::link >();
+//
+//         string strLink = stra[0];
+//
+//         strLink.case_insensitive_begins_eat("exec=");
+//
+//         while(true)
+//         {
+//
+//            bool bAte = false;
+//
+//            if(strLink.case_insensitive_ends_eat("%u"))
+//            {
+//
+//               bAte = true;
+//
+//            }
+//
+//            if(!bAte)
+//            {
+//
+//               break;
+//
+//            }
+//
+//         }
+//
+//         strLink.trim();
+//
+//         strLink.trim("\"");
+//
+//         strLink.trim("\'");
+//
+//         plink->m_pathFolder = ::file::path(strLink).folder();
+//
+//         plink->m_pathTarget = strLink;
+//
+//         return plink;
+//
+//      }
+//      else
+//      {
+//
+//
+//#ifndef WINDOWS
+//
+//
+//#if 0
+//
+//
+//
+//      if (::is_null(psz))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//
+//
+//      char* pszRealPath = ::realpath(psz, NULL);
+//
+//      if (pszRealPath == NULL)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (strcmp(psz, pszRealPath) == 0)
+//      {
+//
+//         ::free(pszRealPath);
+//
+//         return false;
+//
+//      }
+//
+//      try
+//      {
+//
+//         path = pszRealPath;
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      ::free(pszRealPath);
+//
+//      return true;
+//
+//   }
+//
+//#else
+//
+//         auto plink = __create_new < ::file::link >();
+//         
+//         string strLink;
+//
+//         char * psz = strLink.get_buffer(4096);
+//
+//         int count = (int) readlink(path, psz, 4096);
+//
+//         if (count < 0)
+//         {
+//
+//            strLink.release_buffer(0);
+//
+//            if (elink & ::file::e_link_target)
+//            {
+//
+//               plink->m_pathTarget = path;
+//
+//            }
+//
+//            if(elink & ::file::e_link_folder)
+//            {
+//
+//               plink->m_pathFolder = ::file::path(strLink).folder();
+//
+//            }
+//
+//            return plink;
+//
+//         }
+//
+//         strLink.release_buffer(count);
+//
+//         if (elink & ::file::e_link_target)
+//         {
+//
+//            plink->m_pathTarget = path;
+//
+//         }
+//
+//         if (elink & ::file::e_link_folder)
+//         {
+//
+//            plink->m_pathFolder = ::file::path(strLink).folder();
+//
+//         }
+//
+//         return plink;
+//
+//#endif
+//
+//#endif
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
 
    
    bool os_context::has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)

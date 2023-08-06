@@ -128,10 +128,6 @@
 		9A2898942A652A4E00F46A84 /* notify_icon_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28987C2A652A4E00F46A84 /* notify_icon_bridge.h */; };
 		9A2898952A652A4E00F46A84 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28987D2A652A4E00F46A84 /* _.h */; };
 		9A2898962A652A4E00F46A84 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28987D2A652A4E00F46A84 /* _.h */; };
-		9A3BFBEE29C8492D005DE2BF /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFBEC29C8492D005DE2BF /* link.cpp */; };
-		9A3BFBEF29C8492D005DE2BF /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFBEC29C8492D005DE2BF /* link.cpp */; };
-		9A3BFBF029C8492D005DE2BF /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBED29C8492D005DE2BF /* link.h */; };
-		9A3BFBF129C8492D005DE2BF /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBED29C8492D005DE2BF /* link.h */; };
 		9A4F4E1525311DA400733584 /* _crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0C25311DA300733584 /* _crypto.h */; };
 		9A4F4E1625311DA400733584 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0D25311DA300733584 /* _.h */; };
 		9A4F4E1825311DA400733584 /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0F25311DA400733584 /* crypto.cpp */; };
@@ -493,7 +489,6 @@
 		9AC97F042A71B39E00B1BCF3 /* sctp_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97BFB028C83B0000A43004 /* sctp_socket.h */; };
 		9AC97F052A71B39E00B1BCF3 /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA9274EDFCA003F38EC /* api.h */; };
 		9AC97F062A71B39E00B1BCF3 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1325311DA400733584 /* hasher.h */; };
-		9AC97F072A71B39E00B1BCF3 /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBED29C8492D005DE2BF /* link.h */; };
 		9AC97F082A71B39E00B1BCF3 /* http_batch_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239CFB26CDF9AE00F98012 /* http_batch_buffer.h */; };
 		9AC97F092A71B39E00B1BCF3 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B74C2511444B008DABD2 /* windows.h */; };
 		9AC97F0A2A71B39E00B1BCF3 /* real.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A23A27D26CDFF1A00F98012 /* real.h */; };
@@ -750,7 +745,6 @@
 		9AC980072A71B39E00B1BCF3 /* native.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6DF8F29652F62008A1335 /* native.cpp */; };
 		9AC980082A71B39E00B1BCF3 /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA5274EDFCA003F38EC /* api.cpp */; };
 		9AC980092A71B39E00B1BCF3 /* not_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01922274896EA006BEBCC /* not_dir.cpp */; };
-		9AC9800A2A71B39E00B1BCF3 /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFBEC29C8492D005DE2BF /* link.cpp */; };
 		9AC9800B2A71B39E00B1BCF3 /* simple_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6A32511444B008DABD2 /* simple_command.cpp */; };
 		9AC9800C2A71B39E00B1BCF3 /* sctp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9C28C83B0000A43004 /* sctp_socket.cpp */; };
 		9AC9800D2A71B39E00B1BCF3 /* channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B69B2511444B008DABD2 /* channel.cpp */; };
@@ -1182,8 +1176,6 @@
 		9A28987B2A652A4E00F46A84 /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = command.h; sourceTree = "<group>"; };
 		9A28987C2A652A4E00F46A84 /* notify_icon_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notify_icon_bridge.h; sourceTree = "<group>"; };
 		9A28987D2A652A4E00F46A84 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A3BFBEC29C8492D005DE2BF /* link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link.cpp; sourceTree = "<group>"; };
-		9A3BFBED29C8492D005DE2BF /* link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = link.h; sourceTree = "<group>"; };
 		9A4F4E0C25311DA300733584 /* _crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _crypto.h; sourceTree = "<group>"; };
 		9A4F4E0D25311DA300733584 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A4F4E0F25311DA400733584 /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto.cpp; sourceTree = "<group>"; };
@@ -1964,8 +1956,6 @@
 				9A68B7072511444B008DABD2 /* file_context.h */,
 				9A68B70A2511444B008DABD2 /* file_system.cpp */,
 				9A68B70D2511444B008DABD2 /* file_system.h */,
-				9A3BFBEC29C8492D005DE2BF /* link.cpp */,
-				9A3BFBED29C8492D005DE2BF /* link.h */,
 			);
 			path = filesystem;
 			sourceTree = "<group>";
@@ -2287,7 +2277,6 @@
 				9A97C04028C83B0400A43004 /* sctp_socket.h in Headers */,
 				9A81ECB0274EDFCA003F38EC /* api.h in Headers */,
 				9A4F4E1C25311DA400733584 /* hasher.h in Headers */,
-				9A3BFBF029C8492D005DE2BF /* link.h in Headers */,
 				9A239DD926CDF9AF00F98012 /* http_batch_buffer.h in Headers */,
 				9A68BE122511444F008DABD2 /* windows.h in Headers */,
 				9A23A28626CDFF1A00F98012 /* real.h in Headers */,
@@ -2543,7 +2532,6 @@
 				9AC97F042A71B39E00B1BCF3 /* sctp_socket.h in Headers */,
 				9AC97F052A71B39E00B1BCF3 /* api.h in Headers */,
 				9AC97F062A71B39E00B1BCF3 /* hasher.h in Headers */,
-				9AC97F072A71B39E00B1BCF3 /* link.h in Headers */,
 				9AC97F082A71B39E00B1BCF3 /* http_batch_buffer.h in Headers */,
 				9AC97F092A71B39E00B1BCF3 /* windows.h in Headers */,
 				9AC97F0A2A71B39E00B1BCF3 /* real.h in Headers */,
@@ -2909,7 +2897,6 @@
 				9A28988C2A652A4E00F46A84 /* message.h in Headers */,
 				9A787D7A264C960F003DF8A0 /* service.h in Headers */,
 				9A787D90264C960F003DF8A0 /* common.h in Headers */,
-				9A3BFBF129C8492D005DE2BF /* link.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3061,7 +3048,6 @@
 				9AE6DF9129652F62008A1335 /* native.cpp in Sources */,
 				9A81ECAA274EDFCA003F38EC /* api.cpp in Sources */,
 				9AC01926274896EB006BEBCC /* not_dir.cpp in Sources */,
-				9A3BFBEE29C8492D005DE2BF /* link.cpp in Sources */,
 				9A68BD772511444F008DABD2 /* simple_command.cpp in Sources */,
 				9A97C02C28C83B0300A43004 /* sctp_socket.cpp in Sources */,
 				9A68BD6F2511444F008DABD2 /* channel.cpp in Sources */,
@@ -3217,7 +3203,6 @@
 				9AC980072A71B39E00B1BCF3 /* native.cpp in Sources */,
 				9AC980082A71B39E00B1BCF3 /* api.cpp in Sources */,
 				9AC980092A71B39E00B1BCF3 /* not_dir.cpp in Sources */,
-				9AC9800A2A71B39E00B1BCF3 /* link.cpp in Sources */,
 				9AC9800B2A71B39E00B1BCF3 /* simple_command.cpp in Sources */,
 				9AC9800C2A71B39E00B1BCF3 /* sctp_socket.cpp in Sources */,
 				9AC9800D2A71B39E00B1BCF3 /* channel.cpp in Sources */,
@@ -3459,7 +3444,6 @@
 				9A0F53BA28E8D8A900025231 /* base_socket.cpp in Sources */,
 				9A751000282B941900C4861B /* crypto.cpp in Sources */,
 				9A0F53AE28E8D80400025231 /* socket.cpp in Sources */,
-				9A3BFBEF29C8492D005DE2BF /* link.cpp in Sources */,
 				9AD695AB251A754800C0EBD7 /* selection.cpp in Sources */,
 				9AD695AE251A754800C0EBD7 /* ifs_file.cpp in Sources */,
 				9AD695B2251A754800C0EBD7 /* link.cpp in Sources */,

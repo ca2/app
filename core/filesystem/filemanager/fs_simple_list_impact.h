@@ -55,8 +55,6 @@ namespace filemanager
 
 
 
-            
-
             enum EFieldIndex
             {
                FieldIndexNone = -1,

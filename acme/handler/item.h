@@ -412,6 +412,8 @@ public:
 
    virtual bool is_hidden() const;
 
+   virtual ::string get_text(::index iSubItem);
+
    //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 

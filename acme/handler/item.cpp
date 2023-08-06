@@ -79,6 +79,14 @@ bool item::is_hidden() const
 }
 
 
+::string item::get_text(::index iSubItem)
+{
+
+   return "";
+
+}
+
+
 CLASS_DECL_ACME bool is_item_equivalent(const ::item * pitem1, const ::item * pitem2)
 {
 

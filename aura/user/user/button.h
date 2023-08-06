@@ -146,7 +146,7 @@ namespace user
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      bool on_perform_layout(::draw2d::graphics_pointer& pgraphics) override;
 
 
       void set_stock_icon(enum_stock_icon eicon) override;

@@ -10,16 +10,15 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/link.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/ini.h"
 #include "acme/handler/request.h"
 #include "acme/primitive/string/str.h"
-//#include "acme/primitive/time/integral/operator.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/dir_system.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/filesystem/filesystem/link.h"
 #include "apex/networking/http/context.h"
 #include "apex/parallelization/retry.h"
 
@@ -1042,7 +1041,7 @@ namespace apex
       if (os_is_alias(path))
       {
 
-         return os_context()->resolve_link(path);
+         return acmepath()->resolve_link(path);
 
       }
 

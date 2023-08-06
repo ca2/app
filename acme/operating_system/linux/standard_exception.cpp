@@ -5,6 +5,11 @@
 
 #if  defined(RASPBERRYPIOS)
 
+standard_exception::standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip, void * caller_address )
+{
+
+}
+
 
 standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
       ::standard_exception(signal, psiginfo, pc)

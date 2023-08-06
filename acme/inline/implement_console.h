@@ -63,11 +63,11 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
    //char sz[256];
-   //sprintf(sz, "argc=%d", argc);
-   //::OutputDebugStringA(sz);
-   //   throw argc;
-
-   //}
+   printf("argc=%d\n", argc);
+   for(int i = 0; i < argc; i++)
+   {
+      printf("argv[%d]=%s\n", i, argv[i]);
+   }
 
    ::acme::acme::g_pacme->initialize(argc, argv, envp);
 

@@ -173,6 +173,8 @@ list(APPEND library_source
    filesystem/filesystem/acme_file.h
    filesystem/filesystem/acme_path.cpp
    filesystem/filesystem/acme_path.h
+   filesystem/filesystem/link.cpp
+   filesystem/filesystem/link.h
    filesystem/filesystem/file_dialog.cpp
    filesystem/filesystem/file_dialog.h
    filesystem/filesystem/file_path.cpp

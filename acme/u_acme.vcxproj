@@ -607,6 +607,7 @@
     <ClInclude Include="filesystem\filesystem\acme_path.h" />
     <ClInclude Include="filesystem\filesystem\enumerator.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\filesystem\link.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
@@ -694,6 +695,8 @@
     <ClInclude Include="operating_system\universal_windows\exception_engine.h" />
     <ClInclude Include="operating_system\universal_windows\file_winrt1.h" />
     <ClInclude Include="operating_system\universal_windows\host_interaction.h" />
+    <ClInclude Include="operating_system\universal_windows\nano_http\http.h" />
+    <ClInclude Include="operating_system\universal_windows\nano_http\_nano_http.h" />
     <ClInclude Include="operating_system\universal_windows\parallelization_winrt.h" />
     <ClInclude Include="operating_system\universal_windows\nano\window.h" />
     <ClInclude Include="operating_system\universal_windows\nano\_.h" />
@@ -750,6 +753,8 @@
     <ClInclude Include="platform\main1.h" />
     <ClInclude Include="platform\message.h" />
     <ClInclude Include="platform\nanosecond_timer.h" />
+    <ClInclude Include="platform\nano_http.h" />
+    <ClInclude Include="platform\nano_http_response.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\object_reference_count_debug.h" />
     <ClInclude Include="platform\object_reference_count_debug_impl.h" />
@@ -775,6 +780,7 @@
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\tracer.h" />
     <ClInclude Include="platform\user_parent.h" />
+    <ClInclude Include="platform\_.h" />
     <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\_main_hold_base.h" />
     <ClInclude Include="primitive\datetime\earth_gregorian_time.h" />
@@ -847,6 +853,7 @@
     <ClInclude Include="user\user\_constant_key.h" />
     <ClInclude Include="user\user\_const_key.h" />
     <ClInclude Include="user\user\_style.h" />
+    <ClInclude Include="user\_.h" />
     <ClInclude Include="_forward_declaration.h" />
     <ClInclude Include="_start.h" />
     <None Include="filesystem\_impl.h" />
@@ -1331,6 +1338,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
+    <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
@@ -1633,6 +1641,8 @@
     <ClCompile Include="operating_system\universal_windows\library.cpp" />
     <ClCompile Include="operating_system\universal_windows\main.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\window.cpp" />
+    <ClCompile Include="operating_system\universal_windows\nano_http\http.cpp" />
+    <ClCompile Include="operating_system\universal_windows\nano_http\_nano_http.cpp" />
     <ClCompile Include="operating_system\universal_windows\parallelization.cpp" />
     <ClCompile Include="operating_system\universal_windows\process.cpp" />
     <ClCompile Include="operating_system\universal_windows\universal_windows.cpp" />
@@ -1709,6 +1719,8 @@
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
+    <ClCompile Include="platform\nano_http.cpp" />
+    <ClCompile Include="platform\nano_http_response.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />

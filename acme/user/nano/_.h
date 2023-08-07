@@ -42,9 +42,6 @@ namespace nano
    CLASS_DECL_ACME ::pointer<nano_pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
 
 
-   class http;
-
-
 } // namespace nano
 
 

@@ -16,6 +16,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_range.h"
 #include "acme/primitive/data/listener.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/time/_text_stream.h"
 #include "apex/database/selection.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -331,6 +332,10 @@ namespace user
 
       auto iItemFirst = m_iTopDisplayIndex;
 
+      information() << "m_nDisplayCount : " << m_nDisplayCount;
+
+      information() << "m_iTopDisplayIndex : " << m_iTopDisplayIndex;
+
       decltype(iItemCount) iItemLast;
 
       if (m_eview == impact_icon)
@@ -639,6 +644,10 @@ namespace user
 
          if (!rectangleIntersect.intersect(pitem->m_pdrawlistitem->m_rectangleItem, rectangleClient))
          {
+
+            //information() << "rectangle item : " << pitem->m_pdrawlistitem->m_rectangleItem;
+
+            //information() << "rectangle client : " << rectangleClient;
 
             continue;
 
@@ -1865,7 +1874,8 @@ namespace user
 
       index iItem;
 
-      if (_001DisplayHitTest(point_i32(0, (::i32) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
+      if (_001DisplayHitTest(point_i32(0,
+         pointOffset.y() + (::i32) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
          return (::index) iItem;
@@ -2243,28 +2253,30 @@ namespace user
    bool list::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam)
    {
 
-      {
-
-         auto rectangleClient = client_rectangle();
-
-         if (point.x() < 0
-               || point.x() > rectangleClient.right
-               || point.y() < 0
-               || point.y() > rectangleClient.bottom)
-         {
-
-            return false;
-
-         }
-
-      }
-
+//      {
+//
+//         auto rectangleClient = client_rectangle();
+//
+//         if (point.x() < 0
+//               || point.x() > rectangleClient.right
+//               || point.y() < 0
+//               || point.y() > rectangleClient.bottom)
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
+//
       if (m_eview == impact_report)
       {
 
-         auto pointOffset = get_context_offset();
+         //auto pointOffset = get_context_offset();
 
-         double iy = point.y() + pointOffset.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
+         //double iy = point.y() + pointOffset.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
+
+         double iy = point.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
          index iItem = -1;
 
@@ -2272,6 +2284,12 @@ namespace user
          {
 
             iItem = (::index) (iy / m_dItemHeight);
+
+            information() << "impact_report iItem : " << iItem;
+
+            information() << "point.y() : " << point.y();
+
+            //information() << "pointOffset.y() : " << pointOffset.y();
 
          }
 
@@ -2296,6 +2314,8 @@ namespace user
 
          if (iItem >= m_nItemCount)
          {
+
+            information() << "iItem >= m_nItemCount : " << iItem << " >= " << m_nItemCount;
 
             return false;
 
@@ -2417,6 +2437,8 @@ namespace user
 
          if (iItem >= m_nItemCount)
          {
+
+            information() << "iItem >= m_nItemCount : pointOffset.y()" << pointOffset.y();
 
             return false;
 

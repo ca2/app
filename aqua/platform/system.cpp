@@ -333,17 +333,7 @@ namespace aqua
 
       }
 
-      ::factory::factory_pointer pfactory;
-
-#ifdef WINDOWS_DESKTOP
-
-      pfactory = factory("audio_mixer", "mmsystem");
-
-#elif defined(LINUX)
-
-      pfactory = factory("audio_mixer", "alsa");
-
-#endif
+      auto pfactory = audio_mixer_factory();
 
       if (pfactory)
       {
@@ -363,6 +353,25 @@ namespace aqua
 
    }
 
+
+   ::factory::factory_pointer system::audio_mixer_factory()
+   {
+
+      ::factory::factory_pointer pfactory;
+
+#ifdef WINDOWS_DESKTOP
+
+      pfactory = factory("audio_mixer", "mmsystem");
+
+#elif defined(LINUX)
+
+      pfactory = factory("audio_mixer", "alsa");
+
+#endif
+
+      return pfactory;
+
+   }
 
    void system::defer_audio()
    {

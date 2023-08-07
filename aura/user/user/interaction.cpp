@@ -33,6 +33,7 @@
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/time/_string.h"
+#include "acme/user/user/_text_stream.h"
 #include "apex/message/simple_command.h"
 #include "apex/user/user/message.h"
 #include "aqua/user/controller.h"
@@ -13325,6 +13326,8 @@ return strClass;
       layout().design() = layout().layout();
 
       layout().layout().clear_activation();
+
+      //information() << "layout().design().m_edisplay : " << layout().design().m_edisplay;
 
    }
 

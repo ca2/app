@@ -152,7 +152,7 @@ namespace file_lock
 
        }
 
-       m_iFileDescriptor = open(m_strPath, O_CREAT | O_RDWR, 0777);
+       m_iFileDescriptor = open(m_strPath, O_CREAT | O_RDWR | O_CLOEXEC, 0777);
 
        if(m_iFileDescriptor < 0)
        {

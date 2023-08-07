@@ -173,8 +173,20 @@ file_pointer acme_file::get_file(const ::payload& payloadFile, ::file::e_open eo
 }
 
 
+file_pointer acme_file::get_reader(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
+{
+   
+   return get_file(payloadFile, eopen | ::file::e_open_read, pfileexception);
+   
+}
 
 
+file_pointer acme_file::get_writer(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
+{
+   
+   return get_file(payloadFile, eopen | ::file::e_open_read_write, pfileexception);
+   
+}
 
 
 string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
@@ -728,7 +740,7 @@ void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::f
    auto pfileIn = get_file(pathSource, ::file::e_open_read | ::file::e_open_binary);
    
    auto pfileOut = get_file(pathTarget, ::file::e_open_write | ::file::e_open_binary
-                  | ::file::e_open_create | ::file::e_open_truncate);
+                  | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory);
 
 
 //#ifdef WINDOWS

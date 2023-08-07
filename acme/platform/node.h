@@ -409,6 +409,8 @@ namespace acme
 
       virtual void set_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable, const ::scoped_string& scopedstrValue);
 
+      virtual void unset_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
+
 #ifndef UNIVERSAL_WINDOWS
 
       virtual ::array <::serial::port_info> list_serial_ports();

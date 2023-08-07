@@ -6,6 +6,7 @@
 #include "system.h"
 #include "sequencer.h"
 #include "application.h"
+#include "nano_http.h"
 #include "session.h"
 #include "simple_log.h"
 #include "hyperlink.h"
@@ -20,17 +21,19 @@
 #include "acme/filesystem/file/transfer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
-#include "acme/handler/topic.h"
 #include "acme/handler/extended_topic.h"
+#include "acme/handler/request.h"
+#include "acme/handler/topic.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
-#include "acme/handler/request.h"
-#include "acme/regular_expression/context.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/primitive/primitive/url.h"
+#include "acme/regular_expression/context.h"
 //#include "acme/primitive/primitive/payload.h"
 //#include "acme/primitive/string/hex.h"
 #include "acme/user/nano/nano.h"
+#include "nano_http.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -50,6 +53,9 @@ enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, co
 
 
 #include "acme/_operating_system.h"
+
+
+void initialize_nano_http();
 
 
 namespace acme
@@ -239,6 +245,9 @@ namespace acme
          acmeapplication()->main();
 
       }
+      
+      
+
 
       //if (!estatus)
       //{
@@ -379,6 +388,9 @@ namespace acme
       __construct(m_plogger);
 
       __construct_new(m_pdatetime);
+      
+      __construct_new(m_purl);
+
 
       m_pnode->m_htaskSystem = m_htask;
 
@@ -998,18 +1010,33 @@ namespace acme
       throw ::interface_only();
 
    }
+
+
+   ::nano::http * system::nano_http()
+   {
+      
+      if(!m_pnanohttp)
+      {
+         
+         initialize_nano_http();
+         
+         __construct(m_pnanohttp);
+         
+      }
+
+      return m_pnanohttp;
+      
+   }
    
    
    ::string system::http_text(const ::scoped_string & scopedstrUrl)
    {
 
-      property_set set;
+      auto memory  = http_memory(scopedstrUrl);
+      
+      ::string str = memory.as_utf8();
 
-      set["raw_http"] = true;
-
-      set["disable_common_name_cert_check"] = true;
-
-      return http_text(scopedstrUrl, set);
+      return str;
 
    }
 
@@ -1017,34 +1044,81 @@ namespace acme
    ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
    
-      throw ::not_implemented("requires apex");
+      auto memory  = http_memory(scopedstrUrl, set);
+      
+      ::string str = memory.as_utf8();
 
-      return {};
+      return str;
    
    }
 
 
-
-   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   ::memory system::http_memory(const ::scoped_string & scopedstrUrl)
    {
-
+      
       property_set set;
 
       set["raw_http"] = true;
 
       set["disable_common_name_cert_check"] = true;
 
-      http_download(payloadFile, scopedstrUrl, set);
-
+      return http_memory(scopedstrUrl, set);
+      
    }
 
 
-   void system::http_download(const ::payload & payloadFileh, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::memory system::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      throw ::not_implemented("requires apex");
+      try
+      {
+         
+         ::memory memory;
 
+         ::nano::http_response httpresponse(set, memory);
+
+         nano_http()->memory(scopedstrUrl, httpresponse);
+
+         return ::transfer(memory);
+
+      }
+      catch(...)
+      {
+         
+         set["timeout"] = true;
+         
+         return {};
+         
+      }
+      
+      //return pasynchronousehttpresponse->m_data.m_memory;
+      
    }
+
+
+   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   {
+      
+      auto pfile = acmefile()->get_writer(payloadFile);
+
+      auto memory = http_memory(scopedstrUrl);
+      
+      pfile->write(memory.data(), memory.size());
+      
+   }
+
+
+   void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+   
+      auto pfile = acmefile()->get_writer(payloadFile);
+
+      auto memory = http_memory(scopedstrUrl, set);
+      
+      pfile->write(memory.data(), memory.size());
+   
+   }
+
 
 
    bool system::has_audio()

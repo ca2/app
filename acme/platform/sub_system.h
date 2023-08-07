@@ -94,8 +94,8 @@ public:
 
    void set_args(int argc, char ** argv, wchar_t ** wargv);
 
-   string _get_argv(int iArg) const;
-   int get_argc();
+   string _get_argv(::index iArg) const;
+   ::count get_argc();
    int * get_pargc();
    char *** get_pargv();
    char ** get_argv();
@@ -111,13 +111,13 @@ public:
 
    string get_executable() const;
 
-   string get_argument1(int iArgument) const;
+   string get_argument1(::index iArgument) const;
 
    inline ::count get_argument_count1() const { return _get_argc() - 1; }
 
    string_array get_arguments();
 
-   string get_arg(int i) const;
+   string get_arg(::index i) const;
    string get_env(const ::scoped_string & scopedstrVariableName) const;
 
 

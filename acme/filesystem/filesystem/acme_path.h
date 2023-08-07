@@ -56,6 +56,11 @@ public:
    
    virtual ::file::path get_absolute_path(const ::scoped_string & scopedstr);
 
+   
+   //::pointer < ::file::link > resolve_link(const ::file::path &path);
+   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
+
+
 
 };
 

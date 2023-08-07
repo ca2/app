@@ -349,6 +349,8 @@ list(APPEND library_source
    platform/implementable.cpp
    platform/implementable.h
    platform/ini.cpp
+   platform/integration_context.cpp
+   platform/integration_context.h
    platform/library.cpp
    platform/library.h
    platform/log.cpp
@@ -362,6 +364,10 @@ list(APPEND library_source
    platform/message.h
    #platform/message_box.cpp
    #platform/muldiv64.cpp
+   platform/nano_http.cpp
+   platform/nano_http.h
+   platform/nano_http_response.cpp
+   platform/nano_http_response.h
    platform/nanosecond_timer.cpp
    platform/nanosecond_timer.h
    platform/node.cpp
@@ -1837,6 +1843,22 @@ if (${WIN32} OR ${UWP})
 
 endif ()
 
+
+if(${CURL_NANO_HTTP})
+
+   list(APPEND library_source
+      operating_system/curl/nano_http/_nano_http.cpp
+      operating_system/curl/nano_http/_nano_http.h
+      operating_system/curl/nano_http/curl_easy.cpp
+      operating_system/curl/nano_http/curl_easy.h
+      operating_system/curl/nano_http/http.cpp
+      operating_system/curl/nano_http/http.h)
+
+   list(APPEND extra_pkg_modules libcurl)
+
+endif()
+
+
 if (${LINUX} OR ${FREEBSD})
 
    list(APPEND library_source
@@ -1867,7 +1889,7 @@ if (${LINUX} OR ${FREEBSD})
       operating_system/xcb/_.cpp
       )
 
-   list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
+   list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb libarchive)
 
 
 endif ()
@@ -2342,7 +2364,6 @@ endif ()
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
-
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 

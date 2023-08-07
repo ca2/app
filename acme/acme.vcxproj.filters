@@ -300,6 +300,12 @@
     <Filter Include="Source Files\primitive\time\time">
       <UniqueIdentifier>{acd8a87b-032c-4197-af5e-5b846a680d7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\windows\nano_http">
+      <UniqueIdentifier>{68f844d4-4282-4a27-bfd0-3493a093ec79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows\nano_http">
+      <UniqueIdentifier>{1214a8c8-02a4-4df3-aebe-5cd3fdc7720f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3275,6 +3281,27 @@
     <ClInclude Include="primitive\collection\_function.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="platform\nano_http.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\nano_http_response.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\http.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\_nano_http.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\nano_http_synchronous_source.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\nano_http_asynchronous_source.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\integration_context.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4509,6 +4536,24 @@
     </ClCompile>
     <ClCompile Include="platform\muldiv64.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\nano_http.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\nano_http_response.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano_http\_nano_http.cpp">
+      <Filter>Source Files\operating_system\windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano_http\http.cpp">
+      <Filter>Source Files\operating_system\windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\integration_context.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\link.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

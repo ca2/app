@@ -44,7 +44,7 @@ namespace write_text
       if (pfonts)
       {
 
-         pfonts->enumerate_fonts();
+         pfonts->enumerate_fonts("system");
 
       }
 

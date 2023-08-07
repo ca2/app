@@ -214,7 +214,7 @@ public:
    //virtual string nessie(::file::file * pfile);
    virtual string nessie(const ::payload & payloadFile);
 
-   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path);
+   //virtual ::pointer < ::file::link > resolve_link(const ::file::path & path);
 
    virtual bool is_link(const ::file::path & path);
 

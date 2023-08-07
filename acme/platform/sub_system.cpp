@@ -102,10 +102,7 @@ void sub_system::set_args(int argc, char ** argv, wchar_t ** wargv)
 }
 
 
-
-
-
-int sub_system::get_argc()
+::count sub_system::get_argc()
 {
 
    return m_argc;
@@ -113,7 +110,7 @@ int sub_system::get_argc()
 }
 
 
-string sub_system::_get_argv(int iArgument) const
+string sub_system::_get_argv(::index iArgument) const
 {
 
    if (iArgument < 0 || iArgument >= _get_argc())
@@ -199,7 +196,7 @@ string_array sub_system::get_arguments()
 }
 
 
-string sub_system::get_argument1(int iArgument) const
+string sub_system::get_argument1(::index iArgument) const
 {
 
    return _get_argv(iArgument + 1);
@@ -274,7 +271,7 @@ wchar_t ** sub_system::get_wargv()
 
 
 
-string sub_system::get_arg(int i) const
+string sub_system::get_arg(::index i) const
 {
 
 #ifdef WINDOWS

@@ -260,6 +260,12 @@
     <Filter Include="Source Files\primitive\time\time">
       <UniqueIdentifier>{5da65cd5-e479-4833-a68d-223b0257d317}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\universal_windows\nano_http">
+      <UniqueIdentifier>{686383b8-a61e-405b-807c-5eb7d8e6bc63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\universal_windows\nano_http">
+      <UniqueIdentifier>{819a17e3-a5ba-494f-b62f-b01e31589f52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -1491,6 +1497,21 @@
     </ClCompile>
     <ClCompile Include="platform\muldiv64.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\nano_http.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\nano_http_response.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano_http\_nano_http.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano_http\http.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\link.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3788,6 +3809,27 @@
     </ClInclude>
     <ClInclude Include="operating_system\shared_posix\time.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\nano_http_response.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\nano_http.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\nano_http\_nano_http.h">
+      <Filter>Header Files\operating_system\universal_windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\nano_http\http.h">
+      <Filter>Header Files\operating_system\universal_windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\link.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

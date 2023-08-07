@@ -614,7 +614,6 @@
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
-    <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\file\action.cpp" />
     <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\html_file.cpp" />
@@ -704,7 +703,6 @@
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
-    <ClCompile Include="platform\integration_context.cpp" />
     <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
@@ -718,7 +716,6 @@
     <ClInclude Include="database\stream.h" />
     <ClInclude Include="database\_binary_stream.h" />
     <ClInclude Include="filesystem\filesystem\file_listener.h" />
-    <ClInclude Include="filesystem\filesystem\link.h" />
     <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\file\action.h" />
     <ClInclude Include="filesystem\file\listener.h" />
@@ -943,7 +940,6 @@
     <ClInclude Include="platform\create.h" />
     <ClInclude Include="platform\display.h" />
     <ClInclude Include="platform\history.h" />
-    <ClInclude Include="platform\integration_context.h" />
     <ClInclude Include="platform\launcher.h" />
     <ClInclude Include="platform\log.h" />
     <ClInclude Include="platform\machine_event.h" />

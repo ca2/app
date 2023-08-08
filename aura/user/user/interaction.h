@@ -805,7 +805,7 @@ namespace user
       ///virtual bool is_sketch_to_design_locked();
 
       
-      virtual void clear_activation(enum_layout elayout = e_layout_sketch);
+      virtual void reset_pending(enum_layout elayout = e_layout_sketch);
 
       virtual void set_display(::e_display edisplay = e_display_default, enum_layout elayout = e_layout_sketch);
       
@@ -2506,6 +2506,7 @@ namespace user
 
       
       
+      bool on_impact_update() override;
 
 
    };

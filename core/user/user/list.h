@@ -225,7 +225,10 @@ namespace user
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      bool on_impact_update() override;
+      void on_update_item_count() override;
+      void on_after_impact_update() override;
+
 
       void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -42,7 +42,7 @@ namespace userfs
       
       void _001InsertColumns() override;
 
-      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      void on_update_item_count() override;
 
       inline ::userfs::document * get_document() { return m_pdocument; }
 

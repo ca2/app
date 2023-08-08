@@ -43,7 +43,7 @@ namespace filemanager
 
       _001UpdateColumns();
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       m_pfolderlistdata = __create_new < folder_list_data > ();
 
@@ -51,7 +51,7 @@ namespace filemanager
 
       set_data_interface(m_pfolderlistdata);
 
-      _001OnUpdateItemCount();
+      update_impact();
 
    }
 
@@ -108,7 +108,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       return true;
 
@@ -134,7 +134,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       return true;
 
@@ -163,7 +163,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       return true;
 

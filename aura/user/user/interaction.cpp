@@ -2818,10 +2818,10 @@ namespace user
    //}
 
 
-   void interaction::clear_activation(enum_layout elayout)
+   void interaction::reset_pending(enum_layout elayout)
    {
 
-      m_layout.m_statea[elayout].clear_activation();
+      m_layout.m_statea[elayout].reset_pending();
 
    }
 
@@ -10762,6 +10762,13 @@ return strClass;
 
          m_pprimitiveimpl->on_layout(pgraphics);
 
+         if (const_layout().design().m_bImpactUpdateGoingOn)
+         {
+
+            on_change_impact_size(pgraphics);
+
+         }
+
          on_layout(pgraphics);
 
          auto pappearance = get_appearance();
@@ -11599,8 +11606,6 @@ return strClass;
    {
 
       layout_tooltip();
-
-      on_change_impact_size(pgraphics);
 
       //if(m_pinteractiondraw2d)
       {
@@ -12878,7 +12883,7 @@ return strClass;
 
       layout().lading() = layout().sketch();
 
-      layout().sketch().clear_activation();
+      layout().sketch().reset_pending();
 
    }
 
@@ -13076,7 +13081,14 @@ return strClass;
 
       }
 
-      layout().lading().clear_activation();
+      if (layout().lading().m_bImpactUpdateGoingOn)
+      {
+
+         layout().layout().m_bImpactUpdateGoingOn = true;
+
+      }
+
+      layout().lading().reset_pending();
 
       if (m_bAutomaticallyStoreWindowRectangle)
       {
@@ -13186,6 +13198,18 @@ return strClass;
             m_bLadingToLayout = true;
 
             //design_layout(pgraphics);
+
+         }
+
+         if (layout().layout().m_bImpactUpdateGoingOn)
+         {
+
+            if (!m_bLadingToLayout)
+            {
+
+               m_bLadingToLayout = true;
+
+            }
 
          }
 
@@ -13325,7 +13349,7 @@ return strClass;
 
       layout().design() = layout().layout();
 
-      layout().layout().clear_activation();
+      layout().layout().reset_pending();
 
       //information() << "layout().design().m_edisplay : " << layout().design().m_edisplay;
 
@@ -23115,6 +23139,14 @@ return strClass;
    }
 
 
+   bool interaction::on_impact_update()
+   {
+
+      m_layout.m_statea[e_layout_sketch].m_bImpactUpdateGoingOn = true;
+
+      return true;
+
+   }
 
 
 } // namespace user

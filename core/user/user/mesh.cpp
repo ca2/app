@@ -1031,11 +1031,18 @@ namespace user
    }
 
 
-
-   bool mesh::_001OnUpdateColumnCount(u32 dwFlags)
+   void mesh::set_pending_column_update()
    {
 
-      UNREFERENCED_PARAMETER(dwFlags);
+      m_bPendingColumnUpdate = true;
+
+   }
+
+
+   void mesh::on_update_column_count()
+   {
+
+//      UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == impact_grid)
       {
@@ -1061,23 +1068,21 @@ namespace user
       if(m_nColumnCount < 0)
       {
 
-         return false;
+         return;
 
       }
 
       set_need_layout();
 
-      return true;
-
    }
 
 
-   bool mesh::_001OnUpdateItemCount(u32 dwFlags)
+   void mesh::on_update_item_count()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      UNREFERENCED_PARAMETER(dwFlags);
+      //UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == impact_grid)
       {
@@ -1103,7 +1108,7 @@ namespace user
       if(m_nItemCount < 0)
       {
 
-         return false;
+         return;
 
       }
 
@@ -1115,7 +1120,7 @@ namespace user
          if(m_nGroupCount < 0)
          {
 
-            return false;
+            return;
 
          }
 
@@ -1149,13 +1154,17 @@ namespace user
 
       cache_hint();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      set_need_layout();
 
-      auto pdraw2d = psystem->draw2d();
+      set_need_redraw();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto psystem = acmesystem()->m_paurasystem;
 
-      on_change_impact_size(pgraphics);
+      //auto pdraw2d = psystem->draw2d();
+
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      //on_change_impact_size(pgraphics);
 
       //information("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
@@ -1163,7 +1172,31 @@ namespace user
         // information("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
       //}
 
+      //return true;
+   }
+
+
+   bool mesh::on_impact_update()
+   {
+
+      if (!::user::scroll_base::on_impact_update())
+      {
+
+         return false;
+
+      }
+
+      if (m_bPendingColumnUpdate)
+      {
+
+         on_update_column_count();
+
+      }
+
+      on_update_item_count();
+
       return true;
+
    }
 
 

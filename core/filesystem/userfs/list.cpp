@@ -264,9 +264,11 @@ namespace userfs
    }
 
 
-   bool list::_001OnUpdateItemCount(u32 dwFlags)
+   void list::on_update_item_count()
    {
-      return ::user::list::_001OnUpdateItemCount(dwFlags);
+      
+      ::user::list::on_update_item_count();
+
    }
 
 
@@ -693,7 +695,7 @@ namespace userfs
 
       fs_list()->m_pitema->add_fs_item(item);
 
-      _001OnUpdateItemCount();
+      update_impact();
 
    }
 

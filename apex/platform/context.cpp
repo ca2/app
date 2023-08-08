@@ -545,37 +545,37 @@ namespace apex
    bool context::defer_process_known_folder_path(::file::path & path)
    {
 
-      if (_001IsProtocol(path, "music://"))
+      if (_001IsProtocol(path, "music:/"))
       {
 
          path = dir()->music() / path;
 
       }
-      else if (_001IsProtocol(path, "video://"))
+      else if (_001IsProtocol(path, "video:/"))
       {
 
          path = dir()->video() / path;
 
       }
-      else if (_001IsProtocol(path, "image://"))
+      else if (_001IsProtocol(path, "image:/"))
       {
 
          path = dir()->image() / path;
 
       }
-      else if (_001IsProtocol(path, "document://"))
+      else if (_001IsProtocol(path, "document:/"))
       {
 
          path = dir()->document() / path;
 
       }
-      else if (_001IsProtocol(path, "dropbox://"))
+      else if (_001IsProtocol(path, "dropbox:/"))
       {
 
          path = dir()->dropbox() / path;
 
       }
-      else if (_001IsProtocol(path, "dropbox-app://"))
+      else if (_001IsProtocol(path, "dropbox-app:/"))
       {
 
          auto papplication = acmeapplication();
@@ -590,37 +590,37 @@ namespace apex
          path = dir()->dropbox_app() / path;
 
       }
-      else if (_001IsProtocol(path, "onedrive://"))
+      else if (_001IsProtocol(path, "onedrive:/"))
       {
 
          path = dir()->onedrive() / path;
 
       }
-      else if (_001IsProtocol(path, "appconfig://"))
+      else if (_001IsProtocol(path, "appconfig:/"))
       {
 
          path = get_app()->m_papexapplication->appconfig_folder() / path;
 
       }
-      else if (_001IsProtocol(path, "download://"))
+      else if (_001IsProtocol(path, "download:/"))
       {
 
          path = dir()->download() / path;
 
       }
-      else if (_001IsProtocol(path, "usersystem://"))
+      else if (_001IsProtocol(path, "usersystem:/"))
       {
 
          path = acmedirectory()->system() / path;
 
       }
-      else if (_001IsProtocol(path, "desktop://"))
+      else if (_001IsProtocol(path, "desktop:/"))
       {
 
          path = dir()->desktop() / path;
 
       }
-      else if (_001IsProtocol(path, "bookmark://"))
+      else if (_001IsProtocol(path, "bookmark:/"))
       {
 
          path = dir()->bookmark() / path;
@@ -656,14 +656,14 @@ namespace apex
    ::file::path context::defer_process_matter_path(::file::path path)
    {
 
-      if (string_begins_ci(path, "matter://"))
+      if (string_begins_ci(path, "matter:/"))
       {
 
          return dir()->matter(path);
 
       }
 
-      if (path.case_insensitive_begins("appmatter://"))
+      if (path.case_insensitive_begins("appmatter:/"))
       {
 
          //path = dir()->appmatter(path, false);
@@ -671,7 +671,7 @@ namespace apex
 
       }
 
-      if (path.case_insensitive_begins_eat("icon://"))
+      if (path.case_insensitive_begins_eat("icon:/"))
       {
 
          path += ".ico";
@@ -691,7 +691,7 @@ namespace apex
    ::file::path context::get_matter_path(string strMatter)
    {
 
-      if (strMatter.case_insensitive_begins_eat("appmatter://"))
+      if (strMatter.case_insensitive_begins_eat("appmatter:/"))
       {
 
          return dir()->install() / strMatter;
@@ -726,7 +726,7 @@ namespace apex
    ::file::path context::get_matter_cache_path(::file::path path)
    {
 
-      if (path.case_insensitive_begins_eat("appmatter://"))
+      if (path.case_insensitive_begins_eat("appmatter:/"))
       {
 
          auto psystem = acmesystem()->m_papexsystem;
@@ -809,7 +809,7 @@ namespace apex
 
          }
 
-         path.case_insensitive_begins_eat("appmatter://");
+         path.case_insensitive_begins_eat("appmatter:/");
 
          path = "https://ca2.software/matter" / path;
 

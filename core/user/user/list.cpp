@@ -1106,106 +1106,152 @@ namespace user
    }
 
 
-   bool list::_001OnUpdateItemCount(u32 dwFlags)
+   bool list::on_impact_update()
    {
-      
-      UNREFERENCED_PARAMETER(dwFlags);
 
-      auto pointOffset = get_context_offset();
-
-      ::count nCount = _001GetItemCount();
-
-      if (nCount < 0)
+      if (!::user::mesh::on_impact_update())
       {
-
-         m_nItemCount = nCount;
 
          return false;
 
       }
 
-      ::count nGroupCount = 1;
-
-      if (m_bGroup)
-      {
-
-         nGroupCount = _001GetGroupCount();
-
-         if (nGroupCount < 0)
-         {
-
-            m_nGroupCount = nGroupCount;
-
-            return false;
-
-         }
-
-      }
-
-      {
-
-         synchronous_lock synchronouslock(this->synchronization());
-
-         m_nItemCount = nCount;
-
-         if (m_bGroup)
-         {
-            m_nGroupCount = nGroupCount;
-         }
-
-         if (m_eview == impact_icon)
-         {
-
-            update_icon_list_impact_sort();
-
-         }
-         else
-         {
-
-            index iStart = m_pmeshlayout->m_iaDisplayToStrict.get_count();
-
-            index iEnd = m_nItemCount - 1;
-
-            m_pmeshlayout->m_iaDisplayToStrict.allocate((::count) m_nItemCount);
-
-            for (index iStrict = iStart; iStrict <= iEnd; iStrict++)
-            {
-
-               m_pmeshlayout->m_iaDisplayToStrict.set_at((::index) iStrict, (::index) iStrict);
-
-            }
-
-         }
-
-      }
-
-      if (m_bFilter1)
-      {
-
-         FilterApply();
-
-      }
-
-      cache_hint();
-
-      set_need_layout();
-
-      queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
-         {
-
-            set_context_offset(pgraphics, pointOffset.x(), pointOffset.y());
-
-         });
-
-      set_need_redraw();
+      on_update_item_count();
 
       return true;
 
    }
 
 
+   void list::on_update_item_count()
+   {
+
+      ::user::mesh::on_update_item_count();
+
+      //auto pointOffset = get_context_offset();
+
+      //::count nCount = _001GetItemCount();
+
+      //if (nCount < 0)
+      //{
+
+      //   m_nItemCount = nCount;
+
+      //   return;
+
+      //}
+
+      //::count nGroupCount = 1;
+
+      //if (m_bGroup)
+      //{
+
+      //   nGroupCount = _001GetGroupCount();
+
+      //   if (nGroupCount < 0)
+      //   {
+
+      //      m_nGroupCount = nGroupCount;
+
+      //      return;
+
+      //   }
+
+      //}
+
+      //{
+
+      //   synchronous_lock synchronouslock(this->synchronization());
+
+      //   //m_nItemCount = nCount;
+
+      //   //if (m_bGroup)
+      //   //{
+      //   //   
+      //   //   m_nGroupCount = nGroupCount;
+
+      //   //}
+
+      //   if (m_eview == impact_icon)
+      //   {
+
+      //      update_icon_list_impact_sort();
+
+      //   }
+      //   else
+      //   {
+
+      //      index iStart = m_pmeshlayout->m_iaDisplayToStrict.get_count();
+
+      //      index iEnd = m_nItemCount - 1;
+
+      //      m_pmeshlayout->m_iaDisplayToStrict.allocate((::count) m_nItemCount);
+
+      //      for (index iStrict = iStart; iStrict <= iEnd; iStrict++)
+      //      {
+
+      //         m_pmeshlayout->m_iaDisplayToStrict.set_at((::index) iStrict, (::index) iStrict);
+
+      //      }
+
+      //   }
+
+      //}
+
+      //if (m_bFilter1)
+      //{
+
+      //   FilterApply();
+
+      //}
+
+      //cache_hint();
+
+      //set_need_layout();
+
+      //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+      //   {
+
+      //      set_context_offset(pgraphics, pointOffset.x(), pointOffset.y());
+
+      //   });
+
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //   {
+
+      //      on_change_impact_size(pgraphics);
+
+            //set_context_offset(pgraphics, 0, 0);
+
+      //   });
+
+      ///m_pointScroll.Null();
+
+      //set_need_redraw();
+
+      //return true;
+
+   }
+
+
+   void list::on_after_impact_update()
+   {
+
+      m_pointScroll.Null();
+
+      // changing the scroll causes reposition of child elements
+
+      set_reposition();
+
+   }
+
+
    void list::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
+
+      auto iItemCount = m_nItemCount;
+
+      m_nDisplayCount = _001CalcDisplayItemCount();
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
@@ -1214,7 +1260,7 @@ namespace user
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
 
-         if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::index) m_iTopGroup)))
+         if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::index)m_iTopGroup)))
          {
 
             break;
@@ -1222,8 +1268,6 @@ namespace user
          }
 
       }
-
-      m_nDisplayCount = _001CalcDisplayItemCount();
 
       ::rectangle_i32 rectangle;
 

@@ -234,7 +234,6 @@ namespace user
 
       virtual toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
 
-
    };
 
 

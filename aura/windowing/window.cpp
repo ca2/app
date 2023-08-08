@@ -1204,7 +1204,6 @@ namespace windowing
    bool window::set_window_position_unlocked()
    {
 
-
       // Request / Incoming changes / Prepare Internal Buffer
       auto & stateOutput = m_puserinteractionimpl->m_puserinteraction->layout().m_statea[::user::e_layout_design];
 
@@ -1414,6 +1413,8 @@ namespace windowing
          stateWindow = stateOutput;
 
       }
+
+      return true;
 
    }
 

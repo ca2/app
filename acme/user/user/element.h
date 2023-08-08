@@ -839,6 +839,10 @@ namespace user
       virtual void pick_single_folder(
          const ::function < void(const ::file::path &) >& function);
 
+      virtual bool update_impact();
+      virtual bool on_impact_update();
+      virtual bool on_before_impact_update();
+      virtual void on_after_impact_update();
 
    };
 

@@ -148,7 +148,7 @@ namespace filemanager
 
          m_timeLastUpdate= ::time::now();
 
-         _001OnUpdateItemCount();
+         update_impact();
 
          m_puserlistcache->_001Invalidate(this);
 

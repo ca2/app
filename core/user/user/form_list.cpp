@@ -632,12 +632,12 @@ namespace user
    }
 
 
-   bool form_list::_001OnUpdateItemCount(u32 dwFlags)
+   void form_list::on_update_item_count()
    {
 
       _001HideEditingControls();
 
-      bool bOk = ::user::list::_001OnUpdateItemCount(dwFlags);
+      ::user::list::on_update_item_count();
 
       for (auto pinteraction : proper_children())
       {
@@ -681,7 +681,7 @@ namespace user
 
       }
 
-      return bOk;
+      //return bOk;
 
    }
 

@@ -266,6 +266,7 @@ namespace user
       ::task_pointer                               m_ptaskHoverSelect;
       class ::time                                   m_timeLastHoverSelect;
       bool                                         m_bPendingHoverSelect;
+      boolean                                      m_bPendingColumnUpdate;
 
 
       mesh();
@@ -433,8 +434,14 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool  _001OnUpdateColumnCount(u32 dwFlags = 0);
-      virtual bool  _001OnUpdateItemCount(u32 dwFlags = 0);
+
+      virtual void set_pending_column_update();
+
+
+      virtual void on_update_column_count();
+      virtual void on_update_item_count();
+      bool on_impact_update() override;
+
 
       virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 

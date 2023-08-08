@@ -1076,7 +1076,7 @@ namespace filemanager
 
          }
 
-         _001OnUpdateItemCount();
+         update_impact();
 
          return;
 
@@ -1125,7 +1125,7 @@ namespace filemanager
 
       m_pathaStrictOrder.erase_all();
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       auto pcontext = get_context();
 
@@ -1189,7 +1189,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       {
 
@@ -1815,7 +1815,7 @@ namespace filemanager
 
       fs_list()->m_pitema->add_fs_item(item);
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       return true;
 
@@ -2051,7 +2051,7 @@ namespace filemanager
                add_fs_item(filemanager_item()->user_path(),
                   filemanager_item()->final_path(), filemanager_item()->user_path().name());
 
-               _001OnUpdateItemCount();
+               update_impact();
 
             }
 
@@ -2089,7 +2089,7 @@ namespace filemanager
 
          _001UpdateColumns();
 
-         _001OnUpdateItemCount();
+         update_impact();
 
       }
       else if (!m_bStatic && ptopic->m_atom == id_synchronize_path)
@@ -2126,7 +2126,9 @@ namespace filemanager
 
          data_get_DisplayToStrict();
 
-         _001OnUpdateItemCount();
+         update_impact();
+
+         post_redraw();
 
       }
       else if (ptopic->m_atom == id_filter)

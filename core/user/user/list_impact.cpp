@@ -34,7 +34,7 @@ namespace user
       if (ptopic->m_atom == ID_INITIAL_UPDATE)
       {
 
-         _001OnUpdateItemCount();
+         update_impact();
 
       }
 

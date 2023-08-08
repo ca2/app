@@ -4755,7 +4755,6 @@ namespace user
    }
 
 
-
    void element::pick_single_folder(const ::function < void(const ::file::path &) > & function)
    {
 
@@ -4782,6 +4781,87 @@ namespace user
       };
 
       pfiledialog->call_run();
+
+   }
+
+
+   bool element::update_impact()
+   {
+
+      try
+      {
+
+         if (!on_before_impact_update())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      try
+      {
+
+         if (!on_impact_update())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      try
+      {
+
+         on_after_impact_update();
+
+         return true;
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      return false;
+
+   }
+
+
+   bool element::on_impact_update()
+   {
+
+      return true;
+
+   }
+
+
+   bool element::on_before_impact_update()
+   {
+      
+      return true;
+
+   }
+   
+   
+   void element::on_after_impact_update()
+   {
+
 
    }
 

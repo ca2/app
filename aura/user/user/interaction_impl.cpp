@@ -7440,7 +7440,7 @@ namespace user
 
       m_puserinteraction->set_display(m_puserinteraction->const_layout().design().display(), e_layout_window);
 
-      m_puserinteraction->clear_activation(e_layout_design);
+      m_puserinteraction->reset_pending(e_layout_design);
 
       m_puserinteraction->set_display(edisplayOutput, e_layout_design);
 

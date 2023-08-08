@@ -161,7 +161,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       auto pcolumn = m_pcolumna->get_by_subitem(1);
 

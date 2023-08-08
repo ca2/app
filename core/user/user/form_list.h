@@ -75,7 +75,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      void on_update_item_count() override;
 
       void _001UpdateComboBox(::user::interaction * pinteraction) override;
 

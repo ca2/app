@@ -31,7 +31,7 @@ namespace user
 
       ::pointer<::user::impact_system>      m_pimpactsystem;
       pointer_array < ::user::impact >        m_impacta;
-      ::user::impact *                          m_pviewTopic;
+      ::user::impact * m_pviewTopic;
 
       bool                                m_bAutoSaveModified;
 
@@ -55,14 +55,14 @@ namespace user
       ::base::user * baseuser() override;
 
 
-      ::user::interaction* impact_at(::index iImpact) override;
+      ::user::interaction * impact_at(::index iImpact) override;
       ::count impact_count() override;
 
       ::user::interaction_array get_top_level_windows();
 
       void on_destroy() override;
 
-      virtual bool contains(::user::interaction* pinteraction) const;
+      virtual bool contains(::user::interaction * pinteraction) const;
 
       void on_request(::request * prequest) override;
 
@@ -89,7 +89,7 @@ namespace user
 
       virtual bool is_new_document();
 
-      
+
       void add_impact(::user::impact * pimpact);
       void erase_impact(::user::impact * pimpact);
       virtual ::count get_impact_count() const;
@@ -100,7 +100,7 @@ namespace user
       template < class T >
       ::count get_typed_impact_count() const
       {
-         synchronous_lock synchronouslock(((document *) this)->synchronization());
+         synchronous_lock synchronouslock(((document *)this)->synchronization());
          ::count count = 0;
          for (index index = 0; index < m_impacta.get_count(); index++)
          {
@@ -108,8 +108,8 @@ namespace user
             {
                continue;
             }
-            pointer < T > point = m_impacta[index].cast < T > ();
-            if (point.is_set())
+            auto p = m_impacta[index].cast < T >();
+            if (p)
                count++;
          }
          return count;
@@ -119,7 +119,7 @@ namespace user
       pointer < T > get_typed_impact(index indexFind = 0) const
       {
 
-         synchronous_lock synchronouslock(((document *) this)->synchronization());
+         synchronous_lock synchronouslock(((document *)this)->synchronization());
 
          if (indexFind < 0 || indexFind >= m_impacta.get_count())
          {
@@ -133,22 +133,22 @@ namespace user
          for (index index = 0; index < m_impacta.get_count(); index++)
          {
 
-            if(m_impacta[index].is_null())
+            if (m_impacta[index].is_null())
             {
 
                continue;
 
             }
 
-            pointer < T > point = m_impacta[index].cast < T > ();
+            auto p = m_impacta[index].cast < T >();
 
-            if (point.is_set())
+            if (p)
             {
 
                if (indexFind == count)
                {
 
-                  return point;
+                  return p;
 
                }
                else
@@ -171,25 +171,29 @@ namespace user
       pointer < T > get_typed_impact_with_id(atom atom) const
       {
 
-         synchronous_lock synchronouslock(((document *) this)->synchronization());
+         synchronous_lock synchronouslock(((document *)this)->synchronization());
 
          ::count count = 0;
 
-         for(index index = 0; index < m_impacta.get_count(); index++)
+         for (index index = 0; index < m_impacta.get_count(); index++)
          {
 
-            if(m_impacta[index].is_null())
+            if (m_impacta[index].is_null())
             {
                continue;
             }
 
-            pointer < T > point = m_impacta[index].cast < T >();
+            auto p = m_impacta[index].cast < T >();
 
-            if(point.is_set())
+            if (p)
             {
 
-               if(atom == point->m_atom)
-                  return point;
+               if (atom == p->m_atom)
+               {
+
+                  return p;
+
+               }
                else
                   count++;
 
@@ -226,7 +230,7 @@ namespace user
          }
 
          //auto estatus = 
-         
+
          pdata->initialize_data(this);
 
          //if (!estatus)
@@ -245,7 +249,7 @@ namespace user
 
       virtual ::pointer<::user::impact>get_typed_impact(::type info, index indexFind = 0);
 
-      virtual ::pointer<::user::impact>get_typed_impact_with_id(::type info,atom atom);
+      virtual ::pointer<::user::impact>get_typed_impact_with_id(::type info, atom atom);
 
       virtual void show_all_frames(const ::e_display & edisplay = e_display_normal);
 
@@ -312,11 +316,11 @@ namespace user
       virtual void call_initial_update();
 
 
-//#ifdef WINDOWS_DESKTOP
-//      // overridables for implementation
-//      virtual HMENU GetDefaultMenu(); // get menu depending on state
-//      virtual HACCEL GetDefaultAccelerator();
-//#endif
+      //#ifdef WINDOWS_DESKTOP
+      //      // overridables for implementation
+      //      virtual HMENU GetDefaultMenu(); // get menu depending on state
+      //      virtual HACCEL GetDefaultAccelerator();
+      //#endif
       virtual void on_idle();
       virtual void on_final_release();
 
@@ -329,7 +333,7 @@ namespace user
       void on_file_save();
       void on_file_save_as();
       void on_file_send_mail();
-      void on_update_file_send_mail(::message::command* pCmdUI);
+      void on_update_file_send_mail(::message::command * pCmdUI);
 
       //virtual void on_request(::request * prequest) override;
 
@@ -337,7 +341,7 @@ namespace user
       DOCUMENT * get_typed_document()
       {
          ASSERT(::is_set(this));
-         return dynamic_cast < DOCUMENT * >(this);
+         return dynamic_cast <DOCUMENT *>(this);
       }
 
       template < class DATA >
@@ -366,7 +370,7 @@ namespace user
       ::data::data * get_typed_document_data()
       {
          ASSERT(::is_set(this));
-         return get_data(get_typed_document < DOCUMENT > ());
+         return get_data(get_typed_document < DOCUMENT >());
       }
 
       template < class DOCUMENT >
@@ -392,7 +396,7 @@ namespace user
 
 
       virtual bool has_toolbar();
-      
+
       virtual ::atom get_toolbar_id();
 
       virtual toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
@@ -401,7 +405,7 @@ namespace user
    };
 
 
-   CLASS_DECL_BASE ::pointer<::user::document>__document(::request * prequest);
+   CLASS_DECL_BASE::pointer<::user::document>__document(::request * prequest);
 
 
 } // namespace user

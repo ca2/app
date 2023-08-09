@@ -17929,7 +17929,19 @@ return strClass;
       if (ptopic)
       {
 
-         if (ptopic->m_atom == ID_REDRAW || ptopic->m_atom == m_atom)
+         if (ptopic->m_atom == ID_INITIAL_UPDATE)
+         {
+
+            update_impact();
+
+         }
+         else if (ptopic->m_atom == ID_UPDATE)
+         {
+
+            update_impact();
+
+         }
+         else if (ptopic->m_atom == ID_REDRAW || ptopic->m_atom == m_atom)
          {
 
             if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)

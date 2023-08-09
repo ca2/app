@@ -1545,6 +1545,8 @@ namespace user
    void list::on_column_update()
    {
 
+      ::user::mesh::on_column_update();
+
       for (auto & pcolumn : *m_pcolumna)
       {
 
@@ -5530,8 +5532,6 @@ namespace user
 
       m_pcolumna->Initialize(this);
 
-
-
       if (m_bAutoCreateListHeader)
       {
 
@@ -5571,13 +5571,9 @@ namespace user
 
       pmessage->m_bRet = false;
 
-      set_pending_column_layout();
+      set_pending_column_update();
 
    }
-
-
-
-
 
 
    void list::_001CreateImageList(list_column * pcolumn)

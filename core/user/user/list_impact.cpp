@@ -31,12 +31,12 @@ namespace user
 
       BASE_VIEW::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ID_INITIAL_UPDATE)
-      {
+      //if (ptopic->m_atom == ID_INITIAL_UPDATE)
+      //{
 
-         update_impact();
+      //   update_impact();
 
-      }
+      //}
 
    }
 

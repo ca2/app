@@ -599,7 +599,7 @@ namespace user
       for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++, iDisplayIndex++)
       {
 
-         auto iItem = _001DisplayToStrict(iDisplayItem);
+         auto iItem = display_to_strict(iDisplayItem);
 
          auto & pitem = get_item(iItem);
 
@@ -1542,7 +1542,7 @@ namespace user
    }
 
 
-   void list::_001OnColumnChange()
+   void list::on_column_update()
    {
 
       for (auto & pcolumn : *m_pcolumna)
@@ -1736,7 +1736,11 @@ namespace user
 
       m_plistheader->DIDDXColumn(true);
 
-      _001OnColumnChange();
+      set_pending_column_layout();
+
+      //on_columnChange();
+
+      //set_pe
 
       return true;
 
@@ -1764,7 +1768,7 @@ namespace user
    //}
 
 
-   index list::_001MapSubItemToOrder(index iSubItem)
+   index list::sub_item_to_order(index iSubItem)
    {
 
       return _001MapColumnToOrder(_001MapSubItemToColumn(iSubItem));
@@ -2158,7 +2162,7 @@ namespace user
 
       }
 
-      iItem = _001DisplayToStrict((::index) iItem);
+      iItem = display_to_strict((::index) iItem);
 
       return true;
 
@@ -2175,7 +2179,7 @@ namespace user
 
       }
 
-      iItem = _001DisplayToStrict((::index)iItem);
+      iItem = display_to_strict((::index)iItem);
 
       return true;
 
@@ -2582,7 +2586,7 @@ namespace user
       }
 
 
-      auto iItemFirst = _001DisplayToStrict(iDisplayItemFirst);
+      auto iItemFirst = display_to_strict(iDisplayItemFirst);
 
       auto pitemFirst = get_item(iItemFirst);
 
@@ -2592,7 +2596,7 @@ namespace user
 
       index_item_rectangle(*pitemFirst);
 
-      auto iItemLast = _001DisplayToStrict(iDisplayItemLast);
+      auto iItemLast = display_to_strict(iDisplayItemLast);
 
       auto pitemLast = get_item(iItemLast);
 
@@ -3460,13 +3464,13 @@ namespace user
             itemrange.set(iItem, iItem, 0, m_pcolumna->get_count() - 1, -1, -1);
             m_rangeSelection.add_item(itemrange);
 
-            _001EnsureVisible(iItem, range);
+            ensure_item_visible(iItem, range);
 
             range.add_item(itemrange);
 
             set_need_redraw();
 
-            _001OnSelectionChange();
+            on_selection_change();
 
          }
 
@@ -3476,7 +3480,7 @@ namespace user
 
          ::user::range range;
 
-         _001GetSelection(range);
+         get_selection(range);
 
          _001DeleteRange(range);
 
@@ -3608,7 +3612,7 @@ namespace user
 
                            index iDisplayItem = i * iItemColumnCount + j;
 
-                           index iStrict = _001DisplayToStrict(iDisplayItem);
+                           index iStrict = display_to_strict(iDisplayItem);
 
                            if(iStrict >= 0)
                            {
@@ -3627,7 +3631,7 @@ namespace user
 
                      }
 
-                     _001OnSelectionChange();
+                     on_selection_change();
 
                   }
 
@@ -3864,7 +3868,7 @@ namespace user
 
                m_rangeSelection.clear();
 
-               _001OnSelectionChange();
+               on_selection_change();
 
             }
 
@@ -3957,7 +3961,7 @@ namespace user
 
                }
 
-               _001OnSelectionChange();
+               on_selection_change();
 
             }
 
@@ -3983,7 +3987,7 @@ namespace user
 
             }
 
-            m_iItemLButtonDown = _001DisplayToStrict(iDisplayItem);
+            m_iItemLButtonDown = display_to_strict(iDisplayItem);
 
             if (m_eview == impact_icon)
             {
@@ -4009,7 +4013,7 @@ namespace user
 
                   m_rangeSelection.clear();
 
-                  _001OnSelectionChange();
+                  on_selection_change();
 
                }
 
@@ -4186,10 +4190,10 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     if (!on_click(new_item_with_index(_001DisplayToStrict(iDisplayItemLButtonUp))))
+                     if (!on_click(new_item_with_index(display_to_strict(iDisplayItemLButtonUp))))
                      {
 
-                        //index iItem = _001DisplayToStrict(iDisplayItemLButtonUp);
+                        //index iItem = display_to_strict(iDisplayItemLButtonUp);
 
                         //_001OnItemClick(iItem);
 
@@ -4361,7 +4365,7 @@ namespace user
 
 
 
-   void list::_001GetSelection(range &range)
+   void list::get_selection(range &range)
    {
 
       range = m_rangeSelection;
@@ -4406,17 +4410,17 @@ namespace user
    }
 
 
-   void list::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
+   void list::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
    {
 
-      if (!_001HasConfigId(scopedstrDataKey))
+      if (!has_data_key(scopedstrDataKey))
       {
 
          return;
 
       }
 
-      auto iFilterSubItem = _001ConfigIdToColumnKey(scopedstrDataKey);
+      auto iFilterSubItem = data_key_to_column_key(scopedstrDataKey);
 
       range & range = m_rangeSelection;
 
@@ -4551,7 +4555,7 @@ namespace user
             if (iDisplayItem >= 0 && m_iDisplayItemLButtonDown1 == iDisplayItem)
             {
 
-               index iItem = _001DisplayToStrict(iDisplayItem);
+               index iItem = display_to_strict(iDisplayItem);
 
                if (iItem >= 0)
                {
@@ -4648,7 +4652,7 @@ namespace user
 
       }
 
-      _001OnColumnChange();
+      set_pending_column_layout();
 
       DISaveOrder();
 
@@ -4729,7 +4733,7 @@ namespace user
       //pcolumn->m_iWidth = m_plistheader->GetItemWidth(iColumn);
       //}
 
-      _001OnColumnChange();
+      set_pending_column_layout();
 
       set_need_redraw();
 
@@ -4749,7 +4753,7 @@ namespace user
 
       m_pcolumna->ShowSubItem(iSubItem, bShow);
 
-      _001OnColumnChange();
+      set_pending_column_layout();
 
       set_need_redraw();
 
@@ -5445,36 +5449,36 @@ namespace user
    void list::DILoadOrder()
    {
       m_pcolumna->DILoadOrder();
-      _001OnColumnChange();
+      set_pending_column_layout();
    }
 
 
-   void list::_001UpdateColumns()
+   //void list::_001UpdateColumns()
+   //{
+
+   //   _001RemoveAllColumns();
+
+   //   auto keepLockImpactUpdate = keep(m_bLockImpactUpdate);
+
+   //   on_insert_columns();
+
+   //   keepLockImpactUpdate.KeepAway();
+
+   //   DIDDXHeaderLayout(false);
+
+   //   _001OnColumnChange();
+
+   //}
+
+
+   void list::on_insert_columns()
    {
 
-      _001RemoveAllColumns();
-
-      auto keepLockImpactUpdate = keep(m_bLockImpactUpdate);
-
-      _001InsertColumns();
-
-      keepLockImpactUpdate.KeepAway();
-
-      DIDDXHeaderLayout(false);
-
-      _001OnColumnChange();
 
    }
 
 
-   void list::_001InsertColumns()
-   {
-
-
-   }
-
-
-   void list::_001RemoveAllColumns()
+   void list::erase_columns()
    {
 
       {
@@ -5485,9 +5489,12 @@ namespace user
 
       }
 
-      _001OnColumnChange();
+      set_pending_column_layout();
 
    }
+
+   
+
 
 
    void list::PreSubClassWindow()
@@ -5564,7 +5571,7 @@ namespace user
 
       pmessage->m_bRet = false;
 
-      _001UpdateColumns();
+      set_pending_column_layout();
 
    }
 
@@ -5777,7 +5784,8 @@ namespace user
       m_bSingleColumnMode = true;
 
       m_bHeaderCtrl = bHeaderCtrl;
-      _001RemoveAllColumns();
+
+      erase_columns();
 
 
       {
@@ -5878,14 +5886,15 @@ namespace user
    }
 
 
-
-
-   bool list::_001HasConfigId(const ::scoped_string & scopedstrDataKey)
+   bool list::has_data_key(const ::scoped_string & scopedstrDataKey)
    {
-      return _001ConfigIdToColumnKey(scopedstrDataKey) >= 0;
+
+      return data_key_to_column_key(scopedstrDataKey) >= 0;
+
    }
 
-   index list::_001ConfigIdToSubItem(const ::scoped_string & scopedstrDataKey)
+
+   index list::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
    {
       list_column * column = m_pcolumna->get_by_config_id(scopedstrDataKey);
       if (column == nullptr)
@@ -6003,7 +6012,7 @@ namespace user
    //}
 
 
-   void list::_001EnsureVisible(index iItem, ::e_align ealign, bool bRedraw)
+   void list::ensure_item_visible(index iItem, ::e_align ealign, bool bRedraw)
    {
 
       auto pointOffset = get_context_offset();
@@ -6064,7 +6073,7 @@ namespace user
    }
 
 
-   void list::_001ItemScroll(index iItem, bool bRedraw)
+   void list::scroll_to_item(index iItem, bool bRedraw)
    {
 
       if (iItem < m_nItemCount)
@@ -6095,7 +6104,7 @@ namespace user
    }
 
 
-   void list::_001EnsureVisible(index iItem, range & range)
+   void list::ensure_item_visible(index iItem, range & range)
    {
 
       auto pointOffset = get_context_offset();
@@ -6139,37 +6148,57 @@ namespace user
 
    }
 
-   void list::_001Highlight(index iItem, bool bRedraw)
+
+   void list::highlight_item(index iItem, bool bRedraw)
    {
-      m_rangeHighlight.clear();
-      item_range itemrange;
-      itemrange.set(iItem, iItem, 0, m_pcolumna->get_count() - 1, -1, -1);
-      m_rangeHighlight.add_item(itemrange);
-      if (bRedraw)
-      {
-         set_need_redraw();
-      }
-      _001OnSelectionChange();
+
+      ::user::mesh::highlight_item(iItem, bRedraw);
+
+      //m_rangeHighlight.clear();
+      //item_range itemrange;
+      //itemrange.set(iItem, iItem, 0, m_pcolumna->get_count() - 1, -1, -1);
+      //m_rangeHighlight.add_item(itemrange);
+      //if (bRedraw)
+      //{
+      //   set_need_redraw();
+      //}
+      //on_selection_change();
    }
 
 
-   bool list::_001OnRemoveItem(index iItem)
+   bool list::on_erase_item(index iItem)
    {
+
       UNREFERENCED_PARAMETER(iItem);
+
       return false;
+
    }
 
-   bool list::_001RemoveItem(index iItem, bool bRedraw)
+
+   bool list::erase_item(index iItem, bool bRedraw)
    {
-      if (!_001OnRemoveItem(iItem))
+
+      if (!on_erase_item(iItem))
+      {
+
          return false;
+
+      }
+
       m_rangeSelection.OnRemoveItem(iItem);
+
       if (bRedraw)
       {
+
          set_need_redraw();
+
       }
+
       return true;
+
    }
+
 
    //void user::range::offset(index iOffset)
    //{
@@ -6177,36 +6206,44 @@ namespace user
    //   m_iUpperBound += iOffset;
    //}
 
-   void list::_001RemoveSelection()
+   void list::erase_selection()
    {
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
 
       while (range.get_item_count() > 0)
       {
          index iItem = range.ItemAt(0).get_lower_bound();
-         if (!_001RemoveItem(iItem, false))
+         if (!erase_item(iItem, false))
             break;
-         _001GetSelection(range);
+         get_selection(range);
       }
 
       set_need_redraw();
    }
 
 
-   void list::_001Select(index iItem, index iSubItem)
+   void list::select_item(index iItem, index iSubItem)
    {
-      m_rangeSelection.clear();
-      item_range itemrange;
-      itemrange.set(iItem, iItem, iSubItem, iSubItem, -1, -1);
-      m_rangeSelection.add_item(itemrange);
-      _001OnSelectionChange();
+
+      ::user::mesh::select_item(iItem, iSubItem);
+
+      //m_rangeSelection.clear();
+
+      //item_range itemrange;
+
+      //itemrange.set(iItem, iItem, iSubItem, iSubItem, -1, -1);
+
+      //m_rangeSelection.add_item(itemrange);
+
+      //on_selection_change();
+
    }
 
 
-   index list::_001StrictToDisplay(index iStrict)
+   index list::strict_to_display(index iStrict)
    {
 
       UNREFERENCED_PARAMETER(iStrict);
@@ -6216,7 +6253,7 @@ namespace user
    }
 
 
-   index list::_001DisplayToStrict(index iDisplay)
+   index list::display_to_strict(index iDisplay)
    {
 
       if (iDisplay < 0)
@@ -6690,7 +6727,7 @@ namespace user
    ::std::strong_ordering list::_001DisplayCompare(index iDisplayItem1, index iDisplayItem2)
    {
 
-      return _001Compare(_001DisplayToStrict(iDisplayItem1), _001DisplayToStrict(iDisplayItem2));
+      return _001Compare(display_to_strict(iDisplayItem1), display_to_strict(iDisplayItem2));
 
    }
 
@@ -7078,13 +7115,13 @@ namespace user
          if (m_eview == impact_icon)
          {
 
-            return _001DisplayToStrict(iDisplayDrag) != -1;
+            return display_to_strict(iDisplayDrag) != -1;
 
          }
          else
          {
 
-            if (_001DisplayToStrict(iDisplayDrop) == -1 || _001DisplayToStrict(iDisplayDrop) >= m_nItemCount)
+            if (display_to_strict(iDisplayDrop) == -1 || display_to_strict(iDisplayDrop) >= m_nItemCount)
             {
 
                return true;
@@ -7143,7 +7180,7 @@ namespace user
                for (index iItem = itemrange.m_iLowerBound; iItem <= itemrange.m_iUpperBound; iItem++)
                {
 
-                  index iStrict = _001DisplayToStrict(iItem);
+                  index iStrict = display_to_strict(iItem);
 
                   if(iStrict >= 0)
                   {
@@ -7361,7 +7398,7 @@ namespace user
    }
 
 
-   //void list::_001OnSelectionChange()
+   //void list::on_selection_change()
    //{
 
    //   auto ptopic = create_topic(::id_after_change_cur_sel);
@@ -7411,7 +7448,7 @@ namespace user
 
       }
 
-      _001OnSelectionChange();
+      on_selection_change();
 
       //return ::success;
 
@@ -7431,7 +7468,7 @@ namespace user
          itemrange.set_upper_bound(iaSel[i]);
          m_rangeSelection.add_item(itemrange);
       }
-      _001OnSelectionChange();
+      on_selection_change();
    }
 
 

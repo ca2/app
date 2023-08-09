@@ -115,7 +115,7 @@ namespace userfs
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       if (range.get_item_count() > 0)
       {
@@ -225,7 +225,7 @@ namespace userfs
    }
 
 
-   void list::_001InsertColumns()
+   void list::on_insert_columns()
    {
 
       {
@@ -311,7 +311,7 @@ namespace userfs
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       string str;
 
@@ -323,7 +323,7 @@ namespace userfs
          for (index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
          {
 
-            index iStrict = _001DisplayToStrict(iItem);
+            index iStrict = display_to_strict(iItem);
 
             ::pointer<::userfs::list_item>pitem = fs_list_item(iStrict);
 
@@ -451,7 +451,7 @@ namespace userfs
 
       }
 
-      //_001ClearSelection();
+      //clear_selection();
 
       return true;
 
@@ -466,7 +466,7 @@ namespace userfs
       ::file::item_array itema;
       index iItemRange, iItem;
       ::user::range range;
-      _001GetSelection(range);
+      get_selection(range);
       for (iItemRange = 0;
          iItemRange < range.get_item_count();
          iItemRange++)
@@ -481,7 +481,7 @@ namespace userfs
             if (iItem >= pdata->m_pitema->get_count())
                continue;
 
-            index iStrict = _001DisplayToStrict(iItem);
+            index iStrict = display_to_strict(iItem);
 
             ::pointer<::userfs::list_item>pitem = pdata->item(iStrict);
 
@@ -517,7 +517,7 @@ namespace userfs
 
       }
 
-      _001ClearSelection();
+      clear_selection();
 
    }
 
@@ -621,7 +621,7 @@ namespace userfs
    //   list_data * pdata = fslist();
    //   index iItemRange, iItem;
    //   ::user::range range;
-   //   _001GetSelection(range);
+   //   get_selection(range);
    //   index_array iaItem;
    //   for (iItemRange = 0;
    //         iItemRange < range.get_item_count();
@@ -728,7 +728,7 @@ namespace userfs
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
@@ -748,7 +748,7 @@ namespace userfs
    {
       ::pointer<::message::command>pcommand(pmessage);
       ::user::range range;
-      _001GetSelection(range);
+      get_selection(range);
       pcommand->enable(
          range.get_item_count() == 1
          && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
@@ -813,7 +813,7 @@ namespace userfs
       if (iDisplayDrag != iDisplayDrop)
       {
 
-         index iStrict = _001DisplayToStrict(iDisplayDrop);
+         index iStrict = display_to_strict(iDisplayDrop);
 
          if (iStrict <= -1)
          {

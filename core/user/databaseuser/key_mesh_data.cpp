@@ -64,7 +64,7 @@ namespace databaseuser
 
       ::user::range range;
 
-      plist->_001GetSelection(range);
+      plist->get_selection(range);
 
       for(index i = 0; i < range.get_item_count() ; i++)
       {

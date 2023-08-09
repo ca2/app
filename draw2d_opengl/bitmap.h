@@ -5,9 +5,9 @@
 #include "aura/graphics/draw2d/bitmap.h"
 
 
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glext.h>
+//#include <GL/gl.h>
+//#include <GL/glu.h>
+//#include <GL/glext.h>
 #ifdef LINUX
 #include <GL/glx.h>
 #endif

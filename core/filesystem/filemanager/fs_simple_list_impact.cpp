@@ -117,7 +117,7 @@ namespace filemanager
          }
 
 
-         void list_impact::_001InsertColumns()
+         void list_impact::on_insert_columns()
          {
 
             {

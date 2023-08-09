@@ -40,7 +40,7 @@ namespace userfs
       inline ::fs::data * fs_data() { return m_pfsdata; }
 
       
-      void _001InsertColumns() override;
+      void on_insert_columns() override;
 
       void on_update_item_count() override;
 

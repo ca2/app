@@ -170,7 +170,7 @@ namespace user
 
       route(ptopic);
 
-      _001SetSelection(iaSel, ::e_source_user);
+      set_selection(iaSel, ::e_source_user);
 
       m_pitemCurrent     = pitem;
 
@@ -829,7 +829,7 @@ namespace user
    }
 
 
-   index_array image_list::_001GetSelection()
+   index_array image_list::get_selection()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -851,7 +851,7 @@ namespace user
    }
 
 
-   void image_list::_001SetSelection(const index_array & ia, const ::action_context & context)
+   void image_list::set_selection(const index_array & ia, const ::action_context & context)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

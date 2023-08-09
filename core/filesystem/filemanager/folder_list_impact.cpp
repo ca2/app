@@ -41,7 +41,7 @@ namespace filemanager
 
       m_bRecursive = bRecursive;
 
-      _001UpdateColumns();
+      set_pending_column_update();
 
       update_impact();
 
@@ -56,7 +56,7 @@ namespace filemanager
    }
 
 
-   void folder_list_impact::_001InsertColumns()
+   void folder_list_impact::on_insert_columns()
    {
 
       {

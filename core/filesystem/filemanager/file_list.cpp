@@ -407,7 +407,7 @@ namespace filemanager
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       for (iItemRange = 0;
             iItemRange < range.get_item_count();
@@ -443,7 +443,7 @@ namespace filemanager
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       for (iItemRange = 0; iItemRange < range.get_item_count(); iItemRange++)
       {
@@ -530,7 +530,7 @@ namespace filemanager
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
@@ -564,7 +564,7 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
       ::user::range range;
-      _001GetSelection(range);
+      get_selection(range);
       pcommand->enable(
       range.get_item_count() == 1
       && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
@@ -580,7 +580,7 @@ namespace filemanager
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       pcommand->enable(range.get_item_count() > 0);
 
@@ -612,7 +612,7 @@ namespace filemanager
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       pcommand->enable(range.get_item_count() > 0);
 
@@ -813,7 +813,7 @@ namespace filemanager
    //{
    //   ::pointer<::message::command>pcommand(pmessage);
    //   ::user::range range;
-   //   _001GetSelection(range);
+   //   get_selection(range);
    //   pcommand->enable(range.get_item_count() > 0);
    //   pmessage->m_bRet = true;
    //}
@@ -1256,7 +1256,7 @@ namespace filemanager
          //data_set_DisplayToStrict();
       //}
 
-      _001ClearSelection();
+      clear_selection();
 
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
@@ -1272,7 +1272,7 @@ namespace filemanager
    }
 
 
-   void file_list::_001InsertColumns()
+   void file_list::on_insert_columns()
    {
 
       if (filemanager_document() == nullptr)
@@ -1535,7 +1535,7 @@ namespace filemanager
 
    //   ::user::range range;
 
-   //   _001GetSelection(range);
+   //   get_selection(range);
 
    //   for (iItemRange = 0; iItemRange < range.get_item_count(); iItemRange++)
    //   {
@@ -1602,7 +1602,7 @@ namespace filemanager
 
    //   }
 
-   //   _001ClearSelection();
+   //   clear_selection();
 
    //}
 
@@ -1618,7 +1618,7 @@ namespace filemanager
 
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
       for (iItemRange = 0; iItemRange < range.get_item_count(); iItemRange++)
       {
@@ -1642,7 +1642,7 @@ namespace filemanager
 
             }
 
-            index iStrict = _001DisplayToStrict(iItem);
+            index iStrict = display_to_strict(iItem);
 
             if (fs_list_item(iStrict)->IsFolder())
             {
@@ -1671,7 +1671,7 @@ namespace filemanager
       {
          _017OpenContextMenu(context);
       }
-      _001ClearSelection();
+      clear_selection();
    }
 
 
@@ -1715,7 +1715,7 @@ namespace filemanager
 
          index iItem = pinteraction->m_iItem;
 
-         index iStrict = _001DisplayToStrict(iItem);
+         index iStrict = display_to_strict(iItem);
 
          pcallback->OnButtonAction(pinteraction->m_atom, fs_list_item(iStrict));
 
@@ -1731,7 +1731,7 @@ namespace filemanager
 
    //   index iItemRange, iItem;
    //   ::user::range range;
-   //   _001GetSelection(range);
+   //   get_selection(range);
    //   index_array iaItem;
    //   for (iItemRange = 0;
    //         iItemRange < range.get_item_count();
@@ -1748,7 +1748,7 @@ namespace filemanager
 
    //            iaItem.add(iItem);
 
-   //            index iStrict = _001DisplayToStrict(iItem);
+   //            index iStrict = display_to_strict(iItem);
 
    //            itema.add(fs_list_item(iStrict));
 
@@ -1893,7 +1893,7 @@ namespace filemanager
       if (iDisplayDrag != iDisplayDrop)
       {
 
-         index iStrict = _001DisplayToStrict(iDisplayDrop);
+         index iStrict = display_to_strict(iDisplayDrop);
 
          if (iStrict <= -1)
          {
@@ -1927,9 +1927,9 @@ namespace filemanager
 
       synchronous_lock synchronouslock(fs_list()->synchronization());
 
-      index strict = _001DisplayToStrict(iDisplayDrop);
+      index strict = display_to_strict(iDisplayDrop);
 
-      index strictDrag = _001DisplayToStrict(iDisplayDrag);
+      index strictDrag = display_to_strict(iDisplayDrag);
 
       auto pcontext = get_context();
 
@@ -2087,7 +2087,7 @@ namespace filemanager
 
          }
 
-         _001UpdateColumns();
+         set_pending_column_update();
 
          update_impact();
 

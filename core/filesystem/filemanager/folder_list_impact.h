@@ -30,7 +30,7 @@ namespace filemanager
       virtual void initialize(string strDataKeyModifier,bool bRecursive);
 
 
-      virtual void _001InsertColumns() override;
+      virtual void on_insert_columns() override;
 
 
       bool add_unique(const string_array & stra);

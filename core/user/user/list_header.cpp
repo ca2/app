@@ -570,7 +570,7 @@ namespace user
                   index iOrderB = plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder;
                   plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder = iOrderB;
                   plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder = iOrderA;
-                  plist->_001OnColumnChange();
+                  plist->set_pending_column_update();
                   plist->DISaveOrder();
                   plist->set_need_redraw();
                   set_need_redraw();

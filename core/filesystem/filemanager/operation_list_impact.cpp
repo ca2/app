@@ -80,7 +80,7 @@ namespace filemanager
    }
 
 
-   void operation_list_impact::_001InsertColumns()
+   void operation_list_impact::on_insert_columns()
    {
 
       {
@@ -168,7 +168,7 @@ namespace filemanager
 
          }
 
-         _001ItemScroll(iItem);
+         scroll_to_item(iItem);
 
       }
 
@@ -183,7 +183,9 @@ namespace filemanager
       if (ptopic->m_atom == ID_INITIAL_UPDATE)
       {
 
-         _001UpdateColumns();
+         set_pending_column_update();
+
+         update_impact();
 
       }
 

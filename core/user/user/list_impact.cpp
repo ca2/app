@@ -41,10 +41,10 @@ namespace user
    }
 
 
-   void list_impact::_001OnSelectionChange()
+   void list_impact::on_selection_change()
    {
 
-      BASE_VIEW::_001OnSelectionChange();
+      BASE_VIEW::on_selection_change();
 
       //if (get_parent_frame() != nullptr)
       //{

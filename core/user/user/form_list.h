@@ -55,7 +55,7 @@ namespace user
       virtual void _001HideControl(::user::interaction * pinteraction);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      void _001UpdateColumns() override;
+      //void _001UpdateColumns() override;
       ::user::interaction * _001GetEditControl();
       void _001SetEditControl(::user::interaction * pinteraction);
       bool _001AddControl(::user::interaction * pinteraction) override;
@@ -67,8 +67,8 @@ namespace user
       bool on_right_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 
-      using list::_001GetSelection;
-      void _001GetSelection(const ::scoped_string & scopedstrDataKey,::string_array & stra) override;
+      using list::get_selection;
+      void get_selection(const ::scoped_string & scopedstrDataKey,::string_array & stra) override;
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
@@ -89,7 +89,7 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      void _001OnColumnChange() override;
+      void on_column_update() override;
 
 
       void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;

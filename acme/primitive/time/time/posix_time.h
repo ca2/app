@@ -109,6 +109,10 @@ struct CLASS_DECL_ACME posix_time
 
    inline static posix_time now() { return now_t{}; }
 
+   constexpr ::i64 minutes() const;
+   constexpr ::i64 hours() const;
+   constexpr ::i64 days() const;
+
 };
 
 

@@ -93,7 +93,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      virtual void _001EnsureVisible(index iItem) override;
+      virtual void ensure_item_visible_by_index(index iItem) override;
 
 
       virtual void _001OnTimer(::timer * ptimer) override;

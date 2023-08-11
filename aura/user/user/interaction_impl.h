@@ -169,8 +169,8 @@ namespace user
 //      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
       ::pointer_array < redraw_item >           m_redrawitema;
 
-      ::pointer < ::user::interaction >                     m_puiLastLButtonDown;
-      ::pointer < ::item >                                  m_pitemLButtonDown;
+      ::pointer < ::user::interaction >         m_puiLastLButtonDown;
+      ::item_pointer                            m_pitemLButtonDown;
 
       bool                                      m_bDoingGraphics;
 

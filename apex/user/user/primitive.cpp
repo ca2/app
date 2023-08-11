@@ -315,24 +315,24 @@ namespace user
    //}
 
 
-   void primitive::UpdateWindow()
-   {
+   //void primitive::UpdateWindow()
+   //{
 
-      //ASSERT(::IsWindow(GetHandle()));
-      //::UpdateWindow(GetHandle());
+   //   //ASSERT(::IsWindow(GetHandle()));
+   //   //::UpdateWindow(GetHandle());
 
-   }
+   //}
 
 
-   void primitive::Invalidate(bool bErase)
-   {
+   //void primitive::Invalidate(bool bErase)
+   //{
 
-      UNREFERENCED_PARAMETER(bErase);
+   //   UNREFERENCED_PARAMETER(bErase);
 
-      //ASSERT(::IsWindow(GetHandle()));
-      //::InvalidateRect(GetHandle(), nullptr, bErase);
+   //   //ASSERT(::IsWindow(GetHandle()));
+   //   //::InvalidateRect(GetHandle(), nullptr, bErase);
 
-   }
+   //}
 
    bool primitive::has_pending_redraw_flags()
    {

@@ -3,7 +3,7 @@
 #include "drag_client.h"
 #include "drag.h"
 #include "acme/user/user/mouse.h"
-#include "acme/handler/item.h"
+#include "acme/user/user/item.h"
 
 
 namespace user
@@ -113,7 +113,7 @@ namespace user
 
             }
 
-            drag_on_button_down(pdrag, pitemButtonDown->m_pmouse);
+            drag_on_button_down(pdrag, user_item(pitemButtonDown).m_pmouse);
 
             return true;
 
@@ -211,7 +211,7 @@ namespace user
          if (::is_set(pdrag) && pitemButtonHover->m_eelement == pdrag->m_eelement)
          {
 
-            pdrag->m_pmouse = pitemButtonHover->m_pmouse;
+            pdrag->m_pmouse = user_item(pitemButtonHover).m_pmouse;
 
             drag_hover(pdrag);
 

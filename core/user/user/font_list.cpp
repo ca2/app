@@ -680,7 +680,7 @@ namespace user
    }
 
 
-   void font_list::_001EnsureVisible(index iItem)
+   void font_list::ensure_item_visible_by_index(index iItem)
    {
 
       if (m_pfontlist
@@ -697,7 +697,7 @@ namespace user
       else
       {
 
-         ::user::list_box::_001EnsureVisible(iItem);
+         ::user::list_box::ensure_item_visible_by_index(iItem);
 
       }
 

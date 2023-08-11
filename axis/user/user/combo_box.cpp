@@ -103,7 +103,7 @@ namespace user
       else
       {
 
-         _001GetListText(current_item()->m_iItem, strText);
+         _001GetListText(current_item()->item_index(), strText);
 
       }
 
@@ -505,7 +505,7 @@ namespace user
 
             auto pitem = __new(::item(e_element_drop_down));
 
-            pitem->m_rectangle = rectangleElement;
+            user_item(pitem).m_rectangle = rectangleElement;
 
             return pitem;
 
@@ -520,7 +520,7 @@ namespace user
 
          auto pitem = __new(::item(e_element_text));
 
-         pitem->m_rectangle = rectangleElement;
+         user_item(pitem).m_rectangle = rectangleElement;
 
          return pitem;
 

@@ -3,6 +3,7 @@
 
 
 #include <math.h>
+#include <limits>
 
 
 template < typename T >

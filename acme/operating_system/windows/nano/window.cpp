@@ -855,7 +855,7 @@ namespace windows
 
       ShowWindow(m_hwnd, SW_SHOW);
 
-      UpdateWindow(m_hwnd);
+      ::UpdateWindow(m_hwnd);
 
    }
 

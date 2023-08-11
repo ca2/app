@@ -11,9 +11,9 @@ enum ENUM_ID : ::uptr
    // here it is proper just no-argument updates
    ID_INITIAL_UPDATE = 0x4000,
    ID_PRE_CLOSE_DOCUMENT,
-   ID_NEW_DOCUMENT,
+   //ID_NEW_DOCUMENT,
    ID_CLOSE_DOCUMENT,
-   ID_OPEN_DOCUMENT,
+   //ID_OPEN_DOCUMENT,
    ID_SAVE_DOCUMENT,
    ID_EVENT,
    ID_UPDATE,
@@ -32,6 +32,7 @@ enum ENUM_ID : ::uptr
    ID_FINISH,
    ID_DIALOG_RESULT,
    ID_COMPLETE,
+   ID_INCOMING_DOCUMENT,
 
 
 };

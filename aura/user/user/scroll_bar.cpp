@@ -145,7 +145,7 @@ namespace user
    ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement)
    {
 
-      if ((m_pitemCurrent && m_pitemCurrent->m_eelement == eelement) || 
+      if ((m_pitemCurrent && m_pitemCurrent->m_eelement == eelement) ||
          (m_pitemHover && m_pitemHover->m_eelement == eelement))
       {
 

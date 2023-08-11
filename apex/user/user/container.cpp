@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   bool container::is_item_selected(const ::item* pitem)
+   bool container::is_item_selected(::item* pitem)
    {
 
       auto pitemSelected = selected_item();
@@ -77,8 +77,7 @@ namespace user
    }
 
 
-
-   bool container::is_item_hover(const ::item* pitem)
+   bool container::is_item_hover(::item* pitem)
    {
 
       auto pitemHover = hover_item();

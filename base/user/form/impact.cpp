@@ -69,7 +69,7 @@ namespace user
          ptopic->payload(ID_FORM) = this;
 
       }
-      else if (ptopic->m_atom == id_new_document)
+      else if (ptopic->m_atom == id_incoming_document)
       {
 
          auto strOpenOnCreate = m_strOpenOnCreate;

@@ -790,6 +790,14 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
 }
 
 
+//::user::item & nano_window::user_item(const ::item * pitem)
+//{
+//
+//   return m_useritemmap[pitem];
+//
+//}
+
+
 void nano_window::do_asynchronously()
 {
 

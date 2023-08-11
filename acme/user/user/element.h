@@ -102,7 +102,7 @@ namespace user
       ::item_pointer                               m_pitemPressed;
       ::item_array                                 m_itema;
       //map < ITEM, ::index >                        m_itemmap;
-      ::user::item_array                           m_useritema;
+      ::user::item_map                             m_useritemmap;
 
 
       element();

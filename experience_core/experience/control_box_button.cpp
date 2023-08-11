@@ -226,11 +226,13 @@ namespace experience_core
 
       __defer_construct_new(m_pitemClient);
 
-      __construct(m_pitemClient->m_ppath);
+      auto puseritem = user_item(m_pitemClient);
+
+      __construct(puseritem->m_ppath);
 
       m_pitemClient->m_eelement = e_element_client;
 
-      m_pitemClient->m_ppath->add_ellipse(ellipse);
+      puseritem->m_ppath->add_ellipse(ellipse);
 
    }
 

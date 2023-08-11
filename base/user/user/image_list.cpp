@@ -426,7 +426,9 @@ namespace user
 
          }
 
-         auto & rectangle = user_item(pitem).m_rectangle;
+         auto puseritem = user_item(pitem);
+
+         auto & rectangle = puseritem->m_rectangle;
 
          //bool bRectText = get_rect(itemText);
 
@@ -680,7 +682,7 @@ namespace user
 
          }
 
-         auto & useritem = user_item(pitem);
+         auto puseritem = user_item(pitem);
 
          if (x > left && x + m_size.cx() + m_iPad >= rectangleClient.width())
          {
@@ -691,14 +693,14 @@ namespace user
 
          }
 
-         useritem.m_rectangle.left = x;
-         useritem.m_rectangle.right = x + m_size.cx();
-         useritem.m_rectangle.top = y;
-         useritem.m_rectangle.bottom = y + m_size.cy();
+         puseritem->m_rectangle.left = x;
+         puseritem->m_rectangle.right = x + m_size.cx();
+         puseritem->m_rectangle.top = y;
+         puseritem->m_rectangle.bottom = y + m_size.cy();
 
-         x = useritem.m_rectangle.right + m_iPad;
+         x = puseritem->m_rectangle.right + m_iPad;
 
-         rectangleTotal.unite(rectangleTotal, useritem.m_rectangle);
+         rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle);
 
       }
 

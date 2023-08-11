@@ -2215,9 +2215,9 @@ namespace user
 
       //inline auto rectangle(::item * pitem) { get_rect((::item *) pitem); return pitem->m_rectangle; }
 
-      virtual ::user::item & add_user_item(::item * pitem);
+      virtual ::user::item * add_user_item(::item * pitem);
 
-      virtual ::user::item & _add_user_item(::item * pitem);
+      virtual ::user::item * _add_user_item(::item * pitem);
 
 //      virtual ::item_pointer add_user_item(::item * pitem);
 

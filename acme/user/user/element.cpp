@@ -2880,14 +2880,19 @@ namespace user
    }
 
 
-   ::item_pointer & element::default_set_item_at(::index iIndex, ::item * pitem)
+   void element::default_set_item_at(::index iIndex, ::item * pitem)
    {
+
+      if(iIndex < 0)
+      { 
+      
+         throw ::exception(error_index_out_of_bounds);
+      
+      }
 
       pitem->m_iItem = iIndex;
 
       m_itema.set_at_grow(iIndex, pitem);
-
-      return m_itema[iIndex];
 
    }
 
@@ -2902,17 +2907,17 @@ namespace user
    }
 
 
-   ::user::item & element::user_item_at(::index iIndex)
+   ::user::item * element::user_item_at(::index iIndex)
    {
 
       if (iIndex < 0 || iIndex >= m_itema.size())
       {
 
-         throw ::exception(::error_index_out_of_bounds);
+         return nullptr;
 
       }
 
-      return m_useritema.element_at_grow(iIndex);
+      return &m_useritema.element_at_grow(iIndex);
 
    }
 
@@ -2925,12 +2930,19 @@ namespace user
    }
 
 
-   ::user::item & element::user_item(const ::item * pitem)
+   ::user::item * element::user_item(const ::item * pitem)
    {
 
       auto iItem = item_index(pitem);
 
-      return m_useritema.element_at_grow(iItem);
+      if (iItem < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      return &m_useritema.element_at_grow(iItem);
 
       //for (auto &pitem: *m_puseritema)
       //{

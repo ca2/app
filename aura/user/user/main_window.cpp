@@ -70,9 +70,9 @@ namespace user
 
          auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
 
-         auto & useritem = add_user_item(pitemClose);
+         auto puseritem = add_user_item(pitemClose);
 
-         useritem.m_ezorder = e_zorder_front;
+         puseritem->m_ezorder = e_zorder_front;
 
       }
 
@@ -80,9 +80,9 @@ namespace user
 
          auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
 
-         auto & useritem = add_user_item(pitemMaximize);
+         auto puseritem = add_user_item(pitemMaximize);
 
-         useritem.m_ezorder = e_zorder_front;
+         puseritem->m_ezorder = e_zorder_front;
 
       }
 
@@ -90,9 +90,9 @@ namespace user
 
          auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
 
-         auto & useritem = add_user_item(pitemMinimize);
+         auto puseritem = add_user_item(pitemMinimize);
 
-         useritem.m_ezorder = e_zorder_front;
+         puseritem->m_ezorder = e_zorder_front;
 
       }
 

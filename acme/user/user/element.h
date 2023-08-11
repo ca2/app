@@ -154,15 +154,15 @@ namespace user
       
       virtual ::item * item_at(::index iIndex);
 
-      virtual ::item_pointer & default_set_item_at(::index iIndex, ::item * pitem);
+      virtual void default_set_item_at(::index iIndex, ::item * pitem);
 
       virtual ::item_pointer default_add_item(::item * pitem);
 
-      virtual ::user::item & user_item_at(::index iIndex);
+      virtual ::user::item * user_item_at(::index iIndex);
 
       virtual ::index item_index(const ::item * pitem);
 
-      virtual ::user::item & user_item(const ::item * pitem);
+      virtual ::user::item * user_item(const ::item * pitem);
       
       virtual ::index item_index_by_atom(const ::atom & atom) const;
 

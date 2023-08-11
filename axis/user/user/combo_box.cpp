@@ -505,7 +505,9 @@ namespace user
 
             auto pitem = __new(::item(e_element_drop_down));
 
-            user_item(pitem).m_rectangle = rectangleElement;
+            auto puseritem = user_item(pitem);
+            
+            puseritem->m_rectangle = rectangleElement;
 
             return pitem;
 
@@ -520,7 +522,9 @@ namespace user
 
          auto pitem = __new(::item(e_element_text));
 
-         user_item(pitem).m_rectangle = rectangleElement;
+         auto puseritem = user_item(pitem);
+            
+         puseritem->m_rectangle = rectangleElement;
 
          return pitem;
 

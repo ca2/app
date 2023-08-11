@@ -113,7 +113,9 @@ namespace user
 
             }
 
-            drag_on_button_down(pdrag, user_item(pitemButtonDown).m_pmouse);
+            auto puseritem = user_item(pitemButtonDown);
+
+            drag_on_button_down(pdrag, puseritem->m_pmouse);
 
             return true;
 
@@ -211,7 +213,9 @@ namespace user
          if (::is_set(pdrag) && pitemButtonHover->m_eelement == pdrag->m_eelement)
          {
 
-            pdrag->m_pmouse = user_item(pitemButtonHover).m_pmouse;
+            auto * puseritem = user_item(pitemButtonHover);
+
+            pdrag->m_pmouse = puseritem->m_pmouse;
 
             drag_hover(pdrag);
 

@@ -527,7 +527,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       ::pointer < ::user::tool_item > ptoolitem = item_at(i);
 
-      auto & useritem = user_item_at(i);
+      auto puseritem = user_item_at(i);
 
       if (ptoolitem->is_hidden())
       {
@@ -585,9 +585,9 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       }
 
-      useritem.m_rectangle.left = cur.x();
+      puseritem->m_rectangle.left = cur.x();
 
-      useritem.m_rectangle.right = (::i32) (cur.x() + buttonx);
+      puseritem->m_rectangle.right = (::i32) (cur.x() + buttonx);
 
       cur.x() += (::i32) buttonx; //  +sPress.cx();
 
@@ -601,9 +601,9 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
          for (int j = iRowStart; j <= i; j++)
          {
 
-            useritem.m_rectangle.top = sizeResult.cy();
+            puseritem->m_rectangle.top = sizeResult.cy();
 
-            useritem.m_rectangle.bottom = sizeResult.cy() + cur.y();
+            puseritem->m_rectangle.bottom = sizeResult.cy() + cur.y();
 
          }
 
@@ -649,11 +649,11 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       }
 
-      auto & useritemHere = user_item(ptoolitemHere);
+      auto puseritemHere = user_item(ptoolitemHere);
 
-      useritemHere.m_rectangle.top = sizeResult.cy();
+      puseritemHere->m_rectangle.top = sizeResult.cy();
 
-      useritemHere.m_rectangle.bottom = sizeResult.cy() + cur.y();
+      puseritemHere->m_rectangle.bottom = sizeResult.cy() + cur.y();
 
    }
 
@@ -675,7 +675,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, index 
    
    auto ptoolitem = tool_item_at(iItem);
    
-   auto & useritem = user_item_at(iItem);
+   auto puseritem = user_item_at(iItem);
 
    if (::is_null(ptoolitem) || ptoolitem->is_hidden())
    {
@@ -709,7 +709,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto ptoolitem = tool_item_at(iItem);
 
-   auto & useritem = user_item_at(iItem);
+   auto puseritem = user_item_at(iItem);
 
    if (::is_null(ptoolitem) || ptoolitem->is_hidden())
    {
@@ -1035,12 +1035,12 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    }
 
-   auto & useritem = user_item_at(iItem);
+   auto puseritem = user_item_at(iItem);
 
    if ((ptoolitem->m_estyle & e_tool_item_style_separator) != 0)
    {
 
-      rectangle = useritem.m_rectangle;
+      rectangle = puseritem->m_rectangle;
 
    }
    else
@@ -1050,7 +1050,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
       {
          case ::e_element_item:
 
-         rectangle = useritem.m_rectangle;
+         rectangle = puseritem->m_rectangle;
 
          break;
       case ::e_element_image:
@@ -1062,7 +1062,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
          }
 
-         rectangle = useritem.m_rectangle;
+         rectangle = puseritem->m_rectangle;
 
          rectangle.left += rectangleItemPad.left;
          rectangle.bottom -= rectangleItemPad.bottom;
@@ -1073,7 +1073,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
       case ::e_element_text:
       {
 
-         rectangle = useritem.m_rectangle;
+         rectangle = puseritem->m_rectangle;
 
          rectangle.left += rectangleItemPad.left;
 
@@ -1277,7 +1277,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                   
                   auto ptoolitemHere = tool_item_at(j);
 
-                  auto & useritemHere = user_item_at(j);
+                  auto puseritemHere = user_item_at(j);
 
                   if (ptoolitemHere->is_hidden())
                   {
@@ -1286,7 +1286,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
                   }
 
-                  iTotalX += useritemHere.m_rectangle.width() + get_item_spacing().cx();
+                  iTotalX += puseritemHere->m_rectangle.width() + get_item_spacing().cx();
 
                }
 
@@ -1297,7 +1297,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                   
                   auto ptoolitemHere = tool_item_at(j);
 
-                  auto & useritemHere = user_item_at(j);
+                  auto puseritemHere = user_item_at(j);
 
                   if (ptoolitemHere->is_hidden())
                   {
@@ -1306,7 +1306,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
                   }
 
-                  useritemHere.m_rectangle.offset(offsetx, 0);
+                  puseritemHere->m_rectangle.offset(offsetx, 0);
 
                }
 
@@ -1327,7 +1327,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
       
       auto ptoolitem = tool_item_at(iItem);
 
-      auto & useritem = user_item_at(iItem);
+      auto puseritem = user_item_at(iItem);
       
       if(ptoolitem->is_hidden())
       {
@@ -1341,13 +1341,13 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
          
          bFirstToolItemRectangle = false;
          
-         rectangleSize = useritem.m_rectangle;
+         rectangleSize = puseritem->m_rectangle;
          
       }
       else
       {
          
-         rectangleSize.unite(useritem.m_rectangle);
+         rectangleSize.unite(puseritem->m_rectangle);
          
       }
       

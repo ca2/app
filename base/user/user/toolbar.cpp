@@ -1865,7 +1865,9 @@ namespace user
 
       }
 
-      ::status < ::rectangle_i32 > statusrectangle = user_item_at(iItem).m_rectangle;
+      auto puseritem = user_item_at(iItem);
+
+      ::status < ::rectangle_i32 > statusrectangle = puseritem->m_rectangle;
 
       statusrectangle.m_estatus = ::success;
 
@@ -1977,7 +1979,7 @@ namespace user
 
             ptoolitem->m_atom = pattributeId->as_string();
 
-            auto & useritem = user_item_at(iItem);
+            auto puseritem = user_item_at(iItem);
 
             ptoolitem->m_str = pchild->get_value();
 

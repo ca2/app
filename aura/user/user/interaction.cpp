@@ -72,15 +72,22 @@
 #define DEBUG_LEVEL 1
 
 
-CLASS_DECL_AURA ::rectangle_i32 bounding_box(const ::user::item & item)
+CLASS_DECL_AURA ::rectangle_i32 bounding_box(const ::user::item * pitem)
 {
 
-   if (::is_set(item.m_ppath))
+   if (::is_null(pitem))
+   {
+
+      return {};
+
+   }
+
+   if (::is_set(pitem->m_ppath))
    {
 
       ::rectangle_f64 rectangleBounding;
 
-      item.m_ppath->get_bounding_box(rectangleBounding);
+      pitem->m_ppath->get_bounding_box(rectangleBounding);
 
       return rectangleBounding;
 
@@ -88,10 +95,9 @@ CLASS_DECL_AURA ::rectangle_i32 bounding_box(const ::user::item & item)
    else
    {
 
-      return item.m_rectangle;
+      return pitem->m_rectangle;
 
    }
-
 
 }
 
@@ -1909,9 +1915,9 @@ namespace user
 
       }
 
-      auto & useritem = user_item(pitem);
+      auto * puseritem = user_item(pitem);
 
-      if (useritem.m_rectangle.is_empty() && useritem.m_ppath.is_null())
+      if (puseritem->m_rectangle.is_empty() && puseritem->m_ppath.is_null())
       {
 
          return false;
@@ -4607,21 +4613,21 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto & useritemHover = user_item(m_pitemHover);
+            auto puseritemHover = user_item(m_pitemHover);
 
-            if (m_pitemHover)
+            if (puseritemHover)
             {
 
-               useritemHover.set_drawn();
+               puseritemHover->set_drawn();
 
             }
 
-            auto & useritemCurrent = user_item(m_pitemCurrent);
+            auto puseritemCurrent = user_item(m_pitemCurrent);
 
-            if (m_pitemCurrent)
+            if (puseritemCurrent)
             {
 
-               useritemCurrent.set_drawn();
+               puseritemCurrent->set_drawn();
 
             }
 
@@ -11656,19 +11662,19 @@ return strClass;
       for (auto & pitem : m_itema)
       {
 
-         auto & useritem = user_item(pitem);
+         auto puseritem = user_item(pitem);
 
          if (pitem && pitem->m_eelement != ::e_element_item)
          {
 
-            useritem.m_ppath.release();
+            puseritem->m_ppath.release();
 
             if (pitem->m_eelement != e_element_item)
             {
 
                auto rectangle = this->rectangle(pitem->m_eelement);
 
-               useritem.m_rectangle = rectangle;
+               puseritem->m_rectangle = rectangle;
 
             }
 
@@ -20565,7 +20571,9 @@ return strClass;
 
                information("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
 
-               ::rectangle_i32 rectangleBounding = ::bounding_box(user_item(pitemOldHover));
+               auto puseritem = user_item(pitemOldHover);
+
+               ::rectangle_i32 rectangleBounding = ::bounding_box(puseritem);
 
                rectanglea.add(rectangleBounding);
 
@@ -20731,17 +20739,17 @@ return strClass;
       if (::is_item_set(pitemOldHover))
       {
 
-         auto & useritem = user_item(pitemOldHover);
+         auto * puseritem = user_item(pitemOldHover);
 
-         if (useritem.m_rectangle.is_set())
+         if (puseritem->m_rectangle.is_set())
          {
 
-            set_need_redraw({useritem.m_rectangle});
+            set_need_redraw({puseritem->m_rectangle});
 
             post_redraw();
 
          }
-         else if (useritem.m_ppath.is_set())
+         else if (puseritem->m_ppath.is_set())
          {
 
             set_need_redraw();
@@ -20766,11 +20774,11 @@ return strClass;
 
       auto pitem = hit_test(pointClient, ezorder);
       
-      auto & useritem = user_item(pitem);
+      auto * puseritem = user_item(pitem);
 
-      useritem.m_pointScreen = pmouse->m_point;
+      puseritem->m_pointScreen = pmouse->m_point;
 
-      useritem.m_pmouse = pmouse;
+      puseritem->m_pmouse = pmouse;
 
       return pitem;
 
@@ -20782,9 +20790,9 @@ return strClass;
 
       auto pitem = on_hit_test(pointClient, ezorder);
 
-      auto & useritem = user_item(pitem);
+      auto * puseritem = user_item(pitem);
 
-      useritem.m_pointClient = pointClient;
+      puseritem->m_pointClient = pointClient;
 
       return pitem;
 
@@ -20844,12 +20852,12 @@ return strClass;
    bool interaction::item_contains(::item *pitem, const ::point_i32 &point)
    {
 
-      auto & useritem = user_item(pitem);
+      auto * puseritem = user_item(pitem);
 
-      if (useritem.m_ppath)
+      if (puseritem->m_ppath)
       {
 
-         auto ppath = useritem.m_ppath;
+         auto ppath = puseritem->m_ppath;
 
          auto pgraphics = get_internal_draw2d_graphics();
 
@@ -20864,7 +20872,7 @@ return strClass;
       else
       {
 
-         if (useritem.m_rectangle.contains(point))
+         if (puseritem->m_rectangle.contains(point))
          {
 
             return true;
@@ -20897,9 +20905,9 @@ return strClass;
 
          }
 
-         auto & useritem = user_item(pitem);
+         auto * puseritem = user_item(pitem);
 
-         if (!(useritem.m_ezorder & ezorder))
+         if (!(puseritem->m_ezorder & ezorder))
          {
 
             continue;
@@ -20934,7 +20942,9 @@ return strClass;
 
          auto pitemHitTest = __new(::item(e_element_resize));
 
-         user_item(pitemHitTest).m_rectangle = rectangleResize;
+         auto puseritem = user_item(pitemHitTest);
+         
+         puseritem->m_rectangle = rectangleResize;
 
          return pitemHitTest;
 
@@ -20981,7 +20991,9 @@ return strClass;
 
             auto pitemHitTest = __new(::item(e_element_client));
 
-            user_item(pitemHitTest).m_rectangle = rectangleClient;
+            auto puseritem = user_item(pitemHitTest);
+            
+            puseritem->m_rectangle = rectangleClient;
 
             return pitemHitTest;
 
@@ -21198,19 +21210,21 @@ return strClass;
    }
 
 
-   ::user::item & interaction::_add_user_item(::item * pitem)
+   ::user::item * interaction::_add_user_item(::item * pitem)
    {
 
       auto iIndex = m_itema.add(pitem);
 
       //m_itemmap[*pitem] = iIndex;
 
-      return user_item(pitem);
+      auto puseritem = user_item(pitem);
+
+      return puseritem;
 
    }
 
 
-   ::user::item & interaction::add_user_item(::item *pitem)
+   ::user::item * interaction::add_user_item(::item *pitem)
    {
 
       if (is_sandboxed())
@@ -21219,19 +21233,19 @@ return strClass;
          if (pitem->m_atom == ::id_close_app)
          {
 
-            return user_item(nullptr);
+            return nullptr;
 
          }
          else if (pitem->m_atom == ::id_maximize)
          {
 
-            return user_item(nullptr);
+            return nullptr;
 
          }
          else if (pitem->m_atom == ::id_minimize)
          {
 
-            return user_item(nullptr);
+            return nullptr;
 
          }
 
@@ -21250,7 +21264,7 @@ return strClass;
       for (auto &pitem: m_itema)
       {
 
-         auto & useritem = user_item(pitem);
+         auto puseritem = user_item(pitem);
 
          ::user::e_state estate = ::user::e_state_none;
 
@@ -21261,7 +21275,7 @@ return strClass;
 
          }
 
-         _001DrawItem(pgraphics, useritem, estate);
+         _001DrawItem(pgraphics, *puseritem, estate);
 
          iCount++;
 

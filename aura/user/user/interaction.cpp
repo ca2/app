@@ -20959,13 +20959,13 @@ return strClass;
    ::item_pointer interaction::on_client_area_hit_test(const ::point_i32 &point, e_zorder ezorder)
    {
 
-      if (m_puseritemClient)
+      if (m_pitemClient)
       {
 
-         if (item_contains(m_puseritemClient, point))
+         if (item_contains(m_pitemClient, point))
          {
 
-            return m_puseritemClient;
+            return m_pitemClient;
 
          }
 

@@ -255,7 +255,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 
    //   SetFont(pdraw2d->fonts().GetMenuFont());
 
-   UpdateWindow();
+   //UpdateWindow();
 
 }
 

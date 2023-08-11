@@ -11145,19 +11145,19 @@ return strClass;
    }
 
 
-   void interaction::UpdateWindow()
-   {
+   //void interaction::UpdateWindow()
+   //{
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_pprimitiveimpl->UpdateWindow();
+   //   m_pprimitiveimpl->UpdateWindow();
 
-   }
+   //}
 
 
    void interaction::register_drop_target()
@@ -11175,126 +11175,126 @@ return strClass;
    }
 
 
-   void interaction::SetRedraw(bool bRedraw)
-   {
+   //void interaction::SetRedraw(bool bRedraw)
+   //{
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_pprimitiveimpl->SetRedraw(bRedraw);
+   //   m_pprimitiveimpl->SetRedraw(bRedraw);
 
-   }
-
-
-   bool interaction::GetUpdateRect(::rectangle_i32 *prectangle, bool bErase)
-   {
-
-      //if (m_pprimitiveimpl == nullptr)
-      //{
-
-      //   return false;
-
-      //}
-
-      //return m_pprimitiveimpl->GetUpdateRect(prectangle, bErase);
-
-      return false;
-
-   }
+   //}
 
 
-   i32 interaction::GetUpdateRgn(::draw2d::region *pRgn, bool bErase)
-   {
+   //bool interaction::GetUpdateRect(::rectangle_i32 *prectangle, bool bErase)
+   //{
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   //   //if (m_pprimitiveimpl == nullptr)
+   //   //{
 
-         return 0;
+   //   //   return false;
 
-      }
+   //   //}
 
-      return m_pprimitiveimpl->GetUpdateRgn(pRgn, bErase);
+   //   //return m_pprimitiveimpl->GetUpdateRect(prectangle, bErase);
 
-   }
+   //   return false;
 
-
-   void interaction::Invalidate(bool bErase)
-   {
-
-      if (m_pprimitiveimpl == nullptr)
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->Invalidate(bErase);
-
-   }
+   //}
 
 
-   void interaction::InvalidateRect(const ::rectangle_i32 &rectangle, bool bErase)
-   {
+   //i32 interaction::GetUpdateRgn(::draw2d::region *pRgn, bool bErase)
+   //{
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
 
-         return;
+   //      return 0;
 
-      }
+   //   }
 
-      m_pprimitiveimpl->InvalidateRect(rectangle, bErase);
+   //   return m_pprimitiveimpl->GetUpdateRgn(pRgn, bErase);
 
-   }
-
-
-   void interaction::InvalidateRgn(::draw2d::region *pRgn, bool bErase)
-   {
-
-      if (m_pprimitiveimpl == nullptr)
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->InvalidateRgn(pRgn, bErase);
-
-   }
+   //}
 
 
-   void interaction::ValidateRect(const ::rectangle_i32 &rectangle)
-   {
+   //void interaction::Invalidate(bool bErase)
+   //{
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_pprimitiveimpl->ValidateRect(rectangle);
+   //   m_pprimitiveimpl->Invalidate(bErase);
 
-   }
+   //}
 
 
-   void interaction::ValidateRgn(::draw2d::region *pRgn)
-   {
+   //void interaction::InvalidateRect(const ::rectangle_i32 &rectangle, bool bErase)
+   //{
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_pprimitiveimpl->ValidateRgn(pRgn);
+   //   m_pprimitiveimpl->InvalidateRect(rectangle, bErase);
 
-   }
+   //}
+
+
+   //void interaction::InvalidateRgn(::draw2d::region *pRgn, bool bErase)
+   //{
+
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   m_pprimitiveimpl->InvalidateRgn(pRgn, bErase);
+
+   //}
+
+
+   //void interaction::ValidateRect(const ::rectangle_i32 &rectangle)
+   //{
+
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   m_pprimitiveimpl->ValidateRect(rectangle);
+
+   //}
+
+
+   //void interaction::ValidateRgn(::draw2d::region *pRgn)
+   //{
+
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   m_pprimitiveimpl->ValidateRgn(pRgn);
+
+   //}
 
 
    void interaction::on_start_layout_experience(enum_layout_experience elayoutexperience)
@@ -11999,16 +11999,16 @@ return strClass;
    }
 
 
-   void interaction::ShowOwnedPopups(bool bShow)
-   {
-      if (m_pprimitiveimpl == nullptr)
-         return;
-      else
-      {
-         m_pprimitiveimpl->ShowOwnedPopups(bShow);
+   //void interaction::ShowOwnedPopups(bool bShow)
+   //{
+   //   if (m_pprimitiveimpl == nullptr)
+   //      return;
+   //   else
+   //   {
+   //      m_pprimitiveimpl->ShowOwnedPopups(bShow);
 
-      }
-   }
+   //   }
+   //}
 
 
    void *interaction::get_os_data()

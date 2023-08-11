@@ -306,7 +306,7 @@ namespace user
 
       // recalculate the non-client region
       //set_window_position(zorder_none, 0, 0, 0, 0, SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
-      Invalidate();   // just to be nice if called when toolbar is visible
+      //Invalidate();   // just to be nice if called when toolbar is visible
    }
 
 
@@ -1502,7 +1502,7 @@ namespace user
          }
 
          // Then redraw the buttons
-         Invalidate();
+         // Invalidate();
       }
 #else
       throw ::exception(todo);

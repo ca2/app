@@ -2250,23 +2250,23 @@ namespace user
    }
 
 
-   void primitive::SetRedraw(bool bRedraw)
-   {
+   //void primitive::SetRedraw(bool bRedraw)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
-   bool primitive::GetUpdateRect(::rectangle_i32 * prectangle,bool bErase)
+   //bool primitive::GetUpdateRect(::rectangle_i32 * prectangle,bool bErase)
 
-   {
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //i32 primitive::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)

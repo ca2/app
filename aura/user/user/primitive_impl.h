@@ -173,8 +173,8 @@ namespace user
       //virtual strsize get_window_text_length();
 
 
-      virtual void UpdateWindow();
-      virtual void SetRedraw(bool bRedraw = true);
+      //virtual void UpdateWindow();
+      //virtual void SetRedraw(bool bRedraw = true);
 
 
       //virtual void prodevian_redraw(bool bUpdateBuffer);
@@ -265,15 +265,15 @@ namespace user
       virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
-      virtual void Invalidate(bool bErase = true);
-      virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
+      //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      //virtual void Invalidate(bool bErase = true);
+      //virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      virtual void ValidateRect(const ::rectangle_i32& rectangle);
+      //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
+      //virtual void ValidateRect(const ::rectangle_i32& rectangle);
 
-      virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual void ShowOwnedPopups(bool bShow = true);
+      //virtual void ValidateRgn(::draw2d::region* pRgn);
+      //virtual void ShowOwnedPopups(bool bShow = true);
 
 
       virtual ::graphics::graphics* get_window_graphics();

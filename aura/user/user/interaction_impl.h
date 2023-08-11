@@ -472,21 +472,21 @@ namespace user
       virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
       virtual void PrintClient(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
 
-      void UpdateWindow() override;
-      void SetRedraw(bool bRedraw = true) override;
-      //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
+      //void UpdateWindow() override;
+      //void SetRedraw(bool bRedraw = true) override;
+      ////virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
-      //i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
-      virtual void Invalidate(bool bErase = true) override;
-      void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
+      ////i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
+      //virtual void Invalidate(bool bErase = true) override;
+      //void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
 
-      void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true) override;
-      void ValidateRect(const ::rectangle_i32 & rectangle) override;
+      //void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true) override;
+      //void ValidateRect(const ::rectangle_i32 & rectangle) override;
 
-      void ValidateRgn(::draw2d::region* pRgn) override;
-      //virtual bool display(::e_display edisplay) override;
-      //virtual bool _is_window_visible() override;
-      void ShowOwnedPopups(bool bShow = true) override;
+      //void ValidateRgn(::draw2d::region* pRgn) override;
+      ////virtual bool display(::e_display edisplay) override;
+      ////virtual bool _is_window_visible() override;
+      //void ShowOwnedPopups(bool bShow = true) override;
 
       //virtual ::pointer<::draw2d::graphics>GetDCEx(::draw2d::region* prgnClip,u32 flags);
       virtual void LockWindowUpdate();

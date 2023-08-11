@@ -108,8 +108,8 @@ namespace user
             {
                continue;
             }
-            pointer < T > point = m_impacta[index].cast < T > ();
-            if (point.is_set())
+            auto p = m_impacta[index].cast < T > ();
+            if (p)
                count++;
          }
          return count;
@@ -140,15 +140,15 @@ namespace user
 
             }
 
-            pointer < T > point = m_impacta[index].cast < T > ();
+            auot p = m_impacta[index].cast < T > ();
 
-            if (point.is_set())
+            if (p)
             {
 
                if (indexFind == count)
                {
 
-                  return point;
+                  return p;
 
                }
                else
@@ -183,13 +183,17 @@ namespace user
                continue;
             }
 
-            pointer < T > point = m_impacta[index].cast < T >();
+            auto p = m_impacta[index].cast < T >();
 
-            if(point.is_set())
+            if(p)
             {
 
-               if(atom == point->m_atom)
-                  return point;
+               if (atom == p->m_atom)
+               {
+
+                  return p;
+
+               }
                else
                   count++;
 

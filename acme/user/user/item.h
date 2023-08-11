@@ -605,6 +605,8 @@ namespace user
    //using item_pointer = ::pointer < ::user::item >;
    using item_array = ::array < item >;
 
+   using item_map = map < const ::item *, item >;
+
 } // namespace user
 
 

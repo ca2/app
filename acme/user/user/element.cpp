@@ -2910,14 +2910,16 @@ namespace user
    ::user::item * element::user_item_at(::index iIndex)
    {
 
-      if (iIndex < 0 || iIndex >= m_itema.size())
+      auto pitem = item_at(iIndex);
+
+      if (::is_null(pitem))
       {
 
          return nullptr;
 
       }
 
-      return &m_useritema.element_at_grow(iIndex);
+      return &m_useritemmap[pitem];
 
    }
 
@@ -2933,16 +2935,7 @@ namespace user
    ::user::item * element::user_item(const ::item * pitem)
    {
 
-      auto iItem = item_index(pitem);
-
-      if (iItem < 0)
-      {
-
-         return nullptr;
-
-      }
-
-      return &m_useritema.element_at_grow(iItem);
+      return &m_useritemmap[pitem];
 
       //for (auto &pitem: *m_puseritema)
       //{

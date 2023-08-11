@@ -140,7 +140,7 @@ namespace user
 
             }
 
-            auot p = m_impacta[index].cast < T > ();
+            auto p = m_impacta[index].cast < T > ();
 
             if (p)
             {

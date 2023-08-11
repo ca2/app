@@ -41,9 +41,9 @@ namespace filemanager
 
       m_bRecursive = bRecursive;
 
-      _001UpdateColumns();
+      set_pending_column_update();
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       m_pfolderlistdata = __create_new < folder_list_data > ();
 
@@ -51,12 +51,12 @@ namespace filemanager
 
       set_data_interface(m_pfolderlistdata);
 
-      _001OnUpdateItemCount();
+      update_impact();
 
    }
 
 
-   void folder_list_impact::_001InsertColumns()
+   void folder_list_impact::on_insert_columns()
    {
 
       {
@@ -108,7 +108,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       return true;
 
@@ -134,7 +134,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       return true;
 
@@ -163,7 +163,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       return true;
 

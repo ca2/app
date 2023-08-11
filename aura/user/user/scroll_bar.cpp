@@ -145,7 +145,7 @@ namespace user
    ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement)
    {
 
-      if ((m_pitemCurrent && m_pitemCurrent->m_eelement == eelement) || 
+      if ((m_pitemCurrent && m_pitemCurrent->m_eelement == eelement) ||
          (m_pitemHover && m_pitemHover->m_eelement == eelement))
       {
 
@@ -249,61 +249,49 @@ namespace user
 
       //try
       //{
-      //   
-      //   ::rectangle_i32 rectangleClip;
-
-      //   ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
-
-      //   ::rectangle_i32 rectangleClient;
-
-      //   bool bFirst = true;
-
-      //   if (pdrawcontext != nullptr)
-      //   {
-
-      //      client_rectangle(rectangleClient);
-
-      //      rectangleClient.bottom++;
-      //      rectangleClient.right++;
-
-      //      rectangleClip = rectangleClient;
-
-      //      bFirst = false;
-
-      //   }
 
       //   ::user::interaction * pinteraction = this;
 
-      //   ::rectangle_i32 rectangleFocus;
-
-      //   index i = 0;
-
-      //   while (pinteraction != nullptr)
+      //   if (!m_bClipRectangle)
       //   {
 
-      //      if (i != 1)
+      //      ::rectangle_i32 rectangleClient;
+
+      //      ::index i = 0;
+
+      //      while (pinteraction != nullptr)
       //      {
 
-      //         pinteraction->window_rectangle(rectangleClient, e_layout_design);
+      //         rectangleClient = pinteraction->client_rectangle();
 
-      //         pinteraction->client_rectangle(rectangleFocus);
+      //         pinteraction->client_to_host()(rectangleClient);
 
-      //         rectangleFocus.offset(rectangleClient.top_left());
+      //         host_to_client()(rectangleClient);
 
-      //         screen_to_client(rectangleFocus, e_layout_design);
+      //         if (i == 0)
+      //         {
 
-      //         rectangleFocus.bottom++;
-      //         rectangleFocus.right++;
+      //            m_rectangleClip = rectangleClient;
 
-      //         pgraphics->intersect_clip(rectangleFocus);
+      //         }
+      //         else
+      //         {
+
+      //            m_rectangleClip.intersect(m_rectangleClip, rectangleClient);
+
+      //         }
+
+      //         pinteraction = pinteraction->get_parent();
+
+      //         i++;
 
       //      }
 
-      //      i++;
-
-      //      pinteraction = pinteraction->get_parent();
+      //      m_bClipRectangle = true;
 
       //   }
+
+      //   pgraphics->intersect_clip(m_rectangleClip);
 
       //}
       //catch (...)
@@ -314,6 +302,7 @@ namespace user
       //}
 
    }
+
 
 
 } // namespace user

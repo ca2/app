@@ -79,11 +79,11 @@ namespace user
 
       ::item_pointer current_item() override;
 
-      index_array _001GetSelection();
+      index_array get_selection();
 
       void set_current_item(index iFind, const ::action_context & action_context);
 
-      void _001SetSelection(const index_array & ia, const ::action_context & action_context);
+      void set_selection(const index_array & ia, const ::action_context & action_context);
 
 
    };

@@ -6,9 +6,9 @@
 #include "acme/_operating_system.h"
 #define GLAD_GLAPI_EXPORT
 #include "glad.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glext.h>
+//#include <GL/gl.h>
+//#include <GL/glu.h>
+//#include <GL/glext.h>
 #ifdef LINUX
 #include <GL/glx.h>
 #endif

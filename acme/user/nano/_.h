@@ -10,6 +10,8 @@ namespace nano
 
    class display;
 
+   class http;
+
 
 } // namespace nano
 

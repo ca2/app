@@ -304,7 +304,7 @@ list(APPEND library_source
    #platform/cregexp_util.cpp
    platform/geo_department.cpp
    platform/geo_department.h
-   platform/muldiv64.cpp
+   #platform/muldiv64.cpp
    platform/openweather_city.h
    platform/session.cpp
    platform/session.h
@@ -376,6 +376,11 @@ list(APPEND library_references
    aqua
    aura)
 
+if(NOT ${HAS_SYSTEM_UNAC})
+list(APPEND library_references
+        unac)
+endif ()
+
 
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
@@ -399,7 +404,7 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 endif ()
 
 
-set_target_properties(axis PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
@@ -417,10 +422,7 @@ if (MSVC)
 elseif (${LINUX} OR ${FREEBSD})
 
 
-   if (${FREEBSD})
-      list(APPEND library_references
-         unac)
-   else ()
+   if (${HAS_SYSTEM_UNAC})
       pkg_check_modules(PKGCONFIG unac)
    endif ()
    #endif()
@@ -450,7 +452,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(axis PRIVATE _AXIS_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
 

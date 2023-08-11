@@ -121,9 +121,6 @@
     <ClCompile Include="platform\geo_department.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\muldiv64.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\session.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>

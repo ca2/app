@@ -16,9 +16,9 @@ namespace user
    tool_item::tool_item()
    {
       
-      m_ptoolitem                   = this;
+      //m_ptoolitem                   = this;
       m_eitem                       = e_item_tool;
-      m_eelement                    = e_element_item;
+//      m_eelement                    = e_element_item;
       m_iImage                      = -1;
       m_estate                      = e_tool_item_state_none;
       m_estyle                      = e_tool_item_style_none;

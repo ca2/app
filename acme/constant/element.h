@@ -85,6 +85,7 @@ enum enum_element : ::i64
    e_element_resize_bottom_left,
    e_element_resize_bottom_right,
    e_element_resize_last = e_element_resize_bottom_right,
+   e_element_user_interaction,
 
 
    //e_element_bar_drag_scroll_horizontal,

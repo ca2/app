@@ -1,0 +1,10 @@
+//
+//  machine.xcconfig
+//  acme_macos
+//
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/05/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "../../../operating_system/operating_system-macos/release.xcconfig"

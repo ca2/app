@@ -88,7 +88,7 @@ void simple_list_data::set_item_text(::user::mesh * pmesh,index iItem,index iSub
 
    set_item_text(iItem,iSubItem,pcsz);
 
-   pmesh->_001OnUpdateItemCount();
+   pmesh->update_impact();
 
 }
 
@@ -127,7 +127,8 @@ void simple_list_data::set_column_data(::user::mesh * pmesh,string_array & stra,
          m_array[iSubItem]->set_size(stra.get_count());
       }
    }
-   pmesh->_001OnUpdateItemCount();
+
+   pmesh->update_impact();
 
 }
 

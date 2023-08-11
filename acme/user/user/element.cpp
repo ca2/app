@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
+#include "item.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/platform/node.h"
@@ -226,24 +227,24 @@ namespace user
    //}
 
 
-   void element::UpdateWindow()
-   {
+   //void element::UpdateWindow()
+   //{
 
-      //ASSERT(::IsWindow(GetHandle()));
-      //::UpdateWindow(GetHandle());
+   //   //ASSERT(::IsWindow(GetHandle()));
+   //   //::UpdateWindow(GetHandle());
 
-   }
+   //}
 
 
-   void element::Invalidate(bool bErase)
-   {
+   //void element::Invalidate(bool bErase)
+   //{
 
-      UNREFERENCED_PARAMETER(bErase);
+   //   UNREFERENCED_PARAMETER(bErase);
 
-      //ASSERT(::IsWindow(GetHandle()));
-      //::InvalidateRect(GetHandle(), nullptr, bErase);
+   //   //ASSERT(::IsWindow(GetHandle()));
+   //   //::InvalidateRect(GetHandle(), nullptr, bErase);
 
-   }
+   //}
 
    bool element::has_pending_redraw_flags()
    {
@@ -2105,23 +2106,23 @@ namespace user
    }
 
 
-   void element::SetRedraw(bool bRedraw)
-   {
+   //void element::SetRedraw(bool bRedraw)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
-   bool element::GetUpdateRect(::rectangle_i32 * prectangle, bool bErase)
+   //bool element::GetUpdateRect(::rectangle_i32 * prectangle, bool bErase)
 
-   {
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //i32 element::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
@@ -2856,20 +2857,135 @@ namespace user
    }
 
 
+   ::count element::item_count() const
+   {
+
+      return m_itema.count();
+
+   }
+
+
+   ::item * element::item_at(::index iIndex)
+   {
+
+      if (iIndex < 0 || iIndex >= m_itema.size())
+      {
+
+         throw ::exception(::error_index_out_of_bounds);
+
+      }
+
+      return m_itema[iIndex];
+
+   }
+
+
+   void element::default_set_item_at(::index iIndex, ::item * pitem)
+   {
+
+      if(iIndex < 0)
+      { 
+      
+         throw ::exception(error_index_out_of_bounds);
+      
+      }
+
+      pitem->m_iItem = iIndex;
+
+      m_itema.set_at_grow(iIndex, pitem);
+
+   }
+
+
+   ::item_pointer element::default_add_item(::item * pitem)
+   {
+
+      pitem->m_iItem = m_itema.add(pitem);
+
+      return pitem;
+
+   }
+
+
+   ::user::item * element::user_item_at(::index iIndex)
+   {
+
+      if (iIndex < 0 || iIndex >= m_itema.size())
+      {
+
+         return nullptr;
+
+      }
+
+      return &m_useritema.element_at_grow(iIndex);
+
+   }
+
+
+   ::index element::item_index(const ::item * pitem)
+   {
+
+      return m_itema.find_first(pitem);
+
+   }
+
+
+   ::user::item * element::user_item(const ::item * pitem)
+   {
+
+      auto iItem = item_index(pitem);
+
+      if (iItem < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      return &m_useritema.element_at_grow(iItem);
+
+      //for (auto &pitem: *m_puseritema)
+      //{
+
+      //   if (pitem->m_pitem == useritem.m_pitem)
+      //   {
+
+      //      return pitem;
+
+      //   }
+
+      //}
+
+      //return nullptr;
+
+   }
+
+
    ::index element::item_index_by_atom(const ::atom & atom) const
    {
 
       auto iIndex = atom.as_index();
 
-      if (!m_pitema->is_index_ok(iIndex))
+      if(!m_itema.is_index_ok(iIndex))
       {
 
-         iIndex = m_pitema->predicate_find_first([&atom](auto & pitem)
+         iIndex = -1;
+
+         for(::index iItem = 0; iItem < m_itema.size(); iItem++)
          {
 
-            return pitem->m_atom == atom;
+            auto pitem = m_itema[iItem];
 
-         });
+            if (pitem->m_atom == atom)
+            {
+
+               iIndex = iItem;
+
+               break;
+
+            }
+
+         }
 
          if (iIndex < 0)
          {
@@ -4755,7 +4871,6 @@ namespace user
    }
 
 
-
    void element::pick_single_folder(const ::function < void(const ::file::path &) > & function)
    {
 
@@ -4782,6 +4897,87 @@ namespace user
       };
 
       pfiledialog->call_run();
+
+   }
+
+
+   bool element::update_impact()
+   {
+
+      try
+      {
+
+         if (!on_before_impact_update())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      try
+      {
+
+         if (!on_impact_update())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      try
+      {
+
+         on_after_impact_update();
+
+         return true;
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      return false;
+
+   }
+
+
+   bool element::on_impact_update()
+   {
+
+      return true;
+
+   }
+
+
+   bool element::on_before_impact_update()
+   {
+      
+      return true;
+
+   }
+   
+   
+   void element::on_after_impact_update()
+   {
+
 
    }
 

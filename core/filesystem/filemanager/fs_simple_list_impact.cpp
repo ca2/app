@@ -117,7 +117,7 @@ namespace filemanager
          }
 
 
-         void list_impact::_001InsertColumns()
+         void list_impact::on_insert_columns()
          {
 
             {
@@ -647,7 +647,7 @@ namespace filemanager
 
                m_puserlistcache->_001Invalidate(this);
 
-               _001OnUpdateItemCount();
+               update_impact();
 
                set_need_layout();
 
@@ -675,7 +675,7 @@ namespace filemanager
             else if(pusermessage->m_wparam == 2)
             {
                
-               _001OnUpdateItemCount();
+               update_impact();
 
             }
             else if(pusermessage->m_wparam == 3)
@@ -751,7 +751,7 @@ namespace filemanager
 
             m_itema.erase_all();
 
-            _001OnUpdateItemCount(0);
+            update_impact();
 
             auto pxmldocument = __create_new < xml::document >();
 
@@ -837,9 +837,10 @@ namespace filemanager
                }
             }
 
+            update_impact();
 
-            _001OnUpdateItemCount();
             iNode++;
+
          }
 
 

@@ -108,7 +108,7 @@ namespace filemanager
    }
 
 
-   void folder_list::_001InsertColumns()
+   void folder_list::on_insert_columns()
    {
 
       auto pcolumn = new_list_column();
@@ -161,7 +161,7 @@ namespace filemanager
 
       }
 
-      _001OnUpdateItemCount();
+      update_impact();
 
       auto pcolumn = m_pcolumna->get_by_subitem(1);
 
@@ -433,7 +433,7 @@ namespace filemanager
 
          }
 
-         _001UpdateColumns();
+         set_pending_column_update();
 
       }
 

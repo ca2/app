@@ -1195,7 +1195,7 @@ namespace user
 
 
          //#ifndef LINUX
-         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_reposition);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
          //#endif
 
@@ -3818,16 +3818,16 @@ namespace user
       throw ::interface_only();
    }
 
-   void interaction_impl::UpdateWindow()
-   {
-      throw ::interface_only();
-   }
+   //void interaction_impl::UpdateWindow()
+   //{
+   //   throw ::interface_only();
+   //}
 
-   void interaction_impl::SetRedraw(bool bRedraw)
-   {
-      UNREFERENCED_PARAMETER(bRedraw);
-      throw ::interface_only();
-   }
+   //void interaction_impl::SetRedraw(bool bRedraw)
+   //{
+   //   UNREFERENCED_PARAMETER(bRedraw);
+   //   throw ::interface_only();
+   //}
 
    //void interaction_impl::GetUpdateRect(::rectangle_i32 * prectangle,bool bErase)
 
@@ -3850,70 +3850,70 @@ namespace user
    //}
 
 
-   void interaction_impl::Invalidate(bool bErase)
-   {
-
-      UNREFERENCED_PARAMETER(bErase);
-
-      throw ::interface_only();
-
-   }
-
-
-   void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
-   {
-
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(bErase);
-
-      throw ::interface_only();
-
-   }
-
-
-   void interaction_impl::InvalidateRgn(::draw2d::region * pRgn, bool bErase)
-   {
-      UNREFERENCED_PARAMETER(pRgn);
-      UNREFERENCED_PARAMETER(bErase);
-      throw ::interface_only();
-   }
-
-
-   void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
-   {
-
-      UNREFERENCED_PARAMETER(rectangle);
-
-      throw ::interface_only();
-
-   }
-
-
-   void interaction_impl::ValidateRgn(::draw2d::region * pRgn)
-   {
-
-      UNREFERENCED_PARAMETER(pRgn);
-
-      throw ::interface_only();
-
-   }
-
-
-   //void interaction_impl::_is_window_visible()
+   //void interaction_impl::Invalidate(bool bErase)
    //{
 
-   //   throw ::interface_only();
+   //   UNREFERENCED_PARAMETER(bErase);
 
-   //   return false;
+   //   throw ::interface_only();
 
    //}
 
 
-   void interaction_impl::ShowOwnedPopups(bool bShow)
-   {
-      UNREFERENCED_PARAMETER(bShow);
-      throw ::interface_only();
-   }
+   //void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
+   //{
+
+   //   UNREFERENCED_PARAMETER(rectangle);
+   //   UNREFERENCED_PARAMETER(bErase);
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   //void interaction_impl::InvalidateRgn(::draw2d::region * pRgn, bool bErase)
+   //{
+   //   UNREFERENCED_PARAMETER(pRgn);
+   //   UNREFERENCED_PARAMETER(bErase);
+   //   throw ::interface_only();
+   //}
+
+
+   //void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
+   //{
+
+   //   UNREFERENCED_PARAMETER(rectangle);
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   //void interaction_impl::ValidateRgn(::draw2d::region * pRgn)
+   //{
+
+   //   UNREFERENCED_PARAMETER(pRgn);
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   ////void interaction_impl::_is_window_visible()
+   ////{
+
+   ////   throw ::interface_only();
+
+   ////   return false;
+
+   ////}
+
+
+   //void interaction_impl::ShowOwnedPopups(bool bShow)
+   //{
+   //   UNREFERENCED_PARAMETER(bShow);
+   //   throw ::interface_only();
+   //}
 
 
    /*::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip,u32 flags)
@@ -7440,7 +7440,7 @@ namespace user
 
       m_puserinteraction->set_display(m_puserinteraction->const_layout().design().display(), e_layout_window);
 
-      m_puserinteraction->clear_activation(e_layout_design);
+      m_puserinteraction->reset_pending(e_layout_design);
 
       m_puserinteraction->set_display(edisplayOutput, e_layout_design);
 
@@ -7642,7 +7642,7 @@ namespace user
 //   }
 
 
-   void interaction_impl::on_message_move(::message::message * pmessage)
+   void interaction_impl::on_message_reposition(::message::message * pmessage)
    {
 
       m_puserinteraction->m_pinteractionScaler->on_display_change(m_puserinteraction);

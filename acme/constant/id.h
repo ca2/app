@@ -11,11 +11,11 @@ enum enum_id : ::uptr
    id_none = ID_NONE,
 
 
-   id_initial = ID_INITIAL_UPDATE,
+   id_initial_update = ID_INITIAL_UPDATE,
    id_pre_close_document = ID_PRE_CLOSE_DOCUMENT,
-   id_new_document = ID_NEW_DOCUMENT,
+   //id_new_document = ID_NEW_DOCUMENT,
    id_close_document = ID_CLOSE_DOCUMENT,
-   id_open_document = ID_OPEN_DOCUMENT,
+   //id_open_document = ID_OPEN_DOCUMENT,
    id_save_document = ID_SAVE_DOCUMENT,
    id_event = ID_EVENT,
    id_update = ID_UPDATE,
@@ -34,6 +34,7 @@ enum enum_id : ::uptr
    id_finish = ID_FINISH,
    id_dialog_result = ID_DIALOG_RESULT,
    id_complete = ID_COMPLETE,
+   id_incoming_document = ID_INCOMING_DOCUMENT,
 
 
 
@@ -119,7 +120,6 @@ enum enum_id : ::uptr
    id_close_device,
    id_get_topic_midi_player,
    id_get_topic_wave_player,
-   id_initial_update,
    id_after_open_document,
    id_title,
    id_restart_track,

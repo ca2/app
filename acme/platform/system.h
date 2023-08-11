@@ -109,6 +109,9 @@ namespace acme
       ::pointer<::particle>                                    m_pmutexUiDestroyed;
 
       ::pointer <::nano::nano >                                m_pnano;
+      
+      ::pointer <::nano::http >                                m_pnanohttp;
+
 
       ::pointer <::crypto::crypto >                            m_pcrypto;
 
@@ -199,6 +202,8 @@ namespace acme
       ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
 
       inline ::nano::nano * nano() { return m_pnano; }
+      
+      virtual ::nano::http * nano_http();
 
       inline ::crypto::crypto * crypto() { return m_pcrypto; }
 
@@ -206,8 +211,11 @@ namespace acme
       virtual ::string http_text(const ::scoped_string & scopedstrUrl);
       virtual ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set);
 
+      
+      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl);
+      virtual ::memory http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set);
 
-
+      
       virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl);
       virtual void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set);
 

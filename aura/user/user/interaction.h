@@ -20,6 +20,15 @@
 namespace user
 {
 
+   struct set_need_redraw
+   {
+
+      ::rectangle_i32_array      m_rectangleaNeedRedraw;
+      function<void()>           m_function;
+      bool                       m_bAscendants;
+
+   };
+
 
    class CLASS_DECL_AURA interaction :
       virtual public ::user::primitive,
@@ -129,137 +138,137 @@ namespace user
 
 
       
-      bool                                         m_bExtendOnParent;
-      bool                                         m_bExtendOnParentIfClientOnly;
-      bool                                         m_bToolWindow;
-      bool                                         m_bMessageWindow;
+      bool                                      m_bExtendOnParent;
+      bool                                      m_bExtendOnParentIfClientOnly;
+      bool                                      m_bToolWindow;
+      bool                                      m_bMessageWindow;
       
-      bool                                         m_bCompositedFrameWindow;
-      bool                                         m_bEdgeGestureDisableTouchWhenFullscreen;
-      bool                                         m_bVisible;
-      bool                                         m_bMouseHoverOnCapture;
+      bool                                      m_bCompositedFrameWindow;
+      bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
+      bool                                      m_bVisible;
+      bool                                      m_bMouseHoverOnCapture;
 
-      //bool                                         m_bMouseHover;
-      bool                                         m_bClickDefaultMouseHandling;
-      bool                                         m_bHoverDefaultMouseHandling;
-      bool                                         m_bEditDefaultHandling;
+      //bool                                      m_bMouseHover;
+      bool                                      m_bClickDefaultMouseHandling;
+      bool                                      m_bHoverDefaultMouseHandling;
+      bool                                      m_bEditDefaultHandling;
 
-      bool                                         m_bKeyboardMultipleSelectionDefaultHandling;
-      bool                                         m_bDataUpdateDefaultHandling;
-      bool                                         m_bParentScrollX;
-      bool                                         m_bParentScrollY;
+      bool                                      m_bKeyboardMultipleSelectionDefaultHandling;
+      bool                                      m_bDataUpdateDefaultHandling;
+      bool                                      m_bParentScrollX;
+      bool                                      m_bParentScrollY;
 
-      bool                                         m_bUserInteractionHost;
-      bool                                         m_bEnableDragClient;
-      bool                                         m_bEnableDragResize;
-      bool                                         m_bDerivedHeight;
+      bool                                      m_bUserInteractionHost;
+      bool                                      m_bEnableDragClient;
+      bool                                      m_bEnableDragResize;
+      bool                                      m_bDerivedHeight;
 
-      bool                                         m_bLadingToLayout;
-      bool                                         m_bTransparent;
-      bool                                         m_bCreated;
-      bool                                         m_bSubclassed;
+      bool                                      m_bLadingToLayout;
+      bool                                      m_bTransparent;
+      bool                                      m_bCreated;
+      bool                                      m_bSubclassed;
       
-      bool                                         m_bClipRectangle;
-      bool                                         m_bLayoutModified;
-      bool                                         m_bCustomWindowProc;
-      bool                                         m_bControlExCommandEnabled;
+      bool                                      m_bClipRectangle;
+      bool                                      m_bLayoutModified;
+      bool                                      m_bCustomWindowProc;
+      bool                                      m_bControlExCommandEnabled;
 
-      bool                                         m_bUpdateBuffer; // internal offscreen buffer
-      bool                                         m_bUpdateWindow; // window frame
-      bool                                         m_bUpdateScreen; // screen buffer
+      bool                                      m_bUpdateBuffer; // internal offscreen buffer
+      bool                                      m_bUpdateWindow; // window frame
+      bool                                      m_bUpdateScreen; // screen buffer
 
-      bool                                         m_bIdBound;
-      bool                                         m_bOverdraw;
-      bool                                         m_bFullScreen;
-      bool                                         m_bModal;
+      bool                                      m_bIdBound;
+      bool                                      m_bOverdraw;
+      bool                                      m_bFullScreen;
+      bool                                      m_bModal;
 
-      bool                                         m_bNeedRedraw;
-      boolean                                      m_bNeedPerformLayout;
-      bool                                         m_bNeedLayout;
-      bool                                         m_bReposition;
-      bool                                         m_bUpdatingVisual;
-      bool                                         m_bOnDraw;
+      bool                                      m_bNeedRedraw;
+      boolean                                   m_bNeedPerformLayout;
+      bool                                      m_bNeedLayout;
+      bool                                      m_bReposition;
+      bool                                      m_bUpdatingVisual;
+      bool                                      m_bOnDraw;
 
-      bool                                         m_bUpdateVisual;
-      bool                                         m_bMouseMovePending;
-      bool                                         m_bNeedLoadFormData;
-      bool                                         m_bNeedSaveFormData;
+      bool                                      m_bUpdateVisual;
+      bool                                      m_bMouseMovePending;
+      bool                                      m_bNeedLoadFormData;
+      bool                                      m_bNeedSaveFormData;
 
-      bool                                         m_bWorkspaceFullScreen;
-      bool                                         m_bHideOnTransparentFrame;
-      bool                                         m_bOffScreenRender;
-      bool                                         m_bMoveWindow;
+      bool                                      m_bWorkspaceFullScreen;
+      bool                                      m_bHideOnTransparentFrame;
+      bool                                      m_bOffScreenRender;
+      bool                                      m_bMoveWindow;
 
-      bool                                         m_bVoidPaint;
-      bool                                         m_bRedrawing;
-      bool                                         m_bRedrawOnVisible;
-      bool                                         m_bSaveWindowRect;
+      bool                                      m_bVoidPaint;
+      bool                                      m_bRedrawing;
+      bool                                      m_bRedrawOnVisible;
+      bool                                      m_bSaveWindowRect;
 
-      bool                                         m_bEnableSaveWindowRect2;
-      bool                                         m_bShowSoftwareKeyboard;
-      bool                                         m_bUserInteractionSetFinish;
-      bool                                         m_bDefaultWalkPreTranslateParentTree;
+      bool                                      m_bEnableSaveWindowRect2;
+      bool                                      m_bShowSoftwareKeyboard;
+      bool                                      m_bUserInteractionSetFinish;
+      bool                                      m_bDefaultWalkPreTranslateParentTree;
 
-      bool                                         m_bBackgroundBypass;
-      bool                                         m_bSizeMove;
-      bool                                         m_bCursorInside;
-      bool                                         m_bRectOk;
+      bool                                      m_bBackgroundBypass;
+      bool                                      m_bSizeMove;
+      bool                                      m_bCursorInside;
+      bool                                      m_bRectOk;
 
-      bool                                         m_bWfiUpDownTarget;
-      bool                                         m_bPendingZorder;
-      bool                                         m_bPadding001;
-      bool                                         m_bPadding002;
+      bool                                      m_bWfiUpDownTarget;
+      bool                                      m_bPendingZorder;
+      bool                                      m_bPadding001;
+      bool                                      m_bPadding002;
       
-      bool                                         m_bBarDragScrollLeftButtonDown;
+      bool                                      m_bBarDragScrollLeftButtonDown;
 
-      bool                                         m_bEnableHorizontalBarDragScroll;
-      bool                                         m_bHorizontalBarDragScrollingActive;
+      bool                                      m_bEnableHorizontalBarDragScroll;
+      bool                                      m_bHorizontalBarDragScrollingActive;
 
-      bool                                         m_bEnableVerticalBarDragScroll;
-      bool                                         m_bVerticalBarDragScrollingActive;
+      bool                                      m_bEnableVerticalBarDragScroll;
+      bool                                      m_bVerticalBarDragScrollingActive;
 
-      ::point_i32                                  m_pointBarDragScrollLeftButtonDown;
-      ::point_i32                                  m_pointBarDragScroll;
-      ::point_i32                                  m_pointBarDragScrollStart;
-      ::point_i32                                  m_pointBarDragScrollMax;
-      ::size_i32                                   m_sizeBarDragScroll;
+      ::point_i32                               m_pointBarDragScrollLeftButtonDown;
+      ::point_i32                               m_pointBarDragScroll;
+      ::point_i32                               m_pointBarDragScrollStart;
+      ::point_i32                               m_pointBarDragScrollMax;
+      ::size_i32                                m_sizeBarDragScroll;
 
-      ::oswindow                                   m_oswindow;
+      ::oswindow                                m_oswindow;
 
-      enum_text_wrap                               m_etextwrap;
+      enum_text_wrap                            m_etextwrap;
 
-      ::pointer<::user::interaction_scaler>       m_pinteractionScaler;
+      ::pointer<::user::interaction_scaler>     m_pinteractionScaler;
 
-      bool                                         m_bUpdateBufferPending;
+      bool                                      m_bUpdateBufferPending;
 
-      //::oswindow                                   m_oswindow;
-      e_window_flag                                m_ewindowflag;
-      bool                                         m_bAutomaticallyStoreWindowRectangle;
-      bool                                         m_bPendingSaveWindowRectangle;
-      bool                                         m_bLoadingWindowRectangle;
+      //::oswindow                              m_oswindow;
+      e_window_flag                             m_ewindowflag;
+      bool                                      m_bAutomaticallyStoreWindowRectangle;
+      bool                                      m_bPendingSaveWindowRectangle;
+      bool                                      m_bLoadingWindowRectangle;
 
 
-      bool                                         m_bVisualChanged;
+      bool                                      m_bVisualChanged;
 
       // <3ThomasBorreggardSoerensen_!!
-      ::pointer<::matter>                          m_pmatterCommandHandler;
+      ::pointer<::matter>                       m_pmatterCommandHandler;
 
-      ::user::interaction::enum_updown             m_eupdown;
+      ::user::interaction::enum_updown          m_eupdown;
 
-      class ::time                                 m_timeLastIgnoredSketchToLading;
-      bool                                         m_bIgnoringSketchToLading;
+      class ::time                              m_timeLastIgnoredSketchToLading;
+      bool                                      m_bIgnoringSketchToLading;
 
    public:
 
-      index                                        m_iItem;
-      index                                        m_iSubItem;
-      index                                        m_iListItem;
-      index                                        m_iColumn;
+      index                                     m_iItem;
+      index                                     m_iSubItem;
+      index                                     m_iListItem;
+      index                                     m_iColumn;
 
-      atom                                        m_uiText;
+      atom                                      m_uiText;
       ::type                                    m_type;
-      atom                                        m_atomPrivateDataSection;
-      //::atom                                      m_atomTranslated;
+      atom                                      m_atomPrivateDataSection;
+      //::atom                                  m_atomTranslated;
       enum_control_type                         m_econtroltype;
 
       enum_control_ddx                          m_eddx;
@@ -267,12 +276,12 @@ namespace user
       int                                       m_iDataValue;
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;
-      ::rectangle_i32                                    m_rectangle;
+      ::rectangle_i32                           m_rectangle;
       property_set                              m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
-      ::i32_array                                 m_iaSubItemDuplicate;
-      ::i32_array                                 m_iaSubItemDisable;
+      ::i32_array                               m_iaSubItemDuplicate;
+      ::i32_array                               m_iaSubItemDisable;
 
       string                                    m_strClass;
       string_to_string                          m_mapClassStyle;
@@ -286,8 +295,8 @@ namespace user
       bool                                      m_bAutoResize;
 
 
-      ::rectangle_f64                               m_rectangleClip;
-      ::pointer<::aura::draw_context>          m_pdrawcontext;
+      ::rectangle_f64                           m_rectangleClip;
+      ::pointer<::aura::draw_context>           m_pdrawcontext;
 
       ::draw2d::path_pointer                    m_pathFocusRect1;
       ::draw2d::path_pointer                    m_pathFocusRect2;
@@ -322,43 +331,43 @@ namespace user
 
       // control member variables END
 
-      string                                       m_strInteractionTag;
+      string                                    m_strInteractionTag;
 
-      ::index                                      m_iIndex;
-      ::rectangle_i32                              m_rectangleRestoreBroad;
-      ::rectangle_i32                              m_rectangleRestoreCompact;
-      enumeration < enum_non_client >              m_flagNonClient;
-      int                                          m_iMouseMoveSkipCount;
-      int                                          m_iMouseMoveSkipSquareDistance;
-      class ::time                                   m_timeMouseMoveSkip;
-      ::point_i32                                  m_pointMouseMoveSkip;
-      class ::time                                   m_timeMouseMovePeriod;
-      ::point_i32                                  m_pointMouseMove;
-      class ::time                                   m_timeLastRedraw;
-      ::atom                                       m_atomImpact;
-      ::status < ::color::color >                  m_statuscolorBackground;
-      ::status < ::color::color >                  m_statuscolorText;
-      point_i32                                    m_pointScroll;
+      ::index                                   m_iIndex;
+      ::rectangle_i32                           m_rectangleRestoreBroad;
+      ::rectangle_i32                           m_rectangleRestoreCompact;
+      enumeration < enum_non_client >           m_flagNonClient;
+      int                                       m_iMouseMoveSkipCount;
+      int                                       m_iMouseMoveSkipSquareDistance;
+      class ::time                              m_timeMouseMoveSkip;
+      ::point_i32                               m_pointMouseMoveSkip;
+      class ::time                              m_timeMouseMovePeriod;
+      ::point_i32                               m_pointMouseMove;
+      class ::time                              m_timeLastRedraw;
+      ::atom                                    m_atomImpact;
+      ::status < ::color::color >               m_statuscolorBackground;
+      ::status < ::color::color >               m_statuscolorText;
+      point_i32                                 m_pointScroll;
       // if high frequency mouse transfer notification is required
       // create a fast path/low latency callback system
-      class ::time                                   m_timeMouseMove;
-      class ::time                                   m_timeMouseMoveIgnore;
-      double                                       m_dItemHeight;
-      point_i32                                    m_pointMoveCursor;
-      class ::time                                   m_timeLastFullUpdate;
-      class ::time                                   m_timeLastVisualChange;
-      string                                       m_strName;
-      u64                                          m_uiUserInteractionFlags;
-      ::pointer<::windowing::cursor>              m_pcursor;
-      string                                       m_strWindowText2;
-      ::a_string_function                          m_astringfunctionWindowText;
+      class ::time                              m_timeMouseMove;
+      class ::time                              m_timeMouseMoveIgnore;
+      double                                    m_dItemHeight;
+      point_i32                                 m_pointMoveCursor;
+      class ::time                              m_timeLastFullUpdate;
+      class ::time                              m_timeLastVisualChange;
+      string                                    m_strName;
+      u64                                       m_uiUserInteractionFlags;
+      ::pointer<::windowing::cursor>            m_pcursor;
+      string                                    m_strWindowText2;
+      ::a_string_function                       m_astringfunctionWindowText;
 
-      atom                                           m_atomModalResult; // for return values from interaction_impl::RunModalLoop
-      i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
+      atom                                      m_atomModalResult; // for return values from interaction_impl::RunModalLoop
+      i32                                       m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
 
 
-      //interaction_draw2d *                         m_pinteractiondraw2d;
+      //interaction_draw2d *                    m_pinteractiondraw2d;
 
       /// The menu_item this user_interaction (window)
       /// represents (this window is a button [a menu button],
@@ -375,28 +384,28 @@ namespace user
       ::pointer<interaction>                    m_puserinteractionOwner;
 
       // ownership
-      ::pointer<::user::system>                 m_pusersystem;
+      ::pointer<::user::system>                    m_pusersystem;
    protected:
-      ::user::interaction_layout                m_layout;
+      ::user::interaction_layout                   m_layout;
    public:
-      //::pointer<drag_move>                        m_pdragmove;
-      ::pointer<::draw2d::graphics_call_array>    m_pgraphicscalla;
-      ::pointer<::user::interaction>              m_puserinteractionCustomWindowProc;
-      ::pointer<::user::interaction>              m_puiLabel;
-      ::pointer<::user::form>                     m_pform;
-      ::pointer<alpha_source>                     m_palphasource;
-      //::pointer<::aura::drawable>                 m_pdrawableBackground;
-      ::pointer<primitive_impl>                   m_pprimitiveimpl;
-      ::pointer<interaction_impl>                 m_pinteractionimpl;
-      ::pointer<primitive_pointer_array>          m_puserinteractionpointeraOwned;
-      ::pointer<interaction_array>                m_puserinteractionpointeraChild;
-      ::pointer<interaction>                      m_ptooltip;
-      ::pointer<::object>                         m_pmenuitem;
-      pointer_array < interaction >                 m_menua;
-      ::pointer<::appearance::appearance>         m_pappearance;
+      //::pointer<drag_move>                       m_pdragmove;
+      ::pointer<::draw2d::graphics_call_array>     m_pgraphicscalla;
+      ::pointer<::user::interaction>               m_puserinteractionCustomWindowProc;
+      ::pointer<::user::interaction>               m_puiLabel;
+      ::pointer<::user::form>                      m_pform;
+      ::pointer<alpha_source>                      m_palphasource;
+      //::pointer<::aura::drawable>                m_pdrawableBackground;
+      ::pointer<primitive_impl>                    m_pprimitiveimpl;
+      ::pointer<interaction_impl>                  m_pinteractionimpl;
+      ::pointer<primitive_pointer_array>           m_puserinteractionpointeraOwned;
+      ::pointer<interaction_array>                 m_puserinteractionpointeraChild;
+      ::pointer<interaction>                       m_ptooltip;
+      ::pointer<::object>                          m_pmenuitem;
+      pointer_array < interaction >                m_menua;
+      ::pointer<::appearance::appearance>          m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
-      ::item_pointer                               m_pitemClient;
-      
+      ::item_pointer                         m_puseritemClient;
+      ::array < struct set_need_redraw >           m_setneedredrawa;
 
 
       interaction();
@@ -495,8 +504,6 @@ namespace user
       virtual ::user::interaction * get_host_window();
 
       virtual ::user::interaction_impl * get_window_impl();
-
-      virtual ::item_pointer get_user_item(const ::item & item);
 
       virtual ::user::enum_state get_user_state();
 
@@ -805,7 +812,9 @@ namespace user
       ///virtual bool is_sketch_to_design_locked();
 
       
-      virtual void clear_activation(enum_layout elayout = e_layout_sketch);
+      virtual void reset_pending(enum_layout elayout = e_layout_sketch);
+
+      virtual void set_impact_update_going_on(enum_layout elayout = e_layout_sketch);
 
       virtual void set_display(::e_display edisplay = e_display_default, enum_layout elayout = e_layout_sketch);
       
@@ -955,7 +964,7 @@ namespace user
       virtual bool is_left_button_pressed();
 
 
-      virtual void set_current_item(item * pitem, const ::action_context & action_context);
+      virtual void set_current_item(::item * pitem, const ::action_context & action_context);
       virtual ::item_pointer current_item();
 
 
@@ -1330,19 +1339,19 @@ namespace user
 
 
 
-      virtual void UpdateWindow() override;
-      virtual void SetRedraw(bool bRedraw = true) override;
-      virtual bool GetUpdateRect(::rectangle_i32* prectangle, bool bErase = false) override;
+      //virtual void UpdateWindow() override;
+      //virtual void SetRedraw(bool bRedraw = true) override;
+      //virtual bool GetUpdateRect(::rectangle_i32* prectangle, bool bErase = false) override;
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
-      virtual void Invalidate(bool bErase = true) override;
-      virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
+      //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      //virtual void Invalidate(bool bErase = true) override;
+      //virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      virtual void ValidateRect(const ::rectangle_i32& rectangle);
+      //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
+      //virtual void ValidateRect(const ::rectangle_i32& rectangle);
 
-      virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual void ShowOwnedPopups(bool bShow = true);
+      //virtual void ValidateRgn(::draw2d::region* pRgn);
+      //virtual void ShowOwnedPopups(bool bShow = true);
 
 
       virtual bool is_composite() override;
@@ -2206,16 +2215,15 @@ namespace user
 
       //inline auto rectangle(::item * pitem) { get_rect((::item *) pitem); return pitem->m_rectangle; }
 
-      virtual void add_user_item(::item * pitem);
+      virtual ::user::item * add_user_item(::item * pitem);
+
+      virtual ::user::item * _add_user_item(::item * pitem);
+
+//      virtual ::item_pointer add_user_item(::item * pitem);
 
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
 
-
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem, const ::user::e_state & estate);
-
-
-
-
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & item, const ::user::e_state & estate);
 
 
       // control member function BEGIN
@@ -2506,6 +2514,7 @@ namespace user
 
       
       
+      bool on_impact_update() override;
 
 
    };

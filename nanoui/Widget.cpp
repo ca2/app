@@ -88,6 +88,49 @@ namespace nanoui
    
    }
 
+   ::count Widget::get_child_as_item_count()
+   {
+
+      return m_children.size();
+
+   }
+
+
+   item_pointer Widget::get_child_as_item(::index iIndex)
+   {
+
+      return m_children[iIndex];
+
+   }
+
+
+   item_pointer Widget::selected_item()
+   {
+
+      return nullptr;
+
+   }
+
+
+   item_pointer Widget::hover_item()
+   {
+
+      for (auto& pwidget : m_children)
+      {
+
+         if (pwidget->m_bMouseHover)
+         {
+
+            return pwidget;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
 
    void Widget::toggle_visible()
    { 
@@ -602,6 +645,21 @@ namespace nanoui
       {
 
          throw ::exception(error_wrong_state, "Widget::erase_child(): pwidget not found!");
+
+      }
+
+   }
+
+
+   void Widget::to_top()
+   {
+      
+      synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      
+      if (m_pwidgetParent->m_children.erase(this))
+      {
+
+         m_pwidgetParent->m_children.add(this);
 
       }
 

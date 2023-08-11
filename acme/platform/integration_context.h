@@ -6,7 +6,7 @@ namespace integration
 {
 
 
-   class CLASS_DECL_APEX context :
+   class CLASS_DECL_ACME context :
       virtual public ::object
    {
    public:
@@ -25,9 +25,11 @@ namespace integration
       ::file::path      m_pathDownloadURL;
       ::string_array    m_straOutput;
       ::file::path      m_pathFolder;
-      ::file::path      m_path;
-      ::file::path      m_pathSource2;
+      ::file::path      m_pathBase;
+      ::file::path      m_pathPlatformConfiguration;
+      ::file::path      m_pathSource;
       ::file::path      m_pathPrefix;
+      ::file::path      m_pathStaticPrefix;
       ::string          m_strRelease;
       //::string          m_strContext;
       //::string          m_strSdk1;
@@ -61,13 +63,14 @@ namespace integration
       virtual void prepare_compilation_script(::string & str);
       virtual void prepare_linking_script(::string & str);
 
-      virtual int command_system(const ::scoped_string & scopedstr);
+      virtual ::i32 command_system(const ::scoped_string & scopedstr);
 
       virtual void clean();
 
       virtual void download_and_uncompress();
       virtual void git_clone();
-      virtual void bash(const ::scoped_string & scopedstr);
+      virtual ::i32 bash(const ::scoped_string & scopedstr);
+      virtual ::i32 zsh(const ::scoped_string & scopedstr);
 
       void untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent = 0);
 

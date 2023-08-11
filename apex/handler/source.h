@@ -32,6 +32,10 @@ public:
 
    void route(::topic * ptopic, ::context * pcontext = nullptr);
 
+   void on_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::context * pcontext = nullptr);
+
+   void notify_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::context * pcontext = nullptr);
+
    //void signal(::topic * ptopic, ::context * pcontext) override;
 
 

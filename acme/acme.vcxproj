@@ -185,7 +185,7 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -290,7 +290,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -415,7 +415,7 @@
       <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -510,7 +510,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -623,6 +623,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
+    <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
@@ -841,7 +842,14 @@
     <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
     <ClInclude Include="operating_system\shared_posix\time.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http.h" />
+    <ClInclude Include="operating_system\windows\nano_http\_nano_http.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
+    <ClInclude Include="platform\integration_context.h" />
+    <ClInclude Include="platform\nano_http.h" />
+    <ClInclude Include="platform\nano_http_asynchronous_source.h" />
+    <ClInclude Include="platform\nano_http_synchronous_source.h" />
+    <ClInclude Include="platform\nano_http_response.h" />
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="primitive\collection\array_2d.h" />
     <ClInclude Include="primitive\collection\_function.h" />
@@ -858,6 +866,8 @@
     <ClInclude Include="primitive\time\time\posix_time.h" />
     <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\time_span.h" />
+    <ClInclude Include="user\user\item.h" />
+    <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
@@ -953,6 +963,8 @@
     <ClCompile Include="operating_system\windows\nano\pen.cpp" />
     <ClCompile Include="operating_system\windows\nano\window.cpp" />
     <ClCompile Include="operating_system\windows\nano\_nano.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\_nano_http.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\process.cpp" />
     <ClCompile Include="operating_system\windows\thread.cpp" />
@@ -1022,6 +1034,7 @@
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\implementable.cpp" />
     <ClCompile Include="platform\ini.cpp" />
+    <ClCompile Include="platform\integration_context.cpp" />
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
@@ -1029,6 +1042,8 @@
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
+    <ClCompile Include="platform\nano_http.cpp" />
+    <ClCompile Include="platform\nano_http_response.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />

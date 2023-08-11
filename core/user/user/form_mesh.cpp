@@ -27,10 +27,10 @@ namespace user
    }
 
 
-   void form_mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straDataKey)
+   void form_mesh::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straDataKey)
    {
 
-      //mesh::_001GetSelection(key,selection);
+      //mesh::get_selection(key,selection);
 
    }
 
@@ -117,9 +117,9 @@ namespace user
 
       auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
 
-      psubitem->m_pitem->m_iDisplayItem = _001StrictToDisplay(pinteraction->m_iItem);
+      psubitem->m_pitem->m_iDisplayItem = strict_to_display(pinteraction->m_iItem);
       
-      psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
+      psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
       
       //psubitem.m_iListItem = -1;
       
@@ -445,7 +445,7 @@ namespace user
 //      item.m_iDisplayItem = DisplayToStrict(pinteraction->m_iEditItem);
 //
 //      item.m_iSubItem = pinteraction->m_iSubItem;
-//      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
+//      item.m_iOrder = sub_item_to_order(item.m_iSubItem);
 //      item.m_iListItem = -1;
 //      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = item.m_rectangleSubItem;
@@ -508,7 +508,7 @@ namespace user
    //   //
    //   //   ::user::range range;
    //   //
-   //   //   _001GetSelection(range);
+   //   //   get_selection(range);
    //   //
    //   //   if(_001DisplayHitTest(point, iItem, iSubItem))
    //   //   {
@@ -531,7 +531,7 @@ namespace user
    //   //i32 iItem;
    //   //i32 iSubItem;
    //   //::user::range range;
-   //   //_001GetSelection(range);
+   //   //get_selection(range);
    //   //if(_001DisplayHitTest(point, iItem, iSubItem))
    //   //{
    //   //class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
@@ -608,13 +608,13 @@ namespace user
 
       //::rectangle_i32 rectangleControl;
 
-      //auto iItem = _001DisplayToStrict(m_iDisplayItemHover);
+      //auto iItem = display_to_strict(m_iDisplayItemHover);
 
       //auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
 
       //psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
 
-      //psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
+      //psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
 
       //index_element_rectangle(*psubitem,::user::mesh::e_element_sub_item);
 

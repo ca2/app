@@ -229,6 +229,15 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
+   auto rectangleClient = client_rectangle();
+
+   if (rectangleClient.is_empty())
+   {
+
+      return;
+
+   }
+
    synchronous_lock synchronouslock(this->synchronization());
 
    if(get_html_data() == nullptr)

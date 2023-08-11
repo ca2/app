@@ -14,6 +14,7 @@
 #include "acme/primitive/collection/_range.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/time/_text_stream.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/timer.h"
 #include "apex/database/selection.h"
 #include "apex/platform/savings.h"
@@ -498,7 +499,7 @@ namespace user
       for(iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++)
       {
 
-         auto iItem = _001DisplayToStrict(iDisplayItem);
+         auto iItem = display_to_strict(iDisplayItem);
 
          auto pitem = get_item(iItem);
 
@@ -1031,11 +1032,61 @@ namespace user
    }
 
 
-
-   bool mesh::_001OnUpdateColumnCount(u32 dwFlags)
+   void mesh::insert_columns()
    {
 
-      UNREFERENCED_PARAMETER(dwFlags);
+      on_insert_columns();
+
+   }
+
+
+   void mesh::on_insert_columns()
+   {
+
+
+   }
+
+
+   void mesh::erase_columns()
+   {
+
+
+   }
+
+
+   void mesh::set_pending_column_layout()
+   {
+
+      m_bPendingColumnLayout = true;
+
+   }
+
+
+   void mesh::set_pending_column_update()
+   {
+
+      m_bPendingColumnUpdate = true;
+
+   }
+
+
+   void mesh::on_column_update()
+   {
+
+      erase_columns();
+
+      auto keepLockImpactUpdate = keep(m_bLockImpactUpdate);
+
+      on_insert_columns();
+
+      keepLockImpactUpdate.KeepAway();
+
+      DIDDXHeaderLayout(false);
+
+      //_001OnColumnChange();
+
+
+//      UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == impact_grid)
       {
@@ -1061,23 +1112,21 @@ namespace user
       if(m_nColumnCount < 0)
       {
 
-         return false;
+         return;
 
       }
 
       set_need_layout();
 
-      return true;
-
    }
 
 
-   bool mesh::_001OnUpdateItemCount(u32 dwFlags)
+   void mesh::on_update_item_count()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      UNREFERENCED_PARAMETER(dwFlags);
+      //UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == impact_grid)
       {
@@ -1103,7 +1152,7 @@ namespace user
       if(m_nItemCount < 0)
       {
 
-         return false;
+         return;
 
       }
 
@@ -1115,7 +1164,7 @@ namespace user
          if(m_nGroupCount < 0)
          {
 
-            return false;
+            return;
 
          }
 
@@ -1149,13 +1198,17 @@ namespace user
 
       cache_hint();
 
-      auto psystem = acmesystem()->m_paurasystem;
+      set_need_layout();
 
-      auto pdraw2d = psystem->draw2d();
+      set_need_redraw();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto psystem = acmesystem()->m_paurasystem;
 
-      on_change_impact_size(pgraphics);
+      //auto pdraw2d = psystem->draw2d();
+
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      //on_change_impact_size(pgraphics);
 
       //information("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
@@ -1163,7 +1216,31 @@ namespace user
         // information("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
       //}
 
+      //return true;
+   }
+
+
+   bool mesh::on_impact_update()
+   {
+
+      if (!::user::scroll_base::on_impact_update())
+      {
+
+         return false;
+
+      }
+
+      if (m_bPendingColumnUpdate)
+      {
+
+         on_column_update();
+
+      }
+
+      on_update_item_count();
+
       return true;
+
    }
 
 
@@ -1363,7 +1440,7 @@ namespace user
    //}
 
 
-   index mesh::_001MapSubItemToOrder(index iSubItem)
+   index mesh::sub_item_to_order(index iSubItem)
    {
       return _001MapColumnToOrder(_001MapSubItemToColumn(iSubItem));
    }
@@ -1697,7 +1774,7 @@ namespace user
 
       }
 
-      iItem = _001DisplayToStrict((::index) iItem);
+      iItem = display_to_strict((::index) iItem);
 
       return true;
 
@@ -1714,7 +1791,7 @@ namespace user
 
       }
 
-      iItem = (::index) _001DisplayToStrict((::index) iItem);
+      iItem = (::index) display_to_strict((::index) iItem);
 
       return true;
 
@@ -1952,7 +2029,7 @@ namespace user
          iItemLast = iItemFirst + _001GetGroupItemCount(pdrawmeshgroup->m_iGroupRectGroup) - 1;
       }
 
-      auto pitemFirst = get_item(_001DisplayToStrict(iItemFirst));
+      auto pitemFirst = get_item(display_to_strict(iItemFirst));
       pitemFirst->m_iDisplayItem      = iItemFirst;
       //itemFirst.m_iGroup            = pdrawitem->m_iGroupRectGroup;
 
@@ -1960,7 +2037,7 @@ namespace user
 
       //draw_mesh_item itemLast(this);
 
-      auto pitemLast = get_item(_001DisplayToStrict(iItemLast));
+      auto pitemLast = get_item(display_to_strict(iItemLast));
       pitemLast->m_iDisplayItem = iItemLast;
 //      itemLast.m_iItem              = iItemLast;
   //    itemLast.m_iGroup             = pdrawitem->m_iGroupRectGroup;
@@ -2775,13 +2852,13 @@ namespace user
             itemrange.set(iItem,iItem,0,m_nColumnCount - 1,- 1,-1);
             m_rangeSelection.add_item(itemrange);
 
-            _001EnsureVisible(iItem,range);
+            ensure_item_visible(iItem,range);
 
             //range.add_item(itemrange);
 
             set_need_redraw();
 
-            _001OnSelectionChange();
+            on_selection_change();
          }
       }
       else if(pkey->m_ekey == ::user::e_key_delete)
@@ -2789,7 +2866,7 @@ namespace user
 
          ::user::range range;
 
-         _001GetSelection(range);
+         get_selection(range);
 
          _001DeleteRange(range);
 
@@ -3032,7 +3109,7 @@ namespace user
 
                m_rangeSelection.clear();
 
-               _001OnSelectionChange();
+               on_selection_change();
 
             }
 
@@ -3058,7 +3135,7 @@ namespace user
 
                   m_iShiftFirstSelection = iItem;
 
-                  _001OnSelectionChange();
+                  on_selection_change();
 
                }
 
@@ -3081,7 +3158,7 @@ namespace user
 
                   m_iShiftFirstSelection = iItem;
 
-                  _001OnSelectionChange();
+                  on_selection_change();
 
                }
 
@@ -3116,7 +3193,7 @@ namespace user
 
                }
 
-               _001OnSelectionChange();
+               on_selection_change();
 
             }
 
@@ -3358,23 +3435,23 @@ namespace user
 
 
 
-   void mesh::_001GetSelection(range &range)
+   void mesh::get_selection(range &range)
    {
       range = m_rangeSelection;
    }
 
 
-   void mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
+   void mesh::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
    {
 
-      if (!_001HasConfigId(scopedstrDataKey))
+      if (!has_data_key(scopedstrDataKey))
       {
 
          return;
 
       }
 
-      index iFilterSubItem = _001ConfigIdToColumnKey(scopedstrDataKey);
+      index iFilterSubItem = data_key_to_column_key(scopedstrDataKey);
 
       range & range = m_rangeSelection;
 
@@ -3521,6 +3598,13 @@ namespace user
 
    void mesh::DILoadOrder()
    {
+
+   }
+
+
+   void mesh::on_highlight_change()
+   {
+
 
    }
 
@@ -3743,7 +3827,7 @@ namespace user
 
                      range.add_item(itemrange);
 
-                     _001SetSelection(range);
+                     set_selection(range);
 
                   }
 
@@ -3786,8 +3870,8 @@ namespace user
                   item_range itemrange;
 
                   itemrange.set(
-                     _001DisplayToStrict(m_iItemSel),
-                     _001DisplayToStrict(m_iItemSel),
+                     display_to_strict(m_iItemSel),
+                     display_to_strict(m_iItemSel),
                      m_iSubItemSel,
                      m_iSubItemSel,
                      -1,
@@ -3797,7 +3881,7 @@ namespace user
 
                   range.add_item(itemrange);
 
-                  _001SetSelection(range);
+                  set_selection(range);
 
                }
 
@@ -4093,24 +4177,24 @@ namespace user
    }
 
 
-   void mesh::_001ClearSelection()
+   void mesh::clear_selection()
    {
 
       m_rangeSelection.clear();
 
-      _001OnSelectionChange();
+      on_selection_change();
 
    }
 
    
-   void mesh::_001SetSelection(const range &range)
+   void mesh::set_selection(const range &range)
    {
    
       m_rangeSelection = range;
       
       on_select();
 
-      _001OnSelectionChange();
+      on_selection_change();
 
    }
 
@@ -4119,7 +4203,7 @@ namespace user
    {
       m_rangeSelection.add_item(itemrange);
       on_select();
-      _001OnSelectionChange();
+      on_selection_change();
    }
 
    void mesh::_001SetHighlightRange(range & range)
@@ -4362,14 +4446,15 @@ namespace user
    }
 
 
-
-
-   bool mesh::_001HasConfigId(const ::scoped_string & scopedstrDataKey)
+   bool mesh::has_data_key(const ::scoped_string & scopedstrDataKey)
    {
-      return _001ConfigIdToColumnKey(scopedstrDataKey) >= 0;
+
+      return data_key_to_column_key(scopedstrDataKey) >= 0;
+
    }
 
-   index mesh::_001ConfigIdToSubItem(const ::scoped_string & scopedstrDataKey)
+
+   index mesh::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)
@@ -4379,7 +4464,7 @@ namespace user
    }
 
 
-   index mesh::_001ConfigIdToColumnKey(const ::scoped_string & scopedstrDataKey)
+   index mesh::data_key_to_column_key(const ::scoped_string & scopedstrDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)
@@ -4411,10 +4496,7 @@ namespace user
    //}
 
 
-
-
-
-   void mesh::_001EnsureVisible(index iItem,bool bRedraw)
+   void mesh::ensure_item_visible(index iItem,bool bRedraw)
    {
 
       auto pointScroll = get_context_offset();
@@ -4443,7 +4525,7 @@ namespace user
    }
 
 
-   void mesh::_001ItemScroll(index iItem,bool bRedraw)
+   void mesh::scroll_to_item(index iItem,bool bRedraw)
    {
 
       //auto pointScroll = get_context_offset();
@@ -4472,7 +4554,7 @@ namespace user
    }
 
 
-   void mesh::_001EnsureVisible(index iItem,range & range)
+   void mesh::ensure_item_visible(index iItem,range & range)
    {
 
       auto pointScroll = get_context_offset();
@@ -4507,20 +4589,31 @@ namespace user
       }
    }
 
-   void mesh::_001Highlight(index iItem,bool bRedraw)
+
+   void mesh::highlight_item(index iItem,bool bRedraw)
    {
+
       m_rangeHighlight.clear();
+      
       item_range itemrange;
+      
       itemrange.set(iItem,iItem,0,m_nColumnCount - 1,- 1,-1);
+      
       m_rangeHighlight.add_item(itemrange);
+
       if(bRedraw)
       {
+         
          set_need_redraw();
+
       }
+
+      on_highlight_change();
+
    }
 
 
-   bool mesh::_001OnRemoveItem(index iItem)
+   bool mesh::on_erase_item(index iItem)
    {
 
       UNREFERENCED_PARAMETER(iItem);
@@ -4530,10 +4623,10 @@ namespace user
    }
 
 
-   bool mesh::_001RemoveItem(index iItem,bool bRedraw)
+   bool mesh::erase_item(index iItem,bool bRedraw)
    {
 
-      if (!_001OnRemoveItem(iItem))
+      if (!on_erase_item(iItem))
       {
 
          return false;
@@ -4553,36 +4646,41 @@ namespace user
 
    }
 
-   void mesh::_001RemoveSelection()
+
+   void mesh::erase_selection()
    {
+
       ::user::range range;
 
-      _001GetSelection(range);
-
+      get_selection(range);
 
       while(range.get_item_count() > 0)
       {
          index iItem = range.ItemAt(0).get_lower_bound();
-         if(!_001RemoveItem(iItem,false))
+         if(!erase_item(iItem,false))
             break;
-         _001GetSelection(range);
+         get_selection(range);
       }
 
       set_need_redraw();
    }
 
 
-   void mesh::_001Select(index iItem,index iSubItem)
+   void mesh::select_item(index iItem,index iSubItem)
    {
+
       m_rangeSelection.clear();
+
       item_range itemrange;
+
       itemrange.set(iItem,iItem,iSubItem,iSubItem,- 1,-1);
+
       _001AddSelection(itemrange);
 
    }
 
 
-   index mesh::_001StrictToDisplay(index iStrict)
+   index mesh::strict_to_display(index iStrict)
    {
 
       UNREFERENCED_PARAMETER(iStrict);
@@ -4592,7 +4690,7 @@ namespace user
    }
 
 
-   index mesh::_001DisplayToStrict(index iDisplay)
+   index mesh::display_to_strict(index iDisplay)
    {
 
       if(iDisplay < 0)
@@ -5108,7 +5206,7 @@ namespace user
    ::std::strong_ordering mesh::_001DisplayCompare(index iDisplayItem1,index iDisplayItem2)
    {
 
-      return _001Compare(_001DisplayToStrict(iDisplayItem1),_001DisplayToStrict(iDisplayItem2));
+      return _001Compare(display_to_strict(iDisplayItem1),display_to_strict(iDisplayItem2));
 
    }
 
@@ -5662,7 +5760,7 @@ namespace user
 
       }
 
-      if(_001DisplayToStrict(iDisplayDrop) != -1 && _001DisplayToStrict(iDisplayDrop) < m_nItemCount)
+      if(display_to_strict(iDisplayDrop) != -1 && display_to_strict(iDisplayDrop) < m_nItemCount)
       {
 
          return false;
@@ -5868,7 +5966,7 @@ namespace user
    }
 
 
-   void mesh::_001OnSelectionChange()
+   void mesh::on_selection_change()
    {
 
       auto ptopic = create_topic(::id_after_change_cur_sel);

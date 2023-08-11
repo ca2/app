@@ -40,7 +40,9 @@ public:
 
    file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;
 
-
+   virtual file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary, ::pointer < ::file::exception >* pfileexception = nullptr);
+   
+   virtual file_pointer get_writer(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open_read_write | ::file::e_open_binary | ::file::e_open_defer_create_directory, ::pointer < ::file::exception >* pfileexception = nullptr);
 
    //virtual string get_temp_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension);
    virtual void append_wait(const ::file::path & pathFile, const block & block, const class time & time);

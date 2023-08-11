@@ -517,6 +517,12 @@ namespace experience_tranquillum
                return argb(255, 255, 255, 255);
 
             }
+            else if (estate & ::user::e_state_hover)
+            {
+
+               return argb(255, 155, 200, 255);
+
+            }
             else
             {
 

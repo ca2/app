@@ -1066,7 +1066,7 @@ namespace user
    class element;
    class primitive_impl;
 
-   //class object;
+   class item;
 
 
 } // namespace user
@@ -2188,6 +2188,8 @@ namespace nano
 
    class nano;
 
+   class http;
+
 } // namespace nano
 
 
@@ -2224,5 +2226,6 @@ struct argument_of_struct < TYPE * >
 
 template < typename ARGUMENT >
 using argument_of = typename argument_of_struct < ARGUMENT >::type;
+
 
 

@@ -28,7 +28,8 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void _001OnSelectionChange() override;
+      
+      void on_selection_change() override;
 
 
    };

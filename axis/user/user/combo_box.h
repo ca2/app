@@ -84,9 +84,9 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
-      virtual bool get_element_rectangle(::rectangle_i32 & prectangle, enum_element eelement) override;
+      bool get_element_rectangle(::rectangle_i32 & prectangle, enum_element eelement) override;
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       virtual bool plain_edit_is_enabled() override;
 
@@ -126,7 +126,7 @@ namespace user
 
       //::count get_count();
       //virtual ::index current_index();
-      virtual void set_current_item(::item * pitem, const ::action_context & actioncontext) override;
+      void set_current_item(::item * pitem, const ::action_context & actioncontext) override;
 
 
       virtual string get_current_item_string_value();

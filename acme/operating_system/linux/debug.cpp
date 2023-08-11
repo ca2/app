@@ -61,7 +61,7 @@ int gdb_check()
 {
    char buf[4096];
 
-   const int status_fd = ::open("/proc/self/status", O_RDONLY);
+   const int status_fd = ::open("/proc/self/status", O_RDONLY | O_CLOEXEC);
    if (status_fd == -1)
       return false;
 

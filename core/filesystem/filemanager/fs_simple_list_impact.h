@@ -55,8 +55,6 @@ namespace filemanager
 
 
 
-            
-
             enum EFieldIndex
             {
                FieldIndexNone = -1,
@@ -146,7 +144,7 @@ namespace filemanager
             bool GetSongPath(string & str, index iItem);
 
             void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
-            void _001InsertColumns() override;
+            void on_insert_columns() override;
             void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
             count _001GetItemCount() override;
             void _001SearchGetSubItemText(::user::mesh_subitem * psubitem) override;

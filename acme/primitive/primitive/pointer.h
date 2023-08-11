@@ -300,6 +300,7 @@ public:
    inline i64 global_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
    inline T * detach();
+   inline ::particle * detach_particle();
 
 
    template < class T2 >

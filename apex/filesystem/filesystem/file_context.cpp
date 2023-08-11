@@ -2764,12 +2764,12 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //}
 
 
-::pointer < ::file::link > file_context::resolve_link(const ::file::path &path)
-{
-
-   return m_pcontext->m_papexcontext->os_context()->resolve_link(path);
-
-}
+//::pointer < ::file::link > file_context::resolve_link(const ::file::path &path)
+//{
+//
+//   return m_pcontext->m_papexcontext->os_context()->resolve_link(path);
+//
+//}
 
 
 string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)

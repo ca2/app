@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "dir_context.h"
 #include "file_context.h"
-#include "link.h"
+#include "acme/filesystem/filesystem/link.h"
 #include "apex/compress/not_dir.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
@@ -841,7 +841,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
       ::file::path pathTarget;
 
-      auto plink = file()->resolve_link(pathTarget);
+      auto plink = acmepath()->resolve_link(pathTarget);
 
       bIs = plink && plink->m_pathTarget.has_char();
 

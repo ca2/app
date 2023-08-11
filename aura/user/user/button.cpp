@@ -309,24 +309,40 @@ namespace user
    }
 
 
-   void button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   bool button::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectangleClient = client_rectangle();
 
-      auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
+      if (m_bAutoResize)
+      {
 
-      ::rectangle_i32 rectangle;
+         auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
-      rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
+         ::rectangle_i32 rectangle;
 
-      rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
+         rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
 
-      rectangle.right = (::i32)(rectangle.left + sizeText.cx());
+         rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
 
-      rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+         rectangle.right = (::i32)(rectangle.left + sizeText.cx());
 
-      m_rectangleText = rectangle;
+         rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+
+         if (rectangle != m_rectangleText)
+         {
+
+            m_rectangleText = rectangle;
+            
+            set_size(::ceil(sizeText), ::user::e_layout_layout, pgraphics);
+
+            return true;
+
+         }
+
+      }
+
+      return false;
 
    }
 

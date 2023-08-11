@@ -158,9 +158,9 @@ bool simple_scroll_bar::scrollbar_action(const ::item * pitem, ::draw2d::graphic
    case ::e_element_scrollbar_rectB:
       return scrollbar_lineB(pgraphics);
    case ::e_element_scrollbar_pageA:
-      return scrollbar_pageA(pitem->m_pointClient, pgraphics);
+      return scrollbar_pageA(user_item(pitem)->m_pointClient, pgraphics);
    case ::e_element_scrollbar_pageB:
-      return scrollbar_pageB(pitem->m_pointClient, pgraphics);
+      return scrollbar_pageB(user_item(pitem)->m_pointClient, pgraphics);
    default:
       return false;
    }
@@ -225,7 +225,9 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
       m_bTracking = true;
 
-      m_pointTrack = m_pitemCurrent->m_pointClient;
+      auto puseritemCurrent = user_item(m_pitemCurrent);
+
+      m_pointTrack = puseritemCurrent->m_pointClient;
 
       m_statusrectangleTrack = get_track_rectangle(pgraphics);
 
@@ -1419,96 +1421,109 @@ public:
 // This overload for this scroll bar overcomes this issue.
 void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 {
-   
-   ::user::scroll_bar::_001OnClip(pgraphics);
 
-//   try
-//   {
-//
-//      //pgraphics->reset_clip();
-//
-//      //return;
-//
-//      //::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
-//
-//      //bool bFirst = true;
-//      //
-//      //if (pdrawcontext != nullptr)
-//      //{
-//
-//      //   ::rectangle_i32 rectangleClient;
-//
-//      //   rectangleClient = pdrawcontext->m_rectangleWindow;
-//
-//      //   screen_to_client(rectangleClient);
-//
-//      //   rectangleClient.bottom++;
-//      //   rectangleClient.right++;
-//
-//      //   rectangleClip = rectangleClient;
-//
-//      //   bFirst = false;
-//
-//      //}
-//
-//      //auto pinteractiondraw2d = get_draw2d();
-//
-//      if(!m_pshapeaClip)
-//      {
-//
-//         __construct_new(m_pshapeaClip);
-//
-//         ::user::interaction * pinteraction = this;
-//
-//         ::rectangle_i32 rectangleFocus;
-//
-//         index i = 0;
-//
-//         while (pinteraction != nullptr)
-//         {
-//
-//            if (i == 1)
-//            {
-//
-//               pinteraction->::user::interaction::client_rectangle(rectangleFocus);
-//
-//            }
-//            else
-//            {
-//
-//               pinteraction->client_rectangle(rectangleFocus);
-//
-//            }
-//
-//            pinteraction->client_to_screen(rectangleFocus);
-//
-//            screen_to_client(rectangleFocus);
-//
-//            m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
-//
-//            m_pshapeaClip->add_item(__new(intersect_clip_shape()));
-//
-//            i++;
-//
-//            pinteraction = pinteraction->get_parent();
-//
-//         }
-//
-//      }
-//
-//      pgraphics->reset_clip();
-//
-//      pgraphics->m_pointAddShapeTranslate.Null();
-//
-//      pgraphics->add_shapes(*m_pshapeaClip);
-//
-//   }
-//   catch (...)
-//   {
-//
-//      throw ::exception("no more a window");
-//
-//   }
+   //pgraphics->reset_clip();
+
+   if (!m_bClipRectangle)
+   {
+
+      ::user::scroll_bar::_001OnClip(pgraphics);
+
+   }
+   else
+   {
+
+      ::user::scroll_bar::_001OnClip(pgraphics);
+
+   }
+
+   //try
+   //{
+
+      //pgraphics->reset_clip();
+
+      //return;
+
+      //::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+
+      //bool bFirst = true;
+      //
+      //if (pdrawcontext != nullptr)
+      //{
+
+      //   ::rectangle_i32 rectangleClient;
+
+      //   rectangleClient = pdrawcontext->m_rectangleWindow;
+
+      //   screen_to_client(rectangleClient);
+
+      //   rectangleClient.bottom++;
+      //   rectangleClient.right++;
+
+      //   rectangleClip = rectangleClient;
+
+      //   bFirst = false;
+
+      //}
+
+      //auto pinteractiondraw2d = get_draw2d();
+
+   //   if(!m_pshapeaClip)
+   //   {
+
+   //      __construct_new(m_pshapeaClip);
+
+   //      ::user::interaction * pinteraction = this;
+
+   //      ::rectangle_i32 rectangleFocus;
+
+   //      index i = 0;
+
+   //      while (pinteraction != nullptr)
+   //      {
+
+   //         if (i == 1)
+   //         {
+
+   //            pinteraction->::user::interaction::client_rectangle(rectangleFocus);
+
+   //         }
+   //         else
+   //         {
+
+   //            pinteraction->client_rectangle(rectangleFocus);
+
+   //         }
+
+   //         pinteraction->client_to_screen(rectangleFocus);
+
+   //         screen_to_client(rectangleFocus);
+
+   //         m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+
+   //         m_pshapeaClip->add_item(__new(intersect_clip_shape()));
+
+   //         i++;
+
+   //         pinteraction = pinteraction->get_parent();
+
+   //      }
+
+   //   }
+
+   //   pgraphics->reset_clip();
+
+   //   pgraphics->m_pointAddShapeTranslate.Null();
+
+   //   pgraphics->add_shapes(*m_pshapeaClip);
+
+   //}
+   //catch (...)
+   //{
+
+   //   throw ::exception("no more a window");
+
+   //}
 
 }
 

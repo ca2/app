@@ -46,6 +46,9 @@ namespace user
     DECLARE_ENUMERATION(e_button_state, enum_button_state);
 
 
+    //using item_pointer = ::pointer < ::user::item >;
+
+
 } // namespace user
 
 

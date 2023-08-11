@@ -8,7 +8,7 @@ int main(int argc char ** argv)
     const char *pDevice = "/dev/input/mice";
 
     // Open Mouse
-    fd = open(pDevice, O_RDWR);
+    fd = open(pDevice, O_RDWR | O_CLOEXEC);
     if(fd == -1)
     {
         printf("error Opening %s\n", pDevice);

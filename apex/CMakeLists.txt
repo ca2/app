@@ -109,8 +109,8 @@ list(APPEND apex_source
    filesystem/filesystem/file_context.h
    filesystem/filesystem/file_system.cpp
    filesystem/filesystem/file_system.h
-   filesystem/filesystem/link.cpp
-   filesystem/filesystem/link.h
+   #filesystem/filesystem/link.cpp
+   #filesystem/filesystem/link.h
    #filesystem/filesystem/path.h
    filesystem/fs/_.h
    #filesystem/fs/_fs.h
@@ -508,8 +508,6 @@ list(APPEND apex_source
    platform/history.cpp
    platform/history.h
    #platform/hyperlink.h
-   platform/integration_context.cpp
-   platform/integration_context.h
    #   platform/interprocess_call.cpp
    #   platform/interprocess_call.h
    #   platform/interprocess_communication.cpp
@@ -1452,9 +1450,9 @@ if (MSVC)
    target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (${LINUX} OR ${FREEBSD})
 
-   if (USE_PKGCONFIG)
-      pkg_check_modules(PKGCONFIG libarchive)
-   endif ()
+#   if (USE_PKGCONFIG)
+#      pkg_check_modules(PKGCONFIG libarchive)
+#   endif ()
    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)

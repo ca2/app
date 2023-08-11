@@ -404,7 +404,7 @@ namespace user
       pointer_array < interaction >                m_menua;
       ::pointer<::appearance::appearance>          m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
-      ::item_pointer                         m_puseritemClient;
+      ::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
 
 

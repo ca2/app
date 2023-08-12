@@ -7,7 +7,7 @@
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
-#include "item.h"
+#include "drag_client.h"
 
 
 namespace user
@@ -36,7 +36,8 @@ namespace user
 
    class CLASS_DECL_ACME element :
       virtual public ::user::command_update_target,
-      virtual public ::conversation
+      virtual public ::conversation,
+      virtual public ::user::drag_client
    {
    public:
 
@@ -96,13 +97,6 @@ namespace user
       //pointer< pointer_array < ::user::item > >    m_puseritema;
 
       
-      ::item_pointer                               m_pitemCurrent;
-      ::item_pointer                               m_pitemHover;
-      //::user<::item_pointer>                     m_puseritemHoverMouse;
-      ::item_pointer                               m_pitemPressed;
-      ::item_array                                 m_itema;
-      //map < ITEM, ::index >                        m_itemmap;
-      ::user::item_map                             m_useritemmap;
 
 
       element();
@@ -121,7 +115,7 @@ namespace user
 
 
       //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
-
+      void destroy() override;
 
       ::user::interaction * get_host_window();
 
@@ -150,29 +144,6 @@ namespace user
 
       virtual void defer_update_display();
 
-      virtual ::count item_count() const;
-      
-      virtual ::item * item_at(::index iIndex);
-
-      virtual void default_set_item_at(::index iIndex, ::item * pitem);
-
-      virtual ::item_pointer default_add_item(::item * pitem);
-
-      virtual ::user::item * user_item_at(::index iIndex);
-
-      virtual ::index item_index(const ::item * pitem);
-
-      virtual ::user::item * user_item(const ::item * pitem);
-      
-      virtual ::index item_index_by_atom(const ::atom & atom) const;
-
-      virtual bool is_item_pressed_by_atom(const ::atom & atom) const;
-
-      virtual bool is_item_hover_by_atom(const ::atom & atom) const;
-      
-      virtual bool is_item_pressed_by_index(::index iIndex) const;
-      
-      virtual bool is_item_hover_by_index(::index iIndex) const;
       
       virtual enum_control_type get_control_type() const;
 

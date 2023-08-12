@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "element.h"
+#include "container.h"
 #include "acme/constant/element.h"
 ////#include "acme/primitive/primitive/object.h"
 
@@ -12,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_ACME drag_client :
-      virtual public ::user::element
+      virtual public ::user::container
    {
    public:
 

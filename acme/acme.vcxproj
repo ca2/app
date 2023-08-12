@@ -866,6 +866,9 @@
     <ClInclude Include="primitive\time\time\posix_time.h" />
     <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\time_span.h" />
+    <ClInclude Include="user\user\container.h" />
+    <ClInclude Include="user\user\drag.h" />
+    <ClInclude Include="user\user\drag_client.h" />
     <ClInclude Include="user\user\item.h" />
     <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_win32_gdi.h" />
@@ -1209,6 +1212,7 @@
     <ClCompile Include="user\nano\window_interface.cpp" />
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
+    <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\conversation.cpp" />
     <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\drag_client.cpp" />
@@ -1871,8 +1875,6 @@
     <ClInclude Include="user\user\aaa_action_item_exchange.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\conversation.h" />
-    <ClInclude Include="user\user\drag.h" />
-    <ClInclude Include="user\user\drag_client.h" />
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />

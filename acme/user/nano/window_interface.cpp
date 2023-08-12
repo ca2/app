@@ -3,8 +3,8 @@
 //
 #include "framework.h"
 #include "window_interface.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
 
 
@@ -104,6 +104,18 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
+::point_i32 nano_window_interface::origin()
+{
+
+   throw ::exception(error_wrong_state);
+
+   return {};
+
+}
+
+
+
+
 ::shift_i32 nano_window_interface::screen_to_client()
 {
 
@@ -124,6 +136,87 @@ void nano_window_interface::update_drawing_objects()
    get_window_rectangle(r);
 
    return r.top_left();
+
+}
+
+
+void nano_window_interface::drag_set_capture()
+{
+
+   set_capture();
+
+}
+
+
+::point_i32 nano_window_interface::on_drag_start(::user::drag * pdrag)
+{
+
+   if (pdrag->m_eelement == e_element_client)
+   {
+
+      return origin();
+
+   }
+
+   throw exception(::error_unexpected);
+
+}
+
+
+bool nano_window_interface::drag_shift(::user::drag * pdrag)
+{
+
+   if (pdrag->m_eelement == e_element_client)
+   {
+
+      move_to(pdrag->point());
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+bool nano_window_interface::drag_hover(::user::drag * pdrag)
+{
+
+   if (pdrag->m_eelement == e_element_client)
+   {
+
+      set_cursor(e_cursor_hand);
+
+      return true;
+
+   }
+   else if (pdrag->m_eelement == e_element_resize)
+   {
+
+      set_cursor(e_cursor_size_bottom_right);
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+void nano_window_interface::drag_release_capture()
+{
+
+   release_capture();
+
+}
+
+
+void nano_window_interface::drag_set_cursor(::user::drag * pdrag)
+{
+
+   set_cursor(pdrag->m_ecursor);
 
 }
 

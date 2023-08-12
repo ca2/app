@@ -24,8 +24,9 @@ namespace html
 
 
    class CLASS_DECL_AXIS element :
-      virtual public ::user::primitive,
-      virtual public ::user::text
+      virtual public ::object
+      //virtual public ::user::primitive,
+      //virtual public ::user::text
    {
    public:
 
@@ -60,7 +61,7 @@ namespace html
 
 
 
-      virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
+      virtual void set_text(const ::string & str);
 
       DECLARE_MESSAGE_HANDLER(OnLButtonDown);
       DECLARE_MESSAGE_HANDLER(OnMouseMove);

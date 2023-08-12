@@ -44,14 +44,16 @@ struct CLASS_DECL_ACME ITEM
 {
 
 
-   ::index     m_iItem;
-   ::index     m_iSubItem;
-   ::index     m_iListItem;
+   enum_element                  m_eelement;
+   ::index                       m_iItem;
+   ::index                       m_iSubItem;
+   ::index                       m_iListItem;
 
 
    
    ITEM()
    {
+      m_eelement = e_element_none;
       m_iItem = -1;
       m_iSubItem = -1;
       m_iListItem = -1;
@@ -59,13 +61,14 @@ struct CLASS_DECL_ACME ITEM
    
    inline ITEM(const ::item * pitem);
 
-   constexpr bool operator == (const ::ITEM & primarykey)  const
+   constexpr bool operator == (const ::ITEM & item)  const
    { 
       
       return
-        m_iItem == primarykey.m_iItem
-         && m_iSubItem == primarykey.m_iSubItem
-         && m_iListItem == primarykey.m_iListItem;
+         m_eelement == item.m_eelement
+         && m_iItem == item.m_iItem
+         && m_iSubItem == item.m_iSubItem
+         && m_iListItem == item.m_iListItem;
    
    }
 
@@ -73,7 +76,16 @@ struct CLASS_DECL_ACME ITEM
 
    ///constexpr ::index item_index() const { return m_iItem; }
 
-   constexpr bool is_item_set() const { return m_iItem >= 0; }
+   constexpr bool is_item_set() const 
+   { 
+      
+      return m_iItem >= 0 || 
+         (
+            m_eelement != e_element_none 
+            && m_eelement != e_element_item
+         ); 
+
+   }
 
 
    operator u32hash() const { return { (const void *)this, sizeof(ITEM) }; }
@@ -280,7 +292,6 @@ class CLASS_DECL_ACME item :
 public:
 
 
-   enum_element                  m_eelement;
    ::e_item                      m_eitem;
    ::e_item_flag                 m_eitemflag;
    

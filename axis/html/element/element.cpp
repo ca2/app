@@ -1018,7 +1018,7 @@ namespace html
 
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
          {
-            auto pelemental  = __new(element);
+            auto pelemental  = __new(::html::element);
 
             pelemental->initialize_html_elemental(phtmldata, this);
             pelemental->load(phtmldata, ptag->baseptra()[i]);
@@ -1580,7 +1580,9 @@ namespace html
 
       //auto estatus =
       
-      ::user::primitive::initialize(phtmldata);
+      //::user::primitive::initialize(phtmldata);
+
+      ::object::initialize(phtmldata);
 
       //if (!estatus)
       //{
@@ -1604,7 +1606,7 @@ namespace html
    }
 
 
-   void element::_001SetText(const ::string & str, const ::action_context & context)
+   void element::set_text(const ::string & str)
    {
 
       if (m_phtmlbase->get_type() == ::html::base::type_tag)

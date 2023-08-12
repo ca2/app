@@ -1274,7 +1274,7 @@ namespace html
 
          m_pedit->_001GetText(strText);
 
-         m_pelemental->_001SetText(strText, context);
+         m_pelemental->set_text(strText);
 
          m_pelemental->m_pdata->m_pcoredata->m_pform->set_need_layout();
 

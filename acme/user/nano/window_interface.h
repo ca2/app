@@ -41,8 +41,19 @@ public:
    virtual void create_drawing_objects();
    virtual void update_drawing_objects();
 
+   virtual ::point_i32 origin();
+
    virtual ::shift_i32 screen_to_client();
    virtual ::shift_i32 client_to_screen();
+
+      // drag_client
+   void drag_set_capture() override;
+   ::point_i32 on_drag_start(::user::drag * pdrag) override;
+   bool drag_shift(::user::drag * pdrag) override;
+   bool drag_hover(::user::drag * pdrag) override;
+   void drag_release_capture() override;
+   void drag_set_cursor(::user::drag * pdrag) override;
+
 
    virtual ::nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
    virtual ::nano_child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);

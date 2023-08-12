@@ -4506,6 +4506,17 @@ namespace user
    //}
 
 
+   void primitive::destroy()
+   {
+
+      ::user::element::destroy();
+      ::channel::destroy();
+      ::source::destroy();
+      ::manager::destroy();
+           
+   }
+
+
    void primitive::_001OnTimer(::timer * ptimer)
    {
 

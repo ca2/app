@@ -632,7 +632,7 @@ namespace user
    ::user::tool_item * toolbar::tool_item_by_atom(const ::atom & atom)
    {
 
-      auto iIndex = item_index_by_atom(atom);
+      auto iIndex = item_index(atom);
 
       return tool_item_at(iIndex);
 
@@ -655,11 +655,11 @@ namespace user
 
          estate.set(e_tool_item_state_enabled, bEnabled);
 
-         bool bPressed = is_item_pressed_by_atom(atom);
+         bool bPressed = is_item_pressed(atom);
 
          estate.set(e_tool_item_state_pressed, bPressed);
 
-         bool bHover = is_item_hover_by_atom(atom);
+         bool bHover = is_item_hover(atom);
 
          estate.set(e_tool_item_state_hover, bHover);
 

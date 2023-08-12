@@ -13,8 +13,7 @@
 
 class CLASS_DECL_ACME nano_window :
    virtual public ::nano_window_interface,
-   virtual public ::conversation_message,
-   virtual public ::user::drag_client
+   virtual public ::conversation_message
 {
 public:
 
@@ -115,13 +114,6 @@ public:
 
    void move_to(const ::point_i32 & point) override;
 
-   // drag_client
-   void drag_set_capture() override;
-   ::point_i32 on_drag_start(::user::drag * pdrag) override;
-   bool drag_shift(::user::drag * pdrag) override;
-   bool drag_hover(::user::drag * pdrag) override;
-   void drag_release_capture() override;
-   void drag_set_cursor(::user::drag * pdrag) override;
 
    virtual void on_create();
 

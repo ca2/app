@@ -1340,9 +1340,6 @@
     <ClInclude Include="user\user\element.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\drag.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\conversation.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1771,9 +1768,6 @@
     </ClInclude>
     <ClInclude Include="parallelization\asynchronous.h">
       <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\drag_client.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="include\_template_forward_declaration.h">
       <Filter>Header Files\include</Filter>
@@ -3308,6 +3302,15 @@
     <ClInclude Include="user\user\tool_item.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\container.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\drag.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\drag_client.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4051,9 +4054,6 @@
     <ClCompile Include="user\user\element.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\drag.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\check.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4179,9 +4179,6 @@
     </ClCompile>
     <ClCompile Include="platform\tracer.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\drag_client.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\get_memory.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -4560,6 +4557,15 @@
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\link.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\drag.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\drag_client.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

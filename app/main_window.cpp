@@ -55,8 +55,6 @@ namespace app_app
 
 #endif
 
-
-
    }
 
 
@@ -260,16 +258,17 @@ namespace app_app
 
       }
 
-
       ::user::interaction::_001OnDraw(pgraphics);
 
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::item * pitem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::user::item & useritem, const ::user::e_state & estate)
    {
 
-      if (::is_null(pitem))
+      auto pitem = useritem.m_pitem;
+
+      if (::is_null(useritem.m_pitem))
       {
 
          return;
@@ -279,7 +278,7 @@ namespace app_app
       if (pitem->m_eelement == ::e_element_close_button)
       {
 
-         ::user::draw_close_button(pgraphics, this, pitem, estate);
+         ::user::draw_close_button(pgraphics, this, useritem, estate);
 
          m_iCloseButtonDraw++;
 
@@ -294,7 +293,7 @@ namespace app_app
 
       }
 
-      ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
+      ::user::interaction::_001DrawItem(pgraphics, useritem, estate);
 
    }
 

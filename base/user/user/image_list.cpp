@@ -672,7 +672,7 @@ namespace user
          if (pitem == nullptr)
          {
 
-            pitem = __create_new<item>();
+            pitem = __create_new<::item>();
 
             pitem->m_iItem = iImage;
 

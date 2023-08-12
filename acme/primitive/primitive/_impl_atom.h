@@ -255,8 +255,16 @@ inline atom::atom(enum_type etype)
 
 
 inline atom::atom(enum_id eid) :
-        m_etype(e_type_atom),
+        m_etype(e_type_id),
         m_i((::iptr) eid) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline atom::atom(enum_element eelement) :
+   m_etype(e_type_element),
+   m_i((::iptr)eelement) // used m_i to reset 64-bit field
 {
 
 }
@@ -823,7 +831,7 @@ inline bool atom::operator == (::enum_id eid) const
 
    return ::comparison::tuple
            (
-                   [&]() { return m_etype == e_type_atom; },
+                   [&]() { return m_etype == e_type_id; },
                    [&]() { return m_eid == eid; }
            );
 
@@ -835,7 +843,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_id eid) const
 
    return ::comparison::tuple
            (
-                   [&]() { return m_etype <=> e_type_atom; },
+                   [&]() { return m_etype <=> e_type_id; },
                    [&]() { return m_eid <=> eid; }
            );
 

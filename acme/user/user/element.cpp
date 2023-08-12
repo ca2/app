@@ -142,6 +142,16 @@ namespace user
 
    //}
 
+   void element::destroy()
+   {
+
+      ::user::command_update_target::destroy();
+      ::conversation::destroy();
+      ::user::drag_client::destroy();
+
+
+   }
+
 
    ::user::interaction * element::get_host_window()
    {
@@ -2853,181 +2863,6 @@ namespace user
    void element::defer_update_display()
    {
 
-
-   }
-
-
-   ::count element::item_count() const
-   {
-
-      return m_itema.count();
-
-   }
-
-
-   ::item * element::item_at(::index iIndex)
-   {
-
-      if (iIndex < 0 || iIndex >= m_itema.size())
-      {
-
-         throw ::exception(::error_index_out_of_bounds);
-
-      }
-
-      return m_itema[iIndex];
-
-   }
-
-
-   void element::default_set_item_at(::index iIndex, ::item * pitem)
-   {
-
-      if(iIndex < 0)
-      { 
-      
-         throw ::exception(error_index_out_of_bounds);
-      
-      }
-
-      pitem->m_iItem = iIndex;
-
-      m_itema.set_at_grow(iIndex, pitem);
-
-   }
-
-
-   ::item_pointer element::default_add_item(::item * pitem)
-   {
-
-      pitem->m_iItem = m_itema.add(pitem);
-
-      return pitem;
-
-   }
-
-
-   ::user::item * element::user_item_at(::index iIndex)
-   {
-
-      auto pitem = item_at(iIndex);
-
-      if (::is_null(pitem))
-      {
-
-         return nullptr;
-
-      }
-
-      return &m_useritemmap[pitem];
-
-   }
-
-
-   ::index element::item_index(const ::item * pitem)
-   {
-
-      return m_itema.find_first(pitem);
-
-   }
-
-
-   ::user::item * element::user_item(const ::item * pitem)
-   {
-
-      return &m_useritemmap[pitem];
-
-      //for (auto &pitem: *m_puseritema)
-      //{
-
-      //   if (pitem->m_pitem == useritem.m_pitem)
-      //   {
-
-      //      return pitem;
-
-      //   }
-
-      //}
-
-      //return nullptr;
-
-   }
-
-
-   ::index element::item_index_by_atom(const ::atom & atom) const
-   {
-
-      auto iIndex = atom.as_index();
-
-      if(!m_itema.is_index_ok(iIndex))
-      {
-
-         iIndex = -1;
-
-         for(::index iItem = 0; iItem < m_itema.size(); iItem++)
-         {
-
-            auto pitem = m_itema[iItem];
-
-            if (pitem->m_atom == atom)
-            {
-
-               iIndex = iItem;
-
-               break;
-
-            }
-
-         }
-
-         if (iIndex < 0)
-         {
-
-            // still not ok? couldn't find then, right?!...;
-
-            return -1;
-
-         }
-
-      }
-
-      return iIndex;
-
-   }
-
-
-   bool element::is_item_pressed_by_index(::index iIndex) const
-   {
-
-      return ::is_item_index(m_pitemPressed, iIndex);
-
-   }
-
-
-   bool element::is_item_hover_by_index(::index iIndex) const
-   {
-
-      return ::is_item_index(m_pitemHover, iIndex);
-
-   }
-
-
-   bool element::is_item_pressed_by_atom(const ::atom & atom) const
-   {
-
-      auto iIndex = item_index_by_atom(atom);
-
-      return is_item_pressed_by_index(iIndex);
-
-   }
-
-
-   bool element::is_item_hover_by_atom(const ::atom & atom) const
-   {
-
-      auto iIndex = item_index_by_atom(atom);
-
-      return is_item_hover_by_index(iIndex);
 
    }
 

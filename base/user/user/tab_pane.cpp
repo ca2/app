@@ -21,6 +21,7 @@ namespace user
       m_bTabPaneVisible = true;
       m_bPermanent = false;
       m_bNeedLayout = false;
+      m_eelement = e_element_tab;
 
    }
 
@@ -58,6 +59,8 @@ namespace user
       m_pbrushFill.create(ptab);
       m_pbrushFillSel.create(ptab);
       m_pbrushFillHover.create(ptab);
+
+      m_pitemClose = __new(::item(e_element_close_tab_button));
 
       //return estatus;
 

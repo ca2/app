@@ -6,6 +6,7 @@
 #include "acme/primitive/geometry2d/_collection.h"
 //#include "acme/primitive/primitive/property_object.h"
 #include "acme/primitive/text/text.h"
+#include "acme/handler/item.h"
 
 
 namespace user
@@ -13,6 +14,7 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_pane :
+      virtual public ::item,
       virtual public ::property_object,
       virtual public ::draw2d::holder
    {
@@ -41,6 +43,7 @@ namespace user
       point_i32                           m_point;
       e_flag                              m_eflag;
       bool                                m_bNeedLayout;
+      ::item_pointer                      m_pitemClose;
 
 
       tab_pane();

@@ -1038,8 +1038,6 @@ namespace write_text
 
       auto iFontCount = pfontlistdata->get_count();
 
-      
-
       auto procedure1 = [this, pfontlistdata, bSameSize](index iOrder, index iStart, index iCount, index iScan)
       {
 
@@ -1532,8 +1530,6 @@ namespace write_text
 
          auto & rectangle = pitem->m_box[0].m_rectangle;
 
-
-
          pitem->m_box[0].m_rectangle.left = xSingleColumn;
          pitem->m_box[0].m_rectangle.top = ySingleColumn;
          pitem->m_box[0].m_rectangle.right = xSingleColumn + s.cx();
@@ -1552,7 +1548,6 @@ namespace write_text
       return sizeTotal;
 
    }
-
 
 
    ::item_pointer font_list::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
@@ -1877,7 +1872,6 @@ namespace write_text
       update_extents();
 
    }
-
 
 
 } // namespace write_text

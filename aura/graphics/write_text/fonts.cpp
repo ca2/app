@@ -61,6 +61,13 @@ namespace write_text
 
       strFontBranch.find_replace("-", "_");
 
+      if (strFontBranch.is_empty())
+      {
+
+         strFontBranch = "system";
+
+      }
+
       if (!m_mapFontEnumeration[strFontBranch])
       {
 
@@ -80,7 +87,22 @@ namespace write_text
 
       ::pointer < ::write_text::font_enumeration > pfontenumeration;
 
-      if (scopedstrFontBranch == "system")
+      ::string strFontBranch = scopedstrFontBranch;
+
+      strFontBranch.make_lower();
+
+      strFontBranch.trim();
+
+      strFontBranch.find_replace("-", "_");
+
+      if (strFontBranch.is_empty())
+      {
+
+         strFontBranch = "system";
+
+      }
+
+      if (strFontBranch == "system")
       {
 
          pfontenumeration = __create < ::write_text::font_enumeration >();
@@ -88,12 +110,6 @@ namespace write_text
       }
       else
       {
-
-         ::string strFontBranch;
-
-         strFontBranch = scopedstrFontBranch;
-
-         strFontBranch.find_replace("-", "_");
 
          auto pfactory = acmesystem()->factory("font_enumeration", strFontBranch);
 

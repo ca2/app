@@ -24,7 +24,7 @@ namespace write_text
       m_strName(strName)
    {
 
-      m_mapFileName[0] = strName;
+      //m_mapFileName[0] = strName;
 
 #ifdef WINDOWS
 
@@ -42,10 +42,10 @@ namespace write_text
       m_wstrName(pwideszName)
    {
 
-      string strName = m_wstrName;
+//      string strName = m_wstrName;
 
-      m_mapFileName[0] = strName;
-      m_strName = strName;
+//      m_mapFileName[0] = strName;
+      m_strName = pwideszName;
 
    }
 

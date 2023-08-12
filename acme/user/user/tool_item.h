@@ -9,7 +9,7 @@
 
 
 #include "acme/user/user/_constant.h"
-#include "acme/handler/item.h"
+#include "item.h"
 
 
 namespace user
@@ -17,7 +17,7 @@ namespace user
 
 
    class CLASS_DECL_ACME tool_item:
-      virtual public ::item
+      public ::item
    {
    public:
       
@@ -32,10 +32,10 @@ namespace user
       
       
       tool_item();
-      ~tool_item() override;
+      ~tool_item();
       
 
-      bool is_hidden() const override; 
+      bool is_hidden() const; 
       bool displayed() const;
 
       void hide();

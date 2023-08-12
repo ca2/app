@@ -86,7 +86,7 @@ namespace user
       if (!m_bCreatedTabs)
       {
 
-         if (ptopic->m_atom == id_new_document || ptopic->m_atom == id_open_document)
+         if (ptopic->m_atom == id_incoming_document)
          {
 
             create_tabs();

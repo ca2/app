@@ -57,7 +57,7 @@ namespace user
 
       bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void _001EnsureVisible(index iItem);
+      virtual void ensure_item_visible_by_index(index iItem);
 
       void _001OnTimer(::timer* ptimer) override;
 

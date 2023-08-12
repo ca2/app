@@ -191,7 +191,7 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ID_OPEN_DOCUMENT)
+      if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
       {
 
          information("filemanager::main_impact ::update_open_document");

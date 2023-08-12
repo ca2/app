@@ -11,7 +11,7 @@ namespace user
 {
 
 
-   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem, const ::user::e_state & estate)
+   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -22,7 +22,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(pitem->m_rectangle);
+      ::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -81,7 +81,7 @@ namespace user
    }
 
 
-   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::item* pitem, const ::user::e_state & estate)
+   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -90,7 +90,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(pitem->m_rectangle);
+      ::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void draw_maximize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   void draw_maximize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -133,7 +133,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(pitem->m_rectangle);
+      ::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -193,7 +193,7 @@ namespace user
    }
 
 
-   void draw_minimize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   void draw_minimize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -204,7 +204,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(pitem->m_rectangle);
+      ::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 

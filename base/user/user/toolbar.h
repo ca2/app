@@ -95,12 +95,12 @@ namespace user
       
       //::index tool_item_index(const ::atom & atom) const;
       
-      ::user::tool_item * tool_item_by_atom(const ::atom & atom) const;
+      ::user::tool_item * tool_item_by_atom(const ::atom & atom);
       
-      e_tool_item_style tool_item_style(const ::atom & atom) const;
+      e_tool_item_style tool_item_style(const ::atom & atom);
       void set_tool_item_style(const ::atom & atom, const e_tool_item_style & estyle);
 
-      e_tool_item_state tool_item_state(const ::atom & atom) const;
+      e_tool_item_state tool_item_state(const ::atom & atom);
       void set_tool_item_state(const ::atom & atom, const e_tool_item_state & estate);
       void add_tool_item_state(const ::atom & atom, const e_tool_item_state & estate);
       void erase_tool_item_state(const ::atom & atom, const e_tool_item_state & estate);
@@ -108,13 +108,17 @@ namespace user
       void hide_tool_item(const ::atom & atom);
       void display_tool_item(const ::atom & atom);
       
-      ::user::e_state tool_item_user_state(const ::atom & atom) const;
+      ::user::e_state tool_item_user_state(const ::atom & atom);
 
-      ::index tool_item_image(const ::atom & atom) const;
+
+      ::user::tool_item & tool_item(const ::item * pitem);
+
+
+      ::index tool_item_image(const ::atom & atom);
       void set_tool_item_image(const ::atom & atom, index iImage);
       void set_tool_item_text(const ::atom & atom, const ::string & pszText);
 
-      string tool_item_text(const ::atom & atom) const;
+      string tool_item_text(const ::atom & atom);
 //      void GetButtonText(const ::atom & atom, string & rString) const;
 
       // for direct access to the underlying common control
@@ -140,9 +144,8 @@ namespace user
 
       virtual ::status < ::rectangle_i32 > index_element_rectangle(index iItem, enum_element eelement, ::user::enum_state estate);
 
-      virtual void set_index_tool_item(index iItem, ::user::tool_item * pitem);
-      virtual ::user::tool_item * index_tool_item(index iItem) const;
-      virtual ::count tool_item_count() const;
+      virtual ::user::tool_item * tool_item_at(index iItem);
+      virtual ::count tool_item_count();
 
 
       virtual ::size_i32 SimpleLayout(::draw2d::graphics_pointer& pgraphics);

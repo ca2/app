@@ -157,6 +157,8 @@ namespace user
          if (!bMakeVisible)
             pdocument->m_bEmbedded = true;
 
+         pdocument->m_bNew = true;
+
          if (!pdocument->on_new_document())
          {
             // ::account::user has be alerted to what failed in on_new_document
@@ -168,11 +170,14 @@ namespace user
 
          // it worked, now bump untitled count
          m_nUntitledCount++;
-         pdocument->id_update_all_impacts(id_new_document);
+         pdocument->id_update_all_impacts(id_incoming_document);
 
       }
       else
       {
+
+         pdocument->m_bNew = false;
+
          // open an existing ::user::document
          if(!on_open_document(pdocument, prequest))
          {
@@ -187,7 +192,7 @@ namespace user
          }
          //pdocument->set_path_name(pcreate->m_payloadFile);
 
-         pdocument->id_update_all_impacts(id_open_document);
+         pdocument->id_update_all_impacts(id_incoming_document);
 
       }
 

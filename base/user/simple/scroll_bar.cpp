@@ -158,9 +158,9 @@ bool simple_scroll_bar::scrollbar_action(const ::item * pitem, ::draw2d::graphic
    case ::e_element_scrollbar_rectB:
       return scrollbar_lineB(pgraphics);
    case ::e_element_scrollbar_pageA:
-      return scrollbar_pageA(pitem->m_pointClient, pgraphics);
+      return scrollbar_pageA(user_item(pitem)->m_pointClient, pgraphics);
    case ::e_element_scrollbar_pageB:
-      return scrollbar_pageB(pitem->m_pointClient, pgraphics);
+      return scrollbar_pageB(user_item(pitem)->m_pointClient, pgraphics);
    default:
       return false;
    }
@@ -225,7 +225,9 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
       m_bTracking = true;
 
-      m_pointTrack = m_pitemCurrent->m_pointClient;
+      auto puseritemCurrent = user_item(m_pitemCurrent);
+
+      m_pointTrack = puseritemCurrent->m_pointClient;
 
       m_statusrectangleTrack = get_track_rectangle(pgraphics);
 

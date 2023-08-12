@@ -172,14 +172,14 @@ namespace write_text
          if (m_pfontenumeration->m_pathaLoading.get_count())
          {
 
-            ::point_i32 point{10,10};
+            ::point_f64 point{10.0,10.0};
 
             for (index i = 0; i < m_pfontenumeration->m_pathaLoading.get_count(); i++)
             {
 
                pgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
 
-               point.y() += pgraphics->m_pfont->get_height(pgraphics);
+               point.y() += (::i32)pgraphics->m_pfont->get_height(pgraphics);
 
             }
 

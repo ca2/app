@@ -7,6 +7,7 @@
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
+#include "item.h"
 
 
 namespace user
@@ -89,16 +90,19 @@ namespace user
 
 
       //class ::time                           m_timeFocusStart;
-      bool                                   m_bUserElementOk;
-      ::user::primitive *                    m_puserprimitive;
-      ::user::interaction *                  m_puserinteraction;
-      pointer< pointer_array < ::item > >     m_pitema;
+      bool                                         m_bUserElementOk;
+      ::user::primitive *                          m_puserprimitive;
+      ::user::interaction *                        m_puserinteraction;
+      //pointer< pointer_array < ::user::item > >    m_puseritema;
 
       
-      ::pointer<::item>                     m_pitemCurrent;
-      ::pointer<::item>                     m_pitemHover;
-      //::pointer<::item>                     m_pitemHoverMouse;
-      ::pointer<::item>                     m_pitemPressed;
+      ::item_pointer                               m_pitemCurrent;
+      ::item_pointer                               m_pitemHover;
+      //::user<::item_pointer>                     m_puseritemHoverMouse;
+      ::item_pointer                               m_pitemPressed;
+      ::item_array                                 m_itema;
+      //map < ITEM, ::index >                        m_itemmap;
+      ::user::item_map                             m_useritemmap;
 
 
       element();
@@ -145,7 +149,20 @@ namespace user
 
 
       virtual void defer_update_display();
+
+      virtual ::count item_count() const;
       
+      virtual ::item * item_at(::index iIndex);
+
+      virtual void default_set_item_at(::index iIndex, ::item * pitem);
+
+      virtual ::item_pointer default_add_item(::item * pitem);
+
+      virtual ::user::item * user_item_at(::index iIndex);
+
+      virtual ::index item_index(const ::item * pitem);
+
+      virtual ::user::item * user_item(const ::item * pitem);
       
       virtual ::index item_index_by_atom(const ::atom & atom) const;
 
@@ -174,9 +191,9 @@ namespace user
 
       virtual void hide_software_keyboard(::user::element * pelement);
 
-      virtual void UpdateWindow();
+      //virtual void UpdateWindow();
       
-      virtual void Invalidate(bool bErase = true);
+      //svirtual void Invalidate(bool bErase = true);
 
       virtual bool has_pending_redraw_flags();
 
@@ -322,8 +339,8 @@ namespace user
 
 
 //      virtual void UpdateWindow();
-      virtual void SetRedraw(bool bRedraw = true);
-      virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
+      //virtual void SetRedraw(bool bRedraw = true);
+      //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
 
 
       virtual void interaction_post(const ::procedure & procedure);

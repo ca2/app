@@ -866,6 +866,8 @@
     <ClInclude Include="primitive\time\time\posix_time.h" />
     <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\time_span.h" />
+    <ClInclude Include="user\user\item.h" />
+    <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />

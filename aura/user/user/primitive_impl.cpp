@@ -1033,18 +1033,18 @@ namespace user
 //   }
 
 
-   void primitive_impl::UpdateWindow()
-   {
+   //void primitive_impl::UpdateWindow()
+   //{
 
 
-   }
+   //}
 
 
-   void primitive_impl::SetRedraw(bool bRedraw)
-   {
+   //void primitive_impl::SetRedraw(bool bRedraw)
+   //{
 
 
-   }
+   //}
 
 
 //   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
@@ -2738,54 +2738,54 @@ namespace user
    }
 
 
-   i32 primitive_impl::GetUpdateRgn(class draw2d::region *,bool)
-   {
+   //i32 primitive_impl::GetUpdateRgn(class draw2d::region *,bool)
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
-
-
-   void primitive_impl::Invalidate(bool)
-   {
+   //}
 
 
-   }
+   //void primitive_impl::Invalidate(bool)
+   //{
 
 
-   void primitive_impl::InvalidateRect(::rectangle_i32 const &,bool)
-   {
+   //}
 
 
-   }
+   //void primitive_impl::InvalidateRect(::rectangle_i32 const &,bool)
+   //{
 
 
-   void primitive_impl::InvalidateRgn(class draw2d::region *,bool)
-   {
+   //}
 
 
-   }
+   //void primitive_impl::InvalidateRgn(class draw2d::region *,bool)
+   //{
 
 
-   void primitive_impl::ValidateRect(::rectangle_i32 const &)
-   {
+   //}
 
 
-   }
+   //void primitive_impl::ValidateRect(::rectangle_i32 const &)
+   //{
 
 
-   void primitive_impl::ValidateRgn(class draw2d::region *)
-   {
+   //}
 
 
-   }
+   //void primitive_impl::ValidateRgn(class draw2d::region *)
+   //{
 
 
-   void primitive_impl::ShowOwnedPopups(bool)
-   {
+   //}
 
 
-   }
+   //void primitive_impl::ShowOwnedPopups(bool)
+   //{
+
+
+   //}
 
 
    ::graphics::graphics * primitive_impl::get_window_graphics(void)

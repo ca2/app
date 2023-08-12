@@ -298,7 +298,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (ptopic->m_atom == id_open_document)
+         if (ptopic->m_atom == id_incoming_document)
          {
 
             //if (m_impactmap.get_count() == 0)

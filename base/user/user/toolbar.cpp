@@ -122,7 +122,7 @@ namespace user
       for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
       {
 
-         auto ptoolitem = index_tool_item(command.m_iIndex);
+         auto ptoolitem = tool_item_at(command.m_iIndex);
 
          if (ptoolitem->is_hidden())
          {
@@ -306,7 +306,7 @@ namespace user
 
       // recalculate the non-client region
       //set_window_position(zorder_none, 0, 0, 0, 0, SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
-      Invalidate();   // just to be nice if called when toolbar is visible
+      //Invalidate();   // just to be nice if called when toolbar is visible
    }
 
 
@@ -575,7 +575,7 @@ namespace user
    }
 
 
-   e_tool_item_style toolbar::tool_item_style(const ::atom & atom) const
+   e_tool_item_style toolbar::tool_item_style(const ::atom & atom)
    {
 
       auto pitem = tool_item_by_atom(atom);
@@ -603,17 +603,17 @@ namespace user
    //   
    //      auto iIndex = atom.m_i;
    //   
-   //      if(!m_pitema->is_index_ok(iIndex))
+   //      if(!m_itema.is_index_ok(iIndex))
    //      {
    //
-   //         iIndex = m_pitema->predicate_find_first([&atom](auto & pitem)
+   //         iIndex = m_itema.predicate_find_first([&atom](auto & pitem)
    //         {
    //
    //            return pitem->m_id == atom;
    //
    //         });
    //         
-   //         if(!m_pitema->is_index_ok(iIndex))
+   //         if(!m_itema.is_index_ok(iIndex))
    //         {
    //
    //            // still not ok? couldn't find then, right?!...;
@@ -629,17 +629,17 @@ namespace user
    //   }
 
 
-   ::user::tool_item * toolbar::tool_item_by_atom(const ::atom & atom) const
+   ::user::tool_item * toolbar::tool_item_by_atom(const ::atom & atom)
    {
 
       auto iIndex = item_index_by_atom(atom);
 
-      return index_tool_item(iIndex);
+      return tool_item_at(iIndex);
 
    }
 
 
-   ::e_tool_item_state toolbar::tool_item_state(const ::atom & atom) const
+   ::e_tool_item_state toolbar::tool_item_state(const ::atom & atom)
    {
 
       auto pitem = tool_item_by_atom(atom);
@@ -670,7 +670,7 @@ namespace user
    }
 
 
-   ::user::e_state toolbar::tool_item_user_state(const ::atom & atom) const
+   ::user::e_state toolbar::tool_item_user_state(const ::atom & atom)
    {
 
       auto eitemstate = tool_item_state(atom);
@@ -1222,7 +1222,15 @@ namespace user
    }
 
 
-   ::index toolbar::tool_item_image(const ::atom & atom) const
+   ::user::tool_item & toolbar::tool_item(const ::item * pitem)
+   {
+
+      return *dynamic_cast<::user::tool_item *>((::item *) pitem);
+
+   }
+
+
+   ::index toolbar::tool_item_image(const ::atom & atom)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_VALID(this);
@@ -1331,7 +1339,7 @@ namespace user
    }
 
 
-   string toolbar::tool_item_text(const ::atom & atom) const
+   string toolbar::tool_item_text(const ::atom & atom)
    {
 
       auto ptoolitem = tool_item_by_atom(atom);
@@ -1494,7 +1502,7 @@ namespace user
          }
 
          // Then redraw the buttons
-         Invalidate();
+         // Invalidate();
       }
 #else
       throw ::exception(todo);
@@ -1839,10 +1847,10 @@ namespace user
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
 
-   ::count toolbar::tool_item_count() const
+   ::count toolbar::tool_item_count()
    {
 
-      return m_pitema->count();
+      return m_itema.count();
 
    }
 
@@ -1850,14 +1858,16 @@ namespace user
    ::status < ::rectangle_i32 > toolbar::index_item_rectangle(index iItem)
    {
 
-      if (!m_pitema->is_index_ok(iItem))
+      if (!m_itema.is_index_ok(iItem))
       {
 
          return error_failed;
 
       }
 
-      ::status < ::rectangle_i32 > statusrectangle = m_pitema->element_at(iItem)->m_rectangle;
+      auto puseritem = user_item_at(iItem);
+
+      ::status < ::rectangle_i32 > statusrectangle = puseritem->m_rectangle;
 
       statusrectangle.m_estatus = ::success;
 
@@ -1874,34 +1884,34 @@ namespace user
    }
 
 
-   ::user::tool_item * toolbar::index_tool_item(index iItem) const
+   ::user::tool_item * toolbar::tool_item_at(index iItem)
    {
 
-      if (!m_pitema->is_index_ok(iItem))
+      if (!m_itema.is_index_ok(iItem))
       {
 
          return nullptr;
 
       }
 
-      return m_pitema->element_at(iItem)->tool_item();
+      return item_at(iItem)->cast < ::user::tool_item>();
 
    }
 
 
-   void toolbar::set_index_tool_item(index iItem, ::user::tool_item * pitem)
-   {
+   //void toolbar::set_tool_item_at(index iItem, ::user::tool_item * pitem)
+   //{
 
-      if (iItem < 0 || iItem >= m_pitema->get_size())
-      {
+   //   if (iItem < 0 || iItem >= m_itema.get_size())
+   //   {
 
-         throw ::exception(::error_index_out_of_bounds);
+   //      throw ::exception(::error_index_out_of_bounds);
 
-      }
+   //   }
 
-      m_pitema->element_at(iItem) = pitem;
+   //   m_itema.element_at(iItem) = pitem;
 
-   }
+   //}
 
 
    void toolbar::load_xml_toolbar(const ::payload & payloadFile)
@@ -1909,7 +1919,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      m_pitema->erase_all();
+      m_itema.erase_all();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -1947,7 +1957,7 @@ namespace user
 
       auto & children = pxmldocument->root()->children();
 
-      ::pointer<::user::tool_item>ptoolitem;
+      ::pointer < ::user::tool_item > ptoolitem;
 
       //auto papp = get_app();
 
@@ -1961,11 +1971,15 @@ namespace user
 
             ptoolitem = __new(::user::tool_item);
 
-            ptoolitem->m_iItem = m_pitema->get_size();
+            default_set_item_at(iItem, ptoolitem);
+
+            ptoolitem->m_iItem = m_itema.get_size();
 
             auto pattributeId = pchild->find_attribute("id");
 
             ptoolitem->m_atom = pattributeId->as_string();
+
+            auto puseritem = user_item_at(iItem);
 
             ptoolitem->m_str = pchild->get_value();
 
@@ -1996,23 +2010,19 @@ namespace user
 
             ptoolitem->m_estyle -= e_tool_item_style_separator;
 
-            m_pitema->add(ptoolitem);
-
          }
          else if (pchild->get_name() == "separator")
          {
 
             ptoolitem = __new(::user::tool_item);
 
-            ptoolitem->m_iItem = m_pitema->get_size();
+            default_set_item_at(iItem, ptoolitem);
 
             ptoolitem->m_atom = "separator";
 
             ptoolitem->m_str = "";
 
             ptoolitem->m_estyle |= e_tool_item_style_separator;
-
-            m_pitema->add(ptoolitem);
 
          }
 

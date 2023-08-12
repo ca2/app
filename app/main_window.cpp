@@ -140,9 +140,9 @@ namespace app_app
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-         auto pitemClose = get_user_item(::e_element_close_button);
-         auto pitemZoom = get_user_item(::e_element_maximize_button);
-         auto pitemIcon = get_user_item(::e_element_minimize_button);
+         auto pitemClose = user_item(::e_element_close_button);
+         auto pitemZoom = user_item(::e_element_maximize_button);
+         auto pitemIcon = user_item(::e_element_minimize_button);
 
          if (::is_set(pitemClose))
          {

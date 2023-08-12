@@ -199,7 +199,7 @@ namespace user
       //}
 
 
-      pinteraction->signal(id_initial_update);
+      pinteraction->on_topic(id_initial_update);
       
 
 //      ::pointer<::user::impact>pimpact = pinteraction;

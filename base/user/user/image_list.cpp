@@ -410,11 +410,9 @@ namespace user
          ::rectangle_i32 rectangleSel;
          ::rectangle_i32 rectangleText;
 
-
-
          //itemText = e_element_text;
 
-         auto pitem = get_user_item(iImage);
+         auto pitem = m_itema[iImage];
 
          if (pitem == nullptr)
          {
@@ -428,9 +426,9 @@ namespace user
 
          }
 
-         auto & rectangle = pitem->m_rectangle;
+         auto puseritem = user_item(pitem);
 
-         
+         auto & rectangle = puseritem->m_rectangle;
 
          //bool bRectText = get_rect(itemText);
 
@@ -669,7 +667,7 @@ namespace user
       for (index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
 
-         auto pitem = get_user_item(iImage);
+         auto pitem = item_at(iImage);
 
          if (pitem == nullptr)
          {
@@ -684,6 +682,8 @@ namespace user
 
          }
 
+         auto puseritem = user_item(pitem);
+
          if (x > left && x + m_size.cx() + m_iPad >= rectangleClient.width())
          {
 
@@ -693,14 +693,14 @@ namespace user
 
          }
 
-         pitem->m_rectangle.left = x;
-         pitem->m_rectangle.right = x + m_size.cx();
-         pitem->m_rectangle.top = y;
-         pitem->m_rectangle.bottom = y + m_size.cy();
+         puseritem->m_rectangle.left = x;
+         puseritem->m_rectangle.right = x + m_size.cx();
+         puseritem->m_rectangle.top = y;
+         puseritem->m_rectangle.bottom = y + m_size.cy();
 
-         x = pitem->m_rectangle.right + m_iPad;
+         x = puseritem->m_rectangle.right + m_iPad;
 
-         rectangleTotal.unite(rectangleTotal, pitem->m_rectangle);
+         rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle);
 
       }
 

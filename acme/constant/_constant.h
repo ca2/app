@@ -796,7 +796,7 @@ enum enum_service_status
 enum enum_item : ::i64
 {
 
-   e_item_normal = 0,
+   e_item_none = 0,
    e_item_tool,
 
 };

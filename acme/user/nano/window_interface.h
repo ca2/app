@@ -7,10 +7,11 @@
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 ////#include "acme/primitive/primitive/object.h"
 #include "acme/primitive/geometry2d/shift.h"
+#include "acme/user/user/element.h"
 
 
 class CLASS_DECL_ACME nano_window_interface :
-   virtual public ::object
+   virtual public ::user::element
 {
 public:
 

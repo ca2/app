@@ -85,9 +85,9 @@ namespace user
 
       void hide_software_keyboard(::user::element * pelement) override;
 
-      void UpdateWindow() override;
+      //void UpdateWindow() override;
       
-      void Invalidate(bool bErase = true) override;
+      //void Invalidate(bool bErase = true) override;
 
       bool has_pending_redraw_flags() override;
 
@@ -253,8 +253,8 @@ namespace user
 
 
 //      virtual void UpdateWindow();
-      void SetRedraw(bool bRedraw = true) override;
-      bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
+      //void SetRedraw(bool bRedraw = true) override;
+      //bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
 
       void interaction_post(const ::procedure & procedure) override;

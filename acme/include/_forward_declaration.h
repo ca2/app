@@ -1066,7 +1066,7 @@ namespace user
    class element;
    class primitive_impl;
 
-   //class object;
+   class item;
 
 
 } // namespace user

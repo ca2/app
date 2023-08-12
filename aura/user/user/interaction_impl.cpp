@@ -5238,102 +5238,103 @@ namespace user
          //if (!m_puserinteraction)
          //{
 
-         //   return;
+//   return;
 
-         //}
+//}
 
-         //if (!this->task_get_run())
-         //{
+//if (!this->task_get_run())
+//{
 
-         //   return;
+//   return;
 
-         //}
+//}
 
-         //if (!m_puserinteraction)
-         //{
+//if (!m_puserinteraction)
+//{
 
-         //   return;
+//   return;
 
-         //}
+//}
 
-         /*       bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
+/*       bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
 
-                if(!m_pimpl)
-                {
+       if(!m_pimpl)
+       {
 
-                   return;
+          return;
 
-                }
+       }
 
-                bool bHasProdevian = m_pimpl->has_prodevian();
+       bool bHasProdevian = m_pimpl->has_prodevian();
 
-                if(!m_puserinteraction)
-                {
+       if(!m_puserinteraction)
+       {
 
-                   return;
+          return;
 
-                }
+       }
 
-                bool bRedraw = m_puserinteraction->m_bNeedRedraw;
+       bool bRedraw = m_puserinteraction->m_bNeedRedraw;
 
-                if(!m_puserinteraction)
-                {
+       if(!m_puserinteraction)
+       {
 
-                   return;
+          return;
 
-                }
+       }
 
-                bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
+       bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
 
-                if (bIsThisScreenVisible
-                   &&
-                   (bForce
-                   || bUpdateBuffer
-                   || bHasProdevian
-                   || bRedraw
-                   || bHasPendingGraphicalUpdate
-                   )
-                   )
-                {
+       if (bIsThisScreenVisible
+          &&
+          (bForce
+          || bUpdateBuffer
+          || bHasProdevian
+          || bRedraw
+          || bHasPendingGraphicalUpdate
+          )
+          )
+       {
 
-                   bDraw = true;
+          bDraw = true;
 
-                }
+       }
 
-                if(!m_puserinteraction)
-                {
+       if(!m_puserinteraction)
+       {
 
-                   return;
+          return;
 
-                }*/
+       }*/
 
-                /*      if (m_puserinteraction->m_bOffScreenRender)
-                      {
+       /*      if (m_puserinteraction->m_bOffScreenRender)
+             {
 
-                         bDraw = true;
+                bDraw = true;
 
-                      }*/
+             }*/
 
-      update_graphics_resources();
+update_graphics_resources();
 
-      if (bDraw && m_pgraphics.is_null())
-      {
+if (bDraw && m_pgraphics.is_null())
+{
 
-         return;
+   return;
 
-      }
+}
 
-      //}
+//}
 
-      if (m_puserinteraction->has_flag(e_flag_destroying)
-         || m_puserinteraction->has_finishing_flag()
-         || has_flag(e_flag_destroying)
-         || has_finishing_flag())
-      {
+if (m_puserinteraction->has_flag(e_flag_destroying)
+   || m_puserinteraction->has_finishing_flag()
+   || has_flag(e_flag_destroying)
+   || has_finishing_flag())
+{
 
-         return;
+   return;
 
-      }
+}
+
 
       //::size_i32 sizeDrawn;
 
@@ -5481,6 +5482,13 @@ namespace user
 
       auto pbufferitem = m_pgraphics->on_begin_draw();
       //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+
+      if (!pbufferitem)
+      {
+
+         return;
+
+      }
 
       _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 

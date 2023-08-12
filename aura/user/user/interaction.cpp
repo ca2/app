@@ -17978,13 +17978,7 @@ return strClass;
       if (ptopic)
       {
 
-         if (ptopic->m_atom == ID_INITIAL_UPDATE)
-         {
-
-         //   update_impact();
-
-         }
-         else if (ptopic->m_atom == ID_UPDATE)
+         if (ptopic->m_atom == ID_UPDATE)
          {
 
             update_impact();

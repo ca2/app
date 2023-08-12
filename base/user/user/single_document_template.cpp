@@ -246,6 +246,8 @@ namespace user
 
          }
 
+         pdocument->m_bOpened = true;
+
          pdocument->id_update_all_impacts(id_incoming_document);
 
       }
@@ -288,6 +290,7 @@ namespace user
             }
             return;        // open failed
          }
+         pdocument->m_bOpened = true;
          pdocument->set_path_name(payloadFile);
          pdocument->update_title();
          pdocument->id_update_all_impacts(ID_INCOMING_DOCUMENT);

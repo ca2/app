@@ -11469,7 +11469,9 @@ return strClass;
 
       }
 
-      auto sizeParent = get_parent()->size(::user::e_layout_lading);
+      auto pparent = get_parent();
+
+      auto sizeParent = pparent->size(::user::e_layout_lading);
 
       auto sizeThis = size(::user::e_layout_lading);
 

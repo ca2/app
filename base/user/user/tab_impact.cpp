@@ -46,22 +46,6 @@ namespace user
    }
 
 
-//   void tab_impact::assert_ok() const
-//   {
-//
-//      impact::assert_ok();
-//
-//   }
-//
-//
-//   void tab_impact::dump(dump_context & dumpcontext) const
-//   {
-//
-//      impact::dump(dumpcontext);
-//
-//   }
-
-
    void tab_impact::on_message_create(::message::message * pmessage)
    {
 

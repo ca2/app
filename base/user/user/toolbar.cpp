@@ -1919,7 +1919,18 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      m_pitema->erase_all();
+      if (m_pitema)
+      {
+
+         m_pitema->erase_all();
+
+      }
+      else
+      {
+
+         __defer_construct_new(m_pitema);
+
+      }
 
       auto pxmldocument = __create_new < ::xml::document >();
 

@@ -1857,7 +1857,7 @@ namespace experience_anthill
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
-      auto ptoolitem = ptoolbar->index_tool_item(iItem);
+      auto ptoolitem = ptoolbar->tool_item_at(iItem);
 
       auto estyle = ptoolbar->tool_item_style(iItem);
 
@@ -2175,7 +2175,7 @@ namespace experience_anthill
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
-      auto ptoolitem = ptoolbar->index_tool_item(iItem);
+      auto ptoolitem = ptoolbar->tool_item_at(iItem);
 
       //auto estyle = ptoolbar->get_item_style(iItem);
 

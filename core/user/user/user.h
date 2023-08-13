@@ -2,7 +2,6 @@
 
 
 #include "base/user/user/user.h"
-#include "base/user/user/impact_data.h"
 #include "core/filesystem/filemanager/component.h"
 
 
@@ -18,8 +17,6 @@ namespace core
 
 
 
-      ::user::impact_system *                      m_ptemplateForm;
-      ::user::impact_system *                      m_ptemplateChildForm;
       ::user::impact_system *                      m_ptemplatePlaceHolder;
 
 
@@ -27,9 +24,9 @@ namespace core
       ::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      map < ::type, ::user::impact_system * >      m_mapTemplate;
+      //map < ::type, ::user::impact_system * >      m_mapTemplate;
 
-      atom_map < ::user::impact_system * >           m_mapimpactsystem;
+      //atom_map < ::user::impact_system * >           m_mapimpactsystem;
 
 
       //::pointer<::userex::userex>             m_puserex;
@@ -207,20 +204,6 @@ namespace core
       ::pointer<::user::impact_system>get_template(index index) const;
 
 
-      ::pointer<::form_document>  create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
-      //::pointer<::form_document>  create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
-      //::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
-
-      template < typename FORM >
-      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
-      {
-
-         return create_typed_child_form(pparticle, __type(FORM), pimpactdata->m_pplaceholder, payload);
-
-      }
 
 
       ::user::document * hold(::pointer<::user::interaction>pinteraction);

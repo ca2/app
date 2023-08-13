@@ -4,6 +4,7 @@
 #include "impact_host.h"
 #include "tab.h"
 #include "tab_callback.h"
+#include "aura/user/user/form_callback.h"
 
 
 namespace user
@@ -18,7 +19,8 @@ namespace user
    class CLASS_DECL_BASE tab_impact :
       virtual public ::user::impact_host,
       virtual public ::user::tab,
-      virtual public ::user::tab_callback
+      virtual public ::user::tab_callback,
+      virtual public ::user::form_callback
    {
    public:
 
@@ -29,6 +31,7 @@ namespace user
       ::user::impact_creator *                 m_pviewcreator;
       bool                                     m_bCloseDocumentIfNoTabs;
       ::pointer<::user::impact>                m_pimpactTopic;
+      atom_map < ::pointer<::form_document >>  m_mapformdocument;
 
 
       tab_impact();
@@ -114,6 +117,8 @@ namespace user
       void OnActivateImpact(bool bActivate, ::pointer<impact>pActivateImpact, ::pointer<impact>DeactiveImpact) override;
 
       void _001OnRemoveTab(class tab_pane * ptab) override;
+
+      virtual void prepare_form(const ::atom & atom, ::form_document * pformdocument);
 
 
    };

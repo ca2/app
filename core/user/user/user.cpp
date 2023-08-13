@@ -8,8 +8,6 @@
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "acme/handler/request.h"
-#include "acme/platform/sequencer.h"
-#include "acme/user/nano/nano.h"
 #include "apex/platform/os_context.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -129,7 +127,7 @@ namespace core
       m_ptemplateForm = nullptr;
       m_ptemplateChildForm = nullptr;
       m_ptemplatePlaceHolder = nullptr;
-      m_ptemplateHtmlChildForm1 = nullptr;
+      //m_ptemplateHtmlChildForm1 = nullptr;
 
    }
 
@@ -543,88 +541,6 @@ namespace core
    {
 
       //return ::success;
-
-   }
-
-
-
-
-   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
-   {
-
-      if (!type)
-      {
-
-         return nullptr;
-
-      }
-
-      ::pointer<::user::impact_system>psystem = m_mapTemplate[type];
-
-      if (psystem.is_null())
-      {
-
-         psystem = __new(::user::multiple_document_template(
-            m_ptemplateForm->m_atom,
-            m_ptemplateForm->m_typeDocument,
-            m_ptemplateForm->m_typeFrame,
-            type));
-
-         m_mapTemplate[type] = psystem;
-
-         document_manager()->add_document_template(psystem);
-
-      }
-
-      if (pparticle == nullptr)
-      {
-
-         if (::is_set(puserelementParent))
-         {
-
-            pparticle = puserelementParent;
-
-         }
-         else
-         {
-
-            pparticle = this;
-
-         }
-
-      }
-
-      ::pointer<::request>prequest(e_create, this);
-
-      prequest->m_bMakeVisible = true;
-
-      prequest->m_puserelementParent = puserelementParent;
-
-      prequest->m_payloadArguments = payloadArgs;
-
-      auto pathFile = payload.as_file_path();
-
-      if (pathFile.has_char())
-      {
-
-         prequest->m_payloadFile = pathFile;
-
-      }
-
-      psystem->request(prequest);
-
-      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
-
-      if (pformdocument.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
-
-      return pformdocument;
 
    }
 
@@ -1058,69 +974,6 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
-   {
-
-      if (m_ptemplateForm == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      ::pointer<::request>prequest(e_create, this);
-
-      prequest->m_bMakeVisible = false;
-
-      prequest->m_puserelementParent = puserelementParent;
-
-      prequest->m_puserelementAlloc = pform;
-
-      prequest->m_payloadArguments = payloadArgs;
-
-      prequest->m_payloadArguments["form_callback"] = pcallback;
-
-      auto pathFile = payload.as_file_path();
-
-      if (pathFile.has_char())
-      {
-
-         prequest->m_payloadFile = pathFile;
-
-      }
-
-      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
-      {
-
-         prequest->m_bHold = false;
-
-      }
-
-      m_ptemplateForm->request(prequest);
-
-      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
-
-      if (pformdocument.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      ::pointer<::user::form_window> pformwindow = pformdocument->get_typed_impact < ::user::form_window >();
-
-      if (pformwindow.is_set())
-      {
-
-         pformwindow->set_form_callback(pcallback);
-
-      }
-
-      return pformdocument;
-
-   }
-
-
    //::pointer<::form_document>user::create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    //{
 
@@ -1203,95 +1056,6 @@ namespace core
    //}
 
 
-   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
-   {
-
-      if (m_ptemplateChildForm == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      auto papp = pparticle->acmeapplication();
-
-      if (papp == nullptr)
-      {
-
-         if (::is_set(puserelementParent))
-         {
-
-            papp = puserelementParent->get_app();
-
-         }
-         else if (pcallback != nullptr)
-         {
-
-            papp = pcallback->get_app();
-
-         }
-         else
-         {
-
-            papp = get_app();
-
-         }
-
-      }
-
-      auto prequest = __create_new< ::request >();
-
-      prequest->m_bMakeVisible = false;
-
-      prequest->m_puserelementParent = puserelementParent;
-
-      prequest->m_puserelementAlloc = pform;
-
-      prequest->m_payloadArguments = payloadArgs;
-
-      prequest->m_payloadArguments["form_callback"] = pcallback;
-
-      auto pathFile = payload.as_file_path();
-
-      if (pathFile.has_char())
-      {
-
-         prequest->m_payloadFile = pathFile;
-
-      }
-
-      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
-      {
-
-         prequest->m_bHold = false;
-
-      }
-
-      prequest->finish_initialization();
-
-      m_ptemplateChildForm->request(prequest);
-
-      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
-
-      if (pformdocument.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      ::pointer<::user::form_window> pformwindow = pformdocument->get_typed_impact < ::user::form_window >();
-
-      if (pformwindow.is_set())
-      {
-
-         pformwindow->set_form_callback(pcallback);
-
-      }
-
-      return pformdocument;
-
-   }
 
 
    //::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
@@ -1367,141 +1131,6 @@ namespace core
    //   return pformdocument;
 
    //}
-
-
-   bool is_html_file(string strFilePath)
-   {
-
-      return string(file_path_final_extension(strFilePath)).case_insensitive_order("htm") == 0;
-
-   }
-
-
-   ::pointer<::form_document>user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
-   {
-
-      auto pathFile = payload.as_file_path();
-
-      try
-      {
-
-         if (!type)
-         {
-
-            return nullptr;
-
-         }
-
-         ::user::impact_system * psystem = m_mapTemplate[type];
-
-         if (psystem == nullptr)
-         {
-
-            ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
-
-            if (is_html_file(payload.as_file_path()))
-            {
-
-               typeDocument = get_html_document_type();
-
-            }
-
-            auto psystemNew = __new(::user::multiple_document_template(
-               m_ptemplateChildForm->m_atom,
-               typeDocument,
-               m_ptemplateChildForm->m_typeFrame,
-               type));
-
-            psystemNew->initialize(pparticle);
-
-            psystem = psystemNew;
-
-            m_mapTemplate[type] = psystem;
-
-            document_manager()->add_document_template(psystem);
-
-         }
-
-         if (pparticle == nullptr)
-         {
-
-            if (::is_set(puserelementParent))
-            {
-
-               pparticle = puserelementParent;
-
-            }
-            else
-            {
-
-               pparticle = this;
-
-            }
-
-         }
-
-         auto prequest = ::__create_new < ::request >(pparticle);
-
-         prequest->m_bMakeVisible = false;
-
-         prequest->m_puserelementParent = puserelementParent;
-
-         prequest->m_payloadArguments = payloadArgs;
-
-         if (pathFile.has_char())
-         {
-
-            prequest->m_payloadFile = pathFile;
-
-         }
-
-         psystem->request(prequest);
-
-         ::pointer<::form_document>pformdocument = ::user::__document(prequest);
-
-         if (pformdocument.is_null())
-         {
-
-            return nullptr;
-
-         }
-
-         ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
-
-         return pformdocument;
-
-      }
-      //catch(::exception)
-      catch (const ::exception & exception)
-      {
-
-#ifdef DEBUG
-
-         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
-
-         psequencer->do_synchronously();
-
-#endif
-
-      }
-      catch (...)
-      {
-
-#ifdef DEBUG
-
-         ::exception exception(error_catch_all_exception);
-
-         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
-
-         psequencer->do_synchronously();
-
-#endif
-
-      }
-
-      return nullptr;
-
-   }
 
 
    ::user::document * user::hold(::pointer<::user::interaction>pinteraction)

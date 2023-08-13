@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "base/user/form/impact.h"
+#include "impact.h"
 
 
 namespace user
@@ -17,8 +17,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE form_options :
-      virtual public ::user::form_impact
+   class CLASS_DECL_BASE options_impact :
+      virtual public ::user::impact
    {
    public:
 
@@ -30,8 +30,8 @@ namespace user
       //::pointer<::user::still>             m_pstillReceiver;
 
 
-      form_options();
-      ~form_options() override;
+      options_impact();
+      ~options_impact() override;
 
 
       //      // void assert_ok() const override;

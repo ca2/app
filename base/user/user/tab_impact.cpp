@@ -5,7 +5,7 @@
 #include "frame_window.h"
 #include "split_impact.h"
 #include "document.h"
-#include "base/user/form/options.h"
+#include "options_impact.h"
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -14,8 +14,11 @@
 #include "aura/user/user/interaction_array.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
+#include "base/platform/session.h"
+#include "base/user/form/document.h"
 #include "base/user/menu/menu.h"
 #include "base/user/menu/list_impact.h"
+#include "base/user/user/user.h"
 #include "base/user/user/tab_drop_target_window.h"
 
 
@@ -319,6 +322,12 @@ namespace user
       }
 
       m_impactdatamap.erase_item(idTab);
+
+   }
+
+
+   void tab_impact::prepare_form(const ::atom & atom, ::form_document * pformdocument)
+   {
 
    }
 
@@ -789,12 +798,44 @@ namespace user
    void tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
    
-      if (pimpactdata->m_atom == "form_options")
+      if (pimpactdata->m_atom == OPTIONS_IMPACT)
       {
 
-         create_impact < form_options >(pimpactdata);
+         create_impact < options_impact >(pimpactdata);
 
          //pimpactdata->m_eflag += ::user::e_flag_hide_all_others_on_show;
+
+      }
+      else if (pimpactdata->m_atom.is_text())
+      {
+
+         if (string_begins_ci(pimpactdata->m_atom.m_str, "form_"))
+         {
+
+            auto pcontext = m_pcontext;
+
+            auto psession = pcontext->m_pacmesession->m_pbasesession;
+
+            auto puser = psession->m_puser->m_pbaseuser;
+
+            ::pointer<form_document>pformdocument = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
+
+            if (pformdocument)
+            {
+
+               m_mapformdocument[pimpactdata->m_atom] = pformdocument;
+
+               pformdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
+
+               ::user::impact * pimpact = pformdocument->get_impact(0);
+
+               pimpactdata->m_puserinteraction = pimpact->parent_frame();
+
+               prepare_form(pimpactdata->m_atom, pformdocument);
+
+            }
+
+         }
 
       }
       else if(pimpactdata->m_atom == MENU_IMPACT)

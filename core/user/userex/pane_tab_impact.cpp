@@ -855,38 +855,6 @@ namespace userex
       //   create_app_options(pimpactdata);
 
       //}
-      else if (pimpactdata->m_atom.is_text())
-      {
-
-         if (string_begins_ci(pimpactdata->m_atom.m_str, "form_"))
-         {
-
-            auto pcontext = m_pcontext;
-            
-            auto psession = pcontext->m_pacmesession->m_pcoresession;
-            
-            auto puser = psession->m_puser->m_pcoreuser;
-
-            ::pointer<form_document>pdocument = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
-
-            if (pdocument.is_set())
-            {
-
-               m_mapForm[pimpactdata->m_atom] = pdocument;
-
-               pdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
-
-               ::user::impact * pimpact = pdocument->get_impact(0);
-
-               pimpactdata->m_puserinteraction = pimpact->parent_frame();
-
-               prepare_form(pimpactdata->m_atom, pdocument);
-
-            }
-
-         }
-
-      }
 
       ::user::tab_impact::on_create_impact(pimpactdata);
       
@@ -1091,7 +1059,7 @@ namespace userex
    //}
 
 
-   void pane_tab_impact::prepare_form(atom atom, ::form_document * pdocument)
+   void pane_tab_impact::prepare_form(const ::atom & atom, ::form_document * pdocument)
    {
 
       auto papp = get_app();

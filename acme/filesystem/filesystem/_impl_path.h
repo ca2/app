@@ -875,7 +875,48 @@ namespace file
    }
 
 
+   inline path & path::set_file_path(const ::scoped_string & scopedstrFile)
+   {
 
+      operator = (scopedstrFile);
+
+      set_file_path();
+
+      return *this;
+
+   }
+
+
+   inline path & path::set_folder_path(const ::scoped_string & scopedstrFolder)
+   {
+
+      operator = (scopedstrFolder);
+
+      folder();
+
+      return *this;
+
+   }
+
+
+   inline path & path::set_file_path()
+   {
+
+      m_iDir = 0;
+
+      return *this;
+
+   }
+
+
+   inline path & path::set_folder_path()
+   {
+
+      m_iDir = 1;
+
+      return *this;
+
+   }
 
 
    inline path & path::operator = (const ::file::path & path)

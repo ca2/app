@@ -169,9 +169,11 @@ namespace networking
 
       virtual ::pointer<::networking::address>create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
 
-      virtual ::pointer_array < ::networking::address > list_computers();
+      /// item: networking::address
+      virtual ::pointer < ::item_array > list_computers();
 
-      virtual ::pointer_array < ::networking::address > list_network_interfaces();
+      /// item: networking::address
+      virtual ::pointer < ::item_array > list_network_interfaces();
 
 
    };

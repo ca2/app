@@ -603,17 +603,17 @@ namespace user
    //   
    //      auto iIndex = atom.m_i;
    //   
-   //      if(!m_itema.is_index_ok(iIndex))
+   //      if(!m_pitema->is_index_ok(iIndex))
    //      {
    //
-   //         iIndex = m_itema.predicate_find_first([&atom](auto & pitem)
+   //         iIndex = m_pitema->predicate_find_first([&atom](auto & pitem)
    //         {
    //
    //            return pitem->m_id == atom;
    //
    //         });
    //         
-   //         if(!m_itema.is_index_ok(iIndex))
+   //         if(!m_pitema->is_index_ok(iIndex))
    //         {
    //
    //            // still not ok? couldn't find then, right?!...;
@@ -1850,7 +1850,7 @@ namespace user
    ::count toolbar::tool_item_count()
    {
 
-      return m_itema.count();
+      return m_pitema->count();
 
    }
 
@@ -1858,7 +1858,7 @@ namespace user
    ::status < ::rectangle_i32 > toolbar::index_item_rectangle(index iItem)
    {
 
-      if (!m_itema.is_index_ok(iItem))
+      if (!m_pitema->is_index_ok(iItem))
       {
 
          return error_failed;
@@ -1887,7 +1887,7 @@ namespace user
    ::user::tool_item * toolbar::tool_item_at(index iItem)
    {
 
-      if (!m_itema.is_index_ok(iItem))
+      if (!m_pitema->is_index_ok(iItem))
       {
 
          return nullptr;
@@ -1902,14 +1902,14 @@ namespace user
    //void toolbar::set_tool_item_at(index iItem, ::user::tool_item * pitem)
    //{
 
-   //   if (iItem < 0 || iItem >= m_itema.get_size())
+   //   if (iItem < 0 || iItem >= m_pitema->get_size())
    //   {
 
    //      throw ::exception(::error_index_out_of_bounds);
 
    //   }
 
-   //   m_itema.element_at(iItem) = pitem;
+   //   m_pitema->element_at(iItem) = pitem;
 
    //}
 
@@ -1919,7 +1919,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      m_itema.erase_all();
+      m_pitema->erase_all();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -1973,7 +1973,7 @@ namespace user
 
             default_set_item_at(iItem, ptoolitem);
 
-            ptoolitem->m_iItem = m_itema.get_size();
+            ptoolitem->m_iItem = m_pitema->get_size();
 
             auto pattributeId = pchild->find_attribute("id");
 

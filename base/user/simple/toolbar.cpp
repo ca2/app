@@ -184,7 +184,7 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
    ::size_i32 sizeResult;
 
-   nCount = m_itema.get_count();
+   nCount = m_pitema->get_count();
 
    if (nCount > 0)
    {
@@ -268,7 +268,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 //   select_user_schema();
 
-   for (index iItem = 0; iItem < m_itema.get_size(); iItem++)
+   for (index iItem = 0; iItem < m_pitema->get_size(); iItem++)
    {
 
       //if (!::is_item(m_ptoolitemHover, iItem))
@@ -510,7 +510,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
    index buttonx, buttony;
 
-   auto iC = minimum(nCount, m_itema.get_size());
+   auto iC = minimum(nCount, m_pitema->get_size());
 
    ::rectangle_i32 rectangleItemPad = get_item_pad();
 
@@ -1013,7 +1013,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 ::status < ::rectangle_i32 > simple_toolbar::index_element_rectangle(index iItem, ::enum_element eelement, ::user::enum_state estate)
 {
 
-   if (iItem < 0 || iItem >= m_itema.get_size())
+   if (iItem < 0 || iItem >= m_pitema->get_size())
    {
 
       return error_index_out_of_bounds;
@@ -1250,12 +1250,12 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       information("please_center_align");
 
-      if (m_itema.has_elements())
+      if (m_pitema->has_elements())
       {
 
-         CalcSize(pgraphics, (index)(m_itema.get_count()));
+         CalcSize(pgraphics, (index)(m_pitema->get_count()));
 
-         for (index iItem = 0; iItem < m_itema.get_count(); iItem++)
+         for (index iItem = 0; iItem < m_pitema->get_count(); iItem++)
          {
 
             auto ptoolitem = tool_item_at(iItem);
@@ -1267,7 +1267,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                
             }
             
-            if (ptoolitem->should_wrap() || m_itema.is_last_index(iItem))
+            if (ptoolitem->should_wrap() || m_pitema->is_last_index(iItem))
             {
 
                int iTotalX = 0;
@@ -1493,7 +1493,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    return ::user::toolbar::on_hit_test(point, ezorder);
 
-   //for (index iItem = 0; iItem < m_itema.get_size(); iItem++)
+   //for (index iItem = 0; iItem < m_pitema->get_size(); iItem++)
    //{
 
    //   if (m_useritema[iItem]->m_rectangle.contains(point))
@@ -1879,7 +1879,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    string str;
 
-   auto count = minimum(nCount, m_itema.get_count());
+   auto count = minimum(nCount, m_pitema->get_count());
 
    bool bFirstInRow = true;
 
@@ -2498,7 +2498,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 //void simple_toolbar::GetButtonText(index i, string &str)
 //{
 //
-//   if (i < 0 || i >= m_itema.get_count())
+//   if (i < 0 || i >= m_pitema->get_count())
 //   {
 //
 //      str.empty();
@@ -2591,7 +2591,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 void simple_toolbar::RemoveAllTools()
 {
 
-   m_itema.erase_all();
+   m_pitema->erase_all();
 
 }
 

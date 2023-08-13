@@ -19,8 +19,8 @@ namespace user
       ::item_pointer                               m_pitemHover;
       //::user<::item_pointer>                     m_puseritemHoverMouse;
       ::item_pointer                               m_pitemPressed;
-      ::item_array                                 m_itema;
-      //map < ITEM, ::index >                        m_itemmap;
+      ::pointer < ::item_array >                   m_pitema;
+      //map < ITEM, ::index >                      m_itemmap;
       ::user::item_map                             m_useritemmap;
 
 

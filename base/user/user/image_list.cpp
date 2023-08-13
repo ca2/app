@@ -412,7 +412,7 @@ namespace user
 
          //itemText = e_element_text;
 
-         auto pitem = m_itema[iImage];
+         auto pitem = (*m_pitema)[iImage];
 
          if (pitem == nullptr)
          {

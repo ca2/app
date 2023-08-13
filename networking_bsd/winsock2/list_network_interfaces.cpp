@@ -22,10 +22,12 @@ namespace networking_bsd
 {
 
 
-   ::pointer_array < ::networking::address >networking::list_network_interfaces()
+   ::pointer < ::item_array > networking::list_network_interfaces()
    {
 
-      ::pointer_array < ::networking::address > addressa;
+      ::pointer < ::item_array > pitema;
+
+      __defer_construct_new(pitema);
 
       /* Declare and initialize variables */
 
@@ -122,7 +124,7 @@ namespace networking_bsd
 
                   paddress->set_address(*address);
 
-                  addressa.add(paddress);
+                  pitema->add(paddress);
 
                   pUnicast = pUnicast->Next;
 
@@ -230,7 +232,16 @@ namespace networking_bsd
 
       ::information(strLog);
 
-      return addressa;
+      for (::index iItem = 0; iItem < pitema->size(); iItem++)
+      {
+
+         auto pitem = pitema->element_at(iItem);
+
+         pitem->m_iItem = iItem;
+
+      }
+
+      return pitema;
 
    }
 

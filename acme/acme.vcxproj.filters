@@ -3311,6 +3311,9 @@
     <ClInclude Include="user\user\drag_client.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\_generic_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

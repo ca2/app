@@ -11659,22 +11659,27 @@ return strClass;
 
       }
 
-      for (auto & pitem : m_itema)
+      if (m_pitema)
       {
 
-         auto puseritem = user_item(pitem);
-
-         if (pitem && pitem->m_eelement != ::e_element_item)
+         for (auto & pitem : *m_pitema)
          {
 
-            puseritem->m_ppath.release();
+            auto puseritem = user_item(pitem);
 
-            if (pitem->m_eelement != e_element_item)
+            if (pitem && pitem->m_eelement != ::e_element_item)
             {
 
-               auto rectangle = this->rectangle(pitem->m_eelement);
+               puseritem->m_ppath.release();
 
-               puseritem->m_rectangle = rectangle;
+               if (pitem->m_eelement != e_element_item)
+               {
+
+                  auto rectangle = this->rectangle(pitem->m_eelement);
+
+                  puseritem->m_rectangle = rectangle;
+
+               }
 
             }
 
@@ -14800,7 +14805,7 @@ return strClass;
 
       pmessage->m_bRet = true;
 
-      for (auto &pitem: m_itema)
+      for (auto &pitem: *m_pitema)
       {
 
          if (pitem->m_eelement == ::e_element_close_button || pitem->m_eelement == ::e_element_close_icon)
@@ -20889,29 +20894,34 @@ return strClass;
 
       auto pointScroll = point + m_pointBarDragScroll;
 
-      for (auto &pitem: m_itema)
+      if (m_pitema)
       {
 
-         if (pitem->is_hidden())
+         for (auto & pitem : *m_pitema)
          {
 
-            continue;
+            if (pitem->is_hidden())
+            {
 
-         }
+               continue;
 
-         auto * puseritem = user_item(pitem);
+            }
 
-         if (!(puseritem->m_ezorder & ezorder))
-         {
+            auto * puseritem = user_item(pitem);
 
-            continue;
+            if (!(puseritem->m_ezorder & ezorder))
+            {
 
-         }
+               continue;
 
-         if (item_contains(pitem, pointScroll))
-         {
+            }
 
-            return pitem;
+            if (item_contains(pitem, pointScroll))
+            {
+
+               return pitem;
+
+            }
 
          }
 
@@ -21194,7 +21204,7 @@ return strClass;
       }
 
       //::user::interaction::_001OnDraw(pgraphics);
-      if (m_itema.has_element())
+      if (m_pitema && m_pitema->has_element())
       {
 
          _001DrawItems(pgraphics);
@@ -21207,7 +21217,7 @@ return strClass;
    ::user::item * interaction::_add_user_item(::item * pitem)
    {
 
-      auto iIndex = m_itema.add(pitem);
+      auto iIndex = m_pitema->add(pitem);
 
       //m_itemmap[*pitem] = iIndex;
 
@@ -21253,9 +21263,16 @@ return strClass;
    void interaction::_001DrawItems(::draw2d::graphics_pointer &pgraphics)
    {
 
+      if (!m_pitema)
+      {
+
+         return;
+
+      }
+
       int iCount = 0;
 
-      for (auto &pitem: m_itema)
+      for (auto &pitem: *m_pitema)
       {
 
          auto puseritem = user_item(pitem);

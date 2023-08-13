@@ -25,7 +25,14 @@ namespace user
    ::count container::item_count() const
    {
 
-      return m_itema.count();
+      if (!m_pitema)
+      {
+
+         return 0;
+
+      }
+
+      return m_pitema->count();
 
    }
 
@@ -33,14 +40,14 @@ namespace user
    ::item * container::item_at(::index iIndex)
    {
 
-      if (iIndex < 0 || iIndex >= m_itema.size())
+      if (iIndex < 0 || iIndex >= m_pitema->size())
       {
 
          throw ::exception(::error_index_out_of_bounds);
 
       }
 
-      return m_itema[iIndex];
+      return (*m_pitema)[iIndex];
 
    }
 
@@ -57,7 +64,7 @@ namespace user
 
       pitem->m_iItem = iIndex;
 
-      m_itema.set_at_grow(iIndex, pitem);
+      m_pitema->set_at_grow(iIndex, pitem);
 
    }
 
@@ -73,7 +80,14 @@ namespace user
    ::index container::add_item(::item * pitem)
    {
 
-      return m_itema.add(pitem);
+      if (!m_pitema)
+      {
+
+         __defer_construct_new(m_pitema);
+
+      }
+
+      return m_pitema->add(pitem);
 
    }
 
@@ -91,7 +105,7 @@ namespace user
    ::index container::item_index(const ::item * pitem)
    {
 
-      return m_itema.find_first(pitem);
+      return m_pitema->find_first(pitem);
 
    }
 
@@ -135,7 +149,7 @@ namespace user
 
       }
 
-      return m_itema[iIndex];
+      return (*m_pitema)[iIndex];
 
    }
 
@@ -145,15 +159,15 @@ namespace user
 
       auto iIndex = atom.as_index();
 
-      if (!m_itema.is_index_ok(iIndex))
+      if (!m_pitema->is_index_ok(iIndex))
       {
 
          iIndex = -1;
 
-         for (::index iItem = 0; iItem < m_itema.size(); iItem++)
+         for (::index iItem = 0; iItem < m_pitema->size(); iItem++)
          {
 
-            auto pitem = m_itema[iItem];
+            auto pitem = (*m_pitema)[iItem];
 
             if (atom.m_etype == ::atom::e_type_element)
             {

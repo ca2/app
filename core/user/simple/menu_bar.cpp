@@ -407,7 +407,12 @@ i32_spreadset * prel,
 void simple_menu_bar::RemoveAllButtons()
 {
    
-   m_itema.clear();
+   if (m_pitema)
+   {
+    
+      m_pitema->clear();
+
+   }
 
 }
 

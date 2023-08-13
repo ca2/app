@@ -29,6 +29,9 @@ namespace user
       ~container() override;
 
 
+      bool _is_set() const override;
+
+
       virtual ::count item_count() const;
 
       virtual ::item * item_at(::index iIndex);

@@ -22,6 +22,14 @@ namespace user
    }
 
 
+   bool container::_is_set() const
+   {
+
+      return true;
+
+   }
+
+
    ::count container::item_count() const
    {
 

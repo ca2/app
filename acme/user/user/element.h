@@ -3,7 +3,7 @@
 
 
 #include "command_update_target.h"
-#include "conversation.h"
+#include "acme/platform/conversation_message.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
@@ -36,7 +36,7 @@ namespace user
 
    class CLASS_DECL_ACME element :
       virtual public ::user::command_update_target,
-      virtual public ::conversation,
+      virtual public ::conversation_message,
       virtual public ::user::drag_client
    {
    public:

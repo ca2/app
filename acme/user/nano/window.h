@@ -12,8 +12,8 @@
 
 
 class CLASS_DECL_ACME nano_window :
-   virtual public ::nano_window_interface,
-   virtual public ::conversation_message
+   virtual public ::nano_window_interface
+   //virtual public ::conversation_message
 {
 public:
 

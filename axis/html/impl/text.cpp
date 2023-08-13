@@ -628,31 +628,35 @@ namespace html
 
             auto pform = m_pelemental->m_pdata->m_pcoredata->m_pform;
 
-            auto pstyle = pform->get_style(pgraphics);
-            
-            auto colorText = m_pelemental->get_color(pstyle, ::css::color_text);
-
-            pgraphics->set_text_color(colorText);
-            
-            auto pfont = m_pelemental->get_font();
-
-            pgraphics->set(pfont);
-
-            ::rectangle_i32 rectangleLine;
-
-            for (index i = 0; i < m_straLines.get_count(); i++)
+            if (pform)
             {
 
-               string str = m_straLines[i];
+               auto pstyle = pform->get_style(pgraphics);
 
-               rectangleLine.top = rectangleLine.top;
+               auto colorText = m_pelemental->get_color(pstyle, ::css::color_text);
 
-               rectangleLine.set_size(m_sizea[i]);
+               pgraphics->set_text_color(colorText);
 
-               pgraphics->text_out(rectangleLine.left, rectangleLine.top, str);
+               auto pfont = m_pelemental->get_font();
+
+               pgraphics->set(pfont);
+
+               ::rectangle_i32 rectangleLine;
+
+               for (index i = 0; i < m_straLines.get_count(); i++)
+               {
+
+                  string str = m_straLines[i];
+
+                  rectangleLine.top = rectangleLine.top;
+
+                  rectangleLine.set_size(m_sizea[i]);
+
+                  pgraphics->text_out(rectangleLine.left, rectangleLine.top, str);
+
+               }
 
             }
-
 
          }
 

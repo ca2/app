@@ -45,6 +45,21 @@ namespace user
    }
 
 
+   void container::clear_items()
+   {
+
+      if (!m_pitema)
+      {
+
+         return;
+
+      }
+
+      m_pitema->clear();
+
+   }
+
+
    ::item * container::item_at(::index iIndex)
    {
 

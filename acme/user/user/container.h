@@ -34,6 +34,8 @@ namespace user
 
       virtual ::count item_count() const;
 
+      virtual void clear_items();
+
       virtual ::item * item_at(::index iIndex);
 
       virtual void default_set_item_at(::index iIndex, ::item * pitem);

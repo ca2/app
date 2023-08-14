@@ -4799,7 +4799,6 @@ namespace user
             for (auto pinteraction: puserinteractionpointeraChild->interactiona())
             {
 
-
                try
                {
 
@@ -4814,6 +4813,13 @@ namespace user
                   {
 
                      ::information("trying to draw window being destroyed");
+
+                     continue;
+
+                  }
+
+                  if (pinteraction->m_bLockGraphicalUpdate)
+                  {
 
                      continue;
 
@@ -10793,12 +10799,12 @@ return strClass;
 
       }
 
-      //if(m_pinteractiondraw2d)
-      {
+      ////if(m_pinteractiondraw2d)
+      //{
 
-         //m_pshapeaClip.release();
+      //   //m_pshapeaClip.release();
 
-      }
+      //}
 
       m_bClipRectangle = false;
 
@@ -11496,14 +11502,14 @@ return strClass;
 
       lading_to_layout(m_bUpdateBuffer, m_bUpdateWindow);
 
-      ::string strType = typeid(*this).name();
+      //::string strType = typeid(*this).name();
 
-      if (strType.contains("control_box_button"))
-      {
+      //if (strType.contains("control_box_button"))
+      //{
 
-         //information() << "perform_layout control_box_button";
+      //   //information() << "perform_layout control_box_button";
 
-      }
+      //}
 
       bool bZorder = check_child_zorder();
 
@@ -11550,6 +11556,13 @@ return strClass;
 
    bool interaction::perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
+
+      if (m_bLockGraphicalUpdate)
+      {
+
+         return false;
+
+      }
 
       m_pprimitiveimpl->top_down_prefix();
 

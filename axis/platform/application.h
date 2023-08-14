@@ -3,7 +3,7 @@
 
 #include "aura/platform/application.h"
 #include "axis/account/interactive.h"
-#include "axis/user/user/form_designer.h"
+#include "axis/user/user/form_handler.h"
 
 
 namespace axis
@@ -24,7 +24,7 @@ namespace axis
    class CLASS_DECL_AXIS application :
       virtual public ::aura::application,
       virtual public ::account::interactive,
-      virtual public ::axis::form_designer
+      virtual public ::axis::form_handler
    {
    public:
 

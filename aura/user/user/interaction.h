@@ -142,6 +142,7 @@ namespace user
       bool                                      m_bExtendOnParentIfClientOnly;
       bool                                      m_bToolWindow;
       bool                                      m_bMessageWindow;
+      boolean                                   m_bLockGraphicalUpdate;
       
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
@@ -816,13 +817,13 @@ namespace user
 
       virtual void set_impact_update_going_on(enum_layout elayout = e_layout_sketch);
 
-      virtual void set_display(::e_display edisplay = e_display_default, enum_layout elayout = e_layout_sketch);
+      virtual void set_display(::e_display edisplay, enum_layout elayout = e_layout_sketch);
       
       virtual void set_layout_state(const layout_state & state, enum_layout elayout = e_layout_sketch);
 
       virtual void set_activation(::e_activation eactivation, enum_layout elayout = e_layout_sketch);
 
-      virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = ::e_activation_default) override;
+      virtual void display(::e_display edisplay = e_display_normal, ::e_activation eactivation = ::e_activation_default) override;
 
 
       virtual bool check_child_zorder();

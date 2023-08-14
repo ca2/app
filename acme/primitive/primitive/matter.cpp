@@ -892,7 +892,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
    auto strName = demangle(typeid(*this).name());
 
-   auto pszLastColon = strName.find(':');
+   auto pszLastColon = strName.rear_find(':');
 
    if(!pszLastColon)
    {

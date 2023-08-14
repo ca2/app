@@ -73,11 +73,11 @@ namespace user
 
       acmeapplication()->m_pbaseapplication->create_options_form(this);
 
-      set_need_layout();
+      //set_need_layout();
 
-      set_need_redraw();
+      //set_need_redraw();
 
-      post_redraw();
+      //post_redraw();
 
    }
 

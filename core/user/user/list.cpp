@@ -1794,13 +1794,18 @@ namespace user
 
          list_column * pcolumn = m_pcolumna->element_at(iColumn);
 
-         if (pcolumn->m_bVisible)
+         if (pcolumn)
          {
 
-            if (pcolumn->m_iOrder == iOrder)
+            if (pcolumn->m_bVisible)
             {
 
-               return iColumn;
+               if (pcolumn->m_iOrder == iOrder)
+               {
+
+                  return iColumn;
+
+               }
 
             }
 

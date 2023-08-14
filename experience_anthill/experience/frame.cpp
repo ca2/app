@@ -661,7 +661,7 @@ namespace experience_anthill
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
 
-            if (pdrawicon != nullptr)
+            if (::is_ok(pdrawicon))
             {
 
                image_source imagesource(pdrawicon);

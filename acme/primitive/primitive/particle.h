@@ -775,4 +775,14 @@ CLASS_DECL_ACME void error(const ::ansi_character * pszFormat, ...);
 CLASS_DECL_ACME void fatal(const ::ansi_character * pszFormat, ...);
 
 
+inline bool is_ok(const ::particle * pconstparticle)
+{
+
+   ::particle * pparticle = (::particle *)pconstparticle;
+
+   return ::is_set(pparticle) && pparticle->is_ok();
+
+}
+
+
 

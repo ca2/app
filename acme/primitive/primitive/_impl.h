@@ -1681,9 +1681,9 @@ constexpr ::e_status e_status::worst(const ::e_status & e) const
 }
 
 
-constexpr ::i64 posix_time::minutes() const { return m_iSecond / 1_minute.m_iSecond; }
-constexpr ::i64 posix_time::hours() const { return m_iSecond / 1_hour.m_iSecond; }
-constexpr ::i64 posix_time::days() const { return m_iSecond / 1_day.m_iSecond; }
+constexpr ::i64 posix_time::minutes() const { return m_iSecond / 60; }
+constexpr ::i64 posix_time::hours() const { return m_iSecond / (60 * 60); }
+constexpr ::i64 posix_time::days() const { return m_iSecond / (24 * 60 * 60); }
 
 
 

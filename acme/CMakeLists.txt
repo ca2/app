@@ -966,6 +966,8 @@ list(APPEND library_source
    user/user/_text_stream.h
    user/user/check.cpp
    user/user/check.h
+   user/user/container.cpp
+   user/user/container.h
    user/user/conversation.cpp
    user/user/conversation.h
    user/user/drag.cpp

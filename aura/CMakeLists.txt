@@ -379,8 +379,8 @@ list(APPEND library_source
    user/user/form.h
    user/user/form_callback.cpp
    user/user/form_callback.h
-   user/user/form_designer.cpp
-   user/user/form_designer.h
+   user/user/form_handler.cpp
+   user/user/form_handler.h
    user/user/frame.cpp
    user/user/frame.h
    user/user/interaction.cpp

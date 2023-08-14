@@ -324,8 +324,8 @@ list(APPEND library_source
    user/form/window.h
    user/user/combo_box.cpp
    user/user/combo_box.h
-   user/user/form_designer.cpp
-   user/user/form_designer.h
+   user/user/form_handler.cpp
+   user/user/form_handler.h
    user/user/line_layout.cpp
    user/user/line_layout.h
    user/user/list_box.cpp

@@ -977,6 +977,7 @@ list(APPEND library_source
    user/user/element.cpp
    user/user/element.h
    user/user/e_window_flag.h
+   user/user/item.h
    user/user/mouse.cpp
    user/user/mouse.h
    user/user/os_colors.cpp

@@ -488,9 +488,9 @@ namespace user
       //template < primitive_integral INTEGRAL >
       //operator INTEGRAL() const { return (INTEGRAL)m_iItem; }
 
-      bool is_hidden() const;
+      //bool is_hidden() const;
 
-      ::string get_text(::index iSubItem);
+      //::string get_text(::index iSubItem);
 
 
       //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
@@ -561,7 +561,7 @@ namespace user
       //bool operator != (const item & item) const { return !operator==(item); }
 
 
-      item & operator = (enum_element eelement);
+      //item & operator = (enum_element eelement);
 
       bool operator == (enum_element eelement)  const { return this->eelement() == e_element_none ? false : this->eelement() == eelement; }
       //bool operator != (enum_element eelement)  const { return !operator==(eelement); }

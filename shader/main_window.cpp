@@ -80,7 +80,7 @@ namespace app_shader
 
       {
 
-         auto pitem = get_user_item(::e_element_close_button);
+         auto pitem = user_item(::e_element_close_button);
 
          if (pitem)
          {
@@ -95,7 +95,7 @@ namespace app_shader
 
          add_user_item(__new(::item(::e_element_switch_button, ::id_switch)));
 
-         auto pitem = get_user_item(::e_element_switch_button);
+         auto pitem = user_item(::e_element_switch_button);
 
          *pitem = ::e_element_switch_button;
 
@@ -103,7 +103,7 @@ namespace app_shader
 
       {
 
-         auto pitem = get_user_item(::e_element_maximize_button);
+         auto pitem = user_item(::e_element_maximize_button);
 
          if (pitem)
          {
@@ -117,7 +117,7 @@ namespace app_shader
 
       {
 
-         auto pitem = get_user_item(::e_element_minimize_button);
+         auto pitem = user_item(::e_element_minimize_button);
 
          if (pitem)
          {
@@ -331,10 +331,10 @@ namespace app_shader
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & useritem, const ::user::e_state & estate)
    {
 
-      ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
+      ::user::interaction::_001DrawItem(pgraphics, useritem, estate);
 
    }
 

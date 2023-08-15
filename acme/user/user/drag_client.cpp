@@ -55,6 +55,8 @@ namespace user
          __construct_new(pdrag);
 
          pdrag->m_eelement = eelement;
+         
+         add_item(pdrag);
 
       }
 

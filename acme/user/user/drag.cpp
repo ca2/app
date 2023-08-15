@@ -12,7 +12,8 @@ namespace user
    drag::drag()
    {
 
-      m_eelement = e_element_none;
+      //m_eelement = e_element_none;
+      
 
       m_ecursor = e_cursor_none;
 

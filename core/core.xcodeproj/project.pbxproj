@@ -39,6 +39,8 @@
 		9A8CF9F32A27FC2C0049B167 /* save_as_button_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8CF9ED2A27FC2B0049B167 /* save_as_button_impact.cpp */; };
 		9A8CF9F42A27FC2C0049B167 /* save_as_button_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8CF9EE2A27FC2B0049B167 /* save_as_button_impact.h */; };
 		9A8CF9F52A27FC2C0049B167 /* save_as_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8CF9EF2A27FC2B0049B167 /* save_as_impact.h */; };
+		9AAFC25C2A8B3C19005D10AB /* list2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAFC25A2A8B3C19005D10AB /* list2.cpp */; };
+		9AAFC25D2A8B3C19005D10AB /* list2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFC25B2A8B3C19005D10AB /* list2.h */; };
 		9ABC54EF26DB15C900718C0D /* impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC54ED26DB15C900718C0D /* impact_base.cpp */; };
 		9AC88CA828750964005EABFD /* list_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C5287161920042849A /* list_item.cpp */; };
 		9AC88CA928750978005EABFD /* mesh_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C6287161920042849A /* mesh_item.cpp */; };
@@ -766,6 +768,8 @@
 		9AAF218927CFE05800D96CB7 /* winpr_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winpr_input.h; sourceTree = "<group>"; };
 		9AAF218A27CFE05800D96CB7 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9AAF229E27CFE05900D96CB7 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9AAFC25A2A8B3C19005D10AB /* list2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list2.cpp; sourceTree = "<group>"; };
+		9AAFC25B2A8B3C19005D10AB /* list2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list2.h; sourceTree = "<group>"; };
 		9ABC54EC26DB15C900718C0D /* impact_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_base.h; sourceTree = "<group>"; };
 		9ABC54ED26DB15C900718C0D /* impact_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_base.cpp; sourceTree = "<group>"; };
 		9AE63304252A5A0300BED5B8 /* libcore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcore.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1463,6 +1467,8 @@
 		9AE64B11252A681900BED5B8 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9AAFC25A2A8B3C19005D10AB /* list2.cpp */,
+				9AAFC25B2A8B3C19005D10AB /* list2.h */,
 				9AE64B6A252A681900BED5B8 /* _.h */,
 				9AE64B1B252A681900BED5B8 /* _constant.h */,
 				9AE64B14252A681900BED5B8 /* color_combo_box.cpp */,
@@ -1962,6 +1968,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AAFC25D2A8B3C19005D10AB /* list2.h in Headers */,
 				9A5ECD3428CCC2C20084D354 /* user.h in Headers */,
 				9A5ECD3128CCC2C20084D354 /* impact.h in Headers */,
 				9A5ECD3028CCC2C20084D354 /* text_format_object.h in Headers */,
@@ -2376,6 +2383,7 @@
 				9AE65256252A681C00BED5B8 /* data.cpp in Sources */,
 				9AE650F7252A681C00BED5B8 /* toolbar_ctrl.cpp in Sources */,
 				9AE6510A252A681C00BED5B8 /* mesh_data.cpp in Sources */,
+				9AAFC25C2A8B3C19005D10AB /* list2.cpp in Sources */,
 				9AE6522B252A681C00BED5B8 /* operation.cpp in Sources */,
 				9AE65275252A681C00BED5B8 /* document.cpp in Sources */,
 				9A8CF9F12A27FC2C0049B167 /* save_as_impact.cpp in Sources */,

@@ -179,6 +179,8 @@ list(APPEND library_source
    filesystem/filesystem/file_path.h
    filesystem/filesystem/folder_dialog.cpp
    filesystem/filesystem/folder_dialog.h
+   filesystem/filesystem/link.cpp
+   filesystem/filesystem/link.h
    filesystem/filesystem/listing.cpp
    filesystem/filesystem/path.cpp
    filesystem/filesystem/path_object.cpp

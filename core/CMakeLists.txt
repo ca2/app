@@ -383,9 +383,9 @@ list(APPEND library_source
    user/user/list_item.h
    user/user/list_impact.cpp
    user/user/list_impact.h
-   user/user/listing.h
    user/user/list2.cpp
    user/user/list2.h
+   user/user/listing.h
    user/user/main_frame.cpp
    user/user/main_frame.h
    user/user/mesh.cpp

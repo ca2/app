@@ -135,10 +135,6 @@
 		9A4F4E1A25311DA400733584 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1125311DA400733584 /* rsa.h */; };
 		9A4F4E1C25311DA400733584 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1325311DA400733584 /* hasher.h */; };
 		9A4F4E1D25311DA400733584 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E1425311DA400733584 /* rsa.cpp */; };
-		9A56562D2A67C6F600632CDD /* container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56562A2A67C6F600632CDD /* container.cpp */; };
-		9A56562E2A67C6F600632CDD /* container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56562A2A67C6F600632CDD /* container.cpp */; };
-		9A56562F2A67C6F600632CDD /* container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A56562C2A67C6F600632CDD /* container.h */; };
-		9A5656302A67C6F600632CDD /* container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A56562C2A67C6F600632CDD /* container.h */; };
 		9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A615C2928B1B7A300377F68 /* libacme.dylib */; };
 		9A68BB3C2511444D008DABD2 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
 		9A68BB3D2511444D008DABD2 /* stringhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B40E2511444A008DABD2 /* stringhelper.cpp */; };
@@ -708,7 +704,6 @@
 		9AC97FE12A71B39E00B1BCF3 /* stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239D8C26CDF9AE00F98012 /* stream.h */; };
 		9AC97FE22A71B39E00B1BCF3 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787D55264C960E003DF8A0 /* _impl.h */; };
 		9AC97FE32A71B39E00B1BCF3 /* android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7452511444B008DABD2 /* android.h */; };
-		9AC97FE42A71B39E00B1BCF3 /* container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A56562C2A67C6F600632CDD /* container.h */; };
 		9AC97FE52A71B39E00B1BCF3 /* os_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6182511444B008DABD2 /* os_context.h */; };
 		9AC97FE62A71B39E00B1BCF3 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7332511444B008DABD2 /* console.h */; };
 		9AC97FE72A71B39E00B1BCF3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B70F2511444B008DABD2 /* _.h */; };
@@ -774,7 +769,6 @@
 		9AC980252A71B39E00B1BCF3 /* remote_native_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7232511444B008DABD2 /* remote_native_file.cpp */; };
 		9AC980262A71B39E00B1BCF3 /* progress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A28026CDFF1A00F98012 /* progress.cpp */; };
 		9AC980272A71B39E00B1BCF3 /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0F25311DA400733584 /* crypto.cpp */; };
-		9AC980282A71B39E00B1BCF3 /* container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56562A2A67C6F600632CDD /* container.cpp */; };
 		9AC980292A71B39E00B1BCF3 /* http_batch_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A239CFD26CDF9AE00F98012 /* http_batch_buffer.cpp */; };
 		9AC9802A2A71B39E00B1BCF3 /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5CA2511444B008DABD2 /* log.cpp */; };
 		9AC9802B2A71B39E00B1BCF3 /* savings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B61A2511444B008DABD2 /* savings.cpp */; };
@@ -1183,8 +1177,6 @@
 		9A4F4E1125311DA400733584 /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
 		9A4F4E1325311DA400733584 /* hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher.h; sourceTree = "<group>"; };
 		9A4F4E1425311DA400733584 /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
-		9A56562A2A67C6F600632CDD /* container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = container.cpp; sourceTree = "<group>"; };
-		9A56562C2A67C6F600632CDD /* container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = container.h; sourceTree = "<group>"; };
 		9A615C2228B1B7A300377F68 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = "<group>"; };
 		9A68A446251143F8008DABD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68B40D2511444A008DABD2 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
@@ -1638,8 +1630,6 @@
 		9A2898712A652A4E00F46A84 /* user */ = {
 			isa = PBXGroup;
 			children = (
-				9A56562A2A67C6F600632CDD /* container.cpp */,
-				9A56562C2A67C6F600632CDD /* container.h */,
 				9A2898722A652A4E00F46A84 /* primitive.h */,
 				9A2898732A652A4E00F46A84 /* language_map.h */,
 				9A2898742A652A4E00F46A84 /* message.cpp */,
@@ -2496,7 +2486,6 @@
 				9A239E5F26CDF9AF00F98012 /* stream.h in Headers */,
 				9A787D71264C960F003DF8A0 /* _impl.h in Headers */,
 				9A68BE0C2511444F008DABD2 /* android.h in Headers */,
-				9A56562F2A67C6F600632CDD /* container.h in Headers */,
 				9A68BCFC2511444E008DABD2 /* os_context.h in Headers */,
 				9A68BDFC2511444F008DABD2 /* console.h in Headers */,
 				9A68BDDF2511444F008DABD2 /* _.h in Headers */,
@@ -2751,7 +2740,6 @@
 				9AC97FE12A71B39E00B1BCF3 /* stream.h in Headers */,
 				9AC97FE22A71B39E00B1BCF3 /* _impl.h in Headers */,
 				9AC97FE32A71B39E00B1BCF3 /* android.h in Headers */,
-				9AC97FE42A71B39E00B1BCF3 /* container.h in Headers */,
 				9AC97FE52A71B39E00B1BCF3 /* os_context.h in Headers */,
 				9AC97FE62A71B39E00B1BCF3 /* console.h in Headers */,
 				9AC97FE72A71B39E00B1BCF3 /* _.h in Headers */,
@@ -2832,7 +2820,6 @@
 				9AD69387251A754800C0EBD7 /* _new_impl.h in Headers */,
 				9AD6939E251A754800C0EBD7 /* _.h in Headers */,
 				9AD693A1251A754800C0EBD7 /* application.h in Headers */,
-				9A5656302A67C6F600632CDD /* container.h in Headers */,
 				9A787D7E264C960F003DF8A0 /* data.h in Headers */,
 				9AD693A7251A754800C0EBD7 /* channel.h in Headers */,
 				9AD693A9251A754800C0EBD7 /* _.h in Headers */,
@@ -3077,7 +3064,6 @@
 				9A68BDF12511444F008DABD2 /* remote_native_file.cpp in Sources */,
 				9A23A28926CDFF1A00F98012 /* progress.cpp in Sources */,
 				9A4F4E1825311DA400733584 /* crypto.cpp in Sources */,
-				9A56562D2A67C6F600632CDD /* container.cpp in Sources */,
 				9A239DDB26CDF9AF00F98012 /* http_batch_buffer.cpp in Sources */,
 				9A68BCB02511444E008DABD2 /* log.cpp in Sources */,
 				9A68BCFE2511444E008DABD2 /* savings.cpp in Sources */,
@@ -3232,7 +3218,6 @@
 				9AC980252A71B39E00B1BCF3 /* remote_native_file.cpp in Sources */,
 				9AC980262A71B39E00B1BCF3 /* progress.cpp in Sources */,
 				9AC980272A71B39E00B1BCF3 /* crypto.cpp in Sources */,
-				9AC980282A71B39E00B1BCF3 /* container.cpp in Sources */,
 				9AC980292A71B39E00B1BCF3 /* http_batch_buffer.cpp in Sources */,
 				9AC9802A2A71B39E00B1BCF3 /* log.cpp in Sources */,
 				9AC9802B2A71B39E00B1BCF3 /* savings.cpp in Sources */,
@@ -3338,7 +3323,6 @@
 				9A75104E282B95B500C4861B /* idpool.cpp in Sources */,
 				9A94DE50282C045900F5C1CA /* progress.cpp in Sources */,
 				9A751044282B94EA00C4861B /* source.cpp in Sources */,
-				9A56562E2A67C6F600632CDD /* container.cpp in Sources */,
 				9A0F53BD28E8D8A900025231 /* client_socket.cpp in Sources */,
 				9A2898862A652A4E00F46A84 /* language_map.cpp in Sources */,
 				9AD694DD251A754800C0EBD7 /* simple_command.cpp in Sources */,

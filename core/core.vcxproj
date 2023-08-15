@@ -765,6 +765,7 @@
     <ClCompile Include="user\user\form_mesh.cpp" />
     <ClCompile Include="user\user\image_manager.cpp" />
     <ClCompile Include="user\user\list.cpp" />
+    <ClCompile Include="user\user\list2.cpp" />
     <ClCompile Include="user\user\list_cache.cpp" />
     <ClCompile Include="user\user\list_column.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />
@@ -871,6 +872,7 @@
     <ClInclude Include="user\userex\image_list.h" />
     <ClInclude Include="user\userex\progress.h" />
     <ClInclude Include="user\user\impact.h" />
+    <ClInclude Include="user\user\list2.h" />
     <ClInclude Include="user\user\text_format_object.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\_binary_stream.h" />

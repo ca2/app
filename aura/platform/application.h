@@ -4,7 +4,7 @@
 #include "context.h"
 #include "aqua/platform/application.h"
 #include "aura/filesystem/filemanager/callback.h"
-#include "aura/user/user/form_designer.h"
+#include "aura/user/user/form_handler.h"
 
 
 namespace aura
@@ -15,7 +15,7 @@ namespace aura
       virtual public ::aqua::application,
       virtual public ::aura::context,
       virtual public ::filemanager::callback,
-      virtual public ::user::form_designer
+      virtual public ::user::form_handler
    {
    public:
 
@@ -54,7 +54,7 @@ namespace aura
 
       ::pointer<shell_open>                        m_pshellopen;
 
-
+      ::string_array                               m_straOptionsFormMakerLibrary;
       ::user::primitive *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 

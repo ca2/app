@@ -113,6 +113,7 @@ namespace user
 
       ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
+
       bool on_perform_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

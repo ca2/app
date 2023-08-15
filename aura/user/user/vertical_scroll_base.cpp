@@ -95,7 +95,9 @@ namespace user
 
          }
 
-         set_need_redraw();
+         m_pscrollbarVertical->set_need_redraw();
+
+         m_pscrollbarVertical->post_redraw();
 
       }
 

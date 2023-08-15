@@ -107,7 +107,7 @@ namespace filemanager
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void _001InsertColumns() override;
+      virtual void on_insert_columns() override;
 
       //virtual void file_size_add_request(bool bClear);
 

@@ -210,7 +210,7 @@ namespace user
       //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>DeactiveImpact);
       //virtual void OnActivateFrame(::u32 nState, ::pointer<::user::frame_window>pFrameWnd);
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    // void assert_ok() const override;
@@ -233,7 +233,6 @@ namespace user
       virtual ::atom get_toolbar_id();
 
       virtual toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
-
 
    };
 

@@ -12,7 +12,7 @@ namespace user
 {
 
 
-   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem, const ::user::e_state & estate)
+   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -21,10 +21,10 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      if (!pitem->m_ppath)
+      if (!useritem.m_ppath)
       {
 
-         ::rectangle_f64 rectangle(pitem->m_rectangle);
+         ::rectangle_f64 rectangle(useritem.m_rectangle);
 
          rectangle.rate(0.89);
 
@@ -50,7 +50,7 @@ namespace user
 
          ppath->add_rectangle(rectangle, -45_degrees);
 
-         pitem->m_ppath = ppath;
+         useritem.m_ppath = ppath;
 
       }
 
@@ -73,20 +73,20 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      pgraphics->fill(pitem->m_ppath);
+      pgraphics->fill(useritem.m_ppath);
 
    }
 
 
-   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::item* pitem, const ::user::e_state & estate)
+   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
-      draw_switch_button(pgraphics, puserinteraction, pitem, estate);
+      draw_switch_button(pgraphics, puserinteraction, useritem, estate);
 
    }
 
 
-   void draw_maximize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   void draw_maximize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -95,7 +95,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(pitem->m_rectangle);
+      ::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto colorPen = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -128,7 +128,7 @@ namespace user
    }
 
 
-   void draw_minimize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   void draw_minimize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -139,7 +139,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle(pitem->m_rectangle);
+      ::rectangle_f64 rectangle(useritem.m_rectangle);
 
       auto colorPen = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-
-
 } // namespace user
+
+
 

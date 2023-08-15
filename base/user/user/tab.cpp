@@ -1474,7 +1474,11 @@ namespace user
             if(rectangle.contains(point))
             {
 
-               return __new(::item(e_element_close_tab_button, iIndex));
+               ppane->m_pitemClose->m_iItem = iIndex;
+
+               user_item(ppane)->m_rectangle = rectangle;
+
+               return ppane->m_pitemClose;
 
             }
 
@@ -1486,7 +1490,12 @@ namespace user
             if(rectangle.contains(point))
             {
 
-               return __new(::item(e_element_tab, iIndex));
+               ppane->m_iItem = iIndex;
+
+               user_item(ppane)->m_rectangle = rectangle;
+
+               return ppane;
+               //return __new(::item(e_element_tab, iIndex));
 
             }
 

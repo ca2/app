@@ -623,6 +623,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
+    <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
@@ -852,6 +853,7 @@
     <ClInclude Include="platform\trace_statement.h" />
     <ClInclude Include="primitive\collection\array_2d.h" />
     <ClInclude Include="primitive\collection\_function.h" />
+    <ClInclude Include="primitive\collection\_generic_array.h" />
     <ClInclude Include="primitive\geometry\sequence.h" />
     <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
     <ClInclude Include="primitive\mathematics\numeric.h" />
@@ -865,6 +867,11 @@
     <ClInclude Include="primitive\time\time\posix_time.h" />
     <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\time_span.h" />
+    <ClInclude Include="user\user\container.h" />
+    <ClInclude Include="user\user\drag.h" />
+    <ClInclude Include="user\user\drag_client.h" />
+    <ClInclude Include="user\user\item.h" />
+    <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\__apps.inl" />
@@ -1206,6 +1213,7 @@
     <ClCompile Include="user\nano\window_interface.cpp" />
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
+    <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\conversation.cpp" />
     <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\drag_client.cpp" />
@@ -1868,8 +1876,6 @@
     <ClInclude Include="user\user\aaa_action_item_exchange.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\conversation.h" />
-    <ClInclude Include="user\user\drag.h" />
-    <ClInclude Include="user\user\drag_client.h" />
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />

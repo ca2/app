@@ -2,8 +2,7 @@
 #pragma once
 
 
-#include "container.h"
-#include "acme/handler/item.h"
+//#include "container.h"
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
 #include "acme/user/user/element.h"
@@ -20,9 +19,8 @@ namespace user
       virtual public ::user::element,
       virtual public ::channel,
       virtual public ::source,
-      virtual public ::manager,
-      virtual public ::user::container,
-      virtual public ::item
+      virtual public ::manager
+      //, virtual public ::user::container
    {
    public:
 
@@ -32,6 +30,9 @@ namespace user
 
       primitive();
       ~primitive() override;
+
+
+      void destroy() override;
 
 
       void _001OnTimer(::timer * ptimer) override;
@@ -85,9 +86,9 @@ namespace user
 
       void hide_software_keyboard(::user::element * pelement) override;
 
-      void UpdateWindow() override;
+      //void UpdateWindow() override;
       
-      void Invalidate(bool bErase = true) override;
+      //void Invalidate(bool bErase = true) override;
 
       bool has_pending_redraw_flags() override;
 
@@ -253,8 +254,8 @@ namespace user
 
 
 //      virtual void UpdateWindow();
-      void SetRedraw(bool bRedraw = true) override;
-      bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
+      //void SetRedraw(bool bRedraw = true) override;
+      //bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
 
       void interaction_post(const ::procedure & procedure) override;

@@ -76,7 +76,7 @@ namespace user
       //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
       //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,lparam lparam) override;
 
-      ;; void _001UpdateColumns();
+      // void _001UpdateColumns();
       ::user::interaction * _001GetEditControl();
       void _001SetEditControl(::user::interaction * pinteraction);
       virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
@@ -85,7 +85,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
       
-      virtual void _001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array &stra) override;
+      virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array &stra) override;
 
 
       DECLARE_MESSAGE_HANDLER(_001OnNotify);

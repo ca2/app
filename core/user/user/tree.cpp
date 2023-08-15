@@ -626,7 +626,11 @@ namespace user
 
       }
 
-      update_tree_hover(pmouse->m_point);
+      auto point = pmouse->m_point;
+
+      screen_to_client()(point);
+
+      update_tree_hover(point);
 
       pmessage->m_bRet = true;
 
@@ -845,12 +849,13 @@ namespace user
 
       auto item_height = _001GetItemHeight();
 
-      auto pointOffset = get_context_offset();
+      //auto pointOffset = get_context_offset();
 
       if (item_height != 0)
       {
 
-         iItem = (i32)((iy + pointOffset.y()) / item_height);
+         //iItem = (i32)((iy + pointOffset.y()) / item_height);
+         iItem = (i32)((iy) / item_height);
 
       }
 
@@ -874,7 +879,8 @@ namespace user
 
       index iLevel = pitem->m_iLevel;
 
-      index x = (i32)(point.x() - _001GetIndentation() * (iLevel)+pointOffset.x());
+      //index x = (i32)(point.x() - _001GetIndentation() * (iLevel)+pointOffset.x());
+      index x = (i32)(point.x() - _001GetIndentation() * (iLevel));
       if (x >= 0 && x < 16)
          eelement = e_tree_element_expand_box;
       if (x >= 18 && x < 34)
@@ -1366,7 +1372,7 @@ namespace user
    void tree::update_tree_hover(point_i32 point)
    {
 
-      screen_to_client()(point);
+      //screen_to_client()(point);
 
       ::user::enum_tree_element eelement;
 

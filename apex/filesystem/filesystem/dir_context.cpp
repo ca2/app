@@ -841,7 +841,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
       ::file::path pathTarget;
 
-      auto plink = file()->resolve_link(pathTarget);
+      auto plink = acmepath()->resolve_link(pathTarget);
 
       bIs = plink && plink->m_pathTarget.has_char();
 

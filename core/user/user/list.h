@@ -140,20 +140,20 @@ namespace user
       void FilterClose() override;
       void FilterApply() override;
       void FilterBegin() override;
-      index _001StrictToDisplay(index iStrict) override;
-      index _001DisplayToStrict(index iDisplay) override;
-      void _001Select(index iItem, index iSubItem) override;
-      void _001Highlight(index iItem, bool bRedraw) override;
-      void _001RemoveSelection() override;
-      bool _001OnRemoveItem(index iItem) override;
-      bool _001RemoveItem(index iItem, bool bRedraw = true) override;
-      void _001EnsureVisible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
-      void _001EnsureVisible(index iItem, range & rangeRedraw) override;
-      void _001ItemScroll(index iItem, bool bRedraw = true) override;
+      index strict_to_display(index iStrict) override;
+      index display_to_strict(index iDisplay) override;
+      void select_item(index iItem, index iSubItem) override;
+      void highlight_item(index iItem, bool bRedraw) override;
+      void erase_selection() override;
+      bool on_erase_item(index iItem) override;
+      bool erase_item(index iItem, bool bRedraw = true) override;
+      void ensure_item_visible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
+      void ensure_item_visible(index iItem, range & rangeRedraw) override;
+      void scroll_to_item(index iItem, bool bRedraw = true) override;
       virtual index config_id_index(const ::scoped_string & strDataKey);
-      index _001ConfigIdToSubItem(const ::scoped_string & strDataKey) override;
-      bool _001HasConfigId(const ::scoped_string & strDataKey) override;
-      void _001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection) override;
+      index data_key_to_sub_item(const ::scoped_string & strDataKey) override;
+      bool has_data_key(const ::scoped_string & strDataKey) override;
+      void get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection) override;
 
       virtual void _001SetSingleColumnMode(bool bHeaderCtrl);
       //virtual bool _001InsertColumn(::user::list_column * pcolumn);
@@ -215,7 +215,7 @@ namespace user
 
       //virtual void _001GetGroupImage(list_item * pitem);
 
-      virtual void _001InsertColumns();
+      //virtual void insert_columns();
 
       ::count _001GetColumnCount() override;
 
@@ -225,7 +225,12 @@ namespace user
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      void on_insert_columns() override;
+      bool on_impact_update() override;
+      void on_column_update() override;
+      void on_update_item_count() override;
+      void on_after_impact_update() override;
+
 
       void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -244,13 +249,13 @@ namespace user
 
       virtual ::user::interaction * get_subitem_control(::index iSubItem);
 
-      virtual void _001OnColumnChange();
+      //virtual void _001OnColumnChange();
 
       bool _001SetColumnWidth(index iColumn, i32 iWidth) override;
 
       //virtual int _001GetColumnWidth(::index iColumn);
 
-      index _001MapSubItemToOrder(index iSubItem) override;
+      index sub_item_to_order(index iSubItem) override;
 
       index _001MapOrderToSubItem(index iOrder) override;
 
@@ -309,7 +314,7 @@ namespace user
       bool on_click(::item * pitem) override;
       bool on_right_click(::item * pitem) override;
 
-      void _001GetSelection(range & selection) override;
+      void get_selection(range & selection) override;
       virtual index _001GetCurItem();
 
       virtual void _001SelectItem(index iItem);
@@ -343,22 +348,22 @@ namespace user
       void DILoadOrder() override;
 
 
-      //void _001OnSelectionChange() override;
+      //void on_selection_change() override;
 
 
-      virtual void _001UpdateColumns();
+      //virtual void _001UpdateColumns();
 
 
-      virtual void _001RemoveAllColumns();
+      virtual void erase_columns();
 
 
       virtual void _001CreateImageList(list_column * pcolumn);
 
       bool _001IsItemVisible(index iItem) override;
 
-      //virtual void _001ClearSelection() override;
+      //virtual void clear_selection() override;
 
-      //void _001SetSelection(const range & range) override;
+      //void set_selection(const range & range) override;
 
       //void _001AddSelection(const item_range & itemrange) override;
 

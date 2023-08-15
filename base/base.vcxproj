@@ -663,7 +663,6 @@
     <ClCompile Include="user\experience\size_manager.cpp" />
     <ClCompile Include="user\form\document.cpp" />
     <ClCompile Include="user\form\impact.cpp" />
-    <ClCompile Include="user\form\options.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
     <ClCompile Include="user\menu\list_impact.cpp" />
@@ -697,6 +696,7 @@
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
+    <ClCompile Include="user\user\options_impact.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />
@@ -776,7 +776,6 @@
     <ClInclude Include="user\experience\_component.h" />
     <ClInclude Include="user\form\document.h" />
     <ClInclude Include="user\form\impact.h" />
-    <ClInclude Include="user\form\options.h" />
     <ClInclude Include="user\form\update_hint.h" />
     <ClInclude Include="user\form\_.h" />
     <ClInclude Include="user\menu\button.h" />
@@ -800,9 +799,11 @@
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_component.h" />
     <ClInclude Include="user\user\data_exchange.h" />
+    <ClInclude Include="user\user\form_maker.h" />
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="user\user\impact_exception.h" />
+    <ClInclude Include="user\user\options_impact.h" />
     <ClInclude Include="user\user\picture_impl.h" />
     <ClInclude Include="user\user\server.h" />
     <ClInclude Include="user\user\show.h" />

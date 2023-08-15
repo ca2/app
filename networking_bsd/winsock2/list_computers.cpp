@@ -29,10 +29,12 @@ namespace networking_bsd
 {
 
 
-   ::pointer_array < ::networking::address >networking::list_computers()
+   ::pointer < ::item_array > networking::list_computers()
    {
 
-      ::pointer_array < ::networking::address > addressa;
+      ::pointer < ::item_array > pitema;
+
+      __defer_construct_new(pitema);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -68,7 +70,7 @@ namespace networking_bsd
 
          paddress->set_address(in);
 
-         addressa.add(paddress);
+         pitema->add(paddress);
 
       }
 
@@ -78,7 +80,16 @@ namespace networking_bsd
 
 #endif
 
-      return addressa;
+      for (::index iItem = 0; iItem < pitema->size(); iItem++)
+      {
+
+         auto pitem = pitema->element_at(iItem);
+
+         pitem->m_iItem = iItem;
+
+      }
+
+      return pitema;
 
    }
 

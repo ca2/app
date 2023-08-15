@@ -5,6 +5,7 @@
 #include "acme/filesystem/file/item_array.h"
 #include "acme/handler/request.h"
 #include "apex/platform/os_context.h"
+#include "axis/user/user/form_handler.h"
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/interaction.h"
 #include "axis/user/user/line_layout.h"
@@ -242,12 +243,30 @@ namespace base
    void application::create_options_footer(::user::interaction * pparent)
    {
 
+      for (auto & strLibrary : m_straOptionsFormMakerLibrary)
+      {
+
+         auto & pfactory = acmesystem()->factory(strLibrary);
+
+         auto pformhandler = pfactory->create <::user::form_handler>();
+
+         pformhandler->initialize(this);
+
+         pformhandler->design_form(pparent);
+
+         pparent->payload("form_handler_payload_array").payload_array_reference().add(pformhandler);
+
+      }
+//)
+
       if (m_bEnableAutoStartOption)
       {
 
          create_auto_start_option(pparent);
 
       }
+
+      
 
    }
 

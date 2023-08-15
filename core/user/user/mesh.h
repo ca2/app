@@ -266,6 +266,8 @@ namespace user
       ::task_pointer                               m_ptaskHoverSelect;
       class ::time                                   m_timeLastHoverSelect;
       bool                                         m_bPendingHoverSelect;
+      boolean                                      m_bPendingColumnLayout;
+      boolean                                      m_bPendingColumnUpdate;
 
 
       mesh();
@@ -350,20 +352,20 @@ namespace user
       virtual void FilterClose();
       virtual void FilterApply();
       virtual void FilterBegin();
-      virtual index _001StrictToDisplay(index iStrict);
-      virtual index _001DisplayToStrict(index iDisplay);
-      virtual void _001Select(index iItem,index iSubItem);
-      virtual void _001Highlight(index iItem,bool bRedraw);
-      virtual void _001RemoveSelection();
-      virtual bool _001OnRemoveItem(index iItem);
-      virtual bool _001RemoveItem(index iItem,bool bRedraw = true);
-      virtual void _001EnsureVisible(index iItem,bool bRedraw = true);
-      virtual void _001EnsureVisible(index iItem, range& rangeRedraw);
-      virtual void _001ItemScroll(index iItem,bool bRedraw = true);
-      virtual index _001ConfigIdToColumnKey(const ::scoped_string & strDataKey);
-      virtual index _001ConfigIdToSubItem(const ::scoped_string & strDataKey);
-      virtual bool _001HasConfigId(const ::scoped_string & strDataKey);
-      virtual void _001GetSelection(const ::scoped_string & scopedstrDataKey,::string_array & straSelection);
+      virtual index strict_to_display(index iStrict);
+      virtual index display_to_strict(index iDisplay);
+      virtual void select_item(index iItem,index iSubItem);
+      virtual void highlight_item(index iItem,bool bRedraw);
+      virtual void erase_selection();
+      virtual bool on_erase_item(index iItem);
+      virtual bool erase_item(index iItem,bool bRedraw = true);
+      virtual void ensure_item_visible(index iItem,bool bRedraw = true);
+      virtual void ensure_item_visible(index iItem, range& rangeRedraw);
+      virtual void scroll_to_item(index iItem,bool bRedraw = true);
+      virtual index data_key_to_column_key(const ::scoped_string & strDataKey);
+      virtual index data_key_to_sub_item(const ::scoped_string & strDataKey);
+      virtual bool has_data_key(const ::scoped_string & strDataKey);
+      virtual void get_data_selection(const ::scoped_string & scopedstrDataKey,::string_array & straSelection);
 
       virtual void set_data_interface(mesh_data * pinterface);
       virtual void cache_hint();
@@ -433,8 +435,20 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool  _001OnUpdateColumnCount(u32 dwFlags = 0);
-      virtual bool  _001OnUpdateItemCount(u32 dwFlags = 0);
+
+      virtual void erase_columns();
+      virtual void insert_columns();
+      virtual void on_insert_columns();
+
+
+      virtual void set_pending_column_layout();
+      virtual void set_pending_column_update();
+
+
+      virtual void on_column_update();
+      virtual void on_update_item_count();
+      bool on_impact_update() override;
+
 
       virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -452,7 +466,7 @@ namespace user
 
       //virtual void  _001GetColumnWidth(draw_mesh_item * pdrawitem);
 
-      virtual index  _001MapSubItemToOrder(index iSubItem);
+      virtual index  sub_item_to_order(index iSubItem);
 
       virtual index  _001MapOrderToSubItem(index iOrder);
 
@@ -517,7 +531,7 @@ namespace user
       virtual bool on_click(::item * pitem) override;
       virtual bool  _001OnRightClick(uptr uFlags,const ::point_i32 & point);
 
-      virtual void  _001GetSelection(range& selection);
+      virtual void  get_selection(range& selection);
 
 
       virtual bool  _001IsEditing();
@@ -539,17 +553,19 @@ namespace user
 
       virtual void  DILoadOrder();
 
-      virtual void  _001OnSelectionChange();
+      virtual void  on_highlight_change();
+
+      virtual void  on_selection_change();
 
       virtual bool  _001IsItemVisible(index iItem);
 
-      virtual void  _001ClearSelection();
+      virtual void  clear_selection();
 
-      virtual void  _001SetSelection(const range&range);
+      virtual void  set_selection(const range&range);
 
       virtual void  _001AddSelection(const item_range & itemrange);
 
-      void set_current_item(item * pitem, const ::action_context & action_context) override;
+      void set_current_item(::item * pitem, const ::action_context & action_context) override;
 
       item_pointer current_item() override;
 

@@ -14,6 +14,7 @@
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/image.h"
 #include "aura/platform/application.h"
 #include "aura/message/user.h"
 #include "aura/user/menu/command.h"
@@ -892,7 +893,17 @@ namespace user
       if (crBackground.is_translucent())
       {
 
+         ::rectangle_f64 rectangleClip;
+
+         pgraphics->get_clip_box(rectangleClip);
+
          auto rectangleClient = client_rectangle();
+
+         //pgraphics->reset_clip();
+
+         //auto pointOffset = pgraphics->get_origin();
+
+         //memset(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
 
          pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 

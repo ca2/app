@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "acme/constant/element.h"
 #include "acme/primitive/string/_u32hash.h"
 
 #include "acme/primitive/comparison/equals.h"
@@ -242,7 +243,7 @@ public:
       e_type_null = -1,
 
       e_type_integer = 0,
-      e_type_atom,
+      e_type_id,
       e_type_factory,
       e_type_task_tool,
       e_type_timer,
@@ -256,9 +257,10 @@ public:
       e_type_dialog_result,
       e_type_impact,
       e_type_happening,
+      e_type_element,
 
       e_type_text = 1ull << 8,
-      e_type_id_text = e_type_atom | e_type_text,
+      e_type_id_text = e_type_id | e_type_text,
       e_type_factory_text = e_type_factory | e_type_text,
       e_type_task_tool_text = e_type_task_tool | e_type_text,
       e_type_timer_text = e_type_timer | e_type_text,
@@ -270,10 +272,11 @@ public:
       e_type_update_text = e_type_update | e_type_text,
       e_type_impact_text = e_type_impact | e_type_text,
       e_type_happening_text = e_type_happening | e_type_text,
+      e_type_element_text = e_type_element | e_type_text,
 
 
       e_type_range = 1ull << 16,
-      e_type_id_range = e_type_atom | e_type_range,
+      e_type_id_range = e_type_id | e_type_range,
       e_type_factory_range = e_type_factory | e_type_range,
       e_type_task_tool_range = e_type_task_tool | e_type_range,
       e_type_timer_range = e_type_timer | e_type_range,
@@ -285,6 +288,7 @@ public:
       e_type_update_range = e_type_update | e_type_range,
       e_type_impact_range = e_type_impact | e_type_range,
       e_type_happening_range = e_type_happening | e_type_range,
+      e_type_element_range = e_type_element | e_type_range,
 
 
    };
@@ -306,6 +310,7 @@ public:
       enum_message         m_emessage;
       enum_dialog_result   m_edialogresult;
       enum_happening       m_ehappening;
+      enum_element         m_eelement;
       ::string             m_str;
       ::ansi_range         m_range;
       ::iptr               m_iBody;
@@ -327,6 +332,7 @@ public:
    inline atom();
    inline atom(enum_type etype);
    inline atom(enum_id eid);
+   inline atom(enum_element eelement);
    inline atom(ENUM_ID EID);
    inline atom(const ::e_command & ecommand);
    inline atom(enum_message emessage);

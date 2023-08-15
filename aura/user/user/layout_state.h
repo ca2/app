@@ -19,11 +19,12 @@ namespace user
       ::e_activation                      m_eactivation;
 
 
-      void clear_activation()
+      void reset_pending()
       {
 
          m_zorder.clear_request();
          m_eactivation = e_activation_default;
+         m_bImpactUpdateGoingOn = false;
 
       }
 

@@ -170,7 +170,7 @@ namespace user
 
       route(ptopic);
 
-      _001SetSelection(iaSel, ::e_source_user);
+      set_selection(iaSel, ::e_source_user);
 
       m_pitemCurrent     = pitem;
 
@@ -410,11 +410,9 @@ namespace user
          ::rectangle_i32 rectangleSel;
          ::rectangle_i32 rectangleText;
 
-
-
          //itemText = e_element_text;
 
-         auto pitem = get_user_item(iImage);
+         auto pitem = (*m_pitema)[iImage];
 
          if (pitem == nullptr)
          {
@@ -428,9 +426,9 @@ namespace user
 
          }
 
-         auto & rectangle = pitem->m_rectangle;
+         auto puseritem = user_item(pitem);
 
-         
+         auto & rectangle = puseritem->m_rectangle;
 
          //bool bRectText = get_rect(itemText);
 
@@ -669,12 +667,12 @@ namespace user
       for (index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
 
-         auto pitem = get_user_item(iImage);
+         auto pitem = item_at(iImage);
 
          if (pitem == nullptr)
          {
 
-            pitem = __create_new<item>();
+            pitem = __create_new<::item>();
 
             pitem->m_iItem = iImage;
 
@@ -683,6 +681,8 @@ namespace user
             add_user_item(pitem);
 
          }
+
+         auto puseritem = user_item(pitem);
 
          if (x > left && x + m_size.cx() + m_iPad >= rectangleClient.width())
          {
@@ -693,14 +693,14 @@ namespace user
 
          }
 
-         pitem->m_rectangle.left = x;
-         pitem->m_rectangle.right = x + m_size.cx();
-         pitem->m_rectangle.top = y;
-         pitem->m_rectangle.bottom = y + m_size.cy();
+         puseritem->m_rectangle.left = x;
+         puseritem->m_rectangle.right = x + m_size.cx();
+         puseritem->m_rectangle.top = y;
+         puseritem->m_rectangle.bottom = y + m_size.cy();
 
-         x = pitem->m_rectangle.right + m_iPad;
+         x = puseritem->m_rectangle.right + m_iPad;
 
-         rectangleTotal.unite(rectangleTotal, pitem->m_rectangle);
+         rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle);
 
       }
 
@@ -829,7 +829,7 @@ namespace user
    }
 
 
-   index_array image_list::_001GetSelection()
+   index_array image_list::get_selection()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -851,7 +851,7 @@ namespace user
    }
 
 
-   void image_list::_001SetSelection(const index_array & ia, const ::action_context & context)
+   void image_list::set_selection(const index_array & ia, const ::action_context & context)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

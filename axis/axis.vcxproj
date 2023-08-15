@@ -501,7 +501,7 @@
     <ClInclude Include="user\form\_.h" />
     <ClInclude Include="user\user\aaa__component.h" />
     <ClInclude Include="user\user\combo_box.h" />
-    <ClInclude Include="user\user\form_designer.h" />
+    <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\line_layout.h" />
     <ClInclude Include="user\user\list_box.h" />
     <ClInclude Include="user\user\object.h" />
@@ -612,7 +612,7 @@
     <ClCompile Include="user\form\data.cpp" />
     <ClCompile Include="user\form\window.cpp" />
     <ClCompile Include="user\user\combo_box.cpp" />
-    <ClCompile Include="user\user\form_designer.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\line_layout.cpp" />
     <ClCompile Include="user\user\list_box.cpp" />
     <ClCompile Include="user\user\object.cpp" />

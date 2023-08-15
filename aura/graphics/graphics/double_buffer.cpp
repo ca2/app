@@ -78,6 +78,15 @@ namespace graphics
 
       buffer_size_and_position(pitem);
 
+      if (pitem->m_size.is_empty())
+      {
+
+         information() << "window size is zero in begin draw!!";
+
+         return nullptr;
+
+      }
+
       if (!m_bDibIsHostingBuffer)
       {
 

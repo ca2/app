@@ -491,8 +491,11 @@
     <ClInclude Include="user\user\impact_exception.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\form\options.h">
-      <Filter>Header Files\user\form</Filter>
+    <ClInclude Include="user\user\options_impact.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_maker.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -748,8 +751,8 @@
     <ClCompile Include="user\user\tab_graphics.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\form\options.cpp">
-      <Filter>Source Files\user\form</Filter>
+    <ClCompile Include="user\user\options_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

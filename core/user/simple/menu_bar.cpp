@@ -255,7 +255,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 
    //   SetFont(pdraw2d->fonts().GetMenuFont());
 
-   UpdateWindow();
+   //UpdateWindow();
 
 }
 
@@ -407,7 +407,12 @@ i32_spreadset * prel,
 void simple_menu_bar::RemoveAllButtons()
 {
    
-   m_pitema->erase_all();
+   if (m_pitema)
+   {
+    
+      m_pitema->clear();
+
+   }
 
 }
 

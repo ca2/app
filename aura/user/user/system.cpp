@@ -8,6 +8,7 @@
 #include "system.h"
 #include "interaction.h"
 #include "acme/constant/id.h"
+#include "acme/platform/scoped_restore.h"
 #include "aura/platform/application.h"
 
 
@@ -20,15 +21,15 @@ namespace user
 
       create_common_construct();
 
-//#ifdef WINDOWS
-//      //m_createstruct = system.m_createstruct;
-//      //set_class_name(string(system.m_createstruct.lpszClass));
-//      //set_window_name(string(system.m_createstruct.lpszName));
-//#else
-//      //m_createstruct = system.m_createstruct;
-//      //set_class_name(system.m_createstruct.lpszClass);
-//      //set_window_name(system.m_createstruct.lpszName);
-//#endif
+      //#ifdef WINDOWS
+      //      //m_createstruct = system.m_createstruct;
+      //      //set_class_name(string(system.m_createstruct.lpszClass));
+      //      //set_window_name(string(system.m_createstruct.lpszName));
+      //#else
+      //      //m_createstruct = system.m_createstruct;
+      //      //set_class_name(system.m_createstruct.lpszClass);
+      //      //set_window_name(system.m_createstruct.lpszName);
+      //#endif
       m_procedureFailure = system.m_procedureFailure;
       m_procedureSuccess = system.m_procedureSuccess;
       //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *) this;
@@ -51,13 +52,13 @@ namespace user
 
    //system::system(const ::rectangle_i32 & rectangle, ::u32 uExStyle, ::u32 uStyle, ::request * prequest)
    //system::system(const ::rectangle_i32& rectangle, ::create* pcreate)
-   system::system(::request* prequest)
+   system::system(::request * prequest)
    {
 
       //zero(m_createstruct);
 
       create_common_construct();
-         
+
       //set_rect(rectangle);
 
       //m_createstruct.dwExStyle = uExStyle;
@@ -150,7 +151,7 @@ namespace user
 
          ::pointer<::object>pparticle = m_pdocumentCurrent;
 
-         if(pparticle.is_null())
+         if (pparticle.is_null())
          {
 
             pparticle = papp;
@@ -182,53 +183,72 @@ namespace user
 
       }
 
-      pinteraction->m_pusersystem = this;
+      {
 
-      pinteraction->display(e_display_normal);
+         at_end_of_scope
+         {
 
-      pinteraction->m_atom = atom;
+            pinteraction->m_bLockGraphicalUpdate = false;
 
-      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
-      //if (!pinteraction->create_child(puserinteractionParent))
+         };
 
-      pinteraction->create_child(puserinteractionParent);
-      //{
+         pinteraction->m_bLockGraphicalUpdate = true;
 
-      //   return nullptr;
+         pinteraction->m_pusersystem = this;
 
-      //}
+         pinteraction->m_atom = atom;
+
+         //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
+         //if (!pinteraction->create_child(puserinteractionParent))
+
+         pinteraction->create_child(puserinteractionParent);
+         //{
+
+         //   return nullptr;
+
+         //}
 
 
-      pinteraction->signal(id_initial_update);
-      
+         pinteraction->on_topic(id_initial_update);
 
-//      ::pointer<::user::impact>pimpact = pinteraction;
-//
-//      if (pimpact.is_set())
-//      {
-//
-//         auto pdocument = pimpact->get_document();
-//
-//         pdocument->signal(id_initial_update);
-//
-//      }
 
-      //if (pinteraction.is_set())
-      //{
+         //      ::pointer<::user::impact>pimpact = pinteraction;
+         //
+         //      if (pimpact.is_set())
+         //      {
+         //
+         //         auto pdocument = pimpact->get_document();
+         //
+         //         pdocument->signal(id_initial_update);
+         //
+         //      }
 
-      //   if (pinteraction->get_parent() != nullptr)
-      //   {
+               //if (pinteraction.is_set())
+               //{
 
-      //      if (pinteraction->get_parent()->is_place_holder())
-      //      {
+               //   if (pinteraction->get_parent() != nullptr)
+               //   {
 
-      //         pinteraction->get_parent()->place_hold(pinteraction);
+               //      if (pinteraction->get_parent()->is_place_holder())
+               //      {
 
-      //      }
+               //         pinteraction->get_parent()->place_hold(pinteraction);
 
-      //   }
+               //      }
 
-      //}
+               //   }
+
+               //}
+
+         pinteraction->display(e_display_normal);
+
+         pinteraction->set_need_layout();
+
+         pinteraction->set_need_redraw();
+
+      }
+
+      pinteraction->post_redraw();
 
       return pinteraction;
 

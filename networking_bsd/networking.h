@@ -221,10 +221,10 @@ namespace networking_bsd
       virtual string get_http_post_boundary();
 
 
-      ::pointer_array < ::networking::address > list_computers() override;
+      ::pointer < ::item_array > list_computers() override;
 
 
-      ::pointer_array < ::networking::address > list_network_interfaces() override;
+      ::pointer < ::item_array > list_network_interfaces() override;
 
 
    };

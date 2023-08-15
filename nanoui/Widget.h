@@ -18,7 +18,7 @@
 #include "acme/handler/item.h"
 #include "acme/primitive/geometry2d/size.h"
 #include "acme/primitive/geometry2d/rectangle.h"
-#include "apex/user/user/container.h"
+#include "acme/user/user/container.h"
 //#include <xxxvector>
 //#include <xxxalgorithm>
 //#include "acme/primitive/primitive/function.h"
@@ -43,8 +43,7 @@ namespace nanoui
     */
    class CLASS_DECL_NANOUI Widget :
       public Object,
-      public ::user::container,
-      public ::item
+      public ::user::container
    {
    public:
 

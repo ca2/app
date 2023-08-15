@@ -152,13 +152,13 @@ namespace app_message_box
       psequencer->then([this](auto pmessagebox)
          {
 
-            if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
                post_message(MESSAGE_CLOSE);
 
             }
-            else if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
             {
 
                show_message_box();

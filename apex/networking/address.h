@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include "acme/handler/item.h"
 
 
 namespace networking
@@ -9,7 +9,7 @@ namespace networking
 
 
    class CLASS_DECL_APEX address :
-      virtual public ::particle
+      virtual public ::item
    {
    public:
 

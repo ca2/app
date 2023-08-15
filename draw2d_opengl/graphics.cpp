@@ -5884,8 +5884,8 @@ namespace opengl
       //glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
       ////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
       //glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
-      //glOrtho(0.f, size.cx(), 0.f, size.cy(), -1.0f, 1.0f);
-      gluOrtho2D(0.f, size.cx(), 0.f, size.cy());
+      glOrtho(0.f, size.cx(), 0.f, size.cy(), -1.0f, 1.0f);
+      //gluOrtho2D(0.f, size.cx(), 0.f, size.cy());
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();
 

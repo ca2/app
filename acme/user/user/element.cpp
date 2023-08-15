@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
+#include "item.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/platform/node.h"
@@ -141,6 +142,16 @@ namespace user
 
    //}
 
+   void element::destroy()
+   {
+
+      ::user::command_update_target::destroy();
+      ::conversation::destroy();
+      ::user::drag_client::destroy();
+
+
+   }
+
 
    ::user::interaction * element::get_host_window()
    {
@@ -226,24 +237,24 @@ namespace user
    //}
 
 
-   void element::UpdateWindow()
-   {
+   //void element::UpdateWindow()
+   //{
 
-      //ASSERT(::IsWindow(GetHandle()));
-      //::UpdateWindow(GetHandle());
+   //   //ASSERT(::IsWindow(GetHandle()));
+   //   //::UpdateWindow(GetHandle());
 
-   }
+   //}
 
 
-   void element::Invalidate(bool bErase)
-   {
+   //void element::Invalidate(bool bErase)
+   //{
 
-      UNREFERENCED_PARAMETER(bErase);
+   //   UNREFERENCED_PARAMETER(bErase);
 
-      //ASSERT(::IsWindow(GetHandle()));
-      //::InvalidateRect(GetHandle(), nullptr, bErase);
+   //   //ASSERT(::IsWindow(GetHandle()));
+   //   //::InvalidateRect(GetHandle(), nullptr, bErase);
 
-   }
+   //}
 
    bool element::has_pending_redraw_flags()
    {
@@ -2105,23 +2116,23 @@ namespace user
    }
 
 
-   void element::SetRedraw(bool bRedraw)
-   {
+   //void element::SetRedraw(bool bRedraw)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
-   bool element::GetUpdateRect(::rectangle_i32 * prectangle, bool bErase)
+   //bool element::GetUpdateRect(::rectangle_i32 * prectangle, bool bErase)
 
-   {
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //i32 element::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
@@ -2852,73 +2863,6 @@ namespace user
    void element::defer_update_display()
    {
 
-
-   }
-
-
-   ::index element::item_index_by_atom(const ::atom & atom) const
-   {
-
-      auto iIndex = atom.as_index();
-
-      if (!m_pitema->is_index_ok(iIndex))
-      {
-
-         iIndex = m_pitema->predicate_find_first([&atom](auto & pitem)
-         {
-
-            return pitem->m_atom == atom;
-
-         });
-
-         if (iIndex < 0)
-         {
-
-            // still not ok? couldn't find then, right?!...;
-
-            return -1;
-
-         }
-
-      }
-
-      return iIndex;
-
-   }
-
-
-   bool element::is_item_pressed_by_index(::index iIndex) const
-   {
-
-      return ::is_item_index(m_pitemPressed, iIndex);
-
-   }
-
-
-   bool element::is_item_hover_by_index(::index iIndex) const
-   {
-
-      return ::is_item_index(m_pitemHover, iIndex);
-
-   }
-
-
-   bool element::is_item_pressed_by_atom(const ::atom & atom) const
-   {
-
-      auto iIndex = item_index_by_atom(atom);
-
-      return is_item_pressed_by_index(iIndex);
-
-   }
-
-
-   bool element::is_item_hover_by_atom(const ::atom & atom) const
-   {
-
-      auto iIndex = item_index_by_atom(atom);
-
-      return is_item_hover_by_index(iIndex);
 
    }
 
@@ -4755,7 +4699,6 @@ namespace user
    }
 
 
-
    void element::pick_single_folder(const ::function < void(const ::file::path &) > & function)
    {
 
@@ -4782,6 +4725,87 @@ namespace user
       };
 
       pfiledialog->call_run();
+
+   }
+
+
+   bool element::update_impact()
+   {
+
+      try
+      {
+
+         if (!on_before_impact_update())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      try
+      {
+
+         if (!on_impact_update())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      try
+      {
+
+         on_after_impact_update();
+
+         return true;
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      return false;
+
+   }
+
+
+   bool element::on_impact_update()
+   {
+
+      return true;
+
+   }
+
+
+   bool element::on_before_impact_update()
+   {
+      
+      return true;
+
+   }
+   
+   
+   void element::on_after_impact_update()
+   {
+
 
    }
 

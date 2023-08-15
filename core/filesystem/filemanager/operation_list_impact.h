@@ -26,7 +26,7 @@ namespace filemanager
 
       void install_message_routing(::channel * pchannel) override;
 
-      void _001InsertColumns() override;
+      void on_insert_columns() override;
 
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
 

@@ -75,7 +75,7 @@ namespace filemanager
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual void _001InsertColumns() override;
+      virtual void on_insert_columns() override;
 
       void _001OnTimer(::timer * ptimer) override;
 

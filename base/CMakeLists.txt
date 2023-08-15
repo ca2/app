@@ -129,8 +129,6 @@ list(APPEND library_source
    user/user/edit_window.h
    user/form/document.cpp
    user/form/document.h
-   user/form/options.cpp
-   user/form/options.h
    user/form/update_hint.h
    user/form/impact.cpp
    user/form/impact.h
@@ -176,6 +174,8 @@ list(APPEND library_source
    user/user/network_configuration.h
    #user/user/notification_area.cpp
    #user/user/notification_area.h
+   user/user/options_impact.cpp
+   user/user/options_impact.h
    user/user/picture.cpp
    user/user/picture.h
    user/user/picture_interaction.cpp

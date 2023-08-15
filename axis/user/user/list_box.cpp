@@ -450,7 +450,7 @@ namespace user
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (::is_set(pitemHover) && pitemHover->m_iItem == iItem)
+         if (::is_item_set(pitemHover) && pitemHover->m_iItem == iItem)
          {
 
 #if DEBUG_LIST_ITEM_DRAWING
@@ -463,7 +463,7 @@ namespace user
 
          }
 
-         if (::is_set(pitemCurrent) && pitemCurrent->m_iItem == iItem)
+         if (::is_item_set(pitemCurrent) && pitemCurrent->m_iItem == iItem)
          {
 
 #if DEBUG_LIST_ITEM_DRAWING
@@ -646,7 +646,7 @@ namespace user
    }
 
 
-   void list_box::_001EnsureVisible(index iItem)
+   void list_box::ensure_item_visible_by_index(index iItem)
    {
 
       if (m_pscrollbarVertical != nullptr
@@ -1104,7 +1104,7 @@ namespace user
       if (rectangleItem.contains(point))
       {
 
-         return __new(item(e_element_search_edit));
+         return __new(::item(e_element_search_edit));
 
       }
       
@@ -1194,7 +1194,7 @@ namespace user
 
          }
 
-         _001EnsureVisible(m_pcombo->m_pitemHover->m_iItem);
+         ensure_item_visible_by_index(::item_index(m_pcombo->m_pitemHover));
 
          if (i < 0)
          {

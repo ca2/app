@@ -365,7 +365,7 @@ namespace user
 
 //         ::database::selection selection;
 //
-//         _001GetSelection(pinteraction->m_strDataKey, selection);
+//         get_selection(pinteraction->m_strDataKey, selection);
 
          throw_todo();
 
@@ -706,7 +706,7 @@ namespace user
          throw_todo();
 //         ::payload payload;
 //         ::database::selection selection;
-//         _001GetSelection(pinteraction->m_strDataKey,selection);
+//         get_selection(pinteraction->m_strDataKey,selection);
 //         if(selection.get_item_count() > 0)
 //         {
 //
@@ -887,7 +887,7 @@ namespace user
    }
 
 
-   void form_control::_001GetSelection(const ::scoped_string & scopedstrDataKey,::string_array &selection)
+   void form_control::get_selection(const ::scoped_string & scopedstrDataKey,::string_array &selection)
    {
 
       selection.add_item(scopedstrDataKey);

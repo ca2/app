@@ -74,10 +74,14 @@ void simple_list_control::pre_subclass_window()
 bool simple_list_control::erase_item(i32 iItem)
 {
    
-   if(!m_psimplelistdata->erase_item(iItem))
+   if (!m_psimplelistdata->erase_item(iItem))
+   {
+
       return false;
 
-   _001OnUpdateItemCount();
+   }
+
+   update_impact();
 
    return true;
 
@@ -101,7 +105,7 @@ bool simple_list_control::erase_item(::user::item_range & range)
 
    }
 
-   _001OnUpdateItemCount();
+   update_impact();
 
    return true;
 
@@ -126,8 +130,11 @@ bool simple_list_control::erase_item(::user::range & range)
       if(!m_psimplelistdata->erase_item(iaRemove[i]))
          bOk = false;
    }
-   _001OnUpdateItemCount();
+   
+   update_impact();
+
    return bOk;
+
 }
 
 

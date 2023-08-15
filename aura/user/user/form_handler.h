@@ -5,14 +5,15 @@
 namespace user
 {
 
-   class CLASS_DECL_AURA form_designer :
+
+   class CLASS_DECL_AURA form_handler :
       virtual public ::particle
    {
    public:
 
 
-      form_designer();
-      ~form_designer() override;
+      form_handler();
+      ~form_handler() override;
 
 
       template < typename LABEL >
@@ -28,6 +29,8 @@ namespace user
          plabel->set_window_text(scopedstrLabel);
 
          plabel->display();
+
+         plabel->set_need_layout();
 
          return plabel;
 
@@ -48,6 +51,8 @@ namespace user
 
          pcheckbox->display();
 
+         pcheckbox->set_need_layout();
+
          return pcheckbox;
 
       }
@@ -66,6 +71,8 @@ namespace user
          pbutton->set_window_text(scopedstrName);
 
          pbutton->display();
+
+         pbutton->set_need_layout();
 
          return pbutton;
 
@@ -89,6 +96,9 @@ namespace user
          return pedit;
 
       }
+
+
+      virtual void design_form(::user::interaction * puserinteraction);
 
 
    };

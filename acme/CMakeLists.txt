@@ -173,6 +173,8 @@ list(APPEND library_source
    filesystem/filesystem/acme_file.h
    filesystem/filesystem/acme_path.cpp
    filesystem/filesystem/acme_path.h
+   filesystem/filesystem/link.cpp
+   filesystem/filesystem/link.h
    filesystem/filesystem/file_dialog.cpp
    filesystem/filesystem/file_dialog.h
    filesystem/filesystem/file_path.cpp
@@ -966,6 +968,8 @@ list(APPEND library_source
    user/user/_text_stream.h
    user/user/check.cpp
    user/user/check.h
+   user/user/container.cpp
+   user/user/container.h
    user/user/conversation.cpp
    user/user/conversation.h
    user/user/drag.cpp
@@ -975,6 +979,7 @@ list(APPEND library_source
    user/user/element.cpp
    user/user/element.h
    user/user/e_window_flag.h
+   user/user/item.h
    user/user/mouse.cpp
    user/user/mouse.h
    user/user/os_colors.cpp

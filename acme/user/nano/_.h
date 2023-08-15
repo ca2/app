@@ -10,6 +10,8 @@ namespace nano
 
    class display;
 
+   class http;
+
 
 } // namespace nano
 
@@ -40,9 +42,6 @@ namespace nano
    CLASS_DECL_ACME ::pointer<nano_brush>create_solid_brush(::particle * pparticle, color32_t color);
    CLASS_DECL_ACME ::pointer<nano_font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold = false);
    CLASS_DECL_ACME ::pointer<nano_pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
-
-
-   class http;
 
 
 } // namespace nano

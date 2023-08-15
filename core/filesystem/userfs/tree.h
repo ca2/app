@@ -56,7 +56,7 @@ namespace userfs
       ::userfs::document * get_document();
 
 
-      virtual void _001InsertColumns();
+      virtual void on_insert_columns();
 
 
 

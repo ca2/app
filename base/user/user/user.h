@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "base/user/user/impact_data.h"
 #include "axis/user/user/user.h"
 #include "base/user/user/document_manager_container.h"
 #include "acme/primitive/geometry2d/size.h"
@@ -22,21 +22,26 @@ namespace base
    public:
 
 
-      ::user::primitive *                             m_pmousefocusLButtonDown;
-      ::user::primitive *                             m_pmousefocusRButtonDown;
-      string_array                                    m_straEscape;
-
-      //::pointer<::user::shell>                   m_pshell;
-
-      //::type                                        m_typeHtmlDocument;
-      //::type                                        m_typeHtmlImpact;
-
-      ::pointer<::user::menu_central>              m_pmenucentral;
-
-      ::pointer<::experience::department>          m_pexperience;
-      ::user::impact_system * m_ptemplateHtmlChildForm1;
+      ::pointer < ::user::impact_system >                m_ptemplateForm;
+      ::pointer < ::user::impact_system >                m_ptemplateChildForm;
 
 
+      ::pointer < ::user::primitive >                    m_pmousefocusLButtonDown;
+      ::pointer < ::user::primitive >                    m_pmousefocusRButtonDown;
+      string_array                                       m_straEscape;
+
+      //::pointer<::user::shell>                         m_pshell;
+
+      //::type                                           m_typeHtmlDocument;
+      //::type                                           m_typeHtmlImpact;
+
+      ::pointer < ::user::menu_central >                 m_pmenucentral;
+
+      ::pointer < ::experience::department >             m_pexperience;
+
+      atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
+
+      //::user::impact_system * m_ptemplateHtmlChildForm1;
 
 
       user();
@@ -121,6 +126,22 @@ namespace base
 
 
       virtual void initialize_html();
+
+
+      ::pointer<::form_document>  create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      //::pointer<::form_document>  create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      //::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+
+      template < typename FORM >
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
+      {
+
+         return create_typed_child_form(pparticle, __type(FORM), pimpactdata->m_pplaceholder, payload);
+
+      }
 
 
    };

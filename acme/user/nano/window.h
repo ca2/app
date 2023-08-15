@@ -8,56 +8,58 @@
 #include "acme/user/user/drag_client.h"
 #include "window_interface.h"
 #include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/user/user/item.h"
 
 
 class CLASS_DECL_ACME nano_window :
-   virtual public ::nano_window_interface,
-   virtual public ::conversation_message,
-   virtual public ::user::drag_client
+   virtual public ::nano_window_interface
+   //virtual public ::conversation_message
 {
 public:
 
 
-   ::function < void(nano_window *) >     m_functionClose;
+   ::function < void(nano_window *) >        m_functionClose;
 
-   ::pointer<nano_window_implementation> m_pimplementation;
-   ::pointer<nano_brush>                 m_pbrushWindow;
-   ::pointer<nano_brush>                 m_pbrushText;
-   ::pointer<nano_brush>                 m_pbrushHyperlink;
-   ::pointer<nano_brush>                 m_pbrushHyperlinkHover;
-   ::pointer<nano_pen>                   m_ppenBorder;
-   ::pointer<nano_pen>                   m_ppenBorderFocus;
-   ::pointer<nano_pen>                   m_ppenNull;
-   ::pointer<nano_font>                  m_pfont;
-   ::color::color                         m_colorText;
-   ::color::color                         m_colorHyperlink;
-   ::color::color                         m_colorHyperlinkHover;
-   ::color::color                         m_colorFocus;
-   ::color::color                         m_colorWindow;
-   bool                                   m_bNcActive;
+   ::pointer<nano_window_implementation>     m_pimplementation;
+   ::pointer<nano_brush>                     m_pbrushWindow;
+   ::pointer<nano_brush>                     m_pbrushText;
+   ::pointer<nano_brush>                     m_pbrushHyperlink;
+   ::pointer<nano_brush>                     m_pbrushHyperlinkHover;
+   ::pointer<nano_pen>                       m_ppenBorder;
+   ::pointer<nano_pen>                       m_ppenBorderFocus;
+   ::pointer<nano_pen>                       m_ppenNull;
+   ::pointer<nano_font>                      m_pfont;
+   ::color::color                            m_colorText;
+   ::color::color                            m_colorHyperlink;
+   ::color::color                            m_colorHyperlinkHover;
+   ::color::color                            m_colorFocus;
+   ::color::color                            m_colorWindow;
+   bool                                      m_bNcActive;
 
-   rectangle_i32                          m_rectangle;
+   rectangle_i32                             m_rectangle;
 
-   pointer_array < nano_child >            m_childa;
-   ::atom                                 m_atomLeftButtonDown;
-   ::atom                                 m_atomLeftButtonUp;
-   ::atom                                 m_atomRightButtonDown;
-   ::atom                                 m_atomRightButtonUp;
-   ::pointer<nano_child>                 m_pchildFocus;
-   ::pointer<nano_child>                 m_pchildHover;
-   ::pointer<nano_child>                 m_pchildCapture;
-
-
-   bool                                   m_bCapture;
-   bool                                   m_bStartCentered;
-   bool                                   m_bArbitraryPositioning;
-   int                                    m_iFontSize;
-   enum_font                              m_efont;
-
-   bool                                   m_bTopMost;
+   pointer_array < nano_child >              m_childa;
+   ::atom                                    m_atomLeftButtonDown;
+   ::atom                                    m_atomLeftButtonUp;
+   ::atom                                    m_atomRightButtonDown;
+   ::atom                                    m_atomRightButtonUp;
+   ::pointer<nano_child>                     m_pchildFocus;
+   ::pointer<nano_child>                     m_pchildHover;
+   ::pointer<nano_child>                     m_pchildCapture;
 
 
-   pointer_array < nano_button >           m_buttona;
+   bool                                      m_bCapture;
+   bool                                      m_bStartCentered;
+   bool                                      m_bArbitraryPositioning;
+   int                                       m_iFontSize;
+   enum_font                                 m_efont;
+
+   bool                                      m_bTopMost;
+
+
+   pointer_array < nano_button >             m_buttona;
+
+   //map < const ::item *, ::user::item >      m_useritemmap;
 
 
    nano_window();
@@ -112,13 +114,6 @@ public:
 
    void move_to(const ::point_i32 & point) override;
 
-   // drag_client
-   void drag_set_capture() override;
-   ::point_i32 on_drag_start(::user::drag * pdrag) override;
-   bool drag_shift(::user::drag * pdrag) override;
-   bool drag_hover(::user::drag * pdrag) override;
-   void drag_release_capture() override;
-   void drag_set_cursor(::user::drag * pdrag) override;
 
    virtual void on_create();
 
@@ -155,6 +150,9 @@ public:
    
    
    void handle(::topic* ptopic, ::context* pcontext) override;
+
+
+   //::user::item & user_item(const ::item * pitem) override;
    
 
 };

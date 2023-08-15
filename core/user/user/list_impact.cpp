@@ -31,20 +31,20 @@ namespace user
 
       BASE_VIEW::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ID_INITIAL_UPDATE)
-      {
+      //if (ptopic->m_atom == ID_INITIAL_UPDATE)
+      //{
 
-         _001OnUpdateItemCount();
+      //   update_impact();
 
-      }
+      //}
 
    }
 
 
-   void list_impact::_001OnSelectionChange()
+   void list_impact::on_selection_change()
    {
 
-      BASE_VIEW::_001OnSelectionChange();
+      BASE_VIEW::on_selection_change();
 
       //if (get_parent_frame() != nullptr)
       //{

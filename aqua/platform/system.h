@@ -51,6 +51,8 @@ namespace aqua
 
       virtual void defer_audio_mixer();
 
+      virtual ::factory::factory_pointer audio_mixer_factory();
+
       bool has_audio() override;
 
       virtual ::aqua::multimedia* defer_get_multimedia();

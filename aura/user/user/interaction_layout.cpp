@@ -484,7 +484,7 @@ namespace user
 
          window() = design();
 
-         window().clear_activation();
+         window().reset_pending();
 
       }
 

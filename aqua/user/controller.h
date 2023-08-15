@@ -16,8 +16,15 @@ namespace user
    public:
 
 
+      boolean           m_bOpened;
+
+
       controller();
       ~controller() override;
+
+
+
+      virtual bool is_opened() const;
 
 
       // void dump(dump_context&) const override;

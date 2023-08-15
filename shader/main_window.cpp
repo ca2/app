@@ -80,51 +80,58 @@ namespace app_shader
 
       {
 
-         auto pitem = get_user_item(::e_element_close_button);
+         add_item(__new(::item(e_element_close_button, id_close_app)));
 
-         if (pitem)
-         {
-
-            *pitem = ::e_element_close_icon;
-
-         }
-
-      }
-
-      {
-
-         add_user_item(__new(::item(::e_element_switch_button, ::id_switch)));
-
-         auto pitem = get_user_item(::e_element_switch_button);
-
-         *pitem = ::e_element_switch_button;
+//         auto pitem = user_item(::e_element_close_button);
+//
+//         if (pitem)
+//         {
+//
+//            *pitem = ::e_element_close_icon;
+//
+//         }
 
       }
 
       {
 
-         auto pitem = get_user_item(::e_element_maximize_button);
+         add_item(__new(::item(::e_element_switch_button, ::id_switch)));
 
-         if (pitem)
-         {
+//         auto pitem = user_item(::e_element_switch_button);
+//
+//         *pitem = ::e_element_switch_button;
 
-            *pitem = ::e_element_maximize_icon;
+      }
 
-         }
+      {
+
+         add_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
+
+         //auto pitem = user_item(::e_element_maximize_button);
+
+//         if (pitem)
+//         {
+//
+//            *pitem = ::e_element_maximize_icon;
+//
+//         }
 
       }
 
 
       {
 
-         auto pitem = get_user_item(::e_element_minimize_button);
 
-         if (pitem)
-         {
+         add_item(__new(::item(e_element_minimize_button, id_minimize)));
 
-            *pitem = ::e_element_minimize_icon;
-
-         }
+//         auto pitem = user_item(::e_element_minimize_button);
+//
+//         if (pitem)
+//         {
+//
+//            *pitem = ::e_element_minimize_icon;
+//
+//         }
 
       }
 
@@ -331,10 +338,10 @@ namespace app_shader
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & useritem, const ::user::e_state & estate)
    {
 
-      ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
+      ::user::interaction::_001DrawItem(pgraphics, useritem, estate);
 
    }
 

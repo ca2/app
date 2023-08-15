@@ -684,7 +684,7 @@
     <ClCompile Include="user\user\redraw.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_designer.cpp">
+    <ClCompile Include="user\user\form_handler.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\interaction_array.cpp">
@@ -1730,7 +1730,7 @@
     <ClInclude Include="user\user\aaa_set_need_redraw.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\form_designer.h">
+    <ClInclude Include="user\user\form_handler.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>

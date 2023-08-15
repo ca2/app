@@ -350,12 +350,31 @@ namespace user
    }
 
 
-   //void impact::handle(::topic * ptopic, ::context * pcontext)
-   //{
+   void impact::handle(::topic * ptopic, ::context * pcontext)
+   {
+
+      ::user::box::handle(ptopic, pcontext);
+
+      if (ptopic)
+      {
+
+         if (ptopic->m_atom == ID_INITIAL_UPDATE)
+         {
+
+            if (get_document()->is_opened())
+            {
+
+               update_impact();
+
+            }
+
+         }
+
+      }
 
    //   //call_update(ID_INITIAL_UPDATE);        // initial update
 
-   //}
+   }
 
 
    //void impact::handle(::topic * ptopic, ::context * pcontext)

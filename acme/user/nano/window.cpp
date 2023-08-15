@@ -572,86 +572,6 @@ void nano_window::move_to(const ::point_i32 & point)
 }
 
 
-void nano_window::drag_set_capture()
-{
-
-   set_capture();
-
-}
-
-
-::point_i32 nano_window::on_drag_start(::user::drag * pdrag)
-{
-
-   if (pdrag->m_eelement == e_element_client)
-   {
-
-      return m_rectangle.origin();
-
-   }
-
-   throw exception(::error_unexpected);
-
-}
-
-
-bool nano_window::drag_shift(::user::drag * pdrag)
-{
-
-   if (pdrag->m_eelement == e_element_client)
-   {
-
-      move_to(pdrag->point());
-
-      return true;
-
-   }
-
-   return false;
-
-}
-
-
-bool nano_window::drag_hover(::user::drag * pdrag)
-{
-
-   if (pdrag->m_eelement == e_element_client)
-   {
-
-      set_cursor(e_cursor_hand);
-
-      return true;
-
-   }
-   else if (pdrag->m_eelement == e_element_resize)
-   {
-
-      set_cursor(e_cursor_size_bottom_right);
-
-      return true;
-
-   }
-
-   return false;
-
-}
-
-
-void nano_window::drag_release_capture()
-{
-
-   release_capture();
-
-}
-
-
-void nano_window::drag_set_cursor(::user::drag * pdrag)
-{
-
-   set_cursor(pdrag->m_ecursor);
-
-}
-
 
 void nano_window::redraw()
 {
@@ -788,6 +708,14 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
    
 }
+
+
+//::user::item & nano_window::user_item(const ::item * pitem)
+//{
+//
+//   return m_useritemmap[pitem];
+//
+//}
 
 
 void nano_window::do_asynchronously()

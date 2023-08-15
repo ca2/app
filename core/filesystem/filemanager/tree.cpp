@@ -556,7 +556,7 @@ namespace filemanager
    }
 
 
-   void tree::_001InsertColumns()
+   void tree::on_insert_columns()
    {
 
    }

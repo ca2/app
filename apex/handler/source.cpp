@@ -124,4 +124,37 @@ void source::route(::topic * ptopic, ::context * pcontext)
 }
 
 
+void source::on_topic(const ::atom & atom, ::particle * pparticle, ::context * pcontext)
+{
+
+   notify_topic(atom, pparticle, pcontext);
+
+}
+
+
+void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::context * pcontext)
+{
+
+   auto ptopic = create_topic(atom);
+
+   if (::is_set(pparticle))
+   {
+
+      ptopic->m_pparticle = pparticle;
+
+   }
+   else
+   {
+
+      ptopic->m_pparticle = this;
+
+   }
+
+   handle(ptopic, pcontext);
+
+   route(ptopic, pcontext);
+
+}
+
+
 

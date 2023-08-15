@@ -19,6 +19,14 @@ namespace user
    }
 
 
+   bool controller::is_opened() const
+   {
+
+      return m_bOpened;
+
+   }
+
+
    ::user::interaction* controller::impact_at(::index iImpact)
    {
 

@@ -1,6 +1,9 @@
 #include "framework.h"
+#include "document_manager.h"
 #include "user.h"
 #include "impact_creator.h"
+#include "multiple_document_template.h"
+#include "single_document_template.h"
 #include "style.h"
 #include "split_impact.h"
 #include "tab_impact.h"
@@ -8,7 +11,10 @@
 #include "acme/exception/exit.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/sequencer.h"
 #include "acme/platform/system_setup.h"
+#include "acme/handler/request.h"
+#include "acme/user/nano/nano.h"
 #include "aura/graphics/image/image.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
@@ -17,6 +23,7 @@
 #include "base/platform/system.h"
 #include "base/user/experience/department.h"
 #include "base/user/experience/experience.h"
+#include "base/user/form/document.h"
 #include "base/user/simple/impact.h"
 #include "base/user/simple/tab_document.h"
 #include "base/user/simple/scroll_bar.h"
@@ -1322,6 +1329,373 @@ namespace base
    void user::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha)
    {
 
+
+   }
+
+
+   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   {
+
+      if (!type)
+      {
+
+         return nullptr;
+
+      }
+
+      auto & pimpactsystem = m_mapimpactsystem[type];
+
+      if (!pimpactsystem)
+      {
+
+         pimpactsystem = __new(::user::multiple_document_template(
+            m_ptemplateForm->m_atom,
+            m_ptemplateForm->m_typeDocument,
+            m_ptemplateForm->m_typeFrame,
+            type));
+
+         document_manager()->add_document_template(pimpactsystem);
+
+      }
+
+      if (pparticle == nullptr)
+      {
+
+         if (::is_set(puserelementParent))
+         {
+
+            pparticle = puserelementParent;
+
+         }
+         else
+         {
+
+            pparticle = this;
+
+         }
+
+      }
+
+      ::pointer<::request>prequest(e_create, this);
+
+      prequest->m_bMakeVisible = true;
+
+      prequest->m_puserelementParent = puserelementParent;
+
+      prequest->m_payloadArguments = payloadArgs;
+
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
+      {
+
+         prequest->m_payloadFile = pathFile;
+
+      }
+
+      pimpactsystem->request(prequest);
+
+      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
+
+      if (pformdocument.is_null())
+      {
+
+         return nullptr;
+
+      }
+
+      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
+
+      return pformdocument;
+
+   }
+
+
+   ::pointer<::form_document> user::create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   {
+
+      if (m_ptemplateForm == nullptr)
+      {
+
+         return nullptr;
+
+      }
+
+      ::pointer<::request>prequest(e_create, this);
+
+      prequest->m_bMakeVisible = false;
+
+      prequest->m_puserelementParent = puserelementParent;
+
+      prequest->m_puserelementAlloc = pform;
+
+      prequest->m_payloadArguments = payloadArgs;
+
+      prequest->m_payloadArguments["form_callback"] = pcallback;
+
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
+      {
+
+         prequest->m_payloadFile = pathFile;
+
+      }
+
+      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
+      {
+
+         prequest->m_bHold = false;
+
+      }
+
+      m_ptemplateForm->request(prequest);
+
+      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
+
+      if (pformdocument.is_null())
+      {
+
+         return nullptr;
+
+      }
+
+      ::pointer<::user::form_window> pformwindow = pformdocument->get_typed_impact < ::user::form_window >();
+
+      if (pformwindow.is_set())
+      {
+
+         pformwindow->set_form_callback(pcallback);
+
+      }
+
+      return pformdocument;
+
+   }
+
+
+   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   {
+
+      if (m_ptemplateChildForm == nullptr)
+      {
+
+         return nullptr;
+
+      }
+
+      auto papp = pparticle->acmeapplication();
+
+      if (papp == nullptr)
+      {
+
+         if (::is_set(puserelementParent))
+         {
+
+            papp = puserelementParent->get_app();
+
+         }
+         else if (pcallback != nullptr)
+         {
+
+            papp = pcallback->get_app();
+
+         }
+         else
+         {
+
+            papp = get_app();
+
+         }
+
+      }
+
+      auto prequest = __create_new< ::request >();
+
+      prequest->m_bMakeVisible = false;
+
+      prequest->m_puserelementParent = puserelementParent;
+
+      prequest->m_puserelementAlloc = pform;
+
+      prequest->m_payloadArguments = payloadArgs;
+
+      prequest->m_payloadArguments["form_callback"] = pcallback;
+
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
+      {
+
+         prequest->m_payloadFile = pathFile;
+
+      }
+
+      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
+      {
+
+         prequest->m_bHold = false;
+
+      }
+
+      prequest->finish_initialization();
+
+      m_ptemplateChildForm->request(prequest);
+
+      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
+
+      if (pformdocument.is_null())
+      {
+
+         return nullptr;
+
+      }
+
+      ::pointer<::user::form_window> pformwindow = pformdocument->get_typed_impact < ::user::form_window >();
+
+      if (pformwindow.is_set())
+      {
+
+         pformwindow->set_form_callback(pcallback);
+
+      }
+
+      return pformdocument;
+
+   }
+
+
+   bool is_html_file(string strFilePath)
+   {
+
+      return string(file_path_final_extension(strFilePath)).case_insensitive_order("htm") == 0;
+
+   }
+
+
+   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   {
+
+      auto pathFile = payload.as_file_path();
+
+      try
+      {
+
+         if (!type)
+         {
+
+            return nullptr;
+
+         }
+
+         auto pimpactsystem = m_mapimpactsystem[type];
+
+         if (!pimpactsystem)
+         {
+
+            ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
+
+            if (is_html_file(payload.as_file_path()))
+            {
+
+               typeDocument = get_html_document_type();
+
+            }
+
+            auto pimpactsystemNew = __new(::user::multiple_document_template(
+               m_ptemplateChildForm->m_atom,
+               typeDocument,
+               m_ptemplateChildForm->m_typeFrame,
+               type));
+
+            pimpactsystemNew->initialize(pparticle);
+
+            pimpactsystem = pimpactsystemNew;
+
+            m_mapimpactsystem[type] = pimpactsystemNew;
+
+            document_manager()->add_document_template(pimpactsystem);
+
+         }
+
+         if (pparticle == nullptr)
+         {
+
+            if (::is_set(puserelementParent))
+            {
+
+               pparticle = puserelementParent;
+
+            }
+            else
+            {
+
+               pparticle = this;
+
+            }
+
+         }
+
+         auto prequest = ::__create_new < ::request >(pparticle);
+
+         prequest->m_bMakeVisible = false;
+
+         prequest->m_puserelementParent = puserelementParent;
+
+         prequest->m_payloadArguments = payloadArgs;
+
+         if (pathFile.has_char())
+         {
+
+            prequest->m_payloadFile = pathFile;
+
+         }
+
+         pimpactsystem->request(prequest);
+
+         ::pointer<::form_document>pformdocument = ::user::__document(prequest);
+
+         if (pformdocument.is_null())
+         {
+
+            return nullptr;
+
+         }
+
+         ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
+
+         return pformdocument;
+
+      }
+      //catch(::exception)
+      catch (const ::exception & exception)
+      {
+
+#ifdef DEBUG
+
+         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+
+         psequencer->do_synchronously();
+
+#endif
+
+      }
+      catch (...)
+      {
+
+#ifdef DEBUG
+
+         ::exception exception(error_catch_all_exception);
+
+         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+
+         psequencer->do_synchronously();
+
+#endif
+
+      }
+
+      return nullptr;
 
    }
 

@@ -2,21 +2,21 @@
 #pragma once
 
 
-#include "aura/user/user/form_designer.h"
+#include "aura/user/user/form_handler.h"
 
 
 namespace axis
 {
 
 
-   class CLASS_DECL_AXIS form_designer :
-      virtual public ::user::form_designer
+   class CLASS_DECL_AXIS form_handler :
+      virtual public ::user::form_handler
    {
    public:
 
 
-      form_designer();
-      ~form_designer() override;
+      form_handler();
+      ~form_handler() override;
 
 
       ::pointer < ::user::line_layout > create_line_layout(::user::interaction * puserinteractionParent, enum_orientation eorientation);

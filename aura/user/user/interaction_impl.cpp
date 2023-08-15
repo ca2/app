@@ -3818,16 +3818,16 @@ namespace user
       throw ::interface_only();
    }
 
-   void interaction_impl::UpdateWindow()
-   {
-      throw ::interface_only();
-   }
+   //void interaction_impl::UpdateWindow()
+   //{
+   //   throw ::interface_only();
+   //}
 
-   void interaction_impl::SetRedraw(bool bRedraw)
-   {
-      UNREFERENCED_PARAMETER(bRedraw);
-      throw ::interface_only();
-   }
+   //void interaction_impl::SetRedraw(bool bRedraw)
+   //{
+   //   UNREFERENCED_PARAMETER(bRedraw);
+   //   throw ::interface_only();
+   //}
 
    //void interaction_impl::GetUpdateRect(::rectangle_i32 * prectangle,bool bErase)
 
@@ -3850,70 +3850,70 @@ namespace user
    //}
 
 
-   void interaction_impl::Invalidate(bool bErase)
-   {
-
-      UNREFERENCED_PARAMETER(bErase);
-
-      throw ::interface_only();
-
-   }
-
-
-   void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
-   {
-
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(bErase);
-
-      throw ::interface_only();
-
-   }
-
-
-   void interaction_impl::InvalidateRgn(::draw2d::region * pRgn, bool bErase)
-   {
-      UNREFERENCED_PARAMETER(pRgn);
-      UNREFERENCED_PARAMETER(bErase);
-      throw ::interface_only();
-   }
-
-
-   void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
-   {
-
-      UNREFERENCED_PARAMETER(rectangle);
-
-      throw ::interface_only();
-
-   }
-
-
-   void interaction_impl::ValidateRgn(::draw2d::region * pRgn)
-   {
-
-      UNREFERENCED_PARAMETER(pRgn);
-
-      throw ::interface_only();
-
-   }
-
-
-   //void interaction_impl::_is_window_visible()
+   //void interaction_impl::Invalidate(bool bErase)
    //{
 
-   //   throw ::interface_only();
+   //   UNREFERENCED_PARAMETER(bErase);
 
-   //   return false;
+   //   throw ::interface_only();
 
    //}
 
 
-   void interaction_impl::ShowOwnedPopups(bool bShow)
-   {
-      UNREFERENCED_PARAMETER(bShow);
-      throw ::interface_only();
-   }
+   //void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
+   //{
+
+   //   UNREFERENCED_PARAMETER(rectangle);
+   //   UNREFERENCED_PARAMETER(bErase);
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   //void interaction_impl::InvalidateRgn(::draw2d::region * pRgn, bool bErase)
+   //{
+   //   UNREFERENCED_PARAMETER(pRgn);
+   //   UNREFERENCED_PARAMETER(bErase);
+   //   throw ::interface_only();
+   //}
+
+
+   //void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
+   //{
+
+   //   UNREFERENCED_PARAMETER(rectangle);
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   //void interaction_impl::ValidateRgn(::draw2d::region * pRgn)
+   //{
+
+   //   UNREFERENCED_PARAMETER(pRgn);
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   ////void interaction_impl::_is_window_visible()
+   ////{
+
+   ////   throw ::interface_only();
+
+   ////   return false;
+
+   ////}
+
+
+   //void interaction_impl::ShowOwnedPopups(bool bShow)
+   //{
+   //   UNREFERENCED_PARAMETER(bShow);
+   //   throw ::interface_only();
+   //}
 
 
    /*::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip,u32 flags)
@@ -5238,102 +5238,103 @@ namespace user
          //if (!m_puserinteraction)
          //{
 
-         //   return;
+//   return;
 
-         //}
+//}
 
-         //if (!this->task_get_run())
-         //{
+//if (!this->task_get_run())
+//{
 
-         //   return;
+//   return;
 
-         //}
+//}
 
-         //if (!m_puserinteraction)
-         //{
+//if (!m_puserinteraction)
+//{
 
-         //   return;
+//   return;
 
-         //}
+//}
 
-         /*       bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
+/*       bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
 
-                if(!m_pimpl)
-                {
+       if(!m_pimpl)
+       {
 
-                   return;
+          return;
 
-                }
+       }
 
-                bool bHasProdevian = m_pimpl->has_prodevian();
+       bool bHasProdevian = m_pimpl->has_prodevian();
 
-                if(!m_puserinteraction)
-                {
+       if(!m_puserinteraction)
+       {
 
-                   return;
+          return;
 
-                }
+       }
 
-                bool bRedraw = m_puserinteraction->m_bNeedRedraw;
+       bool bRedraw = m_puserinteraction->m_bNeedRedraw;
 
-                if(!m_puserinteraction)
-                {
+       if(!m_puserinteraction)
+       {
 
-                   return;
+          return;
 
-                }
+       }
 
-                bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
+       bool bHasPendingGraphicalUpdate = m_puserinteraction->has_pending_graphical_update();
 
-                if (bIsThisScreenVisible
-                   &&
-                   (bForce
-                   || bUpdateBuffer
-                   || bHasProdevian
-                   || bRedraw
-                   || bHasPendingGraphicalUpdate
-                   )
-                   )
-                {
+       if (bIsThisScreenVisible
+          &&
+          (bForce
+          || bUpdateBuffer
+          || bHasProdevian
+          || bRedraw
+          || bHasPendingGraphicalUpdate
+          )
+          )
+       {
 
-                   bDraw = true;
+          bDraw = true;
 
-                }
+       }
 
-                if(!m_puserinteraction)
-                {
+       if(!m_puserinteraction)
+       {
 
-                   return;
+          return;
 
-                }*/
+       }*/
 
-                /*      if (m_puserinteraction->m_bOffScreenRender)
-                      {
+       /*      if (m_puserinteraction->m_bOffScreenRender)
+             {
 
-                         bDraw = true;
+                bDraw = true;
 
-                      }*/
+             }*/
 
-      update_graphics_resources();
+update_graphics_resources();
 
-      if (bDraw && m_pgraphics.is_null())
-      {
+if (bDraw && m_pgraphics.is_null())
+{
 
-         return;
+   return;
 
-      }
+}
 
-      //}
+//}
 
-      if (m_puserinteraction->has_flag(e_flag_destroying)
-         || m_puserinteraction->has_finishing_flag()
-         || has_flag(e_flag_destroying)
-         || has_finishing_flag())
-      {
+if (m_puserinteraction->has_flag(e_flag_destroying)
+   || m_puserinteraction->has_finishing_flag()
+   || has_flag(e_flag_destroying)
+   || has_finishing_flag())
+{
 
-         return;
+   return;
 
-      }
+}
+
 
       //::size_i32 sizeDrawn;
 
@@ -5481,6 +5482,13 @@ namespace user
 
       auto pbufferitem = m_pgraphics->on_begin_draw();
       //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+
+      if (!pbufferitem)
+      {
+
+         return;
+
+      }
 
       _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
@@ -7440,7 +7448,7 @@ namespace user
 
       m_puserinteraction->set_display(m_puserinteraction->const_layout().design().display(), e_layout_window);
 
-      m_puserinteraction->clear_activation(e_layout_design);
+      m_puserinteraction->reset_pending(e_layout_design);
 
       m_puserinteraction->set_display(edisplayOutput, e_layout_design);
 

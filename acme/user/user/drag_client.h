@@ -2,7 +2,7 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "container.h"
 #include "acme/constant/element.h"
 ////#include "acme/primitive/primitive/object.h"
 
@@ -12,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_ACME drag_client :
-      virtual public ::object
+      virtual public ::user::container
    {
    public:
 
@@ -46,6 +46,9 @@ namespace user
       virtual bool drag_hover(::user::drag * pdrag) = 0;
       virtual void drag_release_capture() = 0;
       virtual void drag_set_cursor(::user::drag * pdrag) = 0;
+
+
+      //virtual ::user::item & user_item(const ::item * pitem) = 0;
 
 
    };

@@ -594,7 +594,7 @@ namespace user
       for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++, iDisplayIndex++)
       {
 
-         auto iItem = _001DisplayToStrict(iDisplayItem);
+         auto iItem = display_to_strict(iDisplayItem);
 
          auto& pitem = get_item(iItem);
 
@@ -1711,7 +1711,7 @@ namespace user
    //}
 
 
-   index list2::_001MapSubItemToOrder(index iSubItem)
+   index list2::sub_item_to_order(index iSubItem)
    {
 
       return _001MapColumnToOrder(_001MapSubItemToColumn(iSubItem));
@@ -2104,7 +2104,7 @@ namespace user
 
       }
 
-      iItem = _001DisplayToStrict((::index)iItem);
+      iItem = display_to_strict((::index)iItem);
 
       return true;
 
@@ -2121,7 +2121,7 @@ namespace user
 
       }
 
-      iItem = _001DisplayToStrict((::index)iItem);
+      iItem = display_to_strict((::index)iItem);
 
       return true;
 
@@ -2516,7 +2516,7 @@ namespace user
       }
 
 
-      auto iItemFirst = _001DisplayToStrict(iDisplayItemFirst);
+      auto iItemFirst = display_to_strict(iDisplayItemFirst);
 
       auto pitemFirst = get_item(iItemFirst);
 
@@ -2526,7 +2526,7 @@ namespace user
 
       index_item_rectangle(*pitemFirst);
 
-      auto iItemLast = _001DisplayToStrict(iDisplayItemLast);
+      auto iItemLast = display_to_strict(iDisplayItemLast);
 
       auto pitemLast = get_item(iItemLast);
 
@@ -3400,7 +3400,7 @@ namespace user
 
             set_need_redraw();
 
-            _001OnSelectionChange();
+            on_selection_change();
 
          }
 
@@ -3410,7 +3410,7 @@ namespace user
 
          ::user::range range;
 
-         _001GetSelection(range);
+         get_selection(range);
 
          _001DeleteRange(range);
 
@@ -3542,7 +3542,7 @@ namespace user
 
                            index iDisplayItem = i * iItemColumnCount + j;
 
-                           index iStrict = _001DisplayToStrict(iDisplayItem);
+                           index iStrict = display_to_strict(iDisplayItem);
 
                            if (iStrict >= 0)
                            {
@@ -3561,7 +3561,7 @@ namespace user
 
                      }
 
-                     _001OnSelectionChange();
+                     on_selection_change();
 
                   }
 
@@ -3798,7 +3798,7 @@ namespace user
 
                m_rangeSelection.clear();
 
-               _001OnSelectionChange();
+               on_selection_change();
 
             }
 
@@ -3891,7 +3891,7 @@ namespace user
 
                }
 
-               _001OnSelectionChange();
+               on_selection_change();
 
             }
 
@@ -3917,7 +3917,7 @@ namespace user
 
             }
 
-            m_iItemLButtonDown = _001DisplayToStrict(iDisplayItem);
+            m_iItemLButtonDown = display_to_strict(iDisplayItem);
 
             if (m_eview == impact_icon)
             {
@@ -3943,7 +3943,7 @@ namespace user
 
                   m_rangeSelection.clear();
 
-                  _001OnSelectionChange();
+                  on_selection_change();
 
                }
 
@@ -4120,10 +4120,10 @@ namespace user
                   if (m_iClick == 1)
                   {
 
-                     if (!on_click(new_item_with_index(_001DisplayToStrict(iDisplayItemLButtonUp))))
+                     if (!on_click(new_item_with_index(display_to_strict(iDisplayItemLButtonUp))))
                      {
 
-                        //index iItem = _001DisplayToStrict(iDisplayItemLButtonUp);
+                        //index iItem = display_to_strict(iDisplayItemLButtonUp);
 
                         //_001OnItemClick(iItem);
 
@@ -4295,7 +4295,7 @@ namespace user
 
 
 
-   void list2::_001GetSelection(range& range)
+   void list2::get_selection(range& range)
    {
 
       range = m_rangeSelection;
@@ -4340,17 +4340,17 @@ namespace user
    }
 
 
-   void list2::_001GetSelection(const ::scoped_string& scopedstrDataKey, ::string_array& straSelection)
+   void list2::get_selection(const ::scoped_string& scopedstrDataKey, ::string_array& straSelection)
    {
 
-      if (!_001HasConfigId(scopedstrDataKey))
+      if (!has_data_key(scopedstrDataKey))
       {
 
          return;
 
       }
 
-      auto iFilterSubItem = _001ConfigIdToColumnKey(scopedstrDataKey);
+      auto iFilterSubItem = data_key_to_column_key(scopedstrDataKey);
 
       range& range = m_rangeSelection;
 
@@ -4485,7 +4485,7 @@ namespace user
             if (iDisplayItem >= 0 && m_iDisplayItemLButtonDown1 == iDisplayItem)
             {
 
-               index iItem = _001DisplayToStrict(iDisplayItem);
+               index iItem = display_to_strict(iDisplayItem);
 
                if (iItem >= 0)
                {
@@ -5390,7 +5390,7 @@ namespace user
 
       auto keepLockImpactUpdate = keep(m_bLockImpactUpdate);
 
-      _001InsertColumns();
+      on_insert_columns();
 
       keepLockImpactUpdate.KeepAway();
 
@@ -5401,7 +5401,7 @@ namespace user
    }
 
 
-   void list2::_001InsertColumns()
+   void list2::on_insert_columns()
    {
 
 
@@ -5814,12 +5814,12 @@ namespace user
 
 
 
-   bool list2::_001HasConfigId(const ::scoped_string& scopedstrDataKey)
+   bool list2::has_data_key(const ::scoped_string& scopedstrDataKey)
    {
-      return _001ConfigIdToColumnKey(scopedstrDataKey) >= 0;
+      return data_key_to_column_key(scopedstrDataKey) >= 0;
    }
 
-   index list2::_001ConfigIdToSubItem(const ::scoped_string& scopedstrDataKey)
+   index list2::data_key_to_sub_item(const ::scoped_string& scopedstrDataKey)
    {
       list_column* column = m_pcolumna->get_by_config_id(scopedstrDataKey);
       if (column == nullptr)
@@ -5998,7 +5998,7 @@ namespace user
    }
 
 
-   void list2::_001ItemScroll(index iItem, bool bRedraw)
+   void list2::scroll_to_item(index iItem, bool bRedraw)
    {
 
       if (iItem < m_nItemCount)
@@ -6083,7 +6083,7 @@ namespace user
       {
          set_need_redraw();
       }
-      _001OnSelectionChange();
+      on_selection_change();
    }
 
 
@@ -6115,7 +6115,7 @@ namespace user
    {
       ::user::range range;
 
-      _001GetSelection(range);
+      get_selection(range);
 
 
       while (range.get_item_count() > 0)
@@ -6123,7 +6123,7 @@ namespace user
          index iItem = range.ItemAt(0).get_lower_bound();
          if (!_001RemoveItem(iItem, false))
             break;
-         _001GetSelection(range);
+         get_selection(range);
       }
 
       set_need_redraw();
@@ -6136,11 +6136,11 @@ namespace user
       item_range itemrange;
       itemrange.set(iItem, iItem, iSubItem, iSubItem, -1, -1);
       m_rangeSelection.add_item(itemrange);
-      _001OnSelectionChange();
+      on_selection_change();
    }
 
 
-   index list2::_001StrictToDisplay(index iStrict)
+   index list2::strict_to_display(index iStrict)
    {
 
       UNREFERENCED_PARAMETER(iStrict);
@@ -6150,7 +6150,7 @@ namespace user
    }
 
 
-   index list2::_001DisplayToStrict(index iDisplay)
+   index list2::display_to_strict(index iDisplay)
    {
 
       if (iDisplay < 0)
@@ -6624,7 +6624,7 @@ namespace user
    ::std::strong_ordering list2::_001DisplayCompare(index iDisplayItem1, index iDisplayItem2)
    {
 
-      return _001Compare(_001DisplayToStrict(iDisplayItem1), _001DisplayToStrict(iDisplayItem2));
+      return _001Compare(display_to_strict(iDisplayItem1), display_to_strict(iDisplayItem2));
 
    }
 
@@ -7012,13 +7012,13 @@ namespace user
          if (m_eview == impact_icon)
          {
 
-            return _001DisplayToStrict(iDisplayDrag) != -1;
+            return display_to_strict(iDisplayDrag) != -1;
 
          }
          else
          {
 
-            if (_001DisplayToStrict(iDisplayDrop) == -1 || _001DisplayToStrict(iDisplayDrop) >= m_nItemCount)
+            if (display_to_strict(iDisplayDrop) == -1 || display_to_strict(iDisplayDrop) >= m_nItemCount)
             {
 
                return true;
@@ -7077,7 +7077,7 @@ namespace user
                for (index iItem = itemrange.m_iLowerBound; iItem <= itemrange.m_iUpperBound; iItem++)
                {
 
-                  index iStrict = _001DisplayToStrict(iItem);
+                  index iStrict = display_to_strict(iItem);
 
                   if (iStrict >= 0)
                   {
@@ -7295,7 +7295,7 @@ namespace user
    }
 
 
-   //void list2::_001OnSelectionChange()
+   //void list2::on_selection_change()
    //{
 
    //   auto ptopic = create_topic(::id_after_change_cur_sel);
@@ -7345,7 +7345,7 @@ namespace user
 
       }
 
-      _001OnSelectionChange();
+      on_selection_change();
 
       //return ::success;
 
@@ -7365,7 +7365,7 @@ namespace user
          itemrange.set_upper_bound(iaSel[i]);
          m_rangeSelection.add_item(itemrange);
       }
-      _001OnSelectionChange();
+      on_selection_change();
    }
 
 

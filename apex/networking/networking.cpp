@@ -1564,7 +1564,7 @@ namespace networking
    }
 
 
-   ::pointer_array < ::networking::address >networking::list_computers()
+   ::pointer < ::item_array > networking::list_computers()
    {
 
 
@@ -1573,7 +1573,7 @@ namespace networking
    }
 
 
-   ::pointer_array < ::networking::address > networking::list_network_interfaces()
+   ::pointer < ::item_array > networking::list_network_interfaces()
    {
 
       return {};

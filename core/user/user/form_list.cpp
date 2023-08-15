@@ -70,7 +70,7 @@ namespace user
    }
 
 
-   void form_list::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & stra)
+   void form_list::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & stra)
    {
 
       stra.add_item(scopedstrDataKey);
@@ -502,7 +502,7 @@ namespace user
 
       pinteraction->m_iItem = iEditItem;
 
-      psubitem->m_pitem->m_iDisplayItem = _001DisplayToStrict(iEditItem);
+      psubitem->m_pitem->m_iDisplayItem = display_to_strict(iEditItem);
 
       //psubitem->m_iItem = iEditItem;
 
@@ -515,13 +515,13 @@ namespace user
       if (!bOnlySizeAndPosition)
       {
 
-         _001EnsureVisible(psubitem->m_pitem->item_index());
+         ensure_item_visible(psubitem->m_pitem->item_index());
 
       }
 
       //psubitem->m_iSubItem = pinteraction->m_iSubItem;
 
-      psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
+      psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
 
       index_element_rectangle(*psubitem, ::user::mesh::e_element_text);
 
@@ -632,12 +632,12 @@ namespace user
    }
 
 
-   bool form_list::_001OnUpdateItemCount(u32 dwFlags)
+   void form_list::on_update_item_count()
    {
 
       _001HideEditingControls();
 
-      bool bOk = ::user::list::_001OnUpdateItemCount(dwFlags);
+      ::user::list::on_update_item_count();
 
       for (auto pinteraction : proper_children())
       {
@@ -681,7 +681,7 @@ namespace user
 
       }
 
-      return bOk;
+      //return bOk;
 
    }
 
@@ -722,7 +722,7 @@ namespace user
 
          //::payload payload;
          //::database::selection selection;
-         //_001GetSelection(pinteraction->m_dataid, selection);
+         //get_selection(pinteraction->m_dataid, selection);
          //if (selection.get_item_count() > 0)
          //{
          //   ::database::selection_item & item = selection.get_item(0);
@@ -1152,14 +1152,14 @@ namespace user
       //return true;
    }
 
-   void form_list::_001UpdateColumns()
-   {
+   //void form_list::_001UpdateColumns()
+   //{
 
-      //_001RemoveControls();
+   //   //_001RemoveControls();
 
-      list::_001UpdateColumns();
+   //   list::_001UpdateColumns();
 
-   }
+   //}
 
    //LRESULT form_list::_001BaseWndGetProperty(EProperty eprop,lparam lparam)
 
@@ -1312,7 +1312,7 @@ namespace user
 //      pitem->m_iDisplayItem = DisplayToStrict(pinteraction->m_iEditItem);
 //
 //      pitem->subitem_index() = pinteraction->subitem_index();
-//      pitem->m_iOrder = _001MapSubItemToOrder(pitem->subitem_index());
+//      pitem->m_iOrder = sub_item_to_order(pitem->subitem_index());
 //      pitem->m_iListItem = -1;
 //      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = pitem->m_rectangleSubItem;
@@ -1328,10 +1328,10 @@ namespace user
    }
 
 
-   void form_list::_001OnColumnChange()
+   void form_list::on_column_update()
    {
 
-      ::user::list::_001OnColumnChange();
+      ::user::list::on_column_update();
 
 
       {
@@ -1393,7 +1393,7 @@ namespace user
    //
    //         //::user::range range;
    //
-   //         //_001GetSelection(range);
+   //         //get_selection(range);
    //
    //         if (_001DisplayHitTest(point, iItem, iSubItem))
    //         {
@@ -1437,7 +1437,7 @@ namespace user
    //      //i32 iItem;
    //      //i32 iSubItem;
    //      //::user::range range;
-   //      //_001GetSelection(range);
+   //      //get_selection(range);
    //      //if(_001DisplayHitTest(point, iItem, iSubItem))
    //      //{
    //      //class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
@@ -1508,7 +1508,7 @@ namespace user
    //      //      i32 iItem;
    //      //      i32 iSubItem;
    //      //      ::user::range range;
-   //      //      _001GetSelection(range);
+   //      //      get_selection(range);
    //      //      if(_001DisplayHitTest(point, iItem, iSubItem))
    //      //      {
    //      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
@@ -1528,7 +1528,7 @@ namespace user
    //      //      i32 iItem;
    //      //      i32 iSubItem;
    //      //      ::user::range range;
-   //      //      _001GetSelection(range);
+   //      //      get_selection(range);
    //      //      if(_001DisplayHitTest(point, iItem, iSubItem))
    //      //      {
    //      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
@@ -1605,7 +1605,7 @@ namespace user
 
       //::rectangle_i32 rectangleControl;
 
-      //auto iItem = _001DisplayToStrict((::index)m_iDisplayItemHover);
+      //auto iItem = display_to_strict((::index)m_iDisplayItemHover);
 
       //auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
 
@@ -1636,7 +1636,7 @@ namespace user
 
       ////pitem->m_iSubItem = pinteraction->m_iSubItem;
 
-      //psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
+      //psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
 
       ////pitem->m_iListItem = -1;
 

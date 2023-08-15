@@ -1,6 +1,6 @@
 // From app_simple_form/form_001.coo by camilo on 2023-06-28 05:02 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "options.h"
+#include "options_impact.h"
 #include "acme/constant/message.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"
@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   form_options::form_options()
+   options_impact::options_impact()
    {
 
       m_bExtendOnParent = true;
@@ -18,7 +18,7 @@ namespace user
    }
 
 
-   form_options::~form_options()
+   options_impact::~options_impact()
    {
 
    }
@@ -27,7 +27,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   int64_t form_options::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t options_impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   int64_t form_options::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   int64_t options_impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -46,18 +46,18 @@ namespace user
 #endif
 
 
-   void form_options::install_message_routing(::channel * psender)
+   void options_impact::install_message_routing(::channel * psender)
    {
 
-      form::install_message_routing(psender);
+      ::user::impact::install_message_routing(psender);
 
-      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &form_options::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &options_impact::on_message_create);
 
 
    }
 
 
-   void form_options::on_message_create(::message::message * pmessage)
+   void options_impact::on_message_create(::message::message * pmessage)
    {
 
       ::pointer<::message::create> pcreate(pmessage);
@@ -73,16 +73,16 @@ namespace user
 
       acmeapplication()->m_pbaseapplication->create_options_form(this);
 
-      set_need_layout();
+      //set_need_layout();
 
-      set_need_redraw();
+      //set_need_redraw();
 
-      post_redraw();
+      //post_redraw();
 
    }
 
 
-   void form_options::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
+   void options_impact::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::interaction::on_perform_top_down_layout(pgraphics);
@@ -90,23 +90,23 @@ namespace user
    }
 
 
-   bool form_options::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool options_impact::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return ::user::form_impact::on_perform_layout(pgraphics);
+      return ::user::impact::on_perform_layout(pgraphics);
 
    }
 
 
-   void form_options::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void options_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::form_impact::on_layout(pgraphics);
+      ::user::impact::on_layout(pgraphics);
 
    }
 
 
-   void form_options::handle(::topic * ptopic, ::context * pcontext)
+   void options_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //if (ptopic->m_atom == ::id_after_change_text)
@@ -174,7 +174,7 @@ namespace user
    }
 
 
-   //void form_options::_001OnClearButton(::message::message * pmessage)
+   //void options_impact::_001OnClearButton(::message::message * pmessage)
    //{
 
    //   m_pedit->_001SetText("", ::e_source_user);
@@ -184,7 +184,7 @@ namespace user
    //}
 
 
-   //void form_options::_001OnSendButton(::message::message * pmessage)
+   //void options_impact::_001OnSendButton(::message::message * pmessage)
    //{
 
    //   string strText;

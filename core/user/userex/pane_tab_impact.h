@@ -2,7 +2,6 @@
 
 
 #include "base/user/user/tab_impact.h"
-#include "aura/user/user/form_callback.h"
 #include "apex/platform/app_consumer.h"
 
 
@@ -14,8 +13,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE pane_tab_impact :
-      virtual public ::user::tab_impact,
-      virtual public ::user::form_callback
+      virtual public ::user::tab_impact
    {
    public:
 
@@ -32,7 +30,6 @@ namespace userex
       };
 
       
-      atom_map < ::pointer<::form_document >>   m_mapForm;
       ::pointer<pane_impact>                    m_ppaneimpact;
       atom_map < ::pointer<::object >>          m_mapFileManager;
       ::pointer<::user::document>               m_pdocAppOptions;
@@ -95,7 +92,7 @@ namespace userex
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void prepare_form(atom atom, ::form_document * pformdocument);
+      void prepare_form(const ::atom & atom, ::form_document * pformdocument) override;
 
 
    };

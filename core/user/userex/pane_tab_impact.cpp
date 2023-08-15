@@ -377,44 +377,44 @@ namespace userex
          }
 
       }
-      else if(m_pimpactdata->m_atom == OPTIONS_IMPACT)
-      {
-
-         if (::is_set(m_pformdocumentMenu))
-         {
-
-            auto strOptionsImpact = get_app()->prepare_impact_options();
-
-#if defined(_DEBUG) && !defined(UNIVERSAL_WINDOWS) && !defined(APPLE_IOS)
-
-            auto pcontext = m_pcontext->m_papexcontext;
-
-            ::file::path path;
-            
-            path = pcontext->dir()->appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
-
-            pcontext->file()->put_memory(path, strOptionsImpact);
-
-#endif
-
-            if (!m_pformdocumentMenu->open_document(strOptionsImpact))
-            {
-
-               output_error_message("Failed to open the menu.");
-
-               return;
-
-            }
-
-            auto pformview = m_pformdocumentMenu->get_typed_impact < ::user::form_impact>();
-
-            pformview->get_form()->add_handler(get_app());
-
-            pformview->set_need_load_form_data();
-
-         }
-
-      }
+//      else if(m_pimpactdata->m_atom == OPTIONS_IMPACT)
+//      {
+//
+//         if (::is_set(m_pformdocumentMenu))
+//         {
+//
+//            auto strOptionsImpact = get_app()->prepare_impact_options();
+//
+//#if defined(_DEBUG) && !defined(UNIVERSAL_WINDOWS) && !defined(APPLE_IOS)
+//
+//            auto pcontext = m_pcontext->m_papexcontext;
+//
+//            ::file::path path;
+//            
+//            path = pcontext->dir()->appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
+//
+//            pcontext->file()->put_memory(path, strOptionsImpact);
+//
+//#endif
+//
+//            if (!m_pformdocumentMenu->open_document(strOptionsImpact))
+//            {
+//
+//               output_error_message("Failed to open the menu.");
+//
+//               return;
+//
+//            }
+//
+//            auto pformview = m_pformdocumentMenu->get_typed_impact < ::user::form_impact>();
+//
+//            pformview->get_form()->add_handler(get_app());
+//
+//            pformview->set_need_load_form_data();
+//
+//         }
+//
+//      }
 
 
    }
@@ -608,22 +608,22 @@ namespace userex
 //         create_menu_impact(pimpactdata);
 
       }
-      else if (pimpactdata->m_atom == OPTIONS_IMPACT)
-      {
+      //else if (pimpactdata->m_atom == OPTIONS_IMPACT)
+      //{
 
-         if (!pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild
-            || pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_no_interaction())
-         {
+      //   if (!pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild
+      //      || pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_no_interaction())
+      //   {
 
-            auto puser = coreuser();
+      //      auto puser = coreuser();
 
-            m_pformdocumentMenu = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
+      //      m_pformdocumentMenu = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 
-            pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
+      //      pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
 
-         }
+      //   }
 
-      }
+      //}
       else if (is_font_sel(pimpactdata->m_atom))
       {
 
@@ -855,38 +855,6 @@ namespace userex
       //   create_app_options(pimpactdata);
 
       //}
-      else if (pimpactdata->m_atom.is_text())
-      {
-
-         if (string_begins_ci(pimpactdata->m_atom.m_str, "form_"))
-         {
-
-            auto pcontext = m_pcontext;
-            
-            auto psession = pcontext->m_pacmesession->m_pcoresession;
-            
-            auto puser = psession->m_puser->m_pcoreuser;
-
-            ::pointer<form_document>pdocument = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
-
-            if (pdocument.is_set())
-            {
-
-               m_mapForm[pimpactdata->m_atom] = pdocument;
-
-               pdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
-
-               ::user::impact * pimpact = pdocument->get_impact(0);
-
-               pimpactdata->m_puserinteraction = pimpact->parent_frame();
-
-               prepare_form(pimpactdata->m_atom, pdocument);
-
-            }
-
-         }
-
-      }
 
       ::user::tab_impact::on_create_impact(pimpactdata);
       
@@ -1091,7 +1059,7 @@ namespace userex
    //}
 
 
-   void pane_tab_impact::prepare_form(atom atom, ::form_document * pdocument)
+   void pane_tab_impact::prepare_form(const ::atom & atom, ::form_document * pdocument)
    {
 
       auto papp = get_app();

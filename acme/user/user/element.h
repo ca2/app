@@ -3,10 +3,11 @@
 
 
 #include "command_update_target.h"
-#include "conversation.h"
+#include "acme/platform/conversation_message.h"
 #include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
+#include "drag_client.h"
 
 
 namespace user
@@ -35,7 +36,8 @@ namespace user
 
    class CLASS_DECL_ACME element :
       virtual public ::user::command_update_target,
-      virtual public ::conversation
+      virtual public ::conversation_message,
+      virtual public ::user::drag_client
    {
    public:
 
@@ -89,16 +91,12 @@ namespace user
 
 
       //class ::time                           m_timeFocusStart;
-      bool                                   m_bUserElementOk;
-      ::user::primitive *                    m_puserprimitive;
-      ::user::interaction *                  m_puserinteraction;
-      pointer< pointer_array < ::item > >     m_pitema;
+      bool                                         m_bUserElementOk;
+      ::user::primitive *                          m_puserprimitive;
+      ::user::interaction *                        m_puserinteraction;
+      //pointer< pointer_array < ::user::item > >    m_puseritema;
 
       
-      ::pointer<::item>                     m_pitemCurrent;
-      ::pointer<::item>                     m_pitemHover;
-      //::pointer<::item>                     m_pitemHoverMouse;
-      ::pointer<::item>                     m_pitemPressed;
 
 
       element();
@@ -117,7 +115,7 @@ namespace user
 
 
       //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
-
+      void destroy() override;
 
       ::user::interaction * get_host_window();
 
@@ -145,17 +143,7 @@ namespace user
 
 
       virtual void defer_update_display();
-      
-      
-      virtual ::index item_index_by_atom(const ::atom & atom) const;
 
-      virtual bool is_item_pressed_by_atom(const ::atom & atom) const;
-
-      virtual bool is_item_hover_by_atom(const ::atom & atom) const;
-      
-      virtual bool is_item_pressed_by_index(::index iIndex) const;
-      
-      virtual bool is_item_hover_by_index(::index iIndex) const;
       
       virtual enum_control_type get_control_type() const;
 
@@ -174,9 +162,9 @@ namespace user
 
       virtual void hide_software_keyboard(::user::element * pelement);
 
-      virtual void UpdateWindow();
+      //virtual void UpdateWindow();
       
-      virtual void Invalidate(bool bErase = true);
+      //svirtual void Invalidate(bool bErase = true);
 
       virtual bool has_pending_redraw_flags();
 
@@ -322,8 +310,8 @@ namespace user
 
 
 //      virtual void UpdateWindow();
-      virtual void SetRedraw(bool bRedraw = true);
-      virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
+      //virtual void SetRedraw(bool bRedraw = true);
+      //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
 
 
       virtual void interaction_post(const ::procedure & procedure);
@@ -839,6 +827,10 @@ namespace user
       virtual void pick_single_folder(
          const ::function < void(const ::file::path &) >& function);
 
+      virtual bool update_impact();
+      virtual bool on_impact_update();
+      virtual bool on_before_impact_update();
+      virtual void on_after_impact_update();
 
    };
 

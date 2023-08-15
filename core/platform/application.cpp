@@ -194,15 +194,17 @@ namespace core
    }
 
 
-   void application::create_options_footer(::user::interaction * pparent)
+   void application::create_options_footer(::user::interaction * puserinteraction)
    {
 
-      if (m_bEnableAutoStartOption)
-      {
+      ::base::application::create_options_footer(puserinteraction);
 
-         create_auto_start_option(pparent);
+      //if (m_bEnableAutoStartOption)
+      //{
 
-      }
+        // create_auto_start_option(pparent);
+
+      //}
 
    }
 

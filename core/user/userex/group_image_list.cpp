@@ -262,7 +262,7 @@ namespace userex
 
       //}
 
-      auto pgroup = m_groupa[pitem->item_index()];
+      auto pgroup = m_groupa[pitem->m_item.item_index()];
 
       if (!pgroup)
       {

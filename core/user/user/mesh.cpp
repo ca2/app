@@ -1319,12 +1319,12 @@ namespace user
             if(m_bFilter1)
             {
                pitemLast->m_iDisplayItem       = m_piaFilterMesh->get_count() - 1;
-               pitemLast->m_item.m_iItem              = m_piaFilterMesh->get_count() - 1;
+               pitemLast->m_iItem              = m_piaFilterMesh->get_count() - 1;
             }
             else
             {
                pitemLast->m_iDisplayItem       = m_nItemCount - 1;
-               pitemLast->m_item.m_iItem              = m_nItemCount - 1;
+               pitemLast->m_iItem              = m_nItemCount - 1;
             }
             //if(m_bGroup)
             //{
@@ -5994,9 +5994,9 @@ namespace user
 
          item_range itemrange;
 
-         itemrange.set_lower_bound(pitem->item_index());
+         itemrange.set_lower_bound(pitem->m_item.item_index());
 
-         itemrange.set_upper_bound(pitem->item_index());
+         itemrange.set_upper_bound(pitem->m_item.item_index());
 
          _001AddSelection(itemrange);
 

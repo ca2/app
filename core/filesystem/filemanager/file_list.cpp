@@ -124,7 +124,7 @@ namespace filemanager
          if (!_017OpenSelected(true, ::e_source_user))
          {
 
-            index iStrict = pitem->item_index();
+            index iStrict = pitem->m_item.item_index();
 
             auto pitem = fs_list_item(iStrict);
 

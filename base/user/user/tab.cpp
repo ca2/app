@@ -1490,7 +1490,7 @@ namespace user
             if(rectangle.contains(point))
             {
 
-               ppane->m_iItem = iIndex;
+               ppane->m_item.m_iItem = iIndex;
 
                user_item(ppane)->m_rectangle = rectangle;
 

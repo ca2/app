@@ -1379,7 +1379,7 @@ namespace user
 
                pitemLast->m_iDisplayItem = 0;
 
-               pitemLast->m_item.m_iItem = 0;
+               pitemLast->m_iItem = 0;
 
             }
             else
@@ -1387,7 +1387,7 @@ namespace user
 
                pitemLast->m_iDisplayItem = m_nItemCount - 1;
 
-               pitemLast->m_item.m_iItem = m_nItemCount - 1;
+               pitemLast->m_iItem = m_nItemCount - 1;
 
             }
 
@@ -6691,7 +6691,7 @@ namespace user
          
          pitem = &m_sortinfo.m_itema[i];
          
-         ordering = _002Compare(iItem1, iItem2, pitem->m_item.m_iSubItem);
+         ordering = _002Compare(iItem1, iItem2, pitem->m_iSubItem);
          
          if (ordering != 0)
          {
@@ -7441,9 +7441,9 @@ namespace user
 
          item_range itemrange;
 
-         itemrange.set_lower_bound(pitem->item_index());
+         itemrange.set_lower_bound(pitem->m_item.item_index());
 
-         itemrange.set_upper_bound(pitem->item_index());
+         itemrange.set_upper_bound(pitem->m_item.item_index());
 
          m_rangeSelection.add_item(itemrange);
 

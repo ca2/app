@@ -532,7 +532,7 @@ namespace user
 
                   bSel = true;
 
-                  if (m_pitemHover && m_pitemHover->item_index() == iImage)
+                  if (m_pitemHover && m_pitemHover->m_item.item_index() == iImage)
                   {
 
                      crBorder = argb(255, 100, 180, 240);
@@ -559,7 +559,7 @@ namespace user
 
                   bSel = false;
 
-                  if (m_pitemHover && m_pitemHover->item_index() == iImage)
+                  if (m_pitemHover && m_pitemHover->m_item.item_index() == iImage)
                   {
 
                      crBorder = argb(255, 80, 130, 180);

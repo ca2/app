@@ -62,7 +62,7 @@ namespace user
 
       }
 
-      ::user::interaction * pinteraction = _001GetControl(pitem->item_index(), pitem->subitem_index());
+      ::user::interaction * pinteraction = _001GetControl(pitem->m_item.item_index(), pitem->m_item.subitem_index());
 
       if(pinteraction != nullptr)
       {
@@ -87,7 +87,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, pitem->item_index(), true);
+            _001PlaceControl(pinteraction, pitem->m_item.item_index(), true);
 
          }
 

@@ -93,7 +93,7 @@ namespace user
 
       ::atom idCommand;
 
-      if (::is_set(pitemHit) && pitemHit->menu_impact_command() >= 0)
+      if (::is_set(pitemHit) && pitemHit->m_item.menu_impact_command() >= 0)
       {
 
          xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
@@ -105,12 +105,12 @@ namespace user
 
          }
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", pitemHit->menu_impact_group(), 1);
+         xml::node * pnode = pnodeMain->get_child_at("menubar", pitemHit->m_item.menu_impact_group(), 1);
 
          if (pnode != nullptr)
          {
 
-            xml::node * pnodeItem = pnode->child_at(pitemHit->menu_impact_command());
+            xml::node * pnodeItem = pnode->child_at(pitemHit->m_item.menu_impact_command());
 
             if (pnodeItem != nullptr)
             {

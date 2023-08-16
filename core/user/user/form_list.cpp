@@ -109,7 +109,7 @@ namespace user
 
       }
 
-      auto pinteraction = _001GetControl(pitem->item_index(), pitem->subitem_index());
+      auto pinteraction = _001GetControl(pitem->m_item.item_index(), pitem->m_item.subitem_index());
 
       if (pinteraction)
       {
@@ -131,7 +131,7 @@ namespace user
             }
 
          }
-         else if (m_pcolumna->get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
+         else if (m_pcolumna->get_by_subitem(pitem->m_item.subitem_index())->m_bEditOnSecondClick)
          {
 
             if (m_pitemClick == pitem)
@@ -154,7 +154,7 @@ namespace user
 
                m_iClickCount = 0;
 
-               _001PlaceControl(pinteraction, pitem->item_index());
+               _001PlaceControl(pinteraction, pitem->m_item.item_index());
 
             }
 
@@ -162,7 +162,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, pitem->item_index(), true);
+            _001PlaceControl(pinteraction, pitem->m_item.item_index(), true);
 
          }
 
@@ -196,7 +196,7 @@ namespace user
 
       }
 
-      auto pinteraction = _001GetControl(pitem->item_index(), pitem->subitem_index());
+      auto pinteraction = _001GetControl(pitem->m_item.item_index(), pitem->m_item.subitem_index());
 
       if (pinteraction)
       {
@@ -220,7 +220,7 @@ namespace user
             }
 
          }
-         else if (m_pcolumna->get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
+         else if (m_pcolumna->get_by_subitem(pitem->m_item.subitem_index())->m_bEditOnSecondClick)
          {
 
             if (m_pitemClick == pitem)
@@ -243,7 +243,7 @@ namespace user
 
                m_iClickCount = 0;
 
-               _001PlaceControl(pinteraction, pitem->item_index());
+               _001PlaceControl(pinteraction, pitem->m_item.item_index());
 
             }
 
@@ -251,7 +251,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, pitem->item_index(), true);
+            _001PlaceControl(pinteraction, pitem->m_item.item_index(), true);
 
          }
 
@@ -263,7 +263,7 @@ namespace user
 
          _001HideEditingControls();
 
-         ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(pitem->subitem_index());
+         ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(pitem->m_item.subitem_index());
 
          if (pcolumn.is_set() && pcolumn->m_atom.is_set())
          {
@@ -276,7 +276,7 @@ namespace user
                if (pinteraction->has_function(::user::e_control_function_check_box))
                {
 
-                  ::enum_check echeck = _001GetSubItemCheck(pitem->item_index(), pitem->subitem_index());
+                  ::enum_check echeck = _001GetSubItemCheck(pitem->m_item.item_index(), pitem->m_item.subitem_index());
 
                   if (echeck == ::e_check_checked)
                   {
@@ -291,7 +291,7 @@ namespace user
 
                   }
 
-                  _001SetSubItemCheck(pitem->item_index(), pitem->subitem_index(), echeck);
+                  _001SetSubItemCheck(pitem->m_item.item_index(), pitem->m_item.subitem_index(), echeck);
 
                   if (echeck == ::e_check_checked)
                   {
@@ -302,13 +302,13 @@ namespace user
                         if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
                         {
 
-                           if (pinteraction->m_iSubItemDuplicateCheckBox == pitem->subitem_index())
+                           if (pinteraction->m_iSubItemDuplicateCheckBox == pitem->m_item.subitem_index())
                            {
 
                               for (auto iSubItemTarget : pinteraction->m_iaSubItemDuplicate)
                               {
 
-                                 auto psubitem = get_subitem(pitem->item_index(), pinteraction->m_iSubItem);
+                                 auto psubitem = get_subitem(pitem->m_item.item_index(), pinteraction->m_iSubItem);
 
                                  //itemSource.initialize_mesh_item(this);
 
@@ -321,7 +321,7 @@ namespace user
                                  if (psubitem->m_bOk)
                                  {
 
-                                    auto psubitemTarget = get_subitem(pitem->item_index(), iSubItemTarget);
+                                    auto psubitemTarget = get_subitem(pitem->m_item.item_index(), iSubItemTarget);
 
                                     psubitemTarget->m_strText = psubitem->m_strText;
 

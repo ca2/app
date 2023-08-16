@@ -1984,7 +1984,7 @@ namespace user
 
             default_set_item_at(iItem, ptoolitem);
 
-            ptoolitem->m_iItem = m_pitema->get_size();
+            ptoolitem->m_item.m_iItem = m_pitema->get_size();
 
             auto pattributeId = pchild->find_attribute("id");
 

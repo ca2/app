@@ -103,7 +103,7 @@ namespace user
       else
       {
 
-         _001GetListText(current_item()->item_index(), strText);
+         _001GetListText(current_item()->m_item.item_index(), strText);
 
       }
 

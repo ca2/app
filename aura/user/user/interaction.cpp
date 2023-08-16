@@ -6371,7 +6371,7 @@ return strClass;
       if (m_bEnableDragResize)
       {
 
-         enable_drag(e_element_resize, e_zorder_back);
+         enable_drag(e_element_resize, e_zorder_front);
 
       }
 

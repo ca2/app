@@ -134,7 +134,7 @@ namespace user
          if(i == iVal)
          {
             
-            if(m_pitemHover->item_index() == i)
+            if(m_pitemHover->m_item.item_index() == i)
             {
 
                pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 240));

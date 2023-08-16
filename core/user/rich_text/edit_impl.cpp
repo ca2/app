@@ -349,9 +349,9 @@ namespace user
 
          auto psession = get_session();
 
-         auto item = hit_test(pmouse, ::user::e_zorder_any);
+         auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
-         if (item.is_set())
+         if (pitem)
          {
 
             auto pformattool = get_format_tool(true);
@@ -363,13 +363,13 @@ namespace user
             if (psession->is_key_pressed(e_key_shift))
             {
 
-               if (item->m_iItem < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               if (pitem->m_item.m_iItem < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
                   m_pdata->m_iSelBeg = maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
-               else if (item->m_iItem > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               else if (pitem->m_item.m_iItem > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
                   m_pdata->m_iSelBeg = minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
@@ -380,11 +380,11 @@ namespace user
             else
             {
 
-               m_pdata->m_iSelBeg = item->m_iItem;
+               m_pdata->m_iSelBeg = pitem->m_item.m_iItem;
 
             }
 
-            m_pdata->m_iSelEnd = item->m_iItem;
+            m_pdata->m_iSelEnd = pitem->m_item.m_iItem;
 
             m_pdata->internal_update_sel_char();
 
@@ -442,14 +442,14 @@ namespace user
 
          m_bSelDrag = false;
 
-         auto item = hit_test(pmouse, ::user::e_zorder_any);
+         auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
          auto psession = get_session();
 
-         if (item.is_set() && psession->user()->get_mouse_focus_LButtonDown() == this)
+         if (pitem && psession->user()->get_mouse_focus_LButtonDown() == this)
          {
 
-            m_pdata->m_iSelEnd = item->m_iItem;
+            m_pdata->m_iSelEnd = pitem->m_item.m_iItem;
 
             m_pdata->internal_update_sel_char();
 

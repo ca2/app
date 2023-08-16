@@ -7359,14 +7359,13 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
             // }
             // else
          {
-
-//            m_pwindow->on_set_window_position(
-//               zorderNew,
-//               pointOutput.x(),
-//               pointOutput.y(),
-//               sizeOutput.cx(),
-//               sizeOutput.cy(),
-//               eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
+               m_pwindow->_window_request_presentation_set_window_position(
+               zorderNew,
+               pointOutput.x(),
+               pointOutput.y(),
+               sizeOutput.cx(),
+               sizeOutput.cy(),
+               eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
 
             m_sizeSetWindowSizeRequest = sizeOutput;
 
@@ -7724,11 +7723,11 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       //  information() << "interaction_impl::on_message_reposition x is zero";
 
       //}
+      m_puserinteraction->set_position(preposition->m_point, e_layout_window);
 
       if (!m_pwindow->is_iconic())
       {
 
-         m_puserinteraction->set_position(preposition->m_point, e_layout_window);
 
          if (!m_pwindow->placement_log()->has_recent(preposition->m_point))
          {
@@ -7838,6 +7837,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
             //m_pwindow->m_size = psize->m_size;
 
       //m_puserinteraction->set_size(psize->m_size, e_layout_window);
+      m_puserinteraction->set_size(psize->m_size, e_layout_window);
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 

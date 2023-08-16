@@ -1480,6 +1480,13 @@ namespace windowing
    }
 
 
+   void window::_window_request_presentation_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   {
+
+
+   }
+
+
    void window::frame_toggle_restore()
    {
     

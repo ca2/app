@@ -354,7 +354,7 @@ namespace user
       //virtual void _001UpdateColumns();
 
 
-      virtual void erase_columns();
+      void erase_columns() override;
 
 
       virtual void _001CreateImageList(list_column * pcolumn);

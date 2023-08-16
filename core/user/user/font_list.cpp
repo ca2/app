@@ -479,6 +479,13 @@ namespace user
 
    string font_list::get_cur_sel_face_name()
    {
+      
+      if(!m_pfontlist)
+      {
+         
+         return {};
+         
+      }
 
       auto iItemSel = m_pfontlist->m_iSel;
 
@@ -490,6 +497,27 @@ namespace user
       }
 
       synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      
+      if(!m_pfontlist->m_pfontlistdata)
+      {
+         
+         return {};
+         
+      }
+      
+      if(iItemSel >= m_pfontlist->m_pfontlistdata->size())
+      {
+       
+         return {};
+         
+      }
+      
+      if(!m_pfontlist->m_pfontlistdata->element_at(iItemSel))
+      {
+         
+         return {};
+         
+      }
 
       return m_pfontlist->m_pfontlistdata->element_at(iItemSel)->m_strFont;
 

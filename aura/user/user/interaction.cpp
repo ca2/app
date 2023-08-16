@@ -20959,7 +20959,7 @@ return strClass;
       if (rectangleResize.ok() && rectangleResize.contains(point))
       {
 
-         auto pitemHitTest = __new(::item(e_element_resize));
+         auto pitemHitTest = m_mapDrag[e_element_resize];
 
          auto puseritem = user_item(pitemHitTest);
          

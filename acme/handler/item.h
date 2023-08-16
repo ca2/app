@@ -647,7 +647,7 @@ inline bool is_item_index(const ::item * pitem, ::index iItem)
 }
 
 
-inline bool is_item_equivalent(const ::ITEM * pitem1, const ::ITEM * pitem2)
+inline bool is_item_equivalent(const ::item_t * pitem1, const ::item_t * pitem2)
 {
 
    if (!::is_item_set(pitem1) || !::is_item_set(pitem2))

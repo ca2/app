@@ -1990,7 +1990,7 @@ namespace user
 
             ptoolitem->m_atom = pattributeId->as_string();
 
-            auto puseritem = user_item_at(iItem);
+            //auto puseritem = user_item_at(iItem);
 
             ptoolitem->m_str = pchild->get_value();
 

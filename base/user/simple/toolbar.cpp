@@ -675,7 +675,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, index 
    
    auto ptoolitem = tool_item_at(iItem);
    
-   auto puseritem = user_item_at(iItem);
+   //auto puseritem = user_item_at(iItem);
 
    if (::is_null(ptoolitem) || ptoolitem->is_hidden())
    {
@@ -709,7 +709,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto ptoolitem = tool_item_at(iItem);
 
-   auto puseritem = user_item_at(iItem);
+   //auto puseritem = user_item_at(iItem);
 
    if (::is_null(ptoolitem) || ptoolitem->is_hidden())
    {

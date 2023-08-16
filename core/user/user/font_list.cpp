@@ -688,7 +688,7 @@ namespace user
          if (pitem)
          {
 
-            auto iItem = pitem->m_iItem;
+            auto iItem = pitem->m_item.m_iItem;
 
             auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
 

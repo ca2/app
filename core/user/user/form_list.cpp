@@ -508,7 +508,7 @@ namespace user
 
       //psubitem->m_iColumn = pinteraction->m_iColumn;
 
-      //pitem->m_iSubItem = ;
+      //pitem->m_item.m_iSubItem = ;
 
       psubitem->m_pcolumn = m_pcolumna->get_visible((::index)pinteraction->m_iColumn);
 
@@ -1313,7 +1313,7 @@ namespace user
 //
 //      pitem->subitem_index() = pinteraction->subitem_index();
 //      pitem->m_iOrder = sub_item_to_order(pitem->subitem_index());
-//      pitem->m_iListItem = -1;
+//      pitem->m_item.m_iListItem = -1;
 //      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = pitem->m_rectangleSubItem;
 //      client_to_screen(rectangleControl);
@@ -1611,7 +1611,7 @@ namespace user
 
       //psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
 
-      ////pitem->m_iItem = 
+      ////pitem->m_item.m_iItem = 
 
       ////if(m_bGroup)
       ////{
@@ -1634,11 +1634,11 @@ namespace user
 
       ////}
 
-      ////pitem->m_iSubItem = pinteraction->m_iSubItem;
+      ////pitem->m_item.m_iSubItem = pinteraction->m_iSubItem;
 
       //psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
 
-      ////pitem->m_iListItem = -1;
+      ////pitem->m_item.m_iListItem = -1;
 
       //index_element_rectangle(*psubitem, ::user::mesh::e_element_sub_item);
 
@@ -1660,7 +1660,7 @@ namespace user
    bool form_list::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point, m_pitemControl->m_iItem, m_pitemControl->m_iSubItem);
+      return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
 
    }
 
@@ -2484,9 +2484,9 @@ namespace user
 
             auto psubitem = get_subitem(iItem, iSubItem);
 
-            //pitem->m_iItem = iItem;
+            //pitem->m_item.m_iItem = iItem;
 
-            //pitem->m_iSubItem = iSubItem;
+            //pitem->m_item.m_iSubItem = iSubItem;
 
             _001GetSubItemText(psubitem);
 
@@ -2537,8 +2537,8 @@ namespace user
 
                auto psubitem = get_subitem(iItem, iSubItem);
 
-               //pitem->m_iItem = iItem;
-               //pitem->m_iSubItem = iSubItem;
+               //pitem->m_item.m_iItem = iItem;
+               //pitem->m_item.m_iSubItem = iSubItem;
                psubitem->m_strText = pinteraction->m_setValue[echeck];
 
                if (!psubitem->m_strText.has_char())

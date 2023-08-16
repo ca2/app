@@ -1552,7 +1552,7 @@ namespace user
 
       auto pwindowimpl = get_window_impl();
 
-      if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_iItem >= 0)
+      if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_item.m_iItem >= 0)
       {
 
          pmessage->m_bRet = true;

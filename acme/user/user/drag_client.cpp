@@ -44,7 +44,7 @@ namespace user
    }
 
 
-   void drag_client::enable_drag(::e_element eelement)
+   void drag_client::enable_drag(::e_element eelement, ::user::e_zorder ezorder)
    {
 
       auto & pdrag = m_mapDrag[eelement];
@@ -54,9 +54,11 @@ namespace user
 
          __construct_new(pdrag);
 
-         pdrag->m_eelement = eelement;
+         pdrag->m_item.m_eelement = eelement;
          
          add_item(pdrag);
+         
+         user_item(pdrag)->m_ezorder = ezorder;
 
       }
 
@@ -104,11 +106,11 @@ namespace user
       {
 
          auto & pdrag = pair.payload();
-
-         if (::is_set(pdrag) && pitemButtonDown->m_eelement == pdrag->m_eelement)
+         
+         if (::is_set(pdrag) && pitemButtonDown->m_item.m_eelement == pdrag->m_item.m_eelement)
          {
 
-            if (pdrag->m_eelement == e_element_resize)
+            if (pdrag->m_item.m_eelement == e_element_resize)
             {
 
                information() << "drag_on_button_down element_resize";
@@ -212,7 +214,7 @@ namespace user
 
          auto & pdrag = pair.payload();
 
-         if (::is_set(pdrag) && pitemButtonHover->m_eelement == pdrag->m_eelement)
+         if (::is_set(pdrag) && pitemButtonHover->m_item.m_eelement == pdrag->m_item.m_eelement)
          {
 
             auto * puseritem = user_item(pitemButtonHover);

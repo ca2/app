@@ -33,9 +33,9 @@ namespace user
 
       common_construct();
 
-      enable_drag(::e_element_client);
+      enable_drag(::e_element_client, e_zorder_back);
 
-      enable_drag(::e_element_resize);
+      enable_drag(::e_element_resize, e_zorder_back);
 
       m_bClickDefaultMouseHandling = true;
 

@@ -644,7 +644,7 @@ namespace user
 
          }
 
-         if (m_pitemHover && iDisplayItem == m_pitemHover->m_iItem)
+         if (m_pitemHover && iDisplayItem == m_pitemHover->m_item.m_iItem)
          {
 
             if (!bHoverFont)
@@ -725,9 +725,9 @@ namespace user
       }
 
       pdrawitem->m_bListItemHover = m_pitemHover &&
-         pdrawitem->m_iDisplayItem == m_pitemHover->m_iItem &&
+         pdrawitem->m_iDisplayItem == m_pitemHover->m_item.m_iItem &&
          (m_eview != impact_icon ||
-            ((m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_iItem) < m_nItemCount)));
+            ((m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
 
       if (pdrawitem->m_bListItemHover)
       {
@@ -1326,7 +1326,7 @@ namespace user
 
                pitemLast->m_iDisplayItem = 0;
 
-               pitemLast->m_iItem = 0;
+               pitemLast->m_item.m_iItem = 0;
 
             }
             else
@@ -1334,7 +1334,7 @@ namespace user
 
                pitemLast->m_iDisplayItem = m_nItemCount - 1;
 
-               pitemLast->m_iItem = m_nItemCount - 1;
+               pitemLast->m_item.m_iItem = m_nItemCount - 1;
 
             }
 
@@ -6587,7 +6587,7 @@ namespace user
 
          pitem = &m_sortinfo.m_itema[i];
 
-         ordering = _002Compare(iItem1, iItem2, pitem->m_iSubItem);
+         ordering = _002Compare(iItem1, iItem2, pitem->m_item.m_iSubItem);
 
          if (ordering != 0)
          {
@@ -6816,15 +6816,15 @@ namespace user
 
    //   bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-   //   if (_001DisplayHitTest(pointClient, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
+   //   if (_001DisplayHitTest(pointClient, pitemHitTest->m_item.m_iItem, pitemHitTest->m_item.m_iSubItem))
    //   {
 
-   //      if (m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
+   //      if (m_iSubItemHover != pitemHitTest->m_item.m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_item.m_iItem)
    //      {
 
-   //         m_iDisplayItemHover = pitemHitTest->m_iItem;
+   //         m_iDisplayItemHover = pitemHitTest->m_item.m_iItem;
 
-   //         m_iSubItemHover = pitemHitTest->m_iSubItem;
+   //         m_iSubItemHover = pitemHitTest->m_item.m_iSubItem;
 
    //         bAnyHoverChange = true;
 

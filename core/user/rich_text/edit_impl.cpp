@@ -505,7 +505,7 @@ namespace user
             if (::is_item(m_pitemHover, m_pdata->m_iSelEnd))
             {
 
-               m_pdata->m_iSelEnd = m_pitemHover->m_iItem;
+               m_pdata->m_iSelEnd = m_pitemHover->m_item.m_iItem;
 
                m_pdata->internal_update_sel_char();
 

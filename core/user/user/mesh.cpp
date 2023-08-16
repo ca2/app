@@ -565,7 +565,7 @@ namespace user
 
          }
 
-         if(m_pitemHover && iDisplayItem == m_pitemHover->m_iItem)
+         if(m_pitemHover && iDisplayItem == m_pitemHover->m_item.m_iItem)
          {
 
             if(!bHoverFont)
@@ -618,9 +618,9 @@ namespace user
       }
 
       pdrawitem->m_bListItemHover = m_pitemHover &&
-         pdrawitem->m_iDisplayItem == m_pitemHover->m_iItem &&
+         pdrawitem->m_iDisplayItem == m_pitemHover->m_item.m_iItem &&
                                     (m_eview != impact_icon ||
-                                     ((m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_iItem) < m_nItemCount)));
+                                     ((m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
 
       if(pdrawitem->m_bListItemHover)
       {
@@ -1319,12 +1319,12 @@ namespace user
             if(m_bFilter1)
             {
                pitemLast->m_iDisplayItem       = m_piaFilterMesh->get_count() - 1;
-               pitemLast->m_iItem              = m_piaFilterMesh->get_count() - 1;
+               pitemLast->m_item.m_iItem              = m_piaFilterMesh->get_count() - 1;
             }
             else
             {
                pitemLast->m_iDisplayItem       = m_nItemCount - 1;
-               pitemLast->m_iItem              = m_nItemCount - 1;
+               pitemLast->m_item.m_iItem              = m_nItemCount - 1;
             }
             //if(m_bGroup)
             //{
@@ -5184,7 +5184,7 @@ namespace user
       //for(index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       //{
       //   pitem = &m_sortinfo.m_itema[i];
-      //   iCompare = _002Compare(iItem1,iItem2,pitem->m_iSubItem);
+      //   iCompare = _002Compare(iItem1,iItem2,pitem->m_item.m_iSubItem);
       //   if(iCompare != 0)
       //      break;
       //}
@@ -5392,15 +5392,15 @@ namespace user
 
    //   bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-   //   if(_001DisplayHitTest(pointClient, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
+   //   if(_001DisplayHitTest(pointClient, pitemHitTest->m_item.m_iItem, pitemHitTest->m_item.m_iSubItem))
    //   {
 
-   //      if(m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
+   //      if(m_iSubItemHover != pitemHitTest->m_item.m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_item.m_iItem)
    //      {
 
-   //         m_iDisplayItemHover = pitemHitTest->m_iItem;
+   //         m_iDisplayItemHover = pitemHitTest->m_item.m_iItem;
 
-   //         m_iSubItemHover = pitemHitTest->m_iSubItem;
+   //         m_iSubItemHover = pitemHitTest->m_item.m_iSubItem;
 
    //         bAnyHoverChange = true;
 
@@ -5436,21 +5436,21 @@ namespace user
 
       //bool& bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-      if (!_001DisplayHitTest(point, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
+      if (!_001DisplayHitTest(point, pitemHitTest->m_item.m_iItem, pitemHitTest->m_item.m_iSubItem))
       {
 
-         pitemHitTest->m_eelement = e_element_none;
+         pitemHitTest->m_item.m_eelement = e_element_none;
 
-         pitemHitTest->m_iItem = -1;
+         pitemHitTest->m_item.m_iItem = -1;
 
-         pitemHitTest->m_iSubItem = -1;
+         pitemHitTest->m_item.m_iSubItem = -1;
 
-         //if (m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
+         //if (m_iSubItemHover != pitemHitTest->m_item.m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_item.m_iItem)
          //{
 
-         //   m_iDisplayItemHover = pitemHitTest->m_iItem;
+         //   m_iDisplayItemHover = pitemHitTest->m_item.m_iItem;
 
-         //   m_iSubItemHover = pitemHitTest->m_iSubItem;
+         //   m_iSubItemHover = pitemHitTest->m_item.m_iSubItem;
 
          //   //bAnyHoverChange = true;
 

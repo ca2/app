@@ -372,7 +372,7 @@ namespace nanoui
       if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
       {
 
-         pitem->m_eelement = e_element_none;
+         pitem->m_item.m_eelement = e_element_none;
 
          return pitem;
 
@@ -388,7 +388,7 @@ namespace nanoui
 
             int r = m_iaTabOffsets[i + 1] - x;
 
-            pitem->m_iItem = i;
+            pitem->m_item.m_iItem = i;
 
             if (m_bTabsCloseable &&
                r < m_ptheme->m_iHorizontalPaddingTabButton + m_iCloseButtonWidth - 4 &&
@@ -397,13 +397,13 @@ namespace nanoui
                p.y() - m_pos.y() <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
             {
 
-               pitem->m_eelement = e_element_close_button;
+               pitem->m_item.m_eelement = e_element_close_button;
              
             }
             else
             {
 
-               pitem->m_eelement = e_element_tab;
+               pitem->m_item.m_eelement = e_element_tab;
 
             }
             
@@ -413,7 +413,7 @@ namespace nanoui
 
       }
 
-      pitem->m_eelement = e_element_none;
+      pitem->m_item.m_eelement = e_element_none;
 
       return pitem;
 
@@ -452,7 +452,7 @@ namespace nanoui
          !iDragInProgressIndex) 
       {
 
-         m_ppopup = m_popupcallback(tab_id(pitem->m_iItem), pscreen);
+         m_ppopup = m_popupcallback(tab_id(pitem->m_item.m_iItem), pscreen);
          m_ppopup->set_position(p + sequence2_i32(8, -6));
          m_ppopup->set_anchor_offset(8);
          m_ppopup->set_anchor_size(8);
@@ -506,19 +506,19 @@ namespace nanoui
          if (::is_item_set_and_non_negative(pitem)) 
          {
 
-            if (pitem->m_eelement == e_element_close_button && m_iTabDragIndex == -1) 
+            if (pitem->m_item.m_eelement == e_element_close_button && m_iTabDragIndex == -1) 
             {
 
                if (down) 
                {
 
-                  m_iCloseIndexPushed = pitem->m_iItem;
+                  m_iCloseIndexPushed = pitem->m_item.m_iItem;
 
                }
                else if (m_iCloseIndex == m_iCloseIndexPushed) 
                {
 
-                  erase_tab(tab_id(pitem->m_iItem));
+                  erase_tab(tab_id(pitem->m_item.m_iItem));
 
                   mouse_motion_event(p, {}, false, ::user::e_key_none);
 
@@ -531,17 +531,17 @@ namespace nanoui
                if (down) 
                {
 
-                  bool bTabChanged = m_iActiveTab != pitem->m_iItem;
+                  bool bTabChanged = m_iActiveTab != pitem->m_item.m_iItem;
 
-                  m_iActiveTab = pitem->m_iItem;
+                  m_iActiveTab = pitem->m_item.m_iItem;
 
-                  m_iTabDragIndex = m_bTabsDraggable ? pitem->m_iItem : -1;
+                  m_iTabDragIndex = m_bTabsDraggable ? pitem->m_item.m_iItem : -1;
 
                   m_iTabDragStart = m_iTabDragEnd = p.x();
 
-                  m_iTabDragMinimum = m_iaTabOffsets[pitem->m_iItem];
+                  m_iTabDragMinimum = m_iaTabOffsets[pitem->m_item.m_iItem];
 
-                  m_iTabDragMaximum = m_iaTabOffsets[pitem->m_iItem + 1];
+                  m_iTabDragMaximum = m_iaTabOffsets[pitem->m_item.m_iItem + 1];
 
                   m_iCloseIndexPushed = -1;
 
@@ -616,22 +616,22 @@ namespace nanoui
 
          m_iTabDragEnd = p.x();
 
-         if (::is_item_set_and_non_negative(pitem) && m_iTabDragIndex != pitem->m_iItem) 
+         if (::is_item_set_and_non_negative(pitem) && m_iTabDragIndex != pitem->m_item.m_iItem) 
          {
 
-            auto i0 = ::minimum(m_iTabDragIndex, pitem->m_iItem);
+            auto i0 = ::minimum(m_iTabDragIndex, pitem->m_item.m_iItem);
 
-            auto i1 = ::maximum(m_iTabDragIndex, pitem->m_iItem);
+            auto i1 = ::maximum(m_iTabDragIndex, pitem->m_item.m_iItem);
 
             auto mid = (m_iaTabOffsets[i0] + m_iaTabOffsets[i1 + 1]) / 2;
 
-            if ((m_iTabDragIndex < pitem->m_iItem && p.x() - m_pos.y() > mid) ||
-               (m_iTabDragIndex > pitem->m_iItem && p.x() - m_pos.y() < mid)) 
+            if ((m_iTabDragIndex < pitem->m_item.m_iItem && p.x() - m_pos.y() > mid) ||
+               (m_iTabDragIndex > pitem->m_item.m_iItem && p.x() - m_pos.y() < mid)) 
             {
             
-               ::swap(m_straTabCaptions[pitem->m_iItem], m_straTabCaptions[m_iTabDragIndex]);
+               ::swap(m_straTabCaptions[pitem->m_item.m_iItem], m_straTabCaptions[m_iTabDragIndex]);
 
-               ::swap(m_iaTabIds[pitem->m_iItem], m_iaTabIds[m_iTabDragIndex]);
+               ::swap(m_iaTabIds[pitem->m_item.m_iItem], m_iaTabIds[m_iTabDragIndex]);
 
                //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
                m_callbackLayout = [this](::nano2d::context* pcontext)
@@ -641,9 +641,9 @@ namespace nanoui
 
                };
 
-               m_iTabDragIndex = pitem->m_iItem;
+               m_iTabDragIndex = pitem->m_item.m_iItem;
 
-               m_iActiveTab = pitem->m_iItem;
+               m_iActiveTab = pitem->m_item.m_iItem;
 
                set_need_layout();
 
@@ -660,17 +660,17 @@ namespace nanoui
       }
 
 
-      if (pitem->m_eelement != e_element_close_button)
+      if (pitem->m_item.m_eelement != e_element_close_button)
       {
 
          pitem = nullptr;
 
       }
 
-      if (pitem && pitem->m_iItem != m_iCloseIndex)
+      if (pitem && pitem->m_item.m_iItem != m_iCloseIndex)
       {
 
-         m_iCloseIndex = pitem->m_iItem;
+         m_iCloseIndex = pitem->m_item.m_iItem;
 
          m_iCloseIndexPushed = -1;
 

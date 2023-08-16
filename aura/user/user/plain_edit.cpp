@@ -1906,7 +1906,7 @@ namespace user
    void plain_edit::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      if(!m_pitemHover || m_pitemHover->m_eelement != e_element_none)
+      if(!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
          m_pitemHover = __new(::item(e_element_none));

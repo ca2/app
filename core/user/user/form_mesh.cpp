@@ -433,7 +433,7 @@ namespace user
       item.initialize_mesh_item(this);
 
       return ::is_set(m_pitemControl)
-         && m_pitemControl->m_iSubItem == pinteraction->m_iSubItem;
+         && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iSubItem;
 
       //i32 iEditItem;
       //i32 iEditSubItem;
@@ -638,7 +638,7 @@ namespace user
    bool form_mesh::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point, m_pitemControl->m_iItem, m_pitemControl->m_iSubItem);
+      return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
 
    }
 

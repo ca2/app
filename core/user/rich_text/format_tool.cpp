@@ -638,7 +638,7 @@ namespace user
 
             auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 
-            auto pfontenumerationitem = pfontenumerationitema->element_at(pitemCurrent->m_iItem);
+            auto pfontenumerationitem = pfontenumerationitema->element_at(pitemCurrent->m_item.m_iItem);
 
             m_pformata->first()->m_strFontFamily = pfontenumerationitem->m_strName;
 

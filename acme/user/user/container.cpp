@@ -85,7 +85,7 @@ namespace user
 
       }
 
-      pitem->m_iItem = iIndex;
+      pitem->m_item.m_iItem = iIndex;
 
       m_pitema->set_at_grow(iIndex, pitem);
 
@@ -95,7 +95,7 @@ namespace user
    void container::default_add_item(::item * pitem)
    {
 
-      pitem->m_iItem = add_item(pitem);
+      pitem->m_item.m_iItem = add_item(pitem);
 
    }
 
@@ -176,6 +176,12 @@ namespace user
 
    }
 
+   ::index container::item_index() const
+   {
+   
+      return m_item.item_index();
+   
+   }
 
    ::index container::item_index(const ::atom & atom) const
    {
@@ -195,7 +201,7 @@ namespace user
             if (atom.m_etype == ::atom::e_type_element)
             {
 
-               if (pitem->m_eelement == atom.m_eelement)
+               if (pitem->m_item.m_eelement == atom.m_eelement)
                {
 
                   iIndex = iItem;

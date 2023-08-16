@@ -6,7 +6,7 @@
 bool item::_is_set() const
 {
 
-   return m_eelement != e_element_none;
+   return m_item.m_eelement != e_element_none;
 
 }
 
@@ -14,27 +14,16 @@ bool item::_is_set() const
 item & item::operator = (enum_element eelement)
 {
 
-   m_eelement = eelement;
+   m_item.m_eelement = eelement;
 
-   if (m_eelement != e_element_none)
+   if (m_item.m_eelement == e_element_none)
    {
 
-      if (m_iItem < 0)
-      {
+      m_item.m_iItem = -1;
 
-         m_iItem = 0;
+      m_item.m_iSubItem = -1;
 
-      }
-
-   }
-   else
-   {
-
-      m_iItem = -1;
-
-      m_iSubItem = -1;
-
-      m_iListItem = -1;
+      m_item.m_iListItem = -1;
 
    }
 
@@ -46,21 +35,21 @@ item & item::operator = (enum_element eelement)
 item & item::operator = (::index iItem)
 {
 
-   m_iItem = iItem;
+   m_item.m_iItem = iItem;
 
-   if (m_iItem < 0)
+   if (m_item.m_iItem < 0)
    {
 
-      m_eelement = e_element_none;
+      m_item.m_eelement = e_element_none;
 
    }
    else
    {
 
-      if (m_eelement == e_element_none)
+      if (m_item.m_eelement == e_element_none)
       {
 
-         m_eelement = e_element_item;
+         m_item.m_eelement = e_element_item;
 
       }
 
@@ -104,28 +93,28 @@ bool item::is_hidden() const
 //
 //   }
 //
-//   //if(pitem1->m_eelement != pitem2->m_eelement)
+//   //if(pitem1->m_item.m_eelement != pitem2->m_item.m_eelement)
 //   //{
 //
 //   //   return false;
 //
 //   //}
 //
-//   if(pitem1->m_iItem != pitem2->m_iItem)
+//   if(pitem1->m_item.m_iItem != pitem2->m_item.m_iItem)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   if(pitem1->m_iSubItem != pitem2->m_iSubItem)
+//   if(pitem1->m_item.m_iSubItem != pitem2->m_item.m_iSubItem)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   if(pitem1->m_iListItem != pitem2->m_iListItem)
+//   if(pitem1->m_item.m_iListItem != pitem2->m_item.m_iListItem)
 //   {
 //
 //      return false;

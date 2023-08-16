@@ -2199,11 +2199,11 @@ namespace user
 
       virtual ::item_pointer on_items_hit_test(const ::point_i32& point, e_zorder ezorder);
 
-      virtual ::item_pointer on_default_bottom_right_resize_hit_test(const ::point_i32& point, e_zorder ezorder);
+      virtual void defer_setup_default_bottom_right_resize_user_item();
 
-      virtual ::item_pointer on_client_area_hit_test(const ::point_i32& point, e_zorder ezorder);
+      virtual void defer_setup_default_client_area_user_item();
 
-      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32 & point, e_zorder ezorder);
+///      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);

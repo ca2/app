@@ -29,7 +29,7 @@ namespace databaseuser
 
       ::string strDataKey2;
 
-      //if(Map(psubitem->m_pitem->m_pmesh, key1, key2, psubitem->m_pitem->m_iItem, psubitem->m_iSubItem, pitem->m_iListItem))
+      //if(Map(psubitem->m_pitem->m_pmesh, key1, key2, psubitem->m_pitem->m_iItem, psubitem->m_iSubItem, pitem->m_item.m_iListItem))
       if (Map(psubitem->m_pitem->m_pmesh, strDataKey1, strDataKey2, psubitem->m_pitem->m_iItem, psubitem->m_iSubItem, -1))
       {
 

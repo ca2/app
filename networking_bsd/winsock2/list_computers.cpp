@@ -85,7 +85,7 @@ namespace networking_bsd
 
          auto pitem = pitema->element_at(iItem);
 
-         pitem->m_iItem = iItem;
+         pitem->m_item.m_iItem = iItem;
 
       }
 

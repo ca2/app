@@ -88,7 +88,7 @@ namespace user
       if(pitem == pwindowimpl->m_pitemLButtonDown)
       {
 
-         m_scalar.set(pitem->m_iItem);
+         m_scalar.set(pitem->m_item.m_iItem);
 
       }
 

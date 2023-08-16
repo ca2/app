@@ -230,7 +230,7 @@ namespace experience_core
 
       __construct(puseritem->m_ppath);
 
-      m_pitemClient->m_eelement = e_element_client;
+      m_pitemClient->m_item.m_eelement = e_element_client;
 
       puseritem->m_ppath->add_ellipse(ellipse);
 

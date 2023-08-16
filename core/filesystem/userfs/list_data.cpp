@@ -199,9 +199,9 @@ namespace userfs
          try
          {
 
-            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_pitema->get_item(pitem->m_iItem)->m_filepathUser);
+            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_pitema->get_item(pitem->m_item.m_iItem)->m_filepathUser);
 
-            //if (!m_pitema->m_parray->contains_index(pitem->m_iItem) || (*m_pitema)[pitem->m_iItem].is_null())
+            //if (!m_pitema->m_parray->contains_index(pitem->m_item.m_iItem) || (*m_pitema)[pitem->m_item.m_iItem].is_null())
             //{
 
             //   pitem->m_bOk = false;

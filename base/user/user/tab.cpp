@@ -763,7 +763,7 @@ namespace user
 
       }
 
-      if(::is_set(m_pitemClick) && m_pitemClick->m_iItem >= 0)
+      if(::is_set(m_pitemClick) && m_pitemClick->m_item.m_iItem >= 0)
       {
 
          index iIndex = get_current_tab_index();
@@ -771,7 +771,7 @@ namespace user
          if(::is_element(m_pitemClick, e_element_close_tab_button))
          {
 
-            get_data()->m_iClickTab = m_pitemClick->m_iItem;
+            get_data()->m_iClickTab = m_pitemClick->m_item.m_iItem;
 
             pmouse->m_bRet = true;
 
@@ -780,10 +780,10 @@ namespace user
             m_estate = state_close_button_down;
 
          }
-         else if(m_pitemClick->m_iItem != iIndex)
+         else if(m_pitemClick->m_item.m_iItem != iIndex)
          {
 
-            get_data()->m_iClickTab = m_pitemClick->m_iItem;
+            get_data()->m_iClickTab = m_pitemClick->m_item.m_iItem;
 
             //set_mouse_capture();
 
@@ -844,19 +844,19 @@ namespace user
       if (::is_set(pitem))
       {
 
-         if (pitem->m_iItem >= 0 && iClickTab == pitem->m_iItem && ::is_same_item(m_pitemClick, pitem))
+         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
          {
 
             if (::is_element(pitem, e_element_close_tab_button))
             {
 
-               _001OnTabClose(pitem->m_iItem);
+               _001OnTabClose(pitem->m_item.m_iItem);
 
             }
             else
             {
 
-               _001OnTabClick(pitem->m_iItem);
+               _001OnTabClick(pitem->m_item.m_iItem);
 
             }
 
@@ -1474,7 +1474,7 @@ namespace user
             if(rectangle.contains(point))
             {
 
-               ppane->m_pitemClose->m_iItem = iIndex;
+               ppane->m_pitemClose->m_item.m_iItem = iIndex;
 
                user_item(ppane)->m_rectangle = rectangle;
 

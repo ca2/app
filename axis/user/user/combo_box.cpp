@@ -620,7 +620,7 @@ namespace user
       if (is_window_enabled())
       {
 
-         if (!m_bEdit || (::is_set(m_pitemHover) && m_pitemHover->m_eelement == e_element_drop_down))
+         if (!m_bEdit || (::is_set(m_pitemHover) && m_pitemHover->m_item.m_eelement == e_element_drop_down))
          {
 
             auto pwindowing = windowing();
@@ -660,7 +660,7 @@ namespace user
 
          auto pitemHit = hit_test(pmouse, e_zorder_any);
 
-         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
+         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
          {
 
             class ::time timeLastVisibilityChangeElapsed;
@@ -706,7 +706,7 @@ namespace user
 
          auto pitemHit = hit_test(pmouse, e_zorder_any);
 
-         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
+         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
          {
 
             pmouse->m_bRet = true;
@@ -869,7 +869,7 @@ namespace user
 
       string strItem;
 
-      _001GetListText(pitem->m_iItem, strItem);
+      _001GetListText(pitem->m_item.m_iItem, strItem);
 
       _001SetText(strItem, actioncontext);
 

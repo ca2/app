@@ -145,7 +145,7 @@ namespace user
          if (m_pitemCurrent.is_set())
          {
 
-            for (index i = m_pitemCurrent->m_iItem; i <= pitem->m_iItem; i++)
+            for (index i = m_pitemCurrent->m_item.m_iItem; i <= pitem->m_item.m_iItem; i++)
             {
 
                iaSel.add_unique(i);
@@ -158,7 +158,7 @@ namespace user
       else
       {
 
-         iaSel.add_unique(pitem->m_iItem);
+         iaSel.add_unique(pitem->m_item.m_iItem);
 
       }
 
@@ -420,7 +420,7 @@ namespace user
             continue;
             //pitem = __create_new<item>();
 
-            //pitem->m_iItem = iImage;
+            //pitem->m_item.m_iItem = iImage;
 
             //add_user_item(pitem);
 
@@ -674,9 +674,9 @@ namespace user
 
             pitem = __create_new<::item>();
 
-            pitem->m_iItem = iImage;
+            pitem->m_item.m_iItem = iImage;
 
-            pitem->m_eelement = e_element_item;
+            pitem->m_item.m_eelement = e_element_item;
 
             add_user_item(pitem);
 

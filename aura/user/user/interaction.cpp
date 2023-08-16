@@ -1901,7 +1901,7 @@ namespace user
 
       }
 
-      if (pitem->m_eelement == e_element_client)
+      if (pitem->m_item.m_eelement == e_element_client)
       {
 
          bool bShouldRedrawOnMouseHover = should_redraw_on_mouse_hover();
@@ -6364,14 +6364,14 @@ return strClass;
       if (m_bEnableDragClient)
       {
 
-         enable_drag(e_element_client);
+         enable_drag(e_element_client, e_zorder_back);
 
       }
 
       if (m_bEnableDragResize)
       {
 
-         enable_drag(e_element_resize);
+         enable_drag(e_element_resize, e_zorder_back);
 
       }
 
@@ -7215,13 +7215,13 @@ return strClass;
 
       get_wnd()->hide_software_keyboard(this);
 
-      if (pdrag->m_eelement == e_element_client)
+      if (pdrag->m_item.m_eelement == e_element_client)
       {
 
          return layout().window().origin();
 
       }
-      else if (pdrag->m_eelement == e_element_resize)
+      else if (pdrag->m_item.m_eelement == e_element_resize)
       {
 
          return layout().window().origin() + layout().window().size();
@@ -7236,7 +7236,7 @@ return strClass;
    bool interaction::drag_shift(::user::drag *pdrag)
    {
 
-      if (pdrag->m_eelement == e_element_client)
+      if (pdrag->m_item.m_eelement == e_element_client)
       {
 
          pdrag->m_ecursor = e_cursor_move;
@@ -7256,7 +7256,7 @@ return strClass;
          return true;
 
       }
-      else if (pdrag->m_eelement == e_element_resize)
+      else if (pdrag->m_item.m_eelement == e_element_resize)
       {
 
          pdrag->m_ecursor = e_cursor_size_bottom_right;
@@ -7343,13 +7343,13 @@ return strClass;
    bool interaction::drag_hover(::user::drag *pdrag)
    {
 
-      if (pdrag->m_eelement == e_element_client)
+      if (pdrag->m_item.m_eelement == e_element_client)
       {
 
          pdrag->m_ecursor = e_cursor_hand;
 
       }
-      else if (pdrag->m_eelement == e_element_resize)
+      else if (pdrag->m_item.m_eelement == e_element_resize)
       {
 
          pdrag->m_ecursor = e_cursor_size_bottom_right;
@@ -11682,15 +11682,15 @@ return strClass;
 
             auto puseritem = user_item(pitem);
 
-            if (pitem && pitem->m_eelement != ::e_element_item)
+            if (pitem && pitem->m_item.m_eelement != ::e_element_item)
             {
 
                puseritem->m_ppath.release();
 
-               if (pitem->m_eelement != e_element_item)
+               if (pitem->m_item.m_eelement != e_element_item)
                {
 
-                  auto rectangle = this->rectangle(pitem->m_eelement);
+                  auto rectangle = this->rectangle(pitem->m_item.m_eelement);
 
                   puseritem->m_rectangle = rectangle;
 
@@ -14823,7 +14823,7 @@ return strClass;
       for (auto &pitem: *m_pitema)
       {
 
-         if (pitem->m_eelement == ::e_element_close_button || pitem->m_eelement == ::e_element_close_icon)
+         if (pitem->m_item.m_eelement == ::e_element_close_button || pitem->m_item.m_eelement == ::e_element_close_icon)
          {
 
             if (pitem->m_atom == ::id_close_app)
@@ -18579,8 +18579,8 @@ return strClass;
       if (::is_set(pitem))
       {
 
-         if (pitem->m_eelement == ::e_element_close_button
-             || pitem->m_eelement == ::e_element_close_icon)
+         if (pitem->m_item.m_eelement == ::e_element_close_button
+             || pitem->m_item.m_eelement == ::e_element_close_icon)
          {
 
             post_message(MESSAGE_CLOSE);
@@ -18588,8 +18588,8 @@ return strClass;
             return true;
 
          }
-         else if (pitem->m_eelement == ::e_element_switch_button
-                  || pitem->m_eelement == ::e_element_switch_icon)
+         else if (pitem->m_item.m_eelement == ::e_element_switch_button
+                  || pitem->m_item.m_eelement == ::e_element_switch_icon)
          {
 
             post_message(e_message_switch);
@@ -18597,8 +18597,8 @@ return strClass;
             return true;
 
          }
-         else if (pitem->m_eelement == ::e_element_maximize_button
-                  || pitem->m_eelement == ::e_element_maximize_icon)
+         else if (pitem->m_item.m_eelement == ::e_element_maximize_button
+                  || pitem->m_item.m_eelement == ::e_element_maximize_icon)
          {
 
             auto edisplay = layout().layout().display();
@@ -18619,8 +18619,8 @@ return strClass;
             return true;
 
          }
-         else if (pitem->m_eelement == ::e_element_minimize_button
-                  || pitem->m_eelement == ::e_element_minimize_icon)
+         else if (pitem->m_item.m_eelement == ::e_element_minimize_button
+                  || pitem->m_item.m_eelement == ::e_element_minimize_icon)
          {
 
             display(e_display_iconic);
@@ -18765,7 +18765,7 @@ return strClass;
    bool interaction::is_window_resizing()
    {
 
-      if (::is_set(m_pdragCurrent) && m_pdragCurrent->m_eelement == e_element_resize)
+      if (::is_set(m_pdragCurrent) && m_pdragCurrent->m_item.m_eelement == e_element_resize)
       {
 
          return true;
@@ -19371,7 +19371,7 @@ return strClass;
 
       }
 
-      //if(m_pdragmove && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_eelement == e_element_client)
+      //if(m_pdragmove && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_item.m_eelement == e_element_client)
       //{
 
       //   get_wnd()->show_keyboard(false);
@@ -19391,7 +19391,7 @@ return strClass;
       //   return;
 
       //}
-      //else if (m_pdragsize && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_eelement == e_element_drag_size)
+      //else if (m_pdragsize && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_item.m_eelement == e_element_drag_size)
       //{
 
       //   get_wnd()->show_keyboard(false);
@@ -19682,18 +19682,20 @@ return strClass;
 
          auto pwindowimpl = get_window_impl();
 
-         if (m_bClickDefaultMouseHandling)
+         if (m_bClickDefaultMouseHandling && ::is_set(pwindowimpl->m_pitemLButtonDown))
          {
+            
+            auto puseritemLButtonDown = user_item(pwindowimpl->m_pitemLButtonDown);
 
-            auto puseritemLeftButtonUp = hit_test(pmouse, e_zorder_any);
+            auto puseritemLeftButtonUp = hit_test(pmouse, puseritemLButtonDown->m_ezorder);
 
             bool bSameUserInteractionAsMouseDown = pwindowimpl->m_puiLastLButtonDown == this;
 
             bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, puseritemLeftButtonUp);
 
-            //information("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+            //information("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
-            if (::is_set(pwindowimpl->m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
+            if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
 
                pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
@@ -20393,7 +20395,16 @@ return strClass;
 
          //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
 
-         update_hover(pmouse, e_zorder_any);
+         auto pitemFront = update_hover(pmouse, e_zorder_front);
+         
+         decltype(pitemFront) pitemBack;
+         
+         if(!pitemFront)
+         {
+            
+            pitemBack = update_hover(pmouse, e_zorder_back);
+            
+         }
 
          //update_hover(pointCursorClient, false);
 
@@ -20815,6 +20826,10 @@ return strClass;
 
    ::item_pointer interaction::on_hit_test(const ::point_i32 &point, e_zorder ezorder)
    {
+      
+      defer_setup_default_bottom_right_resize_user_item();
+      
+      defer_setup_default_client_area_user_item();
 
       {
 
@@ -20829,32 +20844,32 @@ return strClass;
 
       }
 
-      {
-
-         auto pitemHitTest = on_default_bottom_right_resize_hit_test(point, ezorder);
-
-         if (::is_set(pitemHitTest))
-         {
-
-            return pitemHitTest;
-
-         }
-
-      }
-
-
-      {
-
-         auto pitemHitTest = on_client_area_hit_test(point, ezorder);
-
-         if (::is_set(pitemHitTest))
-         {
-
-            return pitemHitTest;
-
-         }
-
-      }
+//      {
+//
+//         auto pitemHitTest = on_default_bottom_right_resize_hit_test(point, ezorder);
+//
+//         if (::is_set(pitemHitTest))
+//         {
+//
+//            return pitemHitTest;
+//
+//         }
+//
+//      }
+//
+//
+//      {
+//
+//         auto pitemHitTest = on_client_area_hit_test(point, ezorder);
+//
+//         if (::is_set(pitemHitTest))
+//         {
+//
+//            return pitemHitTest;
+//
+//         }
+//
+//      }
 
       auto pitemNone = __new(::item(e_element_none));
 
@@ -20947,80 +20962,96 @@ return strClass;
    }
 
 
-   ::item_pointer interaction::on_default_bottom_right_resize_hit_test(const ::point_i32 &point, e_zorder ezorder)
+   void interaction::defer_setup_default_bottom_right_resize_user_item()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+      auto pitemHitTest = m_mapDrag[e_element_resize];
 
-      auto rectangleResize = this->rectangle(::e_element_resize);
-
-      if (rectangleResize.ok() && rectangleResize.contains(point))
+      if(pitemHitTest)
       {
-
-         auto pitemHitTest = m_mapDrag[e_element_resize];
-
-         auto puseritem = user_item(pitemHitTest);
          
-         puseritem->m_rectangle = rectangleResize;
-
-         return pitemHitTest;
-
-      }
-
-      return nullptr;
-
-
-   }
-
-
-   ::item_pointer interaction::on_client_area_hit_test(const ::point_i32 &point, e_zorder ezorder)
-   {
-
-      if (m_pitemClient)
-      {
-
-         if (item_contains(m_pitemClient, point))
+         //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+         
+         auto rectangleResize = this->rectangle(::e_element_resize);
+         
+         //if (rectangleResize.ok() && rectangleResize.contains(point))
+         if (rectangleResize.ok())
          {
-
-            return m_pitemClient;
-
+            
+            auto puseritem = user_item(pitemHitTest);
+            
+            puseritem->m_rectangle = rectangleResize;
+            
+            //return pitemHitTest;
+            
          }
-
-         return nullptr;
-
+         
       }
 
-      return on_default_full_client_area_hit_test(point, ezorder);
+      //return nullptr;
 
    }
 
 
-   ::item_pointer interaction::on_default_full_client_area_hit_test(const ::point_i32 &point, e_zorder ezorder)
+//   ::item_pointer interaction::on_client_area_hit_test(const ::point_i32 &point, e_zorder ezorder)
+//   {
+//
+//      if (m_pitemClient)
+//      {
+//
+//         if (item_contains(m_pitemClient, point))
+//         {
+//
+//            return m_pitemClient;
+//
+//         }
+//
+//         return nullptr;
+//
+//      }
+//
+//      return on_default_full_client_area_hit_test(point, ezorder);
+//
+//   }
+
+
+   void interaction::defer_setup_default_client_area_user_item()
    {
 
-      if (ezorder & e_zorder_back)
+      //if (ezorder & e_zorder_back)
+      //{
+      
+      
+      
+      synchronous_lock synchronouslock(this->synchronization());
+
+      auto pitemHitTest = m_mapDrag[e_element_client];
+      
+      if(pitemHitTest)
       {
-
+         
+         
          auto rectangleClient = this->rectangle(::e_element_client);
-
-         if (rectangleClient.ok() && rectangleClient.contains(point))
+         
+         //if (rectangleClient.ok() && rectangleClient.contains(point))
+         if (rectangleClient.ok())
          {
-
-            auto pitemHitTest = __new(::item(e_element_client));
-
+            
             auto puseritem = user_item(pitemHitTest);
             
             puseritem->m_rectangle = rectangleClient;
-
-            return pitemHitTest;
-
+            
+            //return pitemHitTest;
+            
          }
-
+         
       }
 
-      return nullptr;
+//      }
+//
+//      return nullptr;
 
    }
 
@@ -21329,49 +21360,49 @@ return strClass;
 
       auto pitem = useritem.m_pitem;
 
-      if (pitem->m_eelement == ::e_element_close_icon)
+      if (pitem->m_item.m_eelement == ::e_element_close_icon)
       {
 
          ::user::draw_close_icon(pgraphics, this, useritem, estate);
 
       }
-      else if (pitem->m_eelement == ::e_element_switch_icon)
+      else if (pitem->m_item.m_eelement == ::e_element_switch_icon)
       {
 
          ::user::draw_switch_icon(pgraphics, this, useritem, estate);
 
       }
-      else if (pitem->m_eelement == ::e_element_maximize_icon)
+      else if (pitem->m_item.m_eelement == ::e_element_maximize_icon)
       {
 
          ::user::draw_maximize_icon(pgraphics, this, useritem, estate);
 
       }
-      else if (pitem->m_eelement == ::e_element_minimize_icon)
+      else if (pitem->m_item.m_eelement == ::e_element_minimize_icon)
       {
 
          ::user::draw_minimize_icon(pgraphics, this, useritem, estate);
 
       }
-      else if (pitem->m_eelement == ::e_element_close_button)
+      else if (pitem->m_item.m_eelement == ::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, useritem, estate);
 
       }
-      else if (pitem->m_eelement == ::e_element_maximize_button)
+      else if (pitem->m_item.m_eelement == ::e_element_maximize_button)
       {
 
          ::user::draw_maximize_button(pgraphics, this, useritem, estate);
 
       }
-      else if (pitem->m_eelement == ::e_element_minimize_button)
+      else if (pitem->m_item.m_eelement == ::e_element_minimize_button)
       {
 
          ::user::draw_minimize_button(pgraphics, this, useritem, estate);
 
       }
-      else if (pitem->m_eelement == ::e_element_switch_button)
+      else if (pitem->m_item.m_eelement == ::e_element_switch_button)
       {
 
          ::user::draw_switch_button(pgraphics, this, useritem, estate);

@@ -28,7 +28,7 @@ namespace user
       void destroy() override;
 
 
-      virtual void enable_drag(::e_element eelement);
+      virtual void enable_drag(::e_element eelement, ::user::e_zorder ezorder);
       virtual ::user::drag * drag(::e_element eelement) const;
       virtual bool has_drag(::e_element eelement) const;
 

@@ -472,9 +472,9 @@ namespace user
 
       explicit operator bool() const { return is_item_set(); }
 
-      enum_element eelement() const { return is_item_set() ? m_pitem->m_eelement : e_element_none; }
+      enum_element eelement() const { return is_item_set() ? m_pitem->m_item.m_eelement : e_element_none; }
 
-      ::index item_index() const { return is_item_set() ? m_pitem->m_iItem : -1; }
+      ::index item_index() const { return is_item_set() ? m_pitem->m_item.m_iItem : -1; }
 
       template < typename ITEM >
       ::pointer < ITEM > as_item() const { return ((::user::item *)this)->as_item< ITEM >(); }

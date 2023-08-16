@@ -48,21 +48,21 @@ void simple_list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
 
    auto pitem = psubitem->m_pitem;
 
-   if (pitem->m_iItem < 0)
+   if (pitem->m_item.m_iItem < 0)
    {
 
       return_(psubitem->m_bOk, false);
 
    }
 
-   if (pitem->m_iItem >= stra.get_size())
+   if (pitem->m_item.m_iItem >= stra.get_size())
    {
 
       return_(psubitem->m_bOk, false);
 
    }
 
-   psubitem->m_strText = stra.element_at(pitem->m_iItem);
+   psubitem->m_strText = stra.element_at(pitem->m_item.m_iItem);
 
    psubitem->m_bOk = true;
 

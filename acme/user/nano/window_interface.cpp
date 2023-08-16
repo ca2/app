@@ -151,7 +151,7 @@ void nano_window_interface::drag_set_capture()
 ::point_i32 nano_window_interface::on_drag_start(::user::drag * pdrag)
 {
 
-   if (pdrag->m_eelement == e_element_client)
+   if (pdrag->m_item.m_eelement == e_element_client)
    {
 
       return origin();
@@ -166,7 +166,7 @@ void nano_window_interface::drag_set_capture()
 bool nano_window_interface::drag_shift(::user::drag * pdrag)
 {
 
-   if (pdrag->m_eelement == e_element_client)
+   if (pdrag->m_item.m_eelement == e_element_client)
    {
 
       move_to(pdrag->point());
@@ -183,7 +183,7 @@ bool nano_window_interface::drag_shift(::user::drag * pdrag)
 bool nano_window_interface::drag_hover(::user::drag * pdrag)
 {
 
-   if (pdrag->m_eelement == e_element_client)
+   if (pdrag->m_item.m_eelement == e_element_client)
    {
 
       set_cursor(e_cursor_hand);
@@ -191,7 +191,7 @@ bool nano_window_interface::drag_hover(::user::drag * pdrag)
       return true;
 
    }
-   else if (pdrag->m_eelement == e_element_resize)
+   else if (pdrag->m_item.m_eelement == e_element_resize)
    {
 
       set_cursor(e_cursor_size_bottom_right);

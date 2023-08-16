@@ -31,7 +31,7 @@ nano_window::nano_window()
    
    m_efont = e_font_sans;
 
-   enable_drag(::e_element_client);
+   enable_drag(::e_element_client, ::user::e_zorder_back);
 
    m_bNcActive = false;
 
@@ -485,6 +485,13 @@ void nano_window::on_left_button_up(::user::mouse * pmouse)
       m_payloadResult = m_atomLeftButtonUp;
 
       m_pimplementation->on_click(m_payloadResult, pmouse);
+
+   }
+   
+   if (drag_on_button_up(pmouse))
+   {
+
+      return;
 
    }
 

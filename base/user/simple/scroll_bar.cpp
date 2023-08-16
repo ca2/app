@@ -151,7 +151,7 @@ bool simple_scroll_bar::scrollbar_action(const ::item * pitem, ::draw2d::graphic
 
    }
 
-   switch(pitem->m_eelement)
+   switch(pitem->m_item.m_eelement)
    {
    case ::e_element_scrollbar_rectA:
       return scrollbar_lineA(pgraphics);
@@ -220,7 +220,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-   if(::is_set(m_pitemCurrent) && m_pitemCurrent->m_eelement == ::e_element_scrollbar_trackbar)
+   if(::is_set(m_pitemCurrent) && m_pitemCurrent->m_item.m_eelement == ::e_element_scrollbar_trackbar)
    {
 
       m_bTracking = true;

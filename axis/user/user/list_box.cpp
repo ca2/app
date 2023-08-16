@@ -450,7 +450,7 @@ namespace user
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (::is_item_set(pitemHover) && pitemHover->m_iItem == iItem)
+         if (::is_item_set(pitemHover) && pitemHover->m_item.m_iItem == iItem)
          {
 
 #if DEBUG_LIST_ITEM_DRAWING
@@ -463,7 +463,7 @@ namespace user
 
          }
 
-         if (::is_item_set(pitemCurrent) && pitemCurrent->m_iItem == iItem)
+         if (::is_item_set(pitemCurrent) && pitemCurrent->m_item.m_iItem == iItem)
          {
 
 #if DEBUG_LIST_ITEM_DRAWING
@@ -1338,7 +1338,7 @@ namespace user
 
        }
 
-      index iSel = pitem->m_iItem;
+      index iSel = pitem->m_item.m_iItem;
 
       if (iSel < 0)
       {

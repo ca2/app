@@ -54,7 +54,7 @@ namespace user
 
       virtual ::item_pointer item(const ::atom & atom);
 
-      using ::item::item_index;
+      virtual ::index item_index() const;
 
       virtual ::index item_index(const ::atom & atom) const;
 

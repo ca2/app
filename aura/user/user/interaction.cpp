@@ -2709,6 +2709,10 @@ namespace user
                       &::user::interaction::on_message_left_button_double_click);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
+         MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &::user::interaction::on_message_parent_left_button_down);
+         MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &::user::interaction::on_message_parent_left_button_up);
+         MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &::user::interaction::on_message_parent_mouse_move);
+
          if (m_bDataUpdateDefaultHandling)
          {
 
@@ -6405,7 +6409,7 @@ return strClass;
 
          pcursor = windowing()->get_cursor(::e_cursor_arrow);
 
-         set_mouse_cursor(pcursor);
+         set_default_mouse_cursor(pcursor);
 
       }
 
@@ -7701,6 +7705,55 @@ return strClass;
 
    }
 
+
+   ::user::interaction * interaction::_child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude)
+   {
+
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      if (!puserinteractionpointeraChild)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pointClient = point;
+
+      screen_to_client()(pointClient);
+
+      for (::index iChild = puserinteractionpointeraChild->interaction_last_index();
+            iChild >= 0; iChild--)
+      {
+
+         auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
+
+         if (::is_null(pinteractionaExclude) || !pinteractionaExclude->contains_interaction(puserinteractionChild))
+         {
+            //if (puserinteractionChild->is_this_visible()
+            //&& (!puserinteractionChild->is_place_holder()
+            //   || (puserinteractionChild->m_puserinteractionpointeraChild
+            //      && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
+            //      && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
+            if (puserinteractionChild->is_this_visible())
+            {
+
+               if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
+               {
+
+                  return puserinteractionChild;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
 
 //void interaction::_002OnLButtonDown(::message::message * pmessage)
 //{
@@ -13734,6 +13787,145 @@ return strClass;
    }
 
 
+   bool interaction::on_mouse_message(::message::mouse * pmouse)
+   {
+
+      if (pmouse->m_atom == e_message_left_button_down)
+      {
+
+         ::output_debug_string("e_message_left_button_down");
+
+      }
+
+      ::user::interaction * pchild = this;
+
+      if (pmouse->m_atom.m_emessage < e_message_mouse_first
+         || pmouse->m_atom.m_emessage > e_message_mouse_last)
+      {
+
+         pchild = child_from_point(pmouse->m_point);
+
+      }
+      else
+      {
+
+         pmouse->m_atom.m_i += (e_message_parent_mouse_first - e_message_mouse_first);
+
+         auto puserinteraction = this;
+
+         while (puserinteraction)
+         {
+
+            puserinteraction->route_message(pmouse);
+
+            if (pmouse->m_bRet)
+            {
+
+               return true;
+
+            }
+
+            pchild = puserinteraction->_child_from_point(pmouse->m_point);
+
+            if (!pchild || pchild == this)
+            {
+
+               pchild = puserinteraction;
+
+               break;
+
+            }
+
+            puserinteraction = pchild;
+
+         }
+
+         pmouse->m_atom.m_i -= (e_message_parent_mouse_first - e_message_mouse_first);
+
+      }
+
+      return pchild->on_child_from_point_mouse_message_routing(pmouse);
+
+   }
+
+
+   bool interaction::on_child_from_point_mouse_message_routing(::message::mouse * pmouse)
+   {
+
+      auto pchild = this;
+
+   string strType = __type_name(pchild);
+
+   if (strType.case_insensitive_contains("button"))
+   {
+
+      information("mouse transfer on button");
+
+   }
+   else if (strType.case_insensitive_contains("tab"))
+   {
+
+      information("mouse transfer on tab");
+
+   }
+
+   auto puserinteraction = pchild;
+
+   ::user::interaction_array interactionaHandled;
+
+   while (::is_set(puserinteraction))
+   {
+
+      puserinteraction->route_message(pmouse);
+
+      interactionaHandled.add_interaction(puserinteraction);
+
+      if (pmouse->m_bRet)
+      {
+
+         break;
+
+      }
+
+      puserinteraction = puserinteraction->get_parent();
+
+      //if (::is_set(puserinteraction))
+      //{
+
+      //   auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
+
+      //   if (::is_set(pchild))
+      //   {
+
+      //      pchild->route_message(pmouse);
+
+      //      if (pmouse->m_bRet)
+      //      {
+
+      //         break;
+
+      //      }
+
+      //   }
+
+      //}
+
+   }
+
+
+   return pmouse->m_bRet;
+
+//}
+//else
+//{
+//
+//   m_puserinteraction->route_message(pmouse);
+//
+//}
+
+   }
+
+
    void interaction::create_message_queue(const ::string &lpszName)
    {
 
@@ -13990,7 +14182,7 @@ return strClass;
    ::windowing::cursor *interaction::get_mouse_cursor()
    {
 
-      return m_pcursor;
+      return m_pcursorDefault;
 
    }
 
@@ -14079,7 +14271,7 @@ return strClass;
    }
 
 
-   void interaction::set_mouse_cursor(::windowing::cursor *pcursor)
+   void interaction::set_default_mouse_cursor(::windowing::cursor *pcursor)
    {
 
       //      if (!m_pprimitiveimpl)
@@ -14098,7 +14290,7 @@ return strClass;
       //
       //      }
 
-      m_pcursor = pcursor;
+      m_pcursorDefault = pcursor;
 
    }
 
@@ -19298,6 +19490,807 @@ return strClass;
    }
 
 
+   void interaction::on_message_parent_left_button_down(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      auto pszType = typeid(*this).name();
+
+      ::information("interaction::on_message_left_button_down " + ::string(pszType));
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      //auto psession = get_session();
+
+      //try
+      //{
+
+      //   if (keyboard_focus_is_focusable())
+      //   {
+
+      //      set_keyboard_focus();
+
+      //      {
+
+      //         psession->user()->set_mouse_focus_LButtonDown(this);
+
+      //         //set_need_redraw();
+
+      //         //post_redraw();
+
+      //      }
+
+      //   }
+      //   else
+      //   {
+
+      //      clear_keyboard_focus();
+
+      //   }
+
+      //}
+      //catch (...)
+      //{
+
+      //}
+
+      //if ((m_bEnableHorizontalBarDragScroll && _001HasHorizontalBarDragScrolling())
+      //    || (m_bEnableVerticalBarDragScroll && _001HasVerticalBarDragScrolling()))
+      //{
+
+      //   m_pointBarDragScrollLeftButtonDown = pmouse->m_point;
+
+      //   m_bBarDragScrollLeftButtonDown = true;
+
+      //   m_pointBarDragScrollStart = m_pointBarDragScroll;
+
+      //   set_mouse_capture();
+
+      //}
+
+      auto puseritemLButtonDown = update_hover(pmouse, e_zorder_front);
+
+      if (drag_on_button_down(puseritemLButtonDown))
+      {
+
+         return;
+
+      }
+
+      //if(m_pdragmove && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_item.m_eelement == e_element_client)
+      //{
+
+      //   get_wnd()->show_keyboard(false);
+
+      //   m_pdragmove->m_bLButtonDown = true;
+
+      //   m_pdragmove->m_bDrag = false;
+
+      //   m_pdragmove->m_pointLButtonDown = pmouse->m_point;
+
+      //   m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - layout().origin();
+
+      //   set_mouse_capture();
+
+      //   pmouse->m_bRet = true;
+
+      //   return;
+
+      //}
+      //else if (m_pdragsize && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_item.m_eelement == e_element_drag_size)
+      //{
+
+      //   get_wnd()->show_keyboard(false);
+
+      //   m_pdragsize->m_bLButtonDown = true;
+
+      //   m_pdragsize->m_bDrag = false;
+
+      //   m_pdragsize->m_pointLButtonDown = pmouse->m_point;
+
+      //   m_pdragsize->m_sizeLButtonDownOffset = m_pdragsize->m_pointLButtonDown - layout().origin();
+
+      //   set_mouse_capture();
+
+      //   pmouse->m_bRet = true;
+
+      //   return;
+
+      //}
+
+//      auto puserinteractionimplHost = get_window_impl();
+//
+//      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+//      {
+//
+//         if (::is_item_set(puseritemLButtonDown))
+//         {
+//
+//            //auto psession = get_session();
+//
+//            puserinteractionimplHost->m_puiLastLButtonDown = this;
+//
+//            puserinteractionimplHost->m_pitemLButtonDown = puseritemLButtonDown;
+//
+//            //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
+//            //{
+//
+//            //set_mouse_capture();
+//
+//            //}
+//
+//            track_mouse_leave();
+//
+//            // For Windows: ... (please fill in...)
+//            // For Linux: ...
+//            // - control box button scenario:
+//            //   user presses down the button,
+//            //   m_itemLButtonDown turns e_element_client.
+//            //   m_itemLButtonDown isn't e_element_none
+//            //   but it is e_element_client,
+//            //   so it sets m_bRet to false
+//            //   further processing continues,
+//            //   main frame handling (move_manager)
+//            //   starts (and in this case, captures the mouse) (BAD)
+//            //   Later l_button_up in this case will route
+//            //   to main frame (that captured the mouse for
+//            //   move_manager)
+////            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none
+//            //             && m_itemLButtonDown.m_eelement != e_element_client;
+//
+//            if (m_bClickDefaultMouseHandling)
+//            {
+//
+//               // For Windows: ... (please fill in...)
+//               // For Linux: ...
+//               // - control box button scenario:
+//               //   user presses down the button,
+//               //   m_itemLButtonDown turns e_element_client.
+//               //   m_itemLButtonDown isn't e_element_none,
+//               //   so it sets m_bRet to true
+//               //   further processing is quit,
+//               //   main frame handling (move_manager) is skipped. (OK)
+//               //   Later l_button_up can trigger button on click using
+//               //   interaction SimpleUIMouseHandling
+//               pmouse->m_bRet = true;
+//
+//               return;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      {
+//
+//         auto pappearance = get_appearance();
+//
+//         if (::is_set(pappearance))
+//         {
+//
+//            pappearance->m_pointLastCursor = pmouse->m_point;
+//
+//            ::point_i32 pointClient;
+//
+//            pointClient = pmouse->m_point;
+//
+//            screen_to_client()(pointClient);
+//
+//            auto ekeyModifiers = psession->key_modifiers();
+//
+//            bool bDoubleClick = false;
+//
+//            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+//            {
+//
+//               pmouse->m_bRet = true;
+//
+//               return;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      //         else
+//      //         {
+//      //
+//      //            if (pmessage->previous())
+//      //            {
+//      //
+//      //               return;
+//      //
+//      //            }
+//      //
+//      //            auto psession = get_session();
+//      //
+//      //            psession->m_puiLastLButtonDown = this;
+//      //
+//      ////            simple_on_control_event(pmessage, ::id_button_down);
+//      ////
+//      ////            if (pmessage->m_bRet)
+//      ////            {
+//      ////
+//      ////               pmouse->m_bRet = true;
+//      ////
+//      ////               return;
+//      ////
+//      ////            }
+//      //
+//      //         }
+//      //
+//      //      }
+//
+//      puseritemLButtonDown = update_hover(pmouse, e_zorder_back);
+//
+//      if (drag_on_button_down(puseritemLButtonDown))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+//      {
+//
+//         if (::is_item_set(puseritemLButtonDown))
+//         {
+//
+//            puserinteractionimplHost->m_puiLastLButtonDown = this;
+//
+//            puserinteractionimplHost->m_pitemLButtonDown = puseritemLButtonDown;
+//
+//            track_mouse_leave();
+//
+//            if (m_bClickDefaultMouseHandling)
+//            {
+//
+//               pmouse->m_bRet = true;
+//
+//               return;
+//
+//            }
+//
+//         }
+//
+//      }
+
+   }
+
+   void interaction::on_message_parent_left_button_up(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      auto pszType = typeid(*this).name();
+
+      ::information("interaction::on_message_left_button_up " + ::string(pszType));
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      //if (m_bEnableHorizontalBarDragScroll || m_bEnableVerticalBarDragScroll)
+      //{
+
+      //   //         m_pointDragScrollLeftButtonDown = pmouse->m_point;
+
+      //   m_bBarDragScrollLeftButtonDown = false;
+
+      //   release_mouse_capture();
+
+      //}
+
+      //if (m_bHorizontalDragScrollingActive)
+      //{
+
+      //   pmouse->m_bRet = true;
+
+      //   pmouse->m_lresult = 1;
+
+      //   m_bHorizontalDragScrollingActive = false;
+
+      //   return;
+
+      //}
+
+      if (drag_on_button_up(pmouse))
+      {
+
+         return;
+
+      }
+
+      //if (pmouse->previous())
+      //{
+
+      //   return;
+
+      //}
+
+      ////if (drag_on_button_up(pmouse))
+      ////{
+
+      ////   return;
+
+      ////}
+
+      ////if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+      ////{
+
+      ////   m_pdragmove->m_bLButtonDown = false;
+
+      ////   if (pmouse->previous())
+      ////   {
+
+      ////      return;
+
+      ////   }
+
+      ////   auto psession = get_session();
+
+      ////   auto puser = psession->user();
+
+      ////   auto pwindowing = puser->windowing();
+
+      ////   pwindowing->release_mouse_capture();
+
+      ////   m_pdragmove->m_bDrag = false;
+
+      ////   pmessage->m_bRet = true;
+
+      ////   return;
+
+      ////}
+
+      //if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+      //{
+
+      //   //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
+      //   //{
+
+      //   if (has_mouse_capture())
+      //   {
+
+      //      auto pwindowing = windowing();
+
+      //      pwindowing->release_mouse_capture();
+
+      //   }
+
+      //   //}
+
+      //   auto pwindowimpl = get_window_impl();
+
+      //   if (m_bClickDefaultMouseHandling && ::is_set(pwindowimpl->m_pitemLButtonDown))
+      //   {
+
+      //      auto puseritemLButtonDown = user_item(pwindowimpl->m_pitemLButtonDown);
+
+      //      auto puseritemLeftButtonUp = hit_test(pmouse, puseritemLButtonDown->m_ezorder);
+
+      //      bool bSameUserInteractionAsMouseDown = pwindowimpl->m_puiLastLButtonDown == this;
+
+      //      bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, puseritemLeftButtonUp);
+
+      //      //information("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+
+      //      if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
+      //      {
+
+      //         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
+
+      //         information() << "interaction::on_message_left_button_up on_click_generation ret="
+      //            << (int)pmessage->m_bRet;
+
+      //         if (pmessage->m_bRet)
+      //         {
+
+      //            pmouse->m_lresult = 1;
+
+      //         }
+      //         else
+      //         {
+
+      //            ::atom atom;
+
+      //            if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
+      //            {
+
+      //               atom = translate_property_id(m_atom);
+
+      //            }
+      //            else
+      //            {
+
+      //               atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+
+      //            }
+
+      //            if (has_handler())
+      //            {
+
+      //               auto ptopic = create_topic(id_click);
+
+      //               ptopic->m_puserelement = this;
+
+      //               ptopic->m_pitem = pwindowimpl->m_pitemLButtonDown;
+
+      //               ptopic->m_actioncontext.m_pmessage = pmouse;
+
+      //               ptopic->m_actioncontext.add(::e_source_user);
+
+      //               route(ptopic);
+
+      //               information() << "interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet;
+
+      //               pmessage->m_bRet = ptopic->m_bRet;
+
+      //            }
+
+      //            //if (!pmessage->m_bRet)
+      //            //{
+
+      //            //   auto estatus = command_handler(atom);
+
+      //            //   pmessage->m_bRet = estatus.succeeded();
+
+      //            //}
+
+      //            if (!pmessage->m_bRet)
+      //            {
+
+      //               ::message::command command(atom);
+
+      //               command.m_puiOther = this;
+
+      //               //route_command_message(&command);
+
+      //               route_command(&command);
+
+      //               information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet;
+
+      //               pmessage->m_bRet = command.m_bRet;
+
+      //            }
+
+      //            if (pmessage->m_bRet)
+      //            {
+
+      //               pmouse->m_lresult = 1;
+
+      //            }
+
+      //            //               if(!pmessage->m_bRet)
+      //            //               {
+      //            //
+      //            //                  auto linkedproperty = fetch_property(m_atom);
+      //            //
+      //            ////                  if(linkedproperty)
+      //            ////                  {
+      //            ////
+      //            ////                     linkproperty
+      //            ////
+      //            ////                  }
+      //            ////
+      //            ////               }
+      //         }
+
+      //      }
+      //      //            else
+      //      //            {
+      //      //
+      //      //               if (pmessage->previous())
+      //      //               {
+      //      //
+      //      //                  return;
+      //      //
+      //      //               }
+      //      //
+      //      //               simple_on_control_event(pmessage, ::id_button_down);
+      //      //
+      //      //            }
+
+      //   }
+
+      //   pwindowimpl->m_puiLastLButtonDown = nullptr;
+
+      //   //set_need_redraw();
+
+      //   //post_redraw();
+
+      //}
+
+      //auto pappearance = get_appearance();
+
+      //if (::is_set(pappearance))
+      //{
+
+      //   pappearance->m_pointLastCursor = pmouse->m_point;
+
+      //   ::point_i32 pointClient;
+
+      //   pointClient = pmouse->m_point;
+
+      //   screen_to_client()(pointClient);
+
+      //   auto psession = m_puserinteraction->get_session();
+
+      //   auto ekeyModifiers = psession->key_modifiers();
+
+      //   if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
+      //   {
+
+      //      pmessage->m_bRet = true;
+
+      //      return;
+
+      //   }
+
+      //}
+
+   }
+
+
+   void interaction::on_message_parent_mouse_move(::message::message * pmessage)
+   {
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      //if (m_bBarDragScrollLeftButtonDown)
+      //{
+
+      //   if (m_bEnableHorizontalBarDragScroll)
+      //   {
+
+      //      m_bHorizontalBarDragScrollingActive = true;
+
+      //      int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_point.x();
+
+      //      auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x() + iOffset, 0,
+      //                                                      m_pointBarDragScrollMax.x());
+
+      //      if (iHorizontalBarDragScroll != m_pointBarDragScroll.x())
+      //      {
+
+      //         m_pointBarDragScroll.x() = iHorizontalBarDragScroll;
+
+      //         set_need_redraw();
+
+      //         post_redraw();
+
+      //      }
+
+      //      pmouse->m_bRet = true;
+
+      //      return;
+
+      //   }
+
+      //   if (m_bEnableVerticalBarDragScroll)
+      //   {
+
+      //      m_bVerticalBarDragScrollingActive = true;
+
+      //      int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_point.y();
+
+      //      auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y() + iOffset, 0,
+      //                                                    m_pointBarDragScrollMax.y());
+
+      //      if (iVerticalBarDragScroll != m_pointBarDragScroll.y())
+      //      {
+
+      //         m_pointBarDragScroll.y() = iVerticalBarDragScroll;
+
+      //         set_need_redraw();
+
+      //         post_redraw();
+
+      //      }
+
+      //   }
+
+      //   pmouse->m_bRet = true;
+
+      //   return;
+
+      //}
+
+      //{
+
+      //   //synchronous_lock synchronouslock(this->synchronization());
+
+      //   pmouse->m_pcursor = get_mouse_cursor();
+
+      //   if (drag_on_mouse_move(pmouse))
+      //   {
+
+      //      pmessage->m_bRet = true;
+
+      //      return;
+
+      //   }
+
+      //   //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
+      //   //{
+
+      //   //   auto psession = get_session();
+
+      //   //   auto puser = psession->user();
+
+      //   //   auto pwindowing = puser->windowing();
+
+      //   //   auto pcursor = pwindowing->get_cursor(e_cursor_move);
+
+      //   //   pmouse->m_pcursor = pcursor;
+
+      //   //   if (!m_pdragmove->m_bDrag)
+      //   //   {
+
+      //   //      m_pdragmove->m_bDrag = true;
+
+      //   //      auto point = pmouse->m_point - m_pdragmove->m_sizeLButtonDownOffset;
+
+      //   //      move_to(point);
+
+      //   //      set_reposition();
+
+      //   //      set_need_redraw();
+
+      //   //      post_redraw();
+
+      //   //      m_pdragmove->m_bDrag = false;
+
+      //   //   }
+
+      //   //   pmessage->m_bRet = true;
+
+      //   //   return;
+
+      //   //}
+
+      //}
+
+      //if (m_bHoverDefaultMouseHandling)
+      {
+         auto type = __object_type(*this);
+
+         if (type.name_contains("button"))
+         {
+
+            //information("button");
+
+         }
+
+         //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
+
+         auto pitemFront = update_hover(pmouse, e_zorder_front);
+
+         //decltype(pitemFront) pitemBack;
+
+         //if (!pitemFront)
+         //{
+
+         //   pitemBack = update_hover(pmouse, e_zorder_back);
+
+         //}
+
+         //update_hover(pointCursorClient, false);
+
+//         if (::is_item_set(m_pitemHover))
+//         {
+//
+//            if (!m_bMouseHover)
+//            {
+//
+//               m_bMouseHover = true;
+//
+//               track_mouse_leave();
+//
+//               //auto pappearance = get_appearance();
+//
+//               //if (::is_set(pappearance))
+//               //{
+//
+//               //   ::point_i32 pointClient;
+//
+//               //   _screen_to_client(pointClient, pmouse->m_point);
+//
+//               //   auto psession = m_puserinteraction->get_session();
+//
+//               //   auto ekeyModifiers = psession->key_modifiers();
+//
+//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+//
+//               //}
+//
+//            }
+//
+//         }
+
+      }
+
+      //{
+
+      //   auto pappearance = get_appearance();
+
+      //   if (::is_set(pappearance))
+      //   {
+
+      //      pappearance->m_pointLastCursor = pmouse->m_point;
+
+      //      ::point_i32 pointClient;
+
+      //      pointClient = pmouse->m_point;
+
+      //      screen_to_client()(pointClient);
+
+      //      bool bRet;
+
+      //      auto psession = m_puserinteraction->get_session();
+
+      //      auto ekeyModifiers = psession->key_modifiers();
+
+      //      bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
+      //      /*{
+
+      //         bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
+
+      //      }
+      //      else
+      //      {*/
+
+      //      bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
+
+      //      if (get_wnd()->m_pinteractionimpl)
+      //      {
+
+      //         if (get_wnd()->m_pinteractionimpl->m_redrawitema.has_element())
+      //         {
+
+      //            post_redraw();
+
+      //         }
+
+      //      }
+      //      //}
+
+      //      pappearance->m_pointMouseLast = pointClient;
+
+      //      if (bRet)
+      //      {
+
+      //         pmessage->m_bRet = true;
+
+      //         return;
+
+      //      }
+
+      //   }
+
+      //}
+
+   }
+
+
    void interaction::on_message_left_button_down(::message::message *pmessage)
    {
 
@@ -19364,12 +20357,12 @@ return strClass;
 
       auto puseritemLButtonDown = update_hover(pmouse, e_zorder_front);
 
-      if (drag_on_button_down(puseritemLButtonDown))
+      /*if (drag_on_button_down(puseritemLButtonDown))
       {
 
          return;
 
-      }
+      }*/
 
       //if(m_pdragmove && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_item.m_eelement == e_element_client)
       //{
@@ -19574,6 +20567,9 @@ return strClass;
    }
 
 
+
+
+
    void interaction::on_message_left_button_up(::message::message *pmessage)
    {
 
@@ -19614,12 +20610,12 @@ return strClass;
 
       //}
 
-      if (drag_on_button_up(pmouse))
-      {
+      //if (drag_on_button_up(pmouse))
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       if (pmouse->previous())
       {
@@ -19850,6 +20846,274 @@ return strClass;
       }
 
    }
+
+
+
+   void interaction::on_message_mouse_move(::message::message * pmessage)
+   {
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (m_bBarDragScrollLeftButtonDown)
+      {
+
+         if (m_bEnableHorizontalBarDragScroll)
+         {
+
+            m_bHorizontalBarDragScrollingActive = true;
+
+            int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_point.x();
+
+            auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x() + iOffset, 0,
+                                                            m_pointBarDragScrollMax.x());
+
+            if (iHorizontalBarDragScroll != m_pointBarDragScroll.x())
+            {
+
+               m_pointBarDragScroll.x() = iHorizontalBarDragScroll;
+
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
+            pmouse->m_bRet = true;
+
+            return;
+
+         }
+
+         if (m_bEnableVerticalBarDragScroll)
+         {
+
+            m_bVerticalBarDragScrollingActive = true;
+
+            int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_point.y();
+
+            auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y() + iOffset, 0,
+                                                          m_pointBarDragScrollMax.y());
+
+            if (iVerticalBarDragScroll != m_pointBarDragScroll.y())
+            {
+
+               m_pointBarDragScroll.y() = iVerticalBarDragScroll;
+
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
+         }
+
+         pmouse->m_bRet = true;
+
+         return;
+
+      }
+
+      {
+
+         //synchronous_lock synchronouslock(this->synchronization());
+
+         pmouse->m_pcursor = get_mouse_cursor();
+
+         if (pmouse->m_pcursor)
+         {
+
+            if (pmouse->m_pcursor->m_ecursor == e_cursor_size_bottom)
+            {
+
+               information() << "e_cursor_size_bottom";
+
+            }
+
+         }
+         else
+         {
+
+            information() << "(no cursor)";
+
+         }
+
+         if (drag_on_mouse_move(pmouse))
+         {
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+         //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
+         //{
+
+         //   auto psession = get_session();
+
+         //   auto puser = psession->user();
+
+         //   auto pwindowing = puser->windowing();
+
+         //   auto pcursor = pwindowing->get_cursor(e_cursor_move);
+
+         //   pmouse->m_pcursor = pcursor;
+
+         //   if (!m_pdragmove->m_bDrag)
+         //   {
+
+         //      m_pdragmove->m_bDrag = true;
+
+         //      auto point = pmouse->m_point - m_pdragmove->m_sizeLButtonDownOffset;
+
+         //      move_to(point);
+
+         //      set_reposition();
+
+         //      set_need_redraw();
+
+         //      post_redraw();
+
+         //      m_pdragmove->m_bDrag = false;
+
+         //   }
+
+         //   pmessage->m_bRet = true;
+
+         //   return;
+
+         //}
+
+      }
+
+      //if (m_bHoverDefaultMouseHandling)
+      {
+         auto type = __object_type(*this);
+
+         if (type.name_contains("button"))
+         {
+
+            //information("button");
+
+         }
+
+         //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
+
+         //auto pitemFront = update_hover(pmouse, e_zorder_front);
+
+         //decltype(pitemFront) pitemBack;
+
+         //if (!pitemFront)
+         //{
+
+         auto pitemBack = update_hover(pmouse, e_zorder_back);
+
+         //}
+
+         //update_hover(pointCursorClient, false);
+
+//         if (::is_item_set(m_pitemHover))
+//         {
+//
+//            if (!m_bMouseHover)
+//            {
+//
+//               m_bMouseHover = true;
+//
+//               track_mouse_leave();
+//
+//               //auto pappearance = get_appearance();
+//
+//               //if (::is_set(pappearance))
+//               //{
+//
+//               //   ::point_i32 pointClient;
+//
+//               //   _screen_to_client(pointClient, pmouse->m_point);
+//
+//               //   auto psession = m_puserinteraction->get_session();
+//
+//               //   auto ekeyModifiers = psession->key_modifiers();
+//
+//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+//
+//               //}
+//
+//            }
+//
+//         }
+
+      }
+
+      {
+
+         auto pappearance = get_appearance();
+
+         if (::is_set(pappearance))
+         {
+
+            pappearance->m_pointLastCursor = pmouse->m_point;
+
+            ::point_i32 pointClient;
+
+            pointClient = pmouse->m_point;
+
+            screen_to_client()(pointClient);
+
+            bool bRet;
+
+            auto psession = m_puserinteraction->get_session();
+
+            auto ekeyModifiers = psession->key_modifiers();
+
+            bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
+            /*{
+
+               bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
+
+            }
+            else
+            {*/
+
+            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
+
+            if (get_wnd()->m_pinteractionimpl)
+            {
+
+               if (get_wnd()->m_pinteractionimpl->m_redrawitema.has_element())
+               {
+
+                  post_redraw();
+
+               }
+
+            }
+            //}
+
+            pappearance->m_pointMouseLast = pointClient;
+
+            if (bRet)
+            {
+
+               pmessage->m_bRet = true;
+
+               return;
+
+            }
+
+         }
+
+      }
+
+   }
+
 
 
    void interaction::on_message_left_button_double_click(::message::message *pmessage)
@@ -20255,253 +21519,6 @@ return strClass;
 
 #endif // MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
 
-
-   void interaction::on_message_mouse_move(::message::message *pmessage)
-   {
-
-      if (!is_window_enabled())
-      {
-
-         return;
-
-      }
-
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-      if (m_bBarDragScrollLeftButtonDown)
-      {
-
-         if (m_bEnableHorizontalBarDragScroll)
-         {
-
-            m_bHorizontalBarDragScrollingActive = true;
-
-            int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_point.x();
-
-            auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x() + iOffset, 0,
-                                                            m_pointBarDragScrollMax.x());
-
-            if (iHorizontalBarDragScroll != m_pointBarDragScroll.x())
-            {
-
-               m_pointBarDragScroll.x() = iHorizontalBarDragScroll;
-
-               set_need_redraw();
-
-               post_redraw();
-
-            }
-
-            pmouse->m_bRet = true;
-
-            return;
-
-         }
-
-         if (m_bEnableVerticalBarDragScroll)
-         {
-
-            m_bVerticalBarDragScrollingActive = true;
-
-            int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_point.y();
-
-            auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y() + iOffset, 0,
-                                                          m_pointBarDragScrollMax.y());
-
-            if (iVerticalBarDragScroll != m_pointBarDragScroll.y())
-            {
-
-               m_pointBarDragScroll.y() = iVerticalBarDragScroll;
-
-               set_need_redraw();
-
-               post_redraw();
-
-            }
-
-         }
-
-         pmouse->m_bRet = true;
-
-         return;
-
-      }
-
-      {
-
-         //synchronous_lock synchronouslock(this->synchronization());
-
-         pmouse->m_pcursor = get_mouse_cursor();
-
-         if (drag_on_mouse_move(pmouse))
-         {
-
-            pmessage->m_bRet = true;
-
-            return;
-
-         }
-
-         //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
-         //{
-
-         //   auto psession = get_session();
-
-         //   auto puser = psession->user();
-
-         //   auto pwindowing = puser->windowing();
-
-         //   auto pcursor = pwindowing->get_cursor(e_cursor_move);
-
-         //   pmouse->m_pcursor = pcursor;
-
-         //   if (!m_pdragmove->m_bDrag)
-         //   {
-
-         //      m_pdragmove->m_bDrag = true;
-
-         //      auto point = pmouse->m_point - m_pdragmove->m_sizeLButtonDownOffset;
-
-         //      move_to(point);
-
-         //      set_reposition();
-
-         //      set_need_redraw();
-
-         //      post_redraw();
-
-         //      m_pdragmove->m_bDrag = false;
-
-         //   }
-
-         //   pmessage->m_bRet = true;
-
-         //   return;
-
-         //}
-
-      }
-
-      //if (m_bHoverDefaultMouseHandling)
-      {
-         auto type = __object_type(*this);
-
-         if (type.name_contains("button"))
-         {
-
-            //information("button");
-
-         }
-
-         //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
-
-         auto pitemFront = update_hover(pmouse, e_zorder_front);
-         
-         decltype(pitemFront) pitemBack;
-         
-         if(!pitemFront)
-         {
-            
-            pitemBack = update_hover(pmouse, e_zorder_back);
-            
-         }
-
-         //update_hover(pointCursorClient, false);
-
-//         if (::is_item_set(m_pitemHover))
-//         {
-//
-//            if (!m_bMouseHover)
-//            {
-//
-//               m_bMouseHover = true;
-//
-//               track_mouse_leave();
-//
-//               //auto pappearance = get_appearance();
-//
-//               //if (::is_set(pappearance))
-//               //{
-//
-//               //   ::point_i32 pointClient;
-//
-//               //   _screen_to_client(pointClient, pmouse->m_point);
-//
-//               //   auto psession = m_puserinteraction->get_session();
-//
-//               //   auto ekeyModifiers = psession->key_modifiers();
-//
-//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
-//
-//               //}
-//
-//            }
-//
-//         }
-
-      }
-
-      {
-
-         auto pappearance = get_appearance();
-
-         if (::is_set(pappearance))
-         {
-
-            pappearance->m_pointLastCursor = pmouse->m_point;
-
-            ::point_i32 pointClient;
-
-            pointClient = pmouse->m_point;
-
-            screen_to_client()(pointClient);
-
-            bool bRet;
-
-            auto psession = m_puserinteraction->get_session();
-
-            auto ekeyModifiers = psession->key_modifiers();
-
-            bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
-            /*{
-
-               bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
-
-            }
-            else
-            {*/
-
-            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
-
-            if (get_wnd()->m_pinteractionimpl)
-            {
-               
-               if (get_wnd()->m_pinteractionimpl->m_redrawitema.has_element())
-               {
-
-                  post_redraw();
-
-               }
-
-            }
-            //}
-
-            pappearance->m_pointMouseLast = pointClient;
-
-            if (bRet)
-            {
-
-               pmessage->m_bRet = true;
-
-               return;
-
-            }
-
-         }
-
-      }
-
-   }
 
 
    void interaction::on_message_mouse_wheel(::message::message *pmessage)
@@ -21638,7 +22655,7 @@ return strClass;
    }
 
 
-   item_pointer interaction::get_child_as_item(::index iIndex)
+   ::item_pointer interaction::get_child_as_item(::index iIndex)
    {
 
       if (!m_puserinteractionpointeraChild)
@@ -21696,7 +22713,7 @@ return strClass;
    }
 
    
-   item_pointer interaction::hover_item()
+   ::item_pointer interaction::hover_item()
    {
 
       return m_pitemHover;

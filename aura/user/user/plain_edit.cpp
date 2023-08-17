@@ -943,7 +943,7 @@ namespace user
 
       auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
-      set_mouse_cursor(pcursor);
+      set_default_mouse_cursor(pcursor);
 
       pcreate->previous();
 
@@ -1853,7 +1853,7 @@ namespace user
 
          pmouse->m_pcursor = pcursor;
 
-         set_mouse_cursor(pcursor);
+         set_default_mouse_cursor(pcursor);
 
          if (m_bLMouseDown)
          {

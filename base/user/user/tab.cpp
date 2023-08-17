@@ -1592,7 +1592,7 @@ namespace user
 
       auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
-      set_mouse_cursor(pcursor);
+      set_default_mouse_cursor(pcursor);
 
       __construct_new(get_data()->m_pimagelist);
 

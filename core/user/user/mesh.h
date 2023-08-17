@@ -567,7 +567,7 @@ namespace user
 
       void set_current_item(::item * pitem, const ::action_context & action_context) override;
 
-      item_pointer current_item() override;
+      ::item_pointer current_item() override;
 
       virtual void  set_current_item(const index_array & iaSel, const ::action_context & action_context);
 

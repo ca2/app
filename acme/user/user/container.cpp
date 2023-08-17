@@ -136,16 +136,23 @@ namespace user
    ::user::item * container::user_item(const ::item * pitem)
    {
 
-      auto & useritem = m_useritemmap[pitem];
+      auto & puseritem = m_useritemmap[pitem];
 
-      if (!useritem.m_pitem && pitem)
+      if (!puseritem)
       {
 
-         useritem.m_pitem = (::item *)pitem;
+         __construct_new(puseritem);
 
       }
 
-      return &useritem;
+      if (!puseritem->m_pitem && pitem)
+      {
+
+         puseritem->m_pitem = (::item *)pitem;
+
+      }
+
+      return puseritem;
 
    }
 
@@ -297,7 +304,7 @@ namespace user
    }
 
 
-   item_pointer container::selected_item()
+   ::item_pointer container::selected_item()
    {
 
       auto iCount = get_child_as_item_count();
@@ -352,7 +359,7 @@ namespace user
    }
 
 
-   item_pointer container::hover_item()
+   ::item_pointer container::hover_item()
    {
 
       auto iCount = get_child_as_item_count();
@@ -376,7 +383,7 @@ namespace user
    }
 
 
-   item_pointer container::get_child_as_item(::index iIndex)
+   ::item_pointer container::get_child_as_item(::index iIndex)
    {
 
       return nullptr;

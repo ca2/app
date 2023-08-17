@@ -55,7 +55,10 @@ namespace experience
    bool size_manager::on_message_left_button_down(::message::mouse * pmouse)
    {
 
-      ASSERT(pmouse->m_atom == e_message_left_button_down || pmouse->m_atom == e_message_non_client_left_button_down);
+      ASSERT(
+         pmouse->m_atom == e_message_left_button_down 
+         || pmouse->m_atom == e_message_parent_left_button_down
+         || pmouse->m_atom == e_message_non_client_left_button_down);
 
       if(!m_pframewindow->is_sizing_enabled())
       {
@@ -169,7 +172,10 @@ namespace experience
 
       }
 
-      ASSERT(pmouse->m_atom == e_message_mouse_move || pmouse->m_atom == e_message_non_client_mouse_move);
+      ASSERT(
+         pmouse->m_atom == e_message_mouse_move 
+         || pmouse->m_atom == e_message_parent_mouse_move
+         || pmouse->m_atom == e_message_non_client_mouse_move);
 
       if(m_eframeSizing != e_frame_none)
       {
@@ -182,7 +188,7 @@ namespace experience
 
          auto pcursor = pwindowing->get_cursor(ecursor);
 
-         m_pframewindow->set_mouse_cursor(pcursor);
+         //m_pframewindow->set_mouse_cursor(pcursor);
 
          pmouse->m_pcursor = pcursor;
 
@@ -201,6 +207,8 @@ namespace experience
 
          if (m_eframeCursor != e_frame_none)
          {
+
+            //m_pframewindow->set_mouse_cursor(nullptr);
 
             m_eframeCursor = e_frame_none;
 
@@ -225,7 +233,7 @@ namespace experience
 
       pmouse->m_pcursor = pcursor;
 
-      m_pframewindow->set_mouse_cursor(pcursor);
+      //m_pframewindow->set_mouse_cursor(pcursor);
 
       pmouse->m_lresult = 1;
 

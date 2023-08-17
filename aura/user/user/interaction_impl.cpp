@@ -2375,25 +2375,25 @@ namespace user
 
          ::user::interaction * puserinteractionMouse = nullptr;
 
-         if (m_puserinteractionMouseCapture)
-         {
+         //if (m_puserinteractionMouseCapture)
+         //{
 
-            //            if(g_puserinteractionMouseCapture123 == nullptr)
-            //            {
-            //
-            //               g_puserinteractionMouseCapture123 = m_puserinteractionCapture;
-            //
-            //            }
-            //            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
-            //            {
-            //
-            //               information("different capture (1)");
-            //
-            //            }
+         //   //            if(g_puserinteractionMouseCapture123 == nullptr)
+         //   //            {
+         //   //
+         //   //               g_puserinteractionMouseCapture123 = m_puserinteractionCapture;
+         //   //
+         //   //            }
+         //   //            else if(g_puserinteractionMouseCapture123 != m_puserinteractionCapture)
+         //   //            {
+         //   //
+         //   //               information("different capture (1)");
+         //   //
+         //   //            }
 
-            puserinteractionMouse = m_puserinteractionMouseCapture;
+         //   puserinteractionMouse = m_puserinteractionMouseCapture;
 
-         }
+         //}
 
          //         if(g_puserinteractionMouseCapture123 != nullptr)
          //         {
@@ -2445,6 +2445,19 @@ namespace user
 
          }
 
+         if (m_puserinteractionMouseCapture)
+         {
+
+            m_puserinteractionMouseCapture->on_child_from_point_mouse_message_routing(pmouse);
+
+         }
+         else
+         {
+
+            m_puserinteraction->on_mouse_message(pmouse);
+
+         }
+
          //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : __type_name(puserinteractionMouse));
          //
          //         if(pmouse->m_atom == e_message_mouse_move)
@@ -2472,37 +2485,37 @@ namespace user
          //
          //         }
 
-         if (puserinteractionMouse)
-         {
+         //if (puserinteractionMouse)
+         //{
 
-            //            if(pmouse->m_atom == ::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
-            //            {
-            //               
-            //               pmouse->m_bRet = true;
-            //               
-            //               return;
-            //               
-            //            }
+         //   //            if(pmouse->m_atom == ::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
+         //   //            {
+         //   //               
+         //   //               pmouse->m_bRet = true;
+         //   //               
+         //   //               return;
+         //   //               
+         //   //            }
 
-            auto puserinteractionItem = puserinteractionMouse;
+         //   auto puserinteractionItem = puserinteractionMouse;
 
-            do
-            {
+         //   do
+         //   {
 
-               puserinteractionItem->route_message(pmouse);
+         //      puserinteractionItem->route_message(pmouse);
 
-               if (pmouse->m_bRet)
-               {
+         //      if (pmouse->m_bRet)
+         //      {
 
-                  break;
+         //         break;
 
-               }
+         //      }
 
-               puserinteractionItem = puserinteractionItem->get_parent();
+         //      puserinteractionItem = puserinteractionItem->get_parent();
 
-            } while (puserinteractionItem != nullptr);
+         //   } while (puserinteractionItem != nullptr);
 
-         }
+         //}
 
          if (pmouse->m_atom == e_message_left_button_up)
          {
@@ -2633,6 +2646,9 @@ namespace user
    }
 
 
+
+
+
    bool interaction_impl::on_mouse_message(::message::mouse * pmouse)
    {
 
@@ -2748,76 +2764,148 @@ namespace user
 
       }
 
-      auto pchild = m_puserinteraction->child_from_point(pmouse->m_point);
+      //auto pchild = m_puserinteraction->child_from_point(pmouse->m_point);
 
-      if (pchild)
-      {
+      //if (pchild)
+      //{
 
-         string strType = __type_name(pchild);
+      //   string strType = __type_name(pchild);
 
-         if (strType.case_insensitive_contains("button"))
-         {
+      //   if (strType.case_insensitive_contains("button"))
+      //   {
 
-            information("mouse transfer on button");
+      //      information("mouse transfer on button");
 
-         }
-         else if (strType.case_insensitive_contains("tab"))
-         {
+      //   }
+      //   else if (strType.case_insensitive_contains("tab"))
+      //   {
 
-            information("mouse transfer on tab");
+      //      information("mouse transfer on tab");
 
-         }
+      //   }
 
-         auto puserinteraction = pchild;
+      //   auto puserinteraction = pchild;
 
-         ::user::interaction_array interactionaHandled;
+      //   ::user::interaction_array interactionaHandled;
 
-         while (::is_set(puserinteraction))
-         {
+      //   while (::is_set(puserinteraction))
+      //   {
 
-            puserinteraction->route_message(pmouse);
+      //      puserinteraction->route_message(pmouse);
 
-            interactionaHandled.add_interaction(puserinteraction);
+      //      interactionaHandled.add_interaction(puserinteraction);
 
-            if (pmouse->m_bRet)
-            {
+      //      if (pmouse->m_bRet)
+      //      {
 
-               break;
+      //         break;
 
-            }
+      //      }
 
-            puserinteraction = puserinteraction->get_parent();
+      //      puserinteraction = puserinteraction->get_parent();
 
-            if (::is_set(puserinteraction))
-            {
+      //      if (::is_set(puserinteraction))
+      //      {
 
-               auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
+      //         auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
 
-               if (::is_set(pchild))
-               {
+      //         if (::is_set(pchild))
+      //         {
 
-                  pchild->route_message(pmouse);
+      //            pchild->route_message(pmouse);
 
-                  if (pmouse->m_bRet)
-                  {
+      //            if (pmouse->m_bRet)
+      //            {
 
-                     break;
+      //               break;
 
-                  }
+      //            }
 
-               }
+      //         }
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         m_puserinteraction->route_message(pmouse);
+      //   m_puserinteraction->route_message(pmouse);
 
-      }
+      //}
+
+
+      m_puserinteraction->on_mouse_message(pmouse);
+
+      //if (pchild)
+      //{
+
+      //   string strType = __type_name(pchild);
+
+      //   if (strType.case_insensitive_contains("button"))
+      //   {
+
+      //      information("mouse transfer on button");
+
+      //   }
+      //   else if (strType.case_insensitive_contains("tab"))
+      //   {
+
+      //      information("mouse transfer on tab");
+
+      //   }
+
+      //   auto puserinteraction = pchild;
+
+      //   ::user::interaction_array interactionaHandled;
+
+      //   while (::is_set(puserinteraction))
+      //   {
+
+      //      puserinteraction->route_message(pmouse);
+
+      //      interactionaHandled.add_interaction(puserinteraction);
+
+      //      if (pmouse->m_bRet)
+      //      {
+
+      //         break;
+
+      //      }
+
+      //      puserinteraction = puserinteraction->get_parent();
+
+      //      if (::is_set(puserinteraction))
+      //      {
+
+      //         auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
+
+      //         if (::is_set(pchild))
+      //         {
+
+      //            pchild->route_message(pmouse);
+
+      //            if (pmouse->m_bRet)
+      //            {
+
+      //               break;
+
+      //            }
+
+      //         }
+
+      //      }
+
+      //   }
+
+      //}
+      //else
+      //{
+
+      //   m_puserinteraction->route_message(pmouse);
+
+      //}
 
       return true;
 

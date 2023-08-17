@@ -108,7 +108,7 @@ namespace user
 
       //virtual void set_cursor(enum_cursor ecursor);
 
-      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
+      virtual void set_default_mouse_cursor(::windowing::cursor * pcursor);
 
       //virtual ::point_i32 get_cursor_position() const;
 

@@ -25,6 +25,7 @@ namespace aura
 
       void initialize_context_1() override;
 
+      virtual void defer_initialize_context_image();
 
       virtual ::image_pointer create_image();
 

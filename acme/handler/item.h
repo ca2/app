@@ -465,9 +465,8 @@ inline bool is_item_equivalent(const ::item_t * pitem1, const ::item_t * pitem2)
 
 
 inline item_t::item_t(const ::item * pitem) :
-   item_t(pitem->m_item)
+   item_t(::is_set(pitem) ? pitem->m_item : ::item_t())
 {
-
 
 }
 

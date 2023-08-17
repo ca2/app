@@ -359,7 +359,7 @@ namespace user
       class ::time                              m_timeLastVisualChange;
       string                                    m_strName;
       u64                                       m_uiUserInteractionFlags;
-      ::pointer<::windowing::cursor>            m_pcursor;
+      ::pointer<::windowing::cursor>            m_pcursorDefault;
       string                                    m_strWindowText2;
       ::a_string_function                       m_astringfunctionWindowText;
 
@@ -912,6 +912,10 @@ namespace user
       bool is_window_screen_visible(enum_layout elayout = e_layout_design);
 
 
+      virtual bool on_mouse_message(::message::mouse * pmouse);
+
+      virtual bool on_child_from_point_mouse_message_routing(::message::mouse * pmouse);
+
       virtual void create_message_queue(const ::string & strName) override;
 
       virtual ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
@@ -956,7 +960,7 @@ namespace user
       //virtual void set_cursor(enum_cursor ecursor) override;
 
 
-      virtual void set_mouse_cursor(::windowing::cursor * pcursor) override;
+      void set_default_mouse_cursor(::windowing::cursor * pcursor) override;
 
 
       //virtual ::point_i32 get_cursor_position() override;
@@ -1572,7 +1576,9 @@ namespace user
 
       
 
-
+      DECLARE_MESSAGE_HANDLER(on_message_parent_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_parent_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_parent_mouse_move);
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
@@ -1649,6 +1655,7 @@ namespace user
 
       
       ::user::interaction* child_from_point(const ::point_i32& point, ::i32 iLevel = -1, const ::user::interaction_array * pinteractionaExclude = nullptr);
+      ::user::interaction * _child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude = nullptr);
 
 
       bool is_ascendant(element * puiIsAscendant, bool bIncludeSelf) override;
@@ -2372,7 +2379,7 @@ namespace user
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
 
-      item_pointer get_child_as_item(::index iIndex) override;
+      ::item_pointer get_child_as_item(::index iIndex) override;
       ::count get_child_as_item_count() override;
 
 
@@ -2380,7 +2387,7 @@ namespace user
       void on_item_hover(::item* pitem) override;
 
 
-      item_pointer hover_item() override;
+      ::item_pointer hover_item() override;
 
 
       //template < typename OFFSETABLE, typename SOURCE >

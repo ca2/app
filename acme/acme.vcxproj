@@ -878,6 +878,7 @@
     <ClInclude Include="operating_system\windows\nano_http\http.h" />
     <ClInclude Include="operating_system\windows\nano_http\_nano_http.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
+    <ClInclude Include="parallelization\retry.h" />
     <ClInclude Include="platform\integration_context.h" />
     <ClInclude Include="platform\nano_http.h" />
     <ClInclude Include="platform\nano_http_asynchronous_source.h" />

@@ -14,9 +14,6 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\filesystem\filesystem">
-      <UniqueIdentifier>{a1c58f3a-f4e9-4de5-a300-cf9b6065e04b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -953,25 +950,13 @@
     <ClInclude Include="user\user\_.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="message\dispatcher1.h">
+    <ClInclude Include="message\dispatcher.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_context.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_system.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\data.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
@@ -1339,12 +1324,6 @@
     <ClCompile Include="interprocess\task.cpp">
       <Filter>Source Files\interprocess</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\watch.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\watcher.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="networking\application\application.cpp">
       <Filter>Source Files\networking\application</Filter>
     </ClCompile>
@@ -1353,9 +1332,6 @@
     </ClCompile>
     <ClCompile Include="networking\application\application_socket.cpp">
       <Filter>Source Files\networking\application</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\action.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\department.cpp">
       <Filter>Source Files\operating_system</Filter>

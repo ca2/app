@@ -116,7 +116,7 @@ namespace windows
       {
          auto    bResults = WinHttpReceiveResponse(m_hinternet, NULL);/**/
 
-         if (bResults)
+         if (!bResults)
          {
 
             return false;
@@ -124,7 +124,7 @@ namespace windows
          }
 
          DWORD dwSize = 0;
-         while (true)
+         do
          {
 
             if (!WinHttpQueryDataAvailable(m_hinternet, &dwSize))

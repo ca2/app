@@ -2675,63 +2675,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   string system::get_system_configuration()
-   {
-
-#ifndef CA2_PLATFORM_VERSION
-
-#error "CA2_PLATFORM_VERSION not defined"
-
-#endif
-
-#ifndef CA2_BASIS
-
-#error "CA2_BASIS not defined"
-
-#endif
-
-#ifndef CA2_STAGE
-
-#error "CA2_STAGE not defined"
-
-#endif
-
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      return "basis";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
-
-#elif CA2_PLATFORM_VERSION == CA2_STAGE
-
-      return "stage";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
-
-#else
-
-#error "CA2_PLATFORM_VERSION has unsupported definition"
-
-#endif
-
-   }
-
-
-   string system::get_system_platform()
-   {
-
-#ifdef X86
-
-      return "x86";
-
-#else
-
-      return "x64";
-
-#endif
-
-   }
-
+   
 
    void system::on_request(::request* prequest)
    {
@@ -2740,45 +2684,6 @@ pacmedirectory->create("/ca2core");
 
    }
 
-
-   ::file::path system::local_get_matter_path()
-   {
-
-      return acmedirectory()->ca2roaming() / "appmatter";
-
-   }
-
-
-   ::file::path system::local_get_matter_path(string strMatter)
-   {
-
-#ifdef UNIVERSAL_WINDOWS
-
-      return "";
-
-#else
-
-      return local_get_matter_path() / strMatter;
-
-#endif
-
-   }
-
-
-   ::file::path system::local_get_matter_cache_path()
-   {
-
-      return acmedirectory()->ca2roaming() / "cache/appmatter";
-
-   }
-
-
-   ::file::path system::local_get_matter_cache_path(string strMatter)
-   {
-
-      return local_get_matter_cache_path() / strMatter;
-
-   }
 
 
    //   bool system::find_applications_from_cache()

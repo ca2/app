@@ -3389,6 +3389,9 @@
     <ClInclude Include="crypto\_.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\retry.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

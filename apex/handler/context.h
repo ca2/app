@@ -4,7 +4,7 @@
 //#include "acme/primitive/primitive/matter.h"
 
 
-class CLASS_DECL_APEX context :
+class CLASS_DECL_ACME context :
    virtual public matter
 {
 public:

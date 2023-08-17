@@ -53,7 +53,8 @@ namespace acme
 
       inline ::context_image* context_image() { return m_pcontextimage; }
 
-
+      virtual bool is_system() const;
+      virtual bool is_session() const;
 
       virtual void translate_text_data(::text::data * ptextdata);
       virtual ::text::text __text(const ::atom& atom) override;
@@ -69,8 +70,8 @@ namespace acme
       inline ::os_context* os_context() { return m_poscontext; }
 
 
-      inline ::dir_context * dir() { return m_pdir; }
-      inline ::file_context * file() { return m_pfile; }
+      virtual ::dir_context* dir();
+      virtual ::file_context* file();
       ::dir_system * dirsystem();
       ::file_system * filesystem();
 
@@ -97,11 +98,11 @@ namespace acme
 
 
       virtual string matter_locator(string strApp);
-      virtual string matter_locator(::apex::application * papp);
+      virtual string matter_locator(::acme::application * papp);
 
 
       virtual void add_matter_locator(string strApp);
-      virtual void add_matter_locator(::apex::application * papp);
+      virtual void add_matter_locator(::acme::application * papp);
 
 
       virtual ::file::path defer_process_matter_path(::file::path path);

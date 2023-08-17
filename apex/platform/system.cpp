@@ -16,6 +16,7 @@
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/crypto/crypto.h"
 #include "acme/exception/dump_context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -29,7 +30,6 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/command_line.h"
-#include "apex/crypto/crypto.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
@@ -2964,12 +2964,12 @@ pacmedirectory->create("/ca2core");
 
 #endif
 
-   ::crypto::crypto* system::crypto()
-   {
+   //::crypto::crypto* system::crypto()
+   //{
 
-      return m_pcrypto;
+   //   return m_pcrypto;
 
-   }
+   //}
 
 
    //::pointer<::account::user_set>system::userset()

@@ -374,7 +374,7 @@ struct pixmap;
 class machine_event_central;
 
 
-#include "apex/crypto/_.h"
+#include "acme/crypto/_.h"
 
 
 extern "C"
@@ -1231,7 +1231,7 @@ namespace mathematics
 
 
 
-#include "apex/compress/_.h"
+#include "acme/compress/_.h"
 
 
 //#include "apex/platform/app_consumer.h"

@@ -2162,6 +2162,25 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 }
 
 
+::file::path file_context::get_filesystem_file(const ::file::path& path)
+{
+
+   if (acmefile()->exists(path))
+   {
+
+      return path;
+
+   }
+
+
+   auto pathTemp = this->time_square(path.title(), "." + path.all_extensions());
+
+   copy(pathTemp, path);
+
+   return pathTemp;
+
+ }
+
 
 void file_context::get_status(::file::file_status & status, const ::file::path &path)
 {

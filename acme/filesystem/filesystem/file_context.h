@@ -57,6 +57,12 @@ public:
    virtual void trash_that_is_not_trash(::file::path_array & patha);
 
 
+   virtual ::file::path get_filesystem_file(const ::file::path& path);
+
+
+
+
+
    virtual void get_status(::file::file_status & status, const ::file::path & path);
    virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 

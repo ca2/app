@@ -169,7 +169,6 @@
 
       virtual ::file::path standalone();
 
-
       //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle);
       //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain);
       //virtual string matter(const ::file::path_array & patha, bool bDir);

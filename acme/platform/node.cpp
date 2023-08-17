@@ -3157,6 +3157,23 @@ return false;
    }
 
 
+   void node::play_sound(const ::file::path& path)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   void node::speak(const ::scoped_string& scopedstr)
+   {
+
+      throw interface_only();
+
+   }
+
+
+
 } // namespace acme
 
 

@@ -2746,7 +2746,7 @@ namespace user
    }
 
 
-   void primitive::set_mouse_cursor(::windowing::cursor * pcursor)
+   void primitive::set_default_mouse_cursor(::windowing::cursor * pcursor)
    {
 
       //return success_none;

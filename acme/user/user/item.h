@@ -287,8 +287,8 @@ namespace user
    ////} // namespace geometry2d
    ////
 
-   class CLASS_DECL_ACME item
-//      virtual public ::particle,
+   class CLASS_DECL_ACME item :
+      virtual public ::particle
   //    virtual public ::user::ITEM
    {
    public:
@@ -601,11 +601,12 @@ namespace user
 
    };
 
+   using item_pointer = ::pointer < item >;
 
    //using item_pointer = ::pointer < ::user::item >;
-   using item_array = ::array < item >;
+   using item_array = ::pointer_array < item >;
 
-   using item_map = map < const ::item *, item >;
+   using item_map = map < item_t, item_pointer >;
 
 } // namespace user
 

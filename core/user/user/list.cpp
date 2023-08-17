@@ -7473,7 +7473,7 @@ namespace user
    }
 
 
-   item_pointer list::current_item()
+   ::item_pointer list::current_item()
    {
 
       if (m_rangeSelection.get_item_count() != 1)

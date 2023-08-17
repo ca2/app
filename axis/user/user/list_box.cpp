@@ -1047,7 +1047,7 @@ namespace user
    }
 
 
-   item_pointer list_box::current_item()
+   ::item_pointer list_box::current_item()
    {
 
       return ::user::interaction::current_item();
@@ -1055,7 +1055,7 @@ namespace user
    }
 
 
-   item_pointer list_box::hover_item()
+   ::item_pointer list_box::hover_item()
    {
 
       return ::user::interaction::hover_item();

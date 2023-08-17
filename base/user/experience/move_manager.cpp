@@ -117,7 +117,10 @@ namespace experience
 
       }
 
-      ASSERT(pmouse->m_atom == e_message_mouse_move || pmouse->m_atom == e_message_non_client_mouse_move);
+      ASSERT(
+         pmouse->m_atom == e_message_mouse_move 
+         || pmouse->m_atom == e_message_parent_mouse_move
+         || pmouse->m_atom == e_message_non_client_mouse_move);
 
       auto pwindowing = m_pframewindow->windowing();
 
@@ -125,7 +128,7 @@ namespace experience
 
       pmouse->m_pcursor = pcursor;
 
-      m_pframewindow->set_mouse_cursor(pcursor);
+      //m_pframewindow->set_mouse_cursor(pcursor);
 
       if (!window_is_moving())
       {

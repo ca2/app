@@ -1449,6 +1449,10 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
+      MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
+      MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
+      MESSAGE_LINK(e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
+      MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);

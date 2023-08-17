@@ -559,7 +559,7 @@ namespace user
    }
 
 
-   item_pointer font_list::current_item()
+   ::item_pointer font_list::current_item()
    {
 
       synchronous_lock synchronouslock(m_pfontlist->synchronization());
@@ -583,7 +583,7 @@ namespace user
    }
 
 
-   item_pointer font_list::hover_item()
+   ::item_pointer font_list::hover_item()
    {
 
       synchronous_lock synchronouslock(m_pfontlist->synchronization());

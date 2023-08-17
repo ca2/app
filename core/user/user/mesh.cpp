@@ -6021,7 +6021,7 @@ namespace user
    }
 
 
-   item_pointer mesh::current_item()
+   ::item_pointer mesh::current_item()
    {
 
       if (m_rangeSelection.get_item_count() != 1)

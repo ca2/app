@@ -47,6 +47,14 @@ namespace aura
 
       ::apex::context::initialize_context_1();
 
+      defer_initialize_context_image();
+
+   }
+
+
+   void context::defer_initialize_context_image()
+   {
+
       if (acmeapplication()->m_bImaging)
       {
 
@@ -65,7 +73,6 @@ namespace aura
       }
 
    }
-
 
 
    //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)

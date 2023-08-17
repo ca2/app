@@ -14,7 +14,7 @@ namespace crypto
    class initializer;
 
 
-   class CLASS_DECL_APEX crypto :
+   class CLASS_DECL_ACME crypto :
       virtual public ::object
    {
    public:
@@ -132,6 +132,9 @@ namespace crypto
       //virtual void np_make_zigbert_rsa(const ::string & strDir, const ::string & strSignerPath, const ::string & strKeyPath, const ::string & strOthersPath, const ::string & strSignature);
 
 
+
+
+
    };
 
 
@@ -142,9 +145,9 @@ namespace crypto
 
 
 
-CLASS_DECL_APEX void stunCalculateIntegrity_longterm(char* hmac, const char* input, i32 length, const char *username, const char *realm, const char *password);
+CLASS_DECL_ACME void stunCalculateIntegrity_longterm(char* hmac, const char* input, i32 length, const char *username, const char *realm, const char *password);
 
-CLASS_DECL_APEX void stunCalculateIntegrity_shortterm(char* hmac, const char* input, i32 length, const char* key);
+CLASS_DECL_ACME void stunCalculateIntegrity_shortterm(char* hmac, const char* input, i32 length, const char* key);
 
 
-CLASS_DECL_APEX void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);
+CLASS_DECL_ACME void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

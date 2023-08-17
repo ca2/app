@@ -27,17 +27,17 @@
 #include "acme/primitive/string/str.h"
 #include "acme/user/user/conversation.h"
 #include "acme/user/nano/nano.h"
-#include "apex/crypto/crypto.h"
-#include "apex/crypto/hasher.h"
-#include "apex/filesystem/filesystem/dir_system.h"
-#include "apex/networking/http/context.h"
-#include "apex/platform/application.h"
-#include "apex/platform/context.h"
-#include "apex/platform/machine_event.h"
-#include "apex/platform/machine_event_central.h"
-#include "apex/platform/os_context.h"
-#include "apex/platform/session.h"
-#include "apex/platform/system.h"
+#include "acme/crypto/crypto.h"
+#include "acme/crypto/hasher.h"
+#include "acme/filesystem/filesystem/dir_system.h"
+//#include "apex/networking/http/context.h"
+#include "acme/platform/application.h"
+#include "acme/platform/context.h"
+//#include "acme/platform/machine_event.h"
+//#include "acme/platform/machine_event_central.h"
+//#include "acme/platform/os_context.h"
+#include "acme/platform/session.h"
+#include "acme/platform/system.h"
 
 //
 //#ifdef WINDOWS_DESKTOP
@@ -112,7 +112,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    }
 
-   ::file::path path = m_pcontext->m_papexcontext->defer_process_path(pathParam);
+   ::file::path path = m_pcontext->defer_process_path(pathParam);
 
    if (path.flags().is_clear(::file::e_flag_required) && path.is_empty())
    {
@@ -167,7 +167,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
       }
 
-      return m_pcontext->m_papexcontext->http().get_type(path, pvarQuery, set);
+      return acmesystem()->http_get_type(path, pvarQuery, set);
 
    }
 
@@ -240,7 +240,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
       }
 
-      return m_pcontext->m_papexcontext->http().get_type(path, pvarQuery, set);
+      return acmesystem()->http_get_type(path, pvarQuery, set);
 
    }
 
@@ -367,7 +367,7 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::path file_context::module()
 {
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = acmesystem();
 
    auto pfilesystem = psystem->m_pfilesystem;
 
@@ -379,7 +379,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //::file::path file_context::ca2module()
 //{
 //
-//   auto psystem = acmesystem()->m_papexsystem;
+//   auto psystem = acmesystem();
 //
 //   return psystem->m_pfilesystem->m_pathCa2Module;
 //
@@ -405,7 +405,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                    bool bTryDelete)
 {
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = acmesystem();
 
    synchronous_lock lockMachineEvent(psystem->synchronization());
 
@@ -2405,7 +2405,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       strIndex.format("%08x\\", i);
 
-      strTempFile = m_pcontext->acmesystem()->m_papexsystem->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
+      strTempFile = m_pcontext->acmesystem()->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
 
       if (!exists(strTempFile))
       {
@@ -2416,7 +2416,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       string strMessage;
 
-      auto psystem = acmesystem()->m_papexsystem;
+      auto psystem = acmesystem();
 
       auto pdatetime = psystem->datetime();
 
@@ -2788,7 +2788,7 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 
    mem.set_size(1024 * 256);
 
-   auto psystem = acmesystem()->m_papexsystem;
+   auto psystem = acmesystem();
 
    auto pcrypto = psystem->crypto();
 
@@ -2867,7 +2867,7 @@ void file_context::get_last_write_time(file_time_t *pfile_time, const string &st
 void file_context::init_system()
 {
 
-//   auto psystem = acmesystem()->m_papexsystem;
+//   auto psystem = acmesystem();
 //
 //   auto estatus = psystem->m_pfilesystem->update_module_path();
 //
@@ -3245,9 +3245,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
+      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
 
-      return m_pcontext->m_papexcontext->http().m_straDownloading.contains(path) || m_pcontext->m_papexcontext->http().m_straExists.contains(path);
+      return acmesystem()->m_straHttpDownloading.contains(path) || acmesystem()->m_straHttpExists.contains(path);
 
       });/* .failed())
    {
@@ -3259,7 +3259,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    {
 
-      synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
+      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
 
       if (path.flags().is_clear(::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
       {
@@ -3286,9 +3286,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    if (bSaveCache)
    {
 
-      synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
+      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
 
-      m_pcontext->m_papexcontext->http().m_straDownloading.add(path);
+      acmesystem()->m_straHttpDownloading.add(path);
 
    }
 
@@ -3297,7 +3297,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    auto pmemoryfile = create_memory_file();
 
    //if (!m_pcontext->m_papexcontext->http().get(pmemoryfile->get_primitive_memory(), path, set))
-   m_pcontext->m_papexcontext->http().get(pmemoryfile->get_primitive_memory(), path, set);
+   *pmemoryfile->get_primitive_memory() = acmesystem()->http_memory(path, set);
    //{
 
    //   return ::error_failed;
@@ -3307,7 +3307,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    if (bSaveCache)
    {
 
-      synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
+      synchronous_lock synchronouslock(acmesystem()->m_pmutexHttpDownload);
 
       try
       {
@@ -3327,7 +3327,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
       try
       {
 
-         m_pcontext->m_papexcontext->http().m_straDownloading.erase(path);
+         acmesystem()->m_straHttpDownloading.erase(path);
 
       }
       catch (...)
@@ -3497,7 +3497,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
 
    }
 
-   auto pathProcessed = m_pcontext->m_papexcontext->defer_process_path(path);
+   auto pathProcessed = m_pcontext->defer_process_path(path);
 
    if (pathProcessed.is_empty())
    {
@@ -4201,7 +4201,7 @@ void file_context::touch(const ::file::path &path)
 //void file_context::update_module_path()
 //{
 //
-//   auto psystem = acmesystem()->m_papexsystem;
+//   auto psystem = acmesystem();
 //
 //   auto estatus = psystem->m_pfilesystem->update_module_path();
 //

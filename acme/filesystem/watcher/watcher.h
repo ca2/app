@@ -20,7 +20,7 @@
 
 
 #include "listener.h"
-#include "apex/parallelization/thread.h"
+#include "acme/parallelization/task.h"
 
 
 namespace file
@@ -33,8 +33,8 @@ namespace file
    class os_watcher;
    
 
-   class CLASS_DECL_APEX watcher :
-      virtual public ::thread
+   class CLASS_DECL_ACME watcher :
+      virtual public ::task
    {
    public:
 

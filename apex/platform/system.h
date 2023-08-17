@@ -40,8 +40,6 @@ namespace apex
       ::pointer < ::mutex >                                m_pmutexUserAppData;
       ::pointer < ::mutex >                                m_pmutexSystemAppData;
 
-      ::pointer < ::mutex >                                m_pmutexMatter;
-
       ::pointer<::operating_system::department>       m_poperatingsystem;
 
       ::pointer<::parallelization::threading>         m_pthreading;
@@ -292,13 +290,6 @@ namespace apex
 
 
 
-      class ::crypto::crypto * crypto();
-
-
-      virtual ::file::path local_get_matter_cache_path();
-      virtual ::file::path local_get_matter_cache_path(string strMatter);
-      virtual ::file::path local_get_matter_path();
-      virtual ::file::path local_get_matter_path(string strMatter);
 
 
       virtual void install_progress_add_up(int iAddUp = 1);
@@ -306,8 +297,6 @@ namespace apex
 
 
 
-      virtual string get_system_platform();
-      virtual string get_system_configuration();
 
 
 

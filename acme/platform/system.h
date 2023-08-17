@@ -151,6 +151,13 @@ namespace acme
       ::pointer<::file_system>                                          m_pfilesystem;
 
 
+      ::pointer < ::mutex >                                m_pmutexMatter;
+
+      ::pointer < ::mutex >                  m_pmutexHttpDownload;
+      string_array                           m_straHttpDownloading;
+      string_array                           m_straHttpExists;
+
+
 
       system();
       ~system() override;
@@ -206,6 +213,16 @@ namespace acme
       virtual ::nano::http * nano_http();
 
       inline ::crypto::crypto * crypto() { return m_pcrypto; }
+
+
+      virtual string get_system_platform();
+      virtual string get_system_configuration();
+
+
+
+      virtual bool http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set);
+      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual ::file::enum_type http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
 
 
       virtual ::string http_text(const ::scoped_string & scopedstrUrl);
@@ -618,6 +635,15 @@ namespace acme
 
       virtual ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
       virtual ::string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
+
+
+      //class ::crypto::crypto * crypto();
+
+
+      virtual ::file::path local_get_matter_cache_path();
+      virtual ::file::path local_get_matter_cache_path(string strMatter);
+      virtual ::file::path local_get_matter_path();
+      virtual ::file::path local_get_matter_path(string strMatter);
 
 
    };

@@ -8,7 +8,7 @@ namespace crypto
 {
 
 
-   class CLASS_DECL_APEX rsa :
+   class CLASS_DECL_ACME rsa :
       virtual public particle
    {
    public:

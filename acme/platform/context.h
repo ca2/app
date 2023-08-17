@@ -36,6 +36,10 @@ namespace acme
       string                              m_strSchema;
 
 
+      string_array                        m_straMatterLocatorPriority;
+      string_array                        m_straMatterLocator;
+
+
       context();
       ~context() override;
 
@@ -80,6 +84,35 @@ namespace acme
       virtual ::file::path defer_process_path(::file::path path);
 
       virtual void fork_count(::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0);
+
+
+
+      virtual string get_locale();
+      virtual string get_schema();
+
+
+      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
+      virtual string get_locale_schema_dir();
+
+
+
+      virtual string matter_locator(string strApp);
+      virtual string matter_locator(::apex::application * papp);
+
+
+      virtual void add_matter_locator(string strApp);
+      virtual void add_matter_locator(::apex::application * papp);
+
+
+      virtual ::file::path defer_process_matter_path(::file::path path);
+
+      //virtual ::file::path defer_process_relative_path(const ::file::path & path);
+
+      virtual ::file::path get_matter_path(string strMatter);
+      virtual ::file::path get_matter_cache_path(::file::path path);
+      virtual ::file::path side_get_matter_path(string strMatter);
+
+
 
 
    };

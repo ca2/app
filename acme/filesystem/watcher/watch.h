@@ -33,7 +33,7 @@ namespace file
    class os_watch;
 
 
-   class CLASS_DECL_APEX watch :
+   class CLASS_DECL_ACME watch :
       virtual public object
    {
    public:

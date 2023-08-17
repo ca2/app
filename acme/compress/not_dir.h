@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_APEX compress_not_dir
+class CLASS_DECL_ACME compress_not_dir
 {
 public:
 

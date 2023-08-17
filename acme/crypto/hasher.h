@@ -8,7 +8,7 @@ namespace crypto
 {
 
 
-   class CLASS_DECL_APEX hasher :
+   class CLASS_DECL_ACME hasher :
       virtual public ::particle
    {
    public:

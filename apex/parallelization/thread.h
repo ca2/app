@@ -538,34 +538,6 @@ CLASS_DECL_APEX bool app_sleep(::apex::application * papp, const class time & ti
 
 
 
-template < typename PRED >
-inline void while_predicateicate_Sleep(int iTime, PRED pred)
-{
-
-   iTime += 99;
-
-   iTime /= 100;
-
-   for (index i = 0; i < iTime; i++)
-   {
-
-      preempt(100_ms);
-
-      if (!pred())
-      {
-
-         return;
-
-      }
-
-      preempt();
-
-   }
-
-   throw ::exception(error_timeout);
-
-}
-
 
 CLASS_DECL_APEX void defer_create_thread(::particle * pparticle);
 

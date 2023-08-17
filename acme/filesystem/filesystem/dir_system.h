@@ -5,7 +5,7 @@
 //#include "acme/filesystem/filesystem/path.h"
 
 
-class CLASS_DECL_APEX dir_system :
+class CLASS_DECL_ACME dir_system :
    virtual public ::object
 {
 public:

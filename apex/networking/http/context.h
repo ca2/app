@@ -63,9 +63,6 @@ namespace http
       ::pointer < ::mutex >                  m_pmutexProxy;
       string_map < ::pointer<proxy >>        m_mapProxy;
 
-      ::pointer < ::mutex >                  m_pmutexDownload;
-      string_array                           m_straDownloading;
-      string_array                           m_straExists;
       //::sockets::socket_handler *          m_phandler;
 
 

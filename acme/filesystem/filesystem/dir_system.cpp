@@ -4,11 +4,11 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/parallelization/event.h"
 #include "acme/primitive/string/_string.h"
-#include "apex/filesystem/file/watcher.h"
-#include "apex/platform/application.h"
-#include "apex/platform/context.h"
-#include "apex/platform/session.h"
-#include "apex/platform/system.h"
+#include "acme/filesystem/watcher/watcher.h"
+#include "acme/platform/application.h"
+#include "acme/platform/context.h"
+#include "acme/platform/session.h"
+#include "acme/platform/system.h"
 
 
 dir_system::dir_system()
@@ -82,21 +82,21 @@ void dir_system::init_system()
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
-   if ( pacmedirectory->is(acmesystem()->m_papexsystem->side_get_matter_path("app/_matter/main")))
+   if ( pacmedirectory->is(acmesystem()->side_get_matter_path("app/_matter/main")))
    {
 
-      m_pathLocalAppMatterFolder = acmesystem()->m_papexsystem->side_get_matter_path("");
+      m_pathLocalAppMatterFolder = acmesystem()->side_get_matter_path("");
 
-      m_pathLocalAppMatterCacheFolder = acmesystem()->m_papexsystem->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = acmesystem()->local_get_matter_cache_path();
 
    }
    else
 #endif
    {
 
-      m_pathLocalAppMatterFolder = acmesystem()->m_papexsystem->local_get_matter_path();
+      m_pathLocalAppMatterFolder = acmesystem()->local_get_matter_path();
 
-      m_pathLocalAppMatterCacheFolder = acmesystem()->m_papexsystem->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = acmesystem()->local_get_matter_cache_path();
 
    }
 

@@ -10,7 +10,7 @@
 //{
 
 
-   class CLASS_DECL_APEX dir_context :
+   class CLASS_DECL_ACME dir_context :
       virtual public ::object,
       virtual public ::file::enumerator
    {

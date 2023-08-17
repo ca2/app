@@ -31,8 +31,6 @@ namespace apex
 
 
 
-      string_array                        m_straMatterLocatorPriority;
-      string_array                        m_straMatterLocator;
 
       ::payload                           m_payloadFile;
       ::pointer_array < ::request >       m_requestaPending;
@@ -93,13 +91,6 @@ namespace apex
 
       ::handle::ini local_ini();
 
-      virtual string get_locale();
-      virtual string get_schema();
-
-
-      virtual void locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const string& strLocale, const string& strSchema);
-      virtual string get_locale_schema_dir();
-
 
 
       virtual bool http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile);
@@ -123,14 +114,6 @@ namespace apex
 
       virtual bool defer_process_known_folder_path(::file::path & path);
       virtual ::file::path full_process_path(::file::path path);
-
-      virtual ::file::path defer_process_matter_path(::file::path path);
-
-      //virtual ::file::path defer_process_relative_path(const ::file::path & path);
-
-      virtual ::file::path get_matter_path(string strMatter);
-      virtual ::file::path get_matter_cache_path(::file::path path);
-      virtual ::file::path side_get_matter_path(string strMatter);
 
 
       //sclass ::hyperlink hyperlink() { return this; }
@@ -192,12 +175,12 @@ namespace apex
       //virtual void _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
 
 
-      virtual string matter_locator(string strApp);
+      /*virtual string matter_locator(string strApp);
       virtual string matter_locator(::apex::application* papp);
 
 
       virtual void add_matter_locator(string strApp);
-      virtual void add_matter_locator(::apex::application* papp);
+      virtual void add_matter_locator(::apex::application* papp);*/
 
 
       virtual void _load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions);

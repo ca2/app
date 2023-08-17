@@ -7,7 +7,7 @@
 //#include "acme/primitive/collection/string_array.h"
 
 
-class CLASS_DECL_APEX file_context :
+class CLASS_DECL_ACME file_context :
    virtual public object
 {
 public:
@@ -206,7 +206,9 @@ public:
    virtual void normalize(string & str);
    virtual ::std::strong_ordering cmp(const ::file::path & psz1, const ::file::path & psz2);
 
-   virtual string get_hash(const ::payload& payloadFile, enum_hash ehash);
+
+   virtual string get_hash(const ::payload & payloadFile, enum_hash ehash);
+
 
    //virtual string md5(::file::file * pfile);
    virtual string md5(const ::payload & payloadFile);
@@ -429,8 +431,8 @@ public:
 
 
 
-CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);
-CLASS_DECL_APEX bool get_bypass_cache_if_empty(const ::payload & payloadFile);
+CLASS_DECL_ACME void set_bypass_cache_if_empty(::payload & payloadFile);
+CLASS_DECL_ACME bool get_bypass_cache_if_empty(const ::payload & payloadFile);
 
 
 

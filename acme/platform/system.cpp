@@ -245,8 +245,8 @@ namespace acme
          acmeapplication()->main();
 
       }
-      
-      
+
+
 
 
       //if (!estatus)
@@ -388,7 +388,7 @@ namespace acme
       __construct(m_plogger);
 
       __construct_new(m_pdatetime);
-      
+
       __construct_new(m_purl);
 
 
@@ -1014,26 +1014,58 @@ namespace acme
 
    ::nano::http * system::nano_http()
    {
-      
-      if(!m_pnanohttp)
+
+      if (!m_pnanohttp)
       {
-         
+
          initialize_nano_http();
-         
+
          __construct(m_pnanohttp);
-         
+
       }
 
       return m_pnanohttp;
-      
+
    }
+
+
+   bool system::http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+
+   }
+
+
+   ::file::enum_type system::http_get_type(const ::scoped_string & scopedstrUrl, property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return ::file::e_type_unknown;
+
+   }
+
    
-   
+   ::file::enum_type system::http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
+   {
+
+      throw ::interface_only();
+
+      return ::file::e_type_unknown;
+
+   }
+
+
+
    ::string system::http_text(const ::scoped_string & scopedstrUrl)
    {
 
-      auto memory  = http_memory(scopedstrUrl);
-      
+      auto memory = http_memory(scopedstrUrl);
+
       ::string str = memory.as_utf8();
 
       return str;
@@ -1043,19 +1075,19 @@ namespace acme
 
    ::string system::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
-   
-      auto memory  = http_memory(scopedstrUrl, set);
-      
+
+      auto memory = http_memory(scopedstrUrl, set);
+
       ::string str = memory.as_utf8();
 
       return str;
-   
+
    }
 
 
    ::memory system::http_memory(const ::scoped_string & scopedstrUrl)
    {
-      
+
       property_set set;
 
       set["raw_http"] = true;
@@ -1063,7 +1095,7 @@ namespace acme
       set["disable_common_name_cert_check"] = true;
 
       return http_memory(scopedstrUrl, set);
-      
+
    }
 
 
@@ -1072,7 +1104,7 @@ namespace acme
 
       try
       {
-         
+
          ::memory memory;
 
          ::nano::http_response httpresponse(set, memory);
@@ -1082,41 +1114,41 @@ namespace acme
          return ::transfer(memory);
 
       }
-      catch(...)
+      catch (...)
       {
-         
+
          set["timeout"] = true;
-         
+
          return {};
-         
+
       }
-      
+
       //return pasynchronousehttpresponse->m_data.m_memory;
-      
+
    }
 
 
    void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
    {
-      
+
       auto pfile = acmefile()->get_writer(payloadFile);
 
       auto memory = http_memory(scopedstrUrl);
-      
+
       pfile->write(memory.data(), memory.size());
-      
+
    }
 
 
    void system::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
-   
+
       auto pfile = acmefile()->get_writer(payloadFile);
 
       auto memory = http_memory(scopedstrUrl, set);
-      
+
       pfile->write(memory.data(), memory.size());
-   
+
    }
 
 
@@ -1142,7 +1174,7 @@ namespace acme
 
       if (acmeapplication()->m_bSession)
       {
-       
+
          //return ::success;
          create_session();
 

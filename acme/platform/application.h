@@ -74,6 +74,11 @@ namespace acme
       ::text::text                                    m_textAppTitle;
 
 
+      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+
+      ::pointer < ::mutex >                                      m_pmutexStr;
+
+
       application();
       ~application() override;
 
@@ -154,6 +159,29 @@ namespace acme
 
 
       virtual ::string get_application_name();
+
+
+      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+
+      virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
+      virtual string get_locale_schema_dir(const ::string & strLocale);
+      virtual string get_locale_schema_dir();
+
+      virtual void set_locale(const string & pcsz, const ::action_context & action_context);
+
+      virtual void set_schema(const string & pcsz, const ::action_context & action_context);
+
+      virtual void on_set_locale(const string & pcsz, const ::action_context & action_context);
+
+      virtual void on_set_schema(const string & pcsz, const ::action_context & action_context);
+
+
+
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const string & strLocale, const string & strSchema);
+
+
       
       
    };

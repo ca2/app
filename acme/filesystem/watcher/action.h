@@ -12,7 +12,7 @@ namespace file
 
 
    // by CAMILO <3tbs
-   class CLASS_DECL_APEX action
+   class CLASS_DECL_ACME action
    {
    public:
 

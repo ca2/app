@@ -300,6 +300,14 @@ void nano_window::update_drawing_objects()
 }
 
 
+::point_i32 nano_window::origin()
+{
+
+   return m_rectangle.origin();
+
+}
+
+
 nano_child * nano_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
 {
 

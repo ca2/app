@@ -911,7 +911,7 @@ namespace user
       bool is_window_visible(enum_layout elayout = e_layout_design);
       bool is_window_screen_visible(enum_layout elayout = e_layout_design);
 
-
+      virtual void route_as_parent_mouse_message(::message::mouse * pmouse);
       virtual bool on_mouse_message(::message::mouse * pmouse);
 
       virtual bool on_child_from_point_mouse_message_routing(::message::mouse * pmouse);
@@ -2213,7 +2213,7 @@ namespace user
 ///      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
+      virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
 
 

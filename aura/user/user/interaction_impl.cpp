@@ -2448,7 +2448,14 @@ namespace user
          if (m_puserinteractionMouseCapture)
          {
 
-            m_puserinteractionMouseCapture->on_child_from_point_mouse_message_routing(pmouse);
+            m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
+
+            if (!pmouse->m_bRet)
+            {
+
+               m_puserinteractionMouseCapture->on_child_from_point_mouse_message_routing(pmouse);
+
+            }
 
          }
          else

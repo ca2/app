@@ -2,9 +2,9 @@
 #include "main_window.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
-#include "acme/user/user/mouse.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
+#include "aura/message/user.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/platform/application.h"
 
@@ -210,7 +210,7 @@ namespace app_app
 
             }
 
-            int iSize = (int)(::sin(angle) * 20.0 + 64.0);
+            int iSize = (int)(::sin(angle) * 25.0 + 64.0);
 
             pitemClose->m_rectangle = client_rectangle();
 
@@ -220,7 +220,7 @@ namespace app_app
 
             auto pointCursor = get_cursor_position();
 
-            auto pmouse = __create_new < ::user::mouse >();
+            auto pmouse = __create_new < ::message::mouse >();
 
             pmouse->m_point = pointCursor;
 

@@ -111,8 +111,6 @@ namespace acme
 
       m_plogger = __create_new < ::simple_log >();
 
-      m_pmutexHttpDownload = acmenode()->create_mutex();
-
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
       m_bJoinable = true;
@@ -305,6 +303,9 @@ namespace acme
       }
 
 
+
+
+
 #if !defined(WINDOWS)
 
 
@@ -335,6 +336,9 @@ namespace acme
          m_pacmeapplication->m_pacmenode = m_pnode;
 
       }
+
+      m_pmutexHttpDownload = acmenode()->create_mutex();
+
 
       //if(!estatus)
       //{

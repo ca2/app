@@ -907,7 +907,7 @@ void task::term_task()
 bool task::do_events()
 {
    
-   throw ::interface_only("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do (1)");
 
    return true;
 
@@ -917,7 +917,7 @@ bool task::do_events()
 bool task::defer_pump_message()
 {
 
-   throw ::interface_only("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do (2)");
 
    return false;
 
@@ -927,7 +927,7 @@ bool task::defer_pump_message()
 bool task::has_message() const
 {
 
-   throw ::interface_only("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do (3)");
 
    return false;
 

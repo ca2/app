@@ -6371,6 +6371,14 @@ return strClass;
          enable_drag(e_element_client, e_zorder_back);
 
       }
+      else
+      {
+
+         m_pitemClient = __new(::item(e_element_client));
+
+         add_item(m_pitemClient);
+
+      }
 
       if (m_bEnableDragResize)
       {
@@ -11715,6 +11723,8 @@ return strClass;
    void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      auto rectangleClient = client_rectangle();
+
       layout_tooltip();
 
       //if(m_pinteractiondraw2d)
@@ -11724,6 +11734,15 @@ return strClass;
          m_pathFocusRect2.release();
          m_pathFocusRect3.release();
          m_pathFocusRect4.release();
+
+      }
+
+      if (m_pitemClient)
+      {
+
+         auto puseritemClient = user_item(m_pitemClient);
+
+         puseritemClient->m_rectangle = rectangleClient;
 
       }
 

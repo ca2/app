@@ -66,7 +66,9 @@ namespace user
    ::point_i32 drag::point() const
    {
 
-      auto pointDrag = m_pmouse->m_point - (m_pointLButtonDown - m_pointInitial);
+      auto Δ = m_pointLButtonDown - m_pointInitial;
+
+      auto pointDrag = m_pmouse->m_point - Δ;
 
       return pointDrag;
 

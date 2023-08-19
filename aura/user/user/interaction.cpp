@@ -7251,11 +7251,7 @@ namespace user
 
          pdrag->m_ecursor = e_cursor_move;
 
-         auto Δ = pdrag->point() - pdrag->m_pointLButtonDown;
-
-         auto pointTopLeft = pdrag->m_pointInitial + Δ;
-
-         set_position(pointTopLeft);
+         set_position(pdrag->point());
 
          set_reposition();
 

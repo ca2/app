@@ -190,7 +190,7 @@ namespace user
    void menu_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
       
-      //::user::button::on_layout(pgraphics);
+      ::user::button::on_layout(pgraphics);
 
 //      if (m_puserstyle == nullptr)
 //      {

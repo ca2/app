@@ -225,14 +225,14 @@ namespace apex
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual void init_application();
+      //virtual void init_application();
 
       void init1() override;
-      virtual void init2();
-      virtual void init3();
+      void init2() override;
+      void init3() override;
 
 
-      virtual void init();
+      void init() override;
 
 
       void init_instance() override;
@@ -246,9 +246,8 @@ namespace apex
 
       void destroy() override;
 
-      virtual void application_pre_run();
       //virtual bool initial_check_directrix() override;
-      virtual void os_native_bergedge_start();
+      void os_native_bergedge_start() override;
 
 
       virtual bool on_application_menu_action(const ::string & pszCommand);
@@ -265,12 +264,12 @@ namespace apex
       //virtual bool InitApplication();
 
 
-      virtual void do_install();
-      virtual void do_uninstall();
+      void do_install() override;
+      void do_uninstall() override;
 
 
-      virtual void on_install();
-      virtual void on_uninstall();
+      void on_install() override;
+      void on_uninstall() override;
 
       virtual void enable_service();
       virtual void disable_service();
@@ -552,15 +551,17 @@ namespace apex
       //virtual void     main() override;
       //virtual void     on_run();
 
-      virtual void on_before_launching();
+      void on_before_launching() override;
       //virtual void os_native_bergedge_start();
 
-      virtual void pre_run();
+      // virtual void pre_run();
       //virtual void application_pre_run();
 
       virtual void on_pos_run_thread() override;
       virtual void pos_run();
       virtual void application_pos_run();
+
+
 
       //virtual bool InitApplication();
       //virtual void TermApplication();

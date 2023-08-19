@@ -444,13 +444,6 @@ inline bool is_item_index(const ::item * pitem, ::index iItem)
 inline bool is_item_equivalent(const ::item_t * pitem1, const ::item_t * pitem2)
 {
 
-   if (!::is_item_set(pitem1) || !::is_item_set(pitem2))
-   {
-
-      return false;
-
-   }
-
    if (pitem1 == pitem2)
    {
 
@@ -458,6 +451,29 @@ inline bool is_item_equivalent(const ::item_t * pitem1, const ::item_t * pitem2)
 
    }
 
+   if (!::is_item_set(pitem1))
+   {
+
+      if (!::is_item_set(pitem2))
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
+   else if (!::is_item_set(pitem2))
+   {
+
+      return false;
+
+   }
 
    return *pitem1 == *pitem2;
 

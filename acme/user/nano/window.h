@@ -97,6 +97,10 @@ public:
    void create_drawing_objects() override;
    void update_drawing_objects() override;
 
+
+   ::point_i32 origin() override;
+
+
    //::nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
    ::nano_child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
    void add_child(nano_child * pchild) override;

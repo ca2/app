@@ -44,7 +44,7 @@ bool predicate_retry(const class time & timeStep, const class time & timeTotal, 
 }
 
 
-class CLASS_DECL_APEX retry
+class CLASS_DECL_ACME retry
 {
 public:
 

@@ -2949,7 +2949,7 @@ namespace user
 
          auto pointCursor = get_cursor_position();
 
-         auto pmouse = __create_new < ::user::mouse >();
+         auto pmouse = __create_new < ::message::mouse >();
 
          pmouse->m_point = pointCursor;
 
@@ -5337,7 +5337,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      auto pmouse = __create_new < ::user::mouse >();
+      auto pmouse = __create_new < ::message::mouse >();
 
       pmouse->m_point = pointCursor;
 

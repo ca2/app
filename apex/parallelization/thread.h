@@ -77,7 +77,6 @@ public:
    enum_id                                            m_atomContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   class ::time                                       m_timeHeartBeat;
    bool                                               m_bReady;
    ::pointer<::user::primitive>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
    ::pointer<::user::primitive>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)

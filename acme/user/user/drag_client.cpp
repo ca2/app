@@ -221,7 +221,7 @@ namespace user
 
             pdrag->m_pmouse = puseritem->m_pmouse;
 
-            drag_hover(pdrag);
+            bool bRet = drag_hover(pdrag);
 
             if (pdrag->m_ecursor != e_cursor_none)
             {
@@ -230,7 +230,7 @@ namespace user
 
             }
 
-            return false;
+            return bRet;
 
          }
 

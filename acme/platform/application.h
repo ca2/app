@@ -135,9 +135,24 @@ namespace acme
 
       virtual int main_loop();
 
-
+      
+      virtual void on_before_launching();
+      virtual void os_native_bergedge_start();
 
       virtual void init1();
+      virtual void init2();
+      virtual void init3();
+
+
+      virtual void init();
+
+
+      virtual void do_install();
+      virtual void do_uninstall();
+
+
+      virtual void on_install();
+      virtual void on_uninstall();
 
 
       virtual void init_instance();
@@ -182,8 +197,13 @@ namespace acme
       virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const string & strLocale, const string & strSchema);
 
 
-      
-      
+      virtual void process_init();
+
+      virtual void pre_run();
+      virtual void application_pre_run();
+
+      virtual void init_application();
+
    };
 
 

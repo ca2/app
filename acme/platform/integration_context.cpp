@@ -5,6 +5,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -13,6 +14,7 @@
 //#include "apex/networking/http/context.h"
 //#include "apex/platform/application.h"
 //#include "apex/platform/system.h"
+#include "acme/platform/sequencer.h"
 
 
 #include "acme/_operating_system.h"
@@ -99,6 +101,8 @@ namespace integration
    {
 
       ::file::path pathSourceFolder = get_source_folder_path(scopedstr);
+
+      acmedirectory()->create(pathSourceFolder);
 
       acmedirectory()->change_current(pathSourceFolder);
 
@@ -218,6 +222,19 @@ namespace integration
 //
       //auto iExitCode = acmenode()->command_system(scopedstrCommand, ::std_inline_log());
       auto iExitCode = acmenode()->command_system(scopedstrCommand, 12_h);
+      
+      
+      if (iExitCode != 0)
+      {
+
+         auto psequencer = message_box("Command :\n\""+scopedstrCommand+"\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
+
+         psequencer->do_synchronously();
+
+         throw ::exception(error_exception);
+
+      }
+
 
       return iExitCode;
 
@@ -293,34 +310,45 @@ namespace integration
    void context::download_and_uncompress()
    {
 
-      if (m_pathDownloadURL.case_insensitive_ends(".tar.gz"))
+      if (!acmefile()->exists(acmedirectory()->get_current() / "Configure"))
       {
 
-         property_set set;
+         if (m_pathDownloadURL.case_insensitive_ends(".tar.gz"))
+         {
 
-         acmesystem()->url()->defer_raw_http(set);
+            property_set set;
 
-         set["disable_common_name_cert_check"] = true;
+            acmesystem()->url()->defer_raw_http(set);
 
-         //auto path = m_pathFolder / m_path / (m_strName + ".tar.gz");
+            set["disable_common_name_cert_check"] = true;
 
-         auto pmemoryFileTarGz = create_memory_file();
+            //auto path = m_pathFolder / m_path / (m_strName + ".tar.gz");
 
-         auto url = m_pathDownloadURL;
+            auto pmemoryFileTarGz = create_memory_file();
 
-         acmesystem()->http_download(pmemoryFileTarGz,  url, set);
+            auto url = m_pathDownloadURL;
 
-         //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
+            information() << "Downloading \"" << url << "\"...";
 
-         pmemoryFileTarGz->seek_to_begin();
+            acmesystem()->http_download(pmemoryFileTarGz, url, set);
 
-         auto pmemoryFileTar = create_memory_file();
+            //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 
-         acmesystem()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib");
+            pmemoryFileTarGz->seek_to_begin();
 
-         pmemoryFileTar->seek_to_begin();
+            auto pmemoryFileTar = create_memory_file();
 
-         this->untar(m_pathFolder / m_pathBase / m_pathPlatformConfiguration, pmemoryFileTar, 1);
+            information() << "Uncompressing...";
+
+            acmesystem()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib");
+
+            pmemoryFileTar->seek_to_begin();
+
+            information() << "Untarring to \"" << acmedirectory()->get_current() << "\"...";
+
+            this->untar(acmedirectory()->get_current(), pmemoryFileTar, 1);
+
+         }
 
       }
 
@@ -422,7 +450,7 @@ namespace integration
 
       ::memory memory;
 
-      memory = acmefile()->as_memory(payloadTar);
+      memory = file()->as_memory(payloadTar);
 
       //struct archive * a = archive_read_new();
       //archive_read_support_compression_gzip(a);
@@ -464,7 +492,7 @@ namespace integration
 
             }
 
-            auto pfile = acmefile()->get_writer(pathFolder / path);
+            auto pfile = file()->get_writer(pathFolder / path);
 
             for (;;) {
                auto size = archive_read_data(a, memory2.data(), memory2.size());

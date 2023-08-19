@@ -16,6 +16,7 @@
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/crypto/crypto.h"
 #include "acme/exception/dump_context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -29,7 +30,6 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/command_line.h"
-#include "apex/crypto/crypto.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
@@ -2675,63 +2675,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   string system::get_system_configuration()
-   {
-
-#ifndef CA2_PLATFORM_VERSION
-
-#error "CA2_PLATFORM_VERSION not defined"
-
-#endif
-
-#ifndef CA2_BASIS
-
-#error "CA2_BASIS not defined"
-
-#endif
-
-#ifndef CA2_STAGE
-
-#error "CA2_STAGE not defined"
-
-#endif
-
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      return "basis";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
-
-#elif CA2_PLATFORM_VERSION == CA2_STAGE
-
-      return "stage";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
-
-#else
-
-#error "CA2_PLATFORM_VERSION has unsupported definition"
-
-#endif
-
-   }
-
-
-   string system::get_system_platform()
-   {
-
-#ifdef X86
-
-      return "x86";
-
-#else
-
-      return "x64";
-
-#endif
-
-   }
-
+   
 
    void system::on_request(::request* prequest)
    {
@@ -2740,45 +2684,6 @@ pacmedirectory->create("/ca2core");
 
    }
 
-
-   ::file::path system::local_get_matter_path()
-   {
-
-      return acmedirectory()->ca2roaming() / "appmatter";
-
-   }
-
-
-   ::file::path system::local_get_matter_path(string strMatter)
-   {
-
-#ifdef UNIVERSAL_WINDOWS
-
-      return "";
-
-#else
-
-      return local_get_matter_path() / strMatter;
-
-#endif
-
-   }
-
-
-   ::file::path system::local_get_matter_cache_path()
-   {
-
-      return acmedirectory()->ca2roaming() / "cache/appmatter";
-
-   }
-
-
-   ::file::path system::local_get_matter_cache_path(string strMatter)
-   {
-
-      return local_get_matter_cache_path() / strMatter;
-
-   }
 
 
    //   bool system::find_applications_from_cache()
@@ -3059,12 +2964,12 @@ pacmedirectory->create("/ca2core");
 
 #endif
 
-   ::crypto::crypto* system::crypto()
-   {
+   //::crypto::crypto* system::crypto()
+   //{
 
-      return m_pcrypto;
+   //   return m_pcrypto;
 
-   }
+   //}
 
 
    //::pointer<::account::user_set>system::userset()

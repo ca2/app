@@ -595,15 +595,8 @@
     <ClCompile Include="database\selection_item.cpp" />
     <ClCompile Include="database\server.cpp" />
     <ClCompile Include="database\stringhelper.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
-    <ClCompile Include="filesystem\filesystem\file_context.cpp" />
-    <ClCompile Include="filesystem\filesystem\file_system.cpp" />
-    <ClCompile Include="filesystem\file\action.cpp" />
     <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\html_file.cpp" />
-    <ClCompile Include="filesystem\file\watch.cpp" />
-    <ClCompile Include="filesystem\file\watcher.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
@@ -800,7 +793,7 @@
     <ClInclude Include="message\const.h" />
     <ClInclude Include="message\cross_windows.h" />
     <ClInclude Include="message\definition.h" />
-    <ClInclude Include="message\dispatcher1.h" />
+    <ClInclude Include="message\dispatcher.h" />
     <ClInclude Include="message\global.h" />
     <ClInclude Include="message\handler.h" />
     <ClInclude Include="message\handler_item.h" />

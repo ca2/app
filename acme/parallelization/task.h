@@ -73,6 +73,9 @@ public:
    
    ::pointer < ::locale >                          m_plocale;
 
+   class ::time                                       m_timeHeartBeat;
+
+
 
    task();
    ~task() override;

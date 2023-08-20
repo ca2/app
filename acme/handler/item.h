@@ -130,6 +130,18 @@ public:
 
    }
 
+
+   item(const ::item_t & item, const ::e_item_flag eitemflag = ::e_item_flag_none) :
+      m_item(item)
+   {
+
+      m_eitem = e_item_none;
+
+      m_eitemflag = eitemflag;
+
+   }
+
+
    item(::index iItem) :
    m_item(e_element_none, iItem)
    {

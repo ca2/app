@@ -170,6 +170,8 @@ namespace experience
 
       virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
+      //virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+
 
       virtual status < ::color::color > get_border_main_body_color();
 

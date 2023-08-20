@@ -1,12 +1,12 @@
 #include "framework.h"
-#include "frame_013.h"
+#include "frame_022.h"
 
    
 namespace experience_core
 {
 
 
-   frame_013::frame_013()
+   frame_022::frame_022()
    {
 
       m_bHollow = true;
@@ -14,13 +14,13 @@ namespace experience_core
    }
 
 
-   frame_013::~frame_013()
+   frame_022::~frame_022()
    {
 
    }
 
 
-   void frame_013::destroy()
+   void frame_022::destroy()
    {
 
       //auto estatus = 

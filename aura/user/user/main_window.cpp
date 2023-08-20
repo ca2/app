@@ -32,6 +32,8 @@ namespace user
 
       m_bEnableDragResize = true;
 
+      m_bEnableDefaultControlBox = true;
+
       m_bClickDefaultMouseHandling = true;
 
       m_bHoverDefaultMouseHandling = true;
@@ -66,33 +68,38 @@ namespace user
 
       defer_set_icon();
 
+      if (m_bEnableDefaultControlBox)
       {
 
-         auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
+         {
 
-         add_item(pitemClose);
+            auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
 
-         user_item(pitemClose)->m_ezorder = e_zorder_front;
+            add_item(pitemClose);
 
-      }
+            user_item(pitemClose)->m_ezorder = e_zorder_front;
 
-      {
+         }
 
-         auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
+         {
 
-         add_item(pitemMaximize);
+            auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
 
-         user_item(pitemMaximize)->m_ezorder = e_zorder_front;
+            add_item(pitemMaximize);
 
-      }
+            user_item(pitemMaximize)->m_ezorder = e_zorder_front;
 
-      {
+         }
 
-         auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
+         {
 
-         add_item(pitemMinimize);
+            auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
 
-         user_item(pitemMinimize)->m_ezorder = e_zorder_front;
+            add_item(pitemMinimize);
+
+            user_item(pitemMinimize)->m_ezorder = e_zorder_front;
+
+         }
 
       }
 

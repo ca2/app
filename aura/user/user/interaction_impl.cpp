@@ -1523,16 +1523,14 @@ namespace user
 
          m_userinteractionaMouseHover.add_unique(pinterface);
 
+         if (bWasEmpty)
+         {
+
+            track_mouse_hover();
+
+         }
+
       }
-
-      if (bWasEmpty)
-      {
-
-         track_mouse_hover();
-
-      }
-
-      //return true;
 
    }
 
@@ -1563,13 +1561,13 @@ namespace user
 
          auto pinteraction = m_userinteractionaMouseHover[i];
 
-         if (pinteraction == m_puserinteractionMouseCapture)
-         {
+         //if (pinteraction == m_puserinteractionMouseCapture)
+         //{
 
-            i++;
+           // i++;
 
-         }
-         else if (!bMouseLeave && pinteraction->_001IsPointInsideInline(pointCursor))
+         //}
+         if (!bMouseLeave && pinteraction->_001IsPointInsideInline(pointCursor))
          {
 
             i++;
@@ -2245,6 +2243,12 @@ namespace user
          {
 
             information() << "e_message_left_button_down";
+
+         }
+         else if (pmessage->m_atom == e_message_left_button_up)
+         {
+
+            information() << "e_message_left_button_up";
 
          }
 

@@ -180,7 +180,8 @@ namespace experience
 
 
       void enable_frame_experience(bool bEnable = true) override;
-      void enable_dock(bool bEnable = true);
+      void enable_dock();
+      void disable_dock();
       void enable_move(bool bEnable = true);
       void enable_size(bool bEnable = true);
       void enable_menu(bool bEnable = true);
@@ -193,6 +194,8 @@ namespace experience
 
 
       ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+
+      //::item_pointer experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
       
       virtual button * get_box_button(enum_button ebutton);

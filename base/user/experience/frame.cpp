@@ -375,9 +375,9 @@ namespace experience
    bool frame::on_message_left_button_double_click(::message::mouse * pmouse)
    {
 
-      auto ehittest = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
+      auto eframeHittest = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
 
-      if (ehittest == ::experience::e_frame_client)
+      if (eframeHittest == ::e_element_client)
       {
 
          m_pframewindow->dock_manager()->cancel_docking();
@@ -1643,11 +1643,14 @@ namespace experience
 
 
    ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   //::item_pointer frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       UNREFERENCED_PARAMETER(point);
 
       return e_frame_client;
+
+      //return m_pframewindow->m_pitemClient;
 
    }
 

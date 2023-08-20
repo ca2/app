@@ -5,12 +5,14 @@
 #include "control_box.h"
 #include "button.h"
 #include "acme/constant/message.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "aura/message/user.h"
 #include "aura/user/user/button.h"
+#include "aura/user/user/interaction_impl.h"
 
 
 namespace experience
@@ -291,61 +293,79 @@ namespace experience
       if (equivalence_sink(edisplayDock) == ::e_display_normal)
       {
 
-         bool bChange = false;
+         bool bChanged = false;
 
-         //if (edisplayOld != e_display_normal)
+         edisplayDock = m_edisplayOrigin;
+
+         ////else
+
+         if (edisplayOld != edisplayDock)
+         {
+
+            bChanged = true;
+
+               //   //m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleNormal.size());
+
+               //   m_pframewindow->display(e_display_normal, e_activation_default);
+
+               //   bChange = true;
+
+         }
+
+
+         ::rectangle_i32 rectangleWindow = m_rectangleOnDockStart;
+
+         //if (edisplayDock == e_display_broad)
          //{
 
-         //   //m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleNormal.size());
+         //   rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleBroad.size());
 
-         //   m_pframewindow->display(e_display_normal, e_activation_default);
+         //}
+         //else if (edisplayDock == e_display_compact)
+         //{
 
-         //   bChange = true;
+         //   rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleCompact.size());
 
          //}
          //else
+         //{
 
-         ::rectangle_i32 rectangleNew;
+         //   rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleNormal.size());
 
-         if (edisplayDock == e_display_broad)
+         //}
+
+         auto Δ = pmouse->m_point - m_pointLastRepositionCursorOrigin;
+
+         //auto pointReposition = pmouse->m_point - m_pointCursorDockOrigin + m_sizeDockRightOrigin;
+
+         auto pointReposition = m_pointLastRepositionWindowOrigin + Δ;
+
+         //sizeWindow.cx() -= rectangleNew.width();
+
+         rectangleWindow.move_to(pointReposition);
+
+         information() << "rectangleNew " << pointReposition;
+
+         ///m_pframewindow->good_restore(nullptr, rectangleNew, true, e_activation_default, e_zorder_top, edisplayDock);
+
+         ////{
+
+         m_pframewindow->display(edisplayDock);
+
+         m_pframewindow->place(rectangleWindow);
+
+         if (bChanged)
          {
-
-            rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleBroad.size());
-
-         }
-         else if (edisplayDock == e_display_compact)
-         {
-
-            rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleCompact.size());
-
-         }
-         else
-         {
-
-            rectangleNew.set_size(m_pframewindow->m_windowrectangle.m_rectangleNormal.size());
-
-         }
-
-         auto sizeWindow = pmouse->m_point - m_pointCursorDockOrigin + m_sizeDockRightOrigin;
-
-         sizeWindow.cx() -= rectangleNew.width();
-
-         rectangleNew.move_to(::point_i32(sizeWindow));
-
-         m_pframewindow->good_restore(nullptr, rectangleNew, true, e_activation_default, e_zorder_top, edisplayDock);
-
-         if(bChange)
-         {
-
-            m_pframewindow->display(e_display_normal);
 
             m_pframewindow->set_need_layout();
 
-            m_pframewindow->set_need_redraw();
-
-            m_pframewindow->post_redraw();
-
          }
+
+         m_pframewindow->set_need_redraw();
+
+         m_pframewindow->post_redraw();
+
+         ////}
 
       }
       else if (is_docking_appearance(edisplayDock))
@@ -398,6 +418,10 @@ namespace experience
 
       auto pbutton = dock_button();
 
+      auto pwindowimpl = m_pframewindow->get_window_impl();
+
+      pwindowimpl->m_puiLastLButtonDown = pbutton;
+
       pbutton->set_mouse_capture();
 
       auto pointCursor = pmouse->m_point;
@@ -405,6 +429,8 @@ namespace experience
       auto rectangleWindow = m_pframewindow->screen_rectangle();
 
       auto pointDockOrigin = pointCursor;
+
+      m_rectangleOnDockStart = rectangleWindow;
 
       pbutton->screen_to_client()(pointDockOrigin);
 
@@ -419,6 +445,10 @@ namespace experience
       m_sizeOrigin = rectangleWindow.size();
 
       m_edisplayOrigin = m_pframewindow->const_layout().design().display();
+
+      m_pointLastRepositionCursorOrigin = pmouse->m_point;
+
+      m_pointLastRepositionWindowOrigin = m_pframewindow->const_layout().window().origin();
 
       m_mapWorkspaceRect.erase_all();
 

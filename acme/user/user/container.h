@@ -44,6 +44,8 @@ namespace user
 
       virtual ::index add_item(::item * pitem);
 
+      virtual ::item_pointer add_item(const ::item_t & item);
+
       virtual ::user::item * user_item_at(::index iIndex);
 
       virtual ::index item_index(const ::item * pitem);
@@ -53,6 +55,10 @@ namespace user
       virtual ::user::item * user_item(const ::atom & atom);
 
       virtual ::item_pointer item(const ::atom & atom);
+
+      virtual ::item_pointer item(const item_t & item);
+
+      virtual ::item_pointer defer_item(const item_t & item);
 
       virtual ::index item_index() const;
 

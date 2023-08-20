@@ -280,9 +280,9 @@ namespace user
 
       //m_uUserInteractionFlags = 0;
 
-      m_bEnableDragClient = false;
+      //m_bEnableDragClient = false;
 
-      m_bEnableDragResize = false;
+      //m_bEnableDragResize = false;
 
       //m_bTaskPending = true;
 
@@ -6384,6 +6384,10 @@ namespace user
 
          add_item(m_pitemClient);
 
+         auto puseritem = user_item(m_pitemClient);
+
+         puseritem->m_ezorder = e_zorder_back;
+
       }
 
       if (m_bEnableDragResize)
@@ -7506,7 +7510,7 @@ namespace user
          if (pinteraction->m_strName == strName)
          {
 
-            if (iItem < 0 || iItem == pinteraction->m_iItem)
+            if (iItem < 0 || iItem == pinteraction->m_item.m_iItem)
             {
 
                return pinteraction;
@@ -7576,7 +7580,7 @@ namespace user
          if (pinteraction->GetDlgCtrlId() == atom)
          {
 
-            if (iItem < 0 || iItem == pinteraction->m_iItem)
+            if (iItem < 0 || iItem == pinteraction->m_item.m_iItem)
             {
 
                return pinteraction;
@@ -11508,7 +11512,7 @@ namespace user
 
    }
 
-
+   
    bool interaction::has_link()
    {
 
@@ -12884,6 +12888,8 @@ namespace user
 
    void interaction::track_mouse_hover()
    {
+
+      information() << "interaction::track_mouse_hover";
 
       //      synchronous_lock synchronouslock(this->synchronization());
 
@@ -19676,7 +19682,7 @@ namespace user
             //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
             //{
 
-            //set_mouse_capture();
+            set_mouse_capture();
 
             //}
 
@@ -20239,6 +20245,21 @@ namespace user
 
          //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
 
+
+         if (m_atom == "frame::e_button_transparent_frame")
+         {
+
+            information() << "frame::e_button_transparent_frame on_message_parent_mouse_move";
+
+         }
+         else if (m_atom == "frame::e_button_dock")
+         {
+
+            information() << "frame::e_button_dock on_message_parent_mouse_move";
+
+         }
+
+
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
          if (pmouse->m_bRet)
@@ -20615,6 +20636,8 @@ namespace user
 
             puserinteractionimplHost->m_pitemLButtonDown = pitemLButtonDown;
 
+            set_mouse_capture();
+
             track_mouse_leave();
 
             if (m_bClickDefaultMouseHandling)
@@ -20874,9 +20897,12 @@ namespace user
 
          pwindowimpl->m_puiLastLButtonDown = nullptr;
 
-         //set_need_redraw();
+         information() << "interaction::on_message_left_button_up last_button_down set to null";
+         information() << "m_pitemHover " << ::as_string((iptr)m_pitemHover.m_p);
 
-         //post_redraw();
+         set_need_redraw();
+
+         post_redraw();
 
       }
 
@@ -21692,8 +21718,15 @@ namespace user
 
          //m_pitemHOver->m_bAnyHoverChange = true;
 
-         if (::is_item_set(m_pitemHover))
+         if (::is_item_set(m_pitemHover) && !pitemOldHover)
          {
+
+            if (m_atom == "frame::e_button_transparent_frame")
+            {
+
+               information() << "frame::e_button_transparent_frame update_hover track_mouse_leave";
+
+            }
 
             track_mouse_leave();
 
@@ -21860,6 +21893,15 @@ namespace user
 
       bool bMouseHover = ::is_item_set(m_pitemHover);
 
+      auto pwindowimpl = ((interaction*)this)->get_window_impl();
+
+      if (pwindowimpl->m_puiLastLButtonDown == this)
+      {
+
+         bMouseHover = true;
+
+      }
+
       return bMouseHover;
 
    }
@@ -21869,6 +21911,8 @@ namespace user
    {
 
       synchronous_lock synchronouslock(this->synchronization());
+
+      information() << "interaction::on_message_mouse_leave";
 
       auto pappearance = get_appearance();
 
@@ -23207,9 +23251,16 @@ namespace user
 
          }
 
-         if (::is_set(m_pitemHover))
+         if (is_mouse_hover())
          {
 
+            if (m_atom == "frame::e_button_transparent_frame")
+            {
+
+               information() << "is_mouse_hover in transparent_button";
+               information() << "m_pitemHover " << ::as_string((iptr)m_pitemHover.m_p);
+
+            }
             estate |= e_state_hover;
 
          }

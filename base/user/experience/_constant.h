@@ -21,7 +21,7 @@ namespace experience
       e_frame_sizing_bottom_left = e_frame_sizing_bottom | e_frame_sizing_left,
       e_frame_sizing_bottom_right = e_frame_sizing_bottom | e_frame_sizing_right,
       e_frame_client = 16,
-      e_frame_move = 32,
+//      e_frame_move = 32,
 
    };
 

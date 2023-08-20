@@ -183,6 +183,65 @@ namespace user
 
    }
 
+
+   ::item_pointer container::item(const item_t & item)
+   {
+
+      if (!m_pitema)
+      {
+
+         return nullptr;
+
+      }
+
+      for (auto & pitem : *m_pitema)
+      {
+
+         if (::is_item_equivalent(&pitem->m_item, &item))
+         {
+
+            return pitem;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   ::item_pointer container::defer_item(const item_t & item)
+   {
+
+      auto pitem = this->item(item);
+
+      if (!pitem)
+      {
+
+         pitem = add_item(item);
+
+      }
+
+      return pitem;
+
+   }
+
+
+   ::item_pointer container::add_item(const ::item_t & item)
+   {
+
+      auto pitem = __new(::item(item));
+
+      pitem->initialize(this);
+
+      add_item(pitem);
+
+      return pitem;
+
+   }
+
+
    ::index container::item_index() const
    {
    

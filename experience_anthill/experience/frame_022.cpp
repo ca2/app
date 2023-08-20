@@ -1,12 +1,12 @@
 #include "framework.h"
-#include "frame_013.h"
+#include "frame_022.h"
 
 
 namespace experience_anthill
 {
 
 
-   frame_013::frame_013()
+   frame_022::frame_022()
    {
 
       m_bHollow = true;
@@ -14,7 +14,7 @@ namespace experience_anthill
    }
 
 
-   frame_013::~frame_013()
+   frame_022::~frame_022()
    {
 
    }

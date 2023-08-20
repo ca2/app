@@ -54,7 +54,9 @@ namespace user
 
       m_econtroltype = e_control_type_button;
 
-      m_bMouseHoverOnCapture = true;
+      //m_bMouseHoverOnCapture = true;
+
+      m_bMouseHoverOnCapture = false;
 
       m_estockicon = e_stock_icon_none;
 

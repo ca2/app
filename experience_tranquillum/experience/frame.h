@@ -97,6 +97,8 @@ namespace experience_tranquillum
       virtual void GetFrameRect(rectangle_i32 & rectangle) override;
 
 
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+
 
    };
 

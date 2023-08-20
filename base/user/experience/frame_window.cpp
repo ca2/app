@@ -161,6 +161,9 @@ namespace experience
       m_bEnableFrameExperience = true;
       //m_bEatsDoubleClick = false;
 
+      m_bEnableDragResize = false;
+      m_bEnableDefaultControlBox = false;
+
       m_eupdown = e_updown_normal_frame;
 
       m_pupdowntarget = nullptr;
@@ -572,10 +575,18 @@ namespace experience
    }
 
 
-   void frame_window::enable_dock(bool bEnable)
+   void frame_window::enable_dock()
    {
 
-      m_bDockEnable = bEnable;
+      m_bDockEnable = true;
+
+   }
+
+
+   void frame_window::disable_dock()
+   {
+
+      m_bDockEnable = false;
 
    }
 
@@ -1396,40 +1407,41 @@ namespace experience
    ::item_pointer frame_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 
-      if (is_sizing_enabled())
-      {
+      //if (is_sizing_enabled())
+      //{
 
-         if (m_psizemanager->m_eframeCursor != e_frame_none)
-         {
+      //   if (::is_item_set(m_psizemanager->m_pitemCursor))
+      //   {
 
+      //      return m_psizemanager->m_pitemCursor;
 
-            switch (m_psizemanager->m_eframeCursor)
-            {
-            case e_frame_sizing_left:
-               return __new(::item(e_element_resize_left));
-            case e_frame_sizing_top:
-               return __new(::item(e_element_resize_top));
-            case e_frame_sizing_right:
-               return __new(::item(e_element_resize_right));
-            case e_frame_sizing_bottom:
-               return __new(::item(e_element_resize_bottom));
-            case e_frame_sizing_top_left:
-               return __new(::item(e_element_resize_top_left));
-            case e_frame_sizing_top_right:
-               return __new(::item(e_element_resize_top_right));
-            case e_frame_sizing_bottom_left:
-               return __new(::item(e_element_resize_bottom_left));
-            case e_frame_sizing_bottom_right:
-               return __new(::item(e_element_resize_bottom_right));
-               default:
-                  
-                  return nullptr;
+      //      //switch (m_psizemanager->m_eframeCursor)
+      //      //{
+      //      //case e_frame_sizing_left:
+      //      //   return __new(::item(e_element_resize_left));
+      //      //case e_frame_sizing_top:
+      //      //   return __new(::item(e_element_resize_top));
+      //      //case e_frame_sizing_right:
+      //      //   return __new(::item(e_element_resize_right));
+      //      //case e_frame_sizing_bottom:
+      //      //   return __new(::item(e_element_resize_bottom));
+      //      //case e_frame_sizing_top_left:
+      //      //   return __new(::item(e_element_resize_top_left));
+      //      //case e_frame_sizing_top_right:
+      //      //   return __new(::item(e_element_resize_top_right));
+      //      //case e_frame_sizing_bottom_left:
+      //      //   return __new(::item(e_element_resize_bottom_left));
+      //      //case e_frame_sizing_bottom_right:
+      //      //   return __new(::item(e_element_resize_bottom_right));
+      //      //   default:
+      //      //      
+      //      //      return nullptr;
 
-            }
+      //      //}
 
-         }
+      //   }
 
-      }
+      //}
 
       return ::user::frame_window::hit_test(pmouse, ezorder);
 
@@ -1815,6 +1827,7 @@ namespace experience
 
    // point_i32 should be in screen coordinates
    ::experience::enum_frame frame_window::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   //::item_pointer frame_window::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       ASSERT(m_pframe != nullptr);

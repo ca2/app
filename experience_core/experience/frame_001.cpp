@@ -43,153 +43,147 @@ namespace experience_core
    }
 
 
-   ::experience::enum_frame frame_001::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
-   {
+   //::item_pointer frame_001::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   //{
 
-      ::experience::enum_frame etest = ::experience::e_frame_client;
+   //   ::item_pointer pitemHitTest;
 
-      {
-         //      m_pframewindow->screen_to_client()(point);
-         ::rectangle_i32 rectangleEvent;
-         m_pframewindow->window_rectangle(rectangleEvent);
-         ::rectangle_i32 rectangle;
-         ::point_i32 pointCenter = rectangleEvent.center();
-         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+   //   {
+   //      //      m_pframewindow->screen_to_client()(point);
+   //      ::rectangle_i32 rectangleEvent;
+   //      m_pframewindow->window_rectangle(rectangleEvent);
+   //      ::rectangle_i32 rectangle;
+   //      ::point_i32 pointCenter = rectangleEvent.center();
+   //      enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
-         if(egrip & e_grip_top_left)
-         {
-            rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.bottom = rectangle.top + 5;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_top_left;
-               goto SizingSuccess;
-            }
-            rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.bottom = rectangle.top + 16;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_top_left;
-               goto SizingSuccess;
-            }
-         }
-         if(egrip & e_grip_top_right)
-         {
-            rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.bottom = rectangle.top + 5;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_top_right;
-               goto SizingSuccess;
-            }
-            rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.bottom = rectangle.top + 16;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_top_right;
-               goto SizingSuccess;
-            }
-         }
-         if(egrip & e_grip_bottom_right)
-         {
-            rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
-            rectangle.top = rectangle.bottom - 5;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_bottom_right;
-               goto SizingSuccess;
-            }
-            rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 5;
-            rectangle.top = rectangle.bottom - 16;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_bottom_right;
-               goto SizingSuccess;
-            }
-         }
-         if(egrip & e_grip_bottom_left)
-         {
-            rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
-            rectangle.top = rectangle.bottom - 5;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_bottom_left;
-               goto SizingSuccess;
-            }
-            rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 5;
-            rectangle.top = rectangle.bottom - 16;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_bottom_left;
-               goto SizingSuccess;
-            }
-         }
-         if(egrip & e_grip_top)
-         {
-            rectangle.top = rectangleEvent.top;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.top + 5;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_top;
-               goto SizingSuccess;
-            }
-         }
-         if(egrip & e_grip_bottom)
-         {
-            rectangle.top = rectangleEvent.bottom - 5;
-            rectangle.left = pointCenter.x() - 8;
-            rectangle.right = pointCenter.x() + 8;
-            rectangle.bottom = rectangleEvent.bottom;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_bottom;
-               goto SizingSuccess;
-            }
-         }
-         if(egrip & e_grip_left)
-         {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.left;
-            rectangle.right = rectangleEvent.left + 5;
-            rectangle.bottom = pointCenter.y() + 8;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_left;
-               goto SizingSuccess;
-            }
-         }
-         if(egrip & e_grip_right)
-         {
-            rectangle.top = pointCenter.y() - 8;
-            rectangle.left = rectangleEvent.right - 5;
-            rectangle.right = rectangleEvent.right;
-            rectangle.bottom = pointCenter.y() + 8;
-            if(rectangle.contains(point))
-            {
-               etest = ::experience::e_frame_sizing_right;
-               goto SizingSuccess;
-            }
-         }
-         goto SizingNone;
-SizingSuccess:
-         return etest;
-SizingNone:;
-      }
-      return ::experience::e_frame_client;
-   }
-
-
-
+   //      if(egrip & e_grip_top_left)
+   //      {
+   //         //auto pitem = 
+   //         //auto puseritem = m_pframewindow->user_item(pitem);
+   //         //auto & rectangle = puseritem->m_rectangle;
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 16;
+   //         rectangle.bottom = rectangle.top + 5;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_left });
+   //            
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 5;
+   //         rectangle.bottom = rectangle.top + 16;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_left });
+   //            
+   //         }
+   //      }
+   //      if(egrip & e_grip_top_right)
+   //      {
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 16;
+   //         rectangle.bottom = rectangle.top + 5;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_right });
+   //            
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 5;
+   //         rectangle.bottom = rectangle.top + 16;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_right });
+   //            
+   //         }
+   //      }
+   //      if(egrip & e_grip_bottom_right)
+   //      {
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 16;
+   //         rectangle.top = rectangle.bottom - 5;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_right });
+   //            
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 5;
+   //         rectangle.top = rectangle.bottom - 16;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_right });
+   //            
+   //         }
+   //      }
+   //      if(egrip & e_grip_bottom_left)
+   //      {
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 16;
+   //         rectangle.top = rectangle.bottom - 5;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_left });
+   //            
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 5;
+   //         rectangle.top = rectangle.bottom - 16;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_left });
+   //            
+   //         }
+   //      }
+   //      if(egrip & e_grip_top)
+   //      {
+   //         rectangle.top = rectangleEvent.top;
+   //         rectangle.left = pointCenter.x() - 8;
+   //         rectangle.right = pointCenter.x() + 8;
+   //         rectangle.bottom = rectangleEvent.top + 5;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top });
+   //            
+   //         }
+   //      }
+   //      if(egrip & e_grip_bottom)
+   //      {
+   //         rectangle.top = rectangleEvent.bottom - 5;
+   //         rectangle.left = pointCenter.x() - 8;
+   //         rectangle.right = pointCenter.x() + 8;
+   //         rectangle.bottom = rectangleEvent.bottom;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom });
+   //            
+   //         }
+   //      }
+   //      if(egrip & e_grip_left)
+   //      {
+   //         rectangle.top = pointCenter.y() - 8;
+   //         rectangle.left = rectangleEvent.left;
+   //         rectangle.right = rectangleEvent.left + 5;
+   //         rectangle.bottom = pointCenter.y() + 8;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_left });
+   //         }
+   //      }
+   //      if(egrip & e_grip_right)
+   //      {
+   //         rectangle.top = pointCenter.y() - 8;
+   //         rectangle.left = rectangleEvent.right - 5;
+   //         rectangle.right = rectangleEvent.right;
+   //         rectangle.bottom = pointCenter.y() + 8;
+   //         if(rectangle.contains(point))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_right });
+   //         }
+   //      }
+   //   }
+   //   return m_pframewindow->m_pitemClient;
+   //}
 
 
    void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_border eside)

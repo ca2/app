@@ -1713,7 +1713,7 @@ namespace filemanager
 
          ::file::item item;
 
-         index iItem = pinteraction->m_iItem;
+         index iItem = pinteraction->m_item.m_iItem;
 
          index iStrict = display_to_strict(iItem);
 

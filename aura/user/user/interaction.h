@@ -162,6 +162,7 @@ namespace user
       bool                                      m_bUserInteractionHost;
       bool                                      m_bEnableDragClient;
       bool                                      m_bEnableDragResize;
+      bool                                      m_bEnableDefaultControlBox;
       bool                                      m_bDerivedHeight;
 
       bool                                      m_bLadingToLayout;
@@ -261,9 +262,9 @@ namespace user
 
    public:
 
-      index                                     m_iItem;
-      index                                     m_iSubItem;
-      index                                     m_iListItem;
+      //index                                     m_iItem;
+      //index                                     m_iSubItem;
+      //index                                     m_iListItem;
       index                                     m_iColumn;
 
       atom                                      m_uiText;

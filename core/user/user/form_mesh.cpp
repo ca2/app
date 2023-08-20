@@ -115,9 +115,9 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
+      auto psubitem = get_subitem(pinteraction->m_item.m_iItem, pinteraction->m_item.m_iSubItem);
 
-      psubitem->m_pitem->m_iDisplayItem = strict_to_display(pinteraction->m_iItem);
+      psubitem->m_pitem->m_iDisplayItem = strict_to_display(pinteraction->m_item.m_iItem);
       
       psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
       
@@ -189,7 +189,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iItem);
+         _001PlaceControl(pinteraction, pinteraction->m_item.m_iItem);
 
       }
 
@@ -213,7 +213,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iItem);
+         _001PlaceControl(pinteraction, pinteraction->m_item.m_iItem);
 
       }
 
@@ -433,7 +433,7 @@ namespace user
       item.initialize_mesh_item(this);
 
       return ::is_set(m_pitemControl)
-         && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iSubItem;
+         && m_pitemControl->m_item.m_iSubItem == pinteraction->m_item.m_iSubItem;
 
       //i32 iEditItem;
       //i32 iEditSubItem;

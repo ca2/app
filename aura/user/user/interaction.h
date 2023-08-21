@@ -1266,6 +1266,7 @@ namespace user
       ///    - during on_perform_layout the position and/or size of
       ///      the user::interaction has changed.
       virtual bool on_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_items_layout(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema);
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition() override;
       virtual void on_show_window() override;
@@ -2217,6 +2218,7 @@ namespace user
       virtual bool item_contains(::item * pitem, const ::point_i32 & point);
 
       virtual ::item_pointer on_items_hit_test(const ::point_i32& point, e_zorder ezorder);
+      virtual ::item_pointer on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::index iIdContainer, ::item_array * pitema);
 
       virtual void defer_setup_default_bottom_right_resize_user_item();
 
@@ -2235,13 +2237,15 @@ namespace user
 
       //inline auto rectangle(::item * pitem) { get_rect((::item *) pitem); return pitem->m_rectangle; }
 
-      virtual ::user::item * add_user_item(::item * pitem);
+      //virtual ::user::item * add_user_item(::item * pitem);
 
-      virtual ::user::item * _add_user_item(::item * pitem);
+      //virtual ::user::item * _add_user_item(::item * pitem);
 
 //      virtual ::item_pointer add_user_item(::item * pitem);
 
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
+
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema);
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & item, const ::user::e_state & estate);
 
@@ -2391,15 +2395,17 @@ namespace user
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
 
-      ::item_pointer get_child_as_item(::index iIndex) override;
-      ::count get_child_as_item_count() override;
+      //::item_pointer get_child_as_item(::index iIndex) override;
+      //::count get_child_as_item_count() override;
+
+      ::user::interaction * child_at(::index iIndex);
 
 
-      void on_item_selected(::item* pitem) override;
-      void on_item_hover(::item* pitem) override;
+      virtual void on_item_selected(::item* pitem);
+      virtual void on_item_hover(::item* pitem);
 
 
-      ::item_pointer hover_item() override;
+      virtual ::item_pointer hover_item();
 
 
       //template < typename OFFSETABLE, typename SOURCE >

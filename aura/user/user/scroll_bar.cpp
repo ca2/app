@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "scroll_bar.h"
-#include "acme/handler/item.h"
 #include "acme/constant/message.h"
+#include "acme/handler/item.h"
+#include "acme/user/user/content.h"
 #include "aura/platform/draw_context2.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
@@ -145,7 +146,7 @@ namespace user
    ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement)
    {
 
-      if ((m_pitemCurrent && m_pitemCurrent->m_item.m_eelement == eelement) ||
+      if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
          (m_pitemHover && m_pitemHover->m_item.m_eelement == eelement))
       {
 
@@ -165,7 +166,7 @@ namespace user
    ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::enum_element eelement)
    {
 
-      if ((m_pitemCurrent && m_pitemCurrent->m_item.m_eelement == eelement) ||
+      if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
          (m_pitemHover && m_pitemHover->m_item.m_eelement == eelement))
       {
 
@@ -185,7 +186,7 @@ namespace user
    ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)
    {
 
-      if ((m_pitemCurrent && m_pitemCurrent->m_item.m_eelement == eelement) ||
+      if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
          (m_pitemHover && m_pitemHover->m_item.m_eelement == eelement))
       {
 
@@ -205,7 +206,7 @@ namespace user
    ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)
    {
 
-      if ((m_pitemCurrent && m_pitemCurrent->m_item.m_eelement == eelement) ||
+      if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
          (m_pitemHover && m_pitemHover->m_item.m_eelement == eelement))
       {
 
@@ -225,7 +226,7 @@ namespace user
    ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)
    {
 
-      if ((m_pitemCurrent && m_pitemCurrent->m_item.m_eelement == eelement) ||
+      if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
          (m_pitemHover && m_pitemHover->m_item.m_eelement == eelement))
       {
 

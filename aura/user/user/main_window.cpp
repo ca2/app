@@ -2,6 +2,7 @@
 #include "main_window.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
+#include "acme/user/user/tool.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/application.h"
 
@@ -75,7 +76,7 @@ namespace user
 
             auto pitemClose = __new(::item(::e_element_close_button, ::id_close_app));
 
-            add_item(pitemClose);
+            tool().add_item(pitemClose);
 
             user_item(pitemClose)->m_ezorder = e_zorder_front;
 
@@ -85,7 +86,7 @@ namespace user
 
             auto pitemMaximize = __new(::item(::e_element_maximize_button, ::id_maximize));
 
-            add_item(pitemMaximize);
+            tool().add_item(pitemMaximize);
 
             user_item(pitemMaximize)->m_ezorder = e_zorder_front;
 
@@ -95,7 +96,7 @@ namespace user
 
             auto pitemMinimize = __new(::item(::e_element_minimize_button, ::id_minimize));
 
-            add_item(pitemMinimize);
+            tool().add_item(pitemMinimize);
 
             user_item(pitemMinimize)->m_ezorder = e_zorder_front;
 

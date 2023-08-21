@@ -672,6 +672,8 @@
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\item_container.cpp" />
+    <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
@@ -846,6 +848,8 @@
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
+    <ClInclude Include="handler\item_container.h" />
+    <ClInclude Include="handler\item_container_map.h" />
     <ClInclude Include="handler\topic.h" />
     <ClInclude Include="include\_c_swap.h" />
     <ClInclude Include="include\_enumeration.h" />
@@ -909,9 +913,11 @@
     <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\time_span.h" />
     <ClInclude Include="user\user\container.h" />
+    <ClInclude Include="user\user\content.h" />
     <ClInclude Include="user\user\drag.h" />
     <ClInclude Include="user\user\drag_client.h" />
     <ClInclude Include="user\user\item.h" />
+    <ClInclude Include="user\user\tool.h" />
     <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />

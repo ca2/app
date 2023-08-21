@@ -19,7 +19,6 @@
 #include "acme/exception/interface_only.h"
 #include "acme/handler/item.h"
 #include "acme/platform/keep.h"
-#include "acme/user/user/drag.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
@@ -34,6 +33,9 @@
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/time/_string.h"
 #include "acme/user/user/_text_stream.h"
+#include "acme/user/user/content.h"
+#include "acme/user/user/drag.h"
+#include "acme/user/user/tool.h"
 #include "apex/message/simple_command.h"
 #include "apex/user/user/message.h"
 #include "aqua/user/controller.h"
@@ -4710,7 +4712,7 @@ namespace user
 
             }
 
-            auto puseritemCurrent = user_item(m_pitemCurrent);
+            auto puseritemCurrent = user_item(main_content().m_pitemCurrent);
 
             if (puseritemCurrent)
             {
@@ -6451,7 +6453,7 @@ namespace user
 
       //m_pitemClient = __new(::item(e_element_client));
 
-      auto pitemClient = defer_item(::item_t{ e_element_client });
+      auto pitemClient = tool().defer_item(e_element_client);
 
       auto puseritem = user_item(pitemClient);
 
@@ -6467,7 +6469,7 @@ namespace user
       if (m_bEnableDragResize)
       {
 
-         auto pitemResize = defer_item(::item_t{ e_element_resize });
+         auto pitemResize = tool().defer_item(e_element_resize);
 
          enable_drag(pitemResize, e_zorder_front);
 
@@ -11819,6 +11821,42 @@ namespace user
 
    }
 
+   void interaction::on_items_layout(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema)
+   {
+
+      if (::is_null(pitema))
+      {
+
+         return;
+
+   }
+
+
+      for (auto & pitem : *pitema)
+      {
+
+         auto puseritem = user_item(pitem);
+
+         if (pitem && pitem->m_item.m_eelement != ::e_element_item)
+         {
+
+            puseritem->m_ppath.release();
+
+            if (pitem->m_item.m_eelement != e_element_item)
+            {
+
+               auto rectangle = this->rectangle(pitem->m_item.m_eelement);
+
+               puseritem->m_rectangle = rectangle;
+
+            }
+
+         }
+
+      }
+
+   }
+
 
    void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
@@ -11852,33 +11890,13 @@ namespace user
 
       //}
 
-      if (m_pitema)
+      for (auto [iIndex, pitemcontainer]  : m_itemcontainermap)
       {
 
-         for (auto & pitem : *m_pitema)
-         {
-
-            auto puseritem = user_item(pitem);
-
-            if (pitem && pitem->m_item.m_eelement != ::e_element_item)
-            {
-
-               puseritem->m_ppath.release();
-
-               if (pitem->m_item.m_eelement != e_element_item)
-               {
-
-                  auto rectangle = this->rectangle(pitem->m_item.m_eelement);
-
-                  puseritem->m_rectangle = rectangle;
-
-               }
-
-            }
-
-         }
+         on_items_layout(pgraphics, iIndex, pitemcontainer->m_pitema);
 
       }
+
 
       //{
 
@@ -15155,32 +15173,24 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      for (auto & pitem : *m_pitema)
+      if(tool().contains_item(e_element_close_button)
+         || tool().contains_item(e_element_close_icon)
+         || tool().contains_item(id_close_app))
       {
 
-         if (pitem->m_item.m_eelement == ::e_element_close_button || pitem->m_item.m_eelement == ::e_element_close_icon)
-         {
+         display(e_display_hide);
 
-            if (pitem->m_atom == ::id_close_app)
-            {
+         set_need_layout();
 
-               display(e_display_hide);
+         set_need_redraw();
 
-               set_need_layout();
+         post_redraw();
 
-               set_need_redraw();
+         auto papp = get_app();
 
-               post_redraw();
+         papp->_001TryCloseApplication();
 
-               auto papp = get_app();
-
-               papp->_001TryCloseApplication();
-
-               return;
-
-            }
-
-         }
+         return;
 
       }
 
@@ -18247,14 +18257,14 @@ namespace user
    void interaction::set_current_item(::item * pitem, const ::action_context & context)
    {
 
-      if (::is_same_item(m_pitemCurrent, pitem))
+      if (::is_same_item(main_content().m_pitemCurrent, pitem))
       {
 
          return;
 
       }
 
-      m_pitemCurrent = pitem;
+      main_content().m_pitemCurrent = pitem;
 
       if (has_handler())
       {
@@ -18283,7 +18293,7 @@ namespace user
    ::item_pointer interaction::current_item()
    {
 
-      return m_pitemCurrent;
+      return main_content().m_pitemCurrent;
 
    }
 
@@ -22267,40 +22277,63 @@ namespace user
    ::item_pointer interaction::on_items_hit_test(const ::point_i32 & point, e_zorder ezorder)
    {
 
+      for (auto [iIndex, pitemcontainer] : m_itemcontainermap)
+      {
+
+         auto pitemHitTest = on_items_hit_test(point, ezorder, iIndex, pitemcontainer->m_pitema);
+
+         if (pitemHitTest)
+         {
+
+            return pitemHitTest;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+   ::item_pointer interaction::on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::index iIdContainer, ::item_array * pitema)
+   {
+
       synchronous_lock synchronouslock(this->synchronization());
 
       //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
       auto pointScroll = point + m_pointBarDragScroll;
 
-      if (m_pitema)
+      if (::is_null(pitema))
       {
 
-         for (auto & pitem : *m_pitema)
+         return nullptr;
+
+      }
+
+      for (auto & pitem : *pitema)
+      {
+
+         if (pitem->is_hidden())
          {
 
-            if (pitem->is_hidden())
-            {
+            continue;
 
-               continue;
+         }
 
-            }
+         auto * puseritem = user_item(pitem);
 
-            auto * puseritem = user_item(pitem);
+         if (!(puseritem->m_ezorder & ezorder))
+         {
 
-            if (!(puseritem->m_ezorder & ezorder))
-            {
+            continue;
 
-               continue;
+         }
 
-            }
+         if (item_contains(pitem, pointScroll))
+         {
 
-            if (item_contains(pitem, pointScroll))
-            {
-
-               return pitem;
-
-            }
+            return pitem;
 
          }
 
@@ -22316,7 +22349,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitemResize = item(item_t{ e_element_resize });
+      auto pitemResize = tool().item(e_element_resize);
 
       if (pitemResize)
       {
@@ -22381,7 +22414,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitemClient = item(item_t{ e_element_client });
+      auto pitemClient = tool().item(e_element_client);
 
       if (pitemClient)
       {
@@ -22610,66 +22643,79 @@ namespace user
       }
 
       //::user::interaction::_001OnDraw(pgraphics);
-      if (m_pitema && m_pitema->has_element())
-      {
+      //if (m_pitema && m_pitema->has_element())
+      //{
 
          _001DrawItems(pgraphics);
 
-      }
+      //}
 
    }
 
 
-   ::user::item * interaction::_add_user_item(::item * pitem)
-   {
+   //::user::item * interaction::_add_user_item(::item * pitem)
+   //{
 
-      auto iIndex = m_pitema->add(pitem);
+   //   auto iIndex = m_pitema->add(pitem);
 
-      //m_itemmap[*pitem] = iIndex;
+   //   //m_itemmap[*pitem] = iIndex;
 
-      auto puseritem = user_item(pitem);
+   //   auto puseritem = user_item(pitem);
 
-      return puseritem;
+   //   return puseritem;
 
-   }
+   //}
 
 
-   ::user::item * interaction::add_user_item(::item * pitem)
-   {
+   //::user::item * interaction::add_user_item(::item * pitem)
+   //{
 
-      if (is_sandboxed())
-      {
+   //   if (is_sandboxed())
+   //   {
 
-         if (pitem->m_atom == ::id_close_app)
-         {
+   //      if (pitem->m_atom == ::id_close_app)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
-         else if (pitem->m_atom == ::id_maximize)
-         {
+   //      }
+   //      else if (pitem->m_atom == ::id_maximize)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
-         else if (pitem->m_atom == ::id_minimize)
-         {
+   //      }
+   //      else if (pitem->m_atom == ::id_minimize)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return _add_user_item(pitem);
+   //   return _add_user_item(pitem);
 
-   }
+   //}
 
 
    void interaction::_001DrawItems(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (!m_pitema)
+      for (auto [iIndex, pitemcontainer] : m_itemcontainermap)
+      {
+
+         _001DrawItems(pgraphics, iIndex, pitemcontainer->m_pitema);
+
+      }
+
+   }
+
+
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema)
+   {
+
+      if (::is_null(pitema))
       {
 
          return;
@@ -22678,7 +22724,7 @@ namespace user
 
       int iCount = 0;
 
-      for (auto & pitem : *m_pitema)
+      for (auto & pitem : *pitema)
       {
 
          auto puseritem = user_item(pitem);
@@ -22998,24 +23044,54 @@ namespace user
    }
 
 
-   ::item_pointer interaction::get_child_as_item(::index iIndex)
+   //::item_pointer interaction::get_child_as_item(::index iIndex)
+   //{
+
+   //   if (!m_puserinteractionpointeraChild)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   if (iIndex < 0)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   if (iIndex >= m_puserinteractionpointeraChild->interaction_count())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return m_puserinteractionpointeraChild->interaction_at(iIndex);
+
+   //}
+
+
+   //::count interaction::get_child_as_item_count()
+   //{
+
+   //   if (!m_puserinteractionpointeraChild)
+   //   {
+
+   //      return 0;
+
+   //   }
+
+   //   return m_puserinteractionpointeraChild->interaction_count();
+
+   //}
+
+
+   ::user::interaction * interaction::child_at(::index iIndex)
    {
 
-      if (!m_puserinteractionpointeraChild)
-      {
-
-         return nullptr;
-
-      }
-
-      if (iIndex < 0)
-      {
-
-         return nullptr;
-
-      }
-
-      if (iIndex >= m_puserinteractionpointeraChild->interaction_count())
+      if (::is_null(m_puserinteractionpointeraChild))
       {
 
          return nullptr;
@@ -23024,20 +23100,6 @@ namespace user
 
       return m_puserinteractionpointeraChild->interaction_at(iIndex);
 
-   }
-
-
-   ::count interaction::get_child_as_item_count()
-   {
-
-      if (!m_puserinteractionpointeraChild)
-      {
-
-         return 0;
-
-      }
-
-      return m_puserinteractionpointeraChild->interaction_count();
 
    }
 
@@ -23916,7 +23978,7 @@ namespace user
       else if (eelement == e_element_resize)
       {
 
-         auto pitemResize = item(item_t{ e_element_resize });
+         auto pitemResize = tool().item(e_element_resize);
 
          if (!has_drag(pitemResize))
          {
@@ -23936,7 +23998,7 @@ namespace user
       else if (eelement == e_element_drop_down)
       {
 
-         auto pitemDropDown = item(item_t{ e_element_drop_down });
+         auto pitemDropDown = tool().item(e_element_drop_down);
 
          if (!has_drag(pitemDropDown))
          {

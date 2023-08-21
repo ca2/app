@@ -12,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_ACME drag_client :
-      virtual public ::user::container
+      virtual public ::user::acme_container
    {
    public:
 

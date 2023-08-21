@@ -2,6 +2,7 @@
 #include "main_window.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
+#include "acme/user/user/tool.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/message/user.h"
@@ -138,11 +139,11 @@ namespace app_app
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-         auto pitemClose = user_item(::e_element_close_button);
+         auto pitemClose = user_item(tool().item(::e_element_close_button));
 
-         auto pitemZoom = user_item(::e_element_maximize_button);
+         auto pitemZoom = user_item(tool().item(::e_element_maximize_button));
 
-         auto pitemIcon = user_item(::e_element_minimize_button);
+         auto pitemIcon = user_item(tool().item(::e_element_minimize_button));
 
          if (::is_set(pitemClose))
          {

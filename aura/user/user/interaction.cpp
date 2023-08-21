@@ -1922,12 +1922,17 @@ namespace user
 
       }
 
-      auto * puseritem = user_item(pitem);
+      //auto * puseritem = user_item(pitem);
 
-      if (puseritem->m_rectangle.is_empty() && puseritem->m_ppath.is_null())
+      if (!item_rectangle(pitem))
       {
 
-         return false;
+         if (!item_graphics_path(pitem))
+         {
+
+            return false;
+
+         }
 
       }
 
@@ -24081,6 +24086,40 @@ namespace user
    }
 
 
+   status < rectangle_i32 > interaction::item_rectangle(::item * pitem)
+   {
+
+      if (!::is_item_set(pitem))
+      {
+
+         return error_failed;
+
+      }
+
+      auto puseritem = user_item(pitem);
+
+      return puseritem->m_rectangle;
+
+   }
+
+   
+   ::draw2d::path_pointer interaction::item_graphics_path(::item * pitem)
+   {
+
+      if (!::is_item_set(pitem))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puseritem = user_item(pitem);
+
+      return puseritem->m_ppath;
+
+   }
+
+
    void interaction::get_simple_drop_down_open_arrow_polygon(point_f64_array & pointa)
    {
 
@@ -24671,6 +24710,9 @@ m_layout.state(elayout).display());
       return true;
 
    }
+
+
+
 
 
 } // namespace user

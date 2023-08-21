@@ -2,9 +2,8 @@
 
 
 #include "font_enumeration.h"
-
-
 #include "font_list_data.h"
+#include "acme/exception/status.h"
 
 
 namespace write_text
@@ -58,8 +57,8 @@ namespace write_text
       ::i32_array                                 m_iaSize;
 
       int                                       m_iSelUpdateId;
-      ::index                                   m_iSel;
-      ::index                                   m_iHover;
+      //::index                                   m_iSel;
+      //::index                                   m_iHover;
       bool                                      m_bDarkMode;
 
 
@@ -101,6 +100,10 @@ namespace write_text
       virtual ::item_pointer hit_test_wide(const ::point_i32& point);
       virtual ::item_pointer hit_test_single_column(const ::point_i32& point);
       
+
+      virtual ::status < rectangle_i32 > item_rectangle(::item * pitem);
+
+
       virtual bool get_box_rect(::rectangle_i32 * lprect, ::index i);
       virtual bool get_box_rect_wide(::rectangle_i32 * lprect, ::index i);
       virtual bool get_box_rect_single_column(::rectangle_i32 * lprect, ::index i);

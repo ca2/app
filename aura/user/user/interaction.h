@@ -307,6 +307,9 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect3;
       ::draw2d::path_pointer                    m_pathFocusRect4;
 
+
+      
+
       
       //class draw_select
       //{
@@ -618,6 +621,10 @@ namespace user
       virtual bool _is_full_screen();
 
       virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement);
+
+
+      virtual status < rectangle_i32 > item_rectangle(::item * pitem);
+      virtual ::draw2d::path_pointer item_graphics_path(::item * pitem);
 
 
       virtual status < rectangle_i32 > rectangle(enum_element eelement)

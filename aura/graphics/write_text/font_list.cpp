@@ -37,6 +37,8 @@ namespace write_text
    font_list_item::font_list_item()
    {
 
+      m_item.m_eelement = e_element_item;
+
    }
 
 
@@ -57,9 +59,9 @@ namespace write_text
 
       m_rectangleMargin = rectangle_i32(5, 5, 5, 5);
 
-      m_iSel = -1;
+      //m_iSel = -1;
 
-      m_iHover = -1;
+      //m_iHover = -1;
 
       defer_create_synchronization();
 
@@ -98,11 +100,22 @@ namespace write_text
 
       index iSel = find_name(str);
 
-      m_iSel = iSel;
+      if (iSel >= 0)
+      {
+
+         m_puserinteraction->m_pitemCurrent = m_pfontlistdata->element_at(iSel);
+
+      }
+      else
+      {
+
+         m_puserinteraction->m_pitemCurrent.release();
+
+      }
 
       m_strFontFamily = str;
 
-      return m_iSel >= 0;
+      return ::is_item_set(m_puserinteraction->m_pitemCurrent);
 
    }
 
@@ -194,12 +207,6 @@ namespace write_text
       for (int i = 0; i < cListDataCount; i++)
       {
 
-         if (i == m_iSel || i == m_iHover)
-         {
-
-            continue;
-
-         }
 
          auto pitem = pfontlistdata->element_at(i);
 
@@ -211,6 +218,14 @@ namespace write_text
             continue;
 
          }
+
+         if (pitem == m_puserinteraction->m_pitemCurrent || pitem == m_puserinteraction->m_pitemHover)
+         {
+
+            continue;
+
+         }
+
 
          text_box * pbox = &pitem->m_box[BOX];
 
@@ -267,10 +282,10 @@ namespace write_text
 
       }
 
-      if (m_iSel >= 0)
+      if (::is_item_set(m_puserinteraction->m_pitemCurrent))
       {
 
-         auto pitem = pfontlistdata->element_at(m_iSel);
+         ::pointer < font_list_item > pitem = m_puserinteraction->m_pitemCurrent;
 
          if (pitem)
          {
@@ -307,10 +322,11 @@ namespace write_text
 
       }
 
-      if (m_iHover >= 0 && m_iHover != m_iSel)
+      if (::is_item_set(m_puserinteraction->m_pitemHover) &&
+         m_puserinteraction->m_pitemHover != m_puserinteraction->m_pitemCurrent)
       {
 
-         auto pitem = pfontlistdata->element_at(m_iHover);
+         ::pointer < font_list_item > pitem = m_puserinteraction->m_pitemHover;
 
          if (pitem)
          {
@@ -421,9 +437,11 @@ namespace write_text
          if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          {
 
-            m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
+            //m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
 
-            m_iHover = i;
+            m_puserinteraction->m_pitemHover = pfontlistdata->element_at(i);
+
+            //m_iHover = i;
 
             bCheckHover = false;
 
@@ -431,10 +449,10 @@ namespace write_text
 
          bIntersected = true;
 
-         if (i == m_iSel)
+         if (pfontlistdata->element_at(i) == m_puserinteraction->m_pitemCurrent)
          {
 
-            if (!bCheckHover && i == m_iHover)
+            if (!bCheckHover && pfontlistdata->element_at(i) == m_puserinteraction->m_pitemHover)
             {
 
                pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
@@ -448,7 +466,7 @@ namespace write_text
             }
 
          }
-         else if (!bCheckHover && i == m_iHover)
+         else if (!bCheckHover && pfontlistdata->element_at(i) == m_puserinteraction->m_pitemHover)
          {
 
             auto color = m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);
@@ -1106,7 +1124,7 @@ namespace write_text
 
                plistitem = __new(font_list_item);
 
-               plistitem->m_iItem = iItem;
+               plistitem->m_item.m_iItem = iItem;
 
                plistitem->m_strFont = penumitem->m_strName;
 
@@ -1587,13 +1605,13 @@ namespace write_text
 
       }
 
-      if (m_iHover >= 0)
+      if (::is_item_set(m_puserinteraction->m_pitemHover))
       {
 
-         if (pfontlistdata->element_at(m_iHover)->m_box[BOX_HOVER].m_rectangle.contains(point))
+         if (pfontlistdata->element_at(m_puserinteraction->m_pitemHover->m_item.m_iItem)->m_box[BOX_HOVER].m_rectangle.contains(point))
          {
 
-            return __new(::item(::e_element_item, m_iHover));
+            return m_puserinteraction->m_pitemHover;
 
          }
 
@@ -1668,6 +1686,23 @@ namespace write_text
       auto pitemNone = __new(::item(::e_element_none));
 
       return pitemNone;
+
+   }
+
+
+   ::status < rectangle_i32 >font_list::item_rectangle(::item * pitem)
+   {
+
+      ::rectangle_i32 r;
+
+      if (!get_box_rect(&r, ::item_index(pitem)))
+      {
+
+         return error_failed;
+
+      }
+
+      return r;
 
    }
 

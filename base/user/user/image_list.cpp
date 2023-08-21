@@ -2,9 +2,9 @@
 #include "image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-////#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
 #include "acme/primitive/collection/_array.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
@@ -142,10 +142,10 @@ namespace user
       if (psession->is_key_pressed(::user::e_key_shift) && m_bMultiSel)
       {
 
-         if (m_pitemCurrent.is_set())
+         if (main_content().m_pitemCurrent.is_set())
          {
 
-            for (index i = m_pitemCurrent->m_item.m_iItem; i <= pitem->m_item.m_iItem; i++)
+            for (index i = main_content().m_pitemCurrent->m_item.m_iItem; i <= pitem->m_item.m_iItem; i++)
             {
 
                iaSel.add_unique(i);
@@ -172,7 +172,7 @@ namespace user
 
       set_selection(iaSel, ::e_source_user);
 
-      m_pitemCurrent     = pitem;
+      main_content().m_pitemCurrent = pitem;
 
       return true;
 
@@ -412,7 +412,7 @@ namespace user
 
          //itemText = e_element_text;
 
-         auto pitem = (*m_pitema)[iImage];
+         auto pitem = (*main_content().m_pitema)[iImage];
 
          if (pitem == nullptr)
          {
@@ -667,7 +667,7 @@ namespace user
       for (index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
 
-         auto pitem = item_at(iImage);
+         auto pitem = main_content().item_at(iImage);
 
          if (pitem == nullptr)
          {
@@ -678,7 +678,7 @@ namespace user
 
             pitem->m_item.m_eelement = e_element_item;
 
-            add_user_item(pitem);
+            main_content().add_item(pitem);
 
          }
 

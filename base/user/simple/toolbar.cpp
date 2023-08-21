@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/exception/bad_unit_exception.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/content.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -184,7 +185,7 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
    ::size_i32 sizeResult;
 
-   nCount = m_pitema->get_count();
+   nCount = main_content().m_pitema->get_count();
 
    if (nCount > 0)
    {
@@ -268,7 +269,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 //   select_user_schema();
 
-   for (index iItem = 0; iItem < m_pitema->get_size(); iItem++)
+   for (index iItem = 0; iItem < main_content().m_pitema->get_size(); iItem++)
    {
 
       //if (!::is_item(m_ptoolitemHover, iItem))
@@ -510,7 +511,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
    index buttonx, buttony;
 
-   auto iC = minimum(nCount, m_pitema->get_size());
+   auto iC = minimum(nCount, main_content().m_pitema->get_size());
 
    ::rectangle_i32 rectangleItemPad = get_item_pad();
 
@@ -525,9 +526,9 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
    for (i = 0; i < iC; i++)
    {
 
-      ::pointer < ::user::tool_item > ptoolitem = item_at(i);
+      ::pointer < ::user::tool_item > ptoolitem = main_content().item_at(i);
 
-      auto puseritem = user_item_at(i);
+      auto puseritem = user_item(ptoolitem);
 
       if (ptoolitem->is_hidden())
       {
@@ -640,7 +641,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
    for (int j = iRowStart; j < i; j++)
    {
       
-      ::pointer < ::user::tool_item > ptoolitemHere = item_at(j);
+      ::pointer < ::user::tool_item > ptoolitemHere = main_content().item_at(j);
 
       if (ptoolitemHere->is_hidden())
       {
@@ -1013,7 +1014,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 ::status < ::rectangle_i32 > simple_toolbar::index_element_rectangle(index iItem, ::enum_element eelement, ::user::enum_state estate)
 {
 
-   if (iItem < 0 || iItem >= m_pitema->get_size())
+   if (iItem < 0 || iItem >= main_content().m_pitema->get_size())
    {
 
       return error_index_out_of_bounds;
@@ -1035,7 +1036,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    }
 
-   auto puseritem = user_item_at(iItem);
+   auto puseritem = user_item(ptoolitem);
 
    if ((ptoolitem->m_estyle & e_tool_item_style_separator) != 0)
    {
@@ -1250,12 +1251,12 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       information("please_center_align");
 
-      if (m_pitema->has_elements())
+      if (main_content().m_pitema->has_elements())
       {
 
-         CalcSize(pgraphics, (index)(m_pitema->get_count()));
+         CalcSize(pgraphics, (index)(main_content().m_pitema->get_count()));
 
-         for (index iItem = 0; iItem < m_pitema->get_count(); iItem++)
+         for (index iItem = 0; iItem < main_content().m_pitema->get_count(); iItem++)
          {
 
             auto ptoolitem = tool_item_at(iItem);
@@ -1267,7 +1268,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                
             }
             
-            if (ptoolitem->should_wrap() || m_pitema->is_last_index(iItem))
+            if (ptoolitem->should_wrap() || main_content().m_pitema->is_last_index(iItem))
             {
 
                int iTotalX = 0;
@@ -1275,9 +1276,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                for (index j = 0; j <= iItem; j++)
                {
                   
-                  auto ptoolitemHere = tool_item_at(j);
+                  ::pointer < ::user::tool_item > ptoolitemHere = main_content().item_at(j);
 
-                  auto puseritemHere = user_item_at(j);
+                  auto puseritemHere = user_item(ptoolitemHere);
 
                   if (ptoolitemHere->is_hidden())
                   {
@@ -1295,9 +1296,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                for (index j = 0; j <= iItem; j++)
                {
                   
-                  auto ptoolitemHere = tool_item_at(j);
+                  ::pointer < ::user::tool_item > ptoolitemHere = main_content().item_at(j);
 
-                  auto puseritemHere = user_item_at(j);
+                  auto puseritemHere = user_item(ptoolitemHere);
 
                   if (ptoolitemHere->is_hidden())
                   {
@@ -1325,9 +1326,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
    for(index iItem = 0; iItem < tool_item_count(); iItem++)
    {
       
-      auto ptoolitem = tool_item_at(iItem);
+      ::pointer < ::user::tool_item > ptoolitem = main_content().item_at(iItem);
 
-      auto puseritem = user_item_at(iItem);
+      auto puseritem = user_item(ptoolitem);
       
       if(ptoolitem->is_hidden())
       {
@@ -1879,7 +1880,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    string str;
 
-   auto count = minimum(nCount, m_pitema->get_count());
+   auto count = minimum(nCount, main_content().m_pitema->get_count());
 
    bool bFirstInRow = true;
 
@@ -2591,7 +2592,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 void simple_toolbar::RemoveAllTools()
 {
 
-   m_pitema->erase_all();
+   main_content().m_pitema->erase_all();
 
 }
 

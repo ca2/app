@@ -3,6 +3,7 @@
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
 #include "acme/primitive/mathematics/_random.h"
+#include "acme/user/user/content.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -2139,7 +2140,7 @@ namespace experience_core
 
       }
 
-      if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
+      if (::is_element(pbar->main_content().m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
@@ -2152,7 +2153,7 @@ namespace experience_core
          pgraphics->fill_rectangle(statusrectanglePageA);
 
       }
-      else if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageB)
+      else if (::is_element(pbar->main_content().m_pitemCurrent, ::e_element_scrollbar_pageB)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 

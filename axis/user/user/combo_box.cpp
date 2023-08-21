@@ -3,10 +3,10 @@
 #include "list_box.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/user/user/_constant.h"
-////#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/_constant.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -855,7 +855,7 @@ namespace user
       if (m_plistbox)
       {
 
-         m_plistbox->m_pitemCurrent = pitem;
+         m_plistbox->main_content().m_pitemCurrent = pitem;
 
       }
 

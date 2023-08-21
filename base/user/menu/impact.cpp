@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "impact.h"
+#include "item.h"
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/platform/sequencer.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/user/nano/nano.h"
+#include "acme/user/user/content.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
@@ -87,62 +89,63 @@ namespace user
 
       }
 
-      //auto point = item.m_pointHitTest;
+      ////auto point = item.m_pointHitTest;
 
-      auto pitemHit = pitem;
+      //::pointer < menu_item > pitemHit = pitem;
 
-      ::atom idCommand;
+      //::atom idCommand;
 
-      if (::is_set(pitemHit) && pitemHit->m_item.menu_impact_command() >= 0)
-      {
+      ////if (::is_set(pitemHit) && pitemHit->m_item.menu_impact_command() >= 0)
+      //if (::is_set(pitemHit) && pitemHit->m_iCommand >= 0)
+      //{
 
-         xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
+      //   xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
-         if (pnodeMain->get_children_count("menubar") <= 0)
-         {
+      //   if (pnodeMain->get_children_count("menubar") <= 0)
+      //   {
 
-            pnodeMain = m_pxmldoc;
+      //      pnodeMain = m_pxmldoc;
 
-         }
+      //   }
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", pitemHit->m_item.menu_impact_group(), 1);
+      //   xml::node * pnode = pnodeMain->get_child_at("menubar", pitemHit->m_iGroup, 1);
 
-         if (pnode != nullptr)
-         {
+      //   if (pnode != nullptr)
+      //   {
 
-            xml::node * pnodeItem = pnode->child_at(pitemHit->m_item.menu_impact_command());
+      //      xml::node * pnodeItem = pnode->child_at(pitemHit->m_iCommand);
 
-            if (pnodeItem != nullptr)
-            {
+      //      if (pnodeItem != nullptr)
+      //      {
 
-               idCommand = pnodeItem->attribute("id").as_atom();
+      //         idCommand = pnodeItem->attribute("id").as_atom();
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         idCommand = "home";
+      //   idCommand = "home";
 
-      }
+      //}
 
-      m_pitemCurrent = pitemHit;
+      //main_content().m_pitemCurrent = pitemHit;
 
-      set_need_redraw();
+      //set_need_redraw();
 
-      if (!idCommand.is_empty())
-      {
+      //if (!idCommand.is_empty())
+      //{
 
-         ::message::command command(idCommand);
+      //   ::message::command command(idCommand);
 
-         route_command(&command);
+      //   route_command(&command);
 
-         return command.m_bRet;
+      //   return command.m_bRet;
 
-      }
+      //}
 
       return false;
 
@@ -318,58 +321,60 @@ namespace user
    ::item_pointer menu_impact::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      index iPos = 0;
+      //index iPos = 0;
 
-      ::status < ::rectangle_i32 > statusrectangle;
+      //::status < ::rectangle_i32 > statusrectangle;
 
-      xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
+      //xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
-      if (pnodeMain->get_children_count("menubar") <= 0)
-      {
+      //if (pnodeMain->get_children_count("menubar") <= 0)
+      //{
 
-         pnodeMain = m_pxmldoc;
+      //   pnodeMain = m_pxmldoc;
 
-      }
+      //}
 
-      for (::index iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
-      {
+      //for (::index iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
+      //{
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
+      //   xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
 
-         ::index iCommand = -1;
+      //   ::index iCommand = -1;
 
-         statusrectangle = get_menu_item_rectangle(iPos);
+      //   statusrectangle = get_menu_item_rectangle(iPos);
 
-         if (statusrectangle.ok() && statusrectangle.contains(point))
-         {
+      //   if (statusrectangle.ok() && statusrectangle.contains(point))
+      //   {
 
-            return __new(::item(::e_element_item, iPos, iMenu, -1));
+      //      return __new(::item(::e_element_item, iPos, iMenu, -1));
 
-         }
+      //   }
 
-         iPos++;
+      //   iPos++;
 
-         for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
-         {
+      //   for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
+      //   {
 
-            statusrectangle = get_menu_item_rectangle(iPos);
+      //      statusrectangle = get_menu_item_rectangle(iPos);
 
-            if (statusrectangle.ok() && statusrectangle.contains(point))
-            {
+      //      if (statusrectangle.ok() && statusrectangle.contains(point))
+      //      {
 
-               return __new(::item(::e_element_item, iPos, iMenu, iCommand));
+      //         return __new(::item(::e_element_item, iPos, iMenu, iCommand));
 
-            }
+      //      }
 
-            iPos++;
+      //      iPos++;
 
-         }
+      //   }
 
-      }
+      //}
 
-      auto pitemNone = __new(::item(e_element_none));
+      //auto pitemNone = __new(::item(e_element_none));
 
-      return pitemNone;
+      //return pitemNone;
+
+      return nullptr;
 
    }
 
@@ -377,278 +382,282 @@ namespace user
    void menu_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
    {
 
-      ::image_pointer pimage1;
+      //::image_pointer pimage1;
 
-      __defer_construct(m_pimageMem);
+      //__defer_construct(m_pimageMem);
 
-      pimage1 = m_pimageMem;
+      //pimage1 = m_pimageMem;
 
-      auto rectangleClient = client_rectangle();
+      //auto rectangleClient = client_rectangle();
 
-      if (rectangleClient.area() <= 0)
-      {
+      //if (rectangleClient.area() <= 0)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      pimage1->create(rectangleClient.size());
+      //pimage1->create(rectangleClient.size());
 
-      ::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
+      //::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
 
-      if (is_window_enabled())
-      {
+      //if (is_window_enabled())
+      //{
 
-         pimage1->fill_byte(255);
+      //   pimage1->fill_byte(255);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         pimage1->clear_argb(255, 200, 200, 200);
+      //   pimage1->clear_argb(255, 200, 200, 200);
 
-      }
+      //}
 
-      pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+      //pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      image_source imagesource(m_pimageLogo);
+      //image_source imagesource(m_pimageLogo);
 
-      image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
+      //image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      //image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pgraphics->draw(imagedrawing);
+      //pgraphics->draw(imagedrawing);
 
-      ::rectangle_i32 rectangle;
+      ////__construct_new(m_pitema);
 
-      rectangle_i32_array raMenu;
+      //::rectangle_i32 rectangle;
 
-      int iPos = 0;
+      //rectangle_i32_array raMenu;
 
-      xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
+      //int iPos = 0;
 
-      if (pnodeMain->get_children_count("menubar") <= 0)
-      {
+      //xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
-         pnodeMain = m_pxmldoc;
+      //if (pnodeMain->get_children_count("menubar") <= 0)
+      //{
 
-      }
+      //   pnodeMain = m_pxmldoc;
 
-      for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
-      {
+      //}
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
+      //for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
+      //{
 
-         string strTitle;
-         
-         strTitle = pnode->attribute("title");
+      //   xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-         pgraphics->set(m_pfontTitle);
+      //   m_pitema->add(__new(::item(::e_element_item, iPos, iMenu, -1)));
 
-         auto statusrectangleMenu = get_menu_item_rectangle(iPos);
+      //   string strTitle;
+      //   
+      //   strTitle = pnode->attribute("title");
 
-         pgraphics->set(m_ppen);
+      //   pgraphics->set(m_pfontTitle);
 
-         draw_header_rectangle(pgraphics, statusrectangleMenu);
+      //   auto statusrectangleMenu = get_menu_item_rectangle(iPos);
 
-         pgraphics->set_text_color(argb(255, 0, 0, 0));
+      //   pgraphics->set(m_ppen);
 
-         pgraphics->text_out(statusrectangleMenu.left + 10, statusrectangleMenu.top + 5, strTitle);
+      //   draw_header_rectangle(pgraphics, statusrectangleMenu);
 
-         iPos++;
+      //   pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-         for (int j = 0; j < pnode->get_children_count(); j++)
-         {
+      //   pgraphics->text_out(statusrectangleMenu.left + 10, statusrectangleMenu.top + 5, strTitle);
 
-            xml::node * pnodeItem = pnode->child_at(j);
+      //   iPos++;
 
-            if (pnodeItem->get_name() == "item")
-            {
+      //   for (int j = 0; j < pnode->get_children_count(); j++)
+      //   {
 
-               ::string strId = pnodeItem->attribute("id").as_string();
+      //      xml::node * pnodeItem = pnode->child_at(j);
 
-               string strItem;
+      //      if (pnodeItem->get_name() == "item")
+      //      {
 
-               strItem = pnodeItem->get_value();
+      //         ::string strId = pnodeItem->attribute("id").as_string();
 
-               auto statusrectangle = get_menu_item_rectangle(iPos);
+      //         string strItem;
 
-               statusrectangleMenu.unite(statusrectangleMenu, statusrectangle);
+      //         strItem = pnodeItem->get_value();
 
-               pgraphics->set(m_ppen);
+      //         auto statusrectangle = get_menu_item_rectangle(iPos);
 
-               ::item item(::e_element_item, iPos, i, j);
+      //         statusrectangleMenu.unite(statusrectangleMenu, statusrectangle);
 
-               if (::is_set(m_pitemHover) && *m_pitemHover == item)
-               {
+      //         pgraphics->set(m_ppen);
 
-                  if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
-                  {
+      //         ::item item(::e_element_item, iPos, i, j);
 
-                     pgraphics->set(m_pbrushBkHoverSel);
+      //         if (::is_set(m_pitemHover) && *m_pitemHover == item)
+      //         {
 
-                     draw_item_rectangle_hover_sel001(pgraphics, rectangle);
+      //            if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+      //            {
 
-                  }
-                  else
-                  {
+      //               pgraphics->set(m_pbrushBkHoverSel);
 
-                     pgraphics->set(m_pbrushBkSel);
+      //               draw_item_rectangle_hover_sel001(pgraphics, rectangle);
 
-                     draw_item_rectangle_hover001(pgraphics, rectangle);
+      //            }
+      //            else
+      //            {
 
-                  }
+      //               pgraphics->set(m_pbrushBkSel);
 
-               }
-               else if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
-               {
+      //               draw_item_rectangle_hover001(pgraphics, rectangle);
 
-                  pgraphics->set(m_pbrushBkSel);
+      //            }
 
-                  draw_item_rectangle_sel001(pgraphics, rectangle);
+      //         }
+      //         else if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+      //         {
 
-               }
-               else
-               {
+      //            pgraphics->set(m_pbrushBkSel);
 
-                  draw_item_rectangle(pgraphics, rectangle);
+      //            draw_item_rectangle_sel001(pgraphics, rectangle);
 
-               }
+      //         }
+      //         else
+      //         {
 
-               pgraphics->set(m_pfont);
+      //            draw_item_rectangle(pgraphics, rectangle);
 
-               if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
-               {
+      //         }
 
-                  pgraphics->set_text_color(argb(255, 0, 148, 202));
+      //         pgraphics->set(m_pfont);
 
-               }
-               else
-               {
+      //         if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+      //         {
 
-                  pgraphics->set_text_color(argb(255, 60, 60, 60));
+      //            pgraphics->set_text_color(argb(255, 0, 148, 202));
 
-               }
+      //         }
+      //         else
+      //         {
 
-               pgraphics->text_out(rectangle.left + 10, rectangle.top + 5, strItem);
+      //            pgraphics->set_text_color(argb(255, 60, 60, 60));
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //         }
 
-               ::image_pointer pimage1;
+      //         pgraphics->text_out(rectangle.left + 10, rectangle.top + 5, strItem);
 
-               if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
-               {
+      //         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                  pgraphics->set(m_ppenBkSel);
+      //         ::image_pointer pimage1;
 
-                  pgraphics->set_current_point(rectangle.left + 1, rectangle.top);
-                  pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
+      //         if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
+      //         {
 
-                  pimage1 = m_pimageMap[strId];
+      //            pgraphics->set(m_ppenBkSel);
 
-               }
-               else
-               {
+      //            pgraphics->set_current_point(rectangle.left + 1, rectangle.top);
+      //            pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
-                  pimage1 = m_pimageMapGray[strId];
+      //            pimage1 = m_pimageMap[strId];
 
-               }
+      //         }
+      //         else
+      //         {
 
-               if (pimage1->is_set())
-               {
+      //            pimage1 = m_pimageMapGray[strId];
 
-                  ::rectangle_i32 rectangleDib;
+      //         }
 
-                  rectangleDib.left = rectangle.right - pimage1->width() - 10;
-                  rectangleDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
-                  rectangleDib.set_size(pimage1->width(), pimage1->height());
+      //         if (pimage1->is_set())
+      //         {
 
-                  image_source imagesource(pimage1);
+      //            ::rectangle_i32 rectangleDib;
 
-                  image_drawing_options imagedrawingoptions(rectangleDib);
+      //            rectangleDib.left = rectangle.right - pimage1->width() - 10;
+      //            rectangleDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
+      //            rectangleDib.set_size(pimage1->width(), pimage1->height());
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      //            image_source imagesource(pimage1);
 
-                  pgraphics->draw(imagedrawing);
+      //            image_drawing_options imagedrawingoptions(rectangleDib);
 
-               }
+      //            image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               iPos++;
+      //            pgraphics->draw(imagedrawing);
 
-            }
+      //         }
 
-         }
+      //         iPos++;
 
-         raMenu.add(statusrectangleMenu);
+      //      }
 
-      }
+      //   }
 
-      iPos = 0;
+      //   raMenu.add(statusrectangleMenu);
 
-      for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
-      {
+      //}
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
+      //iPos = 0;
 
-         auto statusrectangle = get_menu_item_rectangle(iPos);
+      //for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
+      //{
 
-         pgraphics->set(m_ppen);
+      //   xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-         draw_header_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
+      //   auto statusrectangle = get_menu_item_rectangle(iPos);
 
-         iPos++;
+      //   pgraphics->set(m_ppen);
 
-         for (int j = 0; j < pnode->get_children_count() - 1; j++)
-         {
+      //   draw_header_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
 
-            xml::node * pnodeItem = pnode->child_at(j);
+      //   iPos++;
 
-            if (pnodeItem->get_name() == "item")
-            {
+      //   for (int j = 0; j < pnode->get_children_count() - 1; j++)
+      //   {
 
-               string strItem;
+      //      xml::node * pnodeItem = pnode->child_at(j);
 
-               strItem = pnodeItem->get_value();
+      //      if (pnodeItem->get_name() == "item")
+      //      {
 
-               statusrectangle = get_menu_item_rectangle(iPos);
+      //         string strItem;
 
-               draw_item_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
+      //         strItem = pnodeItem->get_value();
 
-               iPos++;
+      //         statusrectangle = get_menu_item_rectangle(iPos);
 
-            }
+      //         draw_item_separator(pgraphics, statusrectangle.bottom_left(), statusrectangle.bottom_right());
 
-         }
+      //         iPos++;
 
-         iPos++;
+      //      }
 
-      }
+      //   }
 
-      for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
-      {
+      //   iPos++;
 
-         draw_border_rectangle(pgraphics, raMenu[i]);
+      //}
 
-      }
+      //for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
+      //{
 
-      if (!is_window_enabled())
-      {
+      //   draw_border_rectangle(pgraphics, raMenu[i]);
 
-         pimage1->saturation(0.0);
+      //}
 
-      }
+      //if (!is_window_enabled())
+      //{
 
-      {
+      //   pimage1->saturation(0.0);
 
-         image_source imagesource(pimage1);
+      //}
 
-         image_drawing_options imagedrawingoptions(rectangleClient);
+      //{
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      //   image_source imagesource(pimage1);
 
-         pgraphicsParam->draw(imagedrawing);
+      //   image_drawing_options imagedrawingoptions(rectangleClient);
 
-      }
+      //   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      //   pgraphicsParam->draw(imagedrawing);
+
+      //}
 
    }
 
@@ -717,10 +726,18 @@ namespace user
 
       m_iaPopup.erase_all();
 
+      auto pmenuitemParent = __create_new < menu_item >();
+
+      m_pitem = pmenuitemParent;
+
       for (iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
       {
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
+
+         auto pmenuitemMenuBar = __create_new < menu_item >();
+
+         __construct_new(pmenuitemMenuBar->m_pitema);
 
          m_iaPopup.add((const int)pnode->get_children_count() + 1);
 
@@ -729,7 +746,11 @@ namespace user
          for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
          {
 
+            auto pmenuitemCommand = __create_new < menu_item >();
+
             statusrectangle = get_menu_item_rectangle(iPos);
+
+            pmenuitemMenuBar->m_pitema->add(pmenuitemCommand);
 
             auto pcontext = m_pcontext->m_pauracontext;
 
@@ -755,8 +776,6 @@ namespace user
                m_pimageMapGray[strId] = pimageGray;
 
             }
-
-
 
             iPos++;
 

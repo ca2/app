@@ -6,6 +6,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -296,9 +297,9 @@ namespace user
 
       m_straValue.erase_all();
 
-      m_pitemCurrent = nullptr;
+      //m_pitemCurrent = nullptr;
 
-      m_pitemHover = nullptr;
+      //m_pitemHover = nullptr;
 
    }
 
@@ -840,7 +841,7 @@ namespace user
       if (m_pcombo)
       {
 
-         m_pcombo->m_pitemHover = m_pcombo->m_pitemCurrent;
+         m_pcombo->m_pitemHover = m_pcombo->main_content().m_pitemCurrent;
 
          set_need_redraw();
 

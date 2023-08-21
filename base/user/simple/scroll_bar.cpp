@@ -2,12 +2,14 @@
 #include "scroll_bar.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/platform/timer.h"
+#include "acme/user/user/content.h"
+#include "acme/user/user/drag.h"
+#include "acme/user/user/tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
-#include "acme/platform/timer.h"
-#include "acme/user/user/drag.h"
 #include "aura/message/user.h"
 #include "aura/user/user/style.h"
 
@@ -841,7 +843,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      if (!scrollbar_action(m_pitemCurrent))
+      if (!scrollbar_action(main_content().m_pitemCurrent))
       {
 
          KillTimer(ptimer->m_uEvent);
@@ -1079,7 +1081,7 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
 
    auto pitemScrollbarTrackbar = __new(::item(::item_t{ e_element_scrollbar_trackbar }));
 
-   add_item(pitemScrollbarTrackbar);
+   tool().add_item(pitemScrollbarTrackbar);
 
    enable_drag(pitemScrollbarTrackbar, ::user::e_zorder_front);
 
@@ -1853,7 +1855,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    }
 
-   if (::is_element(m_pitemCurrent, ::e_element_scrollbar_pageA) || ::is_element(m_pitemHover, ::e_element_scrollbar_pageA))
+   if (::is_element(main_content().m_pitemCurrent, ::e_element_scrollbar_pageA) || ::is_element(m_pitemHover, ::e_element_scrollbar_pageA))
    {
 
       auto statusrectanglePageA = get_pageA_rectangle(rectangleClient, statusrectangleTrack);
@@ -1867,7 +1869,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
       pgraphics->fill_rectangle(statusrectanglePageA);
 
    }
-   else if (::is_element(m_pitemCurrent, ::e_element_scrollbar_pageB) || ::is_element(m_pitemHover, ::e_element_scrollbar_pageB))
+   else if (::is_element(main_content().m_pitemCurrent, ::e_element_scrollbar_pageB) || ::is_element(m_pitemHover, ::e_element_scrollbar_pageB))
    {
 
       auto statusrectanglePageB = get_pageB_rectangle(rectangleClient, statusrectangleTrack);
@@ -2113,7 +2115,7 @@ void simple_scroll_bar::update_rectangles()
 
    {
 
-      auto pitem = item(::item_t{ e_element_scrollbar_trackbar });
+      auto pitem = tool().item(e_element_scrollbar_trackbar);
 
       if (pitem)
       {
@@ -2131,7 +2133,7 @@ void simple_scroll_bar::update_rectangles()
    //auto statusrectanglePageA = 
    {
 
-      auto pitem = item(::item_t{ e_element_scrollbar_pageA });
+      auto pitem = tool().item(e_element_scrollbar_pageA);
 
       if (pitem)
       {
@@ -2146,7 +2148,7 @@ void simple_scroll_bar::update_rectangles()
 
    {
 
-      auto pitem = item(::item_t{ e_element_scrollbar_pageB });
+      auto pitem = tool().item(e_element_scrollbar_pageB);
 
       if (pitem)
       {
@@ -2161,7 +2163,7 @@ void simple_scroll_bar::update_rectangles()
 
    {
 
-      auto pitem = item(::item_t{ e_element_scrollbar_rectA });
+      auto pitem = tool().item(e_element_scrollbar_rectA);
 
       if (pitem)
       {
@@ -2176,7 +2178,7 @@ void simple_scroll_bar::update_rectangles()
 
    {
 
-      auto pitem = item(::item_t{ e_element_scrollbar_rectB });
+      auto pitem = tool().item(e_element_scrollbar_rectB);
 
       if (pitem)
       {
@@ -2440,7 +2442,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 ::color::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::enum_element eelement)
 {
 
-   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
+   if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_scrollbar_strong, ::user::e_state_hover);
@@ -2463,7 +2465,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 ::color::color simple_scroll_bar::scrollbar_color(::user::style * pstyle, ::enum_element eelement)
 {
 
-   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
+   if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, eelement, ::user::e_state_hover);
@@ -2486,7 +2488,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 ::color::color simple_scroll_bar::scrollbar_border_color(::user::style * pstyle, ::enum_element eelement)
 {
 
-   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
+   if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_border, ::user::e_state_hover);
@@ -2509,7 +2511,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 ::color::color simple_scroll_bar::scrollbar_lite_border_color(::user::style * pstyle, ::enum_element eelement)
 {
 
-   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
+   if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_lite_border, ::user::e_state_hover);
@@ -2532,7 +2534,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem)
 ::color::color simple_scroll_bar::scrollbar_draw_color(::user::style * pstyle, ::enum_element eelement)
 {
 
-   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
+   if (::is_element(main_content().m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_scrollbar_draw, ::user::e_state_hover);

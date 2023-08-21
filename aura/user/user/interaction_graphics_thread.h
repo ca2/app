@@ -12,7 +12,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA prodevian :
+   class CLASS_DECL_AURA graphics_thread :
       virtual public ::thread
    {
    public:
@@ -70,8 +70,8 @@ namespace user
 
 
 
-      prodevian();
-      ~prodevian() override;
+      graphics_thread();
+      ~graphics_thread() override;
 
 
 #ifdef _DEBUG
@@ -81,33 +81,34 @@ namespace user
 #endif
 
 
-      virtual void defer_create_prodevian();
+      virtual void defer_create_graphics_thread();
 
 
 
-      virtual void initialize_prodevian(interaction_impl * pimpl);
+      virtual void initialize_graphics_thread(interaction_impl * pimpl);
 
 
-      bool prodevian_reset(::user::interaction * pinteraction);
-      bool prodevian_iteration();
-      bool prodevian_update_buffer();
-      bool prodevian_update_screen();
-      void prodevian_redraw();
+      bool graphics_thread_reset(::user::interaction * pinteraction);
+      bool graphics_thread_iteration();
+      bool graphics_thread_update_buffer();
+      bool graphics_thread_update_screen();
+      void graphics_thread_redraw();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       void update_buffer();
       //bool exclusive_mode_update_screen();
+      void post_redraw();
 
       
       virtual void profiling_on_before_update_screen();
       virtual void profiling_on_after_update_screen();
       
 
-      void defer_prodevian_step();
+      void defer_graphics_thread_step();
 
-      // Fps for when prodevian is active or there is any active prodevian object
-      void set_prodevian_frames_per_second(::frequency frequencyProdevianFramesPerSecond);
+      // Fps for when graphics_thread is active or there is any active graphics_thread object
+      void set_auto_refresh_frames_per_second(::frequency frequencyProdevianFramesPerSecond);
 
-      // Fps for when prodevian is not active and there is no active prodevian object
+      // Fps for when graphics_thread is not active and there is no active graphics_thread object
       void set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond);
 
       void set_per_second(::frequency frequencyFramesPerSecond);

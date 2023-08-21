@@ -1612,7 +1612,8 @@ namespace write_text
          if (pfontlistdata->element_at(iItem)->m_box[BOX].m_rectangle.contains(point))
          {
 
-            return __new(::item(::e_element_item, iItem));
+            //return __new(::item(::e_element_item, iItem));
+            return pfontlistdata->element_at(iItem);
 
          }
 

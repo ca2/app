@@ -4,7 +4,7 @@
 ////#include "acme/primitive/primitive/object.h"
 
 
-class CLASS_DECL_AURA prodevian :
+class CLASS_DECL_AURA auto_refresh :
    virtual public object
 {
 public:
@@ -13,9 +13,9 @@ public:
    ::pointer<::user::interaction>   m_pinteraction;
 
 
-   prodevian(::user::interaction* pinteraction);
+   auto_refresh(::user::interaction* pinteraction);
 
-   ~prodevian() override;
+   ~auto_refresh() override;
 
 };
 

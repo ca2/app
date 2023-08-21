@@ -2,7 +2,7 @@
 
 
 #include "interaction_layout.h"
-//#include "prodevian.h"
+//#include "graphics_thread.h"
 #include "drawable.h"
 #include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
@@ -577,9 +577,9 @@ namespace user
 
 
 
-      inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
-      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
-      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
+      inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }
+      inline void clear_auto_refresh_on_show() { m_ewindowflag -= e_window_flag_auto_refresh_on_show; }
+      inline bool is_auto_refresh_on_show() { return m_ewindowflag & e_window_flag_auto_refresh_on_show; }
 
       //inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
       //inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
@@ -734,7 +734,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto prodevian() { return __new(::prodevian(this)); }
+      //auto auto_refresh() { return __new(::auto_refresh(this)); }
 
       virtual bool should_save_window_rectangle();
       
@@ -774,9 +774,9 @@ namespace user
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual void prodevian_stop() override;
+      //virtual void graphics_thread_stop() override;
 
-      //virtual void prodevian_redraw(bool bUpdateBuffer) override;
+      //virtual void graphics_thread_redraw(bool bUpdateBuffer) override;
 
       //virtual void _001OnAfterAppearance();
 
@@ -888,15 +888,15 @@ namespace user
       virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_design);
 
 
-      inline void set_prodevian() { return add_prodevian(this); }
-      inline void clear_prodevian() { return erase_prodevian(this); }
-      inline bool is_prodevian() const { return is_prodevian(this); }
+      inline void set_auto_refresh() { return add_auto_refresh(this); }
+      inline void clear_auto_refresh() { return erase_auto_refresh(this); }
+      inline bool is_auto_refresh() const { return is_auto_refresh(this); }
 
 
-      void add_prodevian(::matter * pmatter) override;
-      void erase_prodevian(::matter * pmatter) override;
-      bool is_prodevian(const ::matter * pmatter) const override;
-      bool has_prodevian() const noexcept;
+      void add_auto_refresh(::matter * pmatter) override;
+      void erase_auto_refresh(::matter * pmatter) override;
+      bool is_auto_refresh(const ::matter * pmatter) const override;
+      bool has_auto_refresh() const noexcept;
 
 
       virtual bool is_frame_window();
@@ -1599,11 +1599,11 @@ namespace user
 
       // drag_client
       void drag_set_capture() override;
-      ::point_i32 on_drag_start(::user::drag * pdrag) override;
-      bool drag_shift(::user::drag * pdrag) override;
-      bool drag_hover(::user::drag * pdrag) override;
+      ::point_i32 on_drag_start(::item * pitem) override;
+      bool drag_shift(::item * pitem) override;
+      bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;
-      void drag_set_cursor(::user::drag * pdrag) override;
+      void drag_set_cursor(::item * pitem) override;
 
       //virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
 
@@ -1641,7 +1641,7 @@ namespace user
 
       virtual bool _001IsPointInsideInline(const ::point_i32 & point);
       virtual bool _001IsClientPointInsideInline(const ::point_i32 & point);
-      virtual  bool _001IsParentClientPointInsideInline(const ::point_i32 & point);
+      virtual bool _001IsParentClientPointInsideInline(const ::point_i32 & point, enum_layout elayout = e_layout_design);
 
       ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
@@ -1974,6 +1974,8 @@ namespace user
       virtual void set_total_size(const ::size_f64& size);
       virtual void set_page_size(const ::size_f64& size);
       virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 get_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 get_scroll(enum_layout elayout = e_layout_design);
       virtual ::point_i32 get_parent_context_offset();
       virtual ::point_i32 get_ascendant_context_offset();
       virtual void get_margin_rect(::rectangle_i32* prectMargin);
@@ -2327,7 +2329,7 @@ namespace user
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;
-      //virtual void prodevian_post_procedure(const ::procedure & procedure);
+      //virtual void auto_refresh_post_procedure(const ::procedure & procedure);
 
 
       //void send_procedure(const ::procedure & procedure) override;
@@ -2343,10 +2345,10 @@ namespace user
 
 
  /*     template < typename PRED >
-      void prodevian_post_predicate(PRED pred)
+      void graphics_thread_post_predicate(PRED pred)
       {
 
-         prodevian_schedule(__routine(pred));
+         graphics_thread_schedule(__routine(pred));
 
       }*/
 

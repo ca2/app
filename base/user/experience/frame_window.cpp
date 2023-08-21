@@ -1464,7 +1464,7 @@ namespace experience
       //MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_parent_left_button_down);
       //MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_parent_left_button_up);
       //MESSAGE_LINK(e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_parent_left_button_double_click);
-      MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_mouse_move);
+      MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_parent_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
@@ -1522,6 +1522,59 @@ namespace experience
 
       ::user::frame_window::on_visual_applied();
 
+
+   }
+
+
+   void frame_window::on_message_parent_mouse_move(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_frame_experience_enabled())
+      {
+
+         return;
+
+      }
+
+      if (::is_set(m_pframe))
+      {
+
+         if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
+         {
+
+            //information() << "e_message_mouse_move during window transfer ignored!!";
+
+         }
+         else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
+         {
+
+            information() << "synthesized e_message_mouse_move ignored!!";
+
+         }
+         else
+         {
+
+            //information() << "e_message_mouse_move for experience::frame";
+
+            if (m_pframe->on_message_parent_mouse_move(pmouse))
+            {
+
+               pmouse->m_bRet = true;
+
+            }
+
+         }
+
+      }
+
+      if (pmouse->m_bRet)
+      {
+
+         pmouse->m_lresult = 1;
+
+      }
 
    }
 

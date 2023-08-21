@@ -875,7 +875,13 @@
     <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
     <ClInclude Include="operating_system\shared_posix\time.h" />
+    <ClInclude Include="operating_system\windows\nano_http\hinternet.h" />
     <ClInclude Include="operating_system\windows\nano_http\http.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_connect.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_get.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_request.h" />
+    <ClInclude Include="operating_system\windows\nano_http\http_session.h" />
+    <ClInclude Include="operating_system\windows\nano_http\_.h" />
     <ClInclude Include="operating_system\windows\nano_http\_nano_http.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="parallelization\retry.h" />
@@ -885,6 +891,7 @@
     <ClInclude Include="platform\nano_http_synchronous_source.h" />
     <ClInclude Include="platform\nano_http_response.h" />
     <ClInclude Include="platform\trace_statement.h" />
+    <ClInclude Include="platform\_.h" />
     <ClInclude Include="primitive\collection\array_2d.h" />
     <ClInclude Include="primitive\collection\_function.h" />
     <ClInclude Include="primitive\collection\_generic_array.h" />
@@ -1001,7 +1008,12 @@
     <ClCompile Include="operating_system\windows\nano\pen.cpp" />
     <ClCompile Include="operating_system\windows\nano\window.cpp" />
     <ClCompile Include="operating_system\windows\nano\_nano.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\hinternet.cpp" />
     <ClCompile Include="operating_system\windows\nano_http\http.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_connect.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_get.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_request.cpp" />
+    <ClCompile Include="operating_system\windows\nano_http\http_session.cpp" />
     <ClCompile Include="operating_system\windows\nano_http\_nano_http.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\process.cpp" />

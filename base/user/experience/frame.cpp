@@ -412,6 +412,115 @@ namespace experience
    }
 
 
+   bool frame::on_message_parent_mouse_move(::message::mouse * pmouse)
+   {
+
+      auto psession = get_session();
+
+      psession->m_pointCursor = pmouse->m_point;
+
+      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
+      {
+
+         if (!m_pframewindow->move_manager()->window_is_moving()
+            && !m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            if (m_pframewindow->dock_manager()->window_is_docking())
+            {
+
+               ::pointer<::message::mouse>pmouseHold = pmouse;
+
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+               //{
+
+//                  m_pframewindow->dock_manager()->on_message_mouse_move(pmouseHold);
+
+               //});
+
+               return true;
+
+            }
+            else
+            {
+
+               //               if (m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
+               //               {
+               //
+               //                  return true;
+               //
+               //               }
+
+            }
+
+         }
+
+         if (!m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            if (m_pframewindow->move_manager()->window_is_moving())
+            {
+
+               ::pointer<::message::mouse>pmouseHold = pmouse;
+
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+               //{
+
+               m_pframewindow->move_manager()->on_message_parent_mouse_move(pmouseHold);
+
+               //});
+
+               return true;
+
+            }
+            else
+            {
+
+               if (m_pframewindow->move_manager()->on_message_parent_mouse_move(pmouse))
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+         if (m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            ::pointer<::message::mouse>pmouseHold = pmouse;
+
+            //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+            //{
+
+            m_pframewindow->size_manager()->on_message_mouse_move(pmouseHold);
+
+            //});
+
+            return true;
+
+         }
+         else
+         {
+
+            if (m_pframewindow->size_manager()->on_message_mouse_move(pmouse))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
    bool frame::on_message_mouse_move(::message::mouse * pmouse)
    {
 

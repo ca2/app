@@ -40,6 +40,8 @@ namespace user
    tab::tab()
    {
 
+      m_bClickDefaultMouseHandling = true;
+
       m_bHoverDefaultMouseHandling = true;
 
       m_econtroltype = e_control_type_tab;
@@ -815,66 +817,66 @@ namespace user
    void tab::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-//      if(m_bMouseDown)
+//      auto pmouse = pmessage->m_union.m_pmouse;
+//
+////      if(m_bMouseDown)
+////      {
+////
+////         m_bMouseDown = false;
+////
+////         release_mouse_capture();
+////
+////      }
+//
+//      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
+//
+//      index iClickTab = get_data()->m_iClickTab;
+//
+//      if (m_estate == state_other_tab_button_down)
 //      {
 //
-//         m_bMouseDown = false;
+//         // drag operation was about to start (but ended prematurely)
 //
 //         release_mouse_capture();
 //
-//      }
-
-      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
-
-      index iClickTab = get_data()->m_iClickTab;
-
-      if (m_estate == state_other_tab_button_down)
-      {
-
-         // drag operation was about to start (but ended prematurely)
-
-         release_mouse_capture();
-
-         KillTimer(e_timer_drag_start);
-
-      }
-
-      if (::is_set(pitem))
-      {
-
-         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
-         {
-
-            if (::is_element(pitem, e_element_close_tab_button))
-            {
-
-               _001OnTabClose(pitem->m_item.m_iItem);
-
-            }
-            else
-            {
-
-               _001OnTabClick(pitem->m_item.m_iItem);
-
-            }
-
-//            set_need_redraw();
+//         KillTimer(e_timer_drag_start);
 //
-//            post_redraw();
-
-            pmouse->m_bRet = true;
-
-            pmouse->m_lresult = 1;
-
-         }
-
-      }
-
-      get_data()->m_iClickTab = -1;
-
-      get_data()->m_bDrag = false;
+//      }
+//
+//      if (::is_set(pitem))
+//      {
+//
+//         if (pitem->m_item.m_iItem >= 0 && iClickTab == pitem->m_item.m_iItem && ::is_same_item(m_pitemClick, pitem))
+//         {
+//
+//            if (::is_element(pitem, e_element_close_tab_button))
+//            {
+//
+//               _001OnTabClose(pitem->m_item.m_iItem);
+//
+//            }
+//            else
+//            {
+//
+//               _001OnTabClick(pitem->m_item.m_iItem);
+//
+//            }
+//
+////            set_need_redraw();
+////
+////            post_redraw();
+//
+//            pmouse->m_bRet = true;
+//
+//            pmouse->m_lresult = 1;
+//
+//         }
+//
+//      }
+//
+//      get_data()->m_iClickTab = -1;
+//
+//      get_data()->m_bDrag = false;
 
    }
 
@@ -1938,6 +1940,34 @@ namespace user
          return false;
 
       }
+
+   }
+
+
+   bool tab::on_click(::item * pitem)
+   {
+
+      if (pitem->m_item.m_eelement != e_element_tab)
+      {
+
+         return false;
+
+      }
+
+      if (::is_element(pitem, e_element_close_tab_button))
+      {
+
+         _001OnTabClose(pitem->m_item.m_iItem);
+
+      }
+      else
+      {
+
+         _001OnTabClick(pitem->m_item.m_iItem);
+
+      }
+
+      return true;
 
    }
 

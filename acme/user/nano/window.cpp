@@ -31,7 +31,9 @@ nano_window::nano_window()
    
    m_efont = e_font_sans;
 
-   enable_drag(::e_element_client, ::user::e_zorder_back);
+   auto pitemClient = defer_item(item_t{ e_element_client });
+
+   enable_drag(pitemClient, ::user::e_zorder_back);
 
    m_bNcActive = false;
 
@@ -439,12 +441,14 @@ void nano_window::on_left_button_down(::user::mouse * pmouse)
 
    }
 
-   auto pdragClient = drag(e_element_client);
+   auto pitemClient = defer_item(item_t{ e_element_client });
+
+   auto pdragClient = drag(pitemClient);
 
    if (pdragClient && !pchild)
    {
 
-      drag_on_button_down(pdragClient, pmouse);
+      drag_on_button_down(pitemClient, pmouse);
 
       return;
 

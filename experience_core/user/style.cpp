@@ -1892,7 +1892,7 @@ namespace experience_core
 
       }
 
-      auto statusrectangleTrack = pscrollbar->get_track_rectangle(pgraphics);
+      auto statusrectangleTrack = pscrollbar->get_track_rectangle();
 
       //::rectangle_i32 rectangleWindow;
 
@@ -2105,7 +2105,7 @@ namespace experience_core
 
       {
 
-         auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient, pgraphics);
+         auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient);
 
          auto ppenArrow = __create < ::draw2d::pen >();
 
@@ -2123,7 +2123,7 @@ namespace experience_core
 
       {
 
-         auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient, pgraphics);
+         auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient);
 
          auto ppenArrow = __create < ::draw2d::pen >();
 
@@ -2143,7 +2143,7 @@ namespace experience_core
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
-         auto statusrectanglePageA = pbar->get_pageA_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
+         auto statusrectanglePageA = pbar->get_pageA_rectangle(rectangleClient, statusrectangleTrack);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
@@ -2156,7 +2156,7 @@ namespace experience_core
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 
-         auto statusrectanglePageB = pbar->get_pageB_rectangle(rectangleClient, statusrectangleTrack, pgraphics);
+         auto statusrectanglePageB = pbar->get_pageB_rectangle(rectangleClient, statusrectangleTrack);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
@@ -2176,7 +2176,7 @@ namespace experience_core
 
          {
 
-            auto pointaA = pbar->get_arrowA(rectangleClient, pgraphics);
+            auto pointaA = pbar->get_arrowA(rectangleClient);
 
             ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
@@ -2188,7 +2188,7 @@ namespace experience_core
 
          {
 
-            auto pointaB = pbar->get_arrowB(rectangleClient, pgraphics);
+            auto pointaB = pbar->get_arrowB(rectangleClient);
 
             ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 

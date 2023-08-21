@@ -314,7 +314,7 @@ enum enum_trace_category
    e_trace_category_html,         // html traces
    e_trace_category_socket,      // socket traces
    e_trace_category_colorertake5,
-   e_trace_category_prodevian, // screen update and window layout
+   e_trace_category_graphics_thread, // screen update and window layout
    e_trace_category_count
 
 
@@ -662,7 +662,7 @@ enum enum_window_flag : i64
    e_window_flag_active = 1 << 3,
    e_window_flag_redraw_in_queue = 1 << 4,
    //e_window_flag_visual_changed = 1 << 5,
-   e_window_flag_auto_prodevian_on_show = 1 << 6,
+   e_window_flag_auto_refresh_on_show = 1 << 6,
    e_window_flag_on_show_window_visible = 1 << 7,
    e_window_flag_on_show_window_screen_visible = 1 << 8,
    e_window_flag_satellite_window = 1 << 9,
@@ -684,7 +684,7 @@ enum enum_window_flag : i64
    e_window_flag_destroying = 1 << 26,
    e_window_flag_not_visible = 1 << 27,
    e_window_flag_satellite_window_if_child = 1 << 28,
-   e_window_flag_embedded_prodevian_if_child = 1 << 29,
+   e_window_flag_embedded_graphics_thread_if_child = 1 << 29,
    e_window_flag_composite = 1 << 30,
    e_window_flag_hosted = 1 << 31,
    e_window_flag_top_level = 1ll << 32,

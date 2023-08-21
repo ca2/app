@@ -63,17 +63,7 @@ namespace user
    }
 
 
-   ::point_i32 drag::point() const
-   {
-
-      auto Δ = m_pointLButtonDown - m_pointInitial;
-
-      auto pointDrag = m_pmouse->m_point - Δ;
-
-      return pointDrag;
-
-   }
-
+   
 
 } // namespace user
 

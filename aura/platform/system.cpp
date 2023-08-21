@@ -196,7 +196,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_windowing, true);
 
-      enable_trace_category(e_trace_category_prodevian, false);
+      enable_trace_category(e_trace_category_graphics_thread, false);
     
       //__construct(g_pmutexImage);
 

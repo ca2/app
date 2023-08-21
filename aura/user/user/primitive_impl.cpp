@@ -207,7 +207,7 @@ namespace user
    //}
 
 
-//   void primitive_impl::prodevian_update_screen()
+//   void primitive_impl::graphics_thread_update_screen()
 //   {
 //
 //      //return true;
@@ -585,21 +585,21 @@ namespace user
    }
 
 
-   void primitive_impl::add_prodevian(::matter* pmatter)
+   void primitive_impl::add_auto_refresh(::matter* pmatter)
    {
 
 
    }
 
 
-   void primitive_impl::erase_prodevian(::matter* pmatter)
+   void primitive_impl::erase_auto_refresh(::matter* pmatter)
    {
 
 
    }
 
 
-   bool primitive_impl::is_prodevian(const ::matter* pmatter) const
+   bool primitive_impl::is_auto_refresh(const ::matter* pmatter) const
    {
 
       return false;
@@ -607,7 +607,7 @@ namespace user
    }
 
 
-//   void primitive_impl::prodevian_stop()
+//   void primitive_impl::auto_refresh_stop()
 //   {
 //
 //
@@ -1047,7 +1047,7 @@ namespace user
    //}
 
 
-//   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
+//   void primitive_impl::graphics_thread_redraw(bool bUpdateBuffer)
 //   {
 //
 //
@@ -2038,15 +2038,15 @@ namespace user
    }
 
 
-   //void primitive_impl::defer_start_prodevian()
+   //void primitive_impl::defer_start_auto_refresh()
    //{
 
-   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_prodevian);
+   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_auto_refresh);
 
    //}
 
 
-   //void primitive_impl::_defer_start_prodevian()
+   //void primitive_impl::_defer_start_auto_refresh()
    //{
 
    //}

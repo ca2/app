@@ -751,7 +751,7 @@ namespace user
    //}
 
 
-   void primitive::add_prodevian(::matter * pmatter)
+   void primitive::add_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -759,7 +759,7 @@ namespace user
    }
 
 
-   void primitive::erase_prodevian(::matter * pmatter)
+   void primitive::erase_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   bool primitive::is_prodevian(const ::matter * pmatter) const
+   bool primitive::is_auto_refresh(const ::matter * pmatter) const
    {
 
       return false;
@@ -3652,13 +3652,13 @@ namespace user
    }
 
 
-   void primitive::prodevian_redraw(bool bUpdateBuffer)
-   {
+   //void primitive::graphics_thread_post_redraw(bool bUpdateBuffer)
+   //{
 
-   }
+   //}
 
 
-   void primitive::prodevian_stop()
+   void primitive::auto_refresh_stop()
    {
 
 

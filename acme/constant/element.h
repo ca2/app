@@ -33,6 +33,7 @@ enum enum_element : ::i64
    e_element_border,
    e_element_lite_border,
    e_element_client,
+   e_element_client_hit_test,
    //e_element_sizing_left,
    //e_element_sizing_top,
    //e_element_sizing_right,

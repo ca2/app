@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "interaction_prodevian.h"
+#include "interaction_graphics_thread.h"
 #include "interaction_thread.h"
 #include "interaction_impl.h"
 #include "interaction.h"
@@ -57,7 +57,7 @@ namespace user
 #endif
 
 
-   prodevian::prodevian()
+   graphics_thread::graphics_thread()
    {
 
       //m_bUpdateBufferUpdateWindowPending = false;
@@ -81,7 +81,7 @@ namespace user
    }
 
 
-   prodevian::~prodevian()
+   graphics_thread::~graphics_thread()
    {
 
    }
@@ -90,7 +90,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 prodevian::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   i64 prodevian::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   i64 prodevian::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 graphics_thread::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::thread::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -117,15 +117,15 @@ namespace user
 #endif
 
 
-   void prodevian::defer_create_prodevian()
+   void graphics_thread::defer_create_graphics_thread()
    {
 
-      //__refer(m_pprodevian, m_pimpl->m_pprodevian);
+      //__refer(m_pgraphicsthread, m_pimpl->m_pgraphicsthread);
 
-      //if(m_pprodevian)
+      //if(m_pgraphicsthread)
       {
 
-         if (!(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
+         if (!(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
          {
 
 
@@ -134,7 +134,7 @@ namespace user
             //if (!branch())
             //{
 
-            //   //__release(m_pprodevian);
+            //   //__release(m_pgraphicsthread);
 
             //   return error_failed;
 
@@ -155,7 +155,7 @@ namespace user
    }
 
 
-   void prodevian::initialize_prodevian(interaction_impl * pimpl)
+   void graphics_thread::initialize_graphics_thread(interaction_impl * pimpl)
    {
 
       //auto estatus = 
@@ -236,7 +236,7 @@ namespace user
    }
 
    
-   //void prodevian::do_task()
+   //void graphics_thread::do_task()
    //{
 
    //   return ::thread::do_task();
@@ -244,7 +244,7 @@ namespace user
    //}
 
 
-   void prodevian::run()
+   void graphics_thread::run()
    {
 
       //m_pimpl->m_puserinteraction->task_add(this);
@@ -266,7 +266,7 @@ namespace user
 
       string strType = __type_name(m_puserinteraction);
 
-      ::task_set_name("prodevian," + strType);
+      ::task_set_name("graphics_thread," + strType);
 
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
@@ -289,7 +289,7 @@ namespace user
 
             pump_runnable();
 
-            if (!prodevian_iteration())
+            if (!graphics_thread_iteration())
             {
 
                break;
@@ -326,7 +326,7 @@ namespace user
    }
 
 
-   bool prodevian::prodevian_reset(::user::interaction * pinteraction)
+   bool graphics_thread::graphics_thread_reset(::user::interaction * pinteraction)
    {
 
       m_puserinteraction = pinteraction;
@@ -342,16 +342,16 @@ namespace user
    }
 
 
-   void prodevian::term_task()
+   void graphics_thread::term_task()
    {
 
       if (m_pimpl)
       {
 
-         if (m_pimpl->m_pprodevian == this)
+         if (m_pimpl->m_pgraphicsthread == this)
          {
 
-            m_pimpl->m_pprodevian.release();
+            m_pimpl->m_pgraphicsthread.release();
 
          }
 
@@ -386,7 +386,7 @@ namespace user
    }
 
 
-   void prodevian::destroy()
+   void graphics_thread::destroy()
    {
 
       m_evUpdateScreen.SetEvent();
@@ -409,7 +409,7 @@ namespace user
    #undef EXTRA_PRODEVIAN_ITERATION_LOG
 
 
-   bool prodevian::prodevian_iteration()
+   bool graphics_thread::graphics_thread_iteration()
    {
 
       bool bHasProdevian = false;
@@ -438,10 +438,10 @@ namespace user
 
          }
 
-         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian));
+         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
          ASSERT(m_puserinteraction->m_pinteractionimpl.is_set());
 
-         bHasProdevian = m_puserinteraction->has_prodevian();
+         bHasProdevian = m_puserinteraction->has_auto_refresh();
 
          if (!m_puserinteraction->m_pinteractionimpl->m_bOfflineRender)
          {
@@ -474,7 +474,7 @@ namespace user
          // if (bHasProdevian)
          // {
 
-         //    information("has_prodevian");
+         //    information("has_graphics_thread");
 
          // }
 //
@@ -482,7 +482,7 @@ namespace user
 
       }
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
       {
 
          if (m_puserinteraction->m_pinteractionimpl.is_null() || !bHasProdevian)
@@ -495,7 +495,7 @@ namespace user
             if(m_message.m_atom == e_message_quit)
             {
 
-               information()(e_trace_category_prodevian) << "Prodevian has quit!! " << strType;
+               information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
 
                return false;
 
@@ -508,7 +508,7 @@ namespace user
 //
 //            }
 
-            //printf("prodevian get_message(%d)\n", m_message.message);
+            //printf("graphics_thread get_message(%d)\n", m_message.message);
 
             int iSkipped = 0;
 
@@ -631,7 +631,7 @@ namespace user
       //if (m_puserinteraction->m_bUpdateBufferPending)
       //{
 
-         prodevian_update_buffer();
+         graphics_thread_update_buffer();
 
       //}
 
@@ -700,7 +700,7 @@ namespace user
       {
 
          // Either:
-         // - It has prodevian mode (FPS drawing);
+         // - It has graphics_thread mode (FPS drawing);
          // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
          auto timeFrame = bHasProdevian ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
@@ -920,7 +920,7 @@ namespace user
 
 
 
-         prodevian_update_screen();
+         graphics_thread_update_screen();
 
       }
       //else
@@ -1005,7 +1005,7 @@ namespace user
    }
 
 
-   bool prodevian::prodevian_update_buffer()
+   bool graphics_thread::graphics_thread_update_buffer()
    {
 
       //m_bRedraw = bRedraw;
@@ -1027,7 +1027,7 @@ namespace user
    }
 
 
-   bool prodevian::prodevian_update_screen()
+   bool graphics_thread::graphics_thread_update_screen()
    {
 
 //      if (m_bExclusiveMode)
@@ -1068,15 +1068,15 @@ namespace user
    }
 
 
-   void prodevian::prodevian_redraw()
+   void graphics_thread::graphics_thread_redraw()
    {
 
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child)
       {
 
          m_message.wParam |= 1;
 
-         prodevian_iteration();
+         graphics_thread_iteration();
 
       }
       else
@@ -1091,8 +1091,8 @@ namespace user
    }
 
 
-   //void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
-   void prodevian::update_buffer()
+   //void graphics_thread::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
+   void graphics_thread::update_buffer()
    {
 
       try
@@ -1206,7 +1206,15 @@ namespace user
    }
 
 
-//   bool prodevian::exclusive_mode_update_screen()
+   void graphics_thread::post_redraw()
+   {
+
+      post_message(e_message_redraw);
+
+   }
+
+
+//   bool graphics_thread::exclusive_mode_update_screen()
 //   {
 //
 //      //if (m_pimpl)
@@ -1258,7 +1266,7 @@ namespace user
 //
 //         }
 //
-//         m_pimpl->prodevian_update_screen();
+//         m_pimpl->graphics_thread_update_screen();
 //
 //         if (!m_puserinteraction)
 //         {
@@ -1296,7 +1304,7 @@ namespace user
 //   }
 
 
-   void prodevian::profiling_on_before_update_screen()
+   void graphics_thread::profiling_on_before_update_screen()
    {
     
       m_timeBeforeUpdateScreen.Now();
@@ -1306,7 +1314,7 @@ namespace user
    }
 
 
-   void prodevian::profiling_on_after_update_screen()
+   void graphics_thread::profiling_on_after_update_screen()
    {
 
       synchronous_lock sl(synchronization());
@@ -1342,7 +1350,7 @@ namespace user
    }
 
    
-   void prodevian::defer_prodevian_step()
+   void graphics_thread::defer_graphics_thread_step()
    {
 
       if (m_timeLastFrame.elapsed() > (m_timePostRedrawNominal * 3 / 4))
@@ -1355,7 +1363,7 @@ namespace user
    }
 
 
-   void prodevian::set_prodevian_frames_per_second(::frequency frequencyProdevianFramesPerSecond)
+   void graphics_thread::set_auto_refresh_frames_per_second(::frequency frequencyProdevianFramesPerSecond)
    {
 
       m_timePostRedrawProdevian = 1.0 / frequencyProdevianFramesPerSecond;
@@ -1363,7 +1371,7 @@ namespace user
    }
 
 
-   void prodevian::set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond)
+   void graphics_thread::set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond)
    {
 
       m_timePostRedrawNominal = 1.0 / frequencyNominalFramesPerSecond;
@@ -1371,17 +1379,17 @@ namespace user
    }
 
 
-   void prodevian::set_per_second(::frequency frequencyFramesPerSecond)
+   void graphics_thread::set_per_second(::frequency frequencyFramesPerSecond)
    {
 
-      set_prodevian_frames_per_second(frequencyFramesPerSecond);
+      set_auto_refresh_frames_per_second(frequencyFramesPerSecond);
 
       set_nominal_frames_per_second(frequencyFramesPerSecond);
 
    }
 
 
-//   void interaction::prodevian_post_procedure(const ::procedure & procedure)
+//   void interaction::graphics_thread_post_procedure(const ::procedure & procedure)
 //   {
 //
 //      if (!is_graphical())
@@ -1391,7 +1399,7 @@ namespace user
 //
 //      }
 //
-//      m_pinteractionimpl->m_pprodevian->post_procedure(procedure);
+//      m_pinteractionimpl->m_pgraphicsthread->post_procedure(procedure);
 //
 //   }
 

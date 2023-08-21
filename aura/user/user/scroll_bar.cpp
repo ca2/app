@@ -134,7 +134,7 @@ namespace user
    }
 
 
-   ::status < ::rectangle_i32 > scroll_bar::get_track_rectangle(::draw2d::graphics_pointer & pgraphics)
+   ::status < ::rectangle_i32 > scroll_bar::get_track_rectangle()
    {
 
       return error_interface_only;
@@ -238,6 +238,14 @@ namespace user
          return argb(127, 65, 65, 65);
 
       }
+
+   }
+
+
+   ::i32 scroll_bar::scrollbar_width()
+   {
+
+      return 16;
 
    }
 

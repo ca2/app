@@ -48,11 +48,11 @@ public:
 
       // drag_client
    void drag_set_capture() override;
-   ::point_i32 on_drag_start(::user::drag * pdrag) override;
-   bool drag_shift(::user::drag * pdrag) override;
-   bool drag_hover(::user::drag * pdrag) override;
+   ::point_i32 on_drag_start(::item * pitem) override;
+   bool drag_shift(::item * pitem) override;
+   bool drag_hover(::item * pitem) override;
    void drag_release_capture() override;
-   void drag_set_cursor(::user::drag * pdrag) override;
+   void drag_set_cursor(::item * pitem) override;
 
 
    virtual ::nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);

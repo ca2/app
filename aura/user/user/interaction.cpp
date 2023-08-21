@@ -1774,7 +1774,7 @@ namespace user
 
       }
 
-      if (get_host_window()->has_prodevian())
+      if (get_host_window()->has_auto_refresh())
       {
 
          return true;
@@ -3347,7 +3347,7 @@ namespace user
 
       //}
 
-      //clear_prodevian();
+      //clear_auto_refresh();
 
       try
       {
@@ -3780,7 +3780,7 @@ namespace user
 
       }
 
-      prodevian_stop();
+      auto_refresh_stop();
 
       {
 
@@ -4219,30 +4219,97 @@ namespace user
 
       ::point_i32 pointScroll;
 
-      auto pChild = this;
+      auto puserinteraction = get_parent();
 
-      while (::is_set(pChild) && ::is_set(pChild->get_parent()))
+      while (::is_set(puserinteraction))
       {
 
-         auto pointChildScroll = pChild->get_context_offset();
+         auto pointChildScroll = puserinteraction->get_context_offset();
 
-         if (pChild->m_bParentScrollX)
+         if (puserinteraction->m_bParentScrollX)
          {
 
             pointScroll.x() += pointChildScroll.x();
-            //pointScroll.x() += pChild->get_parent()->m_pointDragScroll.x();
+            //pointScroll.x() += puserinteraction->get_parent()->m_pointDragScroll.x();
 
          }
 
-         if (pChild->m_bParentScrollY)
+         if (puserinteraction->m_bParentScrollY)
          {
 
             pointScroll.y() += pointChildScroll.y();
-            //pointScroll.y() += pChild->get_parent()->m_pointDragScroll.y();
+            //pointScroll.y() += puserinteraction->get_parent()->m_pointDragScroll.y();
 
          }
 
-         pChild = pChild->get_parent();
+         puserinteraction = puserinteraction->get_parent();
+
+      }
+
+      return pointScroll;
+
+   }
+
+
+   ::point_i32 interaction::get_accumulated_scroll(enum_layout elayout)
+   {
+
+      ::point_i32 pointScroll;
+
+      auto puserinteraction = this;
+
+      while (::is_set(puserinteraction))
+      {
+
+         auto pointChildScroll = puserinteraction->get_context_offset();
+
+         if (puserinteraction->m_bParentScrollX)
+         {
+
+            pointScroll.x() += pointChildScroll.x();
+            //pointScroll.x() += puserinteraction->get_parent()->m_pointDragScroll.x();
+
+         }
+
+         if (puserinteraction->m_bParentScrollY)
+         {
+
+            pointScroll.y() += pointChildScroll.y();
+            //pointScroll.y() += puserinteraction->get_parent()->m_pointDragScroll.y();
+
+         }
+
+         puserinteraction = puserinteraction->get_parent();
+
+      }
+
+      return pointScroll;
+
+   }
+
+
+   ::point_i32 interaction::get_scroll(enum_layout elayout)
+   {
+
+      ::point_i32 pointScroll;
+
+      auto puserinteraction = this;
+
+      auto pointChildScroll = puserinteraction->get_context_offset();
+
+      if (puserinteraction->m_bParentScrollX)
+      {
+
+         pointScroll.x() += pointChildScroll.x();
+         //pointScroll.x() += puserinteraction->get_parent()->m_pointDragScroll.x();
+
+      }
+
+      if (puserinteraction->m_bParentScrollY)
+      {
+
+         pointScroll.y() += pointChildScroll.y();
+         //pointScroll.y() += puserinteraction->get_parent()->m_pointDragScroll.y();
 
       }
 
@@ -4496,7 +4563,7 @@ namespace user
 #ifdef VERBOSE_LOG
 
 
-               CATEGORY_INFORMATION(prodevian, type.m_strName << " drawing took more than 50ms to complete ("
+               CATEGORY_INFORMATION(graphics_thread, type.m_strName << " drawing took more than 50ms to complete ("
 << timeElapsed.integral_millisecond() << ")!!\n");
 
                // let's trye to see what happened?
@@ -4544,9 +4611,9 @@ namespace user
             if (timeElapsed > 100_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian,
+               CATEGORY_INFORMATION(graphics_thread,
                   "\ndrawing took " + as_string(timeElapsed.integral_millisecond()) + "!!");
-               information()(e_trace_category_prodevian) << "\ndrawing took more than 100ms more than 50ms to complete!!";
+               information()(e_trace_category_graphics_thread) << "\ndrawing took more than 100ms more than 50ms to complete!!";
 
                // let's trye to see what happened?
                //on_after_graphical_update();
@@ -4650,10 +4717,10 @@ namespace user
             if (timeElapsed > 100_ms)
             {
 
-               information()(e_trace_category_prodevian) << "\ndrawing at " << __type_name(this) << "!!";
-               information()(e_trace_category_prodevian) << "\ndrawing took " << timeElapsed.integral_millisecond() << +"!!";
-               information()(e_trace_category_prodevian) << "\ndrawing took more more than 100ms more than 50ms to complete!!";
-               information()(e_trace_category_prodevian) << "\n";
+               information()(e_trace_category_graphics_thread) << "\ndrawing at " << __type_name(this) << "!!";
+               information()(e_trace_category_graphics_thread) << "\ndrawing took " << timeElapsed.integral_millisecond() << +"!!";
+               information()(e_trace_category_graphics_thread) << "\ndrawing took more more than 100ms more than 50ms to complete!!";
+               information()(e_trace_category_graphics_thread) << "\n";
 
                // let's trye to see what happened?
                //_001OnDraw(pgraphics);
@@ -6040,7 +6107,7 @@ namespace user
    }
 
 
-   void interaction::add_prodevian(::matter * pmatter)
+   void interaction::add_auto_refresh(::matter * pmatter)
    {
 
       auto phostwindow = get_host_window();
@@ -6054,12 +6121,12 @@ namespace user
 
       auto pprimitiveimpl = phostwindow->m_pprimitiveimpl;
 
-      return pprimitiveimpl->add_prodevian(pmatter);
+      return pprimitiveimpl->add_auto_refresh(pmatter);
 
    }
 
 
-   void interaction::erase_prodevian(::matter * pmatter)
+   void interaction::erase_auto_refresh(::matter * pmatter)
    {
 
       if (get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl == nullptr)
@@ -6069,12 +6136,12 @@ namespace user
 
       }
 
-      get_wnd()->m_pprimitiveimpl->erase_prodevian(pmatter);
+      get_wnd()->m_pprimitiveimpl->erase_auto_refresh(pmatter);
 
    }
 
 
-   bool interaction::is_prodevian(const ::matter * pmatter) const
+   bool interaction::is_auto_refresh(const ::matter * pmatter) const
    {
 
       auto pwnd = ((interaction *)
@@ -6087,7 +6154,7 @@ namespace user
 
       }
 
-      return pwnd->m_pprimitiveimpl->is_prodevian(pmatter);
+      return pwnd->m_pprimitiveimpl->is_auto_refresh(pmatter);
 
    }
 
@@ -6371,29 +6438,29 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
+      m_pitemClient = __new(::item(e_element_client));
+
+      add_item(m_pitemClient);
+
+      auto puseritem = user_item(m_pitemClient);
+
+      puseritem->m_ezorder = e_zorder_back;
+
       if (m_bEnableDragClient)
       {
 
-         enable_drag(e_element_client, e_zorder_back);
-
-      }
-      else
-      {
-
-         m_pitemClient = __new(::item(e_element_client));
-
-         add_item(m_pitemClient);
-
-         auto puseritem = user_item(m_pitemClient);
-
-         puseritem->m_ezorder = e_zorder_back;
+         enable_drag(m_pitemClient, e_zorder_back);
 
       }
 
       if (m_bEnableDragResize)
       {
 
-         enable_drag(e_element_resize, e_zorder_front);
+         auto pitemResize = __new(::item(e_element_client));
+
+         add_item(pitemResize);
+
+         enable_drag(pitemResize, e_zorder_front);
 
       }
 
@@ -7062,10 +7129,10 @@ namespace user
    }
 
 
-   bool interaction::_001IsParentClientPointInsideInline(const ::point_i32 & point)
+   bool interaction::_001IsParentClientPointInsideInline(const ::point_i32 & point, enum_layout elayout)
    {
 
-      return layout().design().parent_raw_rectangle().contains(point);
+      return parent_client_rectangle(elayout).contains(point);
 
    }
 
@@ -7232,18 +7299,18 @@ namespace user
    }
 
 
-   ::point_i32 interaction::on_drag_start(::user::drag * pdrag)
+   ::point_i32 interaction::on_drag_start(::item * pitem)
    {
 
       get_wnd()->hide_software_keyboard(this);
 
-      if (pdrag->m_item.m_eelement == e_element_client)
+      if (pitem->m_item.m_eelement == e_element_client)
       {
 
          return layout().window().origin();
 
       }
-      else if (pdrag->m_item.m_eelement == e_element_resize)
+      else if (pitem->m_item.m_eelement == e_element_resize)
       {
 
          return layout().window().origin() + layout().window().size();
@@ -7255,15 +7322,19 @@ namespace user
    }
 
 
-   bool interaction::drag_shift(::user::drag * pdrag)
+   bool interaction::drag_shift(::item * pitem)
    {
 
-      if (pdrag->m_item.m_eelement == e_element_client)
+      if (pitem->m_item.m_eelement == e_element_client)
       {
+
+         auto pdrag = drag(pitem);
 
          pdrag->m_ecursor = e_cursor_move;
 
-         set_position(pdrag->point());
+         auto point = drag_point(pitem);
+
+         set_position(point);
 
          set_reposition();
 
@@ -7274,12 +7345,16 @@ namespace user
          return true;
 
       }
-      else if (pdrag->m_item.m_eelement == e_element_resize)
+      else if (pitem->m_item.m_eelement == e_element_resize)
       {
+
+         auto pdrag = drag(pitem);
 
          pdrag->m_ecursor = e_cursor_size_bottom_right;
 
-         auto Δ = pdrag->point() - pdrag->m_pointLButtonDown;
+         auto point = drag_point(pitem);
+
+         auto Δ = point - pdrag->m_pointLButtonDown;
 
          auto pointBottomRight = pdrag->m_pointInitial + Δ;
 
@@ -7358,19 +7433,23 @@ namespace user
    //}
 
 
-   bool interaction::drag_hover(::user::drag * pdrag)
+   bool interaction::drag_hover(::item * pitem)
    {
 
-      if (pdrag->m_item.m_eelement == e_element_client)
+      if (pitem->m_item.m_eelement == e_element_client)
       {
+
+         auto pdrag = drag(pitem);
 
          pdrag->m_ecursor = e_cursor_hand;
 
          return true;
 
       }
-      else if (pdrag->m_item.m_eelement == e_element_resize)
+      else if (pitem->m_item.m_eelement == e_element_resize)
       {
+
+         auto pdrag = drag(pitem);
 
          pdrag->m_ecursor = e_cursor_size_bottom_right;
 
@@ -7393,10 +7472,12 @@ namespace user
    }
 
 
-   void interaction::drag_set_cursor(::user::drag * pdrag)
+   void interaction::drag_set_cursor(::item * pitem)
    {
 
       auto pwindowing = windowing();
+
+      auto pdrag = drag(pitem);
 
       auto pcursor = pwindowing->get_cursor(pdrag->m_ecursor);
 
@@ -10809,7 +10890,7 @@ namespace user
       if (type.name_contains("tap"))
       {
 
-         information() << "tap prodevian_reposition (" << this->screen_origin().x() << ", " << this->screen_origin().y()
+         information() << "tap graphics_thread_reposition (" << this->screen_origin().x() << ", " << this->screen_origin().y()
             << ")";
       }
 
@@ -11108,21 +11189,21 @@ namespace user
 
       pprimitiveimpl->message_handler(pmessage);
 
-      if (!bDestroying && m_ewindowflag & e_window_flag_window_created)
-      {
+      //if (!bDestroying && m_ewindowflag & e_window_flag_window_created)
+      //{
 
-         if (m_bNeedRedraw || m_bReposition)
-         {
+      //   if (m_bNeedRedraw || m_bReposition)
+      //   {
 
-            bool bUpdateBuffer = m_bNeedRedraw;
+      //      bool bUpdateBuffer = m_bNeedRedraw;
 
-            m_bNeedRedraw = false;
+      //      m_bNeedRedraw = false;
 
-            prodevian_redraw(bUpdateBuffer);
+      //      graphics_thread_redraw(bUpdateBuffer);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -11939,19 +12020,19 @@ namespace user
    void interaction::_on_show_window()
    {
 
-      if (is_auto_prodevian_on_show())
+      if (is_auto_refresh_on_show())
       {
 
          if (is_this_visible())
          {
 
-            set_prodevian();
+            set_auto_refresh();
 
          }
          else
          {
 
-            clear_prodevian();
+            clear_auto_refresh();
 
          }
 
@@ -13036,7 +13117,7 @@ namespace user
    }
 
 
-   static i64 g_i_prodevian_update_visual = 0;
+   static i64 g_i_graphics_thread_update_visual = 0;
 
 
    void interaction::lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow)
@@ -13369,7 +13450,7 @@ namespace user
          if (bDisplay)
          {
 
-            //information(as_string(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
+            //information(as_string(++g_i_graphics_thread_update_visual) + "updvis dpy machine\n");
 
          }
 
@@ -13388,7 +13469,7 @@ namespace user
          if (bDeferDisplay || bPosition)
          {
 
-            if (!(m_ewindowflag & e_window_flag_embedded_prodevian))
+            if (!(m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
             {
 
                if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
@@ -13458,7 +13539,7 @@ namespace user
       //         if (!(m_ewindowflag & e_window_flag_postpone_visual_update))
       //         {
       //
-      //            if (m_ewindowflag & e_window_flag_embedded_prodevian)
+      //            if (m_ewindowflag & e_window_flag_embedded_graphics_thread)
       //            {
       //
       //               auto psession = get_session();
@@ -15316,10 +15397,10 @@ namespace user
 
       }
       break;
-      //case e_simple_command_defer_start_prodevian:
+      //case e_simple_command_defer_start_graphics_thread:
       //{
 
-      //   m_pprimitiveimpl->_defer_start_prodevian();
+      //   m_pprimitiveimpl->_defer_start_graphics_thread();
 
 
       //}
@@ -15634,13 +15715,13 @@ namespace user
 
       }
 
-      if (layout().normal().m_bProdevian)
+      if (layout().normal().m_bAutoRefresh)
       {
 
-         if (!is_prodevian())
+         if (!is_auto_refresh())
          {
 
-            set_prodevian();
+            set_auto_refresh();
 
          }
 
@@ -15658,9 +15739,9 @@ namespace user
 
       layout().normal() = layout().window();
 
-      bool bProdevian = is_prodevian();
+      bool bAutoRefresh = is_auto_refresh();
 
-      layout().normal().m_bProdevian = bProdevian;
+      layout().normal().m_bAutoRefresh = bAutoRefresh;
 
       m_pprimitiveimpl->_001OnAfterExitNormal();
 
@@ -15676,9 +15757,9 @@ namespace user
 
       layout().normal().display() = edisplay;
 
-      bool bProdevian = is_prodevian();
+      bool bAutoRefresh = is_auto_refresh();
 
-      layout().normal().m_bProdevian = bProdevian;
+      layout().normal().m_bAutoRefresh = bAutoRefresh;
 
       m_pprimitiveimpl->_001OnAfterExitZoomed();
 
@@ -15694,9 +15775,9 @@ namespace user
 
       layout().normal().display() = edisplay;
 
-      bool bProdevian = is_prodevian();
+      bool bAutoRefresh = is_auto_refresh();
 
-      layout().normal().m_bProdevian = bProdevian;
+      layout().normal().m_bAutoRefresh = bAutoRefresh;
 
       if (m_pprimitiveimpl.is_null())
       {
@@ -16355,7 +16436,7 @@ namespace user
 
       auto r = raw_rectangle(elayout);
 
-      r += get_parent_accumulated_scroll();
+      r += get_accumulated_scroll();
 
       return r;
 
@@ -18419,7 +18500,7 @@ namespace user
    bool interaction::has_pending_graphical_update()
    {
 
-      if (has_prodevian())
+      if (has_auto_refresh())
       {
 
          return true;
@@ -19016,7 +19097,7 @@ namespace user
    bool interaction::is_window_resizing()
    {
 
-      if (::is_set(m_pdragCurrent) && m_pdragCurrent->m_item.m_eelement == e_element_resize)
+      if (::is_set(m_pdragCurrent) && m_pdragCurrent->m_pitem->m_item.m_eelement == e_element_resize)
       {
 
          return true;
@@ -19554,14 +19635,21 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pszType = typeid(*this).name();
+      auto strType = type(this).as_string();
 
-      ::information("interaction::on_message_left_button_down " + ::string(pszType));
+      ::information("interaction::on_message_left_button_down " + strType);
 
       if (!is_window_enabled())
       {
 
          return;
+
+      }
+
+      if (strType.contains("simple_scroll_bar"))
+      {
+
+         information() << "interaction::on_message_parent_left_button_down simple_scroll_bar";
 
       }
 
@@ -20118,6 +20206,32 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
+      if (drag_on_mouse_move(pmouse))
+      {
+
+         pmessage->m_bRet = true;
+
+         return;
+
+      }
+
+      ::string strType;
+
+      strType = type(this).as_string();
+
+      if (strType.contains("font_list"))
+      {
+
+         information() << "interaction::on_message_parent_mouse_move font_list";
+
+      }
+      else if (strType.contains("simple_scroll_bar"))
+      {
+
+         information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
+
+      }
+
       //if (m_bBarDragScrollLeftButtonDown)
       //{
 
@@ -20259,6 +20373,20 @@ namespace user
 
          }
 
+         ::string strType = ::type(this).as_string();
+
+         if (strType == "simple_scroll_bar")
+         {
+
+            information() << "simple_scroll_bar";
+
+         }
+         else if (strType == "font_list")
+         {
+
+            information() << "font_list";
+
+         }
 
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
@@ -20947,6 +21075,17 @@ namespace user
 
       }
 
+      ::string strType;
+      
+      strType = type(this).as_string();
+
+      if (strType.contains("font_list"))
+      {
+
+         information() << "interaction::on_message_mouse_move font_list";
+
+      }
+
       auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_bBarDragScrollLeftButtonDown)
@@ -21029,15 +21168,6 @@ namespace user
          {
 
             information() << "(no cursor)";
-
-         }
-
-         if (drag_on_mouse_move(pmouse))
-         {
-
-            pmessage->m_bRet = true;
-
-            return;
 
          }
 
@@ -21681,11 +21811,18 @@ namespace user
 
       }
 
-      auto puseritemHitTest = hit_test(pmouse, ezorder);
+      auto pitemHitTest = hit_test(pmouse, ezorder);
 
-      bool bRet = drag_on_mouse_hover(puseritemHitTest);
+      if (!pitemHitTest)
+      {
 
-      if (::is_item_set(puseritemHitTest))
+         return nullptr;
+
+      }
+
+      bool bRet = drag_on_mouse_hover(pitemHitTest);
+
+      if (::is_item_set(pitemHitTest))
       {
 
          if (!pmouse->m_pcursor)
@@ -21697,15 +21834,15 @@ namespace user
 
             pmouse->m_pcursor = pcursor;
 
-            bRet = true;
-
          }
+
+         bRet = true;
 
       }
 
       ///bool bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-      if (!::is_item_equivalent(puseritemHitTest, m_pitemHover))
+      if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
 
          //information("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
@@ -21714,11 +21851,11 @@ namespace user
 
          g_iMouseHoverCount++;
 
-         m_pitemHover = puseritemHitTest;
+         m_pitemHover = pitemHitTest;
 
          //m_pitemHOver->m_bAnyHoverChange = true;
 
-         if (::is_item_set(m_pitemHover) && !pitemOldHover)
+         if (::is_item_set(m_pitemHover))
          {
 
             if (m_atom == "frame::e_button_transparent_frame")
@@ -21728,7 +21865,21 @@ namespace user
 
             }
 
-            track_mouse_leave();
+            ::string strType = type(this).as_string();
+
+            if (strType == "simple_scroll_bar")
+            {
+
+               information() << "simple_scroll_bar";
+
+            }
+
+            if (!pitemOldHover)
+            {
+
+               track_mouse_leave();
+
+            }
 
          }
 
@@ -21754,17 +21905,17 @@ namespace user
 
          }
 
-         if (::is_item_set(puseritemHitTest))
+         if (::is_item_set(pitemHitTest))
          {
 
             information("user::interaction::update_hover is_item_set(pitemHitTest)");
 
-            if (should_redraw_on_hover(puseritemHitTest))
+            if (should_redraw_on_hover(pitemHitTest))
             {
 
                information("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
 
-               ::rectangle_i32 rectangleBounding = ::bounding_box(user_item(puseritemHitTest));
+               ::rectangle_i32 rectangleBounding = ::bounding_box(user_item(pitemHitTest));
 
                rectanglea.add(rectangleBounding);
 
@@ -21792,22 +21943,22 @@ namespace user
 
       }
 
-      //if (!bAvoidRedraw)
-      //{
+   //if (!bAvoidRedraw)
+   //{
 
-      //   if (bAnyHoverChange || (!m_pitemHover || !m_pitemHover->is_drawn()))
-      //   {
+   //   if (bAnyHoverChange || (!m_pitemHover || !m_pitemHover->is_drawn()))
+   //   {
 
-      //      set_need_redraw();
+   //      set_need_redraw();
 
-      //      post_redraw();
+   //      post_redraw();
 
-      //   }
+   //   }
 
-      //}
+   //}
 
-      //if (::is_set(pmouse))
-      //{
+   //if (::is_set(pmouse))
+   //{
 
 //      auto pitemOldMouseHover = m_pitemHoverMouse;
 //
@@ -21837,7 +21988,7 @@ namespace user
 //
 //      }
 
-      //}
+   //}
 
 //      if (bAnyHoverChange)
 //      {
@@ -21883,7 +22034,7 @@ namespace user
 
       }
 
-      return puseritemHitTest;
+      return pitemHitTest;
 
    }
 
@@ -21965,6 +22116,13 @@ namespace user
 
       auto pitem = hit_test(pointClient, ezorder);
 
+      if (!pitem)
+      {
+
+         return nullptr;
+
+      }
+
       auto * puseritem = user_item(pitem);
 
       puseritem->m_pointScreen = pmouse->m_point;
@@ -21978,6 +22136,20 @@ namespace user
 
    ::item_pointer interaction::hit_test(const ::point_i32 & pointClient, e_zorder ezorder)
    {
+
+      ::rectangle_i32 rectangleClientHitTest;
+
+      if (get_element_rectangle(rectangleClientHitTest, e_element_client_hit_test))
+      {
+
+         if (!rectangleClientHitTest.contains(pointClient))
+         {
+
+            return nullptr;
+
+         }
+
+      }
 
       auto pitem = on_hit_test(pointClient, ezorder);
 
@@ -22133,24 +22305,31 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitemHitTest = m_mapDrag[e_element_resize];
+      auto pitemResize = item(item_t{ e_element_resize });
 
-      if (pitemHitTest)
+      if (pitemResize)
       {
 
-         //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+         auto pdragResize = drag(pitemResize);
 
-         auto rectangleResize = this->rectangle(::e_element_resize);
-
-         //if (rectangleResize.ok() && rectangleResize.contains(point))
-         if (rectangleResize.ok())
+         if (pdragResize)
          {
 
-            auto puseritem = user_item(pitemHitTest);
+            //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
-            puseritem->m_rectangle = rectangleResize;
+            auto rectangleResize = this->rectangle(::e_element_resize);
 
-            //return pitemHitTest;
+            //if (rectangleResize.ok() && rectangleResize.contains(point))
+            if (rectangleResize.ok())
+            {
+
+               auto puseritem = user_item(pitemResize);
+
+               puseritem->m_rectangle = rectangleResize;
+
+               //return pitemHitTest;
+
+            }
 
          }
 
@@ -22189,15 +22368,14 @@ namespace user
       //if (ezorder & e_zorder_back)
       //{
 
-
-
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitemHitTest = m_mapDrag[e_element_client];
+      auto pitemClient = item(item_t{ e_element_client });
 
-      if (pitemHitTest)
+      auto pdragClient = drag(pitemClient);
+
+      if (pdragClient)
       {
-
 
          auto rectangleClient = this->rectangle(::e_element_client);
 
@@ -22205,7 +22383,7 @@ namespace user
          if (rectangleClient.ok())
          {
 
-            auto puseritem = user_item(pitemHitTest);
+            auto puseritem = user_item(pitemClient);
 
             puseritem->m_rectangle = rectangleClient;
 
@@ -22881,7 +23059,7 @@ namespace user
    ::shift_i32 interaction::client_to_screen(enum_layout elayout)
    {
 
-      return (::shift_i32(screen_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
+      return (::shift_i32(screen_origin(elayout)) - ::shift_i32(get_accumulated_scroll(elayout)));
 
    }
 
@@ -22897,7 +23075,7 @@ namespace user
    ::shift_i32 interaction::client_to_parent(enum_layout elayout)
    {
 
-      return ::shift_i32(m_layout.origin(elayout));
+      return ::shift_i32(m_layout.origin(elayout)) - ::shift_i32(get_scroll(elayout));
 
    }
 
@@ -22913,7 +23091,7 @@ namespace user
    ::shift_i32 interaction::client_to_host(enum_layout elayout)
    {
 
-      return (::shift_i32(host_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
+      return (::shift_i32(host_origin(elayout)) - ::shift_i32(get_accumulated_scroll(elayout)));
 
    }
 
@@ -23722,7 +23900,9 @@ namespace user
       else if (eelement == e_element_resize)
       {
 
-         if (!has_drag(eelement))
+         auto pitemResize = item(item_t{ e_element_resize });
+
+         if (!has_drag(pitemResize))
          {
 
             return false;
@@ -23740,7 +23920,9 @@ namespace user
       else if (eelement == e_element_drop_down)
       {
 
-         if (!has_drag(eelement))
+         auto pitemDropDown = item(item_t{ e_element_drop_down });
+
+         if (!has_drag(pitemDropDown))
          {
 
             return false;
@@ -24414,10 +24596,10 @@ m_layout.state(elayout).display());
    }
 
 
-   bool interaction::has_prodevian() const noexcept
+   bool interaction::has_auto_refresh() const noexcept
    {
 
-      return m_pinteractionimpl ? m_pinteractionimpl->has_prodevian() : false;
+      return m_pinteractionimpl ? m_pinteractionimpl->has_auto_refresh() : false;
 
    }
 

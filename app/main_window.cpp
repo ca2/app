@@ -49,7 +49,7 @@ namespace app_app
       if (!is_sandboxed())
       {
 
-         set_prodevian();
+         set_auto_refresh();
 
       }
 
@@ -139,7 +139,9 @@ namespace app_app
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
          auto pitemClose = user_item(::e_element_close_button);
+
          auto pitemZoom = user_item(::e_element_maximize_button);
+
          auto pitemIcon = user_item(::e_element_minimize_button);
 
          if (::is_set(pitemClose))
@@ -204,8 +206,6 @@ namespace app_app
 
                m_dPhaseShift = angle - angleNew;
 
-               //auto pmathematics = ::mathematics::mathematics();
-
                m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * pmathematics->get_pi());
 
             }
@@ -237,7 +237,6 @@ namespace app_app
 
                pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
 
-
                if (::is_set(pitemIcon))
                {
 
@@ -248,7 +247,6 @@ namespace app_app
                   pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
 
                   pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
-
 
                }
 

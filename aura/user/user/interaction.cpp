@@ -6438,27 +6438,25 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      m_pitemClient = __new(::item(e_element_client));
+      //m_pitemClient = __new(::item(e_element_client));
 
-      add_item(m_pitemClient);
+      auto pitemClient = defer_item(::item_t{ e_element_client });
 
-      auto puseritem = user_item(m_pitemClient);
+      auto puseritem = user_item(pitemClient);
 
       puseritem->m_ezorder = e_zorder_back;
 
       if (m_bEnableDragClient)
       {
 
-         enable_drag(m_pitemClient, e_zorder_back);
+         enable_drag(pitemClient, e_zorder_back);
 
       }
 
       if (m_bEnableDragResize)
       {
 
-         auto pitemResize = __new(::item(e_element_client));
-
-         add_item(pitemResize);
+         auto pitemResize = defer_item(::item_t{ e_element_resize });
 
          enable_drag(pitemResize, e_zorder_front);
 
@@ -11828,14 +11826,20 @@ namespace user
 
       }
 
-      if (m_pitemClient)
-      {
+      defer_setup_default_bottom_right_resize_user_item();
 
-         auto puseritemClient = user_item(m_pitemClient);
+      defer_setup_default_client_area_user_item();
 
-         puseritemClient->m_rectangle = rectangleClient;
+      //auto pitemClient = item(::item_t{ e_element_client });
 
-      }
+      //if (pitemClient)
+      //{
+
+      //   auto puseritemClient = user_item(pitemClient);
+
+      //   puseritemClient->m_rectangle = rectangleClient;
+
+      //}
 
       if (m_pitema)
       {
@@ -22165,10 +22169,6 @@ namespace user
    ::item_pointer interaction::on_hit_test(const ::point_i32 & point, e_zorder ezorder)
    {
 
-      defer_setup_default_bottom_right_resize_user_item();
-
-      defer_setup_default_client_area_user_item();
-
       {
 
          auto pitemHitTest = on_items_hit_test(point, ezorder);
@@ -22372,22 +22372,27 @@ namespace user
 
       auto pitemClient = item(item_t{ e_element_client });
 
-      auto pdragClient = drag(pitemClient);
-
-      if (pdragClient)
+      if (pitemClient)
       {
 
-         auto rectangleClient = this->rectangle(::e_element_client);
+         auto pdragClient = drag(pitemClient);
 
-         //if (rectangleClient.ok() && rectangleClient.contains(point))
-         if (rectangleClient.ok())
+         if (pdragClient)
          {
 
-            auto puseritem = user_item(pitemClient);
+            auto rectangleClient = this->rectangle(::e_element_client);
 
-            puseritem->m_rectangle = rectangleClient;
+            //if (rectangleClient.ok() && rectangleClient.contains(point))
+            if (rectangleClient.ok())
+            {
 
-            //return pitemHitTest;
+               auto puseritem = user_item(pitemClient);
+
+               puseritem->m_rectangle = rectangleClient;
+
+               //return pitemHitTest;
+
+            }
 
          }
 

@@ -88,6 +88,8 @@ namespace app_message_box
    void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ::app_app::main_window::on_layout(pgraphics);
+
       m_pbuttonShowMessageBox->display();
 
       auto rectangleClient = client_rectangle();

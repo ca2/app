@@ -53,7 +53,7 @@
 simple_toolbar::simple_toolbar()
 {
 
-   m_bClickDefaultMouseHandling = true;
+   m_bDefaultClickHandling = true;
 
    m_bStyleFlat = true;
 

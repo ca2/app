@@ -31,12 +31,13 @@ namespace user
    void combo_box::user_combo_box_common_construct()
    {
 
-      m_econtroltype          = e_control_type_combo_box;
-      m_typeListBox           = __type(::user::list_box);
-      m_estyle                = style_simply;
-      m_bEdit                 = true;
-      m_edatamode             = data_mode_opaque;
-      m_bMultiLine            = false;
+      m_econtroltype                         = e_control_type_combo_box;
+      m_typeListBox                          = __type(::user::list_box);
+      m_estyle                               = style_simply;
+      m_bEdit                                = true;
+      m_edatamode                            = data_mode_opaque;
+      m_bMultiLine                           = false;
+      m_bDefaultParentMouseMessageHandling   = false;
 
    }
 
@@ -655,39 +656,41 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if (is_window_enabled())
+      if (!is_window_enabled())
       {
 
-         auto pitemHit = hit_test(pmouse, e_zorder_any);
+         return;
 
-         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
+      }
+
+      auto pitemHit = hit_test(pmouse, e_zorder_any);
+
+      if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
+      {
+
+         class ::time timeLastVisibilityChangeElapsed;
+
+         if (m_plistbox.is_set())
          {
 
-            class ::time timeLastVisibilityChangeElapsed;
-
-            if (m_plistbox.is_set())
-            {
-
-               timeLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
-
-            }
-
-            if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
-            {
-
-               _001ToggleDropDown();
-
-            }
-            else if (!m_plistbox->const_layout().sketch().is_screen_visible())
-            {
-
-               //information("test");
-
-            }
-
-            pmouse->m_bRet = true;
+            timeLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
 
          }
+
+         if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
+         {
+
+            _001ToggleDropDown();
+
+         }
+         else if (!m_plistbox->const_layout().sketch().is_screen_visible())
+         {
+
+            //information("test");
+
+         }
+
+         pmouse->m_bRet = true;
 
       }
 

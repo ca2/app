@@ -26,7 +26,7 @@ simple_scroll_bar::simple_scroll_bar()
 
    m_iScrollBarWidth = 0;
 
-   m_bHoverDefaultMouseHandling = true;
+   m_bDefaultMouseHoverHandling = true;
 
 
    //m_cr = argb(127,180,80,120);

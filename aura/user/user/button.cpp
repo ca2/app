@@ -50,7 +50,7 @@ namespace user
    void button::user_button_construct()
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_econtroltype = e_control_type_button;
 
@@ -68,7 +68,7 @@ namespace user
 
       m_iClick = 0;
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 

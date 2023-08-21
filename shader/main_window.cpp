@@ -31,7 +31,7 @@ namespace app_shader
 
       //m_colorBackground = {};
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 

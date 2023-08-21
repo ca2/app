@@ -41,9 +41,9 @@ namespace user
 
       enable_drag(pitemResize, e_zorder_back);
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultMouseHoverHandling = true;
 
    }
 

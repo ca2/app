@@ -150,12 +150,14 @@ namespace user
       bool                                      m_bMouseHoverOnCapture;
 
       //bool                                      m_bMouseHover;
-      bool                                      m_bClickDefaultMouseHandling;
-      bool                                      m_bHoverDefaultMouseHandling;
-      bool                                      m_bEditDefaultHandling;
+      bool                                      m_bDefaultClickHandling;
+      bool                                      m_bDefaultMouseHoverHandling;
+      bool                                      m_bDefaultParentMouseMessageHandling;
 
-      bool                                      m_bKeyboardMultipleSelectionDefaultHandling;
-      bool                                      m_bDataUpdateDefaultHandling;
+      bool                                      m_bDefaultEditHandling;
+
+      bool                                      m_bDefaultKeyboardMultipleSelectionHandling;
+      bool                                      m_bDefaultDataUpdateHandling;
       bool                                      m_bParentScrollX;
       bool                                      m_bParentScrollY;
 

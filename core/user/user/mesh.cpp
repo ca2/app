@@ -72,8 +72,8 @@ namespace user
       m_iDisplayItemFocus = -1;
       //m_iDisplayItemHover = -1;
       //m_iSubItemHover = -2;
-      m_bEditDefaultHandling = true;
-      m_bKeyboardMultipleSelectionDefaultHandling = true;
+      m_bDefaultEditHandling = true;
+      m_bDefaultKeyboardMultipleSelectionHandling = true;
       m_bSortEnable              = true;
       m_bFilter1                 = false;
       m_nColumnCount             = 1;

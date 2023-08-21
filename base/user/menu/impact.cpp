@@ -33,7 +33,7 @@ namespace user
    menu_impact::menu_impact() 
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_flagNonClient.erase(e_non_client_background);
 

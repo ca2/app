@@ -43,11 +43,11 @@ namespace user
 
       defer_create_synchronization();
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_bTransparent = true;
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultMouseHoverHandling = true;
 
       m_bPendingKillFocusHiding = false;
 

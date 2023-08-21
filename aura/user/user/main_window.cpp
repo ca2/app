@@ -34,9 +34,9 @@ namespace user
 
       m_bEnableDefaultControlBox = true;
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultMouseHoverHandling = true;
 
       m_bExtendOnParentIfClientOnly = true;
 

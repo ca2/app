@@ -19,7 +19,7 @@ namespace user
    list2::list2()
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 

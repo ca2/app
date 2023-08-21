@@ -40,9 +40,9 @@ namespace user
    tab::tab()
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultMouseHoverHandling = true;
 
       m_econtroltype = e_control_type_tab;
 

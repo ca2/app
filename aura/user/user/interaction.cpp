@@ -257,11 +257,12 @@ namespace user
 
       m_bMouseHoverOnCapture = false;
       //m_bMouseHover = false;
-      m_bClickDefaultMouseHandling = false;
-      m_bHoverDefaultMouseHandling = false;
-      m_bEditDefaultHandling = false;
-      m_bKeyboardMultipleSelectionDefaultHandling = false;
-      m_bDataUpdateDefaultHandling = false;
+      m_bDefaultClickHandling = false;
+      m_bDefaultMouseHoverHandling = false;
+      m_bDefaultParentMouseMessageHandling = true;
+      m_bDefaultEditHandling = false;
+      m_bDefaultKeyboardMultipleSelectionHandling = false;
+      m_bDefaultDataUpdateHandling = false;
       //m_bLockLadingToLayout = false;
       m_bParentScrollX = false;
       m_bParentScrollY = false;
@@ -331,13 +332,13 @@ namespace user
 
       m_bOverdraw = false;
 
-      m_bEditDefaultHandling = false;
+      //m_bDefaultEditHandling = false;
 
-      m_bClickDefaultMouseHandling = false;
+      //m_bDefaultClickHandling = false;
 
-      m_bHoverDefaultMouseHandling = false;
+      //m_bDefaultMouseHoverHandling = false;
 
-      m_bKeyboardMultipleSelectionDefaultHandling = false;
+      //m_bDefaultKeyboardMultipleSelectionHandling = false;
 
       m_iIndex = -1;
 
@@ -407,7 +408,7 @@ namespace user
 
       m_bEnableSaveWindowRect2 = false;
 
-      m_bDefaultWalkPreTranslateParentTree = false;
+      //m_bDefaultWalkPreTranslateParentTree = false;
 
       m_bMoveWindow = false;
 
@@ -476,9 +477,9 @@ namespace user
       if (m_bEnableDragClient)
       {
 
-         m_bHoverDefaultMouseHandling = true;
+         m_bDefaultMouseHoverHandling = true;
 
-         m_bClickDefaultMouseHandling = true;
+         m_bDefaultClickHandling = true;
 
       }
 
@@ -2695,7 +2696,7 @@ namespace user
       else
       {
 
-         if (m_bEditDefaultHandling)
+         if (m_bDefaultEditHandling)
          {
 
             add_command_handler("edit_delete", { this, &interaction::_001OnEditDelete });
@@ -2715,11 +2716,16 @@ namespace user
                       &::user::interaction::on_message_left_button_double_click);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
-         MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &::user::interaction::on_message_parent_left_button_down);
-         MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &::user::interaction::on_message_parent_left_button_up);
-         MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &::user::interaction::on_message_parent_mouse_move);
+         if (m_bDefaultParentMouseMessageHandling)
+         {
 
-         if (m_bDataUpdateDefaultHandling)
+            MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &::user::interaction::on_message_parent_left_button_down);
+            MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &::user::interaction::on_message_parent_left_button_up);
+            MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &::user::interaction::on_message_parent_mouse_move);
+
+         }
+
+         if (m_bDefaultDataUpdateHandling)
          {
 
             MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
@@ -2731,12 +2737,12 @@ namespace user
 
          //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
 
-         if (m_bClickDefaultMouseHandling)
+         if (m_bDefaultClickHandling)
          {
 
             MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
 
-            m_bHoverDefaultMouseHandling = true;
+            m_bDefaultMouseHoverHandling = true;
 
 #if MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
 
@@ -2749,7 +2755,7 @@ namespace user
 
          MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &interaction::on_message_mouse_wheel);
 
-         if (m_bHoverDefaultMouseHandling)
+         if (m_bDefaultMouseHoverHandling)
          {
 
             MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
@@ -2759,7 +2765,7 @@ namespace user
 
          //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
 
-         if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+         if (m_bDefaultEditHandling || m_bDefaultKeyboardMultipleSelectionHandling)
          {
 
             MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
@@ -2782,14 +2788,14 @@ namespace user
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &interaction::on_message_right_button_up);
 
 
-      //if (m_bClickDefaultMouseHandling)
+      //if (m_bDefaultClickHandling)
       //{
 
       //   install_click_default_mouse_handling(pchannel);
       //
       //}
 
-      //if (m_bHoverDefaultMouseHandling)
+      //if (m_bDefaultMouseHoverHandling)
       //{
 
       //   install_hover_default_mouse_handling(pchannel);
@@ -7180,7 +7186,7 @@ namespace user
 
       }
 
-      if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+      if (m_bDefaultEditHandling || m_bDefaultKeyboardMultipleSelectionHandling)
       {
 
          auto pkey = pmessage->m_union.m_pkey;
@@ -7188,7 +7194,7 @@ namespace user
          if (pkey)
          {
 
-            if (m_bEditDefaultHandling && pkey->m_ekey == ::user::e_key_delete)
+            if (m_bDefaultEditHandling && pkey->m_ekey == ::user::e_key_delete)
             {
 
                auto pcommand = __new(::message::command("edit_delete"));
@@ -7200,7 +7206,7 @@ namespace user
                pkey->m_bRet = pcommand->m_bRet;
 
             }
-            else if (m_bKeyboardMultipleSelectionDefaultHandling &&
+            else if (m_bDefaultKeyboardMultipleSelectionHandling &&
                      (
                         pkey->m_ekey == ::user::e_key_shift
                         || pkey->m_ekey == ::user::e_key_left_shift
@@ -7248,7 +7254,7 @@ namespace user
 
       }
 
-      if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+      if (m_bDefaultEditHandling || m_bDefaultKeyboardMultipleSelectionHandling)
       {
 
          auto pkey = pmessage->m_union.m_pkey;
@@ -7256,13 +7262,13 @@ namespace user
          if (pkey)
          {
 
-            if (m_bEditDefaultHandling && pkey->m_ekey == ::user::e_key_delete)
+            if (m_bDefaultEditHandling && pkey->m_ekey == ::user::e_key_delete)
             {
 
                pkey->m_bRet = true;
 
             }
-            else if (m_bKeyboardMultipleSelectionDefaultHandling &&
+            else if (m_bDefaultKeyboardMultipleSelectionHandling &&
                      (
                         pkey->m_ekey == ::user::e_key_shift
                         || pkey->m_ekey == ::user::e_key_left_shift
@@ -7489,7 +7495,7 @@ namespace user
 
    //
 
-   //   //if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+   //   //if (m_bDefaultEditHandling || m_bDefaultKeyboardMultipleSelectionHandling)
    //   //{
 
    //   //   auto pkey = pmessage->m_union.m_pkey;
@@ -7497,13 +7503,13 @@ namespace user
    //   //   if (pkey)
    //   //   {
 
-   //   //      if (m_bEditDefaultHandling && pkey->m_ekey == ::user::e_key_delete)
+   //   //      if (m_bDefaultEditHandling && pkey->m_ekey == ::user::e_key_delete)
    //   //      {
 
    //   //         pkey->m_bRet = true;
 
    //   //      }
-   //   //      else if (m_bKeyboardMultipleSelectionDefaultHandling &&
+   //   //      else if (m_bDefaultKeyboardMultipleSelectionHandling &&
    //   //         (
    //   //            pkey->m_ekey == ::user::e_key_shift
    //   //            || pkey->m_ekey == ::user::e_key_left_shift
@@ -19505,7 +19511,7 @@ namespace user
          //   void interaction::install_click_default_mouse_handling(::channel* pchannel)
          //   {
          //
-         //      m_bClickDefaultMouseHandling = true;
+         //      m_bDefaultClickHandling = true;
          //
          //      // this is not needed, user::interaction hooks left_button_down by default.
          //      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
@@ -19528,7 +19534,7 @@ namespace user
          //   void interaction::install_hover_default_mouse_handling(::channel* pchannel)
          //   {
          //
-         //      m_bHoverDefaultMouseHandling = true;
+         //      m_bDefaultMouseHoverHandling = true;
          //
          ////      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
          ////      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
@@ -19757,7 +19763,7 @@ namespace user
 
 //      auto puserinteractionimplHost = get_window_impl();
 //
-      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+      if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 
          if (::is_item_set(pitemLButtonDown))
@@ -19797,7 +19803,7 @@ namespace user
 //            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none
             //             && m_itemLButtonDown.m_eelement != e_element_client;
 
-            if (m_bClickDefaultMouseHandling)
+            if (m_bDefaultClickHandling)
             {
 
                // For Windows: ... (please fill in...)
@@ -19891,7 +19897,7 @@ namespace user
 //
 //      }
 //
-//      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+//      if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
 //      {
 //
 //         if (::is_item_set(puseritemLButtonDown))
@@ -19903,7 +19909,7 @@ namespace user
 //
 //            track_mouse_leave();
 //
-//            if (m_bClickDefaultMouseHandling)
+//            if (m_bDefaultClickHandling)
 //            {
 //
 //               pmouse->m_bRet = true;
@@ -20009,7 +20015,7 @@ namespace user
 
       ////}
 
-      //if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+      //if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       //{
 
       //   //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
@@ -20028,7 +20034,7 @@ namespace user
 
       //   auto pwindowimpl = get_window_impl();
 
-      //   if (m_bClickDefaultMouseHandling && ::is_set(pwindowimpl->m_pitemLButtonDown))
+      //   if (m_bDefaultClickHandling && ::is_set(pwindowimpl->m_pitemLButtonDown))
       //   {
 
       //      auto puseritemLButtonDown = user_item(pwindowimpl->m_pitemLButtonDown);
@@ -20350,7 +20356,7 @@ namespace user
 
       //}
 
-      //if (m_bHoverDefaultMouseHandling)
+      //if (m_bDefaultMouseHoverHandling)
       {
          auto type = __object_type(*this);
 
@@ -20361,7 +20367,7 @@ namespace user
 
          }
 
-         //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
+         //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
 
          if (m_atom == "frame::e_button_transparent_frame")
@@ -20624,7 +20630,7 @@ namespace user
 
 //      auto puserinteractionimplHost = get_window_impl();
 //
-//      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+//      if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
 //      {
 //
 //         if (::is_item_set(puseritemLButtonDown))
@@ -20662,7 +20668,7 @@ namespace user
 ////            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none
 //            //             && m_itemLButtonDown.m_eelement != e_element_client;
 //
-//            if (m_bClickDefaultMouseHandling)
+//            if (m_bDefaultClickHandling)
 //            {
 //
 //               // For Windows: ... (please fill in...)
@@ -20756,7 +20762,7 @@ namespace user
 
       }
 
-      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+      if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 
          if (::is_item_set(pitemLButtonDown))
@@ -20772,7 +20778,7 @@ namespace user
 
             track_mouse_leave();
 
-            if (m_bClickDefaultMouseHandling)
+            if (m_bDefaultClickHandling)
             {
 
                pmouse->m_bRet = true;
@@ -20877,7 +20883,7 @@ namespace user
 
       //}
 
-      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
+      if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 
          //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
@@ -20896,7 +20902,7 @@ namespace user
 
          auto pwindowimpl = get_window_impl();
 
-         if (m_bClickDefaultMouseHandling && ::is_set(pwindowimpl->m_pitemLButtonDown))
+         if (m_bDefaultClickHandling && ::is_set(pwindowimpl->m_pitemLButtonDown))
          {
 
             auto puseritemLButtonDown = user_item(pwindowimpl->m_pitemLButtonDown);
@@ -21215,7 +21221,7 @@ namespace user
 
       }
 
-      //if (m_bHoverDefaultMouseHandling)
+      //if (m_bDefaultMouseHoverHandling)
       {
          auto type = __object_type(*this);
 
@@ -21226,7 +21232,7 @@ namespace user
 
          }
 
-         //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
+         //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
          //auto pitemFront = update_hover(pmouse, e_zorder_front);
 
@@ -21699,7 +21705,7 @@ namespace user
 
       pmessage->previous();
 
-      //if (m_bClickDefaultMouseHandling)
+      //if (m_bDefaultClickHandling)
       //{
 
 //         auto item = hit_test(pmouse);

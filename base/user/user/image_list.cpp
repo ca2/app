@@ -19,7 +19,7 @@ namespace user
    image_list::image_list()
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_sizeImage.set(0, 0);
 

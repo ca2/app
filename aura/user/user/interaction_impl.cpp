@@ -7828,7 +7828,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       //  information() << "interaction_impl::on_message_reposition x is zero";
 
       //}
-      m_puserinteraction->set_position(preposition->m_point, e_layout_window);
+      //m_puserinteraction->set_position(preposition->m_point, e_layout_window);
 
       if (!m_pwindow->is_iconic())
       {
@@ -7942,7 +7942,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
             //m_pwindow->m_size = psize->m_size;
 
       //m_puserinteraction->set_size(psize->m_size, e_layout_window);
-      m_puserinteraction->set_size(psize->m_size, e_layout_window);
+      //m_puserinteraction->set_size(psize->m_size, e_layout_window);
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 

@@ -88,20 +88,20 @@ namespace nanoui
    
    }
 
-   ::count Widget::get_child_as_item_count()
-   {
+   //::count Widget::get_child_as_item_count()
+   //{
 
-      return m_children.size();
+   //   return m_children.size();
 
-   }
+   //}
 
 
-   item_pointer Widget::get_child_as_item(::index iIndex)
-   {
+   //item_pointer Widget::get_child_as_item(::index iIndex)
+   //{
 
-      return m_children[iIndex];
+   //   return m_children[iIndex];
 
-   }
+   //}
 
 
    item_pointer Widget::selected_item()

@@ -43,6 +43,10 @@ namespace user
       virtual bool is_item_pressed(const ::item_t & item) const;
       virtual bool is_item_hover(const ::item_t & item) const;
 
+      virtual ::item_pointer pressed_item();
+      virtual ::item_pointer hover_item();
+      virtual ::item_pointer selected_item();
+
       //virtual ::count item_count() const;
 
       //virtual void clear_items();

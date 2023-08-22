@@ -650,9 +650,32 @@ namespace user
 
       return m_pitemHover->m_item == item;
 
+   }
 
+
+   ::item_pointer acme_container::pressed_item()
+   {
+
+      return m_pitemPressed;
 
    }
+
+
+   ::item_pointer acme_container::hover_item()
+   {
+
+      return m_pitemHover;
+
+   }
+
+
+   ::item_pointer acme_container::selected_item()
+   {
+
+      return main_content().selected_item();
+
+   }
+
 
 
 

@@ -7949,7 +7949,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       if (!m_pwindow->placement_log()->has_recent(psize->m_size))
       {
 
-         //m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
+         m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
 
          int cx = m_puserinteraction->const_layout().sketch().size().width();
 

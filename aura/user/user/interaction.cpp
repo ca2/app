@@ -13106,8 +13106,12 @@ namespace user
 
          if (layout().lading().m_size.area() > 0)
          {
+            
+            auto & sizeLading = layout().lading().m_size;
+            
+            auto & sizeWindow = layout().window().m_size;
 
-            if (layout().lading().m_size != layout().window().m_size
+            if (sizeLading != sizeWindow
             && !(m_bIgnoringSketchToLading && m_timeLastIgnoredSketchToLading.elapsed() < 200_ms))
             {
 
@@ -16299,7 +16303,7 @@ namespace user
 
       //throw ::interface_only();
 
-      display(e_display_normal);
+      display_previous();
 
    }
 
@@ -18967,6 +18971,8 @@ namespace user
 
             if (edisplay == e_display_zoomed)
             {
+               
+               auto & sizeWindow = layout().window().m_size;
 
                display(e_display_normal);
 

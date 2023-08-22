@@ -100,8 +100,8 @@ namespace acme
 
       virtual bool is_application() const;
 
-      virtual bool is_system() const;
-      virtual bool is_session() const;
+      bool is_system() const override;
+      bool is_session() const override;
 
       virtual bool is_service() const;
       virtual bool is_user_service() const;

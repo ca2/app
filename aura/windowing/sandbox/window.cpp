@@ -3433,7 +3433,7 @@ namespace sandbox_windowing
    //               if (::is_set(pimpl2))
    //               {
 
-   //                  auto pprodevian = pimpl2->m_pprodevian;
+   //                  auto pprodevian = pimpl2->m_pgraphicsthread;
 
    //                  if (::is_set(pprodevian))
    //                  {

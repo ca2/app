@@ -291,15 +291,15 @@
 //
 //         //   pimpl->m_puserthread->do_events();
 //
-//         //   pimpl->m_pprodevian->do_events();
+//         //   pimpl->m_pgraphicsthread->do_events();
 //
 //         //   pimpl->m_puserthread->do_events();
 //
-//         //   pimpl->m_pprodevian->do_events();
+//         //   pimpl->m_pgraphicsthread->do_events();
 //
 //         //   pimpl->m_puserthread->do_events();
 //
-//         //   pimpl->m_pprodevian->do_events();
+//         //   pimpl->m_pgraphicsthread->do_events();
 //
 //         //}
 //

@@ -46,7 +46,7 @@ namespace user
 #endif
 
       ::pointer<interaction_impl>                  m_pimpl;
-      //::pointer<prodevian>                       m_pprodevian;
+      //::pointer<prodevian>                       m_pgraphicsthread;
       oswindow                                     m_oswindow;
 
       //manual_reset_event                           m_evApplyVisual;

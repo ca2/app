@@ -584,7 +584,7 @@ namespace android
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      //::parallelization::post_quit_and_wait(m_pprodevian, seconds(10));
+      //::parallelization::post_quit_and_wait(m_pgraphicsthread, seconds(10));
 
       //if (m_puserinteraction->m_pthreadUserInteraction != nullptr)
       //{

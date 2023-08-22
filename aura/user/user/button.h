@@ -158,7 +158,7 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      bool on_click_generation(::item * pitem) override;
+      bool on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem) override;
 
 
       //bool on_click(::item * pitem) override;

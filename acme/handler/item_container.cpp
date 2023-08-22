@@ -273,7 +273,7 @@ bool item_container::contains_item(const ::atom & atom) const
 ::index item_container::item_index() const
 {
 
-   return m_item.item_index();
+   return m_item.m_iItem;
 
 }
 

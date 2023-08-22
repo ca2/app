@@ -62,7 +62,8 @@ namespace user
 
       }
 
-      ::user::interaction * pinteraction = _001GetControl(pitem->m_item.item_index(), pitem->m_item.subitem_index());
+      ///::user::interaction * pinteraction = _001GetControl(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem);
+      ::user::interaction * pinteraction = _001GetControl(pitem->m_item.m_iItem, pitem->m_item.m_iSubItem);
 
       if(pinteraction != nullptr)
       {
@@ -87,7 +88,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, pitem->m_item.item_index(), true);
+            _001PlaceControl(pinteraction, pitem->m_item.m_iItem, true);
 
          }
 
@@ -115,9 +116,9 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      auto psubitem = get_subitem(pinteraction->m_item.m_iItem, pinteraction->m_item.m_iSubItem);
+      auto psubitem = get_subitem(pinteraction->m_iEditItem, pinteraction->m_iEditSubItem);
 
-      psubitem->m_pitem->m_iDisplayItem = strict_to_display(pinteraction->m_item.m_iItem);
+      psubitem->m_pitem->m_iDisplayItem = strict_to_display(pinteraction->m_iEditItem);
       
       psubitem->m_iOrder = sub_item_to_order(psubitem->m_iSubItem);
       
@@ -189,7 +190,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_item.m_iItem);
+         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
 
       }
 
@@ -213,7 +214,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_item.m_iItem);
+         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
 
       }
 
@@ -432,8 +433,12 @@ namespace user
 
       item.initialize_mesh_item(this);
 
-      return ::is_set(m_pitemControl)
-         && m_pitemControl->m_item.m_iSubItem == pinteraction->m_item.m_iSubItem;
+      throw ::exception(error_failed);
+
+      return false;
+
+      //return ::is_set(m_pitemControl)
+        // && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iEditSubItem;
 
       //i32 iEditItem;
       //i32 iEditSubItem;
@@ -638,7 +643,11 @@ namespace user
    bool form_mesh::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
+      //return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
+
+      throw ::exception(todo);
+
+      return false;
 
    }
 

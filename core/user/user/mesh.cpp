@@ -5994,9 +5994,9 @@ namespace user
 
          item_range itemrange;
 
-         itemrange.set_lower_bound(pitem->m_item.item_index());
+         itemrange.set_lower_bound(pitem->m_item.m_iItem);
 
-         itemrange.set_upper_bound(pitem->m_item.item_index());
+         itemrange.set_upper_bound(pitem->m_item.m_iItem);
 
          _001AddSelection(itemrange);
 

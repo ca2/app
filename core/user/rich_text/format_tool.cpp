@@ -4,8 +4,8 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
-////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_list.h"
@@ -627,12 +627,12 @@ namespace user
       if (bSaveAndValidate)
       {
 
-         if (m_pcomboFamily->m_pitemCurrent.is_set())
+         if (m_pcomboFamily->main_content().m_pitemCurrent.is_set())
          {
 
             auto pcombolistbox = m_pcomboFamily->m_plistbox;
 
-            auto pitemCurrent = m_pcomboFamily->m_pitemCurrent;
+            auto pitemCurrent = m_pcomboFamily->main_content().m_pitemCurrent;
 
             ::pointer<::user::font_list>pfontlist = pcombolistbox;
 

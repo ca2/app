@@ -264,9 +264,9 @@ namespace user
 
    public:
 
-      //index                                     m_iItem;
-      //index                                     m_iSubItem;
-      //index                                     m_iListItem;
+      index                                     m_iEditItem;
+      index                                     m_iEditSubItem;
+      // index                                     m_iListItem;
       index                                     m_iColumn;
 
       atom                                      m_uiText;
@@ -2151,8 +2151,8 @@ namespace user
       virtual bool on_edit_delete(const ::action_context& action_context);
 
 
-      virtual bool on_click_generation(::item * pitem);
-      virtual bool on_right_click_generation(::item * pitem);
+      virtual bool on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem);
+      virtual bool on_right_click_generation(::item * pitem, ::index iSubItem, ::index iListItem);
 
 
       virtual bool on_click(::item * pitem);

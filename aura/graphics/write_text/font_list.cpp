@@ -982,6 +982,8 @@ namespace write_text
 
          auto countFont = m_pfontenumerationitema->get_count();
 
+         __defer_construct_new(pfontlistdata->m_pitema);
+
          pfontlistdata->m_pitema->set_size(countFont);
 
       }

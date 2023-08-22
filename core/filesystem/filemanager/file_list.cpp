@@ -117,14 +117,14 @@ namespace filemanager
    {
 
       if (::is_item(pitem, m_iNameSubItem) ||
-         ((m_eview == impact_list || m_eview == impact_report)
-         && subitem_less_than(pitem, 0)))
+         ((m_eview == impact_list || m_eview == impact_report)))
+         //&& subitem_less_than(pitem, 0)))
       {
 
          if (!_017OpenSelected(true, ::e_source_user))
          {
 
-            index iStrict = pitem->m_item.item_index();
+            index iStrict = pitem->m_item.m_iItem;
 
             auto pitem = fs_list_item(iStrict);
 

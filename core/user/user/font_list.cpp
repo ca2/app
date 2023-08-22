@@ -2,9 +2,9 @@
 #include "font_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-////#include "acme/exception/exception.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/content.h"
 #include "aura/user/user/scroll_data.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
@@ -175,22 +175,22 @@ namespace user
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
-      if (!::is_same_item(pitem, m_pfontlist->m_puserinteraction->m_pitemCurrent))
+      if (!::is_same_item(pitem, main_content().m_pitemCurrent))
       {
 
          //::index iIndexSel = ::item_index(pitem);
 
-         m_pfontlist->m_puserinteraction->m_pitemCurrent = pitem;
+         main_content().m_pitemCurrent = pitem;
 
          set_need_redraw();
 
          auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
 
-         if(::is_item_set(m_pfontlist->m_puserinteraction->m_pitemCurrent)
-            && m_pfontlist->m_puserinteraction->m_pitemCurrent->m_item.m_iItem < pfontenumerationitema->get_count())
+         if(::is_item_set(main_content().m_pitemCurrent)
+            && main_content().m_pitemCurrent->m_item.m_iItem < pfontenumerationitema->get_count())
          {
 
-            auto pfontenumerationitem = pfontenumerationitema->element_at(m_pfontlist->m_puserinteraction->m_pitemCurrent->m_item.m_iItem);
+            auto pfontenumerationitem = pfontenumerationitema->element_at(main_content().m_pitemCurrent->m_item.m_iItem);
 
             m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
@@ -400,7 +400,7 @@ namespace user
    void font_list::__on_draw_ensure_sel_visible()
    {
 
-      auto pitemCurrent = m_pitemCurrent;
+      auto pitemCurrent = main_content().m_pitemCurrent;
 
       ::rectangle_i32 rectangle;
 
@@ -464,7 +464,7 @@ namespace user
       rectangleFontList.bottom -= iScrollBarWidth;
 
       if (m_pfontlist->m_strFontFamily.has_char()
-         && !::is_item_set(m_pitemCurrent)
+         && !::is_item_set(main_content().m_pitemCurrent)
          &&
          (m_pfontlist->is_updating()
          || m_pfontlist->m_iSelUpdateId != m_pfontlist->m_pfontenumeration->m_iUpdateId))
@@ -505,7 +505,7 @@ namespace user
          
       }
 
-      auto iItemSel = ::item_index(m_pitemCurrent);
+      auto iItemSel = ::item_index(main_content().m_pitemCurrent);
 
       if (iItemSel < 0)
       {
@@ -523,21 +523,23 @@ namespace user
          
       }
       
-      if(iItemSel >= m_pfontlist->m_pfontlistdata->size())
+      if(iItemSel >= m_pfontlist->m_pfontlistdata->item_count())
       {
        
          return {};
          
       }
       
-      if(!m_pfontlist->m_pfontlistdata->element_at(iItemSel))
+      if(!m_pfontlist->m_pfontlistdata->item_at(iItemSel))
       {
          
          return {};
          
       }
 
-      return m_pfontlist->m_pfontlistdata->element_at(iItemSel)->m_strFont;
+      ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItemSel);
+
+      return pfontlistitem->m_strFont;
 
    }
 
@@ -556,7 +558,9 @@ namespace user
 
       synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
-      return m_pfontlist->m_pfontlistdata->element_at(iItemHover)->m_strFont;
+      ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItemHover);
+
+      return pfontlistitem->m_strFont;
 
    }
 
@@ -582,14 +586,14 @@ namespace user
 
       synchronous_lock synchronouslock(m_pfontlist->synchronization());
 
-      if (!::is_item_set(m_pitemCurrent))
+      if (!::is_item_set(main_content().m_pitemCurrent))
       {
 
          return nullptr;
 
       }
 
-      return m_pitemCurrent;
+      return main_content().m_pitemCurrent;
 
    }
 
@@ -647,7 +651,7 @@ namespace user
       if (m_pfontlist.is_set())
       {
 
-         m_pitemCurrent = m_pfontlist->m_pfontlistdata->element_at(iSel);
+         main_content().m_pitemCurrent = m_pfontlist->m_pfontlistdata->item_at(iSel);
 
       }
 
@@ -718,12 +722,14 @@ namespace user
       if (m_pfontlist
          && m_pfontlist->m_pfontlistdata
          && iItem >= 0
-         && iItem < m_pfontlist->m_pfontlistdata->get_size())
+         && iItem < m_pfontlist->m_pfontlistdata->item_count())
       {
 
-         m_pitemCurrent = m_pfontlist->m_pfontlistdata->element_at(iItem);
+         main_content().m_pitemCurrent = m_pfontlist->m_pfontlistdata->item_at(iItem);
 
-         m_pointScroll.y() = m_pfontlist->m_pfontlistdata->element_at(iItem)->m_box[0].m_rectangle.top;
+         ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItem);
+
+         m_pointScroll.y() = pfontlistitem->m_box[0].m_rectangle.top;
 
       }
       else

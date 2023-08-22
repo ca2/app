@@ -1609,19 +1609,19 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 }
 
 
-bool simple_toolbar::on_click(::item * ptoolitem)
+bool simple_toolbar::on_click(::item * pitem)
 {
 
    ::pointer<::user::interaction>puserinteraction = get_owner();
 
-   if (!::is_set(ptoolitem))
+   if (!::is_set(pitem))
    {
 
       return false;
 
    }
 
-   ::message::command command(ptoolitem->m_atom);
+   ::message::command command(pitem->m_atom);
 
    puserinteraction->_001SendCommand(&command);
 

@@ -1462,7 +1462,7 @@ namespace user
    }
 
 
-   bool button::on_click_generation(::item * pitem)
+   bool button::on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem)
    {
 
       if (m_estyle == e_style_push)
@@ -1478,7 +1478,7 @@ namespace user
 
       }
 
-      return ::user::interaction::on_click_generation(pitem);
+      return ::user::interaction::on_click_generation(pitem, iSubItem, iListItem);
 
    }
 

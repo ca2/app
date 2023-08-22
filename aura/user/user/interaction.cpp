@@ -18970,11 +18970,15 @@ namespace user
 
                display(e_display_normal);
 
+               set_need_layout();
+
             }
             else
             {
 
                display(e_display_zoomed);
+
+               set_need_layout();
 
             }
 

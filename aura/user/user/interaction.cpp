@@ -16303,7 +16303,9 @@ namespace user
 
       //throw ::interface_only();
 
-      display_previous();
+      //display_previous();
+      
+      display(e_display_normal);
 
    }
 
@@ -16326,8 +16328,10 @@ namespace user
    {
 
       //auto estatus =
+      
+      bool bDisplayPreviousOnRestore = true;
 
-      frame_toggle_restore();
+      frame_toggle_restore(bDisplayPreviousOnRestore);
 
       //if(!estatus)
       //{
@@ -16337,6 +16341,26 @@ namespace user
       //}
       //
       //return estatus;
+      
+//      bool bWindowVisible = is_window_visible();
+//
+//      double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
+//
+//      bool bIconic = layout().is_iconic();
+//
+//      if (!bWindowVisible || dOccludedOpaqueRate > 0.025 || bIconic)
+//      {
+//
+//         display_previous();
+//
+//      }
+//      else
+//      {
+//
+//         frame_occlude();
+//
+//      }
+
 
    }
 
@@ -16390,7 +16414,7 @@ namespace user
    }
 
 
-   void interaction::frame_toggle_restore()
+   void interaction::frame_toggle_restore(bool bDisplayPreviousOnRestore)
    {
 
       bool bWindowVisible = is_window_visible();
@@ -16401,8 +16425,19 @@ namespace user
 
       if (!bWindowVisible || dOccludedOpaqueRate > 0.025 || bIconic)
       {
-
-         frame_restore();
+         
+         if(bDisplayPreviousOnRestore)
+         {
+            
+            display_previous();
+            
+         }
+         else
+         {
+            
+            frame_restore();
+            
+         }
 
       }
       else

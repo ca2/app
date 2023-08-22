@@ -350,7 +350,7 @@ namespace apex
 
 
 
-      virtual void process_init();
+      void process_init() override;
 
 
 

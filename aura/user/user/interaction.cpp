@@ -6453,16 +6453,21 @@ namespace user
 
       //m_pitemClient = __new(::item(e_element_client));
 
-      auto pitemClient = tool().defer_item(e_element_client);
-
-      auto puseritem = user_item(pitemClient);
-
-      puseritem->m_ezorder = e_zorder_back;
-
-      if (m_bEnableDragClient)
+      if (m_bEnableDragClient || m_bDefaultClickHandling)
       {
 
-         enable_drag(pitemClient, e_zorder_back);
+         auto pitemClient = tool().defer_item(e_element_client);
+
+         auto puseritem = user_item(pitemClient);
+
+         puseritem->m_ezorder = e_zorder_back;
+
+         if (m_bEnableDragClient)
+         {
+
+            enable_drag(pitemClient, e_zorder_back);
+
+         }
 
       }
 

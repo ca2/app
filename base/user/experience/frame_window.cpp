@@ -164,6 +164,8 @@ namespace experience
       m_bEnableDragResize = false;
       m_bEnableDefaultControlBox = false;
 
+      m_bDefaultParentMouseMessageHandling = false;
+
       m_eupdown = e_updown_normal_frame;
 
       m_pupdowntarget = nullptr;
@@ -1461,8 +1463,8 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_parent_left_button_down);
-      //MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_parent_left_button_up);
+      MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_parent_left_button_down);
+      MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_parent_left_button_up);
       //MESSAGE_LINK(e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_parent_left_button_double_click);
       MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_parent_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
@@ -1486,6 +1488,39 @@ namespace experience
    }
 
 
+   void frame_window::on_message_parent_left_button_down(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_frame_experience_enabled())
+      {
+
+         pmouse->m_bRet = false;
+
+         return;
+
+      }
+
+      if (::is_set(m_pframe))
+      {
+
+         m_pframe->on_message_parent_left_button_down(pmouse);
+
+      }
+
+      if (pmouse->m_bRet)
+      {
+
+         pmouse->m_lresult = 1;
+
+      }
+
+   }
+
+
+
+
    void frame_window::on_message_left_button_down(::message::message * pmessage)
    {
 
@@ -1507,12 +1542,12 @@ namespace experience
 
       }
 
-      if (pmouse->m_bRet)
-      {
+      //if (pmouse->m_bRet)
+      //{
 
-         pmouse->m_lresult = 1;
+      //   pmouse->m_lresult = 1;
 
-      }
+      //}
 
    }
 
@@ -1632,7 +1667,7 @@ namespace experience
    }
 
 
-   void frame_window::on_message_left_button_up(::message::message * pmessage)
+   void frame_window::on_message_parent_left_button_up(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1656,6 +1691,34 @@ namespace experience
          pmouse->m_lresult = 1;
 
       }
+
+   }
+
+
+   void frame_window::on_message_left_button_up(::message::message * pmessage)
+   {
+
+      //auto pmouse = pmessage->m_union.m_pmouse;
+
+      //if (!is_frame_experience_enabled())
+      //{
+
+      //   pmouse->m_bRet = false;
+
+      //   return;
+
+      //}
+
+      //ASSERT(m_pframe != nullptr);
+
+      //m_pframe->on_message_left_button_up(pmouse);
+
+      //if (pmouse->m_bRet)
+      //{
+
+      //   pmouse->m_lresult = 1;
+
+      //}
 
    }
 

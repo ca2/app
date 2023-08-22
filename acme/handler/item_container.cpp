@@ -281,6 +281,13 @@ bool item_container::contains_item(const ::atom & atom) const
 ::index item_container::item_index(const ::atom & atom) const
 {
 
+   if (::is_null(m_pitema))
+   {
+
+      return -1;
+
+   }
+
    auto iIndex = atom.as_index();
 
    if (!m_pitema->is_index_ok(iIndex))

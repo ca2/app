@@ -42,7 +42,7 @@ namespace experience
       //virtual enum_cursor experience_frame_to_cursor(const ::item * pitemHitTest);
 
 
-      bool on_message_left_button_down(::message::mouse * pmouse);
+      bool on_message_parent_left_button_down(::message::mouse * pmouse);
       bool on_message_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_up(::message::mouse * pmouse);
 

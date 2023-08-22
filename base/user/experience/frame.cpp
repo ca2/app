@@ -324,18 +324,46 @@ namespace experience
    }
 
 
+   bool frame::on_message_parent_left_button_down(::message::mouse * pmouse)
+   {
+
+      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
+      {
+
+         if (m_pframewindow->size_manager()->on_message_parent_left_button_down(pmouse))
+         {
+
+            return true;
+
+         }
+
+         //if (m_pframewindow->move_manager()->on_message_left_button_down(pmouse))
+         //{
+
+         //   return true;
+
+         //}
+
+      }
+
+      return false;
+
+   }
+
+
+
    bool frame::on_message_left_button_down(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if (m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
-         {
+         //if (m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
+         //{
 
-            return true;
+         //   return true;
 
-         }
+         //}
 
          if (m_pframewindow->move_manager()->on_message_left_button_down(pmouse))
          {
@@ -748,7 +776,7 @@ namespace experience
          //         if(m_pframewindow->dock_manager()->on_message_left_button_down(pmouse))
          //            return true;
 
-         if (m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
+         if (m_pframewindow->size_manager()->on_message_parent_left_button_down(pmouse))
             return true;
 
          if (m_pframewindow->move_manager()->on_message_left_button_down(pmouse))

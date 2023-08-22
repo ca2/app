@@ -176,6 +176,7 @@ namespace experience
       virtual status < ::color::color > get_border_main_body_color();
 
 
+      virtual bool on_message_parent_left_button_down(::message::mouse * pmouse);
       virtual bool on_message_left_button_down(::message::mouse * pmouse);
       virtual bool on_message_left_button_up(::message::mouse * pmouse);
       virtual bool on_message_left_button_double_click(::message::mouse* pmouse);

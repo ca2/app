@@ -134,6 +134,8 @@ namespace experience
       void on_command(::message::command * pcommand) override;
       
 
+      DECLARE_MESSAGE_HANDLER(on_message_parent_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_parent_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_parent_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

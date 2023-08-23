@@ -4,6 +4,7 @@
 #include "acme/platform/node.h"
 #include "apex/platform/savings.h"
 #include "acme/primitive/mathematics/_random.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
@@ -1486,7 +1487,7 @@ namespace experience_nanoui
 
       }
 
-      auto rectangleTrack = pscrollbar->get_track_rectangle(pgraphics);
+      auto rectangleTrack = pscrollbar->get_track_rectangle();
 
       ::rectangle_i32 rectangleWindow;
 
@@ -1707,7 +1708,7 @@ namespace experience_nanoui
 
       pgraphics->set(pbar->m_pbrushDraw);
 
-      auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient, pgraphics);
+      auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient);
 
       pgraphics->rectangle(rectangleA);
 
@@ -1719,17 +1720,17 @@ namespace experience_nanoui
 
       pgraphics->set(pbar->m_pbrushDraw);
 
-      auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient, pgraphics);
+      auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient);
 
       pgraphics->rectangle(rectangleB);
 
       ::status < ::rectangle_i32 > rectangle;
 
-      if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
+      if (::is_element(pbar->main_content().m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
-         rectangle = pbar->get_pageA_rectangle(rectangleClient, rectangleTrack, pgraphics);
+         rectangle = pbar->get_pageA_rectangle(rectangleClient, rectangleTrack);
 
          if (rectangle)
          {
@@ -1743,11 +1744,11 @@ namespace experience_nanoui
          }
 
       }
-      else if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageB)
+      else if (::is_element(pbar->main_content().m_pitemCurrent, ::e_element_scrollbar_pageB)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 
-         auto rectangle = pbar->get_pageB_rectangle(rectangleClient, rectangleTrack, pgraphics);
+         auto rectangle = pbar->get_pageB_rectangle(rectangleClient, rectangleTrack);
 
          if(rectangle)
          {
@@ -1770,7 +1771,7 @@ namespace experience_nanoui
 
       pgraphics->set(ppenArrow);
 
-      auto arrowA = pbar->get_arrowA(rectangleClient, pgraphics);
+      auto arrowA = pbar->get_arrowA(rectangleClient);
 
       pgraphics->polyline(arrowA);
 
@@ -1778,7 +1779,7 @@ namespace experience_nanoui
 
       pgraphics->set(ppenArrow);
 
-      auto arrowB = pbar->get_arrowA(rectangleClient, pgraphics);
+      auto arrowB = pbar->get_arrowA(rectangleClient);
 
       pgraphics->polyline(arrowB);
 

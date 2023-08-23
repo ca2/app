@@ -405,7 +405,7 @@ namespace experience
 
       auto eframeHittest = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
 
-      if (eframeHittest == ::e_element_client)
+      if (eframeHittest == e_frame_client)
       {
 
          m_pframewindow->dock_manager()->cancel_docking();

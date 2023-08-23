@@ -56,6 +56,8 @@ simple_toolbar::simple_toolbar()
 
    m_bDefaultClickHandling = true;
 
+   m_bDefaultParentMouseMessageHandling = true;
+
    m_bStyleFlat = true;
 
    m_econtroltype = ::user::e_control_type_toolbar;

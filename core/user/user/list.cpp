@@ -86,7 +86,7 @@ namespace user
       m_bSingleColumnMode = false;
 
       //m_pdrawlistitem = nullptr;
-
+      m_bDefaultParentMouseMessageHandling = false;
 
       m_bAutoCreateListHeader = true;
 

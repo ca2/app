@@ -806,9 +806,6 @@
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\calculator_edit_impact.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\account\_.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
@@ -1368,9 +1365,6 @@
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\calculator_edit_impact.cpp">
-      <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\rich_text\format_tool.cpp">
       <Filter>Source Files\user\rich_text</Filter>

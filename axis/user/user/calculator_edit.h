@@ -2,7 +2,6 @@
 
 
 #include "aura/user/user/plain_edit.h"
-#include "base/user/user/show.h"
 #include "axis/mathematics/calculator/result.h"
 
 
@@ -10,8 +9,8 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CORE plain_edit_impact :
-      virtual public ::user::show < ::user::plain_edit >
+   class CLASS_DECL_AXIS edit :
+      virtual public ::user::plain_edit
    {
    public:
 
@@ -22,8 +21,8 @@ namespace calculator
       string                     m_strFormat;
 
 
-      plain_edit_impact();
-      virtual ~plain_edit_impact();
+      edit();
+      ~edit() override;
 
 
       void install_message_routing(::channel * pchannel) override;

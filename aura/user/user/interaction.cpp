@@ -3729,6 +3729,79 @@ namespace user
    }
 
 
+   void interaction::erase_children()
+   {
+
+      if (!m_puserinteractionpointeraChild)
+      {
+
+         return;
+
+      }
+
+      for (auto & pchild : m_puserinteractionpointeraChild->interactiona())
+      {
+
+         try
+         {
+
+            pchild->m_bLockSketchToDesign = true;
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      for (auto & pchild : m_puserinteractionpointeraChild->interactiona())
+      {
+
+         try
+         {
+
+            pchild->destroy_window();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      m_puserinteractionpointeraChild->interactiona().clear();
+
+   }
+
+
+   void interaction::erase_child(::user::interaction * puserinteraction)
+   {
+
+      if (!m_puserinteractionpointeraChild)
+      {
+
+         return;
+
+      }
+
+      try
+      {
+
+         puserinteraction->destroy_window();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_puserinteractionpointeraChild->erase_interaction(puserinteraction);
+
+   }
+
+
    void interaction::on_erase_place_holder_child(::user::interaction * pinteraction)
    {
 
@@ -11731,6 +11804,14 @@ namespace user
          return false;
 
       }
+
+      if (m_bLockSketchToDesign)
+      {
+
+         return false;
+
+      }
+
 
       m_pprimitiveimpl->top_down_prefix();
 

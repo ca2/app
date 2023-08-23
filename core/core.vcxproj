@@ -731,7 +731,6 @@
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
     <ClCompile Include="user\userex\failure_dialog.cpp" />
-    <ClCompile Include="user\userex\calculator_edit_impact.cpp" />
     <ClCompile Include="user\userex\color_impact.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
     <ClCompile Include="user\userex\dialog_frame.cpp" />
@@ -866,7 +865,6 @@
     <ClInclude Include="user\rich_text\_binary_stream.h" />
     <ClInclude Include="user\rich_text\_constant.h" />
     <ClInclude Include="user\rich_text\_component.h" />
-    <ClInclude Include="user\userex\calculator_edit_impact.h" />
     <ClInclude Include="user\userex\dialog_frame.h" />
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />

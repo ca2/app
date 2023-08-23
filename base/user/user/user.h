@@ -143,6 +143,9 @@ namespace base
 
       }
 
+      
+      ::pointer<::user::plain_edit> create_calculator_edit() override;
+
 
    };
 

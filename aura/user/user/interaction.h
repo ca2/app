@@ -413,6 +413,7 @@ namespace user
       bool                                         m_bEmptyAreaIsClientArea;
       //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
+      boolean                                      m_bLockSketchToDesign;
 
 
       interaction();
@@ -2023,7 +2024,8 @@ namespace user
       virtual void hide() override;
 
 
-
+      virtual void erase_children();
+      virtual void erase_child(::user::interaction * puserinteraction);
 
 
 
@@ -2581,26 +2583,26 @@ namespace user
    }
 
 
-   //class lock_sketch_to_design
-   //{
-   //public:
+   class lock_sketch_to_design
+   {
+   public:
 
-   //   ::user::interaction * m_puserinteraction;
+      ::user::interaction * m_puserinteraction;
 
-   //   lock_sketch_to_design(::user::interaction * puserinteraction) :
-   //   m_puserinteraction(puserinteraction)
-   //   {
-   //      m_puserinteraction->m_bLockSketchToDesign = true;
+      lock_sketch_to_design(::user::interaction * puserinteraction) :
+      m_puserinteraction(puserinteraction)
+      {
+         m_puserinteraction->m_bLockSketchToDesign = true;
 
-   //   }
-   //   ~lock_sketch_to_design()
-   //   {
+      }
+      ~lock_sketch_to_design()
+      {
 
-   //      m_puserinteraction->m_bLockSketchToDesign = false;
+         m_puserinteraction->m_bLockSketchToDesign = false;
 
-   //   }
+      }
 
-   //};
+   };
 
 
    //compile_time_assert((offsetof(::user::interaction, m_oswindow) & 4) == 0);

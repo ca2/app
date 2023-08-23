@@ -1578,7 +1578,7 @@ namespace user
    //}
 
    
-   ::pointer<::user::plain_edit>user::create_calculator_plain_edit()
+   ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
       return __new(::user::plain_edit);

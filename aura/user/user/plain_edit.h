@@ -250,6 +250,9 @@ namespace user
       bool                                m_bLastCaret;
 
 
+      ::function <void(::user::plain_edit *) >     m_callbackOnAfterChangeText;
+
+
 
       plain_edit();
       ~plain_edit() override;

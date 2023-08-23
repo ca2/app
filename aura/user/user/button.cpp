@@ -321,26 +321,26 @@ namespace user
 
          auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
-         ::rectangle_i32 rectangle;
+         //::rectangle_i32 rectangle;
 
-         rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
+         //rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
 
-         rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
+         //rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
 
-         rectangle.right = (::i32)(rectangle.left + sizeText.cx());
+         //rectangle.right = (::i32)(rectangle.left + sizeText.cx());
 
-         rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+         //rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
 
-         if (rectangle != m_rectangleText)
-         {
+         //if (sizeText != m_sizeText)
+         //{
 
-            m_rectangleText = rectangle;
+         //   m_sizeText = sizeText;
             
-            set_size(::ceil(sizeText), ::user::e_layout_layout, pgraphics);
+         set_size(::ceil(sizeText), ::user::e_layout_layout, pgraphics);
 
-            return true;
+         //   return true;
 
-         }
+         //}
 
       }
 
@@ -1462,7 +1462,7 @@ namespace user
    }
 
 
-   bool button::on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem)
+   bool button::on_click_generation(::item * pitem)
    {
 
       if (m_estyle == e_style_push)
@@ -1478,7 +1478,7 @@ namespace user
 
       }
 
-      return ::user::interaction::on_click_generation(pitem, iSubItem, iListItem);
+      return ::user::interaction::on_click_generation(pitem);
 
    }
 

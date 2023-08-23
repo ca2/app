@@ -63,7 +63,8 @@ namespace user
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       enum_style                          m_estyle;
-      ::rectangle_i32                     m_rectangleText;
+      //::rectangle_i32                     m_rectangleText;
+      //::size_i32                          m_sizeText;
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::rectangle_i32                     m_rectangleCheckBox;
@@ -158,7 +159,7 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      bool on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem) override;
+      bool on_click_generation(::item * pitem) override;
 
 
       //bool on_click(::item * pitem) override;

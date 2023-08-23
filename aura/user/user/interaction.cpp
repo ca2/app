@@ -19016,7 +19016,7 @@ namespace user
    }
 
 
-   bool interaction::on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem)
+   bool interaction::on_click_generation(::item * pitem)
    {
 
       auto pappearance = get_appearance();
@@ -19025,6 +19025,18 @@ namespace user
       {
 
          if (pappearance->call_click())
+         {
+
+            return true;
+
+         }
+
+      }
+
+      if (m_callbackOnClick)
+      {
+
+         if (m_callbackOnClick(this, pitem))
          {
 
             return true;
@@ -19124,7 +19136,7 @@ namespace user
    }
 
 
-   bool interaction::on_right_click_generation(::item * pitem, ::index iSubItem, ::index iListItem)
+   bool interaction::on_right_click_generation(::item * pitem)
    {
 
       return on_right_click(pitem);
@@ -21064,7 +21076,7 @@ namespace user
             if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
 
-               pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, -1, -1);
+               pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
 
                information() << "interaction::on_message_left_button_up on_click_generation ret="
                   << (int)pmessage->m_bRet;
@@ -21578,7 +21590,7 @@ namespace user
 
          //psession->m_puiLastLButtonDown = nullptr;
 
-         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, -1, -1);
+         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
 
          information() << "interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet;
 

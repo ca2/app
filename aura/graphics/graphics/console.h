@@ -16,7 +16,7 @@ namespace graphics
 
    class CLASS_DECL_AURA console :
       virtual public ::console::console,
-      virtual public ::file::text_file
+      virtual public ::string_buffer
    {
    public:
 
@@ -31,7 +31,7 @@ namespace graphics
       enum_dos_color                            m_edoscolor;
       int                                       m_iBorder;
       string_array                              m_stra;
-      array < ::i32_array >                       m_i2aColor;
+      array < ::i32_array >                     m_i2aColor;
       i32_map < ::draw2d::pen_pointer >         m_mappen2;
       i32_map < ::draw2d::pen_pointer >         m_mappen1;
       //int                                     m_iColorPointer;

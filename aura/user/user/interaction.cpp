@@ -571,6 +571,15 @@ namespace user
       if (!on_set_position(pointNew, elayout))
       {
 
+         if (::is_set(pgraphics) && elayout == ::user::e_layout_layout)
+         {
+
+            layout().sketch().m_point2 = pointNew;
+
+            layout().lading().m_point2 = pointNew;
+
+         }
+
          return;
 
       }
@@ -602,7 +611,7 @@ namespace user
 
       }
 
-      if (::is_set(pgraphics) && ::user::e_layout_layout)
+      if (::is_set(pgraphics) && elayout == ::user::e_layout_layout)
       {
 
          layout().sketch().m_point2 = pointNew;
@@ -11902,6 +11911,8 @@ namespace user
 
    bool interaction::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
+
+
 
       return false;
 

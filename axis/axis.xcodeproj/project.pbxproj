@@ -420,6 +420,10 @@
 		9A979DEC28C835540013DC54 /* control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979DDF28C835540013DC54 /* control.cpp */; };
 		9A979DED28C835540013DC54 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A979DE028C835540013DC54 /* _.h */; };
 		9A979DEE28C835540013DC54 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A979DE028C835540013DC54 /* _.h */; };
+		9AA3F9AE2A95E531004283CA /* calculator_edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */; };
+		9AA3F9AF2A95E531004283CA /* calculator_edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */; };
+		9AA3F9B02A95E531004283CA /* calculator_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3F9AD2A95E531004283CA /* calculator_edit.h */; };
+		9AA3F9B12A95E531004283CA /* calculator_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3F9AD2A95E531004283CA /* calculator_edit.h */; };
 		9AC01E012748CC4B006BEBCC /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DDF2748CC4B006BEBCC /* idpool.h */; };
 		9AC01E022748CC4B006BEBCC /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DE02748CC4B006BEBCC /* idpool.cpp */; };
 		9AC01E052748CC4C006BEBCC /* parser_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DE52748CC4B006BEBCC /* parser_exception.cpp */; };
@@ -785,6 +789,8 @@
 		9A979DDE28C835540013DC54 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data.cpp; sourceTree = "<group>"; };
 		9A979DDF28C835540013DC54 /* control.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control.cpp; sourceTree = "<group>"; };
 		9A979DE028C835540013DC54 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = calculator_edit.cpp; sourceTree = "<group>"; };
+		9AA3F9AD2A95E531004283CA /* calculator_edit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_edit.h; sourceTree = "<group>"; };
 		9AA6526F2A33458D0082D8B3 /* unac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = unac.xcodeproj; path = ../../../port/base/unac/unac.xcodeproj; sourceTree = "<group>"; };
 		9AC01DDF2748CC4B006BEBCC /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
 		9AC01DE02748CC4B006BEBCC /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
@@ -1159,6 +1165,8 @@
 			isa = PBXGroup;
 			children = (
 				9A979DB028C835450013DC54 /* _.h */,
+				9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */,
+				9AA3F9AD2A95E531004283CA /* calculator_edit.h */,
 				9A979D9F28C835450013DC54 /* combo_box.cpp */,
 				9A979DA428C835450013DC54 /* combo_box.h */,
 				9A0EF0942A623F0D00067390 /* form_handler.cpp */,
@@ -1723,6 +1731,7 @@
 				9A93B5CE2846EA94005ACD11 /* console.h in Headers */,
 				9A93B5CF2846EA94005ACD11 /* ajp_base_socket.h in Headers */,
 				9A93B5D12846EA94005ACD11 /* _impl.h in Headers */,
+				9AA3F9B12A95E531004283CA /* calculator_edit.h in Headers */,
 				9A93B5D32846EA94005ACD11 /* library.h in Headers */,
 				9A93B5D42846EA94005ACD11 /* _c.h in Headers */,
 				9A979D2F28C81E430013DC54 /* style_sheet.h in Headers */,
@@ -1861,6 +1870,7 @@
 				9AE64495252A5BEF00BED5B8 /* file_set.h in Headers */,
 				9AE6446E252A5BEF00BED5B8 /* _.h in Headers */,
 				9A979D4828C81E430013DC54 /* border.h in Headers */,
+				9AA3F9B02A95E531004283CA /* calculator_edit.h in Headers */,
 				9A979D2028C81E430013DC54 /* box.h in Headers */,
 				9A1626DC26F0041A003D9CB9 /* email_department.h in Headers */,
 				9AE6451F252A5BF000BED5B8 /* session.h in Headers */,
@@ -2219,6 +2229,7 @@
 				9A93B66E2846EA94005ACD11 /* _.cpp in Sources */,
 				9A93B6712846EA94005ACD11 /* result.cpp in Sources */,
 				9A93B6722846EA94005ACD11 /* fftd.cpp in Sources */,
+				9AA3F9AF2A95E531004283CA /* calculator_edit.cpp in Sources */,
 				9A0F542B28E9065400025231 /* image.cpp in Sources */,
 				9A93B6742846EA94005ACD11 /* smtp_socket.cpp in Sources */,
 				9A93B6752846EA94005ACD11 /* item.cpp in Sources */,
@@ -2326,6 +2337,7 @@
 				9A979DE928C835540013DC54 /* data.cpp in Sources */,
 				9A5ECCD828CCBE040084D354 /* table_row.cpp in Sources */,
 				9A979D3828C81E430013DC54 /* base.cpp in Sources */,
+				9AA3F9AE2A95E531004283CA /* calculator_edit.cpp in Sources */,
 				9A5ECCD928CCBE040084D354 /* input_text.cpp in Sources */,
 				9AE645C6252A5BF200BED5B8 /* _.cpp in Sources */,
 				9AC01E0E2748CC4C006BEBCC /* result.cpp in Sources */,

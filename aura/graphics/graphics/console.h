@@ -65,7 +65,7 @@ namespace graphics
       void write(const ::string & psz) override;
 
 
-      using ::file::text_file::write;
+      using ::string_buffer::write;
       void write(const void * p, ::memsize s) override;
 
 

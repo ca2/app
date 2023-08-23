@@ -26,7 +26,7 @@ const i32 xfplayer_impact_line::AlignRight = 2;
 xfplayer_impact_line::xfplayer_impact_line(::user::interaction * puserinteraction) :
    m_pselection(__new(xfplayer_impact_line_selection(puserinteraction)))
 {
-
+   initialize(puserinteraction);
    m_bColonPrefix = false;
    m_pContainer = nullptr;
    m_bEnhancedEmboss = true;

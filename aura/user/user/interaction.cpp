@@ -261,7 +261,7 @@ namespace user
       //m_bMouseHover = false;
       m_bDefaultClickHandling = false;
       m_bDefaultMouseHoverHandling = false;
-      m_bDefaultParentMouseMessageHandling = true;
+      m_bDefaultParentMouseMessageHandling = false;
       m_bDefaultEditHandling = false;
       m_bDefaultKeyboardMultipleSelectionHandling = false;
       m_bDefaultDataUpdateHandling = false;

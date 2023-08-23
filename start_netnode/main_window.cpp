@@ -44,7 +44,7 @@ namespace app_app
       if (!is_sandboxed())
       {
 
-         set_prodevian();
+         set_auto_refresh();
 
       }
 

@@ -261,7 +261,7 @@ namespace user
       //m_bMouseHover = false;
       m_bDefaultClickHandling = false;
       m_bDefaultMouseHoverHandling = false;
-      m_bDefaultParentMouseMessageHandling = true;
+      m_bDefaultParentMouseMessageHandling = false;
       m_bDefaultEditHandling = false;
       m_bDefaultKeyboardMultipleSelectionHandling = false;
       m_bDefaultDataUpdateHandling = false;
@@ -571,6 +571,15 @@ namespace user
       if (!on_set_position(pointNew, elayout))
       {
 
+         if (::is_set(pgraphics) && elayout == ::user::e_layout_layout)
+         {
+
+            layout().sketch().m_point2 = pointNew;
+
+            layout().lading().m_point2 = pointNew;
+
+         }
+
          return;
 
       }
@@ -602,7 +611,7 @@ namespace user
 
       }
 
-      if (::is_set(pgraphics) && ::user::e_layout_layout)
+      if (::is_set(pgraphics) && elayout == ::user::e_layout_layout)
       {
 
          layout().sketch().m_point2 = pointNew;
@@ -11903,6 +11912,8 @@ namespace user
    bool interaction::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+
+
       return false;
 
    }
@@ -19016,7 +19027,7 @@ namespace user
    }
 
 
-   bool interaction::on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem)
+   bool interaction::on_click_generation(::item * pitem)
    {
 
       auto pappearance = get_appearance();
@@ -19025,6 +19036,18 @@ namespace user
       {
 
          if (pappearance->call_click())
+         {
+
+            return true;
+
+         }
+
+      }
+
+      if (m_callbackOnClick)
+      {
+
+         if (m_callbackOnClick(this, pitem))
          {
 
             return true;
@@ -19124,7 +19147,7 @@ namespace user
    }
 
 
-   bool interaction::on_right_click_generation(::item * pitem, ::index iSubItem, ::index iListItem)
+   bool interaction::on_right_click_generation(::item * pitem)
    {
 
       return on_right_click(pitem);
@@ -21064,7 +21087,7 @@ namespace user
             if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
 
-               pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, -1, -1);
+               pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
 
                information() << "interaction::on_message_left_button_up on_click_generation ret="
                   << (int)pmessage->m_bRet;
@@ -21578,7 +21601,7 @@ namespace user
 
          //psession->m_puiLastLButtonDown = nullptr;
 
-         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, -1, -1);
+         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
 
          information() << "interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet;
 

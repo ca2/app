@@ -308,7 +308,7 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect4;
 
 
-      
+      ::function < bool(::user::interaction *, ::item *) > m_callbackOnClick;
 
       
       //class draw_select
@@ -2153,8 +2153,8 @@ namespace user
       virtual bool on_edit_delete(const ::action_context& action_context);
 
 
-      virtual bool on_click_generation(::item * pitem, ::index iSubItem, ::index iListItem);
-      virtual bool on_right_click_generation(::item * pitem, ::index iSubItem, ::index iListItem);
+      virtual bool on_click_generation(::item * pitem);
+      virtual bool on_right_click_generation(::item * pitem);
 
 
       virtual bool on_click(::item * pitem);

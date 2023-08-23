@@ -135,7 +135,7 @@ namespace app_shader
 
       }
 
-      top_level()->set_prodevian();
+      top_level()->set_auto_refresh();
 
       switch_shader();
 

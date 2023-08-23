@@ -868,7 +868,7 @@ namespace user
 
       virtual void frame_occlude();
       
-      virtual void frame_toggle_restore();
+      virtual void frame_toggle_restore(bool bDisplayPreviousOnRestore = false);
       
       virtual void display_previous_restore();
 

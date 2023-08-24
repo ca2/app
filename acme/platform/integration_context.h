@@ -31,6 +31,7 @@ namespace integration
       ::file::path      m_pathPrefix;
       ::file::path      m_pathStaticPrefix;
       ::string          m_strRelease;
+      ::file::path      m_pathBuild;
       //::string          m_strContext;
       //::string          m_strSdk1;
       //::string          m_strStagePlatform;
@@ -54,6 +55,7 @@ namespace integration
       virtual void prepare();
 
       virtual ::file::path get_source_folder_path(const ::scoped_string& strRelative = {});
+      virtual ::file::path get_build_folder_path(const ::scoped_string& strRelative = {});
 
       virtual void create_source_directory(const ::scoped_string& strRelative = {});
       virtual void change_to_source_directory(const ::scoped_string& strRelative = {});

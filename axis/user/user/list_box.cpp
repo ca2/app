@@ -6,6 +6,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -43,11 +44,11 @@ namespace user
 
       defer_create_synchronization();
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_bTransparent = true;
 
-      m_bHoverDefaultMouseHandling = true;
+      m_bDefaultMouseHoverHandling = true;
 
       m_bPendingKillFocusHiding = false;
 
@@ -296,9 +297,9 @@ namespace user
 
       m_straValue.erase_all();
 
-      m_pitemCurrent = nullptr;
+      //m_pitemCurrent = nullptr;
 
-      m_pitemHover = nullptr;
+      //m_pitemHover = nullptr;
 
    }
 
@@ -650,7 +651,7 @@ namespace user
    {
 
       if (m_pscrollbarVertical != nullptr
-         && m_pscrolldataVertical->m_bScroll
+         && m_pscrolldataVertical->m_bHasScroll
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
@@ -840,7 +841,7 @@ namespace user
       if (m_pcombo)
       {
 
-         m_pcombo->m_pitemHover = m_pcombo->m_pitemCurrent;
+         m_pcombo->m_pitemHover = m_pcombo->main_content().m_pitemCurrent;
 
          set_need_redraw();
 
@@ -919,13 +920,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.item_index() + 1, m_pcombo->_001GetListCount() - 1)));
+         m_pcombo->m_pitemHover = __new(::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1)));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_pitemHover = __new(::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.item_index() - 1, 0)));
+         m_pcombo->m_pitemHover = __new(::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0)));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)

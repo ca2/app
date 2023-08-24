@@ -8,13 +8,13 @@
 //::function < void(double, filesize, filesize) >;
 //
 //
-//namespace file
-//{
+namespace file
+{
 //
 //   
 //   class insert_item;
 //   class edit_file;
-//   class set;
+   class set;
 //
 //
 //   /// Actions to listen for. Rename will send two events, one for
@@ -37,7 +37,7 @@
 //
 //
 //
-//};
+} // namespace file
 
 
 

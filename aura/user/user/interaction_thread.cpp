@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "interaction_thread.h"
-#include "interaction_prodevian.h"
+#include "interaction_graphics_thread.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "user.h"
@@ -549,16 +549,18 @@ namespace user
                      if (msg.m_atom == ::e_message_redraw)
                      {
 
-                        string strType = __type_name(puserinteraction);
+                        throw ::exception(error_failed, "Please post e_message_redraw directly to the graphics thread");
 
-                        if (strType.case_insensitive_contains("filemanager"))
-                        {
+                        //string strType = __type_name(puserinteraction);
 
-                           //information() << "filemanager";
+                        //if (strType.case_insensitive_contains("filemanager"))
+                        //{
 
-                        }
+                        //   //information() << "filemanager";
 
-                        puserinteraction->prodevian_redraw(msg.wParam & 1);
+                        //}
+
+                        //puserinteraction->prodevian_redraw(msg.wParam & 1);
 
                         return true;
 

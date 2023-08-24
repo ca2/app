@@ -20,12 +20,6 @@ namespace base
 {
 
 
-   //void initialize()
-   //{
-
-   //}
-
-
    application::application()
    {
 
@@ -57,21 +51,6 @@ namespace base
 
    }
 
-
-//   void application::assert_ok() const
-//   {
-//
-//      ::axis::application::assert_ok();
-//
-//   }
-//
-//
-//   void application::dump(dump_context & dumpcontext) const
-//   {
-//
-//      ::axis::application::dump(dumpcontext);
-//
-//   }
 
 
    ::user::document *application::place_hold(::user::interaction * pinteraction)
@@ -214,7 +193,7 @@ namespace base
    }
 
 
-   void application::create_options_form(::user::interaction * pparent)
+   void application::create_options_impact(::user::interaction * pparent)
    {
 
       auto playout = create_line_layout(pparent, e_orientation_vertical);

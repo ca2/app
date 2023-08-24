@@ -161,6 +161,11 @@ namespace experience
       m_bEnableFrameExperience = true;
       //m_bEatsDoubleClick = false;
 
+      m_bEnableDragResize = false;
+      m_bEnableDefaultControlBox = false;
+
+      m_bDefaultParentMouseMessageHandling = false;
+
       m_eupdown = e_updown_normal_frame;
 
       m_pupdowntarget = nullptr;
@@ -572,10 +577,18 @@ namespace experience
    }
 
 
-   void frame_window::enable_dock(bool bEnable)
+   void frame_window::enable_dock()
    {
 
-      m_bDockEnable = bEnable;
+      m_bDockEnable = true;
+
+   }
+
+
+   void frame_window::disable_dock()
+   {
+
+      m_bDockEnable = false;
 
    }
 
@@ -1396,40 +1409,41 @@ namespace experience
    ::item_pointer frame_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 
-      if (is_sizing_enabled())
-      {
+      //if (is_sizing_enabled())
+      //{
 
-         if (m_psizemanager->m_eframeCursor != e_frame_none)
-         {
+      //   if (::is_item_set(m_psizemanager->m_pitemCursor))
+      //   {
 
+      //      return m_psizemanager->m_pitemCursor;
 
-            switch (m_psizemanager->m_eframeCursor)
-            {
-            case e_frame_sizing_left:
-               return __new(::item(e_element_resize_left));
-            case e_frame_sizing_top:
-               return __new(::item(e_element_resize_top));
-            case e_frame_sizing_right:
-               return __new(::item(e_element_resize_right));
-            case e_frame_sizing_bottom:
-               return __new(::item(e_element_resize_bottom));
-            case e_frame_sizing_top_left:
-               return __new(::item(e_element_resize_top_left));
-            case e_frame_sizing_top_right:
-               return __new(::item(e_element_resize_top_right));
-            case e_frame_sizing_bottom_left:
-               return __new(::item(e_element_resize_bottom_left));
-            case e_frame_sizing_bottom_right:
-               return __new(::item(e_element_resize_bottom_right));
-               default:
-                  
-                  return nullptr;
+      //      //switch (m_psizemanager->m_eframeCursor)
+      //      //{
+      //      //case e_frame_sizing_left:
+      //      //   return __new(::item(e_element_resize_left));
+      //      //case e_frame_sizing_top:
+      //      //   return __new(::item(e_element_resize_top));
+      //      //case e_frame_sizing_right:
+      //      //   return __new(::item(e_element_resize_right));
+      //      //case e_frame_sizing_bottom:
+      //      //   return __new(::item(e_element_resize_bottom));
+      //      //case e_frame_sizing_top_left:
+      //      //   return __new(::item(e_element_resize_top_left));
+      //      //case e_frame_sizing_top_right:
+      //      //   return __new(::item(e_element_resize_top_right));
+      //      //case e_frame_sizing_bottom_left:
+      //      //   return __new(::item(e_element_resize_bottom_left));
+      //      //case e_frame_sizing_bottom_right:
+      //      //   return __new(::item(e_element_resize_bottom_right));
+      //      //   default:
+      //      //      
+      //      //      return nullptr;
 
-            }
+      //      //}
 
-         }
+      //   }
 
-      }
+      //}
 
       return ::user::frame_window::hit_test(pmouse, ezorder);
 
@@ -1449,10 +1463,10 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
-      MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
-      MESSAGE_LINK(e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_mouse_move);
+      MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_parent_left_button_down);
+      MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_parent_left_button_up);
+      //MESSAGE_LINK(e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_parent_left_button_double_click);
+      MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_parent_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
@@ -1472,6 +1486,39 @@ namespace experience
    {
 
    }
+
+
+   void frame_window::on_message_parent_left_button_down(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_frame_experience_enabled())
+      {
+
+         pmouse->m_bRet = false;
+
+         return;
+
+      }
+
+      if (::is_set(m_pframe))
+      {
+
+         m_pframe->on_message_parent_left_button_down(pmouse);
+
+      }
+
+      if (pmouse->m_bRet)
+      {
+
+         pmouse->m_lresult = 1;
+
+      }
+
+   }
+
+
 
 
    void frame_window::on_message_left_button_down(::message::message * pmessage)
@@ -1495,12 +1542,12 @@ namespace experience
 
       }
 
-      if (pmouse->m_bRet)
-      {
+      //if (pmouse->m_bRet)
+      //{
 
-         pmouse->m_lresult = 1;
+      //   pmouse->m_lresult = 1;
 
-      }
+      //}
 
    }
 
@@ -1510,6 +1557,59 @@ namespace experience
 
       ::user::frame_window::on_visual_applied();
 
+
+   }
+
+
+   void frame_window::on_message_parent_mouse_move(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_frame_experience_enabled())
+      {
+
+         return;
+
+      }
+
+      if (::is_set(m_pframe))
+      {
+
+         if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
+         {
+
+            //information() << "e_message_mouse_move during window transfer ignored!!";
+
+         }
+         else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
+         {
+
+            information() << "synthesized e_message_mouse_move ignored!!";
+
+         }
+         else
+         {
+
+            //information() << "e_message_mouse_move for experience::frame";
+
+            if (m_pframe->on_message_parent_mouse_move(pmouse))
+            {
+
+               pmouse->m_bRet = true;
+
+            }
+
+         }
+
+      }
+
+      if (pmouse->m_bRet)
+      {
+
+         pmouse->m_lresult = 1;
+
+      }
 
    }
 
@@ -1567,7 +1667,7 @@ namespace experience
    }
 
 
-   void frame_window::on_message_left_button_up(::message::message * pmessage)
+   void frame_window::on_message_parent_left_button_up(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1591,6 +1691,34 @@ namespace experience
          pmouse->m_lresult = 1;
 
       }
+
+   }
+
+
+   void frame_window::on_message_left_button_up(::message::message * pmessage)
+   {
+
+      //auto pmouse = pmessage->m_union.m_pmouse;
+
+      //if (!is_frame_experience_enabled())
+      //{
+
+      //   pmouse->m_bRet = false;
+
+      //   return;
+
+      //}
+
+      //ASSERT(m_pframe != nullptr);
+
+      //m_pframe->on_message_left_button_up(pmouse);
+
+      //if (pmouse->m_bRet)
+      //{
+
+      //   pmouse->m_lresult = 1;
+
+      //}
 
    }
 
@@ -1815,6 +1943,7 @@ namespace experience
 
    // point_i32 should be in screen coordinates
    ::experience::enum_frame frame_window::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   //::item_pointer frame_window::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       ASSERT(m_pframe != nullptr);

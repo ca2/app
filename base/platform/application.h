@@ -6,6 +6,7 @@
 #include "aura/user/user/form_callback.h"
 #include "base/user/user/impact_creator.h"
 #include "base/user/user/document_manager_container.h"
+#include "base/user/user/options_impact_handler.h"
 
 
 namespace base
@@ -28,7 +29,8 @@ namespace base
       virtual public ::user::form_callback,
       virtual public ::user::impact_creator,
       virtual public ::filemanager::callback,
-      virtual public ::user::document_manager_container
+      virtual public ::user::document_manager_container,
+      virtual public ::user::options_impact_handler
    {
    public:
 
@@ -1336,7 +1338,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
       virtual void on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context) override;
 
 
-      virtual void create_options_form(::user::interaction * pparent);
+      void create_options_impact(::user::interaction * pparent) override;
       virtual void create_options_header(::user::interaction * pparent);
       virtual void create_options_body(::user::interaction * pparent);
       virtual void create_options_footer(::user::interaction * pparent);

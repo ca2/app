@@ -291,15 +291,15 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_aura_1size_1changed(JNIEnv *
 
          //   pimpl->m_puserthread->do_events();
 
-         //   pimpl->m_pprodevian->do_events();
+         //   pimpl->m_pgraphicsthread->do_events();
 
          //   pimpl->m_puserthread->do_events();
 
-         //   pimpl->m_pprodevian->do_events();
+         //   pimpl->m_pgraphicsthread->do_events();
 
          //   pimpl->m_puserthread->do_events();
 
-         //   pimpl->m_pprodevian->do_events();
+         //   pimpl->m_pgraphicsthread->do_events();
 
          //}
 

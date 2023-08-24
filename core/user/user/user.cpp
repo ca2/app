@@ -37,7 +37,7 @@
 #include "core/user/simple/mesh_data.h"
 #include "core/user/simple/pane_document.h"
 #include "core/user/simple/printer_list_impact.h"
-#include "core/user/userex/calculator_edit_impact.h"
+//#include "core/user/userex/calculator_edit_impact.h"
 #include "core/user/userex/color_impact.h"
 #include "core/user/userex/dialog_frame.h"
 #include "core/user/userex/font_impact.h"
@@ -1814,12 +1814,6 @@ namespace core
 
    __namespace_object_factory(user, ::system_setup::flag_object_user);
 
-   ::pointer<::user::plain_edit>user::create_calculator_plain_edit()
-   {
-
-      return memory_new::calculator::plain_edit_impact();
-
-   }
 
 
 } // namespace userex

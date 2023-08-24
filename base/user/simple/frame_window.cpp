@@ -63,9 +63,9 @@ simple_frame_window::simple_frame_window()
 
    m_bEnableDragClient = false;
 
-   m_bClickDefaultMouseHandling = false;
+   m_bDefaultClickHandling = false;
 
-   m_bHoverDefaultMouseHandling = false;
+   m_bDefaultMouseHoverHandling = false;
 
    m_bFramePayloadFlags = false;
 

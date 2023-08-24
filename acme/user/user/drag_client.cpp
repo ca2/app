@@ -44,31 +44,40 @@ namespace user
    }
 
 
-   void drag_client::enable_drag(::e_element eelement, ::user::e_zorder ezorder)
+   void drag_client::enable_drag(::item * pitem, ::user::e_zorder ezorder)
    {
 
-      auto & pdrag = m_mapDrag[eelement];
+      auto & pdrag = m_mapDrag[pitem->m_item];
 
       if (::is_null(pdrag))
       {
 
          __construct_new(pdrag);
 
-         pdrag->m_item.m_eelement = eelement;
+         pdrag->m_pitem = pitem;
+
+         //pdrag->m_item.m_eelement = eelement;
          
-         add_item(pdrag);
+         //add_item(pdrag);
          
-         user_item(pdrag)->m_ezorder = ezorder;
+         user_item(pitem)->m_ezorder = ezorder;
 
       }
 
    }
 
 
-   drag * drag_client::drag(::e_element eelement) const
+   drag * drag_client::drag(::item * pitem) const
    {
 
-      auto ppair = m_mapDrag.plookup(eelement);
+      if (!::is_item_set(pitem))
+      {
+
+         return nullptr;
+
+      }
+
+      auto ppair = m_mapDrag.plookup(pitem->m_item);
 
       if (ppair.is_null())
       {
@@ -82,68 +91,79 @@ namespace user
    }
 
 
-   bool drag_client::has_drag(::e_element eelement) const
+   bool drag_client::has_drag(::item * pitem) const
    {
 
-      auto pdrag = drag(eelement);
+      auto pdrag = drag(pitem);
 
       return ::is_set(pdrag);
 
    }
 
 
-   bool drag_client::drag_on_button_down(::item * pitemButtonDown)
+   bool drag_client::drag_on_button_down(::item * pitem)
    {
 
-      if (::is_null(pitemButtonDown))
+      if (::is_null(pitem))
       {
 
          return false;
 
       }
 
-      for (auto & pair : m_mapDrag)
+      auto pdrag = drag(pitem);
+
+      //for (auto & pair : m_mapDrag)
+      //{
+
+      //   auto & pdrag = pair.payload();
+      //   
+      //   if (::is_set(pdrag) && pitemButtonDown->m_item.m_eelement == pdrag->m_item.m_eelement)
+      //   {
+      if(::is_set(pdrag))
       {
 
-         auto & pdrag = pair.payload();
-         
-         if (::is_set(pdrag) && pitemButtonDown->m_item.m_eelement == pdrag->m_item.m_eelement)
+         if (pitem->m_item.m_eelement == e_element_resize)
          {
 
-            if (pdrag->m_item.m_eelement == e_element_resize)
-            {
-
-               information() << "drag_on_button_down element_resize";
-
-            }
-
-            auto puseritem = user_item(pitemButtonDown);
-
-            drag_on_button_down(pdrag, puseritem->m_pmouse);
-
-            return true;
+            information() << "drag_on_button_down element_resize";
 
          }
 
+         auto puseritem = user_item(pitem);
+
+         drag_on_button_down(pitem, puseritem->m_pmouse);
+
+         return true;
+
       }
+
+      //}
 
       return false;
 
    }
 
 
-   void drag_client::drag_on_button_down(::user::drag * pdrag, ::user::mouse * pmouse)
+   void drag_client::drag_on_button_down(::item * pitem, ::user::mouse * pmouse)
    {
 
-      drag_set_capture();
+      auto pdrag = drag(pitem);
 
-      pdrag->m_pmouse = pmouse;
+      if (pdrag)
+      {
 
-      auto pointDrag = on_drag_start(pdrag);
+         drag_set_capture();
 
-      pdrag->start(pmouse, pointDrag);
+         pdrag->m_pmouse = pmouse;
 
-      m_pdragCurrent = pdrag;
+         auto pointDrag = on_drag_start(pitem);
+
+         pdrag->start(pmouse, pointDrag);
+
+         m_pdragCurrent = pdrag;
+
+      }
 
    }
 
@@ -175,12 +195,12 @@ namespace user
 
                m_pdragCurrent->m_bDrag = true;
 
-               drag_shift(m_pdragCurrent);
+               drag_shift(m_pdragCurrent->m_pitem);
 
                if (m_pdragCurrent->m_ecursor != e_cursor_none)
                {
 
-                  drag_set_cursor(m_pdragCurrent);
+                  drag_set_cursor(m_pdragCurrent->m_pitem);
 
                }
 
@@ -199,40 +219,46 @@ namespace user
    }
 
 
-   bool drag_client::drag_on_mouse_hover(::item * pitemButtonHover)
+   bool drag_client::drag_on_mouse_hover(::item * pitem)
    {
 
-      if (::is_null(pitemButtonHover))
+      if (::is_null(pitem))
       {
 
          return false;
 
       }
 
-      for (auto & pair : m_mapDrag)
+      auto pdrag = drag(pitem);
+
+      if (pdrag)
       {
 
-         auto & pdrag = pair.payload();
 
-         if (::is_set(pdrag) && pitemButtonHover->m_item.m_eelement == pdrag->m_item.m_eelement)
-         {
+      //for (auto & pair : m_mapDrag)
+      //{
 
-            auto * puseritem = user_item(pitemButtonHover);
+      //   auto & pdrag = pair.payload();
+
+      //   if (::is_set(pdrag) && pitemButtonHover->m_item.m_eelement == pdrag->m_item.m_eelement)
+      //   {
+
+            auto * puseritem = user_item(pitem);
 
             pdrag->m_pmouse = puseritem->m_pmouse;
 
-            drag_hover(pdrag);
+            bool bRet = drag_hover(pitem);
 
             if (pdrag->m_ecursor != e_cursor_none)
             {
 
-               drag_set_cursor(pdrag);
+               drag_set_cursor(pitem);
 
             }
 
-            return false;
+            return bRet;
 
-         }
+         //}
 
       }
 
@@ -257,7 +283,7 @@ namespace user
 
       drag_release_capture();
 
-      drag_shift(m_pdragCurrent);
+      drag_shift(m_pdragCurrent->m_pitem);
 
       m_pdragCurrent->end();
 
@@ -274,6 +300,20 @@ namespace user
    //   return false;
 
    //}
+
+
+   ::point_i32 drag_client::drag_point(::item * pitem)
+   {
+
+      auto pdrag = drag(pitem);
+
+      auto Δ = pdrag->m_pointLButtonDown - pdrag->m_pointInitial;
+
+      auto pointDrag = pdrag->m_pmouse->m_point - Δ;
+
+      return pointDrag;
+
+   }
 
 
 } // namespace user

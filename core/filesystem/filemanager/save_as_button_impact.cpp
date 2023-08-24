@@ -58,7 +58,6 @@ namespace filemanager
    bool save_as_button_impact::on_click(::item * pitem)
    {
 
-
       ASSERT(filemanager_data()->m_pdocumentTopic != nullptr);
 
       ::file::path strTitle;

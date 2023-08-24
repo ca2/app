@@ -3,14 +3,17 @@
 
 
 #include "font_list_item.h"
+#include "acme/handler/item_container.h"
 
 
 namespace write_text
 {
 
 
+
+   /// @brief  container of font_list_item
    class CLASS_DECL_AURA font_list_data :
-      virtual public pointer_array < font_list_item >
+      virtual public ::item_container
    {
    public:
 

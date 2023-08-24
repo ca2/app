@@ -7633,6 +7633,13 @@ namespace user
    void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext)
    {
 
+      if (m_callbackOnAfterChangeText)
+      {
+
+         m_callbackOnAfterChangeText(this);
+
+      }
+
       if (actioncontext.is_user_source())
       {
 

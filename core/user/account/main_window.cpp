@@ -28,7 +28,7 @@ namespace account
 
 #else
 
-      //set_prodevian(false);
+      //set_auto_refresh(false);
 
 #endif
 

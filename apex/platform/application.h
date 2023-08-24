@@ -225,7 +225,7 @@ namespace apex
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual void init_application();
+      //virtual void init_application();
 
       void init1() override;
       void init2() override;
@@ -350,7 +350,7 @@ namespace apex
 
 
 
-      virtual void process_init();
+      void process_init() override;
 
 
 

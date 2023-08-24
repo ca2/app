@@ -21,7 +21,7 @@ namespace user
       ::e_display                            m_edisplay;
       ::e_appearance                         m_eappearance;
       boolean                                m_bImpactUpdateGoingOn;
-      bool                                   m_bProdevian = false;
+      bool                                   m_bAutoRefresh = false;
 
 
 
@@ -53,7 +53,7 @@ namespace user
          m_edisplay = visualstate.m_edisplay;
          m_eappearance = visualstate.m_eappearance;
          m_bImpactUpdateGoingOn = visualstate.m_bImpactUpdateGoingOn;
-         m_bProdevian = visualstate.m_bProdevian;
+         m_bAutoRefresh = visualstate.m_bAutoRefresh;
 
          return *this;
 

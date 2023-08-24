@@ -50,11 +50,13 @@ namespace user
    void button::user_button_construct()
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_econtroltype = e_control_type_button;
 
-      m_bMouseHoverOnCapture = true;
+      //m_bMouseHoverOnCapture = true;
+
+      m_bMouseHoverOnCapture = false;
 
       m_estockicon = e_stock_icon_none;
 
@@ -66,7 +68,7 @@ namespace user
 
       m_iClick = 0;
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 
@@ -317,28 +319,28 @@ namespace user
       if (m_bAutoResize)
       {
 
-         auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
+         auto sizeControl = _001CalculateAdjustedFittingSize(pgraphics);
 
-         ::rectangle_i32 rectangle;
+         //::rectangle_i32 rectangle;
 
-         rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2);
+         //rectangle.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeFitting.cx()) / 2);
 
-         rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2);
+         //rectangle.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeFitting.cy()) / 2);
 
-         rectangle.right = (::i32)(rectangle.left + sizeText.cx());
+         //rectangle.right = (::i32)(rectangle.left + sizeFitting.cx());
 
-         rectangle.bottom = (::i32)(rectangle.top + sizeText.cy());
+         //rectangle.bottom = (::i32)(rectangle.top + sizeFitting.cy());
 
-         if (rectangle != m_rectangleText)
-         {
+         //if (rectangle != m_rectangleText)
+         //{
 
-            m_rectangleText = rectangle;
+         //   m_rectangleText = rectangle;
             
-            set_size(::ceil(sizeText), ::user::e_layout_layout, pgraphics);
+            set_size(::ceil(sizeControl), ::user::e_layout_layout, pgraphics);
 
-            return true;
+         return true;
 
-         }
+         //}
 
       }
 
@@ -437,14 +439,31 @@ namespace user
 
       rectangleClient.left += 3;
       rectangleClient.top += 3;
-      ::rectangle_i32 rectangleText = m_rectangleText;
+
+      ::rectangle_i32 rectangleText;
+
+      string strText(get_window_text());
+
+      pgraphics->set_font(this, ::e_element_none);
+
+      auto sizeFitting = _001CalculateFittingSize(pgraphics);
+
+      rectangleText.left = (::i32)(rectangleClient.left + (rectangleClient.width() - sizeFitting.cx()) / 2);
+
+      rectangleText.top = (::i32)(rectangleClient.top + (rectangleClient.height() - sizeFitting.cy()) / 2);
+
+      rectangleText.right = (::i32)(rectangleText.left + sizeFitting.cx());
+
+      rectangleText.bottom = (::i32)(rectangleText.top + sizeFitting.cy());
+
+      //::rectangle_i32 rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pbitmap->m_pimage->is_set())
       {
          if (m_pbitmap->m_pimage->width() > 0 && m_pbitmap->m_pimage->height() > 0)
          {
             ::rectangle_i32 rectangleDib;
-            rectangleDib = m_rectangleText;
+            rectangleDib = rectangleText;
             rectangleDib.bottom = minimum(rectangleText.top + m_pbitmap->m_pimage->width(), rectangleText.bottom);
             rectangleDib.right = minimum(rectangleText.left + m_pbitmap->m_pimage->height(), rectangleText.right);
             //m_pimage->to(pgraphics, rectangleDib);
@@ -472,10 +491,6 @@ namespace user
       auto pbrushText = __create < ::draw2d::brush > ();
 
       pgraphics->set(pbrushText);
-
-      string strText(get_window_text());
-
-      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->draw_text(strText, rectangleText, e_align_top_left);
 

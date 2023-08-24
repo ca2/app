@@ -41,6 +41,7 @@ namespace experience
 
          MESSAGE_LINK(e_message_left_button_down   , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_down  );
          MESSAGE_LINK(e_message_mouse_move         , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move        );
+         MESSAGE_LINK(e_message_parent_mouse_move  , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move);
          MESSAGE_LINK(e_message_left_button_up     , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_up    );
 
       }
@@ -194,17 +195,17 @@ namespace experience
             }
 
          }
-         else if(m_ebutton == e_button_dock)
-         {
+         //else if(m_ebutton == e_button_dock)
+         //{
 
-            if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
-            {
+         //   if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
+         //   {
 
-               return __new(::item(::e_element_non_client));
+         //      return __new(::item(::e_element_non_client));
 
-            }
+         //   }
 
-         }
+         //}
 
       }
 

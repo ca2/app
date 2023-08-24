@@ -193,7 +193,7 @@ namespace file
 
          }
 
-         while (defer_pump_message());
+         //while (defer_pump_message());
 
       }
       

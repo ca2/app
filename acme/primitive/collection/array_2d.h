@@ -56,6 +56,8 @@ public:
    ::count set_size(::count w, ::count h, ::count nGrowBy = -1)
    {
 
+      m_iWidth = w;
+
       return BASE_ARRAY::set_size(w * h, nGrowBy);
 
    }

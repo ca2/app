@@ -13,6 +13,7 @@ namespace user
 
       m_flagNonClient.erase(e_non_client_background);
       m_flagNonClient.erase(e_non_client_focus_rect);
+      m_bDefaultClickHandling = false;
 
    }
 

@@ -16,6 +16,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/drag.h"
+#include "acme/user/user/tool.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/exception/interface_only.h"
@@ -31,7 +32,9 @@ nano_window::nano_window()
    
    m_efont = e_font_sans;
 
-   enable_drag(::e_element_client, ::user::e_zorder_back);
+   auto pitemClient = tool().defer_item(e_element_client);
+
+   enable_drag(pitemClient, ::user::e_zorder_back);
 
    m_bNcActive = false;
 
@@ -50,6 +53,14 @@ nano_window::~nano_window()
    acmesystem()->m_pnano->m_nanowindowa.erase_item(this);
 
 }
+
+
+//::pointer < item_container > nano_window::item_form()
+//{
+//
+//   return item_container(id_user_interface);
+//
+//}
 
 
 void nano_window::on_initialize_particle()
@@ -300,6 +311,14 @@ void nano_window::update_drawing_objects()
 }
 
 
+::point_i32 nano_window::origin()
+{
+
+   return m_rectangle.origin();
+
+}
+
+
 nano_child * nano_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
 {
 
@@ -431,12 +450,14 @@ void nano_window::on_left_button_down(::user::mouse * pmouse)
 
    }
 
-   auto pdragClient = drag(e_element_client);
+   auto pitemClient = tool().defer_item(e_element_client);
+
+   auto pdragClient = drag(pitemClient);
 
    if (pdragClient && !pchild)
    {
 
-      drag_on_button_down(pdragClient, pmouse);
+      drag_on_button_down(pitemClient, pmouse);
 
       return;
 

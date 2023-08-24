@@ -31,7 +31,7 @@ namespace app_net
 
       main_window::on_create_user_interaction();
 
-      set_prodevian();
+      set_auto_refresh();
 
 #ifdef WINDOWS_DESKTOP
 

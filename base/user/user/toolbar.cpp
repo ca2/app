@@ -3,7 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
-////#include "acme/exception/exception.h"
+#include "acme/user/user/content.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -632,7 +632,7 @@ namespace user
    ::user::tool_item * toolbar::tool_item_by_atom(const ::atom & atom)
    {
 
-      auto iIndex = item_index(atom);
+      auto iIndex = main_content().item_index(atom);
 
       return tool_item_at(iIndex);
 
@@ -655,11 +655,11 @@ namespace user
 
          estate.set(e_tool_item_state_enabled, bEnabled);
 
-         bool bPressed = is_item_pressed(atom);
+         bool bPressed = is_item_pressed(pitem);
 
          estate.set(e_tool_item_state_pressed, bPressed);
 
-         bool bHover = is_item_hover(atom);
+         bool bHover = is_item_hover(pitem);
 
          estate.set(e_tool_item_state_hover, bHover);
 
@@ -1850,7 +1850,7 @@ namespace user
    ::count toolbar::tool_item_count()
    {
 
-      return m_pitema->count();
+      return main_content().m_pitema->count();
 
    }
 
@@ -1858,14 +1858,14 @@ namespace user
    ::status < ::rectangle_i32 > toolbar::index_item_rectangle(index iItem)
    {
 
-      if (!m_pitema->is_index_ok(iItem))
+      if (!main_content().m_pitema->is_index_ok(iItem))
       {
 
          return error_failed;
 
       }
 
-      auto puseritem = user_item_at(iItem);
+      auto puseritem = user_item(main_content().item_at(iItem));
 
       ::status < ::rectangle_i32 > statusrectangle = puseritem->m_rectangle;
 
@@ -1887,14 +1887,14 @@ namespace user
    ::user::tool_item * toolbar::tool_item_at(index iItem)
    {
 
-      if (!m_pitema->is_index_ok(iItem))
+      if (!main_content().m_pitema->is_index_ok(iItem))
       {
 
          return nullptr;
 
       }
 
-      return item_at(iItem)->cast < ::user::tool_item>();
+      return main_content().item_at(iItem)->cast < ::user::tool_item>();
 
    }
 
@@ -1919,16 +1919,16 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pitema)
+      if (main_content().m_pitema)
       {
 
-         m_pitema->erase_all();
+         main_content().m_pitema->erase_all();
 
       }
       else
       {
 
-         __defer_construct_new(m_pitema);
+         __defer_construct_new(main_content().m_pitema);
 
       }
 
@@ -1980,11 +1980,11 @@ namespace user
          if (pchild->get_name() == "button")
          {
 
-            ptoolitem = __new(::user::tool_item);
+            ptoolitem = __create_new < ::user::tool_item >();
 
-            default_set_item_at(iItem, ptoolitem);
+            main_content().indexed_set_item_at(iItem, ptoolitem);
 
-            ptoolitem->m_item.m_iItem = m_pitema->get_size();
+            ptoolitem->m_item.m_iItem = main_content().item_count();
 
             auto pattributeId = pchild->find_attribute("id");
 
@@ -2025,9 +2025,9 @@ namespace user
          else if (pchild->get_name() == "separator")
          {
 
-            ptoolitem = __new(::user::tool_item);
+            ptoolitem = __create_new < ::user::tool_item >();
 
-            default_set_item_at(iItem, ptoolitem);
+            main_content().indexed_set_item_at(iItem, ptoolitem);
 
             ptoolitem->m_atom = "separator";
 

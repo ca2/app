@@ -18,7 +18,8 @@ namespace user
 
       m_pscrolldataHorizontal = __new(scroll_data);
 
-      m_pscrolldataHorizontal->m_bScroll = false;
+      //m_pscrolldataHorizontal->m_bShowScroll = false;
+      m_pscrolldataHorizontal->m_bHasScroll = false;
       m_pscrolldataHorizontal->m_iPage = 0;
       m_pscrolldataHorizontal->m_iLine = 0;
       m_pscrolldataHorizontal->m_bScrollEnable = true;
@@ -61,7 +62,7 @@ namespace user
       if (m_pscrollbarHorizontal)
       {
 
-         if (m_pscrolldataHorizontal->m_bScroll)
+         if (horizontal_scrollbar_visible())
          {
 
             get_horizontal_scroll_info(m_pscrollbarHorizontal->m_scrollinfo);
@@ -258,12 +259,12 @@ namespace user
 
       ::i32 iScrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_width);;
 
-      m_pscrolldataHorizontal->m_bScroll = false;
+      m_pscrolldataHorizontal->m_bHasScroll = false;
 
       if (iTotalWidth > iClientWidth)
       {
 
-         m_pscrolldataHorizontal->m_bScroll = true;
+         m_pscrolldataHorizontal->m_bHasScroll = true;
 
       }
       else if (iTotalHeight > iClientHeight)
@@ -272,13 +273,13 @@ namespace user
          if (iTotalWidth > iScrollWidth)
          {
 
-            m_pscrolldataHorizontal->m_bScroll = true;
+            m_pscrolldataHorizontal->m_bHasScroll = true;
 
          }
 
       }
 
-      m_pscrolldataHorizontal->m_bScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll;
+      //m_pscrolldataHorizontal->m_bHasScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll;
 
       auto rectangleScroll = client_rectangle();
 

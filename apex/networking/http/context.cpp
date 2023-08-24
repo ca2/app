@@ -46,7 +46,7 @@ namespace http
 
       m_pmutexPac = nullptr;
       m_pmutexProxy = nullptr;
-      m_pmutexDownload = nullptr;
+      //m_pmutexDownload = nullptr;
 
    }
 
@@ -510,7 +510,6 @@ namespace http
 
       payload("dw") = ::time::now();
       
-      m_pmutexDownload = acmenode()->create_mutex();
 
       //return estatus;
 
@@ -2683,9 +2682,9 @@ namespace http
 
          property_set& set = pmessage->get_property_set();
 
-         single_lock synchronouslock(m_pmutexDownload, true);
+         single_lock synchronouslock(acmesystem()->m_pmutexHttpDownload, true);
 
-         if (!(m_straDownloading.contains(strUrl)) && !exists(pmessageMessage->m_strUrl, set))
+         if (!(acmesystem()->m_straHttpDownloading.contains(strUrl)) && !exists(pmessageMessage->m_strUrl, set))
          {
 
             synchronouslock.unlock();
@@ -2840,14 +2839,14 @@ namespace http
    ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      single_lock synchronouslock(m_pmutexDownload, true);
+      single_lock synchronouslock(acmesystem()->m_pmutexHttpDownload, true);
 
       i32 iStatusCode = 0;
 
       try
       {
 
-         while (m_straExists.contains(scopedstrUrl))
+         while (acmesystem()->m_straHttpExists.contains(scopedstrUrl))
          {
 
             synchronouslock.unlock();
@@ -2858,7 +2857,7 @@ namespace http
 
          }
 
-         m_straExists.add(scopedstrUrl);
+         acmesystem()->m_straHttpExists.add(scopedstrUrl);
 
          synchronouslock.unlock();
 
@@ -2888,7 +2887,7 @@ namespace http
 
             synchronouslock.lock();
 
-            m_straExists.erase(scopedstrUrl);
+            acmesystem()->m_straHttpExists.erase(scopedstrUrl);
 
             return ::file::e_type_doesnt_exist;
 
@@ -2904,7 +2903,7 @@ namespace http
 
       }
 
-      m_straExists.erase(scopedstrUrl);
+      acmesystem()->m_straHttpExists.erase(scopedstrUrl);
 
       bool bExists = iStatusCode == 200;
 

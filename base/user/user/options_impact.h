@@ -5,13 +5,6 @@
 #include "impact.h"
 
 
-namespace user
-{
-
-   class line_layout;
-
-}
-
 
 namespace user
 {
@@ -57,6 +50,8 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
+
+      virtual void create_options_impact(options_impact_handler * phandler);
 
 
    };

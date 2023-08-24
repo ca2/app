@@ -66,7 +66,7 @@ namespace user
 
 
 
-   class prodevian;
+   class graphics_thread;
    class thread;
 
 
@@ -105,17 +105,17 @@ namespace user
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
-      class ::time                                    m_timeLastExposureAddUp;
-      ::pointer<prodevian>                   m_pprodevian;
-      ::pointer<::user::thread>              m_puserthread;
-      pointer_array < ::matter >                 m_matteraProdevian;
+      class ::time                              m_timeLastExposureAddUp;
+      ::pointer<::user::graphics_thread>        m_pgraphicsthread;
+      ::pointer<::user::thread>                 m_puserthread;
+      pointer_array < ::matter >                m_matteraProdevian;
       string                                    m_strBitmapSource;
-      ::pointer<::windowing::windowing>        m_pwindowing;
-      ::frequency                                    m_frequencyProdevianFramesPerSecond;
-      ::frequency                                    m_frequencyNominalFramesPerSecond;
-      ::frequency                                    m_frequencyOutputFramesPerSecond;
+      ::pointer<::windowing::windowing>         m_pwindowing;
+      ::frequency                               m_frequencyProdevianFramesPerSecond;
+      ::frequency                               m_frequencyNominalFramesPerSecond;
+      ::frequency                               m_frequencyOutputFramesPerSecond;
       point_i32                                 m_pointMouseMove;
-      //::size_i32                                m_sizeDrawnAAA;
+      //::size_i32                              m_sizeDrawnAAA;
       ::size_i32                                m_sizeSetWindowSizeRequest;
       particle_array                            m_particleaRedraw;
 
@@ -302,12 +302,12 @@ namespace user
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      void add_prodevian(::matter * pmatter) override;
-      void erase_prodevian(::matter * pmatter) override;
-      bool is_prodevian(const ::matter * pmatter) const override;
-      inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
+      void add_auto_refresh(::matter * pmatter) override;
+      void erase_auto_refresh(::matter * pmatter) override;
+      bool is_auto_refresh(const ::matter * pmatter) const override;
+      inline bool has_auto_refresh() const noexcept { return m_matteraProdevian.has_element(); }
 
-      //void prodevian_stop() override;
+      //void auto_refresh_stop() override;
 
 
       //virtual ::user::interaction * get_owner();
@@ -335,7 +335,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      DECLARE_MESSAGE_HANDLER(_001OnRedraw);
+      //DECLARE_MESSAGE_HANDLER(_001OnRedraw);
       //DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
 
 
@@ -494,10 +494,10 @@ namespace user
 
 
       // try calling prodevian things from prodevian... he is not much called...
-      //void prodevian_update_screen() override;
+      //void graphics_thread_update_screen() override;
 
       // try calling prodevian things from prodevian... is he ever called...
-      //void prodevian_redraw(bool bUpdateBuffer) override;
+      //void graphics_thread_redraw(bool bUpdateBuffer) override;
 
 //#ifdef WINDOWS
 //

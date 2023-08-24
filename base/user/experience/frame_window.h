@@ -134,6 +134,9 @@ namespace experience
       void on_command(::message::command * pcommand) override;
       
 
+      DECLARE_MESSAGE_HANDLER(on_message_parent_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_parent_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_parent_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
@@ -180,7 +183,8 @@ namespace experience
 
 
       void enable_frame_experience(bool bEnable = true) override;
-      void enable_dock(bool bEnable = true);
+      void enable_dock();
+      void disable_dock();
       void enable_move(bool bEnable = true);
       void enable_size(bool bEnable = true);
       void enable_menu(bool bEnable = true);
@@ -193,6 +197,8 @@ namespace experience
 
 
       ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+
+      //::item_pointer experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
       
       virtual button * get_box_button(enum_button ebutton);

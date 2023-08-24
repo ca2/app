@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "list2.h"
 #include "acme/constant/message.h"
+#include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/message/user.h"
@@ -19,7 +20,7 @@ namespace user
    list2::list2()
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
    }
 
@@ -945,10 +946,10 @@ namespace user
 
       iLineHeight *= 1.25;
 
-      for (::index i = 0; i < m_pitema->size(); i++)
+      for (::index i = 0; i < main_content().m_pitema->size(); i++)
       {
 
-         auto pitem = m_pitema->element_at(i);
+         auto pitem = main_content().m_pitema->element_at(i);
 
          auto puseritem = user_item(pitem);
 

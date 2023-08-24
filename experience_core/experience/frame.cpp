@@ -1,14 +1,15 @@
 #include "framework.h"
 #include "frame.h"
-#include "aura/graphics/image/image.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/source.h"
 #include "aura/graphics/image/icon.h"
-#include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/imaging.h"
 #include "base/user/experience/control_box.h"
 #include "base/user/experience/frame_window.h"
-#include "aura/graphics/image/imaging.h"
+#include "base/user/experience/size_manager.h"
 
 
 namespace experience_core
@@ -41,15 +42,15 @@ namespace experience_core
    {
 
       __construct(m_ppenText1);
-         __construct(m_ppenFace1);
-         __construct(m_ppenHilight1);
-         __construct(m_ppenShadow1);
-         __construct(m_ppenDkShadow1);
+      __construct(m_ppenFace1);
+      __construct(m_ppenHilight1);
+      __construct(m_ppenShadow1);
+      __construct(m_ppenDkShadow1);
 
 
-/*               auto estyle = translate_style(m_strStyle);
+      /*               auto estyle = translate_style(m_strStyle);
 
-      set_style(estyle)*/;
+            set_style(estyle)*/;
 
    }
 
@@ -119,7 +120,7 @@ namespace experience_core
          rectangleBottom.normalize();
 
          pgraphics->user_redraw()->set_need_redraw(rectangleBottom);
-     
+
       }
 
    }
@@ -145,7 +146,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleInflate;
 
-      if(rectangleClient.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;
@@ -167,9 +168,9 @@ namespace experience_core
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
 
       ::rectangle_i32 rectangleWindow = rectangleClient;
 
@@ -196,13 +197,13 @@ namespace experience_core
          image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          //b = 
-            
+
          pimage2->g()->draw(imagedrawing);
 
       }
 
       //b = 
-         
+
       imaging.blur(pimage2, 2);
 
       {
@@ -354,7 +355,7 @@ namespace experience_core
    bool frame::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
    {
 
-      switch(eelement)
+      switch (eelement)
       {
       case e_element_top_left_icon:
       {
@@ -384,7 +385,7 @@ namespace experience_core
 
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
          {
-                   
+
             return false;
 
          }
@@ -403,30 +404,30 @@ namespace experience_core
 
    }
 
-   
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+
+   //   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   //   {
+   //
+   //      return ::experience::frame::experience_frame_hit_test(point, ezorder);
+   ////               ::rectangle_i32 rectangle;
+   ////               for(enum_element eelement = (enum_element)(::e_element_none + 1);
+   ////                     eelement < ElementEnd;
+   ////                     eelement++)
+   ////               {
+   ////                  get_element_rectangle(rectangle, eelement);
+   ////                  if(rectangle.contains(point))
+   ////                  {
+   ////                     eelementParam = eelement;
+   ////                     return true;
+   ////                  }
+   ////               }
+   ////               return false;
+   //   }
+   //
+
+   void frame::set_moveable_border_color(const ::color::color & colorMoveableBorder)
    {
 
-      return ::experience::frame::experience_frame_hit_test(point, ezorder);
-//               ::rectangle_i32 rectangle;
-//               for(enum_element eelement = (enum_element)(::e_element_none + 1);
-//                     eelement < ElementEnd;
-//                     eelement++)
-//               {
-//                  get_element_rectangle(rectangle, eelement);
-//                  if(rectangle.contains(point))
-//                  {
-//                     eelementParam = eelement;
-//                     return true;
-//                  }
-//               }
-//               return false;
-   }
-
-
-   void frame::set_moveable_border_color(const ::color::color& colorMoveableBorder)
-   {
-               
       m_colorMoveableBorder = colorMoveableBorder;
 
       ::color::color color;
@@ -451,41 +452,41 @@ namespace experience_core
    }
 
 
-   void frame::set_button_color_schema_001(const ::color::color& colorMoveableBorder)
+   void frame::set_button_color_schema_001(const ::color::color & colorMoveableBorder)
    {
 
-//               defer_create_user_schema(schema_button);
+      //               defer_create_user_schema(schema_button);
 
-//               ::color::color crBase = crMoveableBorder;
-//
-//               color ca;
-//
-//               ca.set_rgb(crBase);
-//               ca.hls_rate(0.0, -0.49, -0.49);
-//               create_color(color_border, ca.get_rgb() | (0xff << 24));
-//
-//               ca.set_rgb(crBase);
-//               ca.hls_rate(0.0, -0.11, -0.11);
-//               create_color(color_background, ca.get_rgb() | (0xff << 24));
-//
-//               ca.set_rgb(crBase);
-//               ca.hls_rate(0.0, -0.49, -0.49);
-//               create_color(color_text_normal, ca.get_rgb() | (0xff << 24));
-//
-//
-//
-//
-//               ca.set_rgb(crBase);
-//               ca.hls_rate(0.0, -0.45, 0.11);
-//               create_color(color_border_hover, ca.get_rgb() | (0xff << 24));
-//
-//               ca.set_rgb(crBase);
-//               ca.hls_rate(0.0, 0.33, 0.0);
-//               create_color(color_background_hover,ca.get_rgb() | (0xff << 24));
-//
-//               ca.set_rgb(crBase);
-//               ca.hls_rate(0.0, -0.55, 0.11);
-//               create_color(color_text_hover, ca.get_rgb() | (0xff << 24));
+      //               ::color::color crBase = crMoveableBorder;
+      //
+      //               color ca;
+      //
+      //               ca.set_rgb(crBase);
+      //               ca.hls_rate(0.0, -0.49, -0.49);
+      //               create_color(color_border, ca.get_rgb() | (0xff << 24));
+      //
+      //               ca.set_rgb(crBase);
+      //               ca.hls_rate(0.0, -0.11, -0.11);
+      //               create_color(color_background, ca.get_rgb() | (0xff << 24));
+      //
+      //               ca.set_rgb(crBase);
+      //               ca.hls_rate(0.0, -0.49, -0.49);
+      //               create_color(color_text_normal, ca.get_rgb() | (0xff << 24));
+      //
+      //
+      //
+      //
+      //               ca.set_rgb(crBase);
+      //               ca.hls_rate(0.0, -0.45, 0.11);
+      //               create_color(color_border_hover, ca.get_rgb() | (0xff << 24));
+      //
+      //               ca.set_rgb(crBase);
+      //               ca.hls_rate(0.0, 0.33, 0.0);
+      //               create_color(color_background_hover,ca.get_rgb() | (0xff << 24));
+      //
+      //               ca.set_rgb(crBase);
+      //               ca.hls_rate(0.0, -0.55, 0.11);
+      //               create_color(color_text_hover, ca.get_rgb() | (0xff << 24));
 
    }
 
@@ -542,7 +543,7 @@ namespace experience_core
 
       set_button_color_schema_001(m_colorMoveableBorder);
 
-      if(m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray || m_pframewindow->m_estyle == ::user::StyleDarkWarmBlue)
+      if (m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray || m_pframewindow->m_estyle == ::user::StyleDarkWarmBlue)
       {
 
          pcontrolbox->m_colorBackground = m_colorCaptionTextBk;
@@ -605,7 +606,7 @@ namespace experience_core
    //}
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam,enum_border eborder, const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleParam, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight)
    {
 
       ::rectangle_i32 rectangle(rectangleParam);
@@ -619,7 +620,7 @@ namespace experience_core
 
       ::draw2d::pen_pointer ppen;
 
-      if(eborder & e_border_top || eborder & e_border_left)
+      if (eborder & e_border_top || eborder & e_border_left)
       {
 
          ppen.create(this);
@@ -630,50 +631,50 @@ namespace experience_core
 
       }
 
-      if(eborder & e_border_top)
+      if (eborder & e_border_top)
       {
 
-         pgraphics->set_current_point(x,y);
+         pgraphics->set_current_point(x, y);
 
-         pgraphics->line_to(x + cx,y);
+         pgraphics->line_to(x + cx, y);
 
       }
 
-      if(eborder & e_border_left)
+      if (eborder & e_border_left)
       {
 
-         pgraphics->set_current_point(x,y);
+         pgraphics->set_current_point(x, y);
 
-         pgraphics->line_to(x,y+cy);
+         pgraphics->line_to(x, y + cy);
 
       }
 
-      if((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
+      if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
       {
 
          ppen.create(this);
 
-         ppen->create_solid(1.0,colorBottomRight);
+         ppen->create_solid(1.0, colorBottomRight);
 
          pgraphics->set(ppen);
 
       }
 
-      if(eborder & e_border_right)
+      if (eborder & e_border_right)
       {
 
-         pgraphics->set_current_point(x + cx,y);
+         pgraphics->set_current_point(x + cx, y);
 
-         pgraphics->line_to(x + cx,y + cy);
+         pgraphics->line_to(x + cx, y + cy);
 
       }
 
-      if(eborder & e_border_bottom)
+      if (eborder & e_border_bottom)
       {
 
-         pgraphics->set_current_point(x,y + cy);
+         pgraphics->set_current_point(x, y + cy);
 
-         pgraphics->line_to(x + cx,y + cy);
+         pgraphics->line_to(x + cx, y + cy);
 
       }
 
@@ -706,24 +707,24 @@ namespace experience_core
 
       auto pframewindow = m_pframewindow;
 
-      if(!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
+      if (!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
       {
 
          on_draw_frame(pgraphics);
 
       }
 
-      if(pframewindow->layout().is_minimal())
+      if (pframewindow->layout().is_minimal())
       {
 
          ::rectangle_i32 rectangleIcon;
 
-         if(get_element_rectangle(rectangleIcon, e_element_top_left_icon))
+         if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
 
-            if(::is_set(pdrawicon))
+            if (::is_set(pdrawicon))
             {
 
                image_source imagesource(pdrawicon);
@@ -740,17 +741,17 @@ namespace experience_core
 
          ::rectangle_i32 rectangleGrip;
 
-         if(get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
+         if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
             int i = 0;
 
-            while(i < rectangleGrip.width() - 5 + 1)
+            while (i < rectangleGrip.width() - 5 + 1)
             {
 
                ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130),  1.0);
+               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 
@@ -759,7 +760,7 @@ namespace experience_core
          }
 
       }
-      else if(!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
+      else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
       {
 
          //pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
@@ -779,7 +780,7 @@ namespace experience_core
 
          //pframewindow->get_window_text(str);
 
-         if(pframewindow->is_active_window())
+         if (pframewindow->is_active_window())
          {
 
             crMoveableBorder = m_colorMoveableBorder;
@@ -808,12 +809,12 @@ namespace experience_core
 
          rectangle -= rectangle.top_left();
 
-         if(get_element_rectangle(rectangleIcon, e_element_top_left_icon))
+         if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
             auto pdrawicon = m_pframewindow->get_draw_icon();
 
-            if(::is_set(pdrawicon) && pdrawicon->is_ok())
+            if (::is_set(pdrawicon) && pdrawicon->is_ok())
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -838,7 +839,7 @@ namespace experience_core
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
+         pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center }, e_draw_text_no_prefix);
 
       }
 
@@ -852,6 +853,313 @@ namespace experience_core
       UNREFERENCED_PARAMETER(pgraphics);
 
    }
+
+
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & pointCursor, ::user::e_zorder ezorder)
+   {
+
+      //::experience::enum_frame etest = ::item_t{::e_element_client;
+      //{
+         //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
+         ::rectangle_i32 rectangleEvent;
+         m_pframewindow->window_rectangle(rectangleEvent);
+         ::rectangle_i32 rectangle;
+         ::point_i32 pointCenter = rectangleEvent.center();
+         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+
+         ::point_i32 pointHitTest = pointCursor;
+
+         //                  if(rectangleEvent.left < 0)
+         //                     pointHitTest.x() -= rectangleEvent.left;
+         //                  if(rectangleEvent.top < 0)
+         //                     pointHitTest.y() -= rectangleEvent.top;
+
+         if (egrip & e_grip_top_left)
+         {
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 16;
+            rectangle.bottom = rectangle.top + 5;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top_left;
+               // goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 5;
+            rectangle.bottom = rectangle.top + 16;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top_left;
+               // goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_top_right)
+         {
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 16;
+            rectangle.bottom = rectangle.top + 5;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top_right;
+               // goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 5;
+            rectangle.bottom = rectangle.top + 16;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top_right;
+               // goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_bottom_right)
+         {
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 16;
+            rectangle.top = rectangle.bottom - 5;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom_right;
+               // goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 5;
+            rectangle.top = rectangle.bottom - 16;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom_right;
+               // goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_bottom_left)
+         {
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 16;
+            rectangle.top = rectangle.bottom - 5;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom_left;
+               // goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 5;
+            rectangle.top = rectangle.bottom - 16;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom_left;
+               // goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_top)
+         {
+            rectangle.top = rectangleEvent.top;
+            rectangle.left = pointCenter.x() - 8;
+            rectangle.right = pointCenter.x() + 8;
+            rectangle.bottom = rectangleEvent.top + 5;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_top;
+               // goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_bottom)
+         {
+            rectangle.top = rectangleEvent.bottom - 5;
+            rectangle.left = pointCenter.x() - 8;
+            rectangle.right = pointCenter.x() + 8;
+            rectangle.bottom = rectangleEvent.bottom;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_bottom;
+               // goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_left)
+         {
+            rectangle.top = pointCenter.y() - 8;
+            rectangle.left = rectangleEvent.left;
+            rectangle.right = rectangleEvent.left + 5;
+            rectangle.bottom = pointCenter.y() + 8;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_left;
+               // goto SizingSuccess;
+            }
+         }
+         if (egrip & e_grip_right)
+         {
+            rectangle.top = pointCenter.y() - 8;
+            rectangle.left = rectangleEvent.right - 5;
+            rectangle.right = rectangleEvent.right;
+            rectangle.bottom = pointCenter.y() + 8;
+            if (rectangle.contains(pointHitTest))
+            {
+               return ::experience::e_frame_sizing_right;
+               // goto SizingSuccess;
+            }
+         }
+         return ::experience::e_frame_client;
+//            return m_pframewindow->m_pitemClient;
+      //   goto SizingNone;
+      //SizingSuccess:
+      //   return etest;
+      //SizingNone:;
+      //}
+      //return ::item_t{::e_element_client;
+   }
+
+
+   //::item_pointer frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   //{
+
+   //   //::experience::enum_frame etest = ::item_t{::e_element_client;
+
+   //   {
+   //      //      m_pframewindow->screen_to_client()(point);
+   //      ::rectangle_i32 rectangleEvent;
+   //      m_pframewindow->window_rectangle(rectangleEvent);
+   //      ::rectangle_i32 rectangle;
+   //      ::point_i32 pointCenter = rectangleEvent.center();
+   //      enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+
+   //      ::point_i32 pointHitTest = point;
+
+   //      //if(rectangleEvent.left < 0)
+   //      // pointHitTest.x() -= rectangleEvent.left;
+   //      //if(rectangleEvent.top < 0)
+   //      // pointHitTest.y() -= rectangleEvent.top;
+
+   //      if ((egrip & e_grip_top_left) == e_grip_top_left)
+   //      {
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 16;
+   //         rectangle.bottom = rectangle.top + 5;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_left });
+   //            // goto SizingSuccess;
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 5;
+   //         rectangle.bottom = rectangle.top + 16;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_left });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      if ((egrip & e_grip_top_right) == e_grip_top_right)
+   //      {
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 16;
+   //         rectangle.bottom = rectangle.top + 5;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_right });
+   //            // goto SizingSuccess;
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 5;
+   //         rectangle.bottom = rectangle.top + 16;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top_right });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      if ((egrip & e_grip_bottom_right) == e_grip_bottom_right)
+   //      {
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 16;
+   //         rectangle.top = rectangle.bottom - 5;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_right });
+   //            // goto SizingSuccess;
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.left = rectangle.right - 5;
+   //         rectangle.top = rectangle.bottom - 16;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_right });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      if ((egrip & e_grip_bottom_left) == e_grip_bottom_left)
+   //      {
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 16;
+   //         rectangle.top = rectangle.bottom - 5;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_left });
+   //            // goto SizingSuccess;
+   //         }
+   //         rectangle = rectangleEvent;
+   //         rectangle.right = rectangle.left + 5;
+   //         rectangle.top = rectangle.bottom - 16;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom_left });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      if ((egrip & e_grip_top) == e_grip_top)
+   //      {
+   //         rectangle.top = rectangleEvent.top;
+   //         rectangle.left = pointCenter.x() - 8;
+   //         rectangle.right = pointCenter.x() + 8;
+   //         rectangle.bottom = rectangleEvent.top + 5;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_top });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      if ((egrip & e_grip_bottom) == e_grip_bottom)
+   //      {
+   //         rectangle.top = rectangleEvent.bottom - 5;
+   //         rectangle.left = pointCenter.x() - 8;
+   //         rectangle.right = pointCenter.x() + 8;
+   //         rectangle.bottom = rectangleEvent.bottom;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_bottom });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      if ((egrip & e_grip_left) == e_grip_left)
+   //      {
+   //         rectangle.top = pointCenter.y() - 8;
+   //         rectangle.left = rectangleEvent.left;
+   //         rectangle.right = rectangleEvent.left + 5;
+   //         rectangle.bottom = pointCenter.y() + 8;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_left });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      if ((egrip & e_grip_right) == e_grip_right)
+   //      {
+   //         rectangle.top = pointCenter.y() - 8;
+   //         rectangle.left = rectangleEvent.right - 5;
+   //         rectangle.right = rectangleEvent.right;
+   //         rectangle.bottom = pointCenter.y() + 8;
+   //         if (rectangle.contains(pointHitTest))
+   //         {
+   //            return m_pframewindow->defer_item(::item_t{ ::e_element_sizing_right });
+   //            // goto SizingSuccess;
+   //         }
+   //      }
+   //      goto SizingNone;
+   //   SizingSuccess:
+   //      return etest;
+   //   SizingNone:;
+   //   }
+   //   return ::item_t{::e_element_client;
+   //}
 
 
 } // namespace experience

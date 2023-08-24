@@ -11,6 +11,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/link.h"
+#include "acme/parallelization/retry.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/ini.h"
@@ -20,7 +21,6 @@
 #include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/http/context.h"
-#include "apex/parallelization/retry.h"
 
 
 #include "acme/primitive/time/_text_stream.h"
@@ -129,7 +129,21 @@ namespace apex
    }
 
 
-   
+   bool context::is_system() const
+   {
+
+      return false;
+
+   }
+
+
+   bool context::is_session() const
+   {
+
+      return false;
+
+   }
+
 
    bool context::is_local_data() const
    {

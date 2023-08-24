@@ -129,14 +129,14 @@ namespace user
       if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
       {
 
-         auto point = const_layout().sketch().origin();
+         ::point_i32 point;
 
          int iMaximumNormal = 0;
 
          for (auto & puserinteraction : m_puserinteractionpointeraChild->interactiona())
          {
 
-            puserinteraction->set_position(point);
+            puserinteraction->set_position(point, e_layout_layout, pgraphics);
 
             iMaximumNormal = ::maximum(iMaximumNormal, puserinteraction->size(e_layout_sketch).get_normal_dimension(m_eorientation));
 

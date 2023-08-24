@@ -2,7 +2,7 @@
 
 
 #include "interaction_layout.h"
-//#include "prodevian.h"
+//#include "graphics_thread.h"
 #include "drawable.h"
 #include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
@@ -150,18 +150,21 @@ namespace user
       bool                                      m_bMouseHoverOnCapture;
 
       //bool                                      m_bMouseHover;
-      bool                                      m_bClickDefaultMouseHandling;
-      bool                                      m_bHoverDefaultMouseHandling;
-      bool                                      m_bEditDefaultHandling;
+      bool                                      m_bDefaultClickHandling;
+      bool                                      m_bDefaultMouseHoverHandling;
+      bool                                      m_bDefaultParentMouseMessageHandling;
 
-      bool                                      m_bKeyboardMultipleSelectionDefaultHandling;
-      bool                                      m_bDataUpdateDefaultHandling;
+      bool                                      m_bDefaultEditHandling;
+
+      bool                                      m_bDefaultKeyboardMultipleSelectionHandling;
+      bool                                      m_bDefaultDataUpdateHandling;
       bool                                      m_bParentScrollX;
       bool                                      m_bParentScrollY;
 
       bool                                      m_bUserInteractionHost;
       bool                                      m_bEnableDragClient;
       bool                                      m_bEnableDragResize;
+      bool                                      m_bEnableDefaultControlBox;
       bool                                      m_bDerivedHeight;
 
       bool                                      m_bLadingToLayout;
@@ -261,9 +264,9 @@ namespace user
 
    public:
 
-      index                                     m_iItem;
-      index                                     m_iSubItem;
-      index                                     m_iListItem;
+      index                                     m_iEditItem;
+      index                                     m_iEditSubItem;
+      // index                                     m_iListItem;
       index                                     m_iColumn;
 
       atom                                      m_uiText;
@@ -303,6 +306,9 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect2;
       ::draw2d::path_pointer                    m_pathFocusRect3;
       ::draw2d::path_pointer                    m_pathFocusRect4;
+
+
+      ::function < bool(::user::interaction *, ::item *) > m_callbackOnClick;
 
       
       //class draw_select
@@ -405,8 +411,9 @@ namespace user
       pointer_array < interaction >                m_menua;
       ::pointer<::appearance::appearance>          m_pappearance;
       bool                                         m_bEmptyAreaIsClientArea;
-      ::item_pointer                               m_pitemClient;
+      //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
+      boolean                                      m_bLockSketchToDesign;
 
 
       interaction();
@@ -576,9 +583,9 @@ namespace user
 
 
 
-      inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
-      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
-      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
+      inline void auto_refresh_on_show() { m_ewindowflag |= e_window_flag_auto_refresh_on_show; }
+      inline void clear_auto_refresh_on_show() { m_ewindowflag -= e_window_flag_auto_refresh_on_show; }
+      inline bool is_auto_refresh_on_show() { return m_ewindowflag & e_window_flag_auto_refresh_on_show; }
 
       //inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
       //inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
@@ -615,6 +622,10 @@ namespace user
       virtual bool _is_full_screen();
 
       virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement);
+
+
+      virtual status < rectangle_i32 > item_rectangle(::item * pitem);
+      virtual ::draw2d::path_pointer item_graphics_path(::item * pitem);
 
 
       virtual status < rectangle_i32 > rectangle(enum_element eelement)
@@ -733,7 +744,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto prodevian() { return __new(::prodevian(this)); }
+      //auto auto_refresh() { return __new(::auto_refresh(this)); }
 
       virtual bool should_save_window_rectangle();
       
@@ -773,9 +784,9 @@ namespace user
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual void prodevian_stop() override;
+      //virtual void graphics_thread_stop() override;
 
-      //virtual void prodevian_redraw(bool bUpdateBuffer) override;
+      //virtual void graphics_thread_redraw(bool bUpdateBuffer) override;
 
       //virtual void _001OnAfterAppearance();
 
@@ -858,7 +869,7 @@ namespace user
 
       virtual void frame_occlude();
       
-      virtual void frame_toggle_restore();
+      virtual void frame_toggle_restore(bool bDisplayPreviousOnRestore = false);
       
       virtual void display_previous_restore();
 
@@ -887,15 +898,15 @@ namespace user
       virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_design);
 
 
-      inline void set_prodevian() { return add_prodevian(this); }
-      inline void clear_prodevian() { return erase_prodevian(this); }
-      inline bool is_prodevian() const { return is_prodevian(this); }
+      inline void set_auto_refresh() { return add_auto_refresh(this); }
+      inline void clear_auto_refresh() { return erase_auto_refresh(this); }
+      inline bool is_auto_refresh() const { return is_auto_refresh(this); }
 
 
-      void add_prodevian(::matter * pmatter) override;
-      void erase_prodevian(::matter * pmatter) override;
-      bool is_prodevian(const ::matter * pmatter) const override;
-      bool has_prodevian() const noexcept;
+      void add_auto_refresh(::matter * pmatter) override;
+      void erase_auto_refresh(::matter * pmatter) override;
+      bool is_auto_refresh(const ::matter * pmatter) const override;
+      bool has_auto_refresh() const noexcept;
 
 
       virtual bool is_frame_window();
@@ -911,7 +922,7 @@ namespace user
       bool is_window_visible(enum_layout elayout = e_layout_design);
       bool is_window_screen_visible(enum_layout elayout = e_layout_design);
 
-
+      virtual void route_as_parent_mouse_message(::message::mouse * pmouse);
       virtual bool on_mouse_message(::message::mouse * pmouse);
 
       virtual bool on_child_from_point_mouse_message_routing(::message::mouse * pmouse);
@@ -1256,6 +1267,7 @@ namespace user
       ///    - during on_perform_layout the position and/or size of
       ///      the user::interaction has changed.
       virtual bool on_perform_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_items_layout(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema);
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition() override;
       virtual void on_show_window() override;
@@ -1598,11 +1610,11 @@ namespace user
 
       // drag_client
       void drag_set_capture() override;
-      ::point_i32 on_drag_start(::user::drag * pdrag) override;
-      bool drag_shift(::user::drag * pdrag) override;
-      bool drag_hover(::user::drag * pdrag) override;
+      ::point_i32 on_drag_start(::item * pitem) override;
+      bool drag_shift(::item * pitem) override;
+      bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;
-      void drag_set_cursor(::user::drag * pdrag) override;
+      void drag_set_cursor(::item * pitem) override;
 
       //virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
 
@@ -1640,7 +1652,7 @@ namespace user
 
       virtual bool _001IsPointInsideInline(const ::point_i32 & point);
       virtual bool _001IsClientPointInsideInline(const ::point_i32 & point);
-      virtual  bool _001IsParentClientPointInsideInline(const ::point_i32 & point);
+      virtual bool _001IsParentClientPointInsideInline(const ::point_i32 & point, enum_layout elayout = e_layout_design);
 
       ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
@@ -1973,6 +1985,8 @@ namespace user
       virtual void set_total_size(const ::size_f64& size);
       virtual void set_page_size(const ::size_f64& size);
       virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 get_accumulated_scroll(enum_layout elayout = e_layout_design);
+      virtual ::point_i32 get_scroll(enum_layout elayout = e_layout_design);
       virtual ::point_i32 get_parent_context_offset();
       virtual ::point_i32 get_ascendant_context_offset();
       virtual void get_margin_rect(::rectangle_i32* prectMargin);
@@ -2010,7 +2024,8 @@ namespace user
       virtual void hide() override;
 
 
-
+      virtual void erase_children();
+      virtual void erase_child(::user::interaction * puserinteraction);
 
 
 
@@ -2205,6 +2220,7 @@ namespace user
       virtual bool item_contains(::item * pitem, const ::point_i32 & point);
 
       virtual ::item_pointer on_items_hit_test(const ::point_i32& point, e_zorder ezorder);
+      virtual ::item_pointer on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::index iIdContainer, ::item_array * pitema);
 
       virtual void defer_setup_default_bottom_right_resize_user_item();
 
@@ -2213,7 +2229,7 @@ namespace user
 ///      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
+      virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
 
 
@@ -2223,13 +2239,15 @@ namespace user
 
       //inline auto rectangle(::item * pitem) { get_rect((::item *) pitem); return pitem->m_rectangle; }
 
-      virtual ::user::item * add_user_item(::item * pitem);
+      //virtual ::user::item * add_user_item(::item * pitem);
 
-      virtual ::user::item * _add_user_item(::item * pitem);
+      //virtual ::user::item * _add_user_item(::item * pitem);
 
 //      virtual ::item_pointer add_user_item(::item * pitem);
 
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
+
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::index iIdContainer, ::item_array * pitema);
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & item, const ::user::e_state & estate);
 
@@ -2326,7 +2344,7 @@ namespace user
 
 
       //virtual void post_procedure(const ::procedure & procedure) override;
-      //virtual void prodevian_post_procedure(const ::procedure & procedure);
+      //virtual void auto_refresh_post_procedure(const ::procedure & procedure);
 
 
       //void send_procedure(const ::procedure & procedure) override;
@@ -2342,10 +2360,10 @@ namespace user
 
 
  /*     template < typename PRED >
-      void prodevian_post_predicate(PRED pred)
+      void graphics_thread_post_predicate(PRED pred)
       {
 
-         prodevian_schedule(__routine(pred));
+         graphics_thread_schedule(__routine(pred));
 
       }*/
 
@@ -2379,15 +2397,17 @@ namespace user
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
 
-      ::item_pointer get_child_as_item(::index iIndex) override;
-      ::count get_child_as_item_count() override;
+      //::item_pointer get_child_as_item(::index iIndex) override;
+      //::count get_child_as_item_count() override;
+
+      ::user::interaction * child_at(::index iIndex);
 
 
-      void on_item_selected(::item* pitem) override;
-      void on_item_hover(::item* pitem) override;
+      virtual void on_item_selected(::item* pitem);
+      virtual void on_item_hover(::item* pitem);
 
 
-      ::item_pointer hover_item() override;
+      virtual ::item_pointer hover_item();
 
 
       //template < typename OFFSETABLE, typename SOURCE >
@@ -2563,26 +2583,26 @@ namespace user
    }
 
 
-   //class lock_sketch_to_design
-   //{
-   //public:
+   class lock_sketch_to_design
+   {
+   public:
 
-   //   ::user::interaction * m_puserinteraction;
+      ::user::interaction * m_puserinteraction;
 
-   //   lock_sketch_to_design(::user::interaction * puserinteraction) :
-   //   m_puserinteraction(puserinteraction)
-   //   {
-   //      m_puserinteraction->m_bLockSketchToDesign = true;
+      lock_sketch_to_design(::user::interaction * puserinteraction) :
+      m_puserinteraction(puserinteraction)
+      {
+         m_puserinteraction->m_bLockSketchToDesign = true;
 
-   //   }
-   //   ~lock_sketch_to_design()
-   //   {
+      }
+      ~lock_sketch_to_design()
+      {
 
-   //      m_puserinteraction->m_bLockSketchToDesign = false;
+         m_puserinteraction->m_bLockSketchToDesign = false;
 
-   //   }
+      }
 
-   //};
+   };
 
 
    //compile_time_assert((offsetof(::user::interaction, m_oswindow) & 4) == 0);

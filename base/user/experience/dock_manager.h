@@ -32,6 +32,9 @@ namespace experience
       bool                                m_bPendingCursorPos;
       int                                 m_iDockMove;
       int                                 m_iConsiderDockMove;
+      ::rectangle_i32                     m_rectangleOnDockStart;
+      ::point_i32                         m_pointLastRepositionCursorOrigin;
+      ::point_i32                         m_pointLastRepositionWindowOrigin;
 
 
       dock_manager();

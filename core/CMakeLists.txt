@@ -431,8 +431,8 @@ list(APPEND library_source
    user/userex/_.h
    user/userex/_impl.h
    #user/userex/_userex.h
-   user/userex/calculator_edit_impact.cpp
-   user/userex/calculator_edit_impact.h
+   #user/userex/calculator_edit_impact.cpp
+   #user/userex/calculator_edit_impact.h
    user/userex/color_impact.cpp
    user/userex/color_impact.h
    user/userex/const.h

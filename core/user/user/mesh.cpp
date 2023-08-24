@@ -72,8 +72,8 @@ namespace user
       m_iDisplayItemFocus = -1;
       //m_iDisplayItemHover = -1;
       //m_iSubItemHover = -2;
-      m_bEditDefaultHandling = true;
-      m_bKeyboardMultipleSelectionDefaultHandling = true;
+      m_bDefaultEditHandling = true;
+      m_bDefaultKeyboardMultipleSelectionHandling = true;
       m_bSortEnable              = true;
       m_bFilter1                 = false;
       m_nColumnCount             = 1;
@@ -2949,7 +2949,7 @@ namespace user
 
          auto pointCursor = get_cursor_position();
 
-         auto pmouse = __create_new < ::user::mouse >();
+         auto pmouse = __create_new < ::message::mouse >();
 
          pmouse->m_point = pointCursor;
 
@@ -5337,7 +5337,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      auto pmouse = __create_new < ::user::mouse >();
+      auto pmouse = __create_new < ::message::mouse >();
 
       pmouse->m_point = pointCursor;
 
@@ -5994,9 +5994,9 @@ namespace user
 
          item_range itemrange;
 
-         itemrange.set_lower_bound(pitem->m_item.item_index());
+         itemrange.set_lower_bound(pitem->m_item.m_iItem);
 
-         itemrange.set_upper_bound(pitem->m_item.item_index());
+         itemrange.set_upper_bound(pitem->m_item.m_iItem);
 
          _001AddSelection(itemrange);
 

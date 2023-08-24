@@ -3392,6 +3392,39 @@
     <ClInclude Include="parallelization\retry.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\http_request.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\_.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\hinternet.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\http_session.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\http_connect.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano_http\http_get.h">
+      <Filter>Header Files\operating_system\windows\nano_http</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\item_container.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\item_container_map.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tool.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\content.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4683,6 +4716,27 @@
     </ClCompile>
     <ClCompile Include="compress\not_dir.cpp">
       <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano_http\http_request.cpp">
+      <Filter>Source Files\operating_system\windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano_http\hinternet.cpp">
+      <Filter>Source Files\operating_system\windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano_http\http_session.cpp">
+      <Filter>Source Files\operating_system\windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano_http\http_connect.cpp">
+      <Filter>Source Files\operating_system\windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano_http\http_get.cpp">
+      <Filter>Source Files\operating_system\windows\nano_http</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\item_container.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\item_container_map.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

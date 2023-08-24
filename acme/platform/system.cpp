@@ -303,6 +303,9 @@ namespace acme
       }
 
 
+
+
+
 #if !defined(WINDOWS)
 
 
@@ -333,6 +336,9 @@ namespace acme
          m_pacmeapplication->m_pacmenode = m_pnode;
 
       }
+
+      m_pmutexHttpDownload = acmenode()->create_mutex();
+
 
       //if(!estatus)
       //{

@@ -1,10 +1,11 @@
 #include "framework.h"
-#include "base/user/simple/toolbar.h"
 #include "menu_bar.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/user/user/content.h"
 #include "aura/message/user.h"
 #include "base/user/menu/menu.h"
+//#include "base/user/simple/toolbar.h"
 
 
 #define TIMER_HOVER 321654
@@ -406,11 +407,11 @@ i32_spreadset * prel,
 
 void simple_menu_bar::RemoveAllButtons()
 {
-   
-   if (m_pitema)
+
+   if (main_content().m_pitema)
    {
     
-      m_pitema->clear();
+      main_content().m_pitema->clear();
 
    }
 

@@ -6,7 +6,7 @@
 #include "frame_005.h"
 #include "frame_008.h"
 #include "frame_011.h"
-#include "frame_013.h"
+//#include "frame_013.h"
 #include "frame_Minimal001.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
@@ -78,7 +78,7 @@ namespace experience_tranquillum
       stra.add("005");
       stra.add("008");
       stra.add("011");
-      stra.add("013");
+      stra.add("022");
       stra.add("Minimal001");
 
    }
@@ -119,12 +119,12 @@ namespace experience_tranquillum
          return  memory_new frame_011;
 
       }
-      else if(strSchema == "013")
-      {
+      //else if(strSchema == "022")
+      //{
 
-         return  memory_new frame_013;
+      //   return  memory_new frame_022;
 
-      }
+      //}
       else if(strSchema == "Minimal001")
       {
 

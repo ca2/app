@@ -646,7 +646,7 @@ namespace user
    //}
 
 
-   void element::add_prodevian(::matter * pmatter)
+   void element::add_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -654,7 +654,7 @@ namespace user
    }
 
 
-   void element::erase_prodevian(::matter * pmatter)
+   void element::erase_auto_refresh(::matter * pmatter)
    {
 
       //return false;
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   bool element::is_prodevian(const ::matter * pmatter) const
+   bool element::is_auto_refresh(const ::matter * pmatter) const
    {
 
       return false;
@@ -3553,13 +3553,13 @@ namespace user
    }
 
 
-   void element::prodevian_redraw(bool bUpdateBuffer)
-   {
+   //void element::graphics_thread_post_redraw(bool bUpdateBuffer)
+   //{
 
-   }
+   //}
 
 
-   void element::prodevian_stop()
+   void element::auto_refresh_stop()
    {
 
 
@@ -4806,6 +4806,22 @@ namespace user
    void element::on_after_impact_update()
    {
 
+
+   }
+
+
+   bool element::horizontal_scrollbar_visible()
+   {
+
+      return false;
+
+   }
+
+
+   bool element::vertical_scrollbar_visible()
+   {
+
+      return false;
 
    }
 

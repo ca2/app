@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "control_box_button.h"
 #include "acme/handler/item.h"
+#include "acme/user/user/tool.h"
 #include "acme/primitive/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -224,13 +225,13 @@ namespace experience_core
 
       m_pregion->create_ellipse(ellipse);
 
-      __defer_construct_new(m_pitemClient);
+      auto pitemClient = tool().defer_item(e_element_client);
 
-      auto puseritem = user_item(m_pitemClient);
+      auto puseritem = user_item(pitemClient);
 
       __construct(puseritem->m_ppath);
 
-      m_pitemClient->m_item.m_eelement = e_element_client;
+      //m_pitemClient->m_item.m_eelement = e_element_client;
 
       puseritem->m_ppath->add_ellipse(ellipse);
 

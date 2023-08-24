@@ -360,6 +360,9 @@ list(APPEND library_source
    #user/user/_user.h
    user/user/alpha_source.cpp
    user/user/alpha_source.h
+        user/user/auto_refresh.cpp
+        user/user/auto_refresh.h
+
    user/user/box.cpp
    user/user/box.h
    user/user/button.cpp
@@ -395,8 +398,8 @@ list(APPEND library_source
    user/user/interaction_impl.h
    user/user/interaction_layout.cpp
    user/user/interaction_layout.h
-   user/user/interaction_prodevian.cpp
-   user/user/interaction_prodevian.h
+   user/user/interaction_graphics_thread.cpp
+   user/user/interaction_graphics_thread.h
    user/user/interaction_thread.cpp
    user/user/interaction_thread.h
    user/user/interaction_scaler.cpp
@@ -431,8 +434,6 @@ list(APPEND library_source
    user/user/plain_text_tree.h
    user/user/primitive_impl.cpp
    user/user/primitive_impl.h
-   user/user/prodevian.cpp
-   user/user/prodevian.h
    user/user/progress.cpp
    user/user/progress.h
    user/user/range.cpp

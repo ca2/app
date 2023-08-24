@@ -7,6 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
+#include "acme/user/user/content.h"
 #include "apex/platform/application.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/fonts.h"
@@ -37,6 +38,8 @@ namespace write_text
    font_list_item::font_list_item()
    {
 
+      m_item.m_eelement = e_element_item;
+
    }
 
 
@@ -57,9 +60,9 @@ namespace write_text
 
       m_rectangleMargin = rectangle_i32(5, 5, 5, 5);
 
-      m_iSel = -1;
+      //m_iSel = -1;
 
-      m_iHover = -1;
+      //m_iHover = -1;
 
       defer_create_synchronization();
 
@@ -98,11 +101,22 @@ namespace write_text
 
       index iSel = find_name(str);
 
-      m_iSel = iSel;
+      if (iSel >= 0)
+      {
+
+         m_puserinteraction->main_content().m_pitemCurrent = m_pfontlistdata->item_at(iSel);
+
+      }
+      else
+      {
+
+         m_puserinteraction->main_content().m_pitemCurrent.release();
+
+      }
 
       m_strFontFamily = str;
 
-      return m_iSel >= 0;
+      return ::is_item_set(m_puserinteraction->main_content().m_pitemCurrent);
 
    }
 
@@ -189,19 +203,12 @@ namespace write_text
 
       }
 
-      auto cListDataCount = pfontlistdata->get_count();
+      auto cListDataCount = pfontlistdata->item_count();
 
       for (int i = 0; i < cListDataCount; i++)
       {
 
-         if (i == m_iSel || i == m_iHover)
-         {
-
-            continue;
-
-         }
-
-         auto pitem = pfontlistdata->element_at(i);
+         ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
          if (!pitem)
          {
@@ -211,6 +218,14 @@ namespace write_text
             continue;
 
          }
+
+         if (pitem == m_puserinteraction->main_content().m_pitemCurrent || pitem == m_puserinteraction->m_pitemHover)
+         {
+
+            continue;
+
+         }
+
 
          text_box * pbox = &pitem->m_box[BOX];
 
@@ -267,10 +282,10 @@ namespace write_text
 
       }
 
-      if (m_iSel >= 0)
+      if (::is_item_set(m_puserinteraction->main_content().m_pitemCurrent))
       {
 
-         auto pitem = pfontlistdata->element_at(m_iSel);
+         ::pointer < font_list_item > pitem = m_puserinteraction->main_content().m_pitemCurrent;
 
          if (pitem)
          {
@@ -307,10 +322,11 @@ namespace write_text
 
       }
 
-      if (m_iHover >= 0 && m_iHover != m_iSel)
+      if (::is_item_set(m_puserinteraction->m_pitemHover) &&
+         m_puserinteraction->m_pitemHover != m_puserinteraction->main_content().m_pitemCurrent)
       {
 
-         auto pitem = pfontlistdata->element_at(m_iHover);
+         ::pointer < font_list_item > pitem = m_puserinteraction->m_pitemHover;
 
          if (pitem)
          {
@@ -375,10 +391,10 @@ namespace write_text
 
       bool bIntersected = false;
 
-      for (int i = 0; i < pfontlistdata->get_count(); i++)
+      for (int i = 0; i < pfontlistdata->item_count(); i++)
       {
 
-         if (pfontlistdata->element_at(i) == nullptr)
+         if (pfontlistdata->item_at(i) == nullptr)
          {
 
             continue;
@@ -391,7 +407,9 @@ namespace write_text
 
          auto pfontlistdata = m_pfontlistdata;
 
-         text_box * pbox = &pfontlistdata->element_at(i)->m_box[iBox];
+         ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(i);
+
+         text_box * pbox = &pfontlistitem->m_box[iBox];
 
          rectangle_i32 rectangle = pbox->m_rectangle;
 
@@ -400,7 +418,7 @@ namespace write_text
          if (!pbox->is_drawing_ok(this))
          {
 
-            pbox->update(this, iBox, pfontlistdata->element_at(i)->m_strSample);
+            pbox->update(this, iBox, pfontlistitem->m_strSample);
 
          }
 
@@ -421,9 +439,11 @@ namespace write_text
          if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          {
 
-            m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
+            //m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
 
-            m_iHover = i;
+            m_puserinteraction->m_pitemHover = pfontlistitem;
+
+            //m_iHover = i;
 
             bCheckHover = false;
 
@@ -431,10 +451,10 @@ namespace write_text
 
          bIntersected = true;
 
-         if (i == m_iSel)
+         if (pfontlistitem == m_puserinteraction->main_content().m_pitemCurrent)
          {
 
-            if (!bCheckHover && i == m_iHover)
+            if (!bCheckHover && pfontlistitem == m_puserinteraction->m_pitemHover)
             {
 
                pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
@@ -448,7 +468,7 @@ namespace write_text
             }
 
          }
-         else if (!bCheckHover && i == m_iHover)
+         else if (!bCheckHover && pfontlistitem == m_puserinteraction->m_pitemHover)
          {
 
             auto color = m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);
@@ -962,7 +982,9 @@ namespace write_text
 
          auto countFont = m_pfontenumerationitema->get_count();
 
-         pfontlistdata->set_size(countFont);
+         __defer_construct_new(pfontlistdata->m_pitema);
+
+         pfontlistdata->m_pitema->set_size(countFont);
 
       }
       else
@@ -976,15 +998,15 @@ namespace write_text
 
             synchronous_lock synchronouslock(this->synchronization());
 
-            for (index iItem = 0; iItem < pfontlistdata->get_count(); )
+            for (index iItem = 0; iItem < pfontlistdata->item_count(); )
             {
 
-               auto pitem = pfontlistdata->element_at(iItem);
+               ::pointer < font_list_item > pitem = pfontlistdata->item_at(iItem);
 
                if (pitem && pitem->m_strName.has_char() && !m_pfontenumeration->has_font_name(pitem->m_strName))
                {
 
-                  pfontlistdata->erase_at(iItem);
+                  pfontlistdata->m_pitema->erase_at(iItem);
 
                }
                else
@@ -1001,20 +1023,22 @@ namespace write_text
             for (index iItem = 0; iItem < m_pfontenumerationitema->get_count(); iItem++)
             {
 
-               auto pitem = pfontlistdata->element_at(iItem);
+               ::pointer < font_list_item > pitem = pfontlistdata->item_at(iItem);
 
                if (pitem && pitem->m_strName.has_char() && pitem->m_strName != m_pfontenumerationitema->ptr_at(iItem)->m_strName)
                {
 
                   ::pointer<font_list_item>pitemNewEmpty;
 
-                  pfontlistdata->insert_at(iItem, pitemNewEmpty);
+                  pitemNewEmpty->m_item.m_iItem = iItem;
+
+                  pfontlistdata->m_pitema->insert_at(iItem, pitemNewEmpty);
 
                }
 
             }
 
-            ASSERT(pfontlistdata->get_size() == m_pfontenumerationitema->get_count());
+            ASSERT(pfontlistdata->item_count() == m_pfontenumerationitema->get_count());
 
             pfontlistdata->m_iSerial++;
 
@@ -1036,7 +1060,7 @@ namespace write_text
 
       pfontlistdata->m_iaSize = iaSize;
 
-      auto iFontCount = pfontlistdata->get_count();
+      auto iFontCount = pfontlistdata->item_count();
 
       auto procedure1 = [this, pfontlistdata, bSameSize](index iOrder, index iStart, index iCount, index iScan)
       {
@@ -1063,7 +1087,7 @@ namespace write_text
 
          //single_lock lock(mutex());
 
-         for (index iItem = iStart; iItem < pfontlistdata->get_count(); iItem += iScan)
+         for (index iItem = iStart; iItem < pfontlistdata->item_count(); iItem += iScan)
          {
 
             {
@@ -1084,7 +1108,7 @@ namespace write_text
 
                }
 
-               plistitem = pfontlistdata->element_at(iItem);
+               plistitem = pfontlistdata->item_at(iItem);
 
                penumitem = m_pfontenumerationitema->element_at(iItem);
 
@@ -1106,7 +1130,7 @@ namespace write_text
 
                plistitem = __new(font_list_item);
 
-               plistitem->m_iItem = iItem;
+               plistitem->m_item.m_iItem = iItem;
 
                plistitem->m_strFont = penumitem->m_strName;
 
@@ -1146,7 +1170,7 @@ namespace write_text
 
                }
 
-               pfontlistdata->element_at(iItem) = plistitem;
+               pfontlistdata->indexed_set_item_at(iItem, plistitem);
 
                if (!m_bLayoutWideStillIntersect)
                {
@@ -1180,7 +1204,7 @@ namespace write_text
             for (index i = iStart; i < iCount && ::task_get_run(); i += iScan)
             {
 
-               auto pitem = pfontlistdata->element_at(i);
+               ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
                for (index iBox = 1; iBox < pfontlistdata->m_iaSize.get_count(); iBox++)
                {
@@ -1207,12 +1231,11 @@ namespace write_text
 
          };
 
-         m_pcontext->fork_count(pfontlistdata->get_count(), procedure3, procedure4);
+         m_pcontext->fork_count(pfontlistdata->item_count(), procedure3, procedure4);
 
       };
 
-      m_pcontext->fork_count(pfontlistdata->get_count(), procedure1, procedure2);
-
+      m_pcontext->fork_count(pfontlistdata->item_count(), procedure1, procedure2);
    }
 
 
@@ -1313,12 +1336,12 @@ namespace write_text
 
       int iLineStart = 0;
 
-      auto iFontCount = pfontlistdata->get_count();
+      auto iFontCount = pfontlistdata->item_count();
 
       for (int i = 0; i < iFontCount; i++)
       {
 
-         font_list_item * pitem = pfontlistdata->element_at(i);
+         ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
          if (pitem
             && !m_pfontenumeration->has_font_name(pitem->m_strFont)
@@ -1367,7 +1390,7 @@ namespace write_text
                for (int j = iLineStart + 1; j < i; j++)
                {
 
-                  font_list_item * pitem2 = pfontlistdata->element_at(j);
+                  ::pointer < font_list_item > pitem2 = pfontlistdata->item_at(j);
 
                   auto & rect2 = pitem2->m_box[0].m_rectangle;
 
@@ -1434,7 +1457,7 @@ namespace write_text
       for (int i = 0; i < iFontCount; i++)
       {
 
-         font_list_item * pitem = pfontlistdata->element_at(i);
+         ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
          size_i32 & s = pitem->m_box[0].m_size;
 
@@ -1512,10 +1535,10 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      for (int i = 0; i < pfontlistdata->get_count(); i++)
+      for (int i = 0; i < pfontlistdata->item_count(); i++)
       {
 
-         font_list_item * pitem = pfontlistdata->element_at(i);
+         ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
          if (pitem == nullptr)
          {
@@ -1587,40 +1610,47 @@ namespace write_text
 
       }
 
-      if (m_iHover >= 0)
+      if (::is_item_set(m_puserinteraction->m_pitemHover))
       {
 
-         if (pfontlistdata->element_at(m_iHover)->m_box[BOX_HOVER].m_rectangle.contains(point))
+         ::pointer < font_list_item > pfontlistitemHover = m_puserinteraction->m_pitemHover;
+
+         if (pfontlistitemHover && pfontlistitemHover->m_box[BOX_HOVER].m_rectangle.contains(point))
          {
 
-            return __new(::item(::e_element_item, m_iHover));
+            return m_puserinteraction->m_pitemHover;
 
          }
 
       }
 
-      for (::index iItem = 0; iItem < pfontlistdata->get_size(); iItem++)
+      for (::index iItem = 0; iItem < pfontlistdata->item_count(); iItem++)
       {
 
-         if (pfontlistdata->element_at(iItem) == nullptr)
+         if (pfontlistdata->item_at(iItem) == nullptr)
          {
 
             continue;
 
          }
 
-         if (pfontlistdata->element_at(iItem)->m_box[BOX].m_rectangle.contains(point))
+         ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(iItem);
+
+         if (pfontlistitem->m_box[BOX].m_rectangle.contains(point))
          {
 
-            return __new(::item(::e_element_item, iItem));
+            //return __new(::item(::e_element_item, iItem));
+            return pfontlistitem;
 
          }
 
       }
 
-      auto pitemNone = __new(::item(::e_element_none));
+      //auto pitemNone = __new(::item(::e_element_none));
 
-      return pitemNone;
+      //return pitemNone;
+
+      return nullptr;
 
    }
 
@@ -1641,32 +1671,53 @@ namespace write_text
 
       }
 
-      for (index iItem = 0; iItem < pfontlistdata->get_size(); iItem++)
+      for (index iItem = 0; iItem < pfontlistdata->item_count(); iItem++)
       {
 
-         if (pfontlistdata->element_at(iItem) == nullptr)
+         ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(iItem);
+
+         if (!pfontlistitem)
          {
 
             continue;
 
          }
 
-         rectangle_i32 rectangle(pfontlistdata->element_at(iItem)->m_box[BOX].m_rectangle);
+         rectangle_i32 rectangle(pfontlistitem->m_box[BOX].m_rectangle);
 
          rectangle.right = rectangle.left + m_size.cx();
 
          if (rectangle.contains(point))
          {
 
-            return __new(::item(::e_element_item, iItem));
+            return pfontlistitem;
 
          }
 
       }
 
-      auto pitemNone = __new(::item(::e_element_none));
+      //auto pitemNone = __new(::item(::e_element_none));
 
-      return pitemNone;
+      // return pitemNone;
+
+      return nullptr;
+
+   }
+
+
+   ::status < rectangle_i32 >font_list::item_rectangle(::item * pitem)
+   {
+
+      ::rectangle_i32 r;
+
+      if (!get_box_rect(&r, ::item_index(pitem)))
+      {
+
+         return error_failed;
+
+      }
+
+      return r;
 
    }
 
@@ -1706,21 +1757,23 @@ namespace write_text
 
       }
 
-      if (i < 0 || i >= pfontlistdata->get_size())
+      if (i < 0 || i >= pfontlistdata->item_count())
       {
 
          return false;
 
       }
 
-      if (pfontlistdata->element_at(i) == nullptr)
+      ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(i);
+
+      if (!pfontlistitem)
       {
 
          return false;
 
       }
 
-      *lprect = pfontlistdata->element_at(i)->m_box[BOX].m_rectangle;
+      *lprect = pfontlistitem->m_box[BOX].m_rectangle;
 
       return true;
 
@@ -1741,21 +1794,23 @@ namespace write_text
 
       }
 
-      if (i < 0 || i >= pfontlistdata->get_size())
+      if (i < 0 || i >= pfontlistdata->item_count())
       {
 
          return false;
 
       }
 
-      if (pfontlistdata->element_at(i) == nullptr)
+      ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(i);
+
+      if (!pfontlistitem)
       {
 
          return false;
 
       }
 
-      *lprect = pfontlistdata->element_at(i)->m_box[BOX].m_rectangle;
+      *lprect = pfontlistitem->m_box[BOX].m_rectangle;
 
       lprect->right = lprect->left + m_size.cx();
 
@@ -1809,17 +1864,19 @@ namespace write_text
 
       }
 
-      for (index i = 0; i < pfontlistdata->get_size(); i++)
+      for (index i = 0; i < pfontlistdata->item_count(); i++)
       {
 
-         if (m_pfontenumerationitema->element_at(i) == nullptr)
+         ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(i);
+
+         if (!pfontlistitem)
          {
 
             continue;
 
          }
 
-         if(m_pfontenumerationitema->element_at(i)->m_strName.case_insensitive_order(str) == 0)
+         if(pfontlistitem->m_strName.case_insensitive_order(str) == 0)
          {
 
             return i;

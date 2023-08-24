@@ -37,7 +37,7 @@ namespace user
    check_box::check_box(e_style estyle)
    {
 
-      m_bClickDefaultMouseHandling = true;
+      m_bDefaultClickHandling = true;
 
       m_timeAnimationPeriod = 300_ms;
 

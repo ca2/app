@@ -72,9 +72,9 @@ namespace user
    void scroll_base::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_pscrolldataHorizontal->m_bScroll = false;
+      m_pscrolldataHorizontal->m_bHasScroll = false;
 
-      m_pscrolldataVertical->m_bScroll = false;
+      m_pscrolldataVertical->m_bHasScroll = false;
 
       auto sizeTotal = get_total_size();
 
@@ -104,12 +104,12 @@ namespace user
       if (iTotalWidth > iClientWidth)
       {
 
-         m_pscrolldataHorizontal->m_bScroll = true;
+         m_pscrolldataHorizontal->m_bHasScroll = true;
 
          if (iTotalHeight > iScrollHeight)
          {
 
-            m_pscrolldataVertical->m_bScroll = true;
+            m_pscrolldataVertical->m_bHasScroll = true;
 
          }
 
@@ -117,20 +117,20 @@ namespace user
       else if (iTotalHeight > iClientHeight)
       {
 
-         m_pscrolldataVertical->m_bScroll = true;
+         m_pscrolldataVertical->m_bHasScroll = true;
 
          if (iTotalWidth > iscrollWidth)
          {
 
-            m_pscrolldataHorizontal->m_bScroll = true;
+            m_pscrolldataHorizontal->m_bHasScroll = true;
 
          }
 
       }
 
-      m_pscrolldataHorizontal->m_bScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll;
+      //m_pscrolldataHorizontal->m_bShowScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bHasScroll;
 
-      m_pscrolldataVertical->m_bScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll;
+      //m_pscrolldataVertical->m_bShowScroll = m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bHasScroll;
 
       //if (!m_pscrolldataHorizontal->m_bScroll)
       //{
@@ -249,9 +249,9 @@ namespace user
    void scroll_base::defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll
+      if (m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bHasScroll
             && m_pscrollbarHorizontal.is_set() && m_pscrollbarHorizontal->is_ok()
-            && m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bScroll
+            && m_pscrolldataVertical->m_bScrollEnable && m_pscrolldataVertical->m_bHasScroll
             && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->is_ok())
       {
 
@@ -267,6 +267,60 @@ namespace user
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
       }
+
+   }
+
+
+   bool scroll_base::horizontal_scrollbar_visible()
+   {
+
+      return m_pscrolldataHorizontal->scroll_visible();
+
+   }
+
+
+   bool scroll_base::vertical_scrollbar_visible()
+   {
+
+      return m_pscrolldataVertical->scroll_visible();
+
+   }
+
+
+   bool scroll_base::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
+   {
+
+      if (eelement == e_element_client_hit_test)
+      {
+
+         //if (!m_bEmptyAreaIsClientArea)
+         //{
+
+         //   return false;
+
+         //}
+
+         rectangle = client_rectangle();
+
+         if (horizontal_scrollbar_visible())
+         {
+
+            rectangle.bottom -= m_pscrollbarHorizontal->scrollbar_width();
+
+         }
+
+         if (vertical_scrollbar_visible())
+         {
+
+            rectangle.right -= m_pscrollbarVertical->scrollbar_width();
+
+         }
+
+         return true;
+
+      }
+
+      return ::user::interaction::get_element_rectangle(rectangle, eelement);
 
    }
 

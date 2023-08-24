@@ -11,7 +11,7 @@
 #include "acme/platform/profiler.h"
 #include "apex/platform/history.h"
 #include "apex/platform/savings.h"
-#include "apex/crypto/crypto.h"
+#include "acme/crypto/crypto.h"
 #include "aura/constant/idpool.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -196,7 +196,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_windowing, true);
 
-      enable_trace_category(e_trace_category_prodevian, false);
+      enable_trace_category(e_trace_category_graphics_thread, false);
     
       //__construct(g_pmutexImage);
 

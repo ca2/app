@@ -86,7 +86,7 @@ namespace user
       m_bSingleColumnMode = false;
 
       //m_pdrawlistitem = nullptr;
-
+      m_bDefaultParentMouseMessageHandling = false;
 
       m_bAutoCreateListHeader = true;
 
@@ -6864,7 +6864,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      auto pmouse = __create_new < ::user::mouse >();
+      auto pmouse = __create_new < ::message::mouse >();
 
       pmouse->m_point = pointCursor;
 
@@ -7441,9 +7441,9 @@ namespace user
 
          item_range itemrange;
 
-         itemrange.set_lower_bound(pitem->m_item.item_index());
+         itemrange.set_lower_bound(pitem->m_item.m_iItem);
 
-         itemrange.set_upper_bound(pitem->m_item.item_index());
+         itemrange.set_upper_bound(pitem->m_item.m_iItem);
 
          m_rangeSelection.add_item(itemrange);
 

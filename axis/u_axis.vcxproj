@@ -235,7 +235,9 @@
     <ClInclude Include="user\form\window.h" />
     <ClInclude Include="user\form\_.h" />
     <ClInclude Include="user\user\aaa__component.h" />
+    <ClInclude Include="user\user\calculator_edit.h" />
     <ClInclude Include="user\user\combo_box.h" />
+    <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\list_box.h" />
     <ClInclude Include="user\user\object.h" />
     <ClInclude Include="user\user\plus_minus.h" />
@@ -349,8 +351,9 @@
     <ClCompile Include="user\form\control.cpp" />
     <ClCompile Include="user\form\data.cpp" />
     <ClCompile Include="user\form\window.cpp" />
+    <ClCompile Include="user\user\calculator_edit.cpp" />
     <ClCompile Include="user\user\combo_box.cpp" />
-    <ClCompile Include="user\user\form_designer.cpp" />
+    <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\line_layout.cpp" />
     <ClCompile Include="user\user\list_box.cpp" />
     <ClCompile Include="user\user\object.cpp" />

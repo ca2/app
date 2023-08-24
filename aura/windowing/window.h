@@ -368,6 +368,9 @@ namespace windowing
       }
 
 
+      virtual void do_update_screen();
+
+
    };
 
 

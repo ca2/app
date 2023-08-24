@@ -15,6 +15,7 @@
 #include "aura/message/user.h"
 #include "aura/platform/application.h"
 #include "aura/platform/session.h"
+#include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/interaction.h"
@@ -1664,6 +1665,128 @@ namespace windowing
    //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    //}
+
+   void window::do_update_screen()
+   {
+
+      auto puserinteraction = m_puserinteractionimpl->m_puserinteraction;
+
+      if (!(puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
+      {
+
+         //#ifdef LINUX
+
+         //if (bStartWindowVisual)
+         //{
+
+            puserinteraction->_window_request_presentation();
+
+            //m_pimpl->window_show();
+
+         //}
+
+         //#endif
+         ////END IFDEF LINUX
+
+      }
+
+      // if (m_bVisualUpdated)
+      // {
+
+      //    m_bVisualUpdated = false;
+
+      //    if (::is_set(m_pimpl->m_puserthread))
+      //    {
+
+      //       m_pimpl->m_puserthread->m_evApplyVisual.wait(15_s);
+
+      //    }
+
+      // }
+
+      if (!this->task_get_run())
+      {
+
+         //return false;
+         return;
+
+      }
+
+      bool bWindowsApplyVisual = true;
+
+      auto & edisplayOutput = puserinteraction->const_layout().output().m_edisplay;
+
+      auto & edisplayDesign = puserinteraction->const_layout().design().m_edisplay;
+
+      if (edisplayOutput != edisplayDesign)
+      {
+
+         puserinteraction->post_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
+
+      }
+
+
+#if TIME_REPORTING
+
+      auto e1 = g_timeBetweenUpdateBufferAndUpdateScreen.elapsed();
+
+      ::time timeUpdateScreenPost;
+
+      timeUpdateScreenPost.Now();
+
+      information("timeBetweenUpdateBufferAndUpdateScreen "+as_string(e1.floating_millisecond().m_d) +"ms\n");
+
+#endif
+
+      //if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
+      {
+
+
+
+         m_puserinteractionimpl->m_pgraphicsthread->graphics_thread_update_screen();
+
+      }
+      //else
+      //{
+
+      //   information() << "no update screen";
+
+      //}
+
+#if TIME_REPORTING
+
+      auto e2 = timeUpdateScreenPost.elapsed();
+
+      information("timeUpdateScreenPost " + as_string(e2.floating_millisecond().m_d) + "ms\n");
+
+#endif
+
+      puserinteraction->set_display(edisplayDesign, ::user::e_layout_output);
+
+      if (!puserinteraction)
+      {
+
+         return;
+
+      }
+
+      if ((puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
+      {
+         // IFDEF WINDOWS
+         //if (bStartWindowVisual)
+         //{
+
+            puserinteraction->_window_request_presentation();
+
+            //m_pimpl->m_pwindow->window_show();
+            //m_puserinteraction->post_procedure(m_procedureWindowShow);
+
+         //}
+         // ENDIF WINDOWS
+      }
+
+
+   }
 
 
 } // namespace windowing

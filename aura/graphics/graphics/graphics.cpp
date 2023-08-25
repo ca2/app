@@ -115,6 +115,14 @@ namespace graphics
    }
 
 
+//   bool graphics::presentation_complete()
+//   {
+//
+//      return true;
+//
+//   }
+
+
    void graphics::buffer_size_and_position(buffer_item * pbufferitem)
    {
 

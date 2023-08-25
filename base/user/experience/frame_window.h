@@ -74,6 +74,10 @@ namespace experience
       ::item_pointer hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
 
+      bool is_window_resizing() override;
+      bool is_window_repositioning() override;
+      bool is_window_docking() override;
+
 
       bool sketch_on_display() override;
 

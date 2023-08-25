@@ -65,7 +65,7 @@ namespace graphics
 
       virtual bool is_single_buffer_mode() const;
 
-
+      //virtual bool presentation_complete();
       virtual void on_after_graphical_update();
 
       virtual bool buffer_lock_round_swap_key_buffers();

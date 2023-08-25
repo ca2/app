@@ -2705,16 +2705,26 @@ namespace user
    // }
 
 
-   void primitive_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
    {
 
    }
 
 
-   void primitive_impl::_window_request_presentation()
+   void primitive_impl::_window_show_change_visibility_locked()
    {
 
-      //return true;
+   }
+
+
+   void primitive_impl::_window_request_presentation_locked()
+   {
+
+   }
+
+
+   void primitive_impl::_window_request_presentation_unlocked()
+   {
 
    }
 

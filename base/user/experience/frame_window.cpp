@@ -2553,6 +2553,30 @@ namespace experience
    }
 
 
+   bool frame_window::is_window_resizing()
+   {
+
+      return size_manager()->window_is_sizing();
+
+   }
+
+
+   bool frame_window::is_window_repositioning()
+   {
+
+      return move_manager()->window_is_moving();
+
+   }
+
+
+   bool frame_window::is_window_docking()
+   {
+
+      return dock_manager()->window_is_docking();
+
+   }
+
+
    bool frame_window::is_frame_experience_enabled()
    {
 

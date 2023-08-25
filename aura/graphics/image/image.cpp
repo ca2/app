@@ -265,10 +265,112 @@ void image::initialize(const ::size_i32 & size, ::image32_t * pimage32, int iSca
 //}
 
 
-bool image::host(const ::pixmap* ppixmap)
+bool image::host(::pixmap* ppixmap)
 {
-   // callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
-   return false;
+   //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
+   //return false;
+
+   if (!ppixmap->is_ok())
+   {
+
+      return false;
+
+      //throw ::exception(error_failed);
+
+   }
+
+   if (m_pbitmap.is_set()
+         && m_pbitmap->get_os_data() != nullptr
+         && ppixmap->m_sizeRaw == this->m_sizeRaw
+         && ppixmap->image32() == image32()
+         && ppixmap->scan_size() == scan_size())
+   {
+
+      if (ppixmap->size() != size())
+      {
+
+         m_size = ppixmap->size();
+
+      }
+
+      return true;
+
+      //return;
+
+   }
+
+   //destroy();
+
+   m_pbitmap.defer_create(this);
+
+   m_pgraphics.defer_create(this);
+
+   //if (m_pbitmap.is_null())
+   //{
+
+   //   m_sizeRaw.cx() = 0;
+
+   //   m_sizeRaw.cy() = 0;
+
+   //   m_sizeAlloc.cx() = 0;
+
+   //   m_sizeAlloc.cy() = 0;
+
+   //   m_iScan = 0;
+
+   //   return false;
+
+   //}
+
+
+   if(!m_pbitmap->host_bitmap(nullptr, ppixmap))
+   {
+
+      return false;
+      //m_pbitmap->create_bitmap(pgraphics, size, )
+
+   }
+   //if (!)
+   //{
+
+   //   m_sizeRaw.cx() = 0;
+
+   //   m_sizeRaw.cy() = 0;
+
+   //   m_sizeAlloc.cx() = 0;
+
+   //   m_sizeAlloc.cy() = 0;
+
+   //   m_iScan = 0;
+
+   //   return false;
+
+   //}
+      //throw ::exception(error_failed);
+   //if (m_pbitmap->get_os_data() == nullptr)
+   //{
+
+   //   destroy();
+
+   //   return false;
+
+   //}
+
+   init(ppixmap->size(), ppixmap->image32(), ppixmap->m_iScan);
+
+   m_pgraphics->set(m_pbitmap);
+
+   m_pgraphics->m_pimage = this;
+
+   m_pgraphics->set_origin(0, 0);
+
+   m_sizeAlloc = ppixmap->size();
+
+   set_ok_flag();
+
+   return true;
+
+
 
 }
 

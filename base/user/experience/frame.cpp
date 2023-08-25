@@ -238,12 +238,12 @@ namespace experience
 
       synchronous_lock synchronouslock(pframewindow->synchronization());
 
-      if (m_pcontrolbox.is_set())
-      {
-
-         m_pcontrolbox->reset_layout(pgraphics);
-
-      }
+//      if (m_pcontrolbox.is_set())
+//      {
+//
+//         m_pcontrolbox->reset_layout(pgraphics);
+//
+//      }
 
       calculate_caption_height(pgraphics);
 
@@ -978,7 +978,7 @@ namespace experience
 
       //information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
-      calculate_caption_height(pgraphics);
+      //calculate_caption_height(pgraphics);
 
       //i32 iCaptionHeight = m_iCap;
 
@@ -1032,7 +1032,7 @@ namespace experience
 
          get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pgraphics);
 
-         //information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
+         information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
 
       }
 

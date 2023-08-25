@@ -623,7 +623,7 @@ namespace user
    }
 
 
-   void interaction_child::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
    {
 
       try
@@ -873,7 +873,15 @@ namespace user
    }
 
 
-   void interaction_child::_window_request_presentation()
+   void interaction_child::_window_request_presentation_locked()
+   {
+
+      _window_request_presentation_unlocked();
+
+   }
+
+
+   void interaction_child::_window_request_presentation_unlocked()
    {
 
       if (!m_puserinteraction)

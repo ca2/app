@@ -210,6 +210,9 @@ namespace sandbox_windowing
       //void window_update_screen_buffer() override;
       //void _window_request_presentation() override;
 
+
+//      void _window_request_presentation_locked();
+
       bool is_active_window() const override;
 
 

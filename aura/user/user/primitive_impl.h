@@ -101,8 +101,10 @@ namespace user
 
       void destroy() override;
 
-      virtual void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
-      virtual void _window_request_presentation();
+      virtual void _window_show_change_visibility_locked();
+      virtual void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation);
+      virtual void _window_request_presentation_locked();
+      virtual void _window_request_presentation_unlocked();
 
       virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
       

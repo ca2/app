@@ -122,6 +122,9 @@ namespace user
 
 #if !defined(UNIVERSAL_WINDOWS)
 
+      windowing()->windowing_post([this]()
+                                  {
+
       auto & edisplay = layout().design().display();
 
       window_rectangle(m_windowrectangle.m_rectangleWindow, e_layout_design);
@@ -171,15 +174,17 @@ namespace user
 
       }
 
+                                  });
+
 #endif
 
    }
 
 
-   void box::_window_show_change_visibility()
+   void box::_window_show_change_visibility_unlocked()
    {
 
-      ::user::interaction::_window_show_change_visibility();
+      ::user::interaction::_window_show_change_visibility_unlocked();
 
       m_windowrectangle.m_edisplay = const_layout().window().display();
 

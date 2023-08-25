@@ -2244,7 +2244,7 @@ namespace user
          else if (pmessage->m_atom == e_message_mouse_move)
          {
 
-            information() << "e_message_mouse_move";
+            //information() << "e_message_mouse_move";
 
          }
          else if (pmessage->m_atom == e_message_left_button_up)
@@ -7039,7 +7039,15 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
-   void interaction_impl::_window_request_presentation()
+   void interaction_impl::_window_request_presentation_locked()
+   {
+
+      m_pwindow->_window_request_presentation_locked();
+
+   }
+
+
+   void interaction_impl::_window_request_presentation_unlocked()
    {
 
       if (::is_null(m_puserinteraction))
@@ -7354,7 +7362,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
             //#endif
             //         {
 
-            m_puserinteraction->_window_show_change_visibility();
+            m_puserinteraction->_window_show_change_visibility_unlocked();
 
             //}
 
@@ -7464,7 +7472,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
             // }
             // else
          {
-               m_pwindow->_window_request_presentation_set_window_position(
+               m_pwindow->_set_window_position_unlocked(
                zorderNew,
                pointOutput.x(),
                pointOutput.y(),
@@ -7515,7 +7523,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
             //#endif
             //         {
 
-            m_puserinteraction->_window_show_change_visibility();
+            m_puserinteraction->_window_show_change_visibility_unlocked();
 
             //}
 
@@ -7529,7 +7537,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          //throw ::exception(todo);
          //m_puserinteraction->set();
 
-         m_pwindow->set_foreground_window();
+         m_pwindow->_set_foreground_window_unlocked();
 
       }
 
@@ -7539,7 +7547,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          //throw ::exception(todo);
          ///m_puserinteraction->XXXSetActiveWindow();
 
-         m_pwindow->set_active_window();
+         m_pwindow->_set_active_window_unlocked();
 
       }
 
@@ -7651,51 +7659,51 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    }
 
 
-   void interaction_impl::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void interaction_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
    {
 
       //m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
         // {
 
-               if (!m_puserinteraction)
-               {
+      if (!m_puserinteraction)
+      {
 
-                  return;
+         return;
 
-               }
+      }
 
-               __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
+      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
-               if (edisplay == e_display_iconic)
-               {
+      if (edisplay == e_display_iconic)
+      {
 
-                  if (eactivation == e_activation_no_activate)
-                  {
+         if (eactivation == e_activation_no_activate)
+         {
 
-                     m_pwindow->show_window(edisplay, eactivation);
+            m_pwindow->_show_window_unlocked(edisplay, eactivation);
 
-                  }
-                  else
-                  {
+         }
+         else
+         {
 
-                     m_pwindow->show_window(edisplay, eactivation);
+            m_pwindow->_show_window_unlocked(edisplay, eactivation);
 
-                  }
+         }
 
-               }
-               else
-               {
+      }
+      else
+      {
 
-                  m_pwindow->show_window(edisplay, eactivation);
+         m_pwindow->_show_window_unlocked(edisplay, eactivation);
 
-               }
+      }
 
-               if (m_puserinteraction)
-               {
+      if (m_puserinteraction)
+      {
 
-                  m_puserinteraction->set_activation(e_activation_default, e_layout_design);
+         m_puserinteraction->set_activation(e_activation_default, e_layout_design);
 
-               }
+      }
 
          //});
 
@@ -7834,7 +7842,10 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
       {
 
 
-         if (!m_pwindow->placement_log()->has_recent(preposition->m_point))
+         if (!m_pwindow->placement_log()->has_recent(preposition->m_point)
+         && !m_puserinteraction->is_window_resizing()
+         && !m_puserinteraction->is_window_repositioning()
+            && !m_puserinteraction->is_window_docking())
          {
 
             m_puserinteraction->set_position(preposition->m_point, e_layout_sketch);
@@ -7946,7 +7957,9 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       m_sizeSetWindowSizeRequest = psize->m_size;
 
-      if (!m_pwindow->placement_log()->has_recent(psize->m_size))
+      if (!m_pwindow->placement_log()->has_recent(psize->m_size)         && !m_puserinteraction->is_window_resizing()
+          && !m_puserinteraction->is_window_repositioning()
+          && !m_puserinteraction->is_window_docking())
       {
 
          m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);

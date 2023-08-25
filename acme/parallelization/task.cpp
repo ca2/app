@@ -2198,3 +2198,34 @@ task_guard::~task_guard()
 
 
 
+::index_array g_iaThreadIndex;
+
+
+::index task_index(itask_t itask)
+{
+
+   synchronous_lock sl(::acme::acme::g_pacme->m_psubsystem->acmesystem()->synchronization());
+
+   auto iThreadIndex = g_iaThreadIndex.find_first(itask);
+
+   if(iThreadIndex < 0)
+   {
+
+      iThreadIndex = g_iaThreadIndex.add(itask);
+
+   }
+
+   return iThreadIndex;
+
+}
+
+
+::index task_index()
+{
+
+   return task_index(::get_current_itask());
+
+}
+
+
+

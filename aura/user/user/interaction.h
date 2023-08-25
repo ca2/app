@@ -1275,9 +1275,12 @@ namespace user
       
       virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _window_show_change_visibility();
-      virtual void _window_request_presentation();
+      virtual void _window_show_change_visibility_locked();
+      virtual void _window_show_change_visibility_unlocked();
+      virtual void _window_request_presentation_locked();
+      virtual void _window_request_presentation_unlocked();
       virtual void on_visual_applied();
+      virtual void _on_visual_changed_unlocked();
 
 
       virtual void defer_save_window_placement();
@@ -2177,6 +2180,8 @@ namespace user
       virtual bool has_pending_redraw_flags() override;
 
       virtual bool is_window_resizing();
+      virtual bool is_window_repositioning();
+      virtual bool is_window_docking();
 
       virtual void set_bitmap_source(const string & strBitmapFileTitle) override;
       virtual void clear_bitmap_source() override;

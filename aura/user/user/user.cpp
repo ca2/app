@@ -55,7 +55,7 @@ namespace user
       m_pbaseuser = nullptr;
       m_pbreduser = nullptr;
       m_pcoreuser = nullptr;
-      //::initialize_user_mutex();
+      ::initialize_user_mutex();
       //initialize_children_mutex();
 
       m_bOnInitializeWindowObject = false;
@@ -1608,6 +1608,8 @@ CLASS_DECL_AURA void initialize_user_mutex()
 
    }
 
+   g_pmutexUser = ::acme::acme::g_pacme->m_psubsystem->acmesystem()->node()->create_mutex();
+
 }
 
 
@@ -1621,7 +1623,7 @@ CLASS_DECL_AURA void finalize_user_mutex()
 
    }
 
-   delete g_pmutexUser;
+   g_pmutexUser.release();
 
 }
 

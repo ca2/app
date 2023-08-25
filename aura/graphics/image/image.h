@@ -279,7 +279,7 @@ public:
    //virtual void     create(i32 iWidth, i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, void bPreserve = false);
 
 
-   virtual bool host(const ::pixmap * ppixmap);
+   virtual bool host(::pixmap * ppixmap);
    virtual bool on_host_read_pixels(::pixmap * ppixmapHost) const;
    void destroy() override;
    void destroy_os_data() override;

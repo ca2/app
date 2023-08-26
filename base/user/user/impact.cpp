@@ -31,6 +31,8 @@ namespace user
 
       //m_bExtendOnParent = true;
 
+      m_bExtendOnParentClientArea = true;
+
    }
 
 

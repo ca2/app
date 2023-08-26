@@ -62,7 +62,7 @@ namespace experience
 
 
 
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
       void defer_save_window_placement() override;
@@ -176,9 +176,10 @@ namespace experience
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(::u32 uFlags);
 
-      void GetRegionClientRectangle(::rectangle_i32 * prectangle);
+      //void GetRegionClientRectangle(::rectangle_i32 * prectangle);
 
-      void get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
+      
+      ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
       void relay_event(::message::message * pmessage);

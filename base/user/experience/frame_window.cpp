@@ -529,8 +529,10 @@ namespace experience
    }
 
 
-   void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      ::user::frame_window::_001OnNcDraw(pgraphics);
 
       pgraphics->payload("log_fill_rectangle") = 0;
 
@@ -549,7 +551,7 @@ namespace experience
 
             }
 
-            m_pframe->_001OnDraw(pgraphics);
+            m_pframe->_001OnNcDraw(pgraphics);
 
          }
          catch (...)
@@ -649,22 +651,27 @@ namespace experience
    }
 
 
-   void frame_window::GetRegionClientRectangle(::rectangle_i32 * prectangle)
+   //void frame_window::GetRegionClientRectangle(::rectangle_i32 * prectangle)
+   //{
+
+   //   ASSERT(m_pframe != nullptr);
+
+   //   m_pframe->get_client_rectangle(prectangle);
+
+   //}
+
+
+   ::rectangle_i32 frame_window::client_rectangle(::user::enum_layout elayout)
    {
 
-      ASSERT(m_pframe != nullptr);
+      if (::is_null(m_pframe))
+      {
 
-      m_pframe->get_window_client_rectangle(prectangle);
+         return ::user::frame_window::client_rectangle(elayout);
 
-   }
+      }
 
-
-   void frame_window::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
-   {
-
-      ASSERT(m_pframe != nullptr);
-
-      m_pframe->get_window_client_rectangle(prectangle, elayout);
+      return m_pframe->client_rectangle(elayout);
 
    }
 

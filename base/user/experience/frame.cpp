@@ -163,7 +163,7 @@ namespace experience
    }
 
 
-   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -253,7 +253,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      get_window_client_rectangle(&rectangleClient, ::user::e_layout_lading);
+      rectangleClient = client_rectangle(::user::e_layout_lading);
 
       if (pframewindow != nullptr)
       {
@@ -902,11 +902,11 @@ namespace experience
    void frame::calculate_caption_height(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangle = get_control_box()->get_button_margin(e_button_close);
+      auto rectangleMargin = get_control_box()->get_button_margin(e_button_close);
 
       auto iButtonSize = get_control_box()->calculate_button_size(pgraphics);
 
-      auto iCaptionHeight = rectangle.top + iButtonSize + rectangle.bottom;
+      auto iCaptionHeight = rectangleMargin.top + iButtonSize + rectangleMargin.bottom;
 
       m_iCaptionHeight = iCaptionHeight;
 
@@ -955,13 +955,13 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleRaw;
 
-      rectangleClient = pframewindow->::user::interaction::client_rectangle(::user::e_layout_lading);
+      rectangleRaw = pframewindow->raw_rectangle(::user::e_layout_lading);
 
-      //information() << "experience::frame_window::title_bar_layout " << rectangleClient;
+      //information() << "experience::frame_window::title_bar_layout " << rectangleRaw;
 
-      if (rectangleClient.is_empty())
+      if (rectangleRaw.is_empty())
       {
 
          return;
@@ -982,14 +982,14 @@ namespace experience
 
       //i32 iCaptionHeight = m_iCap;
 
-      m_rectangleCaption.left = rectangleClient.left + rectangleMargin.left;
-      m_rectangleCaption.top = rectangleClient.top + rectangleMargin.top;
-      m_rectangleCaption.right = rectangleClient.right - rectangleMargin.right;
+      m_rectangleCaption.left = rectangleRaw.left + rectangleMargin.left;
+      m_rectangleCaption.top = rectangleRaw.top + rectangleMargin.top;
+      m_rectangleCaption.right = rectangleRaw.right - rectangleMargin.right;
       m_rectangleCaption.bottom = m_rectangleCaption.top + m_iCaptionHeight;
 
       m_iTitleBottom = m_rectangleCaption.bottom;
 
-      rectangleClient.deflate(rectangleMargin);
+      rectangleRaw.deflate(rectangleMargin);
 
       auto eappearance = m_pframewindow->const_layout().design().appearance();
 
@@ -997,24 +997,24 @@ namespace experience
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleClient.top = m_rectangleCaption.bottom - 1;
+         rectangleRaw.top = m_rectangleCaption.bottom - 1;
 
       }
 
       ///m_rectangleClient = rectangleClient;
 
-      m_iControlBoxPosition = rectangleClient.right;
+      m_iControlBoxPosition = rectangleRaw.right;
 
-      if (m_iControlBoxPosition < rectangleClient.left)
+      if (m_iControlBoxPosition < rectangleRaw.left)
       {
 
-         m_iControlBoxPosition = rectangleClient.left;
+         m_iControlBoxPosition = rectangleRaw.left;
 
       }
-      else if (m_iControlBoxPosition > rectangleClient.right - iControlBoxWidth)
+      else if (m_iControlBoxPosition > rectangleRaw.right - iControlBoxWidth)
       {
 
-         m_iControlBoxPosition = rectangleClient.right - iControlBoxWidth;
+         m_iControlBoxPosition = rectangleRaw.right - iControlBoxWidth;
 
       }
 
@@ -1036,7 +1036,7 @@ namespace experience
 
       }
 
-      m_rectangleWindow = rectangleClient;
+      m_rectangleWindow = rectangleRaw;
 
       ::rectangle_i32 rectangleIcon;
 
@@ -1178,7 +1178,7 @@ namespace experience
    }
 
 
-   bool frame::calculate_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
+   bool frame::calculate_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
    {
 
       ::rectangle_i32 rectangleClient(*prectangle);
@@ -1211,7 +1211,7 @@ namespace experience
    }
 
 
-   bool frame::get_window_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
+   ::rectangle_i32 frame::client_rectangle(::user::enum_layout elayout)
    {
 
       if (__type_name(this).case_insensitive_contains("file"))
@@ -1226,39 +1226,37 @@ namespace experience
 
       rectangleClient = m_pframewindow->::user::interaction::client_rectangle(elayout);
 
-      if (!calculate_window_client_rectangle(&rectangleClient, elayout))
+      if (!calculate_client_rectangle(&rectangleClient, elayout))
       {
 
-         return false;
+         return {};
 
       }
 
-      *prectangle = rectangleClient;
-
-      return true;
+      return rectangleClient;
 
    }
 
 
-   bool frame::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
-   {
+   //bool frame::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
+   //{
 
-      ::rectangle_i32 rectangle;
+   //   ::rectangle_i32 rectangle;
 
-      if (!get_window_client_rectangle(&rectangle, elayout))
-      {
+   //   if (!get_client_rectangle(&rectangle, elayout))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      rectangle.offset(-rectangle.top_left());
+   //   rectangle.offset(-rectangle.top_left());
 
-      *prectangle = rectangle;
+   //   *prectangle = rectangle;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void frame::set_need_redraw_frame(::user::enum_layout elayout)
@@ -1268,7 +1266,7 @@ namespace experience
 
       ::rectangle_i32 rectangleInner(rectangle);
 
-      calculate_window_client_rectangle(&rectangleInner);
+      calculate_client_rectangle(&rectangleInner);
 
       auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 

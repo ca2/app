@@ -688,7 +688,7 @@ namespace experience_core
    }
 
 
-   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       //return; // abcxxx

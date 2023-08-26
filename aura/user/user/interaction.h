@@ -138,8 +138,9 @@ namespace user
 
 
       
-      bool                                      m_bExtendOnParent;
-      bool                                      m_bExtendOnParentIfClientOnly;
+      boolean                                   m_bExtendOnParent;
+      boolean                                   m_bExtendOnParentIfClientOnly;
+      boolean                                   m_bExtendOnParentClientArea;
       bool                                      m_bToolWindow;
       bool                                      m_bMessageWindow;
       boolean                                   m_bLockGraphicalUpdate;
@@ -1251,7 +1252,8 @@ namespace user
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void extend_on_parent(::draw2d::graphics_pointer & pgraphics);
+      virtual void _extend_on_parent(::draw2d::graphics_pointer & pgraphics);
+      virtual void _extend_on_parent_client_area(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void top_down_prefix();

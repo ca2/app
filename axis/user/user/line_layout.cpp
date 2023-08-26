@@ -116,7 +116,7 @@ namespace user
       if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
       {
 
-         extend_on_parent(pgraphics);
+         _extend_on_parent(pgraphics);
 
       }
 

@@ -5878,15 +5878,6 @@ namespace user
 
          {
 
-            point_i32 pointScroll = m_pointScroll;
-
-            if (!pointScroll.is_null())
-            {
-
-               pgraphics->offset_origin(-pointScroll.x(), -pointScroll.y());
-
-            }
-
             if (m_bOnDraw)
             {
 
@@ -5957,6 +5948,20 @@ namespace user
                   {
 
                      ::draw2d::save_context savecontext(pgraphics);
+
+
+                     point_i32 pointScroll = m_pointScroll;
+
+                     if (!pointScroll.is_null())
+                     {
+
+                        pgraphics->offset_origin(-pointScroll.x(), -pointScroll.y());
+
+                     }
+
+                     auto rectangleClient = client_rectangle();
+
+                     pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
                      try
                      {
@@ -11659,7 +11664,7 @@ namespace user
    }
 
 
-   void interaction::extend_on_parent(::draw2d::graphics_pointer & pgraphics)
+   void interaction::_extend_on_parent(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (::string(typeid(*this).name()).contains("impact"))
@@ -11678,7 +11683,55 @@ namespace user
       if (sizeThis != sizeParent)
       {
 
-         set_size(sizeParent, ::user::e_layout_layout, pgraphics);
+         set_position(sizeParent, ::user::e_layout_layout, pgraphics);
+
+      }
+
+      auto positionThis = position(::user::e_layout_lading);
+
+      if (positionThis.is_set())
+      {
+
+         set_position({}, ::user::e_layout_layout, pgraphics);
+
+      }
+
+   }
+
+
+   void interaction::_extend_on_parent_client_area(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (::string(typeid(*this).name()).contains("impact"))
+      {
+
+         information() << "interaction::on_perform_top_down_layout impact";
+
+      }
+
+      auto pparent = get_parent();
+
+      auto rectangleClient = pparent->client_rectangle(e_layout_lading);
+
+      auto sizeParentClientArea = rectangleClient.size();
+
+      auto sizeThis = size(::user::e_layout_lading);
+
+      if (sizeThis != sizeParentClientArea)
+      {
+
+         set_size(sizeParentClientArea, ::user::e_layout_layout, pgraphics);
+
+      }
+
+      auto positionParentClientArea = rectangleClient.origin();
+
+      auto positionThis = position(::user::e_layout_lading);
+
+      if (positionThis != positionParentClientArea)
+      {
+
+         set_position(positionParentClientArea, ::user::e_layout_layout, pgraphics);
 
       }
 
@@ -11845,7 +11898,14 @@ namespace user
       if (m_bExtendOnParent)
       {
 
-         extend_on_parent(pgraphics);
+         _extend_on_parent(pgraphics);
+
+      }
+
+      if (m_bExtendOnParentClientArea)
+      {
+
+         _extend_on_parent_client_area(pgraphics);
 
       }
 
@@ -16430,7 +16490,7 @@ namespace user
    ::rectangle_i32 interaction::window_rectangle(enum_layout elayout)
    {
 
-      auto rectangle = this->client_rectangle(elayout);
+      auto rectangle = this->raw_rectangle(elayout);
 
       this->client_to_screen(elayout)(rectangle);
 

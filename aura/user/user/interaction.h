@@ -413,6 +413,7 @@ namespace user
       bool                                         m_bEmptyAreaIsClientArea;
       //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
+      boolean                                      m_bNeedFullRedrawOnResize;
       boolean                                      m_bLockSketchToDesign;
 
 

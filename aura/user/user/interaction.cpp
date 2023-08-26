@@ -11849,6 +11849,13 @@ namespace user
 
       }
 
+      if (m_bNeedFullRedrawOnResize)
+      {
+
+         set_need_redraw({}, pgraphics);
+
+      }
+
    }
 
 

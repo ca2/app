@@ -30,6 +30,8 @@ namespace app_app
 
       m_dPhaseShift = 0.0;
 
+      m_bNeedFullRedrawOnResize = true;
+
    }
 
 

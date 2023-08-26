@@ -1742,7 +1742,7 @@ namespace user
          for (auto & rectangleHost: rectanglea)
          {
 
-            client_to_host()(rectangleHost);
+            client_to_host(e_layout_lading)(rectangleHost);
 
          }
 
@@ -11912,7 +11912,9 @@ namespace user
       if (m_bNeedFullRedrawOnResize)
       {
 
-         set_need_redraw({}, pgraphics);
+         auto rectangle = client_rectangle(e_layout_lading);
+
+         set_need_redraw({rectangle}, pgraphics);
 
       }
 

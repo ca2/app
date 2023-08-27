@@ -82,9 +82,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangleClient, argb(255, 180, 180, 180));
+      pgraphics->fill_rectangle(rectangleX, argb(255, 180, 180, 180));
 
    }
 

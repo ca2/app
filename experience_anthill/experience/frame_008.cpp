@@ -232,7 +232,7 @@ namespace experience_anthill
 
 
 
-   void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside)
+   void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX, enum_border eside)
    {
 
       auto pframewindow = m_pframewindow;
@@ -274,7 +274,7 @@ namespace experience_anthill
       }
 
       enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-      ::rectangle_i32 rectangleA(rectangleClient);
+      ::rectangle_i32 rectangleA(rectangleX);
 
       if (m_bHollow)
       {
@@ -323,7 +323,7 @@ namespace experience_anthill
 
          }
 
-         ::rectangle_i32 rectangleA(rectangleClient);
+         ::rectangle_i32 rectangleA(rectangleX);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -354,7 +354,7 @@ namespace experience_anthill
          //if (m_pframewindow->is_active_window())
          //{
 
-         //   ::rectangle_i32 rectangleA(rectangleClient);
+         //   ::rectangle_i32 rectangleA(rectangleX);
 
          //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -397,7 +397,7 @@ namespace experience_anthill
          //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
          //   ::rectangle_i32 rectangle;
-         //   GetBorderRectangle(rectangleClient, &rectangle, eside);
+         //   GetBorderRectangle(rectangleX, &rectangle, eside);
          //   class imaging & imaging = psystem->imaging();
          //   imaging.fill_rectangle(pgraphics,
          //      rectangle,
@@ -412,7 +412,7 @@ namespace experience_anthill
          || estyle == ::user::StyleTranslucidLightGreen)
       {
          ::rectangle_i32 rectangle;
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          pgraphics->fill_rectangle(
             rectangle,
@@ -422,17 +422,17 @@ namespace experience_anthill
       else
       {
          ::rectangle_i32 rectangle;
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          pgraphics->fill_rectangle(
             rectangle,
             colorMoveableBorder &
             127_opacity);
 
-         ::rectangle_i32 rectangleClientB = rectangleA;
+         ::rectangle_i32 rectangleXB = rectangleA;
 
-         rectangleClientB.bottom--;
-         rectangleClientB.right--;
+         rectangleXB.bottom--;
+         rectangleXB.right--;
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -500,7 +500,7 @@ namespace experience_anthill
    }
 
 
-   void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
    {
 
       auto pmovemanager = m_pframewindow->move_manager();
@@ -521,7 +521,7 @@ namespace experience_anthill
       //if(m_bHollow)
       //{
       //   //return;
-      //   ::rectangle_i32 rectangleA(rectangleClient);
+      //   ::rectangle_i32 rectangleA(rectangleX);
 
       //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -539,7 +539,7 @@ namespace experience_anthill
       //   if (m_pframewindow->is_active_window())
       //   {
 
-      //      ::rectangle_i32 rectangleA(rectangleClient);
+      //      ::rectangle_i32 rectangleA(rectangleX);
 
       //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -599,19 +599,19 @@ namespace experience_anthill
 
          if (eborder & e_border_top)
          {
-            draw_border_side(pgraphics, rectangleClient, e_border_top);
+            draw_border_side(pgraphics, rectangleX, e_border_top);
          }
          if (eborder & e_border_right)
          {
-            draw_border_side(pgraphics, rectangleClient, e_border_right);
+            draw_border_side(pgraphics, rectangleX, e_border_right);
          }
          if (eborder & e_border_bottom)
          {
-            draw_border_side(pgraphics, rectangleClient, e_border_bottom);
+            draw_border_side(pgraphics, rectangleX, e_border_bottom);
          }
          if (eborder & e_border_left)
          {
-            draw_border_side(pgraphics, rectangleClient, e_border_left);
+            draw_border_side(pgraphics, rectangleX, e_border_left);
          }
 
       }
@@ -619,11 +619,11 @@ namespace experience_anthill
    }
 
    void frame_008::GetBorderRectangle(
-      const ::rectangle_i32 & rectangleClient,
+      const ::rectangle_i32 & rectangleX,
       ::rectangle_i32 * lprect,
       enum_border eside)
    {
-      ::rectangle_i32 rectangleBig(rectangleClient);
+      ::rectangle_i32 rectangleBig(rectangleX);
       ::rectangle_i32 rectangleSmall;
       get_window_client_rectangle(&rectangleSmall);
       ::rectangle_i32 rectangle;

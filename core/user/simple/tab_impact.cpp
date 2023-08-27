@@ -37,10 +37,10 @@ void simple_tab_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-::rectangle_i32 simple_tab_impact::client_rectangle(::user::enum_layout elayout)
+::rectangle_i32 simple_tab_impact::this->rectangle(::user::enum_layout elayout)
 {
 
-   return ::user::impact::client_rectangle(elayout);
+   return ::user::impact::this->rectangle(elayout);
 
 }
 

@@ -101,7 +101,7 @@ namespace user
 
       ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectangleWindowScreen;
-      ::rectangle_i32                           m_rectangleClientScreen;
+      ::rectangle_i32                           m_rectangleXScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
@@ -749,7 +749,7 @@ namespace user
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void do_graphics();
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
-      void defer_draw(::draw2d::graphics_pointer & pgraphics) override;
+      void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
       //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       // call window window_update_screen_buffer
       //virtual void _001UpdateScreen();

@@ -985,7 +985,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::client_rectangle(::rectangle_i64 * prectangle)
+   //bool plugin::this->rectangle(::rectangle_i64 * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -996,7 +996,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
    //   }
 
 
-   //   if(!m_phost->client_rectangle(prectangle))
+   //   if(!m_phost->rectangle(prectangle))
    //   {
 
    //      return false;

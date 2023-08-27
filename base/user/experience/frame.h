@@ -67,7 +67,7 @@ namespace experience
       ::rectangle_i32                        m_rectangleCaptionTextPadding;
 
 
-      //::rectangle_i32                        m_rectangleClient;
+      //::rectangle_i32                        m_rectangleX;
       ::rectangle_i32                        m_rectangleWindow;
 
       bool                                   m_bFirstLayoutDone;
@@ -120,9 +120,11 @@ namespace experience
 
       
       
-      virtual bool calculate_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
+      //virtual bool calculate_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
-      virtual ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual bool calculate_client_rectangle2(::rectangle_i32 * prectangle);
+
+      //virtual ::rectangle_i32 rectangle(::user::enum_layout elayout = ::user::e_layout_design);
 
       //virtual bool get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
@@ -204,7 +206,7 @@ namespace experience
 
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
-
+      virtual void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics);
 
    };
 

@@ -97,9 +97,9 @@ namespace userex
 
       ppane->m_atom = atom;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = ppane->m_pplaceholder->client_rectangle();
+      rectangleX = ppane->m_pplaceholder->rectangle();
 
       ::user::impact_data * pdata = create_impact_by_id(atom);
 

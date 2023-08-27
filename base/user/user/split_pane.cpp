@@ -13,7 +13,7 @@ namespace user
 
       m_rectangle.Null();
 
-      m_rectangleClient.Null();
+      m_rectangleX.Null();
 
       m_sizeFixed = ::size_i32(0, 0);
 

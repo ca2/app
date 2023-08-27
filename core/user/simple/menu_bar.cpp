@@ -507,16 +507,16 @@ bool simple_menu_bar::ReloadMenuBar()
 
 /*void simple_menu_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
-   auto rectangleClient = client_rectangle();
+   auto rectangleX = this->rectangle();
    class imaging & imaging = psystem->imaging();
    if(m_iHover >= -1)
    {
       imaging.color_blend(
          pgraphics,
-         rectangleClient.left,
-         rectangleClient.top,
-         rectangleClient.width(),
-         rectangleClient.height(),
+         rectangleX.left,
+         rectangleX.top,
+         rectangleX.width(),
+         rectangleX.height(),
          rgb(255, 255, 250),
          128);
    }
@@ -524,10 +524,10 @@ bool simple_menu_bar::ReloadMenuBar()
    {
       imaging.color_blend(
          pgraphics,
-         rectangleClient.left,
-         rectangleClient.top,
-         rectangleClient.width(),
-         rectangleClient.height(),
+         rectangleX.left,
+         rectangleX.top,
+         rectangleX.width(),
+         rectangleX.height(),
          rgb(230, 230, 225),
          56);
    }
@@ -614,8 +614,8 @@ index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
 
          return iItem;
    }
-   auto rectangleClient = client_rectangle();
-   if(rectangleClient.contains(*ppoint))
+   auto rectangleX = this->rectangle();
+   if(rectangleX.contains(*ppoint))
 
       return -1;
    else

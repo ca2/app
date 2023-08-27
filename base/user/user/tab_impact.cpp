@@ -720,9 +720,9 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = m_pimpactdata->m_pplaceholder->client_rectangle();
+      rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
 
       if (!rectangleTabClient.is_empty())
       {

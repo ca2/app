@@ -714,7 +714,7 @@ int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdc
 
 
 
-int_bool client_rectangle(oswindow hwnd,::rectangle_i32 * lprect);
+int_bool this->rectangle(oswindow hwnd,::rectangle_i32 * lprect);
 
 int_bool window_rectangle(oswindow hwnd,::rectangle_i32 * lprect);
 

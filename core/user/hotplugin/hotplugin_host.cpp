@@ -597,10 +597,10 @@ namespace hotplugin
    //}
 
 
-   //bool host::client_rectangle(::rectangle_i64 * prectangle)
+   //bool host::this->rectangle(::rectangle_i64 * prectangle)
    //{
 
-   //   ::copy(prectangle,m_rectangleClient);
+   //   ::copy(prectangle,m_rectangleX);
 
    //   return true;
 

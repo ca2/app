@@ -173,6 +173,8 @@ namespace user
       bool                                      m_bCreated;
       bool                                      m_bSubclassed;
       
+      ::rectangle_i32                           m_rectangleClient2;
+
       bool                                      m_bClipRectangle;
       bool                                      m_bLayoutModified;
       bool                                      m_bCustomWindowProc;
@@ -881,8 +883,9 @@ namespace user
       //virtual void raw_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
       virtual ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design);
 
-      //virtual void client_rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
-      virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design);
+      //virtual void this->rectangle(::rectangle_i32 & rect, enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 rectangle(enum_layout elayout = e_layout_design);
+      virtual ::rectangle_i32 client_rectangle2();
       virtual ::rectangle_i32 screen_rectangle(enum_layout elayout = e_layout_design);
 
 
@@ -1420,7 +1423,7 @@ namespace user
 
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
-      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -1743,7 +1746,7 @@ namespace user
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
-      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = {
+      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleX = {
          }, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
@@ -1905,6 +1908,7 @@ namespace user
       //virtual void move_to(i32 x, i32 y);
       //virtual void set_size(i32 cx, i32 cy);
       //virtual void set_dim(const ::point_i32& point, const ::size_i32& size);
+      virtual void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics);
       virtual void place(const ::rectangle_i32& rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       virtual void place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
       //inline void set_placement(i32 x, i32 y, i32 cx, i32 cy, enum_layout elayout = e_layout_sketch)
@@ -2290,8 +2294,8 @@ namespace user
       //index GetEditSubItem();
       // index GetEditItem();
       //virtual ::user::interaction * ControlExGetWnd();
-      //using ::user::box::client_rectangle;
-      //virtual bool client_rectangle(::rectangle_i32 * prectangle) override;
+      //using ::user::box::this->rectangle;
+      //virtual bool this->rectangle(::rectangle_i32 * prectangle) override;
       //using ::user::box::window_rectangle;
       //virtual bool window_rectangle(::rectangle_i32 * prectangle) override;
       //bool operator == (const class ::user::control_descriptor& descriptor);

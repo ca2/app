@@ -80,7 +80,7 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
 
       ::rectangle_i32 rectangleProgress(rectangleBar);

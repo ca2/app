@@ -53,9 +53,9 @@ namespace user
    void horizontal_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = ::user::interaction::client_rectangle();
+      auto rectangleX = ::user::interaction::rectangle();
 
-      //::user::interaction::client_rectangle(rectangleClient);
+      //::user::interaction::this->rectangle(rectangleX);
 
       defer_create_horizontal_scroll_bar();
 
@@ -73,11 +73,11 @@ namespace user
 
             int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-            rectangleNewPos.left = rectangleClient.left;
-            rectangleNewPos.top = rectangleClient.bottom - iScrollBarWidth;
-            //rectangleNewPos.right = rectangleNewPos.left + rectangleClient.width() - get_final_y_scroll_bar_width();
-            rectangleNewPos.right = rectangleNewPos.left + rectangleClient.width() - iScrollBarWidth;
-            rectangleNewPos.bottom = rectangleClient.bottom;
+            rectangleNewPos.left = rectangleX.left;
+            rectangleNewPos.top = rectangleX.bottom - iScrollBarWidth;
+            //rectangleNewPos.right = rectangleNewPos.left + rectangleX.width() - get_final_y_scroll_bar_width();
+            rectangleNewPos.right = rectangleNewPos.left + rectangleX.width() - iScrollBarWidth;
+            rectangleNewPos.bottom = rectangleX.bottom;
 
             m_pscrollbarHorizontal->order(e_zorder_top);
 
@@ -245,15 +245,15 @@ namespace user
 
       m_pscrolldataHorizontal->m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::i32 iTotalHeight = (::i32)sizeTotal.cy();
 
       ::i32 iTotalWidth = (::i32)sizeTotal.cx();
 
-      ::i32 iClientHeight = rectangleClient.height();
+      ::i32 iClientHeight = rectangleX.height();
 
-      ::i32 iClientWidth = rectangleClient.width();
+      ::i32 iClientWidth = rectangleX.width();
 
       //::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
@@ -281,7 +281,7 @@ namespace user
 
       //m_pscrolldataHorizontal->m_bHasScroll = m_pscrolldataHorizontal->m_bScrollEnable && m_pscrolldataHorizontal->m_bScroll;
 
-      auto rectangleScroll = client_rectangle();
+      auto rectangleScroll = this->rectangle();
 
       m_pscrolldataHorizontal->m_iPage = rectangleScroll.width();
 

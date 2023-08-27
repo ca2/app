@@ -68,11 +68,12 @@ namespace draw2d
    public:
 
 
+      e_graphics                             m_egraphics;
       bool                                   m_bBeginDraw;
       bool                                   m_bOutline;
       void *                                 m_pthis;
       ::user::interaction *                  m_puserinteraction;
-      ::pointer<::draw2d::host>             m_pdraw2dhost;
+      ::pointer<::draw2d::host>              m_pdraw2dhost;
 
       bool                                   m_bPat;
 

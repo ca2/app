@@ -144,7 +144,7 @@ namespace user
 
       screen_to_client(e_layout_design)(pointCursor);
 
-      auto rectangle = client_rectangle();
+      auto rectangle = this->rectangle();
 
       if(rectangle.width() != 0)
       {
@@ -201,11 +201,11 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
-      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha1, 250,255,255));
+      pgraphics->fill_rectangle(rectangleX, argb(bAlpha1, 250,255,255));
 
       ::rectangle_i32 rectangle;
 
@@ -233,14 +233,14 @@ namespace user
    void slider::get_slider_rect(::rectangle_i32 & rectangle)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       i32 iWidth = 16;
 
-      rectangle.top = rectangleClient.top;
-      rectangle.bottom = rectangleClient.bottom;
-      rectangle.left = (::i32)minimum(rectangleClient.right,m_dRate * (rectangleClient.width() - iWidth));
-      rectangle.right = (::i32)minimum(rectangleClient.right,m_dRate * ((rectangleClient.width() - iWidth)) + iWidth);
+      rectangle.top = rectangleX.top;
+      rectangle.bottom = rectangleX.bottom;
+      rectangle.left = (::i32)minimum(rectangleX.right,m_dRate * (rectangleX.width() - iWidth));
+      rectangle.right = (::i32)minimum(rectangleX.right,m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
 
 
    }

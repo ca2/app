@@ -108,7 +108,7 @@ namespace user
 
       }
 
-      auto rectangleClinet = client_rectangle();
+      auto rectangleClinet = this->rectangle();
       //::user::e_::color::color colorText = color_text;
 
       ::color::color colorText = ::color::black;
@@ -217,7 +217,7 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -516,9 +516,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.contains(point))
+      if (rectangleX.contains(point))
       {
 
          auto pitem = __new(::item(e_element_text));
@@ -835,9 +835,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      m_plistbox->m_dItemHeight = minimum(24, rectangleClient.height());
+      m_plistbox->m_dItemHeight = minimum(24, rectangleX.height());
 
    }
 
@@ -894,9 +894,9 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            auto rectangleClient = client_rectangle();
+            auto rectangleX = this->rectangle();
 
-            fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
+            fontxyz->m_dFontSize = rectangleX.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::e_unit_pixel;
             fontxyz->m_bUpdated = false;
 

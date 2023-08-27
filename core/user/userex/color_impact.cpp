@@ -762,7 +762,7 @@ namespace userex
 
       ::rectangle_i32 rC;
 
-      rC = client_rectangle();
+      rC = this->rectangle();
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -928,9 +928,9 @@ namespace userex
 
       ::user::impact::on_layout(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
@@ -939,15 +939,15 @@ namespace userex
 
       ::rectangle_i32 rectangleColors;
 
-      rectangleColors = client_rectangle();
+      rectangleColors = this->rectangle();
 
       if(!m_bCompact)
       {
 
-         rectangleColors.left = rectangleClient.center().x();
-         rectangleColors.bottom = rectangleClient.center().y();
+         rectangleColors.left = rectangleX.center().x();
+         rectangleColors.bottom = rectangleX.center().y();
 
-         rectangleColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
+         rectangleColors.deflate(rectangleX.width() / 16, rectangleX.height() / 16);
 
       }
 

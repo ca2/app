@@ -251,11 +251,11 @@ namespace user
 
          auto timeStart = ::time::now();
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
+         //pgraphics->fill_rectangle(rectangleX, m_colorTreeBackground);
 
          auto pointCursor = get_cursor_position();
 
@@ -265,7 +265,7 @@ namespace user
 
          auto dwHoverOut = 1200_ms;
 
-         bool bTreeHover = rectangleClient.contains(pointCursor);
+         bool bTreeHover = rectangleX.contains(pointCursor);
 
          if (bTreeHover)
          {
@@ -331,7 +331,7 @@ namespace user
 
          drawitemdata.m_dItemHeight = _001GetItemHeight();
 
-         drawitemdata.m_rectangleClient = client_rectangle();
+         drawitemdata.m_rectangleX = this->rectangle();
 
          auto pitem = m_pitemFirstVisible;
 
@@ -350,7 +350,7 @@ namespace user
 
             drawitemdata.m_iItem = iItem;
 
-            drawitemdata.m_rectangle = drawitemdata.m_rectangleClient;
+            drawitemdata.m_rectangle = drawitemdata.m_rectangleX;
 
             drawitemdata.m_rectangle.left = (::i32)(drawitemdata.m_iIndentation * pitem->m_iLevel);
 
@@ -486,7 +486,7 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectangleFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
+         auto rectangleFill = ::rectangle_f64(data.m_rectangleX.left, data.m_rectangle.top, data.m_rectangleX.right, data.m_rectangle.bottom);
 
          data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
@@ -1275,9 +1275,9 @@ namespace user
 
       ::user::interaction::on_layout(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
@@ -1427,7 +1427,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       return (::count)(rectangle.height() / _001GetItemHeight() - 1);
 
@@ -1437,11 +1437,11 @@ namespace user
    i32 tree::_001CalcCurrentImpactWidth()
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::count iCount = _001GetVisibleItemCount();
 
-      i32 iMaxWidth = rectangleClient.width();
+      i32 iMaxWidth = rectangleX.width();
 
       i32 iWidth;
 

@@ -803,7 +803,7 @@ namespace html
 
                auto pform = pdata->m_pcoredata->m_pform;
 
-               rectangle = pform->client_rectangle();
+               rectangle = pform->rectangle();
 
             }
             else

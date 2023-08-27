@@ -516,7 +516,7 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -524,7 +524,7 @@ namespace user
 
       colorBorder.m_u8Opacity = 100;
 
-      pgraphics->draw_inset_rectangle(rectangleClient, colorBorder, 1.0);
+      pgraphics->draw_inset_rectangle(rectangleX, colorBorder, 1.0);
 
    }
 

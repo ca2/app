@@ -280,9 +280,9 @@ namespace user
 
       y += 10;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int w = rectangleClient.width() - x * 2;
+      int w = rectangleX.width() - x * 2;
 
       int k = 0;
 
@@ -388,16 +388,16 @@ namespace user
 
       //pimage1 = m_pimageMem;
 
-      //auto rectangleClient = client_rectangle();
+      //auto rectangleX = this->rectangle();
 
-      //if (rectangleClient.area() <= 0)
+      //if (rectangleX.area() <= 0)
       //{
 
       //   return;
 
       //}
 
-      //pimage1->create(rectangleClient.size());
+      //pimage1->create(rectangleX.size());
 
       //::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
 
@@ -651,7 +651,7 @@ namespace user
 
       //   image_source imagesource(pimage1);
 
-      //   image_drawing_options imagedrawingoptions(rectangleClient);
+      //   image_drawing_options imagedrawingoptions(rectangleX);
 
       //   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -673,9 +673,9 @@ namespace user
    void menu_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
    }

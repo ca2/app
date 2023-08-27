@@ -281,10 +281,10 @@ SizingNone:;
                                       crMoveableBorder,
                                       127);
 
-                  ::rectangle_i32 rectangleClientB = rectangleA;
+                  ::rectangle_i32 rectangleXB = rectangleA;
 
-                  rectangleClientB.bottom--;
-                  rectangleClientB.right--;
+                  rectangleXB.bottom--;
+                  rectangleXB.right--;
 
                   rectangleA.top++;
                   rectangleA.bottom--;
@@ -333,7 +333,7 @@ SizingNone:;
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
 
-               auto rectangleClient = pframewindow->client_rectangle();
+               auto rectangleX = pframewindow->rectangle();
 
                string str;
 
@@ -472,19 +472,19 @@ SizingNone:;
 
                const i32 size = 16;
 
-               ::rectangle_i32 rectangleClient(lpcrectClient);
-               //            ::rectangle_i32 rectangleClientB(rectangleClient);
+               ::rectangle_i32 rectangleX(lpcrectClient);
+               //            ::rectangle_i32 rectangleXB(rectangleX);
                ::rectangle_i32 rectangleA;
                point_i32 ptA;
                point_i32 ptB;
                point_i32 ptC;
-               //            ::rectangle_i32 rectangle(rectangleClient);
+               //            ::rectangle_i32 rectangle(rectangleX);
                switch (egrip)
                {
                case e_grip_top_left:
                {
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.right = 4;
                   rectangleA.bottom = size;
@@ -500,7 +500,7 @@ SizingNone:;
                break;
                case e_grip_top_right:
                {
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.left = rectangleA.right - 4;
                   rectangleA.bottom = size;
@@ -515,7 +515,7 @@ SizingNone:;
                break;
                case e_grip_bottom_left:
                {
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.right = 4;
                   rectangleA.top = rectangleA.bottom - size;
@@ -530,7 +530,7 @@ SizingNone:;
                break;
                case e_grip_bottom_right:
                {
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.left = rectangleA.right - 4;
                   rectangleA.top = rectangleA.bottom - size;
@@ -545,7 +545,7 @@ SizingNone:;
                break;
                case e_grip_top:
                {
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
                   rectangleA.right = rectangleA.left + size;
@@ -557,7 +557,7 @@ SizingNone:;
                break;
                case e_grip_bottom:
                {
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
                   rectangleA.right = rectangleA.left + size;
@@ -568,7 +568,7 @@ SizingNone:;
                break;
                case e_grip_left:
                {
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.right = 4;
                   rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
@@ -579,7 +579,7 @@ SizingNone:;
                break;
                case e_grip_right:
                {
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   rectangleA.left = rectangleA.right - 4;
                   rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;

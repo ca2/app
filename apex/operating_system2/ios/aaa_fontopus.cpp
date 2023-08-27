@@ -62,7 +62,7 @@ namespace account
 
       virtual void window_rectangle(::rectangle_i32 * prectangle);
 
-      virtual void client_rectangle(::rectangle_i32 * prectangle);
+      virtual void this->rectangle(::rectangle_i32 * prectangle);
 
       virtual void draw_dark_glass(simple_graphics & g);
       virtual void draw_pestana(simple_graphics &g);
@@ -115,7 +115,7 @@ namespace account
 
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      this->rectangle(rectangle);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
@@ -628,10 +628,10 @@ namespace account
    {
       ::window_rectangle(m_oswindow, prectangle);
    }
-   void account::client_rectangle(::rectangle_i32 * prectangle)
+   void account::this->rectangle(::rectangle_i32 * prectangle)
    {
 
-      ::client_rectangle(m_oswindow, prectangle);
+      ::this->rectangle(m_oswindow, prectangle);
 
    }
 

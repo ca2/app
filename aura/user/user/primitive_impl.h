@@ -85,7 +85,7 @@ namespace user
       virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
 
 
-      virtual void defer_draw(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void top_down_prefix();
@@ -110,7 +110,7 @@ namespace user
       
       //virtual void graphics_thread_update_screen();
 
-      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = nullptr, bool bStretch = true);
 
       virtual void window_move(i32 x, i32 y);
 

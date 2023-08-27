@@ -117,11 +117,11 @@ namespace user
       if(m_scalar.is_null())
          return;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
-      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 150, 200, 255));
+      pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
       i64 iMin = m_scalar.minimum().get_i64();
       i64 iMax = m_scalar.maximum().get_i64();
@@ -130,7 +130,7 @@ namespace user
       ::rectangle_i32 rectangle;
       for(i64 i = iMin; i <= iMax; i++)
       {
-         GetStepRect(&rectangle, i, iMin, iMax, rectangleClient);
+         GetStepRect(&rectangle, i, iMin, iMax, rectangleX);
          if(i == iVal)
          {
             
@@ -171,17 +171,17 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
+   void step_slider::GetStepHoverRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleX)
    {
 
       if((iMax - iMin) == 0)
          return;
 
-      prectangle->top = rectangleClient.top;
+      prectangle->top = rectangleX.top;
 
-      prectangle->bottom = rectangleClient.bottom;
+      prectangle->bottom = rectangleX.bottom;
 
-      double dWidth = ((double)rectangleClient.width()) / (iMax - iMin);
+      double dWidth = ((double)rectangleX.width()) / (iMax - iMin);
 
       prectangle->left = (::i32) (dWidth * (iStep - iMin));
 
@@ -192,13 +192,13 @@ namespace user
    }
 
 
-   void step_slider::GetStepRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
+   void step_slider::GetStepRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleX)
    {
 
       if((iMax - iMin) == 0)
          return;
 
-      GetStepHoverRect(prectangle, iStep, iMin, iMax, rectangleClient);
+      GetStepHoverRect(prectangle, iStep, iMin, iMax, rectangleX);
 
       i32 halfm = (prectangle->right - prectangle->left - 2) / 2;
 
@@ -213,9 +213,9 @@ namespace user
    ::item_pointer step_slider::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.width() == 0)
+      if (rectangleX.width() == 0)
       {
 
          auto pitemNone = __new(::item(e_element_none));
@@ -230,7 +230,7 @@ namespace user
 
       iMax = m_scalar.maximum().get_i64();
 
-      return __new(::item((index) (iMin + (((point.x() - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()))));
+      return __new(::item((index) (iMin + (((point.x() - rectangleX.left) * (iMax - iMin)) / rectangleX.width()))));
 
    }
 
@@ -246,11 +246,11 @@ namespace user
 //
 //      set_need_redraw();
 //
-//      ::rectangle_i32 rectangleClient;
+//      ::rectangle_i32 rectangleX;
 //
-//      client_rectangle(rectangleClient);
+//      this->rectangle(rectangleX);
 //
-//      if (rectangleClient.contains(pointCursor))
+//      if (rectangleX.contains(pointCursor))
 //      {
 //
 //         m_pitemHover = __new(::item(e_element_client));

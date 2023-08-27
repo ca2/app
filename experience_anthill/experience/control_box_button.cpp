@@ -52,9 +52,9 @@ namespace experience_anthill
 
       }
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -106,7 +106,7 @@ namespace experience_anthill
 
       }
 
-      ::rectangle_i32 rectangleEllipse(rectangleClient);
+      ::rectangle_i32 rectangleEllipse(rectangleX);
 
       ::rectangle_i32 rW;
 
@@ -116,7 +116,7 @@ namespace experience_anthill
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->fill_rectangle(rectangleClient, pgraphics->m_pbrush->m_color);
+      pgraphics->fill_rectangle(rectangleX, pgraphics->m_pbrush->m_color);
 
       //pgraphics->FillEllipse(rectangleEllipse);
 
@@ -133,7 +133,7 @@ namespace experience_anthill
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectangleClient, e_align_center, e_draw_text_single_line);
+         pgraphics->draw_text(str, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -202,11 +202,11 @@ namespace experience_anthill
       __construct(m_pbrush);
 
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
       
       ::ellipse_f64 ellipse;
       
-      ellipse.set(rectangleClient);
+      ellipse.set(rectangleX);
 
       m_spregion->create_ellipse(ellipse);
 

@@ -254,12 +254,12 @@ namespace user
 
       auto pbrushBk = __create < ::draw2d::brush > ();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pbrushBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
+      pbrushBk->CreateLinearGradientBrush(rectangleX.top_left(), rectangleX.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rectangle(rectangleClient, pbrushBk);
+      pgraphics->fill_rectangle(rectangleX, pbrushBk);
 
    }
 

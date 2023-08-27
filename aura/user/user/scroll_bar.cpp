@@ -264,29 +264,29 @@ namespace user
       //   if (!m_bClipRectangle)
       //   {
 
-      //      ::rectangle_i32 rectangleClient;
+      //      ::rectangle_i32 rectangleX;
 
       //      ::index i = 0;
 
       //      while (pinteraction != nullptr)
       //      {
 
-      //         rectangleClient = pinteraction->client_rectangle();
+      //         rectangleX = pinteraction->rectangle();
 
-      //         pinteraction->client_to_host()(rectangleClient);
+      //         pinteraction->client_to_host()(rectangleX);
 
-      //         host_to_client()(rectangleClient);
+      //         host_to_client()(rectangleX);
 
       //         if (i == 0)
       //         {
 
-      //            m_rectangleClip = rectangleClient;
+      //            m_rectangleClip = rectangleX;
 
       //         }
       //         else
       //         {
 
-      //            m_rectangleClip.intersect(m_rectangleClip, rectangleClient);
+      //            m_rectangleClip.intersect(m_rectangleClip, rectangleX);
 
       //         }
 

@@ -225,9 +225,9 @@ namespace user
 
    //      int xpad = m_iPad;
 
-   //      auto rectangleClient = client_rectangle();
+   //      auto rectangleX = this->rectangle();
 
-   //      int cx = rectangleClient.width();
+   //      int cx = rectangleX.width();
 
    //      int w = m_size.cx();
 
@@ -387,15 +387,15 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       pgraphics->set(get_font(pstyle));
 
-      rectangleClient.offset(m_pointScroll);
+      rectangleX.offset(m_pointScroll);
 
-      pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background));
+      pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
 
-      pgraphics->draw_inset_rectangle(rectangleClient, argb(255, 192, 192, 192), 1.0);
+      pgraphics->draw_inset_rectangle(rectangleX, argb(255, 192, 192, 192), 1.0);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -644,9 +644,9 @@ namespace user
    void image_list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -683,7 +683,7 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         if (x > left && x + m_size.cx() + m_iPad >= rectangleClient.width())
+         if (x > left && x + m_size.cx() + m_iPad >= rectangleX.width())
          {
 
             x = left;
@@ -722,7 +722,7 @@ namespace user
 
       //m_sizeTotal = rectangleTotal.size();
 
-      //m_pscrolldataVertical->m_iPage = rectangleClient.height();
+      //m_pscrolldataVertical->m_iPage = rectangleX.height();
 
       ::user::box::on_layout(pgraphics);
 

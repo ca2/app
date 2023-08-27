@@ -695,7 +695,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // }
 
 
-//int_bool client_rectangle(oswindow hwnd, ::rectangle_i32 * prectangle)
+//int_bool this->rectangle(oswindow hwnd, ::rectangle_i32 * prectangle)
 //
 //{
 //   /*   XWindowAttributes attrs;
@@ -801,7 +801,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
 //    HDC hdc = GetDC(hwnd);
 
-//    client_rectangle(hwnd, &ps->rcPaint);
+//    this->rectangle(hwnd, &ps->rcPaint);
 
 //    return hdc;
 

@@ -222,8 +222,8 @@ namespace linux
 
   //    virtual bool _001GetWindowRect(RECT64 * prect);
 
-      //using ::user::interaction_impl::client_rectangle;
-      //virtual bool client_rectangle(RECT64 * prect);
+      //using ::user::interaction_impl::this->rectangle;
+      //virtual bool this->rectangle(RECT64 * prect);
 
 
       virtual bool has_focus() override;
@@ -418,7 +418,7 @@ namespace linux
 //      virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
 //
 //      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-//                                const ::rectangle_f64 & rectangleClient = nullptr,
+//                                const ::rectangle_f64 & rectangleX = nullptr,
 //                                const ::rectangle_f64 & rectangleClip = nullptr);
 //
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);

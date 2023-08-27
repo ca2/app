@@ -105,19 +105,19 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient.left = 0;
+      rectangleX.left = 0;
 
-      rectangleClient.top = 0;
+      rectangleX.top = 0;
 
-      rectangleClient.right = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleClient.bottom = m_cy;
+      rectangleX.bottom = m_cy;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //pgraphics->FillSolidRect(rectangleClient,argb(0, 0, 0, 0));
+      //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 
 //      i32 iCount = 30;
 
@@ -261,9 +261,9 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),rectangleClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
+      pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),rectangleX.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
 
-      //pgraphics->BitBlt(rectangleClient,m_pimageTemplate->get_graphics());
+      //pgraphics->BitBlt(rectangleX,m_pimageTemplate->get_graphics());
 
       pgraphics->set_font(m_pfont);
 

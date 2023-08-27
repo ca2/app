@@ -237,7 +237,7 @@ namespace experience_tranquillum
 
 
 
-   void frame_005::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient,
+   void frame_005::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX,
 
          enum_border eside)
    {
@@ -279,7 +279,7 @@ namespace experience_tranquillum
 }
 
       enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-      ::rectangle_i32 rectangleA(rectangleClient);
+      ::rectangle_i32 rectangleA(rectangleX);
 
       auto estyle = pframewindow->m_estyle;
 
@@ -290,7 +290,7 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          ColorGlass(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -311,7 +311,7 @@ namespace experience_tranquillum
          Draw3dRectSide(pgraphics, rectangleA, eside, crMoveableBorder, crMoveableBorder);
 
          ::rectangle_i32 rectangle;
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(
@@ -325,14 +325,14 @@ namespace experience_tranquillum
       {
 
          ::rectangle_i32 rectangle;
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          ColorGlass(pgraphics, rectangle, crMoveableBorder, 230);
 
-         ::rectangle_i32 rectangleClientB = rectangleA;
+         ::rectangle_i32 rectangleXB = rectangleA;
 
-         rectangleClientB.bottom--;
-         rectangleClientB.right--;
+         rectangleXB.bottom--;
+         rectangleXB.right--;
 
          rectangleA.top++;
          rectangleA.bottom--;
@@ -374,8 +374,8 @@ namespace experience_tranquillum
 
       bool bZoomed = pframewindow->layout().is_zoomed();
 
-      ::rectangle_i32 rectangleClient;
-      rectangleClient = pframewindow->client_rectangle();
+      ::rectangle_i32 rectangleX;
+      rectangleX = pframewindow->rectangle();
 
 
       string str;
@@ -419,7 +419,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame_005::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_005::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
 
    {
       auto pmovemanager = m_pframewindow->move_manager();
@@ -437,35 +437,35 @@ namespace experience_tranquillum
 
       if(eborder & e_border_top)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_top);
+         draw_border_side(pgraphics, rectangleX, e_border_top);
 
       }
       if(eborder & e_border_right)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_right);
+         draw_border_side(pgraphics, rectangleX, e_border_right);
 
       }
       if(eborder & e_border_bottom)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_bottom);
+         draw_border_side(pgraphics, rectangleX, e_border_bottom);
 
       }
       if(eborder & e_border_left)
       {
-         draw_border_side(pgraphics, rectangleClient, e_border_left);
+         draw_border_side(pgraphics, rectangleX, e_border_left);
 
       }
 
    }
 
    void frame_005::GetBorderRectangle(
-   const ::rectangle_i32 & rectangleClient,
+   const ::rectangle_i32 & rectangleX,
 
    ::rectangle_i32 * prectangle,
 
    enum_border eside)
    {
-      ::rectangle_i32 rectangleBig(rectangleClient);
+      ::rectangle_i32 rectangleBig(rectangleX);
 
       ::rectangle_i32 rectangleSmall;
       get_window_client_rectangle(&rectangleSmall);
@@ -622,27 +622,27 @@ namespace experience_tranquillum
 
    void frame_005::DrawGrip(
    ::draw2d::graphics_pointer & pgraphics,
-   const ::rectangle_i32 & rectangleClientParam,
+   const ::rectangle_i32 & rectangleXParam,
 
    enum_grip egrip)
    {
 
       const i32 size = 16;
 
-      ::rectangle_i32 rectangleClient(rectangleClientParam);
+      ::rectangle_i32 rectangleX(rectangleXParam);
 
-      //            ::rectangle_i32 rectangleClientB(rectangleClient);
+      //            ::rectangle_i32 rectangleXB(rectangleX);
       ::rectangle_i32 rectangleA;
       ::point_i32 pointA;
       ::point_i32 pointB;
       ::point_i32 pointC;
-      //            ::rectangle_i32 rectangle(rectangleClient);
+      //            ::rectangle_i32 rectangle(rectangleX);
       switch(egrip)
       {
       case e_grip_top_left:
       {
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.right = 4;
          rectangleA.bottom = size;
@@ -658,7 +658,7 @@ namespace experience_tranquillum
       break;
       case e_grip_top_right:
       {
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.left = rectangleA.right - 4;
          rectangleA.bottom = size;
@@ -673,7 +673,7 @@ namespace experience_tranquillum
       break;
       case e_grip_bottom_left:
       {
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.right = 4;
          rectangleA.top = rectangleA.bottom - size;
@@ -688,7 +688,7 @@ namespace experience_tranquillum
       break;
       case e_grip_bottom_right:
       {
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.left = rectangleA.right - 4;
          rectangleA.top = rectangleA.bottom - size;
@@ -703,7 +703,7 @@ namespace experience_tranquillum
       break;
       case e_grip_top:
       {
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
          rectangleA.right = rectangleA.left + size;
@@ -715,7 +715,7 @@ namespace experience_tranquillum
       break;
       case e_grip_bottom:
       {
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
          rectangleA.right = rectangleA.left + size;
@@ -727,7 +727,7 @@ namespace experience_tranquillum
       case e_grip_left:
       {
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.right = 4;
          rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
@@ -740,7 +740,7 @@ namespace experience_tranquillum
       case e_grip_right:
       {
 
-         rectangleA = rectangleClient;
+         rectangleA = rectangleX;
 
          rectangleA.left = rectangleA.right - 4;
          rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
@@ -796,7 +796,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame_005::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_005::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
    {
 
       ::experience::size_manager * psizemanager = m_pframewindow->size_manager();
@@ -812,42 +812,42 @@ namespace experience_tranquillum
 
       if(egrip & e_grip_top)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top);
+         DrawGrip(pgraphics, rectangleX, e_grip_top);
 
       }
       if(egrip & e_grip_top_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
 
       }
       if(egrip & e_grip_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_right);
 
       }
       if(egrip & e_grip_bottom_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
 
       }
       if(egrip & e_grip_bottom)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
 
       }
       if(egrip & e_grip_bottom_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
 
       }
       if(egrip & e_grip_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_left);
 
       }
       if(egrip & e_grip_top_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
 
       }
 

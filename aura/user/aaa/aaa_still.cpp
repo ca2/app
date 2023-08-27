@@ -65,17 +65,17 @@ namespace user
 
          get_window_text(strText);
 
-         ::rectangle_f64 rectangleClient;
+         ::rectangle_f64 rectangleX;
 
-         client_rectangle(rectangleClient);
+         this->rectangle(rectangleX);
 
          //::rectangle_f64 rectangleMargin(2, 2,2, 2);
 
 //         ::rectangle_f64 rectangleBorder(2, 2,2, 2);
 
-  //       rectangleClient.deflate(rectangleMargin);
+  //       rectangleX.deflate(rectangleMargin);
 
-    //     rectangleClient.deflate(rectangleBorder);
+    //     rectangleX.deflate(rectangleBorder);
 
          //if(pstyle == nullptr)
          //{
@@ -83,7 +83,7 @@ namespace user
          //   if(m_iHover == 0 || psession->m_puiLastLButtonDown == this)
          //   {
 
-         //      pgraphics->fill_rectangle(rectangleClient,argb(255,127,127,127));
+         //      pgraphics->fill_rectangle(rectangleX,argb(255,127,127,127));
 
          //      pgraphics->set_text_color(argb(255,0,100,255));
 
@@ -91,7 +91,7 @@ namespace user
          //   else
          //   {
 
-         //      pgraphics->fill_rectangle(rectangleClient,argb(255,127,127,127));
+         //      pgraphics->fill_rectangle(rectangleX,argb(255,127,127,127));
 
          //      pgraphics->set_text_color(argb(255,0,0,0));
 
@@ -103,7 +103,7 @@ namespace user
             if (!is_window_enabled())
             {
 
-               pgraphics->fill_rectangle(rectangleClient, argb(255, 192, 192, 192));
+               pgraphics->fill_rectangle(rectangleX, argb(255, 192, 192, 192));
 
                pgraphics->set_text_color(argb(255, 160, 160, 160));
 
@@ -111,7 +111,7 @@ namespace user
             else if (should_hover() && (::is_set(m_pitemHover) || psession->m_puiLastLButtonDown == this))
             {
 
-               pgraphics->fill_rectangle(rectangleClient, argb(255, 200, 200, 230));
+               pgraphics->fill_rectangle(rectangleX, argb(255, 200, 200, 230));
 
                pgraphics->set_text_color(argb(255, 80, 80, 180));
 
@@ -119,11 +119,11 @@ namespace user
             else
             {
 
-               //pgraphics->draw_inset_3d_rectangle(rectangleClient,pstyle->_001GetColor(color_border),pstyle->_001GetColor(color_border));
+               //pgraphics->draw_inset_3d_rectangle(rectangleX,pstyle->_001GetColor(color_border),pstyle->_001GetColor(color_border));
 
-               //rectangleClient.deflate(1,1);
+               //rectangleX.deflate(1,1);
 
-               pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+               pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
                pgraphics->set_text_color(argb(255, 0, 0, 0));
 
@@ -133,7 +133,7 @@ namespace user
 
          ::rectangle_f64 rectanglePadding(0, 0, 0, 0);
 
-         rectangleClient.deflate(rectanglePadding);
+         rectangleX.deflate(rectanglePadding);
 
          if (m_estockicon == stock_icon_none)
          {
@@ -153,7 +153,7 @@ namespace user
 
             }
 
-            pgraphics->draw_text(strText, rectangleClient, iDrawTextFlags);
+            pgraphics->draw_text(strText, rectangleX, iDrawTextFlags);
 
          }
          else
@@ -173,7 +173,7 @@ namespace user
 
             pgraphics->set(ppen);
 
-            ::rectangle_f64 rectangleIcon(rectangleClient);
+            ::rectangle_f64 rectangleIcon(rectangleX);
 
             rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -572,18 +572,18 @@ namespace user
    void still::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
 
       ::size sizeText = calc_text_size();
 
       ::rectangle_f64 rectangle;
 
-      rectangle.left = rectangleClient.left + (rectangleClient.width() - sizeText.cx()) / 2;
+      rectangle.left = rectangleX.left + (rectangleX.width() - sizeText.cx()) / 2;
 
-      rectangle.top = rectangleClient.top + (rectangleClient.height() - sizeText.cy()) / 2;
+      rectangle.top = rectangleX.top + (rectangleX.height() - sizeText.cy()) / 2;
 
       rectangle.right = rectangle.left + sizeText.cx();
 
@@ -637,9 +637,9 @@ namespace user
 
 
 
-      ::rectangle_f64 rectangleClient;
+      ::rectangle_f64 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       color32_t crBk;
       if (!is_window_enabled())
@@ -670,7 +670,7 @@ namespace user
 
          imaging.color_blend(
          pgraphics,
-         rectangleClient,
+         rectangleX,
          crBk,
          127);
 
@@ -678,7 +678,7 @@ namespace user
       else
       {
 
-         pgraphics->fill_rectangle(rectangleClient, crBk);
+         pgraphics->fill_rectangle(rectangleX, crBk);
 
       }
 
@@ -706,14 +706,14 @@ namespace user
       if (rectangle.is_set())
       {
 
-         pgraphics->draw_rectangle(rectangleClient, crBorder);
+         pgraphics->draw_rectangle(rectangleX, crBorder);
 
       }
 
       //      pgraphics->SetBkMode(TRANSPARENT);
 
-      rectangleClient.left += 3;
-      rectangleClient.top += 3;
+      rectangleX.left += 3;
+      rectangleX.top += 3;
       ::rectangle_f64 rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pimage->is_ok())
@@ -809,8 +809,8 @@ namespace user
 
       get_window_text(strText);
 
-      ::rectangle_f64 rectangleClient;
-      client_rectangle(rectangleClient);
+      ::rectangle_f64 rectangleX;
+      this->rectangle(rectangleX);
 
 
       //if (pstyle == nullptr)
@@ -819,13 +819,13 @@ namespace user
       //   if (m_iHover == 0 || psession->m_puiLastLButtonDown == this)
       //   {
 
-      //      pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
+      //      pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       //   }
       //   else
       //   {
 
-      //      pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
+      //      pgraphics->fill_rectangle(rectangleX, argb(255, 127, 127, 127));
 
       //   }
 
@@ -838,23 +838,23 @@ namespace user
          if (!is_window_enabled())
          {
 
-            pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background, e_state_disabled));
+            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_disabled));
 
          }
          else if (::is_set(m_pitemHover) || is_left_button_pressed())
          {
 
-            //pgraphics->draw_inset_3d_rectangle(rectangleClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
+            //pgraphics->draw_inset_3d_rectangle(rectangleX,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
 
-            //rectangleClient.deflate(1,1);
+            //rectangleX.deflate(1,1);
 
-            pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background, e_state_pressed));
+            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background, e_state_pressed));
 
          }
          else
          {
 
-            pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background));
+            pgraphics->fill_rectangle(rectangleX, get_color(pstyle, e_element_background));
 
          }
 
@@ -869,7 +869,7 @@ namespace user
       // use the main bitmap for up, the selected bitmap for down
       ::image_pointer pimage = m_pimage;
 
-      if (pimage->area() > 0 && rectangleClient.area() > 0)
+      if (pimage->area() > 0 && rectangleX.area() > 0)
       {
 
          ::rectangle_f64 rectangleAspect;
@@ -878,9 +878,9 @@ namespace user
 
          rectangleAspect.top = 0;
 
-         double dW = (double)rectangleClient.width() / (double)pimage->width();
+         double dW = (double)rectangleX.width() / (double)pimage->width();
 
-         double dH = (double)rectangleClient.height() / (double)pimage->height();
+         double dH = (double)rectangleX.height() / (double)pimage->height();
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
@@ -888,9 +888,9 @@ namespace user
 
          rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
 
-         rectangleAspect.Align(e_align_center, rectangleClient);
+         rectangleAspect.Align(e_align_center, rectangleX);
 
-        pgraphics->draw(rectangleClient, pimage->g(), ::rectangle_f64(pimage->get_size()));
+        pgraphics->draw(rectangleX, pimage->g(), ::rectangle_f64(pimage->get_size()));
 
       }
 
@@ -1004,7 +1004,7 @@ namespace user
 
    {
       // use window client rectangle as the tool rectangle
-      client_rectangle(prect);
+      this->rectangle(prect);
 
    }
 

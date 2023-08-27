@@ -66,11 +66,11 @@ namespace experience_anthill
 
       auto pframewindow = m_pframewindow;
 
-      ::rectangle_i32 rectangleClient(rectangleParam);
+      ::rectangle_i32 rectangleX(rectangleParam);
 
       ::rectangle_i32 rectangleInflate;
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -79,7 +79,7 @@ namespace experience_anthill
 
       i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-      rectangleInflate = rectangleClient;
+      rectangleInflate = rectangleX;
       rectangleInflate.inflate(iInflate, iInflate);
 
       //::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
@@ -92,20 +92,20 @@ namespace experience_anthill
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
+      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
-      ::rectangle_i32 rectangleWindow = rectangleClient;
+      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      ::rectangle_i32 rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
-      //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
-      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+      //pimage = create_image({rectangleX.width(),  rectangleX.height()});
+      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
       {
 
          image_source imagesource(pgraphics,
-            rectangle_f64(::point_i32(rectangleClient.left - iInflate, rectangleClient.top - iInflate), ::size_f64(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
+            rectangle_f64(::point_i32(rectangleX.left - iInflate, rectangleX.top - iInflate), ::size_f64(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-         auto rectangle = rectangle_f64_dimension(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2);
+         auto rectangle = rectangle_f64_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
 
          image_drawing_options imagedrawingoptions(rectangle);
 
@@ -114,13 +114,13 @@ namespace experience_anthill
          pimage2->get_graphics()->draw(imagedrawing);
 
       }
-      //bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+      //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
-      m_pfastblur->blur(pimage1, ::rectangle_i32(::size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
+      m_pfastblur->blur(pimage1, ::rectangle_i32(::size_i32(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-      //spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
-      //rectangleClient.deflate(1, 1);
-      //spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
+      //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
+      //rectangleX.deflate(1, 1);
+      //spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
       /*b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
       rectangleWindow.width(),
       rectangleWindow.height(),
@@ -143,9 +143,9 @@ namespace experience_anthill
 
       {
 
-         image_source imagesource(pimage1, ::rectangle_f64(point_f64(iInflate, iInflate), rectangleClient.size()));
+         image_source imagesource(pimage1, ::rectangle_f64(point_f64(iInflate, iInflate), rectangleX.size()));
 
-         image_drawing_options imagedrawingoptions(rectangleClient);
+         image_drawing_options imagedrawingoptions(rectangleX);
 
          image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

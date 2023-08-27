@@ -136,15 +136,15 @@ namespace user
 
    void elastic_slider::CalcTension(point_i32 & point)
    {
-      auto rectangleClient = client_rectangle();
-      if (rectangleClient.width() == 0)
+      auto rectangleX = this->rectangle();
+      if (rectangleX.width() == 0)
       {
          m_dTensionPosition = 1.0;
       }
 
       else
       {
-         m_dTensionPosition = ((double) point.x() / (double) rectangleClient.width());
+         m_dTensionPosition = ((double) point.x() / (double) rectangleX.width());
       }
    }
 
@@ -228,11 +228,11 @@ namespace user
    void elastic_slider::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
-      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 250, 255, 255));
+      pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 250, 255, 255));
 
       ::rectangle_i32 rectangle;
       
@@ -267,17 +267,17 @@ namespace user
    void elastic_slider::GetSliderRect(::rectangle_i32 & rectangle)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       i32 iWidth = 16;
       
-      rectangle.top = rectangleClient.top;
+      rectangle.top = rectangleX.top;
       
-      rectangle.bottom = rectangleClient.bottom;
+      rectangle.bottom = rectangleX.bottom;
       
-      rectangle.left = (::i32) minimum(rectangleClient.right, m_dPosition * (rectangleClient.width() - iWidth));
+      rectangle.left = (::i32) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
       
-      rectangle.right = (::i32) minimum(rectangleClient.right, m_dPosition * ((rectangleClient.width() - iWidth)) + iWidth);
+      rectangle.right = (::i32) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
       
    }
 

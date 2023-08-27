@@ -1245,7 +1245,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
    //if (!papp->m_bExperienceMainFrame && get_parent() == nullptr)
    //{
 
-   //   auto rectangle = get_host_window()->client_rectangle();
+   //   auto rectangle = get_host_window()->rectangle();
 
    //   place(rectangle);
 
@@ -2020,7 +2020,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
    if (puiParent != nullptr && (pholder = puiParent).is_set())
    {
 
-      rectangleFrame = pholder->client_rectangle();
+      rectangleFrame = pholder->rectangle();
 
    }
 
@@ -2383,9 +2383,9 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
       || psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pgraphics->fill_rectangle(rectangleClient, rgb(0, 0, 0));
+      pgraphics->fill_rectangle(rectangleX, rgb(0, 0, 0));
 
    }
    else
@@ -2490,9 +2490,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //
 //   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 //
-//   ::rectangle_i32 rectangleClient;
+//   ::rectangle_i32 rectangleX;
 //
-//   client_rectangle(rectangleClient);
+//   this->rectangle(rectangleX);
 //
 //   bool bDib = false;
 //
@@ -2507,7 +2507,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //
 //   }
 //
-//   if (rectangleClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
+//   if (rectangleX.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
 //   {
 //
 //      //auto estatus = 
@@ -2517,7 +2517,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //      //{
 //
 //         //estatus = 
-//      m_pimageAlpha->create(rectangleClient.size());
+//      m_pimageAlpha->create(rectangleX.size());
 //
 //      //   if(estatus.succeeded())
 //      {
@@ -2656,7 +2656,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 //
 //      image_source imagesource(pgraphics);
 //
-//      image_drawing_options imagedrawingoptions(rectangleClient.size());
+//      image_drawing_options imagedrawingoptions(rectangleX.size());
 //
 //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
 //
@@ -2702,23 +2702,23 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
 //      class imaging & imaging = psystem->imaging();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      //rectangleClient.offset(rectangleClient.top_left());
+      //rectangleX.offset(rectangleX.top_left());
 
       auto psession = get_session();
 
       if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
-         //pgraphics->fill_rectangle(rectangleClient, rgb(150, 220, 140));
+         //pgraphics->fill_rectangle(rectangleX, rgb(150, 220, 140));
 
       }
       else if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
          || psession->m_paurasession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
-         pgraphics->fill_rectangle(rectangleClient, argb(150, 150, 180, 140));
+         pgraphics->fill_rectangle(rectangleX, argb(150, 150, 180, 140));
 
       }
       else
@@ -2728,23 +2728,23 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
          //printf("simplefrmwnd : " + __type_name(this) + " : ifndef LINUX");
 
-         if (rectangleClient.size() != m_pimageBk->size())
+         if (rectangleX.size() != m_pimageBk->size())
          {
-            m_pimageBk->create(rectangleClient.size());
+            m_pimageBk->create(rectangleX.size());
             m_pimageBk->clear_argb(0, 200, 200, 190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
-            //m_fastblur.initialize(rectangleClient.size(),2);
+            //m_fastblur.initialize(rectangleX.size(),2);
 
-            m_pimageBlur->create(rectangleClient.size());
+            m_pimageBlur->create(rectangleX.size());
 
          }
 
          if (m_pimageBlur->is_ok())
          {
 
-            ::rectangle_f64 rectangleTarget(rectangleClient.size());
+            ::rectangle_f64 rectangleTarget(rectangleX.size());
 
             {
 
@@ -2766,7 +2766,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
                image_source imagesource(m_pimageBk);
 
-               image_drawing_options imagedrawingoptions(rectangleClient.size());
+               image_drawing_options imagedrawingoptions(rectangleX.size());
 
                imagedrawingoptions.opacity(49);
 
@@ -2780,7 +2780,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
                image_source imagesource(m_pimageBlur);
 
-               image_drawing_options imagedrawingoptions(rectangleClient);
+               image_drawing_options imagedrawingoptions(rectangleX);
 
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -2864,10 +2864,10 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-::rectangle_i32 simple_frame_window::client_rectangle(::user::enum_layout elayout)
+::rectangle_i32 simple_frame_window::rectangle(::user::enum_layout elayout)
 {
 
-   return ::experience::frame_window::client_rectangle(elayout);
+   return ::experience::frame_window::rectangle(elayout);
 
 }
 

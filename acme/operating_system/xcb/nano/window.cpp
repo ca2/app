@@ -695,16 +695,16 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
          if (!m_psurface)
          {
 
-            rectangle_i32 rectangleClient;
+            rectangle_i32 rectangleX;
 
-            get_client_rectangle(rectangleClient);
+            get_client_rectangle(rectangleX);
 
             m_psurface = cairo_xcb_surface_create(
                m_pdisplay->m_pconnection,
                m_window,
                m_pdisplay->m_pvisualtype,
-               rectangleClient.width(),
-               rectangleClient.height());
+               rectangleX.width(),
+               rectangleX.height());
 
             auto pdc = cairo_create(m_psurface);
 

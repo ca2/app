@@ -43,29 +43,29 @@ public:
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-   //::rectangle_i32 get_buttonA_rectangle(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
+   //::rectangle_i32 get_buttonA_rectangle(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
 
-   //::rectangle_i32 get_buttonB_rectangle(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
+   //::rectangle_i32 get_buttonB_rectangle(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
 
-   //::point_f64_array get_arrowA(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
+   //::point_f64_array get_arrowA(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
 
-   //::point_f64_array get_arrowB(const ::rectangle_i32 & rectangleClient, ::draw2d::graphics_pointer & pgraphics);
+   //::point_f64_array get_arrowB(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
 
-   //::status < ::rectangle_i32 > get_pageA_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
+   //::status < ::rectangle_i32 > get_pageA_rectangle(const ::rectangle_i32 & rectangleX, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
 
-   //::status < ::rectangle_i32 > get_pageB_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
+   //::status < ::rectangle_i32 > get_pageB_rectangle(const ::rectangle_i32 & rectangleX, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
 
-   ::rectangle_i32 get_buttonA_rectangle(const ::rectangle_i32 & rectangleClient);
+   ::rectangle_i32 get_buttonA_rectangle(const ::rectangle_i32 & rectangleX);
 
-   ::rectangle_i32 get_buttonB_rectangle(const ::rectangle_i32 & rectangleClient);
+   ::rectangle_i32 get_buttonB_rectangle(const ::rectangle_i32 & rectangleX);
 
-   ::point_f64_array get_arrowA(const ::rectangle_i32 & rectangleClient);
+   ::point_f64_array get_arrowA(const ::rectangle_i32 & rectangleX);
 
-   ::point_f64_array get_arrowB(const ::rectangle_i32 & rectangleClient);
+   ::point_f64_array get_arrowB(const ::rectangle_i32 & rectangleX);
 
-   ::status < ::rectangle_i32 > get_pageA_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack);
+   ::status < ::rectangle_i32 > get_pageA_rectangle(const ::rectangle_i32 & rectangleX, const ::rectangle_i32 & rectangleTrack);
 
-   ::status < ::rectangle_i32 > get_pageB_rectangle(const ::rectangle_i32 & rectangleClient, const ::rectangle_i32 & rectangleTrack);
+   ::status < ::rectangle_i32 > get_pageB_rectangle(const ::rectangle_i32 & rectangleX, const ::rectangle_i32 & rectangleTrack);
 
    //virtual void update_rectangles(::draw2d::graphics_pointer & pgraphics);
    virtual void update_rectangles();

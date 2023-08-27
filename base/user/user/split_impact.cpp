@@ -242,7 +242,7 @@ namespace user
          if (!pimpactdata->m_pplaceholder)
          {
 
-            auto pplaceholder = get_new_place_holder(ppane->m_rectangleClient);
+            auto pplaceholder = get_new_place_holder(ppane->m_rectangleX);
 
             pimpactdata->m_pplaceholder = pplaceholder;
 

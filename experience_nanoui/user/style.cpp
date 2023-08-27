@@ -67,7 +67,7 @@ namespace experience_nanoui
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectangleBorder;
       ::rectangle_i32 rectangleText;
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
       ::rectangle_i32 rectangleIcon;
       ::rectangle_i32 rectangleClose;
 
@@ -83,7 +83,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->client_rectangle();
+      rcClient = ptab->rectangle();
 
       auto pstyle = ptab->get_style(pgraphics);
 
@@ -155,7 +155,7 @@ namespace experience_nanoui
 
          }
 
-         if(!ptab->get_element_rectangle(iTab,rectangleClient, ::e_element_client))
+         if(!ptab->get_element_rectangle(iTab,rectangleX, ::e_element_client))
             continue;
 
          bool bTextRect = ptab->get_element_rectangle(iTab, rectangleText, ::e_element_text);
@@ -187,9 +187,9 @@ namespace experience_nanoui
 
                ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
 
-               ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+               ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
 
-               ppath->add_line(rectangleClient.left,rectangleBorder.top);
+               ppath->add_line(rectangleX.left,rectangleBorder.top);
 
                ppath->add_line(rectangleBorder.right,rectangleBorder.top);
 
@@ -231,7 +231,7 @@ namespace experience_nanoui
                ppath->begin_figure();
 
                ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
-               ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+               ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
                ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left,rectangleBorder.top);
                ppath->add_line(rectangleBorder.right,rectangleBorder.top);
                ppath->add_line(rectangleBorder.right,rectangleBorder.bottom);
@@ -314,13 +314,13 @@ namespace experience_nanoui
 
                }
 
-               ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
+               ppath->add_line(rectangleBorder.left,rectangleX.bottom,rectangleBorder.left,rectangleBorder.top);
 
-               ppath->add_line(rectangleClient.right,rectangleBorder.top);
+               ppath->add_line(rectangleX.right,rectangleBorder.top);
 
-               ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
+               ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-               ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
+               ppath->add_line(rectangleBorder.right - 1,rectangleX.bottom);
 
                ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
@@ -355,13 +355,13 @@ namespace experience_nanoui
             else
             {
 
-               ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
+               ppath->add_line(rectangleBorder.left,rectangleX.bottom,rectangleBorder.left,rectangleBorder.top);
 
-               ppath->add_line(rectangleClient.right,rectangleBorder.top);
+               ppath->add_line(rectangleX.right,rectangleBorder.top);
 
-               ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
+               ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-               ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
+               ppath->add_line(rectangleBorder.right - 1,rectangleX.bottom);
 
                ppath->close_figure();
 
@@ -694,12 +694,12 @@ namespace experience_nanoui
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         ::rectangle_i32 rectangleX = ptab->rectangle();
 
-         ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
-         ptab->get_data()->m_rectangleTab.top        = rectangleClient.top;
+         ptab->get_data()->m_rectangleTab.left       = rectangleX.left;
+         ptab->get_data()->m_rectangleTab.top        = rectangleX.top;
          ptab->get_data()->m_rectangleTab.right      = ptab->get_data()->m_rectangleTab.left + ptab->get_data()->m_iTabWidth;
-         ptab->get_data()->m_rectangleTab.bottom     = rectangleClient.bottom;
+         ptab->get_data()->m_rectangleTab.bottom     = rectangleX.bottom;
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
@@ -709,9 +709,9 @@ namespace experience_nanoui
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left       = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
+         ptab->get_data()->m_rectangleTabClient.left       = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
          ptab->get_data()->m_rectangleTabClient.top        = ptab->get_data()->m_rectangleTab.top;
-         ptab->get_data()->m_rectangleTabClient.right      = rectangleClient.right;
+         ptab->get_data()->m_rectangleTabClient.right      = rectangleX.right;
          ptab->get_data()->m_rectangleTabClient.bottom     = ptab->get_data()->m_rectangleTab.bottom;
 
       }
@@ -724,9 +724,9 @@ namespace experience_nanoui
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
-         //ptab->client_rectangle(rectangleClient);
-         int x = rectangleClient.left;
+         ::rectangle_i32 rectangleX = ptab->rectangle();
+         //ptab->rectangle(rectangleX);
+         int x = rectangleX.left;
 
          i32 ixAdd;
          for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
@@ -764,7 +764,7 @@ namespace experience_nanoui
             }
 
             ppane->m_point.x() = x;
-            ppane->m_point.y() = rectangleClient.top;
+            ppane->m_point.y() = rectangleX.top;
 
 
             //            string str = ppane->get_title();
@@ -819,9 +819,9 @@ namespace experience_nanoui
 
 
 
-         ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
-         ptab->get_data()->m_rectangleTab.top        = rectangleClient.top;
-         ptab->get_data()->m_rectangleTab.right      = rectangleClient.right;
+         ptab->get_data()->m_rectangleTab.left       = rectangleX.left;
+         ptab->get_data()->m_rectangleTab.top        = rectangleX.top;
+         ptab->get_data()->m_rectangleTab.right      = rectangleX.right;
          ptab->get_data()->m_rectangleTab.bottom     = ptab->get_data()->m_rectangleTab.top + ptab->get_data()->m_iTabHeight;
 
          /*      set_window_position(
@@ -838,9 +838,9 @@ namespace experience_nanoui
          bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
          rectangleTabClient.left = ptab->get_data()->m_rectangleTab.left;
-         rectangleTabClient.top = bTabbedClient ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.top = bTabbedClient ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
          rectangleTabClient.right = ptab->get_data()->m_rectangleTab.right;
-         rectangleTabClient.bottom = rectangleClient.bottom;
+         rectangleTabClient.bottom = rectangleX.bottom;
 
 
          //TRACE0("rectangleTabClient");
@@ -862,7 +862,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->client_rectangle();
+      rcClient = ptab->rectangle();
 
       if(ptab->get_data()->m_bVertical)
       {
@@ -1467,7 +1467,7 @@ namespace experience_nanoui
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
-      ::rectangle_i32 rectangleClient = pscrollbar->client_rectangle();
+      ::rectangle_i32 rectangleX = pscrollbar->rectangle();
 
       if (colorBackground.has_opacity())
       {
@@ -1483,7 +1483,7 @@ namespace experience_nanoui
 
          }
 
-         pgraphics->fill_rectangle(rectangleClient, colorBackground);
+         pgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 
@@ -1708,7 +1708,7 @@ namespace experience_nanoui
 
       pgraphics->set(pbar->m_pbrushDraw);
 
-      auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient);
+      auto rectangleA = pbar->get_buttonA_rectangle(rectangleX);
 
       pgraphics->rectangle(rectangleA);
 
@@ -1720,7 +1720,7 @@ namespace experience_nanoui
 
       pgraphics->set(pbar->m_pbrushDraw);
 
-      auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient);
+      auto rectangleB = pbar->get_buttonB_rectangle(rectangleX);
 
       pgraphics->rectangle(rectangleB);
 
@@ -1730,7 +1730,7 @@ namespace experience_nanoui
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
-         rectangle = pbar->get_pageA_rectangle(rectangleClient, rectangleTrack);
+         rectangle = pbar->get_pageA_rectangle(rectangleX, rectangleTrack);
 
          if (rectangle)
          {
@@ -1748,7 +1748,7 @@ namespace experience_nanoui
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 
-         auto rectangle = pbar->get_pageB_rectangle(rectangleClient, rectangleTrack);
+         auto rectangle = pbar->get_pageB_rectangle(rectangleX, rectangleTrack);
 
          if(rectangle)
          {
@@ -1771,7 +1771,7 @@ namespace experience_nanoui
 
       pgraphics->set(ppenArrow);
 
-      auto arrowA = pbar->get_arrowA(rectangleClient);
+      auto arrowA = pbar->get_arrowA(rectangleX);
 
       pgraphics->polyline(arrowA);
 
@@ -1779,7 +1779,7 @@ namespace experience_nanoui
 
       pgraphics->set(ppenArrow);
 
-      auto arrowB = pbar->get_arrowA(rectangleClient);
+      auto arrowB = pbar->get_arrowA(rectangleX);
 
       pgraphics->polyline(arrowB);
 

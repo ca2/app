@@ -278,9 +278,9 @@ SizingNone:;
                else
                {
                   ::rectangle_i32 rectangle;
-                  ::rectangle_i32 rectangleClient = lpcrectClient;
-                  rectangleClient.deflate(1, 1);
-                  GetBorderRectangle(rectangleClient, &rectangle, eside);
+                  ::rectangle_i32 rectangleX = lpcrectClient;
+                  rectangleX.deflate(1, 1);
+                  GetBorderRectangle(rectangleX, &rectangle, eside);
 
                   pgraphics->color_blend(
                                       rectangle,
@@ -289,10 +289,10 @@ SizingNone:;
 
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
-                  ::rectangle_i32 rectangleClientB = rectangleA;
+                  ::rectangle_i32 rectangleXB = rectangleA;
 
-                  rectangleClientB.bottom--;
-                  rectangleClientB.right--;
+                  rectangleXB.bottom--;
+                  rectangleXB.right--;
 
                   rectangleA.top++;
                   rectangleA.bottom--;
@@ -342,7 +342,7 @@ SizingNone:;
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
 
-               auto rectangleClient = pframewindow->client_rectangle();
+               auto rectangleX = pframewindow->rectangle();
 
                string str;
 
@@ -481,13 +481,13 @@ SizingNone:;
                //            const i32 size1 = 14;
                //      const i32 size2 = 15;
 
-               ::rectangle_i32 rectangleClient(lpcrectClient);
-               //            ::rectangle_i32 rectangleClientB(rectangleClient);
+               ::rectangle_i32 rectangleX(lpcrectClient);
+               //            ::rectangle_i32 rectangleXB(rectangleX);
                ::rectangle_i32 rectangleA;
                point_i32 ptA;
                point_i32 ptB;
                point_i32 ptC;
-               ::rectangle_i32 rectangle(rectangleClient);
+               ::rectangle_i32 rectangle(rectangleX);
 
 
 
@@ -496,10 +496,10 @@ SizingNone:;
                case e_grip_top_left:
                {
 
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom--;
+                  rectangleX.right--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   pgraphics->SelectObject(m_ppenHilight1);
 
@@ -598,10 +598,10 @@ SizingNone:;
                case e_grip_top_right:
                {
 
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom--;
+                  rectangleX.right--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
                   pgraphics->SelectObject(m_ppenHilight1);
 
@@ -700,10 +700,10 @@ SizingNone:;
                {
                   pgraphics->SelectObject(m_ppenHilight1);
 
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom--;
+                  rectangleX.right--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
 
                   ptA = rectangleA.bottom_left();
@@ -799,10 +799,10 @@ SizingNone:;
                break;
                case e_grip_bottom_right:
                {
-                  rectangleClient.bottom--;
-                  rectangleClient.right--;
+                  rectangleX.bottom--;
+                  rectangleX.right--;
 
-                  rectangleA = rectangleClient;
+                  rectangleA = rectangleX;
 
 
                   pgraphics->SelectObject(m_ppenDkShadow1);
@@ -907,7 +907,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.top = rectangleClient.top;
+                  rectangleB.top = rectangleX.top;
                   rectangleB.left = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2;
                   rectangleB.right = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2;
                   rectangleB.bottom = rectangleB.top + GRIP_CENTER_SMALL_CY;
@@ -921,7 +921,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangleB;
 
-                  rectangleB.bottom = rectangleClient.bottom;
+                  rectangleB.bottom = rectangleX.bottom;
                   rectangleB.left = ptCenter.x() - GRIP_CENTER_LARGE_CX / 2;
                   rectangleB.right = ptCenter.x() + GRIP_CENTER_LARGE_CX / 2;
                   rectangleB.top = rectangleB.bottom - GRIP_CENTER_SMALL_CY;
@@ -936,8 +936,8 @@ SizingNone:;
                   ::rectangle_i32 rectangleB;
 
                   rectangleB.top = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2;
-                  rectangleB.left = rectangleClient.left;
-                  rectangleB.right = rectangleClient.left + GRIP_CENTER_SMALL_CX;
+                  rectangleB.left = rectangleX.left;
+                  rectangleB.right = rectangleX.left + GRIP_CENTER_SMALL_CX;
                   rectangleB.bottom = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2;
 
                   DrawRectGrip(pgraphics, rectangleB);
@@ -950,8 +950,8 @@ SizingNone:;
                   ::rectangle_i32 rectangleB;
 
                   rectangleB.top = ptCenter.y() - GRIP_CENTER_LARGE_CY / 2;
-                  rectangleB.right = rectangleClient.right;
-                  rectangleB.left = rectangleClient.right - GRIP_CENTER_SMALL_CX;
+                  rectangleB.right = rectangleX.right;
+                  rectangleB.left = rectangleX.right - GRIP_CENTER_SMALL_CX;
                   rectangleB.bottom = ptCenter.y() + GRIP_CENTER_LARGE_CY / 2;
 
                   DrawRectGrip(pgraphics, rectangleB);

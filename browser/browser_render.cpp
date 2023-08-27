@@ -421,15 +421,15 @@ namespace browser
 
       ::get_task()->m_bThreadToolsForIncreasedFps = true;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient.left = 0;
+      rectangleX.left = 0;
 
-      rectangleClient.top = 0;
+      rectangleX.top = 0;
 
-      rectangleClient.right = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleClient.bottom = m_cy;
+      rectangleX.bottom = m_cy;
 
       auto pbrushText = __create < ::draw2d::brush > ();
 
@@ -614,7 +614,7 @@ namespace browser
                                          , m_pimageTemplate2->get_size(),
                                          m_pimageTemplate2->get_graphics(), ::point_i32(), ::u8 (128 + (255 - 128) * r));
 
-      //pgraphics->from(rectangleClient.top_left(),m_pimageTemplate, ::point_i32(), rectangleClient>si);
+      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::point_i32(), rectangleX>si);
 
       pgraphics->set_font(m_pfont);
 
@@ -680,17 +680,17 @@ namespace browser
       if (m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient.left = 0;
+      rectangleX.left = 0;
 
-      rectangleClient.top = 0;
+      rectangleX.top = 0;
 
-      rectangleClient.right = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleClient.bottom = m_cy;
+      rectangleX.bottom = m_cy;
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
       //      i32 iCount = 30;
@@ -844,7 +844,7 @@ namespace browser
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw(rectangleClient, m_pimageTint->get_graphics());
+         pgraphics->draw(rectangleX, m_pimageTint->get_graphics());
 
       }
 
@@ -1003,7 +1003,7 @@ namespace browser
 
 #endif
 
-      if (strHelloBrowser == strGetHelloBrowser && m_cx == m_rectangleClient.width() && m_cy == m_rectangleClient.height())
+      if (strHelloBrowser == strGetHelloBrowser && m_cx == m_rectangleX.width() && m_cy == m_rectangleX.height())
       {
 
          m_bFirstDone = true;
@@ -1034,12 +1034,12 @@ namespace browser
    void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient.left = 0;
-      rectangleClient.top = 0;
-      rectangleClient.right = m_cx;
-      rectangleClient.bottom = m_cy;
+      rectangleX.left = 0;
+      rectangleX.top = 0;
+      rectangleX.right = m_cx;
+      rectangleX.bottom = m_cy;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       ::time tickPeriod = m_timeSlidePeriod;

@@ -46,9 +46,9 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      pgraphics->rectangle(rectangleClient);
+      pgraphics->rectangle(rectangleX);
 
 
 

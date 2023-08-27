@@ -170,13 +170,13 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      //::rectangle_i32 rectangleClient;
+      //::rectangle_i32 rectangleX;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int w = rectangleClient.width();
+      int w = rectangleX.width();
 
-      int h = rectangleClient.height();
+      int h = rectangleX.height();
 
       if (w <= 0 || h <= 0)
       {
@@ -189,7 +189,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
+      pgraphics->offset_origin(rectangleX.left, rectangleX.top);
 
       ::rectangle_i32 rectangleCheckBox;
 
@@ -204,7 +204,7 @@ namespace user
          rectangleCheckBox.right = iSize;
          rectangleCheckBox.bottom = iSize;
 
-         rectangleText = rectangleClient;
+         rectangleText = rectangleX;
 
          rectangleText.left = rectangleCheckBox.right + 4;
 
@@ -314,11 +314,11 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int w = rectangleClient.width();
+      int w = rectangleX.width();
 
-      int h = rectangleClient.height();
+      int h = rectangleX.height();
 
       w--;
 
@@ -537,9 +537,9 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      int iMinimumDimension = maximum(rectangleClient.minimum_dimension() -1, 1);
+      int iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
 
       ::rectangle_i32 rectangleCheckBox;
       rectangleCheckBox.left = 1;
@@ -597,7 +597,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->offset_origin(-rectangleClient.left, -rectangleClient.top);
+      //pgraphics->offset_origin(-rectangleX.left, -rectangleX.top);
 
    }
 

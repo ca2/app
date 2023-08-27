@@ -592,9 +592,9 @@ namespace user
 
       //on_layout(pgraphics);
 
-      //auto rectangleClient = puiParent->client_rectangle();
+      //auto rectangleX = puiParent->rectangle();
 
-      //place(rectangleClient);
+      //place(rectangleX);
 
       //display();
 
@@ -897,7 +897,7 @@ namespace user
 
          pgraphics->get_clip_box(rectangleClip);
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          //pgraphics->reset_clip();
 
@@ -905,7 +905,7 @@ namespace user
 
          //memset(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
 
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       }
 

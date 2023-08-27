@@ -78,9 +78,9 @@ namespace user
 
       auto sizeTotal = get_total_size();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
       {
 
          return;
@@ -93,9 +93,9 @@ namespace user
 
       ::i32 iTotalWidth = (::i32) sizeTotal.cx();
 
-      ::i32 iClientHeight = rectangleClient.height();
+      ::i32 iClientHeight = rectangleX.height();
 
-      ::i32 iClientWidth = rectangleClient.width();
+      ::i32 iClientWidth = rectangleX.width();
 
       ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_width);;
 
@@ -148,7 +148,7 @@ namespace user
       //}
 
 
-      auto rectangleScroll = client_rectangle();
+      auto rectangleScroll = this->rectangle();
 
       m_pscrolldataHorizontal->m_iPage = rectangleScroll.width();
 
@@ -176,7 +176,7 @@ namespace user
    bool scroll_base::GetActiveClientRect(::rectangle_i32 & rectangle)
    {
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       auto sizeTotal = get_total_size();
 
@@ -191,10 +191,10 @@ namespace user
    }
 
 
-   //bool scroll_base::client_rectangle(::rectangle_i32 * prectangle)
+   //bool scroll_base::this->rectangle(::rectangle_i32 * prectangle)
    //{
 
-   //   ::user::interaction::client_rectangle(prectangle);
+   //   ::user::interaction::this->rectangle(prectangle);
 
    //   prectangle->right -= get_final_y_scroll_bar_width();
 
@@ -255,12 +255,12 @@ namespace user
             && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->is_ok())
       {
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          ::rectangle_i32 rectangle;
 
-         rectangle.top = rectangleClient.bottom;
-         rectangle.left = rectangleClient.right;
+         rectangle.top = rectangleX.bottom;
+         rectangle.left = rectangleX.right;
          rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->const_layout().design().size().cx());
          rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->const_layout().design().size().cy());
 
@@ -300,7 +300,7 @@ namespace user
 
          //}
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          if (horizontal_scrollbar_visible())
          {

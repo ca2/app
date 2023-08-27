@@ -231,7 +231,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    }
 
-   if (bRecalcLayout || m_rectangleClient != rectangle)
+   if (bRecalcLayout || m_rectangleX != rectangle)
    {
 
       m_bCacheEmboss = false;
@@ -788,9 +788,9 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    
    ::size_f64 size;
    
-   ::rectangle_i32 rectangleClient(rectangle);
+   ::rectangle_i32 rectangleX(rectangle);
 
-   m_rectangleClient = rectangleClient;
+   m_rectangleX = rectangleX;
    
    ::rectangle_i32 rectanglePlacement;
    
@@ -806,10 +806,10 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
    size = pgraphics->get_text_extent(strMain);
 
-   if ((size.cx() * 1.2) > rectangleClient.width())
+   if ((size.cx() * 1.2) > rectangleX.width())
    {
 
-      m_floatRateX = (double) rectangleClient.width() / ((double) size.cx() * 1.2);
+      m_floatRateX = (double) rectangleX.width() / ((double) size.cx() * 1.2);
 
    }
    else
@@ -986,9 +986,9 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    pdcForeground->set(pFont->GetFont());
    i32 i, iLeft, iRight, iMaxExtent;
    ::size_i32 size;
-   ::rectangle_i32 rectangleClient(rectangle);
+   ::rectangle_i32 rectangleX(rectangle);
 
-   m_rectangleClient = rectangleClient;
+   m_rectangleX = rectangleX;
    ::write_text::font * pfont = pFont;
    ::draw2d::graphics_pointer & pgraphics = pdcForeground;
    ASSERT(pfont != nullptr);
@@ -1001,11 +1001,11 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       strMain.length(),
       &size);
    pgraphics->set(pfont->GetFont());
-   if(size.cx() > rectangleClient.width())
+   if(size.cx() > rectangleX.width())
    {
       m_floatRateX =
          (float)
-         rectangleClient.width()/
+         rectangleX.width()/
          size.cx();
    }
    else

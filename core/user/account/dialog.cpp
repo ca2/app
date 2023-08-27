@@ -502,20 +502,20 @@ namespace account
    void dialog::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
 
       }
 
-      rectangleClient = client_rectangle();
+      rectangleX = this->rectangle();
 
       ::user::interaction::on_layout(pgraphics);
 
-      m_plogin->place(rectangleClient);
+      m_plogin->place(rectangleX);
 
       m_plogin->display(::e_display_normal);
 

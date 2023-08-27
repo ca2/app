@@ -661,20 +661,6 @@ namespace experience
    //}
 
 
-   ::rectangle_i32 frame_window::client_rectangle(::user::enum_layout elayout)
-   {
-
-      if (::is_null(m_pframe))
-      {
-
-         return ::user::frame_window::client_rectangle(elayout);
-
-      }
-
-      return m_pframe->client_rectangle(elayout);
-
-   }
-
 
    void frame_window::initialize_frame_window_experience()
    {
@@ -1270,6 +1256,26 @@ namespace experience
          return;
 
       }
+
+      //::rectangle_i32 frame_window::rectangle(::user::enum_layout elayout)
+      //{
+
+         if (::is_set(m_pframe))
+         {
+
+            auto rectangleClient2 = this->rectangle(::user::e_layout_lading);
+
+            m_pframe->calculate_client_rectangle2(&rectangleClient2);
+
+            m_rectangleClient2 = rectangleClient2;
+
+           // return ::user::frame_window::rectangle(elayout);
+
+         }
+
+         //return m_pframe->rectangle(elayout);
+
+      //}
 
       if (m_pframe != nullptr)
       {
@@ -2699,6 +2705,17 @@ namespace experience
 
       post_redraw();
 
+   }
+   void frame_window::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
+   {
+      if (::is_null(m_pframe))
+      {
+
+         ::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+
+         return;
+      }
+      m_pframe->place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
    }
 
 

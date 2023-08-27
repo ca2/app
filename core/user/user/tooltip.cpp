@@ -97,15 +97,15 @@ namespace user
 
       pgraphics->reset_clip();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto ppath = __create < ::draw2d::path > ();
 
-      ppath->set_current_point(rectangleClient.left, rectangleClient.bottom);
+      ppath->set_current_point(rectangleX.left, rectangleX.bottom);
 
       ::rectangle_i32 rectangleBody;
 
-      rectangleBody = rectangleClient;
+      rectangleBody = rectangleX;
 
       rectangleBody.left += 16;
       rectangleBody.bottom -= 16;

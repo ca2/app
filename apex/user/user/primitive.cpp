@@ -536,7 +536,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_rectangle(::rectangle_i32 * prectangle)
+   //bool primitive::this->rectangle(::rectangle_i32 * prectangle)
    //{
 
    //   throw ::interface_only();
@@ -546,7 +546,7 @@ namespace user
    //}
 
 
-   //bool primitive::client_rectangle(::rectangle_i64 * prectangle)
+   //bool primitive::this->rectangle(::rectangle_i64 * prectangle)
 
    //{
 
@@ -1905,7 +1905,7 @@ namespace user
    //}
 
 
-   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();

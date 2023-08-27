@@ -109,19 +109,19 @@ namespace experience
 //
 //         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
-//         ::rectangle_i32 rectangleClient;
+//         ::rectangle_i32 rectangleX;
 //
 //         bool bFirst = true;
 //
 //         if (pdrawcontext != nullptr)
 //         {
 //
-//            client_rectangle(rectangleClient);
+//            this->rectangle(rectangleX);
 //
-//            rectangleClient.bottom++;
-//            rectangleClient.right++;
+//            rectangleX.bottom++;
+//            rectangleX.right++;
 //
-//            rectangleClip = rectangleClient;
+//            rectangleClip = rectangleX;
 //
 //            bFirst = false;
 //
@@ -143,7 +143,7 @@ namespace experience
 //            while (pinteraction != nullptr)
 //            {
 //
-//               pinteraction->client_rectangle(rectangleFocus);
+//               pinteraction->rectangle(rectangleFocus);
 //
 //               pinteraction->client_to_host(rectangleFocus);
 //

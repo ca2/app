@@ -299,10 +299,10 @@ SizingNone:
                                       crMoveableBorder,
                                       127);
 
-                  ::rectangle_i32 rectangleClientB = rectangleA;
+                  ::rectangle_i32 rectangleXB = rectangleA;
 
-                  rectangleClientB.bottom--;
-                  rectangleClientB.right--;
+                  rectangleXB.bottom--;
+                  rectangleXB.right--;
 
                   rectangleA.top++;
                   rectangleA.bottom--;
@@ -350,7 +350,7 @@ SizingNone:
 
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
-               auto rectangleClient = pframewindow->client_rectangle();
+               auto rectangleX = pframewindow->rectangle();
 
                string str;
 

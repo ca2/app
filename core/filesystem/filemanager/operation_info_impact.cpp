@@ -65,12 +65,12 @@ namespace filemanager
       rectangleProgress.right--;
       rectangleProgress.top++;
       rectangleProgress.bottom--;*/
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
       i32 iLineCount = 23;
-      double dBarHeight = (double)rectangleClient.height() / (double)iLineCount;
+      double dBarHeight = (double)rectangleX.height() / (double)iLineCount;
       double dTop = 0.0;
       ::rectangle_i32 rectangleProgress;
-      rectangleProgress = rectangleClient;
+      rectangleProgress = rectangleX;
       //rectangleProgress.left += 23;
       //rectangleProgress.right -= 23;
       rectangleProgress.top += (::i32)dTop;

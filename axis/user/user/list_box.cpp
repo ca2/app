@@ -393,7 +393,7 @@ namespace user
 
       string strItem;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       status < ::color::color > colorBackground;
 
@@ -409,13 +409,13 @@ namespace user
 
       pgraphics->set(pbrushBk);
 
-      pgraphics->fill_rectangle(rectangleClient);
+      pgraphics->fill_rectangle(rectangleX);
 
       ::rectangle_i32 rectangleItem;
 
-      rectangleItem = rectangleClient;
+      rectangleItem = rectangleX;
 
-      rectangleItem.bottom = rectangleClient.top;
+      rectangleItem.bottom = rectangleX.top;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
@@ -516,9 +516,9 @@ namespace user
 
       pgraphics->set(ppen);
 
-      rectangleClient.deflate(0, 0, 1, 1);
+      rectangleX.deflate(0, 0, 1, 1);
 
-      pgraphics->draw_rectangle(rectangleClient);
+      pgraphics->draw_rectangle(rectangleX);
 
    }
 
@@ -625,7 +625,7 @@ namespace user
 
       psize->cx() += m_iBorder * 2;
 
-      //auto rectangleComboClient = client_rectangle();
+      //auto rectangleComboClient = this->rectangle();
 
       //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
       //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
@@ -967,9 +967,9 @@ namespace user
 
       screen_to_client(e_layout_sketch)(point);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.contains(point))
+      if (rectangleX.contains(point))
       {
 
       }
@@ -994,9 +994,9 @@ namespace user
 
       screen_to_client(e_layout_sketch)(point);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.contains(point))
+      if (rectangleX.contains(point))
       {
 
       }
@@ -1069,9 +1069,9 @@ namespace user
 
       ::count iItemCount = _001GetListCount();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      ::rectangle_i32 rectangleItem = rectangleClient;
+      ::rectangle_i32 rectangleItem = rectangleX;
 
       int iAddUp = 0;
 
@@ -1085,7 +1085,7 @@ namespace user
       for (::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectangleItem.top = rectangleClient.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
+         rectangleItem.top = rectangleX.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
 
          rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
@@ -1098,7 +1098,7 @@ namespace user
 
       }
 
-      rectangleItem.top = rectangleClient.top;
+      rectangleItem.top = rectangleX.top;
 
       rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 

@@ -66,7 +66,7 @@ namespace os
       virtual void screen_to_client(::point_i32 * ppt);
 
       virtual void window_rectangle(::rectangle_i32 * prectangle);
-      virtual void client_rectangle(::rectangle_i32 * prectangle);
+      virtual void this->rectangle(::rectangle_i32 * prectangle);
 
 
       virtual bool show_window(bool bShow = true);

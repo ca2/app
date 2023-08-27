@@ -279,13 +279,13 @@
                else
                {
 
-                  ::rectangle_i32 rectangleClient(lpcrectClient);
+                  ::rectangle_i32 rectangleX(lpcrectClient);
 
-                  rectangleClient.deflate(2, 2, 2, 2);
+                  rectangleX.deflate(2, 2, 2, 2);
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRectangle(rectangleClient, &rectangle, eside);
+                  GetBorderRectangle(rectangleX, &rectangle, eside);
 
 
 
@@ -444,13 +444,13 @@
 
 //               ::rectangle_i32 rectangleC(lpcrectClient);
 //
-//               ::rectangle_i32 rectangleClient(lpcrectClient);
+//               ::rectangle_i32 rectangleX(lpcrectClient);
 //
-//               rectangleClient.right--;
+//               rectangleX.right--;
 //
-//               rectangleClient.bottom--;
+//               rectangleX.bottom--;
 //
-//               ::rectangle_i32 rectangleClientB(rectangleClient);
+//               ::rectangle_i32 rectangleXB(rectangleX);
 //
 //               ::rectangle_i32 rectangleA;
 //
@@ -460,7 +460,7 @@
 //
 //               point_i32 ptC;
 //
-//               ::rectangle_i32 rectangle(rectangleClient);
+//               ::rectangle_i32 rectangle(rectangleX);
 //
 //               switch(egrip)
 //               {
@@ -468,7 +468,7 @@
 //               {
 //                                  pgraphics->SelectObject(m_ppenHilight1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top++;
 //                                  rectangleA.left++;
@@ -489,7 +489,7 @@
 //
 //                                  // Most external rectangle_i32
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  ptA = rectangleA.top_left();
 //                                  ptA.y() += 15;
@@ -502,7 +502,7 @@
 //
 //                                  // Midle Rectangle
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top += 2;
 //                                  rectangleA.left += 2;
@@ -520,7 +520,7 @@
 //
 //                                  pgraphics->SelectObject(m_ppenShadow1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top++;
 //                                  rectangleA.left++;
@@ -544,7 +544,7 @@
 //
 //                                  pgraphics->SelectObject(m_ppenDkShadow1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top += 4;
 //                                  rectangleA.left += 4;
@@ -564,20 +564,20 @@
 //
 //                                  // Details
 //
-//                                  ptA.x() = rectangleClientB.left + 14;
-//                                  ptA.y() = rectangleClientB.top + 1;
-//                                  ptB.x() = rectangleClientB.left + 14;
-//                                  ptB.y() = rectangleClientB.top + 3;
+//                                  ptA.x() = rectangleXB.left + 14;
+//                                  ptA.y() = rectangleXB.top + 1;
+//                                  ptB.x() = rectangleXB.left + 14;
+//                                  ptB.y() = rectangleXB.top + 3;
 //                                  pgraphics->MoveTo(ptA);
 //                                  pgraphics->LineTo(ptB);
 //
 //
 //                                  // Details
 //
-//                                  ptA.x() = rectangleClientB.left + 1;
-//                                  ptA.y() = rectangleClientB.top + 14;
-//                                  ptB.x() = rectangleClientB.left + 3;
-//                                  ptB.y() = rectangleClientB.top + 14;
+//                                  ptA.x() = rectangleXB.left + 1;
+//                                  ptA.y() = rectangleXB.top + 14;
+//                                  ptB.x() = rectangleXB.left + 3;
+//                                  ptB.y() = rectangleXB.top + 14;
 //                                  pgraphics->MoveTo(ptA);
 //                                  pgraphics->LineTo(ptB);
 //
@@ -585,19 +585,19 @@
 //
 //                                  // Details
 //
-//                                  ptA.x() = rectangleClientB.left + 15;
-//                                  ptA.y() = rectangleClientB.top + 1;
-//                                  ptB.x() = rectangleClientB.left + 15;
-//                                  ptB.y() = rectangleClientB.top + 5;
+//                                  ptA.x() = rectangleXB.left + 15;
+//                                  ptA.y() = rectangleXB.top + 1;
+//                                  ptB.x() = rectangleXB.left + 15;
+//                                  ptB.y() = rectangleXB.top + 5;
 //                                  pgraphics->MoveTo(ptA);
 //                                  pgraphics->LineTo(ptB);
 //
 //                                  // Details
 //
-//                                  ptA.x() = rectangleClientB.left + 1;
-//                                  ptA.y() = rectangleClientB.top + 15;
-//                                  ptB.x() = rectangleClientB.left + 5;
-//                                  ptB.y() = rectangleClientB.top + 15;
+//                                  ptA.x() = rectangleXB.left + 1;
+//                                  ptA.y() = rectangleXB.top + 15;
+//                                  ptB.x() = rectangleXB.left + 5;
+//                                  ptB.y() = rectangleXB.top + 15;
 //                                  pgraphics->MoveTo(ptA);
 //                                  pgraphics->LineTo(ptB);
 //               }
@@ -606,7 +606,7 @@
 //               {
 //                                   pgraphics->SelectObject(m_ppenHilight1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top++;
 //                                   rectangleA.left++;
@@ -634,7 +634,7 @@
 //
 //                                   // Most external rectangle_i32
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   ptA = rectangleA.top_right();
 //                                   ptA.x() -= 16;
@@ -658,7 +658,7 @@
 //
 //                                   // Midle Rectangle
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top += 2;
 //                                   rectangleA.left += 2;
@@ -676,7 +676,7 @@
 //
 //                                   pgraphics->SelectObject(m_ppenShadow1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top++;
 //                                   rectangleA.left++;
@@ -702,7 +702,7 @@
 //
 //                                   pgraphics->SelectObject(m_ppenDkShadow1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   ptB = rectangleA.top_right();
 //                                   ptC = rectangleA.top_right();
@@ -723,10 +723,10 @@
 //
 //                                   pgraphics->SelectObject(m_ppenHilight1);
 //
-//                                   ptA.x() = rectangleClientB.right - 14;
-//                                   ptA.y() = rectangleClientB.top + 1;
-//                                   ptB.x() = rectangleClientB.right - 14;
-//                                   ptB.y() = rectangleClientB.top + 4;
+//                                   ptA.x() = rectangleXB.right - 14;
+//                                   ptA.y() = rectangleXB.top + 1;
+//                                   ptB.x() = rectangleXB.right - 14;
+//                                   ptB.y() = rectangleXB.top + 4;
 //                                   pgraphics->MoveTo(ptA);
 //                                   pgraphics->LineTo(ptB);
 //
@@ -734,10 +734,10 @@
 //
 //                                   // Details
 //
-//                                   ptA.x() = rectangleClientB.right - 15;
-//                                   ptA.y() = rectangleClientB.top;
-//                                   ptB.x() = rectangleClientB.right - 15;
-//                                   ptB.y() = rectangleClientB.top + 5;
+//                                   ptA.x() = rectangleXB.right - 15;
+//                                   ptA.y() = rectangleXB.top;
+//                                   ptB.x() = rectangleXB.right - 15;
+//                                   ptB.y() = rectangleXB.top + 5;
 //                                   pgraphics->MoveTo(ptA);
 //                                   pgraphics->LineTo(ptB);
 //
@@ -745,10 +745,10 @@
 //
 //                                   // Details
 //
-//                                   ptA.x() = rectangleClientB.right - 3;
-//                                   ptA.y() = rectangleClientB.top + 14;
-//                                   ptB.x() = rectangleClientB.right - 1;
-//                                   ptB.y() = rectangleClientB.top + 14;
+//                                   ptA.x() = rectangleXB.right - 3;
+//                                   ptA.y() = rectangleXB.top + 14;
+//                                   ptB.x() = rectangleXB.right - 1;
+//                                   ptB.y() = rectangleXB.top + 14;
 //                                   pgraphics->MoveTo(ptA);
 //                                   pgraphics->LineTo(ptB);
 //
@@ -756,10 +756,10 @@
 //
 //                                   // Details
 //
-//                                   ptA.x() = rectangleClientB.right - 4;
-//                                   ptA.y() = rectangleClientB.top + 15;
-//                                   ptB.x() = rectangleClientB.right;
-//                                   ptB.y() = rectangleClientB.top + 15;
+//                                   ptA.x() = rectangleXB.right - 4;
+//                                   ptA.y() = rectangleXB.top + 15;
+//                                   ptB.x() = rectangleXB.right;
+//                                   ptB.y() = rectangleXB.top + 15;
 //                                   pgraphics->MoveTo(ptB);
 //                                   pgraphics->LineTo(ptA);
 //               }
@@ -769,7 +769,7 @@
 //
 //                                     pgraphics->SelectObject(m_ppenHilight1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left++;
 //                                     rectangleA.bottom--;
@@ -781,7 +781,7 @@
 //                                     pgraphics->MoveTo(ptB);
 //                                     pgraphics->LineTo(ptA);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 3;
 //                                     rectangleA.bottom -= 3;
@@ -797,7 +797,7 @@
 //
 //                                     // Most external rectangle_i32 0
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     ptA = rectangleA.bottom_left();
 //                                     ptA.y() -= 15;
@@ -820,7 +820,7 @@
 //
 //                                     // Midle Rectangle 2
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.top += 2;
 //                                     rectangleA.left += 2;
@@ -838,7 +838,7 @@
 //
 //                                     pgraphics->SelectObject(m_ppenShadow1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 2;
 //                                     rectangleA.bottom--;
@@ -849,7 +849,7 @@
 //                                     pgraphics->MoveTo(ptB);
 //                                     pgraphics->LineTo(ptC);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 3;
 //                                     rectangleA.bottom -= 2;
@@ -862,7 +862,7 @@
 //
 //                                     pgraphics->SelectObject(m_ppenDkShadow1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     ptB = rectangleA.bottom_left();
 //                                     ptB.x()++;
@@ -884,10 +884,10 @@
 //
 //                                     pgraphics->SelectObject(m_ppenHilight1);
 //
-//                                     ptA.x() = rectangleClientB.left + 1;
-//                                     ptA.y() = rectangleClientB.bottom - 15;
-//                                     ptB.x() = rectangleClientB.left + 4;
-//                                     ptB.y() = rectangleClientB.bottom - 15;
+//                                     ptA.x() = rectangleXB.left + 1;
+//                                     ptA.y() = rectangleXB.bottom - 15;
+//                                     ptB.x() = rectangleXB.left + 4;
+//                                     ptB.y() = rectangleXB.bottom - 15;
 //                                     pgraphics->MoveTo(ptA);
 //                                     pgraphics->LineTo(ptB);
 //
@@ -895,10 +895,10 @@
 //
 //                                     pgraphics->SelectObject(m_ppenFace1);
 //
-//                                     ptA.x() = rectangleClientB.left;
-//                                     ptA.y() = rectangleClientB.bottom - 15;
-//                                     ptB.x() = rectangleClientB.left + 5;
-//                                     ptB.y() = rectangleClientB.bottom - 15;
+//                                     ptA.x() = rectangleXB.left;
+//                                     ptA.y() = rectangleXB.bottom - 15;
+//                                     ptB.x() = rectangleXB.left + 5;
+//                                     ptB.y() = rectangleXB.bottom - 15;
 //                                     pgraphics->MoveTo(ptA);
 //                                     pgraphics->LineTo(ptB);
 //
@@ -906,10 +906,10 @@
 //
 //                                     // Details - right most
 //
-//                                     ptA.x() = rectangleClientB.left + 14;
-//                                     ptA.y() = rectangleClientB.bottom - 4;
-//                                     ptB.x() = rectangleClientB.left + 14;
-//                                     ptB.y() = rectangleClientB.bottom - 1;
+//                                     ptA.x() = rectangleXB.left + 14;
+//                                     ptA.y() = rectangleXB.bottom - 4;
+//                                     ptB.x() = rectangleXB.left + 14;
+//                                     ptB.y() = rectangleXB.bottom - 1;
 //                                     pgraphics->MoveTo(ptB);
 //                                     pgraphics->LineTo(ptA);
 //
@@ -917,10 +917,10 @@
 //
 //                                     // Details - right most
 //
-//                                     ptA.x() = rectangleClientB.left + 15;
-//                                     ptA.y() = rectangleClientB.bottom - 4;
-//                                     ptB.x() = rectangleClientB.left + 15;
-//                                     ptB.y() = rectangleClientB.bottom;
+//                                     ptA.x() = rectangleXB.left + 15;
+//                                     ptA.y() = rectangleXB.bottom - 4;
+//                                     ptB.x() = rectangleXB.left + 15;
+//                                     ptB.y() = rectangleXB.bottom;
 //                                     pgraphics->MoveTo(ptB);
 //                                     pgraphics->LineTo(ptA);
 //               }
@@ -929,7 +929,7 @@
 //               {
 //                                      pgraphics->SelectObject(m_ppenHilight1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top++;
 //                                      rectangleA.left++;
@@ -952,7 +952,7 @@
 //
 //                                      pgraphics->SelectObject(m_ppenFace1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      // Most internal rectangle_i32
 //
@@ -972,7 +972,7 @@
 //
 //                                      // Midle Rectangle
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top += 2;
 //                                      rectangleA.left += 2;
@@ -989,7 +989,7 @@
 //                                      pgraphics->LineTo(ptC);
 //                                      pgraphics->SelectObject(m_ppenShadow1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top++;
 //                                      rectangleA.left++;
@@ -1007,7 +1007,7 @@
 //
 //                                      pgraphics->SelectObject(m_ppenDkShadow1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      ptA = rectangleA.bottom_right();
 //                                      ptA.y() -= 15;
@@ -1020,17 +1020,17 @@
 //
 //                                      pgraphics->SelectObject(m_ppenHilight1);
 //
-//                                      ptA.x() = rectangleClientB.right - 3;
-//                                      ptA.y() = rectangleClientB.bottom - 14;
-//                                      ptB.x() = rectangleClientB.right - 1;
-//                                      ptB.y() = rectangleClientB.bottom - 14;
+//                                      ptA.x() = rectangleXB.right - 3;
+//                                      ptA.y() = rectangleXB.bottom - 14;
+//                                      ptB.x() = rectangleXB.right - 1;
+//                                      ptB.y() = rectangleXB.bottom - 14;
 //                                      pgraphics->MoveTo(ptB);
 //                                      pgraphics->LineTo(ptA);
 //
-//                                      ptA.x() = rectangleClientB.right - 14;
-//                                      ptA.y() = rectangleClientB.bottom - 3;
-//                                      ptB.x() = rectangleClientB.right - 14;
-//                                      ptB.y() = rectangleClientB.bottom - 1;
+//                                      ptA.x() = rectangleXB.right - 14;
+//                                      ptA.y() = rectangleXB.bottom - 3;
+//                                      ptB.x() = rectangleXB.right - 14;
+//                                      ptB.y() = rectangleXB.bottom - 1;
 //                                      pgraphics->MoveTo(ptB);
 //                                      pgraphics->LineTo(ptA);
 //
@@ -1038,17 +1038,17 @@
 //
 //                                      // Details
 //
-//                                      ptA.x() = rectangleClientB.right - 5;
-//                                      ptA.y() = rectangleClientB.bottom - 15;
-//                                      ptB.x() = rectangleClientB.right;
-//                                      ptB.y() = rectangleClientB.bottom - 15;
+//                                      ptA.x() = rectangleXB.right - 5;
+//                                      ptA.y() = rectangleXB.bottom - 15;
+//                                      ptB.x() = rectangleXB.right;
+//                                      ptB.y() = rectangleXB.bottom - 15;
 //                                      pgraphics->MoveTo(ptB);
 //                                      pgraphics->LineTo(ptA);
 //
-//                                      ptA.x() = rectangleClientB.right - 15;
-//                                      ptA.y() = rectangleClientB.bottom - 5;
-//                                      ptB.x() = rectangleClientB.right - 15;
-//                                      ptB.y() = rectangleClientB.bottom;
+//                                      ptA.x() = rectangleXB.right - 15;
+//                                      ptA.y() = rectangleXB.bottom - 5;
+//                                      ptB.x() = rectangleXB.right - 15;
+//                                      ptB.y() = rectangleXB.bottom;
 //                                      pgraphics->MoveTo(ptB);
 //                                      pgraphics->LineTo(ptA);
 //               }

@@ -577,7 +577,7 @@ namespace os
       *prectangle = m_rectangleWindow;
 
    }
-   void simple_ui::client_rectangle(::rectangle_i32 * prectangle)
+   void simple_ui::this->rectangle(::rectangle_i32 * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
@@ -617,9 +617,9 @@ namespace os
       if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::rectangle_i32 rectangleClient = rectangleWindow;
+         ::rectangle_i32 rectangleX = rectangleWindow;
 
-         rectangleClient -= rectangleWindow.top_left();
+         rectangleX -= rectangleWindow.top_left();
 
          ::rectangle_i32 rectangle;
 
@@ -629,7 +629,7 @@ namespace os
 
          m_pimage->g()->set_origin(0, 0);
 
-         m_pimage->g()->FillSolidRect(&rectangleClient, argb(255, 255, 255, 255));
+         m_pimage->g()->FillSolidRect(&rectangleX, argb(255, 255, 255, 255));
 
          draw(m_pimage->g());
 

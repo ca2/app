@@ -139,11 +139,11 @@ namespace experience
 
       //::rectangle_i32 rectangleParent;
 
-      //get_parent()->client_rectangle(rectangleParent);
+      //get_parent()->rectangle(rectangleParent);
 
-      //::rectangle_i32 rectangleClient;
+      //::rectangle_i32 rectangleX;
 
-      //client_rectangle(rectangleClient);
+      //this->rectangle(rectangleX);
 
       //::rectangle_i32 rectangleWindow;
 
@@ -545,7 +545,7 @@ namespace experience
 
             pbutton->order(e_zorder_top);
 
-            information() << "experience::control_box::_layout_button" << rectangle;
+            //information() << "experience::control_box::_layout_button" << rectangle;
 
             pbutton->place(rectangle);
 
@@ -590,9 +590,9 @@ namespace experience
 
 //      reset_layout(pgraphics);
 
-      auto rectangle = client_rectangle(::user::e_layout_lading);
+      auto rectangle = this->rectangle(::user::e_layout_lading);
 
-//      int iWidth = rectangleClient.width();
+//      int iWidth = rectangleX.width();
 //
       rectangle.left = rectangle.right;
 
@@ -1126,9 +1126,9 @@ namespace experience
    void control_box::on_message_size(::message::message * pmessage)
    {
 
-      //auto rectangleClient = client_rectangle();
+      //auto rectangleX = this->rectangle();
 
-      information("rectangleClient");
+      information("rectangleX");
 
    }
 
@@ -1162,19 +1162,19 @@ namespace experience
 //
 //         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
-//         ::rectangle_i32 rectangleClient;
+//         ::rectangle_i32 rectangleX;
 //
 //         bool bFirst = true;
 //
 //         if (pdrawcontext != nullptr)
 //         {
 //
-//            client_rectangle(rectangleClient);
+//            this->rectangle(rectangleX);
 //
-//            rectangleClient.bottom++;
-//            rectangleClient.right++;
+//            rectangleX.bottom++;
+//            rectangleX.right++;
 //
-//            rectangleClip = rectangleClient;
+//            rectangleClip = rectangleX;
 //
 //            bFirst = false;
 //

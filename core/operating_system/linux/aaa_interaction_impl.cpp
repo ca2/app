@@ -2463,12 +2463,12 @@ namespace linux
 //   void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
 //   {
 //
-//      ::rectangle_f64 rectangleClient;
+//      ::rectangle_f64 rectangleX;
 //
-//      m_puserinteraction->client_rectangle(rectangleClient);
+//      m_puserinteraction->rectangle(rectangleX);
 //
 //
-//      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
+//      //pgraphics->FillSolidRect(rectangleX, 0x00000000);
 //
 //      //return;
 //      ::rectangle_f64 rectangleUpdate;
@@ -2900,12 +2900,12 @@ namespace linux
 //
 //   }
 //
-//   bool interaction_impl::client_rectangle(RECT64 * prect)
+//   bool interaction_impl::this->rectangle(RECT64 * prect)
 //
 //   {
 //
 //
-//      return ::user::interaction_impl::client_rectangle(prect);
+//      return ::user::interaction_impl::this->rectangle(prect);
 //
 //
 //      if(!::is_window((oswindow) get_handle()))
@@ -2920,7 +2920,7 @@ namespace linux
 //
 //         ::rectangle_f64 rect32;
 //
-//         //if(!::client_rectangle((oswindow) get_handle(), rect32))
+//         //if(!::this->rectangle((oswindow) get_handle(), rect32))
 //         //{
 //
 //         // return false;
@@ -2937,7 +2937,7 @@ namespace linux
 //      }
 //      //else
 //      {
-//         // interaction::client_rectangle(prect);
+//         // interaction::this->rectangle(prect);
 //
 //      }
 //
@@ -3408,15 +3408,15 @@ namespace linux
 //
 //      }
 //
-//      ::rectangle_f64 rectangleClient;
+//      ::rectangle_f64 rectangleX;
 //
-//      //oswindow->client_rectangle(rectangleClient);
+//      //oswindow->rectangle(rectangleX);
 //
-//      rectangleClient.left = 0;
-//      rectangleClient.top = 0;
-//      rectangleClient.right = 500;
-//      rectangleClient.bottom = 500;
-////      (dynamic_cast < ::linux::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectangleClient.width(), rectangleClient.height())));
+//      rectangleX.left = 0;
+//      rectangleX.top = 0;
+//      rectangleX.right = 500;
+//      rectangleX.bottom = 500;
+////      (dynamic_cast < ::linux::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectangleX.width(), rectangleX.height())));
 //
 //      windowing_output_debug_string("\nlinux::interaction_impl::GetDC END");
 //

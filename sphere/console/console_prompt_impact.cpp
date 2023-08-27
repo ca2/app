@@ -321,13 +321,13 @@ namespace console
 
       bool bCaretOn = m_timeCaretStart.on_off(m_timeCaretPeriod);
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       m_sizeChar = pgraphics.get_text_extent("M");
       
       m_sizeChar = m_sizeChar.maximum(pgraphics.get_text_extent("p"));
 
-      pgraphics->fill_rectangle(rectangleClient,argb(dwAlpha,0,0,0));
+      pgraphics->fill_rectangle(rectangleX,argb(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 

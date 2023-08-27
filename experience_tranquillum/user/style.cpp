@@ -637,9 +637,9 @@ namespace experience_tranquillum
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = pframe->client_rectangle();
+      rectangleX = pframe->rectangle();
 
       auto pstyle = pframe->get_style(pgraphics);
 
@@ -647,7 +647,7 @@ namespace experience_tranquillum
 
       //crBackground = argb(255, 200, 180, 180);
 
-      pgraphics->fill_rectangle(rectangleClient, crBackground);
+      pgraphics->fill_rectangle(rectangleX, crBackground);
 
       return true;
 
@@ -745,13 +745,13 @@ namespace experience_tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient;
-         rectangleClient = ptab->client_rectangle(::user::e_layout_lading);
+         ::rectangle_i32 rectangleX;
+         rectangleX = ptab->rectangle(::user::e_layout_lading);
 
-         ptab->get_data()->m_rectangleTab.left = rectangleClient.left;
-         ptab->get_data()->m_rectangleTab.top = rectangleClient.top;
+         ptab->get_data()->m_rectangleTab.left = rectangleX.left;
+         ptab->get_data()->m_rectangleTab.top = rectangleX.top;
          ptab->get_data()->m_rectangleTab.right = ptab->get_data()->m_rectangleTab.left + ptab->get_data()->m_iTabWidth;
-         ptab->get_data()->m_rectangleTab.bottom = rectangleClient.bottom;
+         ptab->get_data()->m_rectangleTab.bottom = rectangleX.bottom;
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
@@ -761,9 +761,9 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
+         ptab->get_data()->m_rectangleTabClient.left = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
          ptab->get_data()->m_rectangleTabClient.top = ptab->get_data()->m_rectangleTab.top;
-         ptab->get_data()->m_rectangleTabClient.right = rectangleClient.right;
+         ptab->get_data()->m_rectangleTabClient.right = rectangleX.right;
          ptab->get_data()->m_rectangleTabClient.bottom = ptab->get_data()->m_rectangleTab.bottom;
 
       }
@@ -773,9 +773,9 @@ namespace experience_tranquillum
          i32 cy;
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleClient;
-         rectangleClient = ptab->client_rectangle(::user::e_layout_lading);
-         int x = rectangleClient.left;
+         ::rectangle_i32 rectangleX;
+         rectangleX = ptab->rectangle(::user::e_layout_lading);
+         int x = rectangleX.left;
 
          i32 ixAdd;
          for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
@@ -817,7 +817,7 @@ namespace experience_tranquillum
             }
 
             pane.m_point.x() = x;
-            pane.m_point.y() = rectangleClient.top;
+            pane.m_point.y() = rectangleX.top;
 
 
             //            string str = pane.get_title();
@@ -873,9 +873,9 @@ namespace experience_tranquillum
 
 
 
-         ptab->get_data()->m_rectangleTab.left = rectangleClient.left;
-         ptab->get_data()->m_rectangleTab.top = rectangleClient.top;
-         ptab->get_data()->m_rectangleTab.right = rectangleClient.right;
+         ptab->get_data()->m_rectangleTab.left = rectangleX.left;
+         ptab->get_data()->m_rectangleTab.top = rectangleX.top;
+         ptab->get_data()->m_rectangleTab.right = rectangleX.right;
          ptab->get_data()->m_rectangleTab.bottom = ptab->get_data()->m_rectangleTab.top + ptab->get_data()->m_iTabHeight;
 
          /*      set_window_position(
@@ -892,9 +892,9 @@ namespace experience_tranquillum
          // bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
          rectangleTabClient.left = ptab->get_data()->m_rectangleTab.left;
-         rectangleTabClient.top = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.top = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
          rectangleTabClient.right = ptab->get_data()->m_rectangleTab.right;
-         rectangleTabClient.bottom = rectangleClient.bottom;
+         rectangleTabClient.bottom = rectangleX.bottom;
 
 
          //TRACE0("rectangleTabClient");
@@ -928,12 +928,12 @@ namespace experience_tranquillum
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectangleBorder;
       ::rectangle_i32 rectangleText;
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
       ::rectangle_i32 rectangleIcon;
       ::rectangle_i32 rectangleClose;
 
       ::rectangle_i32 r1;
-      r1 = ptab->client_rectangle();
+      r1 = ptab->rectangle();
 
       //if (!ptab->get_data()->m_bNoClient)
       //{
@@ -1047,7 +1047,7 @@ namespace experience_tranquillum
 
          }
 
-         if (!ptab->get_element_rectangle(iTab, rectangleClient, ::e_element_client))
+         if (!ptab->get_element_rectangle(iTab, rectangleX, ::e_element_client))
          {
 
             continue;
@@ -1082,9 +1082,9 @@ namespace experience_tranquillum
 
                   ::rectangle_i32 rSel;
 
-                  rSel = rectangleClient;
+                  rSel = rectangleX;
 
-                  rSel.bottom = rectangleClient.top + 3;
+                  rSel.bottom = rectangleX.top + 3;
 
                   pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
@@ -1126,7 +1126,7 @@ namespace experience_tranquillum
                   //ppath->start_figure();
 
                   ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
-                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
                   ppath->add_line(rectangleText.left, rectangleBorder.top);
                   ppath->add_line(rectangleBorder.right, rectangleBorder.top);
                   ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
@@ -1210,7 +1210,7 @@ namespace experience_tranquillum
 
             //      pgraphics->set(ptab->get_data()->m_ppenBorder);
 
-            //      pgraphics->draw_line(rcTab.left, rectangleClient.bottom, rectangleBorder.left, rectangleClient.bottom);
+            //      pgraphics->draw_line(rcTab.left, rectangleX.bottom, rectangleBorder.left, rectangleX.bottom);
 
             //   }
 
@@ -1228,7 +1228,7 @@ namespace experience_tranquillum
 
                   rSel = rectangle;
 
-                  rSel.bottom = rectangleClient.top + 3;
+                  rSel.bottom = rectangleX.top + 3;
 
                   pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
@@ -1320,7 +1320,7 @@ namespace experience_tranquillum
 
             //      pgraphics->set(ptab->get_data()->m_ppenBorder);
 
-            //      pgraphics->draw_line(rectangleBorder.right - 1, rectangleClient.bottom, rcTab.right, rectangleClient.bottom);
+            //      pgraphics->draw_line(rectangleBorder.right - 1, rectangleX.bottom, rcTab.right, rectangleX.bottom);
 
             //   }
 
@@ -2134,11 +2134,11 @@ namespace experience_tranquillum
    bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer& pgraphics, ::user::split_layout* psplitlayout)
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = psplitlayout->client_rectangle();
+      rectangleX = psplitlayout->rectangle();
 
-      pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
       return true;
 

@@ -4180,7 +4180,7 @@ int_bool window_rectangle(oswindow hwnd, RECT32 * prect)
 }
 
 
-int_bool client_rectangle(oswindow window, RECT32 * prect)
+int_bool this->rectangle(oswindow window, RECT32 * prect)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -4190,7 +4190,7 @@ int_bool client_rectangle(oswindow window, RECT32 * prect)
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::client_rectangle 1.1 (display is null)");
+      windowing_output_debug_string("\n::this->rectangle 1.1 (display is null)");
 
       return false;
 
@@ -4201,7 +4201,7 @@ int_bool client_rectangle(oswindow window, RECT32 * prect)
    if(XGetWindowAttributes(d, window->window(), &attr) == 0)
    {
 
-      windowing_output_debug_string("\n::client_rectangle 1.2 (xgetwindowattributes failed");
+      windowing_output_debug_string("\n::this->rectangle 1.2 (xgetwindowattributes failed");
 
       return false;
 
@@ -4215,7 +4215,7 @@ int_bool client_rectangle(oswindow window, RECT32 * prect)
 
    prect->bottom    = prect->top     + attr.height;
 
-   windowing_output_debug_string("\n::client_rectangle 2");
+   windowing_output_debug_string("\n::this->rectangle 2");
 
    return true;
 

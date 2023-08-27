@@ -81,7 +81,7 @@ namespace experience_core
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectangleBorder;
       ::rectangle_i32 rectangleText;
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
       ::rectangle_i32 rectangleIcon;
       ::rectangle_i32 rectangleClose;
 
@@ -114,7 +114,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->client_rectangle(::user::e_layout_sketch);
+      rcClient = ptab->rectangle(::user::e_layout_sketch);
       
       if(rcClient.is_empty())
       {
@@ -201,7 +201,7 @@ namespace experience_core
 
          }
 
-         if (!ptab->get_element_rectangle(iTab, rectangleClient, ::e_element_client))
+         if (!ptab->get_element_rectangle(iTab, rectangleX, ::e_element_client))
             continue;
 
          bool bTextRect = ptab->get_element_rectangle(iTab, rectangleText, ::e_element_text);
@@ -233,9 +233,9 @@ namespace experience_core
 
                ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
 
-               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
 
-               ppath->add_line(rectangleClient.left, rectangleBorder.top);
+               ppath->add_line(rectangleX.left, rectangleBorder.top);
 
                ppath->add_line(rectangleBorder.right, rectangleBorder.top);
 
@@ -308,7 +308,7 @@ namespace experience_core
                ppath->begin_figure();
 
                ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
-               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
                ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left, rectangleBorder.top);
                ppath->add_line(rectangleBorder.right, rectangleBorder.top);
                ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
@@ -480,13 +480,13 @@ namespace experience_core
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
-                  ppath->add_line(rectangleBorder.left, rectangleClient.bottom, rectangleBorder.left, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleClient.right, rectangleBorder.top);
+                  ppath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right - 1, rectangleClient.bottom);
+                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                }
 
@@ -604,13 +604,13 @@ namespace experience_core
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
-                  ppath->add_line(rectangleBorder.left, rectangleClient.bottom, rectangleBorder.left, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleClient.right, rectangleBorder.top);
+                  ppath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right - 1, rectangleClient.bottom);
+                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                   ppath->close_figure();
 
@@ -1086,12 +1086,12 @@ namespace experience_core
 
          pdata->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_sketch);
+         ::rectangle_i32 rectangleX = ptab->rectangle(::user::e_layout_sketch);
 
-         pdata->m_rectangleTab.left = rectangleClient.left;
-         pdata->m_rectangleTab.top = rectangleClient.top;
+         pdata->m_rectangleTab.left = rectangleX.left;
+         pdata->m_rectangleTab.top = rectangleX.top;
          pdata->m_rectangleTab.right = pdata->m_rectangleTab.left + pdata->m_iTabWidth;
-         pdata->m_rectangleTab.bottom = rectangleClient.bottom;
+         pdata->m_rectangleTab.bottom = rectangleX.bottom;
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
@@ -1101,9 +1101,9 @@ namespace experience_core
          m_rectangleTab.height(),
          0);*/
 
-         pdata->m_rectangleTabClient.left = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.right : rectangleClient.left;
+         pdata->m_rectangleTabClient.left = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.right : rectangleX.left;
          pdata->m_rectangleTabClient.top = pdata->m_rectangleTab.top;
-         pdata->m_rectangleTabClient.right = rectangleClient.right;
+         pdata->m_rectangleTabClient.right = rectangleX.right;
          pdata->m_rectangleTabClient.bottom = pdata->m_rectangleTab.bottom;
 
       }
@@ -1116,9 +1116,9 @@ namespace experience_core
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleClient = ptab->client_rectangle(::user::e_layout_sketch);
-         //ptab->client_rectangle(rectangleClient);
-         int x = rectangleClient.left;
+         ::rectangle_i32 rectangleX = ptab->rectangle(::user::e_layout_sketch);
+         //ptab->rectangle(rectangleX);
+         int x = rectangleX.left;
 
          i32 ixAdd;
          for (i32 iPane = 0; iPane < pdata->m_tabpanecompositea.get_size(); iPane++)
@@ -1156,7 +1156,7 @@ namespace experience_core
             }
 
             ppane->m_point.x() = x;
-            ppane->m_point.y() = rectangleClient.top;
+            ppane->m_point.y() = rectangleX.top;
 
 
             //            string str = ppane->get_title();
@@ -1211,9 +1211,9 @@ namespace experience_core
 
 
 
-         pdata->m_rectangleTab.left = rectangleClient.left;
-         pdata->m_rectangleTab.top = rectangleClient.top;
-         pdata->m_rectangleTab.right = rectangleClient.right;
+         pdata->m_rectangleTab.left = rectangleX.left;
+         pdata->m_rectangleTab.top = rectangleX.top;
+         pdata->m_rectangleTab.right = rectangleX.right;
          pdata->m_rectangleTab.bottom = pdata->m_rectangleTab.top + pdata->m_iTabHeight;
 
          /*      set_window_position(
@@ -1230,9 +1230,9 @@ namespace experience_core
          //bool bTabbedClient = ptab->m_bShowTabs;
 
          rectangleTabClient.left = pdata->m_rectangleTab.left;
-         rectangleTabClient.top = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.top = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.bottom : rectangleX.top;
          rectangleTabClient.right = pdata->m_rectangleTab.right;
-         rectangleTabClient.bottom = rectangleClient.bottom;
+         rectangleTabClient.bottom = rectangleX.bottom;
 
 
          //TRACE0("rectangleTabClient");
@@ -1254,7 +1254,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->client_rectangle(::user::e_layout_sketch);
+      rcClient = ptab->rectangle(::user::e_layout_sketch);
 
       if (pdata->m_bVertical)
       {
@@ -1873,7 +1873,7 @@ namespace experience_core
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
-      ::rectangle_i32 rectangleClient = pscrollbar->client_rectangle();
+      ::rectangle_i32 rectangleX = pscrollbar->rectangle();
 
       if (colorBackground.m_u8Opacity != 0)
       {
@@ -1889,7 +1889,7 @@ namespace experience_core
 
          }
 
-         pgraphics->fill_rectangle(rectangleClient, colorBackground);
+         pgraphics->fill_rectangle(rectangleX, colorBackground);
 
       }
 
@@ -2106,7 +2106,7 @@ namespace experience_core
 
       {
 
-         auto rectangleA = pbar->get_buttonA_rectangle(rectangleClient);
+         auto rectangleA = pbar->get_buttonA_rectangle(rectangleX);
 
          auto ppenArrow = __create < ::draw2d::pen >();
 
@@ -2124,7 +2124,7 @@ namespace experience_core
 
       {
 
-         auto rectangleB = pbar->get_buttonB_rectangle(rectangleClient);
+         auto rectangleB = pbar->get_buttonB_rectangle(rectangleX);
 
          auto ppenArrow = __create < ::draw2d::pen >();
 
@@ -2144,7 +2144,7 @@ namespace experience_core
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
       {
 
-         auto statusrectanglePageA = pbar->get_pageA_rectangle(rectangleClient, statusrectangleTrack);
+         auto statusrectanglePageA = pbar->get_pageA_rectangle(rectangleX, statusrectangleTrack);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
@@ -2157,7 +2157,7 @@ namespace experience_core
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
       {
 
-         auto statusrectanglePageB = pbar->get_pageB_rectangle(rectangleClient, statusrectangleTrack);
+         auto statusrectanglePageB = pbar->get_pageB_rectangle(rectangleX, statusrectangleTrack);
 
          pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
@@ -2177,7 +2177,7 @@ namespace experience_core
 
          {
 
-            auto pointaA = pbar->get_arrowA(rectangleClient);
+            auto pointaA = pbar->get_arrowA(rectangleX);
 
             ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
@@ -2189,7 +2189,7 @@ namespace experience_core
 
          {
 
-            auto pointaB = pbar->get_arrowB(rectangleClient);
+            auto pointaB = pbar->get_arrowB(rectangleX);
 
             ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 

@@ -49,7 +49,7 @@ namespace user
 
       m_dRate = m_scalar.get_rate();
 
-      auto rectangle = client_rectangle();
+      auto rectangle = this->rectangle();
 
       pgraphics->fill_rectangle(rectangle, argb(255, 235, 235, 235));
 

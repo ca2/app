@@ -1098,7 +1098,7 @@ namespace user
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         rectangleFrame = pholder->client_rectangle();
+         rectangleFrame = pholder->rectangle();
 
       }
       else
@@ -2799,9 +2799,9 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-//      ::rectangle_i32 rectangleClient;
+//      ::rectangle_i32 rectangleX;
 //
-//      client_rectangle(rectangleClient);
+//      this->rectangle(rectangleX);
 
       if(pstyle)
       {

@@ -1172,7 +1172,7 @@ namespace user
 
          auto rectangle = get_drawing_rect();
 
-         rectangle_f64 rectangleClient(rectangle);
+         rectangle_f64 rectangleX(rectangle);
 
          int x = (int) rectangle.left;
 
@@ -1391,7 +1391,7 @@ namespace user
 
             strSlice.empty();
 
-            cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
+            cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleX.right - x);
 
             if (ansi_char_isspace(straWords.last().last_char())
                || (iSpan + 1 < m_spana.get_count()
@@ -1449,7 +1449,7 @@ namespace user
 
                strSlice.empty();
 
-               longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
+               longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleX.right - x);
 
                auto pbox = __new(box(pspan));
 
@@ -1527,7 +1527,7 @@ namespace user
          for (auto& pline : *plinea)
          {
 
-            align(pline, rectangleClient);
+            align(pline, rectangleX);
 
          }
 
@@ -1552,7 +1552,7 @@ namespace user
          else
          {
 
-            rectangle = m_pedit->client_rectangle();
+            rectangle = m_pedit->rectangle();
 
          }
 
@@ -1579,7 +1579,7 @@ namespace user
 
          }
 
-         //rectangle_f64 rectangleClient(rectangle);
+         //rectangle_f64 rectangleX(rectangle);
 
          auto rectangle = get_drawing_rect();
 

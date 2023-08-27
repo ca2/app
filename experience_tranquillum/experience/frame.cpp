@@ -25,7 +25,7 @@ namespace experience_tranquillum
 
       m_colorCaptionText = argb(255, 255, 255, 255);
 
-      //m_rectangleClient = nullptr;
+      //m_rectangleX = nullptr;
 
    }
 
@@ -57,11 +57,11 @@ namespace experience_tranquillum
 
       //class imaging & imaging = psystem->imaging();
 
-      ::rectangle_i32 rectangleClient(rectangle);
+      ::rectangle_i32 rectangleX(rectangle);
 
       ::rectangle_i32 rectangleInflate;
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
       {
 
          return;
@@ -72,7 +72,7 @@ namespace experience_tranquillum
 
       //i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-      //rectangleInflate = rectangleClient;
+      //rectangleInflate = rectangleX;
       //rectangleInflate.inflate(iInflate, iInflate);
 
       ////::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
@@ -85,21 +85,21 @@ namespace experience_tranquillum
 
       //::image_pointer pimage2;
 
-      //pimage = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      //pimage = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-      //pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
-      //::rectangle_i32 rectangleWindow = rectangleClient;
+      //pimage2 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
+      //::rectangle_i32 rectangleWindow = rectangleX;
       //pframewindow->client_to_screen(rectangleWindow);
-      ////pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
-      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
-      ////bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+      ////pimage = create_image({rectangleX.width(),  rectangleX.height()});
+      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
+      ////bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
       //b = imaging.blur(pimage->g(), ::point_i32(),
-      //                 size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2),
+      //                 size_i32(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
       //                 pimage2->get_graphics(), ::point_i32(), 2);
 
-      ////spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
-      ////rectangleClient.deflate(1, 1);
-      ////spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
+      ////spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
+      ////rectangleX.deflate(1, 1);
+      ////spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
       ////b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
 
       //rectangleWindow.width(),
@@ -122,7 +122,7 @@ namespace experience_tranquillum
       //rectangleWindow.height(),
       //bf);*/
 
-      //pgraphics->BitBlt(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), pimage->g(), iInflate, iInflate);
+      //pgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pimage->g(), iInflate, iInflate);
 
    }
 

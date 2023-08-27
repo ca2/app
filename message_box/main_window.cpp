@@ -92,15 +92,15 @@ namespace app_message_box
 
       m_pbuttonShowMessageBox->display();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      double dBase = (double)rectangleClient.minimum_signed_absolute_dimension() / 17.0;
+      double dBase = (double)rectangleX.minimum_signed_absolute_dimension() / 17.0;
 
       double x = dBase * 3;
 
       double y = dBase * 3;
 
-      ::rectangle_i32 rectangleButton(rectangleClient);
+      ::rectangle_i32 rectangleButton(rectangleX);
 
       rectangleButton.right -= (int) x;
 

@@ -179,7 +179,7 @@ namespace experience
       //void GetRegionClientRectangle(::rectangle_i32 * prectangle);
 
       
-      ::rectangle_i32 client_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+      //::rectangle_i32 client_rectangle2(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
       void relay_event(::message::message * pmessage);
@@ -213,6 +213,8 @@ namespace experience
 
 
       virtual void on_visual_applied() override;
+
+      void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics) override;
 
 
    };

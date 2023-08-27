@@ -930,7 +930,7 @@ namespace user
       int x = 5;
       int y = 5;
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -954,7 +954,7 @@ namespace user
          auto puseritem = user_item(pitem);
 
          puseritem->m_rectangle.left = 0;
-         puseritem->m_rectangle.right = rectangleClient.width();
+         puseritem->m_rectangle.right = rectangleX.width();
          puseritem->m_rectangle.top = y;
          puseritem->m_rectangle.bottom = y + iLineHeight;
 

@@ -137,9 +137,9 @@ namespace account
    void login::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -154,9 +154,9 @@ namespace account
 
       int w;
 
-      w = (int)(rectangleClient.width());
+      w = (int)(rectangleX.width());
 
-      h = (int)(rectangleClient.height());
+      h = (int)(rectangleX.height());
 
       m_dRateX = (double)w / (double)stdw;
 
@@ -168,7 +168,7 @@ namespace account
 
       i32 x1 = (int) (49 * rx);
 
-      i32 w2 = (int) ((rectangleClient.width() - 49 * 2 * rx));
+      i32 w2 = (int) ((rectangleX.width() - 49 * 2 * rx));
 
       i32 h1 = (int) (23 * ry);
 
@@ -212,7 +212,7 @@ namespace account
 
       ::simple_ui::draw draw;
 
-      ::rectangle_i32 r = client_rectangle();
+      ::rectangle_i32 r = this->rectangle();
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
@@ -324,9 +324,9 @@ namespace account
 
          ::write_text::font_pointer f(e_create, this);
 
-         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleX) * 0.7);
 
-         float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
+         float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 
          //auto psystem = acmesystem()->m_pcoresystem;
 

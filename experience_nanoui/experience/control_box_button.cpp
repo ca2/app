@@ -63,9 +63,9 @@ namespace experience_nanoui
 
 #endif
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -122,7 +122,7 @@ namespace experience_nanoui
 
       }
 
-      ::rectangle_i32 rectangleEllipse(rectangleClient);
+      ::rectangle_i32 rectangleEllipse(rectangleX);
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
@@ -143,7 +143,7 @@ namespace experience_nanoui
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectangleClient, e_align_center, e_draw_text_single_line);
+         pgraphics->draw_text(str, rectangleX, e_align_center, e_draw_text_single_line);
 
       }
       else
@@ -201,13 +201,13 @@ namespace experience_nanoui
    void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       __defer_construct(m_pregion);
 
       ::ellipse_f64 ellipse;
 
-      ellipse.set(rectangleClient);
+      ellipse.set(rectangleX);
 
       m_pregion->create_ellipse(ellipse);
 

@@ -739,7 +739,7 @@ public:
    {
       ::rectangle_i32 rectangle;
 
-      client_rectangle(rectangle);
+      this->rectangle(rectangle);
 
       pgraphics->FillSolidRect(rectangle, argb(255, 240, 240, 240));
    }

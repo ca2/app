@@ -69,6 +69,8 @@
 
 CLASS_DECL_AURA ::point_i32 __get_top_right();
 CLASS_DECL_AURA void __set_top_right(const ::point_i32 & pointTopRight);
+CLASS_DECL_AURA::point_i32 __get_bottom_right();
+CLASS_DECL_AURA void __set_bottom_right(const ::point_i32 & pointBottomRight);
 
 
 inline void make_parent_mouse_message(::enum_message & emessage)
@@ -1717,7 +1719,7 @@ namespace user
       if (rectanglea.is_empty())
       {
 
-         auto rectangle = client_rectangle();
+         auto rectangle = this->rectangle();
 
          if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
          {
@@ -1827,11 +1829,16 @@ namespace user
       if (!bNeedsToDraw)
       {
 
+         return false;
          //information() << "Opting out from draw!! " << typeid(*this).name() << " " << m_atom.as_string();
 
       }
+      else
+      {
 
-      return bNeedsToDraw;
+         return true;
+
+      }
 
    }
 
@@ -4396,6 +4403,7 @@ namespace user
 
    void interaction::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
+      //return;
 
       m_pprimitiveimpl->_001OnNcClip(pgraphics);
 
@@ -4467,28 +4475,28 @@ namespace user
          if (!m_bClipRectangle)
          {
 
-            ::rectangle_i32 rectangleClient;
+            ::rectangle_i32 rectangleX;
 
             ::index i = 0;
 
             while (pinteraction != nullptr)
             {
 
-               rectangleClient = pinteraction->client_rectangle();
+               rectangleX = pinteraction->rectangle();
 
-               pinteraction->client_to_host()(rectangleClient);
+               pinteraction->client_to_host()(rectangleX);
 
-               host_to_client()(rectangleClient);
+               host_to_client()(rectangleX);
 
                if (i == 0)
                {
 
-                  m_rectangleClip = rectangleClient;
+                  m_rectangleClip = rectangleX;
 
                } else
                {
 
-                  m_rectangleClip.intersect(m_rectangleClip, rectangleClient);
+                  m_rectangleClip.intersect(m_rectangleClip, rectangleX);
 
                }
 
@@ -4757,7 +4765,7 @@ namespace user
 
             ::rectangle_i32 rectangleDraw;
 
-            rectangleDraw = client_rectangle();
+            rectangleDraw = this->rectangle();
 
             pgraphics->m_rectangleDraw = rectangleDraw;
 
@@ -5026,7 +5034,7 @@ namespace user
 
                      //pinteraction->_000CallOnDraw(pgraphics);
 
-                     pinteraction->defer_draw(pgraphics);
+                     pinteraction->defer_do_graphics(pgraphics);
 
                      //{
 
@@ -5426,9 +5434,9 @@ namespace user
    //
    //                                                                                                                              {
    //
-   //   auto rectangleClient = m_puserinteraction->client_rectangle();
+   //   auto rectangleX = m_puserinteraction->rectangle();
    //
-   //   ::rectangle_i32 rectangleHint(rectangleClient);
+   //   ::rectangle_i32 rectangleHint(rectangleX);
    //
    //   pgraphics->SelectClipRgn(nullptr);
    //
@@ -5576,10 +5584,10 @@ namespace user
    //}
 
 
-   void interaction::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_pprimitiveimpl->defer_draw(pgraphics);
+      m_pprimitiveimpl->defer_do_graphics(pgraphics);
 
    }
 
@@ -5604,6 +5612,7 @@ namespace user
       //}
 
       //if (should_perform_layout(pgraphics))
+      if(pgraphics->m_egraphics & e_graphics_layout)
       {
 
          ::string strType = typeid(*this).name();
@@ -5633,18 +5642,37 @@ namespace user
 
       pgraphics->m_puserinteraction = m_puserinteraction;
 
-      layout_to_design();
-
-      if (m_bLadingToLayout)
+      if (pgraphics->m_egraphics & e_graphics_layout)
       {
 
-         m_bLadingToLayout = false;
+         layout_to_design();
 
-         layout_layout(pgraphics);
+         if (m_bLadingToLayout)
+         {
+
+            m_bLadingToLayout = false;
+
+            layout_layout(pgraphics);
+
+         }
 
       }
 
-      process_graphics_call_queue(pgraphics);
+      if (pgraphics->m_egraphics & e_graphics_layout)
+      {
+
+         process_graphics_call_queue(pgraphics);
+
+         if (get_parent() != nullptr)
+         {
+
+            layout().window() = layout().design();
+
+            layout().design().reset_pending();
+
+         }
+
+      }
 
       //if (!is_this_visible(e_layout_design))
       //{
@@ -5829,45 +5857,63 @@ namespace user
 
    void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-
-      if (!this->is_this_visible())
+      
+      if (!(pgraphics->m_egraphics & e_graphics_layout))
       {
 
-         return;
-
-      }
-
-      if (!pgraphics->m_bDraw)
-      {
-
-         if (pgraphics->payload("set_transparent") == "set_transparent")
-         {
-            information() << "Not draw (!m_bDraw) !?!?!";
-
-         }
-
-         return;
-
-      }
-
-      if (!needs_to_draw(pgraphics))
-      {
-
-
-         if (pgraphics->payload("set_transparent") == "set_transparent")
+         if (!this->is_this_visible())
          {
 
-            //information() << "Not draw (!needs_to_draw)!?!?!";
-
-            if (!needs_to_draw(pgraphics))
+            if (!this->is_this_visible())
             {
 
+               return;
 
             }
 
          }
 
-         return;
+         if (!pgraphics->m_bDraw)
+         {
+
+            if (pgraphics->payload("set_transparent") == "set_transparent")
+            {
+               information() << "Not draw (!m_bDraw) !?!?!";
+
+            }
+
+            return;
+
+         }
+
+         if (!needs_to_draw(pgraphics))
+         {
+
+            ::string strType = ::type(this).name();
+
+            if (strType.case_insensitive_contains("impact"))
+            {
+
+               information() << "Not draw (!needs_to_draw)!?!?!";
+
+            }
+
+            if (pgraphics->payload("set_transparent") == "set_transparent")
+            {
+
+               //information() << "Not draw (!needs_to_draw)!?!?!";
+
+               if (!needs_to_draw(pgraphics))
+               {
+
+
+               }
+
+            }
+
+            return;
+
+         }
 
       }
 
@@ -5875,7 +5921,7 @@ namespace user
 
          ::draw2d::save_context savecontext(pgraphics);
 
-
+         if (pgraphics->m_egraphics & e_graphics_draw)
          {
 
             if (m_bOnDraw)
@@ -5959,9 +6005,9 @@ namespace user
 
                      }
 
-                     auto rectangleClient = client_rectangle();
+                     auto rectangleX = this->rectangle();
 
-                     pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
+                     pgraphics->offset_origin(rectangleX.left, rectangleX.top);
 
                      try
                      {
@@ -6084,7 +6130,7 @@ namespace user
 
       ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain<::aura::draw_context>::get_last();
 
-      auto rectangleRaw = this->client_rectangle();
+      auto rectangleRaw = this->rectangle();
 
       auto pstyle = get_style(pgraphics);
 
@@ -7177,10 +7223,18 @@ namespace user
    }
 
 
+   ::rectangle_i32 interaction::client_rectangle2()
+   {
+
+      return m_rectangleClient2;
+
+   }
+
+
    rectangle_i32 interaction::screen_rectangle(enum_layout elayout)
    {
 
-      auto rectangle = client_rectangle(elayout);
+      auto rectangle = this->rectangle(elayout);
 
       client_to_screen(elayout)(rectangle);
 
@@ -8769,7 +8823,7 @@ namespace user
       //   if (rectangleFrame.is_null() && ::is_set(puserinteractionParent) && puserinteractionParent->is_place_holder())
       //   {
 
-      //      puserinteractionParent->client_rectangle(rectangleFrame);
+      //      puserinteractionParent->rectangle(rectangleFrame);
 
       //   }
 
@@ -9898,7 +9952,7 @@ namespace user
 
 
    void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
-                                    ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleClient,
+                                    ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleX,
                                     bool bStretch)
    {
 
@@ -9909,7 +9963,7 @@ namespace user
 
       //}
 
-      //return m_pprimitiveimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectangleClient,
+      //return m_pprimitiveimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectangleX,
 //                                              bStretch);
 
 
@@ -9935,10 +9989,10 @@ namespace user
 
       sizeparentlayout.m_sizeTotal.cx() = sizeparentlayout.m_sizeTotal.cy() = 0;
 
-      if (rectangleClient.is_set())
+      if (rectangleX.is_set())
       {
 
-         sizeparentlayout.m_rectangle = rectangleClient;
+         sizeparentlayout.m_rectangle = rectangleX;
 
       } else
       {
@@ -11036,7 +11090,7 @@ namespace user
       if (puserinteractionpointeraChild)
       {
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          auto children = puserinteractionpointeraChild->m_interactiona;
 
@@ -11055,7 +11109,7 @@ namespace user
 
                   bool bThisVisible = pinteraction->is_this_visible();
 
-                  pinteraction->place(rectangleClient);
+                  pinteraction->place(rectangleX);
 
                   pinteraction->set_need_layout();
 
@@ -11085,11 +11139,11 @@ namespace user
       //   if (m_playout->m_bFillParent)
       //   {
 
-      //      ::rectangle_i32 rectangleClient;
+      //      ::rectangle_i32 rectangleX;
 
-      //      client_rectangle(rectangleClient);
+      //      this->rectangle(rectangleX);
 
-      //      m_playout->place(rectangleClient);
+      //      m_playout->place(rectangleX);
 
       //   }
 
@@ -11667,12 +11721,12 @@ namespace user
    void interaction::_extend_on_parent(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (::string(typeid(*this).name()).contains("impact"))
-      {
+      //if (::string(typeid(*this).name()).contains("impact"))
+      //{
 
-         information() << "interaction::on_perform_top_down_layout impact";
+      //   information() << "interaction::on_perform_top_down_layout impact";
 
-      }
+      //}
 
       auto pparent = get_parent();
 
@@ -11702,18 +11756,18 @@ namespace user
    void interaction::_extend_on_parent_client_area(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (::string(typeid(*this).name()).contains("impact"))
-      {
+      //if (::string(typeid(*this).name()).contains("impact"))
+      //{
 
-         information() << "interaction::on_perform_top_down_layout impact";
+      //   information() << "interaction::on_perform_top_down_layout impact";
 
-      }
+      //}
 
       auto pparent = get_parent();
 
-      auto rectangleClient = pparent->client_rectangle(e_layout_lading);
+      auto rectangleClient2 = pparent->client_rectangle2();
 
-      auto sizeParentClientArea = rectangleClient.size();
+      auto sizeParentClientArea = rectangleClient2.size();
 
       auto sizeThis = size(::user::e_layout_lading);
 
@@ -11724,7 +11778,7 @@ namespace user
 
       }
 
-      auto positionParentClientArea = rectangleClient.origin();
+      auto positionParentClientArea = rectangleClient2.origin();
 
       auto positionThis = position(::user::e_layout_lading);
 
@@ -11912,7 +11966,7 @@ namespace user
       if (m_bNeedFullRedrawOnResize)
       {
 
-         auto rectangle = client_rectangle(e_layout_lading);
+         auto rectangle = this->rectangle(e_layout_lading);
 
          set_need_redraw({rectangle}, pgraphics);
 
@@ -11970,7 +12024,7 @@ namespace user
    void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       layout_tooltip();
 
@@ -11995,7 +12049,7 @@ namespace user
 
       //   auto puseritemClient = user_item(pitemClient);
 
-      //   puseritemClient->m_rectangle = rectangleClient;
+      //   puseritemClient->m_rectangle = rectangleX;
 
       //}
 
@@ -12017,7 +12071,7 @@ namespace user
       //      //if (pitem->m_rectangle.is_null())
       //      {
 
-      //         client_rectangle(pitem->m_rectangle);
+      //         this->rectangle(pitem->m_rectangle);
 
       //         pitem->m_rectangle.left = pitem->m_rectangle.right - 32;
 
@@ -12039,7 +12093,7 @@ namespace user
       //      if (pitem->m_rectangle.is_null())
       //      {
 
-      //         client_rectangle(pitem->m_rectangle);
+      //         this->rectangle(pitem->m_rectangle);
 
       //         pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
 
@@ -12061,7 +12115,7 @@ namespace user
       //      if (pitem->m_rectangle.is_null())
       //      {
 
-      //         client_rectangle(pitem->m_rectangle);
+      //         this->rectangle(pitem->m_rectangle);
 
       //         pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
 
@@ -12227,13 +12281,13 @@ namespace user
 
       //if(m_bVerticalDragScroll)
       //{
-      auto rectangleClient = client_rectangle();
-      m_pointBarDragScrollMax = m_sizeBarDragScroll - rectangleClient.size();
+      auto rectangleX = this->rectangle();
+      m_pointBarDragScrollMax = m_sizeBarDragScroll - rectangleX.size();
       //}
       //if(m_bHorizontalDragScroll)
       //   {
-      //      //auto rectangleClient = client_rectangle();
-      //      //m_iHorizontalDragScrollMax = m_iHorizontalDragSize - rectangleClient.width();
+      //      //auto rectangleX = this->rectangle();
+      //      //m_iHorizontalDragScrollMax = m_iHorizontalDragSize - rectangleX.width();
       //
       //   }
 
@@ -13357,7 +13411,7 @@ namespace user
             if (Δ.cx() != 0 || Δ.cy() != 0)
             {
 
-               information() << "sketch_to_lading top right offset not null " << Δ;
+               //information() << "sketch_to_lading top right offset not null " << Δ;
 
             }
 
@@ -15167,7 +15221,7 @@ namespace user
    void interaction::get_child_rect(::rectangle_i32 & rectangle)
    {
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
    }
 
@@ -16263,13 +16317,17 @@ namespace user
 
       ::rectangle_i32_array rectangleaCertainlyDamaged;
 
+      ::rectangle_i32 rectangleBefore;
+
+      ::rectangle_i32 rectangleAfter;
+
       {
 
          _synchronous_lock synchronouslock(this->synchronization());
 
          auto & layoutstate = layout().m_statea[elayout];
 
-         auto rectangleBefore = layoutstate.raw_rectangle();
+         rectangleBefore = layoutstate.raw_rectangle();
 
          layoutstate.set_visual_state_origin(pointNew);
 
@@ -16277,15 +16335,7 @@ namespace user
 
          auto r = layout().m_statea[elayout].parent_raw_rectangle();
 
-         if(get_parent() == nullptr)
-         {
-
-            auto rectangleAfter = layoutstate.raw_rectangle();
-
-            rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
-                                                                                              rectangleBefore);
-
-         }
+         rectangleAfter = layoutstate.raw_rectangle();
 
          if(get_parent() == nullptr)
          {
@@ -16341,9 +16391,7 @@ namespace user
       else
       {
 
-         //auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter, rectangleBefore);
-
-         set_need_redraw(rectangleaCertainlyDamaged, pgraphics);
+         place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
 
       }
 
@@ -16353,6 +16401,24 @@ namespace user
          post_redraw();
 
       }
+
+   }
+
+
+   void interaction::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
+   {
+      //  if (get_parent() == nullptr)
+        //{
+
+      auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter,
+                                                                                         rectangleBefore);
+
+      //}
+
+
+   //auto rectangleaCertainlyDamaged = get_top_left_oriented_damaged_areas_by_resizing(rectangleAfter, rectangleBefore);
+
+      set_need_redraw(rectangleaCertainlyDamaged, pgraphics);
 
    }
 
@@ -16441,7 +16507,7 @@ namespace user
    ::rectangle_i32 interaction::parent_client_rectangle(enum_layout elayout)
    {
 
-      auto rectangle = this->client_rectangle(elayout);
+      auto rectangle = this->rectangle(elayout);
 
       this->client_to_parent(elayout)(rectangle);
 
@@ -16745,7 +16811,7 @@ namespace user
    void interaction::input_client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    {
 
-      rectangle = client_rectangle(elayout);
+      rectangle = this->rectangle(elayout);
 
    }
 
@@ -16768,7 +16834,7 @@ namespace user
    }
 
 
-   //   void interaction::client_rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
+   //   void interaction::this->rectangle(::rectangle_i32 & rectangle, enum_layout elayout)
    //   {
    //
    //      raw_rectangle(rectangle);
@@ -16778,7 +16844,7 @@ namespace user
    //   }
 
 
-   ::rectangle_i32 interaction::client_rectangle(enum_layout elayout)
+   ::rectangle_i32 interaction::rectangle(enum_layout elayout)
    {
 
       auto r = raw_rectangle(elayout);
@@ -16828,7 +16894,7 @@ namespace user
       if (get_parent() != nullptr)
       {
 
-         rectangleNew = get_parent()->client_rectangle();
+         rectangleNew = get_parent()->rectangle();
 
          iMatchingMonitor = 0;
 
@@ -17817,9 +17883,9 @@ namespace user
    size_f64 interaction::get_total_size()
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      return rectangleClient.size();
+      return rectangleX.size();
 
    }
 
@@ -17848,9 +17914,9 @@ namespace user
    size_f64 interaction::get_page_size()
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      return rectangleClient.size();
+      return rectangleX.size();
 
    }
 
@@ -19364,9 +19430,9 @@ namespace user
    ::size_f64 interaction::get_client_size(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle(elayout);
+      auto rectangleX = this->rectangle(elayout);
 
-      return rectangleClient.size();
+      return rectangleX.size();
 
    }
 
@@ -19398,9 +19464,9 @@ namespace user
    int interaction::client_width(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle(elayout);
+      auto rectangleX = this->rectangle(elayout);
 
-      return rectangleClient.width();
+      return rectangleX.width();
 
    }
 
@@ -19408,9 +19474,9 @@ namespace user
    int interaction::client_height(enum_layout elayout)
    {
 
-      auto rectangleClient = client_rectangle(elayout);
+      auto rectangleX = this->rectangle(elayout);
 
-      return rectangleClient.height();
+      return rectangleX.height();
 
    }
 
@@ -19600,7 +19666,7 @@ namespace user
    bool interaction::scroll_bar_get_client_rect(::rectangle_i32 & rectangle)
    {
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       rectangle.right += get_final_y_scroll_bar_width();
 
@@ -22525,12 +22591,12 @@ namespace user
    ::item_pointer interaction::hit_test(const ::point_i32 & pointClient, e_zorder ezorder)
    {
 
-      ::rectangle_i32 rectangleClientHitTest;
+      ::rectangle_i32 rectangleXHitTest;
 
-      if (get_element_rectangle(rectangleClientHitTest, e_element_client_hit_test))
+      if (get_element_rectangle(rectangleXHitTest, e_element_client_hit_test))
       {
 
-         if (!rectangleClientHitTest.contains(pointClient))
+         if (!rectangleXHitTest.contains(pointClient))
          {
 
             return nullptr;
@@ -22787,15 +22853,15 @@ namespace user
          if (pdragClient)
          {
 
-            auto rectangleClient = this->rectangle(::e_element_client);
+            auto rectangleX = this->rectangle(::e_element_client);
 
-            //if (rectangleClient.ok() && rectangleClient.contains(point))
-            if (rectangleClient.ok())
+            //if (rectangleX.ok() && rectangleX.contains(point))
+            if (rectangleX.ok())
             {
 
                auto puseritem = user_item(pitemClient);
 
-               puseritem->m_rectangle = rectangleClient;
+               puseritem->m_rectangle = rectangleX;
 
                //return pitemHitTest;
 
@@ -22833,7 +22899,7 @@ namespace user
 
    //   }
 
-   //   client_rectangle(item.m_rectangle);
+   //   this->rectangle(item.m_rectangle);
 
    //   return true;
 
@@ -22878,13 +22944,15 @@ namespace user
       if (::is_null(pparent))
       {
 
-         ::rectangle_i32 rectangleWindow;
+         //::rectangle_i32 rectangleWindow;
 
-         window_rectangle(rectangleWindow, e_layout_design);
+         //window_rectangle(rectangleWindow, e_layout_design);
 
-         ::rectangle_i32 rectangle(rectangleWindow);
+         //::rectangle_i32 rectangle(rectangleWindow);
 
-         rectangle.offset(-rectangle.top_left());
+         auto rectangle = this->rectangle();
+
+         //rectangle.offset(-rectangle.top_left());
 
          auto pstyle = get_style(pgraphics);
 
@@ -23582,7 +23650,7 @@ namespace user
    //       if (puserinteractionParent)
    //       {
 
-   //          puserinteractionParent->client_rectangle(rectangleWindow);
+   //          puserinteractionParent->rectangle(rectangleWindow);
 
    //          bSet = true;
 
@@ -24333,7 +24401,7 @@ namespace user
 
          }
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          return true;
 
@@ -24350,7 +24418,7 @@ namespace user
 
          }
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = maximum(rectangle.left, rectangle.right - 25);
          rectangle.top = maximum(rectangle.top, rectangle.bottom - 25);
@@ -24370,16 +24438,16 @@ namespace user
 
          }
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
-         //i32 iMargin = rectangleClient.height() / 8;
+         //i32 iMargin = rectangleX.height() / 8;
          i32 iMargin = 0;
 
          ::rectangle_i32 rectangleDropDown;
 
-         rectangleDropDown = rectangleClient;
+         rectangleDropDown = rectangleX;
 
-         i32 iW = rectangleClient.height() * 5 / 8;
+         i32 iW = rectangleX.height() * 5 / 8;
 
          rectangleDropDown.right -= iMargin;
          rectangleDropDown.bottom -= iMargin;
@@ -24394,13 +24462,13 @@ namespace user
       else if (eelement == e_element_combo_edit)
       {
 
-         auto rectangleClient = client_rectangle();
+         auto rectangleX = this->rectangle();
 
          ::rectangle_i32 rectangleDropDown;
 
          get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-         ::rectangle_i32 rectangleEdit = rectangleClient;
+         ::rectangle_i32 rectangleEdit = rectangleX;
 
          rectangleEdit.right = rectangleDropDown.left;
 
@@ -24416,7 +24484,7 @@ namespace user
       else if (eelement == e_element_close_button)
       {
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = rectangle.right - 32;
 
@@ -24428,7 +24496,7 @@ namespace user
       else if (eelement == e_element_maximize_button)
       {
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = rectangle.right - 64;
 
@@ -24442,7 +24510,7 @@ namespace user
       else if (eelement == e_element_minimize_button)
       {
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = rectangle.right - 96;
 
@@ -24456,7 +24524,7 @@ namespace user
       else if (eelement == e_element_close_icon)
       {
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = rectangle.right - 48;
 
@@ -24468,7 +24536,7 @@ namespace user
       else if (eelement == e_element_switch_button)
       {
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = rectangle.right - 48;
 
@@ -24480,7 +24548,7 @@ namespace user
       else if (eelement == e_element_maximize_icon)
       {
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = rectangle.right - 96;
 
@@ -24494,7 +24562,7 @@ namespace user
       else if (eelement == e_element_minimize_icon)
       {
 
-         rectangle = client_rectangle();
+         rectangle = this->rectangle();
 
          rectangle.left = rectangle.right - 144;
 
@@ -25161,5 +25229,23 @@ CLASS_DECL_AURA void __set_top_right(const ::point_i32 & pointTopRight)
 
 }
 
+
+::point_i32 g_pointAuraBottomRight;
+
+
+CLASS_DECL_AURA::point_i32 __get_bottom_right()
+{
+
+   return g_pointAuraBottomRight;
+
+}
+
+
+CLASS_DECL_AURA void __set_bottom_right(const ::point_i32 & pointBottomRight)
+{
+
+   g_pointAuraBottomRight = pointBottomRight;
+
+}
 
 

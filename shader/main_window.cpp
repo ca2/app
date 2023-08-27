@@ -204,7 +204,7 @@ namespace app_shader
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
       auto & prender = m_maprender[m_strCurrentShaderPath];
 
@@ -218,7 +218,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleClient.size());
+            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleX.size());
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
@@ -258,9 +258,9 @@ namespace app_shader
    void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -272,7 +272,7 @@ namespace app_shader
       if(::is_set(prender))
       {
 
-         prender->m_rectangle = rectangleClient;
+         prender->m_rectangle = rectangleX;
 
          prender->on_layout(pgraphics);
 

@@ -237,7 +237,7 @@ namespace app_integration
    //   if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
    //   {
 
-   //      ::rectangle_i32 rectangle = client_rectangle();
+   //      ::rectangle_i32 rectangle = this->rectangle();
 
    //      for (index i = 0; i < 11; i++)
    //      {
@@ -258,16 +258,16 @@ namespace app_integration
    void menu::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
 
       }
 
-      //m_prender->m_rectangle = rectangleClient;
+      //m_prender->m_rectangle = rectangleX;
 
    }
 

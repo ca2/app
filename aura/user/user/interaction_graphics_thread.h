@@ -92,11 +92,13 @@ namespace user
       bool graphics_thread_reset(::user::interaction * pinteraction);
       bool graphics_thread_iteration();
       void on_graphics_thread_iteration_end();
-      bool graphics_thread_update_buffer();
+      //bool graphics_thread_do_layout();
+      //bool graphics_thread_update_buffer();
       bool graphics_thread_update_screen();
       void graphics_thread_redraw();
       //void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
-      void update_buffer();
+      //void do_layout();
+      //void update_buffer();
       //bool exclusive_mode_update_screen();
       void post_redraw();
 

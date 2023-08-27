@@ -2636,9 +2636,9 @@ return true;
       ////   hWndParent = get_parent();
       ////   ASSERT(hWndParent->is_window());
 
-      ////   hWndParent->client_rectangle(&rcArea);
+      ////   hWndParent->rectangle(&rcArea);
       ////   ASSERT(hWndCenter->is_window());
-      ////   hWndCenter->client_rectangle(&rcCenter);
+      ////   hWndCenter->rectangle(&rcCenter);
       ////   ::MapWindowPoints(hWndCenter->_get_handle(), hWndParent->_get_handle(), (::point_i32*)&rcCenter, 2);
       ////}
 
@@ -3315,7 +3315,7 @@ return true;
    //}
 
 
-   //bool interaction_impl::client_rectangle(::rectangle_i64 * lprect)
+   //bool interaction_impl::this->rectangle(::rectangle_i64 * lprect)
    //{
 
    //   if(!::is_window(get_handle()))
@@ -3336,12 +3336,12 @@ return true;
    //   {
    //      // throw ::exception(todo);
    //      //::rectangle_i32 rect32;
-   //      //::client_rectangle(get_handle(), rect32);
+   //      //::this->rectangle(get_handle(), rect32);
    //      //::copy(lprect, rect32);
    //   }
    //   //else
    //   {
-   //      // interaction::client_rectangle(lprect);
+   //      // interaction::this->rectangle(lprect);
    //   }
 
    //   return true;
@@ -6323,11 +6323,11 @@ namespace universal_windows
 
       ::user::interaction_impl::on_layout(pgraphics);
 
-      rectangle_i32 rectangleClient;
+      rectangle_i32 rectangleX;
 
-      m_puserinteraction->client_rectangle(rectangleClient);
+      m_puserinteraction->rectangle(rectangleX);
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;

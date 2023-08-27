@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   void primitive_impl::defer_draw(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_puserinteraction->_000CallOnDraw(pgraphics);
@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
+   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -239,16 +239,16 @@ namespace user
 
    //   sizeparentparams.sizeTotal.cx() = sizeparentparams.sizeTotal.cy() = 0;
 
-   //   if (rectangleClient != nullptr)
+   //   if (rectangleX != nullptr)
    //   {
 
-   //      sizeparentparams.rectangle = rectangleClient;
+   //      sizeparentparams.rectangle = rectangleX;
 
    //   }
    //   else
    //   {
 
-   //      m_puserinteraction->client_rectangle(&sizeparentparams.rectangle);
+   //      m_puserinteraction->rectangle(&sizeparentparams.rectangle);
 
    //   }
 

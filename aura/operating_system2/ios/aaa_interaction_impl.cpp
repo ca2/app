@@ -2276,9 +2276,9 @@ namespace ios
    void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
    {
 
-//      ::rectangle_i32 rectangleClient;
+//      ::rectangle_i32 rectangleX;
 //
-//      client_rectangle(rectangleClient);
+//      this->rectangle(rectangleX);
 //
 //      ::rectangle_i32 rectangleUpdate;
 //      
@@ -2813,7 +2813,7 @@ namespace ios
 //
 //   }
 
-//   bool interaction_impl::client_rectangle(::rectangle_i64 * lprect)
+//   bool interaction_impl::this->rectangle(::rectangle_i64 * lprect)
 //   {
 //
 //      if(!::is_window(get_handle()))
@@ -3200,13 +3200,13 @@ namespace ios
       {
          oswindow = (::oswindow) get_handle();
       }
-      ::rectangle_i32 rectangleClient;
-      //oswindow.client_rectangle(rectangleClient);
-      rectangleClient.left = 0;
-      rectangleClient.top = 0;
-      rectangleClient.right = 500;
-      rectangleClient.bottom = 500;
-      //      (dynamic_cast < ::draw2d_quartz2d::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow.display(), oswindow.user::interaction(), DefaultVisual(oswindow.display(), 0), rectangleClient.width(), rectangleClient.height())));
+      ::rectangle_i32 rectangleX;
+      //oswindow.this->rectangle(rectangleX);
+      rectangleX.left = 0;
+      rectangleX.top = 0;
+      rectangleX.right = 500;
+      rectangleX.bottom = 500;
+      //      (dynamic_cast < ::draw2d_quartz2d::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow.display(), oswindow.user::interaction(), DefaultVisual(oswindow.display(), 0), rectangleX.width(), rectangleX.height())));
       return g.detach();
    }
 
@@ -5017,10 +5017,10 @@ namespace ios
 
          double sh = status_bar_height();
          
-         m_rectangleClientScreen.left = 0;
-         m_rectangleClientScreen.top = sh;
-         m_rectangleClientScreen.right = m_rectangleWindowScreen.right;
-         m_rectangleClientScreen.top = m_rectangleWindowScreen.bottom - sh;
+         m_rectangleXScreen.left = 0;
+         m_rectangleXScreen.top = sh;
+         m_rectangleXScreen.right = m_rectangleWindowScreen.right;
+         m_rectangleXScreen.top = m_rectangleWindowScreen.bottom - sh;
 
          if(m_bUpdateGraphics)
          {
@@ -5064,7 +5064,7 @@ namespace ios
 
       g->attach(cgc);
 
-      ::rectangle_i32 r = m_rectangleClientScreen;
+      ::rectangle_i32 r = m_rectangleXScreen;
       
       int w = pimage->width();
       

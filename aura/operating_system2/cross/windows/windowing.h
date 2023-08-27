@@ -7,7 +7,7 @@
 #pragma once
 
 
-//CLASS_DECL_AURA int_bool client_rectangle(oswindow hwnd,::rectangle_i32 * lprect);
+//CLASS_DECL_AURA int_bool this->rectangle(oswindow hwnd,::rectangle_i32 * lprect);
 
 //CLASS_DECL_AURA int_bool window_rectangle(oswindow hwnd,::rectangle_i32 * lprect);
 

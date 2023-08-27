@@ -123,15 +123,15 @@ namespace prompt
 
       best_monitor(rectangleDesktop);
 
-      ::rectangle_i32 rectangleClient = client_rectangle();
+      ::rectangle_i32 rectangleX = this->rectangle();
       
-      //client_rectangle(rectangleClient);
+      //this->rectangle(rectangleX);
       
-      rectangleClient.deflate(2, 2);
+      rectangleX.deflate(2, 2);
       
-      i32 iW = rectangleClient.width() / 2;
+      i32 iW = rectangleX.width() / 2;
       
-      i32 iH = rectangleClient.height() / 2;
+      i32 iH = rectangleX.height() / 2;
       
       iH = minimum(iH, 120);
       

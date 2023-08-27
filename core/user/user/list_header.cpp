@@ -196,7 +196,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      rectangle = client_rectangle();
+      rectangle = this->rectangle();
 
       rectangle.left = xLast;
 
@@ -744,7 +744,7 @@ namespace user
 
       //   ::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-      //   ::rectangle_i32 rectangleClient;
+      //   ::rectangle_i32 rectangleX;
 
       //   bool bFirst = true;
 
@@ -760,14 +760,14 @@ namespace user
       //   if (pdrawcontext != nullptr)
       //   {
 
-      //      rectangleClient = pdrawcontext->m_rectangleWindow;
+      //      rectangleX = pdrawcontext->m_rectangleWindow;
 
-      //      screen_to_client(rectangleClient, e_layout_design);
+      //      screen_to_client(rectangleX, e_layout_design);
 
-      //      rectangleClient.bottom++;
-      //      rectangleClient.right++;
+      //      rectangleX.bottom++;
+      //      rectangleX.right++;
 
-      //      rectangleClip = rectangleClient;
+      //      rectangleClip = rectangleX;
 
       //      bFirst = false;
 
@@ -785,13 +785,13 @@ namespace user
       //      while (pinteraction != nullptr)
       //      {
 
-      //         pinteraction->client_rectangle(rectangleClient);
+      //         pinteraction->rectangle(rectangleX);
 
-      //         pinteraction->client_to_host(rectangleClient);
+      //         pinteraction->client_to_host(rectangleX);
 
-      //         host_to_client(rectangleClient);
+      //         host_to_client(rectangleX);
 
-      //         m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
+      //         m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleX))));
 
       //         m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -814,21 +814,21 @@ namespace user
 
       ////   ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-      ////   ::rectangle_i32 rectangleClient;
+      ////   ::rectangle_i32 rectangleX;
 
       ////   bool bFirst = true;
 
       ////   if (pdrawcontext != nullptr)
       ////   {
 
-      ////      rectangleClient = pdrawcontext->m_rectangleWindow;
+      ////      rectangleX = pdrawcontext->m_rectangleWindow;
 
-      ////      screen_to_client(rectangleClient);
+      ////      screen_to_client(rectangleX);
 
-      ////      rectangleClient.bottom++;
-      ////      rectangleClient.right++;
+      ////      rectangleX.bottom++;
+      ////      rectangleX.right++;
 
-      ////      rectangleClip = rectangleClient;
+      ////      rectangleClip = rectangleX;
 
       ////      bFirst = false;
 
@@ -853,13 +853,13 @@ namespace user
       ////         if (i == 1)
       ////         {
       ////            // guess list client rectangle_i32 doesn't include header?
-      ////            pinteraction->::user::interaction::client_rectangle(rectangleFocus);
+      ////            pinteraction->::user::interaction::this->rectangle(rectangleFocus);
 
       ////         }
       ////         else
       ////         {
 
-      ////            pinteraction->client_rectangle(rectangleFocus);
+      ////            pinteraction->rectangle(rectangleFocus);
 
       ////         }
 
@@ -902,9 +902,9 @@ namespace user
    {
 
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      ::rectangle_i32 rectangleUpdate(rectangleClient);
+      ::rectangle_i32 rectangleUpdate(rectangleX);
 
       ::rectangle_f64 rectangleClipBox;
 
@@ -915,7 +915,7 @@ namespace user
       if(rectangleClipBox.is_empty())
       {
          
-         rectangleClipBox = rectangleClient;
+         rectangleClipBox = rectangleX;
 
       }
 

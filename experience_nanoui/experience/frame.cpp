@@ -26,7 +26,7 @@ namespace experience_nanoui
 
       m_colorCaptionText = argb(255, 0, 0, 0);
 
-      //m_rectangleClient.set(0, 0, 0, 0);
+      //m_rectangleX.set(0, 0, 0, 0);
 
    }
 
@@ -79,11 +79,11 @@ namespace experience_nanoui
 
       auto imaging = psystem->imaging();
 
-      ::rectangle_i32 rectangleClient(rectangleParam);
+      ::rectangle_i32 rectangleX(rectangleParam);
 
       ::rectangle_i32 rectangleInflate;
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -93,7 +93,7 @@ namespace experience_nanoui
 
       i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-      rectangleInflate = rectangleClient;
+      rectangleInflate = rectangleX;
 
       rectangleInflate.inflate(iInflate, iInflate);
 
@@ -105,17 +105,17 @@ namespace experience_nanoui
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      pimage1 = m_pcontext->m_pauracontext->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+      pimage2 = m_pcontext->m_pauracontext->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-      ::rectangle_i32 rectangleWindow = rectangleClient;
+      ::rectangle_i32 rectangleWindow = rectangleX;
 
       pframewindow->client_to_screen()(rectangleWindow);
 
       ::point_i32 pointInflate(iInflate, iInflate);
 
-      auto point = rectangleClient.top_left();
+      auto point = rectangleX.top_left();
 
       point -= pointInflate;
 
@@ -145,11 +145,11 @@ namespace experience_nanoui
 
       {
 
-         rectangle_f64 rectangleSource(pointInflate, rectangleClient.size());
+         rectangle_f64 rectangleSource(pointInflate, rectangleX.size());
 
          image_source imagesource(pimage2, rectangleSource);
 
-         rectangle_f64 rectangleTarget(rectangleClient);
+         rectangle_f64 rectangleTarget(rectangleX);
 
          image_drawing_options imagedrawingoptions(rectangleTarget);
 

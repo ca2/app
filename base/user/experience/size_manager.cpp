@@ -12,6 +12,8 @@
 
 CLASS_DECL_AURA ::point_i32 __get_top_right();
 CLASS_DECL_AURA void __set_top_right(const ::point_i32 & pointTopRight);
+CLASS_DECL_AURA ::point_i32 __get_bottom_right();
+CLASS_DECL_AURA void __set_bottom_right(const ::point_i32 & pointBottomRight);
 
 
 namespace experience
@@ -488,6 +490,23 @@ namespace experience
          }
          rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx());
          rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy());
+
+
+         auto pointBottomRight = __get_bottom_right();
+
+         if (pointBottomRight.is_null())
+         {
+
+            auto & p = m_pframewindow->const_layout().sketch().m_point2;
+
+            auto & size = m_pframewindow->const_layout().sketch().m_size;
+
+            __set_bottom_right(rectangleWindow.bottom_right());
+
+         }
+
+
+
       } else if (eframe == ::experience::e_frame_sizing_top)
       {
          rectangleWindow.top = point.y() + 1;

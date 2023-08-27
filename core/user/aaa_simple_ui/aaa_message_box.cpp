@@ -234,15 +234,15 @@ namespace simple_ui
    void message_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      client_rectangle(rectangleClient);
+      this->rectangle(rectangleX);
 
       auto pnode = Node;
 
       color32_t crBk = pnode->get_simple_ui_color(::e_element_background);
 
-      pgraphics->fill_rectangle(rectangleClient,crBk);
+      pgraphics->fill_rectangle(rectangleX,crBk);
 
       ::pointer<::write_text::font>font(e_create);
 
@@ -260,7 +260,7 @@ namespace simple_ui
 
       string strMessage = m_stra.implode("\n");
 
-      ::rectangle_i32 rectangle(rectangleClient);
+      ::rectangle_i32 rectangle(rectangleX);
 
       rectangle.deflate(10, 10);
 
@@ -272,9 +272,9 @@ namespace simple_ui
    void message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.is_empty())
+      if(rectangleX.is_empty())
       {
 
          return;
@@ -287,9 +287,9 @@ namespace simple_ui
 
       int margin = 10;
 
-      int x = rectangleClient.left + margin;
+      int x = rectangleX.left + margin;
 
-      int y = rectangleClient.bottom - cy - margin;
+      int y = rectangleX.bottom - cy - margin;
 
       for(index i = 0; i < m_tapaA.get_count(); i++)
       {
@@ -308,7 +308,7 @@ namespace simple_ui
 
       }
 
-      x = rectangleClient.right - margin - cx;
+      x = rectangleX.right - margin - cx;
 
       for(index i = m_tapaB.get_upper_bound(); i >= 0; i--)
       {

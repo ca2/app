@@ -201,10 +201,10 @@ SizingNone:;
 
 
 
-   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_border eside)
+   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_border eside)
    {
                
-      auto rectangleClient(rectangleClientParam);
+      auto rectangleX(rectangleXParam);
 
       if (eside != e_border_top)
       {
@@ -246,14 +246,14 @@ SizingNone:;
 
 //               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
 
-      //::rectangle_i32 rectangleA(rectangleClient);
+      //::rectangle_i32 rectangleA(rectangleX);
 
       if(pframewindow->is_translucid_user_style(m_pframewindow->m_estyle))
       {
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //auto psystem = acmesystem()->m_paurasystem;
 
@@ -265,7 +265,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
 
 
@@ -287,13 +287,13 @@ SizingNone:;
       else
       {
 
-         ::rectangle_i32 rectangleClient(rectangleClientParam);
+         ::rectangle_i32 rectangleX(rectangleXParam);
 
-         rectangleClient.deflate(2, 2, 2, 2);
+         rectangleX.deflate(2, 2, 2, 2);
 
          ::rectangle_i32 rectangle;
 
-         GetBorderRectangle(rectangleClient, &rectangle, eside);
+         GetBorderRectangle(rectangleX, &rectangle, eside);
 
          pgraphics->fill_rectangle( rectangle, crMoveableBorder & 0.5_opacity);
 
@@ -340,7 +340,7 @@ SizingNone:;
    }
 
 
-   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
    {
 
       auto pmovemanager = m_pframewindow->move_manager();
@@ -359,37 +359,37 @@ SizingNone:;
       if(eborder & e_border_top)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_top);
+         draw_border_side(pgraphics, rectangleX, e_border_top);
 
       }
 
       if(eborder & e_border_right)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_right);
+         draw_border_side(pgraphics, rectangleX, e_border_right);
 
       }
 
       if(eborder & e_border_bottom)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_bottom);
+         draw_border_side(pgraphics, rectangleX, e_border_bottom);
 
       }
 
       if(eborder & e_border_left)
       {
 
-         draw_border_side(pgraphics, rectangleClient, e_border_left);
+         draw_border_side(pgraphics, rectangleX, e_border_left);
 
       }
 
    }
 
-   void frame_Minimal001::GetBorderRectangle(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
+   void frame_Minimal001::GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside)
    {
 
-      ::rectangle_i32 rectangleBig(rectangleClient);
+      ::rectangle_i32 rectangleBig(rectangleX);
 
       ::rectangle_i32 rectangleSmall;
 
@@ -437,20 +437,20 @@ SizingNone:;
    }
 
 
-   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_grip egrip)
+   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX, enum_grip egrip)
    {
 
       return;
 
-//               ::rectangle_i32 rectangleC(rectangleClient);
+//               ::rectangle_i32 rectangleC(rectangleX);
 //
-//               ::rectangle_i32 rectangleClient(rectangleClient);
+//               ::rectangle_i32 rectangleX(rectangleX);
 //
-//               rectangleClient.right--;
+//               rectangleX.right--;
 //
-//               rectangleClient.bottom--;
+//               rectangleX.bottom--;
 //
-//               ::rectangle_i32 rectangleClientB(rectangleClient);
+//               ::rectangle_i32 rectangleXB(rectangleX);
 //
 //               ::rectangle_i32 rectangleA;
 //
@@ -460,7 +460,7 @@ SizingNone:;
 //
 //               ::point_i32 pointC;
 //
-//               ::rectangle_i32 rectangle(rectangleClient);
+//               ::rectangle_i32 rectangle(rectangleX);
 //
 //               switch(egrip)
 //               {
@@ -468,7 +468,7 @@ SizingNone:;
 //               {
 //                                  pgraphics->set(m_ppenHilight1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top++;
 //                                  rectangleA.left++;
@@ -489,7 +489,7 @@ SizingNone:;
 //
 //                                  // Most external rectangle_i32
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  pointA = rectangleA.top_left();
 //                                  pointA.y() += 15;
@@ -502,7 +502,7 @@ SizingNone:;
 //
 //                                  // Midle rectangle_i32
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top += 2;
 //                                  rectangleA.left += 2;
@@ -520,7 +520,7 @@ SizingNone:;
 //
 //                                  pgraphics->set(m_ppenShadow1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top++;
 //                                  rectangleA.left++;
@@ -544,7 +544,7 @@ SizingNone:;
 //
 //                                  pgraphics->set(m_ppenDkShadow1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top += 4;
 //                                  rectangleA.left += 4;
@@ -564,20 +564,20 @@ SizingNone:;
 //
 //                                  // Details
 //
-//                                  pointA.x() = rectangleClientB.left + 14;
-//                                  pointA.y() = rectangleClientB.top + 1;
-//                                  pointB.x() = rectangleClientB.left + 14;
-//                                  pointB.y() = rectangleClientB.top + 3;
+//                                  pointA.x() = rectangleXB.left + 14;
+//                                  pointA.y() = rectangleXB.top + 1;
+//                                  pointB.x() = rectangleXB.left + 14;
+//                                  pointB.y() = rectangleXB.top + 3;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //
 //
 //                                  // Details
 //
-//                                  pointA.x() = rectangleClientB.left + 1;
-//                                  pointA.y() = rectangleClientB.top + 14;
-//                                  pointB.x() = rectangleClientB.left + 3;
-//                                  pointB.y() = rectangleClientB.top + 14;
+//                                  pointA.x() = rectangleXB.left + 1;
+//                                  pointA.y() = rectangleXB.top + 14;
+//                                  pointB.x() = rectangleXB.left + 3;
+//                                  pointB.y() = rectangleXB.top + 14;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //
@@ -585,19 +585,19 @@ SizingNone:;
 //
 //                                  // Details
 //
-//                                  pointA.x() = rectangleClientB.left + 15;
-//                                  pointA.y() = rectangleClientB.top + 1;
-//                                  pointB.x() = rectangleClientB.left + 15;
-//                                  pointB.y() = rectangleClientB.top + 5;
+//                                  pointA.x() = rectangleXB.left + 15;
+//                                  pointA.y() = rectangleXB.top + 1;
+//                                  pointB.x() = rectangleXB.left + 15;
+//                                  pointB.y() = rectangleXB.top + 5;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //
 //                                  // Details
 //
-//                                  pointA.x() = rectangleClientB.left + 1;
-//                                  pointA.y() = rectangleClientB.top + 15;
-//                                  pointB.x() = rectangleClientB.left + 5;
-//                                  pointB.y() = rectangleClientB.top + 15;
+//                                  pointA.x() = rectangleXB.left + 1;
+//                                  pointA.y() = rectangleXB.top + 15;
+//                                  pointB.x() = rectangleXB.left + 5;
+//                                  pointB.y() = rectangleXB.top + 15;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //               }
@@ -606,7 +606,7 @@ SizingNone:;
 //               {
 //                                   pgraphics->set(m_ppenHilight1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top++;
 //                                   rectangleA.left++;
@@ -634,7 +634,7 @@ SizingNone:;
 //
 //                                   // Most external rectangle_i32
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   pointA = rectangleA.top_right();
 //                                   pointA.x() -= 16;
@@ -658,7 +658,7 @@ SizingNone:;
 //
 //                                   // Midle rectangle_i32
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top += 2;
 //                                   rectangleA.left += 2;
@@ -676,7 +676,7 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenShadow1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top++;
 //                                   rectangleA.left++;
@@ -702,7 +702,7 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenDkShadow1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   pointB = rectangleA.top_right();
 //                                   pointC = rectangleA.top_right();
@@ -723,10 +723,10 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenHilight1);
 //
-//                                   pointA.x() = rectangleClientB.right - 14;
-//                                   pointA.y() = rectangleClientB.top + 1;
-//                                   pointB.x() = rectangleClientB.right - 14;
-//                                   pointB.y() = rectangleClientB.top + 4;
+//                                   pointA.x() = rectangleXB.right - 14;
+//                                   pointA.y() = rectangleXB.top + 1;
+//                                   pointB.x() = rectangleXB.right - 14;
+//                                   pointB.y() = rectangleXB.top + 4;
 //                                   pgraphics->set_current_point(pointA);
 //                                   pgraphics->line_to(pointB);
 //
@@ -734,10 +734,10 @@ SizingNone:;
 //
 //                                   // Details
 //
-//                                   pointA.x() = rectangleClientB.right - 15;
-//                                   pointA.y() = rectangleClientB.top;
-//                                   pointB.x() = rectangleClientB.right - 15;
-//                                   pointB.y() = rectangleClientB.top + 5;
+//                                   pointA.x() = rectangleXB.right - 15;
+//                                   pointA.y() = rectangleXB.top;
+//                                   pointB.x() = rectangleXB.right - 15;
+//                                   pointB.y() = rectangleXB.top + 5;
 //                                   pgraphics->set_current_point(pointA);
 //                                   pgraphics->line_to(pointB);
 //
@@ -745,10 +745,10 @@ SizingNone:;
 //
 //                                   // Details
 //
-//                                   pointA.x() = rectangleClientB.right - 3;
-//                                   pointA.y() = rectangleClientB.top + 14;
-//                                   pointB.x() = rectangleClientB.right - 1;
-//                                   pointB.y() = rectangleClientB.top + 14;
+//                                   pointA.x() = rectangleXB.right - 3;
+//                                   pointA.y() = rectangleXB.top + 14;
+//                                   pointB.x() = rectangleXB.right - 1;
+//                                   pointB.y() = rectangleXB.top + 14;
 //                                   pgraphics->set_current_point(pointA);
 //                                   pgraphics->line_to(pointB);
 //
@@ -756,10 +756,10 @@ SizingNone:;
 //
 //                                   // Details
 //
-//                                   pointA.x() = rectangleClientB.right - 4;
-//                                   pointA.y() = rectangleClientB.top + 15;
-//                                   pointB.x() = rectangleClientB.right;
-//                                   pointB.y() = rectangleClientB.top + 15;
+//                                   pointA.x() = rectangleXB.right - 4;
+//                                   pointA.y() = rectangleXB.top + 15;
+//                                   pointB.x() = rectangleXB.right;
+//                                   pointB.y() = rectangleXB.top + 15;
 //                                   pgraphics->set_current_point(pointB);
 //                                   pgraphics->line_to(pointA);
 //               }
@@ -769,7 +769,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenHilight1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left++;
 //                                     rectangleA.bottom--;
@@ -781,7 +781,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 3;
 //                                     rectangleA.bottom -= 3;
@@ -797,7 +797,7 @@ SizingNone:;
 //
 //                                     // Most external rectangle_i32 0
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     pointA = rectangleA.bottom_left();
 //                                     pointA.y() -= 15;
@@ -820,7 +820,7 @@ SizingNone:;
 //
 //                                     // Midle rectangle_i32 2
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.top += 2;
 //                                     rectangleA.left += 2;
@@ -838,7 +838,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenShadow1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 2;
 //                                     rectangleA.bottom--;
@@ -849,7 +849,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointC);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 3;
 //                                     rectangleA.bottom -= 2;
@@ -862,7 +862,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenDkShadow1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     pointB = rectangleA.bottom_left();
 //                                     pointB.x()++;
@@ -884,10 +884,10 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenHilight1);
 //
-//                                     pointA.x() = rectangleClientB.left + 1;
-//                                     pointA.y() = rectangleClientB.bottom - 15;
-//                                     pointB.x() = rectangleClientB.left + 4;
-//                                     pointB.y() = rectangleClientB.bottom - 15;
+//                                     pointA.x() = rectangleXB.left + 1;
+//                                     pointA.y() = rectangleXB.bottom - 15;
+//                                     pointB.x() = rectangleXB.left + 4;
+//                                     pointB.y() = rectangleXB.bottom - 15;
 //                                     pgraphics->set_current_point(pointA);
 //                                     pgraphics->line_to(pointB);
 //
@@ -895,10 +895,10 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenFace1);
 //
-//                                     pointA.x() = rectangleClientB.left;
-//                                     pointA.y() = rectangleClientB.bottom - 15;
-//                                     pointB.x() = rectangleClientB.left + 5;
-//                                     pointB.y() = rectangleClientB.bottom - 15;
+//                                     pointA.x() = rectangleXB.left;
+//                                     pointA.y() = rectangleXB.bottom - 15;
+//                                     pointB.x() = rectangleXB.left + 5;
+//                                     pointB.y() = rectangleXB.bottom - 15;
 //                                     pgraphics->set_current_point(pointA);
 //                                     pgraphics->line_to(pointB);
 //
@@ -906,10 +906,10 @@ SizingNone:;
 //
 //                                     // Details - right most
 //
-//                                     pointA.x() = rectangleClientB.left + 14;
-//                                     pointA.y() = rectangleClientB.bottom - 4;
-//                                     pointB.x() = rectangleClientB.left + 14;
-//                                     pointB.y() = rectangleClientB.bottom - 1;
+//                                     pointA.x() = rectangleXB.left + 14;
+//                                     pointA.y() = rectangleXB.bottom - 4;
+//                                     pointB.x() = rectangleXB.left + 14;
+//                                     pointB.y() = rectangleXB.bottom - 1;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //
@@ -917,10 +917,10 @@ SizingNone:;
 //
 //                                     // Details - right most
 //
-//                                     pointA.x() = rectangleClientB.left + 15;
-//                                     pointA.y() = rectangleClientB.bottom - 4;
-//                                     pointB.x() = rectangleClientB.left + 15;
-//                                     pointB.y() = rectangleClientB.bottom;
+//                                     pointA.x() = rectangleXB.left + 15;
+//                                     pointA.y() = rectangleXB.bottom - 4;
+//                                     pointB.x() = rectangleXB.left + 15;
+//                                     pointB.y() = rectangleXB.bottom;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //               }
@@ -929,7 +929,7 @@ SizingNone:;
 //               {
 //                                      pgraphics->set(m_ppenHilight1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top++;
 //                                      rectangleA.left++;
@@ -952,7 +952,7 @@ SizingNone:;
 //
 //                                      pgraphics->set(m_ppenFace1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      // Most internal rectangle_i32
 //
@@ -972,7 +972,7 @@ SizingNone:;
 //
 //                                      // Midle rectangle_i32
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top += 2;
 //                                      rectangleA.left += 2;
@@ -989,7 +989,7 @@ SizingNone:;
 //                                      pgraphics->line_to(pointC);
 //                                      pgraphics->set(m_ppenShadow1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top++;
 //                                      rectangleA.left++;
@@ -1007,7 +1007,7 @@ SizingNone:;
 //
 //                                      pgraphics->set(m_ppenDkShadow1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      pointA = rectangleA.bottom_right();
 //                                      pointA.y() -= 15;
@@ -1020,17 +1020,17 @@ SizingNone:;
 //
 //                                      pgraphics->set(m_ppenHilight1);
 //
-//                                      pointA.x() = rectangleClientB.right - 3;
-//                                      pointA.y() = rectangleClientB.bottom - 14;
-//                                      pointB.x() = rectangleClientB.right - 1;
-//                                      pointB.y() = rectangleClientB.bottom - 14;
+//                                      pointA.x() = rectangleXB.right - 3;
+//                                      pointA.y() = rectangleXB.bottom - 14;
+//                                      pointB.x() = rectangleXB.right - 1;
+//                                      pointB.y() = rectangleXB.bottom - 14;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //
-//                                      pointA.x() = rectangleClientB.right - 14;
-//                                      pointA.y() = rectangleClientB.bottom - 3;
-//                                      pointB.x() = rectangleClientB.right - 14;
-//                                      pointB.y() = rectangleClientB.bottom - 1;
+//                                      pointA.x() = rectangleXB.right - 14;
+//                                      pointA.y() = rectangleXB.bottom - 3;
+//                                      pointB.x() = rectangleXB.right - 14;
+//                                      pointB.y() = rectangleXB.bottom - 1;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //
@@ -1038,17 +1038,17 @@ SizingNone:;
 //
 //                                      // Details
 //
-//                                      pointA.x() = rectangleClientB.right - 5;
-//                                      pointA.y() = rectangleClientB.bottom - 15;
-//                                      pointB.x() = rectangleClientB.right;
-//                                      pointB.y() = rectangleClientB.bottom - 15;
+//                                      pointA.x() = rectangleXB.right - 5;
+//                                      pointA.y() = rectangleXB.bottom - 15;
+//                                      pointB.x() = rectangleXB.right;
+//                                      pointB.y() = rectangleXB.bottom - 15;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //
-//                                      pointA.x() = rectangleClientB.right - 15;
-//                                      pointA.y() = rectangleClientB.bottom - 5;
-//                                      pointB.x() = rectangleClientB.right - 15;
-//                                      pointB.y() = rectangleClientB.bottom;
+//                                      pointA.x() = rectangleXB.right - 15;
+//                                      pointA.y() = rectangleXB.bottom - 5;
+//                                      pointB.x() = rectangleXB.right - 15;
+//                                      pointB.y() = rectangleXB.bottom;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //               }
@@ -1183,7 +1183,7 @@ SizingNone:;
 
    }
 
-   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
    {
 
       auto psizenager = m_pframewindow->size_manager();
@@ -1192,35 +1192,35 @@ SizingNone:;
 
       if(egrip & e_grip_top)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top);
+         DrawGrip(pgraphics, rectangleX, e_grip_top);
       }
       if(egrip & e_grip_top_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
       }
       if(egrip & e_grip_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_right);
       }
       if(egrip & e_grip_bottom_right)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
       }
       if(egrip & e_grip_bottom)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
       }
       if(egrip & e_grip_bottom_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
       }
       if(egrip & e_grip_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_left);
       }
       if(egrip & e_grip_top_left)
       {
-         DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
+         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
       }
 
    }
@@ -1399,10 +1399,10 @@ SizingNone:;
 //
 //
 //
-//   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_border eside)
+//   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_border eside)
 //   {
 //               
-//      auto rectangleClient(rectangleClientParam);
+//      auto rectangleX(rectangleXParam);
 //
 //      if (eside != e_border_top)
 //      {
@@ -1444,14 +1444,14 @@ SizingNone:;
 //
 //               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
 //
-//      ::rectangle_i32 rectangleA(rectangleClient);
+//      ::rectangle_i32 rectangleA(rectangleX);
 //
 //      if(pframewindow->is_translucid_user_style(m_pframewindow->m_estyle))
 //      {
 //
 //         ::rectangle_i32 rectangle;
 //
-//         GetBorderRectangle(rectangleClient, &rectangle, eside);
+//         GetBorderRectangle(rectangleX, &rectangle, eside);
 //
 //         auto psystem = acmesystem()->m_paurasystem;
 //
@@ -1463,7 +1463,7 @@ SizingNone:;
 //
 //         ::rectangle_i32 rectangle;
 //
-//         GetBorderRectangle(rectangleClient, &rectangle, eside);
+//         GetBorderRectangle(rectangleX, &rectangle, eside);
 //
 //
 //
@@ -1485,13 +1485,13 @@ SizingNone:;
 //      else
 //      {
 //
-//         ::rectangle_i32 rectangleClient(rectangleClientParam);
+//         ::rectangle_i32 rectangleX(rectangleXParam);
 //
-//         rectangleClient.deflate(2, 2, 2, 2);
+//         rectangleX.deflate(2, 2, 2, 2);
 //
 //         ::rectangle_i32 rectangle;
 //
-//         GetBorderRectangle(rectangleClient, &rectangle, eside);
+//         GetBorderRectangle(rectangleX, &rectangle, eside);
 //
 //         pgraphics->fill_rectangle( rectangle, crMoveableBorder & 0.5_opacity);
 //
@@ -1538,7 +1538,7 @@ SizingNone:;
 //   }
 //
 //
-//   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+//   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
 //   {
 //
 //      auto pmovemanager = m_pframewindow->move_manager();
@@ -1557,37 +1557,37 @@ SizingNone:;
 //      if(eborder & e_border_top)
 //      {
 //
-//         draw_border_side(pgraphics, rectangleClient, e_border_top);
+//         draw_border_side(pgraphics, rectangleX, e_border_top);
 //
 //      }
 //
 //      if(eborder & e_border_right)
 //      {
 //
-//         draw_border_side(pgraphics, rectangleClient, e_border_right);
+//         draw_border_side(pgraphics, rectangleX, e_border_right);
 //
 //      }
 //
 //      if(eborder & e_border_bottom)
 //      {
 //
-//         draw_border_side(pgraphics, rectangleClient, e_border_bottom);
+//         draw_border_side(pgraphics, rectangleX, e_border_bottom);
 //
 //      }
 //
 //      if(eborder & e_border_left)
 //      {
 //
-//         draw_border_side(pgraphics, rectangleClient, e_border_left);
+//         draw_border_side(pgraphics, rectangleX, e_border_left);
 //
 //      }
 //
 //   }
 //
-//   void frame_Minimal001::GetBorderRectangle(const ::rectangle_i32 & rectangleClient, ::rectangle_i32 * lprect, enum_border eside)
+//   void frame_Minimal001::GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside)
 //   {
 //
-//      ::rectangle_i32 rectangleBig(rectangleClient);
+//      ::rectangle_i32 rectangleBig(rectangleX);
 //
 //      ::rectangle_i32 rectangleSmall;
 //
@@ -1635,20 +1635,20 @@ SizingNone:;
 //   }
 //
 //
-//   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_grip egrip)
+//   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX, enum_grip egrip)
 //   {
 //
 //      return;
 //
-//               ::rectangle_i32 rectangleC(rectangleClient);
+//               ::rectangle_i32 rectangleC(rectangleX);
 //
-//               ::rectangle_i32 rectangleClient(rectangleClient);
+//               ::rectangle_i32 rectangleX(rectangleX);
 //
-//               rectangleClient.right--;
+//               rectangleX.right--;
 //
-//               rectangleClient.bottom--;
+//               rectangleX.bottom--;
 //
-//               ::rectangle_i32 rectangleClientB(rectangleClient);
+//               ::rectangle_i32 rectangleXB(rectangleX);
 //
 //               ::rectangle_i32 rectangleA;
 //
@@ -1658,7 +1658,7 @@ SizingNone:;
 //
 //               ::point_i32 pointC;
 //
-//               ::rectangle_i32 rectangle(rectangleClient);
+//               ::rectangle_i32 rectangle(rectangleX);
 //
 //               switch(egrip)
 //               {
@@ -1666,7 +1666,7 @@ SizingNone:;
 //               {
 //                                  pgraphics->set(m_ppenHilight1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top++;
 //                                  rectangleA.left++;
@@ -1687,7 +1687,7 @@ SizingNone:;
 //
 //                                   Most external rectangle_i32
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  pointA = rectangleA.top_left();
 //                                  pointA.y() += 15;
@@ -1700,7 +1700,7 @@ SizingNone:;
 //
 //                                   Midle rectangle_i32
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top += 2;
 //                                  rectangleA.left += 2;
@@ -1718,7 +1718,7 @@ SizingNone:;
 //
 //                                  pgraphics->set(m_ppenShadow1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top++;
 //                                  rectangleA.left++;
@@ -1742,7 +1742,7 @@ SizingNone:;
 //
 //                                  pgraphics->set(m_ppenDkShadow1);
 //
-//                                  rectangleA = rectangleClient;
+//                                  rectangleA = rectangleX;
 //
 //                                  rectangleA.top += 4;
 //                                  rectangleA.left += 4;
@@ -1762,20 +1762,20 @@ SizingNone:;
 //
 //                                   Details
 //
-//                                  pointA.x() = rectangleClientB.left + 14;
-//                                  pointA.y() = rectangleClientB.top + 1;
-//                                  pointB.x() = rectangleClientB.left + 14;
-//                                  pointB.y() = rectangleClientB.top + 3;
+//                                  pointA.x() = rectangleXB.left + 14;
+//                                  pointA.y() = rectangleXB.top + 1;
+//                                  pointB.x() = rectangleXB.left + 14;
+//                                  pointB.y() = rectangleXB.top + 3;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //
 //
 //                                   Details
 //
-//                                  pointA.x() = rectangleClientB.left + 1;
-//                                  pointA.y() = rectangleClientB.top + 14;
-//                                  pointB.x() = rectangleClientB.left + 3;
-//                                  pointB.y() = rectangleClientB.top + 14;
+//                                  pointA.x() = rectangleXB.left + 1;
+//                                  pointA.y() = rectangleXB.top + 14;
+//                                  pointB.x() = rectangleXB.left + 3;
+//                                  pointB.y() = rectangleXB.top + 14;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //
@@ -1783,19 +1783,19 @@ SizingNone:;
 //
 //                                   Details
 //
-//                                  pointA.x() = rectangleClientB.left + 15;
-//                                  pointA.y() = rectangleClientB.top + 1;
-//                                  pointB.x() = rectangleClientB.left + 15;
-//                                  pointB.y() = rectangleClientB.top + 5;
+//                                  pointA.x() = rectangleXB.left + 15;
+//                                  pointA.y() = rectangleXB.top + 1;
+//                                  pointB.x() = rectangleXB.left + 15;
+//                                  pointB.y() = rectangleXB.top + 5;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //
 //                                   Details
 //
-//                                  pointA.x() = rectangleClientB.left + 1;
-//                                  pointA.y() = rectangleClientB.top + 15;
-//                                  pointB.x() = rectangleClientB.left + 5;
-//                                  pointB.y() = rectangleClientB.top + 15;
+//                                  pointA.x() = rectangleXB.left + 1;
+//                                  pointA.y() = rectangleXB.top + 15;
+//                                  pointB.x() = rectangleXB.left + 5;
+//                                  pointB.y() = rectangleXB.top + 15;
 //                                  pgraphics->set_current_point(pointA);
 //                                  pgraphics->line_to(pointB);
 //               }
@@ -1804,7 +1804,7 @@ SizingNone:;
 //               {
 //                                   pgraphics->set(m_ppenHilight1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top++;
 //                                   rectangleA.left++;
@@ -1832,7 +1832,7 @@ SizingNone:;
 //
 //                                    Most external rectangle_i32
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   pointA = rectangleA.top_right();
 //                                   pointA.x() -= 16;
@@ -1856,7 +1856,7 @@ SizingNone:;
 //
 //                                    Midle rectangle_i32
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top += 2;
 //                                   rectangleA.left += 2;
@@ -1874,7 +1874,7 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenShadow1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   rectangleA.top++;
 //                                   rectangleA.left++;
@@ -1900,7 +1900,7 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenDkShadow1);
 //
-//                                   rectangleA = rectangleClient;
+//                                   rectangleA = rectangleX;
 //
 //                                   pointB = rectangleA.top_right();
 //                                   pointC = rectangleA.top_right();
@@ -1921,10 +1921,10 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenHilight1);
 //
-//                                   pointA.x() = rectangleClientB.right - 14;
-//                                   pointA.y() = rectangleClientB.top + 1;
-//                                   pointB.x() = rectangleClientB.right - 14;
-//                                   pointB.y() = rectangleClientB.top + 4;
+//                                   pointA.x() = rectangleXB.right - 14;
+//                                   pointA.y() = rectangleXB.top + 1;
+//                                   pointB.x() = rectangleXB.right - 14;
+//                                   pointB.y() = rectangleXB.top + 4;
 //                                   pgraphics->set_current_point(pointA);
 //                                   pgraphics->line_to(pointB);
 //
@@ -1932,10 +1932,10 @@ SizingNone:;
 //
 //                                    Details
 //
-//                                   pointA.x() = rectangleClientB.right - 15;
-//                                   pointA.y() = rectangleClientB.top;
-//                                   pointB.x() = rectangleClientB.right - 15;
-//                                   pointB.y() = rectangleClientB.top + 5;
+//                                   pointA.x() = rectangleXB.right - 15;
+//                                   pointA.y() = rectangleXB.top;
+//                                   pointB.x() = rectangleXB.right - 15;
+//                                   pointB.y() = rectangleXB.top + 5;
 //                                   pgraphics->set_current_point(pointA);
 //                                   pgraphics->line_to(pointB);
 //
@@ -1943,10 +1943,10 @@ SizingNone:;
 //
 //                                    Details
 //
-//                                   pointA.x() = rectangleClientB.right - 3;
-//                                   pointA.y() = rectangleClientB.top + 14;
-//                                   pointB.x() = rectangleClientB.right - 1;
-//                                   pointB.y() = rectangleClientB.top + 14;
+//                                   pointA.x() = rectangleXB.right - 3;
+//                                   pointA.y() = rectangleXB.top + 14;
+//                                   pointB.x() = rectangleXB.right - 1;
+//                                   pointB.y() = rectangleXB.top + 14;
 //                                   pgraphics->set_current_point(pointA);
 //                                   pgraphics->line_to(pointB);
 //
@@ -1954,10 +1954,10 @@ SizingNone:;
 //
 //                                    Details
 //
-//                                   pointA.x() = rectangleClientB.right - 4;
-//                                   pointA.y() = rectangleClientB.top + 15;
-//                                   pointB.x() = rectangleClientB.right;
-//                                   pointB.y() = rectangleClientB.top + 15;
+//                                   pointA.x() = rectangleXB.right - 4;
+//                                   pointA.y() = rectangleXB.top + 15;
+//                                   pointB.x() = rectangleXB.right;
+//                                   pointB.y() = rectangleXB.top + 15;
 //                                   pgraphics->set_current_point(pointB);
 //                                   pgraphics->line_to(pointA);
 //               }
@@ -1967,7 +1967,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenHilight1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left++;
 //                                     rectangleA.bottom--;
@@ -1979,7 +1979,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 3;
 //                                     rectangleA.bottom -= 3;
@@ -1995,7 +1995,7 @@ SizingNone:;
 //
 //                                      Most external rectangle_i32 0
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     pointA = rectangleA.bottom_left();
 //                                     pointA.y() -= 15;
@@ -2018,7 +2018,7 @@ SizingNone:;
 //
 //                                      Midle rectangle_i32 2
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.top += 2;
 //                                     rectangleA.left += 2;
@@ -2036,7 +2036,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenShadow1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 2;
 //                                     rectangleA.bottom--;
@@ -2047,7 +2047,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointC);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     rectangleA.left += 3;
 //                                     rectangleA.bottom -= 2;
@@ -2060,7 +2060,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenDkShadow1);
 //
-//                                     rectangleA = rectangleClient;
+//                                     rectangleA = rectangleX;
 //
 //                                     pointB = rectangleA.bottom_left();
 //                                     pointB.x()++;
@@ -2082,10 +2082,10 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenHilight1);
 //
-//                                     pointA.x() = rectangleClientB.left + 1;
-//                                     pointA.y() = rectangleClientB.bottom - 15;
-//                                     pointB.x() = rectangleClientB.left + 4;
-//                                     pointB.y() = rectangleClientB.bottom - 15;
+//                                     pointA.x() = rectangleXB.left + 1;
+//                                     pointA.y() = rectangleXB.bottom - 15;
+//                                     pointB.x() = rectangleXB.left + 4;
+//                                     pointB.y() = rectangleXB.bottom - 15;
 //                                     pgraphics->set_current_point(pointA);
 //                                     pgraphics->line_to(pointB);
 //
@@ -2093,10 +2093,10 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenFace1);
 //
-//                                     pointA.x() = rectangleClientB.left;
-//                                     pointA.y() = rectangleClientB.bottom - 15;
-//                                     pointB.x() = rectangleClientB.left + 5;
-//                                     pointB.y() = rectangleClientB.bottom - 15;
+//                                     pointA.x() = rectangleXB.left;
+//                                     pointA.y() = rectangleXB.bottom - 15;
+//                                     pointB.x() = rectangleXB.left + 5;
+//                                     pointB.y() = rectangleXB.bottom - 15;
 //                                     pgraphics->set_current_point(pointA);
 //                                     pgraphics->line_to(pointB);
 //
@@ -2104,10 +2104,10 @@ SizingNone:;
 //
 //                                      Details - right most
 //
-//                                     pointA.x() = rectangleClientB.left + 14;
-//                                     pointA.y() = rectangleClientB.bottom - 4;
-//                                     pointB.x() = rectangleClientB.left + 14;
-//                                     pointB.y() = rectangleClientB.bottom - 1;
+//                                     pointA.x() = rectangleXB.left + 14;
+//                                     pointA.y() = rectangleXB.bottom - 4;
+//                                     pointB.x() = rectangleXB.left + 14;
+//                                     pointB.y() = rectangleXB.bottom - 1;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //
@@ -2115,10 +2115,10 @@ SizingNone:;
 //
 //                                      Details - right most
 //
-//                                     pointA.x() = rectangleClientB.left + 15;
-//                                     pointA.y() = rectangleClientB.bottom - 4;
-//                                     pointB.x() = rectangleClientB.left + 15;
-//                                     pointB.y() = rectangleClientB.bottom;
+//                                     pointA.x() = rectangleXB.left + 15;
+//                                     pointA.y() = rectangleXB.bottom - 4;
+//                                     pointB.x() = rectangleXB.left + 15;
+//                                     pointB.y() = rectangleXB.bottom;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //               }
@@ -2127,7 +2127,7 @@ SizingNone:;
 //               {
 //                                      pgraphics->set(m_ppenHilight1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top++;
 //                                      rectangleA.left++;
@@ -2150,7 +2150,7 @@ SizingNone:;
 //
 //                                      pgraphics->set(m_ppenFace1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                       Most internal rectangle_i32
 //
@@ -2170,7 +2170,7 @@ SizingNone:;
 //
 //                                       Midle rectangle_i32
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top += 2;
 //                                      rectangleA.left += 2;
@@ -2187,7 +2187,7 @@ SizingNone:;
 //                                      pgraphics->line_to(pointC);
 //                                      pgraphics->set(m_ppenShadow1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      rectangleA.top++;
 //                                      rectangleA.left++;
@@ -2205,7 +2205,7 @@ SizingNone:;
 //
 //                                      pgraphics->set(m_ppenDkShadow1);
 //
-//                                      rectangleA = rectangleClient;
+//                                      rectangleA = rectangleX;
 //
 //                                      pointA = rectangleA.bottom_right();
 //                                      pointA.y() -= 15;
@@ -2218,17 +2218,17 @@ SizingNone:;
 //
 //                                      pgraphics->set(m_ppenHilight1);
 //
-//                                      pointA.x() = rectangleClientB.right - 3;
-//                                      pointA.y() = rectangleClientB.bottom - 14;
-//                                      pointB.x() = rectangleClientB.right - 1;
-//                                      pointB.y() = rectangleClientB.bottom - 14;
+//                                      pointA.x() = rectangleXB.right - 3;
+//                                      pointA.y() = rectangleXB.bottom - 14;
+//                                      pointB.x() = rectangleXB.right - 1;
+//                                      pointB.y() = rectangleXB.bottom - 14;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //
-//                                      pointA.x() = rectangleClientB.right - 14;
-//                                      pointA.y() = rectangleClientB.bottom - 3;
-//                                      pointB.x() = rectangleClientB.right - 14;
-//                                      pointB.y() = rectangleClientB.bottom - 1;
+//                                      pointA.x() = rectangleXB.right - 14;
+//                                      pointA.y() = rectangleXB.bottom - 3;
+//                                      pointB.x() = rectangleXB.right - 14;
+//                                      pointB.y() = rectangleXB.bottom - 1;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //
@@ -2236,17 +2236,17 @@ SizingNone:;
 //
 //                                       Details
 //
-//                                      pointA.x() = rectangleClientB.right - 5;
-//                                      pointA.y() = rectangleClientB.bottom - 15;
-//                                      pointB.x() = rectangleClientB.right;
-//                                      pointB.y() = rectangleClientB.bottom - 15;
+//                                      pointA.x() = rectangleXB.right - 5;
+//                                      pointA.y() = rectangleXB.bottom - 15;
+//                                      pointB.x() = rectangleXB.right;
+//                                      pointB.y() = rectangleXB.bottom - 15;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //
-//                                      pointA.x() = rectangleClientB.right - 15;
-//                                      pointA.y() = rectangleClientB.bottom - 5;
-//                                      pointB.x() = rectangleClientB.right - 15;
-//                                      pointB.y() = rectangleClientB.bottom;
+//                                      pointA.x() = rectangleXB.right - 15;
+//                                      pointA.y() = rectangleXB.bottom - 5;
+//                                      pointB.x() = rectangleXB.right - 15;
+//                                      pointB.y() = rectangleXB.bottom;
 //                                      pgraphics->set_current_point(pointB);
 //                                      pgraphics->line_to(pointA);
 //               }
@@ -2381,7 +2381,7 @@ SizingNone:;
 //
 //   }
 //
-//   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+//   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
 //   {
 //
 //      auto psizenager = m_pframewindow->size_manager();
@@ -2390,35 +2390,35 @@ SizingNone:;
 //
 //      if(egrip & e_grip_top)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_top);
+//         DrawGrip(pgraphics, rectangleX, e_grip_top);
 //      }
 //      if(egrip & e_grip_top_right)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
+//         DrawGrip(pgraphics, rectangleX, e_grip_top_right);
 //      }
 //      if(egrip & e_grip_right)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_right);
+//         DrawGrip(pgraphics, rectangleX, e_grip_right);
 //      }
 //      if(egrip & e_grip_bottom_right)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
+//         DrawGrip(pgraphics, rectangleX, e_grip_bottom_right);
 //      }
 //      if(egrip & e_grip_bottom)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
+//         DrawGrip(pgraphics, rectangleX, e_grip_bottom);
 //      }
 //      if(egrip & e_grip_bottom_left)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
+//         DrawGrip(pgraphics, rectangleX, e_grip_bottom_left);
 //      }
 //      if(egrip & e_grip_left)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_left);
+//         DrawGrip(pgraphics, rectangleX, e_grip_left);
 //      }
 //      if(egrip & e_grip_top_left)
 //      {
-//         DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
+//         DrawGrip(pgraphics, rectangleX, e_grip_top_left);
 //      }
 //
 //   }

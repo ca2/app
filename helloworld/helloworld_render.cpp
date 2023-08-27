@@ -88,7 +88,7 @@ namespace helloworld
       m_dMinRadius = 0.0;
       m_dMaxRadius = 0.0;
 
-      m_rectangleClient.null();
+      m_rectangleX.null();
 
 
       m_bVoidTransfer = false;
@@ -391,19 +391,19 @@ namespace helloworld
 
       ::get_task()->m_bThreadToolsForIncreasedFps = true;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient.left = 0;
+      rectangleX.left = 0;
 
-      rectangleClient.top = 0;
+      rectangleX.top = 0;
 
-      rectangleClient.right = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleClient.bottom = m_cy;
+      rectangleX.bottom = m_cy;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //pgraphics->FillSolidRect(rectangleClient,argb(0, 0, 0, 0));
+      //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 
       //      i32 iCount = 30;
 
@@ -575,7 +575,7 @@ namespace helloworld
                                          , m_pimageTemplate2->m_size,
                                          m_pimageTemplate2->get_graphics(), ::point_i32(), ::u8 (128 + (255 - 128) * r));
 
-      //pgraphics->from(rectangleClient.top_left(),m_pimageTemplate, ::point_i32(), rectangleClient>si);
+      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::point_i32(), rectangleX>si);
 
       pgraphics->set_font(m_pfont);
 
@@ -640,17 +640,17 @@ namespace helloworld
       if (m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient.left = 0;
+      rectangleX.left = 0;
 
-      rectangleClient.top = 0;
+      rectangleX.top = 0;
 
-      rectangleClient.right = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleClient.bottom = m_cy;
+      rectangleX.bottom = m_cy;
 
-      if (rectangleClient.area() <= 0)
+      if (rectangleX.area() <= 0)
          return;
 
       //      i32 iCount = 30;
@@ -796,7 +796,7 @@ namespace helloworld
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->BitBlt(rectangleClient, m_pimageTint->get_graphics());
+         pgraphics->BitBlt(rectangleX, m_pimageTint->get_graphics());
 
       }
 
@@ -962,7 +962,7 @@ namespace helloworld
 
 #endif
 
-      if (strHelloWorld == get_helloworld() && m_cx == m_rectangleClient.width() && m_cy == m_rectangleClient.height())
+      if (strHelloWorld == get_helloworld() && m_cx == m_rectangleX.width() && m_cy == m_rectangleX.height())
       {
 
          m_bFirstDone = true;
@@ -975,12 +975,12 @@ namespace helloworld
    //void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::rectangle_i32 rectangleClient;
+   //   ::rectangle_i32 rectangleX;
 
-   //   rectangleClient.left = 0;
-   //   rectangleClient.top = 0;
-   //   rectangleClient.right = m_cx;
-   //   rectangleClient.bottom = m_cy;
+   //   rectangleX.left = 0;
+   //   rectangleX.top = 0;
+   //   rectangleX.right = m_cx;
+   //   rectangleX.bottom = m_cy;
 
    //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //   int period = 5000;

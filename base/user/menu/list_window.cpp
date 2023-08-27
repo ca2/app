@@ -179,9 +179,9 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = get_parent()->client_rectangle();
+      rectangleX = get_parent()->rectangle();
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -205,7 +205,7 @@ namespace user
 
       string str;
 
-      layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleClient);
+      layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleX);
 
       auto & puiClose = m_pitemClose->m_puserinteraction;
 

@@ -212,9 +212,9 @@ namespace filehandler
 
       auto pgraphics = create_memory_graphics();
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      plist->on_layout(rectangleClient);
+      plist->on_layout(rectangleX);
 
    }
 

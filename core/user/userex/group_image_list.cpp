@@ -504,24 +504,24 @@ namespace userex
    void group_image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if (!rectangleClient)
+      if (!rectangleX)
       {
 
          return;
 
       }
 
-      ::rectangle_i32 rectangleMenu(rectangleClient);
+      ::rectangle_i32 rectangleMenu(rectangleX);
 
-      rectangleMenu.bottom = rectangleClient.top + 32;
+      rectangleMenu.bottom = rectangleX.top + 32;
 
       m_pbuttonMenu->display_child(rectangleMenu);
 
-      ::rectangle_i32 rectangleList(rectangleClient);
+      ::rectangle_i32 rectangleList(rectangleX);
 
-      rectangleList.top = rectangleClient.top + 32;
+      rectangleList.top = rectangleX.top + 32;
 
       auto * plist = get_current_list();
 

@@ -98,7 +98,7 @@
 //
 ////    HDC hdc = GetDC(hwnd);
 //
-////    client_rectangle(hwnd, &ps->rcPaint);
+////    this->rectangle(hwnd, &ps->rcPaint);
 //
 ////    return hdc;
 //

@@ -46,8 +46,8 @@ namespace simple_ui
          pprinttask = nullptr;*/
 
 
-      ::rectangle_i32 rectangleClient;
-      client_rectangle(rectangleClient);
+      ::rectangle_i32 rectangleX;
+      this->rectangle(rectangleX);
 
  /*     if(pprinttask != nullptr)
       {
@@ -57,7 +57,7 @@ namespace simple_ui
       bool bCaretOn = m_durationFocusStart.on_off(m_durationCaretPeriod);
 
 
-      //rectangleClient.deflate(0, 0, 1, 1);
+      //rectangleX.deflate(0, 0, 1, 1);
 
       //
 
@@ -72,32 +72,32 @@ namespace simple_ui
       && !psession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
-      pgraphics->blur(true, 4, rectangleClient);
+      pgraphics->blur(true, 4, rectangleX);
       //class imaging & imaging = psystem->imaging();
-      //::rectangle_i32 rectangleClient;
-      //         window_rectangle(rectangleClient);
-      //       rectangleClient.offset(rectangleClient.top_left());
-      if(rectangleClient.size() != m_pimage->size())
+      //::rectangle_i32 rectangleX;
+      //         window_rectangle(rectangleX);
+      //       rectangleX.offset(rectangleX.top_left());
+      if(rectangleX.size() != m_pimage->size())
       {
-      m_pimageBk = create_image(rectangleClient->size());
+      m_pimageBk = create_image(rectangleX->size());
       m_pimage->Fill(184, 184, 170);
       HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
       ::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");*/
 //                  m_fastblur.create(this);
-//      m_fastblur.initialize(rectangleClient.size(), 2);
+//      m_fastblur.initialize(rectangleX.size(), 2);
 //      }
 //      if(m_fastblur.is_set() && m_fastblur->get_graphics() != nullptr)
 //      {
-//      m_fastblur->get_graphics()->BitBlt(0, 0, rectangleClient.width(), rectangleClient.height(), pgraphics, 0, 0);
+//      m_fastblur->get_graphics()->BitBlt(0, 0, rectangleX.width(), rectangleX.height(), pgraphics, 0, 0);
 //      m_fastblur.blur();
 //      imaging.bitmap_blend(
 //      m_fastblur->get_graphics(),
 //      nullptr,
-//      rectangleClient.size(),
+//      rectangleX.size(),
 /*      m_pimage->get_graphics(),
       nullptr,
       49);
-      pgraphics->from(rectangleClient.size(),
+      pgraphics->from(rectangleX.size(),
       m_fastblur->get_graphics(),
       nullptr,
       SRCCOPY);
@@ -109,7 +109,7 @@ namespace simple_ui
       //_001DrawBackground(pgraphics, rectangleClipBox);
       imaging.color_blend(
       pgraphics,
-      rectangleClient,
+      rectangleX,
       rgb(200, 255, 255),
       127);
       }*/
@@ -118,7 +118,7 @@ namespace simple_ui
       color.set_rgb(rgb(227,227,210));
       color.hls_rate(0.0,-0.33,-0.23);
 //      color32_t crBorder = ca.get_rgb() | (0xff << 24);
-      //pgraphics->draw_inset_3d_rectangle(rectangleClient,crBorder,crBorder);
+      //pgraphics->draw_inset_3d_rectangle(rectangleX,crBorder,crBorder);
 
       if(m_ptree == nullptr)
          return;
@@ -135,12 +135,12 @@ namespace simple_ui
 
       ::draw2d::region_pointer rgn(e_create);
 
-      rectangleClient.deflate(2,2);
+      rectangleX.deflate(2,2);
 
-      //client_to_screen(rectangleClient);
-      rgn->create_rect(rectangleClient);
+      //client_to_screen(rectangleX);
+      rgn->create_rect(rectangleX);
 
-      double left = rectangleClient.left;
+      double left = rectangleX.left;
 
       //   pgraphics->SelectClipRgn(&rgn);
 
@@ -166,15 +166,15 @@ namespace simple_ui
       ppenCaret->create_solid(1.0,argb(255,0,0,0));
 
 
-      /*   rectangleClient.top = m_point.y();
-      rectangleClient.left = m_point.x();
-      rectangleClient.bottom = rectangleClient.top + m_size.cy();
-      rectangleClient.right = rectangleClient.left + m_size.cx();*/
-      //      pgraphics->fill_rectangle(rectangleClient, crBk);
+      /*   rectangleX.top = m_point.y();
+      rectangleX.left = m_point.x();
+      rectangleX.bottom = rectangleX.top + m_size.cy();
+      rectangleX.right = rectangleX.left + m_size.cx();*/
+      //      pgraphics->fill_rectangle(rectangleX, crBk);
 
 //
 
-      double y = rectangleClient.top;
+      double y = rectangleX.top;
       _001GetImpactSel(iSelStart,iSelEnd);
       strsize iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);

@@ -329,9 +329,9 @@ namespace user
 
       }
 
-      auto rectangleClient = client_rectangle(e_layout_sketch);
+      auto rectangleX = this->rectangle(e_layout_sketch);
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return;
@@ -346,7 +346,7 @@ namespace user
 
          //lock_sketch_to_design lockSketchToDesign(puiChild);
 
-         puiChild->place(rectangleClient);
+         puiChild->place(rectangleX);
 
          if(puserinteractionpointeraChild->interaction_count() == 1)
          {

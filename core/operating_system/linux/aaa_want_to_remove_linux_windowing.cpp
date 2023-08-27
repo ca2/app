@@ -3309,7 +3309,7 @@ int_bool window_rectangle(oswindow hwnd, RECT32 * prect)
 }
 
 
-int_bool client_rectangle(oswindow window, RECT32 * prect)
+int_bool this->rectangle(oswindow window, RECT32 * prect)
 
 {
 

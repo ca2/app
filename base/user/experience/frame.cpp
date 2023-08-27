@@ -251,9 +251,9 @@ namespace experience
 
       update_window_client_rect();
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = client_rectangle(::user::e_layout_lading);
+      rectangleX = m_pframewindow->client_rectangle2();
 
       if (pframewindow != nullptr)
       {
@@ -265,7 +265,7 @@ namespace experience
 
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
                                  &rectangle, rectangle, false);
-            rectangle.offset(rectangleClient.top_left());
+            rectangle.offset(rectangleX.top_left());
             ::rectangle_i32 rectangleBorder;
             pframewindow->GetBorderRectangle(&rectangleBorder);
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
@@ -289,7 +289,7 @@ namespace experience
 
             pframewindow->GetBorderRectangle(&rectangleBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleClient);
+            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleX);
 
             pframewindow->SetBorderRect(rectangleBorder);
 
@@ -1001,7 +1001,7 @@ namespace experience
 
       }
 
-      ///m_rectangleClient = rectangleClient;
+      ///m_rectangleX = rectangleX;
 
       m_iControlBoxPosition = rectangleRaw.right;
 
@@ -1032,7 +1032,7 @@ namespace experience
 
          get_control_box()->place(rectangleControlBox, ::user::e_layout_sketch, pgraphics);
 
-         information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
+         //information() << "experience::frame_window::title_bar_layout rectangleControlBox: " << rectangleControlBox;
 
       }
 
@@ -1178,64 +1178,64 @@ namespace experience
    }
 
 
-   bool frame::calculate_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
+   bool frame::calculate_client_rectangle2(::rectangle_i32 * prectangle)
    {
 
-      ::rectangle_i32 rectangleClient(*prectangle);
+      ::rectangle_i32 rectangleX(*prectangle);
 
-      auto eappearance = m_pframewindow->const_layout().state(elayout).appearance();
+      auto eappearance = m_pframewindow->const_layout().state(::user::e_layout_lading).appearance();
 
       if (!m_pframewindow->layout().is_full_screen() &&
          !(eappearance & ::e_appearance_transparent_frame))
       {
 
-         rectangleClient.top += m_iCaptionHeight;
+         rectangleX.top += m_iCaptionHeight;
 
       }
 
       rectangle_i32 rectangleMargin = get_margin_rectangle();
 
-      rectangleClient.deflate(rectangleMargin);
+      rectangleX.deflate(rectangleMargin);
 
-      if (rectangleClient.is_empty())
+      if (rectangleX.is_empty())
       {
 
          return false;
 
       }
 
-      *prectangle = rectangleClient;
+      *prectangle = rectangleX;
 
       return true;
 
    }
 
 
-   ::rectangle_i32 frame::client_rectangle(::user::enum_layout elayout)
-   {
+   //::rectangle_i32 frame::rectangle(::user::enum_layout elayout)
+   //{
 
-      if (__type_name(this).case_insensitive_contains("file"))
-      {
+   //   if (__type_name(this).case_insensitive_contains("file"))
+   //   {
 
 
-         information("frame::get_window_client_rectangle file");
+   //      information("frame::get_window_client_rectangle file");
 
-      }
+   //   }
 
-      ::rectangle_i32 rectangleClient;
+   //   ::rectangle_i32 rectangleX;
 
-      rectangleClient = m_pframewindow->::user::interaction::client_rectangle(elayout);
+   //   rectangleX = m_pframewindow->::user::interaction::rectangle(elayout);
 
-      if (!calculate_client_rectangle(&rectangleClient, elayout))
-      {
+   //   if (!calculate_client_rectangle(&rectangleX, elayout))
+   //   {
 
-         return {};
+   //      return {};
 
-      }
+   //   }
 
-      return rectangleClient;
+   //   return rectangleX;
 
-   }
+   //}
 
 
    //bool frame::get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout)
@@ -1262,11 +1262,11 @@ namespace experience
    void frame::set_need_redraw_frame(::user::enum_layout elayout)
    {
 
-      auto rectangle = m_pframewindow->::user::interaction::client_rectangle(elayout);
+      auto rectangle = m_pframewindow->::user::interaction::rectangle(elayout);
 
       ::rectangle_i32 rectangleInner(rectangle);
 
-      calculate_client_rectangle(&rectangleInner);
+      calculate_client_rectangle2(&rectangleInner);
 
       auto rectangleaBorders = get_borders(rectangle, rectangleInner);
 
@@ -1289,11 +1289,11 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectangleClient;
+      ::rectangle_i32 rectangleX;
 
-      rectangleClient = pframewindow->::user::interaction::client_rectangle();
+      rectangleX = pframewindow->::user::interaction::rectangle();
 
-      //calc_window_client_rect(m_rectangleClient, rectangleClient);
+      //calc_window_client_rect(m_rectangleX, rectangleX);
 
    }
 
@@ -1793,7 +1793,7 @@ namespace experience
    void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      rectangle = m_pframewindow->::user::interaction::client_rectangle();
+      rectangle = m_pframewindow->::user::interaction::rectangle();
 
    }
 
@@ -1804,6 +1804,10 @@ namespace experience
    //   m_pframewindow->nextstyle(pcontext);
 
    //}
+   void frame::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
+   {
+      m_pframewindow->place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+   }
 
 
 } // namespace experience

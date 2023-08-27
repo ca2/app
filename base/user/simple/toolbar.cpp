@@ -251,13 +251,13 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //}
 
-   auto rectangleClient = client_rectangle();
+   auto rectangleX = this->rectangle();
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    auto pstyle = get_style(pgraphics);
 
-   pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, ::e_element_background));
+   pgraphics->fill_rectangle(rectangleX, get_color(pstyle, ::e_element_background));
 
    //::user::interaction::_001OnDraw(pgraphics);
 
@@ -1210,9 +1210,9 @@ return true;
 void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto rectangleClient = client_rectangle();
+   auto rectangleX = this->rectangle();
 
-   if (rectangleClient.is_empty())
+   if (rectangleX.is_empty())
    {
 
       return;
@@ -1293,7 +1293,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
                }
 
-               int offsetx = (rectangleClient.width() - iTotalX) / 2;
+               int offsetx = (rectangleX.width() - iTotalX) / 2;
 
                for (index j = 0; j <= iItem; j++)
                {

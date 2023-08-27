@@ -414,7 +414,7 @@ namespace simple_ui
 //
 //      }
 //
-//      rectangle = client_rectangle();
+//      rectangle = this->rectangle();
 //
 //      return true;
 //
@@ -581,11 +581,11 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectangleClient;
+//      ::rectangle_i32 rectangleX;
 //
-//      client_rectangle(rectangleClient);
+//      this->rectangle(rectangleX);
 //
-//      rectangleClient.deflate(0,0,1,1);
+//      rectangleX.deflate(0,0,1,1);
 //
 //      ::draw2d::brush_pointer b(e_create);
 //
@@ -599,7 +599,7 @@ namespace simple_ui
 //
 //      pgraphics->set(point);
 //
-//      pgraphics->rectangle(rectangleClient);
+//      pgraphics->rectangle(rectangleX);
 //
 //   }
 //
@@ -690,7 +690,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangleWindow;
 //
-//      client_rectangle(rectangleWindow);
+//      this->rectangle(rectangleWindow);
 //
 //      pgraphics->fill_rectangle(rectangleWindow, argb(90, 127, 127, 127));
 //
@@ -703,7 +703,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangleWindow;
 //
-//      client_rectangle(rectangleWindow);
+//      this->rectangle(rectangleWindow);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
@@ -733,7 +733,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangle;
 //
-//      client_rectangle(rectangle);
+//      this->rectangle(rectangle);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
@@ -933,9 +933,9 @@ namespace simple_ui
 //   //::item_pointer interaction::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
 //   //{
 //
-//   //   auto rectangleClient = client_rectangle();
+//   //   auto rectangleX = this->rectangle();
 //
-//   //   if (!rectangleClient.contains(point))
+//   //   if (!rectangleX.contains(point))
 //   //   {
 //
 //   //      return ::e_element_none;

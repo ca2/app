@@ -206,12 +206,12 @@ namespace hellobase
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = client_rectangle();
+      auto rectangleX = this->rectangle();
 
-      if(rectangleClient.area() <= 0)
+      if(rectangleX.area() <= 0)
          return;
 
-      if(m_prender->m_rectangleClient == rectangleClient && m_strNewFont == m_strFont)
+      if(m_prender->m_rectangleX == rectangleX && m_strNewFont == m_strFont)
          return;
 
       if(m_strNewFont != m_strFont)
@@ -223,7 +223,7 @@ namespace hellobase
 
       }
 
-      m_prender->m_rectangleClient = rectangleClient;
+      m_prender->m_rectangleX = rectangleX;
 
       m_prender->m_bNewLayout = true;
 

@@ -1234,8 +1234,10 @@ namespace experience_core
          rectangleTabClient.right = pdata->m_rectangleTab.right;
          rectangleTabClient.bottom = rectangleX.bottom;
 
+         ptab->m_rectangleClient2 = rectangleTabClient;
 
-         //TRACE0("rectangleTabClient");
+         information() << "rectangleTabClient";
+
       }
 
       for (i32 iPane = 0; iPane < pdata->m_tabpanecompositea.get_size(); iPane++)

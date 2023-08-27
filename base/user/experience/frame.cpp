@@ -163,7 +163,7 @@ namespace experience
    }
 
 
-   void frame::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -1211,6 +1211,14 @@ namespace experience
    }
 
 
+   ::rectangle_i32 frame::client_rectangle2()
+   {
+
+      return m_pframewindow->client_rectangle2();
+
+   }
+
+
    //::rectangle_i32 frame::rectangle(::user::enum_layout elayout)
    //{
 
@@ -1804,9 +1812,13 @@ namespace experience
    //   m_pframewindow->nextstyle(pcontext);
 
    //}
+
+
    void frame::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
    {
-      m_pframewindow->place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+
+      m_pframewindow->::user::frame_window::place_set_need_redraw(rectangleAfter, rectangleBefore, pgraphics);
+
    }
 
 

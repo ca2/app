@@ -468,7 +468,7 @@ namespace experience_tranquillum
       ::rectangle_i32 rectangleBig(rectangleX);
 
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rectangle(&rectangleSmall);
+      rectangleSmall = client_rectangle2();
       ::rectangle_i32 rectangle;
       if(eside == e_border_top)
       {

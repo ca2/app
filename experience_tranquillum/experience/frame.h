@@ -72,7 +72,7 @@ namespace experience_tranquillum
 //               virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow) override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement) override;
 

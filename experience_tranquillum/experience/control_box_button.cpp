@@ -53,7 +53,7 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rectangleX;
 
-      rectangleX = ::user::interaction::this->rectangle();
+      rectangleX = ::user::interaction::rectangle();
 
       if (rectangleX.area() <= 0)
          return;

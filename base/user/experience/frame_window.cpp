@@ -529,10 +529,10 @@ namespace experience
    }
 
 
-   void frame_window::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::frame_window::_001OnNcDraw(pgraphics);
+      ::user::frame_window::_001OnDraw(pgraphics);
 
       pgraphics->payload("log_fill_rectangle") = 0;
 
@@ -551,7 +551,7 @@ namespace experience
 
             }
 
-            m_pframe->_001OnNcDraw(pgraphics);
+            m_pframe->_001OnDraw(pgraphics);
 
          }
          catch (...)
@@ -562,6 +562,7 @@ namespace experience
       }
 
       pgraphics->payload("log_fill_rectangle") = 1;
+
 
    }
 

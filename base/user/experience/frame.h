@@ -124,6 +124,8 @@ namespace experience
 
       virtual bool calculate_client_rectangle2(::rectangle_i32 * prectangle);
 
+      virtual ::rectangle_i32 client_rectangle2();
+
       //virtual ::rectangle_i32 rectangle(::user::enum_layout elayout = ::user::e_layout_design);
 
       //virtual bool get_draw_client_rectangle(::rectangle_i32 * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
@@ -161,7 +163,7 @@ namespace experience
 
 
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       virtual size_i32 GetMinSize();
 

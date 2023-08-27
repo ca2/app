@@ -1235,6 +1235,8 @@ namespace user
 
             pimpactdata->m_pplaceholder = pplaceholder;
 
+            pplaceholder->m_bExtendOnParentClientArea = true;
+
          }
 
          ptabpane->m_pplaceholder = pimpactdata->m_pplaceholder;

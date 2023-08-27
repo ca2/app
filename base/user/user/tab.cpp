@@ -676,6 +676,10 @@ namespace user
 
       pholder->place(rectangleChild);
 
+      pholder->m_rectangleClient2 = rectangleChild;
+
+      pholder->m_rectangleClient2.offset(-pholder->m_rectangleClient2.top_left());
+
       if (bDisplay)
       {
 

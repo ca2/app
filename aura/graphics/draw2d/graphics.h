@@ -70,6 +70,7 @@ namespace draw2d
 
       e_graphics                             m_egraphics;
       bool                                   m_bBeginDraw;
+      bool                                   m_bInheritDraw;
       bool                                   m_bOutline;
       void *                                 m_pthis;
       ::user::interaction *                  m_puserinteraction;

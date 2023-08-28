@@ -124,15 +124,19 @@ namespace write_text
    void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pgraphics)
    {
 
-      information() << "font_list::_001OnDrawWide 1";
-      information() << "font_list::_001OnDrawWide 2";
-      information() << "font_list::_001OnDrawWide 3";
+      //pgraphics->reset_clip();
+
+      //return;
+
+      //information() << "font_list::_001OnDrawWide 1";
+      //information() << "font_list::_001OnDrawWide 2";
+      //information() << "font_list::_001OnDrawWide 3";
 
       synchronous_lock synchronouslock(this->synchronization());
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangleX = m_puserinteraction->rectangle();
+      ::rectangle_i32 rectangle = m_puserinteraction->rectangle();
 
       //rectangleX += m_puserinteraction->get_context_offset();
 
@@ -238,7 +242,7 @@ namespace write_text
 
          }
 
-         if (!pbox->m_rectangle.intersects(rectangleX))
+         if (!pbox->m_rectangle.intersects(rectangle))
          {
 
             if (pbox->m_rectangle.is_empty())
@@ -247,7 +251,7 @@ namespace write_text
                //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(EMPTY)))";
 
             }
-            else if (rectangleX.area() < 10'000)
+            else if (rectangle.area() < 10'000)
             {
 
                //information() << "!pitem (pbox->m_rectangle.intersects(rectangleX(<10'000)))";

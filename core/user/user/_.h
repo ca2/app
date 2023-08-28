@@ -73,8 +73,7 @@ namespace user
 
    class image_manager;
 
-   typedef ::user::show < ::user::font_list > font_list_impact;
-
+   class font_list_impact;
 
    class primitive_pointer_array;
 

@@ -1236,7 +1236,7 @@ namespace experience_core
 
          ptab->m_rectangleClient2 = rectangleTabClient;
 
-         information() << "rectangleTabClient";
+         //information() << "rectangleTabClient";
 
       }
 

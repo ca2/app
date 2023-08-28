@@ -2259,6 +2259,10 @@ namespace user
    void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ::user::main_window::on_perform_top_down_layout(pgraphics);
+
+      m_rectangleClient2 = this->raw_rectangle(e_layout_layout);
+
       __task_guard(m_bInRecalcLayout);
 
       // clear idle flags for recalc on_layout if called elsewhere

@@ -65,16 +65,16 @@ namespace turboc
       if(papp->m_bMultiverseChat)
       {
 
-         m_ptopview = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"turboc_top");
+         m_ptopimpact = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"turboc_top");
 
-         if(m_ptopview == NULL)
+         if(m_ptopimpact == NULL)
          {
 
             message_box(NULL,"Could not create folder edit impact");
 
          }
 
-         SetPane(0,m_ptopview,false);
+         SetPane(0,m_ptopimpact,false);
 
       }
 
@@ -89,7 +89,7 @@ namespace turboc
 
       }
 
-      m_ptopview->m_pimpact = m_pimpact;
+      m_ptopimpact->m_pimpact = m_pimpact;
 
 
       if(papp->m_bMultiverseChat)

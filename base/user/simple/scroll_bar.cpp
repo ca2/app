@@ -1483,6 +1483,8 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
    //pgraphics->reset_clip();
 
+   //return;
+
    if (!m_bClipRectangle)
    {
 
@@ -1637,6 +1639,8 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraphics)
 {
+
+   //pgraphics->reset_clip();
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

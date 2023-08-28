@@ -766,7 +766,7 @@ namespace user
       else
       {
 
-         information("list_box hide");
+         //information("list_box hide");
 
       }
 

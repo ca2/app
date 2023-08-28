@@ -57,16 +57,16 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_ptopview = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"switcher_top");
+      m_ptopimpact = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"switcher_top");
 
-      if(m_ptopview == NULL)
+      if(m_ptopimpact == NULL)
       {
 
          message_box(NULL,"Could not create folder edit impact");
 
       }
 
-      SetPane(0,m_ptopview,false);
+      SetPane(0,m_ptopimpact,false);
 
       m_pimpact = create_impact < lite_impact >();
 
@@ -79,7 +79,7 @@ namespace turboc
 
       }
 
-      m_ptopview->m_pimpact = m_pimpact;
+      m_ptopimpact->m_pimpact = m_pimpact;
 
 
       SetPane(1,m_pimpact,false);
@@ -122,7 +122,7 @@ namespace turboc
 
             m_pimpact->m_bAlternate = true;
 
-            m_ptopview->m_pimpact = m_pimpact;
+            m_ptopimpact->m_pimpact = m_pimpact;
 
             SetPane(1,m_pimpact,false);
 

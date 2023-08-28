@@ -234,7 +234,7 @@ namespace user
 
       //}
 
-      split_pane * ppane = m_splitpanecompositea[pimpactdata->m_atom.as_index()];
+      split_pane * ppane = m_panea[pimpactdata->m_atom.as_index()];
 
       if (ppane != nullptr)
       {
@@ -242,7 +242,7 @@ namespace user
          if (!pimpactdata->m_pplaceholder)
          {
 
-            auto pplaceholder = get_new_place_holder(ppane->m_rectangleX);
+            auto pplaceholder = get_new_place_holder(ppane->m_rectangleClient);
 
             pimpactdata->m_pplaceholder = pplaceholder;
 

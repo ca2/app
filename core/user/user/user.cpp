@@ -37,7 +37,7 @@
 #include "core/user/simple/mesh_data.h"
 #include "core/user/simple/pane_document.h"
 #include "core/user/simple/printer_list_impact.h"
-//#include "core/user/userex/calculator_edit_impact.h"
+#include "core/user/user/font_list_impact.h"
 #include "core/user/userex/color_impact.h"
 #include "core/user/userex/dialog_frame.h"
 #include "core/user/userex/font_impact.h"

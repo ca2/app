@@ -124,6 +124,8 @@ namespace user
 
       }
 
+      puserinteractionChild->m_bExtendOnParentClientArea = true;
+
       return true;
 
    }
@@ -329,37 +331,42 @@ namespace user
 
       }
 
-      auto rectangleX = this->rectangle(e_layout_sketch);
+      auto rectangle = this->rectangle(e_layout_layout);
 
-      if (rectangleX.is_empty())
+      if (rectangle.is_set())
       {
 
-         return;
-
-      }
-
-
-      for(auto  & puiChild : puserinteractionpointeraChild->interactiona())
-      {
-
-         //auto puiChild = puserinteractionpointeraChild->first_interaction();
-
-         //lock_sketch_to_design lockSketchToDesign(puiChild);
-
-         puiChild->place(rectangleX);
-
-         if(puserinteractionpointeraChild->interaction_count() == 1)
+         if (m_rectangleClient2 != rectangle)
          {
 
-            puiChild->display();
+            m_rectangleClient2 = rectangle;
 
          }
 
-         puiChild->set_reposition();
+         for (auto & puiChild : puserinteractionpointeraChild->interactiona())
+         {
 
-         puiChild->set_need_layout();
+            //auto puiChild = puserinteractionpointeraChild->first_interaction();
 
-         puiChild->set_need_redraw();
+            //lock_sketch_to_design lockSketchToDesign(puiChild);
+
+            puiChild->place(rectangle);
+
+            if (puserinteractionpointeraChild->interaction_count() == 1
+               && !puiChild->is_this_visible())
+            {
+
+               puiChild->display();
+
+            }
+
+            puiChild->set_reposition();
+
+            puiChild->set_need_layout();
+
+            puiChild->set_need_redraw({rectangle}, pgraphics);
+
+         }
 
       }
 
@@ -459,7 +466,7 @@ namespace user
    }
 
 
-   void place_holder::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -467,7 +474,7 @@ namespace user
    }
 
 
-   void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void place_holder::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);

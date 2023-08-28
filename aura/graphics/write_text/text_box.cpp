@@ -114,7 +114,7 @@ namespace write_text
 
       m_pimage->g()->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, strText);
 
-#if 1
+#if 0
 
          string str;
 

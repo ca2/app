@@ -76,7 +76,7 @@ namespace filemanager
 
          set_position(0, (::i32) (24.0 * preferredDensity));
 
-         m_splitpanecompositea[0]->m_bFixedSize = true;
+         m_panea[0]->m_bFixedSize = true;
 
          initialize_split_layout();
 

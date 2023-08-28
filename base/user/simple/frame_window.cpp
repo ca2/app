@@ -1071,7 +1071,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    if (pshow->m_bShow)
    {
 
-      information("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
+      //information("simple_frame_window::on_message_show_window true : " + __type_name(this));
 
       //defer_set_icon();
 
@@ -1079,7 +1079,7 @@ void simple_frame_window::on_message_show_window(::message::message* pmessage)
    else
    {
 
-      information("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
+      //information("simple_frame_window::on_message_show_window false :" + __type_name(this));
 
    }
 

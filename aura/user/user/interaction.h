@@ -222,7 +222,7 @@ namespace user
       bool                                      m_bRectOk;
 
       bool                                      m_bWfiUpDownTarget;
-      bool                                      m_bPendingZorder;
+      bool                                      m_bPendingChildrenZorder;
       bool                                      m_bPadding001;
       bool                                      m_bPadding002;
       
@@ -761,7 +761,7 @@ namespace user
       virtual bool display_lading_to_layout();
       virtual void layout_display();
       virtual void layout_appearance();
-      virtual void layout_zorder();
+      virtual void layout_children_zorder();
       virtual void layout_reposition();
       virtual void layout_layout(::draw2d::graphics_pointer & pgraphics);
 
@@ -841,7 +841,7 @@ namespace user
       virtual void display(::e_display edisplay = e_display_normal, ::e_activation eactivation = ::e_activation_default) override;
 
 
-      virtual bool check_child_zorder();
+      virtual bool check_children_zorder();
 
       virtual ::zorder zorder(enum_layout elayout = e_layout_design);
       virtual void order(::zorder zorder);

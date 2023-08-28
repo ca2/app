@@ -599,6 +599,17 @@ namespace user
 
       }
 
+      if (pimpactdata->m_pplaceholder)
+      {
+
+         ::string strPlaceHolderId;
+
+         strPlaceHolderId = "place_holder : " + pimpactdata->m_atom.as_string();
+
+         pimpactdata->m_pplaceholder->m_atom = strPlaceHolderId;
+
+      }
+
       idSplit = pimpactdata->m_atomSplit;
 
       if(pimpactdata != m_pimpactdata)
@@ -654,6 +665,8 @@ namespace user
    void tab_impact::on_after_change_cur_sel()
    {
 
+      synchronous_lock synchronouslock(this->synchronization());
+
       auto ptabdata = get_data();
 
       ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
@@ -692,7 +705,6 @@ namespace user
                   continue;
 
                }
-
                else if (m_pimpactdata->m_eflag & ::user::e_flag_hidid_on_show)
                {
 
@@ -726,6 +738,52 @@ namespace user
 
       if (!rectangleTabClient.is_empty())
       {
+
+         {
+
+            auto pchild = m_pimpactdata->m_pplaceholder;
+
+            ::string strType = ::type(pchild).name();
+
+            if (strType.case_insensitive_contains("place_holder"))
+            {
+
+               if (pchild->m_puserinteractionpointeraChild
+                  && pchild->m_puserinteractionpointeraChild->has_interaction())
+               {
+
+                  auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
+
+                  ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
+
+                  if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
+                  {
+
+                     auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
+
+                     ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+
+                     if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
+                     {
+
+                        information() << "going to display " << strTypePlaceHolderChild2;
+
+                        if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                        {
+
+                           //information() << "tab impact has font_list place_holder as child window";
+
+                        }
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
 
          m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 

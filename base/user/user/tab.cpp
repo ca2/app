@@ -1691,7 +1691,7 @@ namespace user
    void tab::set_current_tab_by_index(::index iIndex)
    {
       
-      information("tab::set_current_tab_by_index start\n");
+      information() << "tab::set_current_tab_by_index start : " << iIndex;
 
       synchronous_lock lock(get_data()->synchronization());
 
@@ -1703,6 +1703,8 @@ namespace user
       {
 
          get_data()->m_idaSel.add(idTab);
+
+         information() << "tab::set_current_tab_by_index idTab : " << idTab.as_string();
 
       }
 
@@ -1719,7 +1721,7 @@ namespace user
          
       }
       
-      information("tab::set_current_tab_by_index end\n");
+      information() << "tab::set_current_tab_by_index end";
       
    }
 

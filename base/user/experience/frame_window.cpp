@@ -1249,6 +1249,8 @@ namespace experience
    void frame_window::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
+      //::user::frame_window::on_perform_top_down_layout(pgraphics);
+
       if (!is_frame_experience_enabled())
       {
 
@@ -1257,6 +1259,8 @@ namespace experience
          return;
 
       }
+
+      ::user::main_window::on_perform_top_down_layout(pgraphics);
 
       //::rectangle_i32 frame_window::rectangle(::user::enum_layout elayout)
       //{

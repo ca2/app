@@ -5781,6 +5781,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                   pgraphics->m_bDraw = false;
 
+                  pgraphics->m_bInheritDraw = false;
+
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
 
@@ -6047,6 +6049,8 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                   //pgraphics->m_bDraw = bDraw;
 
                   pgraphics->m_bDraw = true;
+
+                  pgraphics->m_bInheritDraw = true;
 
                   //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 

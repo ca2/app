@@ -453,7 +453,7 @@ namespace experience_nanoui
       rectangleSmall = m_pframewindow->rectangle();
 
       ::rectangle_i32 rectangle;
-      
+
       if (eside == e_border_top)
       {
          rectangle.left = rectangleBig.left;

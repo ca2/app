@@ -1194,6 +1194,16 @@ namespace windowing
    }
 
 
+   bool window::_is_iconic_unlocked()
+   {
+
+      windowing_output_debug_string("\n::window::_is_iconic_unlocked 1");
+
+      return false;
+
+   }
+
+
    bool window::_is_window_visible_unlocked()
    {
 
@@ -1235,17 +1245,17 @@ namespace windowing
 
    bool window::on_set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
                                        const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-                                       bool bShow, bool bHide)
+                                       ::e_display edisplay)
    {
 
-      return set_window_position(zorder, x, y, cx, cy, eactivation, bNoZorder, bNoMove, bNoSize, bShow, bHide);
+      return set_window_position(zorder, x, y, cx, cy, eactivation, bNoZorder, bNoMove, bNoSize, edisplay);
 
    }
 
 
    bool window::set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
                                     const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-                                    bool bShow, bool bHide)
+                                    ::e_display edisplay)
    {
 
       bool bOk = false;
@@ -1257,7 +1267,7 @@ namespace windowing
 
    bool window::_set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
                                      const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-                                     bool bShow, bool bHide, ::u32 nOverrideFlags)
+                                     ::e_display edisplay, ::u32 nOverrideFlags)
    {
 
       return true;
@@ -1379,7 +1389,7 @@ namespace windowing
 //
 //      }
 //
-      bool shouldGetVisible = ::is_screen_visible(edisplayOutput);
+      //bool shouldGetVisible = windowing()->is_screen_visible(edisplay);
 //
 //      if (sizeOutput.is_empty())
 //      {
@@ -1390,7 +1400,7 @@ namespace windowing
 //
 //      }
 //
-      bool bWindowVisible = _is_window_visible_unlocked();
+      //bool bWindowVisible = _is_window_visible_unlocked();
 //
 //      bool bSize = true;
 //
@@ -1420,38 +1430,40 @@ namespace windowing
 //
 //      }
 
-      bool bVisibilityChange = is_different(bWindowVisible, shouldGetVisible);
+      //bool bVisibilityChange = is_different(bWindowVisible, shouldGetVisible);
 
-      bool bShow = false;
+      bool bVisibilityChange = edisplayOutput != edisplayWindow;
 
-      bool bHide = false;
-
-      if (bVisibilityChange)
-      {
-
-         if (shouldGetVisible)
-         {
-
-            bShow = true;
-
-         } else
-         {
-
-            bHide = true;
-
-         }
-
-      } else
-      {
-
-         if (shouldGetVisible)
-         {
-
-            bShow = true;
-
-         }
-
-      }
+//      bool bShow = false;
+//
+//      bool bHide = false;
+//
+//      if (bVisibilityChange)
+//      {
+//
+//         if (shouldGetVisible)
+//         {
+//
+//            bShow = true;
+//
+//         } else
+//         {
+//
+//            bHide = true;
+//
+//         }
+//
+//      } else
+//      {
+//
+//         if (shouldGetVisible)
+//         {
+//
+//            bShow = true;
+//
+//         }
+//
+//      }
 
       bool bZ = zOutput.is_change_request();
 //
@@ -1477,8 +1489,7 @@ namespace windowing
             zOutput,
             eactivationOutput,
             !bZ,
-            bShow,
-            bHide);
+            edisplayOutput);
 
          stateWindow = stateOutput;
 
@@ -1734,10 +1745,10 @@ namespace windowing
 
    bool window::_set_window_position_unlocked(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
                                               const ::e_activation & eactivation, bool bNoZorder, bool bNoMove,
-                                              bool bNoSize, bool bShow, bool bHide)
+                                              bool bNoSize, ::e_display edisplay)
    {
 
-      bool bOk1 = _configure_window_unlocked(zorder, eactivation, bNoZorder, bShow, bHide);
+      bool bOk1 = _configure_window_unlocked(zorder, eactivation, bNoZorder, edisplay);
 
       bool bOk2 = _strict_set_window_position_unlocked(x, y, cx, cy, bNoMove, bNoSize);
 
@@ -1748,7 +1759,7 @@ namespace windowing
 
    bool
    window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder,
-                                      bool bShow, bool bHide)
+                                      ::e_display edisplay)
    {
 
       bool bOk = false;

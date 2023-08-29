@@ -144,6 +144,8 @@ namespace windowing
 
 
 
+      virtual bool is_screen_visible(::e_display edisplay);
+
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor);
 
 

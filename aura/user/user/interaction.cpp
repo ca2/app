@@ -2984,6 +2984,8 @@ namespace user
 
       information() << "interaction_layout::display e_display_iconic";
 
+//      information() << acmenode()->get_callstack();
+
 #endif
 
       layout().sketch().display() = e_display_iconic;

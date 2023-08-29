@@ -7802,7 +7802,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
                pointOutput.y(),
                sizeOutput.cx(),
                sizeOutput.cy(),
-               eactivationOutput, !bZ, !bMove, !bSize, bShow, bHide);
+               eactivationOutput, !bZ, !bMove, !bSize, edisplayOutput);
 
             m_sizeSetWindowSizeRequest = sizeOutput;
 

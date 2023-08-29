@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/scoped_restore.h"
 #include "acme/platform/keep.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
@@ -266,6 +267,13 @@ namespace user
       if (!bLoad)
       {
 
+         at_end_of_scope
+         {
+
+            m_bLoadingWindowRectangle = false;
+
+         };
+
          m_bLoadingWindowRectangle = true;
 
          ::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
@@ -306,6 +314,13 @@ namespace user
       if (!bLoad)
       {
 
+         at_end_of_scope
+         {
+
+            m_bLoadingWindowRectangle = false;
+
+         };
+
          m_bLoadingWindowRectangle = true;
 
          ::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
@@ -339,6 +354,13 @@ namespace user
          return false;
 
       }
+
+      at_end_of_scope
+      {
+
+         m_bLoadingWindowRectangle = false;
+
+      };
 
       m_bLoadingWindowRectangle = true;
 
@@ -469,6 +491,13 @@ namespace user
          return false;
 
       }
+
+      at_end_of_scope
+      {
+
+         m_bLoadingWindowRectangle = false;
+
+      };
 
       m_bLoadingWindowRectangle = true;
 

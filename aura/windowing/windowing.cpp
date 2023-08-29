@@ -451,6 +451,14 @@ namespace windowing
    }
 
 
+   bool windowing::is_screen_visible(::e_display edisplay)
+   {
+
+      return ::is_screen_visible(edisplay);
+
+   }
+
+
    ::pointer<::windowing::cursor>windowing::load_default_cursor(enum_cursor ecursor)
    {
 

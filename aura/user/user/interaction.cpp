@@ -5718,6 +5718,13 @@ namespace user
          try
          {
 
+            if (!pchild)
+            {
+
+               continue;
+
+            }
+
             pchild->defer_do_layout(pgraphics);
 
          }

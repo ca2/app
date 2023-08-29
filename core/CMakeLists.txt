@@ -358,6 +358,8 @@ list(APPEND library_source
    user/user/font_combo_box.h
    user/user/font_list.cpp
    user/user/font_list.h
+   user/user/font_list_impact.cpp
+   user/user/font_list_impact.h
    user/user/form_list.cpp
    user/user/form_list.h
    user/user/form_list_impact.cpp

@@ -389,7 +389,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangleSmall;
 
-      get_window_client_rectangle(&rectangleSmall);
+      rectangleSmall = m_pframewindow->rectangle();
 
       ::rectangle_i32 rectangle;
 

@@ -421,7 +421,9 @@ SizingNone:;
    {
       ::rectangle_i32 rectangleBig(rectangleX);
       ::rectangle_i32 rectangleSmall;
-      get_window_client_rectangle(&rectangleSmall);
+
+      rectangleSmall = m_pframewindow->rectangle();
+
       ::rectangle_i32 rectangle;
       if(eside == e_border_top)
       {

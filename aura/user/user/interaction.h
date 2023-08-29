@@ -1424,6 +1424,7 @@ namespace user
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
       virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -1441,6 +1442,8 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) ;
 
       virtual bool is_custom_draw();
+
+      virtual void design_to_window();
 
       virtual atom GetDlgCtrlId() const override;
       virtual atom SetDlgCtrlId(const ::atom & atom) override;

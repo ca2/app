@@ -5657,6 +5657,8 @@ namespace user
 
          perform_layout(pgraphics);
 
+         defer_do_layout(pgraphics);
+
       }
 
       //pgraphics->fill_solid_rectangle({ 100, 100, 200, 200 }, ::color::white);
@@ -5666,7 +5668,7 @@ namespace user
    }
 
 
-   void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   void interaction::defer_do_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       scoped_restore(pgraphics->m_puserinteraction);
@@ -5697,13 +5699,76 @@ namespace user
          if (get_parent() != nullptr)
          {
 
-            layout().window() = layout().design();
-
-            layout().design().reset_pending();
+            design_to_window();
 
          }
 
       }
+
+      if (!m_puserinteractionpointeraChild)
+      {
+
+         return;
+
+      }
+
+      for (auto & pchild : m_puserinteractionpointeraChild->interactiona())
+      {
+
+         try
+         {
+
+            pchild->defer_do_layout(pgraphics);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   }
+
+
+   void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      scoped_restore(pgraphics->m_puserinteraction);
+
+      //pgraphics->m_puserinteraction = m_puserinteraction;
+
+      //if (pgraphics->m_egraphics & e_graphics_layout)
+      //{
+
+      //   layout_to_design();
+
+      //   if (m_bLadingToLayout)
+      //   {
+
+      //      m_bLadingToLayout = false;
+
+      //      layout_layout(pgraphics);
+
+      //   }
+
+      //}
+
+      //if (pgraphics->m_egraphics & e_graphics_layout)
+      //{
+
+      //   process_graphics_call_queue(pgraphics);
+
+      //   if (get_parent() != nullptr)
+      //   {
+
+      //      layout().window() = layout().design();
+
+      //      layout().design().reset_pending();
+
+      //   }
+
+      //}
 
       //if (!is_this_visible(e_layout_design))
       //{
@@ -6291,6 +6356,16 @@ namespace user
    {
 
       return false;
+
+   }
+
+
+   void interaction::design_to_window()
+   {
+
+      layout().window() = layout().design();
+
+      layout().design().reset_pending();
 
    }
 
@@ -23279,7 +23354,7 @@ namespace user
    void interaction::_001DrawItems(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return;
+      //return;
 
       for (auto [iIndex, pitemcontainer] : m_itemcontainermap)
       {

@@ -194,6 +194,16 @@ namespace user
    }
 
 
+   void list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      return;
+
+      ::user::mesh::_001OnNcClip(pgraphics);
+
+   }
+
+
    void list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -1116,7 +1126,7 @@ namespace user
 
       }
 
-      on_update_item_count();
+      //on_update_item_count();
 
       return true;
 
@@ -7620,6 +7630,8 @@ namespace user
 
    void list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
+
+      return;
 
       mesh::_001OnClip(pgraphics);
 

@@ -918,7 +918,12 @@ namespace experience
 
             defer_save_window_placement();
 
-            display();
+            if (!is_this_visible())
+            {
+
+               display();
+
+            }
 
             set_reposition();
 
